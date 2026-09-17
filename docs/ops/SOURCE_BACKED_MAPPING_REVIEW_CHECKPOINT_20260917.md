@@ -50,6 +50,14 @@ was not bypassed. Branches and historical receipts are preserved.
 
 ## Remaining Work
 
+PR #486 review found stale operational inventories still counting this CLI as
+an enforced canon writer. The worker index now says read-only/no DB writes; the
+runtime audit says review_only/no post-write proof. Its active scope, execution
+policy and proof-mode registrations were removed; historical receipts remain.
+Three regressions first failed against the stale inventory and now check the
+actual runtime-health inputs, including rejection by the generic write validator.
+The precedence test uses the still-active alias mapping scope instead.
+
 This repair needs full release checks, review and runtime rollout verification.
 The inventory did not prove these historical scripts were scheduled: regular
 systemd/cron files had no literal caller names, but dynamic/manual invocation

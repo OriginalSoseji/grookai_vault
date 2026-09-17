@@ -129,20 +129,6 @@ export const CONTRACT_EXECUTION_SCOPES_V1 = {
     ],
     checkpoints: ['CONTRACT_RUNTIME_LAYER_V1'],
   },
-  promote_source_backed_justtcg_mapping_v1: {
-    execution_name: 'promote_source_backed_justtcg_mapping_v1',
-    canon_affecting: true,
-    active_contracts: [
-      'GROOKAI_GUARDRAILS',
-      'NO_ASSUMPTION_RULE',
-      'IDENTITY_CONTRACT_SUITE_V1',
-      'IDENTITY_PRECEDENCE_RULE_V1',
-      'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
-      'PRICING_ENGINE_V1',
-      'STABILIZATION_CONTRACT_V1',
-    ],
-    checkpoints: ['CONTRACT_RUNTIME_LAYER_V1'],
-  },
   printing_upsert_v1: {
     execution_name: 'printing_upsert_v1',
     canon_affecting: true,
