@@ -1446,7 +1446,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return;
     }
 
-    if (!mounted) return;
+    if (!mounted || _addingToVault) return;
     final userId = supabase.auth.currentUser?.id;
     if (userId == null) {
       await _showSignedOutIntentSheet(

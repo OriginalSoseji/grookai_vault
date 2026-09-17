@@ -4420,6 +4420,10 @@ class HomePageState extends State<HomePage> {
               card,
               cardPrintingId: selectedPrintingId,
             );
+            // The modal has its own state; a cancelled/failed add must unlock it.
+            if (sheetContext.mounted) {
+              setSheetState(() {});
+            }
             if (!mounted || gvviId == null || gvviId.isEmpty) {
               return;
             }

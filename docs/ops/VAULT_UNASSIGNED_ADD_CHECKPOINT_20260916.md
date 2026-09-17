@@ -30,6 +30,12 @@ Canonical identity, pricing, Edge deployment and schema are unchanged.
 
 ## Resume
 
+Samsung candidate 323 exposed a modal busy-state refresh gap after cancelling
+the new prompt. No copy was written. Explicit modal refresh and a detail
+duplicate-resolution guard were added for the next candidate. Preserve 323 as
+failed acceptance evidence; it is not the final device verification. Its Apple
+archive/export attempt is not TestFlight delivery.
+
 Private receipts: `C:/grookai_vault_operator_artifacts/vault_add_repair_20260916/`.
 Read the latest delivery receipt there before repeating any build or upload.
 Do not claim an installed app changed merely because this source is prepared.
