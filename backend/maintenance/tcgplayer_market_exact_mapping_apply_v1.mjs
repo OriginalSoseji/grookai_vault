@@ -13,6 +13,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import pg from "pg";
+import { assertMasterMappingBatchAuthority } from "../pricing/master_index_mapping_authority_v1.mjs";
+import { mappingDatabaseConfig, mappingTransactionState, commitMappingTransaction,
+  rollbackMappingTransaction } from "../pricing/exact_mapping_execution_guard_v1.mjs";
 
 import {
   CANON_MAINTENANCE_DRY_RUN_ENV_V1,
@@ -24,6 +27,7 @@ import {
 } from "./canon_maintenance_boundary_v1.mjs";
 import {
   buildTcgplayerExactMappingMetaV1,
+  tcgplayerExactMappingApplyFingerprintV1,
   selectTcgplayerExactMappingApplyBatchV1,
   validateTcgplayerExactMappingLiveTargetV1,
   TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1,
@@ -50,6 +54,8 @@ const EXPECTED_COMMIT_ENV = "TCGPLAYER_EXACT_MAPPING_EXPECTED_COMMIT_SHA";
 const EXPECTED_PLAN_COMMIT_ENV =
   "TCGPLAYER_EXACT_MAPPING_EXPECTED_PLAN_COMMIT_SHA";
 const OUTPUT_ROOT_ENV = "TCGPLAYER_EXACT_MAPPING_OUTPUT_ROOT";
+const MASTER_AUTHORITY_PATH_ENV = "TCGPLAYER_EXACT_MAPPING_MASTER_AUTHORITY_PATH";
+const MASTER_AUTHORITY_SHA_ENV = "TCGPLAYER_EXACT_MAPPING_MASTER_AUTHORITY_SHA256";
 
 if (process.env[CANON_MAINTENANCE_ENABLE_ENV_V1] !== "true") {
   throw new Error(
@@ -115,12 +121,6 @@ function connectionString() {
     process.env.POSTGRES_URL ||
     ""
   );
-}
-
-function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: false };
 }
 
 function git(args) {
@@ -344,6 +344,7 @@ async function loadLiveState(client, selected, sourceSyncRunId) {
          card.name,
          card.number,
          card.variant_key,
+         to_jsonb(card) as parent_snapshot,
          count(distinct identity.id) filter (
            where identity.is_active = true
              and identity.identity_domain = 'pokemon_eng_standard'
@@ -542,6 +543,11 @@ function validateAppliedReadback(selected, inserted, readback, context) {
     ) {
       failures.push(`mapping_provenance_mismatch:${row.external_id}`);
     }
+    const binding = context.master_authority_bindings.find(item => item.candidate_fingerprint === candidate.candidate_fingerprint);
+    if (!binding || row.meta?.master_authority_fingerprint !== context.master_authority_fingerprint ||
+        tcgplayerExactMappingApplyFingerprintV1(row.meta?.master_authority_binding ?? null) !== tcgplayerExactMappingApplyFingerprintV1(binding)) {
+      failures.push(`mapping_master_authority_readback_mismatch:${row.external_id}`);
+    }
   }
   return [...new Set(failures)].sort();
 }
@@ -570,6 +576,11 @@ async function writeArtifacts(outDir, files) {
     await fs.writeFile(path.join(outDir, name), contents);
     hashes[name] = sha256(contents);
   }
+  try {
+    hashes["precommit_readback.json"] = sha256(await fs.readFile(path.join(outDir, "precommit_readback.json")));
+  } catch (error) {
+    if (error.code !== "ENOENT") throw error;
+  }
   await fs.writeFile(
     path.join(outDir, "artifact_hashes.json"),
     `${JSON.stringify(hashes, null, 2)}\n`,
@@ -589,6 +600,13 @@ async function main() {
       excludedTargetCardPrintIds: canary.target_card_print_ids,
     },
   );
+  const masterAuthorityPath = resolveRepoPath(process.env[MASTER_AUTHORITY_PATH_ENV], MASTER_AUTHORITY_PATH_ENV);
+  const masterAuthoritySha = text(process.env[MASTER_AUTHORITY_SHA_ENV]);
+  if (!/^[a-f0-9]{64}$/.test(masterAuthoritySha)) throw new Error(`${MASTER_AUTHORITY_SHA_ENV}_INVALID`);
+  const masterAuthorityBytes = await fs.readFile(masterAuthorityPath);
+  if (sha256(masterAuthorityBytes) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_FILE_HASH_MISMATCH");
+  const masterAuthority = JSON.parse(masterAuthorityBytes);
+  const authorityProof = assertMasterMappingBatchAuthority(selection.selected, masterAuthority);
   const maintenanceRunId = randomUUID();
   const outputRoot = process.env[OUTPUT_ROOT_ENV]
     ? resolveRepoPath(process.env[OUTPUT_ROOT_ENV], OUTPUT_ROOT_ENV)
@@ -603,6 +621,8 @@ async function main() {
     candidate_artifact_path: frozen.candidatePathRelative,
     candidate_plan_commit_sha: frozen.sourcePlan.commit_sha,
     producing_commit_sha: frozen.commitSha,
+    master_authority_fingerprint: authorityProof.fingerprint,
+    master_authority_bindings: authorityProof.bindings,
   };
   const runPlan = {
     script_version: SCRIPT_VERSION,
@@ -623,6 +643,8 @@ async function main() {
     selected_count: selection.selected_count,
     canary_excluded_count: selection.excluded_count,
     batch_fingerprint: selection.batch_fingerprint,
+    master_authority_fingerprint: authorityProof.fingerprint,
+    master_authority_sha256: masterAuthoritySha,
     selected_source_product_ids: selection.selected.map((row) =>
       Number(row.source_product_id),
     ),
@@ -644,20 +666,19 @@ async function main() {
     path.join(outDir, "run_plan.json"),
     runPlanContents,
   );
+  await fs.writeFile(path.join(outDir, "master_authority.json"), masterAuthorityBytes, { flag: "wx" });
 
   const url = connectionString();
   if (!url) throw new Error("database connection string is required");
-  const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
-    application_name: "tcgplayer-market-exact-mapping-apply-v1",
-  });
+  const databaseConfig = mappingDatabaseConfig(url, { mode });
+  const client = new Client(databaseConfig);
   let inserted = [];
   let readback = [];
-  let committed = false;
+  const transaction = mappingTransactionState();
   let live;
-  await client.connect();
   try {
+    await client.connect();
+    if (databaseConfig.ssl && client.connection.stream.authorized !== true) throw new Error("MAPPING_TLS_NOT_AUTHORIZED");
     await client.query(
       mode === "apply"
         ? "begin isolation level serializable"
@@ -682,6 +703,8 @@ async function main() {
     if (liveFailures.length > 0) {
       throw new Error(`LIVE_PRECONDITION_FAILED:${JSON.stringify(liveFailures)}`);
     }
+    assertMasterMappingBatchAuthority(selection.selected, masterAuthority, { liveTargets: live.targets });
+    if (sha256(await fs.readFile(masterAuthorityPath)) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_CHANGED_DURING_PREFLIGHT");
 
     if (mode === "apply") {
       assertCanonMaintenanceWriteAllowed();
@@ -723,8 +746,16 @@ async function main() {
           `INSERT_RECONCILIATION_FAILED:${inserted.length}/${selection.selected.length}`,
         );
       }
-      await client.query("commit");
-      committed = true;
+      assertMasterMappingBatchAuthority(selection.selected, masterAuthority, {
+        liveTargets: (await loadLiveState(client, selection.selected, frozen.sourcePlan.source_sync_run_id)).targets,
+      });
+      if (sha256(await fs.readFile(masterAuthorityPath)) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_CHANGED_BEFORE_COMMIT");
+      const precommitReadback = await readAppliedMappings(client, inserted.map(row => row.id));
+      const precommitFailures = validateAppliedReadback(selection.selected, inserted, precommitReadback, context);
+      if (precommitFailures.length) throw new Error(`PRE_COMMIT_READBACK_FAILED:${JSON.stringify(precommitFailures)}`);
+      await fs.writeFile(path.join(outDir, "precommit_readback.json"), `${JSON.stringify({ context, mappings: precommitReadback }, null, 2)}\n`, { flag: "wx" });
+      if (sha256(await fs.readFile(masterAuthorityPath)) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_CHANGED_BEFORE_COMMIT");
+      await commitMappingTransaction(client, transaction);
       readback = await readAppliedMappings(
         client,
         inserted.map((row) => row.id),
@@ -741,23 +772,26 @@ async function main() {
         );
       }
     } else {
-      await client.query("rollback");
+      await rollbackMappingTransaction(client, transaction);
     }
   } catch (error) {
-    if (!committed) await client.query("rollback").catch(() => {});
+    if (!transaction.rollback_attempted) await rollbackMappingTransaction(client, transaction).catch(() => {});
     const rollbackManifest = buildRollbackManifest(
       readback.length > 0 ? readback : inserted,
       context,
     );
     const failure = {
       script_version: SCRIPT_VERSION,
-      status: "failed",
+      status: transaction.commit_uncertain || transaction.rollback_uncertain || transaction.committed
+        ? "reconciliation_required" : "failed",
       mode,
       maintenance_run_id: maintenanceRunId,
-      committed,
+      ...transaction,
+      automatic_retry_allowed: false,
       error: error instanceof Error ? error.message : String(error),
     };
     await writeArtifacts(outDir, {
+      "master_authority.json": masterAuthorityBytes,
       "run_plan.json": runPlanContents,
       "summary.json": `${JSON.stringify(failure, null, 2)}\n`,
       "selected_candidates.jsonl": jsonl(selection.selected),
@@ -778,7 +812,7 @@ async function main() {
     status: "passed",
     mode,
     maintenance_run_id: maintenanceRunId,
-    committed,
+    ...transaction,
     candidate_count: selection.candidate_count,
     selected_count: selection.selected_count,
     inserted_count: inserted.length,
@@ -795,6 +829,7 @@ async function main() {
   };
   const rollbackManifest = buildRollbackManifest(readback, context);
   await writeArtifacts(outDir, {
+    "master_authority.json": masterAuthorityBytes,
     "run_plan.json": runPlanContents,
     "summary.json": `${JSON.stringify(summary, null, 2)}\n`,
     "selected_candidates.jsonl": jsonl(selection.selected),
