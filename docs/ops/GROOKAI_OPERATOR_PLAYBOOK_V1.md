@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Legacy TCGdex Mapping Discovery
+
+Read `TCGDEX_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Do not run the historical
+bridge with `--apply`: direct promotion based on price-bucket agreement is retired.
+The repaired CLI writes local immutable review artifacts only, defaults to 50
+cards, and supports `--limit=1..500 --output=<new-directory>`. Existing matching
+mappings still require evidence review. Complete source/Master Index adjudication
+before generating a fresh exact-mapping plan. No automatic finish inference,
+mapping reassignment or production authority is granted by a discovery report.
+
 ## Exact Mapping Plan Identity
 
 Read `EXACT_MAPPING_IDENTITY_CHECKPOINT_20260917.md` before preparing another

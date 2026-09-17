@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Legacy TCGdex Mapping Boundary - September 17
+
+Read `docs/ops/TCGDEX_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The legacy bridge
+is now a read-only evidence collector; direct apply is retired. Its product-ID
+agreement and existing mapping rows do not prove printing identity. Use reviewed
+Master Index evidence and the existing bounded mapping executor, not this report,
+for future writes. Integration is not deployed runtime enforcement.
+
 ## Exact Mapping Identity Preservation - September 17
 
 Read `docs/ops/EXACT_MAPPING_IDENTITY_CHECKPOINT_20260917.md`. The isolated
