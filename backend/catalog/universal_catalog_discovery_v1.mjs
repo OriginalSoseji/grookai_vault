@@ -3,6 +3,18 @@ import crypto from "node:crypto";
 export const UNIVERSAL_CATALOG_DISCOVERY_VERSION =
   "UNIVERSAL_CATALOG_DISCOVERY_V1";
 
+export function classifyCatalogSourceTransportFailureV1(error) {
+  const status = error?.httpStatus;
+  if (status === 401 || status === 403) return "SOURCE_ACCESS_DENIED";
+  if (status === 429 || (Number.isInteger(status) && status >= 500 && status <= 599)) {
+    return "SOURCE_UNAVAILABLE";
+  }
+  if (status != null || error instanceof SyntaxError) return "SOURCE_INTEGRITY_FAILURE";
+  return /fetch failed|timed? ?out|timeout/i.test(String(error?.message ?? error))
+    ? "SOURCE_UNAVAILABLE"
+    : "SOURCE_INTEGRITY_FAILURE";
+}
+
 export function isOptionalCatalogSourceFallbackV1(error) {
   return error?.catalogSourceFailureClass === "SOURCE_UNAVAILABLE" ||
     error?.httpStatus === 404;
@@ -44,11 +56,14 @@ export async function runDegradedCatalogSourceLaneV1({
     return await operation();
   } catch (error) {
     const message = String(error?.message ?? error);
-    if (!message.includes("[SOURCE_UNAVAILABLE]")) throw error;
+    const failureClass = error?.catalogSourceFailureClass ??
+      message.match(/^\[(SOURCE_UNAVAILABLE|SOURCE_ACCESS_DENIED)\]/)?.[1];
+    if (!["SOURCE_UNAVAILABLE", "SOURCE_ACCESS_DENIED"].includes(failureClass)) throw error;
     failures.push({
       authority,
-      failure_class: "source_unavailable",
+      failure_class: failureClass.toLowerCase(),
       message,
+      ...(Number.isInteger(error?.httpStatus) ? { http_status: error.httpStatus } : {}),
       recorded_at: recordedAt(),
     });
     return typeof fallback === "function" ? fallback() : fallback;

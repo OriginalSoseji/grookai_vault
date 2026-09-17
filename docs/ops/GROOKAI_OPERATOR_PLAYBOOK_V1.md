@@ -18,6 +18,13 @@ footprints. Investigate later ownership/mapping drift; do not silently rebaselin
 it. The PR #476 review repair changes the producer fingerprint, so its prior
 pending approval request and frozen producer are not valid for the repaired code.
 
+## Catalog Source Access Denials
+
+Read `docs/ops/CATALOG_SOURCE_ACCESS_CHECKPOINT_20260917.md` for HTTP 401/403
+handling in catalog discovery. Source access denial is reported separately from
+bad evidence and database errors. Do not bypass a denied endpoint, infer missing
+cards from the outage, or turn a denied source into an approved candidate fallback.
+
 ## Printing-Complete Ingestion - September 17
 
 Current checkpoint: `MASTER_INDEX_TOP_DOWN_REPAIR_CHECKPOINT_20260917.md`.
