@@ -1,0 +1,1705 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "mcd21",
+  "scope": "base_release",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "master:mcd21",
+  "master_index_sha256": "ca9940bb182f4c9a398341124c86b752330102c7e5aefb906684d48a25f91b3a",
+  "parents": [
+    {
+      "id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+      "name": "Bulbasaur",
+      "gv_id": "GV-PK-MCD-2021-1",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "1",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+      "name": "Chikorita",
+      "gv_id": "GV-PK-MCD-2021-2",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "2",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+      "name": "Treecko",
+      "gv_id": "GV-PK-MCD-2021-3",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "3",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+      "name": "Turtwig",
+      "gv_id": "GV-PK-MCD-2021-4",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "4",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+      "name": "Snivy",
+      "gv_id": "GV-PK-MCD-2021-5",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "5",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+      "name": "Chespin",
+      "gv_id": "GV-PK-MCD-2021-6",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "6",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+      "name": "Rowlet",
+      "gv_id": "GV-PK-MCD-2021-7",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "7",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6146b291-b145-4387-962f-a460759eaa3b",
+      "name": "Grookey",
+      "gv_id": "GV-PK-MCD-2021-8",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "8",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d8aabffc-f431-46d7-895d-5315eef17706",
+      "name": "Charmander",
+      "gv_id": "GV-PK-MCD-2021-9",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "9",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "50ad8bc5-3139-490d-ba54-917de4422979",
+      "name": "Cyndaquil",
+      "gv_id": "GV-PK-MCD-2021-10",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "10",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+      "name": "Torchic",
+      "gv_id": "GV-PK-MCD-2021-11",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "11",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+      "name": "Chimchar",
+      "gv_id": "GV-PK-MCD-2021-12",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "12",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+      "name": "Tepig",
+      "gv_id": "GV-PK-MCD-2021-13",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "13",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+      "name": "Fennekin",
+      "gv_id": "GV-PK-MCD-2021-14",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "14",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+      "name": "Litten",
+      "gv_id": "GV-PK-MCD-2021-15",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "15",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+      "name": "Scorbunny",
+      "gv_id": "GV-PK-MCD-2021-16",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "16",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+      "name": "Squirtle",
+      "gv_id": "GV-PK-MCD-2021-17",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "17",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+      "name": "Totodile",
+      "gv_id": "GV-PK-MCD-2021-18",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "18",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5e598a22-3577-493a-8413-c2a040a9993b",
+      "name": "Mudkip",
+      "gv_id": "GV-PK-MCD-2021-19",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "19",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+      "name": "Piplup",
+      "gv_id": "GV-PK-MCD-2021-20",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "20",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b1e1c09f-7288-4219-910a-881c749accfb",
+      "name": "Oshawott",
+      "gv_id": "GV-PK-MCD-2021-21",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "21",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+      "name": "Froakie",
+      "gv_id": "GV-PK-MCD-2021-22",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "22",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+      "name": "Popplio",
+      "gv_id": "GV-PK-MCD-2021-23",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "23",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+      "name": "Sobble",
+      "gv_id": "GV-PK-MCD-2021-24",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "24",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+      "name": "Pikachu",
+      "gv_id": "GV-PK-MCD-2021-25",
+      "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "25",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-1-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-1-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-2-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-2-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-3-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-3-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-4-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-4-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-5-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-5-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-6-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-6-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-7-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-7-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-8-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-8-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-9-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-9-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-10-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-10-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-11-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-11-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-12-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-12-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-13-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-13-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-14-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-14-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-15-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-15-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-16-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-16-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-17-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-17-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-18-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-18-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-19-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-19-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-20-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-20-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-21-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-21-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-22-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-22-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-23-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-23-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-24-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-24-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-MCD-2021-25-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MCD-2021-25-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia",
+          "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+          "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pokebeach",
+          "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+          "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 25,
+    "printings": 50,
+    "finishes": {
+      "normal": 25,
+      "holo": 25
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "05b97782-d4b8-49eb-8030-7f990cdd6776",
+    "source_artifacts": [
+      {
+        "ref": "bulbapedia",
+        "sha256": "e61b87b1a1ed16a5e9a5ee6d88425de782368c6e3d9388ca0b9d1f5f73db9b89",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/McDonalds_Collection_2021_(TCG)",
+        "retrieved_at": "2026-09-17T05:04:33.585Z"
+      },
+      {
+        "ref": "pokebeach",
+        "sha256": "88f921976bf4b746f2433c19f2fa2a75fd4364310907bdd14b7f286ec5164e53",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.pokebeach.com/2021/02/mcdonalds-25th-anniversary-set-will-actually-contain-50-cards-ahh",
+        "retrieved_at": "2026-09-17T05:04:34.529Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [
+      {
+        "card_print_id": "3a50202c-15db-4aef-9834-5b92fb3a06a8",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "e71e46ae-737f-404f-8653-702852a8fc9d",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "7b1ed795-6004-4421-935c-eaeb13c2b431",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "31469ee4-0f1c-4c1b-94d2-faf61825aeef",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "800eb4cf-3d61-46be-af3c-d26d9305c851",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "687bf5f2-7825-4472-89a8-1594f32f6508",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "9dcc66a0-8bb2-4b49-8b66-ac5fa90fabfc",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "6146b291-b145-4387-962f-a460759eaa3b",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "d8aabffc-f431-46d7-895d-5315eef17706",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "50ad8bc5-3139-490d-ba54-917de4422979",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "49af7a78-ce0a-4724-ab76-4e7bf3953345",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "8bdd1bf8-65ad-4667-8487-a2d5c03816f1",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "113a0623-688c-4f40-9a4a-5c1592f6b79c",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "e790506f-e4c4-4012-b4b9-f06e0b9edebc",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "64745ff3-e01a-4533-a83b-d9a2e9c34df4",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "cbeaba49-29b6-48d2-a97b-ba621052be04",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "e6a1e03d-645b-4fd2-8852-cb37d2527ade",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "29539ca4-e224-4353-b1d7-296b9caa5eb6",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "5e598a22-3577-493a-8413-c2a040a9993b",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "86a829fd-53ca-4021-9f07-1c5d587cf2c1",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "b1e1c09f-7288-4219-910a-881c749accfb",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "05241ed0-d57f-4faf-9267-ade2436a01c6",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "9b332cbd-b3ff-4a5c-bd58-f16901c502db",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "b4e83712-1951-4871-a28c-0c3be17a291d",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "2655f2a6-4c0f-4f52-91d8-b976f99de930",
+        "finish_key": "reverse"
+      }
+    ],
+    "conflicts": [],
+    "review": {
+      "ref": "review:mcd21",
+      "sha256": "47dd4f98ebc31ac689c72d7d2cd5790c2b6ffc1f54aa452f04dba9ba965d47de"
+    }
+  },
+  "fingerprint": "43a3cb1d42323acbc4ef03d3ed331e4429f16ae08ae8e421d6f0ed72075c42a8"
+}

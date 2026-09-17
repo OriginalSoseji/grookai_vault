@@ -1,0 +1,19 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "ca9940bb182f4c9a398341124c86b752330102c7e5aefb906684d48a25f91b3a",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "mcd21",
+  "scope": "base_release",
+  "reviewer": "Codex source adjudication; not founder mutation approval",
+  "reviewed_at": "2026-09-17T05:10:54.133Z",
+  "projection_sha256": "77e3ca7675050a9c86106b64f1ae84bbbc82c7a26cc18cad5aae68721433a7fc",
+  "reasoning": [
+    "The captured Bulbapedia checklist supplies the exact 25 card numbers and names; each matches the historical Master Index and existing parent binding.",
+    "The captured PokeBeach first-hand report of pack contents states all 25 cards have Holo and non-Holo versions, giving 50 printings.",
+    "Bulbapedia independently describes non-Holo and Confetti Holo for every card. Confetti Holo is mapped to existing holo finish taxonomy, not reverse.",
+    "Existing 25 Normal printing UUIDs are retained. Database contents are identity bindings, not authority for finish existence.",
+    "This base-release scope does not assert exhaustive error, regional, or other special variant coverage. No prices, images, ownership or visibility are authorized."
+  ],
+  "mutation_authority": false
+}
