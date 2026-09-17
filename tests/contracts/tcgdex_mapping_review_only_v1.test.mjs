@@ -12,7 +12,9 @@ import {
 } from '../../backend/pokemon/promote_tcgdex_tcgplayer_bridge_v1.mjs';
 
 const script = fileURLToPath(new URL('../../backend/pokemon/promote_tcgdex_tcgplayer_bridge_v1.mjs', import.meta.url));
-const parent = { id: 'parent-1', name: 'Pikachu', gv_id: 'GV-PK-PGO-27', set_id: 'set-1', number_plain: '27', variant_key: null };
+const parent = { id: 'parent-1', name: 'Pikachu', gv_id: 'GV-PK-PGO-27', set_id: 'set-1', set_code: 'pgo',
+  number: '27', number_plain: '27', variant_key: null, identity_domain: 'pokemon_eng_standard',
+  print_identity_key: null, printed_identity_modifier: null };
 const payload = { id: 'pgo-27', pricing: { tcgplayer: { normal: { productId: 276946 }, 'reverse-holofoil': { productId: 276946 } } } };
 
 function fixture({ extraMappings = [], parents = [parent], source = payload, sourceError, count = 1 } = {}) {
@@ -27,7 +29,14 @@ function fixture({ extraMappings = [], parents = [parent], source = payload, sou
       calls.push(table);
       let rows = table === 'external_mappings' ? [...mappings] : [...parents];
       const query = {
-        select() { return query; },
+        select(fields) {
+          if (table === 'card_prints') {
+            for (const field of ['number', 'set_code', 'print_identity_key', 'identity_domain', 'printed_identity_modifier']) {
+              assert.ok(fields.split(',').includes(field), `Missing canonical identity field ${field}`);
+            }
+          }
+          return query;
+        },
         eq(key, value) { rows = rows.filter(row => row[key] === value); return query; },
         in(key, values) { rows = rows.filter(row => values.includes(row[key])); return query; },
         order() { return query; },
@@ -62,7 +71,7 @@ test('CLI is bounded and fail-closed, regardless of apply/dry-run flag order', (
 test('real CLI rejects legacy apply before environment, credentials or network setup', () => {
   const result = spawnSync(process.execPath, [script, '--apply', '--dry-run'], {
     encoding: 'utf8', env: { ...process.env, DOTENV_CONFIG_PATH: 'nonexistent-bridge-test.env',
-      SUPABASE_URL: '', SUPABASE_SECRET_KEY: '', SUPABASE_SERVICE_ROLE_KEY: '', TCGDEX_BASE_URL: '' },
+      SUPABASE_URL: '', SUPABASE_SECRET_KEY: '', TCGDEX_BASE_URL: '' },
   });
   assert.equal(result.status, 1);
   assert.match(result.stderr, /DIRECT_MAPPING_APPLY_RETIRED/);
@@ -105,6 +114,15 @@ test('an existing mapping does not validate itself', async () => {
   assert.equal(report.rows[0].status, 'EXISTING_MAPPING_REQUIRES_REVIEW');
   assert.equal(report.summary.existing_mapping_requires_review, 1);
   assert.equal(report.summary.already_correct, undefined);
+});
+
+test('raw event labels and printed identity keys remain intact despite lossy number_plain', async () => {
+  const labeled = { ...parent, number: 'BW95 (Worlds 13)', number_plain: '9513',
+    set_code: 'bwp', print_identity_key: 'worlds-13', printed_identity_modifier: 'Worlds 13' };
+  const report = await runReadOnlyBridge(fixture({ parents: [labeled] }));
+  assert.deepEqual(report.rows[0].targetIdentity, labeled);
+  assert.equal(report.rows[0].targetIdentity.number, 'BW95 (Worlds 13)');
+  assert.equal(report.rows[0].targetIdentity.print_identity_key, 'worlds-13');
 });
 
 test('conflicting ownership is checked even when target already has the same active mapping', async () => {

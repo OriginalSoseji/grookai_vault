@@ -137,7 +137,7 @@ async function fetchCardIdentities(supabase, cardPrintIds) {
 
   const { data, error } = await supabase
     .from('card_prints')
-    .select('id,name,gv_id,set_id,number_plain,variant_key')
+    .select('id,name,gv_id,set_id,set_code,number,number_plain,identity_domain,print_identity_key,printed_identity_modifier,variant_key')
     .in('id', cardPrintIds);
 
   if (error) {

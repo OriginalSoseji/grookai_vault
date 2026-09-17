@@ -43,12 +43,19 @@ automatically admit stamps, variants, languages or games it does not support.
 
 ## Verification
 
-16 new contracts and 18 existing exact-mapping contracts pass (34 total).
+17 new contracts and 18 existing exact-mapping contracts pass (35 total).
 Tests cover malformed IDs, source identity mismatch, missing canonical targets,
 source denial, existing mappings, conflicting ownership, ambiguous buckets,
 bounded selection, selection/artifact failure, real CLI apply rejection, real
 loopback HTTP GET-only execution and immutable artifact readback/overwrite refusal.
 No live discovery, production writes or deployment were used for these tests.
+
+PR #483 review requires the raw canonical number, set code, identity domain,
+print identity key and printed modifier in every saved parent snapshot. The
+follow-up preserves those fields, including event labels that generated
+`number_plain` loses. A projection-aware regression covers `BW95 (Worlds 13)`.
+The CI legacy-key guard also caught an obsolete environment alias in the CLI
+test; that unnecessary test override is removed without weakening the guard.
 
 Full hook receipts belong under
 `C:/grookai_vault_operator_artifacts/tcgdex_mapping_review_20260917/`.
