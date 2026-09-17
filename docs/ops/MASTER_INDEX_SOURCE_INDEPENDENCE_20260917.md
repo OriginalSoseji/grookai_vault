@@ -104,6 +104,12 @@ function drives change detection and saved review content; repeated identical
 evidence does not trigger another data update. Unrelated review types retain
 their existing policy.
 
+Legacy `printing_finish` reviews with Prize Pack source evidence also migrate
+to the scoped review key/type without dropping their evidence. This includes
+historical stamp-label reviews that have no corresponding printing, such as
+Iron Crown ex. Migration alone triggers refresh; repeated legacy inputs converge
+to one scoped row, and updated candidate evidence replaces the prior version.
+
 ## Prior Gate Receipt
 
 PR #490 merged at `c84e088581577c7b699fb73e63bb4a3364075cce` from tested head

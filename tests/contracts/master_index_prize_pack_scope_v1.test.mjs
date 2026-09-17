@@ -154,6 +154,17 @@ test('review-only evidence changes participate in refresh detection without requ
   assert.equal(buildEnglishPokemonMasterIndexRefreshPlanV1({ ...input, baselineManualReview: fresh, candidateManualReview: fresh }).changed, false);
 });
 
+test('legacy scope reviews alone trigger migration, while unrelated finish reviews do not', () => {
+  const scoped = classifyEvidence([source]).manual_review[0];
+  const legacy = { ...scoped, fact_type: 'printing_finish', key: scoped.key.replace('|prize-pack-scope-review', '') };
+  const input = { baselineSets: [{ key: 'sv02' }], candidateSets: [{ key: 'sv02' }],
+    baselineCards: [source], candidateCards: [source] };
+  assert.equal(buildEnglishPokemonMasterIndexRefreshPlanV1({ ...input, baselineManualReview: [legacy] }).changed, true);
+  assert.equal(buildEnglishPokemonMasterIndexRefreshPlanV1({ ...input, baselineManualReview: [scoped], candidateManualReview: [legacy] }).changed, false);
+  const unrelated = { ...legacy, evidence: [base], source_evidence: [base], sources: [base.source_key], evidence_urls: [base.source_url] };
+  assert.equal(buildEnglishPokemonMasterIndexRefreshPlanV1({ ...input, baselineManualReview: [unrelated] }).changed, false);
+});
+
 test('real offline refresh CLI keeps the printing, publishes review status and reconciles summaries', async t => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'grookai-prize-scope-'));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
@@ -180,8 +191,26 @@ test('real offline refresh CLI keeps the printing, publishes review status and r
   const historicalAbsence = classifyEvidence([{ ...source, finish_key: 'holo',
     evidence_type: 'finish_absence', raw_snapshot_ref: 'historical:holo:absence',
   }]).manual_review[0];
+  // Freeze the historical shape; daily authority refresh must not erase this regression fixture.
+  const legacyReview = {
+    fact_type: 'printing_finish', key: 'temporal forces|81|iron crown ex|holo',
+    status: 'needs_manual_review', set_key: 'sv05', set_name: 'Temporal Forces',
+    card_number: '81', card_name: 'Iron Crown ex', finish_key: 'holo', source_count: 1,
+    sources: ['pricecharting_csv_product_stamp_label'], source_authorities: ['pricecharting.com'],
+    source_kinds: ['marketplace_checklist'], evidence: [{
+      source_key: 'pricecharting_csv_product_stamp_label', source_authority: 'pricecharting.com',
+      source_kind: 'marketplace_checklist',
+      source_url: 'https://www.pricecharting.com/game/pokemon-temporal-forces/iron-crown-ex-prize-pack-81',
+      evidence_type: 'stamp_identity_label',
+      evidence_label: 'PriceCharting CSV exact product title candidate: Iron Crown Ex [Prize Pack] #81',
+      finish_key_raw: 'holo', rarity: null, retrieved_at: '2026-06-13T00:02:02.090Z',
+      notes: 'Candidate-only exact stamp identity label from local PriceCharting CSV product title. Not DB write authority and not finish truth by itself.',
+      raw_snapshot_ref: 'pricecharting_stamp_label:sv05:81:prize_pack_stamp',
+    }],
+  };
+  const migratedKey = `${legacyReview.key}|prize-pack-scope-review`;
   await fs.writeFile(path.join(baseline, 'english_master_index_manual_review_v1.json'),
-    JSON.stringify({ manual_review: [historicalAbsence] }));
+    JSON.stringify({ manual_review: [historicalAbsence, legacyReview] }));
   const freshReviews = classifyEvidence([source, otherPrize].map(row => ({
     ...row, raw_snapshot_ref: `${row.raw_snapshot_ref}:fresh`,
     evidence_label: `${row.evidence_label} (fresh source read)`,
@@ -203,13 +232,19 @@ test('real offline refresh CLI keeps the printing, publishes review status and r
   assert.deepEqual(saved.printings[0].source_evidence, cached.source_evidence);
   assert.deepEqual((await read('english_master_index_v1.json')).summary.printings_by_status, { needs_manual_review: 1 });
   const review = await read('english_master_index_manual_review_v1.json');
-  assert.equal(review.manual_review.length, 2);
+  assert.equal(review.manual_review.length, 3);
+  const migratedReview = review.manual_review.find(row => row.key === migratedKey);
+  assert.ok(migratedReview, 'legacy Prize Pack review without a printing survives the outage');
+  assert.deepEqual(migratedReview.evidence, legacyReview.evidence);
+  assert.equal(migratedReview.fact_type, 'printing_finish_variant_scope_review');
+  assert.equal(migratedReview.status, 'needs_manual_review');
+  assert.equal(review.manual_review.some(row => row.key === legacyReview.key), false);
   const savedFresh = review.manual_review.find(row => row.key === freshReviews[0].key);
   assert.equal(savedFresh.evidence_urls.length, 2);
   assert.deepEqual(savedFresh.evidence, JSON.parse(JSON.stringify(freshReviews[0].evidence)));
   assert.deepEqual(review.manual_review.find(row => row.key === historicalAbsence.key),
     JSON.parse(JSON.stringify(historicalAbsence)));
-  assert.equal((await read('english_master_index_v1.json')).summary.manual_review, 2);
+  assert.equal((await read('english_master_index_v1.json')).summary.manual_review, 3);
   assert.match(await fs.readFile(path.join(baseline, 'english_master_index_v1.md'), 'utf8'), /needs_manual_review \| 1/);
   assert.equal(run('second').changed, false);
   const updatedAbsence = structuredClone(historicalAbsence);
@@ -222,4 +257,14 @@ test('real offline refresh CLI keeps the printing, publishes review status and r
     .find(row => row.key === updatedAbsence.key), JSON.parse(JSON.stringify(updatedAbsence)));
   assert.deepEqual(await read('english_master_index_printings_v1.json'), saved);
   assert.equal(run('review-only-replay').changed, false);
+  const freshLegacy = structuredClone(legacyReview);
+  freshLegacy.evidence[0].raw_snapshot_ref = 'fresh:legacy:iron-crown';
+  await fs.writeFile(path.join(candidate, 'english_master_index_manual_review_v1.json'),
+    JSON.stringify({ manual_review: [...freshReviews, updatedAbsence, freshLegacy] }));
+  assert.equal(run('legacy-review-change').changed, true);
+  const finalReviews = (await read('english_master_index_manual_review_v1.json')).manual_review;
+  assert.equal(finalReviews.filter(row => row.key === migratedKey).length, 1);
+  assert.equal(finalReviews.some(row => row.key === legacyReview.key), false);
+  assert.deepEqual(finalReviews.find(row => row.key === migratedKey).evidence, freshLegacy.evidence);
+  assert.equal(run('legacy-review-replay').changed, false);
 });

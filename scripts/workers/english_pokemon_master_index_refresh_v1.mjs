@@ -12,6 +12,7 @@ import {
 } from "../audits/verified_master_set_index_v1/shared.mjs";
 import {
   retainPrintingForScopeReviewV1,
+  requiresPrizePackScopeReviewV1,
   PRIZE_PACK_SCOPE_REVIEW_REASON,
 } from "../audits/verified_master_set_index_v1/printing_evidence_scope_v1.mjs";
 import { mergeEnglishPokemonFoldedSubsetOwnersV1 } from
@@ -255,13 +256,26 @@ function allowedFoldedReplacement(card, candidateKeys) {
 }
 
 function scopedReviewRows(rows) {
-  return rows.filter((row) => row.fact_type === "printing_finish_variant_scope_review")
+  return rows.filter((row) => row.fact_type === "printing_finish_variant_scope_review"
+    || (row.fact_type === "printing_finish" && requiresPrizePackScopeReviewV1(row)))
     .sort((left, right) => left.key.localeCompare(right.key));
+}
+
+function normalizeScopedReview(row) {
+  if (row.fact_type !== "printing_finish" || !requiresPrizePackScopeReviewV1(row)) return row;
+  return {
+    ...row,
+    key: row.key.endsWith("|prize-pack-scope-review") ? row.key : `${row.key}|prize-pack-scope-review`,
+    fact_type: "printing_finish_variant_scope_review",
+    status: "needs_manual_review",
+    review_reason: PRIZE_PACK_SCOPE_REVIEW_REASON,
+  };
 }
 
 function preserveScopedReviewEvidence({ baseline = [], candidate = [], printings = [] }) {
   // Absence evidence has no printing row. Carry it independently through outages.
   const rows = new Map([...scopedReviewRows(baseline), ...candidate]
+    .map(normalizeScopedReview)
     .map((row) => [row.key, row]));
   for (const printing of printings) {
     const key = `${printing.key}|prize-pack-scope-review`;
