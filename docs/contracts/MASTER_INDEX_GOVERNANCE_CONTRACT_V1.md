@@ -13,6 +13,11 @@ It does not authorize Grookai DB writes.
 
 ## Authority
 
+The cross-game printing-readiness extension is
+`MASTER_INDEX_PRINTING_AUTHORITY_V1.md`. Follow
+`docs/playbooks/MASTER_INDEX_FIRST_INGESTION_V1.md` for every new release and
+historical reconciliation. Existing source standards remain binding.
+
 This contract governs Master Index maintenance workflow.
 
 It works with:
@@ -29,7 +34,7 @@ In scope:
 
 - English physical Pokemon TCG Master Index maintenance
 - future set intake
-- monthly drift detection
+- daily drift detection, with monthly full reconciliation
 - source preservation
 - promotion workflow
 - suppression workflow
@@ -138,9 +143,10 @@ Any separately approved executor must assert the same profile against its pinned
 
 The permanent ME04 profile is `122` parents, `202` printings, `68` Normal, `76` Reverse Holo, and `58` Holo, with the governed 45 false Normal facts excluded, four valid Build & Battle Normals preserved, and Normal forbidden for Holo-only `109 Jumbo Ice Cream`.
 
-## Monthly Drift Detection
+## Daily Drift Detection
 
-Run a monthly Master Index drift pass.
+Run a daily Master Index drift pass (more frequent bounded passes are allowed).
+Retain a monthly full reconciliation as a supplement, not the only check.
 
 The drift pass must:
 

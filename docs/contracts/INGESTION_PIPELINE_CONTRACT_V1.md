@@ -23,6 +23,12 @@ If a source adapter, price feed, or staging row conflicts with governed printing
 
 ## Required Lifecycle
 
+Collector readiness additionally follows `INGESTION_PRINTING_COMPLETENESS_V1.md`.
+Frozen printing authority additionally follows `MASTER_INDEX_PRINTING_AUTHORITY_V1.md`;
+source files and the reviewed identity projection must hash-match before planning.
+Parent identity import alone is not a completed collector release. Every
+supported finish needs its own verified child identity and exact printing GV-ID.
+
 Canon-bound external data must pass these stages in order:
 
 1. raw receipt with the unmodified provider payload

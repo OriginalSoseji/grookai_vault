@@ -9,6 +9,8 @@ import { spawn } from 'node:child_process';
 import dotenv from 'dotenv';
 import pg from 'pg';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
+import {assertPrintingManifest, buildPrintingAdmissionPlan, evaluatePrintingReadback} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
+import {assertMasterPrintingAuthority} from '../../backend/catalog/master_index_printing_authority_v1.mjs';
 
 dotenv.config({ path: '.env.local', quiet: true });
 dotenv.config({ quiet: true });
@@ -39,6 +41,8 @@ function parseArgs(argv) {
     updateMasterIndexes: false,
     readbacks: false,
     skipTests: false,
+    identityOnly: false,
+    printingArtifactMap: null,
     setKeys: [],
   };
 
@@ -51,6 +55,8 @@ function parseArgs(argv) {
     else if (arg === '--update-master-indexes') args.updateMasterIndexes = true;
     else if (arg === '--readbacks') args.readbacks = true;
     else if (arg === '--skip-tests') args.skipTests = true;
+    else if (arg === '--identity-only') args.identityOnly = true;
+    else if (arg === '--printing-artifact-map') args.printingArtifactMap = argv[++i];
     else if (arg === '--set') args.setKeys.push(argv[++i]);
     else throw new Error(`Unknown argument: ${arg}`);
   }
@@ -1165,23 +1171,42 @@ async function readbackSet(set) {
   const client = new Client({ connectionString: dbUrl, ssl: { rejectUnauthorized: false } });
   await client.connect();
   try {
+    await client.query('begin isolation level repeatable read read only');
     const result = await client.query(
       `select
          s.id,
          s.code,
          s.name,
-         count(cp.id)::int as card_print_count,
-         count(cp.id) filter (where cp.image_source = 'identity' and nullif(cp.image_path, '') is not null)::int as identity_image_count,
+         count(distinct cp.id)::int as card_print_count,
+         count(distinct cp.id) filter (where cp.image_source = 'identity' and nullif(cp.image_path, '') is not null)::int as identity_image_count,
          count(em.id)::int as mapping_count
        from public.sets s
        left join public.card_prints cp on cp.set_id = s.id
        left join public.external_mappings em on em.card_print_id = cp.id and em.active = true
-       where s.code = $1
+       where s.code = $1 and lower(s.game) = 'pokemon'
        group by s.id, s.code, s.name`,
       [set.canonical_set_code],
     );
-    return { set_key: set.target_key, row: result.rows[0] ?? null };
+    if (result.rows.length > 1) throw new Error('Ambiguous canonical set readback');
+    let printingReadiness = null;
+    if (set.printing_manifest) {
+      const parents=(await client.query('select p.*,p.number::text as printed_coordinate from public.card_prints p where p.set_id=$1',[result.rows[0]?.id??null])).rows;
+      const ids=parents.map(p=>p.id);
+      const printings=(await client.query(`select p.*,r.review_status,r.public_visibility,r.active
+        from public.card_printings p left join public.card_printing_truth_reviews r
+        on r.card_printing_id=p.id and r.active where p.card_print_id=any($1::uuid[])`,[ids])).rows;
+      const options=[];
+      for(let i=0;i<ids.length;i+=250) {
+        for(let offset=0;;offset+=1000) {
+          const page=(await client.query('select * from public.get_public_card_printing_options_v1($1::uuid[],1000,$2)',[ids.slice(i,i+250),offset])).rows;
+          options.push(...page);if(page.length<1000)break;
+        }
+      }
+      printingReadiness=evaluatePrintingReadback(set.printing_manifest,{parents,printings,public_options:options});
+    }
+    return { set_key: set.target_key, row: result.rows[0] ?? null, printing_readiness:printingReadiness };
   } finally {
+    await client.query('rollback').catch(() => {});
     await client.end();
   }
 }
@@ -1221,8 +1246,31 @@ async function main() {
   const selectedSets = args.setKeys.length
     ? manifest.sets.filter((set) => args.setKeys.includes(set.target_key) || args.setKeys.includes(set.canonical_set_code))
     : manifest.sets;
+  if (!selectedSets.length) throw new Error('No sets selected');
+  // Freeze the printing scope before source acquisition or any write-capable path.
+  if (!args.identityOnly) {
+    if (!args.printingArtifactMap) throw new Error('Collector ingestion requires --printing-artifact-map');
+    const artifactMapPath=path.resolve(args.printingArtifactMap);
+    const artifactMap=JSON.parse(await fs.readFile(artifactMapPath,'utf8'));
+    if (!Array.isArray(artifactMap)) throw new Error('Invalid printing artifact map');
+    const artifacts=new Map();
+    for (const entry of artifactMap) {
+      if (!entry.ref || !entry.path || artifacts.has(entry.ref)) throw new Error('Invalid or duplicate printing evidence reference');
+      artifacts.set(entry.ref,await fs.readFile(path.resolve(path.dirname(artifactMapPath),entry.path)));
+    }
+    for (const set of selectedSets) assertPrintingManifest(set.printing_manifest, {
+      game:'pokemon',language:set.language,set_code:set.canonical_set_code,
+    });
+    for (const set of selectedSets) assertMasterPrintingAuthority(set.printing_manifest,artifacts);
+    if (args.apply && (!args.readbacks || args.skipTests)) throw new Error('Collector ingestion requires readbacks and tests');
+  }
   const outDir = outputDir(manifest.release_slug);
   await fs.mkdir(outDir, { recursive: true });
+
+  // Preparation is not write authority. The bounded printing executor must
+  // reconcile these proposals with existing IDs before any child insertion.
+  if (!args.identityOnly) await writeJson(path.join(outDir, 'printing_admission_plans_v1.json'),
+    selectedSets.map(set=>buildPrintingAdmissionPlan(set.printing_manifest)));
 
   const report = {
     package_id: PACKAGE_ID,
@@ -1236,6 +1284,7 @@ async function main() {
     sets: [],
     phases: {
       validation: null,
+      printing_preflight: [],
       tcgdex_discovery: [],
       acquisitions: [],
       master_indexes: [],
@@ -1250,6 +1299,29 @@ async function main() {
   const validationFindings = validateManifest({ ...manifest, sets: selectedSets });
   report.phases.validation = { findings: validationFindings };
   report.stop_findings.push(...validationFindings);
+
+  // This legacy runner does not atomically admit children. Collector-scope
+  // refreshes may use it only after the bounded printing writer has completed.
+  // Do not commit more parent-only data and discover that omission afterward.
+  if (args.apply && !args.identityOnly) {
+    for (const set of selectedSets) {
+      const preflight = await readbackSet(set);
+      report.phases.printing_preflight.push(preflight);
+      if (preflight.printing_readiness?.status !== 'printing_ready') {
+        report.stop_findings.push(`${set.target_key}:bounded_printing_admission_required`);
+      }
+    }
+    if (report.stop_findings.length) {
+      report.status = 'blocked';
+      report.release_scope = 'printing_release';
+      report.collector_ready = false;
+      await writeJson(path.join(outDir, 'summary_v1.json'), report);
+      await writeText(checkpointPath(manifest.release_slug), renderCompletion(report));
+      console.log(JSON.stringify({status:report.status, stop_findings:report.stop_findings}));
+      process.exitCode = 2;
+      return;
+    }
+  }
 
   const acquisitions = new Map();
   const tcgdexDiscoveries = new Map();
@@ -1334,7 +1406,19 @@ async function main() {
     });
   }
 
-  report.status = report.stop_findings.length === 0 ? 'complete' : 'blocked';
+  report.release_scope = args.identityOnly ? 'identity_only' : 'printing_release';
+  report.collector_ready = false;
+  report.printing_follow_up = selectedSets.map(set=>({
+    set_code:set.canonical_set_code,
+    unresolved_variants:set.printing_manifest?.unresolved_variants??[],
+    status:report.phases.readbacks.find(r=>r.set_key===set.target_key)?.printing_readiness?.status??'printing_review_required',
+  }));
+  if(args.apply && !args.identityOnly) for(const set of selectedSets) {
+    const check=report.phases.readbacks.find(r=>r.set_key===set.target_key)?.printing_readiness;
+    if(check?.status!=='printing_ready')report.stop_findings.push(`${set.target_key}:printing_readback_failed`,...(check?.issues??[]));
+  }
+  report.status = report.stop_findings.length ? 'blocked' : args.identityOnly
+    ? 'identity_only_printings_pending' : args.apply ? 'printing_ready_pending_collector_smoke' : 'planned_not_applied';
   await writeJson(path.join(outDir, 'summary_v1.json'), report);
   await writeText(checkpointPath(manifest.release_slug), renderCompletion(report));
 
@@ -1346,7 +1430,7 @@ async function main() {
     completion_report: path.relative(ROOT, checkpointPath(manifest.release_slug)),
   }, null, 2));
 
-  if (report.status !== 'complete') process.exitCode = 2;
+  if (report.status === 'blocked') process.exitCode = 2;
 }
 
 main().catch((error) => {

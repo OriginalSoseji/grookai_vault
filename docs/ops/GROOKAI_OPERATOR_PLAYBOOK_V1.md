@@ -1,5 +1,30 @@
 # Grookai Operator Playbook V1
 
+## Printing-Complete Ingestion - September 17
+
+Current checkpoint: `MASTER_INDEX_TOP_DOWN_REPAIR_CHECKPOINT_20260917.md`.
+Use `docs/playbooks/MASTER_INDEX_FIRST_INGESTION_V1.md` for the source-to-index-to-
+database order. Source bytes and a projection-bound review are required before
+collector plans. The Pokemon selection fix now has read-only live SQL proof,
+but remains local and must not be described as a deployed scheduled protection.
+The next follow-up has a full passing local shipcheck and a bounded McDonald's
+candidate with dependency inventory and temporary-table rollback proof. Preserve
+the distinction between that simulation and an authorized production executor.
+
+The read-only retrospective is in `RETROSPECTIVE_PRINTING_AUDIT_20260917.md`.
+It identifies missing children/GV-IDs and the default-public Pokemon selection
+gap repaired by the current local candidate. Read it before deployment or repair;
+structural gaps and historical master discrepancies are not blanket write authority.
+
+Read `docs/contracts/INGESTION_PRINTING_COMPLETENESS_V1.md` and
+`INGESTION_PRINTING_GATE_CHECKPOINT_20260917.md`. Parent-only intake is not a
+collector-ready release, even for a single-finish set. Prepare reviewed printing
+manifests before writes, preserve unresolved product variants, and verify exact
+child GV-IDs plus public options. The offline planner and read-only scheduled
+coverage audit do not authorize canonical mutation. The existing 161-card 30th
+Celebration Holo repair is complete; do not repeat it. Check the checkpoint for
+deployment state rather than assuming local code is scheduled in production.
+
 ## Native Anniversary Delivery - September 16
 
 Read `NATIVE_ANNIVERSARY_RELEASE_20260916.md` for the isolated release candidate.
