@@ -2,7 +2,9 @@ import { createHash } from "node:crypto";
 
 import {
   tcgplayerExactMappingCandidateFingerprintV1,
-  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
+  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
+  normalizeTcgplayerMappingNameV1,
+  normalizeTcgplayerMappingNumberV1,
 } from "./tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1 =
@@ -37,7 +39,7 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
   const failures = [];
   if (
     candidate?.policy_version !==
-    TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1
+    TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2
   ) {
     failures.push("unexpected_candidate_policy_version");
   }
@@ -51,6 +53,22 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
     failures.push("missing_target_card_print_id");
   }
   if (!text(candidate?.target?.gv_id)) failures.push("missing_target_gv_id");
+  if (!text(candidate?.target?.set_id)) failures.push("missing_target_set_id");
+  if (!text(candidate?.target?.set_code)) failures.push("missing_target_set_code");
+  const sourceName = normalizeTcgplayerMappingNameV1(candidate?.source_product_name);
+  const sourceNumber = normalizeTcgplayerMappingNumberV1(candidate?.printed_number);
+  if (!sourceName || sourceName !== candidate?.normalized_source_name) {
+    failures.push("source_name_normalization_mismatch");
+  }
+  if (!sourceNumber || sourceNumber !== candidate?.normalized_source_number) {
+    failures.push("source_number_normalization_mismatch");
+  }
+  if (normalizeTcgplayerMappingNameV1(candidate?.target?.canonical_name) !== sourceName) {
+    failures.push("target_name_mismatch");
+  }
+  if (normalizeTcgplayerMappingNumberV1(candidate?.target?.canonical_number) !== sourceNumber) {
+    failures.push("target_number_mismatch");
+  }
   if (text(candidate?.target?.variant_key)) {
     failures.push("target_not_base_variant");
   }
@@ -84,6 +102,26 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
     failures,
     expected_fingerprint: expectedFingerprint,
   };
+}
+
+export function validateTcgplayerExactMappingLiveTargetV1(candidate, target) {
+  if (!target) return ["target_missing"];
+  const failures = [];
+  const frozen = candidate.target;
+  if (target.card_print_id !== frozen.card_print_id) failures.push("target_id_changed");
+  if (target.gv_id !== frozen.gv_id) failures.push("target_gv_id_changed");
+  if (!text(target.set_id) || target.set_id !== frozen.set_id) failures.push("target_set_id_changed");
+  if (!text(target.set_code) || target.set_code !== frozen.set_code) failures.push("target_set_code_changed");
+  if (text(target.variant_key)) failures.push("target_not_base_variant");
+  if (Number(target.active_standard_identity_count) !== 1) failures.push("target_standard_identity_not_unique");
+  if (Number(target.active_tcgplayer_mapping_count) !== 0) failures.push("target_mapping_now_exists");
+  if (normalizeTcgplayerMappingNameV1(target.name) !== candidate.normalized_source_name) {
+    failures.push("target_name_changed");
+  }
+  if (normalizeTcgplayerMappingNumberV1(target.number) !== candidate.normalized_source_number) {
+    failures.push("target_number_changed");
+  }
+  return failures;
 }
 
 function duplicateValues(values) {

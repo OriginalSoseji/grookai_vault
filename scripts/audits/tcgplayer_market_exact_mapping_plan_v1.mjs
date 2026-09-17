@@ -11,7 +11,7 @@ import "../../backend/env.mjs";
 import {
   planTcgplayerExactMappingCandidateV1,
   quarantineTcgplayerTargetCollisionsV1,
-  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
+  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 
 const { Client } = pg;
@@ -524,7 +524,7 @@ async function main() {
 
     const summary = {
       planner_version: PLANNER_VERSION,
-      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
+      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
       status: findings.length === 0 ? "passed" : "failed",
       source_run: sourceRun,
       coverage_gaps_artifact: path
@@ -559,7 +559,7 @@ async function main() {
     await fs.mkdir(outDir, { recursive: true });
     const runPlan = {
       planner_version: PLANNER_VERSION,
-      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1,
+      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
       mode: "read_only_dry_run",
       commit_sha: commitSha,
       branch,
