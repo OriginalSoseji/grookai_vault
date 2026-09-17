@@ -11,6 +11,7 @@ import {
   buildPokemonMasterIndexUpdateCandidatesV1,
   catalogSetScope,
   CATALOG_GAP_STATUSES,
+  classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
   isOptionalCatalogSourceFallbackV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
@@ -297,18 +298,17 @@ async function fetchSource(url, { responseType = "text", delayMs = 0 } = {}) {
       };
     } catch (error) {
       lastError = error;
+      if (classifyCatalogSourceTransportFailureV1(error) === "SOURCE_ACCESS_DENIED") break;
       if (attempt < 3) await new Promise((resolve) => setTimeout(resolve, attempt * 750));
     }
   }
   const cause = String(lastError?.message ?? lastError);
-  const unavailable = /fetch failed|timed? ?out|timeout|HTTP (?:429|5\d\d)/i.test(cause);
+  const failureClass = classifyCatalogSourceTransportFailureV1(lastError);
   const wrapped = new Error(
-    `[${unavailable ? "SOURCE_UNAVAILABLE" : "SOURCE_INTEGRITY_FAILURE"}] ` +
+    `[${failureClass}] ` +
     `Source fetch failed for ${url}: ${cause}`,
   );
-  wrapped.catalogSourceFailureClass = unavailable
-    ? "SOURCE_UNAVAILABLE"
-    : "SOURCE_INTEGRITY_FAILURE";
+  wrapped.catalogSourceFailureClass = failureClass;
   wrapped.httpStatus = lastError?.httpStatus ?? null;
   throw wrapped;
 }

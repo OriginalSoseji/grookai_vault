@@ -37,6 +37,11 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
 - A transport timeout, 429, or upstream 5xx degrades only that source lane. The
   unavailable lane contributes no inferred gaps, while other authorities and
   the released-set publication gate continue.
+- HTTP 401/403 is recorded separately as `source_access_denied`, not an invalid
+  checklist or a missing set. Stop repeated requests to that denied endpoint;
+  do not bypass authentication or access restrictions. The affected source lane
+  emits no inferred gaps or promotion candidates and remains in the source issue.
+  Access denial does not authorize the optional frozen-candidate fallback.
 - A failed concurrent source lane settles all in-flight requests before evidence
   counts, hashes, or artifacts are finalized.
 - Source integrity and parser failures remain fatal. Network degradation may

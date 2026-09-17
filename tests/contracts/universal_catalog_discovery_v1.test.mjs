@@ -10,6 +10,7 @@ import {
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
   CATALOG_GAP_STATUSES,
+  classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
   isOptionalCatalogSourceFallbackV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
@@ -76,6 +77,53 @@ test("optional sources fall back only for outages and expected absence", () => {
     catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE",
   }), false);
   assert.equal(isOptionalCatalogSourceFallbackV1(new SyntaxError("invalid JSON")), false);
+});
+
+test("HTTP access denials are outages, not malformed checklists or missing sets", async () => {
+  for (const status of [401, 403]) {
+    const failure = Object.assign(new Error(`HTTP ${status}`), { httpStatus: status });
+    failure.catalogSourceFailureClass = classifyCatalogSourceTransportFailureV1(failure);
+    assert.equal(failure.catalogSourceFailureClass, "SOURCE_ACCESS_DENIED");
+    assert.equal(isOptionalCatalogSourceFallbackV1(failure), false);
+    const failures = [];
+    const denied = await runDegradedCatalogSourceLaneV1({
+      authority: "Japanese source lane", operation: async () => { throw failure; },
+      failures, fallback: { sourceSets: [], unavailable: true },
+      recordedAt: () => "2026-09-17T06:00:00.000Z",
+    });
+    assert.deepEqual(denied, { sourceSets: [], unavailable: true });
+    assert.deepEqual(failures, [{ authority: "Japanese source lane", failure_class: "source_access_denied",
+      message: `HTTP ${status}`, http_status: status, recorded_at: "2026-09-17T06:00:00.000Z" }]);
+    const unaffected = await runDegradedCatalogSourceLaneV1({
+      authority: "Independent source", operation: async () => ["preserved-evidence"], failures, fallback: [],
+    });
+    assert.deepEqual(unaffected, ["preserved-evidence"]);
+    assert.equal(failures.length, 1);
+  }
+});
+
+test("source transport classification preserves integrity and expected-absence boundaries", () => {
+  for (const status of [429, 500, 503, 599]) assert.equal(classifyCatalogSourceTransportFailureV1({ httpStatus: status }), "SOURCE_UNAVAILABLE");
+  for (const status of [400, 404, 422]) assert.equal(classifyCatalogSourceTransportFailureV1({ httpStatus: status }), "SOURCE_INTEGRITY_FAILURE");
+  assert.equal(classifyCatalogSourceTransportFailureV1(new Error("fetch failed")), "SOURCE_UNAVAILABLE");
+  assert.equal(classifyCatalogSourceTransportFailureV1(new Error("timeout")), "SOURCE_UNAVAILABLE");
+  assert.equal(classifyCatalogSourceTransportFailureV1(new SyntaxError("timeout text inside malformed JSON")), "SOURCE_INTEGRITY_FAILURE");
+  assert.equal(classifyCatalogSourceTransportFailureV1(new Error("HTTP 403 in invalid payload")), "SOURCE_INTEGRITY_FAILURE");
+});
+
+test("typed integrity failure cannot disguise itself as an outage through message text", async () => {
+  await assert.rejects(runDegradedCatalogSourceLaneV1({
+    authority: "Checklist", failures: [], fallback: [], operation: async () => {
+      throw Object.assign(new Error("[SOURCE_UNAVAILABLE] invalid checklist"), { catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE" });
+    },
+  }), /invalid checklist/);
+});
+
+test("discovery does not repeatedly request a source after access denial", () => {
+  const worker = source("scripts/workers/universal_catalog_discovery_v1.mjs");
+  assert.match(worker, /if \(classifyCatalogSourceTransportFailureV1\(error\) === "SOURCE_ACCESS_DENIED"\) break;/);
+  assert.match(worker, /const failureClass = classifyCatalogSourceTransportFailureV1\(lastError\)/);
+  assert.match(worker, /wrapped\.httpStatus = lastError\?\.httpStatus/);
 });
 
 test("source worker pools settle in-flight tasks before propagating a failure", async () => {

@@ -4,9 +4,16 @@
 
 Read `docs/ops/MASTER_PRINTING_EXECUTOR_CHECKPOINT_20260917.md` for the first
 complete local raw-evidence/printing/review transaction proof. This isolated
-executor has not repaired production. PR #474 is merged; preserve the local
-rehearsal receipts and poll read-only audit run `35188899452` before claiming
-deployed monitoring is verified.
+executor has not repaired production. PRs #474 and #476 are merged. Preserve
+the local rehearsal receipts. Read-only audit `35188899452` verified Pokemon
+inclusion and issue reporting but failed source discovery; it is terminal.
+
+## Catalog Source Access Repair - September 17
+
+Read `docs/ops/CATALOG_SOURCE_ACCESS_CHECKPOINT_20260917.md`. This isolated
+repair keeps a source HTTP 403 from aborting unrelated discovery while retaining
+an explicit access-denied alert. It does not bypass the source or write catalog
+data. Preserve the separate Master Index executor branch and its frozen plan.
 
 ## Printing Completeness Repair - September 17
 
