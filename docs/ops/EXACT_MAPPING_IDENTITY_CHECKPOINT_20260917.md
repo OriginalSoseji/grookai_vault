@@ -1,7 +1,7 @@
 # Exact Mapping Identity Preservation
 
 Date: 2026-09-17
-Status: Local candidate; full hook retry pending after ENOSPC. No deployment.
+Status: Implementation verified and pushed; integration/deployment tracked in PR #482.
 Base: `600112f9fcf5ca348ccfeb6cabe6b4dea6540d5a` (merged warehouse safeguards).
 Branch: `fix/exact-mapping-identity-preservation-20260917`.
 Worktree: `C:/grookai_vault_mapping_identity_20260917`.
@@ -51,7 +51,27 @@ all existing worktrees. Free disk before repeating the normal hook; do not treat
 the partial run as passing. The full goal remains active and incomplete.
 
 Continuation rechecked C: at 18.8 GB free and confirmed no prior commit/test
-process remains. Retry uses a new log and the same local read-only target.
+process remained. The normal commit retry completed at source commit
+`13e58094c59693d6467f3089571b8b816ed4f698`: 3,723 contracts passed with three
+existing opt-in skips, web typecheck/lint/build passed, Flutter analyze passed,
+and all 728 Flutter tests passed. The web build used the existing loopback
+read-only preview mode; no production-activation guard was changed or bypassed.
+
+The first push reached a Flutter suite-load stall before the Dex quick-action
+tests ran. Its verified worktree-specific test subprocess was stopped; the failed
+run is preserved. All three unchanged Dex tests then passed alone, followed by a
+complete successful normal push retry with the same contract/web/Flutter results
+at 10:33:59 UTC. Do not repeat the earlier disk-recovery work based on its old log.
+
+PR: https://github.com/OriginalSoseji/grookai_vault/pull/482.
+Current CI/review/integration status must be read from that PR, not inferred from
+this dated verification. This source was not deployed by the verification work.
+The PR's Vercel deployment `3FtH9HptCa9fYjEWn9i4Nr3Bpwdr` was independently
+checked: it failed on the existing explicit production-activation guard. Its
+failure is not a successful preview or evidence of a mapping-code build error.
+Final operator receipts and fresh continuation notes remain in the artifact
+directory above (`CHECKPOINT.md`, `commit-v4.json`, `push-v2.json`,
+`readback-v1.json`, `vercel-readback-v1.json`).
 
 Offline replay preserves original artifact bytes and records SHA-256:
 
@@ -64,12 +84,15 @@ Offline replay preserves original artifact bytes and records SHA-256:
 
 These historical findings require source adjudication. Some event labels may
 describe the only valid printing of a promo; neither keep nor reassign an
-existing mapping based on string difference alone. No live read was performed
-for those three during this repair, and no current-price claim is made.
+existing mapping based on string difference alone. A subsequent read-only
+production check at 10:23:27 UTC confirmed all three mappings remain active,
+each with one Normal child. `historical-label-adjudication-v1.json` preserves
+exact IDs and the hashed response; no finish correctness or current-price claim
+is made. No changes were proposed from this evidence alone.
 
 ## Still Required
 
-1. Review/release this code and verify the actual deployed mapping executors.
+1. Check PR #482 integration and verify the actual deployed mapping executors.
 2. Trace legacy TCGdex/JustTCG bridge writers and their runtime callers. Static
    workflow search found no direct calls to these two scripts; that is not proof
    that remote timers/manual commands cannot run them.
