@@ -3,6 +3,26 @@
 Date: 2026-09-17 UTC (September 16 evening, America/Denver)
 Status: Local implementation and read-only reconciliation; not database-wide completion.
 
+## PR 474 Review Follow-Up
+
+The initial safeguard commit `ccb2de4c8240222a1b56f6af30903a584787ce08`
+passed the normal pre-commit/pre-push shipcheck (3,525 contract tests, three
+skips, zero failures; 728 Flutter tests). GitHub code/security checks passed.
+The Vercel preview was rejected by the existing explicit-activation guard;
+no website guard or production deployment was changed.
+
+Normal merge attempts were blocked by two unresolved review findings. Both were
+confirmed and repaired: readiness now compares every manifest-bound parent
+field, with the database reader returning full identity plus the exact printed
+number; publication issue update/close steps now execute after upstream failure
+unless the job was cancelled. Nineteen added regressions cover changed/missing
+identity fields and independent issue conditions. The combined targeted suite
+passes 103/103. Full hooks and updated CI must pass before resolving/merging.
+
+The bounded McDonald's executor remains unfinished in the separate preserved
+worktree `C:/grookai_vault_master_printing_executor_20260917`. No production data
+repair has occurred. Do not treat this code-review follow-up as apply evidence.
+
 ## Follow-Up: Release Checks And First Repair Package
 
 The full local shipcheck passed: 3,514 contract tests passed, three skipped,

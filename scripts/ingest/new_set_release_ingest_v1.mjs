@@ -1190,7 +1190,7 @@ async function readbackSet(set) {
     if (result.rows.length > 1) throw new Error('Ambiguous canonical set readback');
     let printingReadiness = null;
     if (set.printing_manifest) {
-      const parents=(await client.query('select id,gv_id from public.card_prints where set_id=$1',[result.rows[0]?.id??null])).rows;
+      const parents=(await client.query('select p.*,p.number::text as printed_coordinate from public.card_prints p where p.set_id=$1',[result.rows[0]?.id??null])).rows;
       const ids=parents.map(p=>p.id);
       const printings=(await client.query(`select p.*,r.review_status,r.public_visibility,r.active
         from public.card_printings p left join public.card_printing_truth_reviews r

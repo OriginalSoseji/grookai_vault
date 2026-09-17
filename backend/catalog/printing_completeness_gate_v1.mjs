@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {isDeepStrictEqual} from 'node:util';
 
 export const PRINTING_COMPLETENESS_VERSION = 'PRINTING_COMPLETENESS_GATE_V1';
 const proofKinds = new Set(['checked_checklist', 'official_printing', 'image_confirmed', 'exact_printing_mapping']);
@@ -73,9 +74,13 @@ export function assertPrintingManifest(manifest, scope) {
 export function evaluatePrintingReadback(manifest, {parents=[], printings=[], public_options=[]}={}) {
   assertPrintingManifest(manifest);
   const issues=[];
-  const expectedParents=new Map(manifest.parents.map(p=>[p.id,p.gv_id]));
+  const expectedParents=new Map(manifest.parents.map(p=>[p.id,p]));
   if (parents.length!==expectedParents.size || new Set(parents.map(p=>p.id)).size!==parents.length ||
-      parents.some(p=>expectedParents.get(p.id)!==p.gv_id)) issues.push('parent_readback_mismatch');
+      parents.some(p=>{
+        const expected=expectedParents.get(p.id);
+        return !expected || Object.entries(expected).some(([field,value])=>
+          !Object.hasOwn(p,field) || !isDeepStrictEqual(p[field],value));
+      })) issues.push('parent_readback_mismatch');
   const byKey=new Map();
   for (const p of printings) {
     if(byKey.has(key(p)))issues.push('duplicate_printing_readback');

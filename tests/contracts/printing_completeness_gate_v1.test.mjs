@@ -18,8 +18,40 @@ function fixture(n=1){
 }
 function readback(m){
  const printings=m.printings.map((p,i)=>({...p,id:`printing-${i}`,is_provisional:false,active:true,public_visibility:'visible',provenance_source:'checked',provenance_ref:'source:'+i}));
- return {parents:m.parents,printings,public_options:printings.map(p=>({...p,finish_is_active:true}))};
+ return {parents:structuredClone(m.parents),printings,public_options:printings.map(p=>({...p,finish_is_active:true}))};
 }
+
+for(const field of ['id','gv_id','name','printed_coordinate','set_id','identity_domain','variant_key','printed_identity_modifier']) {
+ for(const defect of ['changed','missing'])test(`parent readback blocks ${defect} ${field}`,()=>{
+  let m=fixture();Object.assign(m.parents[0],{set_id:'exact-set',identity_domain:'pokemon_eng_standard',variant_key:'',printed_identity_modifier:null});m=seal(m);
+  const r=readback(m);
+  if(defect==='missing')delete r.parents[0][field];else r.parents[0][field]='incorrect';
+  const result=evaluatePrintingReadback(m,r);
+  assert.equal(result.status,'blocked');assert.ok(result.issues.includes('parent_readback_mismatch'));
+ });
+}
+
+test('parent readback compares every bound field but permits unrelated database metadata',()=>{
+ let m=fixture();m.parents[0].language='en';m=seal(m);
+ const r=readback(m);r.parents[0].updated_at='2026-09-17T00:00:00Z';
+ assert.equal(evaluatePrintingReadback(m,r).status,'printing_ready');
+ r.parents[0].language='ja';assert.equal(evaluatePrintingReadback(m,r).status,'blocked');
+});
+
+test('ingestion reads complete parent identity and aliases the exact printed number',()=>{
+ const code=fs.readFileSync('scripts/ingest/new_set_release_ingest_v1.mjs','utf8');
+ assert.match(code,/select p\.\*,p\.number::text as printed_coordinate from public\.card_prints p where p\.set_id=\$1/);
+ assert.doesNotMatch(code,/select id,gv_id from public\.card_prints where set_id=\$1/);
+});
+
+test('publication issue updates and resolution run independently of failed discovery',()=>{
+ const workflow=fs.readFileSync('.github/workflows/catalog-incremental-promotion.yml','utf8');
+ for(const [name,outcome] of [['Open or update set publication gate issue','failure'],['Close resolved set publication gate issue','success']]) {
+  const step=workflow.split(`- name: ${name}\n`)[1]?.split('\n      - name:')[0];
+  assert.ok(step,`missing ${name}`);
+  assert.match(step,new RegExp(`if: \\$\\{\\{ always\\(\\) && !cancelled\\(\\) && steps\\.set_publication_gate\\.outcome == '${outcome}' \\}\\}`));
+ }
+});
 test('161 single-finish parents require 161 Holo children, never implicit defaults',()=>{
  const m=fixture(161);assertPrintingManifest(m);
  const r=evaluatePrintingReadback(m,readback(m));assert.equal(r.status,'printing_ready');assert.equal(r.collector_ready,false);
