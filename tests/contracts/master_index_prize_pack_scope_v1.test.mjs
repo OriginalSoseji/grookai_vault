@@ -165,6 +165,12 @@ test('real offline refresh CLI keeps the printing, publishes review status and r
       await fs.writeFile(path.join(dir, file), body);
     }
   }
+  const freshReviews = classifyEvidence([source, otherPrize].map(row => ({
+    ...row, raw_snapshot_ref: `${row.raw_snapshot_ref}:fresh`,
+    evidence_label: `${row.evidence_label} (fresh source read)`,
+  }))).manual_review;
+  await fs.writeFile(path.join(candidate, 'english_master_index_manual_review_v1.json'),
+    JSON.stringify({ manual_review: freshReviews }));
   const script = fileURLToPath(new URL('../../scripts/workers/english_pokemon_master_index_refresh_v1.mjs', import.meta.url));
   const run = out => JSON.parse(execFileSync(process.execPath, [script, '--mode=apply-to-worktree',
     `--baseline-dir=${baseline}`, `--candidate-dir=${candidate}`, `--out-dir=${path.join(root, out)}`,
@@ -182,6 +188,7 @@ test('real offline refresh CLI keeps the printing, publishes review status and r
   const review = await read('english_master_index_manual_review_v1.json');
   assert.equal(review.manual_review.length, 1);
   assert.equal(review.manual_review[0].evidence_urls.length, 2);
+  assert.deepEqual(review.manual_review[0].evidence, JSON.parse(JSON.stringify(freshReviews[0].evidence)));
   assert.match(await fs.readFile(path.join(baseline, 'english_master_index_v1.md'), 'utf8'), /needs_manual_review \| 1/);
   assert.equal(run('second').changed, false);
 });

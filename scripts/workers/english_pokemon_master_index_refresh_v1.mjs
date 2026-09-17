@@ -578,14 +578,19 @@ async function applyCandidateAuthority(options) {
   const reviewByKey = new Map([
     ...(candidateManualReview.manual_review ?? []),
     ...continuityReviewRows,
-    ...effectiveCandidatePrintings.scope_review_rows.map(printing => ({
+  ].map((row) => [row.key, row]));
+  for (const printing of effectiveCandidatePrintings.scope_review_rows) {
+    const key = `${printing.key}|prize-pack-scope-review`;
+    // Fresh reviews carry full labels/snapshot refs that compact cached facts lack.
+    reviewByKey.set(key, {
       ...printing,
+      ...reviewByKey.get(key),
       fact_type: "printing_finish_variant_scope_review",
-      key: `${printing.key}|prize-pack-scope-review`,
+      key,
       status: "needs_manual_review",
       review_reason: PRIZE_PACK_SCOPE_REVIEW_REASON,
-    })),
-  ].map((row) => [row.key, row]));
+    });
+  }
   candidateManualReview.manual_review = [...reviewByKey.values()]
     .sort((left, right) => left.key.localeCompare(right.key));
 
