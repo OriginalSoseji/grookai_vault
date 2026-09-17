@@ -1,6 +1,9 @@
 ## Pokemon Enrichment v1: HP + National Dex
 
-Enrichment v1 adds HP and National Pokédex number traits for Pokemon `card_prints`, using PokemonAPI payloads. Legacy prints and PokemonAPI prints land on the same trait surface so downstream AI can treat them uniformly.
+Enrichment v1 defines HP and National Pokédex number traits from PokemonAPI
+payloads. As of September 17, 2026, the legacy worker only proposes evidence for
+review. It does not update traits or backfill mappings. The historical data model
+below is preserved; fresh writes need reviewed Master Index execution.
 
 ### Data Model
 - Trait surface: `card_print_traits` table (shared with existing normalize workers).
@@ -12,17 +15,17 @@ Enrichment v1 adds HP and National Pokédex number traits for Pokemon `card_prin
 
 ### Worker Behavior
 - Worker: `backend/pokemon/pokemon_enrichment_worker.mjs`
-- Command: `npm run pokemon:enrich` (runs `--mode=backfill`).
+- Command: `npm run pokemon:enrich` (runs `--mode=backfill --dry-run`, default limit 50).
 - Inputs: PokemonAPI card payloads from `raw_imports` (`source='pokemonapi'`, `_kind='card'`).
 - Identity matching: resolve set via PokemonAPI codes/ids, then match `card_prints` by (a) external_ids->pokemonapi, (b) set + number, (c) set + number_plain.
-- Writes: non-destructive upserts into `card_print_traits`:
-  - `trait_type='pokemon:hp'` with `hp` column
-  - `trait_type='pokemon:national_dex'` with `national_dex` column
+- Writes: none. Output preserves the source payload, raw row ID, candidate parent
+  and proposed traits with `write_ready:false`. Matching is not verified identity.
 - Behavior:
   - Skips cards with neither hp nor dex.
   - Skips if no card_print match or multiple matches.
-  - Only fills hp/dex when missing; re-runs are safe.
-  - `--dry-run` logs intended writes without mutating data; `--limit` caps rows processed.
+  - Review never fills or overwrites stored hp/dex.
+  - Use `npm run pokemon:enrich -- --limit=25` for a smaller review; maximum 500.
+  - Applying or removing dry-run is rejected, including through the npm alias.
 
 ### Coverage Checks
 Run in Supabase Studio (see `docs/sql/ENRICHMENT_HP_DEX_COVERAGE.sql`):

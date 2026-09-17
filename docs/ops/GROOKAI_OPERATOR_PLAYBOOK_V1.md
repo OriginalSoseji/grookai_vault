@@ -13,6 +13,12 @@ new-set `--apply` reject before staging/acquisition. Discovery-only source intak
 is not a replacement for a governed Master Index apply. Runtime deployment and
 fresh reviewed write paths remain separate work; never replay old command blocks.
 
+The standard npm aliases `tcgdex:normalize`, `pokemon:enrich` and
+`pokemon:backfill-mappings` supply dry-run and default to 50 selected rows. Append
+`-- --limit=25` to narrow a review. The existing backfill `:dry` alias explicitly
+selects at most 200; use the base alias to choose another limit. Appending apply
+never restores legacy writes.
+
 ## Source-Backed JustTCG And Historical Batches
 
 Read `SOURCE_BACKED_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The legacy source-backed

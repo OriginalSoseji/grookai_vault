@@ -40,6 +40,13 @@ manifest checks were real but did not make the complete child chain atomic.
 
 ## Verification And Remaining Work
 
+PR #489 review found stale npm aliases. The review aliases now supply dry-run
+and use the guard's default limit 50; an appended `--limit=1..500` remains usable.
+The existing `pokemon:backfill-mappings:dry` alias retains its explicit limit 200.
+The TCGdex and enrichment runbooks now describe evidence review, not writes.
+Alias regressions execute the actual configured worker arguments against local
+fixtures and prove read-only admission without credentials or production access.
+
 Focused tests invoke actual CLIs against synthetic loopback HTTP fixtures, reject
 every non-GET request, and check entry admission, read failures, source payloads,
 finish hints, duplicate IDs, set/card aggregate limits and conflict termination.

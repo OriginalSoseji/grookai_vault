@@ -195,15 +195,18 @@ facts, and forbids Normal for Holo-only `109 Jumbo Ice Cream`.
 
 ### Route A: TCGdex Available
 
-Use the existing TCGdex workers:
+Acquire raw evidence through separately authorized staging, then review it:
 
 ```bash
 node backend/sets/tcgdex_import_sets_worker.mjs --mode=full --set <set_id>
 node backend/pokemon/tcgdex_import_cards_worker.mjs --mode=full --set <set_id> --detail
-node backend/pokemon/tcgdex_normalize_worker.mjs --mode=backfill --set <set_id>
-node backend/tools/tcgdex_canonize_set.mjs --set <set_id> --dry-run --detail
-node backend/tools/tcgdex_canonize_set.mjs --set <set_id> --apply
+npm run tcgdex:normalize -- --set <set_id> --limit=50
 ```
+
+Normalization is review-only and does not complete this set's canonical intake.
+Do not invoke the historical `tcgdex_canonize_set.mjs --apply` route: that
+independent legacy writer has not been admitted under Master Index authority.
+Use the reviewed planner and an applicable frozen bounded executor instead.
 
 ### Route B: TCGdex Not Yet Available
 

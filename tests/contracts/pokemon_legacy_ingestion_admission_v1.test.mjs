@@ -5,6 +5,7 @@ import { createServer } from 'node:http';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
 import { ensurePokemonApiMapping } from '../../backend/pokemon/pokemonapi_mapping_helpers.mjs';
+import { assertLegacyPokemonReviewOnly } from '../../backend/maintenance/legacy_pokemon_ingestion_admission_v1.mjs';
 
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const env = { ...process.env, DOTENV_CONFIG_PATH: 'nonexistent-pokemon-admission.env',
@@ -13,6 +14,55 @@ const env = { ...process.env, DOTENV_CONFIG_PATH: 'nonexistent-pokemon-admission
   CANON_MAINTENANCE_DRY_RUN: 'true' };
 const reviewScripts = ['pokemon_enrichment_worker.mjs', 'pokemonapi_backfill_mappings_worker.mjs',
   'tcgdex_normalize_worker.mjs'];
+
+for (const [alias, worker, limit] of [
+  ['tcgdex:normalize', 'tcgdex_normalize_worker.mjs', 50],
+  ['pokemon:enrich', 'pokemon_enrichment_worker.mjs', 50],
+  ['pokemon:backfill-mappings', 'pokemonapi_backfill_mappings_worker.mjs', 50],
+  ['pokemon:backfill-mappings:dry', 'pokemonapi_backfill_mappings_worker.mjs', 200],
+]) {
+  test(`${alias} configured command admits bounded read-only evidence review`, async () => {
+    const pkg = JSON.parse(await readFile(new URL('../../package.json', import.meta.url), 'utf8'));
+    const [executable, path, ...args] = pkg.scripts[alias].split(/\s+/);
+    assert.equal(executable, 'node');
+    assert.equal(path, `backend/pokemon/${worker}`);
+    const scope = { allowScope: worker === 'tcgdex_normalize_worker.mjs' };
+    assert.equal(assertLegacyPokemonReviewOnly(args, env, scope).limit, limit);
+    assert.throws(() => assertLegacyPokemonReviewOnly([...args, '--apply'], env, scope));
+    if (!alias.endsWith(':dry')) {
+      assert.equal(assertLegacyPokemonReviewOnly([...args, '--limit=25'], env, scope).limit, 25);
+    }
+    const calls = [];
+    const server = createServer((req, res) => {
+      calls.push({ method: req.method, path: new URL(req.url, 'http://localhost').pathname });
+      res.setHeader('content-type', 'application/json');
+      if (req.method !== 'GET' || !req.url.startsWith('/rest/v1/raw_imports?')) {
+        res.statusCode = 400; res.end('{"message":"Unexpected request"}'); return;
+      }
+      res.end('[]');
+    });
+    await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+    try {
+      const result = await new Promise((resolve, reject) => {
+        const child = spawn(process.execPath, [path, ...args], {
+          cwd: root, env: { ...env, SUPABASE_URL: `http://127.0.0.1:${server.address().port}` },
+          windowsHide: true, timeout: 15000,
+        });
+        let stdout = '', stderr = '';
+        child.stdout.on('data', data => { stdout += data; });
+        child.stderr.on('data', data => { stderr += data; });
+        child.on('error', reject);
+        child.on('close', (code, signal) => resolve({ code, signal, stdout, stderr }));
+      });
+      assert.equal(result.code, 0, JSON.stringify({ alias, ...result, calls }));
+      assert.ok(calls.length > 0);
+      assert.ok(calls.every(call => call.method === 'GET' && call.path === '/rest/v1/raw_imports'));
+    } finally {
+      server.closeAllConnections();
+      await new Promise(resolve => server.close(resolve));
+    }
+  });
+}
 
 for (const name of reviewScripts) {
   test(`${name} rejects implicit or explicit mutation before client setup`, () => {
