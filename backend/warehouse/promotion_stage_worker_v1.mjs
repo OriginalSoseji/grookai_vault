@@ -1,6 +1,9 @@
 import '../env.mjs';
 
 import pg from 'pg';
+import fs from 'node:fs';
+import { prepareWarehousePrintingAdmission } from './printing_admission_v1.mjs';
+import { printingManifestHash } from '../catalog/printing_completeness_gate_v1.mjs';
 import { auditWarehouseCandidateIdentitySlotV1 } from '../identity/identity_slot_audit_v1.mjs';
 import {
   resolveIdentityResolutionV1,
@@ -45,10 +48,19 @@ function parseArgs(argv) {
     limit: 10,
     dryRun: true,
     apply: false,
+    printingAuthorityPath: null,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
+    if (arg === '--printing-authority') {
+      opts.printingAuthorityPath = argv[++i];
+      continue;
+    }
+    if (arg.startsWith('--printing-authority=')) {
+      opts.printingAuthorityPath = arg.slice('--printing-authority='.length);
+      continue;
+    }
     if (arg === '--dry-run') {
       opts.dryRun = true;
       opts.apply = false;
@@ -171,7 +183,7 @@ function sameJson(left, right) {
   return JSON.stringify(canonicalizeJson(left)) === JSON.stringify(canonicalizeJson(right));
 }
 
-function buildComparableStagePayload(payload) {
+export function buildComparableStagePayload(payload) {
   const normalizedPayload = asRecord(payload);
   if (!normalizedPayload) return null;
 
@@ -597,6 +609,7 @@ function inferApprovedActionType(writePlan) {
   if (!writePlan || writePlan.status !== 'READY') return null;
   if (writePlan.actions?.card_prints?.action === 'CREATE') return 'CREATE_CARD_PRINT';
   if (writePlan.actions?.card_printings?.action === 'CREATE') return 'CREATE_CARD_PRINTING';
+  if (writePlan.actions?.card_printings?.action === 'REUSE' && writePlan.printing_authority) return 'CREATE_CARD_PRINTING';
   if (
     writePlan.actions?.card_printings?.action === 'REUSE' &&
     writePlan.actions?.image_fields?.action === 'UPDATE' &&
@@ -907,13 +920,14 @@ async function fetchCardPrintingById(client, cardPrintingId) {
   return rows[0] ?? null;
 }
 
-async function buildPromotionWritePlanSnapshot(client, {
+export async function buildPromotionWritePlanSnapshot(client, {
   candidate,
   metadataExtraction,
   interpreterPackage,
   normalizationPackage,
   identityAuditPackage,
   classificationPackage,
+  printingAuthority = null,
 }) {
   const identityResolutionPackage = getLatestIdentityResolutionPackage(
     classificationPackage,
@@ -1116,8 +1130,8 @@ async function buildPromotionWritePlanSnapshot(client, {
   }
 
   if (proposedAction === 'CREATE_CARD_PRINTING') {
-    const matchedCardPrintId = normalizeTextOrNull(interpreterPackage?.canon_context?.matched_card_print_id);
-    const finishKey = normalizeTextOrNull(interpreterPackage?.canon_context?.finish_key);
+    const matchedCardPrintId = normalizeTextOrNull(effectiveInterpreterPackage?.canon_context?.matched_card_print_id);
+    const finishKey = normalizeTextOrNull(effectiveInterpreterPackage?.canon_context?.finish_key);
     if (!matchedCardPrintId || !finishKey) {
       return buildBlockedWritePlan('CREATE_CARD_PRINTING requires a resolved parent card_print and finish_key.', [
         !matchedCardPrintId ? 'Resolved parent card_print_id' : null,
@@ -1125,14 +1139,26 @@ async function buildPromotionWritePlanSnapshot(client, {
       ]);
     }
 
-    const parent = await fetchCardPrintById(client, matchedCardPrintId);
-    if (!parent) {
-      return buildBlockedWritePlan('Resolved parent card_print could not be found.', ['Resolved parent card_print']);
+    let admission;
+    try {
+      admission = await prepareWarehousePrintingAdmission(client, printingAuthority, {
+        candidate_id: candidate.id, card_print_id: matchedCardPrintId, finish_key: finishKey,
+        printing_gv_id: printingAuthority?.target?.printing_gv_id,
+      });
+      if (admission.parent.game !== POKEMON_GAME || admission.parent.language !== 'en') {
+        throw new Error('Warehouse Promotion V1 supports English Pokemon only.');
+      }
+    } catch (error) {
+      return buildBlockedWritePlan(`Reviewed printing admission blocked: ${error.message}`, [
+        'Exact Master Index authority, canonical identity, collision and verified review checks',
+      ]);
     }
-
-    const existingPrinting = await fetchCardPrintingByCardPrintAndFinish(client, parent.id, finishKey);
+    const parent = admission.parent;
+    const existingPrinting = admission.existing;
     return {
       status: 'READY',
+      printing_authority: structuredClone(printingAuthority),
+      printing_admission_fingerprint: printingManifestHash(admission),
       reason: existingPrinting
         ? 'Parent card exists and the requested child printing already exists.'
         : 'Promotion would create one child printing under the resolved parent.',
@@ -1153,14 +1179,7 @@ async function buildPromotionWritePlanSnapshot(client, {
           : {
               action: 'CREATE',
               target_id: null,
-              payload: {
-                card_print_id: parent.id,
-                finish_key: finishKey,
-                is_provisional: false,
-                provenance_source: STAGING_CONTRACT,
-                provenance_ref: `warehouse_candidate:${candidate.id}`,
-                created_by: WORKER_NAME,
-              },
+              payload: admission.expected.child,
               reason: 'A new child printing would be inserted under the resolved parent.',
             },
         external_mappings: buildEmptyAction('Promotion Executor V1 does not write external_mappings.'),
@@ -1178,14 +1197,7 @@ async function buildPromotionWritePlanSnapshot(client, {
         },
         after: {
           card_prints: parent,
-          card_printings: existingPrinting ?? {
-            card_print_id: parent.id,
-            finish_key: finishKey,
-            is_provisional: false,
-            provenance_source: STAGING_CONTRACT,
-            provenance_ref: `warehouse_candidate:${candidate.id}`,
-            created_by: WORKER_NAME,
-          },
+          card_printings: existingPrinting ?? admission.expected.child,
           external_mappings: null,
           image_fields: {
             image_url: normalizeTextOrNull(parent.image_url),
@@ -1355,7 +1367,7 @@ async function buildPromotionWritePlanSnapshot(client, {
   ]);
 }
 
-function buildFrozenPayload({
+export function buildFrozenPayload({
   candidate,
   evidenceRows,
   latestNormalizedPackage,
@@ -1653,7 +1665,7 @@ async function insertWarehouseEvent(client, payload) {
   );
 }
 
-async function createStageWithinTransaction(client, artifact, writePlan, stagedAt) {
+export async function createStageWithinTransaction(client, artifact, writePlan, stagedAt) {
   const validation = validateArtifacts(artifact, writePlan);
   if (!validation.ok) {
     return {
@@ -1710,7 +1722,7 @@ async function createStageWithinTransaction(client, artifact, writePlan, stagedA
   let stagingId = null;
   await assertExecuteCanonWriteV1({
     execution_name: 'promotion_stage_create_stage_v1',
-    payload_snapshot,
+    payload_snapshot: payloadSnapshot,
     write_target: client,
     audit_target: client,
     ledger_target: client,
@@ -1744,14 +1756,13 @@ async function createStageWithinTransaction(client, artifact, writePlan, stagedA
         name: 'active_staging_row_exists',
         contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
         violation_type: 'post_write_staging_missing',
-        query: `
-          select execution_status
-          from public.canon_warehouse_promotion_staging
-          where id = $1
-          limit 1
-        `,
-        params: [stagingId],
-        evaluate(result) {
+        async run(connection) {
+          const result = await connection.query(`
+            select execution_status
+            from public.canon_warehouse_promotion_staging
+            where id = $1
+            limit 1
+          `, [stagingId]);
           const status = normalizeTextOrNull(result.rows[0]?.execution_status);
           return {
             ok: status === 'PENDING',
@@ -1874,6 +1885,7 @@ async function createStageWithinTransaction(client, artifact, writePlan, stagedA
 
 async function withCandidateLock(pool, candidateId, fn) {
   const connection = await pool.connect();
+  let cleanupError = null;
   try {
     const lockResult = await connection.query(
       'select pg_try_advisory_lock(hashtext($1)) as locked',
@@ -1885,16 +1897,23 @@ async function withCandidateLock(pool, candidateId, fn) {
     try {
       return await fn(connection);
     } finally {
-      await connection.query('select pg_advisory_unlock(hashtext($1))', [candidateId]);
+      try {
+        await connection.query('select pg_advisory_unlock(hashtext($1))', [candidateId]);
+      } catch (error) {
+        error.session_cleanup_uncertain = true;
+        cleanupError = error;
+        throw error;
+      }
     }
   } finally {
-    connection.release();
+    connection.release(cleanupError);
   }
 }
 
-async function processCandidate(pool, candidateId, opts) {
+export async function processCandidate(pool, candidateId, opts) {
   return withCandidateLock(pool, candidateId, async (connection) => {
     await connection.query('begin');
+    let commitAttempted = false;
     try {
       const artifact = await fetchArtifacts(connection, candidateId);
       const aliasContext = await buildAliasExecutionContext(connection, artifact);
@@ -1932,6 +1951,7 @@ async function processCandidate(pool, candidateId, opts) {
           identityResolutionPackage: aliasContext.identityResolutionPackage,
           currentStaging: aliasContext.currentStaging,
         });
+        commitAttempted = true;
         await connection.query('commit');
         return {
           ...aliasResult,
@@ -1949,6 +1969,7 @@ async function processCandidate(pool, candidateId, opts) {
         normalizationPackage: artifact.latestNormalizationPackage?.promotion_image_normalization_package ?? null,
         identityAuditPackage: artifact.latestIdentityAuditPackage?.value ?? null,
         classificationPackage: artifact.latestClassificationPackage?.value ?? null,
+        printingAuthority: opts.printingAuthority,
       });
       const stagedAt = new Date().toISOString();
       const comparablePayload = canBuildStagingPayload(artifact, writePlan)
@@ -2002,6 +2023,7 @@ async function processCandidate(pool, candidateId, opts) {
 
       const result = await createStageWithinTransaction(connection, artifact, writePlan, stagedAt);
       if (result.status === 'applied') {
+        commitAttempted = true;
         await connection.query('commit');
         return {
           ...result,
@@ -2018,23 +2040,37 @@ async function processCandidate(pool, candidateId, opts) {
         write_plan: writePlan,
       };
     } catch (error) {
-      await connection.query('rollback');
+      let rollbackUncertain = false;
+      await connection.query('rollback').catch(() => { rollbackUncertain = true; });
+      if (commitAttempted || rollbackUncertain) {
+        return {status:'reconciliation_required',candidate_id:candidateId,reason:error.message,
+          commit_uncertain:commitAttempted,rollback_uncertain:rollbackUncertain,automatic_retry_allowed:false};
+      }
       throw error;
     }
   });
 }
 
 export async function runPromotionStageWorkerV1(input = {}) {
+  if ((input.apply !== undefined && typeof input.apply !== 'boolean') ||
+      (input.dryRun === false && input.apply !== true)) {
+    throw new Error('Warehouse writes require explicit apply: true.');
+  }
   const opts = {
     candidateId: normalizeTextOrNull(input.candidateId),
     limit:
       Number.isFinite(Number(input.limit)) && Number(input.limit) > 0
         ? Math.trunc(Number(input.limit))
         : 10,
-    dryRun: input.apply ? false : input.dryRun === false ? false : true,
-    apply: Boolean(input.apply),
+    dryRun: input.apply !== true,
+    apply: input.apply === true,
     emitLogs: input.emitLogs !== false,
+    printingAuthority: input.printingAuthority == null ? null : structuredClone(input.printingAuthority),
   };
+
+  if (opts.printingAuthority && opts.candidateId !== opts.printingAuthority.target?.candidate_id) {
+    throw new Error('Printing authority requires its exact --candidate-id; bulk reuse is prohibited.');
+  }
 
   if (opts.apply) {
     opts.dryRun = false;
@@ -2076,8 +2112,15 @@ export async function runPromotionStageWorkerV1(input = {}) {
         if (opts.emitLogs) {
           log('candidate_result', { candidate_id: candidateId, ...result });
         }
+        if (result.status === 'reconciliation_required') break;
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
+        if (error.session_cleanup_uncertain) {
+          results.push({candidateId,status:'reconciliation_required',reason:message,
+            session_cleanup_uncertain:true,automatic_retry_allowed:false});
+          if (opts.emitLogs) log('candidate_reconciliation_required',{candidate_id:candidateId,reason:message});
+          break;
+        }
         results.push({ candidateId, status: 'failed', reason: message });
         if (opts.emitLogs) {
           log('candidate_failed', { candidate_id: candidateId, reason: message });
@@ -2101,9 +2144,15 @@ export async function runPromotionStageWorkerV1(input = {}) {
   }
 }
 
+export function promotionStageExitCode(summary) {
+  return summary.results.some(row => ['failed', 'blocked', 'reconciliation_required'].includes(row.status)) ? 1 : 0;
+}
+
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
-  await runPromotionStageWorkerV1(opts);
+  if (opts.printingAuthorityPath) opts.printingAuthority = JSON.parse(fs.readFileSync(opts.printingAuthorityPath, 'utf8'));
+  const summary = await runPromotionStageWorkerV1(opts);
+  process.exitCode = promotionStageExitCode(summary);
 }
 
 if (process.argv[1] && process.argv[1].includes('promotion_stage_worker_v1.mjs')) {

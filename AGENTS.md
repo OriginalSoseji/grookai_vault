@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Warehouse Printing Authority - September 17
+
+Read `docs/ops/WAREHOUSE_PRINTING_AUTHORITY_CHECKPOINT_20260917.md`. The source
+denial repair is verified live; its read-only workflow is terminal with catalog
+publication findings. Isolated admission and full staging/claim/event execution
+now pass, including competing workers, lost commit responses and alias/image
+rollback checks. Release and production queue checks remain pending.
+Do not claim the production bypass closed.
+Preserve the separate frozen McDonald's production executor and approval boundary.
+
 ## Bounded Master Printing Executor - September 17
 
 Read `docs/ops/MASTER_PRINTING_EXECUTOR_CHECKPOINT_20260917.md` for the first

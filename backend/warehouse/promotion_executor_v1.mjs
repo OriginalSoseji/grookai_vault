@@ -1,4 +1,7 @@
 import '../env.mjs';
+import assert from 'node:assert/strict';
+import { prepareWarehousePrintingAdmission, applyWarehousePrintingAdmission, verifyWarehousePrintingAdmissionReadback } from './printing_admission_v1.mjs';
+import { printingManifestHash } from '../catalog/printing_completeness_gate_v1.mjs';
 
 import pg from 'pg';
 import { buildCardPrintGvIdV1, resolvePromoNumberV1 } from './buildCardPrintGvIdV1.mjs';
@@ -1287,7 +1290,7 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   };
 }
 
-async function buildCreateCardPrintingPlan(client, stage, candidate, payload, baseSummary) {
+export async function buildCreateCardPrintingPlan(client, stage, candidate, payload, baseSummary) {
   const parentCardPrintId = extractMatchedCardPrintId(payload);
   const finishKey = extractResolvedFinishKey(payload);
 
@@ -1298,76 +1301,63 @@ async function buildCreateCardPrintingPlan(client, stage, candidate, payload, ba
     throw new ExecutorError('finish_key_missing_from_payload');
   }
 
-  const [parentCardPrint, finishActive] = await Promise.all([
-    fetchCardPrintById(client, parentCardPrintId),
-    finishKeyExists(client, finishKey),
-  ]);
-
-  if (!parentCardPrint) {
-    throw new ExecutorError('parent_card_print_not_found', parentCardPrintId);
-  }
-  if (!finishActive) {
-    throw new ExecutorError('finish_key_not_found', finishKey);
-  }
-
-  const existingPrinting = await fetchExistingCardPrinting(client, parentCardPrintId, finishKey);
-  if (existingPrinting) {
-    return {
-      ok: true,
-      action_type: stage.approved_action_type,
-      result_type: PROMOTION_RESULT_TYPES.NO_OP,
-      mutation: {
-        type: 'card_printing_existing_noop',
-        card_printing_id: existingPrinting.id,
-      },
-      result_linkage: {
-        promoted_card_print_id: null,
-        promoted_card_printing_id: existingPrinting.id,
-        promoted_image_target_type: null,
-        promoted_image_target_id: null,
-      },
-      summary: {
-        ...baseSummary,
-        plan: 'existing_card_printing_noop',
-        parent_card_print_id: parentCardPrintId,
-        finish_key: finishKey,
-        result_card_printing_id: existingPrinting.id,
-      },
-      payload,
-      candidate,
-      stage,
-    };
-  }
-
+  const bundle = payload.write_plan?.printing_authority;
+  const admission = await prepareWarehousePrintingAdmission(client, bundle, {
+    candidate_id: candidate.id, card_print_id: parentCardPrintId, finish_key: finishKey,
+    printing_gv_id: bundle?.target?.printing_gv_id,
+  });
+  assert.equal(admission.parent.game, POKEMON_GAME, 'warehouse_game_not_supported');
+  assert.equal(admission.parent.language, 'en', 'warehouse_language_not_supported');
+  assert.equal(printingManifestHash(admission), payload.write_plan.printing_admission_fingerprint,
+    'warehouse_staged_admission_drift');
   return {
     ok: true,
     action_type: stage.approved_action_type,
-    result_type: PROMOTION_RESULT_TYPES.CARD_PRINTING_CREATED,
+    result_type: admission.existing ? PROMOTION_RESULT_TYPES.NO_OP : PROMOTION_RESULT_TYPES.CARD_PRINTING_CREATED,
     mutation: {
-      type: 'insert_card_printing',
-      card_print_id: parentCardPrintId,
-      finish_key: finishKey,
-      is_provisional: false,
-      provenance_source: 'contract',
-      provenance_ref: `warehouse_staging:${stage.id}`,
-      created_by: WORKER_NAME,
+      type: 'reviewed_printing_admission',
+      admission,
     },
     result_linkage: {
       promoted_card_print_id: null,
-      promoted_card_printing_id: null,
+      promoted_card_printing_id: admission.existing?.id ?? null,
       promoted_image_target_type: null,
       promoted_image_target_id: null,
     },
     summary: {
       ...baseSummary,
-      plan: 'insert_card_printing',
+      plan: admission.existing ? 'verified_existing_printing' : 'reviewed_printing_admission',
       parent_card_print_id: parentCardPrintId,
       finish_key: finishKey,
+      printing_gv_id: admission.target.printing_gv_id,
+      printing_authority_fingerprint: admission.authority_fingerprint,
     },
     payload,
     candidate,
     stage,
   };
+}
+
+export async function verifySucceededPrintingStage(client, stage, candidate) {
+  if (stage.approved_action_type !== 'CREATE_CARD_PRINTING') {
+    return {status:'already_succeeded',summary:summarizeExistingSucceeded(stage,candidate)};
+  }
+  try {
+    const payload=stage.frozen_payload, bundle=payload?.write_plan?.printing_authority;
+    assert.equal(candidate?.id,stage.candidate_id,'warehouse_succeeded_candidate_mismatch');
+    assert.equal(candidate.state,'PROMOTED','warehouse_succeeded_candidate_state');
+    assert.equal(candidate.current_staging_id,stage.id,'warehouse_succeeded_stage_mismatch');
+    assert.equal(payload.candidate_id,candidate.id,'warehouse_succeeded_payload_mismatch');
+    const receipt=await verifyWarehousePrintingAdmissionReadback(client,bundle,{
+      candidate_id:candidate.id,card_print_id:extractMatchedCardPrintId(payload),
+      finish_key:extractResolvedFinishKey(payload),printing_gv_id:bundle?.target?.printing_gv_id,
+    },payload.write_plan.printing_admission_fingerprint);
+    assert.equal(candidate.promoted_card_printing_id,receipt.printing_id,'warehouse_succeeded_linkage_mismatch');
+    return {status:'already_succeeded',summary:{...summarizeExistingSucceeded(stage,candidate),printing_readback:receipt}};
+  } catch(error) {
+    return {status:'reconciliation_required',reason:error.message,committed:true,
+      commit_uncertain:false,automatic_retry_allowed:false};
+  }
 }
 
 async function buildEnrichCanonImagePlan(client, stage, candidate, payload, baseSummary) {
@@ -1778,6 +1768,7 @@ async function buildEnrichCardPrintingImagePlan(client, stage, candidate, payloa
 async function claimStageForExecution(pool, stageId, allowedStatuses = ['PENDING']) {
   const connection = await pool.connect();
   const claimedAt = new Date().toISOString();
+  let commitAttempted = false;
   const normalizedStatuses = Array.from(
     new Set(
       (allowedStatuses ?? [])
@@ -1846,20 +1837,22 @@ async function claimStageForExecution(pool, stageId, allowedStatuses = ['PENDING
       },
     });
 
+    commitAttempted = true;
     await connection.query('commit');
     return { claimed: true, attemptNumber, claimedAt };
   } catch (error) {
-    await connection.query('rollback');
+    error.commit_uncertain = commitAttempted;
+    error.rollback_uncertain = false;
+    await connection.query('rollback').catch(() => { error.rollback_uncertain = true; });
     throw error;
   } finally {
     connection.release();
   }
 }
 
-async function applyMutation(connection, plan) {
+export async function applyMutation(connection, plan) {
   switch (plan.mutation.type) {
     case 'card_print_existing_noop':
-    case 'card_printing_existing_noop':
     case 'canon_image_existing_noop':
     case 'canon_image_already_present_noop':
     case 'child_printing_image_existing_noop':
@@ -1958,53 +1951,12 @@ async function applyMutation(connection, plan) {
         promoted_image_target_id: plan.mutation.image_path ? cardPrintId : null,
       };
     }
-    case 'insert_card_printing': {
-      const insertSql = `
-        insert into public.card_printings (
-          card_print_id,
-          finish_key,
-          is_provisional,
-          provenance_source,
-          provenance_ref,
-          created_by
-        )
-        values ($1, $2, $3, $4, $5, $6)
-        on conflict on constraint card_printings_card_print_id_finish_key_key do nothing
-        returning id
-      `;
-      const insertResult = await connection.query(insertSql, [
-        plan.mutation.card_print_id,
-        plan.mutation.finish_key,
-        plan.mutation.is_provisional,
-        plan.mutation.provenance_source,
-        plan.mutation.provenance_ref,
-        plan.mutation.created_by,
-      ]);
-      let cardPrintingId = insertResult.rows[0]?.id ?? null;
-
-      if (!cardPrintingId) {
-        const existingPrinting = await fetchExistingCardPrinting(
-          connection,
-          plan.mutation.card_print_id,
-          plan.mutation.finish_key,
-        );
-        if (!existingPrinting) {
-          throw new ExecutorError('card_printing_insert_conflict', `${plan.mutation.card_print_id}:${plan.mutation.finish_key}`);
-        }
-        cardPrintingId = existingPrinting.id;
-        return {
-          result_type: PROMOTION_RESULT_TYPES.NO_OP,
-          promoted_card_print_id: null,
-          promoted_card_printing_id: cardPrintingId,
-          promoted_image_target_type: null,
-          promoted_image_target_id: null,
-        };
-      }
-
+    case 'reviewed_printing_admission': {
+      const result = await applyWarehousePrintingAdmission(connection, plan.mutation.admission);
       return {
-        result_type: plan.result_type,
+        result_type: result.created ? PROMOTION_RESULT_TYPES.CARD_PRINTING_CREATED : PROMOTION_RESULT_TYPES.NO_OP,
         promoted_card_print_id: null,
-        promoted_card_printing_id: cardPrintingId,
+        promoted_card_printing_id: result.id,
         promoted_image_target_type: null,
         promoted_image_target_id: null,
       };
@@ -2183,8 +2135,10 @@ async function applyMutation(connection, plan) {
 async function executeClaimedStage(pool, stageId, attemptNumber) {
   const connection = await pool.connect();
   const executedAt = new Date().toISOString();
+  let commitAttempted = false;
+  let committed = false;
   try {
-    await connection.query('begin');
+    await connection.query('begin isolation level serializable');
 
     const stage = await fetchStageRow(connection, stageId);
     if (!stage) {
@@ -2192,6 +2146,10 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
     }
     if (stage.execution_status !== 'RUNNING') {
       throw new ExecutorError('staging_not_running', stage.execution_status);
+    }
+    if (stage.approved_action_type === 'CREATE_CARD_PRINTING') {
+      await connection.query("set local lock_timeout='3s'");
+      await connection.query("set local statement_timeout='45s'");
     }
 
     const candidate = await fetchCandidateRow(connection, stage.candidate_id);
@@ -2254,7 +2212,7 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
 
     await assertExecuteCanonWriteV1({
       execution_name: 'promotion_executor_execute_claimed_stage_v1',
-      payload_snapshot,
+      payload_snapshot: payloadSnapshot,
       write_target: connection,
       audit_target: connection,
       ledger_target: connection,
@@ -2315,6 +2273,12 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
           async run() {
             if (!mutationResult?.promoted_card_printing_id) {
               return { ok: true };
+            }
+            if (plan.mutation.type === 'reviewed_printing_admission') {
+              await verifyWarehousePrintingAdmissionReadback(connection,
+                plan.mutation.admission.bundle, plan.mutation.admission.target,
+                plan.payload.write_plan.printing_admission_fingerprint);
+              return {ok:true};
             }
             const result = await connection.query(
               `
@@ -2413,7 +2377,15 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
       },
     });
 
+    commitAttempted = true;
     await connection.query('commit');
+    committed = true;
+    let printingReadback = null;
+    if (plan.mutation.type === 'reviewed_printing_admission') {
+      printingReadback = await verifyWarehousePrintingAdmissionReadback(connection,
+        plan.mutation.admission.bundle, plan.mutation.admission.target,
+        plan.payload.write_plan.printing_admission_fingerprint);
+    }
 
     return {
       status: 'applied',
@@ -2428,10 +2400,14 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
         promoted_image_target_type: mutationResult.promoted_image_target_type,
         promoted_image_target_id: mutationResult.promoted_image_target_id,
         executed_at: executedAt,
+        printing_readback: printingReadback,
       },
     };
   } catch (error) {
-    await connection.query('rollback');
+    error.committed = committed;
+    error.commit_uncertain = commitAttempted && !committed;
+    error.rollback_uncertain = false;
+    if (!committed) await connection.query('rollback').catch(() => { error.rollback_uncertain = true; });
     throw error;
   } finally {
     connection.release();
@@ -2505,10 +2481,7 @@ async function buildDryRunStageSummary(pool, stageId) {
 
     const candidate = await fetchCandidateRow(connection, stage.candidate_id);
     if (stage.execution_status === 'SUCCEEDED') {
-      return {
-        status: 'already_succeeded',
-        summary: summarizeExistingSucceeded(stage, candidate),
-      };
+      return await verifySucceededPrintingStage(connection,stage,candidate);
     }
 
     try {
@@ -2536,7 +2509,7 @@ async function buildDryRunStageSummary(pool, stageId) {
   }
 }
 
-async function processStage(pool, stageId, opts) {
+export async function processStage(pool, stageId, opts) {
   if (opts.dryRun) {
     return buildDryRunStageSummary(pool, stageId);
   }
@@ -2554,10 +2527,7 @@ async function processStage(pool, stageId, opts) {
 
     if (stage.execution_status === 'SUCCEEDED') {
       const candidate = await fetchCandidateRow(preClaimConnection, stage.candidate_id);
-      return {
-        status: 'already_succeeded',
-        summary: summarizeExistingSucceeded(stage, candidate),
-      };
+      return await verifySucceededPrintingStage(preClaimConnection,stage,candidate);
     }
 
     if (!executableStatuses.includes(stage.execution_status)) {
@@ -2570,7 +2540,17 @@ async function processStage(pool, stageId, opts) {
     preClaimConnection.release();
   }
 
-  const claim = await claimStageForExecution(pool, stageId, executableStatuses);
+  let claim;
+  try {
+    claim = await claimStageForExecution(pool, stageId, executableStatuses);
+  } catch (error) {
+    if (error.commit_uncertain || error.rollback_uncertain) {
+      return {status:'reconciliation_required', phase:'claim', reason:error.message,
+        commit_uncertain:error.commit_uncertain===true, rollback_uncertain:error.rollback_uncertain===true,
+        automatic_retry_allowed:false};
+    }
+    throw error;
+  }
   if (!claim.claimed) {
     return {
       status: 'skipped',
@@ -2581,7 +2561,17 @@ async function processStage(pool, stageId, opts) {
   try {
     return await executeClaimedStage(pool, stageId, claim.attemptNumber);
   } catch (error) {
-    await markStageFailed(pool, stageId, error, claim.attemptNumber);
+    if (error.committed || error.commit_uncertain || error.rollback_uncertain) {
+      return {status:'reconciliation_required', reason:error.message,
+        committed:error.committed===true, commit_uncertain:error.commit_uncertain===true,
+        rollback_uncertain:error.rollback_uncertain===true, automatic_retry_allowed:false};
+    }
+    try {
+      await markStageFailed(pool, stageId, error, claim.attemptNumber);
+    } catch (recordingError) {
+      return {status:'reconciliation_required', phase:'failure_recording', reason:recordingError.message,
+        execution_error:error.message, automatic_retry_allowed:false};
+    }
     return {
       status: 'failed',
       reason: error.message,
@@ -2601,20 +2591,26 @@ function emitStageResultLog(stageId, result) {
     log('stage_already_succeeded', result.summary);
   } else if (result.status === 'failed') {
     log('stage_failed', { stage_id: stageId, reason: result.reason, error_code: result.error_code ?? null });
+  } else if (result.status === 'reconciliation_required') {
+    log('stage_reconciliation_required', {stage_id:stageId,...result});
   } else {
     log('stage_skipped', { stage_id: stageId, reason: result.reason });
   }
 }
 
 export async function runPromotionExecutorV1(input = {}) {
+  if ((input.apply !== undefined && typeof input.apply !== 'boolean') ||
+      (input.dryRun === false && input.apply !== true)) {
+    throw new Error('Warehouse writes require explicit apply: true.');
+  }
   const opts = {
     limit:
       Number.isFinite(Number(input.limit)) && Number(input.limit) > 0
         ? Math.trunc(Number(input.limit))
         : 10,
     stagingId: normalizeTextOrNull(input.stagingId),
-    dryRun: input.apply ? false : input.dryRun === false ? false : true,
-    apply: Boolean(input.apply),
+    dryRun: input.apply !== true,
+    apply: input.apply === true,
     allowRetryOnFailed:
       typeof input.allowRetryOnFailed === 'boolean'
         ? input.allowRetryOnFailed
@@ -2664,6 +2660,7 @@ export async function runPromotionExecutorV1(input = {}) {
         if (opts.emitLogs) {
           emitStageResultLog(stageId, result);
         }
+        if (result.status === 'reconciliation_required') break;
       } catch (error) {
         results.push({
           stageId,
@@ -2694,9 +2691,14 @@ export async function runPromotionExecutorV1(input = {}) {
   }
 }
 
+export function promotionExecutorExitCode(summary) {
+  return summary.results.some(row => ['failed', 'fatal', 'dry_run_failed_preflight', 'reconciliation_required'].includes(row.status)) ? 1 : 0;
+}
+
 async function main() {
   const opts = parseArgs(process.argv.slice(2));
-  await runPromotionExecutorV1(opts);
+  const summary = await runPromotionExecutorV1(opts);
+  process.exitCode = promotionExecutorExitCode(summary);
 }
 
 if (process.argv[1] && process.argv[1].includes('promotion_executor_v1.mjs')) {
