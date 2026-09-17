@@ -1,5 +1,32 @@
 # promote_source_backed_justtcg_mapping_v1
 
+## Current Boundary - 2026-09-17
+
+Direct apply is retired. The CLI now emits review-only JSON records and never
+writes mappings. Run `--input-json <path> --dry-run --limit=50`; the selected
+batch must contain 1..50 rows by default, with an explicit maximum limit of 500.
+Oversize inputs fail rather than silently dropping cards. Database lookups use
+100-ID chunks and bounded pages; hitting the read bound fails the report.
+
+Records preserve requested identity, the actual canonical parent, the staged
+source candidate (including its payload and raw-import link), and mapping
+history. They are not preserved raw source bytes or reviewed Master Index
+authority. Existing matches require review. Input drift or active/inactive
+ownership conflicts produce a nonzero exit; no supplied GV-ID replaces the
+actual parent's GV-ID in output.
+
+The ten historical Prize Pack batch callers are retired before environment,
+file or client setup. Old embedded approvals are not reusable authority. Their
+code and receipts remain historical evidence; do not bypass their entry guard.
+
+A fresh stamped mapping executor still needs reviewed source bytes, exact
+Master Index identity/printing bindings, transactional collision checks,
+bounded execution authority and readback. The English base TCGPlayer mapping
+executor is not a substitute for stamped JustTCG authority.
+
+The sections below describe historical behavior, not current run instructions.
+See `docs/ops/SOURCE_BACKED_MAPPING_REVIEW_CHECKPOINT_20260917.md`.
+
 ## 1. Purpose
 
 `promote_source_backed_justtcg_mapping_v1.mjs` creates active JustTCG mappings for exact promoted source-backed rows. The README is stored with the warehouse docs because Prize Pack batch closure calls it as part of the warehouse closure sequence, while the executable worker lives at `backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs`.

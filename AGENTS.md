@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Source-Backed JustTCG Boundary - September 17
+
+Read `docs/ops/SOURCE_BACKED_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The legacy
+source-backed writer is review-only; ten historical Prize Pack batch entry
+points are retired before mutation. Preserve old approvals as history, not
+reusable authority. Fresh stamped mappings need reviewed Master Index evidence
+and a separate bounded executor. Local changes do not prove deployed closure.
+
 ## Legacy JustTCG Mapping Review - September 17
 
 Read `docs/ops/JUSTTCG_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Three legacy
