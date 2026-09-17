@@ -13,6 +13,10 @@ immutable input hashes, explicit write authority and rollback receipt rules.
 Use the existing Linux execution host and its verified pooler environment;
 connection paths are in private operator receipts, never copy credentials into
 the repo. HTTP source outages and actual printing mismatches are distinct alerts.
+Exact-state readback and zero-write replay must still match the frozen dependency
+footprints. Investigate later ownership/mapping drift; do not silently rebaseline
+it. The PR #476 review repair changes the producer fingerprint, so its prior
+pending approval request and frozen producer are not valid for the repaired code.
 
 ## Printing-Complete Ingestion - September 17
 

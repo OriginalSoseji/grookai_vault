@@ -5,6 +5,19 @@ Status: Full local transaction proof and fresh production read-only plan; no pro
 
 ## Latest Evidence
 
+PR #476 review identified a real preservation gap: exact-state verification
+compared dependency reads only within its own transaction, not with the frozen
+plan. The repair requires frozen-footprint equality in every mode. Forty new
+regressions cover all five protected tables, row-count and same-count digest
+drift, across preflight/readback/rollback/apply. All forty reproduced the issue
+before the fix. The producer fingerprint must be refrozen after release checks;
+the prior producer and its pending authority request are superseded for execution.
+No production mutation occurred. Preserve old receipts as historical evidence.
+All 83 executor contracts pass. A read-only test against the preserved isolated
+PostgreSQL database also passed two exact readbacks and rejected ten deliberately
+drifted frozen footprints (count and digest for each table), with zero writes.
+Receipts: `C:/grookai_vault_operator_artifacts/master_index_executor_review_20260917/local-proof/`.
+
 Read-only audit run `35188899452` completed with failure. Source discovery hit
 Bulbapedia HTTP 403 on Storm Emeralda. The independent publication gate still
 ran, selected 2,389 sets including 1,382 Pokemon sets, reconciled with zero

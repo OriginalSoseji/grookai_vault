@@ -146,7 +146,7 @@ export async function executePrintingRepair({client,plan,expectedFingerprint,mod
     assert.equal(plan.schema.rules.length,0,'Rewrite rules require separate review');
     assert.ok(plan.schema.triggers.every(t=>t.table==='card_printing_truth_reviews'&&t.name==='trg_card_printing_truth_reviews_updated_at_v1'&&/BEFORE UPDATE/.test(t.definition)),'Unreviewed trigger side effect');
     const before=await readPrintingExecutionState(client,plan),classification=classifyPrintingExecution(plan,before);
-    if(classification==='before')assert.deepEqual(before.footprints,plan.protected_footprints,'Dependency footprint drift');
+    assert.deepEqual(before.footprints,plan.protected_footprints,'Dependency footprint drift');
     if(mode==='readback')assert.equal(classification,'exact');
     const writes={raw:0,printing_inserts:0,provenance_updates:0,reviews:0};
     if(classification==='before'&&['rollback','apply'].includes(mode)) {

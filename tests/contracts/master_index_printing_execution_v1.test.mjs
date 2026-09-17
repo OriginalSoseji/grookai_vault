@@ -139,6 +139,14 @@ test('rollback mode verifies complete result then restores exact before state',a
  assert.deepEqual(result.writes,{raw:1,printing_inserts:25,provenance_updates:25,reviews:50});
  assert.equal(result.rollback_proven,true);assert.equal(result.committed,false);assert.deepEqual(client.state,f.before);
 });
+for(const mode of ['preflight','readback','rollback','apply'])for(const table of ['vault_item_instances','binder_custom_slots','vault_item_instance_dispositions','external_mappings','external_printing_mappings'])for(const field of ['rows','digest'])test(`${mode} rejects exact-state ${table} ${field} drift against frozen dependencies`,async()=>{
+ const f=fixture(),state=exact(f.plan),footprint=state.footprints.find(row=>row.table===table);
+ if(field==='rows')footprint.rows++;else footprint.digest='changed-with-same-row-count';
+ const client=clientFor(f.plan,state);let beforeCommitCalls=0;
+ await assert.rejects(run(f,client,mode,{beforeCommit:async()=>{beforeCommitCalls++;}}),/Dependency footprint drift/);
+ assert.equal(writes(client).length,0);assert.equal(beforeCommitCalls,0);
+ assert.ok(!client.calls.includes('commit'));assert.deepEqual(client.state,state);
+});
 test('apply commits once; exact-state rerun performs zero writes',async()=>{
  const f=fixture(),client=clientFor(f.plan,f.before);let checked=0;
  const result=await run(f,client,'apply',{beforeCommit:async r=>{assert.equal(r.exact_readback,true);checked++;}});

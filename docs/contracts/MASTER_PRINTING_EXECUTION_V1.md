@@ -54,6 +54,10 @@ The raw row uses a deterministic negative bigint to avoid advancing a sequence
 in rollback tests. Source evidence enters raw_imports before canonical changes.
 An already-exact state executes zero mutations, including zero raw inserts.
 Partial states and collisions fail closed, rather than completing a partial batch.
+Every mode compares dependency footprints with the frozen plan, including exact-
+state readback and zero-write replay. Equality within one transaction cannot
+certify preservation across executions. Later legitimate collector activity can
+therefore require investigation; never silently rebaseline to clear a mismatch.
 
 COMMIT acknowledgement loss is recorded as uncertain. Stop and independently
 read back; never retry blindly. A failed rollback is also explicitly uncertain.
