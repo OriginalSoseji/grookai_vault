@@ -314,43 +314,6 @@ async function fetchCardPrintPage(supabase, offset, pageSize, options) {
   }, 'card_print page query');
 }
 
-async function fetchAllActiveJustTcgMappedCardPrintIds(supabase) {
-  const mapped = new Set();
-  let offset = 0;
-
-  while (true) {
-    const rows = await withRetries(async () => {
-      const { data, error } = await supabase
-        .from('external_mappings')
-        .select('card_print_id')
-        .eq('source', TARGET_SOURCE)
-        .eq('active', true)
-        .order('card_print_id', { ascending: true })
-        .range(offset, offset + FETCH_PAGE_SIZE - 1);
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      return data ?? [];
-    }, 'active justtcg mapping scan');
-
-    for (const row of rows) {
-      if (row.card_print_id) {
-        mapped.add(row.card_print_id);
-      }
-    }
-
-    if (rows.length < FETCH_PAGE_SIZE) {
-      break;
-    }
-
-    offset += rows.length;
-  }
-
-  return mapped;
-}
-
 function rowMatchesScope(row, options) {
   if (options.setCode && normalize(row.set_code ?? '').toLowerCase() !== options.setCode) {
     return false;
@@ -369,7 +332,6 @@ function rowMatchesScope(row, options) {
 
 async function loadScopedCards(supabase, options) {
   const scoped = [];
-  const activeJustTcgMappedIds = await fetchAllActiveJustTcgMappedCardPrintIds(supabase);
   let offset = 0;
 
   while (true) {
@@ -381,7 +343,7 @@ async function loadScopedCards(supabase, options) {
     offset += rows.length;
 
     for (const row of rows) {
-      if (!row.id || activeJustTcgMappedIds.has(row.id) || !rowMatchesScope(row, options)) {
+      if (!row.id || !rowMatchesScope(row, options)) {
         continue;
       }
 
@@ -773,7 +735,7 @@ async function main() {
 
   console.log('RUN_CONFIG:');
   console.log(`mode: ${options.apply ? 'apply' : 'dry-run'}`);
-  console.log('selection_mode: unmapped-justtcg-direct-structure');
+  console.log('selection_mode: justtcg-direct-structure-review-including-existing-mappings');
   console.log('selection_priority: override -> manual_helper_set -> auto_exact_alignment -> unresolved');
   console.log('selection_order: set_code asc, number_plain asc, number asc, card_print_id asc');
   console.log(`scope_set_code: ${options.setCode ?? 'none'}`);
@@ -782,17 +744,17 @@ async function main() {
   console.log(`limit: ${options.limit ?? 'none'}`);
   console.log(`verbose: ${options.verbose ? 'true' : 'false'}`);
 
-  const allUnmappedRows = await loadScopedCards(supabase, options);
+  const allScopedRows = await loadScopedCards(supabase, options);
   const [manualSetMappings, justTcgSets] = await Promise.all([
-    loadActiveSetMappings(supabase, uniqueValues(allUnmappedRows.map((row) => row.setId))),
+    loadActiveSetMappings(supabase, uniqueValues(allScopedRows.map((row) => row.setId))),
     fetchJustTcgPokemonSets(),
   ]);
   const identityOverrides = await loadActiveIdentityOverrides(
     supabase,
-    uniqueValues(allUnmappedRows.map((row) => row.cardPrintId)),
+    uniqueValues(allScopedRows.map((row) => row.cardPrintId)),
   );
 
-  const scopedRows = allUnmappedRows
+  const scopedRows = allScopedRows
     .map((row) => ({
       row,
       alignment: resolveSetAlignment(row, manualSetMappings, justTcgSets),

@@ -28,7 +28,6 @@ import {
 
 const SOURCE = 'tcgdex';
 const TARGET_SOURCE = 'justtcg';
-const BLOCKING_SOURCE = 'tcgplayer';
 const PAGE_SIZE = 200;
 const PRODUCT_ID_PATHS = [
   { key: 'normal', path: 'pricing.tcgplayer.normal.productId' },
@@ -218,25 +217,6 @@ async function fetchCardNames(supabase, cardPrintIds) {
   return new Map((data ?? []).map((row) => [row.id, row]));
 }
 
-async function fetchActiveSourceMappedCardPrintIds(supabase, source, cardPrintIds) {
-  if (!Array.isArray(cardPrintIds) || cardPrintIds.length === 0) {
-    return new Set();
-  }
-
-  const { data, error } = await supabase
-    .from('external_mappings')
-    .select('card_print_id')
-    .eq('source', source)
-    .eq('active', true)
-    .in('card_print_id', cardPrintIds);
-
-  if (error) {
-    throw new Error(`[tcgdex-justtcg-bridge] active ${source} candidate query failed: ${error.message}`);
-  }
-
-  return new Set((data ?? []).map((row) => row.card_print_id).filter(Boolean));
-}
-
 async function loadScopedCards(supabase, limit) {
   const seenCardPrintIds = new Set();
   const scoped = [];
@@ -263,21 +243,9 @@ async function loadScopedCards(supabase, limit) {
     }
 
     const cardPrintIds = pageScoped.map((row) => row.cardPrintId);
-    const [nameById, activeJustTcgMappedIds, activeTcgplayerMappedIds] = await Promise.all([
-      fetchCardNames(supabase, cardPrintIds),
-      fetchActiveSourceMappedCardPrintIds(supabase, TARGET_SOURCE, cardPrintIds),
-      fetchActiveSourceMappedCardPrintIds(supabase, BLOCKING_SOURCE, cardPrintIds),
-    ]);
+    const nameById = await fetchCardNames(supabase, cardPrintIds);
 
     for (const row of pageScoped) {
-      if (activeJustTcgMappedIds.has(row.cardPrintId)) {
-        continue;
-      }
-
-      if (activeTcgplayerMappedIds.has(row.cardPrintId)) {
-        continue;
-      }
-
       scoped.push({
         cardPrintId: row.cardPrintId,
         tcgdexExternalId: row.tcgdexExternalId,
@@ -383,7 +351,7 @@ async function main() {
   console.log(`mode: ${options.apply ? 'apply' : 'dry-run'}`);
   console.log(`batch_size: ${batchSize}`);
   console.log(`batch_size_source: ${batchSizeSource}`);
-  console.log('selection_mode: tcgdex-only-without-tcgplayer-without-justtcg');
+  console.log('selection_mode: tcgdex-evidence-review-including-existing-mappings');
   console.log('selection_order: synced_at desc, card_print_id asc');
   console.log(`limit: ${options.limit ?? 'none'}`);
 
@@ -391,7 +359,7 @@ async function main() {
   try {
     scopedCards = await loadScopedCards(supabase, options.limit);
   } catch (error) {
-    console.error('❌ Failed to load tcgdex-only justtcg candidates:', error);
+    console.error('Failed to load TCGdex review candidates:', error);
     process.exit(1);
   }
 

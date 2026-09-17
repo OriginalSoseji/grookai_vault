@@ -77,13 +77,14 @@ const parent = { id: '11111111-1111-4111-8111-111111111111', name: 'Pikachu', gv
   variant_key: 'stamped', identity_domain: 'pokemon_eng_special', print_identity_key: 'test-stamp',
   printed_identity_modifier: 'stamp' };
 
-async function runFixture({ existing = false, conflict = false, scriptIndex = 0 } = {}) {
+async function runFixture({ existing = false, conflict = false, scriptIndex = 0, tcgplayerMapped = false } = {}) {
   const calls = [];
   const provider = { id: 'just-test', tcgplayerId: '123', name: scriptIndex === 2 ? 'Pikachu' : 'Pikachu (Stamped)', number: '024' };
   const tcgdex = { id: 'test-024', pricing: { tcgplayer: { normal: { productId: 123 } } } };
   const target = scriptIndex === 2 ? { ...parent, sets: { name: 'Test Set' } } : parent;
   const mappings = [{ card_print_id: parent.id, source: scriptIndex === 1 ? 'tcgdex' : 'tcgplayer',
     external_id: scriptIndex === 1 ? 'test-024' : '123', active: true },
+    ...(tcgplayerMapped ? [{ card_print_id: parent.id, source: 'tcgplayer', external_id: '123', active: true }] : []),
     ...(existing ? [{ card_print_id: parent.id, source: 'justtcg', external_id: provider.id, active: true }] : []),
     ...(conflict ? [{ card_print_id: 'other-parent', source: 'justtcg', external_id: provider.id, active: true }] : [])];
   const server = createServer(async (req, res) => {
@@ -181,7 +182,19 @@ test('direct structural agreement emits review evidence without inserting set or
   assert.equal(row.mapping_evidence.set_alignment_method, 'exact_raw_name');
 });
 
+test('an existing TCGPlayer mapping does not hide a TCGdex association from review', async () => {
+  assert.equal((await runFixture({ scriptIndex: 1, existing: true, tcgplayerMapped: true })).status,
+    'EXISTING_MAPPING_REQUIRES_REVIEW');
+});
+
 for (const scriptIndex of [1, 2]) {
+  test(`${LEGACY_REVIEW_SCRIPTS[scriptIndex]} includes already-mapped cards for evidence review`, async () => {
+    assert.equal((await runFixture({ scriptIndex, existing: true })).status, 'EXISTING_MAPPING_REQUIRES_REVIEW');
+  });
+  test(`${LEGACY_REVIEW_SCRIPTS[scriptIndex]} checks other owners even for existing same-parent mappings`, async () => {
+    assert.match((await runFixture({ scriptIndex, existing: true, conflict: true })).status,
+      /^SKIP_CONFLICTING_EXISTING_JUSTTCG_/);
+  });
   test(`${LEGACY_REVIEW_SCRIPTS[scriptIndex]} preserves external-ID conflicts without writes`, async () => {
     assert.match((await runFixture({ scriptIndex, conflict: true })).status, /^SKIP_CONFLICTING_EXISTING_JUSTTCG_/);
   });

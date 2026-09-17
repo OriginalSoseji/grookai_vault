@@ -39,11 +39,19 @@ executor for future writes. Never turn a candidate's `write_ready` flag on.
 
 ## Verification
 
-18 targeted contracts passed locally, including real CLI and maintenance-launcher
+23 targeted contracts passed locally, including real CLI and maintenance-launcher
 apply rejection; local HTTP fixtures for all three discovery paths; raw identity
 and source preservation; existing matches; and conflicting external-ID owners.
 The fixture database endpoints observed GET requests only. No real provider calls
 or production data writes occurred. Full release gates remain separate.
+
+PR #485 review identified legacy selectors still excluding mapped TCGdex and
+direct-structure cards before the new existing-match checks could run. Four
+real-CLI regressions reproduced this (18 passing / 4 failing before repair).
+The selectors now include existing mappings, including TCGdex rows that also
+have TCGPlayer mappings; the full-table active JustTCG prefilter was removed.
+Existing-match and hidden conflicting-owner tests now pass on all three routes.
+The selected-card bound and review-only/write-retired boundary are unchanged.
 
 ## Release And Remaining Work
 
