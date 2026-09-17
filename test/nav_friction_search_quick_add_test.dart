@@ -3,6 +3,16 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test('cancelled or failed add refreshes the modal before returning', () {
+    final source = File('lib/main.dart').readAsStringSync();
+    final start = source.indexOf('Future<void> handleAdd() async');
+    final end = source.indexOf('Future<void> handleViewCard()', start);
+    final block = source.substring(start, end);
+    final refresh = block.indexOf('setSheetState(() {});');
+    expect(refresh, greaterThan(block.indexOf('await _addToVaultFromSearch')));
+    expect(refresh, lessThan(block.indexOf('if (!mounted || gvviId == null')));
+    expect(block, contains('if (sheetContext.mounted)'));
+  });
   test('search result tiles quick-add only one governed printing', () {
     final search = File('lib/main.dart').readAsStringSync();
 

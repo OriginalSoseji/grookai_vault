@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Anniversary Vault Add Repair - September 16
+
+Read `docs/contracts/VAULT_UNASSIGNED_ADD_REPAIR_V1.md`. The Samsung add error
+was a client printing prerequisite, not missing parent cards or a failed ownership
+transaction. A confirmed empty governed lookup can use the existing unassigned
+ownership state, with explicit collector confirmation. Never manufacture child
+printings from price subtypes to unblock ownership. Lookup errors must stay errors.
+Readback and device verification belong in the matching repair checkpoint before
+returning to anniversary reconciliation.
+
 ## Native Anniversary Delivery - September 16
 
 Read `NATIVE_ANNIVERSARY_RELEASE_20260916.md` for the isolated release candidate.

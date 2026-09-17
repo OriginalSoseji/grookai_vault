@@ -70,6 +70,7 @@ import 'services/scanner/native_condition_camera_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/navigation/pending_personal_card_action.dart';
 import 'services/vault/vault_card_service.dart';
+import 'widgets/vault/confirm_unassigned_printing.dart';
 import 'services/vault/vault_exact_pricing.dart';
 import 'services/sealed/owned_sealed_service_v1.dart';
 import 'services/sealed/owned_sealed_totals_controller.dart';
@@ -1931,7 +1932,7 @@ class _SearchResultActionSheet extends StatelessWidget {
         action == OwnershipAction.addToVault ||
         action == OwnershipAction.addAnotherCopy ||
         action == OwnershipAction.none;
-    final printingUnavailable = isAddAction && printingOptions.isEmpty;
+    final printingUnassigned = isAddAction && printingOptions.isEmpty;
     final normalizedCompareId = normalizeCompareCardId(card.gvId ?? '');
     final gvid = (card.gvId ?? '').trim();
     final ownershipPrimaryLabel = switch (action) {
@@ -1952,8 +1953,8 @@ class _SearchResultActionSheet extends StatelessWidget {
             ? 'Added ✓'
             : 'Add to Vault',
     };
-    final primaryLabel = printingUnavailable
-        ? 'Printing unavailable'
+    final primaryLabel = printingUnassigned
+        ? 'Add with printing unassigned'
         : printingSelectionRequired
         ? 'Choose printing'
         : ownershipPrimaryLabel;
@@ -2080,7 +2081,7 @@ class _SearchResultActionSheet extends StatelessWidget {
               ] else if (isAddAction) ...[
                 const SizedBox(height: 10),
                 Text(
-                  'Exact printing unavailable. Try again before adding.',
+                  'Finishes are not verified yet. Your copy can be saved with printing unassigned.',
                   textAlign: TextAlign.center,
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: colorScheme.error,
@@ -2227,10 +2228,7 @@ class _SearchResultActionSheet extends StatelessWidget {
               ],
               const SizedBox(height: 12),
               _ActionSheetPrimaryButton(
-                onPressed:
-                    interactionLocked ||
-                        printingSelectionRequired ||
-                        printingUnavailable
+                onPressed: interactionLocked || printingSelectionRequired
                     ? null
                     : onPrimaryAction,
                 successState:
@@ -4422,6 +4420,10 @@ class HomePageState extends State<HomePage> {
               card,
               cardPrintingId: selectedPrintingId,
             );
+            // The modal has its own state; a cancelled/failed add must unlock it.
+            if (sheetContext.mounted) {
+              setSheetState(() {});
+            }
             if (!mounted || gvviId == null || gvviId.isEmpty) {
               return;
             }
@@ -4875,22 +4877,26 @@ class HomePageState extends State<HomePage> {
       );
       return null;
     }
-    if ((cardPrintingId ?? '').trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Exact printing is unavailable. Try again before adding.',
-          ),
-        ),
-      );
-      return null;
-    }
-
     setState(() {
       _addingCardIds.add(card.id);
     });
 
     try {
+      final unassigned = (cardPrintingId ?? '').trim().isEmpty;
+      if (unassigned) {
+        // A failed lookup must never be interpreted as no verified finishes.
+        final options = await PublicCardPrintingOptionsService.fetch(
+          client: supabase,
+          cardPrintIds: [card.id],
+        );
+        if (options.isNotEmpty) {
+          throw Exception('Choose the exact printing before adding this card.');
+        }
+        if (!mounted || !await confirmUnassignedVaultPrinting(context)) {
+          return null;
+        }
+        if (!mounted) return null;
+      }
       final gvviId = await VaultCardService.addOrIncrementVaultItem(
         client: supabase,
         userId: userId,
@@ -4900,6 +4906,7 @@ class HomePageState extends State<HomePage> {
         fallbackSetName: card.displaySet.isEmpty ? null : card.displaySet,
         fallbackImageUrl: card.displayImage,
         cardPrintingId: cardPrintingId,
+        unassignedPrintingConfirmed: unassigned,
       );
 
       if (!mounted) {

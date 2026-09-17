@@ -32,12 +32,12 @@ class PublicCardPrintingOptionsService {
             'p_offset': offset,
           },
         );
-        final page = raw is List
-            ? raw
-                  .whereType<Map>()
-                  .map((row) => Map<String, dynamic>.from(row))
-                  .toList(growable: false)
-            : const <Map<String, dynamic>>[];
+        if (raw is! List || raw.any((row) => row is! Map)) {
+          throw const FormatException('Invalid printing options response.');
+        }
+        final page = raw
+            .map((row) => Map<String, dynamic>.from(row as Map))
+            .toList(growable: false);
         rows.addAll(page);
         if (page.length < _pageSize) {
           break;

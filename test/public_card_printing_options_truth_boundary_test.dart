@@ -137,7 +137,8 @@ void main() {
         resolverBlock,
         contains('_fetchPrintingOptions(cardPrintId, swallowErrors: false)'),
       );
-      expect(resolverBlock, contains('Exact printing is unavailable.'));
+      expect(resolverBlock, contains('if (options.isEmpty)'));
+      expect(resolverBlock, contains('return null;'));
       expect(
         resolverBlock,
         contains('Choose the exact printing before adding this card.'),
@@ -145,7 +146,7 @@ void main() {
       expect(resolverBlock, contains('_selectedCardPrintingId = resolved.id'));
       expect(
         addBlock,
-        contains('late final _CardDetailPrintingOption printingOption'),
+        contains('late final _CardDetailPrintingOption? printingOption'),
       );
       expect(
         addBlock,
@@ -158,7 +159,12 @@ void main() {
         lessThan(addBlock.indexOf('final userId = supabase.auth.currentUser')),
       );
       expect(addBlock, contains('pendingPrinting: printingOption'));
-      expect(addBlock, contains('cardPrintingId: printingOption.id'));
+      expect(addBlock, contains('cardPrintingId: printingOption?.id'));
+      expect(addBlock, contains('confirmUnassignedVaultPrinting(context)'));
+      expect(
+        addBlock,
+        contains('unassignedPrintingConfirmed: printingOption == null'),
+      );
       expect(detail, contains('_printingOptions.length == 1'));
     },
   );
@@ -181,11 +187,10 @@ void main() {
     expect(main, contains(r"return '${options.length} printings';"));
     expect(main, contains("'Choose the exact printing'"));
     expect(main, contains('ChoiceChip('));
-    expect(main, contains("'Printing unavailable'"));
-    expect(
-      main,
-      contains('Exact printing is unavailable. Try again before adding.'),
-    );
+    expect(main, contains("'Add with printing unassigned'"));
+    expect(addBlock, contains('PublicCardPrintingOptionsService.fetch'));
+    expect(addBlock, contains('confirmUnassignedVaultPrinting(context)'));
+    expect(addBlock, contains('unassignedPrintingConfirmed: unassigned'));
     expect(addBlock, contains('cardPrintingId: cardPrintingId'));
     expect(quickAddBlock, contains('printingOptions.length != 1'));
     expect(quickAddBlock, contains('_openSearchCardActionHub(card)'));
