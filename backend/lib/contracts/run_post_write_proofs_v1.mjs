@@ -12,7 +12,6 @@ export const POST_WRITE_PROOF_MODES_V1 = {
   promotion_executor_execute_claimed_stage_v1: 'transactional_authoritative',
   gv_id_assignment_worker_v1: 'compensated_non_transactional',
   source_image_enrichment_worker_v1: 'transactional_authoritative',
-  promote_source_backed_justtcg_mapping_v1: 'compensated_non_transactional',
   printing_upsert_v1: 'compensated_non_transactional',
 };
 

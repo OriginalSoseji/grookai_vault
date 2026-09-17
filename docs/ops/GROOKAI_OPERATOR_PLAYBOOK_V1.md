@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Source-Backed JustTCG And Historical Batches
+
+Read `SOURCE_BACKED_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The legacy source-backed
+CLI is review-only, defaults to 50 selected rows and caps explicit batches at 500.
+Input identity differences and conflicting mapping history are review conflicts,
+not permission to reassign a source ID. Ten old Prize Pack batches reject replay
+before database/file setup; preserve their embedded approvals and output as history.
+Use a fresh reviewed Master Index plan and applicable transactional executor for
+future stamped mappings. The base TCGPlayer executor does not authorize this lane.
+
 ## Legacy JustTCG Discovery
 
 Read `JUSTTCG_MAPPING_REVIEW_CHECKPOINT_20260917.md`. The TCGPlayer bridge,

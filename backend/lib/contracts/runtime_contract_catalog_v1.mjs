@@ -242,7 +242,6 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
     enforcement_points: {
       worker: [
         'backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs',
-        'backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs',
       ],
       audit: ['scripts/contracts/drift_audit_v1.sql'],
       checkpoint: ['CONTRACT_RUNTIME_LAYER_V1'],
@@ -404,16 +403,16 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
     canon_affecting: true,
     conflict_behavior: 'Pricing mappings cannot override identity truth or staging boundaries.',
     enforcement_points: {
-      worker: ['backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs'],
+      worker: [],
       audit: ['scripts/contracts/drift_audit_v1.sql'],
       checkpoint: ['CONTRACT_RUNTIME_LAYER_V1'],
       quarantine_behavior: 'Pricing-related mapping ambiguity blocks write rather than mutating canon mappings.',
       post_write_proof_query:
-        'External mapping proof queries validate one active mapping per source/external_id after upsert.',
+        'No current post-write proof is supplied by the retired source-backed JustTCG discovery CLI.',
     },
-    current_enforcement_status: 'partially_enforced',
-    gaps: 'Historical source/card duplicates prevent blind uniqueness expansion.',
-    next_action: 'Repair historical mapping debt before tightening DB rules beyond source/external_id.',
+    current_enforcement_status: 'audit_only',
+    gaps: 'Legacy source-backed JustTCG writes are retired; historical mapping debt and replacement execution remain separate.',
+    next_action: 'Use reviewed Master Index evidence and a bounded applicable executor; do not count read-only discovery as write enforcement.',
   },
   GV_VAULT_INSTANCE_CONTRACT_V1: {
     status: 'Active',

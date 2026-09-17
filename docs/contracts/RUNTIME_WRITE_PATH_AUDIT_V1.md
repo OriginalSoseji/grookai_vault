@@ -11,6 +11,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
   - `partial`: validation/proofs exist, but the path is still using ad hoc entrypoints
   - `owner_boundary_enforced`: ownership/trust write enters `execute_owner_write_v1.ts` and proves post-write invariants through the shared owner boundary
   - `bypass`: direct write path is outside the runtime boundary
+  - `review_only`: discovery remains available but mutation is retired; no write/proof coverage is claimed
 - `contained_maintenance_authority`: explicit maintenance-only mutation lane; never part of normal runtime flows
 - `partial_owner_boundary_enforced`: ownership/trust write enters `execute_owner_write_v1.ts` and proves post-write invariants, but the path still depends on compensated non-transactional or compatibility-tolerant behavior
 - `unknown`: write surface was found but not yet audited deeply enough to trust
@@ -32,7 +33,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 | `promotion_executor_execute_claimed_stage_v1` | `backend/warehouse/promotion_executor_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep the highest-risk canon mutation lane behind the shared executor. |
 | `gv_id_assignment_worker_v1` | `backend/warehouse/gv_id_assignment_worker_v1.mjs` | yes | no | yes | enforced | compensated_non_transactional | yes | medium | Keep compensated proof mode explicit until the architecture is ready for managed transactions. |
 | `source_image_enrichment_worker_v1` | `backend/images/source_image_enrichment_worker_v1.mjs` | yes | no | yes | enforced | transactional_authoritative | yes | medium | Keep exact-image protection and representative-only writes on the shared executor. |
-| `promote_source_backed_justtcg_mapping_v1` | `backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs` | yes | no | yes | enforced | compensated_non_transactional | yes | medium | Keep source/card conflict blocking deterministic through the shared executor. |
+| `promote_source_backed_justtcg_mapping_v1` | `backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs` | no | no | no | review_only | not_applicable | no | low | Preserve review evidence. Apply and historical batch replay are retired; fresh writes require reviewed Master Index authority and an applicable bounded executor. |
 | `printing_upsert_v1` | `backend/printing/printing_upsert_v1.mjs` | yes | no | no | enforced | compensated_non_transactional | yes | low | Keep child-printing writes on the shared executor. |
 | `staging_reconciliation_v1` | `backend/warehouse/staging_reconciliation_v1.mjs` | yes | no | no | intentionally blocked | unknown | no | high | Keep blocked. Direct writes were removed and execution is disabled until a runtime-safe rewrite can split reconciliation-only writes from alias execution reuse. |
 | `controlled_growth_ingestion_worker_v1` | `backend/ingestion/controlled_growth_ingestion_worker_v1.mjs` | no | no | no | enforced | non_transactional | no | low | Keep out of canon runtime scope. This lane writes non-canonical raw discovery staging only. |
@@ -80,8 +81,14 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 - `promotion_executor_execute_claimed_stage_v1`
 - `gv_id_assignment_worker_v1`
 - `source_image_enrichment_worker_v1`
-- `promote_source_backed_justtcg_mapping_v1`
 - `printing_upsert_v1`
+
+### Retired Writes / Review-Only Discovery
+
+- `promote_source_backed_justtcg_mapping_v1`: removed from active write scope,
+  execution policy and post-write proof registries on 2026-09-17. Existing
+  historical evidence remains preserved; read-only discovery does not count as
+  active mutation coverage or production deployment verification.
 
 ### Equivalent owner-trust proofs added in this pass
 

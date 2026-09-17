@@ -34,7 +34,7 @@ function createFakeLedgerTarget() {
 
 test('precedence resolution chooses higher-authority identity failure over lower-authority pricing failure', async () => {
   const result = await validateWriteV1({
-    execution_name: 'promote_source_backed_justtcg_mapping_v1',
+    execution_name: 'alias_mapping_execution_v1',
     payload_snapshot: { card_print_id: 'cp-1' },
     contract_assertions: [
       {

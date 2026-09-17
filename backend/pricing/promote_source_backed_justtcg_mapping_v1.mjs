@@ -1,509 +1,138 @@
+import '../maintenance/source_backed_mapping_review_guard_v1.mjs';
 import '../env.mjs';
 
+import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-
 import { createBackendClient } from '../supabase_backend_client.mjs';
-import {
-  assertExecuteCanonWriteV1,
-} from '../lib/contracts/execute_canon_write_v1.mjs';
+import { assertLegacyMappingReviewOnly, legacyMappingReviewRecord } from '../maintenance/legacy_mapping_review_only_v1.mjs';
 
 const WORKER_NAME = 'promote_source_backed_justtcg_mapping_v1';
-const TARGET_SOURCE = 'justtcg';
-const LOOKUP_CHUNK_SIZE = 100;
+const text = value => value === null || value === undefined ? null : String(value).trim() || null;
 
-function normalizeTextOrNull(value) {
-  if (value === undefined || value === null) {
-    return null;
+function parseArgs(args) {
+  const { limit } = assertLegacyMappingReviewOnly(args);
+  let inputJson;
+  for (let index = 0; index < args.length; index++) {
+    const token = args[index];
+    if (token === '--dry-run' || token.startsWith('--limit=')) continue;
+    if (token === '--limit') { index++; continue; }
+    assert.ok(token === '--input-json' || token.startsWith('--input-json='), `unknown_argument:${token}`);
+    assert.equal(inputJson, undefined, 'duplicate_input_json');
+    inputJson = token === '--input-json' ? args[++index] : token.slice('--input-json='.length);
+    assert.ok(inputJson && !inputJson.startsWith('--'), 'input_json_required');
   }
-
-  const normalized = String(value).trim();
-  return normalized.length > 0 ? normalized : null;
+  assert.ok(inputJson, 'input_json_required');
+  return { inputJson: path.resolve(inputJson), limit };
 }
 
-function normalizeLowerOrNull(value) {
-  const normalized = normalizeTextOrNull(value);
-  return normalized ? normalized.toLowerCase() : null;
-}
-
-function chunkArray(values, chunkSize) {
-  const chunks = [];
-  for (let index = 0; index < values.length; index += chunkSize) {
-    chunks.push(values.slice(index, index + chunkSize));
-  }
-  return chunks;
-}
-
-function uniqueValues(values) {
-  return [...new Set(values.filter(Boolean))];
-}
-
-function parseArgs(argv) {
-  const options = {
-    inputJson: null,
-    apply: false,
-    dryRun: true,
-  };
-
-  for (let index = 0; index < argv.length; index += 1) {
-    const token = argv[index];
-    if (token === '--apply') {
-      options.apply = true;
-      options.dryRun = false;
-    } else if (token === '--dry-run') {
-      options.apply = false;
-      options.dryRun = true;
-    } else if (token === '--input-json' && argv[index + 1]) {
-      options.inputJson = String(argv[index + 1]).trim() || null;
-      index += 1;
-    } else if (token.startsWith('--input-json=')) {
-      options.inputJson = String(token.split('=').slice(1).join('=')).trim() || null;
+async function loadRows(options) {
+  const parsed = JSON.parse(await fs.readFile(options.inputJson, 'utf8'));
+  assert.ok(Array.isArray(parsed?.rows), 'review_rows_required');
+  assert.ok(parsed.rows.length > 0 && parsed.rows.length <= options.limit, 'review_batch_size_outside_limit');
+  for (const row of parsed.rows) {
+    assert.ok(row && typeof row === 'object' && !Array.isArray(row), 'review_row_invalid');
+    for (const key of ['card_print_id', 'source_candidate_id', 'source_external_id']) {
+      assert.ok(typeof row[key] === 'string' && text(row[key]), `review_id_required:${key}`);
+      assert.equal(row[key], text(row[key]), `review_id_not_exact:${key}`);
     }
   }
-
-  if (!options.inputJson) {
-    throw new Error(`[${WORKER_NAME}] --input-json is required.`);
+  for (const key of ['card_print_id', 'source_candidate_id', 'source_external_id']) {
+    assert.equal(new Set(parsed.rows.map(row => row[key])).size, parsed.rows.length, `duplicate_review_id:${key}`);
   }
-
-  return options;
+  return parsed.rows;
 }
 
-async function loadInputRows(inputJsonPath) {
-  const resolvedPath = path.resolve(inputJsonPath);
-  const raw = await fs.readFile(resolvedPath, 'utf8');
-  const parsed = JSON.parse(raw);
-  const rows = Array.isArray(parsed?.rows) ? parsed.rows : null;
-  if (!rows) {
-    throw new Error(`[${WORKER_NAME}] input json must contain a rows array.`);
-  }
-
-  const normalizedRows = rows.map((row, index) => ({
-    batchIndex: Number(row.batch_index ?? index + 1),
-    cardPrintId: normalizeTextOrNull(row.card_print_id),
-    gvId: normalizeTextOrNull(row.gv_id),
-    stampLabel: normalizeTextOrNull(row.stamp_label),
-    variantKey: normalizeLowerOrNull(row.variant_key),
-    effectiveSetCode: normalizeLowerOrNull(row.effective_set_code),
-    sourceExternalId: normalizeTextOrNull(row.source_external_id),
-    sourceCandidateId: normalizeTextOrNull(row.source_candidate_id),
-    sourceFamily: normalizeTextOrNull(row.source_family),
-  }));
-
-  const missingFields = normalizedRows.filter(
-    (row) => !row.cardPrintId || !row.sourceExternalId || !row.sourceCandidateId,
-  );
-  if (missingFields.length > 0) {
-    throw new Error(
-      `[${WORKER_NAME}] input rows missing required ids: ${missingFields
-        .map((row) => row.batchIndex)
-        .join(', ')}.`,
-    );
-  }
-
-  const duplicateCardPrintIds = normalizedRows
-    .map((row) => row.cardPrintId)
-    .filter((value, index, values) => values.indexOf(value) !== index);
-  if (duplicateCardPrintIds.length > 0) {
-    throw new Error(`[${WORKER_NAME}] duplicate card_print_id detected in input batch.`);
-  }
-
-  const duplicateExternalIds = normalizedRows
-    .map((row) => row.sourceExternalId)
-    .filter((value, index, values) => values.indexOf(value) !== index);
-  if (duplicateExternalIds.length > 0) {
-    throw new Error(`[${WORKER_NAME}] duplicate source_external_id detected in input batch.`);
-  }
-
-  return {
-    resolvedPath,
-    rows: normalizedRows,
-  };
-}
-
-async function fetchCardPrintRows(supabase, cardPrintIds) {
-  const rows = [];
-  for (const chunk of chunkArray(cardPrintIds, LOOKUP_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('card_prints')
-      .select('id,gv_id,name,number,variant_key,set_code')
-      .in('id', chunk);
-
-    if (error) {
-      throw new Error(error.message);
+async function fetchRows(client, table, columns, key, ids, source) {
+  const result = [];
+  for (let index = 0; index < ids.length; index += 100) {
+    for (let page = 0; ; page++) {
+      assert.ok(page < 10, `review_read_limit_exceeded:${table}`);
+      let query = client.from(table).select(columns).in(key, ids.slice(index, index + 100))
+        .order('id', { ascending: true }).range(page * 100, page * 100 + 99);
+      if (source) query = query.eq('source', source);
+      const { data, error } = await query;
+      if (error) throw new Error(error.message);
+      assert.ok(Array.isArray(data), `review_read_invalid:${table}`);
+      result.push(...data);
+      if (data.length < 100) break;
     }
-
-    rows.push(...(data ?? []));
   }
-
-  return rows;
+  assert.equal(new Set(result.map(row => row.id)).size, result.length, `review_read_duplicate:${table}`);
+  return result;
 }
 
-async function fetchDiscoveryCandidates(supabase, candidateIds) {
-  const rows = [];
-  for (const chunk of chunkArray(candidateIds, LOOKUP_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('external_discovery_candidates')
-      .select('id,source,upstream_id')
-      .in('id', chunk);
+function exactRowsById(rows, selected, label) {
+  assert.deepEqual(rows.map(row => row.id).sort(), [...selected].sort(), `${label}_selection_mismatch`);
+  return new Map(rows.map(row => [row.id, row]));
+}
 
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    rows.push(...(data ?? []));
+function reviewRow(row, parent, candidate, parentMappings, externalMappings, index) {
+  const drift = [];
+  for (const [inputField, liveField] of Object.entries({ gv_id: 'gv_id', effective_set_code: 'set_code',
+    set_code: 'set_code', set_id: 'set_id', variant_key: 'variant_key', number: 'number',
+    name: 'name', identity_domain: 'identity_domain', print_identity_key: 'print_identity_key',
+    printed_identity_modifier: 'printed_identity_modifier' })) {
+    if (Object.hasOwn(row, inputField) && row[inputField] !== parent[liveField]) drift.push(inputField);
   }
-
-  return rows;
-}
-
-async function fetchMappingsByCardPrintIds(supabase, cardPrintIds) {
-  const rows = [];
-  for (const chunk of chunkArray(cardPrintIds, LOOKUP_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('external_mappings')
-      .select('id,card_print_id,source,external_id,active')
-      .eq('source', TARGET_SOURCE)
-      .in('card_print_id', chunk);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    rows.push(...(data ?? []));
+  let status = 'mapping_candidate_requires_review';
+  let reason = 'Source candidate presence does not establish reviewed Master Index mapping authority.';
+  if (candidate.source !== 'justtcg' || candidate.upstream_id !== row.source_external_id) {
+    status = 'conflict_source_candidate_identity';
+    reason = 'Source candidate does not bind the requested provider and external ID.';
+  } else if (drift.length) {
+    status = 'conflict_input_identity';
+    reason = `Requested identity differs from the canonical parent: ${drift.join(', ')}.`;
+  } else if (externalMappings.some(mapping => mapping.card_print_id !== parent.id)) {
+    status = 'conflict_external_id_claimed_elsewhere';
+    reason = 'Active or inactive external-ID history belongs to another parent.';
+  } else if (parentMappings.some(mapping => mapping.external_id !== row.source_external_id)) {
+    status = 'conflict_existing_card_print_mapping';
+    reason = 'Active or inactive parent mapping history contains a different external ID.';
+  } else if (parentMappings.some(mapping => mapping.active === true && mapping.external_id === row.source_external_id)) {
+    status = 'existing_mapping_requires_review';
+    reason = 'An existing mapping is not independent evidence of printing identity.';
   }
-
-  return rows;
+  return legacyMappingReviewRecord({ batch_index: row.batch_index ?? index + 1,
+    card_print_id: parent.id, gv_id: parent.gv_id, name: parent.name, number: parent.number,
+    variant_key: parent.variant_key, set_code: parent.set_code,
+    source_external_id: row.source_external_id, status, reason, identity_drift_fields: drift,
+    requested_identity: row, canonical_identity: parent, source_candidate: candidate,
+    parent_mappings: parentMappings, external_id_mappings: externalMappings });
 }
 
-async function fetchMappingsByExternalIds(supabase, externalIds) {
-  const rows = [];
-  for (const chunk of chunkArray(externalIds, LOOKUP_CHUNK_SIZE)) {
-    const { data, error } = await supabase
-      .from('external_mappings')
-      .select('id,card_print_id,source,external_id,active')
-      .eq('source', TARGET_SOURCE)
-      .in('external_id', chunk);
-
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    rows.push(...(data ?? []));
-  }
-
-  return rows;
-}
-
-function groupBy(rows, keySelector) {
-  const grouped = new Map();
-  for (const row of rows) {
-    const key = keySelector(row);
-    if (!grouped.has(key)) {
-      grouped.set(key, []);
-    }
-    grouped.get(key).push(row);
-  }
-  return grouped;
-}
-
-function log(event, payload = {}) {
-  console.log(
-    JSON.stringify({
-      ts: new Date().toISOString(),
-      worker: WORKER_NAME,
-      event,
-      ...payload,
-    }),
-  );
-}
-
-async function upsertMapping(supabase, row, batchInputPath) {
-  const payloadSnapshot = {
-    batch_input_path: batchInputPath,
-    batch_index: row.batchIndex,
-    card_print_id: row.cardPrintId,
-    gv_id: row.gvId,
-    source_external_id: row.sourceExternalId,
-    source_candidate_id: row.sourceCandidateId,
-    source_family: row.sourceFamily,
-    variant_key: row.variantKey,
-    effective_set_code: row.effectiveSetCode,
-  };
-
-  const meta = {
-    promoted_by: WORKER_NAME,
-    mapping_mode: 'source_backed_batch_input',
-    batch_input_path: batchInputPath,
-    batch_index: row.batchIndex,
-    gv_id: row.gvId,
-    stamp_label: row.stampLabel,
-    variant_key: row.variantKey,
-    effective_set_code: row.effectiveSetCode,
-    source_candidate_id: row.sourceCandidateId,
-    source_external_id: row.sourceExternalId,
-    source_family: row.sourceFamily,
-    source_reason: 'promoted_stamped_row_with_exact_source_backed_identity',
-  };
-
-  await assertExecuteCanonWriteV1({
-    execution_name: 'promote_source_backed_justtcg_mapping_v1',
-    payload_snapshot: payloadSnapshot,
-    write_target: supabase,
-    audit_target: supabase,
-    ledger_target: supabase,
-    transaction_control: 'none',
-    actor_type: 'system_worker',
-    source_worker: WORKER_NAME,
-    source_system: 'pricing',
-    contract_assertions: [
-      {
-        ok: Boolean(row.cardPrintId),
-        contract_name: 'IDENTITY_CONTRACT_SUITE_V1',
-        violation_type: 'missing_card_print_id',
-        reason: 'Source-backed JustTCG mapping requires card_print_id.',
-      },
-      {
-        ok: Boolean(row.sourceExternalId),
-        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
-        violation_type: 'missing_source_external_id',
-        reason: 'Source-backed JustTCG mapping requires source_external_id.',
-      },
-      {
-        ok: Boolean(row.sourceCandidateId),
-        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
-        violation_type: 'missing_source_candidate_id',
-        reason: 'Source-backed JustTCG mapping requires source_candidate_id.',
-      },
-    ],
-    proofs: [
-      {
-        name: 'external_mapping_round_trip',
-        contract_name: 'EXTERNAL_SOURCE_INGESTION_MODEL_V1',
-        violation_type: 'post_write_mapping_missing',
-        async run() {
-          const { data, error: selectError } = await supabase
-            .from('external_mappings')
-            .select('card_print_id,external_id,active')
-            .eq('source', TARGET_SOURCE)
-            .eq('external_id', row.sourceExternalId)
-            .limit(1);
-
-          if (selectError) {
-            return {
-              ok: false,
-              reason: `JustTCG mapping post-write proof query failed: ${selectError.message}`,
-            };
-          }
-
-          const mapping = Array.isArray(data) ? data[0] ?? null : null;
-          return {
-            ok:
-              mapping?.active === true &&
-              normalizeTextOrNull(mapping.card_print_id) === row.cardPrintId &&
-              normalizeTextOrNull(mapping.external_id) === row.sourceExternalId,
-            reason:
-              `Expected active JustTCG mapping ${row.sourceExternalId} -> ${row.cardPrintId} after upsert.`,
-          };
-        },
-      },
-    ],
-    async write(target) {
-      const { error } = await target.from('external_mappings').upsert(
-        {
-          card_print_id: row.cardPrintId,
-          source: TARGET_SOURCE,
-          external_id: row.sourceExternalId,
-          active: true,
-          synced_at: new Date().toISOString(),
-          meta,
-        },
-        { onConflict: 'source,external_id' },
-      );
-
-      if (error) {
-        throw new Error(error.message);
-      }
-    },
-  });
+function log(event, payload) {
+  console.log(JSON.stringify({ ts: new Date().toISOString(), worker: WORKER_NAME, event, ...payload }));
 }
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const { resolvedPath, rows } = await loadInputRows(options.inputJson);
-  const supabase = createBackendClient();
-
-  log('run_config', {
-    mode: options.apply ? 'apply' : 'dry-run',
-    input_json: resolvedPath,
-    scope: 'exact_promoted_stamped_batch_only',
-    batch_size: rows.length,
-  });
-
-  const cardPrintIds = rows.map((row) => row.cardPrintId);
-  const sourceCandidateIds = rows.map((row) => row.sourceCandidateId);
-  const sourceExternalIds = rows.map((row) => row.sourceExternalId);
-
-  const [cardPrintRows, discoveryCandidates, mappingsByCardPrintRows, mappingsByExternalIdRows] =
-    await Promise.all([
-      fetchCardPrintRows(supabase, cardPrintIds),
-      fetchDiscoveryCandidates(supabase, sourceCandidateIds),
-      fetchMappingsByCardPrintIds(supabase, cardPrintIds),
-      fetchMappingsByExternalIds(supabase, sourceExternalIds),
-    ]);
-
-  if (cardPrintRows.length !== rows.length) {
-    throw new Error(
-      `[${WORKER_NAME}] card_print fetch mismatch: expected ${rows.length}, found ${cardPrintRows.length}.`,
-    );
-  }
-
-  if (discoveryCandidates.length !== rows.length) {
-    throw new Error(
-      `[${WORKER_NAME}] discovery candidate fetch mismatch: expected ${rows.length}, found ${discoveryCandidates.length}.`,
-    );
-  }
-
-  const cardPrintById = new Map(cardPrintRows.map((row) => [normalizeTextOrNull(row.id), row]));
-  const discoveryById = new Map(discoveryCandidates.map((row) => [normalizeTextOrNull(row.id), row]));
-  const mappingsByCardPrintId = groupBy(mappingsByCardPrintRows, (row) => normalizeTextOrNull(row.card_print_id));
-  const mappingsByExternalId = groupBy(mappingsByExternalIdRows, (row) => normalizeTextOrNull(row.external_id));
-
-  const results = [];
-  let applied = 0;
-
-  for (const row of rows.sort((left, right) => left.batchIndex - right.batchIndex)) {
-    const cardPrint = cardPrintById.get(row.cardPrintId);
-    if (!cardPrint) {
-      throw new Error(`[${WORKER_NAME}] missing card_print ${row.cardPrintId}.`);
-    }
-
-    const discoveryCandidate = discoveryById.get(row.sourceCandidateId);
-    if (!discoveryCandidate) {
-      throw new Error(`[${WORKER_NAME}] missing source candidate ${row.sourceCandidateId}.`);
-    }
-
-    if (normalizeLowerOrNull(discoveryCandidate.source) !== TARGET_SOURCE) {
-      throw new Error(
-        `[${WORKER_NAME}] source candidate ${row.sourceCandidateId} is not ${TARGET_SOURCE}.`,
-      );
-    }
-
-    if (normalizeTextOrNull(discoveryCandidate.upstream_id) !== row.sourceExternalId) {
-      throw new Error(
-        `[${WORKER_NAME}] source candidate ${row.sourceCandidateId} upstream_id drifted from input batch.`,
-      );
-    }
-
-    if (
-      row.variantKey &&
-      normalizeLowerOrNull(cardPrint.variant_key) &&
-      row.variantKey !== normalizeLowerOrNull(cardPrint.variant_key)
-    ) {
-      throw new Error(`[${WORKER_NAME}] variant_key drift detected for ${row.cardPrintId}.`);
-    }
-
-    if (
-      row.effectiveSetCode &&
-      normalizeLowerOrNull(cardPrint.set_code) &&
-      row.effectiveSetCode !== normalizeLowerOrNull(cardPrint.set_code)
-    ) {
-      throw new Error(`[${WORKER_NAME}] set_code drift detected for ${row.cardPrintId}.`);
-    }
-
-    const activeMappingsForCard = (mappingsByCardPrintId.get(row.cardPrintId) ?? []).filter(
-      (mapping) => mapping.active === true,
-    );
-    const mappingsForExternalId = mappingsByExternalId.get(row.sourceExternalId) ?? [];
-    const activeMappingsForExternalId = mappingsForExternalId.filter((mapping) => mapping.active === true);
-    const exactActiveMapping = activeMappingsForCard.find(
-      (mapping) =>
-        normalizeTextOrNull(mapping.external_id) === row.sourceExternalId &&
-        normalizeTextOrNull(mapping.card_print_id) === row.cardPrintId,
-    );
-
-    let status = 'would_upsert';
-    let reason = 'No active JustTCG mapping exists for this promoted stamped row yet.';
-
-    if (exactActiveMapping) {
-      status = 'already_correct';
-      reason = 'Exact active JustTCG mapping already exists.';
-    } else if (
-      activeMappingsForCard.some(
-        (mapping) =>
-          normalizeTextOrNull(mapping.card_print_id) === row.cardPrintId &&
-          normalizeTextOrNull(mapping.external_id) !== row.sourceExternalId,
-      )
-    ) {
-      status = 'conflict_existing_card_print_mapping';
-      reason = 'Card print already has a different active JustTCG mapping.';
-    } else if (
-      activeMappingsForExternalId.some(
-        (mapping) => normalizeTextOrNull(mapping.card_print_id) !== row.cardPrintId,
-      )
-    ) {
-      status = 'conflict_external_id_claimed_elsewhere';
-      reason = 'Source external id is already mapped to a different card print.';
-    } else if (
-      mappingsForExternalId.some(
-        (mapping) =>
-          mapping.active !== true && normalizeTextOrNull(mapping.card_print_id) !== row.cardPrintId,
-      )
-    ) {
-      status = 'conflict_inactive_external_id_claimed_elsewhere';
-      reason = 'Inactive JustTCG mapping history points this external id at a different card print.';
-    } else if (
-      (mappingsByCardPrintId.get(row.cardPrintId) ?? []).some(
-        (mapping) =>
-          mapping.active !== true && normalizeTextOrNull(mapping.external_id) !== row.sourceExternalId,
-      )
-    ) {
-      status = 'conflict_inactive_card_print_mapping';
-      reason = 'Inactive JustTCG mapping history exists for a different external id on this card print.';
-    }
-
-    if (status === 'would_upsert' && options.apply) {
-      await upsertMapping(supabase, row, resolvedPath);
-      applied += 1;
-      status = 'upserted';
-      reason = 'Source-backed JustTCG mapping written for promoted stamped row.';
-    }
-
-    const result = {
-      batch_index: row.batchIndex,
-      card_print_id: row.cardPrintId,
-      gv_id: row.gvId ?? normalizeTextOrNull(cardPrint.gv_id),
-      name: normalizeTextOrNull(cardPrint.name),
-      number: normalizeTextOrNull(cardPrint.number),
-      variant_key: normalizeLowerOrNull(cardPrint.variant_key),
-      set_code: normalizeLowerOrNull(cardPrint.set_code),
-      source_external_id: row.sourceExternalId,
-      status,
-      reason,
-    };
-    results.push(result);
-    log('row', result);
-  }
-
-  const summary = {
-    batch_size: rows.length,
-    already_correct: results.filter((row) => row.status === 'already_correct').length,
-    would_upsert: results.filter((row) => row.status === 'would_upsert').length,
-    upserted: results.filter((row) => row.status === 'upserted').length,
-    conflicts: results.filter((row) => row.status.startsWith('conflict_')).length,
-    applied,
-    unique_card_print_ids: uniqueValues(results.map((row) => row.card_print_id)).length,
-    unique_external_ids: uniqueValues(results.map((row) => row.source_external_id)).length,
-    examples: results.slice(0, 10),
-  };
-
-  console.log(JSON.stringify(summary, null, 2));
-
-  if (summary.conflicts > 0) {
-    process.exitCode = 1;
-  }
+  const rows = await loadRows(options);
+  const client = createBackendClient();
+  const ids = rows.map(row => row.card_print_id);
+  const candidateIds = rows.map(row => row.source_candidate_id);
+  const parentColumns = 'id,gv_id,name,number,set_id,set_code,variant_key,identity_domain,print_identity_key,printed_identity_modifier';
+  const mappingColumns = 'id,card_print_id,source,external_id,active';
+  const parents = exactRowsById(await fetchRows(client, 'card_prints', parentColumns, 'id', ids), ids, 'parent');
+  const candidates = exactRowsById(await fetchRows(client, 'external_discovery_candidates',
+    'id,source,upstream_id,raw_import_id,set_id,name_raw,number_raw,payload', 'id', candidateIds), candidateIds, 'candidate');
+  const parentMappings = await fetchRows(client, 'external_mappings', mappingColumns, 'card_print_id', ids, 'justtcg');
+  const externalMappings = await fetchRows(client, 'external_mappings', mappingColumns, 'external_id',
+    rows.map(row => row.source_external_id), 'justtcg');
+  log('run_config', legacyMappingReviewRecord({ mode: 'review-only', input_json: options.inputJson,
+    batch_size: rows.length, selected_card_limit: options.limit }));
+  const results = rows.map((row, index) => reviewRow(row, parents.get(row.card_print_id), candidates.get(row.source_candidate_id),
+    parentMappings.filter(mapping => mapping.card_print_id === row.card_print_id),
+    externalMappings.filter(mapping => mapping.external_id === row.source_external_id), index));
+  for (const row of results) log('row', row);
+  const conflicts = results.filter(row => row.status.startsWith('conflict_')).length;
+  log('summary', legacyMappingReviewRecord({ selected_rows: rows.length, reviewed_rows: results.length,
+    conflicts, candidates_requiring_review: results.filter(row => row.status === 'mapping_candidate_requires_review').length,
+    existing_mappings_requiring_review: results.filter(row => row.status === 'existing_mapping_requires_review').length }));
+  if (conflicts) process.exitCode = 1;
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(error instanceof Error ? error.message : String(error));
-  process.exit(1);
+  process.exitCode = 1;
 });

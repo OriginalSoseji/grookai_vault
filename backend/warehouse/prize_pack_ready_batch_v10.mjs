@@ -1,3 +1,4 @@
+import '../maintenance/retired_prize_pack_replay_v1.mjs';
 import '../env.mjs';
 
 import fs from 'node:fs/promises';
