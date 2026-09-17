@@ -1,9 +1,69 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-09-10T08:21:44.989Z",
+  "generated_at": "2026-09-17T08:52:33.921Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
+    {
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "source_key": "pokemontcg_api",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "source_key": "tcgdex",
+      "source_alias": "30th-c",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 60,
+      "error": null
+    },
+    {
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "source_key": "thepricedex_price_list",
+      "source_alias": "30th-c",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
+    },
+    {
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "source_key": "pkmncards",
+      "source_alias": "30th-classic-collection",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
+    },
+    {
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "30th_Classic_Collection_(TCG)",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
+    },
+    {
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
     {
       "set_key": "tk-bw-e",
       "set_name": "BW trainer Kit (Excadrill)",
@@ -290,9 +350,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "HS_Trainer_Kit_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "tk-hs-g",
@@ -350,9 +410,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "HS_Trainer_Kit_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "tk-hs-r",
@@ -412,7 +472,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Jumbo_cards_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "jumbo",
@@ -472,7 +532,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2023_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2023sv",
@@ -532,7 +592,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2024_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2024sv",
@@ -631,7 +691,7 @@
       "source_alias": "mep",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 199,
+      "evidence_rows": 246,
       "error": null
     },
     {
@@ -652,7 +712,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/MEP_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "mep",
@@ -772,7 +832,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/My_First_Battle_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "mfb",
@@ -832,7 +892,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Pok%C3%A9_Card_Creator_Pack_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex5.5",
@@ -952,7 +1012,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Radiant_Collection_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "rc",
@@ -1012,7 +1072,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Sample_Set_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sp",
@@ -1070,9 +1130,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "tk-sm-r",
@@ -1130,9 +1190,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Sun_&_Moon_Trainer_Kit:_Lycanroc_&_Alolan_Raichu_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 18,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "tk-sm-l",
@@ -1252,7 +1312,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/W_Promotional_cards"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "wp",
@@ -1850,9 +1910,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Base_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 101,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "base1",
@@ -1910,9 +1970,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Jungle_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 64,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "base2",
@@ -1930,9 +1990,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "basep",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 104,
-      "error": null
+      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Abasep&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
     },
     {
       "set_key": "basep",
@@ -1972,15 +2032,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Wizards_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "basep",
       "set_name": "Wizards Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 7,
       "error": null
     },
@@ -2030,9 +2090,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Fossil_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 62,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "base3",
@@ -2050,9 +2110,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "base4",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 260,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Abase4&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "base4",
@@ -2092,15 +2152,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Base_Set_2_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "base4",
       "set_name": "Base Set 2",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 129,
       "error": null
     },
@@ -2150,9 +2210,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Team_Rocket_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 83,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "base5",
@@ -2210,9 +2270,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Gym_Heroes_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 132,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "gym1",
@@ -2230,9 +2290,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "gym2",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 152,
-      "error": null
+      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Agym2&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
     },
     {
       "set_key": "gym2",
@@ -2270,17 +2330,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Gym_Challenge_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 132,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "gym2",
       "set_name": "Gym Challenge",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 20,
       "error": null
     },
@@ -2330,9 +2390,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Neo_Genesis_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 111,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "neo1",
@@ -2390,9 +2450,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Neo_Discovery_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 75,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "neo2",
@@ -2452,7 +2512,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Southern_Islands_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "si1",
@@ -2510,9 +2570,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Neo_Revelation_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 66,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "neo3",
@@ -2530,9 +2590,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "neo4",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 127,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aneo4&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "runtime_status": "collected",
+      "evidence_rows": 135,
+      "error": null
     },
     {
       "set_key": "neo4",
@@ -2570,18 +2630,18 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Neo_Destiny_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 113,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "neo4",
       "set_name": "Neo Destiny",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 10,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 22,
       "error": null
     },
     {
@@ -2590,7 +2650,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "base6",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 329,
       "error": null
     },
@@ -2632,15 +2692,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Legendary_Collection_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "lc",
       "set_name": "Legendary Collection",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 219,
       "error": null
     },
@@ -2650,9 +2710,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ecard1",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 488,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aecard1&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "ecard1",
@@ -2690,9 +2750,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Expedition_Base_Set_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 165,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ecard1",
@@ -2700,7 +2760,7 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 323,
       "error": null
     },
@@ -2710,9 +2770,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bp",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 18,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Abp&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "bog",
@@ -2752,15 +2812,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Best_of_Game_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bog",
       "set_name": "Best of Game",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 9,
       "error": null
     },
@@ -2771,7 +2831,7 @@
       "source_alias": "ecard2",
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 500,
+      "evidence_rows": 499,
       "error": null
     },
     {
@@ -2810,9 +2870,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Aquapolis_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 154,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ecard2",
@@ -2831,7 +2891,7 @@
       "source_alias": "ecard3",
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 497,
+      "evidence_rows": 496,
       "error": null
     },
     {
@@ -2870,9 +2930,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Skyridge_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 150,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ecard3",
@@ -2881,7 +2941,7 @@
       "source_alias": null,
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 315,
+      "evidence_rows": 314,
       "error": null
     },
     {
@@ -2930,9 +2990,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Ruby_&_Sapphire_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 109,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex1",
@@ -2990,9 +3050,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Sandstorm_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 100,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex2",
@@ -3052,7 +3112,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Nintendo_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "np",
@@ -3112,7 +3172,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Dragon_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex3",
@@ -3170,9 +3230,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Team_Magma_vs_Team_Aqua_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 97,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex4",
@@ -3250,9 +3310,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "tk1b",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 10,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Atk1b&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "tk-ex-latio",
@@ -3350,9 +3410,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Hidden_Legends_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 102,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex5",
@@ -3410,9 +3470,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "FireRed_&_LeafGreen_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 116,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex6",
@@ -3472,7 +3532,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_1_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop1",
@@ -3491,7 +3551,7 @@
       "source_alias": "ex7",
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 338,
+      "evidence_rows": 337,
       "error": null
     },
     {
@@ -3530,9 +3590,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Team_Rocket_Returns_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 111,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex7",
@@ -3550,8 +3610,8 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex8",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 328,
+      "runtime_status": "collected",
+      "evidence_rows": 329,
       "error": null
     },
     {
@@ -3592,7 +3652,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Deoxys_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex8",
@@ -3601,7 +3661,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 203,
+      "evidence_rows": 204,
       "error": null
     },
     {
@@ -3652,7 +3712,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Emerald_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex9",
@@ -3661,7 +3721,7 @@
       "source_alias": null,
       "configured_status": "available",
       "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 199,
+      "evidence_rows": 198,
       "error": null
     },
     {
@@ -3670,9 +3730,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "pop2",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 40,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Apop2&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "pop2",
@@ -3712,16 +3772,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_2_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop2",
       "set_name": "POP Series 2",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 21,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 23,
       "error": null
     },
     {
@@ -3751,7 +3811,7 @@
       "source_alias": "ex10",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 390,
+      "evidence_rows": 394,
       "error": null
     },
     {
@@ -3770,9 +3830,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Unseen_Forces_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 117,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex10",
@@ -3790,7 +3850,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex11",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 335,
       "error": null
     },
@@ -3832,7 +3892,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Delta_Species_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex11",
@@ -3890,9 +3950,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Legend_Maker_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 93,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex12",
@@ -4072,7 +4132,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_3_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop3",
@@ -4130,9 +4190,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Holon_Phantoms_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 111,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex13",
@@ -4190,9 +4250,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Crystal_Guardians_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 100,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex14",
@@ -4252,7 +4312,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_4_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop4",
@@ -4310,9 +4370,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Dragon_Frontiers_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 101,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex15",
@@ -4370,9 +4430,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Power_Keepers_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 108,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ex16",
@@ -4432,7 +4492,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_5_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop5",
@@ -4490,9 +4550,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Diamond_&_Pearl_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 130,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dp1",
@@ -4531,7 +4591,7 @@
       "source_alias": "dpp",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 116,
+      "evidence_rows": 117,
       "error": null
     },
     {
@@ -4552,7 +4612,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/DP_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dpp",
@@ -4610,9 +4670,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Mysterious_Treasures_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 124,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dp2",
@@ -4672,7 +4732,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_6_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop6",
@@ -4690,9 +4750,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "dp3",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 394,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Adp3&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "dp3",
@@ -4730,17 +4790,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Secret_Wonders_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 122,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dp3",
       "set_name": "Secret Wonders",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 260,
       "error": null
     },
@@ -4750,9 +4810,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "dp4",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 314,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Adp4&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "dp4",
@@ -4792,15 +4852,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Great_Encounters_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dp4",
       "set_name": "Great Encounters",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 204,
       "error": null
     },
@@ -4852,7 +4912,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_7_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop7",
@@ -4912,7 +4972,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Majestic_Dawn_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dp5",
@@ -4930,7 +4990,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "dp6",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 428,
       "error": null
     },
@@ -4970,17 +5030,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Legends_Awakened_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 139,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dp6",
       "set_name": "Legends Awakened",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 275,
       "error": null
     },
@@ -5032,7 +5092,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_8_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop8",
@@ -5090,9 +5150,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Stormfront_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 103,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dp7",
@@ -5150,9 +5210,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Platinum_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 130,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pl1",
@@ -5212,7 +5272,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/POP_Series_9_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pop9",
@@ -5230,7 +5290,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "pl2",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 342,
       "error": null
     },
@@ -5270,9 +5330,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Rising_Rivals_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 88,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pl2",
@@ -5281,7 +5341,7 @@
       "source_alias": null,
       "configured_status": "unavailable",
       "runtime_status": "collected",
-      "evidence_rows": 222,
+      "evidence_rows": 221,
       "error": null
     },
     {
@@ -5330,9 +5390,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Supreme_Victors_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 150,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pl3",
@@ -5392,7 +5452,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Arceus_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "pl4",
@@ -5450,9 +5510,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Pokémon_Rumble_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 16,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ru1",
@@ -5510,9 +5570,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "HeartGold_&_SoulSilver_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 123,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "hgss1",
@@ -5572,7 +5632,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/HGSS_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "hgssp",
@@ -5710,7 +5770,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "hgss4",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 296,
       "error": null
     },
@@ -5759,8 +5819,8 @@
       "set_name": "HS—Triumphant",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 193,
       "error": null
     },
@@ -5812,7 +5872,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Call_of_Legends_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "col1",
@@ -5872,7 +5932,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/BW_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bwp",
@@ -5930,9 +5990,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Black_&_White_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 115,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw1",
@@ -5990,9 +6050,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "McDonald's_Collection_2011_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 12,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2011bw",
@@ -6011,7 +6071,7 @@
       "source_alias": "bw2",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 292,
+      "evidence_rows": 291,
       "error": null
     },
     {
@@ -6052,7 +6112,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Emerging_Powers_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw2",
@@ -6110,9 +6170,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Noble_Victories_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 102,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw3",
@@ -6170,9 +6230,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Next_Destinies_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 103,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw4",
@@ -6230,9 +6290,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Dark_Explorers_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 111,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw5",
@@ -6250,9 +6310,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "mcd12",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 24,
-      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Amcd12&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
+      "error": null
     },
     {
       "set_key": "2012bw",
@@ -6292,15 +6352,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2012_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2012bw",
       "set_name": "McDonald's Collection 2012",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 12,
       "error": null
     },
@@ -6350,9 +6410,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Dragons_Exalted_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 126,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw6",
@@ -6410,9 +6470,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Dragon_Vault_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 21,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dv1",
@@ -6470,9 +6530,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Boundaries_Crossed_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 153,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw7",
@@ -6490,9 +6550,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bw8",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 395,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Abw8&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "bw8",
@@ -6530,17 +6590,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Plasma_Storm_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 138,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw8",
       "set_name": "Plasma Storm",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 109,
       "error": null
     },
@@ -6590,9 +6650,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Plasma_Freeze_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 122,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw9",
@@ -6650,9 +6710,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Plasma_Blast_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 105,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw10",
@@ -6712,7 +6772,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/XY_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xyp",
@@ -6770,9 +6830,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Legendary_Treasures_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 115,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "bw11",
@@ -6832,7 +6892,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Kalos_Starter_Set_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy0",
@@ -6890,9 +6950,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "XY_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 144,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy1",
@@ -6950,9 +7010,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Flashfire_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 103,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy2",
@@ -7012,7 +7072,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2014_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2014xy",
@@ -7070,9 +7130,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Furious_Fists_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 109,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy3",
@@ -7130,9 +7190,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Phantom_Forces_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 113,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy4",
@@ -7190,9 +7250,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Primal_Clash_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 160,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy5",
@@ -7250,9 +7310,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Double_Crisis_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 34,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "dc1",
@@ -7310,9 +7370,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Roaring_Skies_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 103,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy6",
@@ -7370,9 +7430,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Ancient_Origins_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 93,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy7",
@@ -7430,9 +7490,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "BREAKthrough_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 156,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy8",
@@ -7492,7 +7552,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2015_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2015xy",
@@ -7550,9 +7610,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "BREAKpoint_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 119,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy9",
@@ -7570,9 +7630,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "g1",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 301,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Ag1&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "g1",
@@ -7610,17 +7670,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Generations_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 80,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "g1",
       "set_name": "Generations",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 77,
       "error": null
     },
@@ -7670,9 +7730,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Fates_Collide_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 120,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy10",
@@ -7730,9 +7790,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Steam_Siege_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 112,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy11",
@@ -7792,7 +7852,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2016_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2016xy",
@@ -7850,9 +7910,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Evolutions_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 104,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "xy12",
@@ -7870,9 +7930,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "smp",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 503,
-      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Asmp&page=2&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
+      "error": null
     },
     {
       "set_key": "smp",
@@ -7901,7 +7961,7 @@
       "source_alias": "sun-moon-promos",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 248,
+      "evidence_rows": 251,
       "error": null
     },
     {
@@ -7912,16 +7972,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SM_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "smp",
       "set_name": "SM Black Star Promos",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 2,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 72,
       "error": null
     },
     {
@@ -7970,9 +8030,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Sun_&_Moon_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 163,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm1",
@@ -8030,9 +8090,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Guardians_Rising_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 169,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm2",
@@ -8090,9 +8150,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Burning_Shadows_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 169,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm3",
@@ -8110,9 +8170,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sm35",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 219,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Asm35&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "sm3.5",
@@ -8141,7 +8201,7 @@
       "source_alias": "shining-legends",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 81,
+      "evidence_rows": 78,
       "error": null
     },
     {
@@ -8150,17 +8210,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Shining_Legends_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 78,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm3.5",
       "set_name": "Shining Legends",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 48,
       "error": null
     },
@@ -8210,9 +8270,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Crimson_Invasion_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 124,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm4",
@@ -8230,9 +8290,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "mcd17",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 12,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Amcd17&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "2017sm",
@@ -8272,7 +8332,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2017_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2017sm",
@@ -8330,9 +8390,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Ultra_Prism_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 168,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm5",
@@ -8390,9 +8450,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Forbidden_Light_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 143,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm6",
@@ -8410,9 +8470,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sm7",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 507,
-      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Asm7&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
+      "error": null
     },
     {
       "set_key": "sm7",
@@ -8441,7 +8501,7 @@
       "source_alias": "celestial-storm",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 180,
+      "evidence_rows": 184,
       "error": null
     },
     {
@@ -8450,17 +8510,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Celestial_Storm_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 183,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm7",
       "set_name": "Celestial Storm",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 119,
       "error": null
     },
@@ -8510,9 +8570,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Dragon_Majesty_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 78,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm7.5",
@@ -8570,9 +8630,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "McDonald's_Collection_2018_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "unavailable",
+      "runtime_status": "error",
       "evidence_rows": 0,
-      "error": null
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2018sm",
@@ -8630,9 +8690,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Lost_Thunder_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 232,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm8",
@@ -8650,9 +8710,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sm9",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 537,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Asm9&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "sm9",
@@ -8681,7 +8741,7 @@
       "source_alias": "team-up",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 192,
+      "evidence_rows": 190,
       "error": null
     },
     {
@@ -8690,18 +8750,18 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Team_Up_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 196,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm9",
       "set_name": "Team Up",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 125,
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
+      "evidence_rows": 124,
       "error": null
     },
     {
@@ -8750,9 +8810,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Detective_Pikachu_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 18,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "det1",
@@ -8770,9 +8830,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sm10",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 648,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Asm10&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "sm10",
@@ -8801,7 +8861,7 @@
       "source_alias": "unbroken-bonds",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 237,
+      "evidence_rows": 233,
       "error": null
     },
     {
@@ -8810,18 +8870,18 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Unbroken_Bonds_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 233,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm10",
       "set_name": "Unbroken Bonds",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 155,
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
+      "evidence_rows": 154,
       "error": null
     },
     {
@@ -8870,9 +8930,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Unified_Minds_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 258,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm11",
@@ -8930,9 +8990,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Hidden_Fates_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 69,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm115",
@@ -8971,7 +9031,7 @@
       "source_alias": "sma",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 188,
+      "evidence_rows": 382,
       "error": null
     },
     {
@@ -9050,9 +9110,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "McDonald's_Collection_2019_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 12,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2019sm",
@@ -9110,9 +9170,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Cosmic_Eclipse_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 271,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sm12",
@@ -9172,7 +9232,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SWSH_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swshp",
@@ -9190,9 +9250,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "swsh1",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 597,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aswsh1&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "swsh1",
@@ -9230,17 +9290,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Sword_&_Shield_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 213,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh1",
       "set_name": "Sword & Shield",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 380,
       "error": null
     },
@@ -9290,9 +9350,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Rebel_Clash_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 207,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh2",
@@ -9350,9 +9410,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Darkness_Ablaze_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 198,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh3",
@@ -9472,7 +9532,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Champion's_Path_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh3.5",
@@ -9490,9 +9550,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "swsh4",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 548,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aswsh4&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "swsh4",
@@ -9530,9 +9590,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Vivid_Voltage_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 199,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh4",
@@ -9540,7 +9600,7 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected_plus_cached_snapshot",
       "evidence_rows": 345,
       "error": null
     },
@@ -9592,7 +9652,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2021_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2021swsh",
@@ -9652,7 +9712,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Shining_Fates_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh4.5",
@@ -9691,7 +9751,7 @@
       "source_alias": "swsh45sv",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 244,
+      "evidence_rows": 439,
       "error": null
     },
     {
@@ -9730,9 +9790,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "swsh5",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 489,
-      "error": null
+      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Aswsh5&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
     },
     {
       "set_key": "swsh5",
@@ -9770,17 +9830,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Battle_Styles_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 183,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh5",
       "set_name": "Battle Styles",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 306,
       "error": null
     },
@@ -9830,9 +9890,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Chilling_Reign_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 233,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh6",
@@ -9890,9 +9950,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Evolving_Skies_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 237,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh7",
@@ -9950,9 +10010,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Celebrations_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 23,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "cel25",
@@ -9970,9 +10030,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "cel25c",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 50,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Acel25c&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "cel25cc",
@@ -9991,7 +10051,7 @@
       "source_alias": "cel25c",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 50,
+      "evidence_rows": 100,
       "error": null
     },
     {
@@ -10070,9 +10130,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Fusion_Strike_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 284,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh8",
@@ -10132,7 +10192,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Brilliant_Stars_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh9",
@@ -10171,7 +10231,7 @@
       "source_alias": "swsh9tg",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 60,
+      "evidence_rows": 563,
       "error": null
     },
     {
@@ -10210,9 +10270,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "swsh10",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 560,
-      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Aswsh10&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
+      "error": null
     },
     {
       "set_key": "swsh10",
@@ -10250,17 +10310,17 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Astral_Radiance_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 216,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh10",
       "set_name": "Astral Radiance",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 344,
       "error": null
     },
@@ -10291,7 +10351,7 @@
       "source_alias": "swsh10tg",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 60,
+      "evidence_rows": 627,
       "error": null
     },
     {
@@ -10370,9 +10430,9 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Pokémon_GO_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 88,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh10.5",
@@ -10432,7 +10492,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/McDonald's_Collection_2022_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "2022swsh",
@@ -10492,7 +10552,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Lost_Origin_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh11",
@@ -10531,7 +10591,7 @@
       "source_alias": "swsh11tg",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 60,
+      "evidence_rows": 647,
       "error": null
     },
     {
@@ -10570,9 +10630,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "swsh12",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 572,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aswsh12&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "swsh12",
@@ -10612,15 +10672,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Silver_Tempest_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh12",
       "set_name": "Silver Tempest",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 357,
       "error": null
     },
@@ -10651,7 +10711,7 @@
       "source_alias": "swsh12tg",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 60,
+      "evidence_rows": 635,
       "error": null
     },
     {
@@ -10732,7 +10792,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/SV_Black_Star_Promos_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "svp",
@@ -10792,7 +10852,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Crown_Zenith_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "swsh12.5",
@@ -10831,7 +10891,7 @@
       "source_alias": "swsh12pt5gg",
       "configured_status": "candidate_url",
       "runtime_status": "collected",
-      "evidence_rows": 140,
+      "evidence_rows": 572,
       "error": null
     },
     {
@@ -10870,9 +10930,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sv1",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 702,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Asv1&page=2&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "sv01",
@@ -10910,18 +10970,18 @@
       "source_key": "bulbapedia_set_list",
       "source_alias": "Scarlet_&_Violet_(TCG)",
       "configured_status": "candidate_url",
-      "runtime_status": "collected",
-      "evidence_rows": 258,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv01",
       "set_name": "Scarlet & Violet",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 169,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 438,
       "error": null
     },
     {
@@ -11032,7 +11092,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Paldea_Evolved_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv02",
@@ -11092,7 +11152,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Obsidian_Flames_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv03",
@@ -11152,7 +11212,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/151_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv03.5",
@@ -11212,7 +11272,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Paradox_Rift_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv04",
@@ -11272,7 +11332,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Paldean_Fates_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv04.5",
@@ -11332,7 +11392,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Temporal_Forces_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv05",
@@ -11392,7 +11452,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Twilight_Masquerade_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv06",
@@ -11452,7 +11512,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Shrouded_Fable_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv06.5",
@@ -11512,7 +11572,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Stellar_Crown_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv07",
@@ -11530,9 +11590,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sv8",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 669,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Asv8&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "sv08",
@@ -11572,15 +11632,15 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Surging_Sparks_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv08",
       "set_name": "Surging Sparks",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 417,
       "error": null
     },
@@ -11632,7 +11692,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Prismatic_Evolutions_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv08.5",
@@ -11692,7 +11752,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Journey_Together_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv09",
@@ -11752,7 +11812,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Destined_Rivals_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv10",
@@ -11781,7 +11841,7 @@
       "source_alias": "sv10.5b",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 425,
+      "evidence_rows": 430,
       "error": null
     },
     {
@@ -11812,7 +11872,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Black_Bolt_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv10.5b",
@@ -11872,7 +11932,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/White_Flare_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "sv10.5w",
@@ -11932,7 +11992,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "me01",
@@ -11950,9 +12010,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "me2",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 344,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Ame2&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "me02",
@@ -11992,16 +12052,16 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Phantasmal_Flames_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "me02",
       "set_name": "Phantasmal Flames",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 213,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 214,
       "error": null
     },
     {
@@ -12052,7 +12112,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Ascended_Heroes_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "ascended_heroes",
@@ -12112,7 +12172,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Perfect_Order_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "me03",
@@ -12172,7 +12232,7 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Chaos_Rising_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "me04",
@@ -12190,9 +12250,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "me5",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 120,
-      "error": null
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Ame5&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "me05",
@@ -12232,11 +12292,131 @@
       "configured_status": "candidate_url",
       "runtime_status": "error",
       "evidence_rows": 0,
-      "error": "Bulbapedia page contained no extractable set-list rows: https://bulbapedia.bulbagarden.net/wiki/Pitch_Black_(TCG)"
+      "error": "spawn curl.exe ENOENT"
     },
     {
       "set_key": "me05",
       "set_name": "Pitch Black",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "30th",
+      "set_name": "30th Celebration",
+      "source_key": "pokemontcg_api",
+      "source_alias": "me55",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 161,
+      "error": null
+    },
+    {
+      "set_key": "30th",
+      "set_name": "30th Celebration",
+      "source_key": "tcgdex",
+      "source_alias": "30th",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 316,
+      "error": null
+    },
+    {
+      "set_key": "30th",
+      "set_name": "30th Celebration",
+      "source_key": "thepricedex_price_list",
+      "source_alias": "me55",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 383,
+      "error": null
+    },
+    {
+      "set_key": "30th",
+      "set_name": "30th Celebration",
+      "source_key": "pkmncards",
+      "source_alias": "30th-celebration",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
+    },
+    {
+      "set_key": "30th",
+      "set_name": "30th Celebration",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "30th_Celebration_(TCG)",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
+    },
+    {
+      "set_key": "30th",
+      "set_name": "30th Celebration",
+      "source_key": "tcgplayer_price_guide",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
+      "source_key": "pokemontcg_api",
+      "source_alias": "me55c",
+      "configured_status": "available",
+      "runtime_status": "collected",
+      "evidence_rows": 30,
+      "error": null
+    },
+    {
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
+      "source_key": "tcgdex",
+      "source_alias": null,
+      "configured_status": "unavailable",
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
+      "error": null
+    },
+    {
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
+      "source_key": "thepricedex_price_list",
+      "source_alias": "me55c",
+      "configured_status": "candidate_url",
+      "runtime_status": "collected",
+      "evidence_rows": 383,
+      "error": null
+    },
+    {
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
+      "source_key": "pkmncards",
+      "source_alias": "30th-celebration-classic-collection",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
+    },
+    {
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
+      "source_key": "bulbapedia_set_list",
+      "source_alias": "30th_Celebration:_Classic_Collection_(TCG)",
+      "configured_status": "candidate_url",
+      "runtime_status": "error",
+      "evidence_rows": 0,
+      "error": "spawn curl.exe ENOENT"
+    },
+    {
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",

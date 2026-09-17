@@ -1,6 +1,6 @@
 # English Master Index Source Agreement V1
 
-Generated: 2026-09-10T08:21:44.989Z
+Generated: 2026-09-17T08:52:33.921Z
 
 API agreement is separated from master truth. Unknown or conflicting finish truth fails closed.
 
@@ -23,7 +23,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | bulbapedia_prize_pack_current_gap_finish | 19 |
 | bulbapedia_prize_pack_foil | 16 |
 | bulbapedia_prize_pack_normal | 77 |
-| bulbapedia_set_list | 12024 |
+| bulbapedia_set_list | 11916 |
 | bulbapedia_sm_black_star_promos | 3 |
 | bulbapedia_sv01 | 8 |
 | bulbapedia_sv03_additional_card_marker | 10 |
@@ -114,7 +114,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 51847 |
+| pokemontcg_api | 51923 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -160,10 +160,10 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | tcgcsv_tcgplayer_catalog | 1035 |
 | tcgcsv_tcgplayer_catalog_identity | 9 |
 | tcgcsv_tcgplayer_catalog_live | 4 |
-| tcgdex | 49203 |
+| tcgdex | 49422 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 23847 |
+| tcgplayer_price_guide | 24197 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -750,17 +750,16 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | tcgsearch_card_page | 14 |
 | tcgstats_ascended_heroes_ns_zekrom | 2 |
 | tcgstats_mfb_price_guide | 33 |
-| thepricedex_price_list | 57958 |
+| thepricedex_price_list | 61879 |
 | vendortools_ascended_heroes_spidops_019 | 1 |
 
 ## Printings By Status
 
 | status | count |
 | --- | --- |
-| api_agreed | 1 |
-| candidate_unconfirmed | 109 |
-| human_source_verified | 400 |
-| master_verified | 37765 |
+| candidate_unconfirmed | 139 |
+| human_source_verified | 2751 |
+| master_verified | 37766 |
 
 ## Reverse Holo Disagreement Sample
 
