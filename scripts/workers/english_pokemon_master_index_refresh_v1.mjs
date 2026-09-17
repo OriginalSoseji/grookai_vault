@@ -254,7 +254,30 @@ function allowedFoldedReplacement(card, candidateKeys) {
   }));
 }
 
-function factProjection({ sets, cards, printings, aliases = [] }) {
+function scopedReviewRows(rows) {
+  return rows.filter((row) => row.fact_type === "printing_finish_variant_scope_review")
+    .sort((left, right) => left.key.localeCompare(right.key));
+}
+
+function preserveScopedReviewEvidence({ baseline = [], candidate = [], printings = [] }) {
+  // Absence evidence has no printing row. Carry it independently through outages.
+  const rows = new Map([...scopedReviewRows(baseline), ...candidate]
+    .map((row) => [row.key, row]));
+  for (const printing of printings) {
+    const key = `${printing.key}|prize-pack-scope-review`;
+    rows.set(key, {
+      ...printing,
+      ...rows.get(key),
+      fact_type: "printing_finish_variant_scope_review",
+      key,
+      status: "needs_manual_review",
+      review_reason: PRIZE_PACK_SCOPE_REVIEW_REASON,
+    });
+  }
+  return [...rows.values()].sort((left, right) => left.key.localeCompare(right.key));
+}
+
+function factProjection({ sets, cards, printings, aliases = [], manualReview = [] }) {
   return {
     sets: sets.map((row) => ({
       key: row.key,
@@ -268,6 +291,7 @@ function factProjection({ sets, cards, printings, aliases = [] }) {
     cards: [...cards].sort((left, right) => cardKey(left).localeCompare(cardKey(right))),
     printings: [...printings]
       .sort((left, right) => printingKey(left).localeCompare(printingKey(right))),
+    variant_scope_reviews: scopedReviewRows(manualReview),
     aliases: [...aliases]
       .map((row) => ({
         source: aliasSourceKey(row),
@@ -338,10 +362,12 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
   baselineCards = [],
   baselinePrintings = [],
   baselineAliases = [],
+  baselineManualReview = [],
   candidateSets = [],
   candidateCards = [],
   candidatePrintings = [],
   candidateAliases = [],
+  candidateManualReview = [],
   candidateConflicts = [],
 }) {
   if (candidateSets.length === 0 || candidateCards.length === 0) {
@@ -404,12 +430,18 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
     cards: baselineCards,
     printings: baselinePrintings,
     aliases: baselineAliases,
+    manualReview: baselineManualReview,
   })));
   const candidateFingerprint = sha256(stableJson(factProjection({
     sets: candidateSets,
     cards: candidateCards,
     printings: effectiveCandidate.printings,
     aliases: effectiveAliases.report.remaps,
+    manualReview: preserveScopedReviewEvidence({
+      baseline: baselineManualReview,
+      candidate: candidateManualReview,
+      printings: effectiveCandidate.scope_review_rows,
+    }),
   })));
   return {
     version: ENGLISH_POKEMON_MASTER_INDEX_REFRESH_VERSION,
@@ -488,12 +520,13 @@ export function buildEnglishPokemonMasterIndexRefreshPlanV1({
 }
 
 async function loadAuthority(dir) {
-  const [sets, cards, printings, conflicts, aliases] = await Promise.all([
+  const [sets, cards, printings, conflicts, aliases, manualReview] = await Promise.all([
     readJson(dir, "english_master_index_sets_v1.json"),
     readJson(dir, "english_master_index_cards_v1.json"),
     readJson(dir, "english_master_index_printings_v1.json"),
     readJson(dir, "english_master_index_conflicts_v1.json"),
     readJson(dir, "english_master_index_set_alias_normalization_v1.json"),
+    readJson(dir, "english_master_index_manual_review_v1.json"),
   ]);
   return {
     sets: sets.sets ?? [],
@@ -501,6 +534,7 @@ async function loadAuthority(dir) {
     printings: printings.printings ?? [],
     conflicts: conflicts.conflicts ?? [],
     aliases: aliases.remaps ?? [],
+    manualReview: manualReview.manual_review ?? [],
   };
 }
 
@@ -515,6 +549,7 @@ async function applyCandidateAuthority(options) {
     "english_master_index_cards_v1.json",
     "english_master_index_printings_v1.json",
     "english_master_index_set_alias_normalization_v1.json",
+    "english_master_index_manual_review_v1.json",
   ]);
   for (const file of MASTER_INDEX_AUTHORITY_FILES) {
     if (orderAwareFiles.has(file)) continue;
@@ -523,7 +558,7 @@ async function applyCandidateAuthority(options) {
 
   const [baselineCards, candidateCards, baselinePrintings, candidatePrintings,
     baselineAliases, candidateAliases, candidateManualReview, candidateIndex,
-    candidateMarkdown] =
+    candidateMarkdown, baselineManualReview] =
     await Promise.all([
       readJson(options.baselineDir, "english_master_index_cards_v1.json"),
       readJson(options.candidateDir, "english_master_index_cards_v1.json"),
@@ -534,6 +569,7 @@ async function applyCandidateAuthority(options) {
       readJson(options.candidateDir, "english_master_index_manual_review_v1.json"),
       readJson(options.candidateDir, "english_master_index_v1.json"),
       fs.readFile(path.join(options.candidateDir, "english_master_index_v1.md"), "utf8"),
+      readJson(options.baselineDir, "english_master_index_manual_review_v1.json"),
     ]);
 
   candidateCards.cards = preserveExistingFactOrderV1({
@@ -575,24 +611,11 @@ async function applyCandidateAuthority(options) {
     review_reason:
       "Previously admitted printing authority was not re-observed in the latest source refresh; authority was preserved pending explicit revalidation or revocation.",
   }));
-  const reviewByKey = new Map([
-    ...(candidateManualReview.manual_review ?? []),
-    ...continuityReviewRows,
-  ].map((row) => [row.key, row]));
-  for (const printing of effectiveCandidatePrintings.scope_review_rows) {
-    const key = `${printing.key}|prize-pack-scope-review`;
-    // Fresh reviews carry full labels/snapshot refs that compact cached facts lack.
-    reviewByKey.set(key, {
-      ...printing,
-      ...reviewByKey.get(key),
-      fact_type: "printing_finish_variant_scope_review",
-      key,
-      status: "needs_manual_review",
-      review_reason: PRIZE_PACK_SCOPE_REVIEW_REASON,
-    });
-  }
-  candidateManualReview.manual_review = [...reviewByKey.values()]
-    .sort((left, right) => left.key.localeCompare(right.key));
+  candidateManualReview.manual_review = preserveScopedReviewEvidence({
+    baseline: baselineManualReview.manual_review ?? [],
+    candidate: [...(candidateManualReview.manual_review ?? []), ...continuityReviewRows],
+    printings: effectiveCandidatePrintings.scope_review_rows,
+  });
 
   const printingStatusCounts = {};
   for (const printing of candidatePrintings.printings) {
@@ -656,10 +679,12 @@ async function main() {
     baselineCards: baseline.cards,
     baselinePrintings: baseline.printings,
     baselineAliases: baseline.aliases,
+    baselineManualReview: baseline.manualReview,
     candidateSets: candidate.sets,
     candidateCards: candidate.cards,
     candidatePrintings: candidate.printings,
     candidateAliases: candidate.aliases,
+    candidateManualReview: candidate.manualReview,
     candidateConflicts: candidate.conflicts,
   });
   if (options.mode === "apply-to-worktree" && plan.changed) {

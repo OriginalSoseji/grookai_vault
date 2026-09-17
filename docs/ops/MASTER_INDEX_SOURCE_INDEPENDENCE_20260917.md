@@ -92,11 +92,17 @@ printings are false. Of 112,463 human fixture records, 148 scoped source records
 are retained in 118 grouped review items and zero reach accepted base-finish
 claims. This is fixture-only proof, not a full live-source rebuild or DB repair.
 
-Verification: 53/53 focused contracts across five files, including real preserved
+Verification includes focused contracts across five files, including real preserved
 Luxray/Tyranitar fixtures, independent base sources, grouped evidence retention,
 source-outage continuity, and the real refresh CLI in temporary directories.
 The CLI proof retains identities/references, reconciles saved summaries and
 produces an unchanged second replay. Normal full release gates remain required.
+Scoped absence reviews survive source outages even without a corresponding
+printing. Fresh matching review evidence replaces the old review record, and
+review-only evidence changes participate in refresh fingerprints. The same merge
+function drives change detection and saved review content; repeated identical
+evidence does not trigger another data update. Unrelated review types retain
+their existing policy.
 
 ## Prior Gate Receipt
 

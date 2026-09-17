@@ -8,7 +8,7 @@ import test from 'node:test';
 import { classifyEvidence } from '../../scripts/audits/verified_master_set_index_v1/agreement_engine/classifier.mjs';
 import { isPrizePackSourceEvidenceV1, retainPrintingForScopeReviewV1 } from '../../scripts/audits/verified_master_set_index_v1/printing_evidence_scope_v1.mjs';
 import { enforceStrictGuardrails, buildStrictGuardrailOptions } from '../../scripts/audits/verified_master_set_index_v1/guardrails/strict_guardrails.mjs';
-import { preserveUnobservedPrintingAuthorityV1, MASTER_INDEX_AUTHORITY_FILES } from '../../scripts/workers/english_pokemon_master_index_refresh_v1.mjs';
+import { preserveUnobservedPrintingAuthorityV1, buildEnglishPokemonMasterIndexRefreshPlanV1, MASTER_INDEX_AUTHORITY_FILES } from '../../scripts/workers/english_pokemon_master_index_refresh_v1.mjs';
 
 const source = {
   source_key: 'justinbasil_prize_pack_finish', source_kind: 'collector_reference',
@@ -142,6 +142,18 @@ test('real Luxray and Tyranitar preserved source fixtures remain review evidence
   }
 });
 
+test('review-only evidence changes participate in refresh detection without requiring a printing', () => {
+  const old = classifyEvidence([{ ...source, evidence_type: 'finish_absence' }]).manual_review;
+  const fresh = classifyEvidence([{ ...source, evidence_type: 'finish_absence', raw_snapshot_ref: 'fresh:absence:71' }]).manual_review;
+  const input = {
+    baselineSets: [{ key: 'sv02' }], candidateSets: [{ key: 'sv02' }],
+    baselineCards: [source], candidateCards: [source], baselineManualReview: old,
+  };
+  assert.equal(buildEnglishPokemonMasterIndexRefreshPlanV1({ ...input, candidateManualReview: fresh }).changed, true);
+  assert.equal(buildEnglishPokemonMasterIndexRefreshPlanV1({ ...input, candidateManualReview: [] }).changed, false);
+  assert.equal(buildEnglishPokemonMasterIndexRefreshPlanV1({ ...input, baselineManualReview: fresh, candidateManualReview: fresh }).changed, false);
+});
+
 test('real offline refresh CLI keeps the printing, publishes review status and reconciles summaries', async t => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'grookai-prize-scope-'));
   t.after(() => fs.rm(root, { recursive: true, force: true }));
@@ -165,6 +177,11 @@ test('real offline refresh CLI keeps the printing, publishes review status and r
       await fs.writeFile(path.join(dir, file), body);
     }
   }
+  const historicalAbsence = classifyEvidence([{ ...source, finish_key: 'holo',
+    evidence_type: 'finish_absence', raw_snapshot_ref: 'historical:holo:absence',
+  }]).manual_review[0];
+  await fs.writeFile(path.join(baseline, 'english_master_index_manual_review_v1.json'),
+    JSON.stringify({ manual_review: [historicalAbsence] }));
   const freshReviews = classifyEvidence([source, otherPrize].map(row => ({
     ...row, raw_snapshot_ref: `${row.raw_snapshot_ref}:fresh`,
     evidence_label: `${row.evidence_label} (fresh source read)`,
@@ -186,9 +203,23 @@ test('real offline refresh CLI keeps the printing, publishes review status and r
   assert.deepEqual(saved.printings[0].source_evidence, cached.source_evidence);
   assert.deepEqual((await read('english_master_index_v1.json')).summary.printings_by_status, { needs_manual_review: 1 });
   const review = await read('english_master_index_manual_review_v1.json');
-  assert.equal(review.manual_review.length, 1);
-  assert.equal(review.manual_review[0].evidence_urls.length, 2);
-  assert.deepEqual(review.manual_review[0].evidence, JSON.parse(JSON.stringify(freshReviews[0].evidence)));
+  assert.equal(review.manual_review.length, 2);
+  const savedFresh = review.manual_review.find(row => row.key === freshReviews[0].key);
+  assert.equal(savedFresh.evidence_urls.length, 2);
+  assert.deepEqual(savedFresh.evidence, JSON.parse(JSON.stringify(freshReviews[0].evidence)));
+  assert.deepEqual(review.manual_review.find(row => row.key === historicalAbsence.key),
+    JSON.parse(JSON.stringify(historicalAbsence)));
+  assert.equal((await read('english_master_index_v1.json')).summary.manual_review, 2);
   assert.match(await fs.readFile(path.join(baseline, 'english_master_index_v1.md'), 'utf8'), /needs_manual_review \| 1/);
   assert.equal(run('second').changed, false);
+  const updatedAbsence = structuredClone(historicalAbsence);
+  updatedAbsence.evidence[0].raw_snapshot_ref = 'fresh:holo:absence';
+  updatedAbsence.evidence[0].evidence_label = 'Fresh absence evidence';
+  await fs.writeFile(path.join(candidate, 'english_master_index_manual_review_v1.json'),
+    JSON.stringify({ manual_review: [...freshReviews, updatedAbsence] }));
+  assert.equal(run('review-only-change').changed, true);
+  assert.deepEqual((await read('english_master_index_manual_review_v1.json')).manual_review
+    .find(row => row.key === updatedAbsence.key), JSON.parse(JSON.stringify(updatedAbsence)));
+  assert.deepEqual(await read('english_master_index_printings_v1.json'), saved);
+  assert.equal(run('review-only-replay').changed, false);
 });
