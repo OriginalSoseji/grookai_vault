@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-09-17T22:30:07.239Z
+Generated: 2026-09-18T08:27:48.588Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,9 +13,9 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 207 |
-| evidence rows | 242403 |
+| evidence rows | 242788 |
 | conflicts | 0 |
-| manual review | 414 |
+| manual review | 415 |
 
 ## Cards By Status
 
@@ -23,8 +23,8 @@ Transport: Default Node TLS verification.
 | --- | --- |
 | api_agreed | 9 |
 | candidate_unconfirmed | 126 |
-| human_source_verified | 1451 |
-| master_verified | 21703 |
+| human_source_verified | 1421 |
+| master_verified | 21733 |
 
 ## Printings By Status
 
@@ -131,7 +131,7 @@ Transport: Default Node TLS verification.
 | official_pokemon_legacy_checklist | 20 |
 | official_pokemon_svi_cardlist_en | 8 |
 | packmagik_ascended_heroes_team_rockets_great_ball_205 | 1 |
-| pkmncards | 19288 |
+| pkmncards | 19321 |
 | pkmncards_identity_gap | 17 |
 | pkmncollectors_futsal | 4 |
 | pkmncollectors_sm1_energy | 9 |
@@ -145,7 +145,7 @@ Transport: Default Node TLS verification.
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 52003 |
+| pokemontcg_api | 52042 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -191,10 +191,10 @@ Transport: Default Node TLS verification.
 | tcgcsv_tcgplayer_catalog | 1035 |
 | tcgcsv_tcgplayer_catalog_identity | 9 |
 | tcgcsv_tcgplayer_catalog_live | 4 |
-| tcgdex | 49422 |
+| tcgdex | 49421 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 23599 |
+| tcgplayer_price_guide | 23914 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -781,7 +781,7 @@ Transport: Default Node TLS verification.
 | tcgsearch_card_page | 14 |
 | tcgstats_ascended_heroes_ns_zekrom | 2 |
 | tcgstats_mfb_price_guide | 33 |
-| thepricedex_price_list | 61878 |
+| thepricedex_price_list | 61877 |
 | vendortools_ascended_heroes_spidops_019 | 1 |
 
 ## Source Availability
@@ -790,18 +790,18 @@ Transport: Default Node TLS verification.
 | --- | --- | --- |
 | bulbapedia_set_list | error | 207 |
 | human_fixtures | collected | 1 |
-| pkmncards | collected | 153 |
-| pkmncards | error | 54 |
-| pokemontcg_api | cached_snapshot | 28 |
-| pokemontcg_api | collected | 137 |
-| pokemontcg_api | collected_plus_cached_snapshot | 11 |
+| pkmncards | collected | 154 |
+| pkmncards | error | 53 |
+| pokemontcg_api | cached_snapshot | 16 |
+| pokemontcg_api | collected | 148 |
+| pokemontcg_api | collected_plus_cached_snapshot | 12 |
 | pokemontcg_api | unavailable | 31 |
 | tcgdex | collected | 201 |
 | tcgdex | unavailable | 6 |
-| tcgplayer_price_guide | cached_snapshot | 23 |
-| tcgplayer_price_guide | collected | 120 |
-| tcgplayer_price_guide | collected_plus_cached_snapshot | 8 |
-| tcgplayer_price_guide | unavailable | 56 |
+| tcgplayer_price_guide | cached_snapshot | 15 |
+| tcgplayer_price_guide | collected | 126 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 11 |
+| tcgplayer_price_guide | unavailable | 55 |
 | thepricedex_price_list | collected | 178 |
 | thepricedex_price_list | error | 28 |
 | thepricedex_price_list | unavailable | 1 |
