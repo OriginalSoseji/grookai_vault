@@ -22,6 +22,23 @@ test('unknown product keys cannot masquerade as printed set abbreviations', () =
   assert.deepEqual(resolveCollectorPrintedCoordinates({ setCode: 'MEW', setTotal: 165 }), { printedSetAbbrev: 'MEW', printedTotal: 165 });
 });
 
+test('anthology membership counts never become a printed card denominator', () => {
+  for (const cardTotal of [null, undefined, 0, -1, Number.NaN]) {
+    assert.deepEqual(resolveCollectorPrintedCoordinates({ cardCode: 'WCD2019', cardTotal,
+      setTotal: 25, setIdentityModel: 'reprint_anthology' }),
+    { printedSetAbbrev: 'WCD2019', printedTotal: undefined });
+  }
+  assert.deepEqual(resolveCollectorPrintedCoordinates({ cardCode: 'WCD2019', cardTotal: 236,
+    setTotal: 25, setIdentityModel: 'reprint_anthology' }),
+  { printedSetAbbrev: 'WCD2019', printedTotal: 236 });
+  assert.deepEqual(resolveCollectorPrintedCoordinates({ setCode: 'MEW', cardTotal: null,
+    setTotal: 165, setIdentityModel: 'standard' }),
+  { printedSetAbbrev: 'MEW', printedTotal: 165 });
+  const source = fs.readFileSync(new URL('./getPublicCardByGvId.ts', import.meta.url), 'utf8');
+  assert.match(source, /sets\(name,printed_total,printed_set_abbrev,release_date,identity_model\)/);
+  assert.match(source, /setIdentityModel: setRecord\?\.identity_model/);
+});
+
 const code = 'jpn-product-3090050c1bdfc5ce';
 test('Ninja Spinner uses separate English and printed Japanese names', () => {
   const result = getCatalogSetPresentation({ code, game: 'pokemon', name: 'original' });

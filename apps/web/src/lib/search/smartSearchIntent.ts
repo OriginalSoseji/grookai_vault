@@ -1,3 +1,5 @@
+import { normalizeExactGvId } from "@/lib/search/exactGvId";
+
 export type SmartSearchIntent = {
   originalQuery: string;
   residualQuery: string;
@@ -187,6 +189,19 @@ function parseOwnedStateIntent(query: string): SmartSearchIntent["ownedState"] {
 
 export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
   const originalQuery = normalizeWhitespace(rawQuery);
+  const exactGvId = normalizeExactGvId(originalQuery);
+  if (exactGvId) {
+    // Finish words and set names inside an identifier are not query filters.
+    return {
+      originalQuery,
+      residualQuery: exactGvId,
+      finishKeys: [],
+      stampLabels: [],
+      interpretedLabels: [],
+      unrecognizedTerms: [],
+      unappliedLabels: [],
+    };
+  }
   let residual = normalizePokemonPlural(originalQuery);
   const interpretedLabels: string[] = [];
   const finishKeys: string[] = [];

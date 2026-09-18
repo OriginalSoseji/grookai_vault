@@ -1,4 +1,5 @@
 import { SET_SHORTHANDS } from "@/lib/resolver/shorthand";
+import { normalizeExactGvId } from "@/lib/search/exactGvId";
 
 export const PUBLIC_SET_ROUTE_ALIAS_MAP: Record<string, string> = {
   "shiny vault": "sma",
@@ -390,6 +391,10 @@ export function resolveGameScopedSetSearchIntent(
   value: string,
   gameScope: "pokemon" | "one_piece" | "mtg",
 ) {
+  const exactGvId = normalizeExactGvId(value);
+  if (exactGvId) {
+    return { matchedAlias: null, setCodes: [] as string[], remainingQuery: exactGvId };
+  }
   const normalized = normalizeSetQuery(value);
   const entries = Object.entries(GAME_SCOPED_SET_ALIAS_MAP[gameScope])
     .map(([alias, setCodes]) => ({
