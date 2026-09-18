@@ -778,6 +778,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     evidenceCode: setPresentation.display_code,
     setCode: setRecord?.printed_set_abbrev ?? fallbackSet.printedSetAbbrev,
     setTotal: setRecord?.printed_total ?? fallbackSet.printedTotal,
+    setIdentityModel: setRecord?.identity_model,
   });
   const releaseDate = setRecord?.release_date ?? fallbackSet.releaseDate;
 

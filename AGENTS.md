@@ -1,5 +1,12 @@
 # Grookai Agent Entry Point
 
+## Collector Printing Readback - September 18
+
+Read `docs/ops/COLLECTOR_PRINTING_READBACK_20260918.md`. Anthology membership
+counts must not fill missing card denominators; exact GV-IDs must survive
+search parsing intact. This is a web-only repair, not permission to replay
+completed database repairs. Keep local tests, deployment and live proof distinct.
+
 ## Master Index Source Independence - September 17
 
 Read `docs/ops/MASTER_INDEX_SOURCE_INDEPENDENCE_20260917.md`. Catalog mirrors

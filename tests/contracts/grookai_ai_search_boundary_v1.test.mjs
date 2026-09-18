@@ -23,11 +23,27 @@ function loadTsModule(relativePath, mocks = {}) {
     module,
     exports: module.exports,
     process,
-    require: (id) => mocks[id] ?? require(id),
+    require: (id) => {
+      if (Object.hasOwn(mocks, id)) return mocks[id];
+      if (id === '@/lib/search/exactGvId') {
+        return loadTsModule('../../apps/web/src/lib/search/exactGvId.ts', mocks);
+      }
+      return require(id);
+    },
   };
   vm.runInNewContext(transpiled, sandbox, { filename: relativePath });
   return module.exports;
 }
+
+test('exact printing identifiers do not become collector-language filters', () => {
+  const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+  const gvId = 'GV-PK-WCD-2023-PSYCHIC_ELEGANCE-17-BRILLIANT_STARS-137-COLLAPSED_STADIUM';
+  const intent = buildSmartSearchIntent(` ${gvId.toLowerCase()} `);
+  assert.equal(intent.residualQuery, gvId);
+  assert.deepEqual(Array.from(intent.finishKeys), []);
+  assert.deepEqual(Array.from(intent.stampLabels), []);
+  assert.deepEqual(Array.from(intent.interpretedLabels), []);
+});
 
 test('Grookai Search parses collector language without requiring AI', () => {
   const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');

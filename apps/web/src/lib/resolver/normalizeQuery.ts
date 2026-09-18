@@ -1,4 +1,5 @@
 import { STRUCTURED_CARD_SET_ALIAS_MAP, normalizeSetQuery, tokenizeSetWords } from "@/lib/publicSets.shared";
+import { normalizeExactGvId } from "@/lib/search/exactGvId";
 import {
   NAME_SHORTHANDS,
   RARITY_SHORTHANDS,
@@ -628,7 +629,7 @@ export function normalizeQuery(rawQuery: string): NormalizedQueryPacket {
   const coverageFamilyHints = detectCoverageFamilyHints(normalizedQuery, normalizedTokens);
   const variantArtifacts = detectVariantTokens(normalizedQuery, normalizedTokens);
   const collectorArtifacts = buildCollectorArtifacts(compactTokens);
-  const normalizedGvId = normalizeGvIdInput(normalizedResolverInput);
+  const normalizedGvId = normalizeExactGvId(rawQuery) ?? normalizeGvIdInput(normalizedResolverInput);
   const expectedSetCodes = uniqueValues([
     ...setExpectations.expectedCodes,
     ...coverageFamilyHints.expectedSetCodes,

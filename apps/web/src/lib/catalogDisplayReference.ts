@@ -10,8 +10,12 @@ export function resolveCollectorPrintedCoordinates(input: {
   evidenceCode?: string | null;
   setCode?: string | null;
   setTotal?: number | null;
+  setIdentityModel?: string | null;
 }) {
-  const total = [input.cardTotal, input.setTotal].find(value => Number.isSafeInteger(value) && Number(value) > 0);
+  // An anthology's membership count is not a card's printed denominator.
+  const totals = input.setIdentityModel === 'reprint_anthology'
+    ? [input.cardTotal] : [input.cardTotal, input.setTotal];
+  const total = totals.find(value => Number.isSafeInteger(value) && Number(value) > 0);
   return {
     printedSetAbbrev: normalizeCollectorPrintedSetAbbrev(input.cardCode)
       ?? normalizeCollectorPrintedSetAbbrev(input.evidenceCode)
