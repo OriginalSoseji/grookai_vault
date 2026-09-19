@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-09-19T08:15:42.599Z
+Generated: 2026-09-19T12:24:20.100Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,7 +13,7 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 207 |
-| evidence rows | 243026 |
+| evidence rows | 243188 |
 | conflicts | 0 |
 | manual review | 415 |
 
@@ -31,8 +31,8 @@ Transport: Default Node TLS verification.
 | status | count |
 | --- | --- |
 | candidate_unconfirmed | 141 |
-| human_source_verified | 2758 |
-| master_verified | 37736 |
+| human_source_verified | 2596 |
+| master_verified | 37898 |
 | needs_manual_review | 21 |
 
 ## Source Evidence Rows
@@ -184,7 +184,7 @@ Transport: Default Node TLS verification.
 | sports_card_investor_variant_exact | 1 |
 | tcdb_checklist | 6 |
 | tcgalbum_card_page | 1 |
-| tcgcollector_card_variants | 1534 |
+| tcgcollector_card_variants | 1696 |
 | tcgcsv_prize_pack_catalog | 123 |
 | tcgcsv_prize_pack_title_finish | 1 |
 | tcgcsv_stamped_subtype | 15 |

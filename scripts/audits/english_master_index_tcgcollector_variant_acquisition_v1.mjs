@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { pathToFileURL } from 'node:url';
 
 import {
   markdownTable,
@@ -96,8 +97,9 @@ function factKey(row) {
   ].join('|');
 }
 
-function finishFromVariantName(value) {
-  const normalized = normalizeText(value);
+export function finishFromVariantName(value) {
+  // Fold accents in finish labels only; do not change canonical card/set names.
+  const normalized = normalizeText(String(value ?? '').normalize('NFKD').replace(/\p{M}/gu, ''));
   if (!normalized) return null;
   if (normalized === 'normal') return 'normal';
   if (normalized === 'non holo' || normalized === 'non holofoil' || normalized === 'nonholo') return 'normal';
@@ -246,7 +248,7 @@ function groupBySet(rows, setsByKey, options) {
   return entries;
 }
 
-function buildRecords({ set, facts, cardFacts, html, sourceUrl, generatedAt }) {
+export function buildRecords({ set, facts, cardFacts, html, sourceUrl, generatedAt }) {
   const appState = extractAppState(html);
   const cardsById = parseCardRows(html);
   const targets = new Set(facts.map(factKey));
@@ -284,9 +286,14 @@ function buildRecords({ set, facts, cardFacts, html, sourceUrl, generatedAt }) {
       });
     }
     for (const variantId of variantMap[String(cardId)] ?? []) {
-      const variantName = variantDtos[String(variantId)]?.name;
+      const variant = variantDtos[String(variantId)];
+      const variantName = variant?.name;
       const finishKey = finishFromVariantName(variantName);
       if (!finishKey) continue;
+      // A combined or qualified product cannot establish the unqualified parallel.
+      if (['pokeball', 'masterball'].includes(finishKey)
+        && (variant.isGeneric !== true || variant.hasQualifiers !== false
+          || variant.isFirstEditionPrint !== false || variant.isCombined !== false)) continue;
       const candidate = {
         set_key: set.key,
         card_number: card.card_number,
@@ -539,7 +546,9 @@ async function main() {
   }, null, 2));
 }
 
-main().catch((error) => {
-  console.error('[tcgcollector] failed:', error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url) {
+  main().catch((error) => {
+    console.error('[tcgcollector] failed:', error);
+    process.exitCode = 1;
+  });
+}
