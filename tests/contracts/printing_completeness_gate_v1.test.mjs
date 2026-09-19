@@ -21,6 +21,34 @@ function readback(m){
  return {parents:structuredClone(m.parents),printings,public_options:printings.map(p=>({...p,finish_is_active:true}))};
 }
 
+function donManifest() {
+ const m=fixture();Object.assign(m,{game:'one_piece',language:'en',set_code:'DON',identity_policy_version:'ONE_PIECE_EN_V1'});
+ Object.assign(m.parents[0],{printed_coordinate:null,coordinate_semantics:'unnumbered_don_identity_token',
+  source_product_id:123,variant_key:'tcgplayer_product_123',identity_domain:'one_piece_eng_print'});
+ Object.assign(m.printings[0].evidence[0],{kind:'exact_printing_mapping',source_product_id:123,source_identity_id:'identity',source_evidence_id:'proof'});
+ return seal(m);
+}
+test('explicit product-bound DON identity allows null coordinate without fabricating a number',()=>{
+ const m=donManifest();assertPrintingManifest(m);
+ assert.equal(evaluatePrintingReadback(m,readback(m)).status,'printing_ready');
+ assert.equal(m.parents[0].printed_coordinate,null);
+});
+for(const field of ['coordinate_semantics','source_product_id','variant_key','identity_domain'])test(`unnumbered DON requires ${field}`,()=>{
+ const m=donManifest();delete m.parents[0][field];assert.throws(()=>assertPrintingManifest(seal(m)),/incomplete_parent_identity/);
+});
+test('DON allowance cannot admit an unnumbered Pokemon or unbound product',()=>{
+ const m=donManifest();m.game='pokemon';assert.throws(()=>assertPrintingManifest(seal(m)),/incomplete_parent_identity/);
+ const n=donManifest();n.printings[0].evidence[0].source_product_id=124;
+ assert.throws(()=>assertPrintingManifest(seal(n)),/unnumbered_product_evidence_required/);
+});
+
+test('verified parent families admit only bound identities without claiming complete set coverage',()=>{
+ const m=fixture(2);m.scope='verified_parent_families';const sealed=seal(m);
+ assertPrintingManifest(sealed);assert.equal(buildPrintingAdmissionPlan(sealed).inserts.length,2);
+ sealed.unresolved_variants=[{key:'uncertain',card_print_id:sealed.parents[0].id,source_ref:'source',reason:'finish unclear',status:'needs_review',scope:'outside_base_release'}];
+ assert.throws(()=>assertPrintingManifest(seal(sealed)),/complete_set_has_unresolved_variants/);
+});
+
 for(const field of ['id','gv_id','name','printed_coordinate','set_id','identity_domain','variant_key','printed_identity_modifier']) {
  for(const defect of ['changed','missing'])test(`parent readback blocks ${defect} ${field}`,()=>{
   let m=fixture();Object.assign(m.parents[0],{set_id:'exact-set',identity_domain:'pokemon_eng_standard',variant_key:'',printed_identity_modifier:null});m=seal(m);

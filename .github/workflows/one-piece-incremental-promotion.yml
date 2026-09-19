@@ -30,6 +30,10 @@ on:
         description: Exact merged commit SHA that must be checked out
         required: true
         type: string
+      expected_payload_fingerprint:
+        description: Exact reviewed payload SHA-256 (required for apply)
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -44,11 +48,13 @@ jobs:
     timeout-minutes: 30
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
       DISPATCH_MODE: ${{ inputs.mode }}
       SET_CODE: ${{ inputs.set_code }}
       OFFICIAL_SERIES_ID: ${{ inputs.official_series_id }}
       AS_OF: ${{ inputs.as_of }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}
+      EXPECTED_PAYLOAD_FINGERPRINT: ${{ inputs.expected_payload_fingerprint }}
 
     steps:
       - name: Check out frozen ref
@@ -77,11 +83,17 @@ jobs:
           [[ "$SET_CODE" =~ ^(OP|ST|EB|PRB)[0-9]{2}$ ]]
           [[ "$OFFICIAL_SERIES_ID" =~ ^[0-9]+$ ]]
           [[ "$AS_OF" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]
+          if [[ "$DISPATCH_MODE" == "apply" ]]; then
+            [[ "$EXPECTED_PAYLOAD_FINGERPRINT" =~ ^[0-9a-f]{64}$ ]]
+          fi
           node --check backend/catalog/one_piece_incremental_promotion_v1.mjs
+          node --check backend/catalog/one_piece_incremental_printing_promotion_v2.mjs
           node --check scripts/workers/one_piece_incremental_promotion_v1.mjs
           node --test \
             tests/contracts/catalog_set_release_controls_v1.test.mjs \
-            tests/contracts/one_piece_incremental_promotion_v1.test.mjs
+            tests/contracts/one_piece_incremental_promotion_v1.test.mjs \
+            tests/contracts/one_piece_incremental_printing_promotion_v2.test.mjs \
+            tests/contracts/one_piece_printing_admission_v1.test.mjs
           git diff --check
 
       - name: Execute frozen promotion mode
@@ -96,6 +108,7 @@ jobs:
             --set-code="$SET_CODE" \
             --official-series-id="$OFFICIAL_SERIES_ID" \
             --expected-head-sha="$EXPECTED_SHA" \
+            --expected-payload-fingerprint="$EXPECTED_PAYLOAD_FINGERPRINT" \
             --out-dir="$OUT_DIR"
 
       - name: Verify hidden staging boundary

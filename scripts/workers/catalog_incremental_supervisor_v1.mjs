@@ -69,7 +69,7 @@ export function catalogIncrementalTargetForGapV1(gap) {
       gap.source_code && gap.source_set_id) {
     return {
       key: `one_piece:${String(gap.source_code).toUpperCase()}`,
-      writer_key: "one_piece_incremental_promotion_v1",
+      writer_key: "one_piece_incremental_printing_promotion_v2",
       founder_outcome_eligible: true,
       worker: "scripts/workers/one_piece_incremental_promotion_v1.mjs",
       target: {

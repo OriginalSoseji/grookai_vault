@@ -14,9 +14,42 @@ import {
   validateCatalogWriterResultV1,
 } from "../../backend/operations/catalog_founder_outcome_v1.mjs";
 import { operationsSha256V1 } from "../../backend/operations/operations_control_plane_v1.mjs";
+import { catalogIncrementalTargetForGapV1 } from "../../scripts/workers/catalog_incremental_supervisor_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const source = (file) => fs.readFileSync(path.join(ROOT, file), "utf8");
+
+function onePieceInput() {
+  const target=catalogIncrementalTargetForGapV1({status:'missing_set',game_code:'one_piece',source_code:'OP17',source_set_id:'569117'});
+  const counts={sets:1,set_release_controls:1,card_prints:2,identities:2,evidence:2,external_mappings:2,child_printings:3,printing_reviews:3};
+  const version='ONE_PIECE_INCREMENTAL_PRINTING_PROMOTION_V2';
+  return {target,result:{target:target.key,exit_code:0},summary:{version,mode:'plan',counts,payload_fingerprint_sha256:'b'.repeat(64)},
+    preflightProof:{version,collision_preflight:Object.fromEntries(Object.keys(counts).map(k=>[k,0]))},
+    artifactHashes:{'summary.json':'c'.repeat(64)},sourceCommitSha:'a'.repeat(40),sourceRunId:'123456',asOf:'2026-09-19'};
+}
+
+test('One Piece supervisor and phone outcome bind exact children and reviews under a new writer key',()=>{
+  const input=onePieceInput(),p=buildCatalogFounderOutcomePackageV1(input);
+  assert.equal(p.writer_key,'one_piece_incremental_printing_promotion_v2');
+  assert.deepEqual(p.expected_counts,input.summary.counts);
+  const invocation=buildCatalogWriterInvocationV1(p,{headSha:'a'.repeat(40),outDir:path.join(ROOT,'.tmp','op-outcome-test')});
+  assert.ok(invocation.args.includes('--set-code=OP17'));assert.ok(invocation.args.includes('--official-series-id=569117'));
+  const summary={...input.summary,mode:'apply',transaction_result:{action:'committed',durable_readback:{...p.expected_counts}}};
+  assert.equal(validateCatalogWriterResultV1(p,summary).reconciled,true);
+  summary.transaction_result.durable_readback.printing_reviews=2;
+  assert.throws(()=>validateCatalogWriterResultV1(p,summary),/durable readback mismatch: printing_reviews/);
+});
+
+test('One Piece V2 cannot inherit parent-only counts or a V1 producer',()=>{
+  const i=onePieceInput();delete i.summary.counts.child_printings;delete i.summary.counts.printing_reviews;
+  assert.throws(()=>buildCatalogFounderOutcomePackageV1(i),/count fields/);
+  const j=onePieceInput();j.summary.version='ONE_PIECE_INCREMENTAL_CANONICAL_PROMOTION_V1';
+  assert.throws(()=>buildCatalogFounderOutcomePackageV1(j),/producer version/);
+  const k=onePieceInput();k.target.writer_key='one_piece_incremental_promotion_v1';
+  assert.throws(()=>buildCatalogFounderOutcomePackageV1(k),/count fields/);
+  const p=buildCatalogFounderOutcomePackageV1(onePieceInput());
+  assert.throws(()=>validateCatalogWriterResultV1(p,{mode:'apply',version:'ONE_PIECE_INCREMENTAL_CANONICAL_PROMOTION_V1'}),/producer version/);
+});
 
 function mtgPackage({ sourceRunId = "123456" } = {}) {
   return buildCatalogFounderOutcomePackageV1({
