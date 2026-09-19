@@ -1,6 +1,6 @@
 # English Master Index Source Agreement V1
 
-Generated: 2026-09-18T08:27:48.588Z
+Generated: 2026-09-19T08:15:42.599Z
 
 API agreement is separated from master truth. Unknown or conflicting finish truth fails closed.
 
@@ -100,7 +100,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | official_pokemon_legacy_checklist | 20 |
 | official_pokemon_svi_cardlist_en | 8 |
 | packmagik_ascended_heroes_team_rockets_great_ball_205 | 1 |
-| pkmncards | 19321 |
+| pkmncards | 19478 |
 | pkmncards_identity_gap | 17 |
 | pkmncollectors_futsal | 4 |
 | pkmncollectors_sm1_energy | 9 |
@@ -114,7 +114,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 52042 |
+| pokemontcg_api | 52043 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -163,7 +163,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | tcgdex | 49421 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 23914 |
+| tcgplayer_price_guide | 23994 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
