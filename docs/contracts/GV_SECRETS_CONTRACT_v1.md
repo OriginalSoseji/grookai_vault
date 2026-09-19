@@ -18,6 +18,7 @@ As of the current stabilization phase:
 | `SUPABASE_PUBLISHABLE_KEY` | Public anon key for Edge functions and clients (this is the “anon key” in the Supabase dashboard). | ✅ | ✅ (`SUPABASE_PUBLISHABLE_KEY`) | ✅ (`SUPABASE_PUBLISHABLE_KEY`) |
 | `SUPABASE_SECRET_KEY` | Canonical service-role secret for backend workers and admin/edge boundaries. | ✅ (`SUPABASE_SECRET_KEY`) | ✅ (`SUPABASE_SECRET_KEY`) | ✅ (`SUPABASE_SECRET_KEY`) |
 | `OPENAI_API_KEY` | AI-powered tooling (if enabled; currently optional). | ✅ (optional) | ✅ (optional) | ✅ (optional) |
+| `GVVI_REFERRAL_COOKIE_SECRET` | Server-only encryption for 30-day GVVI/store referral context; at least 32 random characters. Required in the existing Vercel production project for attribution. | Local dummy value only | Not used | Not used; production value stays in Vercel sensitive environment storage |
 | `TCGDEX_BASE_URL` | TCGdex API base URL (used by new ingestion). | ✅ | ✅ | (not required) |
 | `TCGDEX_LANG` | Active TCGdex language slug (e.g., `en`). | ✅ | ✅ | (not required) |
 | `TCGDEX_API_KEY` | Reserved for TCGdex auth (currently unused; keep empty unless provided). | ✅ | ✅ | (not required) |
@@ -25,6 +26,12 @@ As of the current stabilization phase:
 > NOTE: Supabase project secrets live under Settings → Configuration → Secrets. GitHub Actions secrets must match these names in lowercase (e.g., `SUPABASE_SECRET_KEY`). `SUPABASE_PUBLISHABLE_KEY` maps to the “anon key” in the Supabase dashboard. Older runtime surfaces may still reference `SUPABASE_SERVICE_ROLE_KEY`, but current canonical authority is `SUPABASE_SECRET_KEY`.
 
 ## Naming Rules
+
+`GVVI_REFERRAL_COOKIE_SECRET` must never be exposed through a `NEXT_PUBLIC_` alias,
+mobile define, telemetry or release artifact. Keep existing configured values when
+deploying; rotation invalidates outstanding encrypted referral contexts. Production
+and synthetic local environments use separate values. Absence disables attribution
+without blocking navigation. See `GVVI_VENDOR_QR_V1.md` and `VENDOR_STOREFRONTS_V1.md`.
 
 1. The legacy `ANON_KEY`/`SERVICE_ROLE_KEY` names are banned in new code. Use the canonical contract names (`SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SECRET_KEY`) everywhere.
 2. Any new secret must be added to this contract before use, with purpose and required locations filled out.

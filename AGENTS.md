@@ -2,6 +2,11 @@
 
 ## Storefront Release Goal — September 19 UTC
 
+Latest execution evidence: `docs/audits/vendor_storefront_release_execution_v1/RELEASE_PROGRESS.md`.
+PR #496 is open; iOS archive 325 is signed and verified, not uploaded. Production
+schema remains unchanged; the new referral secret is configured for the next Vercel
+deployment only. Continue the full goal, including Stripe subscriptions and commerce.
+
 Read `docs/ops/STOREFRONT_GOAL_RELEASE_20260919.md`. The founder now requests the
 release/pilot and paid-subscription product beyond the previous local-only stop.
 Preserve verification gates and existing tester audiences. Checkout/payouts are

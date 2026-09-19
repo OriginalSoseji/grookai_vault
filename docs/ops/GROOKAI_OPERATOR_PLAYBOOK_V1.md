@@ -2,6 +2,12 @@
 
 ## Storefront Release Goal — September 19 UTC
 
+Latest: `../audits/vendor_storefront_release_execution_v1/RELEASE_PROGRESS.md`.
+iOS archive 325 is signed/verified from the frozen source; no upload or public-store
+submission is claimed. A server-only referral key is now configured as a sensitive
+production Vercel variable for the next deployment, with the live pointer preserved.
+It is registered in `GV_SECRETS_CONTRACT_v1.md`; never copy its value into receipts.
+
 Read `STOREFRONT_GOAL_RELEASE_20260919.md` for current authority and verified source,
 deployment, database and remaining product requirements. The local storefront build
 now restores only known Next-generated config edits so the mandatory pre-push
