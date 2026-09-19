@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Storefront iOS Cold Launch — September 19
+
+Read `docs/audits/vendor_storefront_ios_cold_start_v1/COLD_START_PROOF.md`.
+A stopped-app test reproduced lost scene connection URLs. The targeted native
+SceneDelegate now forwards initial custom-scheme and browsing activities to
+app_links; warm forwarding stays with Flutter. Both cold cases and the complete
+warm auth regression pass locally. This supersedes archive 325 readiness: retain
+that unuploaded archive, and build a new signed client containing this fix.
+
 ## Storefront iOS Local Auth — September 19
 
 Read `docs/audits/vendor_storefront_ios_auth_v1/IOS_AUTH_PROOF.md`. The complete

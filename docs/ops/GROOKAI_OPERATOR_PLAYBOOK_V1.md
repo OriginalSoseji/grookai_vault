@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Storefront iOS cold-launch repair — September 19
+
+Read `../audits/vendor_storefront_ios_cold_start_v1/COLD_START_PROOF.md`.
+Warm delivery alone did not establish cold-launch behavior: the default scene lost
+initial links when the process was stopped. The targeted SceneDelegate forwards
+only initial connection options to app_links. Actual OS launch, real local login,
+persisted owner preview and the full warm regression now pass. Keep baseline
+failure and passing receipts distinct. Preserve archive 325, but replace it with
+a newly signed archive before delivery; it predates this native fix. Provider OAuth
+and hosted universal-link association remain separate checks.
+
 ## Storefront iOS local authentication — September 19
 
 Read `../audits/vendor_storefront_ios_auth_v1/IOS_AUTH_PROOF.md`. The final dedicated
