@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AGREEMENT_V1",
-  "generated_at": "2026-09-19T08:15:42.599Z",
+  "generated_at": "2026-09-19T12:24:20.100Z",
   "audit_only": true,
   "db_writes": false,
   "source_overlap": [
@@ -586,7 +586,7 @@
     },
     {
       "source_key": "tcgcollector_card_variants",
-      "evidence_rows": 1534
+      "evidence_rows": 1696
     },
     {
       "source_key": "tcgcsv_prize_pack_catalog",
@@ -2989,14 +2989,14 @@
   },
   "printings_by_status": {
     "candidate_unconfirmed": 141,
-    "human_source_verified": 2757,
-    "master_verified": 37735
+    "human_source_verified": 2595,
+    "master_verified": 37897
   },
   "finish_disagreement": [],
   "reverse_holo_disagreement": [],
   "row_counts": {
     "api_agreed_printings": 0,
-    "master_verified_printings": 37735,
+    "master_verified_printings": 37897,
     "candidate_printings": 141,
     "manual_review": 392
   },

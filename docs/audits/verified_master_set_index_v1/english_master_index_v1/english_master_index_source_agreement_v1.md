@@ -1,6 +1,6 @@
 # English Master Index Source Agreement V1
 
-Generated: 2026-09-19T08:15:42.599Z
+Generated: 2026-09-19T12:24:20.100Z
 
 API agreement is separated from master truth. Unknown or conflicting finish truth fails closed.
 
@@ -153,7 +153,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | sports_card_investor_variant_exact | 1 |
 | tcdb_checklist | 6 |
 | tcgalbum_card_page | 1 |
-| tcgcollector_card_variants | 1534 |
+| tcgcollector_card_variants | 1696 |
 | tcgcsv_prize_pack_catalog | 123 |
 | tcgcsv_prize_pack_title_finish | 1 |
 | tcgcsv_stamped_subtype | 15 |
@@ -758,8 +758,8 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | status | count |
 | --- | --- |
 | candidate_unconfirmed | 141 |
-| human_source_verified | 2757 |
-| master_verified | 37735 |
+| human_source_verified | 2595 |
+| master_verified | 37897 |
 
 ## Reverse Holo Disagreement Sample
 

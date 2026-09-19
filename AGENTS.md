@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Prismatic Finish Evidence - September 19
+
+Read `docs/ops/PRISMATIC_MASTER_CORROBORATION_20260919.md`. This branch applies
+an additive 162-fact master-evidence refresh to merged main without changing
+card identities, finishes or production data. The captured source, parser fix,
+and regressions travel together. Five unmatched names remain unresolved.
+Keep Japanese and One Piece work in their existing worktree; this is not their
+deployment. Production queue V74 and the 1,811 remaining English provenance
+gaps are recorded in the operator checkpoint; do not replay completed writers.
+
 ## Collector Printing Readback - September 18
 
 Read `docs/ops/COLLECTOR_PRINTING_READBACK_20260918.md`. Anthology membership

@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Prismatic Evidence Refresh - September 19
+
+Read `PRISMATIC_MASTER_CORROBORATION_20260919.md`. Normalize accents only in
+finish labels; preserve original card names and raw source bytes. Qualified or
+combined Pokeball/Masterball products cannot prove an unqualified parallel.
+The 162 corroborated facts are a master-evidence change, not a database repair.
+Five unmatched names remain unresolved, and duplicate copies of a source never
+count as independent confirmation. Do not overwrite newer main evidence from an
+older worktree snapshot. Production applies still require source-bound manifests,
+fresh collision/dependency preflight, rollback proof and independent readback.
+
 ## Master Index Evidence Scope
 
 Read `MASTER_INDEX_SOURCE_INDEPENDENCE_20260917.md`. TCGplayer catalog mirrors
