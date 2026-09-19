@@ -1,0 +1,34 @@
+{
+  "at": "2026-09-19T06:56:26Z",
+  "source_sha": "4939f55e3f81692c1c6e7d24feb495c926dc7059",
+  "build": 326,
+  "signature_verified": true,
+  "symbols": [
+    {
+      "binary": "Runner",
+      "uuids": [
+        "D15BB192-4E04-3503-885F-B266E342D7D4"
+      ],
+      "symbols_match": true,
+      "binary_sha256": "4d19b8d8717ffd804bb198746099ab2e5fffa300e0784768c304d3f3b536e9cb",
+      "dsym_sha256": "fdd5995003edca228140fe91c502200c6a5fa89c9b9fdd802e89d0e8f1ee6db4"
+    },
+    {
+      "binary": "App",
+      "uuids": [
+        "0C7143A3-83EF-6365-4C4F-F302DDEC28CC"
+      ],
+      "symbols_match": true,
+      "binary_sha256": "a10a242188f002635d2c0ac811f48cf2025cc2d6a8e2034ecf16464ea7a14179",
+      "dsym_sha256": "6726109cc6d405d330bc0d07eddeada5c71700a2f6d87fd184f08fb09a883d83"
+    }
+  ],
+  "configuration_matches_319": true,
+  "flags": [
+    "MTG_SEALED_CLIENT_V1_ENABLED",
+    "POKEMON_SEALED_CLIENT_V1_ENABLED",
+    "SEALED_OWNERSHIP_V1_ENABLED"
+  ],
+  "cold_launch_delegate": "Runner.SceneDelegate",
+  "uploaded": false
+}

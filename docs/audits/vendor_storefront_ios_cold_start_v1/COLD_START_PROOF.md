@@ -55,3 +55,33 @@ archive containing this fix is required before delivery. Real provider OAuth,
 hosted HTTPS universal-link association, signed install and production pilot remain
 unproven here. No production request, migration, grant, payment or deployment was
 performed for this proof. Billing and checkout remain separate unfinished work.
+
+## Signed replacement archive
+
+The fix was committed and pushed as `4939f55e3f81692c1c6e7d24feb495c926dc7059`.
+Both unchanged repository hooks passed: 3,910 Node tests (three skipped), web
+typecheck/lint/strict build, Flutter analysis and all 748 Flutter tests. Main was
+still `a151794a98cc1e47a9a8886e0e643009cea898e5`; PR #496 remained mergeable.
+
+A new sparse Mac worktree at that exact source passed 96 focused native tests and
+produced `GrookaiVault-1.0.0-326.xcarchive` using the documented desktop signing
+session. The delegate source hash matches the simulator proof. The archived plist
+selects `Runner.SceneDelegate`; deep strict signature validation and both Runner/App
+dSYM UUID comparisons pass. The release configuration matches the retained build
+319 reference with all three existing sealed flags enabled. No signing identity,
+keychain permissions or tester audience was changed.
+
+`archive326-verified.json` records direct readback. The preserved 194-file archive
+manifest SHA256 is `9b7cacaf47643f57fe75e358d09889da7c3d05394b99f46789725f31660bb657`.
+The full private manifest, log and exit-zero receipt remain under the new Mac
+`storefront_native_326_20260919` operator directory. Archive 325 remains intact.
+Build 326 is not uploaded, installed through TestFlight or publicly released.
+
+The dedicated simulator, temporary web server, reverse tunnel and seven 164xx test
+containers were stopped after verification, retaining their data. The separate
+168xx release environment remains available for the unchanged repository hooks.
+
+The separate staged Stripe candidate now passes 60 provider/enrollment tests,
+TypeScript, lint and the legacy-key guard. Its customer/checkout evidence does not
+yet have durable database integration or an enabled route, and made no provider
+requests. These changes are not part of the signed native source or release migration.

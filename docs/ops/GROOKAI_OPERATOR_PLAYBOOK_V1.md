@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Storefront ledger reconciliation — September 19
+
+Read `../audits/vendor_storefront_ledger_reconcile_v1/RECONCILIATION.md`.
+The already-applied One Piece migration `20260919054500` is recovered byte-for-byte
+from its preserved repair source and compared with the actual production ledger.
+The catalog repair worktree and writers remain untouched. The new isolated 172xx
+project passed a 395-row production baseline/security audit and a full 396-file
+storefront reset. Existing 164xx/168xx evidence databases were not reset. It retains
+no application data, zero workers/cron runs and disabled publication flags.
+Use this bound environment for the integration hook; old release preflight receipts
+are historical. Formal release-gate refresh and migration ordering remain required.
+Do not blindly rerun one-shot replay scripts against already-completed baselines.
+
 ## Storefront iOS cold-launch repair — September 19
 
 Read `../audits/vendor_storefront_ios_cold_start_v1/COLD_START_PROOF.md`.
@@ -8,8 +21,11 @@ initial links when the process was stopped. The targeted SceneDelegate forwards
 only initial connection options to app_links. Actual OS launch, real local login,
 persisted owner preview and the full warm regression now pass. Keep baseline
 failure and passing receipts distinct. Preserve archive 325, but replace it with
-a newly signed archive before delivery; it predates this native fix. Provider OAuth
-and hosted universal-link association remain separate checks.
+a newly signed archive before delivery; it predates this native fix. Archive 326
+now satisfies that replacement: exact source `4939f55e3`, verified signature/dSYMs
+and archived `Runner.SceneDelegate`. Artifacts are preserved under the separate Mac
+`storefront_native_326_20260919` operator directory. It is not uploaded. Provider
+OAuth and hosted universal-link association remain separate checks.
 
 ## Storefront iOS local authentication — September 19
 

@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Storefront Applied-Ledger Reconciliation — September 19
+
+Read `docs/audits/vendor_storefront_ledger_reconcile_v1/RECONCILIATION.md`.
+Production now has 395 migrations: the One Piece Foil-scope migration was applied
+outside this branch and its exact ledger-matching source is recovered here. Do not
+replay catalog data executors. Fresh production baseline/security comparison and
+a separate 172xx full 396-file replay pass. Historical 394/395 release preflights
+are no longer current apply evidence. Refresh the formal release gate and account
+for the older pending storefront migration before any production apply.
+
 ## Storefront iOS Cold Launch — September 19
 
 Read `docs/audits/vendor_storefront_ios_cold_start_v1/COLD_START_PROOF.md`.
@@ -7,7 +17,8 @@ A stopped-app test reproduced lost scene connection URLs. The targeted native
 SceneDelegate now forwards initial custom-scheme and browsing activities to
 app_links; warm forwarding stays with Flutter. Both cold cases and the complete
 warm auth regression pass locally. This supersedes archive 325 readiness: retain
-that unuploaded archive, and build a new signed client containing this fix.
+that unuploaded archive. Replacement archive 326 is now signed and verified from
+`4939f55e3`, with matching dSYMs and the tested delegate. It is not uploaded.
 
 ## Storefront iOS Local Auth — September 19
 
