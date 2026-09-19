@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-09-18T05:45:17.867Z",
+  "proof": "Loopback Next.js + synthetic SQL-backed Auth/Storage adapter; not real Supabase",
+  "results": [
+    "API draft create, validation, owner isolation and explicit publication",
+    "photo format, size, owner and product scope enforcement with private drafts",
+    "mixed app/web API parity, counts, filters and redacted custom detail",
+    "stale API quantity saves return 409 without overwriting stock",
+    "removed photos, unpublish, zero stock, hidden store and archive revoke public media",
+    "custom preview login preserves complete safe destination",
+    "desktop mixed grid and seller detail render without overflow or script execution",
+    "mobile mixed grid and seller detail render without overflow or script execution",
+    "archived product remains owner-readable and inaccessible to visitors"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-09-19T04:17:26.418Z",
+  "inputs": [
+    {
+      "name": "20260918040000_vendor_storefronts_v1.sql",
+      "sha256": "9311f0a31e8f5cf37c7cde4977b6d616bc62ae454756219eb0bc029e6ec848a2"
+    },
+    {
+      "name": "20260918070000_vendor_custom_collectibles_v1.sql",
+      "sha256": "073d7ac1b7ab1b092b9f953685e41f8fd73c59d52c52735999bfc7d6b2444467"
+    },
+    {
+      "name": "20260918100000_vendor_custom_collectible_conflict_status_v1.sql",
+      "sha256": "0607172b18dd9a26619a53b3f9bc0b3f6620ce0249da083a6dacc3b534e6a042"
+    }
+  ],
+  "output": {
+    "name": "20260919050000_vendor_storefront_release_v1.sql",
+    "sha256": "639df6d611b5ae41328c3feaa95129acb349007891200f0c8599d14ef015ac98"
+  },
+  "method": "Move final publisher to its first declaration, move final PT409 mutation to its first declaration, remove superseded definitions and use one transaction; preserve other SQL and grants. Reproducible builder uses callbacks to preserve SQL dollar quotes.",
+  "revisedAt": "2026-09-19T04:31:50.154Z"
+}

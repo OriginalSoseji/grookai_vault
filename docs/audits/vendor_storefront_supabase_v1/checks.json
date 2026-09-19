@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-09-18T14:31:30.693Z",
+  "migrations": 397,
+  "realAuthStorageGroups": 8,
+  "realHttpBrowserReferralGroups": 6,
+  "realSchemaCatalogGroups": 4,
+  "syntheticSqlChecks": 49,
+  "runtimeChecks": 7,
+  "webBuild": "passed",
+  "newScriptsSyntax": 6,
+  "conflictCorrection": "PT409",
+  "modifiedExistingFiles": [
+    "AGENTS.md",
+    "apps/web/src/app/api/stores/owner/products/route.ts",
+    "docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md",
+    "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+    "scripts/tests/vendor_custom_collectibles_local_v1.mjs",
+    "scripts/tests/vendor_storefront_http_fixture.mjs"
+  ],
+  "productionActions": 0,
+  "fullNativeAuthProof": false
+}

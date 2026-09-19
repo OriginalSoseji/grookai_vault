@@ -13,6 +13,9 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1 | Active implementation contract; local candidate | docs/contracts/VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1.md - Computer-based store authoring, existing Vault tools, private media upload, version conflicts and explicit package-gated publication |
+| VENDOR_CUSTOM_COLLECTIBLES_V1 | Active implementation contract; local candidate | docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md - Seller-authored custom products, stable UUID routes, version-checked stock, guarded private photos and mixed V2 storefront projection; no canonical/Vault identity mutation or release authority |
+| VENDOR_STOREFRONTS_V1 | Active implementation contract; local candidate | docs/contracts/VENDOR_STOREFRONTS_V1.md - Explicit exact-copy browse-only stores, database package gates, private branding and atomic referral credit; production publication remains disabled pending separate release gates |
 | SEALED_OWNED_COLLECTIBLES_V1 | Active implementation contract | docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md - Exact-copy sealed ownership in the existing Vault, qualified totals, Wall, vendor, sale/trade/history and sharing; production activation requires migration replay and mixed-inventory acceptance |
 | GROOKAI_GUARDRAILS | Active | Global stop-rules and mandatory audit triggers |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |

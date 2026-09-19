@@ -1,0 +1,217 @@
+{
+  "baseline": "a14388f689235d62b3165c1dd88aaa4c562ab186",
+  "database": "grookai_storefront_v1_1789741267946",
+  "host": "127.0.0.1",
+  "port": 15438,
+  "proof": "Synthetic PostgreSQL custom extension; not full Supabase Auth/Storage or migration replay",
+  "results": [
+    {
+      "name": "additive migration applies to representative local schema",
+      "passed": true
+    },
+    {
+      "name": "rollout defaults off even for database grant",
+      "passed": true
+    },
+    {
+      "name": "create store is a private draft",
+      "passed": true
+    },
+    {
+      "name": "another owner cannot read draft or select foreign copy/section",
+      "passed": true
+    },
+    {
+      "name": "anonymous cannot access base tables or mutation functions",
+      "passed": true
+    },
+    {
+      "name": "section selection and price change do not select inventory",
+      "passed": true
+    },
+    {
+      "name": "private copies cannot be selected; owner sees reason",
+      "passed": true
+    },
+    {
+      "name": "selection does not publish; explicit publish enables each surface",
+      "passed": true
+    },
+    {
+      "name": "app/web parity preserves exact siblings, prices, IDs, and filters",
+      "passed": true
+    },
+    {
+      "name": "slug freezes at first publication and duplicate slug rejects",
+      "passed": true
+    },
+    {
+      "name": "reserved owner route slug is rejected; profile-style normalization is authoritative",
+      "passed": true
+    },
+    {
+      "name": "wrong-parent printing, missing printing identity and missing parent identity stay excluded",
+      "passed": true
+    },
+    {
+      "name": "private intent is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "zero price is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "archived is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "transfer is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "unassigned is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "public profile privacy removes store and preview eligible items",
+      "passed": true
+    },
+    {
+      "name": "active quarantine and inactive finish cannot publish",
+      "passed": true
+    },
+    {
+      "name": "canonical suppression is respected",
+      "passed": true
+    },
+    {
+      "name": "app, web and owner preview all exclude signed-in-only set releases",
+      "passed": true
+    },
+    {
+      "name": "non-Pokemon game releases require public status equally on app and web",
+      "passed": true
+    },
+    {
+      "name": "$50 to $30 downgrade suspends web; upgrade does not republish",
+      "passed": true
+    },
+    {
+      "name": "loss of all grants preserves owner preview and unpublish",
+      "passed": true
+    },
+    {
+      "name": "private media paths require store owner and uploaded object",
+      "passed": true
+    },
+    {
+      "name": "clients cannot invoke signup-credit RPC or ledger writes",
+      "passed": true
+    },
+    {
+      "name": "old account, self-referral, expired context cannot earn credit",
+      "passed": true
+    },
+    {
+      "name": "concurrent verified callbacks credit actual signup exactly once",
+      "passed": true
+    },
+    {
+      "name": "runtime kill switch prevents public access without changing inventory",
+      "passed": true
+    },
+    {
+      "name": "negative query limits fail closed",
+      "passed": true
+    },
+    {
+      "name": "presentation foreign keys do not prevent governed hard deletion",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "owner": "00000000-0000-4000-8000-000000000001",
+    "other": "00000000-0000-4000-8000-000000000002",
+    "visitor": "00000000-0000-4000-8000-000000000003",
+    "newUser": "00000000-0000-4000-8000-000000000004",
+    "storeId": "8044efa8-35b8-40c5-860f-c2cf8e9cb26d",
+    "slug": "test-store",
+    "productId": "7972c80f-20ed-422f-8a42-c4b39ca47107"
+  },
+  "createdAt": "2026-09-18T14:21:08.776Z",
+  "customResults": [
+    {
+      "name": "additive custom migration applies with rollout disabled",
+      "passed": true
+    },
+    {
+      "name": "incomplete draft retains stable UUID and is never public",
+      "passed": true
+    },
+    {
+      "name": "owner isolation and base-table writes fail closed",
+      "passed": true
+    },
+    {
+      "name": "invalid numeric, canonical, currency and text fields reject atomically",
+      "passed": true
+    },
+    {
+      "name": "photo scope, private access and supported paths are governed",
+      "passed": true
+    },
+    {
+      "name": "sections are explicit and reject unrelated sections",
+      "passed": true
+    },
+    {
+      "name": "explicit publish exposes only presentation fields and preserves exact copies",
+      "passed": true
+    },
+    {
+      "name": "mixed filters, pagination, sections and app/web parity are deterministic",
+      "passed": true
+    },
+    {
+      "name": "concurrent quantity saves succeed once and reject stale versions",
+      "passed": true
+    },
+    {
+      "name": "zero stock suspends, replenishment and edits never republish",
+      "passed": true
+    },
+    {
+      "name": "privacy and rollout remove custom data on the next read",
+      "passed": true
+    },
+    {
+      "name": "downgrade and re-upgrade require explicit store and product republishing",
+      "passed": true
+    },
+    {
+      "name": "custom-only store publication works and archive retains history",
+      "passed": true
+    },
+    {
+      "name": "V2 retains exact-copy quarantine, transfer and printing boundaries",
+      "passed": true
+    },
+    {
+      "name": "app-only grant keeps custom app access; forged web audience and re-upgrade fail closed",
+      "passed": true
+    },
+    {
+      "name": "missing profile identity hides detail, media authority and mixed rows equally",
+      "passed": true
+    },
+    {
+      "name": "foreign product photos and cross-store section relationships reject",
+      "passed": true
+    },
+    {
+      "name": "canonical records, Vault copies and Wall memberships are unchanged",
+      "passed": true
+    }
+  ]
+}

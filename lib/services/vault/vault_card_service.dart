@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../utils/display_image_contract.dart';
 import '../../utils/vault_printing_identity.dart';
 import '../identity/canon_image_url_service.dart';
+import '../public/public_card_printing_options_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 
 class _InterestGraphCompletionSnapshot {
@@ -1241,7 +1242,22 @@ class VaultCardService {
     String? fallbackSetName,
     String? fallbackImageUrl,
     String? cardPrintingId,
+    bool unassignedPrintingConfirmed = false,
   }) async {
+    if (unassignedPrintingConfirmed) {
+      if (_trimmedOrNull(cardPrintingId) != null) {
+        throw ArgumentError(
+          'Unassigned copy cannot include an exact printing.',
+        );
+      }
+      final options = await PublicCardPrintingOptionsService.fetch(
+        client: client,
+        cardPrintIds: [cardId],
+      );
+      if (options.isNotEmpty) {
+        throw Exception('Choose the exact printing before adding this card.');
+      }
+    }
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
     debugPrint('vault.mobile.add.begin: $cardId');
     final completionBefore = await _fetchInterestGraphCompletionSnapshot(

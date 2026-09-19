@@ -1,0 +1,21 @@
+{
+  "normalization": "LF line endings and trailing whitespace only; raw transcripts retained in ignored .local",
+  "files": {
+    "formal-baseline.log": {
+      "rawSha256": "2e339f7c6fb2db044615a8062ec6bc5897ae0c9baf79aba2d5a8a6759e57035c",
+      "normalizedSha256": "9527ad4d9ef24abcc5735b3de8db0787fe781caf9f009dad9fd89485648fb717"
+    },
+    "formal-prepush.log": {
+      "rawSha256": "985066351e24ada04476f94cd366c3877ddd7c8af037ac90cb3d0b2d9f09bb66",
+      "normalizedSha256": "46ea9b899e3b5b5efa2cdc407fb06bbe7166f0a2f0fb0af3153ffdd88b799bb6"
+    },
+    "guard-tests.log": {
+      "rawSha256": "6bfeff8510bccf9253fbd6939d7aee758c41196d21988c54589e30ec4b36a816",
+      "normalizedSha256": "2338f34200b6decd603bcd21b9466c6437c04c80951f99f8ea8f9fe4b5c84b54"
+    },
+    "sql-tests.log": {
+      "rawSha256": "2590143176f2bbcbe839f6c9b9cbba630c6e7897f578116050bc05bf27ed3551",
+      "normalizedSha256": "f33a16e674b97192c3f255f65940918bf5b5d10d4ee293bf7dfc5fe64bff2644"
+    }
+  }
+}

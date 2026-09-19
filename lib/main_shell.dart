@@ -685,6 +685,14 @@ class _AppShellState extends State<AppShell> {
       case GrookaiCanonicalRouteKind.collector:
         unawaited(_pushPage<void>(PublicCollectorScreen(slug: route.value)));
         break;
+      case GrookaiCanonicalRouteKind.storeProduct:
+        unawaited(_pushPage<void>(CustomProductScreen(slug:route.value,productId:route.productId!,preview:route.preview)));
+        break;
+      case GrookaiCanonicalRouteKind.store:
+        unawaited(_pushPage<void>(
+          StorefrontScreen(slug: route.value, preview: route.preview),
+        ));
+        break;
       case GrookaiCanonicalRouteKind.collectorSection:
         _openCollectorSection(route);
         break;
@@ -1634,6 +1642,9 @@ class _AppShellState extends State<AppShell> {
           minimum: EdgeInsets.fromLTRB(12, 4, 12, bottomSafeInset > 0 ? 4 : 12),
           child: Align(
             alignment: Alignment.bottomCenter,
+            // The dock must reserve only its own height so floating notices
+            // still fit when a child store route returns to the app shell.
+            heightFactor: 1,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 190),
               curve: Curves.easeOutCubic,

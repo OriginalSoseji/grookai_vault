@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-09-18T19:38:00.155Z",
+  "migrationHashesVerified": 397,
+  "results": [
+    {
+      "file": "vault_unassigned_add_v1.sql",
+      "passed": true,
+      "sha256": "b410d030fa98ff2fb736a8b7d3bfc3d45ee95622b8c9196a1c3cba2d17ed6f0a"
+    },
+    {
+      "file": "storefront_vault_add_integration_v1.sql",
+      "passed": true,
+      "sha256": "3a760beb6f646d00e1ef1584d7628428c876a6e8b91d8b200907e66f1fb6be2b"
+    }
+  ]
+}

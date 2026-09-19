@@ -1,0 +1,104 @@
+{
+  "recordedAt": "2026-09-18T16:51:30.181Z",
+  "target": "C:\\gv_store_integration_20260918",
+  "detachedHead": "83b2283a09ad1893e10fcd27d5d8ceb6dbaf4d6d",
+  "candidateSource": "C:/grookai_vault_storefronts_v1",
+  "candidateHead": "a14388f689235d62b3165c1dd88aaa4c562ab186",
+  "candidatePatchSha256": "31d6ed38291a63528b7ed125179b02feabdb5cc902d5d91dbbfe441ad3b32ba2",
+  "pr473Head": "6e747bb1561354fc56b62c73be39f258da506f15",
+  "pr473MergeBase": "8bf503314431c0de89d362f15d2c0a48e62cb4b6",
+  "prFiles": [
+    {
+      "path": "docs/contracts/VAULT_UNASSIGNED_ADD_REPAIR_V1.md",
+      "status": "added",
+      "sha256": "088473525c436b664078f3d66ee508402aff5c5f77029fd4cb3e40c4f107a5e0"
+    },
+    {
+      "path": "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+      "status": "resolved retaining both checkpoints",
+      "oursSha256": "628857c0d4c9e65fe3733fdea2e1dc042d7a8acb9bf421f2014b11b82402b73e",
+      "baseSha256": "d403371257acb67492953ef2d82cf87fdc66d5910897f96bdb8ea38a63befe19",
+      "prSha256": "ee19b55b41d1a0e742f10fa976f83f44869a8e2df447ae6d9e2ba3cce7076d97",
+      "combinedSha256": "d591d9082115127ebe79ff312ee0ed379f007e6faf3437f0c711c5d7ac88c035"
+    },
+    {
+      "path": "docs/ops/VAULT_UNASSIGNED_ADD_CHECKPOINT_20260916.md",
+      "status": "added",
+      "sha256": "706c037b6649fca2402ef55f0bf1d0fd64f538fe37a603760cc59a4e3f64e5f7"
+    },
+    {
+      "path": "lib/card_detail_screen.dart",
+      "status": "combined cleanly",
+      "oursSha256": "aea5987ec138b2db311054a26846de20f0fd43ecabb96d023d0be1101fe121af",
+      "baseSha256": "aea5987ec138b2db311054a26846de20f0fd43ecabb96d023d0be1101fe121af",
+      "prSha256": "b6ceaf6e7b40886c82644bfae04a6e56612928b0bc21f6906b7956b67bd1e862",
+      "combinedSha256": "b6ceaf6e7b40886c82644bfae04a6e56612928b0bc21f6906b7956b67bd1e862"
+    },
+    {
+      "path": "lib/main.dart",
+      "status": "combined cleanly",
+      "oursSha256": "54df1653aa07026d282f9e8030dc08938632f8c77113ee47a48e07ff96eea96a",
+      "baseSha256": "5a2b0174180da8610bbdcd5e7e1ea79dd0bf11aec9d3133da1742160d54d7355",
+      "prSha256": "e3fd0437c1aae09aa49de0c5019232de377e665b4b4646d3886c9c4ebf5a039c",
+      "combinedSha256": "b646647ae9e5d33733699ab4cffad1a26d8706cf8f80fbdb55ce13ae764b6ebc"
+    },
+    {
+      "path": "lib/services/public/public_card_printing_options_service.dart",
+      "status": "combined cleanly",
+      "oursSha256": "ae7cf58abeaba5685455c5852ed9b0a6dca7fcea3e1fee826b232fc0fd5316e1",
+      "baseSha256": "ae7cf58abeaba5685455c5852ed9b0a6dca7fcea3e1fee826b232fc0fd5316e1",
+      "prSha256": "4a7d00488fc5c1b33b9c1b45b36a87ce6a20345a8376e75defdde8659d9d5859",
+      "combinedSha256": "4a7d00488fc5c1b33b9c1b45b36a87ce6a20345a8376e75defdde8659d9d5859"
+    },
+    {
+      "path": "lib/services/vault/vault_card_service.dart",
+      "status": "combined cleanly",
+      "oursSha256": "244b17ce4dd030eb0ccf8d3c7797760a80f9a58711922c1b9e865241f426fb8a",
+      "baseSha256": "244b17ce4dd030eb0ccf8d3c7797760a80f9a58711922c1b9e865241f426fb8a",
+      "prSha256": "0608d14e1c63767f443f7f757554357efb453208f29d553cddbdf09f26cfb6bb",
+      "combinedSha256": "0608d14e1c63767f443f7f757554357efb453208f29d553cddbdf09f26cfb6bb"
+    },
+    {
+      "path": "lib/widgets/vault/confirm_unassigned_printing.dart",
+      "status": "added",
+      "sha256": "a40276f97a8a888867618f05d381fd34ddc3178f2f79140a8212fb9160b1c5c3"
+    },
+    {
+      "path": "test/app_flow_prod_readiness_test.dart",
+      "status": "combined cleanly",
+      "oursSha256": "e75ce1942c11d6779053f3459da6ff6784c26db4536701aaf5d977081f8e90e2",
+      "baseSha256": "e75ce1942c11d6779053f3459da6ff6784c26db4536701aaf5d977081f8e90e2",
+      "prSha256": "b67086b8cbda56e4a80913f1d5dc9c77cd1b0b32605f5182adce490539b043a6",
+      "combinedSha256": "b67086b8cbda56e4a80913f1d5dc9c77cd1b0b32605f5182adce490539b043a6"
+    },
+    {
+      "path": "test/nav_friction_search_quick_add_test.dart",
+      "status": "combined cleanly",
+      "oursSha256": "497b4bca8f5774dadd0b8ee52801e4ef3ad2ec0178326e8905c6c28c7937b7d2",
+      "baseSha256": "497b4bca8f5774dadd0b8ee52801e4ef3ad2ec0178326e8905c6c28c7937b7d2",
+      "prSha256": "5d4c6ff0f5f7ca5c2d0f3438c92ace5e12db6b1ccf800ecac11094f045c3e32c",
+      "combinedSha256": "5d4c6ff0f5f7ca5c2d0f3438c92ace5e12db6b1ccf800ecac11094f045c3e32c"
+    },
+    {
+      "path": "test/public_card_printing_options_truth_boundary_test.dart",
+      "status": "combined cleanly",
+      "oursSha256": "d61eeb50bad5d80848e7728d9004e32ce3e5494e5ac6dc358ca36a185888edaa",
+      "baseSha256": "d61eeb50bad5d80848e7728d9004e32ce3e5494e5ac6dc358ca36a185888edaa",
+      "prSha256": "bff35c99c28b580bb756388f8b474972582afef73297553368dd4ea41999d51f",
+      "combinedSha256": "bff35c99c28b580bb756388f8b474972582afef73297553368dd4ea41999d51f"
+    },
+    {
+      "path": "test/vault_unassigned_add_test.dart",
+      "status": "added",
+      "sha256": "f00b7d19de32555dd8359a3a284684a323dab3e01b726bbee721b10125d3cf6f"
+    },
+    {
+      "path": "tests/sql/vault_unassigned_add_v1.sql",
+      "status": "added",
+      "sha256": "b410d030fa98ff2fb736a8b7d3bfc3d45ee95622b8c9196a1c3cba2d17ed6f0a"
+    }
+  ],
+  "noGitMergeOrCommit": true,
+  "sparseCheckout": true,
+  "trackedEnvironmentFilesExcluded": true
+}

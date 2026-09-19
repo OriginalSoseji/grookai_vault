@@ -140,6 +140,7 @@ export default async function AccountPage(props: AccountPageProps) {
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Quick Links</h2>
           <div className="mt-4 flex flex-col gap-3">
+            <Link href="/account/store" className="rounded-full bg-emerald-800 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-900">Manage store</Link>
             <Link
               href="/vault"
               className="rounded-full bg-slate-950 px-5 py-2.5 text-center text-sm font-medium text-white transition hover:bg-slate-800"

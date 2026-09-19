@@ -1,6 +1,9 @@
 # Flutter/Dart/Pub
 # Local env files (never commit real secrets)
 .env.local
+.local/storefront/
+.local/integration/
+apps/web/.next-storefront/
 .env.*
 !.env.example
 
@@ -124,6 +127,8 @@ tmp_schema_local.sql
 apps/web/src/app/api/*
 !apps/web/src/app/api/gvvi/
 !apps/web/src/app/api/gvvi/**
+!apps/web/src/app/api/stores/
+!apps/web/src/app/api/stores/**
 !apps/web/src/app/api/follows/
 apps/web/src/app/api/follows/*
 !apps/web/src/app/api/follows/state/

@@ -1,0 +1,119 @@
+// Runs only in the separate test shell with ADB loopback forwarding.
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
+import 'package:storefrontproof/main.dart' as app;
+import 'package:grookai_vault/screens/stores/custom_product_screen.dart';
+
+void main() {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  testWidgets(
+    'physical custom collectible authoring and publication',
+    (tester) async {
+      app.main();
+      final title =
+          'Samsung device collectible ${DateTime.now().millisecondsSinceEpoch}';
+      Future<void> until(Finder finder, {int seconds = 30}) async {
+        final stop = DateTime.now().add(Duration(seconds: seconds));
+        while (DateTime.now().isBefore(stop)) {
+          await tester.pump(const Duration(milliseconds: 300));
+          if (finder.evaluate().isNotEmpty) return;
+        }
+        throw StateError('Timed out waiting for $finder');
+      }
+
+      Future<void> reveal(Finder finder, {double delta = 450}) async {
+        FocusManager.instance.primaryFocus?.unfocus();
+        await tester.pumpAndSettle();
+        await tester.scrollUntilVisible(
+          finder,
+          delta,
+          scrollable: find.byType(Scrollable).first,
+          maxScrolls: 35,
+        );
+        await tester.pumpAndSettle();
+      }
+
+      Future<void> tap(Finder finder) async {
+        await reveal(finder);
+        await tester.tap(finder);
+        await tester.pumpAndSettle();
+      }
+
+      await until(find.text('Store identity'));
+      await tap(find.text('Add or manage custom collectibles'));
+      await until(find.text('Add custom collectible'));
+      await tap(find.text('Add custom collectible'));
+      await until(find.byKey(const ValueKey('custom_title')));
+      await tester.enterText(find.byKey(const ValueKey('custom_title')), title);
+      await tester.enterText(
+        find.byKey(const ValueKey('custom_description')),
+        'Synthetic local device test; seller-provided boxed collectible.',
+      );
+      for (final entry in {
+        'private_sku': 'DEVICE-PRIVATE-SKU',
+        'asking_price_amount': '42.50',
+        'available_quantity': '2',
+      }.entries) {
+        final f = find.byKey(ValueKey('custom_${entry.key}'));
+        await reveal(f);
+        print('DEVICE_FIELD=${entry.key}');
+        await tester.enterText(f, entry.value);
+        await tester.pumpAndSettle();
+      }
+      await tap(find.text('Save draft'));
+      await until(find.text('Edit custom collectible'));
+      await reveal(find.text('Upload photo · JPEG, PNG or WebP · 5 MB'));
+      print('DEVICE_PICK_PHOTO');
+      await tap(find.text('Upload photo · JPEG, PNG or WebP · 5 MB'));
+      await until(find.text('Photo 1'), seconds: 150);
+      print('DEVICE_PHOTO_UPLOADED');
+      final s = app.proofService();
+      final rows = await s.customProducts();
+      var product = (rows['products'] as List).cast<Map>().singleWhere(
+        (p) => p['title'] == title,
+      );
+      expect(product['published'], false);
+      expect((product['photo_paths'] as List).length, 1);
+      expect(product['available_quantity'], 2);
+      final box = find.widgetWithText(CheckboxListTile, 'Featured');
+      if (box.evaluate().isNotEmpty) {
+        await tap(box);
+      }
+      await tap(find.text('Preview saved product'));
+      await until(find.text('Seller-provided details'));
+      expect(find.byType(CustomProductScreen), findsOneWidget);
+      expect(find.text('Seller-provided details'), findsOneWidget);
+      print('DEVICE_PREVIEW_READY');
+      await tester.pump(const Duration(seconds: 15));
+      await tester.pageBack();
+      await tester.pumpAndSettle();
+      await tap(find.text('Publish saved product'));
+      await until(find.text('Publish this collectible?'));
+      await tester.tap(find.widgetWithText(FilledButton, 'Publish'));
+      await tester.pumpAndSettle();
+      rows['products'] = (await s.customProducts())['products'];
+      product = (rows['products'] as List).cast<Map>().singleWhere(
+        (p) => p['title'] == title,
+      );
+      expect(product['published'], true);
+      final visitor = app.proofService(visitor: true);
+      final dto = await visitor.product('test-store', product['id'].toString());
+      expect(dto['product']['title'], title);
+      expect((dto['product'] as Map).containsKey('private_sku'), false);
+      await tap(find.text('Unpublish'));
+      await until(find.text('Publish saved product'));
+      expect(
+        (await s.customProducts(
+          id: product['id'].toString(),
+        ))['products'][0]['published'],
+        false,
+      );
+      print('DEVICE_PRODUCT_ID=${product['id']}');
+      print('DEVICE_JOURNEY_PASSED');
+      s.dispose();
+      visitor.dispose();
+    },
+    timeout: const Timeout(Duration(minutes: 8)),
+  );
+}

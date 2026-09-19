@@ -1,0 +1,15 @@
+{
+  "results": [
+    "HTTP exact-copy app/web parity, no-store and private redaction",
+    "owner preview isolation, app auth and client-forged capabilities fail closed",
+    "second owner can configure, select, preview and publish app-only without a web grant",
+    "public web cannot be upgraded to app by request parameter; publication removes next read",
+    "client telemetry cannot create referral credit",
+    "private branding upload, preview, public delivery and revocation enforce owner scope",
+    "desktop browse, copy links, filtering and encrypted referral context",
+    "mobile browse, copy links, filtering and encrypted referral context",
+    "preview web auth preserves destination"
+  ],
+  "createdAt": "2026-09-18T05:38:59.400Z",
+  "proof": "Next routes and browser against synthetic SQL-backed HTTP adapter, not a full Supabase runtime"
+}

@@ -1,0 +1,2534 @@
+{
+  "status": "scoped_diagnostic_comparison_complete",
+  "applyAuthorized": false,
+  "strictPrePushPassed": false,
+  "productionObjects": 9341,
+  "replayObjects": 9494,
+  "additions": [
+    "column:public.vendor_referral_signups.credited_at",
+    "column:public.vendor_referral_signups.gvvi_id",
+    "column:public.vendor_referral_signups.referral_created_at",
+    "column:public.vendor_referral_signups.referred_user_id",
+    "column:public.vendor_referral_signups.store_id",
+    "column:public.vendor_referral_signups.vendor_user_id",
+    "column:public.vendor_store_custom_product_events.product_id",
+    "column:public.vendor_store_custom_product_events.recorded_at",
+    "column:public.vendor_store_custom_product_events.snapshot",
+    "column:public.vendor_store_custom_product_events.version",
+    "column:public.vendor_store_custom_product_sections.product_id",
+    "column:public.vendor_store_custom_product_sections.section_id",
+    "column:public.vendor_store_custom_product_sections.store_id",
+    "column:public.vendor_store_custom_products.archived_at",
+    "column:public.vendor_store_custom_products.asking_price_amount",
+    "column:public.vendor_store_custom_products.available_quantity",
+    "column:public.vendor_store_custom_products.category",
+    "column:public.vendor_store_custom_products.condition_description",
+    "column:public.vendor_store_custom_products.created_at",
+    "column:public.vendor_store_custom_products.description",
+    "column:public.vendor_store_custom_products.franchise",
+    "column:public.vendor_store_custom_products.id",
+    "column:public.vendor_store_custom_products.language",
+    "column:public.vendor_store_custom_products.manufacturer",
+    "column:public.vendor_store_custom_products.packaging_description",
+    "column:public.vendor_store_custom_products.photo_paths",
+    "column:public.vendor_store_custom_products.private_sku",
+    "column:public.vendor_store_custom_products.published",
+    "column:public.vendor_store_custom_products.release_region",
+    "column:public.vendor_store_custom_products.store_id",
+    "column:public.vendor_store_custom_products.suspension_reason",
+    "column:public.vendor_store_custom_products.title",
+    "column:public.vendor_store_custom_products.updated_at",
+    "column:public.vendor_store_custom_products.version",
+    "column:public.vendor_store_items.created_at",
+    "column:public.vendor_store_items.instance_id",
+    "column:public.vendor_store_items.store_id",
+    "column:public.vendor_store_rollout.app_enabled",
+    "column:public.vendor_store_rollout.custom_enabled",
+    "column:public.vendor_store_rollout.singleton",
+    "column:public.vendor_store_rollout.web_enabled",
+    "column:public.vendor_store_sections.position",
+    "column:public.vendor_store_sections.section_id",
+    "column:public.vendor_store_sections.store_id",
+    "column:public.vendor_stores.app_published",
+    "column:public.vendor_stores.banner_path",
+    "column:public.vendor_stores.created_at",
+    "column:public.vendor_stores.custom_currency",
+    "column:public.vendor_stores.description",
+    "column:public.vendor_stores.display_name",
+    "column:public.vendor_stores.first_published_at",
+    "column:public.vendor_stores.id",
+    "column:public.vendor_stores.logo_path",
+    "column:public.vendor_stores.owner_id",
+    "column:public.vendor_stores.slug",
+    "column:public.vendor_stores.updated_at",
+    "column:public.vendor_stores.web_published",
+    "constraint:public.vendor_referral_signups.vendor_referral_signups_check",
+    "constraint:public.vendor_referral_signups.vendor_referral_signups_check1",
+    "constraint:public.vendor_referral_signups.vendor_referral_signups_pkey",
+    "constraint:public.vendor_referral_signups.vendor_referral_signups_referred_user_id_fkey",
+    "constraint:public.vendor_referral_signups.vendor_referral_signups_store_id_fkey",
+    "constraint:public.vendor_referral_signups.vendor_referral_signups_vendor_user_id_fkey",
+    "constraint:public.vendor_store_custom_product_events.vendor_store_custom_product_events_pkey",
+    "constraint:public.vendor_store_custom_product_events.vendor_store_custom_product_events_product_id_fkey",
+    "constraint:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_pkey",
+    "constraint:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_store_id_product_id_fkey",
+    "constraint:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_store_id_section_id_fkey",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_asking_price_amount_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_available_quantity_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_category_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_condition_description_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_description_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_franchise_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_language_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_manufacturer_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_packaging_description_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_photo_paths_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_pkey",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_private_sku_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_release_region_check",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_store_id_fkey",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_store_id_id_key",
+    "constraint:public.vendor_store_custom_products.vendor_store_custom_products_title_check",
+    "constraint:public.vendor_store_items.vendor_store_items_instance_id_fkey",
+    "constraint:public.vendor_store_items.vendor_store_items_pkey",
+    "constraint:public.vendor_store_items.vendor_store_items_store_id_fkey",
+    "constraint:public.vendor_store_rollout.vendor_store_rollout_pkey",
+    "constraint:public.vendor_store_rollout.vendor_store_rollout_singleton_check",
+    "constraint:public.vendor_store_sections.vendor_store_sections_pkey",
+    "constraint:public.vendor_store_sections.vendor_store_sections_position_check",
+    "constraint:public.vendor_store_sections.vendor_store_sections_section_id_fkey",
+    "constraint:public.vendor_store_sections.vendor_store_sections_store_id_fkey",
+    "constraint:public.vendor_stores.vendor_stores_custom_currency_check",
+    "constraint:public.vendor_stores.vendor_stores_description_check",
+    "constraint:public.vendor_stores.vendor_stores_display_name_check",
+    "constraint:public.vendor_stores.vendor_stores_owner_id_fkey",
+    "constraint:public.vendor_stores.vendor_stores_owner_id_key",
+    "constraint:public.vendor_stores.vendor_stores_pkey",
+    "constraint:public.vendor_stores.vendor_stores_slug_check",
+    "constraint:public.vendor_stores.vendor_stores_slug_key",
+    "function:public.vendor_referral_credit_v1(p_referred_user_id uuid, p_store_id uuid, p_gvvi_id text, p_created_at timestamp with time zone, p_expires_at timestamp with time zone)",
+    "function:public.vendor_store_capabilities_v1(p_user_id uuid)",
+    "function:public.vendor_store_copy_reason_v1(p_owner uuid, p_instance uuid)",
+    "function:public.vendor_store_custom_detail_v1(p_slug text, p_product_id uuid, p_surface text)",
+    "function:public.vendor_store_custom_history_v1()",
+    "function:public.vendor_store_custom_media_owned_v1(p_name text)",
+    "function:public.vendor_store_custom_mutate_v1(p_product_id uuid, p_expected_version bigint, p_action text, p_data jsonb)",
+    "function:public.vendor_store_custom_owner_v1(p_product_id uuid, p_offset integer)",
+    "function:public.vendor_store_custom_presentation_v1(p_id uuid)",
+    "function:public.vendor_store_custom_reason_v1(p_id uuid)",
+    "function:public.vendor_store_custom_revoke_v1()",
+    "function:public.vendor_store_media_owned_v1(p_name text)",
+    "function:public.vendor_store_owner_v1()",
+    "function:public.vendor_store_publish_v1(p_surface text, p_publish boolean)",
+    "function:public.vendor_store_read_v1(p_slug text, p_surface text, p_query text, p_section_id uuid, p_condition text, p_kind text, p_offset integer, p_limit integer)",
+    "function:public.vendor_store_read_v2(p_slug text, p_surface text, p_query text, p_section_id uuid, p_condition text, p_kind text, p_offset integer, p_limit integer)",
+    "function:public.vendor_store_revoke_publication_v1()",
+    "function:public.vendor_store_save_v1(p_slug text, p_display_name text, p_description text)",
+    "function:public.vendor_store_select_item_v1(p_instance_id uuid, p_selected boolean)",
+    "function:public.vendor_store_select_section_v1(p_section_id uuid, p_selected boolean, p_position integer)",
+    "function:public.vendor_store_set_media_v1(p_kind text, p_path text)",
+    "index:public.vendor_referral_signups.vendor_referral_signups_pkey",
+    "index:public.vendor_store_custom_product_events.vendor_store_custom_product_events_pkey",
+    "index:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_pkey",
+    "index:public.vendor_store_custom_products.vendor_store_custom_products_pkey",
+    "index:public.vendor_store_custom_products.vendor_store_custom_products_store_id_id_key",
+    "index:public.vendor_store_items.vendor_store_items_instance_idx",
+    "index:public.vendor_store_items.vendor_store_items_pkey",
+    "index:public.vendor_store_rollout.vendor_store_rollout_pkey",
+    "index:public.vendor_store_sections.vendor_store_sections_pkey",
+    "index:public.vendor_stores.vendor_stores_owner_id_key",
+    "index:public.vendor_stores.vendor_stores_pkey",
+    "index:public.vendor_stores.vendor_stores_slug_key",
+    "policy:public.vendor_store_custom_product_sections.custom_sections_owner_read",
+    "policy:public.vendor_store_custom_products.custom_products_owner_read",
+    "policy:public.vendor_store_items.vendor_store_items_owner_read",
+    "policy:public.vendor_store_sections.vendor_store_sections_owner_read",
+    "policy:public.vendor_stores.vendor_stores_owner_read",
+    "policy:storage.objects.vendor_store_custom_media_insert",
+    "policy:storage.objects.vendor_store_media_insert",
+    "policy:storage.objects.vendor_store_media_owner_select",
+    "relation:public.vendor_referral_signups",
+    "relation:public.vendor_store_custom_product_events",
+    "relation:public.vendor_store_custom_product_sections",
+    "relation:public.vendor_store_custom_products",
+    "relation:public.vendor_store_items",
+    "relation:public.vendor_store_rollout",
+    "relation:public.vendor_store_sections",
+    "relation:public.vendor_stores",
+    "trigger:public.user_entitlements.vendor_store_custom_entitlement_revocation",
+    "trigger:public.user_entitlements.vendor_store_entitlement_revocation",
+    "trigger:public.vendor_store_custom_products.vendor_store_custom_history"
+  ],
+  "columnOrder": [
+    "column:public.card_prints.gv_id",
+    "column:public.card_prints.identity_domain",
+    "column:public.card_prints.image_note",
+    "column:public.card_prints.image_path",
+    "column:public.card_prints.number_plain",
+    "column:public.card_prints.printed_identity_modifier",
+    "column:public.card_prints.representative_image_url",
+    "column:public.card_prints.set_identity_model",
+    "column:public.pricing_jobs.last_error_class",
+    "column:public.pricing_jobs.last_meaningful_attempt_at",
+    "column:public.pricing_jobs.last_outcome",
+    "column:public.pricing_jobs.locked_at",
+    "column:public.pricing_jobs.locked_by",
+    "column:public.pricing_jobs.next_eligible_at",
+    "column:public.pricing_jobs.requester_user_id",
+    "column:public.sets.hero_image_source",
+    "column:public.sets.hero_image_url",
+    "column:public.sets.identity_domain_default",
+    "column:public.sets.identity_model",
+    "column:public.sets.printed_set_abbrev",
+    "column:public.sets.printed_total",
+    "column:public.sets.set_role"
+  ],
+  "unexpected": [],
+  "delta": [
+    {
+      "key": "column:public.card_prints.gv_id",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 30,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 31,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.card_prints.identity_domain",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 32,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 33,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.card_prints.image_note",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 36,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 37,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.card_prints.image_path",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 31,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 32,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.card_prints.number_plain",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 13,
+        "collation": "default",
+        "generated": "s",
+        "default_hash": "01ffd79e3ad5449d036c15b22d134f3a"
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": "01ffd79e3ad5449d036c15b22d134f3a",
+        "generated": "s",
+        "identity": "",
+        "not_null": false,
+        "position": 30,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.card_prints.printed_identity_modifier",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 33,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 34,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.card_prints.representative_image_url",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 35,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 36,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.card_prints.set_identity_model",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 34,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "62877bbc787760b09de896e6e69589c3"
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": "62877bbc787760b09de896e6e69589c3",
+        "generated": "",
+        "identity": "",
+        "not_null": true,
+        "position": 35,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.pricing_jobs.last_error_class",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 14,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 16,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.pricing_jobs.last_meaningful_attempt_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": false,
+        "position": 13,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": null,
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 15,
+        "type": "timestamp with time zone"
+      }
+    },
+    {
+      "key": "column:public.pricing_jobs.last_outcome",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 15,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 17,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.pricing_jobs.locked_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": false,
+        "position": 16,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": null,
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 11,
+        "type": "timestamp with time zone"
+      }
+    },
+    {
+      "key": "column:public.pricing_jobs.locked_by",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 17,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 12,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.pricing_jobs.next_eligible_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": false,
+        "position": 12,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": null,
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 14,
+        "type": "timestamp with time zone"
+      }
+    },
+    {
+      "key": "column:public.pricing_jobs.requester_user_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": false,
+        "position": 11,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": null,
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 13,
+        "type": "uuid"
+      }
+    },
+    {
+      "key": "column:public.sets.hero_image_source",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 14,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 17,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.sets.hero_image_url",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 13,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 16,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.sets.identity_domain_default",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 12,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 15,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.sets.identity_model",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 15,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "62877bbc787760b09de896e6e69589c3"
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": "62877bbc787760b09de896e6e69589c3",
+        "generated": "",
+        "identity": "",
+        "not_null": true,
+        "position": 18,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.sets.printed_set_abbrev",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 16,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 13,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.sets.printed_total",
+      "local": {
+        "acl": [],
+        "type": "integer",
+        "identity": "",
+        "not_null": false,
+        "position": 17,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": null,
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 12,
+        "type": "integer"
+      }
+    },
+    {
+      "key": "column:public.sets.set_role",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 18,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": {
+        "acl": [],
+        "collation": "default",
+        "default_hash": null,
+        "generated": "",
+        "identity": "",
+        "not_null": false,
+        "position": 14,
+        "type": "text"
+      }
+    },
+    {
+      "key": "column:public.vendor_referral_signups.credited_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 6,
+        "collation": null,
+        "generated": "",
+        "default_hash": "75230039beb12ce952f24927f2bfa2f2"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_referral_signups.gvvi_id",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 4,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_referral_signups.referral_created_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 5,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_referral_signups.referred_user_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_referral_signups.store_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": false,
+        "position": 3,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_referral_signups.vendor_user_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_product_events.product_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_product_events.recorded_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 3,
+        "collation": null,
+        "generated": "",
+        "default_hash": "75230039beb12ce952f24927f2bfa2f2"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_product_events.snapshot",
+      "local": {
+        "acl": [],
+        "type": "jsonb",
+        "identity": "",
+        "not_null": true,
+        "position": 4,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_product_events.version",
+      "local": {
+        "acl": [],
+        "type": "bigint",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_product_sections.product_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_product_sections.section_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 3,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_product_sections.store_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.archived_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": false,
+        "position": 18,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.asking_price_amount",
+      "local": {
+        "acl": [],
+        "type": "numeric(12,2)",
+        "identity": "",
+        "not_null": false,
+        "position": 13,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.available_quantity",
+      "local": {
+        "acl": [],
+        "type": "integer",
+        "identity": "",
+        "not_null": true,
+        "position": 14,
+        "collation": null,
+        "generated": "",
+        "default_hash": "cfcd208495d565ef66e7dff9f98764da"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.category",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 5,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.condition_description",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 10,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.created_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 20,
+        "collation": null,
+        "generated": "",
+        "default_hash": "75230039beb12ce952f24927f2bfa2f2"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.description",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 4,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.franchise",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 6,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": "f3b72bb359a50b640590970a2ab8e514"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.language",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 9,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.manufacturer",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 7,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.packaging_description",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 11,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.photo_paths",
+      "local": {
+        "acl": [],
+        "type": "text[]",
+        "identity": "",
+        "not_null": true,
+        "position": 15,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "f81a5133416544064d5b9b182f73a6e1"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.private_sku",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 12,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.published",
+      "local": {
+        "acl": [],
+        "type": "boolean",
+        "identity": "",
+        "not_null": true,
+        "position": 16,
+        "collation": null,
+        "generated": "",
+        "default_hash": "68934a3e9455fa72420237eb05902327"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.release_region",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 8,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.store_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.suspension_reason",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 17,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.title",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 3,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.updated_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 21,
+        "collation": null,
+        "generated": "",
+        "default_hash": "75230039beb12ce952f24927f2bfa2f2"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_custom_products.version",
+      "local": {
+        "acl": [],
+        "type": "bigint",
+        "identity": "",
+        "not_null": true,
+        "position": 19,
+        "collation": null,
+        "generated": "",
+        "default_hash": "c4ca4238a0b923820dcc509a6f75849b"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_items.created_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 3,
+        "collation": null,
+        "generated": "",
+        "default_hash": "75230039beb12ce952f24927f2bfa2f2"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_items.instance_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_items.store_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_rollout.app_enabled",
+      "local": {
+        "acl": [],
+        "type": "boolean",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": "68934a3e9455fa72420237eb05902327"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_rollout.custom_enabled",
+      "local": {
+        "acl": [],
+        "type": "boolean",
+        "identity": "",
+        "not_null": true,
+        "position": 4,
+        "collation": null,
+        "generated": "",
+        "default_hash": "68934a3e9455fa72420237eb05902327"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_rollout.singleton",
+      "local": {
+        "acl": [],
+        "type": "boolean",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": "b326b5062b2f0e69046810717534cb09"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_rollout.web_enabled",
+      "local": {
+        "acl": [],
+        "type": "boolean",
+        "identity": "",
+        "not_null": true,
+        "position": 3,
+        "collation": null,
+        "generated": "",
+        "default_hash": "68934a3e9455fa72420237eb05902327"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_sections.position",
+      "local": {
+        "acl": [],
+        "type": "integer",
+        "identity": "",
+        "not_null": true,
+        "position": 3,
+        "collation": null,
+        "generated": "",
+        "default_hash": "cfcd208495d565ef66e7dff9f98764da"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_sections.section_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_store_sections.store_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.app_published",
+      "local": {
+        "acl": [],
+        "type": "boolean",
+        "identity": "",
+        "not_null": true,
+        "position": 8,
+        "collation": null,
+        "generated": "",
+        "default_hash": "68934a3e9455fa72420237eb05902327"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.banner_path",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 7,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.created_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 11,
+        "collation": null,
+        "generated": "",
+        "default_hash": "75230039beb12ce952f24927f2bfa2f2"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.custom_currency",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 13,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "4675c94f96cabfc75e38fbf746eb84ae"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.description",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 5,
+        "collation": "default",
+        "generated": "",
+        "default_hash": "86e751880b3791dd7c2efae188915799"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.display_name",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 4,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.first_published_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": false,
+        "position": 10,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 1,
+        "collation": null,
+        "generated": "",
+        "default_hash": "f3b72bb359a50b640590970a2ab8e514"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.logo_path",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": false,
+        "position": 6,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.owner_id",
+      "local": {
+        "acl": [],
+        "type": "uuid",
+        "identity": "",
+        "not_null": true,
+        "position": 2,
+        "collation": null,
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.slug",
+      "local": {
+        "acl": [],
+        "type": "text",
+        "identity": "",
+        "not_null": true,
+        "position": 3,
+        "collation": "default",
+        "generated": "",
+        "default_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.updated_at",
+      "local": {
+        "acl": [],
+        "type": "timestamp with time zone",
+        "identity": "",
+        "not_null": true,
+        "position": 12,
+        "collation": null,
+        "generated": "",
+        "default_hash": "75230039beb12ce952f24927f2bfa2f2"
+      },
+      "production": null
+    },
+    {
+      "key": "column:public.vendor_stores.web_published",
+      "local": {
+        "acl": [],
+        "type": "boolean",
+        "identity": "",
+        "not_null": true,
+        "position": 9,
+        "collation": null,
+        "generated": "",
+        "default_hash": "68934a3e9455fa72420237eb05902327"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_referral_signups.vendor_referral_signups_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "831801536165da8abeca0f58402a4a56"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_referral_signups.vendor_referral_signups_check1",
+      "local": {
+        "validated": true,
+        "definition_hash": "f232c105c451e434e202d075773596fb"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_referral_signups.vendor_referral_signups_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "f39410655fcce3a60662fe6bf57fb359"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_referral_signups.vendor_referral_signups_referred_user_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "1b9f783ea8fc36da43b11df710b4f263"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_referral_signups.vendor_referral_signups_store_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "2c4eae0cab4bbb93db0fb73695bf8989"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_referral_signups.vendor_referral_signups_vendor_user_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "9e0ea05a8fc7776cb89dad1c82a908de"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_product_events.vendor_store_custom_product_events_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "3f2f032ae5d3fc4c188188bb407efdf1"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_product_events.vendor_store_custom_product_events_product_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "a0413ae1046ca1dedd1f32874adc9ae2"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "1c6921e61959b1a0aaa812edc493b7e0"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_store_id_product_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "ce50b19fb3484959fe8e54c95b3836ef"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_store_id_section_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "19cf6b752b811567a4ab9b7caef51aec"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_asking_price_amount_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "9887c1275c8e1ca8cb901bb0fcebd9c0"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_available_quantity_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "22da2b35fff4b90cd201e58592c439b0"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_category_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "ae74857e192f02bba15cbccce4d89b45"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_condition_description_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "4fe4b00db8f1b278a9fc90f9295c6b64"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_description_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "531fc4332c9568b40dd4792560f9036b"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_franchise_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "c5916b5606ee0afd6bc5495e80867f5d"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_language_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "c0d338a2b9afc44b7a1a63162216eb78"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_manufacturer_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "ad6442a968c3f996ad561d25466fabb2"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_packaging_description_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "c33ffeb3cf8a5f1f4f1ef587e865d484"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_photo_paths_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "6b968b709162f7a328396688d586caa2"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "4c6419b3704337bbfe50f018842a9ad3"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_private_sku_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "f79a27452e8490ec9736465a85f8d496"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_release_region_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "ca88dcf8a1b05702a3fe09f635e6d61e"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_store_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "2c4eae0cab4bbb93db0fb73695bf8989"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_store_id_id_key",
+      "local": {
+        "validated": true,
+        "definition_hash": "d9d6fb621981b83baaa10b01b7465fe1"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_custom_products.vendor_store_custom_products_title_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "2f3376a482701f58938be137070d3e9d"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_items.vendor_store_items_instance_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "834951363cbaf2caf294bbd8282bcd53"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_items.vendor_store_items_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "bd7052b5fa43c4eb921c3963602fb490"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_items.vendor_store_items_store_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "2c4eae0cab4bbb93db0fb73695bf8989"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_rollout.vendor_store_rollout_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "7511e9a8e50c073e1d6eff73afcc0f24"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_rollout.vendor_store_rollout_singleton_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "ae6f6dfbe38290d5bfa8f3e96d1aff91"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_sections.vendor_store_sections_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "dc3275c7763338c60ef4bc2cdf995d5f"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_sections.vendor_store_sections_position_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "920921a84700b2f682e7893e2f9e1823"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_sections.vendor_store_sections_section_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "010bcfff28d4e0edd8702351bfc2e877"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_store_sections.vendor_store_sections_store_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "2c4eae0cab4bbb93db0fb73695bf8989"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_custom_currency_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "0e8def315d83d7d0e86f59285e26b831"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_description_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "d0b593dcfaa0ef23073bf004192e411f"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_display_name_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "3bc0a9053a41984955727fa6a2613e5f"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_owner_id_fkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "50d81623a219dd2c5064b1dd59c06929"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_owner_id_key",
+      "local": {
+        "validated": true,
+        "definition_hash": "1a91c0b3a3df12a3b2863cfdb8b77e48"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_pkey",
+      "local": {
+        "validated": true,
+        "definition_hash": "4c6419b3704337bbfe50f018842a9ad3"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_slug_check",
+      "local": {
+        "validated": true,
+        "definition_hash": "fd4085514fdb64688cfa51028dd30361"
+      },
+      "production": null
+    },
+    {
+      "key": "constraint:public.vendor_stores.vendor_stores_slug_key",
+      "local": {
+        "validated": true,
+        "definition_hash": "687397275d0e852fb2a4b50394adffee"
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_referral_credit_v1(p_referred_user_id uuid, p_store_id uuid, p_gvvi_id text, p_created_at timestamp with time zone, p_expires_at timestamp with time zone)",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "22914c389d7b3383d960a82d897ba21e",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_capabilities_v1(p_user_id uuid)",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "12ff6d102a0d5c1ad237091b4fc8654a",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_copy_reason_v1(p_owner uuid, p_instance uuid)",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "f43cb45560eed0bb1bbb2a36dc85e51c",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_detail_v1(p_slug text, p_product_id uuid, p_surface text)",
+      "local": {
+        "acl": [
+          "anon=X/postgres",
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "60bca7a312f4b12c95e008a873aa5819",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_history_v1()",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "6b61963bcbb29d0eb5e4d579ac0cc205",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_media_owned_v1(p_name text)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "476cbf55201e7362a9c8e12e41b1d69f",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_mutate_v1(p_product_id uuid, p_expected_version bigint, p_action text, p_data jsonb)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "2e9ed01bec637c00ca82b41d155c086c",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_owner_v1(p_product_id uuid, p_offset integer)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "d45c724b583d456b6a6b7ab1437bb3f6",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_presentation_v1(p_id uuid)",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "c06461b2d923c879f41b0bb73553cb87",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_reason_v1(p_id uuid)",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "27c7d74c7cc2a0f10da59402d0dc4375",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_custom_revoke_v1()",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "9a2db0881a2794e85e5d154dfac0d18f",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_media_owned_v1(p_name text)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "678c957f694098f69dcb273e75f758a4",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_owner_v1()",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "ce90de3c08e94c5af447d15fd3e5ec7a",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_publish_v1(p_surface text, p_publish boolean)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "3c2cff43d68d7e27ec5fe1f658f88979",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_read_v1(p_slug text, p_surface text, p_query text, p_section_id uuid, p_condition text, p_kind text, p_offset integer, p_limit integer)",
+      "local": {
+        "acl": [
+          "anon=X/postgres",
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "2b78178ecfe376a1979e05d5fe6d9edc",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_read_v2(p_slug text, p_surface text, p_query text, p_section_id uuid, p_condition text, p_kind text, p_offset integer, p_limit integer)",
+      "local": {
+        "acl": [
+          "anon=X/postgres",
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "1b48793466db8f10f3e8a7ad015f7f9d",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_revoke_publication_v1()",
+      "local": {
+        "acl": [
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "2f3cbd31e3bc95532737a41337649b6c",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_save_v1(p_slug text, p_display_name text, p_description text)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "30df04fe3345f3aba5f107624f3b3f2c",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_select_item_v1(p_instance_id uuid, p_selected boolean)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "bd5c391030842c5ceb3ae4eac3b92fbf",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_select_section_v1(p_section_id uuid, p_selected boolean, p_position integer)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "8451ce6c2b6e3615c63a928f35c14611",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "function:public.vendor_store_set_media_v1(p_kind text, p_path text)",
+      "local": {
+        "acl": [
+          "authenticated=X/postgres",
+          "postgres=X/postgres",
+          "service_role=X/postgres"
+        ],
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definition_hash": "d6123dbde0b1bd4ecb3f8a1e291b3447",
+        "security_definer": true
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_referral_signups.vendor_referral_signups_pkey",
+      "local": {
+        "definition_hash": "5e5380e90664d2a17caf827f0227ca3a"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_custom_product_events.vendor_store_custom_product_events_pkey",
+      "local": {
+        "definition_hash": "25362a04958f20b48a0aeb1e8ca41f59"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_custom_product_sections.vendor_store_custom_product_sections_pkey",
+      "local": {
+        "definition_hash": "5b7dbd120e9820e82a0610e625134af8"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_custom_products.vendor_store_custom_products_pkey",
+      "local": {
+        "definition_hash": "86f472eafe952858cfc4dc7b8769cd00"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_custom_products.vendor_store_custom_products_store_id_id_key",
+      "local": {
+        "definition_hash": "ad3f0ac62845711af57bd4f0ca244416"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_items.vendor_store_items_instance_idx",
+      "local": {
+        "definition_hash": "92c49d04942703f5c9a196e404edc3cc"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_items.vendor_store_items_pkey",
+      "local": {
+        "definition_hash": "9fb7489589308a994d47945fac81b452"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_rollout.vendor_store_rollout_pkey",
+      "local": {
+        "definition_hash": "c18ed56545a765dabe4340e165455210"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_store_sections.vendor_store_sections_pkey",
+      "local": {
+        "definition_hash": "d4360b354e8ee06970b6ae4a734ec4ce"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_stores.vendor_stores_owner_id_key",
+      "local": {
+        "definition_hash": "e218d64c94a63cf93e5f8d6037c3017b"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_stores.vendor_stores_pkey",
+      "local": {
+        "definition_hash": "4068ba401baf2c80bc5f543d553cc868"
+      },
+      "production": null
+    },
+    {
+      "key": "index:public.vendor_stores.vendor_stores_slug_key",
+      "local": {
+        "definition_hash": "2f37e438863b6a5d0493609fc00bc394"
+      },
+      "production": null
+    },
+    {
+      "key": "policy:public.vendor_store_custom_product_sections.custom_sections_owner_read",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "SELECT",
+        "check_hash": null,
+        "permissive": "PERMISSIVE",
+        "using_hash": "c3b31471daff8c03008d8e6d5da2bb79"
+      },
+      "production": null
+    },
+    {
+      "key": "policy:public.vendor_store_custom_products.custom_products_owner_read",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "SELECT",
+        "check_hash": null,
+        "permissive": "PERMISSIVE",
+        "using_hash": "7b5f89caf4c1dee93f24f1ed7dfc186b"
+      },
+      "production": null
+    },
+    {
+      "key": "policy:public.vendor_store_items.vendor_store_items_owner_read",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "SELECT",
+        "check_hash": null,
+        "permissive": "PERMISSIVE",
+        "using_hash": "11e9cf49c343ab76c762e87bfed5049e"
+      },
+      "production": null
+    },
+    {
+      "key": "policy:public.vendor_store_sections.vendor_store_sections_owner_read",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "SELECT",
+        "check_hash": null,
+        "permissive": "PERMISSIVE",
+        "using_hash": "9195d676ab9e691635edd2b914aea975"
+      },
+      "production": null
+    },
+    {
+      "key": "policy:public.vendor_stores.vendor_stores_owner_read",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "SELECT",
+        "check_hash": null,
+        "permissive": "PERMISSIVE",
+        "using_hash": "e0c5f772f714c133ab547fbb3f6befbd"
+      },
+      "production": null
+    },
+    {
+      "key": "policy:storage.objects.vendor_store_custom_media_insert",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "INSERT",
+        "check_hash": "00ce5096e340a629a5665f548777cc3f",
+        "permissive": "PERMISSIVE",
+        "using_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "policy:storage.objects.vendor_store_media_insert",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "INSERT",
+        "check_hash": "4887b3119d1d9e7cb57ca154440d82e2",
+        "permissive": "PERMISSIVE",
+        "using_hash": null
+      },
+      "production": null
+    },
+    {
+      "key": "policy:storage.objects.vendor_store_media_owner_select",
+      "local": {
+        "roles": [
+          "authenticated"
+        ],
+        "command": "SELECT",
+        "check_hash": null,
+        "permissive": "PERMISSIVE",
+        "using_hash": "cd54a6b8f5c091076491b7522070408b"
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_referral_signups",
+      "local": {
+        "acl": [
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_store_custom_product_events",
+      "local": {
+        "acl": [
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_store_custom_product_sections",
+      "local": {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_store_custom_products",
+      "local": {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_store_items",
+      "local": {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_store_rollout",
+      "local": {
+        "acl": [
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_store_sections",
+      "local": {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "relation:public.vendor_stores",
+      "local": {
+        "acl": [
+          "authenticated=r/postgres",
+          "postgres=arwdDxtm/postgres",
+          "service_role=arwdDxtm/postgres"
+        ],
+        "rls": true,
+        "kind": "r",
+        "owner": "postgres",
+        "options": null,
+        "force_rls": false
+      },
+      "production": null
+    },
+    {
+      "key": "trigger:public.user_entitlements.vendor_store_custom_entitlement_revocation",
+      "local": {
+        "enabled": "O",
+        "definition_hash": "c95d7558d07d68359278e75623d83508"
+      },
+      "production": null
+    },
+    {
+      "key": "trigger:public.user_entitlements.vendor_store_entitlement_revocation",
+      "local": {
+        "enabled": "O",
+        "definition_hash": "9fa7d9ea1fafc23224385cb270ee3b40"
+      },
+      "production": null
+    },
+    {
+      "key": "trigger:public.vendor_store_custom_products.vendor_store_custom_history",
+      "local": {
+        "enabled": "O",
+        "definition_hash": "2afc3e41713944df9d86974e4a0da6a5"
+      },
+      "production": null
+    }
+  ]
+}

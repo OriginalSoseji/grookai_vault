@@ -84,6 +84,7 @@
                 <data android:pathPrefix="/set/" />
                 <data android:pathPrefix="/sets/" />
                 <data android:pathPrefix="/gvvi/" />
+                <data android:pathPrefix="/store/" />
                 <data android:path="/dex" />
                 <data android:pathPrefix="/dex/" />
                 <data android:path="/network" />

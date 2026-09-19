@@ -34,6 +34,37 @@ The goal is to **never** repeat the migration drift and shadow DB errors we just
 
 ## 1. Principles
 
+### Storefront Release Isolated Replay (2026-09-19 UTC)
+
+The unapplied storefront candidate consolidates its three historical migrations
+into `20260919050000_vendor_storefront_release_v1.sql`. Their original bytes remain
+under `docs/audits/vendor_storefront_release_package_v1/historical_migrations`.
+This is valid only while none of those three migration IDs has been applied remotely.
+
+For this sole pending release, both strict phases accept
+`-StorefrontReleaseIsolatedReplay -ExpectedLocalOnlyIds 20260919050000`.
+Combining exceptions or supplying other pending IDs fails before CLI access.
+The duplicate-object scanner is unchanged.
+
+The baseline phase uses the pinned 0.6.1 inspection engine in a repeatable-read,
+read-only production transaction through authenticated CLI access. It compares
+the complete 394-migration local baseline, including a separate security comparison.
+Only the existing exact three-table column-order reconciliation is allowed; no
+function/view SQL is suppressed. Generated SQL stays private and is never executed.
+
+The replay phase requires a fresh baseline receipt bound to source and tool hashes.
+It resets only `C:/gv_store_release_20260919/.local/integration/release-replay`,
+project `grookai-storefront-release-20260919`, database port 16822. The configuration,
+release hash, 395 source/copy hashes, internal database network, disabled background
+workers, and empty application data are checked before reset. The actual CLI command
+includes `--local --no-seed --yes`, the explicit workdir and dedicated network.
+Afterward the complete ledger, disabled rollout flags, and exact schema/definition/
+ACL/policy footprint against the original 397-migration candidate must match.
+
+This path does not reset the populated 164xx proof environment, weaken the default
+gate, authorize production application, or replace catalog dependency coordination.
+The hard-bound rehearsal is intentionally not a general-purpose database reset tool.
+
 ### Collector Cameo Isolated Replay (2026-09-12)
 
 For the sole pending migration `20260912050000`, the strict gate accepts

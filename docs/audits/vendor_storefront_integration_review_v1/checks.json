@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-09-19T04:47:07.485Z",
+  "base": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "previousCandidateModifiedFiles": [
+    "AGENTS.md",
+    "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md"
+  ],
+  "sourceTestsPassed": 14,
+  "sqlTestsPassed": 3,
+  "releaseSecretPackaging": "passed",
+  "reproducibleMigration": "passed",
+  "pr473CodeReverseCheck": "passed",
+  "catalogComparison": "passed",
+  "logHashes": {
+    "integration-review-tests.log": "99dbd29ba317a3894248b3f3c2b6e183d236e5a9bc667aa8e80e6ccb7b832825",
+    "release-integration-review-sql.log": "4a0716006a11ad33e52ecc2a651fce3a97a4cdf62fc54e17272e60e786dbde19",
+    "catalog-integration-review.log": "499bec484d263668984bfd6dbbfa4a45a3e6344371285200db920473e8a6e5a2"
+  },
+  "containers": [
+    {
+      "name": "supabase_db_grookai-storefront-release-20260919",
+      "running": false
+    },
+    {
+      "name": "grookai-storefront-release-relay-20260919",
+      "running": false
+    },
+    {
+      "name": "supabase_db_grookai-storefront-verification-20260918",
+      "running": false
+    }
+  ],
+  "branch": "review/vendor-storefronts-release-20260919",
+  "fullShipcheck": "not_run",
+  "committed": false,
+  "staged": true
+}

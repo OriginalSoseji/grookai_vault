@@ -1,0 +1,41 @@
+{
+  "recordedAt": "2026-09-18T15:12:37.101Z",
+  "device": "Samsung SM-S908U (physical)",
+  "package": "com.grookai.storefrontauthproof",
+  "exitCode": 0,
+  "commonPackageVersionDifferences": 0,
+  "actions": [
+    {
+      "marker": "NATIVE_SEND_STORE_LOGIN",
+      "uri": "grookai://store/native-proof-1789743718650",
+      "result": "Starting: Intent { act=android.intent.action.VIEW dat=grookai://store/... cmp=com.grookai.storefrontauthproof/.MainActivity }\r\nWarning: Activity not started, intent has been delivered to currently running top-most instance.\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.grookai.storefrontauthproof/.MainActivity\r\nTotalTime: 0\r\nWaitTime: 9\r\nComplete\r\n",
+      "at": "2026-09-18T15:11:08.985Z"
+    },
+    {
+      "marker": "NATIVE_SEND_PRODUCT_PREVIEW",
+      "uri": "grookai://store/native-proof-1789743718650/products/20878e87-ea37-4ebb-b394-e1cf12b0389e?preview=1",
+      "result": "Starting: Intent { act=android.intent.action.VIEW dat=grookai://store/... cmp=com.grookai.storefrontauthproof/.MainActivity }\r\nWarning: Activity not started, intent has been delivered to currently running top-most instance.\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.grookai.storefrontauthproof/.MainActivity\r\nTotalTime: 0\r\nWaitTime: 7\r\nComplete\r\n",
+      "at": "2026-09-18T15:11:44.953Z"
+    },
+    {
+      "marker": "NATIVE_SEND_VISITOR_PRODUCT",
+      "uri": "grookai://store/native-proof-1789743718650/products/20878e87-ea37-4ebb-b394-e1cf12b0389e",
+      "result": "Starting: Intent { act=android.intent.action.VIEW dat=grookai://store/... cmp=com.grookai.storefrontauthproof/.MainActivity }\r\nWarning: Activity not started, intent has been delivered to currently running top-most instance.\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.grookai.storefrontauthproof/.MainActivity\r\nTotalTime: 0\r\nWaitTime: 11\r\nComplete\r\n",
+      "at": "2026-09-18T15:12:04.542Z"
+    },
+    {
+      "marker": "NATIVE_SEND_VISITOR_PREVIEW",
+      "uri": "grookai://store/native-proof-1789743718650/products/20878e87-ea37-4ebb-b394-e1cf12b0389e?preview=1",
+      "result": "Starting: Intent { act=android.intent.action.VIEW dat=grookai://store/... cmp=com.grookai.storefrontauthproof/.MainActivity }\r\nWarning: Activity not started, intent has been delivered to currently running top-most instance.\r\nStatus: ok\r\nLaunchState: UNKNOWN (0)\r\nActivity: com.grookai.storefrontauthproof/.MainActivity\r\nTotalTime: 0\r\nWaitTime: 8\r\nComplete\r\n",
+      "at": "2026-09-18T15:12:20.596Z"
+    }
+  ],
+  "captures": [
+    "NATIVE_STORE_AUTH_PASSED",
+    "NATIVE_MANAGEMENT_PASSED",
+    "NATIVE_PRODUCT_PREVIEW_AUTH_PASSED",
+    "NATIVE_VISITOR_PRODUCT_AUTH_PASSED",
+    "NATIVE_FOREIGN_PREVIEW_DENIED"
+  ],
+  "completed": true
+}

@@ -1,0 +1,89 @@
+{
+  "recordedAt": "2026-09-18T05:49:29.460Z",
+  "environment": "Verified synthetic PostgreSQL 127.0.0.1:15438 + synthetic HTTP Auth/Storage adapter 15439 + guarded Next 15440; no remote application testing",
+  "checks": [
+    {
+      "command": "node scripts/tests/vendor_custom_collectibles_local_v1.mjs",
+      "passed": 49,
+      "receipt": "sql-receipt.json"
+    },
+    {
+      "command": "node scripts/tests/vendor_custom_collectibles_browser_v1.mjs",
+      "passed": 9,
+      "receipt": "browser-receipt.json"
+    },
+    {
+      "command": "node scripts/tests/vendor_storefront_browser_v1.mjs",
+      "passed": 9,
+      "precondition": "Dedicated synthetic custom_enabled=false; re-enabled for custom proof",
+      "receipt": "legacy-browser-receipt.json"
+    },
+    {
+      "command": "flutter test --no-pub test/custom_collectibles_v1_test.dart test/storefront_v1_test.dart test/gvvi_vendor_offer_mobile_test.dart test/vendor_mode_workspace_test.dart",
+      "passed": 18,
+      "receipt": "flutter-tests.log"
+    },
+    {
+      "command": "flutter test --no-pub --update-goldens --dart-define=CUSTOM_VISUALS=true test/custom_collectibles_v1_test.dart",
+      "passed": 7,
+      "detail": "Optional native PNG generation; included in 18 unique Flutter tests, not additional coverage"
+    },
+    {
+      "command": "node --test scripts/tests/vendor_storefront_runtime_v1.test.mjs",
+      "passed": 7
+    },
+    {
+      "command": "node --test tests/contracts/gvvi_vendor_qr_v1.test.mjs tests/contracts/grookai_user_entitlements_v1.test.mjs tests/contracts/vendor_mode_workspace_v1.test.mjs",
+      "passed": 21,
+      "receipt": "legacy-contracts.log"
+    },
+    {
+      "command": "node --experimental-strip-types --test src/lib/gvvi/vendorQrCore.test.ts",
+      "cwd": "apps/web",
+      "passed": 6
+    },
+    {
+      "command": "flutter analyze --no-pub lib/services/stores lib/screens/stores lib/services/navigation/grookai_web_route_service.dart lib/main.dart lib/main_shell.dart lib/screens/network/network_screen.dart test/custom_collectibles_v1_test.dart",
+      "result": "No issues",
+      "receipt": "flutter-analyze.log"
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "cwd": "apps/web",
+      "result": "Passed"
+    },
+    {
+      "command": "npx eslint src/lib/stores src/components/stores 'src/app/api/stores/**/route.ts' 'src/app/store/**/page.tsx' --max-warnings=0",
+      "cwd": "apps/web",
+      "result": "Passed"
+    },
+    {
+      "command": "node scripts/tests/vendor_storefront_web_local.mjs --build",
+      "result": "Passed; 27 static pages plus dynamic custom store/API routes",
+      "receipt": "web-build.log"
+    },
+    {
+      "command": "git diff --check",
+      "result": "Passed"
+    }
+  ],
+  "gates": [
+    {
+      "check": "Strict linked schema AuditLinkedSchema",
+      "result": "Cannot find project ref; intentionally unlinked candidate, no remote project linked"
+    },
+    {
+      "check": "Docker server info pinned to npipe:////./pipe/docker_engine",
+      "result": "ETIMEDOUT after 10000ms; no service reset; real Supabase proof unavailable"
+    },
+    {
+      "check": "Physical device/media picker/deployed deep links",
+      "result": "Not executed; widget/browser proofs only"
+    },
+    {
+      "check": "Schema dependencies/current main/PR473 integration and production release",
+      "result": "Separate coordinated review required; no remote mutation performed"
+    }
+  ],
+  "receiptNote": "Text logs normalize line endings and trailing whitespace; original console logs remain under .local/storefront."
+}

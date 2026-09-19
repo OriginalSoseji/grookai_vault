@@ -1,0 +1,136 @@
+// Copy to the separate com.grookai.storefrontproof test shell; never a release entry.
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:app_links/app_links.dart';
+import 'package:grookai_vault/services/stores/storefront_service.dart';
+import 'package:grookai_vault/services/navigation/grookai_web_route_service.dart';
+import 'package:grookai_vault/screens/stores/store_management_screen.dart';
+import 'package:grookai_vault/screens/stores/storefront_screen.dart';
+import 'package:grookai_vault/screens/stores/custom_product_screen.dart';
+
+class LocalOnlyClient extends http.BaseClient {
+  final http.Client _inner = http.Client();
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) {
+    if (request.url.scheme != 'http' ||
+        request.url.host != '127.0.0.1' ||
+        !{15439, 15440}.contains(request.url.port))
+      throw StateError('Blocked non-fixture request');
+    return _inner.send(request);
+  }
+
+  @override
+  void close() => _inner.close();
+}
+
+StorefrontService proofService({bool visitor = false}) {
+  const owner = String.fromEnvironment('FIXTURE_OWNER_TOKEN');
+  const viewer = String.fromEnvironment('FIXTURE_VISITOR_TOKEN');
+  if (owner.isEmpty || viewer.isEmpty)
+    throw StateError('Synthetic fixture tokens required');
+  final token = visitor ? viewer : owner;
+  final supabase = SupabaseClient(
+    'http://127.0.0.1:15439',
+    'storefront-local-anon-only',
+    accessToken: () async => token,
+    httpClient: LocalOnlyClient(),
+  );
+  return StorefrontService(
+    client: LocalOnlyClient(),
+    supabase: supabase,
+    baseUrl: 'http://127.0.0.1:15440',
+    accessToken: token,
+  );
+}
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const StorefrontProofApp());
+}
+
+class StorefrontProofApp extends StatefulWidget {
+  const StorefrontProofApp({super.key});
+  @override
+  State<StorefrontProofApp> createState() => _ProofState();
+}
+
+class _ProofState extends State<StorefrontProofApp> {
+  final navigator = GlobalKey<NavigatorState>();
+  late final owner = proofService();
+  StreamSubscription<Uri>? links;
+  @override
+  void initState() {
+    super.initState();
+    final appLinks = AppLinks();
+    links = appLinks.uriLinkStream.listen(_open);
+    appLinks.getInitialLink().then((u) {
+      if (u != null) _open(u);
+    });
+  }
+
+  void _open(Uri uri) {
+    if (!mounted) return;
+    if (navigator.currentState == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _open(uri));
+      return;
+    }
+    final route = GrookaiWebRouteService.parseCanonicalUri(uri);
+    if (route == null) return;
+    final service = route.preview ? owner : proofService(visitor: true);
+    final Widget screen;
+    if (route.kind == GrookaiCanonicalRouteKind.storeProduct) {
+      screen = CustomProductScreen(
+        slug: route.value,
+        productId: route.productId!,
+        preview: route.preview,
+        service: service,
+      );
+    } else if (route.kind == GrookaiCanonicalRouteKind.store) {
+      screen = StorefrontScreen(
+        slug: route.value,
+        preview: route.preview,
+        service: service,
+      );
+    } else {
+      return;
+    }
+    navigator.currentState?.push(
+      MaterialPageRoute<void>(builder: (_) => screen),
+    );
+  }
+
+  @override
+  void dispose() {
+    links?.cancel();
+    owner.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+    navigatorKey: navigator,
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(useMaterial3: true),
+    builder: (context, child) => Column(
+      children: [
+        const SafeArea(
+          bottom: false,
+          child: Material(
+            color: Color(0xff783b13),
+            child: Padding(
+              padding: EdgeInsets.all(6),
+              child: Text(
+                'LOCAL STOREFRONT PROOF · Synthetic accounts',
+                style: TextStyle(color: Colors.white, fontSize: 11),
+              ),
+            ),
+          ),
+        ),
+        Expanded(child: child!),
+      ],
+    ),
+    home: StoreManagementScreen(service: owner),
+  );
+}

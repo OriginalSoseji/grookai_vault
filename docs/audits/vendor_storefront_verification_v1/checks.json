@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-09-18T06:30:22.307Z",
+  "sqlPassed": 49,
+  "browserPassed": 9,
+  "physicalIntegrationTestsPassed": 1,
+  "observedDeviceIntents": [
+    "cold owner product preview",
+    "warm visitor mixed storefront",
+    "unpublished product denied for visitor"
+  ],
+  "shellAnalysis": "No issues found",
+  "javaTrust": "task-local copy plus already Windows-trusted public inspection root",
+  "realSupabase": "blocked; Docker API unresponsive; no shared restart",
+  "cleanup": {
+    "taskPortsStopped": [
+      15438,
+      15439,
+      15440
+    ],
+    "proofAppUninstalled": true,
+    "taskAdbMappingsRemoved": true,
+    "originalAppPackagesPreserved": true,
+    "sharedListenersPreserved": [
+      54321,
+      54330
+    ]
+  },
+  "changedSinceStart": [
+    "AGENTS.md",
+    "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+    "scripts/tests/vendor_storefront_http_fixture.mjs"
+  ]
+}

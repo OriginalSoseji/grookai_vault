@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-09-18T19:00:02.517Z",
+  "testedMain": "83b2283a09ad1893e10fcd27d5d8ceb6dbaf4d6d",
+  "finalObservedMain": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "pr473Head": "6e747bb1561354fc56b62c73be39f258da506f15",
+  "pr473State": "OPEN",
+  "changedPaths": [
+    "AGENTS.md",
+    "apps/web/src/lib/catalogDisplayReference.ts",
+    "apps/web/src/lib/catalogPresentation.test.mjs",
+    "apps/web/src/lib/getPublicCardByGvId.ts",
+    "apps/web/src/lib/publicSets.shared.ts",
+    "apps/web/src/lib/resolver/normalizeQuery.ts",
+    "apps/web/src/lib/search/exactGvId.test.mjs",
+    "apps/web/src/lib/search/exactGvId.ts",
+    "apps/web/src/lib/search/smartSearchIntent.ts",
+    "docs/audits/founder_ops_dashboard_v1/deferred_report_v1.json",
+    "docs/audits/founder_ops_dashboard_v1/quarantine_report_v1.json",
+    "docs/audits/founder_ops_dashboard_v1/runtime_health_v1.json",
+    "docs/audits/founder_ops_dashboard_v1/runtime_preflight_v1.json",
+    "docs/audits/founder_ops_dashboard_v1/trend_history_v1.json",
+    "docs/ops/COLLECTOR_PRINTING_READBACK_20260918.md",
+    "tests/contracts/grookai_ai_search_boundary_v1.test.mjs"
+  ],
+  "commits": [
+    "a151794a9 fix(web): preserve exact printing searches and anthology coordinates (#494)",
+    "54a924555 chore: update founder ops dashboard snapshots"
+  ],
+  "imported": false
+}

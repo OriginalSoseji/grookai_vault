@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-09-18T20:19:05.702Z",
+  "realSupabase": true,
+  "results": [
+    {
+      "name": "real API owner isolation and public/private projection",
+      "passed": true
+    },
+    {
+      "name": "real Storage bytes delivered only through guarded no-store media",
+      "passed": true
+    },
+    {
+      "name": "HTTP concurrent edits return one 200 and one prompt 409",
+      "passed": true
+    },
+    {
+      "name": "unpublish immediately removes public detail/media and keeps owner preview",
+      "passed": true
+    },
+    {
+      "name": "real signup ledger is service-only and atomic under concurrent credit",
+      "passed": true
+    },
+    {
+      "name": "real public browser renders browse-only store and product at desktop/mobile",
+      "passed": true
+    }
+  ]
+}

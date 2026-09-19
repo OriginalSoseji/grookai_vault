@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-09-19T04:38:08.605Z",
+  "workspace": "C:\\gv_store_release_20260919",
+  "base": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "strictBaseline": "passed",
+  "strictPrePush": "passed",
+  "sqlTests": 3,
+  "guardTestGroups": 3,
+  "productFilesUnchanged": 1027,
+  "containers": [
+    {
+      "name": "supabase_storage_grookai-storefront-release-20260919",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "supabase_rest_grookai-storefront-release-20260919",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "supabase_inbucket_grookai-storefront-release-20260919",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "supabase_auth_grookai-storefront-release-20260919",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "supabase_kong_grookai-storefront-release-20260919",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "supabase_db_grookai-storefront-release-20260919",
+      "running": false,
+      "status": "exited"
+    },
+    {
+      "name": "grookai-storefront-release-relay-20260919",
+      "running": false,
+      "status": "exited"
+    }
+  ],
+  "preservedProofDatabaseRunning": false,
+  "productionApply": false,
+  "pushed": false,
+  "merged": false,
+  "deployed": false
+}

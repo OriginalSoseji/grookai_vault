@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-09-19T04:34:48.836Z",
+  "results": [
+    {
+      "file": "vault_unassigned_add_v1.sql",
+      "passed": true
+    },
+    {
+      "file": "storefront_vault_add_integration_v1.sql",
+      "passed": true
+    },
+    {
+      "file": "storefront_release_custom_v1.sql",
+      "passed": true
+    }
+  ],
+  "remainingUsers": 0
+}

@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-09-18T15:18:08.507Z",
+  "testContainers": [
+    "supabase_db_grookai-storefront-verification-20260918|exited",
+    "supabase_storage_grookai-storefront-verification-20260918|exited",
+    "supabase_rest_grookai-storefront-verification-20260918|exited",
+    "supabase_inbucket_grookai-storefront-verification-20260918|exited",
+    "supabase_auth_grookai-storefront-verification-20260918|exited",
+    "supabase_kong_grookai-storefront-verification-20260918|exited",
+    "grookai-storefront-verification-relay-20260918|exited"
+  ],
+  "retainedGrookaiPackages": [
+    "package:com.grookai.vault",
+    "package:com.grookai.vault.lockedacceptance"
+  ],
+  "taskAdbMappingsRemoved": true,
+  "nextStopped": true,
+  "generatedNextTypesRestored": true,
+  "volumesRemoved": 0,
+  "databaseResets": 0,
+  "remoteMutations": 0,
+  "priorEvidencePreserved": true,
+  "receiptSecretScan": "passed"
+}

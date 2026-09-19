@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-09-18T15:14:07.334Z",
+  "syntheticUsers": [
+    {
+      "id": "655b9b8b-56d7-47e5-b4a1-40654e354d15",
+      "signed_in": true
+    },
+    {
+      "id": "f69ac53e-5fe8-44f3-92f7-aa80a980d407",
+      "signed_in": true
+    }
+  ],
+  "store": {
+    "display_name": "Native auth proof store",
+    "app_published": true,
+    "web_published": true
+  },
+  "workers": "0",
+  "cronRuns": 0
+}

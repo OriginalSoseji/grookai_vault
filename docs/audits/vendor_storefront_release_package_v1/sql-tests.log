@@ -1,0 +1,6 @@
+PASS vault_unassigned_add_v1.sql
+NOTICE:  PASS: unassigned copy retained null printing and price; exact copy retained child identity
+NOTICE:  PASS: unassigned add remains inspectable but unpublishable; exact add requires explicit selection; app/web identities agree
+PASS storefront_vault_add_integration_v1.sql
+NOTICE:  PASS: final custom publisher, owner boundary, parity, PT409 and downgrade/re-upgrade
+PASS storefront_release_custom_v1.sql
