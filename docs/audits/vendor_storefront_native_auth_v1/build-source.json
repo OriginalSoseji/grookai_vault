@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-09-18T15:14:07.242Z",
+  "apkSha256": "51df733af4664eeba103610b105f507794761013af2370bf761c061bfdc46e9b",
+  "appId": "com.grookai.storefrontauthproof",
+  "productionEntry": "package:grookai_vault/main.dart main()",
+  "inputs": [
+    {
+      "path": "lib/main.dart",
+      "sha256": "54df1653aa07026d282f9e8030dc08938632f8c77113ee47a48e07ff96eea96a"
+    },
+    {
+      "path": "lib/main_shell.dart",
+      "sha256": "13380850a123535fe5ee73d637c9b73d8da2905d5fe070934c8e284fea806413"
+    },
+    {
+      "path": "scripts/tests/storefront_full_app_boot_v1.dart.template",
+      "sha256": "26a5319e0ab7a9396191e3c1b798c9c5875d0f2e22223d548e063ec333f4c088"
+    },
+    {
+      "path": "scripts/tests/storefront_full_app_auth_v1.dart.template",
+      "sha256": "bb3e56ae9d475ec8f57d3ec2861f855aa28a7707d42e98875eb14ce0e0d83596"
+    }
+  ],
+  "firebasePlatform": "disabled test implementation",
+  "network": "Dart HTTP only 127.0.0.1:16421/15440",
+  "runnerVersion": "androidx.test:runner:1.3.0",
+  "gradleOffline": true
+}

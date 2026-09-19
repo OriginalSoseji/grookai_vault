@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-09-18T19:37:15.530Z",
+  "head": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "previousWorktree": "C:/gv_store_integration_20260918",
+  "previousManifestSha256": "a00c0d8c82daeab9948a1c949f68f84bad45dca49963619401004bcb0c79661e",
+  "patchSha256": "790182c01aea7271361145efe4fedf416796f3ba6ab5cf4cd891840648a0537c",
+  "application": "Complete previous combined diff; AGENTS reconciled by retaining complete prior content and adding current-main collector readback checkpoint",
+  "otherConflicts": 0
+}

@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-09-19T05:09:47.149Z",
+  "baseline": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "command": "npm run shipcheck",
+  "exitCode": 0,
+  "log": {
+    "path": ".local/integration/shipcheck.log",
+    "sha256": "779ed890ad3a6a534e18d3372e63c3a2349cb08776208a3b9ff73629adc0be3a"
+  },
+  "node": {
+    "total": 3907,
+    "passed": 3904,
+    "skipped": 3,
+    "failed": 0
+  },
+  "flutter": {
+    "passed": 748,
+    "analysisIssues": 0
+  },
+  "web": {
+    "typecheck": true,
+    "lint": true,
+    "strictBuild": true,
+    "staticPages": 27
+  },
+  "localProject": "grookai-storefront-release-20260919",
+  "state": {
+    "cards": 0,
+    "users": 0,
+    "rollout": {
+      "singleton": true,
+      "app_enabled": false,
+      "web_enabled": false,
+      "custom_enabled": false
+    },
+    "maxWorkers": "0",
+    "migrations": 395,
+    "workerRuns": 0
+  },
+  "productionAccess": false,
+  "reset": false
+}

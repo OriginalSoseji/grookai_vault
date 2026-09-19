@@ -1,0 +1,11 @@
+{
+  "firstAttempt": "2026-09-18T16:57:16.743Z",
+  "failedTask": ":app:mergeDebugNativeLibs",
+  "reason": "There is not enough space on the disk",
+  "runtimeTestReached": false,
+  "cleanupInitiallyRejected": true,
+  "resumeFreeBytes": 29689159680,
+  "deletedByThisResume": [],
+  "rawFailureLogSha256": "94f9200a01e390004ab9fd9de1da5a9d9f8df1af48b30930555b1ecdd7c0af39",
+  "resolution": "Sufficient space was already available on resume; the same combined source built and passed on the device."
+}

@@ -1,0 +1,50 @@
+{
+  "recordedAt": "2026-09-18T18:55:40.582Z",
+  "apkSha256": "e48894ffdfb55ed8026c50a17537c5d75bffcbab94b33ed757a81f78980fe7a1",
+  "package": "com.grookai.storefrontauthproof",
+  "productionEntry": "package:grookai_vault/main.dart main()",
+  "inputs": [
+    {
+      "path": "lib/main.dart",
+      "sha256": "b646647ae9e5d33733699ab4cffad1a26d8706cf8f80fbdb55ce13ae764b6ebc"
+    },
+    {
+      "path": "lib/main_shell.dart",
+      "sha256": "13380850a123535fe5ee73d637c9b73d8da2905d5fe070934c8e284fea806413"
+    },
+    {
+      "path": "lib/card_detail_screen.dart",
+      "sha256": "b6ceaf6e7b40886c82644bfae04a6e56612928b0bc21f6906b7956b67bd1e862"
+    },
+    {
+      "path": "lib/services/vault/vault_card_service.dart",
+      "sha256": "0608d14e1c63767f443f7f757554357efb453208f29d553cddbdf09f26cfb6bb"
+    },
+    {
+      "path": "lib/services/public/public_card_printing_options_service.dart",
+      "sha256": "4a7d00488fc5c1b33b9c1b45b36a87ce6a20345a8376e75defdde8659d9d5859"
+    },
+    {
+      "path": "lib/widgets/vault/confirm_unassigned_printing.dart",
+      "sha256": "a40276f97a8a888867618f05d381fd34ddc3178f2f79140a8212fb9160b1c5c3"
+    },
+    {
+      "path": "scripts/tests/storefront_full_app_boot_v1.dart.template",
+      "sha256": "4a4ad53d240bf5166aa582d9dd6421f97f7a6523463332cce8a00d98a2cb8c6b"
+    },
+    {
+      "path": "scripts/tests/storefront_full_app_auth_v1.dart.template",
+      "sha256": "5cf9ff4d04a75d0ab7d271c1d9768129dfb23104a4c9a5785eb54838a5986b8f"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "d5af682f46b675d8e981eb5a3639a2813d279ef8768c067d1f5f9aafe447bcf4"
+    }
+  ],
+  "firebaseDisabled": true,
+  "allowedHttpPorts": [
+    16421,
+    15440
+  ],
+  "gradleOffline": true
+}

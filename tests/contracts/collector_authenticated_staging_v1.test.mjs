@@ -3,9 +3,17 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { createRequire } from 'node:module';
-import { assertCollectorStagingTarget } from '../../apps/web/src/lib/collectorStaging.mjs';
 const require = createRequire(new URL('../../apps/web/package.json', import.meta.url));
 const ts = require('typescript');
+// Test each mode independently of the caller's local build environment.
+function stagingMode(env = {}) {
+  const exports = {};
+  vm.runInNewContext(ts.transpileModule(fs.readFileSync(new URL('../../apps/web/src/lib/collectorStaging.mjs', import.meta.url), 'utf8'),
+    { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText,
+    { exports, process: { env }, URL, Error });
+  return exports;
+}
+const { assertCollectorStagingTarget } = stagingMode();
 const module = { exports: {} };
 vm.runInNewContext(ts.transpileModule(fs.readFileSync(new URL('../../apps/web/src/lib/vault/cardAddOptions.ts', import.meta.url), 'utf8'),
   { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText,
@@ -26,6 +34,16 @@ test('staging accepts only the verified loopback database', () => {
     'http://127.0.0.1:54322', 'https://127.0.0.1:54321', 'http://x@127.0.0.1:54321', 'http://127.0.0.1:54321?next=prod']) {
     assert.throws(() => assertCollectorStagingTarget(url));
   }
+});
+
+test('storefront mode has its own loopback target and cannot change other mode tests', () => {
+  const storefront = stagingMode({ NEXT_PUBLIC_STOREFRONT_LOCAL_TEST: 'true' }).assertCollectorStagingTarget;
+  assert.doesNotThrow(() => storefront('http://127.0.0.1:15439'));
+  assert.throws(() => storefront('http://127.0.0.1:54321'));
+  assert.throws(() => storefront('http://127.0.0.1:15439', true));
+  assert.throws(() => storefront('http://127.0.0.1:15439', false, true));
+  assert.doesNotThrow(() => assertCollectorStagingTarget('http://127.0.0.1:54321'));
+  assert.throws(() => assertCollectorStagingTarget('http://127.0.0.1:15439'));
 });
 test('fixture lab requires a separate explicit mode and never accepts the sample or remote DB', () => {
   assert.doesNotThrow(()=>assertCollectorStagingTarget('http://127.0.0.1:54361',true));

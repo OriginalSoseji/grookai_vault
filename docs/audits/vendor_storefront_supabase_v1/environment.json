@@ -1,0 +1,279 @@
+{
+  "recordedAt": "2026-09-18T14:28:42.051Z",
+  "project": "grookai-storefront-verification-20260918",
+  "internalNetwork": true,
+  "maxWorkerProcesses": "0",
+  "cronRuns": 0,
+  "webEvents": 0,
+  "containers": [
+    {
+      "name": "supabase_db_grookai-storefront-verification-20260918",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "5432/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "16422"
+          }
+        ]
+      },
+      "networks": [
+        "grookai-storefront-verification-20260918"
+      ]
+    },
+    {
+      "name": "supabase_storage_grookai-storefront-verification-20260918",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "grookai-storefront-verification-20260918"
+      ]
+    },
+    {
+      "name": "supabase_rest_grookai-storefront-verification-20260918",
+      "status": "running",
+      "health": null,
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "grookai-storefront-verification-20260918"
+      ]
+    },
+    {
+      "name": "supabase_inbucket_grookai-storefront-verification-20260918",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "8025/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "16424"
+          }
+        ]
+      },
+      "networks": [
+        "grookai-storefront-verification-20260918"
+      ]
+    },
+    {
+      "name": "supabase_auth_grookai-storefront-verification-20260918",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "grookai-storefront-verification-20260918"
+      ]
+    },
+    {
+      "name": "supabase_kong_grookai-storefront-verification-20260918",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "8000/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "16421"
+          }
+        ]
+      },
+      "networks": [
+        "grookai-storefront-verification-20260918"
+      ]
+    },
+    {
+      "name": "supabase_db_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "5432/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "54330"
+          }
+        ]
+      },
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_studio_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "3000/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "54323"
+          }
+        ]
+      },
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_pg_meta_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_storage_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_rest_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": null,
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_realtime_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_inbucket_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "8025/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "54324"
+          }
+        ]
+      },
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_auth_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {},
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_kong_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "8000/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "54321"
+          }
+        ]
+      },
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_vector_ycdxbpibncqcchqiihfz",
+      "status": "restarting",
+      "health": "unhealthy",
+      "restarting": true,
+      "ports": {},
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    },
+    {
+      "name": "supabase_analytics_ycdxbpibncqcchqiihfz",
+      "status": "running",
+      "health": "healthy",
+      "restarting": false,
+      "ports": {
+        "4000/tcp": [
+          {
+            "HostIp": "",
+            "HostPort": "54327"
+          }
+        ]
+      },
+      "networks": [
+        "supabase_network_ycdxbpibncqcchqiihfz"
+      ]
+    }
+  ],
+  "relay": {
+    "name": "grookai-storefront-verification-relay-20260918",
+    "image": "node:22-bookworm-slim",
+    "user": "node",
+    "readOnlyRootfs": true,
+    "capDrop": [
+      "ALL"
+    ],
+    "securityOpt": [
+      "no-new-privileges:true"
+    ],
+    "ports": {
+      "16421/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "16421"
+        }
+      ],
+      "16422/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "16422"
+        }
+      ],
+      "16424/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "16424"
+        }
+      ]
+    },
+    "networks": [
+      "bridge",
+      "grookai-storefront-verification-20260918"
+    ],
+    "bindMounts": [
+      {
+        "source": "C:\\grookai_vault_storefronts_v1\\scripts\\tests\\storefront_supabase_relay_v1.mjs",
+        "destination": "/relay.mjs",
+        "readWrite": false
+      }
+    ]
+  }
+}

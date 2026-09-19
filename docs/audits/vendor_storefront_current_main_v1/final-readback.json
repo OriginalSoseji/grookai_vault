@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-09-18T19:44:16.224Z",
+  "head": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "finalObservedMain": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "pr473Head": "6e747bb1561354fc56b62c73be39f258da506f15",
+  "pr473State": "OPEN",
+  "previousCandidateHashesVerified": 195,
+  "originalCandidateHashesVerified": 154,
+  "nativeFilesIdentical": 468,
+  "lockfilesIdentical": true,
+  "containers": [
+    {
+      "name": "supabase_db_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_storage_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_rest_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_auth_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_kong_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_inbucket_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "grookai-storefront-verification-relay-20260918",
+      "status": "exited"
+    }
+  ],
+  "databaseVolumesRetained": true,
+  "generatedNextConfigurationRestored": true,
+  "freeBytes": 27590602752
+}

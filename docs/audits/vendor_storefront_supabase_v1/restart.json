@@ -1,0 +1,10 @@
+{
+  "authorizedByUser": true,
+  "restartedAt": "2026-09-18T14:03:20.043Z",
+  "gracefulRestart": "hung",
+  "recovery": "stopped Docker Desktop/backend processes, terminated only docker-desktop WSL, relaunched Desktop",
+  "removedContainers": 0,
+  "removedVolumes": 0,
+  "sharedResets": 0,
+  "daemonNowResponding": true
+}

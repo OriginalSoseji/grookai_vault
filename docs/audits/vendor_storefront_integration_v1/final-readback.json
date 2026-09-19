@@ -1,0 +1,41 @@
+{
+  "recordedAt": "2026-09-18T19:00:03.218Z",
+  "head": "83b2283a09ad1893e10fcd27d5d8ceb6dbaf4d6d",
+  "originalCandidateManifestFilesVerified": 154,
+  "dependencyLockfilesPreserved": true,
+  "containers": [
+    {
+      "name": "supabase_db_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_storage_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_rest_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_auth_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_kong_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "supabase_inbucket_grookai-storefront-verification-20260918",
+      "status": "exited"
+    },
+    {
+      "name": "grookai-storefront-verification-relay-20260918",
+      "status": "exited"
+    }
+  ],
+  "taskAdbReversesRemoved": true,
+  "proofPackageAbsent": true,
+  "databaseVolumesRetained": true,
+  "generatedNextConfigRestored": true,
+  "freeBytes": 28627214336
+}

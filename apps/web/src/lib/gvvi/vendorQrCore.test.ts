@@ -15,6 +15,16 @@ import {
 const SECRET = "test-only-referral-secret-with-at-least-32-characters";
 const GVVI_ID = "GVVI-VENDOR1-000042";
 
+test("QR destinations allow HTTP only on exact loopback hosts", () => {
+  for (const host of ["localhost", "127.0.0.1", "[::1]"]) {
+    assert.equal(buildVendorQrDestinationUrl(`http://${host}:15440`, GVVI_ID),
+      `http://${host}:15440/q/${GVVI_ID}`);
+  }
+  for (const origin of ["http://grookai.example", "http://localhost.example", "ftp://localhost"]) {
+    assert.throws(() => buildVendorQrDestinationUrl(origin, GVVI_ID), /must use HTTPS/);
+  }
+});
+
 test("vendor QR destination is stable across mutable offer changes", () => {
   const before = buildVendorQrDestinationUrl("https://grookai.example", GVVI_ID);
   const afterPriceChange = buildVendorQrDestinationUrl("https://grookai.example", GVVI_ID);

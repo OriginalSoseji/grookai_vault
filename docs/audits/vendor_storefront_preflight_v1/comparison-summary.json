@@ -1,0 +1,66 @@
+{
+  "recordedAt": "2026-09-19T04:07:10.244Z",
+  "status": "diagnostic_comparison_complete_not_apply_authority",
+  "localObjects": 9494,
+  "productionObjects": 9341,
+  "additiveStoreEntries": 153,
+  "columnPositionOnlyDifferences": [
+    "column:public.card_prints.gv_id",
+    "column:public.card_prints.identity_domain",
+    "column:public.card_prints.image_note",
+    "column:public.card_prints.image_path",
+    "column:public.card_prints.number_plain",
+    "column:public.card_prints.printed_identity_modifier",
+    "column:public.card_prints.representative_image_url",
+    "column:public.card_prints.set_identity_model",
+    "column:public.pricing_jobs.last_error_class",
+    "column:public.pricing_jobs.last_meaningful_attempt_at",
+    "column:public.pricing_jobs.last_outcome",
+    "column:public.pricing_jobs.locked_at",
+    "column:public.pricing_jobs.locked_by",
+    "column:public.pricing_jobs.next_eligible_at",
+    "column:public.pricing_jobs.requester_user_id",
+    "column:public.sets.hero_image_source",
+    "column:public.sets.hero_image_url",
+    "column:public.sets.identity_domain_default",
+    "column:public.sets.identity_model",
+    "column:public.sets.printed_set_abbrev",
+    "column:public.sets.printed_total",
+    "column:public.sets.set_role"
+  ],
+  "unexpectedComparedDifferences": [],
+  "addedForeignKeys": [
+    {
+      "name": "vendor_store_items_instance_id_fkey",
+      "table": "vendor_store_items",
+      "schema": "public",
+      "definition": "FOREIGN KEY (instance_id) REFERENCES vault_item_instances(id) ON DELETE CASCADE",
+      "target_table": "vault_item_instances",
+      "target_schema": "public"
+    },
+    {
+      "name": "vendor_store_sections_section_id_fkey",
+      "table": "vendor_store_sections",
+      "schema": "public",
+      "definition": "FOREIGN KEY (section_id) REFERENCES wall_sections(id) ON DELETE CASCADE",
+      "target_table": "wall_sections",
+      "target_schema": "public"
+    }
+  ],
+  "entitlementTriggersAdded": [
+    {
+      "name": "vendor_store_custom_entitlement_revocation",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER vendor_store_custom_entitlement_revocation AFTER INSERT OR DELETE OR UPDATE ON public.user_entitlements FOR EACH ROW EXECUTE FUNCTION vendor_store_custom_revoke_v1()"
+    },
+    {
+      "name": "vendor_store_entitlement_revocation",
+      "enabled": "O",
+      "definition": "CREATE TRIGGER vendor_store_entitlement_revocation AFTER INSERT OR DELETE OR UPDATE ON public.user_entitlements FOR EACH ROW EXECUTE FUNCTION vendor_store_revoke_publication_v1()"
+    }
+  ],
+  "migrationHashesVerified": 397,
+  "scopedPrintingExecutorSchemaUnchanged": true,
+  "publicPrintingRpcUnchanged": true,
+  "strictPrePushPassed": false
+}

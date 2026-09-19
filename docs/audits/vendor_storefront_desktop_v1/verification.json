@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-09-18T20:23:20.983Z",
+  "desktopBrowserGroups": 11,
+  "pageErrors": 0,
+  "authStorageGroups": 8,
+  "httpGroups": 6,
+  "catalogGroups": 4,
+  "sqlRollbackChecks": 2,
+  "runtimeTests": 7,
+  "qrTests": 7,
+  "focusedEslint": {
+    "exitCode": 0,
+    "warnings": 0
+  },
+  "nextProductionBuild": {
+    "exitCode": 0,
+    "typescript": true
+  },
+  "loopbackOnly": true,
+  "telemetryDisabled": true
+}

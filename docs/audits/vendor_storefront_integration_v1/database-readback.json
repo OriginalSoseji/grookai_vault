@@ -1,0 +1,20 @@
+{
+  "recordedAt": "2026-09-18T18:55:40.663Z",
+  "project": "grookai-storefront-verification-20260918",
+  "syntheticUsers": [
+    {
+      "signed_in": true
+    },
+    {
+      "signed_in": true
+    }
+  ],
+  "store": {
+    "display_name": "Native auth proof store",
+    "app_published": true,
+    "web_published": true
+  },
+  "workers": "0",
+  "cronRuns": 0,
+  "migrationCount": 397
+}

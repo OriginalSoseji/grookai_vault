@@ -1,0 +1,51 @@
+{
+  "recordedAt": "2026-09-18T20:21:29.613Z",
+  "realLocalAuth": true,
+  "results": [
+    {
+      "name": "real browser sign-in returns to desktop store setup and creates only a draft",
+      "passed": true
+    },
+    {
+      "name": "desktop branding upload and owner-only draft media with origin/type guards",
+      "passed": true
+    },
+    {
+      "name": "create and explicitly select a section from desktop",
+      "passed": true
+    },
+    {
+      "name": "custom draft authoring, multiple photos, section assignment and preview",
+      "passed": true
+    },
+    {
+      "name": "publication remains explicit for product, app and public web; slug freezes",
+      "passed": true
+    },
+    {
+      "name": "desktop inventory keeps exact copies and excludes unassigned printing",
+      "passed": true
+    },
+    {
+      "name": "existing desktop copy tools update price and condition in the selected store copy",
+      "passed": true
+    },
+    {
+      "name": "concurrent edit rejects stale save and retains entered draft until explicit reload",
+      "passed": true
+    },
+    {
+      "name": "stock zero unpublishes; restoring stock requires explicit republishing",
+      "passed": true
+    },
+    {
+      "name": "foreign owner cannot load/edit/upload private products; app-only owner cannot publish web",
+      "passed": true
+    },
+    {
+      "name": "responsive management and archive retain history without checkout controls",
+      "passed": true
+    }
+  ],
+  "pageErrors": []
+}

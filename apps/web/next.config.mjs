@@ -1,6 +1,6 @@
 import path from "path";
 import { assertCollectorReleaseEnvironment } from "./src/lib/collectorRelease.mjs";
-import { collectorStaging, collectorFixtureLab, collectorHostedStaging, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
+import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefrontLocalTest, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
 
 /**
  * Env contract reuse:
@@ -10,6 +10,9 @@ import { collectorStaging, collectorFixtureLab, collectorHostedStaging, assertCo
 const repoRoot = path.resolve(process.cwd(), "../..");
 
 const collectorPreview = process.env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY === "true";
+if (storefrontLocalTest && (!collectorStaging || collectorPreview || process.env.VERCEL || process.env.VERCEL_ENV || process.env.GROOKAI_DISABLE_TELEMETRY !== "1")) {
+  throw new Error("Storefront tests require isolated local staging with telemetry disabled and no Vercel target.");
+}
 if (!collectorPreview && !collectorStaging) {
   assertCollectorReleaseEnvironment(process.env);
 } else if (process.env.GROOKAI_COLLECTOR_RELEASE_V1 === "true") {
@@ -52,7 +55,7 @@ if (!supabaseUrl || !supabaseAnon) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: collectorFixtureLab ? ".next-fixture" : ".next",
+  distDir: storefrontLocalTest ? ".next-storefront" : collectorFixtureLab ? ".next-fixture" : ".next",
   outputFileTracingRoot: repoRoot,
   outputFileTracingIncludes: {
       "/u/[slug]/opengraph-image": [
@@ -82,6 +85,7 @@ const nextConfig = {
     cpus: 1,
   },
   env: {
+    NEXT_PUBLIC_STOREFRONT_LOCAL_TEST: storefrontLocalTest ? "true" : "false",
     NEXT_PUBLIC_COLLECTOR_STAGING: collectorStaging ? "true" : "false",
     NEXT_PUBLIC_COLLECTOR_FIXTURE_LAB: collectorFixtureLab ? "true" : "false",
     NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING: collectorHostedStaging ? "true" : "false",

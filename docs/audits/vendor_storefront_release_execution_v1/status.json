@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-09-19T05:46:25.717Z",
+  "source": "18d810327e6814a9f0dbfd30a88a5c9f598f3d05",
+  "pr": 496,
+  "scope": {
+    "stripe": "existing Grookai account",
+    "checkout": true,
+    "sellerPayouts": true,
+    "customDomains": false,
+    "canonicalStoreRoute": "https://grookaivault.com/store/{slug}"
+  },
+  "schemaRefresh": {
+    "checkedAt": "2026-09-19T05:23:29.739Z",
+    "status": "passed",
+    "baselineProof": "2026-09-19T04:32:16.553Z",
+    "migrations": 394,
+    "sanity": {
+      "cards": 170658,
+      "sets": 3399,
+      "traits": 32903
+    },
+    "comparison": {
+      "engine": "pgkit 0.6.1",
+      "scope": "public",
+      "rawBytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "normalizedBytes": 0,
+      "securityObjects": 893,
+      "columnOrder": []
+    },
+    "readOnly": "on",
+    "applicationWrites": 0
+  },
+  "nativeArchive": {
+    "at": "2026-09-19T05:42:35Z",
+    "source_sha": "7a13b553278aced661a35ffd8457727b448a7fb3",
+    "build": 325,
+    "signature_verified": true,
+    "symbols": [
+      {
+        "binary": "Runner",
+        "uuids": [
+          "0B7ACC87-4F9B-3F75-9061-88BC3EE195F3"
+        ],
+        "symbols_match": true,
+        "binary_sha256": "827114cc6b10864f96a5690b172324efab819466034961e8a0c161ac41efa4ce",
+        "dsym_sha256": "045fbb4ae0a3cf2c9d434399d9992e2ea71089fc03ec32af7587a32b4a23d22e"
+      },
+      {
+        "binary": "App",
+        "uuids": [
+          "0C7143A3-83EF-6365-4C4F-F302797FB73F"
+        ],
+        "symbols_match": true,
+        "binary_sha256": "fd4b87b23da2fec4fd9386c58fa4989fe3e5a4405af6f515d7f6221bc7db059f",
+        "dsym_sha256": "c23047b0ab5186240a95665211fe8747637777369fbf05fd6dc9da4b2c48e15b"
+      }
+    ],
+    "configuration_matches_319": true,
+    "flags": [
+      "MTG_SEALED_CLIENT_V1_ENABLED",
+      "POKEMON_SEALED_CLIENT_V1_ENABLED",
+      "SEALED_OWNERSHIP_V1_ENABLED"
+    ]
+  },
+  "macTestsPassed": 96,
+  "referralEnvironment": {
+    "checkedAt": "2026-09-19T05:44:59.634Z",
+    "project": "prj_m3B6s7jAwXJ4WGbE9fK2WhJsFlum",
+    "key": "GVVI_REFERRAL_COOKIE_SECRET",
+    "environment": "production",
+    "type": "sensitive",
+    "created": true,
+    "existingDeploymentUnchanged": true,
+    "takesEffectOnNewDeployment": true,
+    "secretExposed": false
+  },
+  "appleVersionState": [
+    {
+      "version": "1.0",
+      "platform": "IOS",
+      "state": "PREPARE_FOR_SUBMISSION"
+    }
+  ],
+  "productionMigrationApplied": false,
+  "websitePromoted": false,
+  "nativeUploaded": false,
+  "pilotGranted": false,
+  "paymentActions": false,
+  "pending": [
+    "PR verification and integration",
+    "migration application and readback",
+    "staged web promotion and runtime verification",
+    "native runtime/auth/links and distribution",
+    "pilot account selection",
+    "Stripe test access, billing and commerce implementation",
+    "desktop operation parity"
+  ]
+}

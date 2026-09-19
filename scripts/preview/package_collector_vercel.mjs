@@ -8,10 +8,10 @@ const branch = execFileSync('git', ['branch', '--show-current'], { encoding: 'ut
 if (branch !== 'preview/collector-vercel-20260910') throw new Error('Wrong preview branch');
 const output = process.argv[2];
 if (!output || !path.isAbsolute(output) || existsSync(output)) throw new Error('A new absolute package directory is required');
-const files = [...new Set(execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '-z', '--', 'apps/web', 'scripts/ci/run_next_build_with_system_ca.mjs', 'scripts/generate_public_set_card_counts.mjs'], { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }).split('\0').filter(Boolean))];
+const files = [...new Set(execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '-z', '--', 'apps/web', 'scripts/ci/run_next_build_with_system_ca.mjs', 'scripts/ci/preserve_storefront_build_config.mjs', 'scripts/generate_public_set_card_counts.mjs'], { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }).split('\0').filter(Boolean))];
 const manifest = [];
 for (const relative of files) {
-  const allowed = relative.startsWith('apps/web/') || ['scripts/ci/run_next_build_with_system_ca.mjs', 'scripts/generate_public_set_card_counts.mjs'].includes(relative);
+  const allowed = relative.startsWith('apps/web/') || ['scripts/ci/run_next_build_with_system_ca.mjs', 'scripts/ci/preserve_storefront_build_config.mjs', 'scripts/generate_public_set_card_counts.mjs'].includes(relative);
   const excluded = /(^|\/)(\.env[^/]*|node_modules|\.next|\.vercel|private|tests|test-results|playwright-report|visual-fixtures)(\/|$)|\.(test|spec)\.[cm]?[jt]sx?$/.test(relative);
   if (!allowed || excluded) continue;
   const bytes = readFileSync(path.join(root, relative));

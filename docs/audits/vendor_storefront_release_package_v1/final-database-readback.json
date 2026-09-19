@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-09-19T04:36:52.862Z",
+  "cards": 0,
+  "users": 0,
+  "stores": 0,
+  "rollout": {
+    "singleton": true,
+    "app_enabled": false,
+    "web_enabled": false,
+    "custom_enabled": false
+  },
+  "products": 0,
+  "cron_runs": 0,
+  "migrations": 395,
+  "worker_processes": "0"
+}

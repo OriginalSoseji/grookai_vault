@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-09-18T16:55:34.754Z",
+  "realSchema": true,
+  "syntheticCatalog": true,
+  "results": [
+    {
+      "name": "actual schema admits explicit synthetic same-parent copy fixtures",
+      "passed": true
+    },
+    {
+      "name": "real catalog app/web parity, explicit selection, search and section intersection",
+      "passed": true
+    },
+    {
+      "name": "real quarantine, wrong-parent and unassigned printing deny the next read",
+      "passed": true
+    },
+    {
+      "name": "real archive, transfer, zero price and privacy invalidate copy exposure",
+      "passed": true
+    }
+  ]
+}

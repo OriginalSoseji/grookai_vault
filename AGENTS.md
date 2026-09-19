@@ -1,11 +1,186 @@
 # Grookai Agent Entry Point
 
+## Storefront Applied-Ledger Reconciliation — September 19
+
+Read `docs/audits/vendor_storefront_ledger_reconcile_v1/RECONCILIATION.md`.
+Production now has 395 migrations: the One Piece Foil-scope migration was applied
+outside this branch and its exact ledger-matching source is recovered here. Do not
+replay catalog data executors. Fresh production baseline/security comparison and
+a separate 172xx full 396-file replay pass. Historical 394/395 release preflights
+are no longer current apply evidence. Refresh the formal release gate and account
+for the older pending storefront migration before any production apply.
+
+## Storefront iOS Cold Launch — September 19
+
+Read `docs/audits/vendor_storefront_ios_cold_start_v1/COLD_START_PROOF.md`.
+A stopped-app test reproduced lost scene connection URLs. The targeted native
+SceneDelegate now forwards initial custom-scheme and browsing activities to
+app_links; warm forwarding stays with Flutter. Both cold cases and the complete
+warm auth regression pass locally. This supersedes archive 325 readiness: retain
+that unuploaded archive. Replacement archive 326 is now signed and verified from
+`4939f55e3`, with matching dSYMs and the tested delegate. It is not uploaded.
+
+## Storefront iOS Local Auth — September 19
+
+Read `docs/audits/vendor_storefront_ios_auth_v1/IOS_AUTH_PROOF.md`. The complete
+production Dart app passed local iOS login, refresh, owner management and
+owner/visitor preview boundaries. No application change was needed; retain archive
+325. Provider OAuth, cold-process links and delivery remain separate. Stripe policy
+development continues in `C:/gv_store_billing_20260919`, with 40 local tests passing.
+
+## Storefront Release Goal — September 19 UTC
+
+Latest execution evidence: `docs/audits/vendor_storefront_release_execution_v1/RELEASE_PROGRESS.md`.
+PR #496 is open; iOS archive 325 is signed and verified, not uploaded. Production
+schema remains unchanged; the new referral secret is configured for the next Vercel
+deployment only. Continue the full goal, including Stripe subscriptions and commerce.
+
+Read `docs/ops/STOREFRONT_GOAL_RELEASE_20260919.md`. The founder now requests the
+release/pilot and paid-subscription product beyond the previous local-only stop.
+Preserve verification gates and existing tester audiences. Checkout/payouts are
+confirmed with the existing Stripe account; custom domains are deferred. Never apply historical storefront
+migrations alongside the consolidated release. Production starts without stores
+or grants; the verified website is `grookaivault.com`.
+
+## Storefront Full Shipcheck — September 19 UTC
+
+Read `docs/audits/vendor_storefront_shipcheck_v1/SHIPCHECK.md`. The unchanged full
+repository gate passed: 3,904 Node contracts, web typecheck/lint/build, Flutter
+analysis and 748 Flutter tests. Three Node tests are skipped. The local runner uses
+only the dedicated 168xx project and temporary 15439 API relay. Preserve existing
+proofs and use the normal pre-commit hook. Push, merge and production release remain
+separate; the prior integration checkpoint's full-suite pending step is superseded.
+
+## Storefront Integration Review — September 19 UTC
+
+Read `docs/audits/vendor_storefront_integration_review_v1/REVIEW.md`.
+Current main and PR #473 remain unchanged. Its application changes are retained;
+only the storefront route additions and accumulated playbook checkpoints differ.
+The local release schema matches preserved printing-executor schema evidence and
+coordinate definitions. New Vault/Wall dependencies and entitlement triggers remain
+explicit production coordination points. Use the new rollback-only 395-migration
+runner in `scripts/tests/STOREFRONT_TESTING.md`; historical 397 runners are not the
+current release entry point. No merge, push, production apply or deployment.
+
+## Storefront Release Package — September 18 (September 19 UTC)
+
+Read `docs/audits/vendor_storefront_release_package_v1/RELEASE_PACKAGE_PROOF.md`.
+The new candidate at `C:/gv_store_release_20260919` preserves desktop/native product
+source and consolidates the three unapplied migrations into `20260919050000`.
+Both strict phases passed: production baseline/security parity, unchanged duplicate
+scanner, a dedicated 395-migration reset, and exact 9,494-object equivalence with
+the original candidate. Three rollback SQL checks pass. Historical worktrees,
+migrations and proof databases remain preserved. No merge, push, production apply,
+activation or deployment occurred. Integration/dependency review and governed
+release remain separate; use the new handoff instead of the old three-file package.
+
+## Storefront Production Preflight — September 18
+
+Read `docs/audits/vendor_storefront_preflight_v1/PREFLIGHT_20260918.md`. Fresh
+production reads confirm 394 applied migrations and exactly three storefront
+migrations pending, with no remote-only drift or active store grants. Diagnostic
+schema comparison found only the expected store additions and known column order
+differences. The actual strict scanner rejects two intentional function replacements:
+formal release remains blocked until the pending package is reconciled and a new
+isolated formal replay passes. Do not reset the populated proof DB or bypass the gate.
+
+## Desktop Storefront Review — September 18
+
+Read `docs/audits/vendor_storefront_desktop_review_v1/REVIEW_AND_HANDOFF_20260918.md`.
+The desktop candidate remains at `C:/gv_store_desktop_20260918`. A shared-navigation
+draft-loss defect is fixed and browser regression coverage added. The handoff
+contains a local PR description and exact production prerequisites. Historical
+receipts remain intact; no merge, remote migration, activation or deployment.
+
+## Desktop Storefront Management — September 18
+
+Read `docs/audits/vendor_storefront_desktop_v1/DESKTOP_PROOF_20260918.md` and
+`docs/contracts/VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1.md`. The review candidate is
+`C:/gv_store_desktop_20260918`, detached at `a151794a9`, preserving the preceding
+current-main candidate. `/account/store` supports desktop owner authoring and
+publication with private media. Existing catalog add/import and exact-copy editing
+are reused. App-only packages can manage from a computer; web publication still
+requires `store_web`. No schema or native change in this extension. All production
+integration, migration preflight, release and billing gates remain separate.
+
+## Storefront Current-Main Reconciliation — September 18
+
+Read `docs/audits/vendor_storefront_current_main_v1/CURRENT_MAIN_PROOF_20260918.md`.
+The detached candidate at `C:/gv_store_current_20260918` now includes main
+`a151794a9` (#494), storefront/custom collectibles and PR #473. Catalog/search,
+access/ownership, QR, real local storefront/API/browser checks and the web build
+pass. All 468 native source/test files match the preceding Samsung-proven candidate.
+Previous worktrees and receipts are preserved. Local reconciliation is complete;
+review, production dependency preflight and authorized release remain separate.
+No commit, merge, push, remote migration or deployment occurred.
+
 ## Collector Printing Readback - September 18
 
 Read `docs/ops/COLLECTOR_PRINTING_READBACK_20260918.md`. Anthology membership
 counts must not fill missing card denominators; exact GV-IDs must survive
 search parsing intact. This is a web-only repair, not permission to replay
 completed database repairs. Keep local tests, deployment and live proof distinct.
+
+## Storefront Combined Integration Rehearsal — September 18
+
+Read `docs/audits/vendor_storefront_integration_v1/INTEGRATION_PROOF_20260918.md`.
+The detached rehearsal combines recorded main `83b2283a0`, the preserved storefront
+candidate and complete PR #473 source. Combined Flutter, database, web and physical
+Samsung auth/navigation checks pass. The playbook conflict retains both checkpoints.
+Main subsequently advanced to `a151794a9` (#494); its catalog read/search changes
+are recorded but not included in this tested source. Reconcile that delta before
+integration/release. No commit, merge, push, remote migration or deployment occurred.
+
+## Storefront Full Native Auth Proof — September 18
+
+Read `docs/audits/vendor_storefront_native_auth_v1/NATIVE_AUTH_PROOF_20260918.md`. The physical Samsung passed real local email login,
+refresh, pending store/product intents, Vendor Mode settings and owner/visitor
+preview boundaries through the actual production Dart app in a separate package.
+The mobile dock now reserves its own height, fixing floating notices on return
+from store management. Integration review and proposed PR #473 checkpoint
+resolution are included; no merge or deployment occurred. Provider OAuth, cold
+process links, iOS and production release remain distinct checks.
+
+
+## Storefront Real Supabase Verification — September 18
+
+Read `docs/audits/vendor_storefront_supabase_v1/LOCAL_SUPABASE_PROOF_20260918.md`.
+The user-approved Docker recovery unblocked the dedicated 164xx project. Full
+397-migration replay, real Auth/Storage/API/browser checks and exact-copy schema
+checks pass. Additive migration `20260918100000` changes stale custom edits to
+`PT409`; PostgREST otherwise retries `40001`. Previous receipts remain intact.
+Full native auth/pending routes, coordinated integration and release remain open.
+Preserve the populated proof database; no shared reset, merge or deployment.
+
+
+## Storefront Device Verification — September 18
+
+Read `docs/audits/vendor_storefront_verification_v1/LOCAL_VERIFICATION_20260918.md`.
+The separate Samsung test shell proved gallery upload, preview, publication and
+custom/store deep links against the dedicated synthetic adapter. The adapter now
+accepts the pinned Dart SDK's multipart upload format. Real Supabase replay and
+Auth/Storage remain blocked by the unresponsive shared Docker daemon; no reset or
+restart was performed. Preserve previous receipts and the prepared isolated project.
+This is not full production-app auth or release proof.
+
+## Custom Store Collectibles — September 17
+
+The existing storefront candidate now includes seller-authored custom products.
+Read `docs/audits/vendor_custom_collectibles_v1/LOCAL_IMPLEMENTATION_20260917.md`
+and `docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md`. Preserve the starting
+manifest and previous storefront receipts. Custom stock has stable product UUIDs,
+version-checked vendor quantities and no canonical/Vault identity. The additional
+custom rollout flag defaults off; SQL/HTTP fixture proof is not real Supabase,
+device or release proof. No remote apply, merge, push or deployment is authorized.
+
+## Browse-only Storefront Candidate — September 17
+
+Read `docs/audits/vendor_storefronts_v1/LOCAL_IMPLEMENTATION_20260917.md` and
+`docs/contracts/VENDOR_STOREFRONTS_V1.md` for this isolated local implementation.
+Both new publication rollout flags default off. Preserve the catalog repair
+worktrees and Vault-add PR #473; coordinate navigation and new schema dependencies
+before integration. Synthetic SQL/browser proof is not full Supabase replay,
+physical-device proof, billing activation or production release authority.
 
 ## Master Index Source Independence - September 17
 

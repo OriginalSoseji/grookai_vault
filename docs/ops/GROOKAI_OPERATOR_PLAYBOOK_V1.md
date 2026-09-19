@@ -1,5 +1,202 @@
 # Grookai Operator Playbook V1
 
+## Storefront ledger reconciliation — September 19
+
+Read `../audits/vendor_storefront_ledger_reconcile_v1/RECONCILIATION.md`.
+The already-applied One Piece migration `20260919054500` is recovered byte-for-byte
+from its preserved repair source and compared with the actual production ledger.
+The catalog repair worktree and writers remain untouched. The new isolated 172xx
+project passed a 395-row production baseline/security audit and a full 396-file
+storefront reset. Existing 164xx/168xx evidence databases were not reset. It retains
+no application data, zero workers/cron runs and disabled publication flags.
+Use this bound environment for the integration hook; old release preflight receipts
+are historical. Formal release-gate refresh and migration ordering remain required.
+Do not blindly rerun one-shot replay scripts against already-completed baselines.
+
+## Storefront iOS cold-launch repair — September 19
+
+Read `../audits/vendor_storefront_ios_cold_start_v1/COLD_START_PROOF.md`.
+Warm delivery alone did not establish cold-launch behavior: the default scene lost
+initial links when the process was stopped. The targeted SceneDelegate forwards
+only initial connection options to app_links. Actual OS launch, real local login,
+persisted owner preview and the full warm regression now pass. Keep baseline
+failure and passing receipts distinct. Preserve archive 325, but replace it with
+a newly signed archive before delivery; it predates this native fix. Archive 326
+now satisfies that replacement: exact source `4939f55e3`, verified signature/dSYMs
+and archived `Runner.SceneDelegate`. Artifacts are preserved under the separate Mac
+`storefront_native_326_20260919` operator directory. It is not uploaded. Provider
+OAuth and hosted universal-link association remain separate checks.
+
+## Storefront iOS local authentication — September 19
+
+Read `../audits/vendor_storefront_ios_auth_v1/IOS_AUTH_PROOF.md`. The final dedicated
+iOS simulator journey passes with unchanged production Dart source and default
+Flutter scene behavior. Native URL confirmation prompts must be handled explicitly;
+both local Auth (16421) and web API (15440) connections are required. Keep the failed
+attempts distinct from the final pass. Temporary connections are stopped; retained
+164xx proof data is preserved. Do not upload an isolated debug proof package.
+The separate `C:/gv_store_billing_20260919` candidate has 40 passing provider-policy
+tests; durable billing, Stripe test access, pilot identities and commerce remain open.
+
+## Storefront Release Goal — September 19 UTC
+
+Latest: `../audits/vendor_storefront_release_execution_v1/RELEASE_PROGRESS.md`.
+iOS archive 325 is signed/verified from the frozen source; no upload or public-store
+submission is claimed. A server-only referral key is now configured as a sensitive
+production Vercel variable for the next deployment, with the live pointer preserved.
+It is registered in `GV_SECRETS_CONTRACT_v1.md`; never copy its value into receipts.
+
+Read `STOREFRONT_GOAL_RELEASE_20260919.md` for current authority and verified source,
+deployment, database and remaining product requirements. The local storefront build
+now restores only known Next-generated config edits so the mandatory pre-push
+clean-tree check can pass without hook exceptions. Unexpected edits are retained.
+Preserve existing production aliases until staged-release verification, and identify
+the intended pilot accounts before granting access. Stripe billing and confirmed
+checkout/payouts remain unfinished; custom domains are deferred. A browse-only
+deployment does not complete the full goal. PR #496 is open; local CLI harnesses
+use modern publishable/secret keys without weakening the CI key guard.
+
+## Storefront Full Shipcheck — September 19 UTC
+
+Read `../audits/vendor_storefront_shipcheck_v1/SHIPCHECK.md` and
+`../../scripts/tests/STOREFRONT_TESTING.md`. The unchanged full repository gate
+passes against the dedicated release DB/API, including 3,904 Node contracts,
+website build and 748 Flutter tests. Keep the local status/key file ignored. The
+runner does not inherit production credentials; it uses read-only SQL and blocked
+outbound Node networking. Start/stop only the named release containers and retain
+their data. The normal commit hook must remain enabled. Production integration,
+catalog dependency preflight and release authorization remain separate.
+
+## Storefront Integration Review — September 19 UTC
+
+Read `../audits/vendor_storefront_integration_review_v1/REVIEW.md` and
+`../../scripts/tests/STOREFRONT_TESTING.md`. The consolidated candidate has a
+repeatable, guarded, rollback-only SQL entry point. No old proof database reset is
+needed. The focused review confirms PR #473 preservation and unchanged inspected
+printing/coordinate definitions; broader frozen repair plans still require their
+own fresh preflight. Keep production application and deployment separate.
+
+## Storefront Release Package — September 18 (September 19 UTC)
+
+Read `../audits/vendor_storefront_release_package_v1/RELEASE_PACKAGE_PROOF.md`.
+Current candidate: `C:/gv_store_release_20260919`, main `a151794a9`. The three
+unapplied storefront migrations are now one release migration, `20260919050000`.
+Formal baseline and PrePush gates pass in the dedicated internal-network 168xx
+project. Its complete 395-file replay matches all 9,494 original schema objects;
+rollout defaults off. Desktop/native product source is unchanged. The older 164xx
+proof environment and repair databases were not reset. Do not apply both the
+historical three-file package and this consolidated release. Preserve catalog
+dependency coordination and separate release/activation authority.
+
+## Storefront Production Preflight — September 18
+
+Read `../audits/vendor_storefront_preflight_v1/PREFLIGHT_20260918.md`. Live ledger
+readback matches the exact three pending storefront migrations; store tables/media
+and grants are absent. The strict pending-object scanner blocks two intentional
+function redefinitions. Reconcile that release package and prove a distinct isolated
+replay before applying anything. The diagnostic footprint is not a strict-gate pass.
+No merge, remote migration, grant activation or deployment occurred.
+
+## Desktop Storefront Review — September 18
+
+Read `../audits/vendor_storefront_desktop_review_v1/REVIEW_AND_HANDOFF_20260918.md`.
+The current desktop candidate fixes unsaved drafts being lost through main-site
+navigation, with a reproduced regression and local production-mode browser proof.
+The prepared review description is local only. Production dependency preflight,
+governed integration/release and package activation remain separate.
+
+## Desktop Storefront Management — September 18
+
+Read `../audits/vendor_storefront_desktop_v1/DESKTOP_PROOF_20260918.md`. The candidate
+is now `C:/gv_store_desktop_20260918` at recorded main `a151794a9`, with the previous
+source and proof retained. `/account/store` provides desktop owner management;
+app-only owners may author through the website, while public web publication still
+requires its database grant. Browser media stays private and owner scoped. No new
+schema or native changes; preserve prior repair/dependency and release gates. The
+dedicated synthetic project is retained, with no shared reset or remote writes.
+
+## Storefront Current-Main Reconciliation — September 18
+
+Read `../audits/vendor_storefront_current_main_v1/CURRENT_MAIN_PROOF_20260918.md`.
+The active review candidate is `C:/gv_store_current_20260918`, detached at
+`a151794a9`. It retains #494's catalog/search repair, the complete storefront
+candidate and PR #473. Both prior candidates and their receipts remain intact.
+83 targeted runtime/contracts, 18 real local integration groups, two SQL rollback
+checks, focused lint, count-manifest validation and the Next build pass. Native
+sources match the earlier physical proof; no new device test is claimed. The
+dedicated 164xx database was retained without reset/replay. Production catalog
+dependency fingerprints, code review and governed release are still required.
+
+## Storefront Combined Integration Rehearsal — September 18
+
+Read `../audits/vendor_storefront_integration_v1/INTEGRATION_PROOF_20260918.md`.
+`C:/gv_store_integration_20260918` is a detached sparse rehearsal at recorded main
+`83b2283a0`, containing the storefront candidate and complete PR #473 source.
+Both this playbook's storefront and Anniversary Vault Add Repair checkpoints are
+retained. Combined tests and a physical Samsung journey pass; production is untouched.
+The dedicated 164xx environment was retained without reset or migration replay.
+Main advanced to `a151794a9` (#494) during proof; reconcile its AGENTS checkpoint and
+catalog read/search delta before release. Do not treat this frozen candidate as
+tested against that later main. Production catalog dependency fingerprints, billing,
+release authorization and deployment remain separate gates. Preserve prior receipts.
+
+## Storefront Full Native Auth Proof — September 18
+
+Read `../audits/vendor_storefront_native_auth_v1/NATIVE_AUTH_PROOF_20260918.md`. The physical Samsung passed real local email login,
+refresh, pending store/product intents, Vendor Mode settings and owner/visitor
+preview boundaries through the actual production Dart app in a separate package.
+The mobile dock now reserves its own height, fixing floating notices on return
+from store management. Integration review and proposed PR #473 checkpoint
+resolution are included; no merge or deployment occurred. Provider OAuth, cold
+process links, iOS and production release remain distinct checks.
+
+
+## Storefront Real Supabase Verification Follow-up
+
+Read `../audits/vendor_storefront_supabase_v1/LOCAL_SUPABASE_PROOF_20260918.md`.
+The user-approved Docker recovery unblocked the dedicated 164xx project. Full
+397-migration replay, real Auth/Storage/API/browser checks and exact-copy schema
+checks pass. Additive migration `20260918100000` changes stale custom edits to
+`PT409`; PostgREST otherwise retries `40001`. Previous receipts remain intact.
+Full native auth/pending routes, coordinated integration and release remain open.
+Preserve the populated proof database; no shared reset, merge or deployment.
+
+
+## Storefront Device Verification Follow-up
+
+Read `../audits/vendor_storefront_verification_v1/LOCAL_VERIFICATION_20260918.md`.
+Samsung gallery/preview/publication and isolated-shell deep links passed with
+synthetic local services. The prepared real Supabase project uses separate 164xx
+ports and has migrations disabled pending verified network/cron isolation. Docker's
+shared daemon is unresponsive; do not reset shared services to bypass this gate.
+Prior receipts remain unchanged. Full Auth/Storage/replay, native auth integration,
+catalog dependency coordination and release remain separate requirements.
+
+## Custom Store Collectibles Local Extension
+
+Read `../audits/vendor_custom_collectibles_v1/LOCAL_IMPLEMENTATION_20260917.md`
+and `../contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md`. This extends the existing
+candidate in `C:/grookai_vault_storefronts_v1`, without replacing its receipts.
+The additive `20260918070000` migration keeps custom products separate from Vault
+and canonical data; all custom availability is seller-managed and version checked.
+`custom_enabled` defaults false. Disabling it hides custom grids/details/media
+while retaining records, history and owner inspection. Catalog store/QR behavior
+is unchanged. Use only the verified 15438/15439/15440 synthetic environment;
+full Supabase Auth/Storage/replay, device and schema/navigation integration remain
+separate gates. No production activation follows from these receipts.
+
+## Browse-only Storefront Local Candidate
+
+Read `../audits/vendor_storefronts_v1/LOCAL_IMPLEMENTATION_20260917.md` and
+`../contracts/VENDOR_STOREFRONTS_V1.md`. Store schema/RPCs and app/web clients are
+local candidates with both rollout flags off. The dedicated synthetic PostgreSQL
+cluster uses 15438, its HTTP adapter 15439 and web server 15440. Do not reset shared
+54321/54330 services or repair rehearsal databases. Complete full Supabase replay,
+strict target audit, catalog dependency coordination and native integration/device
+checks before a separate release. Roll back by disabling new store flags with
+metadata and Vault ownership retained; legacy Vendor Mode/QR access stays governed
+by its existing rules. No subscription billing or checkout is implemented.
+
 ## Master Index Evidence Scope
 
 Read `MASTER_INDEX_SOURCE_INDEPENDENCE_20260917.md`. TCGplayer catalog mirrors
@@ -168,6 +365,16 @@ child GV-IDs plus public options. The offline planner and read-only scheduled
 coverage audit do not authorize canonical mutation. The existing 161-card 30th
 Celebration Holo repair is complete; do not repeat it. Check the checkpoint for
 deployment state rather than assuming local code is scheduled in production.
+
+## Anniversary Vault Add Repair - September 16
+
+Read `docs/contracts/VAULT_UNASSIGNED_ADD_REPAIR_V1.md`. The Samsung add error
+was a client printing prerequisite, not missing parent cards or a failed ownership
+transaction. A confirmed empty governed lookup can use the existing unassigned
+ownership state, with explicit collector confirmation. Never manufacture child
+printings from price subtypes to unblock ownership. Lookup errors must stay errors.
+Readback and device verification belong in the matching repair checkpoint before
+returning to anniversary reconciliation.
 
 ## Native Anniversary Delivery - September 16
 

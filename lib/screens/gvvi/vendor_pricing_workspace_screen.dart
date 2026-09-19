@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import '../stores/store_management_screen.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../services/gvvi/gvvi_vendor_offer_service.dart';
@@ -682,6 +683,13 @@ class _VendorPricingWorkspaceScreenState
               )
             : null,
         actions: [
+          IconButton(
+            tooltip: 'Manage store',
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
+              builder: (_) => const StoreManagementScreen(),
+            )),
+            icon: const Icon(Icons.storefront_outlined),
+          ),
           IconButton(
             tooltip: 'Refresh inventory',
             onPressed: _loading ? null : _load,

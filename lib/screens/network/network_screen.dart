@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../stores/storefront_screen.dart';
+import '../stores/custom_product_screen.dart';
+
 import '../../card_detail_screen.dart';
 import '../../models/provisional_card.dart';
 import '../../services/identity/display_identity.dart';
@@ -1680,6 +1683,14 @@ class _PulseItemRow extends StatelessWidget {
             builder: (_) => PublicGvviScreen(gvviId: route.value),
           ),
         );
+        return true;
+      case GrookaiCanonicalRouteKind.storeProduct:
+        await navigator.push(MaterialPageRoute<void>(builder:(_)=>CustomProductScreen(slug:route.value,productId:route.productId!,preview:route.preview)));
+        return true;
+      case GrookaiCanonicalRouteKind.store:
+        await navigator.push(MaterialPageRoute<void>(
+          builder: (_) => StorefrontScreen(slug: route.value, preview: route.preview),
+        ));
         return true;
       case GrookaiCanonicalRouteKind.dex:
         await navigator.push(

@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-09-18T14:15:22.405Z",
+  "project": "grookai-storefront-verification-20260918",
+  "realAuth": true,
+  "realStorage": true,
+  "results": [
+    {
+      "name": "real GoTrue signup, password sign-in and refresh",
+      "passed": true
+    },
+    {
+      "name": "database grants and rollout gate direct RPC creation",
+      "passed": true
+    },
+    {
+      "name": "draft ownership and base-table RLS",
+      "passed": true
+    },
+    {
+      "name": "real Storage multipart photo, MIME/size/scope enforcement and private draft",
+      "passed": true
+    },
+    {
+      "name": "explicit product/store publication and app/web parity",
+      "passed": true
+    },
+    {
+      "name": "real concurrent version checks accept exactly one quantity save",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n'23' !== '40001'\n"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "baseline": "a14388f689235d62b3165c1dd88aaa4c562ab186",
+  "database": "grookai_storefront_v1_1789705816211",
+  "host": "127.0.0.1",
+  "port": 15438,
+  "proof": "Representative synthetic PostgreSQL integration; not full Supabase migration-chain replay or production parity",
+  "results": [
+    {
+      "name": "additive migration applies to representative local schema",
+      "passed": true
+    },
+    {
+      "name": "rollout defaults off even for database grant",
+      "passed": true
+    },
+    {
+      "name": "create store is a private draft",
+      "passed": true
+    },
+    {
+      "name": "another owner cannot read draft or select foreign copy/section",
+      "passed": true
+    },
+    {
+      "name": "anonymous cannot access base tables or mutation functions",
+      "passed": true
+    },
+    {
+      "name": "section selection and price change do not select inventory",
+      "passed": true
+    },
+    {
+      "name": "private copies cannot be selected; owner sees reason",
+      "passed": true
+    },
+    {
+      "name": "selection does not publish; explicit publish enables each surface",
+      "passed": true
+    },
+    {
+      "name": "app/web parity preserves exact siblings, prices, IDs, and filters",
+      "passed": true
+    },
+    {
+      "name": "slug freezes at first publication and duplicate slug rejects",
+      "passed": true
+    },
+    {
+      "name": "reserved owner route slug is rejected; profile-style normalization is authoritative",
+      "passed": true
+    },
+    {
+      "name": "wrong-parent printing, missing printing identity and missing parent identity stay excluded",
+      "passed": true
+    },
+    {
+      "name": "private intent is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "zero price is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "archived is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "transfer is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "unassigned is removed immediately, without changing membership",
+      "passed": true
+    },
+    {
+      "name": "public profile privacy removes store and preview eligible items",
+      "passed": true
+    },
+    {
+      "name": "active quarantine and inactive finish cannot publish",
+      "passed": true
+    },
+    {
+      "name": "canonical suppression is respected",
+      "passed": true
+    },
+    {
+      "name": "app, web and owner preview all exclude signed-in-only set releases",
+      "passed": true
+    },
+    {
+      "name": "non-Pokemon game releases require public status equally on app and web",
+      "passed": true
+    },
+    {
+      "name": "$50 to $30 downgrade suspends web; upgrade does not republish",
+      "passed": true
+    },
+    {
+      "name": "loss of all grants preserves owner preview and unpublish",
+      "passed": true
+    },
+    {
+      "name": "private media paths require store owner and uploaded object",
+      "passed": true
+    },
+    {
+      "name": "clients cannot invoke signup-credit RPC or ledger writes",
+      "passed": true
+    },
+    {
+      "name": "old account, self-referral, expired context cannot earn credit",
+      "passed": true
+    },
+    {
+      "name": "concurrent verified callbacks credit actual signup exactly once",
+      "passed": true
+    },
+    {
+      "name": "runtime kill switch prevents public access without changing inventory",
+      "passed": true
+    },
+    {
+      "name": "negative query limits fail closed",
+      "passed": true
+    },
+    {
+      "name": "presentation foreign keys do not prevent governed hard deletion",
+      "passed": true
+    }
+  ],
+  "fixture": {
+    "owner": "00000000-0000-4000-8000-000000000001",
+    "other": "00000000-0000-4000-8000-000000000002",
+    "visitor": "00000000-0000-4000-8000-000000000003",
+    "newUser": "00000000-0000-4000-8000-000000000004",
+    "storeId": "9e8692e6-ed66-4832-8e73-ec8b6bc5e835",
+    "slug": "test-store"
+  },
+  "createdAt": "2026-09-18T04:30:16.72Z",
+  "migration_sha256": "9311f0a31e8f5cf37c7cde4977b6d616bc62ae454756219eb0bc029e6ec848a2"
+}

@@ -1,0 +1,88 @@
+{
+  "checkedAt": "2026-09-19T04:45:30.642Z",
+  "base": "8bf503314431c0de89d362f15d2c0a48e62cb4b6",
+  "head": "6e747bb1561354fc56b62c73be39f258da506f15",
+  "files": [
+    {
+      "file": "docs/contracts/VAULT_UNASSIGNED_ADD_REPAIR_V1.md",
+      "identical": true,
+      "prSha256": "088473525c436b664078f3d66ee508402aff5c5f77029fd4cb3e40c4f107a5e0",
+      "candidateSha256": "088473525c436b664078f3d66ee508402aff5c5f77029fd4cb3e40c4f107a5e0"
+    },
+    {
+      "file": "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+      "identical": false,
+      "prSha256": "ee19b55b41d1a0e742f10fa976f83f44869a8e2df447ae6d9e2ba3cce7076d97",
+      "candidateSha256": "6a41246cd2687ce354d3afc51f1f6e75140814f97da5a0f2ebbae646994602a4"
+    },
+    {
+      "file": "docs/ops/VAULT_UNASSIGNED_ADD_CHECKPOINT_20260916.md",
+      "identical": true,
+      "prSha256": "706c037b6649fca2402ef55f0bf1d0fd64f538fe37a603760cc59a4e3f64e5f7",
+      "candidateSha256": "706c037b6649fca2402ef55f0bf1d0fd64f538fe37a603760cc59a4e3f64e5f7"
+    },
+    {
+      "file": "lib/card_detail_screen.dart",
+      "identical": true,
+      "prSha256": "b6ceaf6e7b40886c82644bfae04a6e56612928b0bc21f6906b7956b67bd1e862",
+      "candidateSha256": "b6ceaf6e7b40886c82644bfae04a6e56612928b0bc21f6906b7956b67bd1e862"
+    },
+    {
+      "file": "lib/main.dart",
+      "identical": false,
+      "prSha256": "e3fd0437c1aae09aa49de0c5019232de377e665b4b4646d3886c9c4ebf5a039c",
+      "candidateSha256": "b646647ae9e5d33733699ab4cffad1a26d8706cf8f80fbdb55ce13ae764b6ebc"
+    },
+    {
+      "file": "lib/services/public/public_card_printing_options_service.dart",
+      "identical": true,
+      "prSha256": "4a7d00488fc5c1b33b9c1b45b36a87ce6a20345a8376e75defdde8659d9d5859",
+      "candidateSha256": "4a7d00488fc5c1b33b9c1b45b36a87ce6a20345a8376e75defdde8659d9d5859"
+    },
+    {
+      "file": "lib/services/vault/vault_card_service.dart",
+      "identical": true,
+      "prSha256": "0608d14e1c63767f443f7f757554357efb453208f29d553cddbdf09f26cfb6bb",
+      "candidateSha256": "0608d14e1c63767f443f7f757554357efb453208f29d553cddbdf09f26cfb6bb"
+    },
+    {
+      "file": "lib/widgets/vault/confirm_unassigned_printing.dart",
+      "identical": true,
+      "prSha256": "a40276f97a8a888867618f05d381fd34ddc3178f2f79140a8212fb9160b1c5c3",
+      "candidateSha256": "a40276f97a8a888867618f05d381fd34ddc3178f2f79140a8212fb9160b1c5c3"
+    },
+    {
+      "file": "test/app_flow_prod_readiness_test.dart",
+      "identical": true,
+      "prSha256": "b67086b8cbda56e4a80913f1d5dc9c77cd1b0b32605f5182adce490539b043a6",
+      "candidateSha256": "b67086b8cbda56e4a80913f1d5dc9c77cd1b0b32605f5182adce490539b043a6"
+    },
+    {
+      "file": "test/nav_friction_search_quick_add_test.dart",
+      "identical": true,
+      "prSha256": "5d4c6ff0f5f7ca5c2d0f3438c92ace5e12db6b1ccf800ecac11094f045c3e32c",
+      "candidateSha256": "5d4c6ff0f5f7ca5c2d0f3438c92ace5e12db6b1ccf800ecac11094f045c3e32c"
+    },
+    {
+      "file": "test/public_card_printing_options_truth_boundary_test.dart",
+      "identical": true,
+      "prSha256": "bff35c99c28b580bb756388f8b474972582afef73297553368dd4ea41999d51f",
+      "candidateSha256": "bff35c99c28b580bb756388f8b474972582afef73297553368dd4ea41999d51f"
+    },
+    {
+      "file": "test/vault_unassigned_add_test.dart",
+      "identical": true,
+      "prSha256": "f00b7d19de32555dd8359a3a284684a323dab3e01b726bbee721b10125d3cf6f",
+      "candidateSha256": "f00b7d19de32555dd8359a3a284684a323dab3e01b726bbee721b10125d3cf6f"
+    },
+    {
+      "file": "tests/sql/vault_unassigned_add_v1.sql",
+      "identical": true,
+      "prSha256": "b410d030fa98ff2fb736a8b7d3bfc3d45ee95622b8c9196a1c3cba2d17ed6f0a",
+      "candidateSha256": "b410d030fa98ff2fb736a8b7d3bfc3d45ee95622b8c9196a1c3cba2d17ed6f0a"
+    }
+  ],
+  "reverseCheckExit": 1,
+  "reverseCheck": "error: patch failed: docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md:1\nerror: docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md: patch does not apply\n",
+  "mutation": false
+}

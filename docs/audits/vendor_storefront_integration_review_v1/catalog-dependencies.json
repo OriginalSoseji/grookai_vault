@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-09-19T04:44:25.733Z",
+  "productionAccess": false,
+  "repairExecution": false,
+  "evidenceHashes": {
+    "C:\\grookai_vault_operator_artifacts\\retrospective_printing_audit_20260917\\english-provenance-schema-v7.json": "c034004533a5bdc84de1bc7616558667108c2acceff7d72c888d95e971afc3b9",
+    "C:\\grookai_vault_operator_artifacts\\retrospective_printing_audit_20260917\\wcd-coordinate-parent-schema-v1.sql": "e2d2eeaeb1f47462a593dbf6b625a1d4b00aeef3f9e8e19dbceeff2a5e9f13bf",
+    "C:\\grookai_vault_operator_artifacts\\retrospective_printing_audit_20260917\\wcd-coordinate-recent28-plan-v1.json": "942979f63a43589f4ca782e5a4572d7c0362eca19a79e6931fb5942dcf01c62f"
+  },
+  "printingSchema": {
+    "exactFrozenMatch": true,
+    "sha256": "5db0d9512a63229bc94ed29bec78357d5106ce24189aedf4b611a75da4f95ec6",
+    "tables": [
+      "card_printings",
+      "card_printing_truth_reviews",
+      "raw_imports"
+    ],
+    "publicPrintingRpcUnchanged": true
+  },
+  "coordinateSchema": {
+    "exactFrozenMatch": false,
+    "definitionsMatch": true,
+    "note": "Local replay retains the known card_prints column order difference; this diagnostic never refreezes or authorizes a repair plan."
+  },
+  "storeForeignKeys": [
+    {
+      "source": "vendor_store_items",
+      "target": "vault_item_instances",
+      "name": "vendor_store_items_instance_id_fkey",
+      "definition": "FOREIGN KEY (instance_id) REFERENCES vault_item_instances(id) ON DELETE CASCADE"
+    },
+    {
+      "source": "vendor_store_items",
+      "target": "vendor_stores",
+      "name": "vendor_store_items_store_id_fkey",
+      "definition": "FOREIGN KEY (store_id) REFERENCES vendor_stores(id) ON DELETE CASCADE"
+    },
+    {
+      "source": "vendor_store_sections",
+      "target": "wall_sections",
+      "name": "vendor_store_sections_section_id_fkey",
+      "definition": "FOREIGN KEY (section_id) REFERENCES wall_sections(id) ON DELETE CASCADE"
+    },
+    {
+      "source": "vendor_store_sections",
+      "target": "vendor_stores",
+      "name": "vendor_store_sections_store_id_fkey",
+      "definition": "FOREIGN KEY (store_id) REFERENCES vendor_stores(id) ON DELETE CASCADE"
+    }
+  ],
+  "affectedSharedTargets": [
+    "vault_item_instances",
+    "wall_sections"
+  ],
+  "entitlementTriggers": [
+    {
+      "name": "vendor_store_custom_entitlement_revocation",
+      "definition": "CREATE TRIGGER vendor_store_custom_entitlement_revocation AFTER INSERT OR DELETE OR UPDATE ON public.user_entitlements FOR EACH ROW EXECUTE FUNCTION vendor_store_custom_revoke_v1()"
+    },
+    {
+      "name": "vendor_store_entitlement_revocation",
+      "definition": "CREATE TRIGGER vendor_store_entitlement_revocation AFTER INSERT OR DELETE OR UPDATE ON public.user_entitlements FOR EACH ROW EXECUTE FUNCTION vendor_store_revoke_publication_v1()"
+    }
+  ],
+  "releaseBoundary": "No change to the inspected printing/coordinate definitions. Broader dependency inventories must account for the new Vault/Wall foreign keys and entitlement triggers. Never reuse a frozen repair plan without its own fresh preflight.",
+  "status": "passed"
+}

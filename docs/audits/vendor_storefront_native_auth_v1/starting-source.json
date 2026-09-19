@@ -1,0 +1,530 @@
+{
+  "recordedAt": "2026-09-18T14:58:35.693Z",
+  "head": "a14388f689235d62b3165c1dd88aaa4c562ab186",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "29b986d63a3fedf398e77dc74b7720eae2a61232024e87f0b43c4aab21f70868"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "2f6abf7de53666b4806325aa6a79ca2145076dbfccc6d79a7ea58457c0210885"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "sha256": "b0ff0d286d26fc788a3081021ddf2c33d4234596c30b242fd959e3cd428e52d6"
+    },
+    {
+      "path": "apps/web/next.config.mjs",
+      "sha256": "27232fa9e9d68004203932b0c9891adaa9b1d4de1fe5e47ce2c2fe169e844625"
+    },
+    {
+      "path": "apps/web/public/.well-known/apple-app-site-association",
+      "sha256": "1fc4f6767371f4aae209de121dc79b726c46693135eda80c0db0c88db53bb2a6"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/media/[kind]/route.ts",
+      "sha256": "e9edf93724f909e0316194b79f29d14654d5ecb6bf622a1c2f62e96ac9a8b825"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/products/[productId]/media/[photo]/route.ts",
+      "sha256": "f3d816291017e1171e6ca85584c8b5f1ddadedb77486c8891cdb5de449f66405"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/products/[productId]/route.ts",
+      "sha256": "6f70eeb236fe738fc0bfdd6a5360738e2bcea875935a0de9df2daf6b99f22d26"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/route.ts",
+      "sha256": "f5e1cfedc20cd0f360c6bf20664a194b736bf22e28529242e062816a48033af9"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/media/[kind]/route.ts",
+      "sha256": "0d3ca5d5ed8801bb8d8a333d3f11b3524e04f4f0a1f187d94048f0b27fdcd6b8"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/media/[kind]/route.ts",
+      "sha256": "ffbef596d032e2ebf7e659ca808f3dec84e0c375d205fa6b8f828e40eccaf021"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/products/[productId]/media/[photo]/route.ts",
+      "sha256": "7789115e92c51a9eaed2340c978b8715c391bb7a851d5b5663d9685efb826a8a"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/products/[productId]/route.ts",
+      "sha256": "360ba3d042301192a6bf3bee5cffe3a4f0ae3f4e7bb7f8f6d6757ea16316d6ac"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/route.ts",
+      "sha256": "3d0a7762a1b1c952aaafb0e6415fa87588f357bae0c0abc7db071113abec3c90"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/products/[productId]/media/[photo]/route.ts",
+      "sha256": "b4f8be0b27e7bf87aef4538fc295479d098938c1cd8a6af265143ec5724a8092"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/products/[productId]/route.ts",
+      "sha256": "74cec60663311609a91b4f682a1fb57108b5d607db560658ca7b3b4ea73cf2e0"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/referral/route.ts",
+      "sha256": "00e30e59f34c62e472626cbc32c7b26b2e910ac817de549765e2d1a509f48792"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/route.ts",
+      "sha256": "643688791e55d2547d400a76a1a3b9bfa80b50faa4e117ae2da9dc4a43932af5"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/products/route.ts",
+      "sha256": "5fa28501af4df549f7323c50fb0e4ed5d07a784b96f5826853c3b29601a6aa30"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/route.ts",
+      "sha256": "213eecc4b30adfaf86e8d8e588217717c22483faa0a5efb8cdd71f150175a0e9"
+    },
+    {
+      "path": "apps/web/src/app/api/telemetry/route.ts",
+      "sha256": "8a915c073b0e6eef465de8b3174735410d626c79de5a96c806aff6139920dcd0"
+    },
+    {
+      "path": "apps/web/src/app/store/[slug]/page.tsx",
+      "sha256": "101d5c0212f89a44c5f19ab4f669c4f051a448e3b9dad13ac1eeffb54341ec38"
+    },
+    {
+      "path": "apps/web/src/app/store/[slug]/products/[productId]/page.tsx",
+      "sha256": "a20b808c744d37f9c5eda01b053ab98347393109645fc183527b9674d33bffb5"
+    },
+    {
+      "path": "apps/web/src/components/stores/CustomProductView.tsx",
+      "sha256": "803874d4182a89104aef7752f08d76c1b8cc63bc1c2fad49c2fb83d7439e46bc"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreEntry.tsx",
+      "sha256": "58ec690320c195ee465c4d8f234fe28dba2178b29bc48bb9922b41a608b3eeb8"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreProductImage.tsx",
+      "sha256": "2058507b0cfde57f48203eb34d5bf36e06e0d9c5d1ca42161a31cc1e57ec7337"
+    },
+    {
+      "path": "apps/web/src/components/stores/StorefrontView.tsx",
+      "sha256": "be97db0047efbc3f34309b11a17a6456af21e4441d8185d4672a88600f94af45"
+    },
+    {
+      "path": "apps/web/src/lib/collectorStaging.d.mts",
+      "sha256": "e285a1cef81b349fd4e00a7cdf01d6c0976b2af457afbd49fd8dc33d6069ae74"
+    },
+    {
+      "path": "apps/web/src/lib/collectorStaging.mjs",
+      "sha256": "d35465c01e8c74497f939bcb3c76b066a54b64e176e0f8aa77008e1ac5c625e9"
+    },
+    {
+      "path": "apps/web/src/lib/gvvi/vendorReferralAttribution.ts",
+      "sha256": "cb7cdfc2684c47b197551f91c7d327e62adf7f3c88bece1de14e8bff4e05d422"
+    },
+    {
+      "path": "apps/web/src/lib/stores/customProductServer.ts",
+      "sha256": "666bdd5998f4549bcda5db341bb49892428e3c167bd93f4d0b981d11cc22c5e8"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeMediaServer.ts",
+      "sha256": "e5567fa55db90c47f1e5cadbfb9fa5dd7db7096f18b42985dc98baf9d5c0e8b9"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeReferralCore.ts",
+      "sha256": "68ba9807b4b30eec9f86e3943576f62262211eca388e02b41c55181ea6fd92b6"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storefrontServer.ts",
+      "sha256": "a752de07b08a2695bdcc06e7bc1ecc13cd4f445795083c42338b71a349a3daa9"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storefrontTypes.ts",
+      "sha256": "b8a5fedbd5de337651ed584f9858e2a25f6935ba97e3c5582fa3aa59ba18ed48"
+    },
+    {
+      "path": "apps/web/src/lib/telemetry/trackServerEvent.ts",
+      "sha256": "a130b1fb48d79eb42e03f7cd8aceb77982b3fac6f95e1794d7b5db8acd29a854"
+    },
+    {
+      "path": "docs/CONTRACT_INDEX.md",
+      "sha256": "ca07d89d0ffe3d2abca6bba2f2c079d221faa77fe31fa346f93d4662cef8b22d"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/LOCAL_IMPLEMENTATION_20260917.md",
+      "sha256": "953a6430ff1b73fb718ef041fc1760fea8cb57b90f60bad84eb8f6ac84523cc4"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/browser-receipt.json",
+      "sha256": "5e205680bcbda672d76393d392fda3a1fab9df8a701e35296bf2d598130e6423"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/changed-files.md",
+      "sha256": "93686193112114d3af40dd72820f70fdea45777324fa8ff84b2fd58ffcc191a3"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/checks.json",
+      "sha256": "92f15b9ac94e8d10cfeb9a45fb0ebecfadd2bdb3ef2f2fcd0c4d60924270c1cf"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/custom-detail-desktop.png",
+      "sha256": "b37e6a392d52a39c09d655237029e9b43713ac7ae19c0396baf92fbbb81b2858"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/custom-detail-mobile.png",
+      "sha256": "62645f8dfd5e001ce4328aedc569867b8cfb994eaacb61874ff36f62002297b5"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/custom-grid-desktop.png",
+      "sha256": "861f37525e2ddc78bf77faf0d742168dd6a62d22d01b2395176d442fdf25c0bf"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/custom-grid-mobile.png",
+      "sha256": "c0260f649da41897c0e9c689ee299cd9fd5d5727054e79d4f841f5f3a7919344"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/custom-native-detail.png",
+      "sha256": "f39b721d9de2cc2111a5c81cd73449c5a843e30a76e2aa60ee6557ef6a2e34ba"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/custom-native-editor.png",
+      "sha256": "2db4aadc444419380627c74a60a4f10be3ee47f225fd5cb1bd28c967b6e6efce"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/final-source.json",
+      "sha256": "93d0940ab431ce64b48d100ab766f71a113c032ab100652549d25df17332f364"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/flutter-analyze.log",
+      "sha256": "3696e8520f56d1360eec9e9d4124ab0ae0bee5d7cd1a17e7b477b9c432b45358"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/flutter-tests.log",
+      "sha256": "12997027d7d29c5403575de36cd2536561efd09fe3e7dc9726c75432297d2eb0"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/legacy-browser-receipt.json",
+      "sha256": "c1e0298a1648aba2e32bfc546aa1e781ea4cc0eb9d65f96c0e4400a93db110d5"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/legacy-contracts.log",
+      "sha256": "eaed898dd565bc5d5e90013c2292afb799d4a555de85dc707f8fb920aba733b5"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/sql-receipt.json",
+      "sha256": "00396198f7666990707edc58c12583b7de566215489f186b55a33b396a6fa943"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/starting-source.json",
+      "sha256": "44911b0e67e8bc2fc4f6ec5abdc09510cb0b81c0da0fe73c47269b4cb7d41b32"
+    },
+    {
+      "path": "docs/audits/vendor_custom_collectibles_v1/web-build.log",
+      "sha256": "59962a3018d7c739613ac91464361bfbd35ecf25c53e236c364f20fb9041447f"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/LOCAL_SUPABASE_PROOF_20260918.md",
+      "sha256": "9707537a8985451894db18f1f1c0d207a66f69563ddeb8d0d61b2b7e847c1bab"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/auth-storage-receipt.json",
+      "sha256": "9a957420bd05c9f6d91ffd379d5a00fb1db505d3d46a86ebd5250d430ecad5ac"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/catalog-receipt.json",
+      "sha256": "83d6b477a3da74e8b637f7e55098582ee89f9a70276789a4bfe3112a1e19c6bb"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/checks.json",
+      "sha256": "a6bf6e16d46bfbaa94646febca8dfa34abd20a2ffbf5b44af6e403eab0fde658"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/cleanup.json",
+      "sha256": "e912af05cd0c54d4111f864d735e41c19ab01c87380015547c1c2bb0fedab3d1"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/conflict-failure.json",
+      "sha256": "7702e6dcdee8f8c0588b7724f264f545f473852f634faee1aef066a3358f8758"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/environment.json",
+      "sha256": "79e325704cc8a2f7ea36467572151d201261769662b1de01b064f07e76bb51ea"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/initial-396-replay.json",
+      "sha256": "7ae4e38de9dfef595429170a84ceb592cfacfbea08c50c3c8f09d12e6d162def"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/real-desktop-product.png",
+      "sha256": "5d5eae83df584713b58078ed564dc746e5373f7ec6384e285dc3c35a504b8559"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/real-desktop-store.png",
+      "sha256": "334311a366f8b1f2b26435a694b63ae60ff48e6875bcbfb72ebb9c3434fce705"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/real-mobile-product.png",
+      "sha256": "22c65e914cb3cc70c591bd5a0a4d10c33d93f7de096003d8936c9680fe5a3633"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/real-mobile-store.png",
+      "sha256": "3d2fa96001ab7123d9704051bcfbe540a757b51ce05a3dafe6d071baea012c7c"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/replay-result.json",
+      "sha256": "67c892e298f5a86d4406adb1dab73aa25fbd1a70093528a85ba5905d935730fc"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/restart.json",
+      "sha256": "ee79fb70b6811b31673e16106053a38f6c57a79fe1594ba55f445f94f8577dca"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/starting-source.json",
+      "sha256": "3c7f5959dbdca4afdab49211e0f98a2d49caf885d8a77e06b9ce13cf9d0c8c8d"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/synthetic-receipt.json",
+      "sha256": "e9b67614877a72339cf99ded27b8686c5532cfc89fa9f49adcbee83258f32ac8"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_supabase_v1/web-receipt.json",
+      "sha256": "d4aad171ff9c056001676ebcccda42339cf1da8a23e53e5a9e87734e0387b916"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/LOCAL_VERIFICATION_20260918.md",
+      "sha256": "2c203335981911377c15f9b2ba0bdbc7593c4c22b6b345f3afbd484d5fe57a97"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/browser-receipt.json",
+      "sha256": "64ca5e6533eb6f3908a436f0ac8845c8000ceda6015c941476f28afe7a2201ca"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/browser-regression.log",
+      "sha256": "bc94c52c997d7050c442c88dce518ff338e324c9f5d78964a475125cd12f6d61"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/checks.json",
+      "sha256": "c28cca9db170a94dd4ee80d6cc90d81679f56a1c00f5aaeaab3de20652e3b2e9"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/device-analyze.log",
+      "sha256": "b0d4e9e5e7b62a8f6babcc4fbf9c0d6a7e834c4e34d9be29041b6e605660bb22"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/device-journey.log",
+      "sha256": "ab988d4634aac1118589cb99cb6115fcb6a3f1f20a1a50097236fff0ccc5562a"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/device-shell-build.log",
+      "sha256": "1d626d11079835471c8da4b81dd5428fb4579a7ca967e07ab038163f08c5a70a"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/final-source.json",
+      "sha256": "e0e9ee33eaa043ff07694f31d15c9731e2bacc6c6c12de6bbc3c90d2785a8dff"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/pr473-comparison.json",
+      "sha256": "00fc77bdda79b6059d847f867e65a7177b193ca228e5056dce863f0285df9c1c"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/samsung-custom-preview.png",
+      "sha256": "72e1c99fe443692c2e40fd18e91c85f3eb38aa5da408198cafde12210f80ffcb"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/samsung-mixed-grid.png",
+      "sha256": "849d383cae3bad339b78cb330043f9960442dcbfa47ceae06af5b32453e8df66"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/samsung-product-deeplink.png",
+      "sha256": "72e1c99fe443692c2e40fd18e91c85f3eb38aa5da408198cafde12210f80ffcb"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/samsung-store-deeplink.png",
+      "sha256": "ebcd32fbecd5fd300f0ca1d373b9128d4aa6166241bfb536f5085ef6937e12b1"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/samsung-unpublished-denied.png",
+      "sha256": "37e9e38a3956c77d2b3f1c5136b9c26ea0a974ace45e9522e4054aef57c7048c"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/sql-receipt.json",
+      "sha256": "b6d4dcb0ffd2c5cf4825b39bb0adc3743bd9d833afcfb6806217505877d38e4d"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/starting-source.json",
+      "sha256": "53bca2276abe5395546e6247970ffade2efa3668d85629b522be4da8e836cafa"
+    },
+    {
+      "path": "docs/audits/vendor_storefront_verification_v1/supabase-preparation.json",
+      "sha256": "f3be9a7fcbb1d08f585a1c78f61ab1fc99edcd463d74de378c96f77cfc416587"
+    },
+    {
+      "path": "docs/audits/vendor_storefronts_v1/LOCAL_IMPLEMENTATION_20260917.md",
+      "sha256": "e79355262888b55f7124f5af8ed04e762161ca46278df904d8debb9170d6eb42"
+    },
+    {
+      "path": "docs/audits/vendor_storefronts_v1/browser-receipt.json",
+      "sha256": "dcdd23b5dbed37ac5518809a0b18fa7449de41299044e991c8bdde5a113c4dec"
+    },
+    {
+      "path": "docs/audits/vendor_storefronts_v1/desktop.png",
+      "sha256": "83efb834a30a99314a4741851e781edb5cc60a087ed2ad403e01e9c8805ca378"
+    },
+    {
+      "path": "docs/audits/vendor_storefronts_v1/mobile.png",
+      "sha256": "11a1d3e4211af35c8d1487ef3e421f1a7a34d207059e6c6930a16aa52db02f85"
+    },
+    {
+      "path": "docs/audits/vendor_storefronts_v1/sql-receipt.json",
+      "sha256": "fd8093f285aeacaa363fff37ba07ae066bb822b622bf9059c77ec492d78f6a4e"
+    },
+    {
+      "path": "docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md",
+      "sha256": "1d7c0bf38f621e22a89c99ce92f035c112a984784c1f1f9e9861ee62baceb530"
+    },
+    {
+      "path": "docs/contracts/VENDOR_STOREFRONTS_V1.md",
+      "sha256": "f09c4fa256d4418a216c9fc628a3da8ecc574414d5f3bf85a2ec22ec777feb06"
+    },
+    {
+      "path": "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+      "sha256": "f26e090eeb9fa272758323950724a57a625f2722ef15e8c5a8149b13a2c1c1a0"
+    },
+    {
+      "path": "lib/main.dart",
+      "sha256": "54df1653aa07026d282f9e8030dc08938632f8c77113ee47a48e07ff96eea96a"
+    },
+    {
+      "path": "lib/main_shell.dart",
+      "sha256": "1e29316a22aa651c11a808a2c25ce0b895660b547fb8468042120acdfd672ca2"
+    },
+    {
+      "path": "lib/screens/gvvi/vendor_pricing_workspace_screen.dart",
+      "sha256": "6ba7981ceb0150cf0ccd195125b06148d3dadee9d0dd2effd8d963a5a346bbe8"
+    },
+    {
+      "path": "lib/screens/network/network_screen.dart",
+      "sha256": "c200ba90eba53b74f8f64b35611b42ad45973f342f1cf94de1eb7fb250f16700"
+    },
+    {
+      "path": "lib/screens/stores/custom_product_management_screen.dart",
+      "sha256": "70b7c393d6aa8be6bfd3bb551305ac7e89b59ed3223d204ca0b2d30ae7d51ebe"
+    },
+    {
+      "path": "lib/screens/stores/custom_product_screen.dart",
+      "sha256": "8675f25ecad4b6654a97eb43a8c953abf0e3d3da8b2a50951070ce988e8760ba"
+    },
+    {
+      "path": "lib/screens/stores/store_management_screen.dart",
+      "sha256": "5db9f9ba1ccebea0c9098b1497f32872ba50f5a5c12a1752c2d4d5093bee4a17"
+    },
+    {
+      "path": "lib/screens/stores/storefront_screen.dart",
+      "sha256": "15e09a78f4e5637f4bcc682206a7c7c6db55a5d3064b8801727d7927908e9a07"
+    },
+    {
+      "path": "lib/services/navigation/grookai_web_route_service.dart",
+      "sha256": "2c211b2d57276eb6b6530d44d861e8cc999c9a6f9baf23dc1cfd31816094e1e1"
+    },
+    {
+      "path": "lib/services/stores/storefront_service.dart",
+      "sha256": "5887093e0f0c38c1c11ab804d18544117295c07125bc498eba183065e4ee8937"
+    },
+    {
+      "path": "scripts/tests/prepare_storefront_device_shell_v1.mjs",
+      "sha256": "7a749a0c35670ad1b9afb91fb75bbfd4d78646ce923a327a8759fbce035a5582"
+    },
+    {
+      "path": "scripts/tests/prepare_storefront_supabase_verification_v1.mjs",
+      "sha256": "81df9a4c683213b354d6d73f626419183ddcd15ec360ad00768ce955b7615449"
+    },
+    {
+      "path": "scripts/tests/storefront_device_harness_v1.dart.template",
+      "sha256": "b94e86e137c3497b4ceacdbff7bfa9867bcace9547f6c7d9c6ad245908e9d4a5"
+    },
+    {
+      "path": "scripts/tests/storefront_device_journey_v1.dart.template",
+      "sha256": "8d3187989a65c75d9c733343204301ba2fbf74fb813303f9752024c192c83072"
+    },
+    {
+      "path": "scripts/tests/storefront_device_shell_v1.json",
+      "sha256": "cf568b2492312516af2e69fcaddffff1717b6fee40e50d17fdac56d299c1e35b"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_catalog_v1.mjs",
+      "sha256": "2683c05938ca396ba19c8bbcae67413e9b5a079248e07418d31a2b0195db5b56"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_http_v1.mjs",
+      "sha256": "b6b88e6c4869fe90e7cd8584db566ccf5bdf77026914ef653ae6a809072018e9"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_live_v1.mjs",
+      "sha256": "c8aaf7b50040b30b32559f9d1087abb7a0ab52d89b0a5b81aa678013ca7ccd0a"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_relay_v1.mjs",
+      "sha256": "a3349e2c2acda1682d40f85261930bb1b65403e9d70c3cf22cc91c9934f93953"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_replay_v1.mjs",
+      "sha256": "0c81f4e02f4b2634d882a2ae7af2a8f2b2d352fbbd0b79ea79b04b24d8dd695a"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_web_v1.mjs",
+      "sha256": "4b4478ec6a1d8e3440a00fc3908e0555619b4bbcbfa283099a359345dcb94cb1"
+    },
+    {
+      "path": "scripts/tests/vendor_custom_collectibles_browser_v1.mjs",
+      "sha256": "f680d0a616fc9ac51823bcc787c3ab8a45fe7dc1132fb7d89ba0ac3f2f89bb3d"
+    },
+    {
+      "path": "scripts/tests/vendor_custom_collectibles_local_v1.mjs",
+      "sha256": "11047ea9590f67922c38594705e100dcfacaa8cfafabfe9256afd78a65a96558"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_browser_v1.mjs",
+      "sha256": "4a5670dc33b5974a541efb38332d2de3da04a87ea1d1f7761017dc6d075118a0"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_http_fixture.mjs",
+      "sha256": "387c0a2cbb17320b2a18e4cf7352a2151447476d70147b7c46284c0a692e2d33"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_local_v1.mjs",
+      "sha256": "81441c52cf40077f3f10961bf7508e43b5f73ac632f775211a2610287bbfdd6f"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_network_guard.cjs",
+      "sha256": "f03c42c3452950cbb4488eaaab3e9d17faf82965dc86e14515117f236ddacd76"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_runtime_v1.test.mjs",
+      "sha256": "e3e33d3781e119c7d91ec2046ae3f72b667efc7a8f5a19414230467d58a8c144"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_web_local.mjs",
+      "sha256": "adf36d71b8c6938d637d9caa5a456330998083c1ffb18b46080447c1fa84e231"
+    },
+    {
+      "path": "supabase/migrations/20260918040000_vendor_storefronts_v1.sql",
+      "sha256": "9311f0a31e8f5cf37c7cde4977b6d616bc62ae454756219eb0bc029e6ec848a2"
+    },
+    {
+      "path": "supabase/migrations/20260918070000_vendor_custom_collectibles_v1.sql",
+      "sha256": "073d7ac1b7ab1b092b9f953685e41f8fd73c59d52c52735999bfc7d6b2444467"
+    },
+    {
+      "path": "supabase/migrations/20260918100000_vendor_custom_collectible_conflict_status_v1.sql",
+      "sha256": "0607172b18dd9a26619a53b3f9bc0b3f6620ce0249da083a6dacc3b534e6a042"
+    },
+    {
+      "path": "test/custom_collectibles_v1_test.dart",
+      "sha256": "f76f8c14ab479ce613b363a9848a89810b774ca3dbadb43a78062644f31ac469"
+    },
+    {
+      "path": "test/storefront_v1_test.dart",
+      "sha256": "cea4e0b1b1ff3d3821bf0f5b61b623653ea5d2016af53ac501005e8c9856bd65"
+    }
+  ]
+}

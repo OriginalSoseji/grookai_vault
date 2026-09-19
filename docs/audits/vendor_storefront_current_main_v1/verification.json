@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-09-18T19:41:52.026Z",
+  "suites": [
+    {
+      "name": "catalog-search",
+      "passed": 24
+    },
+    {
+      "name": "related-contracts",
+      "passed": 46
+    },
+    {
+      "name": "runtime-tests",
+      "passed": 7
+    },
+    {
+      "name": "qr-tests",
+      "passed": 6
+    }
+  ],
+  "runtimeAndContractTotal": 83,
+  "realSupabaseGroups": 18,
+  "rollbackSqlTests": 2,
+  "nextBuildExitCode": 0,
+  "focusedEslintExitCode": 0,
+  "prebuildSetCountValidation": 691,
+  "nativeProofReused": true,
+  "nativeFilesIdentical": 468,
+  "scope": "Targeted local proof, not full repository suite or production release"
+}

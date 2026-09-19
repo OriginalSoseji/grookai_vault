@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-09-18T15:18:08.508Z",
+  "physicalIntegrationTests": 1,
+  "physicalJourneyAssertions": 6,
+  "regressionTests": 25,
+  "productionAnalyze": "no issues",
+  "harnessAnalyze": "no issues",
+  "commonPackageVersionDifferences": 0,
+  "productionCorrection": "AppShell bottom dock Align heightFactor=1",
+  "modifiedSinceStart": [
+    "AGENTS.md",
+    "docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md",
+    "docs/contracts/VENDOR_STOREFRONTS_V1.md",
+    "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+    "lib/main_shell.dart"
+  ],
+  "currentMain": "83b2283a09ad1893e10fcd27d5d8ceb6dbaf4d6d",
+  "pr473Head": "6e747bb1561354fc56b62c73be39f258da506f15",
+  "remoteHeadsRechecked": true,
+  "mainOverlap": [],
+  "pr473NativeMerge": "clean scratch three-way",
+  "pr473DocumentationMerge": "proposed resolution retains both checkpoints"
+}

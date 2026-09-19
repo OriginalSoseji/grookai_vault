@@ -89,6 +89,7 @@ export function DesktopApplicationShell({
               <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 grid w-48 gap-1 rounded-md border border-slate-200 bg-white p-2 shadow-lg dark:border-slate-700 dark:bg-slate-950">
                 {profileHref ? <Link href={profileHref} className="gv-desktop-menu-link">Public profile</Link> : null}
                 <Link href="/account" className="gv-desktop-menu-link">Account settings</Link>
+                <Link href="/account/store" className="gv-desktop-menu-link">Manage store</Link>
                 <Link href="/support" className="gv-desktop-menu-link">Support</Link>
               </div>
             </details>

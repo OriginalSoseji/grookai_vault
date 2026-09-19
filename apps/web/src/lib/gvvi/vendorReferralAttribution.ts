@@ -1,4 +1,9 @@
 import "server-only";
+import { createServerAdminClient } from "@/lib/supabase/admin";
+import {
+  sealStoreReferralContext,
+  unsealReferralContext,
+} from "@/lib/stores/storeReferralCore";
 
 import type { User } from "@supabase/supabase-js";
 import type { NextRequest, NextResponse } from "next/server";
@@ -7,7 +12,6 @@ import {
   GVVI_REFERRAL_WINDOW_SECONDS,
   sealVendorReferralContext,
   shouldCreditVendorReferral,
-  unsealVendorReferralContext,
 } from "@/lib/gvvi/vendorQrCore";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
 import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstanceByGvvi";
@@ -27,10 +31,15 @@ export function clearVendorReferralCookie(response: NextResponse) {
   });
 }
 
-export function setVendorReferralCookie(response: NextResponse, gvviId: string) {
+export function setVendorReferralCookie(
+  response: NextResponse,
+  gvviId: string,
+) {
   const secret = getReferralSecret();
   if (!secret) {
-    console.warn("[gvvi-referral] attribution disabled because GVVI_REFERRAL_COOKIE_SECRET is unavailable");
+    console.warn(
+      "[gvvi-referral] attribution disabled because GVVI_REFERRAL_COOKIE_SECRET is unavailable",
+    );
     return false;
   }
 
@@ -48,7 +57,10 @@ export function setVendorReferralCookie(response: NextResponse, gvviId: string) 
     );
     return true;
   } catch (error) {
-    console.error("[gvvi-referral] failed to create attribution context", { gvviId, error });
+    console.error("[gvvi-referral] failed to create attribution context", {
+      gvviId,
+      error,
+    });
     return false;
   }
 }
@@ -61,6 +73,26 @@ export type VendorReferralConsumeResult =
   | "self_referral_blocked"
   | "credited"
   | "credit_failed";
+
+export function setStoreReferralCookie(
+  response: NextResponse,
+  storeId: string,
+) {
+  const secret = getReferralSecret();
+  if (!secret) return false;
+  response.cookies.set(
+    GVVI_REFERRAL_COOKIE_NAME,
+    sealStoreReferralContext(storeId, secret),
+    {
+      path: "/",
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      maxAge: GVVI_REFERRAL_WINDOW_SECONDS,
+    },
+  );
+  return true;
+}
 
 export async function consumeVendorReferralAttribution(input: {
   request: NextRequest;
@@ -79,43 +111,60 @@ export async function consumeVendorReferralAttribution(input: {
     return "invalid_context";
   }
 
-  const context = unsealVendorReferralContext({ token, secret });
+  const context = unsealReferralContext(token, secret);
   if (!context) {
     return "invalid_context";
   }
 
-  if (!input.accountWasCreated) {
-    return "not_new_account";
+  try {
+    // Retain the established public QR eligibility check. accountWasCreated is
+    // compatibility telemetry only; the RPC verifies the actual auth user timestamp.
+    if (context.version === 1) {
+      const detail = await getPublicVaultInstanceByGvvi(context.gvviId);
+      if (!detail?.isVendorOffer) return "vendor_offer_unavailable";
+      if (
+        !shouldCreditVendorReferral({
+          accountWasCreated: true,
+          referredVendorUserId: detail.ownerUserId,
+          newUserId: input.user.id,
+        })
+      )
+        return "self_referral_blocked";
+    }
+    const { data, error } = await createServerAdminClient().rpc(
+      "vendor_referral_credit_v1",
+      {
+        p_referred_user_id: input.user.id,
+        p_store_id: context.version === 2 ? context.storeId : null,
+        p_gvvi_id: context.version === 1 ? context.gvviId : null,
+        p_created_at: context.createdAt,
+        p_expires_at: context.expiresAt,
+      },
+    );
+    if (error) return "credit_failed";
+    if (data === "credited") {
+      await trackServerEvent({
+        eventName: "vendor_referred_signup",
+        userId: input.user.id,
+        metadata: {
+          contract_version: "VENDOR_STOREFRONTS_V1",
+          source: context.version === 2 ? "store" : "gvvi",
+        },
+      });
+    }
+    if (data === "credited" || data === "already_credited") return "credited";
+    if (
+      [
+        "invalid_context",
+        "not_new_account",
+        "vendor_offer_unavailable",
+        "self_referral_blocked",
+      ].includes(data)
+    )
+      return data;
+    return "credit_failed";
+  } catch {
+    // Attribution must never prevent authentication or a customer's destination.
+    return "credit_failed";
   }
-
-  const detail = await getPublicVaultInstanceByGvvi(context.gvviId);
-  if (!detail?.isVendorOffer) {
-    return "vendor_offer_unavailable";
-  }
-
-  if (!shouldCreditVendorReferral({
-    accountWasCreated: true,
-    referredVendorUserId: detail.ownerUserId,
-    newUserId: input.user.id,
-  })) {
-    return "self_referral_blocked";
-  }
-
-  const eventResult = await trackServerEvent({
-    eventName: "vendor_referred_signup",
-    userId: input.user.id,
-    path: `/gvvi/${encodeURIComponent(detail.gvviId)}`,
-    gvId: detail.gvId,
-    metadata: {
-      contract_version: "GVVI_VENDOR_QR_V1",
-      gvvi_id: detail.gvviId,
-      referred_vendor_user_id: detail.ownerUserId,
-      referred_vendor_slug: detail.ownerSlug,
-      referral_created_at: context.createdAt,
-    },
-  });
-
-  return eventResult === "inserted" || eventResult === "duplicate"
-    ? "credited"
-    : "credit_failed";
 }

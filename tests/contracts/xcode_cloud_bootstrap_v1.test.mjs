@@ -11,6 +11,7 @@ const releaseConfig = readFileSync("ios/Flutter/Release.xcconfig", "utf8");
 const mainDart = readFileSync("lib/main.dart", "utf8");
 const mainShell = readFileSync("lib/main_shell.dart", "utf8");
 const appDelegate = readFileSync("ios/Runner/AppDelegate.swift", "utf8");
+const sceneDelegate = readFileSync("ios/Runner/SceneDelegate.swift", "utf8");
 const infoPlist = readFileSync("ios/Runner/Info.plist", "utf8");
 const project = readFileSync("ios/Runner.xcodeproj/project.pbxproj", "utf8");
 const scheme = readFileSync(
@@ -49,7 +50,9 @@ test("Xcode Cloud uses the UIScene-compatible Flutter release", () => {
   assert.match(script, /flutter precache --ios/);
   assert.match(appDelegate, /FlutterImplicitEngineDelegate/);
   assert.match(appDelegate, /FlutterImplicitEngineBridge/);
-  assert.match(infoPlist, /FlutterSceneDelegate/);
+  assert.match(infoPlist, /\$\(PRODUCT_MODULE_NAME\)\.SceneDelegate/);
+  assert.match(sceneDelegate, /class SceneDelegate: FlutterSceneDelegate/);
+  assert.match(project, /SceneDelegate\.swift in Sources/);
 });
 
 test("local Debug signing is automatic while release signing remains manual", () => {

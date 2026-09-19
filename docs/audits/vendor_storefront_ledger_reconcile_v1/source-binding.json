@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-09-19T07:07:23.1004051Z",
+  "sourceCommit": "4939f55e3f81692c1c6e7d24feb495c926dc7059",
+  "migration": "20260919054500_one_piece_source_product_foil_scope_v1.sql",
+  "sourceSha256": "147d694a57228a18e644377ccf71a07feeb565117f0b180da8fed56197a23e83",
+  "remoteLedgerSqlMatchesSource": true,
+  "transactionReadOnly": true,
+  "foilGameScope": [
+    "mtg",
+    "one_piece"
+  ],
+  "productionWrites": 0,
+  "importedRepairWriters": 0
+}

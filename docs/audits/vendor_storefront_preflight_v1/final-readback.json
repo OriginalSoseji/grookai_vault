@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-09-19T04:12:37.854Z",
+  "head": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "finalObservedMain": "a151794a98cc1e47a9a8886e0e643009cea898e5",
+  "pr473": {
+    "headRefOid": "6e747bb1561354fc56b62c73be39f258da506f15",
+    "state": "OPEN"
+  },
+  "priorManifestFilesCompared": 266,
+  "changedPriorFiles": [
+    "AGENTS.md",
+    "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md"
+  ],
+  "productCodeAndMigrationsUnchanged": true,
+  "taskDatabaseStatus": "exited",
+  "volumesRetained": true,
+  "strictPrePushPassed": false,
+  "queryHashes": {
+    "storefront_release_readiness_v1.sql": "96080682c7c51f32edbce46264fd46f12fd2a314f31f66b954f673115648acb5",
+    "storefront_schema_footprint_v1.sql": "9c6cc7b85c8bc9ac28ef8deca2844440959d8cab5f800fe1cd716ab0e9a15898"
+  },
+  "comparisonTestsPassed": 4,
+  "merged": false,
+  "remoteMigrationsApplied": false,
+  "entitlementsActivated": false,
+  "deployed": false
+}

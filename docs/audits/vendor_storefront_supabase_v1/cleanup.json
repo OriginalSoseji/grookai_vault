@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-09-18T14:31:30.692Z",
+  "taskContainers": [
+    "supabase_db_grookai-storefront-verification-20260918|exited",
+    "supabase_storage_grookai-storefront-verification-20260918|exited",
+    "supabase_rest_grookai-storefront-verification-20260918|exited",
+    "supabase_inbucket_grookai-storefront-verification-20260918|exited",
+    "supabase_auth_grookai-storefront-verification-20260918|exited",
+    "supabase_kong_grookai-storefront-verification-20260918|exited",
+    "grookai-storefront-verification-relay-20260918|exited"
+  ],
+  "containersRemoved": 0,
+  "volumesRemoved": 0,
+  "syntheticPostgresStopped": true,
+  "nextAndLoopbackRelayStopped": true,
+  "generatedNextFilesRestored": true,
+  "priorReceiptAndMigrationHashesPreserved": 41,
+  "receiptSecretScan": "passed"
+}

@@ -21,6 +21,7 @@ param(
 
   [switch]$ReconciledReplayAudit,
   [switch]$CollectorCameoIsolatedReplay,
+  [switch]$StorefrontReleaseIsolatedReplay,
   [string]$InspectionDeps,
   [string]$AuditEnvFile,
   [string]$AuditOutDir
@@ -439,6 +440,13 @@ function Get-LocalDiffBody([string]$StdOut) {
   return $StdOut.Trim()
 }
 
+if ($StorefrontReleaseIsolatedReplay) {
+  $storefrontExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $storefrontExpected.Count -ne 1 -or $storefrontExpected[0] -ne "20260919050000") {
+    Fail "Storefront isolated replay requires only 20260919050000 and cannot combine audit exceptions."
+  }
+}
+
 if ($CollectorCameoIsolatedReplay) {
   $collectorExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
   if ($ReconciledReplayAudit -or $collectorExpected.Count -ne 1 -or $collectorExpected[0] -ne "20260912050000") {
@@ -507,6 +515,20 @@ try {
     Write-Host "Local-only IDs (not applied): $(if ($linkedSummary.LocalOnlyIds.Count -gt 0) { $linkedSummary.LocalOnlyIds -join ', ' } else { 'none' })"
     if ($linkedSummary.LocalOnlyIds.Count -gt 0) {
       Write-Host "Ledger audit found pending local files, not complete ledger parity. The schema diff below includes these files."
+    }
+    if ($StorefrontReleaseIsolatedReplay) {
+      Require-Command "node"
+      $comparison = Compare-IdSets -Expected @("20260919050000") -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) {
+        Fail "Storefront baseline audit requires the exact sole pending release migration."
+      }
+      $audit = Invoke-ExternalCommand -FileName "node" -Arguments @(
+        (Join-Path $repoRoot "scripts/schema/verify_storefront_release_v1.mjs"), "baseline"
+      )
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail "Storefront baseline schema or security differs; no apply is permitted." }
+      Write-Section "STRICT STOREFRONT BASELINE PASS - PENDING APPLY"
+      exit 0
     }
     if ($CollectorCameoIsolatedReplay) {
       Require-Command "node"
@@ -642,7 +664,12 @@ try {
   }
 
   Write-Section "5) Local Replay Proof"
-  if ($CollectorCameoIsolatedReplay) {
+  if ($StorefrontReleaseIsolatedReplay) {
+    Require-Command "node"
+    $resetResult = Invoke-ExternalCommand -FileName "node" -Arguments @(
+      (Join-Path $repoRoot "scripts/schema/verify_storefront_release_v1.mjs"), "replay"
+    )
+  } elseif ($CollectorCameoIsolatedReplay) {
     Require-Command "node"
     $resetResult = Invoke-ExternalCommand -FileName "node" -Arguments @(
       (Join-Path $repoRoot "scripts/schema/verify_collector_cameo_replay_v1.mjs")

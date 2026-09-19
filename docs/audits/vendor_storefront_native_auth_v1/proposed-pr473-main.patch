@@ -1,0 +1,58 @@
+diff --git a/lib/main.dart b/.local/storefront/native_auth/integration/lib_main.dart.ours
+index 561b4cbe7..ee1f18c6d 100644
+--- a/lib/main.dart
++++ b/.local/storefront/native_auth/integration/lib_main.dart.ours
+@@ -74,0 +75 @@ import 'services/vault/vault_card_service.dart';
++import 'widgets/vault/confirm_unassigned_printing.dart';
+@@ -1936 +1937 @@ class _SearchResultActionSheet extends StatelessWidget {
+-    final printingUnavailable = isAddAction && printingOptions.isEmpty;
++    final printingUnassigned = isAddAction && printingOptions.isEmpty;
+@@ -1957,2 +1958,2 @@ class _SearchResultActionSheet extends StatelessWidget {
+-    final primaryLabel = printingUnavailable
+-        ? 'Printing unavailable'
++    final primaryLabel = printingUnassigned
++        ? 'Add with printing unassigned'
+@@ -2085 +2086 @@ class _SearchResultActionSheet extends StatelessWidget {
+-                  'Exact printing unavailable. Try again before adding.',
++                  'Finishes are not verified yet. Your copy can be saved with printing unassigned.',
+@@ -2232,4 +2233 @@ class _SearchResultActionSheet extends StatelessWidget {
+-                onPressed:
+-                    interactionLocked ||
+-                        printingSelectionRequired ||
+-                        printingUnavailable
++                onPressed: interactionLocked || printingSelectionRequired
+@@ -4428,0 +4427,4 @@ class HomePageState extends State<HomePage> {
++            // The modal has its own state; a cancelled/failed add must unlock it.
++            if (sheetContext.mounted) {
++              setSheetState(() {});
++            }
+@@ -4882,11 +4883,0 @@ class HomePageState extends State<HomePage> {
+-    if ((cardPrintingId ?? '').trim().isEmpty) {
+-      ScaffoldMessenger.of(context).showSnackBar(
+-        const SnackBar(
+-          content: Text(
+-            'Exact printing is unavailable. Try again before adding.',
+-          ),
+-        ),
+-      );
+-      return null;
+-    }
+-
+@@ -4897,0 +4889,15 @@ class HomePageState extends State<HomePage> {
++      final unassigned = (cardPrintingId ?? '').trim().isEmpty;
++      if (unassigned) {
++        // A failed lookup must never be interpreted as no verified finishes.
++        final options = await PublicCardPrintingOptionsService.fetch(
++          client: supabase,
++          cardPrintIds: [card.id],
++        );
++        if (options.isNotEmpty) {
++          throw Exception('Choose the exact printing before adding this card.');
++        }
++        if (!mounted || !await confirmUnassignedVaultPrinting(context)) {
++          return null;
++        }
++        if (!mounted) return null;
++      }
+@@ -4906,0 +4913 @@ class HomePageState extends State<HomePage> {
++        unassignedPrintingConfirmed: unassigned,

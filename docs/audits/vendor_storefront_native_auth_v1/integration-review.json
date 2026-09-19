@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-09-18T15:04:31.296Z",
+  "candidateHead": "a14388f689235d62b3165c1dd88aaa4c562ab186",
+  "currentMain": "83b2283a09ad1893e10fcd27d5d8ceb6dbaf4d6d",
+  "currentMainChangedFiles": [
+    "docs/audits/verified_master_set_index_v1/cardtrader_normal_containment_v1/cardtrader_normal_containment_v1.json",
+    "docs/audits/verified_master_set_index_v1/cardtrader_normal_containment_v1/cardtrader_normal_containment_v1.md",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_cards_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_conflicts_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_conflicts_v1.md",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_manual_review_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_printings_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_set_alias_normalization_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_source_agreement_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_source_agreement_v1.md",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_source_availability_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_v1.json",
+    "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_v1.md"
+  ],
+  "currentMainCandidateOverlap": [],
+  "pr473": {
+    "state": "OPEN",
+    "head": "6e747bb1561354fc56b62c73be39f258da506f15",
+    "mergeBase": "8bf503314431c0de89d362f15d2c0a48e62cb4b6",
+    "overlaps": [
+      {
+        "path": "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+        "exitCode": 1,
+        "conflict": true,
+        "mergedSha256": "3bf826478a227a1dcf32310ed83ec46207c7b050a7eb8632213a51576e124a45"
+      },
+      {
+        "path": "lib/main.dart",
+        "exitCode": 0,
+        "conflict": false,
+        "mergedSha256": "b646647ae9e5d33733699ab4cffad1a26d8706cf8f80fbdb55ce13ae764b6ebc"
+      }
+    ]
+  },
+  "method": "Three-way merge-file only in ignored copies; no branch/index/source mutation",
+  "dirtyMappingStatus": " M AGENTS.md\n M apps/web/src/lib/catalogDisplayReference.ts\n M apps/web/src/lib/catalogPresentation.test.mjs\n M apps/web/src/lib/getPublicCardByGvId.ts\n M apps/web/src/lib/publicSets.shared.ts\n M apps/web/src/lib/resolver/normalizeQuery.ts\n M apps/web/src/lib/search/smartSearchIntent.ts\nA  docs/audits/verified_master_set_index_v1/source_fixtures/generated_trainer_kit_numbered_variants_v1/README.md\nA  docs/audits/verified_master_set_index_v1/source_fixtures/generated_trainer_kit_numbered_variants_v1/trainer_kit_numbered_variants_v1.json\n M docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md\n M scripts/audits/english_master_index_bulbapedia_prize_pack_foil_rule_review_v1.mjs\n M scripts/audits/english_master_index_justinbasil_prize_pack_finish_acquisition_v1.mjs\n M scripts/audits/english_master_index_prize_pack_current_gap_cross_source_v1.mjs\nA  tests/contracts/trainer_kit_numbered_finish_evidence_v1.test.mjs\n?? apps/web/src/lib/search/exactGvId.test.mjs\n?? apps/web/src/lib/search/exactGvId.ts\n?? docs/ops/PRIZE_PACK_FOIL_EXCEPTION_REPAIR_20260918.md\n?? docs/ops/REPLICA_COORDINATE_AND_EXACT_ID_REPAIR_20260918.md\n?? tests/contracts/prize_pack_foil_exception_reconciliation_v1.test.mjs\n",
+  "originalCheckoutStatus": ""
+}

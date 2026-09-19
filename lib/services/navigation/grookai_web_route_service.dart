@@ -6,6 +6,8 @@ enum GrookaiCanonicalRouteKind {
   card,
   memory,
   collector,
+  store,
+  storeProduct,
   collectorSection,
   set,
   gvvi,
@@ -27,6 +29,8 @@ class GrookaiCanonicalRoute {
     required this.path,
     required this.value,
     this.sectionId,
+    this.productId,
+    this.preview = false,
   });
 
   factory GrookaiCanonicalRoute.card(String gvId) {
@@ -55,6 +59,30 @@ class GrookaiCanonicalRoute {
       value: normalized,
     );
   }
+
+  factory GrookaiCanonicalRoute.store(String slug, {bool preview = false}) {
+    final normalized = slug.trim().toLowerCase();
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.store,
+      path:
+          '/store/${Uri.encodeComponent(normalized)}${preview ? '?preview=1' : ''}',
+      value: normalized,
+      preview: preview,
+    );
+  }
+
+  factory GrookaiCanonicalRoute.storeProduct(
+    String slug,
+    String productId, {
+    bool preview = false,
+  }) => GrookaiCanonicalRoute._(
+    kind: GrookaiCanonicalRouteKind.storeProduct,
+    value: slug.trim().toLowerCase(),
+    productId: productId.toLowerCase(),
+    preview: preview,
+    path:
+        '/store/${Uri.encodeComponent(slug.trim().toLowerCase())}/products/${Uri.encodeComponent(productId.toLowerCase())}${preview ? '?preview=1' : ''}',
+  );
 
   factory GrookaiCanonicalRoute.collectorSection({
     required String slug,
@@ -191,6 +219,8 @@ class GrookaiCanonicalRoute {
   final String path;
   final String value;
   final String? sectionId;
+  final String? productId;
+  final bool preview;
 }
 
 class GrookaiWebRouteService {
@@ -340,6 +370,30 @@ class GrookaiWebRouteService {
           );
         }
         return GrookaiCanonicalRoute.collector(value.toLowerCase());
+      case 'store':
+        if (segments.length != 2 && segments.length != 4) return null;
+        if (!RegExp(
+          r'^[a-z0-9]+(?:-[a-z0-9]+)*$',
+        ).hasMatch(value.toLowerCase())) {
+          return null;
+        }
+        if (segments.length == 4) {
+          if (segments[2] != 'products' ||
+              !RegExp(
+                r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
+              ).hasMatch(segments[3])) {
+            return null;
+          }
+          return GrookaiCanonicalRoute.storeProduct(
+            value,
+            segments[3],
+            preview: uri.queryParameters['preview'] == '1',
+          );
+        }
+        return GrookaiCanonicalRoute.store(
+          value,
+          preview: uri.queryParameters['preview'] == '1',
+        );
       case 'set':
       case 'sets':
         return GrookaiCanonicalRoute.set(value);
@@ -394,6 +448,11 @@ class GrookaiWebRouteService {
     if (host == 'gvvi' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.gvvi(segments.first);
     }
+    if (host == 'store') {
+      return parseCanonicalUri(
+        Uri(pathSegments: ['store', ...segments], query: uri.query),
+      );
+    }
     if (host == 'binders') {
       if (segments.isEmpty) {
         return GrookaiCanonicalRoute.binderLibrary();
@@ -430,7 +489,7 @@ class GrookaiWebRouteService {
     // Also accept slash-style app links such as grookai:///card/GV-PK-...
     // to keep routing compatible with test tools and notification providers.
     if (host.isEmpty) {
-      return parseCanonicalUri(Uri(pathSegments: segments));
+      return parseCanonicalUri(Uri(pathSegments: segments, query: uri.query));
     }
 
     return null;
