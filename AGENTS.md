@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Japanese Source Semantics Prevention - September 19
+
+Read `docs/ops/JAPANESE_SOURCE_SEMANTICS_PREVENTION_RELEASE_20260919.md`.
+This isolated branch carries source parsing, printed-coordinate, overlap and
+multipart prevention fixes. It contains no production repair payload or apply.
+Historical artifacts and approvals must not be replayed with changed semantics.
+The active database repair checkpoint is outside the repo at
+C:/grookai_vault_operator_artifacts/master_index_executor_review_20260917/CHECKPOINT.md.
+V78 remains the latest completed database repair. Keep runtime deployment proof
+separate from tests/merge, and preserve the dirty Japanese implementation worktree.
+
 ## One Piece Master-First Admission Release - September 19
 
 Read `docs/ops/ONE_PIECE_INCREMENTAL_PRINTING_PREVENTION_20260919.md`.

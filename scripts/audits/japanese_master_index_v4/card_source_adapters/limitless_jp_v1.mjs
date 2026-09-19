@@ -6,7 +6,7 @@ import {
 } from '../card_assertion_contract_v1.mjs';
 
 export const LIMITLESS_JP_CARD_PARSER_VERSION =
-  'JPN-MASTER-INDEX-LIMITLESS-JP-CARD-PARSER-V2';
+  'JPN-MASTER-INDEX-LIMITLESS-JP-CARD-PARSER-V3';
 export const LIMITLESS_JP_SOURCE_ID = 'limitless_jp_cards';
 export const LIMITLESS_JP_SOURCE_FAMILY = 'limitless_tcg_jp';
 
@@ -262,9 +262,12 @@ export function buildLimitlessJapaneseCardAssertion({
   snapshotMetadata,
   rawSnapshotRef,
 }) {
-  const denominator =
-    checklist.set.card_count ??
-    integerOrNull(workItem.source_expected_card_count);
+  // Checklist totals include secrets and unnumbered Energy; only a displayed
+  // fraction can supply a printed denominator.
+  const fraction = String(card.card_number_raw ?? '').normalize('NFKC').trim()
+    .match(/^([^/]+)\s*\/\s*(0*[1-9]\d*)$/);
+  const denominator = fraction && Number.isSafeInteger(Number(fraction[2]))
+    ? Number(fraction[2]) : null;
 
   return assertJapaneseCardAssertion(
     normalizeJapaneseCardAssertion({
@@ -282,7 +285,7 @@ export function buildLimitlessJapaneseCardAssertion({
       raw_snapshot_sha256: snapshotMetadata.body_sha256,
       printed_name: card.printed_name,
       card_number_raw: card.card_number_raw,
-      card_number_numerator: strictNumericLocalId(card.card_number_raw),
+      card_number_numerator: strictNumericLocalId(fraction?.[1] ?? card.card_number_raw),
       card_number_denominator: denominator,
       source_set_code: checklist.set.id,
       source_set_name:
@@ -296,6 +299,7 @@ export function buildLimitlessJapaneseCardAssertion({
         ...card.source_fields,
         native_japanese_set_name: checklist.set.native_japanese_name,
         checklist_card_count: checklist.set.card_count,
+        printed_denominator_basis: denominator === null ? null : 'displayed_card_number_fraction',
         displayed_price_fields_ignored: true,
       },
     }),

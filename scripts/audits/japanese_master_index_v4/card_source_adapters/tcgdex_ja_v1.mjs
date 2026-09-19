@@ -6,7 +6,7 @@ import {
 } from '../card_assertion_contract_v1.mjs';
 
 export const TCGDEX_JA_CARD_PARSER_VERSION =
-  'JPN-MASTER-INDEX-TCGDEX-JA-CARD-PARSER-V1';
+  'JPN-MASTER-INDEX-TCGDEX-JA-CARD-PARSER-V2';
 export const TCGDEX_JA_SOURCE_ID = 'tcgdex_ja_cards';
 export const TCGDEX_JA_SOURCE_FAMILY = 'tcgdex_ja';
 
@@ -126,9 +126,10 @@ export function buildTcgdexJapaneseCardAssertion({
   const sourceCard = card ?? cardBrief;
   const localId = String(sourceCard.localId ?? cardBrief?.localId ?? '').trim();
   const setCardCount = setPayload.cardCount ?? sourceCard.set?.cardCount ?? {};
-  const denominator = integerOrNull(
-    setCardCount.official ?? setCardCount.total,
-  );
+  // Total includes secret/extra cards and cannot replace the official count.
+  const officialCount = String(setCardCount.official ?? '').trim();
+  const denominator = /^[1-9]\d*$/.test(officialCount)
+    && Number.isSafeInteger(Number(officialCount)) ? Number(officialCount) : null;
   const sourceUrl = `https://api.tcgdex.net/v2/ja/cards/${encodeURIComponent(sourceCard.id)}`;
 
   return assertJapaneseCardAssertion(
@@ -166,6 +167,7 @@ export function buildTcgdexJapaneseCardAssertion({
         detail_status: detailStatus,
         legal: sourceCard.legal ?? null,
         set_card_count: setCardCount,
+        printed_denominator_basis: denominator === null ? null : 'source_official_card_count',
         stage: sourceCard.stage ?? null,
         types: sourceCard.types ?? [],
         updated: sourceCard.updated ?? null,

@@ -4,7 +4,7 @@ import {
 } from '../card_assertion_contract_v1.mjs';
 
 export const OFFICIAL_JP_CARD_PARSER_VERSION =
-  'JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V1';
+  'JPN-MASTER-INDEX-OFFICIAL-JP-CARD-PARSER-V3';
 export const OFFICIAL_JP_SOURCE_ID = 'official_jp_cards';
 export const OFFICIAL_JP_SOURCE_FAMILY = 'pokemon_card_official_jp';
 
@@ -152,10 +152,16 @@ export function parseOfficialJapaneseCardDetail(body, expectedCardId) {
   const rarityImage = subtext.match(
     /<img\b[^>]*src="(?<url>[^"]*\/card\/rarity\/[^"]+)"/i,
   )?.groups?.url;
+  const subtextLabel = stripHtml(subtext).trim();
+  const unnumberedLabel = !numberMatch && /^[A-Z]{2,5}$/.test(subtextLabel)
+    ? subtextLabel : null;
+  const authorBlock = html.match(
+    /<div\b[^>]*class="author"[^>]*>(?<body>[\s\S]*?)<\/div>/i,
+  )?.groups?.body ?? '';
   const illustrator =
     stripHtml(
-      html.match(
-        /<div\b[^>]*class="author"[^>]*>[\s\S]*?<a\b[^>]*>(?<name>[\s\S]*?)<\/a>/i,
+      authorBlock.match(
+        /<a\b[^>]*>(?<name>[\s\S]*?)<\/a>/i,
       )?.groups?.name,
     ) || null;
   const hp = integerOrNull(
@@ -175,13 +181,32 @@ export function parseOfficialJapaneseCardDetail(body, expectedCardId) {
     /<li\b[^>]*class="List_item"[^>]*>\s*<a\s+href="(?<href>[^"]+)"[^>]*>(?<name>[\s\S]*?)<\/a>/i,
   );
 
+  // These leaf blocks enumerate physical pieces; the enclosing subtext is nested.
+  const components = [...html.matchAll(
+    /<div\b[^>]*class="[^"]*\bsubtext-set\b[^"]*"[^>]*>(?<body>[\s\S]*?)<\/div>/gi,
+  )].map((match) => {
+    const body = match.groups.body;
+    const text = stripHtml(body);
+    const coordinate = text.match(/(?<number>[A-Za-z0-9+\-._]+)\s*\/\s*(?<total>[A-Za-z0-9+\-._]+)/);
+    return {
+      printed_number: coordinate?.groups.number ?? null,
+      printed_total: integerOrNull(coordinate?.groups.total),
+      printed_denominator_raw: coordinate?.groups.total ?? null,
+      printed_position_raw: text.match(/[\uff08(]([^()\uff08\uff09]+)[)\uff09]/)?.[1]?.trim() ?? null,
+      source_set_code: decodeHtml(body.match(/<img\b[^>]*class="img-regulation"[^>]*alt="([^"]+)"/i)?.[1]).trim() || null,
+      raw_text: text,
+    };
+  });
+  const multipart = components.length > 1;
+
   return {
     card_id: String(expectedCardId),
     printed_name: printedName,
     image_url: imageUrl,
-    card_number_raw: numberMatch?.groups?.number ?? null,
-    card_number_numerator: integerOrNull(numberMatch?.groups?.number),
-    card_number_denominator: integerOrNull(numberMatch?.groups?.total),
+    card_number_raw: multipart ? null : numberMatch?.groups?.number ?? null,
+    card_number_numerator: multipart ? null : integerOrNull(numberMatch?.groups?.number),
+    card_number_denominator: multipart ? null : integerOrNull(numberMatch?.groups?.total),
+    unnumbered_label: unnumberedLabel,
     source_set_code: sourceSetCode,
     rarity: rarityFromImage(rarityImage),
     illustrator,
@@ -192,6 +217,13 @@ export function parseOfficialJapaneseCardDetail(body, expectedCardId) {
     source_fields: {
       rarity_image_url: absoluteOfficialUrl(rarityImage),
       printed_denominator_raw: numberMatch?.groups?.total ?? null,
+      printed_unnumbered_label_raw: unnumberedLabel,
+      ...(multipart ? {
+        card_representation_kind: 'multi_part_card_assembly',
+        requires_component_reconciliation: true,
+        printed_number_components: components,
+        primary_listed_card_number_raw: numberMatch?.groups?.number ?? null,
+      } : {}),
     },
   };
 }
@@ -226,6 +258,7 @@ export function buildOfficialJapaneseCardAssertion({
       card_number_raw: card.card_number_raw,
       card_number_numerator: card.card_number_numerator,
       card_number_denominator: card.card_number_denominator,
+      unnumbered_label: card.unnumbered_label,
       source_set_code: card.source_set_code,
       source_set_name: card.source_product_name ?? product.product_name,
       source_product_name:

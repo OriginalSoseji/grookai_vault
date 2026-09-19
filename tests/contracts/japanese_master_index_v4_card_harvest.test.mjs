@@ -430,7 +430,9 @@ test('Limitless adapter parses one bounded set checklist and ignores displayed p
   });
   assert.equal(assertion.printed_name, 'タマタマ');
   assert.equal(assertion.card_number_numerator, 1);
-  assert.equal(assertion.card_number_denominator, 2);
+  assert.equal(assertion.card_number_denominator, null);
+  assert.equal(assertion.source_fields.checklist_card_count, 2);
+  assert.equal(assertion.source_fields.printed_denominator_basis, null);
   assert.deepEqual(assertion.finish_labels, []);
   assert.equal(assertion.source_fields.displayed_price_fields_ignored, true);
   assert.equal(Object.hasOwn(assertion.source_fields, 'usd'), false);
