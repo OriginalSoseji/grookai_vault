@@ -1,7 +1,10 @@
 import { contentFingerprint } from './deterministic_artifact_v1.mjs';
+import { numberCore as numberCoreFromRaw } from './printed_number_v1.mjs';
+
+import { requiresJapaneseComponentReconciliation } from './card_assertion_contract_v1.mjs';
 
 export const CANDIDATE_RESOLUTION_VERSION =
-  'JPN-MASTER-INDEX-CANDIDATE-RESOLUTION-V1';
+  'JPN-MASTER-INDEX-CANDIDATE-RESOLUTION-V2';
 
 function text(value) {
   return String(value ?? '').normalize('NFKC').trim();
@@ -38,20 +41,9 @@ function normalizeEnglishName(value) {
   return normalizeAlias(value);
 }
 
-function numberCoreFromRaw(value) {
-  let normalized = text(value).toLocaleUpperCase('en-US');
-  if (!normalized) return null;
-  if (/^\d+\s*\/\s*\d+$/.test(normalized)) {
-    normalized = normalized.split('/')[0].trim();
-  }
-  const digitMatch = normalized.match(/\d+/);
-  if (digitMatch) {
-    return String(Number.parseInt(digitMatch[0], 10));
-  }
-  return normalized.replace(/[\s-]+/g, '');
-}
-
 function assertionNumberCore(assertion) {
+  const raw = numberCoreFromRaw(assertion.card_number_raw);
+  if (raw !== null) return raw;
   if (Number.isInteger(assertion.card_number_numerator)) {
     return String(assertion.card_number_numerator);
   }
@@ -193,9 +185,10 @@ function buildRegistryResolver(registryEntries, aliases) {
 function parentJapaneseNames(parent, identityRows) {
   return unique([
     normalizeJapaneseName(parent.printed_name),
-    ...identityRows.map((row) => normalizeJapaneseName(
-      row.normalized_printed_name ?? row.source_name_raw,
-    )),
+    ...identityRows.flatMap((row) => [
+      normalizeJapaneseName(row.normalized_printed_name),
+      normalizeJapaneseName(row.source_name_raw),
+    ]),
   ]);
 }
 
@@ -561,6 +554,15 @@ export function buildJapaneseCandidateUnion({
     const japaneseName = normalizeJapaneseName(assertion.printed_name);
     const imageUrls = normalizedImageUrls(assertion.image_urls);
 
+    if (requiresJapaneseComponentReconciliation(assertion)) {
+      unmatchedUnnumbered.push({assertion, registryKey, numberCore: null, multipart: true});
+      resolutionRows.push({assertion_key: assertion.assertion_key, source_id: assertion.source_id,
+        resolution_status: 'multipart_assembly_requires_component_reconciliation', resolution_method: null,
+        candidate_key: null, existing_card_print_id: null, registry_key: registryKey, number_core: null,
+        findings: ['composite_is_not_a_single_physical_printing']});
+      continue;
+    }
+
     if (!registryKey) {
       resolutionRows.push({
         assertion_key: assertion.assertion_key,
@@ -583,6 +585,39 @@ export function buildJapaneseCandidateUnion({
         assertion_keys: [assertion.assertion_key],
         supplied_registry_key: assertion.registry_key,
         registry_candidates: registryResolution.candidates,
+      }));
+      continue;
+    }
+
+    const printedRegistry = registry.resolve(assertion.source_set_code);
+    const alternateCoordinates = numberCore && printedRegistry.registryKey
+      && printedRegistry.registryKey !== registryKey
+      ? parentsByRegistryNumber.get(`${printedRegistry.registryKey}|${numberCore}`) ?? []
+      : [];
+    if (alternateCoordinates.length > 0) {
+      // Product containers and printed sets are not interchangeable. Preserve
+      // overlap candidates for release reconciliation instead of creating twins.
+      const finding = 'printed_set_product_context_requires_reconciliation';
+      resolutionRows.push({
+        assertion_key: assertion.assertion_key,
+        source_id: assertion.source_id,
+        resolution_status: 'existing_printed_coordinate_requires_review',
+        resolution_method: null,
+        candidate_key: null,
+        existing_card_print_id: null,
+        registry_key: registryKey,
+        number_core: numberCore,
+        findings: [finding],
+      });
+      conflicts.push(conflictRow(finding, {
+        assertion_keys: [assertion.assertion_key],
+        registry_key: registryKey,
+        printed_registry_key: printedRegistry.registryKey,
+        number_core: numberCore,
+        candidate_card_print_ids: unique(alternateCoordinates.map((model) => model.parent.card_print_id)),
+        name_matching_card_print_ids: unique(alternateCoordinates
+          .filter((model) => japaneseName && model.japaneseNames.includes(japaneseName))
+          .map((model) => model.parent.card_print_id)),
       }));
       continue;
     }
@@ -640,6 +675,32 @@ export function buildJapaneseCandidateUnion({
       }
     }
 
+    const contradictions = matchMethods.filter(({ model }) => (
+      (numberCore && model.numberCore && numberCore !== model.numberCore)
+      || (japaneseName && model.japaneseNames.length > 0
+        && !model.japaneseNames.includes(japaneseName))
+    ));
+    if (contradictions.length > 0) {
+      const finding = 'existing_parent_coordinate_or_name_conflict';
+      resolutionRows.push({
+        assertion_key: assertion.assertion_key,
+        source_id: assertion.source_id,
+        resolution_status: 'conflicting_existing_parent',
+        resolution_method: null,
+        candidate_key: null,
+        existing_card_print_id: null,
+        registry_key: registryKey,
+        number_core: numberCore,
+        findings: [finding],
+      });
+      conflicts.push(conflictRow(finding, {
+        assertion_keys: [assertion.assertion_key],
+        candidate_card_print_ids: unique(contradictions.map(({ model }) => model.parent.card_print_id)),
+        registry_key: registryKey,
+        number_core: numberCore,
+      }));
+      continue;
+    }
     const matchedParentIds = unique(
       matchMethods.map((row) => row.model.parent.card_print_id),
     );
@@ -834,6 +895,10 @@ export function buildJapaneseCandidateUnion({
   const unnumberedByExactImage = new Map();
   const isolatedUnnumbered = [];
   for (const item of unmatchedUnnumbered) {
+    if (item.multipart) {
+      isolatedUnnumbered.push(item);
+      continue;
+    }
     const images = normalizedImageUrls(item.assertion.image_urls);
     if (item.registryKey && images.length > 0) {
       for (const imageUrl of images) {
@@ -895,7 +960,7 @@ export function buildJapaneseCandidateUnion({
 
   for (const item of unmatchedUnnumbered) {
     if (consumedUnnumbered.has(item.assertion.assertion_key)) continue;
-    const kind = item.unresolvedRegistry
+    const kind = item.multipart ? 'source_isolated_multipart_assembly' : item.unresolvedRegistry
       ? 'source_isolated_unresolved_registry'
       : 'source_isolated_unnumbered';
     const candidate = buildNovelCandidate({
@@ -905,7 +970,7 @@ export function buildJapaneseCandidateUnion({
       assertions: [item.assertion],
       promotionStatus: 'review_required',
       resolutionNotes: [
-        item.unresolvedRegistry
+        item.multipart ? 'composite_is_not_a_single_physical_printing' : item.unresolvedRegistry
           ? 'registry_alias_unresolved_or_ambiguous'
           : 'name_or_image_only_assertion',
       ],
@@ -930,7 +995,7 @@ export function buildJapaneseCandidateUnion({
       });
     }
     conflicts.push(conflictRow(
-      item.unresolvedRegistry
+      item.multipart ? 'multipart_assembly_requires_component_reconciliation' : item.unresolvedRegistry
         ? 'source_isolated_unresolved_registry'
         : 'source_isolated_unnumbered_assertion',
       {

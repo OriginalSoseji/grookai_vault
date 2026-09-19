@@ -69,6 +69,44 @@ test('reconciliation normalizers preserve Japanese identity and number grain', (
   assert.equal(normalizeJapaneseName(' ピカ チュウ '), 'ピカチュウ');
   assert.equal(numberCore('025/100'), '25');
   assert.equal(numberCore('001-A'), '1A');
+  assert.equal(numberCore('A001'), 'A1');
+  assert.notEqual(numberCore('A001'), numberCore('001'));
+  assert.equal(numberCore('018/SV-P'), '18/SVP');
+  assert.notEqual(numberCore('018/SV-P'), numberCore('018/DP-P'));
+  assert.notEqual(numberCore('018/SV-P'), numberCore('018'));
+});
+
+test('a resolved set UUID is used before proposing a novel parent under an alias', () => {
+  const rows = reconcileCards(reconciliationInput({
+    masterCards: [masterCard({ jpn_set_key: 'jpn-product-alias' })],
+    setRows: [{jpn_set_key: 'jpn-product-alias', reconciliation_status: 'existing_parent_anchor',
+      live_matches: [{id: 'set-1', code: 'jpn-test'}]}],
+    liveParents: [{card_print_id: 'card-1', set_id: 'set-1', set_code: 'jpn-test',
+      identity_domain: 'pokemon_jpn', printed_name: 'ピカチュウ', number_plain: '025'}],
+  }));
+  assert.equal(rows[0].reconciliation_status, 'novel_candidate_already_live_exact');
+  assert.equal(rows[0].proposed_action, 'review_and_reanchor_to_live_parent');
+});
+
+test('an unresolved set alias cannot authorize matching or novel promotion', () => {
+  const rows = reconcileCards(reconciliationInput({
+    masterCards: [masterCard({ jpn_set_key: 'jpn-product-alias' })],
+    setRows: [{jpn_set_key: 'jpn-product-alias', reconciliation_status: 'existing_alias_review_required',
+      live_matches: [{id: 'set-1', code: 'jpn-test'}]}],
+    liveParents: [{card_print_id: 'card-1', set_id: 'set-1', set_code: 'jpn-test',
+      identity_domain: 'pokemon_jpn', printed_name: 'ピカチュウ', number_plain: '025'}],
+  }));
+  assert.ok(rows[0].promotion_blockers.includes('set_mapping_not_promotion_safe'));
+  assert.notEqual(rows[0].reconciliation_status, 'novel_candidate_already_live_exact');
+});
+
+test('prefix-bearing numbers do not match ordinary numbers with the same Japanese name', () => {
+  const rows = reconcileCards(reconciliationInput({
+    masterCards: [masterCard({printed_number: 'A025'})],
+    liveParents: [{card_print_id: 'card-1', set_id: 'set-1', set_code: 'jpn-test',
+      identity_domain: 'pokemon_jpn', printed_name: 'ピカチュウ', number_plain: '025'}],
+  }));
+  assert.equal(rows[0].reconciliation_status, 'novel_candidate_missing_from_live');
 });
 
 test('set reconciliation distinguishes exact, missing, and ambiguous live sets', () => {

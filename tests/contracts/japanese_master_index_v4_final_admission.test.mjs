@@ -180,6 +180,15 @@ test('official identity and two-source finish are master-admissible', () => {
   assert.equal(result.completion.all_static_admission_checks_pass, true);
 });
 
+test('final admission independently rejects a composite presented as an exact numbered card', () => {
+  const source=assertion({key:'composite',sourceId:'official_jp_cards',sourceFamily:'pokemon_card_official_jp',category:'V-UNION'});
+  const card=candidate({key:'composite-candidate',assertionKeys:[source.assertion_key],sourceIds:[source.source_id]});
+  const result=buildFixture({sourceAssertions:[source],identityCandidates:[card],familyProjectionRows:[{
+    candidate_key:card.candidate_key,projection_status:'projected_exact',species_id:'species-pikachu'}]});
+  assert.equal(result.datasets.master_admissible_card_rows_v1.length,0);
+  assert.ok(result.datasets.master_card_resolution_rows_v1[0].disposition_reasons.includes('multipart_assembly_requires_component_reconciliation'));
+});
+
 test('single non-official source remains blocked', () => {
   const source = assertion({
     key: 'limitless-only',

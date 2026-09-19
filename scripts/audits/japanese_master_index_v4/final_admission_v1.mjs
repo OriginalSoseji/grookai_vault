@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { requiresJapaneseComponentReconciliation } from './card_assertion_contract_v1.mjs';
 
 import {
   loadVerifiedDatasetFromManifest,
@@ -15,7 +16,7 @@ import {
 } from './deterministic_artifact_v1.mjs';
 
 export const FINAL_ADMISSION_VERSION =
-  'JPN-MASTER-INDEX-FINAL-ADMISSION-V1';
+  'JPN-MASTER-INDEX-FINAL-ADMISSION-V2';
 
 const DEFAULT_CANDIDATE_MANIFEST =
   'docs/audits/japanese_master_index_v4/index/'
@@ -675,6 +676,9 @@ function cardResolutionRows({
     });
     const reasons = [];
     let disposition = 'master_admissible';
+    if (assertions.some(requiresJapaneseComponentReconciliation)) {
+      reasons.push('multipart_assembly_requires_component_reconciliation');
+    }
     if (registryKeys.length !== 1 || setRows.length !== 1) {
       reasons.push('release_container_unresolved_or_ambiguous');
     } else if (futureRegistryKeys.has(registryKeys[0])) {

@@ -4,6 +4,8 @@ import process from 'node:process';
 import { pathToFileURL } from 'node:url';
 
 import dotenv from 'dotenv';
+import { numberCore } from './printed_number_v1.mjs';
+export { numberCore } from './printed_number_v1.mjs';
 
 import {
   loadVerifiedDatasetFromManifest,
@@ -22,7 +24,7 @@ import {
 } from './read_only_guard_v1.mjs';
 
 export const LIVE_RECONCILIATION_VERSION =
-  'JPN-MASTER-INDEX-LIVE-RECONCILIATION-V1';
+  'JPN-MASTER-INDEX-LIVE-RECONCILIATION-V2';
 
 const DEFAULT_FINAL_ROOT =
   'docs/audits/japanese_master_index_v4/final';
@@ -65,21 +67,6 @@ export function normalizeName(value) {
     .replace(/[^\p{L}\p{N}]+/gu, ' ')
     .trim()
     .replace(/\s+/g, ' ');
-}
-
-export function numberCore(value) {
-  let normalized = text(value).toLocaleUpperCase('en-US');
-  if (!normalized) return null;
-  if (normalized.includes('/')) normalized = normalized.split('/')[0].trim();
-  const digitMatch = normalized.match(/\d+/);
-  if (digitMatch) {
-    const number = String(Number.parseInt(digitMatch[0], 10));
-    const suffix = normalized
-      .slice((digitMatch.index ?? 0) + digitMatch[0].length)
-      .replace(/[\s-]+/g, '');
-    return `${number}${suffix}`;
-  }
-  return normalized.replace(/[\s-]+/g, '');
 }
 
 function increment(counts, key) {
@@ -353,11 +340,17 @@ function buildLiveIndexes({
     liveParents.map((row) => [row.card_print_id, row]),
   );
   const parentsBySetNumber = new Map();
+  const parentsBySetIdNumber = new Map();
   for (const row of liveParents) {
     const key = `${normalizeSetCode(row.set_code)}|${numberCore(
       row.number_plain ?? row.printed_number,
     )}`;
     addMapArray(parentsBySetNumber, key, row);
+    if (row.set_id) {
+      addMapArray(parentsBySetIdNumber, `${row.set_id}|${numberCore(
+        row.number_plain ?? row.printed_number,
+      )}`, row);
+    }
   }
 
   const namesByCard = new Map();
@@ -417,6 +410,7 @@ function buildLiveIndexes({
     namesByCard,
     parentById,
     parentsBySetNumber,
+    parentsBySetIdNumber,
     sourceFamiliesByCard,
     speciesByCard,
   };
@@ -515,6 +509,7 @@ export function reconcileCards({
   );
 
   return masterCards.map((card) => {
+    const setRow = setByKey.get(normalizeSetCode(card.jpn_set_key));
     const expectedSources = new Set(
       (card.independent_source_families ?? []).map(sourceFamily).filter(Boolean),
     );
@@ -543,7 +538,15 @@ export function reconcileCards({
       const key = `${normalizeSetCode(card.jpn_set_key)}|${numberCore(
         card.printed_number,
       )}`;
-      const numberMatches = indexes.parentsBySetNumber.get(key) ?? [];
+      const mappedSet = ['existing_exact_code', 'existing_parent_anchor'].includes(
+        setRow?.reconciliation_status,
+      ) && setRow.live_matches?.length === 1 ? setRow.live_matches[0] : null;
+      const numberMatches = [...new Map([
+        ...(indexes.parentsBySetNumber.get(key) ?? []),
+        ...(mappedSet ? indexes.parentsBySetIdNumber.get(
+          `${mappedSet.id}|${numberCore(card.printed_number)}`,
+        ) ?? [] : []),
+      ].map((parent) => [parent.card_print_id, parent])).values()];
       const expectedNames = new Set(
         (card.printed_name_ja_candidates ?? [card.printed_name_ja])
           .map(normalizeJapaneseName)
@@ -581,7 +584,6 @@ export function reconcileCards({
     const missingSourceFamilies = [...expectedSources]
       .filter((family) => !liveSourceFamilies.has(family))
       .sort();
-    const setRow = setByKey.get(normalizeSetCode(card.jpn_set_key));
     const familyStatus = familyState(card, cardPrintId, indexes);
     const blockers = [];
 
@@ -1055,7 +1057,7 @@ export async function runReconciliation({
     throw new Error('English family fingerprint changed during reconciliation');
   }
   const report = buildArtifact({
-    packageId: 'JPN-MASTER-INDEX-LIVE-RECONCILIATION-V1',
+    packageId: LIVE_RECONCILIATION_VERSION,
     generatedAt,
     retrieval,
     content,

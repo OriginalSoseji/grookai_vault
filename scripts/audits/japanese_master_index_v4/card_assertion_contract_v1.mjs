@@ -31,6 +31,16 @@ export const CARD_ASSERTION_FORBIDDEN_FIELDS = Object.freeze([
 
 const SHA256_PATTERN = /^[0-9a-f]{64}$/;
 
+export function requiresJapaneseComponentReconciliation(row) {
+  const fields = row?.source_fields ?? {};
+  if (fields.requires_component_reconciliation === true
+    || fields.card_representation_kind === 'multi_part_card_assembly'
+    || (Array.isArray(fields.printed_number_components) && fields.printed_number_components.length > 1)) return true;
+  // Older official assertions lost all but the first nested V-UNION coordinate.
+  return row?.source_id === 'official_jp_cards'
+    && /^V[-\u2010-\u2015]?UNION$/i.test(String(row.category ?? '').trim());
+}
+
 function textOrNull(value) {
   const normalized = String(value ?? '')
     .normalize('NFC')
