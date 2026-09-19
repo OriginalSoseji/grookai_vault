@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Storefront Release Goal — September 19 UTC
+
+Read `STOREFRONT_GOAL_RELEASE_20260919.md` for current authority and verified source,
+deployment, database and remaining product requirements. The local storefront build
+now restores only known Next-generated config edits so the mandatory pre-push
+clean-tree check can pass without hook exceptions. Unexpected edits are retained.
+Preserve existing production aliases until staged-release verification, and identify
+the intended pilot accounts before granting access. Billing and optional commerce/
+domains remain unfinished; a browse-only deployment does not complete the full goal.
+
 ## Storefront Full Shipcheck — September 19 UTC
 
 Read `../audits/vendor_storefront_shipcheck_v1/SHIPCHECK.md` and

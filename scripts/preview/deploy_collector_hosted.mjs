@@ -17,7 +17,7 @@ if(mode==='configure'){
  console.log(JSON.stringify({configured:p.id,database:db.id,keys:Object.keys(settings),productionProjectUntouched:true}));
 }else if(mode==='package'){
  const dest=`${out}/hosted-package-${Date.now()}`;
- const candidates=[...new Set(exec('git',['ls-files','--cached','--others','--exclude-standard','-z','--','apps/web','scripts/ci/run_next_build_with_system_ca.mjs','scripts/generate_public_set_card_counts.mjs']).split('\0').filter(Boolean))];
+ const candidates=[...new Set(exec('git',['ls-files','--cached','--others','--exclude-standard','-z','--','apps/web','scripts/ci/run_next_build_with_system_ca.mjs', 'scripts/ci/preserve_storefront_build_config.mjs','scripts/generate_public_set_card_counts.mjs']).split('\0').filter(Boolean))];
  const files=[];const hash=b=>createHash('sha256').update(b).digest('hex');
  for(const relative of candidates){
   if(/(^|\/)(\.env[^/]*|node_modules|\.next[^/]*|\.vercel|private|tests|test-results|playwright-report|visual-fixtures)(\/|$)|\.(test|spec)\.[cm]?[jt]sx?$/.test(relative)||relative.startsWith('apps/web/scripts/'))continue;
