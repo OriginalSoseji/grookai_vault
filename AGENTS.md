@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Storefront iOS Local Auth — September 19
+
+Read `docs/audits/vendor_storefront_ios_auth_v1/IOS_AUTH_PROOF.md`. The complete
+production Dart app passed local iOS login, refresh, owner management and
+owner/visitor preview boundaries. No application change was needed; retain archive
+325. Provider OAuth, cold-process links and delivery remain separate. Stripe policy
+development continues in `C:/gv_store_billing_20260919`, with 40 local tests passing.
+
 ## Storefront Release Goal — September 19 UTC
 
 Latest execution evidence: `docs/audits/vendor_storefront_release_execution_v1/RELEASE_PROGRESS.md`.

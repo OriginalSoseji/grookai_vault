@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Storefront iOS local authentication — September 19
+
+Read `../audits/vendor_storefront_ios_auth_v1/IOS_AUTH_PROOF.md`. The final dedicated
+iOS simulator journey passes with unchanged production Dart source and default
+Flutter scene behavior. Native URL confirmation prompts must be handled explicitly;
+both local Auth (16421) and web API (15440) connections are required. Keep the failed
+attempts distinct from the final pass. Temporary connections are stopped; retained
+164xx proof data is preserved. Do not upload an isolated debug proof package.
+The separate `C:/gv_store_billing_20260919` candidate has 40 passing provider-policy
+tests; durable billing, Stripe test access, pilot identities and commerce remain open.
+
 ## Storefront Release Goal — September 19 UTC
 
 Latest: `../audits/vendor_storefront_release_execution_v1/RELEASE_PROGRESS.md`.

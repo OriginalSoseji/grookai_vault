@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-19T06:22:00Z",
+  "source": "7a13b553278aced661a35ffd8457727b448a7fb3",
+  "package": "com.grookai.storefrontauthproof",
+  "exit_code": 0,
+  "completed": true,
+  "actions": [
+    {
+      "marker": "NATIVE_SEND_STORE_LOGIN",
+      "at": "2026-09-19T06:20:40Z"
+    },
+    {
+      "marker": "NATIVE_SEND_PRODUCT_PREVIEW",
+      "at": "2026-09-19T06:21:13Z"
+    },
+    {
+      "marker": "NATIVE_SEND_VISITOR_PRODUCT",
+      "at": "2026-09-19T06:21:31Z"
+    },
+    {
+      "marker": "NATIVE_SEND_VISITOR_PREVIEW",
+      "at": "2026-09-19T06:21:46Z"
+    }
+  ],
+  "captures": [
+    "NATIVE_STORE_AUTH_PASSED",
+    "NATIVE_MANAGEMENT_PASSED",
+    "NATIVE_PRODUCT_PREVIEW_AUTH_PASSED",
+    "NATIVE_VISITOR_PRODUCT_AUTH_PASSED",
+    "NATIVE_FOREIGN_PREVIEW_DENIED"
+  ],
+  "production_requests": 0,
+  "provider_oauth_tested": false,
+  "cold_process_tested": false
+}
