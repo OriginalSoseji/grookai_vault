@@ -20,8 +20,8 @@ await db.connect();
 const q = (s, p = []) => db.query(s, p);
 assert.equal((await q('show max_worker_processes')).rows[0].max_worker_processes, '0');
 assert.equal((await q('select count(*) n from supabase_migrations.schema_migrations')).rows[0].n, '397');
-const client = (key = cfg.ANON_KEY) => createClient(cfg.API_URL, key, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } });
-const admin = client(cfg.SERVICE_ROLE_KEY), anon = client();
+const client = (key = cfg.PUBLISHABLE_KEY) => createClient(cfg.API_URL, key, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } });
+const admin = client(cfg.SECRET_KEY), anon = client();
 const runId = Date.now();
 const slug = `real-store-${runId}`;
 const users = {};
@@ -97,7 +97,7 @@ try {
         photoPath = pathFor();
         const boundary = `storefront-${randomUUID()}`;
         const body = Buffer.concat([Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="cacheControl"\r\n\r\n3600\r\n--${boundary}\r\nContent-Disposition: form-data; name=""; filename=""\r\nContent-Type: image/png\r\n\r\n`), bytes, Buffer.from(`\r\n--${boundary}--\r\n`)]);
-        const upload = await fetch(`${cfg.API_URL}/storage/v1/object/vendor-store-media/${photoPath}`, { method: 'POST', headers: { apikey: cfg.ANON_KEY, authorization: `Bearer ${users.owner.token}`, 'content-type': `multipart/form-data; boundary=${boundary}` }, body });
+        const upload = await fetch(`${cfg.API_URL}/storage/v1/object/vendor-store-media/${photoPath}`, { method: 'POST', headers: { apikey: cfg.PUBLISHABLE_KEY, authorization: `Bearer ${users.owner.token}`, 'content-type': `multipart/form-data; boundary=${boundary}` }, body });
         assert.equal(upload.status, 200, await upload.text());
         const downloaded = await owner.storage.from('vendor-store-media').download(photoPath);
         assert.ifError(downloaded.error);
@@ -124,7 +124,7 @@ try {
     });
     await check('real concurrent version checks accept exactly one quantity save', async () => {
         fs.writeFileSync(path.join(local, 'fixture-private.json'), JSON.stringify({ slug, storeId: store.id, productId: product.id, photoPath, product, users: Object.fromEntries(Object.entries(users).map(([k, v]) => [k, { id: v.id, email: v.email, token: v.token }])) }, null, 2));
-        const raceClient = () => createClient(cfg.API_URL, cfg.ANON_KEY, { accessToken: async () => users.owner.token, global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(15000) }) } });
+        const raceClient = () => createClient(cfg.API_URL, cfg.PUBLISHABLE_KEY, { accessToken: async () => users.owner.token, global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(15000) }) } });
         const saves = await Promise.allSettled([mutate(raceClient(), product, 'save', { available_quantity: 3 }), mutate(raceClient(), product, 'save', { available_quantity: 4 })]);
         assert.equal(saves.filter(x => x.status === 'fulfilled').length, 1);
         assert.equal(saves.find(x => x.status === 'rejected').reason.code, 'PT409');

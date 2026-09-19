@@ -70,7 +70,7 @@ try {
         assert.equal((await change(await current(), 'publish')).status, 200);
     });
     await check('real signup ledger is service-only and atomic under concurrent credit', async () => {
-        const admin = client(cfg.SERVICE_ROLE_KEY), anon = client(cfg.ANON_KEY), created = new Date(Date.now() - 1000).toISOString(), expires = new Date(Date.now() + 86400000).toISOString();
+        const admin = client(cfg.SECRET_KEY), anon = client(cfg.PUBLISHABLE_KEY), created = new Date(Date.now() - 1000).toISOString(), expires = new Date(Date.now() + 86400000).toISOString();
         const signup = await anon.auth.signUp({ email: `store-visitor-${Date.now()}@fixture.invalid`, password: `Local-proof-${randomUUID()}!` });
         assert.ifError(signup.error);
         const args = { p_referred_user_id: signup.data.user.id, p_store_id: f.storeId, p_gvvi_id: null, p_created_at: created, p_expires_at: expires };

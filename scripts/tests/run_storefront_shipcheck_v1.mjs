@@ -13,7 +13,7 @@ guard({full:true});
 const cfg=JSON.parse(fs.readFileSync(path.join(root,'.local/integration/shipcheck-supabase-private.json'),'utf8').replace(/^\uFEFF/,''));
 assert.equal(cfg.API_URL,'http://127.0.0.1:16821');
 assert.equal(new URL(cfg.DB_URL).hostname,'127.0.0.1');assert.equal(new URL(cfg.DB_URL).port,'16822');
-assert.ok(cfg.ANON_KEY&&cfg.SERVICE_ROLE_KEY,'Local API credentials required');
+assert.ok(cfg.PUBLISHABLE_KEY&&cfg.SECRET_KEY,'Local API credentials required');
 // Keep the existing storefront staging URL fixed, forwarding only to this project.
 const sockets=new Set();
 const relay=net.createServer(socket=>{
@@ -34,8 +34,8 @@ Object.assign(env,{
   DOTENV_CONFIG_PATH:emptyEnv,
   SUPABASE_DB_URL:'postgresql://postgres:postgres@127.0.0.1:16822/postgres?options=-c%20default_transaction_read_only%3Don',
   SUPABASE_URL:'http://127.0.0.1:15439',
-  SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,
-  SUPABASE_SECRET_KEY:cfg.SERVICE_ROLE_KEY,
+  SUPABASE_PUBLISHABLE_KEY:cfg.PUBLISHABLE_KEY,
+  SUPABASE_SECRET_KEY:cfg.SECRET_KEY,
   NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_STOREFRONT_LOCAL_TEST:'true',
   GROOKAI_DISABLE_TELEMETRY:'1',NEXT_TELEMETRY_DISABLED:'1',
   GVVI_REFERRAL_COOKIE_SECRET:'isolated-storefront-referral-test-key-at-least-32',

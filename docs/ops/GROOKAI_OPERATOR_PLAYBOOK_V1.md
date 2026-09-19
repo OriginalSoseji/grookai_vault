@@ -7,8 +7,10 @@ deployment, database and remaining product requirements. The local storefront bu
 now restores only known Next-generated config edits so the mandatory pre-push
 clean-tree check can pass without hook exceptions. Unexpected edits are retained.
 Preserve existing production aliases until staged-release verification, and identify
-the intended pilot accounts before granting access. Billing and optional commerce/
-domains remain unfinished; a browse-only deployment does not complete the full goal.
+the intended pilot accounts before granting access. Stripe billing and confirmed
+checkout/payouts remain unfinished; custom domains are deferred. A browse-only
+deployment does not complete the full goal. PR #496 is open; local CLI harnesses
+use modern publishable/secret keys without weakening the CI key guard.
 
 ## Storefront Full Shipcheck — September 19 UTC
 

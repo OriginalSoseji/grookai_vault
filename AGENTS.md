@@ -4,8 +4,8 @@
 
 Read `docs/ops/STOREFRONT_GOAL_RELEASE_20260919.md`. The founder now requests the
 release/pilot and paid-subscription product beyond the previous local-only stop.
-Preserve verification gates and existing tester audiences. Checkout/payouts and
-custom domains are pending scope clarification. Never apply historical storefront
+Preserve verification gates and existing tester audiences. Checkout/payouts are
+confirmed with the existing Stripe account; custom domains are deferred. Never apply historical storefront
 migrations alongside the consolidated release. Production starts without stores
 or grants; the verified website is `grookaivault.com`.
 
