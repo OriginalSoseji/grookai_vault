@@ -13,6 +13,10 @@ function canonical(v) {
   return v;
 }
 export const printingManifestHash = v => createHash('sha256').update(JSON.stringify(canonical(v))).digest('hex');
+export function printingCandidateId(printing) {
+  const h=printingManifestHash({version:PRINTING_COMPLETENESS_VERSION,identity:key(printing)});
+  return `${h.slice(0,8)}-${h.slice(8,12)}-5${h.slice(13,16)}-a${h.slice(17,20)}-${h.slice(20,32)}`;
+}
 
 // Expected GV-IDs come from the reviewed identity adapter, never a global finish guess.
 export function assertPrintingManifest(manifest, scope) {
@@ -24,7 +28,7 @@ export function assertPrintingManifest(manifest, scope) {
     assert.ok(text(manifest[field]), `missing_${field}`);
     if (scope) assert.equal(manifest[field], scope[field], `printing_manifest_${field}_mismatch`);
   }
-  assert.ok(['base_release','complete_set'].includes(manifest.scope));
+  assert.ok(['base_release','complete_set','verified_parent_families'].includes(manifest.scope));
   assert.ok(text(manifest.identity_policy_version));
   assert.ok(text(manifest.master_index_ref));
   assert.match(manifest.master_index_sha256,/^[a-f0-9]{64}$/);
@@ -36,7 +40,18 @@ export function assertPrintingManifest(manifest, scope) {
   assert.equal(parents.size,manifest.parents.length,'duplicate_parent');
   assert.equal(new Set(manifest.parents.map(p=>p.gv_id)).size,parents.size,'duplicate_parent_gvid');
   for (const p of parents.values()) {
-    assert.ok(text(p.id) && text(p.gv_id) && text(p.printed_coordinate) && text(p.name),'incomplete_parent_identity');
+    const unnumberedDon = manifest.game === 'one_piece' && manifest.language === 'en' && manifest.set_code === 'DON' &&
+      manifest.identity_policy_version === 'ONE_PIECE_EN_V1' && p.identity_domain === 'one_piece_eng_print' &&
+      p.printed_coordinate === null && p.coordinate_semantics === 'unnumbered_don_identity_token' &&
+      Number.isSafeInteger(p.source_product_id) && p.source_product_id > 0 &&
+      p.variant_key === `tcgplayer_product_${p.source_product_id}`;
+    assert.ok(text(p.id) && text(p.gv_id) && (text(p.printed_coordinate) || unnumberedDon) && text(p.name),'incomplete_parent_identity');
+    if (unnumberedDon) {
+      assert.equal(manifest.parents.filter(other=>other.source_product_id===p.source_product_id).length,1,'duplicate_unnumbered_product');
+      assert.ok(manifest.printings.filter(row=>row.card_print_id===p.id).every(row=>row.evidence?.some(e=>
+        e.kind==='exact_printing_mapping' && e.source_product_id===p.source_product_id &&
+        text(e.source_identity_id) && text(e.source_evidence_id))),'unnumbered_product_evidence_required');
+    }
   }
   assert.equal(new Set(manifest.printings.map(key)).size,manifest.printings.length,'duplicate_printing');
   assert.equal(new Set(manifest.printings.map(p=>p.printing_gv_id)).size,manifest.printings.length,'duplicate_printing_gvid');
@@ -128,8 +143,7 @@ export function buildPrintingAdmissionPlan(manifest, existingPrintings=[]) {
       continue;
     }
     assert.ok(!existingPrintings.some(p=>p.printing_gv_id===wanted.printing_gv_id),'printing_gvid_collision');
-    const h=printingManifestHash({version:PRINTING_COMPLETENESS_VERSION,identity:key(wanted)});
-    const id=`${h.slice(0,8)}-${h.slice(8,12)}-5${h.slice(13,16)}-a${h.slice(17,20)}-${h.slice(20,32)}`;
+    const id=printingCandidateId(wanted);
     assert.ok(!existingPrintings.some(p=>p.id===id),'printing_id_collision');
     inserts.push({id,card_print_id:wanted.card_print_id,finish_key:wanted.finish_key,
       printing_gv_id:wanted.printing_gv_id,is_provisional:false,

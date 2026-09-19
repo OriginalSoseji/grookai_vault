@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## One Piece Incremental Printing Admission
+
+Use the V2 writer registry key `one_piece_incremental_printing_promotion_v2`.
+Every admitted parent must carry source-backed exact children and truth reviews
+in the same transaction. Read `ONE_PIECE_INCREMENTAL_PRINTING_PREVENTION_20260919.md`.
+Plan mode is read-only; unresolved evidence yields holds, not guessed finishes.
+Founder packages bind child/review counts and producer version. Preserve existing
+V1 package semantics, verified TLS, frozen source bytes and unknown-commit receipts.
+After release, verify the actual GitHub plan run and its artifacts. Local tests
+alone do not establish deployed prevention. Do not replay already applied data
+or the recorded One Piece Foil registry migration.
+
 ## Prismatic Evidence Refresh - September 19
 
 Read `PRISMATIC_MASTER_CORROBORATION_20260919.md`. Normalize accents only in

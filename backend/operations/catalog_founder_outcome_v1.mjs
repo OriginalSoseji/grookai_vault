@@ -39,6 +39,18 @@ export const CATALOG_OUTCOME_WRITER_REGISTRY_V1 = Object.freeze({
       "external_mappings",
     ]),
   }),
+  one_piece_incremental_printing_promotion_v2: Object.freeze({
+    worker: "scripts/workers/one_piece_incremental_promotion_v1.mjs",
+    summary_file: "summary.json",
+    preflight_file: "promotion_plan.json",
+    fingerprint_field: "payload_fingerprint_sha256",
+    producer_version: "ONE_PIECE_INCREMENTAL_PRINTING_PROMOTION_V2",
+    target_fields: Object.freeze(["set_code", "official_series_id"]),
+    count_fields: Object.freeze([
+      "sets", "set_release_controls", "card_prints", "identities", "evidence",
+      "external_mappings", "child_printings", "printing_reviews",
+    ]),
+  }),
   english_pokemon_incremental_promotion_v1: Object.freeze({
     worker: "scripts/workers/english_pokemon_incremental_promotion_v1.mjs",
     summary_file: "report.json",
@@ -63,6 +75,10 @@ function clean(value) {
   return String(value ?? "").trim();
 }
 
+function isOnePieceWriter(key) {
+  return ["one_piece_incremental_promotion_v1", "one_piece_incremental_printing_promotion_v2"].includes(key);
+}
+
 function safeKey(value) {
   return clean(value).toLowerCase().replace(/[^a-z0-9_.-]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -76,7 +92,7 @@ function assertPlainObject(value, label) {
 function normalizeExpectedCounts(writerKey, summary) {
   let source;
   if (writerKey === "mtg_incremental_promotion_v1") source = summary.promotion_row_counts;
-  else if (writerKey === "one_piece_incremental_promotion_v1") source = summary.counts;
+  else if (isOnePieceWriter(writerKey)) source = summary.counts;
   else if (writerKey === "english_pokemon_incremental_promotion_v1") {
     source = {
       card_prints: summary.counts?.card_prints,
@@ -141,6 +157,10 @@ export function buildCatalogFounderOutcomePackageV1({
   }
   if (summary.mode !== "plan") {
     throw new Error("Catalog outcome package requires a read-only plan preflight");
+  }
+  if (writer.producer_version && (summary.version !== writer.producer_version ||
+      preflightProof?.version !== writer.producer_version)) {
+    throw new Error("Catalog writer producer version does not match registry");
   }
   assertPlainObject(preflightProof, "Catalog writer preflight proof");
   const collisions = preflightProof.collision_preflight ??
@@ -216,7 +236,7 @@ export function validateCatalogFounderOutcomePackageV1(outcomePackage, {
   const target = outcomePackage.target;
   const expectedTargetKey = outcomePackage.writer_key === "mtg_incremental_promotion_v1"
     ? `mtg:${clean(target.set_code).toLowerCase()}`
-    : outcomePackage.writer_key === "one_piece_incremental_promotion_v1"
+    : isOnePieceWriter(outcomePackage.writer_key)
       ? `one_piece:${clean(target.set_code).toUpperCase()}`
       : outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1"
         ? `pokemon_en:${clean(target.source_set_code).toLowerCase()}`
@@ -401,7 +421,7 @@ export function buildCatalogWriterInvocationV1(outcomePackage, { headSha, outDir
   const target = outcomePackage.target;
   if (outcomePackage.writer_key === "mtg_incremental_promotion_v1") {
     args.push(`--set-code=${target.set_code}`);
-  } else if (outcomePackage.writer_key === "one_piece_incremental_promotion_v1") {
+  } else if (isOnePieceWriter(outcomePackage.writer_key)) {
     args.push(`--set-code=${target.set_code}`, `--official-series-id=${target.official_series_id}`);
   } else if (outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
     args.push(
@@ -438,6 +458,9 @@ export function validateCatalogWriterResultV1(outcomePackage, summary) {
   assertPlainObject(summary, "Catalog writer apply summary");
   const writer = CATALOG_OUTCOME_WRITER_REGISTRY_V1[outcomePackage.writer_key];
   if (summary.mode !== "apply") throw new Error("Catalog writer did not run in apply mode");
+  if (writer.producer_version && summary.version !== writer.producer_version) {
+    throw new Error("Catalog writer result producer version does not match registry");
+  }
   if (clean(summary[writer.fingerprint_field]) !== outcomePackage.payload_fingerprint_sha256) {
     throw new Error("Catalog writer result fingerprint does not match the approved package");
   }

@@ -1,5 +1,18 @@
 # Grookai Agent Entry Point
 
+## One Piece Master-First Admission Release - September 19
+
+Read `docs/ops/ONE_PIECE_INCREMENTAL_PRINTING_PREVENTION_20260919.md`.
+This isolated release includes source-bound child printings and reviews in the
+same transaction as new One Piece parents, with versioned phone outcome counts.
+Unresolved evidence remains held. No deployment or fresh catalog apply is proved
+by local tests. Preserve historical V1 packages; never run them as a V2 payload.
+The included Foil-scope migration is already applied; do not replay it.
+Japanese repairs remain in their existing worktree, outside this release.
+
+Production repair queue V75 records 352 completed Prismatic provenance repairs;
+English missing provenance is 1,459. Do not replay completed repair writers.
+
 ## Prismatic Finish Evidence - September 19
 
 Read `docs/ops/PRISMATIC_MASTER_CORROBORATION_20260919.md`. This branch applies

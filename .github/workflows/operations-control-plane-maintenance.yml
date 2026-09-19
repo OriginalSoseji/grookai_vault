@@ -54,6 +54,7 @@ jobs:
       PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
     steps:
       - uses: actions/checkout@v4
 
