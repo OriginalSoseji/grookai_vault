@@ -3851,6 +3851,45 @@ async function fetchLanguageScopedTextRows(
   return applyLanguageScopeRows([...rowsById.values()], languageScope);
 }
 
+export async function getExploreRowsForArtistSearch(
+  artist: string,
+  options: SmartFilterDiscoveryOptions & { exactArtist: boolean },
+): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
+  const supabase = await createServerComponentClient();
+  const parentRows = await fetchPokemonArtistRows(
+    supabase,
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
+    artist,
+    { exact: options.exactArtist, languageScope: options.languageScope, complete: true },
+  ) as unknown as CardPrintLookupRow[];
+  if (parentRows.length === 0) return [];
+  const scopedParents = await filterSmartDiscoveryRowsByScope(
+    applySmartStampParentFilter(parentRows, options.stampLabels), options,
+  );
+  if (scopedParents.length === 0) return [];
+  const requireChildren = normalizeFinishKeys(options.finishKeys).length > 0 ||
+    Boolean(options.imageState && options.imageState !== "any");
+  const candidates = requireChildren
+    ? await fetchSmartDiscoveryChildRows(options, scopedParents, true)
+    : scopedParents;
+  const query = await buildResolverQuery(normalizeQuery(options.textQuery ?? ""));
+  const valueSort = options.sortMode === "value_high" || options.sortMode === "value_low";
+  // Value sorts retain their existing completeness guard. Ordinary artist
+  // browsing must never be trimmed to the relevance candidate budget.
+  if (valueSort) limitRowsBeforeEnrichment(candidates, query, options.sortMode);
+  const metadata = await fetchPublicSetMetadata(uniqueValues(
+    candidates.map((row) => row.set_code ?? "").filter(Boolean),
+  ));
+  const pricing = options.includePricing
+    ? await getPublicPricingByCardIds(supabase, candidates.map((row) => row.id), { requireComplete: valueSort })
+    : new Map<string, PublicPricingRecord>();
+  const rows = await buildExploreRows(candidates, new Map(), metadata, pricing, {
+    skipChildDisplayImageFallbacks: candidates.length > 24 && !valueSort,
+  });
+  return sortRows(rows, query, options.sortMode);
+}
+
 export async function getExploreRowsForLanguageScopedTextSearch(
   rawQuery: string,
   languageScope: PublicLanguageScope,
@@ -4535,6 +4574,7 @@ function applySmartDiscoveryImageQueryFilter<
 async function fetchSmartDiscoveryChildRows(
   options: SmartFilterDiscoveryOptions,
   parentRows: CardPrintLookupRow[],
+  complete = false,
 ) {
   const supabase = await createServerComponentClient();
   const selectClause =
@@ -4544,44 +4584,48 @@ async function fetchSmartDiscoveryChildRows(
   const rowsByKey = new Map<string, CardPrintLookupRow>();
 
   const runChildQuery = async (scopedParentIds?: string[]) => {
-    let request = supabase
-      .from("card_printings")
-      .select(selectClause)
-      .order("printing_gv_id", { ascending: true })
-      .limit(SMART_FILTER_DISCOVERY_LIMIT);
+    for (let offset = 0; ; offset += 500) {
+      let request = supabase
+        .from("card_printings")
+        .select(selectClause)
+        .order("printing_gv_id", { ascending: true })
+        .order("id", { ascending: true })
+        .range(offset, offset + (complete ? 500 : SMART_FILTER_DISCOVERY_LIMIT) - 1);
 
-    if (scopedParentIds && scopedParentIds.length > 0) {
-      request = request.in("card_print_id", scopedParentIds);
-    }
-
-    if (finishKeys.length > 0) {
-      request = request.in("finish_key", finishKeys);
-    }
-
-    request = applySmartDiscoveryImageQueryFilter(request, options.imageState);
-
-    const { data, error } = await request;
-    if (error) {
-      throw new Error(error.message);
-    }
-
-    const childRows = (data ?? []) as CardPrintingSmartLookupRow[];
-    const publicOptions = await getPublicCardPrintingOptions(
-      supabase,
-      childRows
-        .map((row) => row.card_print_id?.trim() ?? "")
-        .filter(Boolean),
-    );
-    const publicOptionIds = new Set(publicOptions.map((row) => row.id));
-    for (const childRow of childRows) {
-      if (!publicOptionIds.has(childRow.id)) {
-        continue;
+      if (scopedParentIds && scopedParentIds.length > 0) {
+        request = request.in("card_print_id", scopedParentIds);
       }
-      const mapped = mapSmartChildRowToCardPrintLookupRow(childRow);
-      if (!mapped) {
-        continue;
+
+      if (finishKeys.length > 0) {
+        request = request.in("finish_key", finishKeys);
       }
-      rowsByKey.set(mapped.printing_gv_id ?? mapped.search_card_printing_id ?? mapped.id, mapped);
+
+      request = applySmartDiscoveryImageQueryFilter(request, options.imageState);
+
+      const { data, error } = await request;
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      const childRows = (data ?? []) as CardPrintingSmartLookupRow[];
+      const publicOptions = await getPublicCardPrintingOptions(
+        supabase,
+        childRows
+          .map((row) => row.card_print_id?.trim() ?? "")
+          .filter(Boolean),
+      );
+      const publicOptionIds = new Set(publicOptions.map((row) => row.id));
+      for (const childRow of childRows) {
+        if (!publicOptionIds.has(childRow.id)) {
+          continue;
+        }
+        const mapped = mapSmartChildRowToCardPrintLookupRow(childRow);
+        if (!mapped) {
+          continue;
+        }
+        rowsByKey.set(mapped.printing_gv_id ?? mapped.search_card_printing_id ?? mapped.id, mapped);
+      }
+      if (!complete || childRows.length < 500) break;
     }
   };
 
@@ -4593,7 +4637,7 @@ async function fetchSmartDiscoveryChildRows(
     await runChildQuery();
   }
 
-  return [...rowsByKey.values()].slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+  return complete ? [...rowsByKey.values()] : [...rowsByKey.values()].slice(0, SMART_FILTER_DISCOVERY_LIMIT);
 }
 
 export async function getExploreRowsForSmartFilterDiscovery(

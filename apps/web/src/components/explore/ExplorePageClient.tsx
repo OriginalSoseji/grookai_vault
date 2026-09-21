@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, type ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import PublicSearchForm from "@/components/PublicSearchForm";
@@ -48,6 +48,7 @@ import {
 } from "@/lib/publicGameScope";
 import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalTypes";
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
+import type { ArtistSearchPagination } from "@/lib/search/artistSearchPagination";
 import { getCollectorSearchSuggestions } from "@/lib/search/collectorSearchSuggestions";
 import {
   VARIANT_FAMILY_DISCOVERY_COPY,
@@ -526,6 +527,10 @@ export default function ExplorePageClient({
     !isIdentityFilterActive(identityFilter) &&
     !hasExplicitSmartFilters && Boolean(discoveryContent);
   const [rows, setRows] = useState<ExploreRow[]>([]);
+  const [artistPagination, setArtistPagination] = useState<ArtistSearchPagination | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [pageError, setPageError] = useState<string | null>(null);
+  const loadNextPage = useRef<(() => void) | null>(null);
   const [provisionalRows, setProvisionalRows] = useState<PublicProvisionalCard[]>([]);
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [smartSearchIntent, setSmartSearchIntent] = useState<SmartSearchIntent | null>(null);
@@ -544,8 +549,15 @@ export default function ExplorePageClient({
 
   useEffect(() => {
     const controller = new AbortController();
+    let pageInFlight = false;
+    loadNextPage.current = null;
+    setArtistPagination(null);
+    setLoadingMore(false);
+    setPageError(null);
 
-    const load = async () => {
+    const load = async (offset = 0) => {
+      if (pageInFlight || controller.signal.aborted) return;
+      const append = offset > 0;
       if (
         !normalizedQuery &&
         !exactSetCode &&
@@ -565,9 +577,15 @@ export default function ExplorePageClient({
         return;
       }
 
-      setLoading(true);
-      setError(null);
-      setSortDegradedReason(null);
+      pageInFlight = true;
+      if (append) {
+        setLoadingMore(true);
+        setPageError(null);
+      } else {
+        setLoading(true);
+        setError(null);
+        setSortDegradedReason(null);
+      }
 
       try {
         const params = new URLSearchParams();
@@ -633,6 +651,8 @@ export default function ExplorePageClient({
         }
 
         params.set("limit", String(SEARCH_API_RESULT_LIMIT));
+        params.set("pagination", "1");
+        params.set("offset", String(offset));
 
         if (shouldServerFilterByIdentity) {
           params.set("identity", identityFilter);
@@ -656,20 +676,35 @@ export default function ExplorePageClient({
           requested_sort?: SortMode;
           applied_sort?: SortMode | null;
           sort_degraded_reason?: string | null;
+          pagination?: ArtistSearchPagination;
         };
 
+        if (controller.signal.aborted) return;
         setSortDegradedReason(payload.sort_degraded_reason ?? null);
         if (!response.ok || !payload.ok) {
           throw new Error(payload.error ?? "Search failed.");
         }
 
-        setRows(payload.canonical ?? payload.rows ?? []);
+        const nextRows = payload.canonical ?? payload.rows ?? [];
+        setRows((current) => append
+          ? [...new Map([...current, ...nextRows].map((row) => [row.search_card_printing_id ?? row.printing_gv_id ?? row.id, row])).values()]
+          : nextRows);
+        setArtistPagination(payload.pagination ?? null);
+        const nextOffset = payload.pagination?.next_offset;
+        loadNextPage.current = typeof nextOffset === "number" && nextOffset > offset
+          ? () => { void load(nextOffset); }
+          : null;
+        if (append) setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT);
         setProvisionalRows(payload.provisional ?? []);
         setResolverMeta(payload.meta ?? null);
         setSmartSearchIntent(payload.smart_search ?? null);
         setAssistantPreview(null);
       } catch (searchError) {
         if (controller.signal.aborted) return;
+        if (append) {
+          setPageError(searchError instanceof Error ? searchError.message : "Could not load more cards. Try again.");
+          return;
+        }
         setError(
           searchError instanceof Error ? searchError.message : "Search failed.",
         );
@@ -679,8 +714,10 @@ export default function ExplorePageClient({
         setSmartSearchIntent(null);
         setAssistantPreview(null);
       } finally {
+        pageInFlight = false;
         if (!controller.signal.aborted) {
           setLoading(false);
+          setLoadingMore(false);
         }
       }
     };
@@ -689,6 +726,7 @@ export default function ExplorePageClient({
 
     return () => {
       controller.abort();
+      loadNextPage.current = null;
     };
   }, [
     discoveryContent,
@@ -844,7 +882,7 @@ export default function ExplorePageClient({
           );
   const visibleRows = displayRows.slice(0, visibleResultCount);
   const visibleResultGroups = buildContiguousSearchResultGroups(visibleRows);
-  const hasMoreResults = visibleRows.length < displayRows.length;
+  const hasMoreResults = visibleRows.length < displayRows.length || Boolean(artistPagination?.has_more);
   const getResultKey = (row: ExploreRow) =>
     row.search_card_printing_id ?? row.printing_gv_id ?? row.id;
   const identityFilterCounts = buildIdentityFilterCounts(rows);
@@ -1150,7 +1188,11 @@ export default function ExplorePageClient({
           }
         : null;
   const resultCountLabel =
-    displayRows.length > 0
+    artistPagination
+      ? imageConfidenceFilter === "all" && !isIdentityFilterActive(identityFilter)
+        ? `Showing ${visibleRows.length} of ${artistPagination.total_count} artist results`
+        : `${visibleRows.length} matching cards from ${artistPagination.total_count} artist results`
+      : displayRows.length > 0
       ? visibleRows.length < displayRows.length
         ? `Showing ${visibleRows.length} of ${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}s`
         : `${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}${displayRows.length === 1 ? "" : "s"}`
@@ -1274,15 +1316,21 @@ export default function ExplorePageClient({
     return content;
   };
   const showMoreControl = hasMoreResults ? (
-    <div className="flex justify-center pt-2">
+    <div className="flex flex-col items-center gap-2 pt-2">
+      {pageError ? <p role="alert" className="text-sm text-red-600">{pageError}</p> : null}
       <button
         type="button"
-        onClick={() =>
-          setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT)
-        }
+        disabled={loading || loadingMore}
+        onClick={() => {
+          if (visibleRows.length < displayRows.length) {
+            setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT);
+          } else {
+            loadNextPage.current?.();
+          }
+        }}
         className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-slate-600 dark:hover:bg-slate-800"
       >
-        Show more results
+        {loadingMore ? "Loading more cards…" : pageError ? "Retry loading more" : "Show more results"}
       </button>
     </div>
   ) : null;

@@ -11,7 +11,10 @@ import {
   getExploreRowsForLanguageScopedTextSearch,
   getExploreRowsForGameScopedTextSearch,
   getExploreRowsForSmartFilterDiscovery,
+  getExploreRowsForArtistSearch,
 } from "@/lib/explore/getExploreRows";
+import { isKnownArtistQuery } from "@/lib/search/artistSearch";
+import { paginateArtistResults } from "@/lib/search/artistSearchPagination";
 import {
   matchesPublicLanguageScope,
   normalizePublicLanguageScope,
@@ -388,6 +391,15 @@ export async function GET(request: NextRequest) {
     valueSortRequested;
   const explicitOwnedState = parseOwnedState(request.nextUrl.searchParams.get("owned"));
   const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator")) ?? smartSearchIntent.artist;
+  const artistSearch = gameScope === "pokemon"
+    ? exactIllustrator ?? (isKnownArtistQuery(rawQuery) ? rawQuery.trim() : undefined)
+    : undefined;
+  const artistPaginationRequested = request.nextUrl.searchParams.get("pagination") === "1";
+  const offsetText = request.nextUrl.searchParams.get("offset") ?? "0";
+  if (artistSearch && artistPaginationRequested && (!/^\d+$/.test(offsetText) || !Number.isSafeInteger(Number(offsetText)))) {
+    return NextResponse.json({ ok: false, error: "Invalid search page offset" }, { status: 400 });
+  }
+  const artistOffset = Number(offsetText);
   const effectiveSmartSearchIntent: SmartSearchIntent = {
     ...smartSearchIntent,
     releaseYearMin: explicitYearMin ?? smartSearchIntent.releaseYearMin,
@@ -504,13 +516,36 @@ export async function GET(request: NextRequest) {
 
     const includeProvisional =
       gameScope === "pokemon" &&
+      !artistSearch &&
       languageScope !== "ja" &&
       !exactReleaseYear &&
       !hasSmartYearRange &&
       !exactIllustrator &&
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
-    const resolvedSearchPromise = gameScope !== "pokemon"
+    const resolvedSearchPromise = artistSearch
+      ? getExploreRowsForArtistSearch(artistSearch, {
+          sortMode,
+          exactArtist: Boolean(exactIllustrator),
+          exactIllustrator,
+          textQuery: exactIllustrator ? routedQuery : "",
+          exactSetCode: effectiveExactSetCode,
+          exactReleaseYear,
+          identityFilter,
+          releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+          releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+          finishKeys: effectiveSmartSearchIntent.finishKeys,
+          stampLabels: effectiveSmartSearchIntent.stampLabels,
+          imageState: effectiveSmartSearchIntent.imageState,
+          languageScope,
+          includePricing: includePricingDuringResolution,
+        }).then((rows) => ({
+          rows,
+          meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+          smartSearchIntent: effectiveSmartSearchIntent,
+          degraded: false,
+        }))
+      : gameScope !== "pokemon"
       ? getExploreRowsForGameScopedTextSearch(routedQuery, gameScope, sortMode, {
           exactSetCode: effectiveExactSetCode,
           exactReleaseYear,
@@ -630,7 +665,7 @@ export async function GET(request: NextRequest) {
     const [resolved, provisionalResults] = await Promise.all([
       withTimeout(
         resolvedSearchPromise,
-        RESOLVER_RESPONSE_TIMEOUT_MS,
+        artistSearch ? 8000 : RESOLVER_RESPONSE_TIMEOUT_MS,
         buildDegradedSearchResult(query, effectiveSmartSearchIntent),
       ),
       includeProvisional
@@ -641,6 +676,13 @@ export async function GET(request: NextRequest) {
           })
         : Promise.resolve([]),
     ]);
+    if (artistSearch && resolved.degraded) {
+      return NextResponse.json({
+        ok: false,
+        error: "Artist search timed out. Please try again.",
+        sort_degraded_reason: "resolver_timeout",
+      }, { status: 503, headers: { "Cache-Control": "private, no-store" } });
+    }
     if (valueSortRequested && resolved.degraded) {
       return NextResponse.json(
         {
@@ -660,9 +702,13 @@ export async function GET(request: NextRequest) {
     const canonicalResults = gameScope === "pokemon"
       ? resolved.rows.filter((row) => matchesPublicLanguageScope(row, languageScope))
       : resolved.rows;
-    const promotionTransitions = await getPromotionTransitionStateForCanonicalCards(
-      canonicalResults.map((row) => row.id),
-    );
+    const transitionGroups = artistSearch
+      ? Array.from({ length: Math.ceil(canonicalResults.length / 200) }, (_, index) => canonicalResults.slice(index * 200, (index + 1) * 200))
+      : [canonicalResults];
+    const transitionMaps = await Promise.all(transitionGroups.map((group) =>
+      getPromotionTransitionStateForCanonicalCards(group.map((row) => row.id)),
+    ));
+    const promotionTransitions = new Map(transitionMaps.flatMap((map) => [...map]));
     const canonicalResultsWithTransitions = applyPromotionTransitionsToCanonicalRows(
       canonicalResults,
       promotionTransitions,
@@ -675,8 +721,12 @@ export async function GET(request: NextRequest) {
       effectiveSmartSearchIntent,
       userId,
     );
-    const limitedCanonicalResultsWithoutDeferredPricing =
-      smartFilteredCanonicalResults.slice(0, resultLimit);
+    const artistPage = artistSearch
+      ? paginateArtistResults(smartFilteredCanonicalResults, artistOffset, resultLimit, artistPaginationRequested)
+      : null;
+    const limitedCanonicalResultsWithoutDeferredPricing = artistPage
+      ? artistPage.rows
+      : smartFilteredCanonicalResults.slice(0, resultLimit);
     const limitedCanonicalResults =
       authenticatedIncludePricing &&
       !includePricingDuringResolution &&
@@ -723,7 +773,8 @@ export async function GET(request: NextRequest) {
         rows: limitedCanonicalResults,
         provisional: provisionalResultsForResponse,
         meta: resolved.meta,
-        limit: resultLimit,
+        limit: artistPage && !artistPaginationRequested ? limitedCanonicalResults.length : resultLimit,
+        pagination: artistPage?.pagination,
         returned_count: limitedCanonicalResults.length,
         requested_sort: sortMode,
         applied_sort: resolved.degraded ? null : sortMode,
@@ -775,6 +826,13 @@ export async function GET(request: NextRequest) {
       );
     }
     if (isTimeoutLikeError(error)) {
+      if (artistSearch) {
+        return NextResponse.json({
+          ok: false,
+          error: "Artist search timed out. Please try again.",
+          sort_degraded_reason: "resolver_timeout",
+        }, { status: 503, headers: { "Cache-Control": "private, no-store" } });
+      }
       console.warn("[public-search] resolver timed out; returning degraded empty result", {
         query,
         languageScope,

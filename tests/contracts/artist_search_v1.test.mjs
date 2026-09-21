@@ -32,26 +32,27 @@ const fixtures = [
   { id: '4', gv_id: 'GV-PK-BASE1-2', artist: 'Mitsuhiro Arita' },
 ];
 
-function fixtureClient({ failure = false } = {}) {
+function fixtureClient({ failure = false, records = fixtures, failPage = -1 } = {}) {
   const requests = [];
   const client = createClient('https://fixture.supabase.co', 'fixture-key', {
     auth: { persistSession: false },
     global: { fetch: async (url) => {
       const params = new URL(url).searchParams;
       requests.push(params);
-      if (failure) return new Response(JSON.stringify({ message: 'Artist lookup unavailable' }), { status: 503 });
+      if (failure || requests.length === failPage) return new Response(JSON.stringify({ message: 'Artist lookup unavailable' }), { status: 503 });
       // Exercise the actual Supabase request serialization and filter semantics.
       const artistFilter = params.get('artist');
       assert.ok(artistFilter.startsWith('in.('));
       const names = artistFilter.slice(4, -1).split(',').map((name) => name.replace(/^"|"$/g, ''));
-      const data = fixtures.filter((row) => names.includes(row.artist) &&
+      const data = records.filter((row) => names.includes(row.artist) &&
         params.getAll('gv_id').every((filter) => {
           if (filter === 'like.GV-PK-%') return row.gv_id.startsWith('GV-PK-');
           if (filter === 'like.GV-PK-JPN-%') return row.gv_id.startsWith('GV-PK-JPN-');
           if (filter === 'not.like.GV-PK-JPN-%') return !row.gv_id.startsWith('GV-PK-JPN-');
           throw new Error(`Unexpected scope: ${filter}`);
-        }));
-      return new Response(JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } });
+        })).filter((row) => !params.get('id') || row.id > params.get('id').slice(3));
+      if (params.get('order')) data.sort((a, b) => a.id.localeCompare(b.id));
+      return new Response(JSON.stringify(data.slice(0, Number(params.get('limit') ?? 1000))), { headers: { 'Content-Type': 'application/json' } });
     } },
   });
   return { client, requests };
@@ -98,4 +99,47 @@ test('unknown artists return no cards, while query failures remain visible', asy
     fetchPokemonArtistRows(fixtureClient({ failure: true }).client, 'id', 'Ken Sugimori'),
     /Artist lookup unavailable/,
   );
+});
+
+test('complete artist search crosses both the 250-candidate and 1000-row API limits without duplicates', async () => {
+  const records = Array.from({ length: 1234 }, (_, index) => ({
+    id: String(index).padStart(6, '0'), gv_id: `GV-PK-TEST-${index}`, artist: 'Yuka Morii',
+  }));
+  const { client, requests } = fixtureClient({ records: records.toReversed() });
+  const rows = await fetchPokemonArtistRows(client, 'id,gv_id,artist', 'yuka morii', { complete: true, languageScope: 'en' });
+  assert.deepEqual(Array.from(rows, (row) => row.id), records.map((row) => row.id));
+  assert.equal(requests.length, 3);
+  assert.ok(requests.every((p) => p.get('order') === 'id.asc' && p.getAll('gv_id').includes('not.like.GV-PK-JPN-%')));
+  assert.equal(requests[1].get('id'), 'gt.000499');
+  assert.equal(requests[2].get('id'), 'gt.000999');
+});
+
+test('a later catalog-page failure does not publish a partial artist collection', async () => {
+  const records = Array.from({ length: 501 }, (_, index) => ({
+    id: String(index).padStart(6, '0'), gv_id: `GV-PK-TEST-${index}`, artist: 'Yuka Morii',
+  }));
+  await assert.rejects(fetchPokemonArtistRows(fixtureClient({ records, failPage: 2 }).client,
+    'id,gv_id,artist', 'Yuka Morii', { complete: true }), /Artist lookup unavailable/);
+});
+
+test('artist response paging reaches all 195 cards and legacy clients receive the complete set', () => {
+  const paginationModule = { exports: {} };
+  vm.runInNewContext(ts.transpileModule(readFileSync('apps/web/src/lib/search/artistSearchPagination.ts', 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, { module: paginationModule, exports: paginationModule.exports });
+  const { paginateArtistResults } = paginationModule.exports;
+  const rows = Array.from({ length: 195 }, (_, id) => ({ id }));
+  const seen = [];
+  let offset = 0;
+  do {
+    const page = paginateArtistResults(rows, offset, 48, true);
+    assert.equal(page.pagination.total_count, 195);
+    seen.push(...page.rows);
+    offset = page.pagination.next_offset;
+    assert.equal(page.pagination.has_more, offset !== null);
+  } while (offset !== null);
+  assert.deepEqual(seen, rows);
+  assert.equal(new Set(seen.map((row) => row.id)).size, 195);
+  assert.equal(paginateArtistResults(rows, 0, 32, false).rows.length, 195);
+  assert.equal(paginateArtistResults(rows, 195, 48, true).pagination.next_offset, null);
 });

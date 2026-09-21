@@ -15,6 +15,14 @@ artist filter with exact stored spelling until the snapshot is refreshed.
 See `docs/checkpoints/artist_search_20260920.md` for source and release evidence.
 Keep current exact-GV-ID, bounded-set, nickname, and other-game search paths.
 
+Artist completeness follow-up: see `docs/checkpoints/artist_pagination_20260920.md`.
+Artist requests opt into server paging with `pagination=1`, `offset`, and `limit`;
+the response includes `pagination.total_count`, `next_offset`, and `has_more`.
+Filters and ordering precede pagination. Clients without the opt-in receive the
+complete matching artist result, because the installed mobile app's Show more
+only reveals downloaded rows. Do not restore a silent artist result cap. Verify
+all Yuka Morii IDs and an artist exceeding 1,000 records, not just the first page.
+
 ## One Piece Incremental Printing Admission
 
 Use the V2 writer registry key `one_piece_incremental_printing_promotion_v2`.
