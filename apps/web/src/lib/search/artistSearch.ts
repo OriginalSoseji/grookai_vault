@@ -29,23 +29,45 @@ export async function fetchPokemonArtistRows(
   client: Pick<SupabaseClient, "from">,
   selectClause: string,
   artist: string,
-  options: { exact?: boolean; languageScope?: PublicLanguageScope } = {},
+  options: { exact?: boolean; languageScope?: PublicLanguageScope; complete?: boolean } = {},
 ) {
   const names = resolveArtistNames(artist, options.exact ?? false);
   if (names.length === 0) return [];
 
-  let request = client
-    .from("card_prints")
-    .select(selectClause)
-    .like("gv_id", "GV-PK-%")
-    .in("artist", names);
-  if (options.languageScope === "ja") {
-    request = request.like("gv_id", "GV-PK-JPN-%");
-  } else if (options.languageScope === "en") {
-    request = request.not("gv_id", "like", "GV-PK-JPN-%");
+  const requestForPage = () => {
+    let request = client
+      .from("card_prints")
+      .select(selectClause)
+      .like("gv_id", "GV-PK-%")
+      .in("artist", names);
+    if (options.languageScope === "ja") {
+      request = request.like("gv_id", "GV-PK-JPN-%");
+    } else if (options.languageScope === "en") {
+      request = request.not("gv_id", "like", "GV-PK-JPN-%");
+    }
+    return request;
+  };
+  // Preserve the bounded legacy helper for other callers. Artist browsing reads
+  // every database page in unique-ID order, with the same RLS/language scope.
+  if (options.complete) {
+    const rows = [];
+    let afterId: string | undefined;
+    for (;;) {
+      let request = requestForPage().order("id", { ascending: true }).limit(500);
+      if (afterId) request = request.gt("id", afterId);
+      const { data, error } = await request;
+      if (error) throw new Error(error.message);
+      const page = data ?? [];
+      rows.push(...page);
+      if (page.length < 500) return rows;
+      const nextId = (page.at(-1) as unknown as { id?: string } | undefined)?.id;
+      if (typeof nextId !== "string" || nextId === afterId) {
+        throw new Error("Artist search could not advance to the next catalog page");
+      }
+      afterId = nextId;
+    }
   }
-  // Equality can be applied before row visibility checks; ILIKE cannot and
-  // times out on this catalog. Keep ranking in the existing search pipeline.
+  const request = requestForPage();
   const { data, error } = await request.limit(250);
   if (error) throw new Error(error.message);
   return data ?? [];
