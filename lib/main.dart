@@ -150,6 +150,7 @@ List<String> _sentenceSearchExamplesForGame(String gameScope) {
     _ => const <String>[
       'Gengar 2000-2024 reverse holo',
       'Charizard from 151',
+      'artist Ken Sugimori',
       'Exeggutor Poké Ball',
       'Pikachu 2014-2024 reverse holo',
     ],
@@ -734,7 +735,7 @@ class _SentenceSearchExamples extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'Name, set, rarity, language, number, and variant words all help.',
+          'Name, artist, set, rarity, language, number, and variant words all help.',
           style: theme.textTheme.bodySmall?.copyWith(
             color: colorScheme.onSurface.withValues(alpha: 0.58),
             height: 1.25,

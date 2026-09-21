@@ -43,6 +43,7 @@ import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
+import { fetchPokemonArtistRows, isKnownArtistQuery } from "@/lib/search/artistSearch";
 
 const SEARCH_LIMIT = 64;
 const SET_FETCH_PAGE_SIZE = 500;
@@ -3161,21 +3162,17 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
   );
 }
 
-async function fetchCardRowsByIllustrator(illustrator: string) {
+async function fetchCardRowsByIllustrator(
+  illustrator: string,
+  languageScope: PublicLanguageScope = "all",
+) {
   const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
-  const { data, error } = await supabase
-    .from("card_prints")
-    .select(selectClause)
-    .eq("artist", illustrator)
-    .limit(250);
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return (data ?? []) as CardPrintLookupRow[];
+  return await fetchPokemonArtistRows(supabase, selectClause, illustrator, {
+    exact: true,
+    languageScope,
+  }) as unknown as CardPrintLookupRow[];
 }
 
 async function fetchSetCodesByReleaseYear(year: number) {
@@ -3898,14 +3895,23 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   const boundedQuery = boundedSetCode
     ? [...boundedTextTokens, ...boundedNumberTokens].join(" ").trim()
     : rawQuery;
+  const artistQuery = isKnownArtistQuery(rawQuery);
   const useCompletePokemonPath =
+    artistQuery ||
     Boolean(query.directGvId) ||
     (query.expectedSetCodes.length > 0 && !canUseBoundedSetSearch) ||
     sortMode === "value_high" ||
     sortMode === "value_low";
   if (useCompletePokemonPath) {
     assertValueSortPricingEnabled(sortMode, includePricing);
-    const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
+    const exactRows = artistQuery
+      ? await fetchPokemonArtistRows(
+          await createServerComponentClient(),
+          "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
+          rawQuery,
+          { languageScope },
+        ) as unknown as CardPrintLookupRow[]
+      : await fetchLanguageScopedTextRows(query, languageScope);
     const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
     const setMetadataByCode = await fetchPublicSetMetadata(
       uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
@@ -4375,7 +4381,7 @@ async function fetchSmartDiscoverySeedParentRows(
       options.releaseYearMax,
     );
   } else if (exactIllustrator) {
-    parentRows = await fetchCardRowsByIllustrator(exactIllustrator);
+    parentRows = await fetchCardRowsByIllustrator(exactIllustrator, options.languageScope);
   } else if (isIdentityFilterActive(identityFilter)) {
     parentRows = await fetchCardRowsByIdentityFilter(identityFilter);
   } else if ((options.stampLabels ?? []).length > 0) {
@@ -4947,7 +4953,7 @@ export async function getExploreRowsPacketWithTiming(
       }
 
       if (exactIllustrator) {
-        return fetchCardRowsByIllustrator(exactIllustrator);
+        return fetchCardRowsByIllustrator(exactIllustrator, languageScope);
       }
 
       if (exactReleaseYear) {
