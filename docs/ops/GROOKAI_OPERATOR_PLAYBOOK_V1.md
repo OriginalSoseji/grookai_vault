@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Pokemon Artist Search - September 20
+
+Artist search uses the shared web resolver, including native Pokemon search.
+Known full names and surnames are resolved through the checked-in
+`apps/web/src/lib/search/pokemonArtistNames.json`, then cards are read with the
+ordinary public/session client and existing visibility checks. Do not replace
+this with unrestricted admin reads or a broad artist ILIKE scan: the latter
+hits the public statement timeout. Refresh the name snapshot with
+`node scripts/generate_pokemon_artist_names.mjs` in the verified canonical
+environment after artist metadata changes. It is a read-only database operation;
+review and commit the generated snapshot. New artists can use the explicit
+artist filter with exact stored spelling until the snapshot is refreshed.
+See `docs/checkpoints/artist_search_20260920.md` for source and release evidence.
+Keep current exact-GV-ID, bounded-set, nickname, and other-game search paths.
+
 ## One Piece Incremental Printing Admission
 
 Use the V2 writer registry key `one_piece_incremental_printing_promotion_v2`.
