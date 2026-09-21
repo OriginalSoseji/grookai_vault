@@ -53,6 +53,7 @@ import {
   getPublicRelatedPrintsByGvId,
 } from "@/lib/getPublicCardByGvId";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
+import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { getConditionSnapshotsForCard } from "@/lib/condition/getConditionSnapshotsForCard";
 import { getAssignmentCandidatesForSnapshot } from "@/lib/condition/getAssignmentCandidatesForSnapshot";
 import type { ConditionSnapshotListItem } from "@/lib/condition/getConditionSnapshotsForCard";
@@ -1040,6 +1041,23 @@ async function CardPageContent({
     pricingRecordCount: pricingRecords.length,
   });
 
+  const illustratorHref = illustratorName
+    ? buildPathWithCompareCards("/explore", new URLSearchParams({
+        illustrator: illustratorName,
+        game: normalizePublicGameScope(resolvedCard.game_code),
+      }).toString(), compareCards)
+    : null;
+  const illustratorLink = illustratorHref ? (
+    <Link
+      href={illustratorHref}
+      prefetch={false}
+      aria-label={`View cards illustrated by ${illustratorName}`}
+      className="underline underline-offset-2 hover:text-emerald-700 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 dark:hover:text-emerald-300"
+    >
+      {illustratorName}
+    </Link>
+  ) : null;
+
   return (
     <div className={`gv-approved-card-detail ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <CardPagePerformanceProbe
@@ -1219,7 +1237,7 @@ async function CardPageContent({
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="font-mono">Grookai ID {resolvedCard.gv_id}</span>
                     <CopyButton text={resolvedCard.gv_id} />
-                    {illustratorName ? <span>Illustrated by {illustratorName}</span> : null}
+                    {illustratorName ? <span>Illustrated by {illustratorLink}</span> : null}
                   </div>
                 </div>
               </details>
@@ -1249,7 +1267,7 @@ async function CardPageContent({
               {collectorNumberLine ? <div><dt>Number</dt><dd>{collectorNumberLine}</dd></div> : null}
               {finishLabels.length ? <div><dt>Available finishes</dt><dd>{finishLabels.join(" / ")}</dd></div> : null}
               <div><dt>Language</dt><dd>{getCardLanguageLabel(resolvedCard)}</dd></div>
-              {illustratorName ? <div><dt>Artist</dt><dd>{illustratorName}</dd></div> : null}
+              {illustratorName ? <div><dt>Artist</dt><dd>{illustratorLink}</dd></div> : null}
               {resolvedCard.rarity ? <div><dt>Rarity</dt><dd>{resolvedCard.rarity}</dd></div> : null}
               {releaseDateLabel ? <div><dt>Release date</dt><dd>{releaseDateLabel}</dd></div> : null}
               {resolvedCard.supertype || resolvedCard.card_category ? <div><dt>Card type</dt><dd>{resolvedCard.supertype || resolvedCard.card_category}</dd></div> : null}
@@ -1303,7 +1321,7 @@ async function CardPageContent({
             {detailItems.map((item) => (
               <div key={item.label} className="rounded-[18px] border border-slate-200/70 bg-white/54 px-4 py-4 dark:border-slate-700 dark:bg-white/[0.04]">
                 <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</dt>
-                <dd className="mt-2 text-sm font-medium text-slate-900 dark:text-slate-100">{item.value}</dd>
+                <dd className="mt-2 text-sm font-medium text-slate-900 dark:text-slate-100">{item.label === "Illustrator" ? illustratorLink : item.value}</dd>
               </div>
             ))}
           </dl>
