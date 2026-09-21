@@ -66,3 +66,9 @@ identical-lock dependency installations. The documented intentional commit/push
 hook bypass is used only to avoid repeating this completed full gate; it does
 not waive a failed release check. The original candidate's missing-environment
 gate is superseded by this verified local release run.
+
+Protected candidate readback caught an ordinary-search collision: `Pikachu`
+matched the middle word in `2019 Pikachu Project`. Automatic partial artist
+recognition now checks only the final name token; full credits remain searchable.
+The regression covers plain and lowercase Pikachu. The original live deployment
+remains active while this correction passes the full release gate again.

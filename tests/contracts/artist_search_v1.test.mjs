@@ -20,7 +20,7 @@ test('known artist names and surnames bypass card-name scanning', () => {
   for (const query of ['Ken Sugimori', 'ken sugimori', 'Sugimori', 'Mitsuhiro Arita']) {
     assert.equal(isKnownArtistQuery(query), true);
   }
-  for (const query of ['Charizard', 'Pikachu 58', 'sv1 25', 'art', 'N']) {
+  for (const query of ['Charizard', 'Pikachu', 'pikachu', 'Pikachu 58', 'sv1 25', 'art', 'N']) {
     assert.equal(isKnownArtistQuery(query), false, query);
   }
 });

@@ -7,7 +7,9 @@ export function isKnownArtistQuery(value: string) {
   if (["art", "artist", "illustrator", "card", "cards", "pokemon"].includes(name)) return false;
   return name.length >= 3 && artistNames.artists.some((artist) => {
     const normalized = artist.trim().replace(/\s+/g, " ").toLowerCase();
-    return normalized === name || normalized.split(" ").includes(name);
+    // Partial automatic recognition is limited to surnames. Interior words in
+    // credits such as "2019 Pikachu Project" must remain ordinary card queries.
+    return normalized === name || normalized.split(" ").at(-1) === name;
   });
 }
 
