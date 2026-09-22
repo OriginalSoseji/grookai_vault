@@ -7,6 +7,42 @@ repository gate also pass. Physical iPhone acceptance remains open after its
 connection dropped. Earlier source-specific findings below retain their original
 scope; the physical follow-up supersedes their all-devices-open status.
 
+## Requested emulator verification — September 22, 17:25 UTC
+
+On user request, repeated the current candidate on Grookai_Catalog_Local_API36
+(`emulator-5554`), separate from physical-device evidence. Both journeys passed:
+
+- Actual app password login, visible/dismissible onboarding, three owned fixture
+  cards, typo-corrected artist/name/reverse-holo search (168), finish removal
+  (335), and sign-out. A fresh isolated debug APK was built from clean source
+  `93267ede2fd025468582dbbfd990fe399be845f4` with private local defines.
+- Cold guest VIEW intent, constraint preservation through fixture sign-in,
+  warm intent changing the query, and disposal of old search/ownership content
+  after sign-out. Reused the physical intent-test APK only after checking its
+  application/test source hashes against the current candidate; they agree.
+
+The app used emulator loopback ports 54321/3202 through ADB reverse to the local
+sandbox. Counts/artwork are synthetic. Notification permission was denied and
+fixed only for the temporary test package before testing. Firebase registration
+was unavailable in this isolated debug environment; notification delivery was
+not tested and does not count as passing. Local package-targeted HTTP links do
+not establish production HTTPS association or physical iPhone behavior.
+
+Screenshots confirmed visible onboarding, typo interpretation, all three search
+filters, and the cleared signed-out screen. Private evidence:
+`emulator-android-build.json`, `emulator-links-verification.json`,
+`emulator-signed-in-shell-verified.private.log`, and
+`emulator-search-verification.json`, plus six emulator screenshots. The browsable
+report section is `http://127.0.0.1:3203/#emulator-verification`; desktop/mobile
+layout and six linked evidence files passed readback checks.
+
+No application code changed or production deployment occurred. Private packaging
+edits were restored byte-for-byte. The temporary app and owned ADB reverse
+mappings were removed after verification; package and mapping readbacks are
+empty as before testing. The Samsung was untouched. This documentation-only
+checkpoint retains the prior full-gate attribution and uses the documented
+operator commit bypass without claiming a new full repository gate.
+
 Source: 1d3ec6d4a, the 1f6cabce6 AASA/test follow-up, and the dock-height repair
 described below. Exact file hashes and commit are in onboarding-source-manifest.json.
 No deployment, store upload, production mutation, or real-user messaging occurred.

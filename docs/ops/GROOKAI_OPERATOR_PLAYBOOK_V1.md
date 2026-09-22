@@ -46,6 +46,12 @@ Use an approved release signing identity for production-domain dispatch proof.
 The checkpoint records fresh live deployment/main/association readbacks; re-read
 the live pointer before any separately approved staging or promotion.
 
+The user-requested emulator repeat is recorded in the signed-in release checkpoint:
+current-source full password/search journey and reused, hash-matched intent-test
+APK both pass on API 36. Use `emulator-search-verification.json` and the report's
+`#emulator-verification` section for this evidence. Local emulator passes do not
+replace production-domain signing checks or physical iPhone acceptance.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.
