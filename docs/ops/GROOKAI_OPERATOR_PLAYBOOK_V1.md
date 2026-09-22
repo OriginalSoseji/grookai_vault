@@ -72,6 +72,15 @@ never suppress all rows sharing a promoted parent ID. Use the isolated `csart`
 fixture and shared-credit API/browser/native receipts for repeat verification.
 Local repair is not deployed closure; preserve the remaining release gates.
 
+Broad-query follow-up: `docs/checkpoints/combined_search_scale_20260922.md` records
+the optimized ed8645b93 runtime against the isolated `csscale` fixture: 1,805 artist
+parents, 2,708 holo/reverse printings, 107 complete pages and 117 successful API
+calls. Loopback 3204 now serves the fresh strict build. Keep fixture counts,
+local latency, and production acceptance distinct; the small local database and
+guest/no-pricing scope cannot certify production capacity. Legacy native reads
+retain the whole result body. Latest observed main 76ff8b32b changes only founder
+dashboard snapshots; reconcile before packaging, without relabeling this runtime.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.

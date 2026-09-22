@@ -37,6 +37,8 @@ covers it. Prior feature source and receipts remain available for comparison.
 | Multi-finish ranking preservation | PASS locally after CS-SEARCH-03 repair: all 84 matching holo/reverse printings survive relevance promotion and pagination. |
 | Shared-credit repair full gate | PASS at 18:27:47 UTC: 4,050 contracts, four skips, 736 Flutter tests, web typecheck/lint/strict build and Flutter analysis. |
 | Reconcile current main | PASS: a98dd26f7 fast-forward, no conflicts |
+| Subsequent main drift | OBSERVED: 76ff8b32b adds only five founder dashboard JSON snapshots; no runtime overlap. Not merged into the frozen performance candidate; reconcile before packaging. |
+| Larger local candidate performance | PASS on optimized ed8645b93: five searches, 107 pages, 117 successful API calls; 1,805 artist parents and 2,708 holo/reverse fixture printings complete. Median artist 728 ms; any-holo 1,897 ms. Legacy completeness, small three-request burst, mobile/desktop browser checks pass. This is not production latency/capacity proof. See combined_search_scale_20260922.md. |
 | Feature acceptance | PASS on c28f2eea8 plus candidate: 53 API cases, 39 JS contracts, 21 Flutter tests, four runtime cases on each native platform |
 | Browser journeys | PASS: mobile Chromium/WebKit and desktop Chromium; exact printing, full pagination, back restoration, interpretation controls |
 | Full repository shipcheck after reconciliation | PASS at 2026-09-22T13:48:59Z: 4,046 contracts passed, four skipped, zero failed; web typecheck/lint/strict build; Flutter analysis and all 736 tests |

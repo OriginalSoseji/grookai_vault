@@ -5,6 +5,11 @@ Latest follow-up repairs **CS-ARTIST-02 (shared credits)** and **CS-SEARCH-03
 `combined_search_shared_credit_repair_20260922.md` for fresh evidence and remaining
 release boundaries. Preserve the original spot-check receipt as before-fix proof.
 
+The next broad-query check passes on the optimized local build: five searches,
+107 complete pages, and 117 successful API calls. See
+`combined_search_scale_20260922.md` for timings, fixture scope, main drift and
+the remaining production/device gates. No deployment occurred.
+
 Source: origin/main a98dd26f7 plus the combined-search candidate on branch
 feature/combined-search-20260922, in C:/grookai_vault_combined_search_20260922.
 The matching Mac native candidate is /Users/cesarcabral/grookai_vault_combined_search_20260922.
