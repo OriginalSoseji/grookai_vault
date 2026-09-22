@@ -31,7 +31,12 @@ export async function fetchPokemonArtistRows(
   artist: string,
   options: { exact?: boolean; languageScope?: PublicLanguageScope; complete?: boolean; names?: string[] } = {},
 ) {
-  const names = options.names ?? resolveArtistNames(artist, options.exact ?? false);
+  // Parsed names identify contributors, whereas stored credits can name several.
+  // Expand only known, whole contributor components; keep UI interpretation and
+  // explicit exact-credit filters unchanged, and retain equality database reads.
+  const names = options.names
+    ? expandSharedArtistCredits(options.names)
+    : resolveArtistNames(artist, options.exact ?? false);
   if (names.length === 0) return [];
 
   const requestForPage = () => {
@@ -71,4 +76,15 @@ export async function fetchPokemonArtistRows(
   const { data, error } = await request.limit(250);
   if (error) throw new Error(error.message);
   return data ?? [];
+}
+
+function expandSharedArtistCredits(names: string[]) {
+  const normalize = (name: string) => name.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase();
+  const contributors = new Set(names.map(normalize));
+  return [...new Set([
+    ...names,
+    ...artistNames.artists.filter((credit) =>
+      credit.split(/[/,+&]/u).some((part) => contributors.has(normalize(part))),
+    ),
+  ])];
 }

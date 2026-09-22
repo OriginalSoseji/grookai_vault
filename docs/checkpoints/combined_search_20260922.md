@@ -1,9 +1,9 @@
 # Combined catalog search — local implementation and acceptance
 
-Latest spot check found **CS-ARTIST-02, an unrepaired shared-credit regression**
-in the candidate. Fix before release; see
-`combined_search_artist_spot_check_20260922.md`. Earlier passing fixtures did not
-cover this real joint-artist shape and do not waive the new finding.
+Latest follow-up repairs **CS-ARTIST-02 (shared credits)** and **CS-SEARCH-03
+(ranking dropped another finish of a promoted parent)** locally. See
+`combined_search_shared_credit_repair_20260922.md` for fresh evidence and remaining
+release boundaries. Preserve the original spot-check receipt as before-fix proof.
 
 Source: origin/main a98dd26f7 plus the combined-search candidate on branch
 feature/combined-search-20260922, in C:/grookai_vault_combined_search_20260922.

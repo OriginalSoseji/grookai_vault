@@ -63,7 +63,14 @@ The broader artist spot check found release-blocking CS-ARTIST-02; read
 `docs/checkpoints/combined_search_artist_spot_check_20260922.md`. Live pagination
 matches six artists across 55 pages after accounting for a shared credit, but
 the unreleased combined parser drops that credit from individual-artist queries.
-Preserve this distinction and repair the candidate before deployment review.
+That original reproduction is preserved as before-fix evidence. The local repair
+and follow-up CS-SEARCH-03 ranking fix are recorded in
+`docs/checkpoints/combined_search_shared_credit_repair_20260922.md`. Parsed artist
+names expand to known whole-contributor credits; explicit illustrator filters
+keep their exact-credit contract. Ranking must move individual printing results,
+never suppress all rows sharing a promoted parent ID. Use the isolated `csart`
+fixture and shared-credit API/browser/native receipts for repeat verification.
+Local repair is not deployed closure; preserve the remaining release gates.
 
 ## Pokemon Artist Search - September 20
 

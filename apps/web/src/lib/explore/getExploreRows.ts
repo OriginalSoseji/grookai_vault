@@ -2028,7 +2028,9 @@ function promoteDecoratedFamilyRows(rows: ExploreRow[], query: ResolverQuery) {
   }
 
   const normalizedQueryName = query.normalized.toLowerCase();
-  const promotedRowIds = new Set<string>();
+  // Ranking moves individual results, including distinct finishes of one parent.
+  // Parent IDs cannot identify which result has already been moved.
+  const promotedResults = new Set<ExploreRow>();
   const decoratedNameKeys = new Set<string>();
   const promotedRows: ExploreRow[] = [];
 
@@ -2037,7 +2039,7 @@ function promoteDecoratedFamilyRows(rows: ExploreRow[], query: ResolverQuery) {
   );
   if (leadExactRow) {
     promotedRows.push(leadExactRow);
-    promotedRowIds.add(leadExactRow.id);
+    promotedResults.add(leadExactRow);
   }
 
   for (const row of rows) {
@@ -2048,7 +2050,7 @@ function promoteDecoratedFamilyRows(rows: ExploreRow[], query: ResolverQuery) {
       break;
     }
 
-    if (promotedRowIds.has(row.id)) {
+    if (promotedResults.has(row)) {
       continue;
     }
 
@@ -2067,7 +2069,7 @@ function promoteDecoratedFamilyRows(rows: ExploreRow[], query: ResolverQuery) {
 
     decoratedNameKeys.add(normalizedRowName);
     promotedRows.push(row);
-    promotedRowIds.add(row.id);
+    promotedResults.add(row);
   }
 
   if (promotedRows.length <= (leadExactRow ? 1 : 0)) {
@@ -2076,7 +2078,7 @@ function promoteDecoratedFamilyRows(rows: ExploreRow[], query: ResolverQuery) {
 
   return [
     ...promotedRows,
-    ...rows.filter((row) => !promotedRowIds.has(row.id)),
+    ...rows.filter((row) => !promotedResults.has(row)),
   ];
 }
 

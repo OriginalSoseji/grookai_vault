@@ -1,5 +1,9 @@
 # Artist search spot check — September 22
 
+Follow-up: the local repair and new ranking regression are recorded in
+`combined_search_shared_credit_repair_20260922.md`. This document retains the
+original before-fix findings; it is not the current repair verification receipt.
+
 Source: `b943b03fac34b3d5b750822ee9340de047ed3a5d`. Requested read-only spot check.
 Evidence directory: `C:/grookai_vault_operator_artifacts/combined_search_20260922/`.
 
