@@ -2813,7 +2813,22 @@ class _MyAppState extends State<MyApp> {
           if (!authenticated) {
             _pendingPersonalActionAuthHandoffId = null;
           }
+          if (event.event == AuthChangeEvent.signedOut && !authenticated) {
+            _pendingCanonicalLink = null;
+            _pendingDebugAction = null;
+          }
         });
+        if (event.event == AuthChangeEvent.signedOut && !authenticated) {
+          // Replacing the home widget does not remove pushed detail/search
+          // routes. Drop their cached signed-in state when the session ends.
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted ||
+                (_authSession != null && !_authSession!.isExpired)) {
+              return;
+            }
+            _navigatorKey.currentState?.popUntil((route) => route.isFirst);
+          });
+        }
         if (authenticated) {
           if (pendingPersonalAction != null &&
               pendingPersonalAction.gvId.isNotEmpty) {

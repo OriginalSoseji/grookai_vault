@@ -1,5 +1,12 @@
 # Combined search: signed-in release checks
 
+Latest follow-up: [physical acceptance](combined_search_physical_acceptance_20260922.md).
+The Samsung full shell and local cold/warm intents pass. A discovered sign-out
+route cleanup defect is repaired and verified; iOS simulator and a fresh complete
+repository gate also pass. Physical iPhone acceptance remains open after its
+connection dropped. Earlier source-specific findings below retain their original
+scope; the physical follow-up supersedes their all-devices-open status.
+
 Source: 1d3ec6d4a, the 1f6cabce6 AASA/test follow-up, and the dock-height repair
 described below. Exact file hashes and commit are in onboarding-source-manifest.json.
 No deployment, store upload, production mutation, or real-user messaging occurred.

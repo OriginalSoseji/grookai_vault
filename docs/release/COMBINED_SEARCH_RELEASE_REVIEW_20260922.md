@@ -36,10 +36,11 @@ covers it. Prior feature source and receipts remain available for comparison.
 | Full repository shipcheck after dock-height repair | PASS at 2026-09-22T15:08:27Z: 4,046 contracts passed, four skipped, zero failed; 736 Flutter tests; web typecheck/lint/strict build; Flutter analysis; all remaining gate stages |
 | Local review availability | RESTORED: Docker/database healthy; port 3202 returns 168 exact reverse-holo fixture matches; all 12 core API readbacks pass after restart |
 | Full signed-in application shell | PASS for mobile Chromium/WebKit owner and visitor password journeys, Android emulator owner, and iOS 26.5 simulator owner; native runs include onboarding dismissal and combined/owned search |
-| Physical Android / iPhone | OPEN; both devices were found, neither existing installation was changed; isolated physical test builds remain needed |
+| Physical Android / iPhone | Samsung PASS: isolated full shell and local cold/warm search intents, including sign-out cleanup. iPhone OPEN: disconnected before isolated installation. Existing apps preserved. |
+| Sign-out repair gate | PASS at 2026-09-22T16:25:31Z: 4,046 contracts, four skips, 736 Flutter tests, all other full-gate stages. Fresh iOS simulator shell and physical Android regression pass. |
 | Production catalog completeness and latency | Read-only baseline: deployed artist search returns 195 records over five pages; unreleased combined-query completeness/scale remains OPEN |
 | Deployed universal/app links | Prior source runtime rejects search routes; iOS AASA expansion removed from this candidate. Candidate AASA exactly matches live bytes. Android OS dispatch and future iOS expansion remain OPEN |
-| Native visual follow-up | Dock-height repair VERIFIED on Android emulator and iOS simulator: onboarding is visible/dismissible and signed-in search is unobscured; physical checks remain OPEN |
+| Native visual follow-up | Dock-height repair VERIFIED on Android emulator, physical Samsung and iOS simulator. Physical iPhone remains OPEN. |
 | Deployment / store approval | NOT REQUESTED by this local preparation step |
 
 Do not mark an unavailable check as passing. The four contract skips cover the
@@ -66,6 +67,11 @@ in docs/contracts/AUTOMATED_SHIP_GUARDS_V1.md to avoid rerunning this completed 
 This does not waive a failed check; the final gate exited zero before the commit.
 
 ## Deployment sequence for separate review
+
+Latest source/evidence scope is recorded in
+`../checkpoints/combined_search_physical_acceptance_20260922.md`. The local
+physical acceptance receipt binds the final application/test hashes to device,
+simulator and repository checks. It does not certify deployed link association.
 
 1. Record the currently deployed web artifact, native version/build numbers,
    environment, and rollback target by read-only inspection. Recheck main drift.

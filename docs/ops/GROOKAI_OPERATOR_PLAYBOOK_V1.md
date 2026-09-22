@@ -27,6 +27,17 @@ XCUITest helper dismisses only the Grookai notification prompt in the simulator.
 Keep private defines outside source. Mac ports 3202/54322 forward to Windows local
 services; they are simulator endpoints, not physical-iPhone network configuration.
 
+Physical follow-up: `docs/checkpoints/combined_search_physical_acceptance_20260922.md`.
+Samsung passes the full signed-in shell and local cold/warm VIEW-intent journey.
+The latter exposed cached pushed routes surviving sign-out; preserve root route
+cleanup and the integration regression. Use the unique temporary package
+`com.grookai.vault.combinedsearch20260922`, never either existing installation.
+Private manifest/Gradle edits are build-only and restored byte-for-byte. Local
+intent success does not prove production HTTPS association. The iPhone became
+unavailable in CoreDevice and Xcode before isolated installation; reconnect it
+and establish a physical local network route before resuming. The updated iOS
+simulator journey and full local repository gate pass with the sign-out repair.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.
