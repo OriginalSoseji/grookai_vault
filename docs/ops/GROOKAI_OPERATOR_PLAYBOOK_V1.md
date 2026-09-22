@@ -59,6 +59,12 @@ children. Keep offline parser expectations separate from live candidate executio
 CS-CATALOG-01 records Lost Origin Wurmple's missing artist credit with an official
 source; route any repair through the governed catalog process, not a direct edit.
 
+The broader artist spot check found release-blocking CS-ARTIST-02; read
+`docs/checkpoints/combined_search_artist_spot_check_20260922.md`. Live pagination
+matches six artists across 55 pages after accounting for a shared credit, but
+the unreleased combined parser drops that credit from individual-artist queries.
+Preserve this distinction and repair the candidate before deployment review.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.

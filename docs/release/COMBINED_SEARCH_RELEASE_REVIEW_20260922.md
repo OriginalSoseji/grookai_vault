@@ -2,6 +2,10 @@
 
 Status: local release preparation; no deployment or store submission authorized by this record.
 
+Release is held on CS-ARTIST-02: the candidate drops shared-artist credits when
+searching an individual contributor. See the artist spot-check checkpoint;
+earlier green tests did not cover this case. No repair is included in that check.
+
 ## Candidate and scope
 
 Branch: feature/combined-search-20260922. Base: origin/main a98dd26f7.
@@ -29,6 +33,7 @@ covers it. Prior feature source and receipts remain available for comparison.
 
 | Gate | Outcome |
 | --- | --- |
+| Shared-artist preservation | FAIL in offline current parser/query-helper reproduction: Cynthia & Caitlin #189 disappears from individual Ken Sugimori / Yusuke Ohmura searches. P1 repair before release. Live artist search includes it. |
 | Reconcile current main | PASS: a98dd26f7 fast-forward, no conflicts |
 | Feature acceptance | PASS on c28f2eea8 plus candidate: 53 API cases, 39 JS contracts, 21 Flutter tests, four runtime cases on each native platform |
 | Browser journeys | PASS: mobile Chromium/WebKit and desktop Chromium; exact printing, full pagination, back restoration, interpretation controls |
