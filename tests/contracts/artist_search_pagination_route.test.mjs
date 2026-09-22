@@ -32,7 +32,14 @@ function loadRoute({ fail = false } = {}) {
     },
     '@/lib/resolver/resolveQuery': {},
     '@/lib/pricing/getPublicPricingByCardIds': { PublicPricingSortUnavailableError: class extends Error {} },
-    '@/lib/supabase/server': {},
+    '@/lib/supabase/server': {
+      createServerComponentClient: async () => ({
+        from: (table) => {
+          assert.equal(table, 'sets');
+          return { select: () => ({ eq: () => ({ in: async () => ({ data: [], error: null }) }) }) };
+        },
+      }),
+    },
     '@/lib/vault/getOwnedCountsByCardPrintIds': {},
   };
   function load(file) {
@@ -86,7 +93,9 @@ test('artist paging counts language-filtered rows and supports installed mobile 
   const legacy = await (await get({ nextUrl: new URL('https://fixture?q=Yuka+Morii&limit=32') })).json();
   assert.equal(legacy.rows.length, 195);
   assert.equal(legacy.pagination.has_more, false);
-  const ordinary = await (await get({ nextUrl: new URL('https://fixture?q=Pikachu&limit=32&pagination=1') })).json();
+  const ordinaryResponse = await get({ nextUrl: new URL('https://fixture?q=Pikachu&limit=32&pagination=1') });
+  assert.equal(ordinaryResponse.status, 200);
+  const ordinary = await ordinaryResponse.json();
   assert.equal(ordinary.rows.length, 32);
   assert.equal(ordinary.pagination, undefined);
 });

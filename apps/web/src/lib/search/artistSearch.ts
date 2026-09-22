@@ -29,9 +29,9 @@ export async function fetchPokemonArtistRows(
   client: Pick<SupabaseClient, "from">,
   selectClause: string,
   artist: string,
-  options: { exact?: boolean; languageScope?: PublicLanguageScope; complete?: boolean } = {},
+  options: { exact?: boolean; languageScope?: PublicLanguageScope; complete?: boolean; names?: string[] } = {},
 ) {
-  const names = resolveArtistNames(artist, options.exact ?? false);
+  const names = options.names ?? resolveArtistNames(artist, options.exact ?? false);
   if (names.length === 0) return [];
 
   const requestForPage = () => {

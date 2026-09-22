@@ -214,6 +214,8 @@ type CardPrintLookupRow = {
   name: string | null;
   number: string | null;
   number_plain?: string | null;
+  printed_total?: number | null;
+  set_name?: string | null;
   rarity: string | null;
   artist?: string | null;
   image_url: string | null;
@@ -299,6 +301,7 @@ type SmartFilterDiscoveryOptions = {
   sortMode: SortMode;
   textQuery?: string;
   exactSetCode?: string;
+  exactSetCodes?: string[];
   exactReleaseYear?: number;
   exactIllustrator?: string;
   identityFilter?: IdentityFilterKey;
@@ -3311,7 +3314,7 @@ function getSmartStampSearchTokens(stampLabels: string[]) {
             token !== "workshop",
         ),
     ),
-  ).slice(0, 8);
+  );
 }
 
 function hasSmartLabel(stampLabels: string[], phrase: string) {
@@ -3338,16 +3341,6 @@ function rowMatchesSmartStampLabels(row: CardPrintLookupRow, stampLabels?: strin
     return true;
   }
 
-  const specialSetCodes = new Set(getSpecialSetCodesForSmartLabels(labels));
-  if (specialSetCodes.has(normalizeSetCode(row.set_code))) {
-    return true;
-  }
-
-  const tokens = getSmartStampSearchTokens(labels);
-  if (tokens.length === 0) {
-    return false;
-  }
-
   const searchableIdentity = normalizeTextForMatch(
     [
       row.variant_key,
@@ -3358,7 +3351,11 @@ function rowMatchesSmartStampLabels(row: CardPrintLookupRow, stampLabels?: strin
       .join(" "),
   );
 
-  return tokens.every((token) => searchableIdentity.includes(token));
+  return labels.every((label) => {
+    if (getSpecialSetCodesForSmartLabels([label]).includes(normalizeSetCode(row.set_code))) return true;
+    const tokens = getSmartStampSearchTokens([label]);
+    return tokens.length > 0 && tokens.every((token) => searchableIdentity.includes(token));
+  });
 }
 
 function applySmartStampParentFilter(rows: CardPrintLookupRow[], stampLabels?: string[]) {
@@ -3379,22 +3376,36 @@ function normalizeFinishKeys(finishKeys?: string[]) {
 
 function getSmartDiscoveryTextTokens(textQuery?: string) {
   return uniqueValues(
-    tokenizeNormalizedQuery(textQuery)
-      .filter((token) => token.length >= 2 && !GENERIC_TOKENS.has(token))
-      .slice(0, 6),
+    (normalizeCombinedText(textQuery).match(/[\p{L}\p{N}]+/gu) ?? [])
+      .filter((token) => token.length >= 1 && !GENERIC_TOKENS.has(token)),
   );
+}
+
+function normalizeCombinedText(value?: string | null) {
+  return (value ?? "").normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 }
 
 function rowMatchesSmartDiscoveryText(
   row: Partial<CardPrintLookupRow> & { set_name?: string | null },
   textQuery?: string,
 ) {
-  const tokens = getSmartDiscoveryTextTokens(textQuery);
+  const fraction = textQuery?.match(/\b(\d+)\/(\d+)\b/);
+  if (fraction) {
+    if (Number((row.number ?? "").split("/")[0]) !== Number(fraction[1]) ||
+        row.printed_total !== Number(fraction[2])) return false;
+  }
+  let remainingText = fraction ? textQuery?.replace(fraction[0], " ") : textQuery;
+  const rarityWords = normalizeCombinedText(row.rarity).split(" ");
+  for (const match of remainingText?.matchAll(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi) ?? []) {
+    if (!normalizeCombinedText(match[0]).split(" ").every((word) => rarityWords.includes(word))) return false;
+    remainingText = remainingText?.replace(match[0], " ");
+  }
+  const tokens = getSmartDiscoveryTextTokens(remainingText);
   if (tokens.length === 0) {
     return true;
   }
 
-  const haystack = normalizeTextForMatch(
+  const haystack = normalizeCombinedText(
     [
       row.name,
       row.number,
@@ -3415,7 +3426,17 @@ function rowMatchesSmartDiscoveryText(
       .join(" "),
   );
 
-  return tokens.every((token) => haystack.includes(token));
+  return tokens.every((token) => {
+    if (/^\d+$/.test(token)) {
+      const printedNumber = (row.number ?? "").split("/")[0].replace(/^0+(?=\d)/, "");
+      return printedNumber === token.replace(/^0+(?=\d)/, "");
+    }
+    if (["common", "uncommon", "rare"].includes(token) &&
+        !(token === "rare" && /\brare\s+candy\b/i.test(textQuery ?? ""))) {
+      return normalizeTextForMatch(row.rarity).split(" ").includes(token);
+    }
+    return haystack.includes(token);
+  });
 }
 
 function rowMatchesLanguageScope(
@@ -3853,19 +3874,95 @@ async function fetchLanguageScopedTextRows(
 
 export async function getExploreRowsForArtistSearch(
   artist: string,
-  options: SmartFilterDiscoveryOptions & { exactArtist: boolean },
+  options: SmartFilterDiscoveryOptions & { exactArtist: boolean; artistNames?: string[] },
 ): Promise<ExploreRow[]> {
   assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const supabase = await createServerComponentClient();
   const parentRows = await fetchPokemonArtistRows(
     supabase,
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
+    "id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
     artist,
-    { exact: options.exactArtist, languageScope: options.languageScope, complete: true },
+    { exact: options.exactArtist, names: options.artistNames, languageScope: options.languageScope, complete: true },
   ) as unknown as CardPrintLookupRow[];
+  return enrichCompleteSearchParents(parentRows, options, supabase);
+}
+
+export async function getExploreRowsForCombinedSearch(
+  options: SmartFilterDiscoveryOptions & { gameScope?: PublicGameScope },
+): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
+  const supabase = await createServerComponentClient();
+  const gameScope = options.gameScope ?? "pokemon";
+  const parents: CardPrintLookupRow[] = [];
+  const tokens = getSmartDiscoveryTextTokens(options.textQuery);
+  const firstToken = tokens.find((token) => !/^\d+$/.test(token));
+  // Set names are part of the searchable text too. If the narrowing token
+  // occurs in a set name, keep its parents eligible regardless of card name.
+  const matchingSets: string[] = [];
+  if (firstToken) {
+    for (let offset = 0; ; offset += 500) {
+      const { data, error } = await supabase.from("sets").select("code")
+        .eq("game", gameScope).ilike("name", `%${firstToken.replace(/[\\%_]/g, "\\$&")}%`)
+        .order("id").range(offset, offset + 499);
+      if (error) throw new Error(error.message);
+      matchingSets.push(...(data ?? []).map((set) => set.code));
+      if ((data ?? []).length < 500) break;
+    }
+  }
+  let afterId: string | undefined;
+  for (;;) {
+    let request = supabase.from("card_prints")
+      .select("id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants")
+      .like("gv_id", gameScope === "pokemon" ? "GV-PK-%" : gameScope === "mtg" ? "GV-MTG-%" : "GV-OP-%")
+      .order("id", { ascending: true }).limit(500);
+    if (afterId) request = request.gt("id", afterId);
+    if (options.exactSetCode) request = request.eq("set_code", options.exactSetCode);
+    else if (options.exactSetCodes?.length) request = request.in("set_code", options.exactSetCodes);
+    if (options.languageScope === "ja") request = request.like("gv_id", "GV-PK-JPN-%");
+    if (options.languageScope === "en") request = request.not("gv_id", "like", "GV-PK-JPN-%");
+    if (firstToken && matchingSets.length <= 80) {
+      // Candidate narrowing only. AND semantics, exact numbers and finishes are
+      // applied below to the complete candidate set, before response paging.
+      const literal = firstToken.replace(/[\\%_]/g, "\\$&").replace(/["(),.]/g, "");
+      const alternatives = ["name", "rarity", "set_code", "artist", "variant_key", "printed_identity_modifier", "gv_id", "number", "printed_set_abbrev"]
+        .map((field) => `${field}.ilike.%${literal}%`);
+      if (matchingSets.length) alternatives.push(`set_code.in.(${matchingSets.map((code) => `"${code.replace(/["\\]/g, "\\$&")}"`).join(",")})`);
+      request = request.or(alternatives.join(","));
+    }
+    const { data, error } = await request;
+    if (error) throw new Error(error.message);
+    const page = (data ?? []) as unknown as CardPrintLookupRow[];
+    parents.push(...page);
+    if (page.length < 500) break;
+    const nextId = page.at(-1)?.id;
+    if (!nextId || nextId === afterId) throw new Error("Combined search could not advance to the next catalog page");
+    afterId = nextId;
+  }
+  return enrichCompleteSearchParents(parents, options, supabase);
+}
+
+async function enrichCompleteSearchParents(
+  parentRows: CardPrintLookupRow[],
+  options: SmartFilterDiscoveryOptions,
+  supabase: Awaited<ReturnType<typeof createServerComponentClient>>,
+): Promise<ExploreRow[]> {
   if (parentRows.length === 0) return [];
+  const metadata = await fetchPublicSetMetadata(uniqueValues(
+    parentRows.map((row) => row.set_code ?? "").filter(Boolean),
+  ));
+  const parentsWithSetMetadata = parentRows.map((row) => {
+    const set = metadata.get(row.set_code ?? "");
+    return { ...row, set_name: set?.set_name,
+      printed_total: row.printed_total ?? (set?.identity_model === "reprint_anthology" ? undefined : set?.printed_total) };
+  });
   const scopedParents = await filterSmartDiscoveryRowsByScope(
-    applySmartStampParentFilter(parentRows, options.stampLabels), options,
+    applySmartStampParentFilter(parentsWithSetMetadata.filter((row) => {
+      const year = Number(metadata.get(row.set_code ?? "")?.release_date?.slice(0, 4));
+      const min = options.exactReleaseYear ?? options.releaseYearMin;
+      const max = options.exactReleaseYear ?? options.releaseYearMax;
+      return (min === undefined || year >= min) && (max === undefined || year <= max);
+    }), options.stampLabels),
+    { ...options, exactReleaseYear: undefined, releaseYearMin: undefined, releaseYearMax: undefined },
   );
   if (scopedParents.length === 0) return [];
   const requireChildren = normalizeFinishKeys(options.finishKeys).length > 0 ||
@@ -3878,9 +3975,6 @@ export async function getExploreRowsForArtistSearch(
   // Value sorts retain their existing completeness guard. Ordinary artist
   // browsing must never be trimmed to the relevance candidate budget.
   if (valueSort) limitRowsBeforeEnrichment(candidates, query, options.sortMode);
-  const metadata = await fetchPublicSetMetadata(uniqueValues(
-    candidates.map((row) => row.set_code ?? "").filter(Boolean),
-  ));
   const pricing = options.includePricing
     ? await getPublicPricingByCardIds(supabase, candidates.map((row) => row.id), { requireComplete: valueSort })
     : new Map<string, PublicPricingRecord>();
@@ -4465,6 +4559,7 @@ async function filterSmartDiscoveryRowsByScope(
     if (exactSetCode && normalizeSetCode(row.set_code) !== exactSetCode) {
       return false;
     }
+    if (!exactSetCode && options.exactSetCodes?.length && !options.exactSetCodes.includes(normalizeSetCode(row.set_code))) return false;
 
     if (allowedSetCodes && !allowedSetCodes.has(row.set_code ?? "")) {
       return false;
@@ -4630,7 +4725,8 @@ async function fetchSmartDiscoveryChildRows(
   };
 
   if (parentIds.length > 0) {
-    for (const parentIdChunk of chunkArray(parentIds, 200)) {
+    // Keep the encoded GET (UUIDs plus nested select) below proxy URI limits.
+    for (const parentIdChunk of chunkArray(parentIds, 80)) {
       await runChildQuery(parentIdChunk);
     }
   } else {
@@ -4851,12 +4947,12 @@ async function fetchPublicSetMetadata(setCodes: string[]) {
   }
 
   const supabase = await createServerComponentClient();
-  const { data, error } = await supabase
-    .from("sets")
-    .select("code,name,printed_total,release_date,identity_model")
-    .in("code", setCodes);
-  if (error) {
-    throw new Error(error.message);
+  const data: SetMetadataLookupRow[] = [];
+  for (const codes of chunkArray(uniqueValues(setCodes), 80)) {
+    const result = await supabase.from("sets")
+      .select("code,name,printed_total,release_date,identity_model").in("code", codes);
+    if (result.error) throw new Error(result.error.message);
+    data.push(...(result.data ?? []) as SetMetadataLookupRow[]);
   }
 
   return new Map(

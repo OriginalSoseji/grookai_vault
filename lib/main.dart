@@ -98,6 +98,8 @@ import 'widgets/gv_chip.dart';
 import 'widgets/app_shell_metrics.dart';
 import 'widgets/onboarding/onboarding_ladder_sheet.dart';
 import 'widgets/provisional/provisional_card_section.dart';
+import 'models/search_interpretation.dart';
+import 'widgets/search_interpretation_chips.dart';
 import 'widgets/vault/vault_quick_action_sheet.dart';
 
 part 'main_shell.dart';
@@ -169,7 +171,8 @@ const double _kFeedImpressionVisibilityThreshold = 0.55;
 
 String _formatSearchFailure(Object error) {
   debugPrint('Search failed: $error');
-  return 'Search is temporarily limited. Showing local results when available.';
+  if (error is StateError) return error.message;
+  return 'Search is temporarily unavailable. Your search has been kept. Please try again.';
 }
 
 String _normalizeSearchLanguageScope(String value) {
@@ -3168,6 +3171,41 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     final app = MaterialApp(
       navigatorKey: _navigatorKey,
+      onGenerateRoute: (settings) {
+        if (settings.name != '/search' ||
+            (settings.arguments is! String && settings.arguments is! Uri)) {
+          return null;
+        }
+        final link = settings.arguments is Uri
+            ? settings.arguments! as Uri
+            : null;
+        final query =
+            link?.queryParameters['q'] ??
+            (settings.arguments is String ? settings.arguments! as String : '');
+        return MaterialPageRoute<void>(
+          settings: settings,
+          builder: (context) => Scaffold(
+            appBar: AppBar(title: const Text('Search')),
+            body: SafeArea(
+              child: HomePage(
+                initialQuery: query,
+                initialSearchParameters: link == null
+                    ? const {}
+                    : Map.fromEntries(
+                        link.queryParametersAll.entries
+                            .where((entry) => entry.key != 'q')
+                            .map(
+                              (entry) =>
+                                  MapEntry(entry.key, entry.value.join(',')),
+                            ),
+                      ),
+                signedOutBrowse:
+                    Supabase.instance.client.auth.currentSession == null,
+              ),
+            ),
+          ),
+        );
+      },
       title: 'Grookai Vault',
       debugShowCheckedModeBanner: false,
       theme: _buildGrookaiTheme(Brightness.light),
@@ -3217,6 +3255,27 @@ class _MyAppState extends State<MyApp> {
             Widget? publicRoute;
             if (pendingRoute != null) {
               switch (pendingRoute.kind) {
+                case GrookaiCanonicalRouteKind.search:
+                  final link = Uri.parse(pendingRoute.path);
+                  publicRoute = Scaffold(
+                    appBar: AppBar(title: const Text('Search')),
+                    body: SafeArea(
+                      child: HomePage(
+                        key: ValueKey(pendingRoute.path),
+                        signedOutBrowse: true,
+                        initialQuery: link.queryParameters['q'] ?? '',
+                        initialSearchParameters: Map.fromEntries(
+                          link.queryParametersAll.entries
+                              .where((entry) => entry.key != 'q')
+                              .map(
+                                (entry) =>
+                                    MapEntry(entry.key, entry.value.join(',')),
+                              ),
+                        ),
+                      ),
+                    ),
+                  );
+                  break;
                 case GrookaiCanonicalRouteKind.binder:
                   if (BinderFeatureFlags.production.publicAvailable) {
                     AppBootTiming.markOnce('first_route_public_binder_link');
@@ -3478,9 +3537,16 @@ class _PublicCardRouteScreenState extends State<_PublicCardRouteScreen> {
 
 /// ---------------------- HOME PAGE (catalog search) ----------------------
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, this.signedOutBrowse = false});
+  const HomePage({
+    super.key,
+    this.signedOutBrowse = false,
+    this.initialQuery = '',
+    this.initialSearchParameters = const {},
+  });
 
   final bool signedOutBrowse;
+  final String initialQuery;
+  final Map<String, String> initialSearchParameters;
 
   @override
   HomePageState createState() => HomePageState();
@@ -3490,6 +3556,7 @@ class HomePageState extends State<HomePage> {
   final supabase = Supabase.instance.client;
   final _ownershipAdapter = OwnershipResolverAdapter.instance;
   final _searchCtrl = TextEditingController();
+  final Map<String, String> _searchParameters = {};
   List<CardPrint> _results = const [];
   List<CardPrint> _visibleResults = const [];
   List<CardPrint> _trending = const [];
@@ -3505,6 +3572,7 @@ class HomePageState extends State<HomePage> {
   Map<String, SmartFeedCandidateDebug> _trendingDebugByCardId =
       const <String, SmartFeedCandidateDebug>{};
   CardSearchResolverMeta? _resolverMeta;
+  SearchInterpretation? _searchInterpretation;
   final Map<String, DateTime> _feedImpressionWriteGateByCardId =
       <String, DateTime>{};
   final Map<String, DateTime> _feedImpressionSkipLogByCardId =
@@ -3627,6 +3695,7 @@ class HomePageState extends State<HomePage> {
     }
     final trimmed = (query ?? _searchCtrl.text).trim();
     return trimmed.isEmpty &&
+        _searchParameters.isEmpty &&
         _rarityFilter == _RarityFilter.all &&
         !isIdentityFilterActive(_identityFilter) &&
         _languageScope == 'all' &&
@@ -3642,6 +3711,7 @@ class HomePageState extends State<HomePage> {
       _provisionalResults = const <PublicProvisionalCard>[];
       _resultPricing = const {};
       _resolverMeta = null;
+      _searchInterpretation = null;
       _hasMoreVisibleResults = false;
       _searchError = null;
       _loading = false;
@@ -3752,7 +3822,11 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    if (widget.signedOutBrowse) {
+    _searchParameters.addAll(widget.initialSearchParameters);
+    if (widget.initialQuery.trim().isNotEmpty || _searchParameters.isNotEmpty) {
+      _searchCtrl.text = widget.initialQuery;
+      unawaited(_runSearch(widget.initialQuery));
+    } else if (widget.signedOutBrowse) {
       unawaited(_runSearch(''));
     } else {
       _loadTrending();
@@ -4134,6 +4208,7 @@ class HomePageState extends State<HomePage> {
           identityFilter: _identityFilter,
           languageScope: _languageScope,
           gameScope: _gameScope,
+          searchParameters: _searchParameters,
         ),
         publicPokemonBrowse: widget.signedOutBrowse,
       );
@@ -4153,6 +4228,7 @@ class HomePageState extends State<HomePage> {
         _provisionalResults = resolved.provisionalRows;
         _resultPricing = const <String, CardSurfacePricingData>{};
         _resolverMeta = resolved.meta;
+        _searchInterpretation = resolved.interpretation;
         _hasMoreVisibleResults = hasMoreVisibleResults;
         _searchError = null;
         _loading = false;
@@ -4207,6 +4283,7 @@ class HomePageState extends State<HomePage> {
         _provisionalResults = const <PublicProvisionalCard>[];
         _resultPricing = const {};
         _resolverMeta = null;
+        _searchInterpretation = null;
         _hasMoreVisibleResults = false;
         _searchError = _formatSearchFailure(error);
         _loading = false;
@@ -4318,6 +4395,7 @@ class HomePageState extends State<HomePage> {
       _provisionalResults = const <PublicProvisionalCard>[];
       _resultPricing = const {};
       _resolverMeta = null;
+      _searchInterpretation = null;
       _hasMoreVisibleResults = false;
       _searchError = null;
     });
@@ -4338,6 +4416,7 @@ class HomePageState extends State<HomePage> {
       _provisionalResults = const <PublicProvisionalCard>[];
       _resultPricing = const {};
       _resolverMeta = null;
+      _searchInterpretation = null;
       _hasMoreVisibleResults = false;
       _searchError = null;
     });
@@ -5480,6 +5559,18 @@ class HomePageState extends State<HomePage> {
                 onChanged: _onQueryChanged,
                 onSubmitted: _submitSearch,
               ),
+              if (_searchInterpretation != null && !_loading)
+                SearchInterpretationChips(
+                  interpretation: _searchInterpretation!,
+                  onQuery: _runSentenceSearchExample,
+                  onFilter: (filter) {
+                    if (filter.removeParameter != null) {
+                      _searchParameters.remove(filter.removeParameter);
+                    }
+                    _runSentenceSearchExample(filter.query);
+                  },
+                  empty: _searchError == null && _results.isEmpty,
+                ),
               if (_searchError != null) ...[
                 const SizedBox(height: 6),
                 Align(

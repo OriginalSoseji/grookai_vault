@@ -1,4 +1,16 @@
 import { normalizeExactGvId } from "@/lib/search/exactGvId";
+import { recognizeCombinedArtist } from "./combinedArtistIntent";
+import type { PublicGameScope } from "@/lib/publicGameScope";
+import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
+import { resolveGameScopedSetSearchIntent } from "@/lib/publicSets.shared";
+
+export type SearchQueryFilter = {
+  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "number" | "set";
+  label: string;
+  sourceText: string;
+  queryWithout?: string;
+  removeParameter?: string;
+};
 
 export type SmartSearchIntent = {
   originalQuery: string;
@@ -7,6 +19,13 @@ export type SmartSearchIntent = {
   releaseYearMax?: number;
   finishKeys: string[];
   artist?: string;
+  artistNames?: string[];
+  artistCorrection?: { original: string; corrected: string };
+  originalSpellingQuery?: string;
+  artistChoices?: Array<{ name: string; query: string }>;
+  queryFilters?: SearchQueryFilter[];
+  gameScope?: PublicGameScope;
+  languageScope?: PublicLanguageScope;
   imageState?: "exact" | "representative" | "missing" | "any";
   ownedState?: "owned" | "missing" | "any";
   stampLabels: string[];
@@ -30,16 +49,16 @@ const FILLER_PHRASES = [
 ];
 
 const FINISH_PATTERNS: Array<{ pattern: RegExp; key: string; label: string; residual: string }> = [
+  { pattern: /\bnormal\b|\bnon[-\s]?holos?\b|\bstandard\b/gi, key: "normal", label: "Normal", residual: "normal" },
   { pattern: /\bmaster\s*ball(?:\s+reverse(?:\s+holos?)?)?\b/gi, key: "masterball", label: "Master Ball Reverse", residual: "master ball reverse" },
   { pattern: /\bpok[eé]?\s*ball(?:\s+reverse(?:\s+holos?)?)?\b/gi, key: "pokeball", label: "Poke Ball Reverse", residual: "poke ball reverse" },
   { pattern: /\brocket\s+reverse\s+holos?\b/gi, key: "rocket_reverse", label: "Rocket Reverse", residual: "rocket reverse" },
   { pattern: /\bcosmos\s+holos?\b/gi, key: "cosmos", label: "Cosmos Holo", residual: "cosmos holo" },
   { pattern: /\bcracked\s+ice(?:\s+holos?)?\b/gi, key: "cracked_ice", label: "Cracked Ice", residual: "cracked ice" },
   { pattern: /\betched(?:\s+foils?)?\b/gi, key: "etched", label: "Etched Foil", residual: "etched foil" },
-  { pattern: /\breverse\s+holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
+  { pattern: /\b(?:reverse[-\s]*|rev[-\s]+)holos?\b/gi, key: "reverse", label: "Reverse Holo", residual: "reverse holo" },
   { pattern: /\bfoils?\b/gi, key: "foil", label: "Foil", residual: "foil" },
   { pattern: /\bholos?\b/gi, key: "holo", label: "Holo", residual: "holo" },
-  { pattern: /\bnormal\b|\bnon[-\s]?holos?\b|\bstandard\b/gi, key: "normal", label: "Normal", residual: "normal" },
 ];
 
 const STAMP_PATTERNS: Array<{ pattern: RegExp; label: string; residual: string }> = [
@@ -108,8 +127,10 @@ function isStandaloneParallelCardName(query: string, finishKey: string) {
     return false;
   }
 
-  const identityText = normalizeWhitespace(query)
+  const identityText = normalizeWhitespace(resolveGameScopedSetSearchIntent(query, "pokemon").remainingQuery)
     .replace(/\b(?:cards?|printings?|versions?|english|physical)\b/gi, " ")
+    .replace(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare)\b/gi, " ")
+    .replace(/(?:^|\s)#?\d+(?:\/\d+)?(?=\s|$)/g, " ")
     .replace(/\s+/g, " ")
     .trim();
   return finishKey === "pokeball"
@@ -118,13 +139,14 @@ function isStandaloneParallelCardName(query: string, finishKey: string) {
 }
 
 function parseYearRange(query: string) {
-  const rangeMatch = query.match(/\b(?:from\s+)?(19\d{2}|20\d{2})\s*(?:-|to|through|thru)\s*(19\d{2}|20\d{2})\b/i);
+  const rangeMatch = query.match(/\b(?:from\s+)?(19\d{2}|20\d{2})\s*(?:-|to|through|thru)\s*(19\d{2}|20\d{2})\b/i)
+    ?? query.match(/(?<![#\w/])\b(?:from\s+|year\s+)?(19\d{2}|20\d{2})\b(?!\/)/i);
   if (!rangeMatch) {
     return null;
   }
 
   const first = Number.parseInt(rangeMatch[1] ?? "", 10);
-  const second = Number.parseInt(rangeMatch[2] ?? "", 10);
+  const second = Number.parseInt(rangeMatch[2] ?? rangeMatch[1] ?? "", 10);
   if (!Number.isFinite(first) || !Number.isFinite(second)) {
     return null;
   }
@@ -178,6 +200,7 @@ function parseImageStateIntent(query: string): SmartSearchIntent["imageState"] {
 }
 
 function parseOwnedStateIntent(query: string): SmartSearchIntent["ownedState"] {
+  if (/\b(?:not\s+owned|don'?t\s+own|do\s+not\s+own|missing\s+from\s+(?:my\s+)?(?:vault|collection))\b/i.test(query)) return "missing";
   if (/\b(missing|not\s+owned|dont\s+own|do\s+not\s+own|need)\b.*\b(vault|collection|cards?)\b/i.test(query) || /\bmissing\s+from\s+my\s+vault\b/i.test(query)) {
     return "missing";
   }
@@ -187,7 +210,7 @@ function parseOwnedStateIntent(query: string): SmartSearchIntent["ownedState"] {
   return undefined;
 }
 
-export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
+export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: PublicGameScope } = {}): SmartSearchIntent {
   const originalQuery = normalizeWhitespace(rawQuery);
   const exactGvId = normalizeExactGvId(originalQuery);
   if (exactGvId) {
@@ -203,7 +226,33 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
     };
   }
   let residual = normalizePokemonPlural(originalQuery);
-  const interpretedLabels: string[] = [];
+  const queryFilters: SearchQueryFilter[] = [];
+  const literalText: string[] = [];
+  residual = residual.replace(/"([^"\n]*)"/g, (_, text: string) => {
+    literalText.push(text);
+    return `__literal${literalText.length - 1}__`;
+  });
+  const gameMatch = residual.match(/\b((?<!play )pok[eé]mon(?!\s+(?:cent(?:er|re)|together))|one\s+piece|mtg|magic:\s*the\s+gathering)\b/i);
+  const gameScope: PublicGameScope | undefined = gameMatch
+    ? /^pok/i.test(gameMatch[0]) ? "pokemon" : /^one/i.test(gameMatch[0]) ? "one_piece" : "mtg"
+    : undefined;
+  if (gameMatch) {
+    queryFilters.push({ kind: "game", label: `Game: ${gameScope === "pokemon" ? "Pokémon" : gameScope === "mtg" ? "Magic: The Gathering" : "One Piece"}`, sourceText: gameMatch[0] });
+    residual = residual.replace(gameMatch[0], " ");
+  }
+  const languageMatch = residual.match(/\b(english|japanese(?!\s+(?:card\s+)?back))\b/i);
+  const languageScope = languageMatch ? /^english$/i.test(languageMatch[0]) ? "en" : "ja" : undefined;
+  if (languageMatch) {
+    queryFilters.push({ kind: "language", label: `Language: ${languageScope === "en" ? "English" : "Japanese"}`, sourceText: languageMatch[0] });
+    residual = residual.replace(languageMatch[0], " ");
+  }
+  // Resolve the credit before removing years/finish words that may occur in it.
+  const combinedArtist = (gameScope ?? options.gameScope ?? "pokemon") === "pokemon" ? recognizeCombinedArtist(residual) : null;
+  if (combinedArtist) {
+    residual = residual.slice(0, combinedArtist.start) + " " + residual.slice(combinedArtist.end);
+    queryFilters.push({ kind: "artist", label: `Artist: ${combinedArtist.artist}`, sourceText: combinedArtist.matchedText });
+  }
+  const interpretedLabels: string[] = queryFilters.map((filter) => filter.label);
   const finishKeys: string[] = [];
   const stampLabels: string[] = [];
   const unappliedLabels: string[] = [];
@@ -211,6 +260,9 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
   const imageState = parseImageStateIntent(residual);
   if (imageState && imageState !== "any") {
     interpretedLabels.push(`Image: ${imageState === "missing" ? "Missing exact image" : imageState === "representative" ? "Representative image" : "Exact image"}`);
+    for (const sourceText of residual.match(/\b(?:no|missing|without)\s+(?:exact\s+)?images?\b|\bvariant\s+image\s+pending\b|\brepresentative\s+images?\b|\bexact\s+images?\b/gi) ?? []) {
+      queryFilters.push({ kind: "image", label: `Image: ${imageState}`, sourceText });
+    }
     residual = residual
       .replace(/\b(no|missing|without)\s+(?:exact\s+)?images?\b/gi, " ")
       .replace(/\bvariant\s+image\s+pending\b/gi, " ")
@@ -221,15 +273,41 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
   const ownedState = parseOwnedStateIntent(residual);
   if (ownedState && ownedState !== "any") {
     interpretedLabels.push(ownedState === "owned" ? "Owned" : "Missing from vault");
+    for (const sourceText of residual.match(/\bmissing\s+from\s+(?:my\s+)?(?:vault|collection)\b|\b(?:not\s+owned|don'?t\s+own|do\s+not\s+own|i\s+own|owned|in\s+my\s+vault|my\s+vault|my\s+collection)\b/gi) ?? []) {
+      queryFilters.push({ kind: "owned", label: ownedState === "owned" ? "Owned" : "Missing from vault", sourceText });
+    }
     residual = residual
-      .replace(/\bmissing\s+from\s+my\s+vault\b/gi, " ")
-      .replace(/\b(i\s+own|owned|in\s+my\s+vault|my\s+vault|my\s+collection|not\s+owned|dont\s+own|do\s+not\s+own)\b/gi, " ");
+      .replace(/\bmissing\s+from\s+(?:my\s+)?(?:vault|collection)\b/gi, " ")
+      .replace(/\b(not\s+owned|don'?t\s+own|do\s+not\s+own|i\s+own|owned|in\s+my\s+vault|my\s+vault|my\s+collection)\b/gi, " ");
   }
 
   const yearRange = parseYearRange(residual);
   if (yearRange) {
     residual = residual.replace(yearRange.matchedText, " ");
     interpretedLabels.push(`${yearRange.min}-${yearRange.max}`);
+    queryFilters.push({ kind: "year", label: `Year: ${yearRange.min === yearRange.max ? yearRange.min : `${yearRange.min}-${yearRange.max}`}`, sourceText: yearRange.matchedText });
+  }
+
+  const anyHolo = residual.match(/\bany\s+holos?\b/i);
+  if (anyHolo) {
+    finishKeys.push("holo", "reverse");
+    interpretedLabels.push("Any holo (Holo or Reverse Holo)");
+    queryFilters.push({ kind: "finish", label: "Finish: Holo or Reverse Holo", sourceText: anyHolo[0] });
+    residual = residual.replace(anyHolo[0], " ");
+  }
+
+  // Specific stamps/errors take precedence over generic finish words.
+  for (const stamp of STAMP_PATTERNS) {
+    stamp.pattern.lastIndex = 0;
+    // A bare non-holo describes a finish; the error requires its qualifier.
+    if (stamp.label === "Non-Holo Error" && !/\bnon[-\s]?holo\s+errors?\b/i.test(residual)) continue;
+    const found = residual.match(stamp.pattern);
+    if (found) {
+      stampLabels.push(stamp.label);
+      interpretedLabels.push(stamp.label);
+      for (const sourceText of found) queryFilters.push({ kind: "stamp", label: stamp.label, sourceText });
+      residual = residual.replace(stamp.pattern, " ");
+    }
   }
 
   for (const finish of FINISH_PATTERNS) {
@@ -241,23 +319,19 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
       finish.pattern.lastIndex = 0;
       finishKeys.push(finish.key);
       interpretedLabels.push(finish.label);
+      for (const sourceText of residual.match(finish.pattern) ?? []) {
+        queryFilters.push({ kind: "finish", label: `Finish: ${finish.label}`, sourceText });
+      }
       residual = residual.replace(finish.pattern, " ");
     }
   }
 
-  for (const stamp of STAMP_PATTERNS) {
-    stamp.pattern.lastIndex = 0;
-    if (stamp.pattern.test(residual)) {
-      stamp.pattern.lastIndex = 0;
-      stampLabels.push(stamp.label);
-      interpretedLabels.push(stamp.label);
-      residual = residual.replace(stamp.pattern, " ");
-    }
-  }
-
-  const artistIntent = parseArtistIntent(residual);
+  const artistIntent = combinedArtist ?? parseArtistIntent(residual);
   if (artistIntent) {
-    residual = residual.replace(artistIntent.matchedText, " ");
+    if (!combinedArtist) {
+      residual = residual.replace(artistIntent.matchedText, " ");
+      queryFilters.push({ kind: "artist", label: `Artist: ${artistIntent.artist}`, sourceText: artistIntent.matchedText });
+    }
     interpretedLabels.push(`Artist: ${artistIntent.artist}`);
   }
 
@@ -266,6 +340,26 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
   }
 
   residual = normalizeWhitespace(residual);
+  residual = residual.replace(/__literal(\d+)__/g, (_, index: string) => literalText[Number(index)] ?? "");
+
+  // These constraints remain in the resolver text, where catalog fields are
+  // matched. Expose their individual removal without maintaining a second
+  // client-side interpretation. Rare Candy is a card name, not a rarity filter.
+  let displayText = residual;
+  for (const match of residual.matchAll(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi)) {
+    queryFilters.push({ kind: "rarity", label: `Rarity: ${match[0]}`, sourceText: match[0] });
+    displayText = displayText.replace(match[0], " ");
+  }
+  for (const match of residual.matchAll(/(?:^|\s)(#?\d+(?:\/\d+)?)(?=\s|$)/g)) {
+    queryFilters.push({ kind: "number", label: `Number: ${match[1]}`, sourceText: match[1] });
+    displayText = displayText.replace(match[1], " ");
+  }
+  displayText = normalizeWhitespace(displayText);
+
+  const replaceSource = (source: string, replacement = "") => {
+    const escaped = source.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+    return normalizeWhitespace(originalQuery.replace(new RegExp(`(?<![\\p{L}\\p{N}_/])${escaped}(?![\\p{L}\\p{N}_/])`, "iu"), replacement));
+  };
 
   return {
     originalQuery,
@@ -274,6 +368,19 @@ export function buildSmartSearchIntent(rawQuery: string): SmartSearchIntent {
     releaseYearMax: yearRange?.max,
     finishKeys: unique(finishKeys),
     artist: artistIntent?.artist,
+    artistNames: combinedArtist?.names,
+    artistCorrection: combinedArtist?.correction,
+    originalSpellingQuery: combinedArtist?.correction
+      ? replaceSource(combinedArtist.matchedText, `"${combinedArtist.correction.original}"`) : undefined,
+    artistChoices: combinedArtist && combinedArtist.names.length > 1
+      ? combinedArtist.names.map((name) => ({ name, query: replaceSource(combinedArtist.matchedText, name) })) : undefined,
+    queryFilters: [
+      ...queryFilters.map((filter) => ({ ...filter, queryWithout: replaceSource(filter.sourceText) })),
+      ...(displayText && queryFilters.length ? [{ kind: "text" as const, label: `Text: ${displayText}`, sourceText: displayText,
+        queryWithout: queryFilters.map((filter) => filter.sourceText).join(" ") }] : []),
+    ],
+    gameScope,
+    languageScope,
     imageState,
     ownedState,
     stampLabels: unique(stampLabels),

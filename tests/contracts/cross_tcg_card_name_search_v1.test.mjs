@@ -151,13 +151,14 @@ test("global search preserves the selected TCG", () => {
   assert.match(form, /value=\{gameScope\}/);
 });
 
-test("mobile search falls back instead of accepting a timeout as no-match", () => {
+test("mobile search surfaces a timeout and preserves constraints without local fallback", () => {
   const model = source("lib/models/card_print.dart");
 
   assert.match(model, /decoded\['sort_degraded_reason'\]/);
   assert.match(model, /resolverSource\.contains\('_degraded_'\)/);
   assert.match(model, /throw StateError\('Resolver degraded: \$reason'\)/);
-  assert.match(model, /search:web_resolver_failed fallback=local/);
+  assert.match(model, /search:web_resolver_failed constraints_preserved/);
+  assert.doesNotMatch(model, /search:web_resolver_failed fallback=local/);
 
   const route = source("apps/web/src/app/api/resolver/search/route.ts");
   assert.match(

@@ -39,7 +39,7 @@ function fixtureClient({ failure = false, records = fixtures, failPage = -1 } = 
     global: { fetch: async (url) => {
       const params = new URL(url).searchParams;
       requests.push(params);
-      if (failure || requests.length === failPage) return new Response(JSON.stringify({ message: 'Artist lookup unavailable' }), { status: 503 });
+      if (failure || (failPage > 0 && requests.length >= failPage)) return new Response(JSON.stringify({ message: 'Artist lookup unavailable' }), { status: 503 });
       // Exercise the actual Supabase request serialization and filter semantics.
       const artistFilter = params.get('artist');
       assert.ok(artistFilter.startsWith('in.('));

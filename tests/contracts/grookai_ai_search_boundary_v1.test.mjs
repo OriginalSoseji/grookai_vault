@@ -8,6 +8,7 @@ const require = createRequire(import.meta.url);
 const ts = require('typescript');
 
 function loadTsModule(relativePath, mocks = {}) {
+  if (relativePath.endsWith('.json')) return JSON.parse(readFileSync(new URL(relativePath, import.meta.url), 'utf8'));
   const source = readFileSync(new URL(relativePath, import.meta.url), 'utf8');
   const transpiled = ts.transpileModule(source, {
     compilerOptions: {
@@ -25,8 +26,12 @@ function loadTsModule(relativePath, mocks = {}) {
     process,
     require: (id) => {
       if (Object.hasOwn(mocks, id)) return mocks[id];
-      if (id === '@/lib/search/exactGvId') {
-        return loadTsModule('../../apps/web/src/lib/search/exactGvId.ts', mocks);
+      if (id.startsWith('@/')) {
+        return loadTsModule(`../../apps/web/src/${id.slice(2)}${id.endsWith('.json') ? '' : '.ts'}`, mocks);
+      }
+      if (id.startsWith('.')) {
+        const target = new URL(id.endsWith('.json') ? id : `${id}.ts`, new URL(relativePath, import.meta.url));
+        return loadTsModule(target.href, mocks);
       }
       return require(id);
     },

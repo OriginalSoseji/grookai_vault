@@ -136,6 +136,9 @@ flutter {
 }
 
 dependencies {
+    // integration_test supplies Guava at runtime and selects the empty
+    // listenablefuture artifact. CameraX also needs its API at compile time.
+    debugImplementation("com.google.guava:guava:28.1-android")
     val cameraxVersion = "1.5.3"
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")

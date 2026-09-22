@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Combined Search — September 22
+
+Follow `docs/checkpoints/combined_search_20260922.md` for the isolated implementation
+and requirement-by-requirement verification ledger. Source is current main plus
+the shared parser/resolver and web/native presentation changes; preserve the
+separate Vendor Mode candidate. Normal searches remain deterministic and read-only.
+Use the existing local audit sandbox for synthetic fixtures, never a development
+server connected to production. Complete local cross-platform proof before the
+separate deployment review. The checkpoint records completed local acceptance and separate release checks.
+Use `docs/release/COMBINED_SEARCH_RELEASE_REVIEW_20260922.md` for the frozen-candidate
+gate ledger, web-before-native rollout, association compatibility, and rollback checks.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.

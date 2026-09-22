@@ -8,6 +8,7 @@ import '../secrets.dart';
 import '../services/identity/canon_image_url_service.dart';
 import '../utils/display_image_contract.dart';
 import 'provisional_card.dart';
+import 'search_interpretation.dart';
 
 enum RarityOption { all, common, uncommon, rare, ultra, secret }
 
@@ -22,6 +23,7 @@ class CardSearchOptions {
     this.identityFilter,
     this.languageScope = 'all',
     this.gameScope = 'pokemon',
+    this.searchParameters = const {},
   });
 
   final String query;
@@ -33,6 +35,7 @@ class CardSearchOptions {
   final String? identityFilter;
   final String languageScope;
   final String gameScope;
+  final Map<String, String> searchParameters;
 
   CardSearchOptions copyWith({
     String? query,
@@ -55,6 +58,7 @@ class CardSearchOptions {
       identityFilter: identityFilter ?? this.identityFilter,
       languageScope: languageScope ?? this.languageScope,
       gameScope: gameScope ?? this.gameScope,
+      searchParameters: searchParameters,
     );
   }
 }
@@ -417,12 +421,14 @@ class CardPrintSearchResult {
     this.provisionalRows = const <PublicProvisionalCard>[],
     required this.meta,
     required this.source,
+    this.interpretation,
   });
 
   final List<CardPrint> rows;
   final List<PublicProvisionalCard> provisionalRows;
   final CardSearchResolverMeta? meta;
   final String source;
+  final SearchInterpretation? interpretation;
 }
 
 const _cardPrintSelect =
@@ -498,47 +504,22 @@ class CardPrintRepository {
     final identityFilter = _normalizeIdentityFilter(options.identityFilter);
     final gameScope = _normalizeCatalogGameScope(options.gameScope);
 
-    if (publicPokemonBrowse && gameScope == 'pokemon') {
-      CardPrintSearchResult? directResult;
-      try {
-        directResult = await _searchPublicPokemonFallback(
-          client: client,
-          options: options,
-          defaultLimit: defaultLimit,
-          searchLimit: searchLimit,
-        );
-        if (trimmed.isEmpty || directResult.rows.isNotEmpty) {
-          return directResult;
-        }
-      } catch (_) {
-        // Complex queries can still use the governed resolver below.
-      }
-      if (trimmed.isNotEmpty) {
-        try {
-          final resolved = await _searchCardPrintsViaWebResolver(
-            client: client,
-            options: options,
-            trimmed: trimmed,
-            identityFilter: identityFilter,
-            searchLimit: searchLimit,
-          );
-          if (resolved.rows.isNotEmpty) {
-            return resolved;
-          }
-        } catch (_) {
-          // Return the safe direct result when the governed resolver degrades.
-        }
-      }
-      return directResult ??
-          const CardPrintSearchResult(
-            rows: <CardPrint>[],
-            provisionalRows: <PublicProvisionalCard>[],
-            meta: null,
-            source: 'public_pokemon_direct_fallback_unavailable',
-          );
+    if (publicPokemonBrowse &&
+        gameScope == 'pokemon' &&
+        trimmed.isEmpty &&
+        options.searchParameters.isEmpty &&
+        identityFilter == null) {
+      return _searchPublicPokemonFallback(
+        client: client,
+        options: options,
+        defaultLimit: defaultLimit,
+        searchLimit: searchLimit,
+      );
     }
 
-    if (trimmed.isEmpty && identityFilter == null) {
+    if (trimmed.isEmpty &&
+        identityFilter == null &&
+        options.searchParameters.isEmpty) {
       final rows = await searchCardPrints(
         client: client,
         options: options,
@@ -564,14 +545,16 @@ class CardPrintRepository {
       );
     } catch (error) {
       if (kDebugMode) {
-        debugPrint('search:web_resolver_failed fallback=local error=$error');
+        debugPrint(
+          'search:web_resolver_failed constraints_preserved error=$error',
+        );
       }
 
-      return _searchCardPrintsResolvedFallback(
-        client: client,
-        options: options.copyWith(gameScope: gameScope),
-        defaultLimit: defaultLimit,
-        searchLimit: searchLimit,
+      // A second parser cannot guarantee the same artist/finish constraints.
+      // Surface a retryable error rather than publishing broader fallback rows.
+      if (error is StateError) rethrow;
+      throw StateError(
+        'Search is temporarily unavailable. Your search has been kept. Please try again.',
       );
     }
   }
@@ -636,11 +619,31 @@ class CardPrintRepository {
           queryParameters: {
             'limit': options.limit.clamp(1, searchLimit).toString(),
             'game': gameScope,
-            if (trimmed.isNotEmpty) 'q': trimmed,
             if (_normalizeLanguageScope(options.languageScope) != 'all')
               'lang': _normalizeLanguageScope(options.languageScope),
             if (identityFilter != null && trimmed.isEmpty)
               'identity': identityFilter,
+            ...Map.fromEntries(
+              options.searchParameters.entries.where(
+                (entry) => const {
+                  'set',
+                  'year',
+                  'year_min',
+                  'year_max',
+                  'finish',
+                  'stamp',
+                  'illustrator',
+                  'image',
+                  'image_state',
+                  'owned',
+                  'game',
+                  'lang',
+                  'identity',
+                  'sort',
+                }.contains(entry.key),
+              ),
+            ),
+            'q': trimmed,
           },
         );
 
@@ -720,35 +723,11 @@ class CardPrintRepository {
       provisionalRows: provisionalRows,
       meta: meta,
       source: (decoded['source'] ?? 'web_ranked_resolver_v1').toString(),
-    );
-  }
-
-  static Future<CardPrintSearchResult> _searchCardPrintsResolvedFallback({
-    required SupabaseClient client,
-    required CardSearchOptions options,
-    required int defaultLimit,
-    required int searchLimit,
-  }) async {
-    final normalizedIdentityFilter = _normalizeIdentityFilter(
-      options.identityFilter,
-    );
-    final fallbackOptions = options.query.trim().isNotEmpty
-        ? options
-        : normalizedIdentityFilter != null
-        ? options.copyWith(query: normalizedIdentityFilter.replaceAll('_', ' '))
-        : options;
-    final rows = await searchCardPrints(
-      client: client,
-      options: fallbackOptions,
-      defaultLimit: defaultLimit,
-      searchLimit: searchLimit,
-    );
-
-    return CardPrintSearchResult(
-      rows: rows,
-      provisionalRows: const <PublicProvisionalCard>[],
-      meta: null,
-      source: 'local_resolver_fallback',
+      interpretation: decoded['smart_search'] is Map<String, dynamic>
+          ? SearchInterpretation.fromJson(
+              decoded['smart_search'] as Map<String, dynamic>,
+            )
+          : null,
     );
   }
 

@@ -669,6 +669,13 @@ class _AppShellState extends State<AppShell> {
     // Canonical web URLs are the single source of truth for app deep-link
     // routing.
     switch (route.kind) {
+      case GrookaiCanonicalRouteKind.search:
+        unawaited(
+          Navigator.of(
+            context,
+          ).pushNamed('/search', arguments: Uri.parse(route.path)),
+        );
+        break;
       case GrookaiCanonicalRouteKind.card:
         await _openCardDetailFromCanonicalGvId(route.value);
         break;

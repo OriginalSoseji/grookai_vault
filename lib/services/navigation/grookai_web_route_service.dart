@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../secrets.dart';
 
 enum GrookaiCanonicalRouteKind {
+  search,
   card,
   memory,
   collector,
@@ -22,6 +23,16 @@ enum GrookaiCanonicalRouteKind {
 }
 
 class GrookaiCanonicalRoute {
+  factory GrookaiCanonicalRoute.search(Uri uri) {
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.search,
+      path: Uri(
+        path: '/explore',
+        queryParameters: uri.queryParametersAll,
+      ).toString(),
+      value: uri.queryParameters['q'] ?? '',
+    );
+  }
   const GrookaiCanonicalRoute._({
     required this.kind,
     required this.path,
@@ -277,6 +288,9 @@ class GrookaiWebRouteService {
       return null;
     }
     final head = segments.first.toLowerCase();
+    if (head == 'explore' || head == 'search') {
+      return GrookaiCanonicalRoute.search(uri);
+    }
     if (head == 'feed' || head == 'network') {
       return GrookaiCanonicalRoute.feed(
         segment: uri.queryParameters['segment'] ?? 'pulse',
@@ -369,6 +383,9 @@ class GrookaiWebRouteService {
     if (host == 'memory' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.memory(segments.first);
     }
+    if (host == 'explore' || host == 'search') {
+      return GrookaiCanonicalRoute.search(uri);
+    }
     if ((host == 'set' || host == 'sets') && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.set(segments.first);
     }
@@ -430,7 +447,9 @@ class GrookaiWebRouteService {
     // Also accept slash-style app links such as grookai:///card/GV-PK-...
     // to keep routing compatible with test tools and notification providers.
     if (host.isEmpty) {
-      return parseCanonicalUri(Uri(pathSegments: segments));
+      return parseCanonicalUri(
+        Uri(pathSegments: segments, queryParameters: uri.queryParametersAll),
+      );
     }
 
     return null;

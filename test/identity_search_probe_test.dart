@@ -234,26 +234,38 @@ void main() {
     );
   });
 
-  test('mobile resolver search falls back to deterministic local search', () {
-    final modelSource = File('lib/models/card_print.dart').readAsStringSync();
-    final mainSource = File('lib/main.dart').readAsStringSync();
-    final vaultSource = File('lib/main_vault.dart').readAsStringSync();
+  test(
+    'mobile resolver search reports failure without dropping constraints',
+    () {
+      final modelSource = File('lib/models/card_print.dart').readAsStringSync();
+      final mainSource = File('lib/main.dart').readAsStringSync();
+      final vaultSource = File('lib/main_vault.dart').readAsStringSync();
 
-    expect(modelSource, contains('_searchCardPrintsViaWebResolver'));
-    expect(modelSource, contains('_searchCardPrintsResolvedFallback'));
-    expect(modelSource, contains("source: 'local_resolver_fallback'"));
-    expect(modelSource, contains('search:web_resolver_failed fallback=local'));
-    expect(
-      RegExp(
-        r'try\s*\{[\s\S]*_searchCardPrintsViaWebResolver[\s\S]*\}\s*catch',
-      ).hasMatch(modelSource),
-      isTrue,
-    );
-    expect(mainSource, contains('_formatSearchFailure(error)'));
-    expect(vaultSource, contains('_formatSearchFailure(error)'));
-    expect(
-      mainSource,
-      contains('Search is temporarily limited. Showing local results'),
-    );
-  });
+      expect(modelSource, contains('_searchCardPrintsViaWebResolver'));
+      expect(modelSource, isNot(contains('_searchCardPrintsResolvedFallback')));
+      expect(modelSource, isNot(contains("source: 'local_resolver_fallback'")));
+      expect(
+        modelSource,
+        contains('search:web_resolver_failed constraints_preserved'),
+      );
+      expect(
+        RegExp(
+          r'try\s*\{[\s\S]*_searchCardPrintsViaWebResolver[\s\S]*\}\s*catch',
+        ).hasMatch(modelSource),
+        isTrue,
+      );
+      expect(mainSource, contains('_formatSearchFailure(error)'));
+      expect(vaultSource, contains('_formatSearchFailure(error)'));
+      expect(
+        mainSource,
+        contains(
+          'Search is temporarily unavailable. Your search has been kept.',
+        ),
+      );
+      expect(
+        mainSource,
+        contains('if (error is StateError) return error.message;'),
+      );
+    },
+  );
 }
