@@ -89,9 +89,10 @@ Missing finish data never establishes that a printing did not exist.
 Native evidence is from an emulator/simulator running the actual HomePage and
 CardDetailScreen inside an integration harness. It is not physical-device evidence,
 App Store signing, full authentication-shell acceptance, or proof that deployed OS
-universal-link associations have refreshed. The Android manifest and iOS association
-source include /explore and /search; publishing those associations is part of the
-separate deployment. WebKit here is browser-engine evidence, not physical Safari.
+universal-link associations have refreshed. The Android manifest includes /explore
+and /search. Release checks subsequently removed the iOS association expansion
+because older clients cannot route those paths; shared iOS HTTPS search links retain
+their existing web behavior. WebKit is browser-engine evidence, not physical Safari.
 Production-scale latency and live catalog completeness are not claimed by fixtures.
 
 ## Reproduction and environment
@@ -124,4 +125,6 @@ Core API readback after Docker recovery passed all 12 cases; mobile preview retu
 200 with zero page errors. No sandbox reset or production mutation was performed.
 
 Follow-up is local user review and the remaining release checks in the deployment plan.
+See combined_search_release_checks_20260922.md for the subsequent signed-in browser
+and Android shell proof, link compatibility, and live read-only baseline.
 Then resume the broader app/website audit checklist.

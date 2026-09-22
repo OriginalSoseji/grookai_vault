@@ -11,6 +11,9 @@ server connected to production. Complete local cross-platform proof before the
 separate deployment review. The checkpoint records completed local acceptance and separate release checks.
 Use `docs/release/COMBINED_SEARCH_RELEASE_REVIEW_20260922.md` for the frozen-candidate
 gate ledger, web-before-native rollout, association compatibility, and rollback checks.
+The follow-up `docs/checkpoints/combined_search_release_checks_20260922.md` records
+signed-in browser/Android shell proof, unchanged live AASA compatibility, and open
+iOS/physical-device/visual checks. Optimized local review runs on loopback port 3204.
 
 ## Pokemon Artist Search - September 20
 

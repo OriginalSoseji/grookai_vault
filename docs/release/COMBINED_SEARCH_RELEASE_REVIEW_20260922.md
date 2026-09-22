@@ -34,10 +34,11 @@ covers it. Prior feature source and receipts remain available for comparison.
 | Browser journeys | PASS: mobile Chromium/WebKit and desktop Chromium; exact printing, full pagination, back restoration, interpretation controls |
 | Full repository shipcheck after reconciliation | PASS at 2026-09-22T13:48:59Z: 4,046 contracts passed, four skipped, zero failed; web typecheck/lint/strict build; Flutter analysis and all 736 tests |
 | Local review availability | RESTORED: Docker/database healthy; port 3202 returns 168 exact reverse-holo fixture matches; all 12 core API readbacks pass after restart |
-| Full signed-in application shell | OPEN; owner/visitor API fixtures and actual native screens were tested, not the entire authentication shell |
-| Physical Android / iPhone | OPEN; current native evidence is emulator/simulator only |
-| Production catalog completeness and latency | OPEN; synthetic fixtures prove algorithm behavior, not live catalog coverage or scale |
-| Deployed universal/app links | OPEN; source changes are tested, live associations, older installed clients, and OS refresh require release verification |
+| Full signed-in application shell | PASS for mobile Chromium/WebKit owner and visitor password journeys and Android emulator owner journey; full iOS shell remains OPEN |
+| Physical Android / iPhone | OPEN; both devices were found, neither existing installation was changed; isolated physical test builds remain needed |
+| Production catalog completeness and latency | Read-only baseline: deployed artist search returns 195 records over five pages; unreleased combined-query completeness/scale remains OPEN |
+| Deployed universal/app links | Prior source runtime rejects search routes; iOS AASA expansion removed from this candidate. Candidate AASA exactly matches live bytes. Android OS dispatch and future iOS expansion remain OPEN |
+| Native visual follow-up | OPEN: gray onboarding layer remains over the search body in full-shell captures; functional pass is not visual approval |
 | Deployment / store approval | NOT REQUESTED by this local preparation step |
 
 Do not mark an unavailable check as passing. The four contract skips cover the
@@ -48,6 +49,10 @@ The private shipcheck.log records their exact names and the unchanged skip rules
 
 A local checkpoint commit does not certify deployment readiness. The exact source
 commit, file hashes, and gate receipt are in the private release-source-manifest.json.
+The recorded full gate belongs to candidate 1d3ec6d4a. Subsequent changes only retain
+the deployed AASA contract, add a signed-in integration test, and update documentation.
+Their scoped proof is in ../checkpoints/combined_search_release_checks_20260922.md;
+do not relabel the earlier full gate as a fresh full run of the follow-up commit.
 The recorded gate used only local API/SQL addresses, with inherited service secrets
 removed. The commit intentionally uses the documented --no-verify operator path
 in docs/contracts/AUTOMATED_SHIP_GUARDS_V1.md to avoid rerunning this completed gate.
