@@ -33,12 +33,13 @@ covers it. Prior feature source and receipts remain available for comparison.
 | Feature acceptance | PASS on c28f2eea8 plus candidate: 53 API cases, 39 JS contracts, 21 Flutter tests, four runtime cases on each native platform |
 | Browser journeys | PASS: mobile Chromium/WebKit and desktop Chromium; exact printing, full pagination, back restoration, interpretation controls |
 | Full repository shipcheck after reconciliation | PASS at 2026-09-22T13:48:59Z: 4,046 contracts passed, four skipped, zero failed; web typecheck/lint/strict build; Flutter analysis and all 736 tests |
+| Full repository shipcheck after dock-height repair | PASS at 2026-09-22T15:08:27Z: 4,046 contracts passed, four skipped, zero failed; 736 Flutter tests; web typecheck/lint/strict build; Flutter analysis; all remaining gate stages |
 | Local review availability | RESTORED: Docker/database healthy; port 3202 returns 168 exact reverse-holo fixture matches; all 12 core API readbacks pass after restart |
 | Full signed-in application shell | PASS for mobile Chromium/WebKit owner and visitor password journeys and Android emulator owner journey; full iOS shell remains OPEN |
 | Physical Android / iPhone | OPEN; both devices were found, neither existing installation was changed; isolated physical test builds remain needed |
 | Production catalog completeness and latency | Read-only baseline: deployed artist search returns 195 records over five pages; unreleased combined-query completeness/scale remains OPEN |
 | Deployed universal/app links | Prior source runtime rejects search routes; iOS AASA expansion removed from this candidate. Candidate AASA exactly matches live bytes. Android OS dispatch and future iOS expansion remain OPEN |
-| Native visual follow-up | OPEN: gray onboarding layer remains over the search body in full-shell captures; functional pass is not visual approval |
+| Native visual follow-up | Android emulator gray-layer defect FIXED: dock height is constrained to its content, onboarding is visible/dismissible, and signed-in search is unobscured; physical/iOS shell checks remain OPEN |
 | Deployment / store approval | NOT REQUESTED by this local preparation step |
 
 Do not mark an unavailable check as passing. The four contract skips cover the
@@ -49,10 +50,13 @@ The private shipcheck.log records their exact names and the unchanged skip rules
 
 A local checkpoint commit does not certify deployment readiness. The exact source
 commit, file hashes, and gate receipt are in the private release-source-manifest.json.
-The recorded full gate belongs to candidate 1d3ec6d4a. Subsequent changes only retain
-the deployed AASA contract, add a signed-in integration test, and update documentation.
+The earlier recorded full gate belongs to candidate 1d3ec6d4a. The 1f6cabce6 follow-up
+retains the deployed AASA contract, adds a signed-in integration test, and updates
+documentation. The subsequent dock-height repair also changes native shell layout.
+Its fresh full gate is recorded in `onboarding-shipcheck-result.json`, with exact
+source/evidence hashes in `onboarding-source-manifest.json` outside the repository.
 Their scoped proof is in ../checkpoints/combined_search_release_checks_20260922.md;
-do not relabel the earlier full gate as a fresh full run of the follow-up commit.
+Do not relabel the earlier full gate as a fresh full run of a follow-up commit.
 The recorded gate used only local API/SQL addresses, with inherited service secrets
 removed. The commit intentionally uses the documented --no-verify operator path
 in docs/contracts/AUTOMATED_SHIP_GUARDS_V1.md to avoid rerunning this completed gate.

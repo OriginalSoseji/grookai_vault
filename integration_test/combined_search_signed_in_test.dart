@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:grookai_vault/main.dart' as app;
 import 'package:grookai_vault/secrets.dart';
+import 'package:grookai_vault/widgets/onboarding/onboarding_ladder_sheet.dart';
 
 // Run only with the contained owner fixture. Credentials are supplied in a
 // private dart-define file; never put them or production settings in this test.
@@ -85,9 +86,35 @@ void main() {
       }
       await until(tester, find.byType(app.AppShell));
       await tester.pump(const Duration(seconds: 3));
-      final closeOnboarding = find.byTooltip('Close onboarding').hitTestable();
-      if (closeOnboarding.evaluate().isNotEmpty) {
-        await tap(tester, closeOnboarding);
+      final shellScaffold = find
+          .descendant(
+            of: find.byType(app.AppShell),
+            matching: find.byType(Scaffold),
+          )
+          .first;
+      Finder dock() => find.byWidget(
+        tester.widget<Scaffold>(shellScaffold).bottomNavigationBar!,
+      );
+      final screenHeight = MediaQuery.sizeOf(
+        tester.element(shellScaffold),
+      ).height;
+      // An expanding Align used to report a screen-height dock, which made
+      // Scaffold's extended-body safe area push onboarding above the viewport.
+      expect(tester.getSize(dock()).height, lessThan(screenHeight / 3));
+      final overlay = find.byType(OnboardingLadderOverlay);
+      if (overlay.evaluate().isNotEmpty) {
+        final close = find.byTooltip('Close onboarding');
+        expect(close.hitTestable(), findsOneWidget);
+        expect(
+          tester.getRect(close).top,
+          greaterThanOrEqualTo(tester.getRect(overlay).top),
+        );
+        debugPrint('COMBINED_SHELL_CAPTURE_READY=onboarding');
+        await Future<void>.delayed(const Duration(seconds: 8));
+        await tester.pump();
+        await tap(tester, close);
+        expect(overlay, findsNothing);
+        debugPrint('COMBINED_SHELL_ONBOARDING=visible-and-dismissed');
       }
       expect(Supabase.instance.client.auth.currentUser?.email, email);
       await tap(tester, find.text('Search').last);
@@ -113,6 +140,8 @@ void main() {
       await until(tester, find.text('Showing 24 of 168'));
       expect(find.byTooltip('Remove Finish: Reverse Holo'), findsOneWidget);
       expect(find.text('Artist: Yuka Morii'), findsOneWidget);
+      expect(overlay, findsNothing);
+      expect(tester.getSize(dock()).height, lessThan(screenHeight / 3));
       debugPrint('COMBINED_SHELL_CAPTURE_READY=combined');
       await Future<void>.delayed(const Duration(seconds: 8));
       await tester.pump();

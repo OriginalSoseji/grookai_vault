@@ -1641,6 +1641,9 @@ class _AppShellState extends State<AppShell> {
           minimum: EdgeInsets.fromLTRB(12, 4, 12, bottomSafeInset > 0 ? 4 : 12),
           child: Align(
             alignment: Alignment.bottomCenter,
+            // Scaffold uses this height as the extended body's bottom inset.
+            // Reserve the dock's height, not the entire available screen.
+            heightFactor: 1,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 190),
               curve: Curves.easeOutCubic,

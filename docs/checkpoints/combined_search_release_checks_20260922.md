@@ -1,6 +1,7 @@
 # Combined search: signed-in release checks
 
-Source: 1d3ec6d4a plus the AASA compatibility follow-up and integration test.
+Source: 1d3ec6d4a, the 1f6cabce6 AASA/test follow-up, and the dock-height repair
+described below. Exact file hashes and commit are in onboarding-source-manifest.json.
 No deployment, store upload, production mutation, or real-user messaging occurred.
 The Vendor Mode candidate and broader audit inventory remain separate.
 
@@ -15,6 +16,7 @@ The Vendor Mode candidate and broader audit inventory remain separate.
 | Prior source a98dd26f7 vs candidate | Two executable Dart checks: prior parser returns null for /explore and /search while candidate routes them; both retain card links |
 | iOS association compatibility | AASA expansion removed; resulting SHA-256 equals live file: 06227e2dd1564a116ab330bf135aba18965198bdaafd7635a8d5162f3919ceac |
 | Scoped verification | Integration test analysis passes; 14 routing/association tests pass; two prior/candidate routing checks pass; full Android shell test passes |
+| Android onboarding / search visual regression | Reproduced the screen-height dock and offscreen close action; corrected the dock height; onboarding is visible and dismissible, then owned and combined search render without the gray layer |
 
 Web uses the existing optimized build on loopback port 3204. Development preview
 remains on 3202; report remains on 3203. Both use local API 54321 and SQL 54330.
@@ -55,10 +57,9 @@ pointed at production and no live records were imported into the fixture databas
   intact. Android already has the shared locked-acceptance package; use a separately
   isolated installation for this candidate. iOS needs isolation and signing review;
   observed Mac free space was approximately 3.4 GiB.
-- Android full-shell captures show a gray layer over the search body after the
-  onboarding probe. Actions pass, but the onboarding panel is not visible in those
-  captures. Reproduce outside the harness and inspect OnboardingLadderOverlay
-  before accepting native visual readiness. No onboarding product change was made.
+- The Android gray-layer finding is resolved on the API 36 emulator as detailed
+  below. This is full-app integration evidence, not a standalone manual launch,
+  physical-device proof, or verification of the iOS shell.
 - iOS HTTPS search association expansion is deferred. Native parsing and artist
   links remain in source; publication requires a compatibility plan for older
   installed clients. Android OS dispatch and physical-device behavior remain open.
@@ -72,3 +73,41 @@ legacy-link-compatibility.log, association-regression.log,
 signed-in-integration-analysis.log, live-association-readback.json,
 and live-search-baseline.json. Credentials, intermediate failures, and full logs
 stay outside the repository and browsable report.
+
+## Android dock-height repair
+
+The gray layer was a real shell layout error. `_buildMobileBottomDock` used an
+`Align` without a height factor, so the bottom-navigation layout expanded to the
+entire 914.29-logical-pixel screen height. With `Scaffold.extendBody`, Flutter
+passed that height to the body as bottom safe-area padding. The onboarding panel's
+close control was laid out at y=-298 to -266, above the viewport; its scrim still
+covered the body. The underlying search remained interactive.
+
+Set `heightFactor: 1` on the dock's Align so Scaffold reserves the dock's actual
+height. Onboarding content, permissions, queries, catalog data, and service rules
+are unchanged. The signed-in test now checks dock height at landing and again
+after search, verifies that a present onboarding close action is visible and
+hit-testable, dismisses it, and checks that the overlay is absent from results.
+
+The new dock assertion failed against the original code (actual 914.29 vs expected
+less than 304.76). After the repair, the complete Android test passed: password
+login, visible onboarding and dismissal, three owned fixture cards, 168 exact
+reverse-holo matches, 335 matches after removing finish, and sign-out. These are
+synthetic catalog counts. The notification permission was denied in the emulator.
+One intermediate test needed its dock finder refreshed after shell rebuilds;
+the final passing log is `android-onboarding-verified.log`.
+
+Private evidence: `android-onboarding-diagnostic.log`,
+`android-onboarding-regression-before.log`, `android-onboarding-verified.log`,
+and `android-onboarding-fixed-{onboarding,owned,combined}.png`. The original gray
+captures remain preserved. The browsable report includes an annotated before/after
+pair and the visible onboarding panel; full logs and credentials remain private.
+
+The complete local repository shipcheck passed at 2026-09-22T15:08:27Z: 4,046
+contracts passed, the same four documented skips, zero failures; 736 Flutter
+tests passed; web typecheck/lint/strict build, Flutter analysis, secret packaging,
+runtime preflight/health, and contract reports passed. Receipts are
+`onboarding-shipcheck.log` and `onboarding-shipcheck-result.json`; earlier full-gate
+receipts are preserved. API/SQL routing stayed local. The local checkpoint commit
+intentionally uses the documented `--no-verify` operator path after this complete
+gate to avoid a duplicate run, without waiving any failed check.

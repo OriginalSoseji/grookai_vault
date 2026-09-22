@@ -14,6 +14,11 @@ gate ledger, web-before-native rollout, association compatibility, and rollback 
 The follow-up `docs/checkpoints/combined_search_release_checks_20260922.md` records
 signed-in browser/Android shell proof, unchanged live AASA compatibility, and open
 iOS/physical-device/visual checks. Optimized local review runs on loopback port 3204.
+The same checkpoint records the Android dock-height repair: an expanding dock
+caused a full-screen body safe-area inset and pushed onboarding above the viewport.
+Preserve content-height dock sizing and the signed-in layout/dismissal regression.
+Use the `android-onboarding-verified.log` receipt and fixed screenshots for current
+Android evidence; original gray captures are retained as before-fix evidence.
 
 ## Pokemon Artist Search - September 20
 
