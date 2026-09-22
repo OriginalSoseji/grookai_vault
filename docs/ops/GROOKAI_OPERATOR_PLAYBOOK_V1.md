@@ -12,13 +12,20 @@ separate deployment review. The checkpoint records completed local acceptance an
 Use `docs/release/COMBINED_SEARCH_RELEASE_REVIEW_20260922.md` for the frozen-candidate
 gate ledger, web-before-native rollout, association compatibility, and rollback checks.
 The follow-up `docs/checkpoints/combined_search_release_checks_20260922.md` records
-signed-in browser/Android shell proof, unchanged live AASA compatibility, and open
-iOS/physical-device/visual checks. Optimized local review runs on loopback port 3204.
+signed-in browser/Android/iOS simulator shell proof, unchanged live AASA compatibility,
+and open physical-device/OS-dispatch checks. Optimized local review runs on loopback port 3204.
 The same checkpoint records the Android dock-height repair: an expanding dock
 caused a full-screen body safe-area inset and pushed onboarding above the viewport.
 Preserve content-height dock sizing and the signed-in layout/dismissal regression.
 Use the `android-onboarding-verified.log` receipt and fixed screenshots for current
 Android evidence; original gray captures are retained as before-fix evidence.
+The full iOS shell also passes on the a253902aa native payload after a 257-file
+hash readback. Use `ios-signed-in-shell.log` and `ios-shell-verification.json`, not
+the earlier permission-covered capture. Private Mac helpers are under
+`/Users/cesarcabral/grookai_operator_artifacts/combined_search_20260922`; the contained
+XCUITest helper dismisses only the Grookai notification prompt in the simulator.
+Keep private defines outside source. Mac ports 3202/54322 forward to Windows local
+services; they are simulator endpoints, not physical-iPhone network configuration.
 
 ## Pokemon Artist Search - September 20
 

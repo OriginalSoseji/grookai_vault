@@ -17,6 +17,7 @@ The Vendor Mode candidate and broader audit inventory remain separate.
 | iOS association compatibility | AASA expansion removed; resulting SHA-256 equals live file: 06227e2dd1564a116ab330bf135aba18965198bdaafd7635a8d5162f3919ceac |
 | Scoped verification | Integration test analysis passes; 14 routing/association tests pass; two prior/candidate routing checks pass; full Android shell test passes |
 | Android onboarding / search visual regression | Reproduced the screen-height dock and offscreen close action; corrected the dock height; onboarding is visible and dismissible, then owned and combined search render without the gray layer |
+| iOS 26.5 simulator, owner, actual app.main / MyApp / AppShell | Password login, visible onboarding and dismissal, three owned cards, 168 exact reverse-holo matches, 335 after finish removal, dock-height checks, and sign-out all pass on a253902aa native source |
 
 Web uses the existing optimized build on loopback port 3204. Development preview
 remains on 3202; report remains on 3203. Both use local API 54321 and SQL 54330.
@@ -51,15 +52,15 @@ pointed at production and no live records were imported into the fixture databas
 
 ## Open findings and remaining checks
 
-- Full iOS signed-in shell remains unverified; earlier iOS evidence covers actual
-  search screens inside a simulator harness only.
+- Both Android and iOS signed-in shells now pass on virtual devices. Physical
+  devices, additional hardware/OS combinations, and OS link dispatch remain open.
 - Samsung and iPhone devices are available, but existing installations were left
   intact. Android already has the shared locked-acceptance package; use a separately
   isolated installation for this candidate. iOS needs isolation and signing review;
-  observed Mac free space was approximately 3.4 GiB.
+  observed Mac free space after the iOS check was approximately 2.7 GiB.
 - The Android gray-layer finding is resolved on the API 36 emulator as detailed
   below. This is full-app integration evidence, not a standalone manual launch,
-  physical-device proof, or verification of the iOS shell.
+  or physical-device proof. The iOS shell is separately verified below.
 - iOS HTTPS search association expansion is deferred. Native parsing and artist
   links remain in source; publication requires a compatibility plan for older
   installed clients. Android OS dispatch and physical-device behavior remain open.
@@ -111,3 +112,46 @@ runtime preflight/health, and contract reports passed. Receipts are
 receipts are preserved. API/SQL routing stayed local. The local checkpoint commit
 intentionally uses the documented `--no-verify` operator path after this complete
 gate to avoid a duplicate run, without waiving any failed check.
+
+## Full signed-in iOS shell
+
+On September 22, the same checked-in `combined_search_signed_in_test.dart` passed
+through the actual app on the existing iOS 26.5 simulator
+`B3B4DF3D-004F-4157-B694-3A4F7B305533`. The Mac checkout retains its c28f2eea8 Git
+baseline plus the isolated native payload. Before building, 257 tracked native,
+integration-test, dependency, and iOS Runner files were hash-compared with Windows
+candidate a253902aa3ad4cf735e6fcc575f75dc589b2ddfe; there were zero mismatches.
+The previous Mac native files were backed up privately before synchronization.
+
+Environment: Xcode 26.6 (17F113), Flutter 3.44.9, Dart 3.12.2. Mac loopback ports
+3202 and 54322 use the established SSH reverse forwards to the Windows local web
+and sandbox API. The existing contained owner account was reused; its profile
+was already complete, so this run does not establish new-profile creation on iOS.
+No product code, schema, production data, physical installation, or signing
+configuration changed in this verification step.
+
+The first functional run passed but iOS notification permission UI covered its
+screenshots. Those captures are retained as `ios-permission-covered-*.png`, with
+`ios-signed-in-permission-covered.log`, and do not count as clean visual evidence.
+A separate private XCUITest runner matched only the Grookai Vault notification
+alert and tapped Don't Allow. It passed; the repeat full-app run recorded
+`permission_denied`, visible onboarding and dismissal, all search assertions,
+and sign-out, ending `00:36 +1: All tests passed!`.
+
+Final visual evidence uses light appearance, the same account and fixture queries
+as Android: `ios-signed-in-{onboarding,owned,combined}.png`. Inspecting the images
+confirmed the onboarding panel is visible above the dock and the search body is
+unobscured after dismissal. Simulator screenshots are 1206 x 2622 pixels (402 x 874
+logical pixels); Android comparison is 1080 x 2400 (411.43 x 914.29 logical pixels).
+Safe areas and system chrome differ legitimately. Artwork is synthetic fixture
+placeholder content, not evidence about live image or finish completeness.
+
+Private receipts: `ios-signed-in-shell.log`, `ios-shell-source-readback.json`,
+`ios-shell-source-expected.json`, `simulator-permission-test.log`, and the safe
+summary `ios-shell-verification.json`. The report includes Android/iOS pairs.
+Credentials, full logs, the UI-test helper, and local build settings remain outside
+the repository. Physical iPhone acceptance, release signing, and deployed link
+dispatch are not implied. The existing complete shipcheck at a253902aa still
+applies to unchanged application code; this follow-up only updates documentation
+and private evidence. Its documentation checkpoint uses the explicit operator
+commit bypass without representing a new full shipcheck run.

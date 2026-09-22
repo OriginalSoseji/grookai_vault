@@ -35,11 +35,11 @@ covers it. Prior feature source and receipts remain available for comparison.
 | Full repository shipcheck after reconciliation | PASS at 2026-09-22T13:48:59Z: 4,046 contracts passed, four skipped, zero failed; web typecheck/lint/strict build; Flutter analysis and all 736 tests |
 | Full repository shipcheck after dock-height repair | PASS at 2026-09-22T15:08:27Z: 4,046 contracts passed, four skipped, zero failed; 736 Flutter tests; web typecheck/lint/strict build; Flutter analysis; all remaining gate stages |
 | Local review availability | RESTORED: Docker/database healthy; port 3202 returns 168 exact reverse-holo fixture matches; all 12 core API readbacks pass after restart |
-| Full signed-in application shell | PASS for mobile Chromium/WebKit owner and visitor password journeys and Android emulator owner journey; full iOS shell remains OPEN |
+| Full signed-in application shell | PASS for mobile Chromium/WebKit owner and visitor password journeys, Android emulator owner, and iOS 26.5 simulator owner; native runs include onboarding dismissal and combined/owned search |
 | Physical Android / iPhone | OPEN; both devices were found, neither existing installation was changed; isolated physical test builds remain needed |
 | Production catalog completeness and latency | Read-only baseline: deployed artist search returns 195 records over five pages; unreleased combined-query completeness/scale remains OPEN |
 | Deployed universal/app links | Prior source runtime rejects search routes; iOS AASA expansion removed from this candidate. Candidate AASA exactly matches live bytes. Android OS dispatch and future iOS expansion remain OPEN |
-| Native visual follow-up | Android emulator gray-layer defect FIXED: dock height is constrained to its content, onboarding is visible/dismissible, and signed-in search is unobscured; physical/iOS shell checks remain OPEN |
+| Native visual follow-up | Dock-height repair VERIFIED on Android emulator and iOS simulator: onboarding is visible/dismissible and signed-in search is unobscured; physical checks remain OPEN |
 | Deployment / store approval | NOT REQUESTED by this local preparation step |
 
 Do not mark an unavailable check as passing. The four contract skips cover the
@@ -55,6 +55,9 @@ retains the deployed AASA contract, adds a signed-in integration test, and updat
 documentation. The subsequent dock-height repair also changes native shell layout.
 Its fresh full gate is recorded in `onboarding-shipcheck-result.json`, with exact
 source/evidence hashes in `onboarding-source-manifest.json` outside the repository.
+The subsequent full iOS shell check uses the exact a253902aa native payload (257
+file hashes agree), with Xcode 26.6 and an iOS 26.5 simulator. Its application code
+is unchanged; `ios-shell-verification.json` records the source and runtime proof.
 Their scoped proof is in ../checkpoints/combined_search_release_checks_20260922.md;
 Do not relabel the earlier full gate as a fresh full run of a follow-up commit.
 The recorded gate used only local API/SQL addresses, with inherited service secrets
