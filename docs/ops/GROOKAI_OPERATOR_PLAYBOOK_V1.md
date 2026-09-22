@@ -38,6 +38,14 @@ unavailable in CoreDevice and Xcode before isolated installation; reconnect it
 and establish a physical local network route before resuming. The updated iOS
 simulator journey and full local repository gate pass with the sign-out repair.
 
+Read `docs/checkpoints/combined_search_live_preflight_20260922.md` before release
+preparation. The current Samsung primary build is debug-signed; its certificate
+does not match the live Android association, and domain verification is not
+passing. Do not add debug fingerprints or change defaults to close this gate.
+Use an approved release signing identity for production-domain dispatch proof.
+The checkpoint records fresh live deployment/main/association readbacks; re-read
+the live pointer before any separately approved staging or promotion.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.
