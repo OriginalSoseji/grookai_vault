@@ -81,6 +81,17 @@ guest/no-pricing scope cannot certify production capacity. Legacy native reads
 retain the whole result body. Latest observed main 76ff8b32b changes only founder
 dashboard snapshots; reconcile before packaging, without relabeling this runtime.
 
+That reconciliation is now complete in f53ea3bb4. Use
+`docs/checkpoints/combined_search_release_packet_20260922.md` and private
+`release-next-source-manifest.json` / `release-next-readback.json` for the latest
+source freeze and live rollback reference. The physical iPhone briefly returned
+on iOS 27; 225 native files matched and an isolated development build signed, but
+the phone disconnected before the test launched. The private `iphone-next-*`
+helpers use the existing manual wildcard profile and desktop Terminal signing
+route, restore packaging bytes, and preserve the primary app. LAN relay ports
+3205/54323 are test-only; stop the owned relay after each attempt. A signed build
+does not close the physical acceptance or production-link gates.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.
