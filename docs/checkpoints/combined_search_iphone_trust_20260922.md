@@ -1,5 +1,23 @@
 # Physical iPhone acceptance — developer trust gate
 
+## Retry after user request
+
+At 2026-09-23 01:59 UTC, the physical iPhone 17 Pro was available and the
+Mac-forwarded local auth service returned HTTP 200. The LAN address still matched
+the isolated signed build. Retried the original prebuilt application with a new
+private `run-iphone-trusted.py` wrapper so earlier failure logs were preserved.
+XCTest again explicitly rejected launch because the Developer App certificate
+was not trusted. No physical search workflow ran or passed.
+
+Stopped the seven owned orchestration/debugger processes, stopped both LAN
+listeners and removed temporary test sources. Fresh installed-app readback again
+matched the original build 324 and other existing Grookai metadata. All 225 native
+hashes matched; global Flutter configuration was unchanged. The two isolated
+packages remain installed for manual trust on this iPhone. The current receipt is
+private `iphone-trusted-pause.json`; diagnostics are
+`iphone-trusted-permissions-test.private.log`. Preserve these on another retry.
+No deployment or production change occurred.
+
 Readback: 2026-09-23 01:33 UTC (September 22 locally).
 Native source remains the frozen f53ea3bb4 payload, identical to the reviewed
 application source. No product edits, deployment or store distribution occurred.

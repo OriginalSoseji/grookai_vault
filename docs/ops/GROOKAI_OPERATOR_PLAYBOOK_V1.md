@@ -93,6 +93,9 @@ route, restore packaging bytes, and preserve the primary app. LAN relay ports
 does not close the physical acceptance or production-link gates.
 
 Current physical follow-up is `docs/checkpoints/combined_search_iphone_trust_20260922.md`.
+The 01:59 UTC retry again received Apple's explicit untrusted-certificate launch
+failure. Private `iphone-trusted-pause.json` records fresh app/hash preservation
+and stopped processes/relay; keep these retry logs separate from prior evidence.
 The isolated app/helper are installed; Apple requires manual developer-profile
 trust before launch. Original build 324 metadata and 225 native hashes match.
 The test processes/relay are stopped, with only the two isolated installations
