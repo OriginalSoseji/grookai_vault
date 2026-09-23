@@ -96,7 +96,11 @@ Current approved delivery checkpoint is `docs/checkpoints/combined_search_releas
 The user approved service deployment and TestFlight 327. PR #510 is merged, but
 the first production-configured candidate is held off the live domain after a
 correction-undo timeout. Preserve the rollback and temporary domain-assignment
-setting while the literal-artist follow-up is verified. Do not upload 327 until
+setting while the follow-ups are verified. PR #511 fixes correction undo;
+the next repair routes known card-name/finish combinations through the existing
+release-aware name RPC, preserving complete pagination and physical GV-ID scope.
+Include artist-filter removal and no-artist finish queries in staged acceptance.
+Do not upload 327 until
 the repaired service passes and is promoted. No database/schema changes.
 Current iPhone build follow-up is `docs/checkpoints/combined_search_ios327_20260922.md`.
 The user requested a fresh version: 1.0.0 (327) is archived/exported with verified
