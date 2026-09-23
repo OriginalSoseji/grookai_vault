@@ -41,3 +41,28 @@ retains both Wurmple and reverse-holo constraints. Native source is unchanged.
 Private evidence: `combined_search_20260922/release-plan.json`, `merge.json`,
 `candidate.json`, `staged-query-diagnostic.json`, `parent-*-diagnostic.json`,
 `staged-scale-diagnostic.json`, and `literal-artist-shipcheck*`.
+
+## Card-name and finish follow-up
+
+PR #511 merged as `cabd7f604415f7d34072f761016b3173f690c8da`. Its held
+production candidate passed 15 staged cases, including all 1,700 5ban printings
+across 27 pages and correction undo. An additional artist-removal check found
+that `Wurmple reverse holo` still timed out in the broad table text lookup.
+The live domain remains on the original rollback target pending this repair.
+
+Known card names now use the existing release-aware `search_game_card_prints_v4`
+RPC to collect every page before applying combined constraints. Unknown residual
+descriptions retain their general discovery path. RPC failures, duplicate pages
+and its offset ceiling fail explicitly rather than presenting partial results.
+Canonical GV-ID prefixes preserve the physical-card scope, excluding Pocket
+records that share Pokemon's game grouping. Public-client ID reads rehydrate
+card metadata, including each card's printed denominator, before enrichment.
+No new database function, schema change or privileged client is introduced.
+
+Public read-only verification matches all 13 Wurmple parent IDs against an
+independent exact-name read, and collects 76 Rare Candy parents across multiple
+RPC pages. Regression coverage includes pagination, unknown descriptions, later
+failures, offset exhaustion and a page containing only out-of-scope Pocket rows.
+Final repository and staged API/browser checks remain required before promotion.
+
+Final local shipcheck passed: 4,055 contracts, four documented skips, 736 Flutter tests, web typecheck/lint/strict build and Flutter analysis. Local fixture API readback also returns 200 after removing the artist criterion. Native source remains identical to the frozen 327 archive.

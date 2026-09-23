@@ -44,6 +44,7 @@ import type { PublicGameScope } from "@/lib/publicGameScope";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 import { fetchPokemonArtistRows, isKnownArtistQuery } from "@/lib/search/artistSearch";
+import { fetchCompleteNamedCardRows } from "@/lib/search/completeNamedCardSearch";
 
 const SEARCH_LIMIT = 64;
 const SET_FETCH_PAGE_SIZE = 500;
@@ -3274,7 +3275,7 @@ async function fetchCardRowsByIds(cardPrintIds: string[]) {
 
   const supabase = await createServerComponentClient();
   const selectClause =
-    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+    "id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
 
   for (const idChunk of chunkArray(ids, 200)) {
@@ -3895,6 +3896,11 @@ export async function getExploreRowsForCombinedSearch(
   assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const supabase = await createServerComponentClient();
   const gameScope = options.gameScope ?? "pokemon";
+  const namedRows = await fetchCompleteNamedCardRows(supabase, { ...options, gameScope });
+  if (namedRows !== null) {
+    const parents = await fetchCardRowsByIds(namedRows.map((row) => row.id));
+    return enrichCompleteSearchParents(parents, options, supabase);
+  }
   const parents: CardPrintLookupRow[] = [];
   const tokens = getSmartDiscoveryTextTokens(options.textQuery);
   const firstToken = tokens.find((token) => !/^\d+$/.test(token));
