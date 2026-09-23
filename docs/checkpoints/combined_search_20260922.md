@@ -15,6 +15,10 @@ reconciled in f53ea3bb4 with no application-code changes; live rollback pointers
 were refreshed. The isolated physical iPhone build signed successfully, but the
 phone disconnected before the journey ran. Physical acceptance remains open.
 
+Latest iPhone progress: `combined_search_iphone_trust_20260922.md`. The isolated
+app/helper are installed and the existing build 324 is preserved. The next gate
+is manual developer-profile trust on the phone; no physical pass is claimed.
+
 Source: origin/main a98dd26f7 plus the combined-search candidate on branch
 feature/combined-search-20260922, in C:/grookai_vault_combined_search_20260922.
 The matching Mac native candidate is /Users/cesarcabral/grookai_vault_combined_search_20260922.

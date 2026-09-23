@@ -92,6 +92,19 @@ route, restore packaging bytes, and preserve the primary app. LAN relay ports
 3205/54323 are test-only; stop the owned relay after each attempt. A signed build
 does not close the physical acceptance or production-link gates.
 
+Current physical follow-up is `docs/checkpoints/combined_search_iphone_trust_20260922.md`.
+The isolated app/helper are installed; Apple requires manual developer-profile
+trust before launch. Original build 324 metadata and 225 native hashes match.
+The test processes/relay are stopped, with only the two isolated installations
+retained for the trust step. Resume with private `run-iphone-final.py`, which uses
+task-specific XDG Flutter settings for direct LLDB debugging; the user's global
+configuration stays unchanged. Do not use an untrusted build or successful
+installation as proof of a passing physical journey. Task simulator output was
+removed to reclaim 523 MiB; the physical build and evidence remain intact.
+The local Docker/backend and report/dev listeners were also restored without a
+volume reset or reseed; `iphone-backend-recovery.json` verifies auth health and
+the 168/84/2,710 fixture search totals after normal Postgres recovery completed.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.
