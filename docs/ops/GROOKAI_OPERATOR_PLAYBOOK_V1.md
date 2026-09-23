@@ -1,5 +1,120 @@
 # Grookai Operator Playbook V1
 
+## Combined Search — September 22
+
+Follow `docs/checkpoints/combined_search_20260922.md` for the isolated implementation
+and requirement-by-requirement verification ledger. Source is current main plus
+the shared parser/resolver and web/native presentation changes; preserve the
+separate Vendor Mode candidate. Normal searches remain deterministic and read-only.
+Use the existing local audit sandbox for synthetic fixtures, never a development
+server connected to production. Complete local cross-platform proof before the
+separate deployment review. The checkpoint records completed local acceptance and separate release checks.
+Use `docs/release/COMBINED_SEARCH_RELEASE_REVIEW_20260922.md` for the frozen-candidate
+gate ledger, web-before-native rollout, association compatibility, and rollback checks.
+The follow-up `docs/checkpoints/combined_search_release_checks_20260922.md` records
+signed-in browser/Android/iOS simulator shell proof, unchanged live AASA compatibility,
+and open physical-device/OS-dispatch checks. Optimized local review runs on loopback port 3204.
+The same checkpoint records the Android dock-height repair: an expanding dock
+caused a full-screen body safe-area inset and pushed onboarding above the viewport.
+Preserve content-height dock sizing and the signed-in layout/dismissal regression.
+Use the `android-onboarding-verified.log` receipt and fixed screenshots for current
+Android evidence; original gray captures are retained as before-fix evidence.
+The full iOS shell also passes on the a253902aa native payload after a 257-file
+hash readback. Use `ios-signed-in-shell.log` and `ios-shell-verification.json`, not
+the earlier permission-covered capture. Private Mac helpers are under
+`/Users/cesarcabral/grookai_operator_artifacts/combined_search_20260922`; the contained
+XCUITest helper dismisses only the Grookai notification prompt in the simulator.
+Keep private defines outside source. Mac ports 3202/54322 forward to Windows local
+services; they are simulator endpoints, not physical-iPhone network configuration.
+
+Physical follow-up: `docs/checkpoints/combined_search_physical_acceptance_20260922.md`.
+Samsung passes the full signed-in shell and local cold/warm VIEW-intent journey.
+The latter exposed cached pushed routes surviving sign-out; preserve root route
+cleanup and the integration regression. Use the unique temporary package
+`com.grookai.vault.combinedsearch20260922`, never either existing installation.
+Private manifest/Gradle edits are build-only and restored byte-for-byte. Local
+intent success does not prove production HTTPS association. The iPhone became
+unavailable in CoreDevice and Xcode before isolated installation; reconnect it
+and establish a physical local network route before resuming. The updated iOS
+simulator journey and full local repository gate pass with the sign-out repair.
+
+Read `docs/checkpoints/combined_search_live_preflight_20260922.md` before release
+preparation. The current Samsung primary build is debug-signed; its certificate
+does not match the live Android association, and domain verification is not
+passing. Do not add debug fingerprints or change defaults to close this gate.
+Use an approved release signing identity for production-domain dispatch proof.
+The checkpoint records fresh live deployment/main/association readbacks; re-read
+the live pointer before any separately approved staging or promotion.
+
+The user-requested emulator repeat is recorded in the signed-in release checkpoint:
+current-source full password/search journey and reused, hash-matched intent-test
+APK both pass on API 36. Use `emulator-search-verification.json` and the report's
+`#emulator-verification` section for this evidence. Local emulator passes do not
+replace production-domain signing checks or physical iPhone acceptance.
+
+Real-data coverage is recorded in
+`docs/checkpoints/combined_search_live_catalog_20260922.md`: 195/195 public artist
+parents match deployed pagination, and the Wurmple example has normal/reverse
+children. Keep offline parser expectations separate from live candidate execution.
+CS-CATALOG-01 records Lost Origin Wurmple's missing artist credit with an official
+source; route any repair through the governed catalog process, not a direct edit.
+
+The broader artist spot check found release-blocking CS-ARTIST-02; read
+`docs/checkpoints/combined_search_artist_spot_check_20260922.md`. Live pagination
+matches six artists across 55 pages after accounting for a shared credit, but
+the unreleased combined parser drops that credit from individual-artist queries.
+That original reproduction is preserved as before-fix evidence. The local repair
+and follow-up CS-SEARCH-03 ranking fix are recorded in
+`docs/checkpoints/combined_search_shared_credit_repair_20260922.md`. Parsed artist
+names expand to known whole-contributor credits; explicit illustrator filters
+keep their exact-credit contract. Ranking must move individual printing results,
+never suppress all rows sharing a promoted parent ID. Use the isolated `csart`
+fixture and shared-credit API/browser/native receipts for repeat verification.
+Local repair is not deployed closure; preserve the remaining release gates.
+
+Broad-query follow-up: `docs/checkpoints/combined_search_scale_20260922.md` records
+the optimized ed8645b93 runtime against the isolated `csscale` fixture: 1,805 artist
+parents, 2,708 holo/reverse printings, 107 complete pages and 117 successful API
+calls. Loopback 3204 now serves the fresh strict build. Keep fixture counts,
+local latency, and production acceptance distinct; the small local database and
+guest/no-pricing scope cannot certify production capacity. Legacy native reads
+retain the whole result body. Latest observed main 76ff8b32b changes only founder
+dashboard snapshots; reconcile before packaging, without relabeling this runtime.
+
+That reconciliation is now complete in f53ea3bb4. Use
+`docs/checkpoints/combined_search_release_packet_20260922.md` and private
+`release-next-source-manifest.json` / `release-next-readback.json` for the latest
+source freeze and live rollback reference. The physical iPhone briefly returned
+on iOS 27; 225 native files matched and an isolated development build signed, but
+the phone disconnected before the test launched. The private `iphone-next-*`
+helpers use the existing manual wildcard profile and desktop Terminal signing
+route, restore packaging bytes, and preserve the primary app. LAN relay ports
+3205/54323 are test-only; stop the owned relay after each attempt. A signed build
+does not close the physical acceptance or production-link gates.
+
+Current iPhone build follow-up is `docs/checkpoints/combined_search_ios327_20260922.md`.
+The user requested a fresh version: 1.0.0 (327) is archived/exported with verified
+distribution signing and matching symbols. No upload/service deployment yet.
+Use the new frozen sparse checkout; preserve the prior development checkout.
+The live resolver still lacks combined artist interpretation, so coordinated
+service delivery is required before TestFlight search acceptance. Historical
+builds 313–318 intermediate objects were cleaned; archives/products remain.
+Previous physical follow-up is `docs/checkpoints/combined_search_iphone_trust_20260922.md`.
+The 01:59 UTC retry again received Apple's explicit untrusted-certificate launch
+failure. Private `iphone-trusted-pause.json` records fresh app/hash preservation
+and stopped processes/relay; keep these retry logs separate from prior evidence.
+The isolated app/helper are installed; Apple requires manual developer-profile
+trust before launch. Original build 324 metadata and 225 native hashes match.
+The test processes/relay are stopped, with only the two isolated installations
+retained for the trust step. Resume with private `run-iphone-final.py`, which uses
+task-specific XDG Flutter settings for direct LLDB debugging; the user's global
+configuration stays unchanged. Do not use an untrusted build or successful
+installation as proof of a passing physical journey. Task simulator output was
+removed to reclaim 523 MiB; the physical build and evidence remain intact.
+The local Docker/backend and report/dev listeners were also restored without a
+volume reset or reseed; `iphone-backend-recovery.json` verifies auth health and
+the 168/84/2,710 fixture search totals after normal Postgres recovery completed.
+
 ## Pokemon Artist Search - September 20
 
 Artist search uses the shared web resolver, including native Pokemon search.

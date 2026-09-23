@@ -1636,6 +1636,9 @@ class _PulseItemRow extends StatelessWidget {
 
     final navigator = Navigator.of(context, rootNavigator: true);
     switch (route.kind) {
+      case GrookaiCanonicalRouteKind.search:
+        await navigator.pushNamed('/search', arguments: Uri.parse(route.path));
+        return true;
       case GrookaiCanonicalRouteKind.card:
         return _openCardDetail(context, preferredGvId: route.value);
       case GrookaiCanonicalRouteKind.memory:

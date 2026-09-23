@@ -12,6 +12,7 @@ import {
   getExploreRowsForGameScopedTextSearch,
   getExploreRowsForSmartFilterDiscovery,
   getExploreRowsForArtistSearch,
+  getExploreRowsForCombinedSearch,
 } from "@/lib/explore/getExploreRows";
 import { isKnownArtistQuery } from "@/lib/search/artistSearch";
 import { paginateArtistResults } from "@/lib/search/artistSearchPagination";
@@ -169,13 +170,9 @@ function rowMatchesFinish(row: ExploreResultCard, finishKeys: string[]) {
   }
 
   const normalizedKeys = new Set(finishKeys.map(normalizeSearchText));
-  const labels = [
-    row.finish_key,
-    row.finish_label,
-    row.display_discriminator,
-  ].map(normalizeSearchText);
-
-  return labels.some((label) => normalizedKeys.has(label) || (label && Array.from(normalizedKeys).some((key) => label.includes(key))));
+  // A display label containing "holo" is not evidence of the Holo finish:
+  // Reverse Holo and Non-Holo must stay distinct. Only the recorded key counts.
+  return normalizedKeys.has(normalizeSearchText(row.finish_key));
 }
 
 function rowMatchesStamp(row: ExploreResultCard, stampLabels: string[]) {
@@ -190,7 +187,9 @@ function rowMatchesStamp(row: ExploreResultCard, stampLabels: string[]) {
     row.finish_label,
   ].filter(Boolean).join(" "));
 
-  return stampLabels.some((label) => {
+  return stampLabels.every((label) => {
+    if (label === "First Partner Series" && row.set_code === "mep") return true;
+    if (label === "Poké Card Creator Pack" && row.set_code === "ex5.5") return true;
     const tokens = normalizeSearchText(label)
       .split(" ")
       .filter((token) => token && token !== "stamp" && token !== "workshop");
@@ -289,6 +288,11 @@ function isTimeoutLikeError(error: unknown) {
   );
 }
 
+function removeSetPhrase(query: string, phrase: string) {
+  const pattern = phrase.split(/\s+/).map((word) => word === "and" ? "(?:and|&)" : word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\s+");
+  return query.replace(new RegExp(`(?<![\\p{L}\\p{N}])${pattern}(?![\\p{L}\\p{N}])`, "iu"), " ").replace(/\s+/g, " ").trim();
+}
+
 function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => resolve(fallback), timeoutMs);
@@ -363,19 +367,39 @@ async function applySmartSearchPostFilters(
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
-  const languageScope = normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
-  const gameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
-  const smartSearchIntent = buildSmartSearchIntent(rawQuery);
+  const selectedGameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
+  const smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });
+  const languageScope = smartSearchIntent.languageScope ?? normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
+  const gameScope = smartSearchIntent.gameScope ?? selectedGameScope;
   const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
-  const inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
+  let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
+  // Recognize current catalog codes, including codes added after the bundled
+  // alias snapshot. The ordinary request client retains catalog visibility.
+  if (!exactSetCode && inlineSetIntent.setCodes.length === 0 && !/^GV-/i.test(query)) {
+    const codeTokens = query.split(/\s+/).filter((token) => /^[a-z][a-z0-9.-]*$/i.test(token));
+    if (codeTokens.length) {
+      try {
+        const catalog = await createServerComponentClient();
+        const { data, error } = await catalog.from("sets").select("code").eq("game", gameScope)
+          .in("code", uniqueValues(codeTokens.flatMap((token) => [token, token.toLowerCase(), token.toUpperCase()])));
+        if (error) throw new Error(error.message);
+        if (data?.length === 1) {
+          const alias = codeTokens.find((token) => token.toLowerCase() === data[0].code.toLowerCase())!;
+          inlineSetIntent = { matchedAlias: alias, setCodes: [data[0].code], remainingQuery: removeSetPhrase(query, alias) };
+        }
+      } catch {
+        return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
+      }
+    }
+  }
   const inlineExactSetCode =
     !exactSetCode && inlineSetIntent.setCodes.length === 1
       ? inlineSetIntent.setCodes[0]
       : "";
   const effectiveExactSetCode = exactSetCode || inlineExactSetCode;
-  const routedQuery = inlineExactSetCode
-    ? inlineSetIntent.remainingQuery.replace(/\bfrom\b\s*$/i, "").trim()
+  const routedQuery = !exactSetCode && inlineSetIntent.setCodes.length
+    ? removeSetPhrase(query, inlineSetIntent.matchedAlias ?? "").replace(/\bfrom\b\s*$/i, "").trim()
     : query;
   const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
   const explicitYearMin = parseReleaseYearBound(request.nextUrl.searchParams.get("year_min"));
@@ -390,13 +414,19 @@ export async function GET(request: NextRequest) {
     parseBooleanParam(request.nextUrl.searchParams.get("include_pricing")) ||
     valueSortRequested;
   const explicitOwnedState = parseOwnedState(request.nextUrl.searchParams.get("owned"));
-  const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator")) ?? smartSearchIntent.artist;
+  const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator"))
+    ?? (gameScope !== "pokemon" ? smartSearchIntent.artist : undefined);
   const artistSearch = gameScope === "pokemon"
-    ? exactIllustrator ?? (isKnownArtistQuery(rawQuery) ? rawQuery.trim() : undefined)
+    ? exactIllustrator ?? smartSearchIntent.artist ?? (isKnownArtistQuery(rawQuery) ? rawQuery.trim() : undefined)
     : undefined;
+  const completeCombinedSearch = !artistSearch && Boolean(
+    smartSearchIntent.queryFilters?.length || explicitFinishKeys.length || explicitStampLabels.length ||
+    effectiveExactSetCode || exactIllustrator || exactReleaseYear || explicitYearMin || explicitYearMax || explicitOwnedState || explicitImageState,
+  );
+  const completeSearch = Boolean(artistSearch) || completeCombinedSearch;
   const artistPaginationRequested = request.nextUrl.searchParams.get("pagination") === "1";
   const offsetText = request.nextUrl.searchParams.get("offset") ?? "0";
-  if (artistSearch && artistPaginationRequested && (!/^\d+$/.test(offsetText) || !Number.isSafeInteger(Number(offsetText)))) {
+  if (completeSearch && artistPaginationRequested && (!/^\d+$/.test(offsetText) || !Number.isSafeInteger(Number(offsetText)))) {
     return NextResponse.json({ ok: false, error: "Invalid search page offset" }, { status: 400 });
   }
   const artistOffset = Number(offsetText);
@@ -408,6 +438,16 @@ export async function GET(request: NextRequest) {
     stampLabels: uniqueValues([...smartSearchIntent.stampLabels, ...explicitStampLabels]),
     imageState: explicitImageState ?? smartSearchIntent.imageState,
     ownedState: explicitOwnedState ?? smartSearchIntent.ownedState,
+    queryFilters: [...(smartSearchIntent.queryFilters ?? []),
+      ...([['illustrator', 'artist', 'Artist'], ['set', 'text', 'Set'], ['year', 'year', 'Year'],
+        ['year_min', 'year', 'From year'], ['year_max', 'year', 'Through year'],
+        ['finish', 'finish', 'Finish'], ['stamp', 'stamp', 'Stamp'], ['owned', 'owned', 'Ownership'],
+        ['image_state', 'image', 'Image'], ['image', 'image', 'Image'],
+        ['game', 'game', 'Game'], ['lang', 'language', 'Language']] as const)
+        .filter(([key]) => request.nextUrl.searchParams.has(key) &&
+          !(['game', 'lang'].includes(key) && ['pokemon', 'all'].includes(request.nextUrl.searchParams.get(key) ?? '')))
+        .map(([key, kind, label]) => ({ kind, label: `${label}: ${request.nextUrl.searchParams.getAll(key).join(', ')}`,
+          sourceText: '', queryWithout: rawQuery, removeParameter: key }))],
     interpretedLabels: uniqueValues([
       ...smartSearchIntent.interpretedLabels,
       ...buildExplicitFilterLabels({
@@ -422,6 +462,17 @@ export async function GET(request: NextRequest) {
     ]),
   };
   const identityFilter = normalizeIdentityFilterKey(request.nextUrl.searchParams.get("identity"));
+  if (!exactSetCode && inlineSetIntent.matchedAlias) {
+    const alias = inlineSetIntent.matchedAlias;
+    effectiveSmartSearchIntent.queryFilters = (effectiveSmartSearchIntent.queryFilters ?? []).map((filter) => {
+      if (filter.kind !== "text") return filter;
+      const text = removeSetPhrase(filter.sourceText, alias);
+      return { ...filter, label: `Text: ${text}`, sourceText: text,
+        queryWithout: `${filter.queryWithout ?? ""} ${alias}`.trim() };
+    }).filter((filter) => filter.kind !== "text" || filter.sourceText);
+    effectiveSmartSearchIntent.queryFilters.push({ kind: "set", label: `Set: ${alias}`,
+      sourceText: alias, queryWithout: removeSetPhrase(rawQuery, alias) });
+  }
   const hasSmartYearRange =
     typeof effectiveSmartSearchIntent.releaseYearMin === "number" ||
     typeof effectiveSmartSearchIntent.releaseYearMax === "number";
@@ -437,6 +488,7 @@ export async function GET(request: NextRequest) {
       hasSmartImageIntent ||
       hasSmartStampIntent);
   const hasCatalogDiscoveryScope =
+    Boolean(artistSearch) ||
     gameScope !== "pokemon" ||
     Boolean(effectiveExactSetCode) ||
     typeof exactReleaseYear === "number" ||
@@ -456,7 +508,7 @@ export async function GET(request: NextRequest) {
     !hasCatalogDiscoveryScope &&
     !hasSmartOwnershipIntent;
 
-  if (!query && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
+  if (!query && !completeSearch && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
       {
         ok: false,
@@ -506,6 +558,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    if (gameScope !== "pokemon" && languageScope !== "all") {
+      return NextResponse.json({ ok: false,
+        error: "Language filtering is currently available for Pokémon. Remove the language filter to search this game; it has not been ignored.",
+        smart_search: effectiveSmartSearchIntent,
+      }, { status: 422, headers: { "Cache-Control": "private, no-store" } });
+    }
+
     // Pricing is signed-in-only. For non-value sorts it is safe to defer the
     // bridge read until after filtering and the response limit are applied.
     // Value sorts still enrich the whole bounded candidate set so ordering
@@ -516,7 +575,7 @@ export async function GET(request: NextRequest) {
 
     const includeProvisional =
       gameScope === "pokemon" &&
-      !artistSearch &&
+      !completeSearch &&
       languageScope !== "ja" &&
       !exactReleaseYear &&
       !hasSmartYearRange &&
@@ -527,8 +586,33 @@ export async function GET(request: NextRequest) {
       ? getExploreRowsForArtistSearch(artistSearch, {
           sortMode,
           exactArtist: Boolean(exactIllustrator),
+          artistNames: exactIllustrator ? undefined : smartSearchIntent.artistNames,
           exactIllustrator,
-          textQuery: exactIllustrator ? routedQuery : "",
+          textQuery: exactIllustrator || smartSearchIntent.artist ? routedQuery : "",
+          exactSetCode: effectiveExactSetCode,
+          exactSetCodes: exactSetCode ? undefined : inlineSetIntent.setCodes,
+          exactReleaseYear,
+          identityFilter,
+          releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+          releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+          finishKeys: effectiveSmartSearchIntent.finishKeys,
+          stampLabels: effectiveSmartSearchIntent.stampLabels,
+          imageState: effectiveSmartSearchIntent.imageState,
+          languageScope,
+          includePricing: includePricingDuringResolution,
+        }).then((rows) => ({
+          rows,
+          meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+          smartSearchIntent: effectiveSmartSearchIntent,
+          degraded: false,
+        }))
+      : completeCombinedSearch
+      ? getExploreRowsForCombinedSearch({
+          gameScope,
+          exactIllustrator,
+          exactSetCodes: exactSetCode ? undefined : inlineSetIntent.setCodes,
+          sortMode,
+          textQuery: routedQuery,
           exactSetCode: effectiveExactSetCode,
           exactReleaseYear,
           identityFilter,
@@ -676,10 +760,10 @@ export async function GET(request: NextRequest) {
           })
         : Promise.resolve([]),
     ]);
-    if (artistSearch && resolved.degraded) {
+    if (completeSearch && resolved.degraded) {
       return NextResponse.json({
         ok: false,
-        error: "Artist search timed out. Please try again.",
+        error: "Search timed out before all matches could be checked. Narrow the search or try again.",
         sort_degraded_reason: "resolver_timeout",
       }, { status: 503, headers: { "Cache-Control": "private, no-store" } });
     }
@@ -702,7 +786,7 @@ export async function GET(request: NextRequest) {
     const canonicalResults = gameScope === "pokemon"
       ? resolved.rows.filter((row) => matchesPublicLanguageScope(row, languageScope))
       : resolved.rows;
-    const transitionGroups = artistSearch
+    const transitionGroups = completeSearch
       ? Array.from({ length: Math.ceil(canonicalResults.length / 200) }, (_, index) => canonicalResults.slice(index * 200, (index + 1) * 200))
       : [canonicalResults];
     const transitionMaps = await Promise.all(transitionGroups.map((group) =>
@@ -721,7 +805,7 @@ export async function GET(request: NextRequest) {
       effectiveSmartSearchIntent,
       userId,
     );
-    const artistPage = artistSearch
+    const artistPage = completeSearch
       ? paginateArtistResults(smartFilteredCanonicalResults, artistOffset, resultLimit, artistPaginationRequested)
       : null;
     const limitedCanonicalResultsWithoutDeferredPricing = artistPage
@@ -826,10 +910,10 @@ export async function GET(request: NextRequest) {
       );
     }
     if (isTimeoutLikeError(error)) {
-      if (artistSearch) {
+      if (completeSearch) {
         return NextResponse.json({
           ok: false,
-          error: "Artist search timed out. Please try again.",
+          error: "Search timed out before the complete matching set could be checked. Please narrow your search or try again.",
           sort_degraded_reason: "resolver_timeout",
         }, { status: 503, headers: { "Cache-Control": "private, no-store" } });
       }

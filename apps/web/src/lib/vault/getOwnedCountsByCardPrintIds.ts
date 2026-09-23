@@ -96,7 +96,9 @@ export async function getOwnedCountsByCardPrintIds(
   const counts = new Map<string, number>();
   const requestedCardPrintIds = new Set(normalizedIds);
 
-  for (const chunk of chunkArray(normalizedIds, 500)) {
+  // UUID filters are encoded in the GET URL; keep large complete searches
+  // below the API gateway's request-URI limit.
+  for (const chunk of chunkArray(normalizedIds, 80)) {
     const rows = await fetchAllOwnershipPages<DirectOwnedInstanceRow>(
       (from, to) =>
         adminClient

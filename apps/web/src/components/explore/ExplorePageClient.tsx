@@ -21,6 +21,8 @@ import {
   POKEMON_CARD_BROWSE_LARGE_GRID_CLASSNAME,
 } from "@/components/cards/pokemonCardGridLayout";
 import ExploreCardGridItem from "@/components/explore/ExploreCardGridItem";
+import CombinedSearchFilters from "@/components/explore/CombinedSearchFilters";
+import { readSearchView, rememberSearchView } from "@/lib/search/searchViewMemory";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import { getSearchContextLabel } from "@/components/explore/searchContextLabel";
 import ExploreViewModeToggle from "@/components/explore/ExploreViewModeToggle";
@@ -545,6 +547,41 @@ export default function ExplorePageClient({
   const [visibleResultCount, setVisibleResultCount] = useState(
     INITIAL_VISIBLE_RESULT_COUNT,
   );
+  const searchViewKey = searchParams.toString();
+  const restoringView = useRef<ReturnType<typeof readSearchView>>(undefined);
+  const viewCount = useRef(visibleResultCount);
+  useEffect(() => { viewCount.current = visibleResultCount; }, [visibleResultCount]);
+
+  useEffect(() => {
+    restoringView.current = readSearchView(searchViewKey);
+    setVisibleResultCount(restoringView.current?.count ?? INITIAL_VISIBLE_RESULT_COUNT);
+    const remember = () => {
+      if (!restoringView.current && window.location.pathname === "/explore" &&
+          new URLSearchParams(window.location.search).toString() === searchViewKey) {
+        rememberSearchView(searchViewKey, viewCount.current, window.scrollY);
+      }
+    };
+    window.addEventListener("scroll", remember, { passive: true });
+    document.addEventListener("click", remember, true);
+    return () => {
+      window.removeEventListener("scroll", remember);
+      document.removeEventListener("click", remember, true);
+    };
+  }, [searchViewKey]);
+
+  useEffect(() => {
+    const target = restoringView.current;
+    if (!target || loading || loadingMore || error || pageError || !smartSearchIntent) return;
+    if (rows.length < target.count && artistPagination?.has_more) {
+      loadNextPage.current?.();
+      return;
+    }
+    const frame = requestAnimationFrame(() => {
+      window.scrollTo(0, target.scrollY);
+      restoringView.current = undefined;
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [rows.length, loading, loadingMore, error, pageError, artistPagination, smartSearchIntent]);
   const effectiveCanViewPricing = canViewPricing || viewer.isAuthenticated;
 
   useEffect(() => {
@@ -694,7 +731,7 @@ export default function ExplorePageClient({
         loadNextPage.current = typeof nextOffset === "number" && nextOffset > offset
           ? () => { void load(nextOffset); }
           : null;
-        if (append) setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT);
+        if (append && !restoringView.current) setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT);
         setProvisionalRows(payload.provisional ?? []);
         setResolverMeta(payload.meta ?? null);
         setSmartSearchIntent(payload.smart_search ?? null);
@@ -751,8 +788,9 @@ export default function ExplorePageClient({
   ]);
 
   useEffect(() => {
-    setVisibleResultCount(INITIAL_VISIBLE_RESULT_COUNT);
+    setVisibleResultCount(readSearchView(searchViewKey)?.count ?? INITIAL_VISIBLE_RESULT_COUNT);
   }, [
+    searchViewKey,
     normalizedQuery,
     sortMode,
     exactSetCode,
@@ -869,13 +907,13 @@ export default function ExplorePageClient({
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
       ? rows
           .filter((row) => Boolean(row.gv_id))
-          .filter((row) => matchesPublicLanguageScope(row, languageScope))
+          .filter((row) => matchesPublicLanguageScope(row, smartSearchIntent?.languageScope ?? languageScope))
           .filter((row) =>
             matchesImageConfidenceFilter(row, imageConfidenceFilter),
           )
       : rows
           .filter((row) => Boolean(row.gv_id))
-          .filter((row) => matchesPublicLanguageScope(row, languageScope))
+          .filter((row) => matchesPublicLanguageScope(row, smartSearchIntent?.languageScope ?? languageScope))
           .filter((row) => matchesIdentityFilter(row, identityFilter))
           .filter((row) =>
             matchesImageConfidenceFilter(row, imageConfidenceFilter),
@@ -1190,8 +1228,8 @@ export default function ExplorePageClient({
   const resultCountLabel =
     artistPagination
       ? imageConfidenceFilter === "all" && !isIdentityFilterActive(identityFilter)
-        ? `Showing ${visibleRows.length} of ${artistPagination.total_count} artist results`
-        : `${visibleRows.length} matching cards from ${artistPagination.total_count} artist results`
+        ? `Showing ${visibleRows.length} of ${artistPagination.total_count} ${smartSearchIntent?.artist || exactIllustrator ? "artist results" : "results"}`
+        : `${visibleRows.length} matching cards from ${artistPagination.total_count} ${smartSearchIntent?.artist || exactIllustrator ? "artist results" : "results"}`
       : displayRows.length > 0
       ? visibleRows.length < displayRows.length
         ? `Showing ${visibleRows.length} of ${displayRows.length} ${getImageConfidenceResultNoun(imageConfidenceFilter)}s`
@@ -1618,6 +1656,7 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
+          {smartSearchIntent ? <CombinedSearchFilters intent={smartSearchIntent} search={searchParams.toString()} empty={!loading && !error && rows.length === 0} /> : null}
           {interpretedLabels.length > 0 || residualQuery || unappliedLabels.length > 0 ? (
             <details className="gv-collector-disclosure" open={unappliedLabels.length > 0}>
               <summary>Search details{unappliedLabels.length > 0 ? " - some filters were not applied" : ""}</summary>

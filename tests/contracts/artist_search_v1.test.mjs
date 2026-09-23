@@ -39,7 +39,7 @@ function fixtureClient({ failure = false, records = fixtures, failPage = -1 } = 
     global: { fetch: async (url) => {
       const params = new URL(url).searchParams;
       requests.push(params);
-      if (failure || requests.length === failPage) return new Response(JSON.stringify({ message: 'Artist lookup unavailable' }), { status: 503 });
+      if (failure || (failPage > 0 && requests.length >= failPage)) return new Response(JSON.stringify({ message: 'Artist lookup unavailable' }), { status: 503 });
       // Exercise the actual Supabase request serialization and filter semantics.
       const artistFilter = params.get('artist');
       assert.ok(artistFilter.startsWith('in.('));
@@ -120,6 +120,38 @@ test('a later catalog-page failure does not publish a partial artist collection'
   }));
   await assert.rejects(fetchPokemonArtistRows(fixtureClient({ records, failPage: 2 }).client,
     'id,gv_id,artist', 'Yuka Morii', { complete: true }), /Artist lookup unavailable/);
+});
+
+test('parsed individual artists retain shared credits across complete catalog pages', async () => {
+  const records = Array.from({ length: 1005 }, (_, index) => ({
+    id: String(index).padStart(6, '0'), gv_id: `GV-PK-SHARED-${index}`,
+    artist: 'Ken Sugimori/Yusuke Ohmura',
+  }));
+  records.push({ id: '999999', gv_id: 'GV-PK-UNRELATED', artist: 'Mitsuhiro Arita' });
+  for (const name of ['Ken Sugimori', 'Yusuke Ohmura']) {
+    const { client, requests } = fixtureClient({ records });
+    const rows = await fetchPokemonArtistRows(client, 'id,gv_id,artist', name,
+      { names: [name], complete: true });
+    assert.deepEqual(Array.from(rows, row => row.id), records.slice(0, 1005).map(row => row.id));
+    assert.equal(requests.length, 3);
+    assert.ok(requests.every(p => p.get('artist').includes('Ken Sugimori/Yusuke Ohmura')));
+  }
+});
+
+test('credit expansion uses whole contributors without expanding explicit full-credit filters', async () => {
+  const records = [
+    { id: '1', gv_id: 'GV-PK-SOLO', artist: 'Ken Sugimori' },
+    { id: '2', gv_id: 'GV-PK-SHARED', artist: 'Ken Sugimori/Yusuke Ohmura' },
+    { id: '3', gv_id: 'GV-PK-OTHER-SOLO', artist: 'Yusuke Ohmura' },
+  ];
+  const rowsFor = async (artist, options) => Array.from(await fetchPokemonArtistRows(
+    fixtureClient({ records }).client, 'id,gv_id,artist', artist, options), row => row.id);
+  assert.deepEqual(await rowsFor('Ken Sugimori', { names: ['Ken Sugimori'] }), ['1', '2']);
+  assert.deepEqual(await rowsFor('Yusuke Ohmura', { names: ['Yusuke Ohmura'] }), ['2', '3']);
+  assert.deepEqual(await rowsFor('Ken', { names: ['Ken'] }), []);
+  assert.deepEqual(await rowsFor('Ken Sugimori', { exact: true }), ['1']);
+  assert.deepEqual(await rowsFor('Ken Sugimori/Yusuke Ohmura',
+    { names: ['Ken Sugimori/Yusuke Ohmura'] }), ['2']);
 });
 
 test('artist response paging reaches all 195 cards and legacy clients receive the complete set', () => {

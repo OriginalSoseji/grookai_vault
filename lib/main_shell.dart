@@ -669,6 +669,13 @@ class _AppShellState extends State<AppShell> {
     // Canonical web URLs are the single source of truth for app deep-link
     // routing.
     switch (route.kind) {
+      case GrookaiCanonicalRouteKind.search:
+        unawaited(
+          Navigator.of(
+            context,
+          ).pushNamed('/search', arguments: Uri.parse(route.path)),
+        );
+        break;
       case GrookaiCanonicalRouteKind.card:
         await _openCardDetailFromCanonicalGvId(route.value);
         break;
@@ -1634,6 +1641,9 @@ class _AppShellState extends State<AppShell> {
           minimum: EdgeInsets.fromLTRB(12, 4, 12, bottomSafeInset > 0 ? 4 : 12),
           child: Align(
             alignment: Alignment.bottomCenter,
+            // Scaffold uses this height as the extended body's bottom inset.
+            // Reserve the dock's height, not the entire available screen.
+            heightFactor: 1,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 190),
               curve: Curves.easeOutCubic,

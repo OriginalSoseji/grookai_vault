@@ -421,20 +421,28 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         params: <String, dynamic>{'p_card_print_id': normalizedCardPrintId},
       );
       if (raw is! List) return const <_CardImageFace>[];
-      final faces = raw
-          .whereType<Map>()
-          .map((row) {
-            final index = int.tryParse('${row['face_index'] ?? ''}');
-            final role = _cleanText(row['face_role']).toLowerCase();
-            final imageUrl = _cleanText(row['image_url']);
-            if (index == null || index < 0 || role.isEmpty || imageUrl.isEmpty) {
-              return null;
-            }
-            return _CardImageFace(index: index, role: role, imageUrl: imageUrl);
-          })
-          .whereType<_CardImageFace>()
-          .toList()
-        ..sort((left, right) => left.index.compareTo(right.index));
+      final faces =
+          raw
+              .whereType<Map>()
+              .map((row) {
+                final index = int.tryParse('${row['face_index'] ?? ''}');
+                final role = _cleanText(row['face_role']).toLowerCase();
+                final imageUrl = _cleanText(row['image_url']);
+                if (index == null ||
+                    index < 0 ||
+                    role.isEmpty ||
+                    imageUrl.isEmpty) {
+                  return null;
+                }
+                return _CardImageFace(
+                  index: index,
+                  role: role,
+                  imageUrl: imageUrl,
+                );
+              })
+              .whereType<_CardImageFace>()
+              .toList()
+            ..sort((left, right) => left.index.compareTo(right.index));
       return faces;
     } catch (_) {
       return const <_CardImageFace>[];
@@ -2483,13 +2491,34 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         ),
         const SizedBox(width: 10),
         Expanded(
-          child: Text(
-            value,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w700,
-              height: 1.2,
-            ),
-          ),
+          child: label == 'Illustrator'
+              ? Semantics(
+                  link: true,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.zero,
+                    ),
+                    onPressed: () => Navigator.of(
+                      context,
+                    ).pushNamed('/search', arguments: value),
+                    child: Text(
+                      value,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.primary,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                )
+              : Text(
+                  value,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    height: 1.2,
+                  ),
+                ),
         ),
       ],
     );

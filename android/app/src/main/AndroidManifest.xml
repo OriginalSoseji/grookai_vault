@@ -78,6 +78,8 @@
                 <data android:scheme="https" />
                 <data android:host="grookaivault.com" />
                 <data android:pathPrefix="/card/" />
+                <data android:path="/explore" />
+                <data android:path="/search" />
                 <data android:pathPrefix="/memory/" />
                 <data android:pathPrefix="/u/" />
                 <data android:pathPrefix="/collector/" />
