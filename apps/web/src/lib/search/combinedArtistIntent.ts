@@ -28,8 +28,20 @@ export type CombinedArtistIntent = {
   correction?: { original: string; corrected: string };
 };
 
+export function recognizeLiteralArtist(query: string): CombinedArtistIntent | null {
+  // A correction undo keeps the artist criterion and restores its exact spelling.
+  // Equality reads avoid turning that action into an unrestricted catalog scan.
+  const literal = query.match(/\b(?:artist|illustrator):\s*"([^"\n]+)"/i);
+  if (literal) {
+    const artist = literal[1].trim();
+    if (artist) return { artist, names: [artist], matchedText: literal[0],
+      start: literal.index!, end: literal.index! + literal[0].length };
+  }
+  return null;
+}
+
 export function recognizeCombinedArtist(query: string, allowCorrection = true): CombinedArtistIntent | null {
-  // Quoted text is literal. This also supplies a reversible spelling correction.
+  // Unqualified quoted text is literal, never an inferred artist.
   const searchable = query.replace(/"[^"\n]*"/g, (value) => " ".repeat(value.length));
   const words = [...searchable.matchAll(/[^\s,]+/g)].map((match) => ({
     value: normalize(match[0]), start: match.index!, end: match.index! + match[0].length,

@@ -92,6 +92,12 @@ route, restore packaging bytes, and preserve the primary app. LAN relay ports
 3205/54323 are test-only; stop the owned relay after each attempt. A signed build
 does not close the physical acceptance or production-link gates.
 
+Current approved delivery checkpoint is `docs/checkpoints/combined_search_release_20260922.md`.
+The user approved service deployment and TestFlight 327. PR #510 is merged, but
+the first production-configured candidate is held off the live domain after a
+correction-undo timeout. Preserve the rollback and temporary domain-assignment
+setting while the literal-artist follow-up is verified. Do not upload 327 until
+the repaired service passes and is promoted. No database/schema changes.
 Current iPhone build follow-up is `docs/checkpoints/combined_search_ios327_20260922.md`.
 The user requested a fresh version: 1.0.0 (327) is archived/exported with verified
 distribution signing and matching symbols. No upload/service deployment yet.
