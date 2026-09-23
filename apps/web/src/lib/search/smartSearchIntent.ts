@@ -1,5 +1,5 @@
 import { normalizeExactGvId } from "@/lib/search/exactGvId";
-import { recognizeCombinedArtist } from "./combinedArtistIntent";
+import { recognizeCombinedArtist, recognizeLiteralArtist } from "./combinedArtistIntent";
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
 import { resolveGameScopedSetSearchIntent } from "@/lib/publicSets.shared";
@@ -226,6 +226,8 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     };
   }
   let residual = normalizePokemonPlural(originalQuery);
+  const literalArtist = recognizeLiteralArtist(residual);
+  if (literalArtist) residual = residual.replace(literalArtist.matchedText, " ");
   const queryFilters: SearchQueryFilter[] = [];
   const literalText: string[] = [];
   residual = residual.replace(/"([^"\n]*)"/g, (_, text: string) => {
@@ -247,9 +249,9 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     residual = residual.replace(languageMatch[0], " ");
   }
   // Resolve the credit before removing years/finish words that may occur in it.
-  const combinedArtist = (gameScope ?? options.gameScope ?? "pokemon") === "pokemon" ? recognizeCombinedArtist(residual) : null;
+  const combinedArtist = literalArtist ?? ((gameScope ?? options.gameScope ?? "pokemon") === "pokemon" ? recognizeCombinedArtist(residual) : null);
   if (combinedArtist) {
-    residual = residual.slice(0, combinedArtist.start) + " " + residual.slice(combinedArtist.end);
+    if (!literalArtist) residual = residual.slice(0, combinedArtist.start) + " " + residual.slice(combinedArtist.end);
     queryFilters.push({ kind: "artist", label: `Artist: ${combinedArtist.artist}`, sourceText: combinedArtist.matchedText });
   }
   const interpretedLabels: string[] = queryFilters.map((filter) => filter.label);
@@ -371,7 +373,7 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     artistNames: combinedArtist?.names,
     artistCorrection: combinedArtist?.correction,
     originalSpellingQuery: combinedArtist?.correction
-      ? replaceSource(combinedArtist.matchedText, `"${combinedArtist.correction.original}"`) : undefined,
+      ? replaceSource(combinedArtist.matchedText, `artist: "${combinedArtist.correction.original}"`) : undefined,
     artistChoices: combinedArtist && combinedArtist.names.length > 1
       ? combinedArtist.names.map((name) => ({ name, query: replaceSource(combinedArtist.matchedText, name) })) : undefined,
     queryFilters: [

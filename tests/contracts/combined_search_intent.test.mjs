@@ -55,6 +55,21 @@ test('partial first names retain ambiguity instead of arbitrarily selecting an a
   assert.deepEqual(plain(result.finishKeys), ['holo']);
 });
 
+test('correction undo restores the literal artist while retaining the other constraints', () => {
+  const corrected = parse('Wurmple Yuka Morri reverse holo');
+  const restored = parse(corrected.originalSpellingQuery);
+  assert.equal(restored.artist, 'Yuka Morri');
+  assert.deepEqual(plain(restored.artistNames), ['Yuka Morri']);
+  assert.equal(restored.artistCorrection, undefined);
+  assert.equal(restored.residualQuery, 'Wurmple');
+  assert.deepEqual(plain(restored.finishKeys), ['reverse']);
+  const chip = restored.queryFilters.find((filter) => filter.kind === 'artist');
+  assert.equal(parse(chip.queryWithout).artist, undefined);
+  assert.equal(parse(chip.queryWithout).residualQuery, 'Wurmple');
+  assert.equal(parse('artist: "Yuka Morri" Wurmple').artist, 'Yuka Morri');
+  assert.equal(parse('"Yuka Morri" Wurmple').artist, undefined);
+});
+
 test('normal, holo, reverse holo and explicit any holo have disjoint intended meanings', () => {
   for (const [term, keys] of [['non-holo', ['normal']], ['non holo', ['normal']], ['holo', ['holo']],
     ['reverse holo', ['reverse']], ['any holo', ['holo', 'reverse']]]) {
