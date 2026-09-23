@@ -92,7 +92,14 @@ route, restore packaging bytes, and preserve the primary app. LAN relay ports
 3205/54323 are test-only; stop the owned relay after each attempt. A signed build
 does not close the physical acceptance or production-link gates.
 
-Current physical follow-up is `docs/checkpoints/combined_search_iphone_trust_20260922.md`.
+Current iPhone build follow-up is `docs/checkpoints/combined_search_ios327_20260922.md`.
+The user requested a fresh version: 1.0.0 (327) is archived/exported with verified
+distribution signing and matching symbols. No upload/service deployment yet.
+Use the new frozen sparse checkout; preserve the prior development checkout.
+The live resolver still lacks combined artist interpretation, so coordinated
+service delivery is required before TestFlight search acceptance. Historical
+builds 313–318 intermediate objects were cleaned; archives/products remain.
+Previous physical follow-up is `docs/checkpoints/combined_search_iphone_trust_20260922.md`.
 The 01:59 UTC retry again received Apple's explicit untrusted-certificate launch
 failure. Private `iphone-trusted-pause.json` records fresh app/hash preservation
 and stopped processes/relay; keep these retry logs separate from prior evidence.

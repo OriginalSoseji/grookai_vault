@@ -33,6 +33,7 @@ covers it. Prior feature source and receipts remain available for comparison.
 
 | Gate | Outcome |
 | --- | --- |
+| Fresh iPhone build requested | PASS for archive/export: 1.0.0 (327), source 359741255, release configuration matches 324, signature and Runner/App dSYMs verified, nine focused Mac tests pass. IPA is locally prepared; TestFlight upload, service deployment and physical acceptance remain open. See combined_search_ios327_20260922.md. |
 | Shared-artist preservation | PASS locally after CS-ARTIST-02 repair: both contributors include joint credits; 13 API cases plus multi-engine browser journeys. Original failing live-record reproduction remains historical evidence. |
 | Multi-finish ranking preservation | PASS locally after CS-SEARCH-03 repair: all 84 matching holo/reverse printings survive relevance promotion and pagination. |
 | Shared-credit repair full gate | PASS at 18:27:47 UTC: 4,050 contracts, four skips, 736 Flutter tests, web typecheck/lint/strict build and Flutter analysis. |
