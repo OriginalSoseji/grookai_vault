@@ -1,0 +1,35 @@
+// One explicit upgrade of the retained, empty 176xx orchestration proof. Never a
+// remote apply, general reset command, or reset of the 164/168/172 proof projects.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {root,fixture,project,hash,sql,guardRuntime} from '../tests/vendor_billing_runtime_v1.mjs';
+assert.equal(process.argv.length,2);
+const before=guardRuntime({draft:true});
+const name='20260919080000_vendor_stripe_billing_v1.sql';
+assert.equal(before.sourceHashes[name],'2c2a81dfc28d076b670f37ae0c87d310edd51299a1f3fd78981d06ea2ac3cd11');
+assert.equal(sql("select (to_regprocedure('public.vendor_billing_defer_reconcile_v1(uuid,uuid,bigint,text)') is null)::text;"),'true');
+const original=JSON.parse(fs.readFileSync(path.join(fixture,'reset-status.json')));
+assert.equal(original.status,'passed');assert.deepEqual(original.sourceHashes,before.sourceHashes);
+const history=path.join(fixture,'orchestration-replay');assert.ok(!fs.existsSync(history));
+assert.ok(!fs.existsSync(path.join(fixture,'reconciliation-reset-private.log')));
+fs.mkdirSync(history);
+for(const file of ['patched-preparation.json','reset-status.json'])fs.copyFileSync(path.join(fixture,file),path.join(history,file),fs.constants.COPYFILE_EXCL);
+fs.copyFileSync(path.join(fixture,'supabase/migrations',name),path.join(history,name),fs.constants.COPYFILE_EXCL);
+const current=fs.readFileSync(path.join(root,'supabase/migrations',name));
+fs.writeFileSync(path.join(fixture,'supabase/migrations',name),current);
+const plan=JSON.parse(fs.readFileSync(path.join(fixture,'patched-preparation.json')));
+plan.sourceHashes[name]=hash(current);
+fs.writeFileSync(path.join(fixture,'patched-preparation.json'),JSON.stringify(plan,null,2));
+const env={...process.env};for(const k of Object.keys(env))if(/SUPABASE|DATABASE_URL|POSTGRES_URL/.test(k))delete env[k];
+const run=spawnSync('supabase',['db','reset','--local','--no-seed','--yes','--workdir',fixture,'--network-id',project],{cwd:fixture,env,encoding:'utf8',windowsHide:true,timeout:600000,maxBuffer:32*1024*1024});
+const log=(run.stdout??'')+(run.stderr??'');
+fs.writeFileSync(path.join(fixture,'reconciliation-reset-private.log'),log,{flag:'wx'});
+assert.equal(run.status,0,'Reconciliation replay failed; preserve state and inspect before retry');
+const after=guardRuntime();
+assert.equal(sql("select exists(select 1 from pg_attribute where attrelid='public.user_entitlements'::regclass and attname='billing_plan')::text;"),'true');
+const receipt={at:new Date().toISOString(),status:'passed',...after,command:'supabase db reset --local --no-seed --yes --network-id '+project,logSha256:hash(log),productionWrites:0,providerRequests:0};
+fs.writeFileSync(path.join(fixture,'reconciliation-reset-status.json'),JSON.stringify(receipt,null,2),{flag:'wx'});
+fs.writeFileSync(path.join(fixture,'reset-status.json'),JSON.stringify(receipt,null,2));
+console.log(JSON.stringify({status:'passed',migrations:after.migrations,migrationSha256:hash(current),project}));

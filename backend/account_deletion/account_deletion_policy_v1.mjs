@@ -31,6 +31,8 @@ export function referenceKey(reference) {
 
 export function classifyReference(reference) {
   const key = referenceKey(reference);
+  if (key === 'public.vendor_billing_accounts.owner_id') return {policy:'verified_billing_closeout_required',key};
+  if (key === 'public.vendor_account_financial_holds.owner_id') return {policy:'financial_resolution_required',key};
   if (reference.delete_action === 'CASCADE') {
     return { policy: 'delete_with_hard_auth_removal', key };
   }
@@ -71,6 +73,11 @@ export function buildDeletionDecision({ references, activeOwnedBinders = 0 }) {
       retained_reference_count: retained.length,
       unclassified_reference_count: unclassified.length,
     };
+  }
+  if (populated.some(reference=>['verified_billing_closeout_required','financial_resolution_required'].includes(reference.policy))) {
+    return {decision:'billing_closeout_required',hard_delete_allowed:false,
+      reason:'Stop billing, resolve financial holds and preserve the verified financial archive before account removal.',
+      retained_reference_count:retained.length,unclassified_reference_count:unclassified.length};
   }
   if (unclassified.length > 0) {
     return {

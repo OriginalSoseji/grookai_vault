@@ -692,6 +692,14 @@ class _AppShellState extends State<AppShell> {
       case GrookaiCanonicalRouteKind.collector:
         unawaited(_pushPage<void>(PublicCollectorScreen(slug: route.value)));
         break;
+      case GrookaiCanonicalRouteKind.storeProduct:
+        unawaited(_pushPage<void>(CustomProductScreen(slug:route.value,productId:route.productId!,preview:route.preview)));
+        break;
+      case GrookaiCanonicalRouteKind.store:
+        unawaited(_pushPage<void>(
+          StorefrontScreen(slug: route.value, preview: route.preview),
+        ));
+        break;
       case GrookaiCanonicalRouteKind.collectorSection:
         _openCollectorSection(route);
         break;

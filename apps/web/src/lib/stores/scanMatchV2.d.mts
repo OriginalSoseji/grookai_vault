@@ -1,0 +1,12 @@
+import type { PreparedReference } from './visualMatchCore.mjs';
+export const SCAN_MATCH_VERSION: string;
+export const MATCH_TIMEOUT_MS: number;
+export type ScanCatalogEntry = { id: string; gv_id?: string; name: string; number: string };
+export type EvidenceScore = { id: string; distance: number; artDistance?: number; artGap?: number };
+export type EvidenceCandidate = { id: string; distance: number; rotation: number; evidence: string };
+export type EvidenceResult = { version: string; status: string; candidates: EvidenceCandidate[] };
+export function scanTextEvidence(title: string, footer: string, name: string, number: string): { nameMatch: boolean; numberMatch: boolean; numberConflict: boolean };
+export function chooseEvidenceMatches(observations: { rotation: number; ranked: EvidenceScore[]; title: string; footer: string }[], catalog: ScanCatalogEntry[]): EvidenceResult;
+export function evidenceVisualScores(descriptor: string, references: PreparedReference[]): EvidenceScore[];
+export function scanOrientations(bytes: Uint8Array): Promise<{ rotation: number; bytes: Uint8Array; descriptor: string }[]>;
+export function matchScanV2(bytes: Uint8Array, references: PreparedReference[], catalog: ScanCatalogEntry[]): Promise<EvidenceResult>;

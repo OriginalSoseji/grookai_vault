@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-26T18:09:30.308Z",
+  "project": "grookai-store-prod-20260926",
+  "checks": [
+    "database rollout defaults off and rejects direct service prepare",
+    "real owner capability, anonymous and foreign-origin rejection",
+    "concurrent HTTP preparation allocates exactly one hidden hold copy",
+    "changed retries conflict and foreign owners cannot read or upload a receipt",
+    "missing media and changed bytes leave the prepared copy invisible",
+    "media retry, completed retry and concurrent finish preserve one GVVI",
+    "separate physical items with identical scans retain separate identities",
+    "quarantine, wrong printing, foreign section and private profile deny admission",
+    "publication revalidation after upload rolls back all active inventory changes",
+    "completed retries preserve owner photo replacements and do not reactivate archived copies",
+    "fifty physical items per batch is enforced by database authority",
+    "cancellation before prepare is durable, idempotent and blocks late HTTP and direct RPC",
+    "prepared cancellation retains private archived copy and rejects media, finish and foreign-owner bypass",
+    "completed cancellation reconciles receipt without changing or deleting inventory",
+    "simultaneous finish and cancel produce one terminal outcome",
+    "full fifty-copy batch can correct a cancelled attempt while preserving active limit",
+    "database pause denies both HTTP uploads and direct finalization",
+    "direct authenticated RPC and receipt writes are denied; expired access retains owner receipt reads"
+  ],
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "status": "passed",
+  "emptyOffGuardPassed": true
+}

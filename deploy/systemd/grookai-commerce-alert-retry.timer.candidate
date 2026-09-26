@@ -1,0 +1,12 @@
+[Unit]
+Description=Retry Grookai commerce alert delivery
+
+[Timer]
+OnBootSec=1min
+OnUnitInactiveSec=60s
+AccuracySec=1s
+Unit=grookai-commerce-alert-retry.service
+
+[Install]
+WantedBy=timers.target
+

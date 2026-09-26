@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Grookai commerce billing periodically
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=60s
+AccuracySec=1s
+Unit=grookai-commerce-billing.service
+
+[Install]
+WantedBy=timers.target
+

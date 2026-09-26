@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-26T18:05:59.508Z",
+  "status": "passed",
+  "migration": "20260926200000_vendor_store_trials_v1.sql",
+  "sha256": "a7425df7bb23641a580a6ae6781e37f6e0986e30d316de69b6a6b1fa6c8f2b2d",
+  "changedFunctions": 1,
+  "addedObjects": 26,
+  "retainedObjects": 10328,
+  "productionWrites": 0
+}

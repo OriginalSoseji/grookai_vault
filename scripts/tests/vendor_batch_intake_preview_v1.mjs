@@ -1,0 +1,33 @@
+// Local-only compiled component harness. Synthetic catalog, no Supabase, telemetry,
+// credentials or inventory writer. This proves UI behavior, never database RLS.
+import './vendor_storefront_network_guard.cjs';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import { createServer } from 'node:http';
+import { fileURLToPath } from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+const web=path.join(root,'apps/web'), require=createRequire(path.join(web,'package.json'));
+const {webpack}=require('next/dist/compiled/webpack/webpack');
+const dir=path.join(root,'.local','batch-intake-ui-v1');fs.mkdirSync(dir,{recursive:true});
+const loader=path.join(dir,'loader.cjs');
+fs.writeFileSync(loader,`const ts=require(${JSON.stringify(require.resolve('typescript'))});module.exports=function(source){if(this.resourcePath.endsWith('.css')){const css=source.replace(/:global\\(([^)]+)\\)/g,'$1');return 'const style=document.createElement("style");style.textContent='+JSON.stringify(css)+';document.head.appendChild(style);export default '+JSON.stringify(Object.fromEntries([...source.matchAll(/\\.([a-zA-Z_][a-zA-Z0-9_-]*)/g)].map(m=>[m[1],m[1]])))+';';}return ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true},fileName:this.resourcePath}).outputText;};`);
+const entry=path.join(dir,'entry.tsx');
+fs.writeFileSync(entry,`import React from 'react';import{createRoot}from'react-dom/client';import StoreBatchIntake from '@/components/stores/StoreBatchIntake';import s from '@/components/stores/StoreManager.module.css';import StoreWorkspaceNavigation from '@/components/stores/StoreWorkspaceNavigation';
+const owner={store:{id:new URLSearchParams(location.search).get('store')==='b'?'22222222-2222-4222-8222-222222222222':'11111111-1111-4111-8111-111111111111',display_name:'Synthetic scan shop',app_published:false,web_published:false},sections:[{id:'33333333-3333-4333-8333-333333333333',name:'Reverse holos'}],capabilities:{store_app:true},rollout:{app_enabled:true}};
+function Preview(){const[pending,setPending]=React.useState(false);return <main className={s.workspace}><header className={s.header}><div><span className={s.eyebrow}>GROOKAI / VENDOR WORKSPACE</span><h1>Your card shop</h1><p className={s.muted}>Your inventory, ready for its next collector.</p></div><div className={s.actions}><button onClick={()=>document.documentElement.classList.toggle('gv-dark')}>Light / dark</button></div></header><div className={s.shell}><StoreWorkspaceNavigation active="Vault inventory" navigate={()=>{}} busy={pending} preorders={true}/><div style={{minWidth:0}}><StoreBatchIntake owner={owner as any} close={()=>location.reload()} refresh={async()=>{}} onPendingChange={setPending}/></div></div></main>}createRoot(document.getElementById('root')!).render(<Preview/>);
+document.getElementById('sample')!.onclick=async()=>{const files=new DataTransfer();for(const n of [2,10]){const canvas=document.createElement('canvas');canvas.width=500;canvas.height=700;const ctx=canvas.getContext('2d')!;ctx.fillStyle=n===2?'#e8d650':'#194b83';ctx.fillRect(0,0,500,700);ctx.fillStyle='white';ctx.font='36px sans-serif';ctx.fillText(n===2?'SYNTHETIC FRONT':'SYNTHETIC BACK',35,350);const blob=await new Promise<Blob>(r=>canvas.toBlob(b=>r(b!),'image/png'));files.items.add(new File([blob],'Scan '+n+'.png',{type:'image/png'}));}const input=document.querySelector('input[type=file][multiple]') as HTMLInputElement;input.files=files.files;input.dispatchEvent(new Event('change',{bubbles:true}));};`);
+await new Promise((resolve,reject)=>webpack({mode:'development',devtool:false,entry,context:web,output:{path:path.join(dir,'dist'),filename:'bundle.js',publicPath:'/'},resolve:{extensions:['.tsx','.ts','.js'],alias:{'@':path.join(web,'src')},modules:[path.join(web,'node_modules'),path.join(root,'node_modules')]},module:{rules:[{test:/\.(tsx?|css)$/,exclude:/node_modules/,use:loader}]},optimization:{minimize:false}},(error,stats)=>error||stats.hasErrors()?reject(error||new Error(stats.toString({all:false,errors:true}))):resolve()));
+const card={id:'44444444-4444-4444-8444-444444444444',gv_id:'GV-PK-TEST-001',name:'Synthetic Pikachu',number:'001',set_code:'TEST',image:'/sample.jpg',printings:[{id:'55555555-5555-4555-8555-555555555555',printing_gv_id:'GV-PK-TEST-001-HOLO',finish_label:'Holo'}]};
+const privateSample=path.join(process.env.USERPROFILE,'.codex/tmp/tcgautomate-review-20260922/sample-0.jpg');
+const server=createServer((req,res)=>{
+ res.setHeader('cache-control','no-store');
+ if(req.url==='/api/stores/owner/intake'){res.setHeader('content-type','application/json');res.end(JSON.stringify({commit:false,recognition:false}));return;}
+ if(req.url.startsWith('/api/stores/owner/inventory?')){res.setHeader('content-type','application/json');res.end(JSON.stringify({cards:[card],more:false}));return;}
+ if(req.url==='/sample.jpg'&&fs.existsSync(privateSample)){res.setHeader('content-type','image/jpeg');res.end(fs.readFileSync(privateSample));return;}
+ if(req.url==='/'||req.url.startsWith('/?')){res.setHeader('content-type','text/html; charset=utf-8');res.end('<!doctype html><html class="gv-dark"><head><meta charset="utf-8"><title>Grookai batch intake — local synthetic proof</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;background:#f4f6f4;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}html.gv-dark body{background:#111518}#root{max-width:1640px;padding:0 28px;margin:auto}.proof{font-size:11px;padding:8px 28px;background:#eaf1ec;color:#456252;display:flex;gap:14px;align-items:center}html.gv-dark .proof{background:#1b2920;color:#a9c6b6}.proof button{font:inherit;color:inherit;border:1px solid #687e70;background:transparent;border-radius:4px;cursor:pointer}@media(max-width:600px){#root{padding:0 12px}.proof{padding:8px 12px}}</style></head><body><aside class="proof">LOCAL PREVIEW · Synthetic catalog · Inventory writes disabled <button id="sample">Load synthetic front/back pair</button></aside><div id="root"></div><script src="/bundle.js"></script></body></html>');return;}
+ const name=req.url.slice(1);if(!/^[a-zA-Z0-9_.-]+\.js$/.test(name)){res.writeHead(404).end();return;}
+ const file=path.join(dir,'dist',name);if(!fs.existsSync(file)){res.writeHead(404).end();return;}
+ res.setHeader('content-type','text/javascript');res.end(fs.readFileSync(file));
+});
+server.listen(25840,'127.0.0.1',()=>console.log('Synthetic component preview: http://127.0.0.1:25840; writes disabled; no production access.'));

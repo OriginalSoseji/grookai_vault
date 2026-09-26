@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-26T18:15:30.955Z",
+  "status": "passed",
+  "target": "ycdxbpibncqcchqiihfz",
+  "bucket": "vendor-scan-features-v29",
+  "objects": 19621,
+  "bytes": 8478139239,
+  "exactInventory": true,
+  "private": true,
+  "allHashesReadBack": true,
+  "journalSha256": "2fa6bd6cbd258f6dd817c66afe238defdc242a7d4ad4ace842398401981764a9",
+  "inventorySha256": "4151fa10e6aaa973ad031a879ce56cd061c822aee9cf749bbe00e483ced04b5e",
+  "productionWrites": 0
+}

@@ -1,8 +1,13 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
+import typescriptParser from "@typescript-eslint/parser";
 
 export default defineConfig([
   ...nextVitals,
+  {
+    files: ["**/*.mts"],
+    languageOptions: { parser: typescriptParser },
+  },
   {
     rules: {
       // These React compiler diagnostics were not part of the pre-upgrade lint
@@ -41,6 +46,8 @@ export default defineConfig([
   },
   globalIgnores([
     ".next/**",
+    ".next-batch-intake/**",
+    ".next-storefront/**",
     "node_modules/**",
     "out/**",
     "build/**",

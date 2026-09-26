@@ -194,7 +194,7 @@ export type VaultInstanceDetail = {
   outcomes: VaultInstanceOutcome[];
 };
 
-export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Promise<VaultInstanceDetail | null> {
+export async function getVaultInstanceByGvvi(userId: string, gvviId: string, options: { includeArchived?: boolean } = {}): Promise<VaultInstanceDetail | null> {
   const normalizedUserId = userId.trim();
   const normalizedGvviId = gvviId.trim();
 
@@ -203,14 +203,15 @@ export async function getVaultInstanceByGvvi(userId: string, gvviId: string): Pr
   }
 
   const admin = createServerAdminClient();
-  const { data: instanceData, error: instanceError } = await admin
+  let instanceQuery = admin
     .from("vault_item_instances")
     .select(
       "id,user_id,gv_vi_id,card_print_id,card_printing_id,slab_cert_id,legacy_vault_item_id,condition_label,intent,notes,created_at,archived_at,grade_company,grade_value,grade_label,photo_url,image_url,image_back_url,image_display_mode,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note",
     )
     .eq("gv_vi_id", normalizedGvviId)
-    .is("archived_at", null)
-    .maybeSingle();
+    .eq("user_id", normalizedUserId);
+  if (!options.includeArchived) instanceQuery = instanceQuery.is("archived_at", null);
+  const { data: instanceData, error: instanceError } = await instanceQuery.maybeSingle();
 
   if (instanceError || !instanceData) {
     return null;

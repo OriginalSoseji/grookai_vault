@@ -1,0 +1,26 @@
+// One bounded recovery of a failed NEW local start. No reset or earlier lab writes.
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {spawnSync} from 'node:child_process';
+import {root,fixture,project,pending,hash,hashes,docker,sourceState,guard} from './vendor_batch_private_copy_runtime_v1.mjs';
+assert.equal(process.argv.length,2);const source=sourceState();
+const log=fs.readFileSync(path.join(fixture,'start-private.log'));
+assert.equal(hash(log),'2a4dd2bb364c3ccf9a040144b0ab61b5699d5c1db230f1c0c184c7574e49bcff');
+const marker=path.join(fixture,'baseline-recovery-intent.json');assert.ok(!fs.existsSync(marker));
+assert.equal(docker('ps','-a','--filter',`name=supabase_db_${project}`,'--format','{{.Names}}'),'');
+assert.equal(JSON.parse(docker('network','inspect',project))[0].Internal,true);
+const config=fs.readFileSync(path.join(fixture,'supabase/config.toml'));
+assert.equal(hash(config),JSON.parse(fs.readFileSync(path.join(fixture,'preparation.json'))).configSha256);
+const copied=hashes(path.join(fixture,'supabase/migrations'));
+assert.equal(Object.keys(copied).length,401);
+const extra='20260923040000_vendor_batch_commit_v1.sql';assert.equal(copied[extra],source[extra]);delete copied[extra];
+const expected=Object.fromEntries(Object.entries(source).filter(([name])=>!pending.includes(name)));
+assert.deepEqual(copied,expected);assert.equal(Object.keys(expected).length,400);
+fs.writeFileSync(marker,JSON.stringify({project,failedLogSha256:hash(log),sourceHashes:source}),{flag:'wx'});
+const target=path.resolve(fixture,'supabase/migrations',extra);
+assert.equal(target,path.resolve(root,'.local/integration/vendor-batch-private-copy-v1/supabase/migrations',extra));
+fs.copyFileSync(target,path.join(fixture,'erroneously-included-migration.sql'),fs.constants.COPYFILE_EXCL);
+fs.unlinkSync(target);
+const env={...process.env,DO_NOT_TRACK:'1'};for(const key of Object.keys(env))if(/SUPABASE|DATABASE_URL|POSTGRES_URL/.test(key))delete env[key];
+const run=spawnSync('supabase',['start','--workdir',fixture,'--network-id',project,'--exclude','realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'],{env,encoding:'utf8',windowsHide:true,timeout:600000,maxBuffer:32*1024*1024});
+fs.writeFileSync(path.join(fixture,'recovered-start-private.log'),(run.stdout??'')+(run.stderr??''),{flag:'wx'});
+assert.equal(run.status,0,'Inspect retained state; recovery is consumed');
+const state=guard();console.log(JSON.stringify({status:'baseline_recovered',project,applied:state.applied,resetRepeated:false,productionWrites:0}));

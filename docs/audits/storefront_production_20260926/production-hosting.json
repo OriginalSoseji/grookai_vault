@@ -1,0 +1,18 @@
+[
+  {
+    "alias": "grookaivault.com",
+    "deployment": "dpl_9GgsSDFbyMZJswMyq7UVszPMcyoM",
+    "project": "prj_m3B6s7jAwXJ4WGbE9fK2WhJsFlum",
+    "state": "READY",
+    "source": "4c1fb7858146f2100e4b5d0de9c94716d0335409",
+    "createdAt": 1790412933230
+  },
+  {
+    "alias": "www.grookaivault.com",
+    "deployment": "dpl_5SUb2AP3JQZaPbbNerhpdmKQz93R",
+    "project": "prj_oQ3eOCL0S5WcGOWE7w4Ux1iSu4N8",
+    "state": "READY",
+    "source": "5cb3ed73b107b25907c841d49a342ed74fd43c6c",
+    "createdAt": 1757207979253
+  }
+]

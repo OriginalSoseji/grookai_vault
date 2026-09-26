@@ -1,0 +1,26 @@
+// Full production Dart app, with external telemetry disabled only in this harness.
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+import 'package:grookai_vault/main.dart' as production;
+class DisabledFirebase extends FirebasePlatform {
+ @override List<FirebaseAppPlatform> get apps => [];
+ @override Future<FirebaseAppPlatform> initializeApp({String? name, FirebaseOptions? options}) async => throw StateError('Firebase disabled for isolated local proof');
+}
+class LocalNetworkOnly extends HttpOverrides {
+ @override HttpClient createHttpClient(SecurityContext? context) {
+  final client=super.createHttpClient(context);
+  client.connectionFactory=(uri,proxyHost,proxyPort) {
+   if(uri.host!='127.0.0.1'||![16421,15440].contains(uri.port)||proxyHost!=null) throw StateError('Blocked nonlocal proof request: ${uri.scheme}://${uri.host}:${uri.port}');
+   return Socket.startConnect(uri.host,uri.port);
+  };
+  return client;
+ }
+ @override String findProxyFromEnvironment(Uri url,Map<String,String>? environment)=>'DIRECT';
+}
+Future<void> main() async {
+ WidgetsFlutterBinding.ensureInitialized();
+ FirebasePlatform.instance=DisabledFirebase();
+ HttpOverrides.global=LocalNetworkOnly();
+ await production.main();
+}

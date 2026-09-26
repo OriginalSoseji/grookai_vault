@@ -1,0 +1,141 @@
+{
+  "at": "2026-09-26T17:26:29.482Z",
+  "base": "a98dd26f79967a741632c7efa3086d85cccacb87",
+  "main": "4c1fb7858146f2100e4b5d0de9c94716d0335409",
+  "sourceHead": "7ef0ba02040d290bfa390b8bd3882d7b960f4ccd",
+  "frozenFilesVerified": 2161,
+  "files": [
+    {
+      "path": "lib/card_detail_screen.dart",
+      "sourceSha256": "b6ceaf6e7b40886c82644bfae04a6e56612928b0bc21f6906b7956b67bd1e862",
+      "mainSha256": "3f3e81fde87ec37c862726f364181f4a5266ec8199ac1cc2ef4c400240181c8c",
+      "action": "three-way-merged"
+    },
+    {
+      "path": "lib/main.dart",
+      "sourceSha256": "ded343565e3c5c987488b900daed91e75e0d4e38cb739a2eec63794092dce74f",
+      "mainSha256": "48ee28920e2895280ecc788df266bc214b4029c6e5ec41ba9264a3adae8789ed",
+      "action": "three-way-merged"
+    },
+    {
+      "path": "lib/main_shell.dart",
+      "sourceSha256": "13380850a123535fe5ee73d637c9b73d8da2905d5fe070934c8e284fea806413",
+      "mainSha256": "99d2dcb2faed40581d37520728f96a023d1d5b3fecb47832ced5f230b732f654",
+      "action": "conflict"
+    },
+    {
+      "path": "lib/screens/gvvi/vendor_pricing_workspace_screen.dart",
+      "sourceSha256": "6ba7981ceb0150cf0ccd195125b06148d3dadee9d0dd2effd8d963a5a346bbe8",
+      "mainSha256": "918e047fa2bfd749558fa0835a2e6070f105af7b221b9aaf26869c0fe154ff16",
+      "action": "imported"
+    },
+    {
+      "path": "lib/screens/network/network_screen.dart",
+      "sourceSha256": "c200ba90eba53b74f8f64b35611b42ad45973f342f1cf94de1eb7fb250f16700",
+      "mainSha256": "d7b01641d2238a3dcf0ff044c91d6b79cd7292a4f3ee126a008ed1806edd8288",
+      "action": "three-way-merged"
+    },
+    {
+      "path": "lib/screens/stores/custom_product_management_screen.dart",
+      "sourceSha256": "70b7c393d6aa8be6bfd3bb551305ac7e89b59ed3223d204ca0b2d30ae7d51ebe",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "lib/screens/stores/custom_product_screen.dart",
+      "sourceSha256": "8675f25ecad4b6654a97eb43a8c953abf0e3d3da8b2a50951070ce988e8760ba",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "lib/screens/stores/store_management_screen.dart",
+      "sourceSha256": "5db9f9ba1ccebea0c9098b1497f32872ba50f5a5c12a1752c2d4d5093bee4a17",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "lib/screens/stores/storefront_screen.dart",
+      "sourceSha256": "15e09a78f4e5637f4bcc682206a7c7c6db55a5d3064b8801727d7927908e9a07",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "lib/services/navigation/grookai_web_route_service.dart",
+      "sourceSha256": "2c211b2d57276eb6b6530d44d861e8cc999c9a6f9baf23dc1cfd31816094e1e1",
+      "mainSha256": "71bcf797222062f15d2a989fc84a058ba40e3cc1daab85d326fd02809fd7ba85",
+      "action": "conflict"
+    },
+    {
+      "path": "lib/services/public/public_card_printing_options_service.dart",
+      "sourceSha256": "4a7d00488fc5c1b33b9c1b45b36a87ce6a20345a8376e75defdde8659d9d5859",
+      "mainSha256": "ae7cf58abeaba5685455c5852ed9b0a6dca7fcea3e1fee826b232fc0fd5316e1",
+      "action": "imported"
+    },
+    {
+      "path": "lib/services/stores/storefront_service.dart",
+      "sourceSha256": "5887093e0f0c38c1c11ab804d18544117295c07125bc498eba183065e4ee8937",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "lib/services/vault/vault_card_service.dart",
+      "sourceSha256": "0608d14e1c63767f443f7f757554357efb453208f29d553cddbdf09f26cfb6bb",
+      "mainSha256": "244b17ce4dd030eb0ccf8d3c7797760a80f9a58711922c1b9e865241f426fb8a",
+      "action": "imported"
+    },
+    {
+      "path": "lib/widgets/vault/confirm_unassigned_printing.dart",
+      "sourceSha256": "a40276f97a8a888867618f05d381fd34ddc3178f2f79140a8212fb9160b1c5c3",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "test/app_flow_prod_readiness_test.dart",
+      "sourceSha256": "b67086b8cbda56e4a80913f1d5dc9c77cd1b0b32605f5182adce490539b043a6",
+      "mainSha256": "e75ce1942c11d6779053f3459da6ff6784c26db4536701aaf5d977081f8e90e2",
+      "action": "imported"
+    },
+    {
+      "path": "test/custom_collectibles_v1_test.dart",
+      "sourceSha256": "f76f8c14ab479ce613b363a9848a89810b774ca3dbadb43a78062644f31ac469",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "test/nav_friction_search_quick_add_test.dart",
+      "sourceSha256": "5d4c6ff0f5f7ca5c2d0f3438c92ace5e12db6b1ccf800ecac11094f045c3e32c",
+      "mainSha256": "497b4bca8f5774dadd0b8ee52801e4ef3ad2ec0178326e8905c6c28c7937b7d2",
+      "action": "imported"
+    },
+    {
+      "path": "test/public_card_printing_options_truth_boundary_test.dart",
+      "sourceSha256": "bff35c99c28b580bb756388f8b474972582afef73297553368dd4ea41999d51f",
+      "mainSha256": "d61eeb50bad5d80848e7728d9004e32ce3e5494e5ac6dc358ca36a185888edaa",
+      "action": "imported"
+    },
+    {
+      "path": "test/storefront_v1_test.dart",
+      "sourceSha256": "cea4e0b1b1ff3d3821bf0f5b61b623653ea5d2016af53ac501005e8c9856bd65",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "test/vault_unassigned_add_test.dart",
+      "sourceSha256": "f00b7d19de32555dd8359a3a284684a323dab3e01b726bbee721b10125d3cf6f",
+      "mainSha256": null,
+      "action": "imported"
+    }
+  ],
+  "conflicts": [],
+  "resolution": "Kept current-main dock sizing and queryParametersAll; selectively integrated only store routes into main.dart. Excluded separate Vault-add PR behavior, service and tests.",
+  "excludedVaultAdd": [
+    "lib/card_detail_screen.dart",
+    "lib/services/public/public_card_printing_options_service.dart",
+    "lib/services/vault/vault_card_service.dart",
+    "test/app_flow_prod_readiness_test.dart",
+    "test/nav_friction_search_quick_add_test.dart",
+    "test/public_card_printing_options_truth_boundary_test.dart",
+    "lib/widgets/vault/confirm_unassigned_printing.dart",
+    "test/vault_unassigned_add_test.dart"
+  ]
+}

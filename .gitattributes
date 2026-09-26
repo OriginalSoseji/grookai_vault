@@ -9,3 +9,8 @@
 *.md text eol=lf
 docs/audits/japanese_master_index_v4/sets/raw/*.html -text -diff
 docs/audits/catalog_discovery/collectible_wave1_set_foundations_v1/production_apply_v1/* -text -diff
+
+# Retain qualified source/archive bytes across Windows and Linux checkouts.
+apps/web/src/lib/stores/scanMatchV11.mjs -text
+apps/web/src/lib/stores/scanMatchV12.mjs -text
+docs/audits/storefront_production_package_v1/historical_migrations/*.sql -text

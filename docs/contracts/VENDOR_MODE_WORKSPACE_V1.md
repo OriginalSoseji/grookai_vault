@@ -63,6 +63,16 @@ boundaries. Cancellation or failure leaves the row visible.
 
 ## Mark Sold Or Traded
 
+The desktop owner page `/vault/gvvi/{GVVI}` also exposes an explicit sale/trade
+form and confirmation. It requires the actual sale amount rather than defaulting
+to the asking price, or received-item details with optional cash paid/received.
+The same authenticated V2 RPC remains the mutation authority. Owner-private
+receipts remain readable after archival; the server ownership-proof context checks
+the exact authenticated owner's archived copy because client RLS hides archived
+instances. Matching retries return the existing receipt without another mutation;
+conflicting retries fail. No payment verification or recipient ownership is implied.
+This control preserves existing signed-in owner access without a store package.
+
 Each row supports the opposite, start-to-end swipe gesture for an off-platform
 disposition. The gesture reveals `Sold / Traded` and opens an explicit choice;
 it never mutates data from the swipe alone.

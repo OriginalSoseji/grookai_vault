@@ -122,6 +122,16 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/stores/
+!apps/web/src/app/api/stores/**
+!apps/web/src/app/api/vendor-billing/
+!apps/web/src/app/api/vendor-billing/**
+!apps/web/src/app/api/vendor-orders/
+!apps/web/src/app/api/vendor-orders/**
+!apps/web/src/app/api/vendor-payments/
+!apps/web/src/app/api/vendor-payments/**
+!apps/web/src/app/api/vendor-preview/
+!apps/web/src/app/api/vendor-preview/**
 !apps/web/src/app/api/gvvi/
 !apps/web/src/app/api/gvvi/**
 !apps/web/src/app/api/follows/
@@ -221,3 +231,7 @@ backups/
 temp/
 
 .vercel
+
+# Isolated storefront labs, credentials, release packages and generated builds.
+/.local/
+/apps/web/.next*/

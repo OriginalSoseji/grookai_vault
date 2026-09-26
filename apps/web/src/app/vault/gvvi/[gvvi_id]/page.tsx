@@ -12,6 +12,8 @@ import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCar
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSectionMembershipCard from "@/components/vault/VaultInstanceSectionMembershipCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
+import VaultDispositionCard from "@/components/vault/VaultDispositionCard";
+import { readOwnerDisposition } from "@/lib/vault/vaultDisposition";
 import {
   buildOwnedCardMessagesHref,
   getOwnedCardMessageSummaries,
@@ -77,14 +79,17 @@ export default async function VaultInstancePage(
   }
 ) {
   const params = await props.params;
-  const { user } = await requireServerUser(`/vault/gvvi/${params.gvvi_id}`);
+  const { user, supabase } = await requireServerUser(`/vault/gvvi/${params.gvvi_id}`);
 
-  const detail = await getVaultInstanceByGvvi(user.id, params.gvvi_id);
+  const detail = await getVaultInstanceByGvvi(user.id, params.gvvi_id, { includeArchived: true });
   if (!detail) {
     notFound();
   }
 
   const isActive = detail.archivedAt === null;
+  const disposition = await readOwnerDisposition(supabase, user.id, detail.instanceId)
+    .then(receipt => ({ receipt, unavailable: false }))
+    .catch(() => ({ receipt: null, unavailable: true }));
   const publicSharePath =
     isActive && detail.intent !== "hold" ? `/gvvi/${encodeURIComponent(detail.gvviId)}` : null;
   const managementPath = `/vault/gvvi/${encodeURIComponent(detail.gvviId)}`;
@@ -273,7 +278,9 @@ export default async function VaultInstancePage(
           ) : null}
 
           {/* LOCK: GVVI is the only product surface for exact-copy Wall and Section curation. */}
-          <VaultInstanceSettingsCard
+          <VaultDispositionCard key={detail.instanceId} instanceId={detail.instanceId} gvviId={detail.gvviId}
+            isActive={isActive} receipt={disposition.receipt} receiptUnavailable={disposition.unavailable} />
+          {isActive && <><VaultInstanceSettingsCard
             instanceId={detail.instanceId}
             initialIntent={detail.intent}
             initialConditionLabel={detail.conditionLabel}
@@ -285,13 +292,15 @@ export default async function VaultInstancePage(
           <VaultInstanceSectionMembershipCard
             model={sectionMembershipModel}
             isActive={isActive}
-          />
+          /></>}
 
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
             <SectionHeader
-              title="Share"
+              title={isActive ? "Share" : "Private history link"}
               description={
-                publicSharePath
+                !isActive
+                  ? "This link opens your archived copy for you when signed in."
+                  : publicSharePath
                   ? "Copy the public link for this card."
                   : "Mark this copy Trade, Sell, or Showcase to share a public link."
               }

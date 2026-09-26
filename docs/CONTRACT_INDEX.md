@@ -13,6 +13,11 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| VENDOR_STOREFRONTS_V1 | Active implementation contract | docs/contracts/VENDOR_STOREFRONTS_V1.md - Explicit store and exact-copy publication, database package authority, privacy and printing eligibility |
+| VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1 | Active implementation contract | docs/contracts/VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1.md - Computer-based setup, inventory, pricing, sections and photos |
+| VENDOR_CUSTOM_COLLECTIBLES_V1 | Active implementation contract | docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md - Owner-authored products without canonical identity or ownership duplication |
+| VENDOR_BATCH_INTAKE_V1 | Active implementation contract | docs/contracts/VENDOR_BATCH_INTAKE_V1.md - Reviewed scan intake, idempotent copy creation and private media finalization |
+| VENDOR_STORE_TRIALS_V1 | Active implementation contract | docs/contracts/VENDOR_STORE_TRIALS_V1.md - Invitation-only expiring store access; no billing, automatic publication or permanent grants |
 | SEALED_OWNED_COLLECTIBLES_V1 | Active implementation contract | docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md - Exact-copy sealed ownership in the existing Vault, qualified totals, Wall, vendor, sale/trade/history and sharing; production activation requires migration replay and mixed-inventory acceptance |
 | GROOKAI_GUARDRAILS | Active | Global stop-rules and mandatory audit triggers |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |

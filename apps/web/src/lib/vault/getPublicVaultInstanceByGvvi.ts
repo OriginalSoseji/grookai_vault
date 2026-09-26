@@ -139,6 +139,10 @@ async function getActiveOwnerEntitlement(
   admin: ReturnType<typeof createServerAdminClient>,
   ownerUserId: string,
 ): Promise<PublicOwnerEntitlementRow | null> {
+  // Database time gates paid contributions. Falling back reads manual fields
+  // only, preserving legacy QR behavior before the billing migration is applied.
+  const effective = await admin.rpc("grookai_effective_entitlement_v1", { p_user_id: ownerUserId });
+  if (!effective.error && effective.data) return effective.data as PublicOwnerEntitlementRow;
   const { data: userIdEntitlement } = await admin
     .from("user_entitlements")
     .select("tier,role,features,is_active")

@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { captureStorefrontBuildConfig } from "./preserve_storefront_build_config.mjs";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, "..", "..");
@@ -9,6 +10,8 @@ const existingNodeOptions = process.env.NODE_OPTIONS?.trim();
 const nodeOptions = existingNodeOptions
   ? `${existingNodeOptions} --use-system-ca`
   : "--use-system-ca";
+
+const restoreConfig = captureStorefrontBuildConfig(webRoot, process.env);
 
 const result = spawnSync(
   process.execPath,
@@ -30,5 +33,7 @@ const result = spawnSync(
 
 process.stdout.write(result.stdout ?? "");
 process.stderr.write(result.stderr ?? "");
+
+restoreConfig();
 
 process.exit(result.status ?? 1);

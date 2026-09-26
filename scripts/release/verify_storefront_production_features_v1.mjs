@@ -1,0 +1,21 @@
+// Independent inventory readback after each uploaded object passed a full byte hash.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {root,hash,fixture} from '../schema/storefront_production_lab_v1.mjs';
+assert.equal(process.argv.length,2);
+const dir=path.join(fixture,'production-features-v1'),target='ycdxbpibncqcchqiihfz',bucket='vendor-scan-features-v29';
+const audit=path.join(root,'docs/audits/storefront_production_20260926');
+const planBytes=fs.readFileSync(path.join(dir,'plan.private.json')),plan=JSON.parse(planBytes),staged=JSON.parse(fs.readFileSync(path.join(audit,'feature-staging.json')));
+assert.equal(staged.target,target);assert.equal(staged.planSha256,hash(planBytes));assert.equal(staged.allHashesReadBack,true);assert.equal(staged.journalSha256,hash(fs.readFileSync(path.join(dir,'verified.jsonl'))));
+const token=execFileSync('pwsh',['-NoProfile','-File','C:/gv_store_billing_20260919/scripts/preview/collector_management_credential.ps1'],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']}).trim();assert.match(token,/^sbp_/);
+const headers={Authorization:`Bearer ${token}`,'Content-Type':'application/json'};
+const p=await fetch(`https://api.supabase.com/v1/projects/${target}`,{headers});assert.ok(p.ok);assert.equal((await p.json()).id,target);
+const query=`begin read only;select jsonb_build_object('bucket',(select jsonb_build_object('id',id,'public',public) from storage.buckets where id='${bucket}'),'objects',(select jsonb_agg(jsonb_build_object('path',name,'bytes',(metadata->>'size')::bigint) order by name) from storage.objects where bucket_id='${bucket}')) as receipt;rollback;`;
+const response=await fetch(`https://api.supabase.com/v1/projects/${target}/database/query`,{method:'POST',headers,body:JSON.stringify({query}),signal:AbortSignal.timeout(120000)});assert.ok(response.ok);const receipt=(await response.json())[0].receipt;
+assert.deepEqual(receipt.bucket,{id:bucket,public:false});assert.equal(receipt.objects.length,19621);
+const expected=plan.objects.map(r=>({path:r.path,bytes:r.bytes})).sort((a,b)=>a.path.localeCompare(b.path));assert.deepEqual(receipt.objects,expected);
+fs.writeFileSync(path.join(dir,'inventory-readback.private.json'),JSON.stringify(receipt),{flag:'wx'});
+const report={at:new Date().toISOString(),status:'passed',target,bucket,objects:19621,bytes:plan.bytes,exactInventory:true,private:true,allHashesReadBack:true,journalSha256:staged.journalSha256,inventorySha256:hash(JSON.stringify(receipt.objects)),productionWrites:0};
+fs.writeFileSync(path.join(audit,'feature-inventory.json'),JSON.stringify(report,null,2),{flag:'wx'});console.log(JSON.stringify(report));

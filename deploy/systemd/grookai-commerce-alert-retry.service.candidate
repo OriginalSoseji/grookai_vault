@@ -1,0 +1,21 @@
+[Unit]
+Description=Retry retained Grookai commerce alerts
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=grookai
+WorkingDirectory=/opt/grookai_vault_commerce
+EnvironmentFile=/etc/grookai/commerce-alerts.env
+Environment=DOTENV_CONFIG_PATH=/dev/null
+StateDirectory=grookai-commerce-alerts
+Environment=GROOKAI_COMMERCE_ALERT_STATE_DIR=/var/lib/grookai-commerce-alerts
+ExecStart=/usr/bin/flock -w 180 /var/lib/grookai-commerce-alerts/dispatch.lock /usr/bin/env node backend/payments/vendor_commerce_alert_v1.mjs --retry
+TimeoutStartSec=6min
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+UMask=0077
+

@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-26T17:50:48.611Z",
+  "status": "passed",
+  "migrations": 401,
+  "archivedInputs": 19,
+  "source": {
+    "name": "20260926190000_vendor_storefront_production_v1.sql",
+    "sha256": "b7af6215e0ba008ba19551c76672e2c05023ea5618b682301297742abe84c9a3",
+    "bytes": 289174
+  },
+  "productionWrites": 0
+}

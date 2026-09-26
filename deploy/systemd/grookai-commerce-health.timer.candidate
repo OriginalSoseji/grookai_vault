@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Grookai commerce health periodically
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=60s
+AccuracySec=1s
+Unit=grookai-commerce-health.service
+
+[Install]
+WantedBy=timers.target
+

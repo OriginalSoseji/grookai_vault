@@ -33,8 +33,12 @@ test("web dependency overrides retain the audited transitive security floor", ()
   assert.equal(packageLock.packages["node_modules/next"].version, "16.3.4");
   assert.equal(packageJson.overrides["brace-expansion"], "5.0.9");
   assert.equal(packageJson.overrides.minimatch, "10.2.6");
-  assert.ok(packageLock.packages["node_modules/@emnapi/core"]);
-  assert.ok(packageLock.packages["node_modules/@emnapi/runtime"]);
+  // npm may nest a different optional wasm version under its consuming package.
+  // Preserve the dependency check without requiring one hoisting arrangement.
+  for (const name of ["@emnapi/core", "@emnapi/runtime"]) {
+    assert.ok(Object.keys(packageLock.packages).some(key =>
+      key === `node_modules/${name}` || key.endsWith(`/node_modules/${name}`)), name);
+  }
 });
 
 test("Next 16 request interception uses proxy and no legacy middleware entrypoint", () => {

@@ -294,6 +294,16 @@ function addSecurityHeaders(response: NextResponse, request: NextRequest) {
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
+  const orderPath = request.nextUrl.pathname === "/account/orders" ||
+    request.nextUrl.pathname.startsWith("/account/orders/") ||
+    request.nextUrl.pathname === "/account/store/orders";
+  if (orderPath) {
+    response.headers.set("Cache-Control", "private, no-store, max-age=0");
+    response.headers.append("Vary", "Cookie");
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+    response.headers.set("Referrer-Policy", "no-referrer");
+  }
+
   if (
     request.nextUrl.pathname === "/binders" ||
     request.nextUrl.pathname.startsWith("/binders/") ||

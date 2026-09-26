@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Production storefront integration — September 26
+
+Read `docs/ops/STOREFRONT_PRODUCTION_20260926.md`. New release worktree:
+`C:/gv_store_production_20260926`, now based on mainc42e163cc. Production is at402
+migrations after exact CLI applies and retained-data/schema/security readbacks.
+The new290xx lab proves full402 replay, intake, quota and trial boundaries; normal
+shipcheck passes. All19,621 private scan objects are hash-verified. A V2 production
+website build is unpromoted; trial/owner activation and live proof remain. Read the
+latest checkpoint, not the older400/419-state notes. Never replay consumed applies.
+Keep live pilot/production aliases, all owner data and shared services unchanged
+until the documented integration and target-specific release checks pass.
+
 ## Combined Search — September 22
 
 Follow `docs/checkpoints/combined_search_20260922.md` for the isolated implementation

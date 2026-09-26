@@ -1,6 +1,8 @@
+import { vendorPilot, vendorDeviceQa, VENDOR_PILOT_ORIGIN } from "./src/lib/vendorPilot.mjs";
 import path from "path";
+import { scanRuntimeTracePatterns } from "./src/lib/stores/scanRuntimeFiles.mjs";
 import { assertCollectorReleaseEnvironment } from "./src/lib/collectorRelease.mjs";
-import { collectorStaging, collectorFixtureLab, collectorHostedStaging, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
+import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefrontLocalTest, vendorBatchLocalTest, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
 
 /**
  * Env contract reuse:
@@ -9,7 +11,20 @@ import { collectorStaging, collectorFixtureLab, collectorHostedStaging, assertCo
  */
 const repoRoot = path.resolve(process.cwd(), "../..");
 
+if (vendorDeviceQa && (process.env.VERCEL_ENV !== "preview" ||
+    process.env.NEXT_PUBLIC_SITE_URL !== VENDOR_PILOT_ORIGIN ||
+    (process.env.SITE_URL && process.env.SITE_URL !== VENDOR_PILOT_ORIGIN))) {
+  throw new Error("Device QA requires its exact preview origin and preview deployment.");
+}
+
+if (vendorPilot && (process.env.NEXT_PUBLIC_COLLECTOR_STAGING !== "true" || process.env.GROOKAI_DISABLE_TELEMETRY !== "1" ||
+    Object.entries(process.env).some(([key, value]) => (key.startsWith("STRIPE_") && Boolean(value)) || (key.startsWith("GROOKAI_VENDOR_") && key.endsWith("_ENABLED") && value === "true")))) {
+  throw new Error("Vendor preview requires isolated staging, disabled telemetry and no payment configuration.");
+}
 const collectorPreview = process.env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY === "true";
+if ((storefrontLocalTest || vendorBatchLocalTest) && (!collectorStaging || collectorPreview || process.env.VERCEL || process.env.VERCEL_ENV || process.env.GROOKAI_DISABLE_TELEMETRY !== "1")) {
+  throw new Error("Storefront tests require isolated local staging with telemetry disabled and no Vercel target.");
+}
 if (!collectorPreview && !collectorStaging) {
   assertCollectorReleaseEnvironment(process.env);
 } else if (process.env.GROOKAI_COLLECTOR_RELEASE_V1 === "true") {
@@ -52,9 +67,18 @@ if (!supabaseUrl || !supabaseAnon) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: collectorFixtureLab ? ".next-fixture" : ".next",
+  distDir: vendorBatchLocalTest ? ".next-batch-intake" : storefrontLocalTest ? ".next-storefront" : collectorFixtureLab ? ".next-fixture" : ".next",
   outputFileTracingRoot: repoRoot,
+  serverExternalPackages: ["tesseract.js", "@tesseract.js-data/eng", "@techstark/opencv-js"],
   outputFileTracingIncludes: {
+      "/api/stores/owner/intake/match": [
+        "./src/lib/stores/scan*.mjs",
+        "./src/lib/stores/scanExpanded*.json*",
+        "./src/lib/stores/visualMatchCore.mjs",
+        "./src/lib/stores/visualMatchIndex.json",
+        "./src/lib/stores/visualMatchCatalog.json",
+        ...scanRuntimeTracePatterns(process.cwd()),
+      ],
       "/u/[slug]/opengraph-image": [
         "./public/grookai-logo-512.png",
       ],
@@ -82,6 +106,7 @@ const nextConfig = {
     cpus: 1,
   },
   env: {
+    NEXT_PUBLIC_STOREFRONT_LOCAL_TEST: storefrontLocalTest ? "true" : "false",
     NEXT_PUBLIC_COLLECTOR_STAGING: collectorStaging ? "true" : "false",
     NEXT_PUBLIC_COLLECTOR_FIXTURE_LAB: collectorFixtureLab ? "true" : "false",
     NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING: collectorHostedStaging ? "true" : "false",

@@ -1,0 +1,315 @@
+{
+  "at": "2026-09-26T17:31:43.887Z",
+  "target": "ycdxbpibncqcchqiihfz",
+  "bucket": "vendor-scan-features-v29",
+  "public": false,
+  "objects": 19621,
+  "references": 20079,
+  "bytes": 8478139239,
+  "allLocalHashesVerified": true,
+  "currentProductionAuthorityVerified": true,
+  "planSha256": "d23306d64ec5893de27b284a2aa3caa7e4620f347c3ab38c34f5590e6ff23b98",
+  "storagePolicies": [
+    {
+      "cmd": "DELETE",
+      "qual": "((bucket_id = 'collector-memory-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "collector_memory_images_owner_delete_v1",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "collector_memory_images_owner_insert_v1",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'collector-memory-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'collector-memory-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "collector_memory_images_owner_select_v1",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "((bucket_id = 'collector-memory-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "collector_memory_images_owner_update_v1",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'collector-memory-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'collector-memory-images'::text) AND (EXISTS ( SELECT 1\n   FROM ((collector_memories cm\n     JOIN vault_item_instances vii ON (((vii.id = cm.vault_item_instance_id) AND (vii.user_id = cm.user_id) AND (vii.archived_at IS NULL) AND (vii.card_print_id IS NOT NULL))))\n     JOIN card_events e ON (((e.id = cm.publication_event_id) AND (e.event_type = 'collector_memory_published'::text) AND (e.actor_user_id = cm.user_id) AND (e.visibility = 'public'::text) AND ((e.payload ->> 'publication_version'::text) = (cm.publication_version)::text))))\n  WHERE ((cm.photo_path = vii.name) AND (cm.is_public IS TRUE) AND (cm.archived_at IS NULL) AND interest_graph_collectors_visible_to_viewer_v1(auth.uid(), cm.user_id, NULL::uuid)))))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "collector_memory_images_published_select_v1",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "DELETE",
+      "qual": "false",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "gv_condition_scans_delete",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "gv_condition_scans_insert",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'condition-scans'::text) AND (name ~~ ((auth.uid())::text || '/%'::text)))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'condition-scans'::text) AND (name ~~ ((auth.uid())::text || '/%'::text)))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "gv_condition_scans_select",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "false",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "gv_condition_scans_update",
+      "schemaname": "storage",
+      "with_check": "false"
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "gv_identity_scans_insert",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'identity-scans'::text) AND (name ~~ ((auth.uid())::text || '/%'::text)))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'identity-scans'::text) AND (name ~~ ((auth.uid())::text || '/%'::text)))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "gv_identity_scans_select",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "ALL",
+      "qual": "(bucket_id = 'identity-images'::text)",
+      "roles": [
+        "service_role"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "identity-images service write",
+      "schemaname": "storage",
+      "with_check": "(bucket_id = 'identity-images'::text)"
+    },
+    {
+      "cmd": "DELETE",
+      "qual": "((bucket_id = 'profile-media'::text) AND (name ~~ (('profiles/'::text || (auth.uid())::text) || '/%'::text)))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "profile_media_owner_delete",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "profile_media_owner_insert",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'profile-media'::text) AND (name ~~ (('profiles/'::text || (auth.uid())::text) || '/%'::text)))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'profile-media'::text) AND (name ~~ (('profiles/'::text || (auth.uid())::text) || '/%'::text)))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "profile_media_owner_select",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "((bucket_id = 'profile-media'::text) AND (name ~~ (('profiles/'::text || (auth.uid())::text) || '/%'::text)))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "profile_media_owner_update",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'profile-media'::text) AND (name ~~ (('profiles/'::text || (auth.uid())::text) || '/%'::text)))"
+    },
+    {
+      "cmd": "DELETE",
+      "qual": "((bucket_id = 'scans'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "scans delete own",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "scans insert own",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'scans'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'scans'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "scans read own",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "UPDATE",
+      "qual": "((bucket_id = 'scans'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "scans update own",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'scans'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))"
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'user-card-images'::text) AND sealed_owned_media_visible_v1(name))",
+      "roles": [
+        "authenticated"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "sealed_owned_media_select_v1",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'user-card-images'::text) AND (EXISTS ( SELECT 1\n   FROM (vault_item_instances i\n     JOIN public_profiles p ON ((p.user_id = i.user_id)))\n  WHERE ((i.sealed_product_variant_id IS NULL) AND (i.archived_at IS NULL) AND (i.intent = ANY (ARRAY['trade'::text, 'sell'::text, 'showcase'::text])) AND (i.image_display_mode = 'uploaded'::text) AND p.public_profile_enabled AND p.vault_sharing_enabled AND ((objects.name = NULLIF(btrim(i.image_url), ''::text)) OR (objects.name = NULLIF(btrim(i.image_back_url), ''::text)))))))",
+      "roles": [
+        "public"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "user_card_images_public_discoverable_instance_select_v1",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "DELETE",
+      "qual": "((bucket_id = 'user-card-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "public"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "users-can-delete-own-user-card-images",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "SELECT",
+      "qual": "((bucket_id = 'user-card-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))",
+      "roles": [
+        "public"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "users-can-read-own-user-card-images",
+      "schemaname": "storage",
+      "with_check": null
+    },
+    {
+      "cmd": "INSERT",
+      "qual": null,
+      "roles": [
+        "public"
+      ],
+      "tablename": "objects",
+      "permissive": "PERMISSIVE",
+      "policyname": "users-can-upload-user-card-images",
+      "schemaname": "storage",
+      "with_check": "((bucket_id = 'user-card-images'::text) AND ((storage.foldername(name))[1] = (auth.uid())::text))"
+    }
+  ],
+  "productionWrites": 0
+}

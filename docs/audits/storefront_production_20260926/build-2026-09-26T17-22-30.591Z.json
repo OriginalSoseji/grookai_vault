@@ -1,0 +1,8 @@
+{
+  "at": "2026-09-26T17:22:51.685Z",
+  "status": "passed",
+  "exitCode": 0,
+  "logSha256": "cdf60a003cfb228fa36be0e17b403258057b886315ccbbb2148838090ecac135",
+  "target": "http://127.0.0.1:29021",
+  "productionWrites": 0
+}

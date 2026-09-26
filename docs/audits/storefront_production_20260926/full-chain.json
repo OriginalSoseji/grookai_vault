@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-26T17:08:22.791Z",
+  "status": "passed",
+  "project": "grookai-store-prod-20260926",
+  "migrations": 418,
+  "workers": 0,
+  "users": 0,
+  "cards": 0,
+  "productionWrites": 0,
+  "fullChainReplay": true,
+  "upgradeParity": {
+    "engine": "pgkit 0.6.1",
+    "scope": "public",
+    "rawBytes": 0,
+    "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "normalizedBytes": 0,
+    "securityObjects": 1057,
+    "columnOrder": []
+  },
+  "logSha256": "65247cd47bbc442056122c42ccc9cea4228998f6fcd4d3b2bb202897a6fad587",
+  "sharedResets": 0,
+  "rolloutEnabled": false
+}
