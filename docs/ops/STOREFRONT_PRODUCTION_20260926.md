@@ -5,6 +5,47 @@ integration is now authorized scope; older pilot-only stopping instructions
 do not prohibit preparing this release. Do not merely repoint the pilot.
 Payments remain disabled unless separately activated through their own gates.
 
+## Live release update — September 26, 19:14 UTC
+
+The website is LIVE at https://grookaivault.com/account/store on V4
+`dpl_8uQg9dRSofCzoJJoSW5Ukx9wGgLU`. Unauthenticated public routing and the invitation
+link are verified without hosting bypass or consuming invitation capacity. Existing
+founder access is enabled. One max10 invitation expires October10; its code stays in
+the private release directory. No automatic store publication occurred. Payments,
+seller onboarding, reservations and order processing remain disabled.
+
+All15 hosted setup/security checks, five real scans and desktop/mobile browser
+checks pass. Synthetic accounts, their empty store and smoke invitation were removed;
+the temporary automation credential was revoked. Final cleanup retained3,525 copies,
+40 profiles and all canonical counts. No production intake commit was performed;
+the18 real Auth/Storage/intake tests remain dedicated-local proof.
+
+Source commit `0e2c3da74b99dfa2d6c7bbfbce4724c1eb5f4c82` passed the normal pre-commit
+and pre-push hooks:5,502 Node tests, four skips, web checks/build and748 Flutter tests.
+Some attempts timed out in existing HTTP fixtures or stalled in Flutter test loading;
+failed logs and successful retries are retained. No hook was bypassed. Streaming
+child output is now recorded by the wrappers, with the same commands and checks.
+
+PR https://github.com/OriginalSoseji/grookai_vault/pull/518 contains the integration.
+CI exposed two missing optional WASM lock entries and CLI-status property names
+flagged as legacy configuration. The follow-up adds only those two lock entries,
+preserving every existing dependency version, and routes local CLI credentials
+through a loopback/role-checked adapter. The key guard admits only that exact CLI
+property in that one adapter; tests prove environment aliases and other files still
+fail. Production runtime source and scan artifact bytes are unchanged by these fixes.
+Check current PR/CI state before merging. Vercel's automatic branch preview lacks
+the production target binding and fails closed; the separately qualified production
+target is the live website. Do not put production credentials into a staging app to
+make a preview check pass.
+
+Latest operational readbacks, cleanup receipts, normal hook receipts and review URL:
+`.local/integration/production-live-v1/` and `production-trial-v1/`.
+Durable external continuation:
+`C:/grookai_vault_operator_artifacts/storefront_production_20260926/LIVE_RELEASE_CHECKPOINT.md`.
+The dated updates below are historical. The remaining source/CI handoff must not
+replay any completed database apply, upload, invitation or grant. No new TestFlight
+build or Stripe activation was performed by this website release.
+
 ## Latest continuation — September 26, 18:33 UTC
 
 Production schema402 and private cache remain verified. Browse-only app/web/custom,

@@ -1,0 +1,31 @@
+{
+  "at": "2026-09-26T18:57:05.723Z",
+  "alias": "grookaivault.com",
+  "deployment": "dpl_8uQg9dRSofCzoJJoSW5Ukx9wGgLU",
+  "results": [
+    {
+      "route": "/store-trial",
+      "status": 200,
+      "location": null,
+      "bytes": 38917
+    },
+    {
+      "route": "/account/store",
+      "status": 307,
+      "location": "/login?next=%2Faccount%2Fstore",
+      "bytes": 15
+    },
+    {
+      "route": "/api/stores/owner",
+      "status": 401,
+      "location": null,
+      "bytes": 16
+    },
+    {
+      "route": "/store/no-store-release-check",
+      "status": 404,
+      "location": null,
+      "bytes": 13410
+    }
+  ]
+}

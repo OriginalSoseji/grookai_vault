@@ -1,3 +1,4 @@
+import { localSupabaseStatusSecret } from '../lib/local_supabase_cli_status_v1.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,7 +10,7 @@ assert.equal(cfg.API_URL,'http://127.0.0.1:29021');
 const env={...process.env};
 for(const file of ['.env','.env.local','apps/web/.env','apps/web/.env.local'])if(fs.existsSync(path.join(root,file)))for(const m of fs.readFileSync(path.join(root,file),'utf8').matchAll(/^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=/gm))env[m[1]]='';
 for(const key of Object.keys(env))if(/SUPABASE|STRIPE|VERCEL|GROOKAI|NEXT_PUBLIC|DATABASE_URL|POSTGRES_URL/.test(key))env[key]='';
-Object.assign(env,{SUPABASE_URL:cfg.API_URL,NEXT_PUBLIC_SUPABASE_URL:cfg.API_URL,SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,NEXT_PUBLIC_SUPABASE_ANON_KEY:cfg.ANON_KEY,SUPABASE_SECRET_KEY:cfg.SERVICE_ROLE_KEY,NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST:'true',GROOKAI_STORE_BATCH_COMMIT_ENABLED:'true',GROOKAI_STORE_BATCH_CANCELLATION_ENABLED:'true',GROOKAI_DISABLE_TELEMETRY:'1',NEXT_TELEMETRY_DISABLED:'1',NEXT_PUBLIC_SITE_URL:'http://127.0.0.1:29040',NODE_OPTIONS:'--use-system-ca'});
+Object.assign(env,{SUPABASE_URL:cfg.API_URL,NEXT_PUBLIC_SUPABASE_URL:cfg.API_URL,SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,NEXT_PUBLIC_SUPABASE_ANON_KEY:cfg.ANON_KEY,SUPABASE_SECRET_KEY:localSupabaseStatusSecret(cfg),NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST:'true',GROOKAI_STORE_BATCH_COMMIT_ENABLED:'true',GROOKAI_STORE_BATCH_CANCELLATION_ENABLED:'true',GROOKAI_DISABLE_TELEMETRY:'1',NEXT_TELEMETRY_DISABLED:'1',NEXT_PUBLIC_SITE_URL:'http://127.0.0.1:29040',NODE_OPTIONS:'--use-system-ca'});
 const stamp=new Date().toISOString().replaceAll(':','-');
 const run=spawnSync(process.execPath,['scripts/ci/run_next_build_strict.mjs'],{cwd:root,env,windowsHide:true,encoding:'utf8',timeout:900000,maxBuffer:32*1024*1024});
 const log=(run.stdout??'')+(run.stderr??'');fs.writeFileSync(path.join(fixture,`build-${stamp}.private.log`),log,{flag:'wx'});

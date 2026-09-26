@@ -10,10 +10,11 @@ Browse-only rollout is enabled for explicit grants/invitations; payments remain 
 The 419 development inputs are archived, not active.
 Full package replay, integrated intake, shared quota/trial tests and normal shipcheck
 pass. The complete private scan cache is verified. V4 fixes excluded API routes;
-it is READY without domain promotion. Hosted proof/source integration remain unfinished.
+it is LIVE on grookaivault.com after hosted and browser proof. PR518 carries the
+source integration; inspect its current state and the latest checkpoint.
 Read the latest continuation update before any further action.
 Do not replay consumed apply/reset intents, repoint the pilot, reset shared
-services, weaken guards or claim the website is live yet.
+services or weaken guards. Payments and native store releases remain separate.
 Keep newer main, dirty storefront source and paused catalog repair evidence intact.
 
 ## Japanese Source Semantics Prevention - September 19

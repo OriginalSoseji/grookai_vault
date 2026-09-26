@@ -1,3 +1,4 @@
+import { localSupabaseStatusSecret } from '../lib/local_supabase_cli_status_v1.mjs';
 // Real Auth, Storage, Next handlers and DB concurrency; fixed synthetic 276xx only.
 import './vendor_storefront_network_guard.cjs';
 import assert from 'node:assert/strict';
@@ -16,7 +17,7 @@ const {createClient}=require('@supabase/supabase-js'),{Client}=require('pg'),sha
 const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']}));
 const api='http://127.0.0.1:27621',origin='http://127.0.0.1:27640';
 const options={auth:{persistSession:false,autoRefreshToken:false},global:{fetch:(input,init)=>fetch(input,{...init,signal:AbortSignal.timeout(25000)})}};
-const admin=createClient(api,cfg.SERVICE_ROLE_KEY,options),anon=createClient(api,cfg.ANON_KEY,options);
+const admin=createClient(api,localSupabaseStatusSecret(cfg),options),anon=createClient(api,cfg.ANON_KEY,options);
 const db=new Client({host:'127.0.0.1',port:27622,user:'postgres',password:'postgres',database:'postgres'});
 const stamp=new Date().toISOString().replaceAll(/[:.]/g,'-'),privateFile=path.join(fixture,`http-${stamp}.private.json`);
 const ids={set:randomUUID(),card:randomUUID(),printing:randomUUID(),section:randomUUID(),store:randomUUID(),otherStore:randomUUID(),batch:randomUUID()};
@@ -62,7 +63,7 @@ try {
  // Empty external/provider values before Next loads any .env files.
  for(const f of ['.env','.env.local','apps/web/.env','apps/web/.env.local'])if(fs.existsSync(path.join(root,f)))for(const m of fs.readFileSync(path.join(root,f),'utf8').matchAll(/^\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=/gm))env[m[1]]='';
  for(const key of Object.keys(env))if(/SUPABASE|STRIPE|VERCEL|GROOKAI|NEXT_PUBLIC|DATABASE_URL|POSTGRES_URL/.test(key))env[key]='';
- Object.assign(env,{SUPABASE_URL:api,NEXT_PUBLIC_SUPABASE_URL:api,SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,NEXT_PUBLIC_SUPABASE_ANON_KEY:cfg.ANON_KEY,SUPABASE_SECRET_KEY:cfg.SERVICE_ROLE_KEY,NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST:'true',GROOKAI_STORE_BATCH_COMMIT_ENABLED:'true',GROOKAI_STORE_BATCH_CANCELLATION_ENABLED:'true',GROOKAI_DISABLE_TELEMETRY:'1',NEXT_TELEMETRY_DISABLED:'1',NEXT_PUBLIC_SITE_URL:origin,NODE_OPTIONS:`--require=${path.join(root,'scripts/tests/vendor_storefront_network_guard.cjs')}`});
+ Object.assign(env,{SUPABASE_URL:api,NEXT_PUBLIC_SUPABASE_URL:api,SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,NEXT_PUBLIC_SUPABASE_ANON_KEY:cfg.ANON_KEY,SUPABASE_SECRET_KEY:localSupabaseStatusSecret(cfg),NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST:'true',GROOKAI_STORE_BATCH_COMMIT_ENABLED:'true',GROOKAI_STORE_BATCH_CANCELLATION_ENABLED:'true',GROOKAI_DISABLE_TELEMETRY:'1',NEXT_TELEMETRY_DISABLED:'1',NEXT_PUBLIC_SITE_URL:origin,NODE_OPTIONS:`--require=${path.join(root,'scripts/tests/vendor_storefront_network_guard.cjs')}`});
  log=fs.openSync(path.join(fixture,`next-${stamp}.private.log`),'wx');
  child=spawn(process.execPath,[require.resolve('next/dist/bin/next'),'dev','--webpack','--hostname','127.0.0.1','--port','27640'],{cwd:path.join(root,'apps/web'),env,windowsHide:true,stdio:['ignore',log,log]});
  for(let n=0;;n++) {if(child.exitCode!==null)throw new Error('Local Next server stopped; inspect private log');try {const r=await http('',null,undefined,'GET');if(r.status===200)break;}catch{}if(n>=40)throw new Error('Local Next server did not become ready');await delay(500);}

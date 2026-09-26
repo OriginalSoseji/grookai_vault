@@ -6,11 +6,22 @@ Read `docs/ops/STOREFRONT_PRODUCTION_20260926.md`. New release worktree:
 `C:/gv_store_production_20260926`, now based on mainc42e163cc. Production is at402
 migrations after exact CLI applies and retained-data/schema/security readbacks.
 The new290xx lab proves full402 replay, intake, quota and trial boundaries; normal
-shipcheck passes. All19,621 private scan objects are hash-verified. A V2 production
-website build is unpromoted; trial/owner activation and live proof remain. Read the
-latest checkpoint, not the older400/419-state notes. Never replay consumed applies.
-Keep live pilot/production aliases, all owner data and shared services unchanged
-until the documented integration and target-specific release checks pass.
+shipcheck passes. All19,621 private scan objects are hash-verified. V4 is live at
+https://grookaivault.com/account/store after15 hosted boundaries/setup checks,
+five real-scan matches and desktop/mobile browser checks. Founder access and one
+max10 invitation are active; payments remain off. PR518 contains the source.
+Read the latest checkpoint, not the older400/419-state notes. Never replay consumed
+applies, grants, invitations or uploads. Preserve the pilot, www and shared services.
+Final private release/cleanup receipts and the review link are under
+`C:/gv_store_production_20260926/.local/integration/production-live-v1/`;
+the external continuation is
+`C:/grookai_vault_operator_artifacts/storefront_production_20260926/LIVE_RELEASE_CHECKPOINT.md`.
+Local release wrappers retain normal Git hooks and use the dedicated read-only290xx
+lab. The loopback-only CLI adapter translates the CLI JSON field into the canonical
+secret configuration; it does not enable legacy environment aliases. Validate clean
+installs with npm10 as well as npm11: npm11 omitted two optional WASM dependencies
+from the lockfile, which npm10 CI correctly rejected. No existing dependency version
+was changed by that repair. Public scan-byte contracts remain unchanged.
 
 ## Combined Search — September 22
 

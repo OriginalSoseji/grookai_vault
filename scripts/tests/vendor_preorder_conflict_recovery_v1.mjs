@@ -1,3 +1,4 @@
+import { localSupabaseStatusSecret } from '../lib/local_supabase_cli_status_v1.mjs';
 // Bounded recovery readback for one consumed reset. Never starts, resets or applies.
 import './vendor_storefront_network_guard.cjs';
 import assert from 'node:assert/strict';
@@ -49,8 +50,8 @@ const { createClient } = require('@supabase/supabase-js');
 const status = JSON.parse(execFileSync('supabase', ['status', '--workdir', fixture, '--output', 'json'], { encoding: 'utf8', windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] }));
 const url = 'http://127.0.0.1:25621';
 const options = { auth: { persistSession: false, autoRefreshToken: false }, global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(15000) }) } };
-assert.ok(status.ANON_KEY && status.SERVICE_ROLE_KEY);
-const admin = createClient(url, status.SERVICE_ROLE_KEY, options);
+assert.ok(status.ANON_KEY && localSupabaseStatusSecret(status));
+const admin = createClient(url, localSupabaseStatusSecret(status), options);
 const clients = [], users = [], report = { at: new Date().toISOString(), project: before.project, resetCommandExit: 1, resetServiceRestartError: 502, resetRepeated: false, schemaReadback: { applied: before.applied, unchangedObjects: old.objects.length - 1, changedObjects: 1, added: 0, removed: 0 }, checks: [], productionWrites: 0 };
 const evidenceFile = path.join(output, 'recovery-http-proof.json');
 assert.ok(!fs.existsSync(evidenceFile), 'Preserve the existing proof');

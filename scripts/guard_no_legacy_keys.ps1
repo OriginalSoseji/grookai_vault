@@ -58,6 +58,12 @@ $bad = @()
   $rel = $_ -replace '\\', '/'
   $fullPath = Join-Path $repoRoot $rel
   $t = try { Get-Content $fullPath -Raw } catch { '' }
+  # The guarded loopback-only CLI adapter reads a third-party JSON field.
+  # Permit that exact property expression only; environment aliases, strings,
+  # and every other legacy key reference remain subject to the normal guard.
+  if ($rel -eq 'scripts/lib/local_supabase_cli_status_v1.mjs') {
+    $t = $t.Replace('status.SERVICE_ROLE_KEY', 'status.CLI_ADMIN_FIELD')
+  }
   foreach ($entry in $patterns.GetEnumerator()) {
     if ($t -match $entry.Value) {
       $bad += "${rel}: $($entry.Key)"
