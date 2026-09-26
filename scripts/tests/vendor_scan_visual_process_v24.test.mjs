@@ -6,7 +6,7 @@ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'grookai-visual-v24-'));
 const id='00000000-0000-4000-8000-000000000001',other='00000000-0000-4000-8000-000000000002',bytes=Buffer.from('image');
 const byId=new Map([[id,{id,gv_id:'GV-PK-TST-1',image_path:'warehouse-derived/self-hosted-images-v1/1.webp',sha256:hashReference(bytes)}]]);
 let serial=0;
-function worker(body){const file=path.join(dir,`worker-${++serial}.mjs`);fs.writeFileSync(file,`import fs from 'node:fs';fs.writeFileSync(new URL('./pid-${serial}.txt',import.meta.url),String(process.pid));const id=${JSON.stringify(id)};${body}`);return{file,pid:path.join(dir,`pid-${serial}.txt`)};}
+function worker(body,data=null){const file=path.join(dir,`worker-${++serial}.mjs`);fs.writeFileSync(file+'.json',JSON.stringify(data));fs.writeFileSync(file,`import fs from 'node:fs';fs.writeFileSync(new URL('./pid-${serial}.txt',import.meta.url),String(process.pid));const data=JSON.parse(fs.readFileSync(new URL(import.meta.url+'.json'),'utf8'));const id='00000000-0000-4000-8000-000000000001';${body}`);return{file,pid:path.join(dir,`pid-${serial}.txt`)};}
 function exited(w){if(fs.existsSync(w.pid))assert.throws(()=>process.kill(Number(fs.readFileSync(w.pid)),0));}
 const request=`process.send({version:'v24',kind:'references',ids:[id]});`;
 const success=`process.send({version:'v24',kind:'result',result:{status:'suggestions',candidates:[{id,rotation:180,secret:'must-not-forward'}],references:[{gv_id:'forged'}]}});`;
@@ -64,7 +64,7 @@ test('changed reference packets and forged result IDs/rotations are rejected',as
  const w=worker(`let n=0;process.on('message',()=>{if(!n++){${request}}else{${success}}});`);
  await assert.rejects(runVisualProcessV24(w.file,bytes,{byId,loadReferences:async()=>[{id,bytes:Buffer.from('tampered')}],timeoutMs:3000}));exited(w);
  for(const candidate of [{id:other,rotation:0},{id,rotation:45}]){
-  const bad=worker(`let n=0;process.on('message',()=>{if(!n++){${request}}else process.send({version:'v24',kind:'result',result:{status:'suggestions',candidates:[${JSON.stringify(candidate)}]}});});`);
+  const bad=worker(`let n=0;process.on('message',()=>{if(!n++){${request}}else process.send({version:'v24',kind:'result',result:{status:'suggestions',candidates:[data]}});});`,candidate);
   await assert.rejects(runVisualProcessV24(bad.file,bytes,{byId,loadReferences,timeoutMs:3000}));exited(bad);
  }
 });

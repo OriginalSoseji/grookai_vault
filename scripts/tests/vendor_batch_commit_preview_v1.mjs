@@ -21,6 +21,9 @@ await new Promise((resolve,reject)=>webpack({mode:'development',devtool:false,en
 const card={id:'44444444-4444-4444-8444-444444444444',gv_id:'GV-PK-TEST-001',name:'Synthetic Pikachu',number:'001',set_code:'TEST',image:'/sample.jpg',printings:[{id:'55555555-5555-4555-8555-555555555555',printing_gv_id:'GV-PK-TEST-001-HOLO',finish_label:'Holo'}]};
 const privateSample=path.join(process.env.USERPROFILE,'.codex/tmp/tcgautomate-review-20260922/sample-0.jpg');
 const receipts=new Map();let uploadFailed=false,finishLost=false;const counts={prepared:0,completed:0,prepareRequests:0,finishRequests:0};
+// Capture compiler outputs once. HTTP input only selects an existing key; it
+// never becomes a filesystem path (including encoded traversal requests).
+const assets=new Map(fs.readdirSync(path.join(dir,'dist')).filter(name=>name.endsWith('.js')).map(name=>['/'+name,fs.readFileSync(path.join(dir,'dist',name))]));
 const server=createServer(async(req,res)=>{
  res.setHeader('cache-control','no-store');
  const json=(body,status=200)=>{res.writeHead(status,{'content-type':'application/json'});res.end(JSON.stringify(body));};
@@ -38,8 +41,7 @@ const server=createServer(async(req,res)=>{
  if(req.url.startsWith('/api/stores/owner/inventory?')){res.setHeader('content-type','application/json');res.end(JSON.stringify({cards:[card],more:false}));return;}
  if(req.url==='/sample.jpg'&&fs.existsSync(privateSample)){res.setHeader('content-type','image/jpeg');res.end(fs.readFileSync(privateSample));return;}
  if(req.url==='/'||req.url.startsWith('/?')){res.setHeader('content-type','text/html; charset=utf-8');res.end('<!doctype html><html class="gv-dark"><head><meta charset="utf-8"><title>Grookai batch intake — local synthetic proof</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;background:#f4f6f4;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}html.gv-dark body{background:#111518}#root{max-width:1640px;padding:0 28px;margin:auto}.proof{font-size:11px;padding:8px 28px;background:#eaf1ec;color:#456252;display:flex;gap:14px;align-items:center}html.gv-dark .proof{background:#1b2920;color:#a9c6b6}.proof button{font:inherit;color:inherit;border:1px solid #687e70;background:transparent;border-radius:4px;cursor:pointer}@media(max-width:600px){#root{padding:0 12px}.proof{padding:8px 12px}}</style></head><body><aside class="proof">LOCAL PREVIEW · Synthetic catalog · Mock receipt service · No database writes <button id="sample">Check receipt counts</button><span id="qa-state"></span></aside><div id="root"></div><script src="/bundle.js"></script></body></html>');return;}
- const name=req.url.slice(1);if(!/^[a-zA-Z0-9_.-]+\.js$/.test(name)){res.writeHead(404).end();return;}
- const file=path.join(dir,'dist',name);if(!fs.existsSync(file)){res.writeHead(404).end();return;}
- res.setHeader('content-type','text/javascript');res.end(fs.readFileSync(file));
+ const asset=assets.get(req.url);if(!asset){res.writeHead(404).end();return;}
+ res.setHeader('content-type','text/javascript');res.end(asset);
 });
 server.listen(26443,'127.0.0.1',()=>console.log('Synthetic component preview: http://127.0.0.1:26443; mock fault injection; no database or production access.'));

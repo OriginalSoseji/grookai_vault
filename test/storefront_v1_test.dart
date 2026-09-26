@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -53,6 +54,35 @@ Map<String, dynamic> owner({bool draft = false, bool web = true}) => {
   'inventory': draft ? null : inventory(),
 };
 void main() {
+  test('Android registers store links with the browsable activity', () {
+    final manifest = File(
+      'android/app/src/main/AndroidManifest.xml',
+    ).readAsStringSync();
+    final filters = RegExp(r'<intent-filter\b[^>]*>[\s\S]*?</intent-filter>')
+        .allMatches(manifest)
+        .map((match) => match.group(0)!)
+        .where(
+          (filter) => filter.contains('android.intent.category.BROWSABLE'),
+        );
+    expect(
+      filters.any(
+        (filter) =>
+            filter.contains('android:scheme="grookai"') &&
+            filter.contains('android:scheme="grookaivault"') &&
+            filter.contains('android:host="store"'),
+      ),
+      isTrue,
+    );
+    expect(
+      filters.any(
+        (filter) =>
+            filter.contains('android:scheme="https"') &&
+            filter.contains('android:host="grookaivault.com"') &&
+            filter.contains('android:pathPrefix="/store/"'),
+      ),
+      isTrue,
+    );
+  });
   test('store links preserve their canonical destination and legacy links', () {
     final preview = GrookaiWebRouteService.parseCanonicalUri(
       Uri.parse('https://grookaivault.com/store/test-store?preview=1'),

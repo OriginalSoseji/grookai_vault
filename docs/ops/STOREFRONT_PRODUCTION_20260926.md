@@ -7,6 +7,14 @@ Payments remain disabled unless separately activated through their own gates.
 
 ## Live release update — September 26, 19:14 UTC
 
+Source review follow-up: `2a8d4833` passed the normal commit/push hooks (5,504
+Node passes, four skips, 748 Flutter passes). GitHub runtime, drift, Flutter,
+golden and key-name checks pass. The next review fix registers Android store
+intent filters, serves only captured compiler outputs in the local UI harness,
+and passes worker test data through JSON files rather than generated code.
+The nine worker-process tests pass. These fixes do not alter the live website,
+database or byte-pinned scan implementation. Inspect PR518 for final CI/merge state.
+
 The website is LIVE at https://grookaivault.com/account/store on V4
 `dpl_8uQg9dRSofCzoJJoSW5Ukx9wGgLU`. Unauthenticated public routing and the invitation
 link are verified without hosting bypass or consuming invitation capacity. Existing
