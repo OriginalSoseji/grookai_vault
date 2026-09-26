@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-26T17:24:19.214Z",
+  "status": "passed",
+  "target": "ycdxbpibncqcchqiihfz",
+  "artifactSha256": "af76e51edb06876acb5d795856f1444fc26cda437201d0743b00aa83604e532b",
+  "metadataSha256": "21d2c42c57bd4c9cd4251c79cdcf5ffa70346c871e3c92655e6c057c244c5aa4",
+  "featureManifestSha256": "df7cbeeef8482cef84e8b519439249121ae650570fcd18efba085a1641579f1f",
+  "references": 20079,
+  "features": 20079,
+  "eligible": 20079,
+  "excluded": [],
+  "anonymousBoundary": true,
+  "productionWrites": 0,
+  "qualification": "Current public identity, exact artwork path and public printing eligibility. No claim of Master Index completeness or new image-byte verification.",
+  "receiptSha256": "dadd8b243f6e8e6065a0bdd66a0827ac71e021c821a4b40e43216391e0cf75ae"
+}

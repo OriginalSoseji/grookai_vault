@@ -1401,6 +1401,7 @@ export default async function FounderPage() {
               <Link href="/founder/entitlements" className="gv-primary-button">
                 Manage Entitlements
               </Link>
+              <Link href="/account/store/resolutions" className="gv-secondary-button">Order resolution reviews</Link>
               <Link href="/founder/warehouse" className="gv-secondary-button">
                 Review Warehouse
               </Link>

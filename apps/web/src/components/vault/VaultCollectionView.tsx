@@ -638,6 +638,7 @@ export function VaultCollectionView({
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
               <Link href="/saved" className="gv-secondary-button">Saved cards</Link>
+              <Link href="/vault/transactions" className="gv-secondary-button">Transaction history</Link>
               {bindersEnabled ? <Link href="/binders" className="gv-secondary-button">Binders</Link> : null}
               <Link
                 href="/vault/import"

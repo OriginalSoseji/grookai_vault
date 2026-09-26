@@ -1,0 +1,22 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {reconcileVendorBillingOnce} from '../../apps/web/src/lib/billing/vendorBillingReconciliation.ts';
+import {BillingError} from '../../apps/web/src/lib/billing/vendorBillingRepository.ts';
+import {readBillingWorkerConfig} from '../../backend/billing/vendor_billing_worker_config_v1.mjs';
+const task=(owner,event)=>({owner_id:owner,...(event?{event_id:event,event_type:'invoice.paid',customer_id:'cus_fixture',subscription_id:'sub_fixture',provider_created_at:'2026-09-19T08:00:00.000Z'}:{})});
+function setup(){const calls=[],events=[task('owner1','evt_1')],accounts=[task('owner1'),task('owner2')];let tick=0,throws=null;
+ const queue={async start(id){calls.push(['start',id]);},async finish(...args){calls.push(['finish',...args]);},async due(lane){calls.push(['due',lane]);if(throws==='queue')throw new Error('synthetic outage');return lane==='events'?events:accounts;},async health(){return {};}};
+ const service={async reconcile(owner,event){calls.push(['reconcile',owner,event]);if(throws)throw new BillingError(throws);tick+=1;}};
+ return {calls,events,accounts,queue,service,now:()=>tick,runId:'fixture-run',setFailure:x=>{throws=x;},setTime:x=>{tick=x;}};
+}
+test('one pass processes both lanes, only once per owner, with durable start and finish',async()=>{const x=setup(),r=await reconcileVendorBillingOnce(x);assert.equal(r.processed,2);assert.equal(x.calls[0][0],'start');assert.equal(x.calls.at(-1)[0],'finish');assert.equal(x.calls[2][2].created,1789804800);});
+for(const [code,counter] of [['billing_busy','busy'],['billing_checkout_pending','deferred'],['billing_unavailable','failures']])test(`${code} is classified without losing other work`,async()=>{const x=setup();x.setFailure(code);const r=await reconcileVendorBillingOnce(x);assert.equal(r[counter],2);assert.equal(x.calls.at(-1)[3],counter==='failures'?'item_failure':null);});
+test('queue failure closes the run as failed and propagates a safe error',async()=>{const x=setup();x.setFailure('queue');await assert.rejects(reconcileVendorBillingOnce(x),e=>e.code==='billing_worker_failed');assert.equal(x.calls.at(-1)[3],'worker_failed');});
+test('no provider processing if run persistence fails',async()=>{const x=setup();x.queue.start=async()=>{throw new Error('offline');};await assert.rejects(reconcileVendorBillingOnce(x));assert.deepEqual(x.calls,[]);});
+test('deadline stops dispatch after current operation; does not race an unfinished commit',async()=>{const x=setup();x.service.reconcile=async()=>x.setTime(60001);const r=await reconcileVendorBillingOnce(x);assert.equal(r.processed,1);assert.equal(x.calls.filter(c=>c[0]==='due').length,1);});
+test('queue cannot expand the bounded 25+25 batch',async()=>{const x=setup();x.events.push(...Array.from({length:25},(_,n)=>task('extra'+n,'evt_x'+n)));await assert.rejects(reconcileVendorBillingOnce(x),e=>e.code==='billing_worker_failed');assert.equal(x.calls.some(c=>c[0]==='reconcile'),false);});
+test('missing event identity cannot become an unscoped account refresh',async()=>{const x=setup();delete x.events[0].subscription_id;const r=await reconcileVendorBillingOnce(x);assert.equal(r.failures,1);assert.equal(x.calls.filter(c=>c[0]==='reconcile').length,1);});
+const env={SUPABASE_URL:'http://127.0.0.1:17621',SUPABASE_SECRET_KEY:'synthetic',STRIPE_ACCOUNT_ID:'acct_fixture',STRIPE_BILLING_MODE:'test'};
+test('worker defaults disabled but scoped read-only health needs no Stripe secret',()=>{assert.equal(readBillingWorkerConfig(env,['--health']).health,true);assert.throws(()=>readBillingWorkerConfig(env,['--once']),/disabled/);});
+test('worker requires processing and dispatch flags independently of checkout',()=>{const e={...env,GROOKAI_VENDOR_BILLING_ENABLED:'true',GROOKAI_VENDOR_BILLING_RECONCILIATION_ENABLED:'true',GROOKAI_VENDOR_CHECKOUT_ENABLED:'false'};assert.equal(readBillingWorkerConfig(e,['--once']).health,false);});
+for(const change of [{SUPABASE_URL:'https://ycdxbpibncqcchqiihfz.supabase.co'},{GV_USER_ACCESS_TOKEN:'forged'},{STRIPE_BILLING_MODE:'live'},{STRIPE_ACCOUNT_ID:'forged'}])test(`worker fails closed for ${Object.keys(change)[0]}`,()=>{assert.throws(()=>readBillingWorkerConfig({...env,...change},['--health']));});
+test('worker cannot accept an arbitrary target or activate via arguments',()=>{assert.throws(()=>readBillingWorkerConfig(env,['--health','--url=https://elsewhere.invalid']));});

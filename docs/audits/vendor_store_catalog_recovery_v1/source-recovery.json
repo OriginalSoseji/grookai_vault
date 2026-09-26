@@ -1,0 +1,36 @@
+{
+  "at": "2026-09-22T03:32:54.607Z",
+  "status": "exact_applied_sources_recovered_replay_pending",
+  "ledgerRows": 400,
+  "sanity": {
+    "cards": 170658,
+    "sets": 3399,
+    "traits": 32903
+  },
+  "ledgerReceiptSha256": "9ea8a36c13731009454826cc97389fe6d2caaba98593f7417a4b14e23b9f41b7",
+  "recovered": [
+    {
+      "version": "20260920095000",
+      "name": "market_price_pipeline_candidate_printing_reference_index_v1",
+      "file": "20260920095000_market_price_pipeline_candidate_printing_reference_index_v1.sql",
+      "sha256": "244a13623af89f43c3a4ab4b4697d874d7dcf5e4b15e3578da8df64fbc8f4b4f"
+    },
+    {
+      "version": "20260920173000",
+      "name": "japanese_unnumbered_basic_energy_identity_v1",
+      "file": "20260920173000_japanese_unnumbered_basic_energy_identity_v1.sql",
+      "sha256": "430ae74a8429cc55d80b3663aa9ce4fba1a7201da0c23a5187c5be9a534e65de"
+    },
+    {
+      "version": "20260921000500",
+      "name": "public_printing_catalog_boundary_v1",
+      "file": "20260921000500_public_printing_catalog_boundary_v1.sql",
+      "sha256": "08b7bf5c27e4e384bcde524ebcdd9ad52bfa0851f51ec1471acf62da634abf46"
+    }
+  ],
+  "priorMigrationsPreserved": 408,
+  "totalMigrations": 411,
+  "productionWrites": 0,
+  "databaseResets": 0,
+  "implementationUnchanged": true
+}

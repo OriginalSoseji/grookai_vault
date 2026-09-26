@@ -1,3 +1,4 @@
+import { vendorPilot } from "@/lib/vendorPilot.mjs";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
@@ -71,7 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
       </head>
       <body>
-        {collectorStaging ? <div role="status" style={{ padding: "6px 16px", background: "#194b3c", color: "white", textAlign: "center", fontSize: 12 }}>{collectorFixtureLab ? "TEST FIXTURES ONLY - Prices are synthetic, not live market data" : "Test environment · Sample catalog · Separate from your live Vault"}</div> : null}
+        {collectorStaging ? <div role="status" style={{ padding: "6px 16px", background: "#194b3c", color: "white", textAlign: "center", fontSize: 12 }}>{vendorPilot ? "Vendor preview · Sample catalog · Payments disabled" : collectorFixtureLab ? "TEST FIXTURES ONLY - Prices are synthetic, not live market data" : "Test environment · Sample catalog · Separate from your live Vault"}</div> : null}
         {visualParityFixtureMode ? (
           children
         ) : (

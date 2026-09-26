@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Grookai commerce orders periodically
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=30s
+AccuracySec=1s
+Unit=grookai-commerce-orders.service
+
+[Install]
+WantedBy=timers.target
+

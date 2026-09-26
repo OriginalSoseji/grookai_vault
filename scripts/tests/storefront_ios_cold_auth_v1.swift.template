@@ -1,0 +1,73 @@
+import XCTest
+import UIKit
+
+final class GrookaiPhysicalUITests: XCTestCase {
+  let root = URL(fileURLWithPath: #filePath).deletingLastPathComponent()
+  let package = "com.grookai.storefrontauthproof"
+
+  func confirmOnlyProofPrompt() {
+    for identifier in ["com.apple.springboard", "com.apple.mobilesafari"] {
+      let alert = XCUIApplication(bundleIdentifier: identifier).alerts.firstMatch
+      if alert.exists && alert.staticTexts.allElementsBoundByIndex.contains(where: { $0.label.lowercased().contains("storefrontauthproof") }) {
+        let open = alert.buttons["Open"]
+        if open.exists { open.tap() }
+      }
+    }
+  }
+
+  func waitForOSLaunch(_ app: XCUIApplication) {
+    let deadline = Date().addingTimeInterval(30)
+    while Date() < deadline && app.state != .runningForeground {
+      confirmOnlyProofPrompt()
+      Thread.sleep(forTimeInterval: 0.25)
+    }
+    XCTAssertEqual(app.state, .runningForeground, "The OS link must launch the stopped proof app")
+  }
+
+  func label(_ app: XCUIApplication, contains text: String) -> XCUIElement {
+    app.descendants(matching: .any).matching(NSPredicate(format: "label CONTAINS %@", text)).firstMatch
+  }
+
+  func capture(_ app: XCUIApplication, _ name: String) throws {
+    try app.screenshot().pngRepresentation.write(to: root.appendingPathComponent(name + ".png"))
+  }
+
+  func testColdStoreAndPersistedOwnerPreview() throws {
+    continueAfterFailure = false
+    let app = XCUIApplication(bundleIdentifier: package)
+    if app.state != .notRunning { app.terminate() }
+    XCTAssertEqual(app.state, .notRunning)
+    print("IOS_COLD_SEND_STORE")
+    waitForOSLaunch(app)
+    let emailOption = app.buttons["Sign in with email"]
+    XCTAssertTrue(emailOption.waitForExistence(timeout: 30), "Cold store link must wait for real login")
+    try capture(app, "cold-store-login")
+    emailOption.tap()
+    app.swipeUp()
+    let email = app.textFields.matching(NSPredicate(format: "label CONTAINS %@", "Email")).firstMatch
+    let password = app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", "Password")).firstMatch
+    XCTAssertTrue(email.waitForExistence(timeout: 10))
+    let bytes = try Data(contentsOf: root.appendingPathComponent("fixture-private.json"))
+    let credentials = try JSONSerialization.jsonObject(with: bytes) as! [String:String]
+    email.tap(); email.typeText(credentials["FIXTURE_OWNER_EMAIL"]!)
+    password.tap(); password.typeText(credentials["FIXTURE_OWNER_PASSWORD"]!)
+    app.buttons["Sign in"].tap()
+    XCTAssertTrue(label(app, contains: "Native auth collectible").waitForExistence(timeout: 45), "Cold destination must survive login")
+    XCTAssertTrue(label(app, contains: "Native auth proof store").exists)
+    try capture(app, "cold-store-loaded")
+    print("IOS_COLD_STORE_LOGIN_PASSED")
+
+    app.terminate()
+    XCTAssertEqual(app.state, .notRunning)
+    print("IOS_COLD_SEND_OWNER_PREVIEW")
+    waitForOSLaunch(app)
+    XCTAssertTrue(label(app, contains: "Product preview").waitForExistence(timeout: 30))
+    XCTAssertTrue(label(app, contains: "Native auth collectible").waitForExistence(timeout: 45), "Persisted owner session must open the private product")
+    XCTAssertFalse(app.buttons["Sign in with email"].exists)
+    try capture(app, "cold-owner-preview-loaded")
+    print("IOS_COLD_OWNER_PREVIEW_PASSED")
+    app.terminate()
+    XCTAssertEqual(app.state, .notRunning)
+    print("IOS_COLD_PROOF_COMPLETE")
+  }
+}

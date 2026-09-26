@@ -1,0 +1,122 @@
+{
+  "at": "2026-09-26T18:30:02.214Z",
+  "deployment": "dpl_8uQg9dRSofCzoJJoSW5Ukx9wGgLU",
+  "target": "ycdxbpibncqcchqiihfz",
+  "checks": [
+    {
+      "name": "anonymous owner API requires sign-in",
+      "passed": true
+    },
+    {
+      "name": "account without grant cannot create store",
+      "passed": true
+    },
+    {
+      "name": "invitation redirects without secret in URL",
+      "passed": true
+    },
+    {
+      "name": "invitation activates real authenticated account",
+      "passed": true
+    },
+    {
+      "name": "trial grants management only",
+      "passed": true
+    },
+    {
+      "name": "private store setup succeeds",
+      "passed": true
+    },
+    {
+      "name": "store remains unpublished with no inventory",
+      "passed": true
+    },
+    {
+      "name": "desktop management page loads",
+      "passed": true
+    },
+    {
+      "name": "owner preview works",
+      "passed": true
+    },
+    {
+      "name": "other account preview denied",
+      "passed": true
+    },
+    {
+      "name": "public draft inventory denied",
+      "passed": true
+    },
+    {
+      "name": "trial cannot publish public web",
+      "passed": true
+    },
+    {
+      "name": "foreign Origin rejected",
+      "passed": true
+    },
+    {
+      "name": "scan requires eligible owner",
+      "passed": true
+    },
+    {
+      "name": "scan rejects invalid media type",
+      "passed": true
+    }
+  ],
+  "matches": [
+    {
+      "file": "holdout-0041.heic",
+      "sha256": "307585b2cde416a14c03a078f809faafa25ef933cbceefc0c19ec75556c752c8",
+      "status": 200,
+      "ms": 18303,
+      "same": true,
+      "ids": [
+        "GV-PK-MEW-005"
+      ]
+    },
+    {
+      "file": "gallery-3.jpg",
+      "sha256": "51452d6dfa9554146eac2640e243a9b3a22e68c334ae113954a33dc1c681c16f",
+      "status": 200,
+      "ms": 15540,
+      "same": true,
+      "ids": [
+        "GV-PK-ASR-TG02"
+      ]
+    },
+    {
+      "file": "browser-preview-3f24400435b46194e24a4eab0f52f309023a8ecb484880fd8e284748d01f762c.jpg",
+      "sha256": "3f24400435b46194e24a4eab0f52f309023a8ecb484880fd8e284748d01f762c",
+      "status": 200,
+      "ms": 15624,
+      "same": true,
+      "ids": [
+        "GV-PK-LOR-TG02"
+      ]
+    },
+    {
+      "file": "browser-preview-24b1e46bd69e0d5c6c5ed3422eae09eb362a9d02271b20f327e0f9e131ae340e.jpg",
+      "sha256": "24b1e46bd69e0d5c6c5ed3422eae09eb362a9d02271b20f327e0f9e131ae340e",
+      "status": 200,
+      "ms": 15218,
+      "same": true,
+      "ids": [
+        "GV-PK-ASR-TG02"
+      ]
+    },
+    {
+      "file": "scan-0075.jpeg.jpg",
+      "sha256": "f4cee7d7bd9009377b08609c451a9eb61f0a23a0a2699db13de31a63a056a41a",
+      "status": 200,
+      "ms": 14324,
+      "same": true,
+      "ids": [
+        "GV-PK-MEW-003"
+      ]
+    }
+  ],
+  "scope": "Hosted HTTPS synthetic account setup and scan matching; no production inventory commit or payment action.",
+  "status": "passed",
+  "finishedAt": "2026-09-26T18:31:28.106Z"
+}

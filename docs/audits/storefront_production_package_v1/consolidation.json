@@ -1,0 +1,123 @@
+{
+  "at": "2026-09-26T17:42:09.286Z",
+  "status": "candidate_needs_replay",
+  "inputs": [
+    {
+      "name": "20260919050000_vendor_storefront_release_v1.sql",
+      "sha256": "639df6d611b5ae41328c3feaa95129acb349007891200f0c8599d14ef015ac98",
+      "bytes": 52927
+    },
+    {
+      "name": "20260919080000_vendor_stripe_billing_v1.sql",
+      "sha256": "f85886686bd7790d2cda7341cd878506e64fd3880badaac0cc6651246be63ec8",
+      "bytes": 57054
+    },
+    {
+      "name": "20260919120000_vendor_custom_product_import_v1.sql",
+      "sha256": "dff8d4434967898e3b79501c2f766e21d14d4f391717c835787aac2d6c8a6416",
+      "bytes": 4198
+    },
+    {
+      "name": "20260919130000_vendor_seller_bindings_v1.sql",
+      "sha256": "1b70fdc42648fc839345317231dcd6d9bb5621d81823ba65e08277bea4dabdf7",
+      "bytes": 18169
+    },
+    {
+      "name": "20260919150000_vendor_stock_reservations_v1.sql",
+      "sha256": "f4e153ebe2cb51e5f382a5f8df53cdc7e4099baaeb5f22988ba19e7270e5edac",
+      "bytes": 17921
+    },
+    {
+      "name": "20260919170000_vendor_orders_v1.sql",
+      "sha256": "6cb9e4d082ba133f839d8719539333c689f0d5586cd76d28afa7b72b166975a3",
+      "bytes": 31414
+    },
+    {
+      "name": "20260919180000_vendor_checkout_creation_v1.sql",
+      "sha256": "18f45b490082b2cbee4c91bae8cdb41154ff4dc96ebdc482ef68f2f73fc4a339",
+      "bytes": 5434
+    },
+    {
+      "name": "20260919200000_vendor_order_cancel_unstarted_v1.sql",
+      "sha256": "55774a4a1f7546919da007b7ca3cd77d4b219b1edc5ec2fd7ca382975beb3270",
+      "bytes": 8275
+    },
+    {
+      "name": "20260919210000_vendor_order_retries_v1.sql",
+      "sha256": "7dc8a328bb89cd1c11fbaf9eff6b2d605a8b271894f6bbb03009b79d78850e99",
+      "bytes": 15194
+    },
+    {
+      "name": "20260920080000_vendor_order_fulfillment_v1.sql",
+      "sha256": "f361b970f8d1233f97be60c8f704ba59cb8374c143aac0b5834767bf12985cb9",
+      "bytes": 8744
+    },
+    {
+      "name": "20260920090000_vendor_order_refunds_v1.sql",
+      "sha256": "3af69003b4d2b24be8a260eda6c77f27c352031e893e2b1e6e34ab98f57485cd",
+      "bytes": 28159
+    },
+    {
+      "name": "20260922140000_vendor_order_notifications_v1.sql",
+      "sha256": "258dface6b8c7c7a2a755945eb2feee15c06ec9fcb1ae695cdcf9ce444b74e10",
+      "bytes": 21837
+    },
+    {
+      "name": "20260922180000_vendor_order_resolutions_v1.sql",
+      "sha256": "ec86b33d580f070f25c23dbcff25b5e187728d9b5fadba2c1295e86413c4ab80",
+      "bytes": 16209
+    },
+    {
+      "name": "20260923020000_vendor_preorders_v1.sql",
+      "sha256": "95144cea3acaa20b2aeff2c91d7c66cb4278dbd911ca117a789e666e4c905a78",
+      "bytes": 6512
+    },
+    {
+      "name": "20260923030000_vendor_preorders_conflict_v1.sql",
+      "sha256": "4958dee5437d1a6a5dfffe7d59262fc800b2d34f57dc6b173fb57035494d51b5",
+      "bytes": 3248
+    },
+    {
+      "name": "20260923040000_vendor_batch_commit_v1.sql",
+      "sha256": "f56b8f352eaefb9f632fab57b6fe8bb859ecbac0b961b22aa350ae827a277a6b",
+      "bytes": 12085
+    },
+    {
+      "name": "20260923050000_vendor_batch_private_copy_v1.sql",
+      "sha256": "58bdd5289d26ed3837a320a281e5358a2116fe3e985f58ae505c2c664f890f09",
+      "bytes": 4003
+    },
+    {
+      "name": "20260923060000_vendor_batch_cancellation_v1.sql",
+      "sha256": "e24e6ca904f5459c6264409745bae2c6145adf6e9ad63ceed57cf7558f5682bf",
+      "bytes": 7788
+    },
+    {
+      "name": "20260926180000_vendor_scan_admission_v1.sql",
+      "sha256": "2cb6b86881c5dc455e67c98d5abcda034a2e17efa4e09bc074862195239771d2"
+    }
+  ],
+  "output": {
+    "name": "20260926190000_vendor_storefront_production_v1.sql",
+    "sha256": "b7af6215e0ba008ba19551c76672e2c05023ea5618b682301297742abe84c9a3",
+    "bytes": 289174
+  },
+  "consolidatedFunctions": [
+    "vendor_batch_intake_finish_v1",
+    "vendor_batch_intake_prepare_v1",
+    "vendor_order_fulfillment_record_v1",
+    "vendor_order_fulfillment_status_v1",
+    "vendor_order_reconcile_claim_v1",
+    "vendor_order_reconcile_finish_v1",
+    "vendor_order_reconcile_seed_v1",
+    "vendor_order_signal_v1",
+    "vendor_preorders_save_v1",
+    "vendor_referral_credit_v1",
+    "vendor_stock_immutable_v1",
+    "vendor_stock_live_quantity_v1",
+    "vendor_store_capabilities_v1"
+  ],
+  "finalFunctions": 121,
+  "sourceChanges": 0,
+  "productionWrites": 0
+}

@@ -18,6 +18,7 @@ function getSafeNextPath(nextParam?: string | null) {
 }
 
 function getDestinationCopy(nextPath: string) {
+  if (nextPath === "/vendor-preview") return { title: "the vendor preview", description: "Use your own email for a separate preview account. No payment details are needed." };
   if (nextPath === "/scan") {
     return { title: "Scan", description: "Sign in, then continue directly to the card scanner." };
   }
@@ -65,7 +66,7 @@ function LoginPageContent() {
   const callbackError = searchParams.get("error");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [mode, setMode] = useState<"signin" | "signup">(searchParams.get("mode") === "signup" ? "signup" : "signin");
   const [error, setError] = useState<string | null>(
     callbackError === "oauth_callback_failed" ? "Google sign-in could not be completed." : null,
   );

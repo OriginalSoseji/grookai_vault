@@ -1,0 +1,54 @@
+// Read-only production comparison with the new empty 172xx billing baseline.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {sha256} from './column_order_reconciliation_v1.mjs';
+import {root,workdir,project,container,localSql,localSnapshot,remoteSnapshot,compareSnapshots,snapshotSql} from './vendor_billing_schema_v1.mjs';
+
+assert.equal(process.argv.length,2,'No target, reset or SQL arguments');
+assert.equal(fs.realpathSync(workdir).replaceAll('\\','/').toLowerCase(),'c:/gv_store_billing_20260919/.local/integration/billing-replay');
+const plan=JSON.parse(fs.readFileSync(path.join(workdir,'preparation.json')));
+assert.equal(plan.project,project);assert.equal(plan.network,project);assert.equal(plan.databasePort,17222);
+assert.equal(sha256(fs.readFileSync(path.join(workdir,'supabase/config.toml'))),'8624ef18a63b95faf3d9bd910c711436e17894e0318577abd0005dd365094ab8');
+assert.ok(!fs.existsSync(path.join(workdir,'supabase/.temp/project-ref')),'The local project must not be linked');
+const inspect=(...args)=>JSON.parse(execFileSync('docker',args,{encoding:'utf8',windowsHide:true}))[0];
+const state=inspect('inspect',container);
+assert.equal(state.State.Running,true);assert.deepEqual(Object.keys(state.NetworkSettings.Networks),[project]);
+assert.equal(inspect('network','inspect',project).Internal,true);
+const relay=inspect('inspect','grookai-vendor-billing-relay-20260919');
+assert.deepEqual(relay.NetworkSettings.Ports['17222/tcp'],[{HostIp:'127.0.0.1',HostPort:'17222'}]);
+assert.equal(localSql("select current_setting('max_worker_processes')||'|'||(select count(*) from auth.users)||'|'||(select count(*) from public.card_prints)||'|'||(select count(*) from cron.job_run_details);"),'0|0|0|0');
+const hashes=dir=>Object.fromEntries(fs.readdirSync(dir).filter(n=>/^\d+.*\.sql$/.test(n)).sort().map(n=>[n,sha256(fs.readFileSync(path.join(dir,n)))]));
+const baseline={...plan.sourceHashes};delete baseline['20260919050000_vendor_storefront_release_v1.sql'];
+baseline['20260919054500_one_piece_source_product_foil_scope_v1.sql']='147d694a57228a18e644377ccf71a07feeb565117f0b180da8fed56197a23e83';
+assert.equal(Object.keys(baseline).length,395);
+assert.deepEqual(hashes(path.join(workdir,'supabase/migrations')),baseline);
+const source=hashes(path.join(root,'supabase/migrations'));
+for(const [name,hash] of Object.entries(plan.sourceHashes))assert.equal(source[name],hash,'Previously verified migration changed');
+assert.equal(source['20260919054500_one_piece_source_product_foil_scope_v1.sql'],baseline['20260919054500_one_piece_source_product_foil_scope_v1.sql']);
+const extra=Object.keys(source).filter(n=>!Object.hasOwn(plan.sourceHashes,n)&&n!=='20260919054500_one_piece_source_product_foil_scope_v1.sql');
+assert.ok(extra.length===0||(extra.length===1&&extra[0]==='20260919080000_vendor_stripe_billing_v1.sql'));
+const out=path.join(root,'docs/audits/vendor_stripe_billing_schema_v1');fs.mkdirSync(out,{recursive:true});
+assert.ok(!fs.existsSync(path.join(out,'baseline.json')),'Preserve the existing baseline receipt');
+const toolNames=['scripts/migration_preflight_strict.ps1','scripts/schema/audit_vendor_billing_baseline_v1.mjs','scripts/schema/vendor_billing_schema_v1.mjs','scripts/schema/column_order_reconciliation_v1.mjs'];
+const tools=Object.fromEntries(toolNames.map(n=>[n,sha256(fs.readFileSync(path.join(root,n)))]));
+const report={startedAt:new Date().toISOString(),project,sourceHashes:source,toolHashes:tools,productionApplicationWrites:0,localWrites:0,applyAuthorized:false};
+try {
+ const a=localSnapshot(),b=remoteSnapshot();
+ const expected=Object.keys(baseline).map(n=>({version:n.match(/^\d+/)[0]}));
+ assert.deepEqual(a.LEDGER,expected);assert.deepEqual(b.LEDGER,expected);
+ assert.ok(b.sanity.cards>=40000&&b.sanity.sets>=150&&b.sanity.traits>=5000);
+ fs.writeFileSync(path.join(workdir,'baseline-local-private.json'),JSON.stringify(a),{flag:'wx'});
+ fs.writeFileSync(path.join(workdir,'baseline-remote-private.json'),JSON.stringify(b),{flag:'wx'});
+ report.comparison=await compareSnapshots(a,b,{reconcile:true,output:path.join(workdir,'baseline-diff')});
+ report.productionSanity=b.sanity;report.applied=395;
+ report.pending=Object.keys(source).filter(n=>!Object.hasOwn(baseline,n)).map(n=>n.match(/^\d+/)[0]);
+ report.snapshotQuerySha256=sha256(snapshotSql);
+ assert.deepEqual(hashes(path.join(root,'supabase/migrations')),source);
+ for(const [n,h] of Object.entries(tools))assert.equal(sha256(fs.readFileSync(path.join(root,n))),h);
+ report.status='passed';
+}catch(error){report.status='failed';report.failure=error.message.split('\n')[0];process.exitCode=1;}
+report.finishedAt=new Date().toISOString();
+fs.writeFileSync(path.join(out,'baseline.json'),JSON.stringify(report,null,2),{flag:'wx'});
+console.log(JSON.stringify({status:report.status,failure:report.failure,applied:report.applied,comparison:report.comparison,productionApplicationWrites:0}));

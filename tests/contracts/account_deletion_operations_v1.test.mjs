@@ -57,6 +57,16 @@ test('unknown populated blockers fail closed', () => {
   const decision = buildDeletionDecision({ references: [unknown], activeOwnedBinders: 0 });
   assert.equal(decision.decision, 'policy_repair_required');
 });
+test('billing closeout and financial holds block deletion before destructive preprocessing',()=>{
+  for(const table_name of ['vendor_billing_accounts','vendor_account_financial_holds']){
+    const decision=buildDeletionDecision({references:[reference({table_name,column_name:'owner_id',delete_action:'RESTRICT'})]});
+    assert.equal(decision.decision,'billing_closeout_required');assert.equal(decision.hard_delete_allowed,false);
+  }
+});
+test('an empty active billing reference permits the existing deletion plan after archival',()=>{
+ const decision=buildDeletionDecision({references:[reference({table_name:'vendor_billing_accounts',column_name:'owner_id',delete_action:'RESTRICT',row_count:0})]});
+ assert.equal(decision.decision,'hard_delete_allowed');
+});
 
 test('artifacts use a one-way target fingerprint', () => {
   const userId = '91a3822d-30c5-48f8-9a09-97e57b73152d';

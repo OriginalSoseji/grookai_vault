@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-26T17:40:52.039Z",
+  "status": "passed",
+  "exitCode": 0,
+  "logFile": "C:\\gv_store_production_20260926\\.local\\integration\\production-rehearsal-v2\\shipcheck-2026-09-26T17-37-01.116Z.private.log",
+  "logSha256": "6bc10ea6c4173fce4ac599c5c2e69a5d31dd87ec0aef98e8d3a7fddc602b8ced",
+  "command": "npm run shipcheck",
+  "localOnly": true,
+  "productionWrites": 0
+}

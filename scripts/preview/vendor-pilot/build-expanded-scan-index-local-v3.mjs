@@ -1,0 +1,26 @@
+// Read-only current canonical snapshot + content-addressed existing local caches.
+// Never edits catalog, source images, the hosted321 index, entitlements or workers.
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import{createHash}from'node:crypto';import{fileURLToPath}from'node:url';
+import{scanDescriptor,VISUAL_VERSION}from'../../../apps/web/src/lib/stores/visualMatchCore.mjs';
+const root=fileURLToPath(new URL('../../../',import.meta.url));assert.equal(process.argv.length,2);
+const dir=path.join(root,'.local/integration/vendor-scan-expansion-v3');fs.mkdirSync(dir,{recursive:true});
+const snapshotFile=path.join(root,'.local/integration/vendor-batch-cancellation-r2-v1/matching-english-snapshot.private.json');const raw=fs.readFileSync(snapshotFile,'utf8');const snapshot=JSON.parse(raw.slice(raw.indexOf('{'),raw.lastIndexOf('}')+1)).rows[0].snapshot;
+assert.equal(snapshot.target,'ycdxbpibncqcchqiihfz');assert.equal(snapshot.read_role,'anon');assert.equal(snapshot.scope,'pokemon_eng_standard');assert.deepEqual(snapshot.truncated_groups,[]);assert.ok(Date.now()-Date.parse(snapshot.generated_at)<86400000);assert.equal(snapshot.references.length,21025);
+const hash=b=>createHash('sha256').update(b).digest('hex');const stamp=new Date().toISOString().replaceAll(/[:.]/g,'-');const output=path.join(dir,'local-build-'+stamp+'.jsonl'),receiptFile=path.join(dir,'local-build-'+stamp+'.json');const fd=fs.openSync(output,'wx');
+const history=fs.readFileSync('C:/grookai_vault/.tmp/scanner_v3_ann_index_v1/full_candidate_compact_v1/metadata.jsonl','utf8').trim().split('\n').map(JSON.parse);const byId=new Map(history.map(r=>[r.card_id,r]));
+const pilot=JSON.parse(fs.readFileSync(path.join(root,'apps/web/src/lib/stores/visualMatchIndex.json')));const pilotById=new Map(pilot.references.map(r=>[r.id,r]));
+const checkpoint=path.join(dir,'local-build-2026-09-23T22-45-42-028Z.jsonl');const checkpointBytes=fs.readFileSync(checkpoint);const restored=checkpointBytes.toString().trim().split('\n').map(JSON.parse),currentById=new Map(snapshot.references.map(r=>[r.id,r]));const restoredIds=new Set();
+for(const row of restored){const current=currentById.get(row.id);assert.ok(current);assert.equal(current.gv_id,row.gv_id);assert.equal(current.image_path,row.image_path);assert.ok(row.sha256.startsWith(current.image_path.match(/\/([a-f0-9]{24,64})\./)[1]));assert.equal(Buffer.from(row.descriptor,'base64').length,2304);assert.ok(!restoredIds.has(row.id));restoredIds.add(row.id);fs.writeSync(fd,JSON.stringify(row)+'\n');}
+let included=restored.length;const missing=[],skipped=[];const report={at:new Date().toISOString(),target:snapshot.target,scope:snapshot.scope,snapshotSha256:hash(raw),version:VISUAL_VERSION,productionWrites:0,networkRequests:0,sourceImageWrites:0,resumedCheckpointSha256:hash(checkpointBytes),resumedReferences:restored.length,concurrency:4};
+let cursor=0;await Promise.all(Array.from({length:4},async()=>{while(cursor<snapshot.references.length){const index=cursor++,row=snapshot.references[index];if(restoredIds.has(row.id))continue;
+ try{
+  assert.equal(row.identity_domain,'pokemon_eng_standard');assert.equal(row.image_source,'identity');assert.equal(row.image_status,'exact');assert.ok(row.printings.length);assert.ok(!row.image_path.includes('..'));
+  const expected=row.image_path.match(/\/([a-f0-9]{24,64})\.(?:webp|png|jpe?g)$/)?.[1];if(!expected){missing.push({id:row.id,reason:'path_has_no_content_digest'});continue;}
+  const candidates=[];const prior=pilotById.get(row.id);if(prior?.image_path===row.image_path)candidates.push(path.join(root,'.local/integration/vendor-pilot-20260922/visual-reference-cache',row.id+'.webp'));const old=byId.get(row.id);if(old?.gv_id===row.gv_id&&old.source_path)candidates.push(old.source_path);
+  let bytes,sha256;for(const file of candidates){const resolved=path.resolve(file);assert.ok(resolved.startsWith('C:\\grookai_vault\\.tmp\\')||resolved.startsWith(path.join(root,'.local/integration/vendor-pilot-20260922/visual-reference-cache')));if(!fs.existsSync(resolved))continue;const content=fs.readFileSync(resolved);const digest=hash(content);if(digest.startsWith(expected)){bytes=content;sha256=digest;break;}}
+  if(!bytes){missing.push({id:row.id,reason:'no_current_content_match_in_local_cache'});continue;}
+  const descriptor=await scanDescriptor(bytes);const{printings,identity_domain,image_source,image_status,set_id,...reference}=row;fs.writeSync(fd,JSON.stringify({...reference,sha256,descriptor})+'\n');included++;
+ }catch(error){skipped.push({id:row.id,reason:error.message});}
+ finally{if((index+1)%500===0)console.log(JSON.stringify({processed:index+1,included,missing:missing.length,skipped:skipped.length}));}
+}}));
+fs.closeSync(fd);Object.assign(report,{finishedAt:new Date().toISOString(),candidateCount:snapshot.references.length,included,missing,skipped,artifactPath:output,artifactSha256:hash(fs.readFileSync(output)),status:'local_cache_scan_complete',accuracyProven:false});fs.writeFileSync(receiptFile,JSON.stringify(report,null,2),{flag:'wx'});console.log(JSON.stringify({included,missing:missing.length,skipped:skipped.length,receipt:receiptFile}));

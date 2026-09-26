@@ -50,6 +50,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
 
+  // Referral credit is server-derived and atomic; clients cannot forge its events.
+  if (body.eventName === "vendor_referred_signup") {
+    return NextResponse.json({ ok: false }, { status: 403 });
+  }
+
   const authClient = createRouteHandlerClient(request, response);
   const {
     data: { user },

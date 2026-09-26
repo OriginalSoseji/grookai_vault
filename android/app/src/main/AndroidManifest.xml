@@ -62,6 +62,7 @@
                 <data android:host="set" />
                 <data android:host="sets" />
                 <data android:host="gvvi" />
+                <data android:host="store" />
                 <data android:host="dex" />
                 <data android:host="network" />
                 <data android:host="feed" />
@@ -78,6 +79,7 @@
                 <data android:scheme="https" />
                 <data android:host="grookaivault.com" />
                 <data android:pathPrefix="/card/" />
+                <data android:pathPrefix="/store/" />
                 <data android:path="/explore" />
                 <data android:path="/search" />
                 <data android:pathPrefix="/memory/" />

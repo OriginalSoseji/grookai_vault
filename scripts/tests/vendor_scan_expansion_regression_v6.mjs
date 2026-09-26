@@ -1,0 +1,50 @@
+// Previously evaluated scans only. No independent holdout or online writes.
+import './vendor_storefront_network_guard.cjs';
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { prepareVisualIndex, VISUAL_VERSION } from '../../apps/web/src/lib/stores/visualMatchCore.mjs';
+import { matchScanV6 } from '../../apps/web/src/lib/stores/scanMatchV6.mjs';
+const root = process.cwd(), base = path.join(process.env.USERPROFILE, '.codex/tmp/vendor-real-scans-20260923');
+const read = file => JSON.parse(fs.readFileSync(file));
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+const source = path.join(root, 'apps/web/src/lib/stores/scanMatchV6.mjs');
+const raw = fs.readFileSync(path.join(root, '.local/integration/vendor-scan-expansion-v3/local-build-2026-09-23T22-52-10-191Z.jsonl'));
+assert.equal(hash(raw), '709045ad12c75924b08bf4a40a846e578cec4f3fb0262c4c841640e899c926aa');
+const catalog = raw.toString().trim().split('\n').map(JSON.parse).sort((a,b) => a.id.localeCompare(b.id));
+const byId = new Map(catalog.map(c => [c.id, c]));
+const references = prepareVisualIndex({ version: VISUAL_VERSION, references: catalog });
+const prior100 = read(path.join(root, '.local/integration/vendor-scan-expansion-v3/frozen-evaluation-v3.private.json')).labels;
+const correction = { file: 'holdout-0062.heic', before: ['GV-PK-RCL-61'], after: ['GV-PK-SHF-32'], reason: 'Full-size Luxio 032/072 readback documented in V5; prior frozen labels retained.' };
+assert.deepEqual(prior100.find(r => r.file === correction.file).expectedGvIds, correction.before);
+prior100.find(r => r.file === correction.file).expectedGvIds = correction.after;
+const rows = prior100.map(r => ({ ...r, corpus: 'v2_100', bytesPath: path.join(base, 'holdout-v2/derived', r.file + '.jpg'), derivativeHash: null }));
+for (const version of ['v4', 'v5']) {
+  const labels = read(path.join(base, 'holdout-' + version, 'frozen-labels.private.json')).labels.filter(r => !r.previouslySeen);
+  rows.push(...labels.map(r => ({ ...r, corpus: version, bytesPath: path.join(base, 'holdout-' + version, 'derived', r.file), derivativeHash: r.sha256 })));
+}
+assert.equal(rows.length, 164);
+const report = { at: new Date().toISOString(), matcherSha256: hash(fs.readFileSync(source)), indexSha256: hash(raw), scope: '164 previously evaluated development files', labelCorrections: [correction], rows: [] };
+const output = path.join(root, '.local/integration/vendor-scan-expansion-v6/regression-' + report.at.replaceAll(/[:.]/g, '-') + '.private.json');
+for (const label of rows) {
+  const bytes = fs.readFileSync(label.bytesPath);
+  if (label.derivativeHash) assert.equal(hash(bytes), label.derivativeHash);
+  else assert.equal(hash(fs.readFileSync(path.join(base, 'holdout-v2/files', label.file))), label.sha256);
+  const start = performance.now(); let result;
+  try { result = await matchScanV6(bytes, references, catalog); }
+  catch (error) { result = { status: 'error', error: error.message, candidates: [] }; }
+  const candidates = result.candidates.map(c => ({ ...c, gv_id: byId.get(c.id)?.gv_id }));
+  report.rows.push({ corpus: label.corpus, file: label.file, expected: label.expectedGvIds, status: result.status, error: result.error, candidates,
+    correct: candidates.length > 0 && candidates.every(c => label.expectedGvIds.includes(c.gv_id)),
+    wrong: candidates.some(c => !label.expectedGvIds.includes(c.gv_id)), ms: Math.round(performance.now() - start) });
+  fs.writeFileSync(output, JSON.stringify(report, null, 2));
+  if (report.rows.length % 10 === 0) console.log(JSON.stringify({ processed: report.rows.length, correct: report.rows.filter(r => r.correct).length, wrong: report.rows.filter(r => r.wrong).length }));
+}
+assert.equal(hash(fs.readFileSync(source)), report.matcherSha256, 'Candidate changed during evaluation');
+report.finishedAt = new Date().toISOString();
+report.summary = { scans: report.rows.length, supported: report.rows.filter(r => r.expected.length).length,
+  correct: report.rows.filter(r => r.correct).length, wrong: report.rows.filter(r => r.wrong).length,
+  abstained: report.rows.filter(r => !r.candidates.length).length };
+fs.writeFileSync(output, JSON.stringify(report, null, 2));
+console.log(JSON.stringify({ output, ...report.summary }));

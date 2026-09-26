@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:integration_test/integration_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:storefrontauthproof/main.dart' as boot;
+import 'package:grookai_vault/main.dart' as production;
+import 'package:grookai_vault/screens/stores/storefront_screen.dart';
+import 'package:grookai_vault/screens/stores/custom_product_screen.dart';
+import 'package:grookai_vault/screens/stores/store_management_screen.dart';
+void main() {
+ IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+ testWidgets('full app real login refresh and pending store/product routes',(tester) async {
+  final prefs=await SharedPreferences.getInstance();
+  await prefs.setBool('scanner_state_notice_dismissed_v1',true);
+  await boot.main();
+  Future<void> until(Finder f,{int seconds=45}) async {final end=DateTime.now().add(Duration(seconds:seconds));while(DateTime.now().isBefore(end)){await tester.pump(const Duration(milliseconds:250));if(f.evaluate().isNotEmpty)return;}throw StateError('Timed out waiting for $f');}
+  Future<void> tick([int seconds=2]) async {for(var i=0;i<seconds*4;i++){await tester.pump(const Duration(milliseconds:250));}}
+  Future<void> tap(Finder f) async {await until(f);await tester.ensureVisible(f.first);await tester.tap(f.first);await tick();}
+  Future<void> login({bool visitor=false}) async {
+   await until(find.byType(production.LoginPage));
+   await tap(find.widgetWithText(OutlinedButton,'Sign in with email'));
+   final fields=find.descendant(of:find.byType(production.LoginPage),matching:find.byType(TextField));
+   await tester.enterText(fields.at(0),visitor?const String.fromEnvironment('FIXTURE_VISITOR_EMAIL'):const String.fromEnvironment('FIXTURE_OWNER_EMAIL'));
+   await tester.enterText(fields.at(1),visitor?const String.fromEnvironment('FIXTURE_VISITOR_PASSWORD'):const String.fromEnvironment('FIXTURE_OWNER_PASSWORD'));
+   FocusManager.instance.primaryFocus?.unfocus();await tick();
+   await tap(find.widgetWithText(FilledButton,'Sign in'));
+  }
+  Future<void> logout() async {
+   final navigator=Navigator.of(tester.element(find.byType(Scaffold).last));navigator.popUntil((r)=>r.isFirst);await tick();
+   await Supabase.instance.client.auth.signOut();await until(find.byType(production.LoginPage));
+  }
+  await until(find.byType(production.LoginPage));
+  print('NATIVE_SEND_STORE_LOGIN');await tick(4);
+  expect(find.byType(production.LoginPage),findsOneWidget);
+  await login();await until(find.byType(StorefrontScreen));await until(find.text('Native auth collectible'));
+  expect(tester.widget<StorefrontScreen>(find.byType(StorefrontScreen)).slug,const String.fromEnvironment('FIXTURE_SLUG'));
+  print('NATIVE_STORE_AUTH_PASSED');
+  final oldRefresh=Supabase.instance.client.auth.currentSession!.refreshToken;
+  final refreshed=await Supabase.instance.client.auth.refreshSession();
+  expect(refreshed.session, isNotNull);expect(refreshed.session!.refreshToken,isNot(oldRefresh));
+  await tick();expect(find.byType(StorefrontScreen),findsOneWidget);print('NATIVE_REFRESH_PASSED');
+  // Actual app drawer and Vendor Mode entry, with server-authenticated settings.
+  await tester.pageBack();await tick();
+  final shellScaffold=tester.widgetList<Scaffold>(find.byType(Scaffold)).firstWhere((s)=>s.bottomNavigationBar!=null);
+  expect(tester.getSize(find.byWidget(shellScaffold.bottomNavigationBar!)).height,lessThan(180));
+  await tap(find.byTooltip('Menu'));
+  await tap(find.text('Vendor Mode'));await tap(find.byTooltip('Manage store'));
+  await until(find.byType(StoreManagementScreen));await until(find.byKey(const ValueKey('store_name')));
+  expect(tester.widget<TextField>(find.byKey(const ValueKey('store_slug'))).enabled,false);
+  await tester.enterText(find.byKey(const ValueKey('store_name')),'Native auth proof store');
+  FocusManager.instance.primaryFocus?.unfocus();await tick();await tap(find.byKey(const ValueKey('store_save')));
+  await until(find.text('Saved.'));print('NATIVE_MANAGEMENT_PASSED');
+  await logout();print('NATIVE_SEND_PRODUCT_PREVIEW');await tick(4);
+  await login();await until(find.byType(CustomProductScreen));await until(find.text('Native auth collectible'));
+  final preview=tester.widget<CustomProductScreen>(find.byType(CustomProductScreen));expect(preview.preview,true);expect(preview.productId,const String.fromEnvironment('FIXTURE_PRODUCT_ID'));
+  print('NATIVE_PRODUCT_PREVIEW_AUTH_PASSED');await tick(3);
+  await logout();print('NATIVE_SEND_VISITOR_PRODUCT');await tick(4);await login(visitor:true);
+  await until(find.byType(CustomProductScreen));await until(find.text('Native auth collectible'));
+  expect(tester.widget<CustomProductScreen>(find.byType(CustomProductScreen)).preview,false);
+  expect(find.textContaining('NATIVE-PRIVATE'),findsNothing);print('NATIVE_VISITOR_PRODUCT_AUTH_PASSED');
+  await logout();print('NATIVE_SEND_VISITOR_PREVIEW');await tick(4);await login(visitor:true);
+  await until(find.byType(CustomProductScreen));await until(find.textContaining('not available'));
+  expect(find.text('Native auth collectible'),findsNothing);print('NATIVE_FOREIGN_PREVIEW_DENIED');
+  await logout();expect(Supabase.instance.client.auth.currentSession,isNull);print('NATIVE_AUTH_PROOF_COMPLETE');
+ },timeout:const Timeout(Duration(minutes:8)));
+}

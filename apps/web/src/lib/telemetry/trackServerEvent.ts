@@ -58,7 +58,7 @@ export async function trackServerEvent(payload: WebEventPayload) {
       const { data: existing, error: existingError } = await supabase
         .from("web_events")
         .select("id")
-        .eq("event_name", "account_created")
+        .eq("event_name", row.event_name)
         .eq("user_id", row.user_id)
         .limit(1)
         .maybeSingle();

@@ -1,3 +1,4 @@
+import { vendorPilot, VENDOR_PILOT_ORIGIN } from "./vendorPilot.mjs";
 export const GROOKAI_VAULT_ORIGIN = "https://grookaivault.com";
 
 const PRODUCTION_HOSTNAMES = new Set(["grookaivault.com", "www.grookaivault.com"]);
@@ -15,7 +16,7 @@ export function getSiteOrigin(): string {
   if (process.env.NEXT_PUBLIC_COLLECTOR_STAGING === "true") {
     const local = explicitOrigin ? new URL(explicitOrigin) : null;
     const hosted = process.env.NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING === "true";
-    const validOrigin = local && (hosted
+    const validOrigin = local && (vendorPilot ? local.origin === VENDOR_PILOT_ORIGIN : hosted
       ? local.origin === "https://grookai-collector-staging.vercel.app"
       : local.protocol === "http:" && local.hostname === "127.0.0.1");
     if (!local || !validOrigin ||

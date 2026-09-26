@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-26T16:47:14.601Z",
+  "committedCandidateChanged": 189,
+  "currentMainChanged": 18,
+  "overlaps": [
+    "lib/card_detail_screen.dart",
+    "lib/main.dart",
+    "lib/main_shell.dart",
+    "lib/screens/network/network_screen.dart",
+    "lib/services/navigation/grookai_web_route_service.dart"
+  ],
+  "unstagedFiles": 13,
+  "note": "Path overlap only, not a merge or conflict proof; frozen pilot includes additional uncommitted source."
+}

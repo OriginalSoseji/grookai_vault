@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "src/app/api/stores/owner/intake/match/route.ts": {
+      "supportsCancellation": true
+    }
+  },
   "env": {
     "NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED": "true"
   },

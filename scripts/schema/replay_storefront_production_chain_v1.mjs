@@ -1,0 +1,27 @@
+// One fresh full-chain reset, solely in the disposable lab created by this task.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {root,fixture,project,guard,hash,sql} from './storefront_production_lab_v1.mjs';
+import {snapshotSql,compareSnapshots} from 'file:///C:/gv_store_billing_20260919/scripts/schema/vendor_billing_schema_v1.mjs';
+assert.ok(process.argv.length===2 || (process.argv.length===3 && process.argv[2]==='--scan'));
+const scan=process.argv[2]==='--scan',suffix=scan?'-419':'';
+const before=guard({full:true,scan});
+const intent=path.join(fixture,`full-chain${suffix}-intent.json`);assert.ok(!fs.existsSync(intent),'Never repeat a consumed reset');
+const upgraded=JSON.parse(sql(snapshotSql));
+fs.writeFileSync(path.join(fixture,`upgraded-schema${suffix}.private.json`),JSON.stringify(upgraded),{flag:'wx'});
+fs.writeFileSync(intent,JSON.stringify({at:new Date().toISOString(),...before}),{flag:'wx'});
+const env={...process.env,DO_NOT_TRACK:'1'};for(const key of Object.keys(env))if(/SUPABASE|DATABASE_URL|POSTGRES_URL/.test(key))delete env[key];
+const run=spawnSync('supabase',['db','reset','--local','--no-seed','--yes','--workdir',fixture,'--network-id',project],{cwd:fixture,env,encoding:'utf8',windowsHide:true,timeout:600000,maxBuffer:32*1024*1024});
+const log=(run.stdout??'')+(run.stderr??'');fs.writeFileSync(path.join(fixture,`full-chain${suffix}-private.log`),log,{flag:'wx'});
+assert.equal(run.status,0,'Inspect retained reset log, no automatic retry');
+const after=guard({full:true,scan}),replayed=JSON.parse(sql(snapshotSql));
+fs.writeFileSync(path.join(fixture,`replayed-schema${suffix}.private.json`),JSON.stringify(replayed),{flag:'wx'});
+assert.deepEqual(upgraded.LEDGER,replayed.LEDGER);
+const comparison=await compareSnapshots(upgraded,replayed,{output:path.join(fixture,`upgrade-versus-full-chain${suffix}`)});
+assert.equal(sql("select app_enabled::text||'|'||web_enabled::text||'|'||custom_enabled::text from public.vendor_store_rollout;"),'false|false|false');
+assert.equal(sql("select enabled::text from public.vendor_batch_intake_control;"),'false');
+const result={at:new Date().toISOString(),status:'passed',...after,fullChainReplay:true,upgradeParity:comparison,logSha256:hash(log),sharedResets:0,rolloutEnabled:false};
+fs.writeFileSync(path.join(root,`docs/audits/storefront_production_20260926/full-chain${suffix}.json`),JSON.stringify(result,null,2),{flag:'wx'});
+console.log(JSON.stringify(result));

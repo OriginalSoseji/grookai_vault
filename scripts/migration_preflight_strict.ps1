@@ -21,6 +21,33 @@ param(
 
   [switch]$ReconciledReplayAudit,
   [switch]$CollectorCameoIsolatedReplay,
+  [switch]$StorefrontReleaseIsolatedReplay,
+  [switch]$VendorBillingBaselineAudit,
+  [switch]$StoreIndexBaselineAudit,
+  [switch]$CustomImportBaselineAudit,
+  [switch]$SellerBindingsBaselineAudit,
+  [switch]$VendorStockBaselineAudit,
+  [switch]$VendorOrdersBaselineAudit,
+  [switch]$VendorCheckoutBaselineAudit,
+  [switch]$VendorOrderCancellationBaselineAudit,
+  [switch]$VendorUnstartedOrderBaselineAudit,
+  [switch]$VendorOrderRetryBaselineAudit,
+  [switch]$VendorOrderFulfillmentBaselineAudit,
+  [switch]$VendorOrderRefundsBaselineAudit,
+  [switch]$VendorOrderNotificationsBaselineAudit,
+  [switch]$VendorOrderNotificationsV2BaselineAudit,
+  [switch]$VendorOrderResolutionsBaselineAudit,
+  [switch]$VendorPreordersBaselineAudit,
+  [switch]$VendorPreorderConflictBaselineAudit,
+  [switch]$VendorBatchCommitBaselineAudit,
+  [switch]$VendorBatchPrivateCopyBaselineAudit,
+  [switch]$VendorBatchCancellationBaselineAudit,
+  [switch]$VendorPreordersPilotApply,
+  [switch]$VendorBatchCommitPilotApply,
+  [switch]$VendorBatchCancellationPilotApply,
+  [switch]$StorefrontProductionReleaseV1,
+  [switch]$StorefrontProductionTrialsV1,
+  [switch]$VendorStoreCatalogBaselineAudit,
   [string]$InspectionDeps,
   [string]$AuditEnvFile,
   [string]$AuditOutDir
@@ -439,6 +466,247 @@ function Get-LocalDiffBody([string]$StdOut) {
   return $StdOut.Trim()
 }
 
+if ($StorefrontProductionTrialsV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','StorefrontProductionTrialsV1')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260926200000') { Fail 'Production trial gate permits only its exact invitation migration and no combined modes or target overrides.' }
+  $trialRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $trialFiles = @(Get-RepoMigrationFiles -RepoRoot $trialRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $trialFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $trialPending = @($trialFiles | Where-Object { $_.Id -eq '20260926200000' })
+  if ($trialPending.Count -ne 1) { Fail 'Production trial migration missing.' }
+  $trialDuplicates = Get-ObjectDuplicates -PendingFiles $trialPending
+  if ($trialDuplicates.DuplicateIndexes.Count -gt 0 -or $trialDuplicates.DuplicateViews.Count -gt 0 -or $trialDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending trial objects.' }
+  Require-Command 'node'
+  $trialGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_storefront_production_trials_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $trialGate
+  if ($trialGate.ExitCode -ne 0) { Fail 'Production trial baseline, replay or security proof failed; no apply.' }
+  Write-Section 'STRICT PRODUCTION TRIAL PASS - NO APPLY'
+  exit 0
+}
+
+if ($StorefrontProductionReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','StorefrontProductionReleaseV1')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260926190000') {
+    Fail 'Production storefront gate requires its single exact package and forbids combined modes or arbitrary targets.'
+  }
+  $productionRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $productionFiles = @(Get-RepoMigrationFiles -RepoRoot $productionRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $productionFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $productionPending = @($productionFiles | Where-Object { $_.Id -eq '20260926190000' })
+  if ($productionPending.Count -ne 1) { Fail 'Production storefront package missing.' }
+  $productionDuplicates = Get-ObjectDuplicates -PendingFiles $productionPending
+  if ($productionDuplicates.DuplicateIndexes.Count -gt 0 -or $productionDuplicates.DuplicateViews.Count -gt 0 -or $productionDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending objects in production storefront package.' }
+  Require-Command 'node'
+  $productionGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_storefront_production_package_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $productionGate
+  if ($productionGate.ExitCode -ne 0) { Fail 'Production storefront schema, replay, security or source binding failed; no apply.' }
+  Write-Section 'STRICT PRODUCTION STOREFRONT PACKAGE PASS - NO APPLY'
+  exit 0
+}
+
+if ($VendorBatchCancellationBaselineAudit) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorBatchCancellationBaselineAudit')
+  $batchPrivateExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  $batchPrivatePrior = '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000,20260922140000,20260922180000,20260923020000,20260923030000,20260923040000,20260923050000'
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or ($batchPrivateExpected -join ',') -notin @($batchPrivatePrior,($batchPrivatePrior + ',20260923060000'))) {
+    Fail 'Batch cancellation baseline permits only its exact pending IDs; no apply, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorBatchPrivateCopyBaselineAudit) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorBatchPrivateCopyBaselineAudit')
+  $batchPrivateExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  $batchPrivatePrior = '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000,20260922140000,20260922180000,20260923020000,20260923030000,20260923040000'
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or ($batchPrivateExpected -join ',') -notin @($batchPrivatePrior,($batchPrivatePrior + ',20260923050000'))) {
+    Fail 'Batch private-copy baseline permits only its exact pending IDs; no apply, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorBatchCommitBaselineAudit) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorBatchCommitBaselineAudit')
+  $batchExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  $batchPrior = '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000,20260922140000,20260922180000,20260923020000,20260923030000'
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or ($batchExpected -join ',') -notin @($batchPrior,($batchPrior + ',20260923040000'))) {
+    Fail 'Batch intake baseline permits only its exact pending IDs; no apply, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorBatchCancellationPilotApply) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorBatchCancellationPilotApply')
+  if ($Phase -ne 'PrePush' -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260923060000' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0) {
+    Fail 'Cancellation pilot gate permits only its fixed isolated overlay and exact migration; no combined exceptions or arbitrary targets.'
+  }
+  Require-Command 'node'
+  $pilotGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'preview/vendor-pilot/batch-cancellation-schema.mjs'),'preflight')
+  Write-CommandTranscript -result $pilotGate
+  if ($pilotGate.ExitCode -ne 0) { Fail 'Cancellation pilot overlay preflight failed; no apply.' }
+  Write-Section 'STRICT CANCELLATION PILOT OVERLAY PASS - NO PRODUCTION APPLY'
+  exit 0
+}
+
+if ($VendorBatchCommitPilotApply) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorBatchCommitPilotApply')
+  if ($Phase -ne 'PrePush' -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260923040000,20260923050000' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0) {
+    Fail 'Batch pilot gate permits only the fixed isolated overlay, two exact migrations, and PrePush; no combined exceptions or arbitrary targets.'
+  }
+  Require-Command 'node'
+  $pilotGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'preview/vendor-pilot/batch-commit-schema.mjs'),'preflight')
+  Write-CommandTranscript -result $pilotGate
+  if ($pilotGate.ExitCode -ne 0) { Fail 'Batch pilot overlay preflight failed; no apply.' }
+  Write-Section 'STRICT BATCH PILOT OVERLAY PASS - NO PRODUCTION APPLY'
+  exit 0
+}
+
+if ($VendorPreordersPilotApply) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorPreordersPilotApply')
+  if ($Phase -ne 'PrePush' -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260923020000' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0) {
+    Fail 'Preorder pilot gate permits only the fixed isolated overlay, one exact migration, and PrePush; no combined exceptions or arbitrary targets.'
+  }
+  Require-Command 'node'
+  $pilotGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'preview/vendor-pilot/preorders.mjs'),'preflight')
+  Write-CommandTranscript -result $pilotGate
+  if ($pilotGate.ExitCode -ne 0) { Fail 'Preorder pilot overlay preflight failed; no apply.' }
+  Write-Section 'STRICT PREORDER PILOT OVERLAY PASS - NO PRODUCTION APPLY'
+  exit 0
+}
+
+if ($VendorPreorderConflictBaselineAudit) {
+  $preorderConflictExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  $otherModes = @('VendorPreordersBaselineAudit','VendorOrderResolutionsBaselineAudit','ReconciledReplayAudit','CollectorCameoIsolatedReplay','StorefrontReleaseIsolatedReplay','VendorBillingBaselineAudit','StoreIndexBaselineAudit','CustomImportBaselineAudit','SellerBindingsBaselineAudit','VendorStockBaselineAudit','VendorOrdersBaselineAudit','VendorCheckoutBaselineAudit','VendorOrderCancellationBaselineAudit','VendorUnstartedOrderBaselineAudit','VendorOrderRetryBaselineAudit','VendorOrderFulfillmentBaselineAudit','VendorOrderRefundsBaselineAudit','VendorOrderNotificationsBaselineAudit','VendorOrderNotificationsV2BaselineAudit','VendorStoreCatalogBaselineAudit')
+  if ($Phase -ne 'AuditLinkedSchema' -or @($otherModes | Where-Object { $PSBoundParameters.ContainsKey($_) }).Count -gt 0 -or $InspectionDeps -or $AuditEnvFile -or $AuditOutDir -or ($preorderConflictExpected -join ',') -ne '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000,20260922140000,20260922180000,20260923020000,20260923030000') {
+    Fail 'Preorder conflict baseline permits only its exact fifteen pending IDs; no apply, reset, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorPreordersBaselineAudit) {
+  $preordersExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  $otherModes = @('VendorOrderResolutionsBaselineAudit','ReconciledReplayAudit','CollectorCameoIsolatedReplay','StorefrontReleaseIsolatedReplay','VendorBillingBaselineAudit','StoreIndexBaselineAudit','CustomImportBaselineAudit','SellerBindingsBaselineAudit','VendorStockBaselineAudit','VendorOrdersBaselineAudit','VendorCheckoutBaselineAudit','VendorOrderCancellationBaselineAudit','VendorUnstartedOrderBaselineAudit','VendorOrderRetryBaselineAudit','VendorOrderFulfillmentBaselineAudit','VendorOrderRefundsBaselineAudit','VendorOrderNotificationsBaselineAudit','VendorOrderNotificationsV2BaselineAudit','VendorStoreCatalogBaselineAudit')
+  if ($Phase -ne 'AuditLinkedSchema' -or @($otherModes | Where-Object { $PSBoundParameters.ContainsKey($_) }).Count -gt 0 -or $InspectionDeps -or $AuditEnvFile -or $AuditOutDir -or ($preordersExpected -join ',') -ne '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000,20260922140000,20260922180000') {
+    Fail 'Preorder baseline permits only its exact thirteen pending IDs; no apply, reset, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorOrderResolutionsBaselineAudit) {
+  $resolutionsExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  $otherModes = @('ReconciledReplayAudit','CollectorCameoIsolatedReplay','StorefrontReleaseIsolatedReplay','VendorBillingBaselineAudit','StoreIndexBaselineAudit','CustomImportBaselineAudit','SellerBindingsBaselineAudit','VendorStockBaselineAudit','VendorOrdersBaselineAudit','VendorCheckoutBaselineAudit','VendorOrderCancellationBaselineAudit','VendorUnstartedOrderBaselineAudit','VendorOrderRetryBaselineAudit','VendorOrderFulfillmentBaselineAudit','VendorOrderRefundsBaselineAudit','VendorOrderNotificationsBaselineAudit','VendorOrderNotificationsV2BaselineAudit','VendorStoreCatalogBaselineAudit')
+  if ($Phase -ne 'AuditLinkedSchema' -or @($otherModes | Where-Object { $PSBoundParameters.ContainsKey($_) }).Count -gt 0 -or $InspectionDeps -or $AuditEnvFile -or $AuditOutDir -or ($resolutionsExpected -join ',') -ne '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000,20260922140000') {
+    Fail 'Resolution baseline permits only its exact twelve pending IDs; no apply, reset, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorOrderNotificationsV2BaselineAudit) {
+  $notificationsV2Expected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorStoreCatalogBaselineAudit -or $VendorOrderNotificationsBaselineAudit -or $VendorOrderRefundsBaselineAudit -or $VendorOrderFulfillmentBaselineAudit -or $VendorOrderRetryBaselineAudit -or $VendorUnstartedOrderBaselineAudit -or $VendorOrderCancellationBaselineAudit -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or $InspectionDeps -or $AuditEnvFile -or $AuditOutDir -or ($notificationsV2Expected -join ',') -ne '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000') {
+    Fail 'Notification v2 baseline permits only its exact eleven pending IDs; no apply, reset, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorStoreCatalogBaselineAudit) {
+  $storeCatalogExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorOrderNotificationsBaselineAudit -or $VendorOrderRefundsBaselineAudit -or $VendorOrderFulfillmentBaselineAudit -or $VendorOrderRetryBaselineAudit -or $VendorUnstartedOrderBaselineAudit -or $VendorOrderCancellationBaselineAudit -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or $InspectionDeps -or $AuditEnvFile -or $AuditOutDir -or ($storeCatalogExpected -join ',') -ne '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000') {
+    Fail 'Store catalog baseline permits only its exact eleven pending IDs; no apply, reset, arbitrary target, or combined exceptions.'
+  }
+}
+
+if ($VendorOrderNotificationsBaselineAudit) {
+  $notificationsExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorOrderRefundsBaselineAudit -or $VendorOrderFulfillmentBaselineAudit -or $VendorOrderRetryBaselineAudit -or $VendorUnstartedOrderBaselineAudit -or $VendorOrderCancellationBaselineAudit -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($notificationsExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000,20260920110000')) {
+    Fail 'Order notifications baseline permits only its exact prerequisites and optional notifications; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorOrderRefundsBaselineAudit) {
+  $refundsExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorOrderFulfillmentBaselineAudit -or $VendorOrderRetryBaselineAudit -or $VendorUnstartedOrderBaselineAudit -or $VendorOrderCancellationBaselineAudit -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($refundsExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000,20260920090000')) {
+    Fail 'Order refunds baseline permits only its exact prerequisites and optional refunds; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorOrderFulfillmentBaselineAudit) {
+  $fulfillmentExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorOrderRetryBaselineAudit -or $VendorUnstartedOrderBaselineAudit -or $VendorOrderCancellationBaselineAudit -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($fulfillmentExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000,20260920080000')) {
+    Fail 'Order fulfillment baseline permits only its exact prerequisites and optional fulfillment; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorOrderRetryBaselineAudit) {
+  $retryExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorUnstartedOrderBaselineAudit -or $VendorOrderCancellationBaselineAudit -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($retryExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000,20260919210000')) {
+    Fail 'Order retry baseline permits only its exact prerequisites and optional orders; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorUnstartedOrderBaselineAudit) {
+  $unstartedExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorOrderCancellationBaselineAudit -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($unstartedExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000,20260919200000')) {
+    Fail 'Unstarted order baseline permits only its exact prerequisites and optional orders; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorOrderCancellationBaselineAudit) {
+  $cancellationExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $VendorCheckoutBaselineAudit -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($cancellationExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000')) {
+    Fail 'Order cancellation baseline permits only its exact prerequisites and optional orders; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorCheckoutBaselineAudit) {
+  $checkoutExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorOrdersBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($checkoutExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000,20260919180000')) {
+    Fail 'Checkout baseline permits only its exact prerequisites and optional orders; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorOrdersBaselineAudit) {
+  $ordersExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $VendorStockBaselineAudit -or $SellerBindingsBaselineAudit -or ($ordersExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000,20260919150000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000,20260919170000')) {
+    Fail 'Orders baseline permits only its exact prerequisites and optional orders; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorStockBaselineAudit) {
+  $stockExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or $SellerBindingsBaselineAudit -or ($stockExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000,20260919130000', '20260919050000,20260919080000,20260919120000,20260919130000,20260919150000')) {
+    Fail 'Stock baseline permits only its exact prerequisites and optional reservation; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($SellerBindingsBaselineAudit) {
+  $sellerExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or $CustomImportBaselineAudit -or ($sellerExpected -join ',') -notin @('20260919050000,20260919080000,20260919120000', '20260919050000,20260919080000,20260919120000,20260919130000')) {
+    Fail 'Seller baseline permits only its exact prerequisites and optional binding; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($CustomImportBaselineAudit) {
+  $importExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or $StoreIndexBaselineAudit -or ($importExpected -join ',') -notin @('20260919050000,20260919080000', '20260919050000,20260919080000,20260919120000')) {
+    Fail 'Custom import baseline permits only its exact prerequisites and optional import; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($StoreIndexBaselineAudit) {
+  $indexExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($Phase -ne 'AuditLinkedSchema' -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $VendorBillingBaselineAudit -or ($indexExpected -join ',') -ne '20260919050000,20260919080000') {
+    Fail 'Index baseline audit requires exactly storefront and billing; no apply, reset, or combined exceptions.'
+  }
+}
+
+if ($VendorBillingBaselineAudit) {
+  $billingExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  $billingAllowed = @('20260919050000', '20260919080000')
+  if ($Phase -ne 'AuditLinkedSchema' -or $ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $StorefrontReleaseIsolatedReplay -or $billingExpected.Count -lt 1 -or $billingExpected.Count -gt 2 -or $billingExpected[0] -ne '20260919050000' -or @($billingExpected | Where-Object { $_ -notin $billingAllowed }).Count -gt 0) {
+    Fail 'Billing baseline audit permits only the storefront prerequisite and optional billing migration; it cannot apply, reset, or combine exceptions.'
+  }
+}
+
+if ($StorefrontReleaseIsolatedReplay) {
+  $storefrontExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
+  if ($ReconciledReplayAudit -or $CollectorCameoIsolatedReplay -or $storefrontExpected.Count -ne 1 -or $storefrontExpected[0] -ne "20260919050000") {
+    Fail "Storefront isolated replay requires only 20260919050000 and cannot combine audit exceptions."
+  }
+}
+
 if ($CollectorCameoIsolatedReplay) {
   $collectorExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds)
   if ($ReconciledReplayAudit -or $collectorExpected.Count -ne 1 -or $collectorExpected[0] -ne "20260912050000") {
@@ -507,6 +775,230 @@ try {
     Write-Host "Local-only IDs (not applied): $(if ($linkedSummary.LocalOnlyIds.Count -gt 0) { $linkedSummary.LocalOnlyIds -join ', ' } else { 'none' })"
     if ($linkedSummary.LocalOnlyIds.Count -gt 0) {
       Write-Host "Ledger audit found pending local files, not complete ledger parity. The schema diff below includes these files."
+    }
+    if ($VendorBatchCancellationBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $batchPrivateExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Batch intake pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_batch_cancellation_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Batch intake baseline schema/security differs; no apply.' }
+      Write-Section 'STRICT VENDOR BATCH CANCELLATION BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorBatchPrivateCopyBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $batchPrivateExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Batch intake pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_batch_private_copy_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Batch intake baseline schema/security differs; no apply.' }
+      Write-Section 'STRICT VENDOR BATCH PRIVATE COPY BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorBatchCommitBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $batchExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Batch intake pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_batch_commit_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Batch intake baseline schema/security differs; no apply.' }
+      Write-Section 'STRICT VENDOR BATCH COMMIT BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorPreorderConflictBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $preorderConflictExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Preorder baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_preorder_conflict_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Preorder baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR PREORDER CONFLICT BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorPreordersBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $preordersExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Preorder baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_preorders_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Preorder baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR PREORDERS BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrderResolutionsBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $resolutionsExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Resolution baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_order_resolutions_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Resolution baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDER RESOLUTIONS BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrderNotificationsV2BaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $notificationsV2Expected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Notification v2 baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_order_notifications_v2.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Notification v2 baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDER NOTIFICATIONS V2 BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorStoreCatalogBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $storeCatalogExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Store catalog baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_store_catalog_recovery_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Store catalog baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR STORE CATALOG BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrderNotificationsBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $notificationsExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Order notifications baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_order_notifications_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Order notifications baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDER NOTIFICATIONS BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrderRefundsBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $refundsExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Order refunds baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_order_refunds_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Order refunds baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDER REFUNDS BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrderFulfillmentBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $fulfillmentExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Order fulfillment baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_order_fulfillment_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Order fulfillment baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDER FULFILLMENT BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrderRetryBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $retryExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Order retry baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_order_retry_final_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Order retry baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDER RETRY BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorUnstartedOrderBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $unstartedExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Unstarted order baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_unstarted_order_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Unstarted order baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR UNSTARTED ORDER BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrderCancellationBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $cancellationExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Order cancellation baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_order_cancellation_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Order cancellation baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDER CANCELLATION BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorCheckoutBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $checkoutExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Checkout baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_checkout_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Checkout baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR CHECKOUT BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorOrdersBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $ordersExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Orders baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_orders_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Orders baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR ORDERS BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorStockBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $stockExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Stock baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_stock_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Stock baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT VENDOR STOCK BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($SellerBindingsBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $sellerExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Seller binding baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_seller_bindings_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Seller binding baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT SELLER BINDINGS BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($CustomImportBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $importExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Custom import baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_custom_import_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Custom import baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT CUSTOM IMPORT BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($VendorBillingBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $billingExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Billing baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_vendor_billing_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Billing baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT BILLING BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($StoreIndexBaselineAudit) {
+      Require-Command 'node'
+      $comparison = Compare-IdSets -Expected $indexExpected -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) { Fail 'Index baseline pending set differs.' }
+      $audit = Invoke-ExternalCommand -FileName 'node' -Arguments @((Join-Path $repoRoot 'scripts/schema/audit_store_index_baseline_v1.mjs'))
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail 'Index baseline schema/security differs; no apply is permitted.' }
+      Write-Section 'STRICT INDEX BASELINE PASS - DEVELOPMENT ONLY'
+      exit 0
+    }
+    if ($StorefrontReleaseIsolatedReplay) {
+      Require-Command "node"
+      $comparison = Compare-IdSets -Expected @("20260919050000") -Actual @($linkedSummary.LocalOnlyIds)
+      if ($comparison.Unexpected.Count -gt 0 -or $comparison.Missing.Count -gt 0) {
+        Fail "Storefront baseline audit requires the exact sole pending release migration."
+      }
+      $audit = Invoke-ExternalCommand -FileName "node" -Arguments @(
+        (Join-Path $repoRoot "scripts/schema/verify_storefront_release_v1.mjs"), "baseline"
+      )
+      Write-CommandTranscript -result $audit
+      if ($audit.ExitCode -ne 0) { Fail "Storefront baseline schema or security differs; no apply is permitted." }
+      Write-Section "STRICT STOREFRONT BASELINE PASS - PENDING APPLY"
+      exit 0
     }
     if ($CollectorCameoIsolatedReplay) {
       Require-Command "node"
@@ -642,7 +1134,12 @@ try {
   }
 
   Write-Section "5) Local Replay Proof"
-  if ($CollectorCameoIsolatedReplay) {
+  if ($StorefrontReleaseIsolatedReplay) {
+    Require-Command "node"
+    $resetResult = Invoke-ExternalCommand -FileName "node" -Arguments @(
+      (Join-Path $repoRoot "scripts/schema/verify_storefront_release_v1.mjs"), "replay"
+    )
+  } elseif ($CollectorCameoIsolatedReplay) {
     Require-Command "node"
     $resetResult = Invoke-ExternalCommand -FileName "node" -Arguments @(
       (Join-Path $repoRoot "scripts/schema/verify_collector_cameo_replay_v1.mjs")

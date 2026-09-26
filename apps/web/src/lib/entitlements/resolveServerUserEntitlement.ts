@@ -40,6 +40,12 @@ export async function resolveServerUserEntitlement(user: User | null): Promise<G
 
   try {
     const admin = createServerAdminClient();
+    // Billing is a time-bounded contribution to the same database entitlement.
+    // Older deployments without this additive RPC retain their manual readers.
+    const effective = await admin.rpc("grookai_effective_entitlement_v1", { p_user_id: user.id });
+    if (!effective.error && effective.data) {
+      return resolveDatabaseGrookaiUserEntitlement({ user, record: effective.data as GrookaiEntitlementRecord }) ?? staticEntitlement;
+    }
     const filters = [`user_id.eq.${user.id}`];
     if (email) {
       filters.push(`email.eq.${email}`);

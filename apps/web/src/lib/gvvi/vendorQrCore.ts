@@ -30,7 +30,8 @@ export function buildVendorQrDestinationUrl(origin: string, gvviId: string) {
   }
 
   const normalizedOrigin = new URL(origin);
-  if (normalizedOrigin.protocol !== "https:" && normalizedOrigin.hostname !== "localhost") {
+  const isLoopback = ["localhost", "127.0.0.1", "[::1]"].includes(normalizedOrigin.hostname);
+  if (normalizedOrigin.protocol !== "https:" && !(normalizedOrigin.protocol === "http:" && isLoopback)) {
     throw new Error("GVVI QR origin must use HTTPS outside localhost.");
   }
 

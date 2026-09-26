@@ -35,6 +35,8 @@ import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/gvvi/vendor_pricing_workspace_screen.dart';
+import 'screens/stores/storefront_screen.dart';
+import 'screens/stores/custom_product_screen.dart';
 import 'screens/grookai_objects/collector_memories_screen.dart';
 import 'screens/grookai_objects/collector_memory_route_screen.dart';
 import 'screens/grookai_objects/grookai_objects_hub_screen.dart';
@@ -3332,6 +3334,8 @@ class _MyAppState extends State<MyApp> {
                   break;
                 case GrookaiCanonicalRouteKind.memory:
                 case GrookaiCanonicalRouteKind.collector:
+                case GrookaiCanonicalRouteKind.store:
+                case GrookaiCanonicalRouteKind.storeProduct:
                 case GrookaiCanonicalRouteKind.collectorSection:
                 case GrookaiCanonicalRouteKind.set:
                 case GrookaiCanonicalRouteKind.gvvi:

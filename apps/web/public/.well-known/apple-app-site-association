@@ -12,6 +12,7 @@
           "/set/*",
           "/sets/*",
           "/gvvi/*",
+          "/store/*",
           "/dex",
           "/dex/*",
           "/network*",

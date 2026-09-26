@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-26T18:13:41.872Z",
+  "target": "ycdxbpibncqcchqiihfz",
+  "bucket": "vendor-scan-features-v29",
+  "objects": 19621,
+  "references": 20079,
+  "bytes": 8478139239,
+  "allHashesReadBack": true,
+  "private": true,
+  "planSha256": "d23306d64ec5893de27b284a2aa3caa7e4620f347c3ab38c34f5590e6ff23b98",
+  "journalSha256": "2fa6bd6cbd258f6dd817c66afe238defdc242a7d4ad4ace842398401981764a9",
+  "servingEnabled": false,
+  "catalogMutations": 0,
+  "ownershipMutations": 0,
+  "entitlementChanges": 0,
+  "schemaChanges": 0,
+  "paymentChanges": 0
+}

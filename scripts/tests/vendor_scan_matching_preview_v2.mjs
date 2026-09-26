@@ -1,0 +1,42 @@
+// Isolated browser QA of real production components with private local scan copies.
+// No Supabase credentials or inventory writers. No outbound network. Not RLS proof.
+import './vendor_storefront_network_guard.cjs';
+import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';import {createServer} from 'node:http';
+import {createHash} from 'node:crypto';
+import {prepareVisualIndex} from '../../apps/web/src/lib/stores/visualMatchCore.mjs';
+import {matchScanV2} from '../../apps/web/src/lib/stores/scanMatchV2.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..'),web=path.join(root,'apps/web');
+const require=createRequire(path.join(web,'package.json')),{webpack}=require('next/dist/compiled/webpack/webpack');
+const dir=path.join(root,'.local/scan-matching-ui-v2');fs.mkdirSync(dir,{recursive:true});
+const privateDir=path.join(process.env.USERPROFILE,'.codex/tmp/vendor-real-scans-20260923');
+const artifact=JSON.parse(fs.readFileSync(path.join(web,'src/lib/stores/visualMatchIndex.json'))),index=prepareVisualIndex(artifact);
+const catalog=JSON.parse(fs.readFileSync(path.join(root,'.local/integration/vendor-pilot-20260922/recognition-catalog.private.json')));
+const loader=path.join(dir,'loader.cjs');
+fs.writeFileSync(loader,`const ts=require(${JSON.stringify(require.resolve('typescript'))});module.exports=function(source){if(this.resourcePath.endsWith('.css')){const css=source.replace(/:global\\(([^)]+)\\)/g,'$1');return 'const style=document.createElement("style");style.textContent='+JSON.stringify(css)+';document.head.appendChild(style);export default '+JSON.stringify(Object.fromEntries([...source.matchAll(/\\.([a-zA-Z_][a-zA-Z0-9_-]*)/g)].map(m=>[m[1],m[1]])))+';';}return ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true},fileName:this.resourcePath}).outputText;};`);
+const entry=path.join(dir,'entry.tsx');
+fs.writeFileSync(entry,`import React from 'react';import{createRoot}from'react-dom/client';import StoreBatchIntake from '@/components/stores/StoreBatchIntake';import{loadIntakeBatch}from '@/lib/stores/batchIntakeStorage';import s from '@/components/stores/StoreManager.module.css';
+const label=new URLSearchParams(location.search).get('batch')||'pairs';const storeId='real-scan-qa-'+label;
+const owner={store:{id:storeId,display_name:'Local scan QA',app_published:false,web_published:false},sections:[],capabilities:{store_app:true},rollout:{app_enabled:true}};
+function App(){const[pending,setPending]=React.useState(false);return <main className={s.workspace}><h1>Real scans · Local QA</h1><p>Originals unchanged · No account or inventory writes · Sample catalog</p><StoreBatchIntake owner={owner as any} close={()=>location.reload()} refresh={async()=>{}} onPendingChange={setPending}/><p id="qa-progress" role="status"></p><button disabled={pending} onClick={async()=>{const b=await loadIntakeBatch(storeId);const node=document.getElementById('qa-progress')!;if(!b){node.textContent='No saved batch';return;}const start=performance.now();const reports=[];for(const [i,a]of b.assets.entries()){node.textContent='Checking saved image '+(i+1)+' of '+b.assets.length;const originalHash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await a.original.arrayBuffer()))).map(x=>x.toString(16).padStart(2,'0')).join('');let result:any={status:'decode_failed',error:a.error};if(a.preview){const response=await fetch('/qa/match?file='+encodeURIComponent(a.name),{method:'POST',headers:{'Content-Type':a.preview.type},body:a.preview});result=await response.json();}reports.push({name:a.name,originalHash,bytes:a.original.size,previewBytes:a.preview?.size??0,result});}const summary={batch:label,items:b.items.length,assets:b.assets.length,fronts:b.items.map(i=>b.assets.find(a=>a.id===i.front)?.name),backs:b.items.map(i=>b.assets.find(a=>a.id===i.back)?.name??null),confirmed:b.items.filter(i=>i.confirmed).length,receipts:b.items.filter(i=>i.receipt).length,revision:b.revision,reports,ms:performance.now()-start};await fetch('/qa/report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(summary)});node.textContent='Saved check: '+summary.items+' copies; '+summary.assets+' images; '+reports.filter(r=>!r.previewBytes).length+' decode failures; '+summary.receipts+' added';}}>Check every saved image</button></main>}createRoot(document.getElementById('root')!).render(<App/>);`);
+await new Promise((resolve,reject)=>webpack({mode:'development',devtool:false,entry,context:web,output:{path:path.join(dir,'dist'),filename:'bundle.js',publicPath:'/'},resolve:{extensions:['.tsx','.ts','.js'],alias:{'@':path.join(web,'src')},modules:[path.join(web,'node_modules'),path.join(root,'node_modules')]},module:{rules:[{test:/\.(tsx?|css)$/,exclude:/node_modules/,use:loader}]},optimization:{minimize:false}},(error,stats)=>error||stats.hasErrors()?reject(error||new Error(stats.toString({all:false,errors:true}))):resolve()));
+const match=async bytes=>{const started=performance.now();try{const result=await matchScanV2(bytes,index,catalog);return{...result,ms:performance.now()-started,cards:result.candidates.map(c=>{const row=catalog.find(r=>r.id===c.id);return{rotation:c.rotation,id:row.id,gv_id:row.gv_id,name:row.name,number:row.number,set_code:row.set_code,image:'/reference/'+row.id,printings:[]};})};}catch(e){return{status:'unreadable',cards:[],message:e.message,ms:performance.now()-started};}};
+const server=createServer(async(req,res)=>{
+ res.setHeader('Cache-Control','no-store');const url=new URL(req.url,'http://127.0.0.1:25843');
+ const json=data=>{res.setHeader('Content-Type','application/json');res.end(JSON.stringify(data));};
+ if(req.method==='POST'){
+  const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>4*1024*1024){res.writeHead(413).end();return;}chunks.push(chunk);}const bytes=Buffer.concat(chunks);
+  if(url.pathname==='/api/stores/owner/intake/match'||url.pathname==='/qa/match'){
+   const result=await match(bytes);const file=url.searchParams.get('file');if(file&&/^scan-\d{4}\.(jpeg|jpg|heic)$/.test(file)){const dest=path.join(privateDir,'derived');fs.mkdirSync(dest,{recursive:true});fs.writeFileSync(path.join(dest,file+'.jpg'),bytes);}
+   json(result);return;
+  }
+  if(url.pathname==='/qa/report'){const report=JSON.parse(bytes);const originals=JSON.parse(fs.readFileSync(path.join(privateDir,'manifest.private.json')));if(!report.reports.every(r=>originals.some(o=>o.file===r.name&&o.sha256===r.originalHash)))throw Error('Original hash mismatch');fs.writeFileSync(path.join(dir,'report-'+report.batch+'-'+Date.now()+'.private.json'),JSON.stringify(report,null,2));json({ok:true});return;}
+  res.writeHead(503).end();return;
+ }
+ if(url.pathname==='/api/stores/owner/intake'){json({commit:false,recognition:true});return;}
+ if(url.pathname.startsWith('/api/stores/owner/inventory')){json({cards:[],more:false});return;}
+ if(/^\/reference\/[a-f0-9-]{36}$/.test(url.pathname)){const id=url.pathname.split('/').pop();if(!artifact.references.some(r=>r.id===id)){res.writeHead(404).end();return;}res.setHeader('Content-Type','image/webp');res.end(fs.readFileSync(path.join(root,'.local/integration/vendor-pilot-20260922/visual-reference-cache',id+'.webp')));return;}
+ if(url.pathname==='/'){res.setHeader('Content-Type','text/html; charset=utf-8');res.end('<!doctype html><html class="gv-dark"><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Real scan QA — isolated local draft</title><style>body{background:#111518;color:#eee;font-family:system-ui;margin:20px}#root{max-width:1400px;margin:auto}</style></head><body><div id="root"></div><script src="/bundle.js"></script></body></html>');return;}
+ const name=url.pathname.slice(1);if(/^[a-zA-Z0-9_.-]+\.js$/.test(name)&&fs.existsSync(path.join(dir,'dist',name))){res.setHeader('Content-Type','text/javascript');res.end(fs.readFileSync(path.join(dir,'dist',name)));return;}
+ res.writeHead(404).end();
+});server.listen(25843,'127.0.0.1',()=>console.log('Local real-scan QA http://127.0.0.1:25843/?batch=pairs; no external network or inventory writes'));

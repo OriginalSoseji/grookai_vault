@@ -1,5 +1,22 @@
 # Grookai Agent Entry Point
 
+## Production storefront integration — September 26
+
+User authorized connecting the storefront to the real database. Read
+`docs/ops/STOREFRONT_PRODUCTION_20260926.md` before continuing. This is an isolated
+current-main branch. The consolidated production migration is now applied and
+verified (402 versions, including invitation trials); existing data is retained.
+Browse-only rollout is enabled for explicit grants/invitations; payments remain off.
+The 419 development inputs are archived, not active.
+Full package replay, integrated intake, shared quota/trial tests and normal shipcheck
+pass. The complete private scan cache is verified. V4 fixes excluded API routes;
+it is LIVE on grookaivault.com after hosted and browser proof. PR518 carries the
+source integration; inspect its current state and the latest checkpoint.
+Read the latest continuation update before any further action.
+Do not replay consumed apply/reset intents, repoint the pilot, reset shared
+services or weaken guards. Payments and native store releases remain separate.
+Keep newer main, dirty storefront source and paused catalog repair evidence intact.
+
 ## Japanese Source Semantics Prevention - September 19
 
 Read `docs/ops/JAPANESE_SOURCE_SEMANTICS_PREVENTION_RELEASE_20260919.md`.

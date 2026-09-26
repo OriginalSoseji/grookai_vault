@@ -1,0 +1,45 @@
+// Fixed 180xx target; retained 164/168/172/176 projects are never reset here.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+export const root=fileURLToPath(new URL('../../',import.meta.url));
+export const fixture='C:/gv_store_index_reconcile_20260919/.local/integration/index-replay';
+export const project='grookai-store-index-reconcile-20260919';
+export const container=`supabase_db_${project}`;
+export const pending=['20260919050000_vendor_storefront_release_v1.sql','20260919080000_vendor_stripe_billing_v1.sql'];
+export const recovered='20260919100500_market_price_pipeline_candidate_card_reference_index_v1.sql';
+export const output=path.join(root,'docs/audits/vendor_storefront_index_reconcile_v1');
+export const hash=value=>createHash('sha256').update(value).digest('hex');
+export const hashes=dir=>Object.fromEntries(fs.readdirSync(dir).filter(n=>/^\d+.*\.sql$/.test(n)).sort().map(n=>[n,hash(fs.readFileSync(path.join(dir,n)))]));
+export const sql=input=>execFileSync('docker',['exec','-i',container,'psql','-U','postgres','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'],{input,encoding:'utf8',windowsHide:true,timeout:180000,maxBuffer:48*1024*1024}).trim();
+export const emptySql="select current_setting('max_worker_processes')||'|'||(select count(*) from auth.users)||'|'||(select count(*) from public.card_prints)||'|'||(select count(*) from public.sealed_product_variants)||'|'||(select count(*) from cron.job_run_details);";
+export function guard({full=false}={}) {
+  assert.ok(['c:/gv_store_index_reconcile_20260919','c:/gv_store_billing_20260919'].includes(fs.realpathSync(root).replaceAll('\\','/').toLowerCase()));
+  assert.equal(fs.realpathSync(fixture).replaceAll('\\','/').toLowerCase(),fixture.toLowerCase());
+  assert.ok(!fs.existsSync(path.join(fixture,'supabase/.temp/project-ref')));
+  assert.equal(hash(fs.readFileSync(path.join(fixture,'supabase/config.toml'))),'00f2f93f4ce4a861d131aee69f6527232a8664f28d2c6a3f0cb2f0fd0de7c14d');
+  const inspect=(...args)=>JSON.parse(execFileSync('docker',args,{encoding:'utf8',windowsHide:true}))[0];
+  const state=inspect('inspect',container);
+  assert.equal(state.State.Running,true);
+  assert.equal(state.Config.Image,'public.ecr.aws/supabase/postgres:17.6.1.113');
+  assert.equal(state.Image,'sha256:4c39816ce8d9303a3aba1161c842929c73a40c7109a9ef1b644582478e31832e');
+  assert.deepEqual(Object.keys(state.NetworkSettings.Networks),[project]);
+  assert.equal(inspect('network','inspect',project).Internal,true);
+  const relay=inspect('inspect','grookai-store-index-relay-20260919');
+  assert.equal(relay.State.Running,true);
+  assert.deepEqual(relay.NetworkSettings.Ports['18022/tcp'],[{HostIp:'127.0.0.1',HostPort:'18022'}]);
+  const plan=JSON.parse(fs.readFileSync(path.join(fixture,'preparation.json')));
+  assert.equal(plan.project,project);assert.equal(plan.databasePort,18022);
+  const source=hashes(path.join(root,'supabase/migrations'));
+  assert.equal(Object.keys(source).length,398);assert.deepEqual(source,plan.sourceHashes);
+  assert.equal(source[recovered],'68d9710cf2b78cda2f7cbaadf419ed89f31b0ec9a61b109dcada0cc2b457ebc0');
+  const expected={...source};if(!full)for(const name of pending)delete expected[name];
+  assert.deepEqual(hashes(path.join(fixture,'supabase/migrations')),expected);
+  assert.deepEqual(sql('select version from supabase_migrations.schema_migrations order by version;').split(/\r?\n/),Object.keys(expected).sort().map(n=>n.split('_')[0]));
+  assert.equal(sql(emptySql),'0|0|0|0|0');
+  assert.equal(sql("select indisvalid::text||'|'||indisready::text from pg_index where indexrelid='public.market_price_pipeline_candidates_card_print_id_idx'::regclass;"),'true|true');
+  return {project,sourceHashes:source,applied:Object.keys(expected).length};
+}

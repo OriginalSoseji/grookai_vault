@@ -1,0 +1,1919 @@
+{
+  "at": "2026-09-26T17:18:43.730Z",
+  "base": "a98dd26f79967a741632c7efa3086d85cccacb87",
+  "changes": [
+    {
+      "path": "docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md",
+      "sha256": "9a461c0695e283608b91b4d594d5c94fecd8476022f269927795c3dae10ed125"
+    },
+    {
+      "path": "docs/contracts/GV_SECRETS_CONTRACT_v1.md",
+      "sha256": "d2fad060b6e1a8cf404deb64448c3e9aea01851bf7072badc3c6becd08956908"
+    },
+    {
+      "path": "docs/contracts/VAULT_UNASSIGNED_ADD_REPAIR_V1.md",
+      "sha256": "088473525c436b664078f3d66ee508402aff5c5f77029fd4cb3e40c4f107a5e0"
+    },
+    {
+      "path": "docs/contracts/VENDOR_CHECKOUT_CREATION_V1.md",
+      "sha256": "6cfe1b54902b9d164416012c4f33b866dfd38992d78e2743f0e19b59e492b36e"
+    },
+    {
+      "path": "docs/contracts/VENDOR_CHECKOUT_DISCOVERY_V1.md",
+      "sha256": "a2a5cd4a04489a5185820b677d23be499d55af71a96ee00193ac88f57207f2f7"
+    },
+    {
+      "path": "docs/contracts/VENDOR_CHECKOUT_EVIDENCE_V1.md",
+      "sha256": "c2f33f57d9ec5f93cae8dfeba6791487c61367d5f81fd0c8174fe232729ac49c"
+    },
+    {
+      "path": "docs/contracts/VENDOR_COMMERCE_OPERATIONS_V1.md",
+      "sha256": "a395829b8553a7a638f93c91c1059f45754142eeae6638df5d0a8e1337cdcf6f"
+    },
+    {
+      "path": "docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md",
+      "sha256": "721cf3520bde65e3312abb8f1601048aa383aa0df23e9b993fcd6a5e1dc8dc1f"
+    },
+    {
+      "path": "docs/contracts/VENDOR_CUSTOM_PRODUCT_IMPORT_V1.md",
+      "sha256": "d7df849eea15b2a40b4c7422a587e63c5abd5b4b859e2c6ea889195b7bd1ce4c"
+    },
+    {
+      "path": "docs/contracts/VENDOR_MODE_WORKSPACE_V1.md",
+      "sha256": "e899c3a8aa9861cd5dc84172ea65355ff50fde11fb66a5df392b020eb5ea2e69"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDERS_V1.md",
+      "sha256": "4369b2dcaf5beb3f63d2bdf75fd637385aaf7b51aa74404860fa31f251bdc7d1"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_ACQUISITION_V1.md",
+      "sha256": "2771a9877bceb13c99a1e2796bc6647dc4724fcf8071f2acf66f0c15077ae860"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_CANCELLATION_BASELINE_V1.md",
+      "sha256": "b0f76664af926e7c199e76d3efd3f72afc5dedb703ca40da7946b9107b42da9e"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_CANCEL_UNSTARTED_V1.md",
+      "sha256": "6bd2092dcf29f2ebc56481139cd08b0b3f386c7261a4279315c5a5364ba5f8d4"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_DISPUTE_EVIDENCE_V1.md",
+      "sha256": "f3d5eaf9ac4e32562cf0ad29f029ec392506a1b647a968768b5da7e2d2f8f426"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_FULFILLMENT_V1.md",
+      "sha256": "8ea9de91b58006f2db77c6840abdefd7768ead5833ed96e696393c7f594ca63f"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_HTTP_V1.md",
+      "sha256": "6115c252b6b81f15c50ad036bc97ac70e5fc26a56f21a5b96b7583a11e47b131"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_NOTIFICATIONS_V1.md",
+      "sha256": "d799593950c0352bb5f2b6721cd8ddbf1a611dadb3fe298237ddd39afcfa2ff7"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_QUEUE_V1.md",
+      "sha256": "88c72a3ae6b5a85c48bf7db4e8edb53fb711786eb935f6baa7b9096175f1c4ae"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_REFUNDS_V1.md",
+      "sha256": "32734f8cb68cb018b8088509e19c87eb9a90ee5b09b0dfb9e314c0aa2d42ca62"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_REFUND_EVIDENCE_V1.md",
+      "sha256": "f2eac1d04e78f332b1c72759245828647e44bb0ff9370c9be4c35a9e18ae991e"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_REFUND_RECOVERY_V1.md",
+      "sha256": "597eccb2ab67d9eef3c124fb50e27d6dcb18f128ec45ab0d20251bc31c21f04a"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_REFUND_REVIEW_V1.md",
+      "sha256": "d01124e75fdddb39aa5875cbabf6b6f8e711df3b210b847c216c01171640cea5"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_RESOLUTIONS_V1.md",
+      "sha256": "aad8883a6c5c22fc814a6e554ce3ec9dc2dd5d83e8ca17198577be15d9e7dbf4"
+    },
+    {
+      "path": "docs/contracts/VENDOR_ORDER_UI_V1.md",
+      "sha256": "7d3d1b8958d85642fc9da1cfbd87f040cfa1f0dcaca92beeb4805d75ed935016"
+    },
+    {
+      "path": "docs/contracts/VENDOR_PREORDER_DRAFTS_V1.md",
+      "sha256": "fe9e49ad623dcc555d8fe01bc9cc0e0232382ef07c297ed5f49c50204db73918"
+    },
+    {
+      "path": "docs/contracts/VENDOR_SELLER_BINDINGS_V1.md",
+      "sha256": "36d3fbaa8ece0c2b84fcce33887786308798d4897fe956c672dc3f92a480427a"
+    },
+    {
+      "path": "docs/contracts/VENDOR_SELLER_CLOSEOUT_V1.md",
+      "sha256": "f65401249df98df85b36444a4f7c883a4b2277efbd30c69a2a910032a13fb521"
+    },
+    {
+      "path": "docs/contracts/VENDOR_SELLER_ONBOARDING_V1.md",
+      "sha256": "454096703dc2b5bcbded03ab7faa5cb937e7a3ef1ed974ccfaaf1d86eb086c04"
+    },
+    {
+      "path": "docs/contracts/VENDOR_SELLER_PAYMENTS_V1.md",
+      "sha256": "e1ce36dcbfcd85eefa78ebb9e23aee23ad6b2dac0f30d2c5ec55fcdcdd238bab"
+    },
+    {
+      "path": "docs/contracts/VENDOR_STOCK_RESERVATIONS_V1.md",
+      "sha256": "b4f62611e216942062d589b835107ee88a06367a0f2cc0ad1852359a9419a7d3"
+    },
+    {
+      "path": "docs/contracts/VENDOR_STOREFRONTS_V1.md",
+      "sha256": "978cc87e2ddd2a834e99e31b9c91d8ccbbcac766c5e37a2b09c065f8c120a4af"
+    },
+    {
+      "path": "docs/contracts/VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1.md",
+      "sha256": "87927a98ab9603ed552d6ae4a767e0b0663815f4d29baa600f61bf2465ab9044"
+    },
+    {
+      "path": "docs/contracts/VENDOR_STORE_CATALOG_RECOVERY_V1.md",
+      "sha256": "290b2bbd25b4dec58c0cc4f1671ae1a92c97bc30f91db39f3f38c5de0d817bfc"
+    },
+    {
+      "path": "docs/contracts/VENDOR_STRIPE_BILLING_V1.md",
+      "sha256": "b8e6b5d95871acec2c9a75da46eee92d6030f0a44f4a24831e25633989fead29"
+    },
+    {
+      "path": "scripts/audits/storefront_catalog_integration_review_v1.mjs",
+      "sha256": "e09fda004d856df4e836ace3bfbce6455015c0e56195d6cdde9876411c829114"
+    },
+    {
+      "path": "scripts/audits/storefront_release_readiness_v1.sql",
+      "sha256": "96080682c7c51f32edbce46264fd46f12fd2a314f31f66b954f673115648acb5"
+    },
+    {
+      "path": "scripts/audits/storefront_schema_footprint_v1.sql",
+      "sha256": "9c6cc7b85c8bc9ac28ef8deca2844440959d8cab5f800fe1cd716ab0e9a15898"
+    },
+    {
+      "path": "scripts/migration_preflight_strict.ps1",
+      "sha256": "1c60f2aff11a1ca1b88b45b41fa197c70250ad7493487332ab2f3d3986d0998a"
+    },
+    {
+      "path": "scripts/preview/deploy_collector_hosted.mjs",
+      "sha256": "239935b188f763aeae73c3c8d81ba2036077d3dc2413a072ed37d464ca6e8121"
+    },
+    {
+      "path": "scripts/preview/package_collector_vercel.mjs",
+      "sha256": "7ea16667d14f9d27b8e4c608b273c231b3a69defd971633bc8f1f6ef4d86037e"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/access.mjs",
+      "sha256": "3d8196e5e43e0fd2de7f01140aebda82aa4941c59c8e417a98eaf99fc82e2dec"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/access.sql",
+      "sha256": "75ef3247eff40104c4595420a974ef72401e8029e8e71eb2ff85fb0c041c2095"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/copy-photo-proof.mjs",
+      "sha256": "f1bc2fee4e9b5cffccd16063fc2ed3ab805f45e0360c548140a01a52f1410485"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/finalize.mjs",
+      "sha256": "29e4e40e26faef1c8879ca4b2b7de9105f975935b859db26f9a4db73df96de2c"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/hosting.mjs",
+      "sha256": "faf9ee716794e16e2f1f846d6ce5744e0405d3f5b069ba17d2b5e4ff3015c5ee"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/http-proof.mjs",
+      "sha256": "efdcb9782b9dd788f18e29ab031ecced1f8ea92c19f35591ce36de12cda82292"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/images.mjs",
+      "sha256": "b15163ba0c8391c6ba6e3701aea743eb63e6711bf5fd74cc83c45577659c6b4b"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/inventory-finalize.mjs",
+      "sha256": "0e289bc986a409876f04cc3d4b42ff93951db994f05bfe4b8c3729280b31a5b2"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/inventory-proof.mjs",
+      "sha256": "2894dfecd4de8a0a9740d87730107d86c2e8be25b914ce2448a45c4e2dc33b99"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/ops.mjs",
+      "sha256": "5158271e809ac6e63d3037f79cfe294a612b1dda5ae1040dfa7b986d221499b4"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/preorders-proof.mjs",
+      "sha256": "4ccc3f969748d13b4e1ccf054f2b791e58f9150a3c8c2402058ae456880b8b9a"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/preorders-readback.mjs",
+      "sha256": "495440c11e995a1aa21a6d4f9b59b56e9c56a056e25cfe6fd8837abedfd81750"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/preorders.mjs",
+      "sha256": "47ab8407d128d4af4327b66e3e77920a26bb42abb65977dbb13cf3298e4a98f6"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/proof.mjs",
+      "sha256": "99319bfb677721b2665e2826001765cd00b36f48ef046709d9d922b8428c7542"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/schema.mjs",
+      "sha256": "662b1f3ada68b8ec3b01192f4eae763b482a8f8a4251951f66a427d3e178e42b"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/seed.mjs",
+      "sha256": "f253d6ae9627cdfbc0d092404058a1b2452fb7269872ef5b5e4ecef82a5e7e29"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/setup.mjs",
+      "sha256": "f617dff537d5a8b247440452fe656727ecf87255b68f1368c276d6aa8cb98b78"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visibility-finalize.mjs",
+      "sha256": "1da063ac5b21ca14fc7b5b43067a9b4e5db5a09da3e5b7379684e0af82a1b724"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visibility-proof.mjs",
+      "sha256": "7dd728f9a42c8be7f541c6efea5a548f5a899908eb6a30eaa0a0677018e2dc58"
+    },
+    {
+      "path": "scripts/schema/audit_custom_import_baseline_v1.mjs",
+      "sha256": "93a3a811f91e04646c8d859bd3612be0147fdb5b984fb1ca57c6aa285a1e043c"
+    },
+    {
+      "path": "scripts/schema/audit_seller_bindings_baseline_v1.mjs",
+      "sha256": "a581677377c0797d761d48a624e91afdb16412cc0784e7c1f260625784dbc73e"
+    },
+    {
+      "path": "scripts/schema/audit_store_index_baseline_v1.mjs",
+      "sha256": "de40a7826676f18c9aae01df8a2c702da0c2fbabdefc8ea0188a5b958964bc94"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_billing_baseline_v1.mjs",
+      "sha256": "fcca35aeb08a62a6d264e3738df76e6a7890a638947d6e595f49e44e350d9d0c"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_checkout_baseline_v1.mjs",
+      "sha256": "91a0ffe398655e871d8c0cdea836cb34a377cecf8ce35033696d7b71b0511aaa"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_cancellation_baseline_v1.mjs",
+      "sha256": "ca8a0b20f18a38c86ee8904b9d72463f45d7e67b6091e219acdb709b4c97b88e"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_fulfillment_baseline_v1.mjs",
+      "sha256": "23c9a4eea3484157b0f65279ed6f4886c60853c856c729f10be3e59a05e49b0b"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_notifications_baseline_v1.mjs",
+      "sha256": "ec78100de75d50d8ac726654434930062cafbe7234dc4eeaef1bc013e2820181"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_notifications_v2.mjs",
+      "sha256": "70f8f2701774d6f90c5b2552e40068fbbce8b9f21a78d39270516d314005c230"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_refunds_baseline_v1.mjs",
+      "sha256": "e741ba92f88db0a0a40b4fd2ddd602955541f73cbddb250daec28cd44ddb9cd4"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_resolutions_v1.mjs",
+      "sha256": "350a7ed14da2b173c5b4c6058b911bcd60424b7b96c897b201fbc3eab0774dcd"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_retry_baseline_v1.mjs",
+      "sha256": "8ba9edc5ea57472ebbc3159de21e56172eff9143ffd789e1a26fd0d52cd58c48"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_order_retry_final_baseline_v1.mjs",
+      "sha256": "b78005cda0cb9df4dae6ca22cd8e167db669cbaff50c5ef099e1bd182464cd2e"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_orders_baseline_v1.mjs",
+      "sha256": "a75d8630c3112b5d05ca10d68c9b5c25dc406c94fc2f291005785e98f28195f2"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_preorder_conflict_v1.mjs",
+      "sha256": "975303a289cf9f9075835cbe810ec4270c6079afbdd92a147134f48898d0ee8e"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_preorders_v1.mjs",
+      "sha256": "3b79cb04c6ec9aeb5717418ea0b82167a8cd9f7cb39a21dcf2d9be50e676b0f7"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_stock_baseline_v1.mjs",
+      "sha256": "6fa9014ad45842c3854ad1614cf14efeefd963534a1a4360d95f4902bbe9237c"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_store_catalog_recovery_v1.mjs",
+      "sha256": "dd326f7194f83e93f856aac80e3a120c5ee7d2fd73ebb47979ba16485dc84653"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_unstarted_order_baseline_v1.mjs",
+      "sha256": "4b5b0e55fae71ac9d2cc23c5b05c7a833fef53f8ea314a52a81e9e451c409f7c"
+    },
+    {
+      "path": "scripts/schema/build_storefront_release_v1.mjs",
+      "sha256": "096bd346c46c73fb8038d2c2fae706146722ce03f3854638ee1aabb4792ed919"
+    },
+    {
+      "path": "scripts/schema/compare_storefront_footprints_v1.mjs",
+      "sha256": "85d409af092dc0f6f9d36f93dd09b8cbd7deb31e438809fcfb551f51637f283e"
+    },
+    {
+      "path": "scripts/schema/custom_import_runtime_v1.mjs",
+      "sha256": "d233e1c76e30fda124391f0a88f6acdb49ef4abefafd841e22f41bc31197265b"
+    },
+    {
+      "path": "scripts/schema/prepare_custom_import_replay_v1.mjs",
+      "sha256": "6505bbeb3faae1e89866bbe7a536b29668d3c3560945f6a7b1ac473c02efb5b7"
+    },
+    {
+      "path": "scripts/schema/prepare_seller_bindings_replay_v1.mjs",
+      "sha256": "41d4ca8a0b0a7ae44a353bba31057578692cc1f9ba64dc659752b2879772ec38"
+    },
+    {
+      "path": "scripts/schema/prepare_store_index_reconcile_v1.mjs",
+      "sha256": "e97c87f64ae52306e60ee6465590eacad8a01988d48fcf4aae24ed34a9730bc0"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_billing_replay_v1.mjs",
+      "sha256": "ceab8b1a4b8b9ef242a2d030cc89e64594c90d9722809f3bd0ed8733dce00b68"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_checkout_replay_v1.mjs",
+      "sha256": "a914167cf0e28656ec8aa9c80673140acb08229cc3458f03bbb85b2cc781909b"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_cancellation_replay_v1.mjs",
+      "sha256": "55c1819ce6b44f5394e028fe257bf6cbed8960b9296fb5c53797d7ce33520709"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_fulfillment_replay_v1.mjs",
+      "sha256": "8e95e91624e307326aac19e566da90fc69df05dc98b1b267905cfe7a539a4e3e"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_notifications_replay_v1.mjs",
+      "sha256": "69d9fba3119ee3a7c6ed0830af3a55a1f20b88ba7308ee34134737325154b52e"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_notifications_v2.mjs",
+      "sha256": "74467b979f72595d2f346f9b46bfab064c8f55ac3c4394f2eb922874097b40dc"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_refunds_replay_v1.mjs",
+      "sha256": "f8d12be6730bdaa10f3d8b5d30f7b8ba3b5c8f02a271569956ff04a9784c4153"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_resolutions_v1.mjs",
+      "sha256": "0d1cccf57f3a5e3a44fff1b56710aeb0b93c44977629f11767a9e36c8629c546"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_retry_final_replay_v1.mjs",
+      "sha256": "a37fd87b4f83dfba3862de98f03a57b939f17f0da80680d3d603a975b4a55ef8"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_order_retry_replay_v1.mjs",
+      "sha256": "c86f87c889f3db3e6fbcaa61c6734e6f83ebb6016740e2368b2fc9d1338e237a"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_orders_replay_v1.mjs",
+      "sha256": "985ee2465fc13adef4bb1f75fb26fca35b2747b87d2e693175c3b759ce9bfa9a"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_preorder_conflict_v1.mjs",
+      "sha256": "3aadc7e0f535c72c27a61aa7fad4c4f879f2f33383c6a2903ad7db0619da3829"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_preorders_v1.mjs",
+      "sha256": "dc4e1bc8f900dbd8a454dc5555566a680d176910a8e6c896e502f38928c10da0"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_stock_replay_v1.mjs",
+      "sha256": "b75165b5ad45936b621d93d825fa0dec546cf2ad7ac88e271bdbbf75e12c1082"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_store_catalog_recovery_v1.mjs",
+      "sha256": "cde04a41ba40da2a884302c0e26f1857622b97b47313f5a7cd3734d93e0778f8"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_unstarted_order_replay_v1.mjs",
+      "sha256": "af5bc35bf7e843168a46dc9c7979f9af9881d5f804d6cf88c5534bd06a472752"
+    },
+    {
+      "path": "scripts/schema/recover_vendor_order_cancellation_baseline_v1.mjs",
+      "sha256": "6f981b8cfb8e024f6ee33f899f176d8223947175937d173be090f4fcbde44030"
+    },
+    {
+      "path": "scripts/schema/recover_vendor_orders_syntax_v1.mjs",
+      "sha256": "8cbab7d087de5d89aec7ff598cebc76dd58f855a628483d31b5e564f8e17b990"
+    },
+    {
+      "path": "scripts/schema/replay_custom_import_v1.mjs",
+      "sha256": "17a45968363d6abb86c09061d99444bc0a2584454c9471d22ceda586aa97e4c5"
+    },
+    {
+      "path": "scripts/schema/replay_seller_bindings_v1.mjs",
+      "sha256": "0900c9a740e4a1e5531967a19a04307ed5616376f24c984e2786ffad3ac1311d"
+    },
+    {
+      "path": "scripts/schema/replay_store_index_reconcile_v1.mjs",
+      "sha256": "cc19d6257ae226902257acbf587ad6ee42ccc25578cfb12e45b1e01d62e46422"
+    },
+    {
+      "path": "scripts/schema/replay_storefront_reconciled_v1.mjs",
+      "sha256": "acd059cbd06b0daabb3cf4bc4d3bdd470a5da70dcbc62e9405d1f56c0914e07d"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_billing_closeout_v1.mjs",
+      "sha256": "389f824ec2f099c39f92503625f8675a023c735db259a6642f7d7f3f87c88353"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_billing_orchestration_v1.mjs",
+      "sha256": "f1b2f9a47d3c4c9076791ab8c4f2f4b6ec9d72f56d5161f8a2086cd2e1d95a24"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_billing_projection_v1.mjs",
+      "sha256": "7fa504d7e81d609ebb99868c92145404d847aa65ae1fa770b8e5d1e9c4e86c6f"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_billing_reconciliation_v1.mjs",
+      "sha256": "f00886a09dfc0e1a62cff5b6f97ae5950c9681eae87ab7b70fbe36ab49e52cf0"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_checkout_v1.mjs",
+      "sha256": "0de8717355dcbb29ed60831c99c57ef45edeae9db333e21c23e185d9df8bbbc8"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_order_cancellation_v1.mjs",
+      "sha256": "f709f2f57aff20af08e23078c76cf5e96f6d09524f444662e49ee2eab49b6776"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_order_fulfillment_v1.mjs",
+      "sha256": "3abc5b78618c167eebaf45bc169fa6d6453d20182d57bf2ec6edfff1858077ad"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_order_notifications_v2.mjs",
+      "sha256": "fb8eaf90f3232de98952768c68a7217bfdcd0e2d9a2e03e8b410a1034c4367c3"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_order_refunds_v1.mjs",
+      "sha256": "c9db5c9e5b91f4000767fa9b02cd17dedf8475d967ed4a07a9d3f75f9fc8711c"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_order_resolutions_v1.mjs",
+      "sha256": "5f9171a4735219d6252ab11de8661c64f5aaa609ff9e38a25f6302c9050e5d68"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_order_retry_final_v1.mjs",
+      "sha256": "b80ce3eda816e98e4ecd10610a2cfce96204e2c53332a2b528c6c0ddd33b349c"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_order_retry_v1.mjs",
+      "sha256": "9420a96a90dd29603137b2f8e5eff88b37842ec8c20880dcedd76d9f7670478c"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_orders_v1.mjs",
+      "sha256": "c27c6ef9faa0f253e0414bbe93d56f5676ed9ac3719ddf18011553ad59b22e68"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_preorder_conflict_v1.mjs",
+      "sha256": "d716d130ffbc55eda025fc6baf400167f969f0793017b46737d3e9b16bf8dd3a"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_preorders_v1.mjs",
+      "sha256": "e27e2504c6f2e5599d717a24e50dc7fc401bf5adc3cd7c5c831a32b3693c3fb5"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_stock_v1.mjs",
+      "sha256": "64c655171829b4ee2b0fdcb5d67d44f85b12c6ba733f41d17e64a9a808f555de"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_store_catalog_recovery_v1.mjs",
+      "sha256": "bd07c5614e172dfbb0523440159a4d9832a4f5dbb68c4ab53f722801cdc9bea8"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_unstarted_order_v1.mjs",
+      "sha256": "1470de67da93b9f2fc46ef31ee06a30631edb44467aa45bdd54e02a74613555b"
+    },
+    {
+      "path": "scripts/schema/revise_seller_bindings_replay_v1.mjs",
+      "sha256": "424edf25792443d92111b82fb0515435ea785ec7e215aa86704f34fbbdb0e7a4"
+    },
+    {
+      "path": "scripts/schema/seller_bindings_runtime_v1.mjs",
+      "sha256": "5dff19d9bc2a7fe56e0a93512b6cad87dc982636f112eb59e9d56c504d863709"
+    },
+    {
+      "path": "scripts/schema/store_index_reconcile_v1.mjs",
+      "sha256": "3193b9df7f52bc3314d05c0c0a721b159e37cd746664940977d6d42436099989"
+    },
+    {
+      "path": "scripts/schema/storefront_release_guard_v1.mjs",
+      "sha256": "f961bbbfe3eeb6d806db018d4d026cb9c446584450aa4c659f8667291b7682c5"
+    },
+    {
+      "path": "scripts/schema/storefront_release_replay_relay_v1.mjs",
+      "sha256": "115b8d659332cf7547991dba89acb046ac1e312e539e776828e2b9c60f21d995"
+    },
+    {
+      "path": "scripts/schema/storefront_release_schema_v1.mjs",
+      "sha256": "a07beb67402c52d35d57c13393341e0d32034577a5d486d9eb75d8b44b87e2cb"
+    },
+    {
+      "path": "scripts/schema/vendor_billing_schema_v1.mjs",
+      "sha256": "1838e8918226f0d325605d3858e72c6487aa5cfe65f65f4ba90b24beb5b98cd8"
+    },
+    {
+      "path": "scripts/schema/vendor_checkout_runtime_v1.mjs",
+      "sha256": "429688a03947dc70f94d48253a7fac230b150ba2b7b6b30aaca349955faa0dc6"
+    },
+    {
+      "path": "scripts/schema/vendor_order_cancellation_runtime_v1.mjs",
+      "sha256": "7901ac98183592c8bd0aa87f74f9fd4c94628d1c90403f4f0b7bb8feecc91f51"
+    },
+    {
+      "path": "scripts/schema/vendor_order_fulfillment_runtime_v1.mjs",
+      "sha256": "81f4237977cd07e4e5087f44fb0a819c9014d579c859ac0aae3be0dee2906d47"
+    },
+    {
+      "path": "scripts/schema/vendor_order_notifications_runtime_v1.mjs",
+      "sha256": "22d1e98510e7cf79992308a330715247aa70eee77051ffba0589681812ce923b"
+    },
+    {
+      "path": "scripts/schema/vendor_order_notifications_runtime_v2.mjs",
+      "sha256": "fdd7140b3a3c9de547a3d5556f8a6be02164b409b560955beb1c29311487d022"
+    },
+    {
+      "path": "scripts/schema/vendor_order_refunds_runtime_v1.mjs",
+      "sha256": "bd0d2260e571c87c4a670d61172225ad07172136bb0c4fb5e393ff815ff5ec57"
+    },
+    {
+      "path": "scripts/schema/vendor_order_resolutions_runtime_v1.mjs",
+      "sha256": "ba2d211a6d8ea266969630bbe62632474a78b5e69af0cb235fa8482c97141c8f"
+    },
+    {
+      "path": "scripts/schema/vendor_order_retry_final_runtime_v1.mjs",
+      "sha256": "cd8b878e82b70084d11e685f381ca25879957aea0076954b7f74d8132b95e262"
+    },
+    {
+      "path": "scripts/schema/vendor_order_retry_runtime_v1.mjs",
+      "sha256": "926c516f530ab063458870bc2824a886e7de56251129d20c767deb2169546d1f"
+    },
+    {
+      "path": "scripts/schema/vendor_orders_runtime_v1.mjs",
+      "sha256": "b158fd2a0e7553f0212074a2cb611f967d963a787469af32a1df7f797ee8181f"
+    },
+    {
+      "path": "scripts/schema/vendor_preorder_conflict_runtime_v1.mjs",
+      "sha256": "12f9392a690e691cbc07633af87c8f0c1a1f60e67dbd296cd583b7b9b578892e"
+    },
+    {
+      "path": "scripts/schema/vendor_preorders_runtime_v1.mjs",
+      "sha256": "ec93dfc73925ddb43bfefc953def99b3c8e0abe17dc34c6b011db2bd0f3bdeac"
+    },
+    {
+      "path": "scripts/schema/vendor_stock_runtime_v1.mjs",
+      "sha256": "286d804369758ab458d7c5e7f0ee54874adf7e08d3830b316c3086bd08d6db37"
+    },
+    {
+      "path": "scripts/schema/vendor_store_catalog_recovery_runtime_v1.mjs",
+      "sha256": "9e6021b4ff9bd4644b75e0322ca9481f4db481feaee16627227ebecdb6d69017"
+    },
+    {
+      "path": "scripts/schema/vendor_unstarted_order_runtime_v1.mjs",
+      "sha256": "d1784f859eab1d3e2e6a8dca54e1b360a8fe27d17ece8266dc22f7640bc379b5"
+    },
+    {
+      "path": "scripts/schema/verify_storefront_release_v1.mjs",
+      "sha256": "b155c1fd36891ad8983145fd137c6c9bd00bcbd02f0b55d7289e74e7424306ef"
+    },
+    {
+      "path": "scripts/stripe/vendor_stripe_test_account_v1.mjs",
+      "sha256": "4f0cee5f087125da783f68e920414c7de170cfd8e90eebf74d05b5bdc56d95ec"
+    },
+    {
+      "path": "scripts/tests/STOREFRONT_TESTING.md",
+      "sha256": "ea2a2ab006291b8718b9c377eafe009a163bad992eb623ad24ac1540582d747c"
+    },
+    {
+      "path": "scripts/tests/custom_import_baseline_gate_v1.test.mjs",
+      "sha256": "d7ade3099d1955dd23ff0eeb1f043d71f8e7eef0292c8a94d0bebd7347f031a5"
+    },
+    {
+      "path": "scripts/tests/custom_product_import_local_v1.mjs",
+      "sha256": "63a303e6a0ca6748859fd25e589511fecccf6302e99f4491976103f4712bfe58"
+    },
+    {
+      "path": "scripts/tests/prepare_storefront_device_shell_v1.mjs",
+      "sha256": "7a749a0c35670ad1b9afb91fb75bbfd4d78646ce923a327a8759fbce035a5582"
+    },
+    {
+      "path": "scripts/tests/prepare_storefront_full_app_v1.mjs",
+      "sha256": "14b203f9405c18ee9041dd16225b0417ca9395996ca3563aae4a5251be4b1a40"
+    },
+    {
+      "path": "scripts/tests/prepare_storefront_supabase_verification_v1.mjs",
+      "sha256": "81df9a4c683213b354d6d73f626419183ddcd15ec360ad00768ce955b7615449"
+    },
+    {
+      "path": "scripts/tests/run_custom_import_shipcheck_v1.mjs",
+      "sha256": "31b97ecbca2f9e993e95b9ea83590134fefa53f6cee544bf32bd9ad01733781e"
+    },
+    {
+      "path": "scripts/tests/run_seller_bindings_shipcheck_v1.mjs",
+      "sha256": "9127b9e2965532f604b93e72c7f8b6eab39a141675f02f362c806e0139fb67c2"
+    },
+    {
+      "path": "scripts/tests/run_store_index_shipcheck_v1.mjs",
+      "sha256": "7da7d5d8db23595a1e3f9661852c8f99668d7b4871592667d7e16e719b259eed"
+    },
+    {
+      "path": "scripts/tests/run_storefront_full_app_v1.mjs",
+      "sha256": "fabebcc6943bbf746a48c2244b45f78d07a2a12bbc2b95a1786f09f5ff02d64a"
+    },
+    {
+      "path": "scripts/tests/run_storefront_shipcheck_v1.mjs",
+      "sha256": "c32b5013a71befaffb74502da383a64575f1982c1c5b6d5784befd0e48f230c5"
+    },
+    {
+      "path": "scripts/tests/run_vendor_billing_shipcheck_v1.mjs",
+      "sha256": "d1cc5ef841a94c453b2917a62a22bc37a1bab8947565850bf18b0e096d5ced4b"
+    },
+    {
+      "path": "scripts/tests/run_vendor_checkout_shipcheck_v1.mjs",
+      "sha256": "5bc3777973188f4ff58901c13bb9e93460401be07bb8f0b8f276e8f66c58b82b"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_cancellation_shipcheck_v1.mjs",
+      "sha256": "98daf7c32d2a063f437ed8a350e4e096690b542dfe7cee3a87f14deb1e670cf4"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_fulfillment_shipcheck_v1.mjs",
+      "sha256": "8bb2710b8e2ad07d6bd1415c9ac8364f6b79db0430eb819949b69ba05b8d297e"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_notifications_shipcheck_v2.mjs",
+      "sha256": "8cbcbe9f848497823ec52560e53aeb599375b6aceba1cc284dcc797a1837382f"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_queue_shipcheck_v1.mjs",
+      "sha256": "0c200086db7edaf2373c59c727bbe6fd3f5fa04454ac27e73bd94c3ee4b4b3d5"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_refund_recovery_shipcheck_v1.mjs",
+      "sha256": "81679774d20401299bb3813ca2c80987dbe3b105541fbc75bce80fea8fbfe5e2"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_refund_review_shipcheck_v1.mjs",
+      "sha256": "69ae5600ab713699f423fd43a35c289106815c2d4784f18f997c20ca1c4716a0"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_refunds_shipcheck_v1.mjs",
+      "sha256": "9b475bbbc330c3b69c43af9eddd6c1d02329f9fb32ceaf6a2b3f79eefe5b676c"
+    },
+    {
+      "path": "scripts/tests/run_vendor_order_resolutions_shipcheck_v1.mjs",
+      "sha256": "43303676fda25ca18479d01d599f87d92ce8af168b9ffa61d57fdda140e92d90"
+    },
+    {
+      "path": "scripts/tests/run_vendor_orders_shipcheck_v1.mjs",
+      "sha256": "c80196a99487caa47141e058c2e2e6592f04cebaf51f5f3f01ea1fadd98a4488"
+    },
+    {
+      "path": "scripts/tests/run_vendor_stock_shipcheck_v1.mjs",
+      "sha256": "e03212423e5b6f49490fcee921b05eea02c2e519df14ca317ce0b21a0f206b27"
+    },
+    {
+      "path": "scripts/tests/run_vendor_store_catalog_recovery_shipcheck_v1.mjs",
+      "sha256": "66262ce35b8c00701c8ac310c878dc29f88260f0f02a167e34d1a2f8092f8ba2"
+    },
+    {
+      "path": "scripts/tests/run_vendor_unstarted_order_shipcheck_v1.mjs",
+      "sha256": "fee0d2c5e1d89a481ffbbe895e3a85479dce1e09c7ec9e510596f58eb083f63a"
+    },
+    {
+      "path": "scripts/tests/seller_bindings_baseline_gate_v1.test.mjs",
+      "sha256": "d8174cb006dcb721de45683fc2f670e1c025870501e5246a807afbb95b36b3c5"
+    },
+    {
+      "path": "scripts/tests/seller_bindings_concurrency_v1.mjs",
+      "sha256": "16fa49ac906aeecce603f81558a08478ae5e03f3c8ab17af9a36810740892249"
+    },
+    {
+      "path": "scripts/tests/seller_bindings_foundation_v1.mjs",
+      "sha256": "4ce64ae4eb79e55a948b27aa4631046359bc065914744742bcf41136e2f5ef0f"
+    },
+    {
+      "path": "scripts/tests/seller_closeout_api_v1.mjs",
+      "sha256": "607a41303c8cd5f7eb6b2ffb21f792b8ff2208190b688ecb5fc0714e1f11d336"
+    },
+    {
+      "path": "scripts/tests/seller_onboarding_api_v1.mjs",
+      "sha256": "f2116c780101430f41c2e19430d4d6b3f69578e107c8ae92b198b2654c5582b5"
+    },
+    {
+      "path": "scripts/tests/seller_onboarding_browser_v1.mjs",
+      "sha256": "46ef98e3cad7b3c982e35f361a3d43dc97f75bd886b8aa848a7b3f23625784b7"
+    },
+    {
+      "path": "scripts/tests/store_index_baseline_gate_v1.test.mjs",
+      "sha256": "deb395545e09768a5aef3be872d173352d04245470ee55bf9fb01c83f8a1d6c5"
+    },
+    {
+      "path": "scripts/tests/storefront_desktop_browser_v1.mjs",
+      "sha256": "89cb9145fb62d1699bed491846df7bd33daef9038f4bc9f313860d145634c39d"
+    },
+    {
+      "path": "scripts/tests/storefront_desktop_fixture_v1.mjs",
+      "sha256": "8d8d4ca9558e55227d2bf3214f14aa54ffae535da28d1b0bfd7da1fbd225097b"
+    },
+    {
+      "path": "scripts/tests/storefront_device_harness_v1.dart.template",
+      "sha256": "b94e86e137c3497b4ceacdbff7bfa9867bcace9547f6c7d9c6ad245908e9d4a5"
+    },
+    {
+      "path": "scripts/tests/storefront_device_journey_v1.dart.template",
+      "sha256": "8d3187989a65c75d9c733343204301ba2fbf74fb813303f9752024c192c83072"
+    },
+    {
+      "path": "scripts/tests/storefront_device_shell_v1.json",
+      "sha256": "cf568b2492312516af2e69fcaddffff1717b6fee40e50d17fdac56d299c1e35b"
+    },
+    {
+      "path": "scripts/tests/storefront_full_app_auth_v1.dart.template",
+      "sha256": "5cf9ff4d04a75d0ab7d271c1d9768129dfb23104a4c9a5785eb54838a5986b8f"
+    },
+    {
+      "path": "scripts/tests/storefront_full_app_boot_v1.dart.template",
+      "sha256": "4a4ad53d240bf5166aa582d9dd6421f97f7a6523463332cce8a00d98a2cb8c6b"
+    },
+    {
+      "path": "scripts/tests/storefront_full_app_fixture_v1.mjs",
+      "sha256": "f9b703d8d2804e622ff37928e161b3e9717fe897c8e4589d5d48981eb74ac411"
+    },
+    {
+      "path": "scripts/tests/storefront_ios_cold_auth_v1.swift.template",
+      "sha256": "532eb8feab61fac79218a218bf11d0122a64c6be81737b3bc2abd8fabcc6711a"
+    },
+    {
+      "path": "scripts/tests/storefront_preflight_comparison_v1.test.mjs",
+      "sha256": "c98724603c39022f2699b8f1464aab25a12002655639f98931d44da5dab01ce9"
+    },
+    {
+      "path": "scripts/tests/storefront_release_gate_v1.test.mjs",
+      "sha256": "ac3560db0f30bfe94ae905796b88165377e8989910c462ef4c401632ecbce226"
+    },
+    {
+      "path": "scripts/tests/storefront_release_integration_v1.mjs",
+      "sha256": "ef5b91876f75598d5c90cfecd505f9c8ce73349e8f9921b09221f618a107d2a5"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_catalog_v1.mjs",
+      "sha256": "2683c05938ca396ba19c8bbcae67413e9b5a079248e07418d31a2b0195db5b56"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_http_v1.mjs",
+      "sha256": "2efa9b73c0302ae6acd08ef5c983830d0dc2a630040a8addd57dd3ff70f3117a"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_live_v1.mjs",
+      "sha256": "5c24f98379ca4251e7ebc942cb9429851a23450e6f72f27cc7c302b734f35e72"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_relay_v1.mjs",
+      "sha256": "a3349e2c2acda1682d40f85261930bb1b65403e9d70c3cf22cc91c9934f93953"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_replay_v1.mjs",
+      "sha256": "0c81f4e02f4b2634d882a2ae7af2a8f2b2d352fbbd0b79ea79b04b24d8dd695a"
+    },
+    {
+      "path": "scripts/tests/storefront_supabase_web_v1.mjs",
+      "sha256": "77187b88df87d49de80053f139c692ab80cee25954463046ecd83df62f93df01"
+    },
+    {
+      "path": "scripts/tests/storefront_vault_add_integration_v1.mjs",
+      "sha256": "9d398b2e97a8cef95cee4bdb17d113fcdd1e80f5a000bcb55b592a349cd37fe5"
+    },
+    {
+      "path": "scripts/tests/vault_desktop_disposition_v1.mjs",
+      "sha256": "25b3ef50e3d753688b8d853b5597af12d600f72b7fb4e6bf3d9a3662e7f3a1e3"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_api_v1.mjs",
+      "sha256": "5243bde4f1548c603ff708bd1fe994e1b4f23d698d0244921c58a264ece72705"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_baseline_gate_v1.test.mjs",
+      "sha256": "d429b452085a952efdadfc38af2f8e4c0f09740a97b981bc8e1526fb1f0875f5"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_closeout_v1.mjs",
+      "sha256": "1882a20bd7dbf83241baca98fcf71ff1a09f94a9c85f224f233fdd8e45cdc744"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_concurrency_v1.mjs",
+      "sha256": "6408d9f6737371ca8ec5ed4c51b6b91cb941beca4e7b483b089b9cbd5e9ccc5b"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_footprint_v1.mjs",
+      "sha256": "f693a1e419f14d5971574de8051f6d94a175b3b225377a19f3d8c8a118613dac"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_foundation_v1.mjs",
+      "sha256": "99f48a8717598b564a4ec2daa2e7bbcd8829f446f1efaa04daef4d2dd0c17336"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_orchestration_v1.mjs",
+      "sha256": "52068e6517d9e2f6e072efabd280b9be7423ef458fe856133e76c011a72b6839"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_projection_v1.mjs",
+      "sha256": "c7cd301d4b0a134a125cae3b2302e27fe7882c5840b816f3e91e47a55d3b9a7a"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_reconciliation_v1.mjs",
+      "sha256": "6e552432f7f700f7a6cfd70c60de9c1eab95eb43da3d636762efd1d5eebe80a9"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_runtime_v1.mjs",
+      "sha256": "5c1a0432b45a48e3cabff53853092cb9af215d532780709fbe61f1cc38674388"
+    },
+    {
+      "path": "scripts/tests/vendor_billing_web_v1.mjs",
+      "sha256": "96170642599aded5caafe9df1688006d488bfc42a061713f1c619ed3ee89d1b3"
+    },
+    {
+      "path": "scripts/tests/vendor_checkout_baseline_gate_v1.test.mjs",
+      "sha256": "14a01505be19a39d63c744457152efaab97cd6c0344c35b580e7838de4184810"
+    },
+    {
+      "path": "scripts/tests/vendor_checkout_local_v1.mjs",
+      "sha256": "5bfcae9e93eb887844d66786202732d576701c92227c8d6b18882310941ae525"
+    },
+    {
+      "path": "scripts/tests/vendor_commerce_operations_local_v1.mjs",
+      "sha256": "ad8e3add11045127078290fd4322f191aa897b2e6f01ca1dab935838a1990bd5"
+    },
+    {
+      "path": "scripts/tests/vendor_copy_photo_v1.test.mjs",
+      "sha256": "901cb9f331a9e8135d34e7d8c9b2101ea836c803727e0fc93dc6a865b87f3d4d"
+    },
+    {
+      "path": "scripts/tests/vendor_custom_collectibles_browser_v1.mjs",
+      "sha256": "f680d0a616fc9ac51823bcc787c3ab8a45fe7dc1132fb7d89ba0ac3f2f89bb3d"
+    },
+    {
+      "path": "scripts/tests/vendor_custom_collectibles_local_v1.mjs",
+      "sha256": "11047ea9590f67922c38594705e100dcfacaa8cfafabfe9256afd78a65a96558"
+    },
+    {
+      "path": "scripts/tests/vendor_inventory_input_v1.test.mjs",
+      "sha256": "8c83d6329074fe115ab6cc3329cbb0f1cb51af4439b15bd7abfa929149cf2699"
+    },
+    {
+      "path": "scripts/tests/vendor_order_fulfillment_local_v1.mjs",
+      "sha256": "65116be29495120ab3e622520b3e528610d092632cb9ff049b5413021e085c5e"
+    },
+    {
+      "path": "scripts/tests/vendor_order_fulfillment_ui_local_v1.mjs",
+      "sha256": "ab55723c3d6bd44f4a3f2b4d2ef9844d0e02d6a1cea0b9eb6e672762c2e79532"
+    },
+    {
+      "path": "scripts/tests/vendor_order_notifications_local_v2.mjs",
+      "sha256": "0a9a9185b00f54ce45b9b33d1154372f2893092c2816d25816e0e288388b1a11"
+    },
+    {
+      "path": "scripts/tests/vendor_order_queue_local_v1.mjs",
+      "sha256": "cdde185e40a0b24d392000c0341bf0c73d2f8ea2d86cdd3f95a0207ad9f99c58"
+    },
+    {
+      "path": "scripts/tests/vendor_order_refund_recovery_local_v1.mjs",
+      "sha256": "c98c78fa679f4657869f2d3fe839b6689244905a7dbf4348e93b74894fa8e902"
+    },
+    {
+      "path": "scripts/tests/vendor_order_refund_review_ui_local_v1.mjs",
+      "sha256": "3044a38e2952b005beb7b7787a2f673f312079a925daaf2568e0d4fb5719fb4b"
+    },
+    {
+      "path": "scripts/tests/vendor_order_refunds_local_v1.mjs",
+      "sha256": "11819cf03de15960334ff61e594fc23d111a38f9ce01ce840abefaa9a87e826a"
+    },
+    {
+      "path": "scripts/tests/vendor_order_refunds_ui_local_v1.mjs",
+      "sha256": "e8be5c475db7356ba95340ac2cd8dafc17f6506bd46b1298e490445294f1454e"
+    },
+    {
+      "path": "scripts/tests/vendor_order_resolutions_baseline_gate_v1.test.mjs",
+      "sha256": "eb18dbeb59f5713a268af4162e3a5d07be7cd8dd13a0b0629861039bfa8fe441"
+    },
+    {
+      "path": "scripts/tests/vendor_order_resolutions_local_v1.mjs",
+      "sha256": "ecb293b4c9f24e2ceba480b8213bfce66f37f034bb4297ea8a2c508be1c402bc"
+    },
+    {
+      "path": "scripts/tests/vendor_order_resolutions_ui_local_v1.mjs",
+      "sha256": "18cff910903a53fdc7d2536a04a4b0d23c23e7137296181e6c0f1bdb44fb4a71"
+    },
+    {
+      "path": "scripts/tests/vendor_order_ui_local_v1.mjs",
+      "sha256": "ea90c9fc2c40221f870043961be92d0437af25e0274c7c2fd15a601846f68bdc"
+    },
+    {
+      "path": "scripts/tests/vendor_orders_baseline_gate_v1.test.mjs",
+      "sha256": "d4a3b0c1d1ff22df13b001dc363a7fcd90290583adbf522adedceb1e7dd3be52"
+    },
+    {
+      "path": "scripts/tests/vendor_orders_local_v1.mjs",
+      "sha256": "1cebb351d112728c8a843460e8fcb6b2cdc2998d69a45c53c3a607e8977a2959"
+    },
+    {
+      "path": "scripts/tests/vendor_orders_stock_regression_v1.mjs",
+      "sha256": "12dd7bc1bc845702235247444e23dcab9d169956bc18f5d3d1e1dd214825e27f"
+    },
+    {
+      "path": "scripts/tests/vendor_pilot_runtime_v1.test.mjs",
+      "sha256": "bee7fca0f05070570c5ce019677df48469df2841899056d55f7f4ce51f5c0bc0"
+    },
+    {
+      "path": "scripts/tests/vendor_preorder_conflict_local_v1.mjs",
+      "sha256": "d476c34291945d436e4ade80c70e6378797426545f2bd4606278f76711514a89"
+    },
+    {
+      "path": "scripts/tests/vendor_preorders_baseline_gate_v1.test.mjs",
+      "sha256": "ba447d989e48c10cf4f13790209b307fbd987555f993477e0653cd0eaa8865a1"
+    },
+    {
+      "path": "scripts/tests/vendor_preorders_input_v1.test.mjs",
+      "sha256": "888ab90c1c151feb93342afe3b0568ee81cf04b1846dd14f4a93ee182f5c22ce"
+    },
+    {
+      "path": "scripts/tests/vendor_preorders_local_v1.mjs",
+      "sha256": "54bc1e1022aca90b8db6206c895ffaff644e0573b8ef12486dc1f9c253bdf72f"
+    },
+    {
+      "path": "scripts/tests/vendor_preorders_pilot_gate_v1.test.mjs",
+      "sha256": "56245496ca51421a8895fd58f6d2b4996ce07b86b6b6679ff0b3d64ab0c2fe97"
+    },
+    {
+      "path": "scripts/tests/vendor_refund_review_stripe_loopback.cjs",
+      "sha256": "7af5fe875e8710f693ac80e339797ee753476eb6ab07d6e520696903f46a8cc7"
+    },
+    {
+      "path": "scripts/tests/vendor_refund_stripe_loopback.cjs",
+      "sha256": "4e50f587e60592759c16a1454c2cba80f7c4b5f895b0e539cf473df296d748bd"
+    },
+    {
+      "path": "scripts/tests/vendor_resolutions_stripe_loopback.cjs",
+      "sha256": "e56ce8c5fffdd5f8d56cd43628e22820082e10d759de5f82e8aa1666fa0eb04c"
+    },
+    {
+      "path": "scripts/tests/vendor_stock_baseline_gate_v1.test.mjs",
+      "sha256": "219c592e264795ff32f1aba45fe53ecf538f03c7a09c313e8494f6d81b9c46b4"
+    },
+    {
+      "path": "scripts/tests/vendor_stock_local_v1.mjs",
+      "sha256": "d240ae411bcdc9abe46fa4caa8086b44c6a2c2f15159f90f4953ce462d5c3faa"
+    },
+    {
+      "path": "scripts/tests/vendor_store_catalog_recovery_local_v1.mjs",
+      "sha256": "4337f99c7e63359a3d2df7a16e8f5e1f5383d655875d0861d91cccfeded6c039"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_browser_v1.mjs",
+      "sha256": "4a5670dc33b5974a541efb38332d2de3da04a87ea1d1f7761017dc6d075118a0"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_http_fixture.mjs",
+      "sha256": "387c0a2cbb17320b2a18e4cf7352a2151447476d70147b7c46284c0a692e2d33"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_local_v1.mjs",
+      "sha256": "81441c52cf40077f3f10961bf7508e43b5f73ac632f775211a2610287bbfdd6f"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_runtime_v1.test.mjs",
+      "sha256": "e3e33d3781e119c7d91ec2046ae3f72b667efc7a8f5a19414230467d58a8c144"
+    },
+    {
+      "path": "scripts/tests/vendor_storefront_web_local.mjs",
+      "sha256": "adf36d71b8c6938d637d9caa5a456330998083c1ffb18b46080447c1fa84e231"
+    },
+    {
+      "path": "scripts/tests/vendor_stripe_account_readback_v1.mjs",
+      "sha256": "ebc2d75e560b4257f80eb1bbef98a3592e336a5fbfe07520f66db758d9a85a7b"
+    },
+    {
+      "path": "scripts/tests/vendor_stripe_billing_database_v1.mjs",
+      "sha256": "2b486fbb9126e5b4b9a115148d178e3a10b10e34023cc7f2d31bfdbee2c6c8f3"
+    },
+    {
+      "path": "scripts/tests/vendor_stripe_billing_webhook_v1.mjs",
+      "sha256": "e1f877680b742e3d40d69977973f19891ca9e3688922d37196ddb728809bee41"
+    },
+    {
+      "path": "scripts/tests/vendor_stripe_seller_account_v1.mjs",
+      "sha256": "91fccb3256de21db15b9b8cb22e569557bb0c975f1dbbbc62ecd6e0622e80128"
+    },
+    {
+      "path": "scripts/tests/vendor_stripe_seller_rejected_attempt_v1.mjs",
+      "sha256": "14e803e0ec4eabd0f3bde041289f97503ba0422281fdad3cf66b6db10349b54c"
+    },
+    {
+      "path": "scripts/tests/vendor_unstarted_order_local_v1.mjs",
+      "sha256": "b9a067ee10a958eb9c4a9d7e06690151359650ba494d5f3de29f15a2d9076e08"
+    },
+    {
+      "path": "scripts/tests/vendor_unstarted_order_ui_local_v1.mjs",
+      "sha256": "9c5390d07e16eedb34921bd5da0cee273a39595d9dd434e27f689c51b9194155"
+    },
+    {
+      "path": "docs/contracts/VENDOR_BATCH_INTAKE_V1.md",
+      "sha256": "0cdd7279859f3dccca6d7ad8cd817210e9e7998c69af2bff4549306f9a57cc26"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-backup-release.mjs",
+      "sha256": "5fd5755b3d10fda5759fe595289acc4b07976907c1b67069a4b570cb913611a3"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-cancellation-hosted-proof.mjs",
+      "sha256": "e094df4af9adb348aebfadd677aa5a2ccf85937c62e7725a19bfa1cb3b6cdd5b"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-cancellation-release.mjs",
+      "sha256": "adf61373339deebc4064aaa949a9e4d95a23a6148c007d4b17351efaa0acc838"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-cancellation-schema.mjs",
+      "sha256": "55f2d834aeffa4344cd2648309da86df164c49942e6887f294a2f5a0b7ff54c5"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-commit-hosted-proof.mjs",
+      "sha256": "f7f4a219e6784296614bf8537b65fa568c58a5938c123f98ce358813c7d89329"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-commit-release.mjs",
+      "sha256": "f484baeb37d71870c22ba3f8a1a3d231510c7d18cdf656eded27c8c1051ca8e3"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-commit-schema.mjs",
+      "sha256": "d6e73d011f98530da3178027d69b5b630953f74cea450303eba15b6ab5b1c02e"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/batch-hosted-proof.mjs",
+      "sha256": "bd86621aca10e5e149d81affbaad33718d3c73da38865ad7243a25ae15b1f6de"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/build-expanded-scan-index-local-v3.mjs",
+      "sha256": "5cd6e05d12f1ab78b2cf4d7ec0fcff6668d674de8252cd5109d794246a093591"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/build-visual-index.mjs",
+      "sha256": "e589d5801be0099c119fc0d9abe81e41e0821290b8a93ea3714ba7c20c15c029"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-browser-proof.mjs",
+      "sha256": "ccf7875da98084fcd71c09acfe8fe6a38e816471cd5b500c7d47ceb8ba979000"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-catalog-apply.mjs",
+      "sha256": "f54765cb4b0be8017e0b0efae66847315c3d5cdfaafa9d814c6b60b9a1aef019"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-catalog-plan.mjs",
+      "sha256": "e01c3b2ceae1957b67d4ea00d3b6dca52a7a1c63e91dadca848a4e19146b57ce"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-catalog-snapshot.mjs",
+      "sha256": "691e3908103ace352b6238422923b3f5ad799b8b9292d4626eb1d6f2374d5203"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-catalog-verify-local.mjs",
+      "sha256": "8fdd5fa344aaf84620f20b817ea93e8fca25cd1b4d5ba63c256b6b66775ff5e5"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-hosted-proof.mjs",
+      "sha256": "10b9965f5631b1fbb72e9d04fe4bd11584d7b0f23c21cf6e742a3694fc762946"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-hosting.mjs",
+      "sha256": "9d71da863fdf2bc9cc3336f0bf4da08825ae4d68f483dfb485d070ff7c3bc4d4"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-images.mjs",
+      "sha256": "fee352a0d626907b5d3dbd492601df3f08bba90b3821931acae2a6f1ad36cd63"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-local-recovery.mjs",
+      "sha256": "5215d2d5c0159011b11014df7a980748bf1efad902eeec80620fbaf5827377a8"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/expanded-scan-local-rehearsal.mjs",
+      "sha256": "d449428e4b4c6b0a407e6bfa81a5724107b4da175a8f75062316358910c9650f"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/feature-delivery-proof-v30.mjs",
+      "sha256": "f4eb2075473cf88edb7d7e8801cf05ffa9a664cb9b8d75ccb7a865a2f1b93aeb"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/feature-hosting-readback-v30.mjs",
+      "sha256": "ac075cd0a4fd6d63e00b0316bb368aefa5ed6c91f3e2f8d649629c58fd7f03d3"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/feature-storage-readback-v30.mjs",
+      "sha256": "757f4de38e89f69328da35860718e93af5f96e8d2b0ddae0b2e8c982f171c050"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/feature-storage-v30.mjs",
+      "sha256": "2dabae467eee3e007f105b444696c840de5da1d8dcbc4ce93d693060a767327c"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/feature-worker-proof-v30.mjs",
+      "sha256": "a61b9402976368cf90432b583825fd1809ac722f770e4437530412666459c9ee"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/package-expanded-scan-candidate.mjs",
+      "sha256": "e0afaa29468c260a3c23feb575ddc044d64666c7ed9b9f0aa40dff39fe9f6e9c"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/scan-matching-v2-hosted-proof.mjs",
+      "sha256": "45dbfb6bb23b22f25cdc6f76618fe3de3f399c3691a5c3bd78a12e948f0c97d9"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/scan-pilot-release-browser.mjs",
+      "sha256": "f2d6e548f1b2c22c8ab015417601e1833527c288b4d4811119ae25f76e2baae8"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/scan-pilot-release.mjs",
+      "sha256": "88cf945ff243f383fd1928c7c74866841cbe021f092d66ca70c42f07402a7d75"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/scan-promotion-preflight.mjs",
+      "sha256": "453257688dba162763579fd2d7008ca316ae9951a158ccec401ad5791c6965ee"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/search-recovery-finalize.mjs",
+      "sha256": "89b78b8e22ce51af6baf97b5589d35980f66665023bf287f70311bcc914d7524"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/search-recovery-hosted-proof.mjs",
+      "sha256": "6155b713ee7faa26f87ab555e25849254de43a32bec15c10e7970a0de673ce32"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-hosted-proof.mjs",
+      "sha256": "0f78d589194187ef40c0ef5e648d1d771f8680a4d4ec4ded0ada9f6f29418d30"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v24-hosted-proof.mjs",
+      "sha256": "101c48cd746776e4cb018ed95b08b626a55e35f2c77534a0b22e8f3ca2969ad4"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v24-hosting.mjs",
+      "sha256": "ddc4bc8d3ed7eacc4245619b57df125d795e4b2654793e0df3fc6fbdd2731e64"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v25-browser-proof.mjs",
+      "sha256": "e41ee956f09b9a7cc59c0c9d9801c18090313402c8803c5b692cc85dec458bcc"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v25-final-readback.mjs",
+      "sha256": "4906ba3c24b6d3fa264e735592e52336a2b6d999088c1db3a9309451cb7f8690"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v26-browser-proof.mjs",
+      "sha256": "6802bdc0607893ab38eb70f2a0bf2b46879dc59e1c3a5fc03f5987ec677c981b"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v26-hosted-proof.mjs",
+      "sha256": "b0868a2087ca50850dc1838e64273dd2476ae11822aa07d2c62940f7af847d5d"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v26-hosting.mjs",
+      "sha256": "5e18b58646aa7ce913e93519b915ebc87a77dc5149c1a1cfa477e631a7d02d9a"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v26-pixel-boundary.mjs",
+      "sha256": "9586e74ee983768f45b414c5e2924aa4393deb7bdb417ccbdd1a58b4b28f8319"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v26-renew-fixtures.mjs",
+      "sha256": "e4fb3552f8aa36d734ddbd213d56ce652e68bf56ec65cc918d8e9e1673161503"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v26-resources.mjs",
+      "sha256": "83e949d8040d84940cf4b657215fbfa9736f0c1003a79bd70bec95c6f8de3536"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v27-hosted-proof.mjs",
+      "sha256": "b52416c316e72937330459beb084eee1660d94e4d7bf8eb69481926a2af591be"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v27-hosting.mjs",
+      "sha256": "d1523c69f5695101bfdb5b1e4386f2b4661cc4cd14f52b0c9f1de8c82b4e487d"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v27-pixel-boundary.mjs",
+      "sha256": "d0899d2d55e5d6f0e2e6c14bea30925bf263f4a08560b22c41299f65b4437c80"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v27-resources.mjs",
+      "sha256": "a6deaf8138f6f181a142385df1834c211be30f7c1993e04be2575148854ba442"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v31-browser-proof.mjs",
+      "sha256": "2edb885f50744d5698d93af268604b5ee66b80d55d7c5443c7e5a4acc0016b70"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v31-browser-readback.mjs",
+      "sha256": "f4bd886fb5572d40d06a2881bdf5a9044b402603cfc429bd1244690143aeff1c"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v31-hosted-proof.mjs",
+      "sha256": "e6690cd104081c0fc71fc6709da222a57f30bbed23fc249d0d03516aa8030d63"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v31-hosting.mjs",
+      "sha256": "0af12e090dba83fccbee4ec4485763c6f60e38df4eb86084bda387182b34f535"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v31-pixel-boundary.mjs",
+      "sha256": "d797bb65423b35440478ac2ae0d8d7d3b262480c69583bcc3405af2e7dd8f3ea"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v31-resource-readback.mjs",
+      "sha256": "d0a720106acdca624a1e96e13e233b599c6300f22b564c5d99564503bcd8d995"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v31-resources.mjs",
+      "sha256": "cb1554b8afe8a81d5777478da8b4a58baa2c21eaec1b4949f98944bf224c9d69"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v32-browser-proof.mjs",
+      "sha256": "70bbe8879910d6ad9276c59c09791d7bc61808d9b08974b873134c6a7cfa2f12"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v32-hosting.mjs",
+      "sha256": "4456416b8caf647c034d6e0b2d91f97be2aa9b19d4c0a3f83b3d51d5ebbd20c5"
+    },
+    {
+      "path": "scripts/preview/vendor-pilot/visual-v32-origin-proof.mjs",
+      "sha256": "89a99aa7b8879c2a843e360736d7d21a68d7b173ead01a5d32d225e88be06099"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_batch_cancellation_v1.mjs",
+      "sha256": "7e158697c59210154bedf363c29ee3dec3e257be61072b814f9ce37d4959f583"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_batch_commit_v1.mjs",
+      "sha256": "2affcb9805f83e5bb2bddb84dba2ecb493def4f1cfd3c25fc45f2b924d6b6210"
+    },
+    {
+      "path": "scripts/schema/audit_vendor_batch_private_copy_v1.mjs",
+      "sha256": "3352aff8c90da6382a2781c22c7063b1939446174b7976991440bd5005b62fd0"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_batch_cancellation_v1.mjs",
+      "sha256": "1124fb06912e9f92b0927ab85e9a93383563c50199a22fabdacaa2830aa6057c"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_batch_commit_v1.mjs",
+      "sha256": "6a9a072273baddcdac2509785762a08b200549700c2b378f94fe596ea7f1080b"
+    },
+    {
+      "path": "scripts/schema/prepare_vendor_batch_private_copy_v1.mjs",
+      "sha256": "60bd71a2fe1058f3ae6ce7858f9a282af86172b8e6a78361a261d5ed6f0eda96"
+    },
+    {
+      "path": "scripts/schema/recover_vendor_batch_cancellation_network_v1.mjs",
+      "sha256": "abe7b56c7900a3ea099720433bdba6cc2597a53db0531649f9b25babc045edbc"
+    },
+    {
+      "path": "scripts/schema/recover_vendor_batch_private_copy_baseline_v1.mjs",
+      "sha256": "980454d36a4a4d6e1972c1fb77c6834eb8d4df912cbfa6c3d89a5e399e761784"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_batch_cancellation_v1.mjs",
+      "sha256": "aaa988377d9883a9f7d8d1098a07a2a30f6ac1dfbb911c2ecf619478f70e8daf"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_batch_commit_v1.mjs",
+      "sha256": "5e4ea4be7cd86cd1a5ab74eca687cbe364cf79e580243c4370bf97f0db738574"
+    },
+    {
+      "path": "scripts/schema/replay_vendor_batch_private_copy_v1.mjs",
+      "sha256": "14d82e342cf85e5423b028909be1f2829570a40be67c5f614ce12c35b8cc52d2"
+    },
+    {
+      "path": "scripts/schema/vendor_batch_cancellation_runtime_v1.mjs",
+      "sha256": "fb4ac1a6d6829eb286273dc38d667de186f2624d874a36b8dd88156ffd660b96"
+    },
+    {
+      "path": "scripts/schema/vendor_batch_commit_runtime_v1.mjs",
+      "sha256": "3fbf0670df1e7c20bf4c5cdd631f715b615c00d21fc1d4dd1bfa78c4d8d8b5cd"
+    },
+    {
+      "path": "scripts/schema/vendor_batch_private_copy_runtime_v1.mjs",
+      "sha256": "98f7df25e1a0fe8b5a37db5568ca834560e6b96ad46f329011d5b5b1534cc2e9"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_backup_preview_v1.mjs",
+      "sha256": "c089bbe3d2899f737ad04df014b685b366d0ee813f04e8b3b0cce0a9689c27c0"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_backup_v1.test.mjs",
+      "sha256": "997c50bab8ea74db90f790e41ab0162e5d11f591e0add1835295e27587723849"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_cancellation_baseline_gate_v1.test.mjs",
+      "sha256": "7ad24dcb6ae9235d3789bafabc8722becbe90ffad681409571e84fc53688fa83"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_cancellation_local_v1.mjs",
+      "sha256": "07054bb097fc675f082333b141ea320f5778cd7798c56fa037be9fb81234fc84"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_cancellation_pilot_gate_v1.test.mjs",
+      "sha256": "a0923c14474515cc13a7fc9f24d87da80d0922780023d8e8855f0f0bb9054ae9"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_cancellation_v1.test.mjs",
+      "sha256": "5e6302176902f2cae640be310029e0cf4e4840af59566fa8cd0f11a12f1a4534"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_commit_baseline_gate_v1.test.mjs",
+      "sha256": "453b7ce314a89e865570a2b2182e763fcf2913c8d961b07fc010e86ec1ef4fb7"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_commit_local_v1.mjs",
+      "sha256": "db8e9f3268a8adc02f13b8b0b9141d36a864963f631fd092a8bf2398e7628a0a"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_commit_pilot_gate_v1.test.mjs",
+      "sha256": "552356db698c499255643dd252be042c840259a4cfc8bc47d9f38ba8a190cfe5"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_commit_preview_v1.mjs",
+      "sha256": "2b19dc0a36be5fb79498ebbe986ffe91d8be312b6287d14a0fa6890b0e13808c"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_commit_v1.test.mjs",
+      "sha256": "52b4b0a5af85e97d1d58bdb890fc3b86df383a670e2fd8f125b31fa4ddf329c6"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_image_deadline_v1.test.mjs",
+      "sha256": "960b8f99361b978aa87ca2b5e544420690c577f7732d37d2e504cd455c86aa65"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_intake_preview_v1.mjs",
+      "sha256": "e341036e478018ffb820a44cf56a04d59961abcb672b29aa3c60fb4069723631"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_intake_v1.test.mjs",
+      "sha256": "02a6fd2f447f8a4ebe5f6a0d6fa099e6db1cd6577570c5d01b83044e90621257"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_real_browser_harness_v1.mjs",
+      "sha256": "82f199e695f2419d40be0b04e37a5b73bb60cfef57d09c1e4c5956a955a60dd7"
+    },
+    {
+      "path": "scripts/tests/vendor_batch_real_browser_local_v1.mjs",
+      "sha256": "8b09a78002f29b892d1ff2bf2220f17ba50a3f04d79a1bafadbfaeb74d575769"
+    },
+    {
+      "path": "scripts/tests/vendor_device_origin_v32.test.mjs",
+      "sha256": "6ff3a37913de707579a7f3d55498740b6532070c73f2ff34c7320429fa67b2c6"
+    },
+    {
+      "path": "scripts/tests/vendor_preorder_conflict_recovery_v1.mjs",
+      "sha256": "615dcebb256db51089e6f3ff249041db45baa85d64342213abf9c4f77815cee9"
+    },
+    {
+      "path": "scripts/tests/vendor_real_scans_preview_v1.mjs",
+      "sha256": "9fed8c4baa6e04b10c71e9e74c4c09ac797ab08b333913df0a040ff8a27fae0e"
+    },
+    {
+      "path": "scripts/tests/vendor_real_scans_results_v1.mjs",
+      "sha256": "c8dde6a86a7b6f73565589ac4a7a641a8f8389fca2ccde5ea7e3830257369b78"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_alignment_diagnostics_v21.mjs",
+      "sha256": "40b4869e9aae75ec43e3d2ce3ae8e1963ae7a4741fa27275ac2e76afc74c2db5"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_alignment_ecc_diagnostics_v21.mjs",
+      "sha256": "323ce63602831bffdfb4efcd96d81f76deae3d7652372c61e6371511ea36b077"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_alignment_edges_diagnostics_v22.mjs",
+      "sha256": "be2039fb7f92b63678c04a5692f42ca01991eaab345acf4bcd1f81442102f1bc"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_alignment_wide_diagnostics_v21.mjs",
+      "sha256": "af5c068055e8468a85407f2870d4e6fc3a8aa7eeaf6894f57faceda37585aa10"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cache_generate_v29.mjs",
+      "sha256": "f45370849d53f087e286401f617d3f1760b8febad5449c02ba543717aa4ebffc"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cache_manifest_v29.mjs",
+      "sha256": "b2dd516cd71a9939cd48ad9f1c66ccdb2f4a3ec7d53f129a2629ec7384d73f10"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cache_package_runtime_v29.mjs",
+      "sha256": "5dafdec8f27955711e4dab77a32ec62fbcdf01f4b7cf4a9e3c0f45670538f738"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cache_package_v29.mjs",
+      "sha256": "59c1073b1f41459579b6dc0e23fb40c0771f06f162da8e4c96ed3da2b09400c0"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cache_receipt_v29.mjs",
+      "sha256": "f1856e2d45ddae11d4d36d7e300922984e5843eff9d0765331a990429337c344"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cache_runtime_v29.mjs",
+      "sha256": "9a46ccd3adddde042959f0db6fb078db419596daf2aad51905b05fce4b8a999d"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cache_windows_v29.mjs",
+      "sha256": "cc8e4329f47168feca383025cc0723a3411f0f0d6bb4e7b703ff0ff67b13bfd0"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_cancellation_receipt_v25.mjs",
+      "sha256": "2e119cee5956d98eef6784e36a6acbd438b528e366996fdb77e6db195e218672"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_catalog_v8.mjs",
+      "sha256": "10397f37ca1adf5d0d6399c65ffaf4da8c8628c8b467fc0f64d5f8129b7e4f13"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expanded_access_v1.test.mjs",
+      "sha256": "274c464abab48fbd9990cdd6c4f6f262e3dac467ffed5082d3fa742be921faaa"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_holdout_v10.mjs",
+      "sha256": "62ed832c4812ec41b032e2d9484888dea97f0aecce2f494f3d7a2297a5c64065"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_holdout_v11.mjs",
+      "sha256": "d647f3c9732afa6ee1f7ed7ea2d79c603f01f06dc4dbe567352a538e5f342862"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_holdout_v4.mjs",
+      "sha256": "6c9acfd2afd16f1a59c6bef7b4de2a6e28c1aaf96d30cc70921d943273711dc5"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_holdout_v5.mjs",
+      "sha256": "d874d4c1ad1f61e7102dcd058ce54e737b1c570780db993dd21cdc449a75cec5"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_holdout_v6.mjs",
+      "sha256": "3addf22d5358ebec4266deca9e8fc4368a52b95c27edfff098301eeb5633c75d"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_holdout_v7.mjs",
+      "sha256": "2a4c0a87a12d472b7132511ab56e2aa1ff2b417fc87270e7f3ffd38f41616b45"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_holdout_v9.mjs",
+      "sha256": "ce69e3bd2fa25a66eb19deb5572d0ea64f6e9a29e96618c0ce9ccddf4ecaa500"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_receipt_v11.mjs",
+      "sha256": "843a8ef5ca67403af07ff3dd65ca3e9e289b2dfc320d1f150e67ac9a74b3c4b6"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_receipt_v5.mjs",
+      "sha256": "17bdcaff711441bf0787513d66dc8ecc6e77b463b5947e628b54bd42947dc14b"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_receipt_v7.mjs",
+      "sha256": "8ada327cf8143b44ac3559a3d1c3401f980908025c806a3b390c597958aa325b"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_receipt_v9.mjs",
+      "sha256": "044dde9d88e06d3db6d7991ce5316ed956f31364b58066b19ecdcef190042446"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v10.mjs",
+      "sha256": "8874f69905573454b445b835c22a26d6f8b4e3a6f58a6284a4df9d16d3964c8e"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v11.mjs",
+      "sha256": "2e0f2988f2117eaafcf6f55635fbdbef442b22d3b160e5f0cae4719b07329482"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v12.mjs",
+      "sha256": "72aceae09af5b2c5f2f352d583d8bf5f1c0c1af61e408a41708dadebff2d5ad3"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v13.mjs",
+      "sha256": "d38ed3187f25296e1037c4f1d41a4318902a978f0bd163b45510933846d445ac"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v14.mjs",
+      "sha256": "05246f23f8e2b431203a157abfbea3c93c41a16ae2be19c5bf7d8f0910a8342b"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v15.mjs",
+      "sha256": "0dcd69a63c65096980ed79dd75e9cff006ae63f1b5383c5e96392d194442fa30"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v3.mjs",
+      "sha256": "849cf1e07c7d531f4e0df03649490517ba378863a2e4beae5b420ba589f844a8"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v4.mjs",
+      "sha256": "4393b6ceb175a091093158ae746a5a7d56ddb826d4004a8ee99781ad50d29389"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v5.mjs",
+      "sha256": "2e9e8b92130eced93f9c47b20975835360e3c75404f2df8043ebdb138a931ce7"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v6.mjs",
+      "sha256": "331f753dee1e8c2d91e0b9c28ea1ded3e4f71b1f2c0a3ca82dfa8e74965f02e9"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v7.mjs",
+      "sha256": "46cad3c2e64cdb4f5f5ab37adc4cc95d8b2b5f235ca5c11503fa68b91de501df"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v8.mjs",
+      "sha256": "864a61d4b236c8f9666407d8989f53df069af7d73e14ccbad946a6725ce5e85c"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_expansion_regression_v9.mjs",
+      "sha256": "9780c9c8fd65ddcbd3620089492a1f64fda39c60ceed4f0cc8c9d5b8e4e297be"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_feature_delivery_v29.test.mjs",
+      "sha256": "e242ef0a564ac253afc57de2f226f04c13e4964ff3165ea92aafbbabb5bcb9f1"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_feature_manifest_v29.test.mjs",
+      "sha256": "a1abb449d852176fd84a660cfad241d9eeba489da55d30ceb5e82c8588bcbd91"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_features_linux_package_v28.mjs",
+      "sha256": "2ac601d047ac8918dbdd1432f551c1d13b48c0e237d6eac89a92641535e93862"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_features_linux_v28.mjs",
+      "sha256": "502afa921f4ec01dc39ebe435edb2cfe3c251a91a8a3f8a72b3f19f639bfbe6e"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_features_profile_v28.mjs",
+      "sha256": "a5a5d8acca88890f2995d2d9d5d98e0a3c1aa28238ff01a74f44570ac6d76fb1"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_features_receipt_v28.mjs",
+      "sha256": "c8a0179c92ac8ef999928c2703f62a8a5f990ba6950d4123903a0d9e447fe887"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_features_regression_v28.mjs",
+      "sha256": "99217a04469f0c4d3c5a00f73dd7bde50fed56fa7e9bafdcbe11f3f07721d40c"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_features_support_v28.mjs",
+      "sha256": "d5eb1407edbb2a4c7faa411ec03946bca17d657946e1f2afe0620d2311349f75"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_features_v28.test.mjs",
+      "sha256": "ba0781c4e66ae131427d6094132a821fc5b5e40b51f1fcfefef65596e4733ec2"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_gallery_v12.mjs",
+      "sha256": "d9d4524a7239a023986cf13e4f7676c55ddd1d95bcec150a7e81325ef006c126"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_gallery_v13.mjs",
+      "sha256": "72482b8c9f5c8853dd50ed092335809a4f41a850f8ba50f4066746298a947652"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_failure_diagnostics_v16.mjs",
+      "sha256": "c5369a79d3bfe85f45efe0e5e8c3370a77a32167ae4f81ee3ecc11f5f003708d"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_focus_v22.mjs",
+      "sha256": "ef251247ec99e53c5b4529c8666b81190ba1f77626c05a7c4446522ebf4b57eb"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_focus_v23.mjs",
+      "sha256": "4123f5a5d73ce452ffa85a1c8a013e852768faa213ec4953971b5cd54979b352"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_js_probe_v16.mjs",
+      "sha256": "e480ec5dc93a7b40bc76614bdfa120497295816db359fa210716abb674722509"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_js_regression_v16.mjs",
+      "sha256": "da160c87acfb6400530eac92c240507399b0a7c638ad64c0165e96f10f9149cc"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_regression_v16.py",
+      "sha256": "81e0c221826b34f57dc91c5d24545c620880e55b5fcb01b44a52db4424a95548"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_regression_v17.mjs",
+      "sha256": "7b0f1b9551ece6d24d6d2e66a2234dfdddba279f867315a2de519cf437880094"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_regression_v19.mjs",
+      "sha256": "e3a535e62f1eaa4d0493a9ef8bbc1776dd7eea2ff749371d9fbbe66af237e6a0"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_regression_v23.mjs",
+      "sha256": "3842a09be006d6fa350371acfc4e721c931598de79f3759213fed6cfdfc4de50"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_v16.py",
+      "sha256": "b8a77bd6fab5710c97c1eefdacf14036fe47bb578000a514d10bc5eec9391d06"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_v17.test.mjs",
+      "sha256": "fd089a9c2aa62517a9bd9937c1b4255ec25a3f2225042d544ec84f8377e1c761"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_v19.test.mjs",
+      "sha256": "ce34e5a03d2db9e1c79708fdbd9d772bd76058d4961500630d0c8dc7e821c222"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_v22.test.mjs",
+      "sha256": "2613b68c09bb8ebd40173be18c8d82c16e07f39b140d3691c81ac4b6ad09a382"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_geometry_v23.test.mjs",
+      "sha256": "8bc808ca7d19ae5ca0aec5c2a28309f3360289b296ecb1bc0f6435ac8d43aa17"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_hosted_cancellation_v25.test.mjs",
+      "sha256": "b22194f8e3ca12f1d852327c93185170ca28da5a9c3ccabbf0c1c69de8417433"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_isolated_package_v13.mjs",
+      "sha256": "523f3e842c15cf7d5862503d107620af083a0e52a8c36bc7f75d8bd98d56dda6"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_preview_v2.mjs",
+      "sha256": "ad51c75e5349b6bdc8906d503541eaeaf37708fe798e489adc03af140f88f140"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_receipt_v2.mjs",
+      "sha256": "7c8384fdbaa645bdd983278ab83ee2dd182268c304abfa22d7254c9e2997834a"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v10.test.mjs",
+      "sha256": "4bfb8c5549447d652c4171627461e8bcd2ca2fea972865c2bd911d70a4ab39b6"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v11.test.mjs",
+      "sha256": "5d521b5fc88e6c096f10c461596d5992b2846bb80a6498dc1b0833cb4da87da2"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v12.test.mjs",
+      "sha256": "7020b9aca959e8f50b003a0d1c1771c9d4cefdfece1a0ca2ec4605b1838991b5"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v13.test.mjs",
+      "sha256": "d2ae94ffee894fe5de9dea2613b0c9145a6f2d2f772ec124bebe67ec78ce6a14"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v2.test.mjs",
+      "sha256": "978ba8a55743e7d7b9a16afe931273eb0c9a1aba9c5591d0ec0def22cd47a52a"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v3.test.mjs",
+      "sha256": "db8d10da0d8e010b6ea267a8b2294dc444b7792f780a60325e4fbf62d2de5681"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v4.test.mjs",
+      "sha256": "fdb0108510f251e6887ae30354743d9ace94eab5896e7fb755e887835995d36f"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v5.test.mjs",
+      "sha256": "4ea75bf0de5f263bde96946c70e8cff0686624735e94134dc7ac681478d35c6f"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v6.test.mjs",
+      "sha256": "6837f50fdce223cafc443c1442993ada90f8e42a55ab6ee026cc434369336904"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v7.test.mjs",
+      "sha256": "259dda43ce1200ac48b143d09727c07c37ebb21b88747cb6f336c3d6664569dd"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v8.test.mjs",
+      "sha256": "fde2b650488d337cc28a2b8efd322466ba243eb54414cf48c692a1df885c2d88"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_matching_v9.test.mjs",
+      "sha256": "df5669a39434b11641b452c395a782361316943c107770e0866c305e168bbf79"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_metadata_generate_v27.mjs",
+      "sha256": "646783aff1684b0e806e2c8ef12b110d97e3668afd440a398e4e58e37888a6b9"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_metadata_v27.test.mjs",
+      "sha256": "b3e25570a8a47793e77d2491049acd0495547b15d6fae14036a504bc1f20acbf"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_parent_profile_v27.mjs",
+      "sha256": "221ab6558fd9297c344f0779e479267b3e5f9ad5c69d63c266b141033f9312d0"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_process_real_v13.mjs",
+      "sha256": "9c9c499d9969df5639ab194bfec7c1b3269a29ecddcfc79913b86edb12a24287"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_process_real_v14.mjs",
+      "sha256": "325ac37262fc530a020207f03e8b676ac2adfd9c48706057bc6db943da9a4e4d"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_process_v1.test.mjs",
+      "sha256": "94b6035c43717854b5457704c071fe15415e4a102485b13f27526ce966804c19"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_profile_v26.mjs",
+      "sha256": "34234a0de7a5751bd13fe8bd2dee01b8d8a6814d834769476515610bbb5cdc65"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_qualification_gate_v30.mjs",
+      "sha256": "16b73195717c4d0052d164879232843734785223625bde3fc3b7bc5f853b55e0"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_qualify_docker_v30.mjs",
+      "sha256": "a6d039951c4390c2dfc39bf74f5c7cb68ab66f64eba018880fb95a301218d928"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_qualify_package_v30.mjs",
+      "sha256": "0d622a1cf4d9b233df1769d6bbf309bf3f51e21bf0b72298df10d26d43b01fb9"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_qualify_v30.mjs",
+      "sha256": "a467224419e4b151a76a9a105bc22244f99246d2f0ec9f9d0b108db8bac62254"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_receipt_v26.mjs",
+      "sha256": "c7a061463101656c86d12291dc8a348558dd14d9584d4243eca3b780577614d4"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_receipt_v27.mjs",
+      "sha256": "fd8c48230d28a7789d2d690c328424e6dbdcbfe8b67dd5b55ad50560515fc535"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_receipt_v31.mjs",
+      "sha256": "8e23db2f906ef181afe9d21ad33c856e586c9442b2706c43cd67dca74d46f4ca"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_receipt_v32.mjs",
+      "sha256": "b46b2a415493f689e151d1963b2bc6c2b97b785a9ab78c796d4870a52b2ff1ba"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_reference_collisions_v16.mjs",
+      "sha256": "c62e09161aef1746812a62371408f0002866ac46bd8b338f9901233dcbec8eda"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_reference_delivery_v24.test.mjs",
+      "sha256": "aec3d7d1f3b68e340511fa61ec0597be4a920cefe83c8b0c18a46d8d77aaa218"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_reference_integrity_v20.mjs",
+      "sha256": "5b656e821e59e3c74d71ba11c3767d7647be16cee9ac6c7d0e81d5d819d880f6"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_reference_risk_regression_v18.mjs",
+      "sha256": "ff1d98ca2c54f9b17a26420af13b95ab6937752849cbba89fe8352cb85ee9da1"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_reference_risk_v18.test.mjs",
+      "sha256": "37dff79e99c2f0a7c10c87bb97c56b1873a1c7c479898ff51f8cacb1e0e2e6d6"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_reference_risk_v20.test.mjs",
+      "sha256": "d379f917dafed46901d1ffd6b6fd7987779f0214a78cd02e34fabd3c2f5e63a3"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_resources_v26.test.mjs",
+      "sha256": "90973fbee4feb7e6e8db21310563f5b14bb3dcd54f4d46ffa70b5ff2d7fadb78"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_rotation_probe_v21.mjs",
+      "sha256": "0b2573791551a42e2cff7a3d8b68a21af5e2cd4ce4eb33e15548190115d4f1a4"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_runtime_receipt_v24.mjs",
+      "sha256": "7376ed1bc3fa5cdd1c167c32b4fc17aa757da1b9e08594b5884aad1e86c3f448"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_runtime_receipt_v25.mjs",
+      "sha256": "b2b25f66e3ee69d5d2500f99ef6f0e82ff425422ce5c1bcd81f2008a7b31a070"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_shortlist_parity_v19.mjs",
+      "sha256": "9de135eea14638fdb0babf9eb77270f3315cb597a683fa7678b10fe3e8c0b4e0"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_shortlist_parity_v25.mjs",
+      "sha256": "8ad98939a51bb65b8bc2b495e9c7d2acf8d08db3c2c5f7a1179ebc9c9af3d46f"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_shortlist_v16.mjs",
+      "sha256": "8f5faaf034ab6adba94133319a29965b8dec43ab01a277a47aa68036ce1daba2"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_shortlist_v19.test.mjs",
+      "sha256": "11f843fd726b2e8c52efab82b264399c6044b1cea0e25a12a844c9dccae0f9d6"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_shortlist_v25.test.mjs",
+      "sha256": "8a8ea482fa0936be61c85289132d4fc1fe2197a6c5e49e3c24f0ee1875bdf495"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_storage_receipt_v30.mjs",
+      "sha256": "10adb940e2c56b1a6002beddf774d8d9f253858a5695a20259a7163eb8807cba"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_access_v24.test.mjs",
+      "sha256": "02f14234838ee6ba7380f8cd815cade3374f9d913dd98f302524883ec04aec52"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_holdout_v23.mjs",
+      "sha256": "e791485ce9ac0921880d5839bea007c7301933471c36d1c4e3f0dd55dcf9c32c"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_lifecycle_v23.mjs",
+      "sha256": "9e9912757ab63af0a62deadc3cdbbc9e2b4f6febdc35c50437926badf8cf9601"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_lifecycle_v25.mjs",
+      "sha256": "8ea73261d114a1fddc7ae96f9547a8de37da00ef74c5296a61b5ca87eb5d0c32"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_package_v24.mjs",
+      "sha256": "f412c2bae54ee0858ab35d21f246b49c7648882a8a7efe6019c74a0842eedf6e"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_process_v23.mjs",
+      "sha256": "014cee406ea7dd664723c610f19f04d4101de6c610933603f0e0666150e9dd42"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_process_v24.test.mjs",
+      "sha256": "eb7a50679a096116db4e5d90c0cfaf7e8793e9aea509ac3169bb4a21454d8015"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_receipt_v20.mjs",
+      "sha256": "967326f0893e68b437c1cb26b6ffe63b24b965c814ad6ff36c03a9eea710eb83"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_receipt_v23.mjs",
+      "sha256": "f02b65dd40220fdd08eacf8cf1eb44bc5226bd6f4da546cfd6f05956f524322c"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_runtime_v24.mjs",
+      "sha256": "d68f2bb128df52507cd5fe8ea58381e6aab09e0b9cae91b11ad451b8c01260e3"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_runtime_v25.mjs",
+      "sha256": "a1bd939f2adab672052d7e6e5bb56822362ac10148bcfd64f2778b6bfdca8d13"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_runtime_v26.mjs",
+      "sha256": "353b1e2d7b2e979f1cfa9d219aed055463b0ef5ebb1ca347447efccc859eb14d"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_runtime_v27.mjs",
+      "sha256": "5b2d991e3d20bdea8cffb4a934e1b56c742bb5b3dbf5dcd7c9da5beea57a646c"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_server_v24.test.mjs",
+      "sha256": "a27c5add9792be8058760b7a493ae205dcdc75fcee8b43f051e6a9c71cb5e7db"
+    },
+    {
+      "path": "scripts/tests/vendor_scan_visual_worker_local_v23.mjs",
+      "sha256": "f04ac6039deecb445fe6906aa4e8d4aa607c4f975528a22da8822006b0d057f3"
+    },
+    {
+      "path": "scripts/tests/vendor_store_catalog_search_v1.test.mjs",
+      "sha256": "19782c14c6174c876154bea58dbcf43edfaaa74aba4ae9e8ae1f4b8a6db5f60b"
+    },
+    {
+      "path": "scripts/tests/vendor_visual_benchmark_v1.mjs",
+      "sha256": "e7a600ed6cf384dfd89fdba9fb3c9c169b7dc9f1e4d22d7ae6cb5a8d3b0c5526"
+    },
+    {
+      "path": "scripts/tests/vendor_visual_matching_v1.test.mjs",
+      "sha256": "d55d2ab6bf4c82163b2c51b8fe27fcef909715f5f62152260314ec5828641f30"
+    }
+  ],
+  "conflicts": []
+}

@@ -1,0 +1,1883 @@
+{
+  "at": "2026-09-26T17:03:05.382Z",
+  "base": "a98dd26f79967a741632c7efa3086d85cccacb87",
+  "main": "4c1fb7858146f2100e4b5d0de9c94716d0335409",
+  "sourceHead": "7ef0ba02040d290bfa390b8bd3882d7b960f4ccd",
+  "frozenFilesVerified": 2161,
+  "files": [
+    {
+      "path": "apps/web/next.config.mjs",
+      "sourceSha256": "a83a7e253937bc07ad475260e65a4c2608b859b6e401b90b2000217b87ab9724",
+      "mainSha256": "72248e504b70a50beae8dae88f8ee48d9e1cc56fe0445cf3a2866f407684ef2a",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/package-lock.json",
+      "sourceSha256": "012b412e40bdf2da2bf18204eeabc972490663079f3816472a509433c93c1978",
+      "mainSha256": "4d942859009a6ff898b5fa7d4f1673e784af01aae7f8ae447c05aa8b663b33c5",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/package.json",
+      "sourceSha256": "c7803bc9f55f8c27cc060f94362ce44bd88696f0f01fd2afdcf16fe39c044057",
+      "mainSha256": "2ddd3c08e55ed82cc11ab0abb081d6e56ee6e6f0b31d6bdff07051c848c071e0",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/public/.well-known/apple-app-site-association",
+      "sourceSha256": "1fc4f6767371f4aae209de121dc79b726c46693135eda80c0db0c88db53bb2a6",
+      "mainSha256": "06227e2dd1564a116ab330bf135aba18965198bdaafd7635a8d5162f3919ceac",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/orders/[id]/page.tsx",
+      "sourceSha256": "b2d15fbb771423e936e72ef5d742dc2adc35b9a55ebd0313b4cf2685632ae5f3",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/account/orders/new/page.tsx",
+      "sourceSha256": "7b140824e6e99bfdc905a634fb10d4b3eabee20620b9f0a91a8e264accbdcabb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/orders/page.tsx",
+      "sourceSha256": "c3517d62ec30ccc7c1b5c6e066a4d728fb4ecb1b105950310b169f721f0f10d2",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/page.tsx",
+      "sourceSha256": "8d6f51c5f966b0fedfb9aa5fbb3cffd2ab4c966eec5fef032c0b71a95f9788c1",
+      "mainSha256": "9041f50e27a22b2a8538fd05b969dcb30a58732f39a779b275701676fc6691c5",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/store/billing/page.tsx",
+      "sourceSha256": "386b266f41c7749094b9c9fc381c7588d74f89adb7cb75c37e37f26e5416d86f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/store/import/[batchId]/page.tsx",
+      "sourceSha256": "c3081593644ab485d8827d3d11ffc37ea2a51a79a356af1412b2af78c8b43411",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/account/store/import/page.tsx",
+      "sourceSha256": "671c3f3ba116151b93d040c6999433194d9491672e4a92bf112191e65b94036c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/store/orders/page.tsx",
+      "sourceSha256": "370d402468b4b39201a6d0d677d3eb12311d22e6d6b27953e4c8497c52169bee",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/store/page.tsx",
+      "sourceSha256": "f592da7985ff75587aa614ce7ed9ed9704d9801a4121d98496538d75393e13dd",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/store/payments/page.tsx",
+      "sourceSha256": "5a8eebc9bae81916973e868a9dfbbba103298a0ba251579bbea8bc399f1f3823",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/account/store/resolutions/[id]/page.tsx",
+      "sourceSha256": "f7576dea7b6d474076efe5ae21aa5c0ca7902e354d7a926827389827485a8550",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/account/store/resolutions/page.tsx",
+      "sourceSha256": "31ac5db5a4ba14574cc7e5743069489bbf4f50453595f4439525a122e048a761",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/media/[kind]/route.ts",
+      "sourceSha256": "e9edf93724f909e0316194b79f29d14654d5ecb6bf622a1c2f62e96ac9a8b825",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/products/[productId]/media/[photo]/route.ts",
+      "sourceSha256": "f3d816291017e1171e6ca85584c8b5f1ddadedb77486c8891cdb5de449f66405",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/products/[productId]/route.ts",
+      "sourceSha256": "6f70eeb236fe738fc0bfdd6a5360738e2bcea875935a0de9df2daf6b99f22d26",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/app/route.ts",
+      "sourceSha256": "f5e1cfedc20cd0f360c6bf20664a194b736bf22e28529242e062816a48033af9",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/media/[kind]/route.ts",
+      "sourceSha256": "0d3ca5d5ed8801bb8d8a333d3f11b3524e04f4f0a1f187d94048f0b27fdcd6b8",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/media/[kind]/route.ts",
+      "sourceSha256": "ffbef596d032e2ebf7e659ca808f3dec84e0c375d205fa6b8f828e40eccaf021",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/products/[productId]/media/[photo]/route.ts",
+      "sourceSha256": "7789115e92c51a9eaed2340c978b8715c391bb7a851d5b5663d9685efb826a8a",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/products/[productId]/route.ts",
+      "sourceSha256": "360ba3d042301192a6bf3bee5cffe3a4f0ae3f4e7bb7f8f6d6757ea16316d6ac",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/preview/route.ts",
+      "sourceSha256": "3d0a7762a1b1c952aaafb0e6415fa87588f357bae0c0abc7db071113abec3c90",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/products/[productId]/media/[photo]/route.ts",
+      "sourceSha256": "b4f8be0b27e7bf87aef4538fc295479d098938c1cd8a6af265143ec5724a8092",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/products/[productId]/route.ts",
+      "sourceSha256": "74cec60663311609a91b4f682a1fb57108b5d607db560658ca7b3b4ea73cf2e0",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/referral/route.ts",
+      "sourceSha256": "00e30e59f34c62e472626cbc32c7b26b2e910ac817de549765e2d1a509f48792",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/[slug]/route.ts",
+      "sourceSha256": "643688791e55d2547d400a76a1a3b9bfa80b50faa4e117ae2da9dc4a43932af5",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/copy-photo/route.ts",
+      "sourceSha256": "c17ff60904bcb2b13b9df1ed9769dc82b02f028381855e2d50959f3fa78009e0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/import/route.ts",
+      "sourceSha256": "d67fbf698d01545b8c53810deca6a3c9678653645a5b284b5817846438200b01",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/intake/cancel/route.ts",
+      "sourceSha256": "c0670b6f7a6f74ee1329cfd9787343bc87fad8a4c1079913d02573cf8da0db25",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/intake/finish/route.ts",
+      "sourceSha256": "bc034fedece8e190a7db6037365f12ea6234d2647f0d92af0ecfae68a7e810bd",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/intake/match/route.ts",
+      "sourceSha256": "28e990bf7df9d350dd7d5365733c47144a39d1a680e15d481bf30ea22f4e8242",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/intake/media/route.ts",
+      "sourceSha256": "491fcc705da60b303aa2d58147c37e222568cf60ae1d24dadbb841eb3af7a014",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/intake/route.ts",
+      "sourceSha256": "1e4a166c9acfb953b2753c59110ec3c4875257c9d3221f1fcf32ffd35e79223c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/inventory/route.ts",
+      "sourceSha256": "0383931f5dc98822b13c1c5d538ec9d8dbcf019e3e9011872eb18a90d52d9a4a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/media/route.ts",
+      "sourceSha256": "fa62d55440019bc8db8c58c911ae74c9794413c285f81766235b0790a4752372",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/preorders/route.ts",
+      "sourceSha256": "6ed78b66db30ad886142868653acd1f9456e226edc119dc10c78fa2289fd9de8",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/products/route.ts",
+      "sourceSha256": "5fa28501af4df549f7323c50fb0e4ed5d07a784b96f5826853c3b29601a6aa30",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/stores/owner/route.ts",
+      "sourceSha256": "b995b3607f4a4cf3672b3e26c5b5f42d815f21f696bc54ce7808d863f7eccb35",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/telemetry/route.ts",
+      "sourceSha256": "8a915c073b0e6eef465de8b3174735410d626c79de5a96c806aff6139920dcd0",
+      "mainSha256": "f1a1c6948256531348090aaac277a250189dc45e1f0dd429f4458c388bcd67f7",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-billing/owner/route.ts",
+      "sourceSha256": "7c46f20c9cf3166857cf82ebcdbaa76074f9b071fdabffbc930b4aaf5a7009e8",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-billing/webhook/route.ts",
+      "sourceSha256": "352db16acec7eb667ad64e7fe8de03c9d3cb16392e84c92c96774794ea097187",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/acquire/route.ts",
+      "sourceSha256": "24c2a689829900dfb4a53e78c483662d0ea0c27a2122d99dc8ec4bd0ae7fa145",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/cancel/route.ts",
+      "sourceSha256": "9169fed545d0a235235d2826fa0df35922aa10583bfeee8ed44781ca857520fc",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/checkout/route.ts",
+      "sourceSha256": "107fe36e0e4614d3d595320228b98043f5a64f0207ed9f1615071fa3096b2356",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/fulfillment/route.ts",
+      "sourceSha256": "0b03e0c3a6bc0f39e8a6039f259bb0ebf2a0e05119bd798d09dc40e7bffba865",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/queue/route.ts",
+      "sourceSha256": "421dae1c2b7a573b5324b25e41be04b2ef8681ccb11f72165115186aa5271ef0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/reconcile/route.ts",
+      "sourceSha256": "6e9d68aa8720878cd49b98f453f33f6989a2f8ebc687a17ba7ad2d5d4bd3cabd",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/refunds/route.ts",
+      "sourceSha256": "4788da40aab8efc5d119cf416dbf45047c578fbd0c46bfb3d96f3e7777327e97",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/resolutions/route.ts",
+      "sourceSha256": "c9b226039fb7d4d9a2cd697305f1b7715e37c60656abeb1b1fd0033d4a477361",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-orders/webhook/route.ts",
+      "sourceSha256": "fb48530cd784dd5b7e4d8fb67d94ec786509c7983a1ae30639ec90fc11c1e8fb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-payments/owner/route.ts",
+      "sourceSha256": "590ec2291b3260559cb34f3a3d3ca84be1920c9bb0a7484b371b77a2ffef3fd0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-payments/webhook/route.ts",
+      "sourceSha256": "c5ccf36f89a5e06a733734fee10ad2e7694b906da0c82826cec9bf2de8f288c4",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/api/vendor-preview/activate/route.ts",
+      "sourceSha256": "8d7bcb5407cde578aec0eeddfc7c87eada6e7a347e2ef086e666627a65e26c3a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/founder/page.tsx",
+      "sourceSha256": "f430437b525ff46eb30dc008ffad29f00b7a36278387001df4366b29fe4aa716",
+      "mainSha256": "0daea83278c6fb23b775d5dfda6e3a88a021e7695d3de1e54a3e782635b5583b",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/layout.tsx",
+      "sourceSha256": "6032bc3a96b22ebc7de6155714569997ec587c4a19c2006ab1389712da181485",
+      "mainSha256": "726e387678226417a9270c0386f97874359613d2ab8d66d34ef6b4ee176d2bf3",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/login/page.tsx",
+      "sourceSha256": "fa9724e8e7653a4565872340947134048544064197326ab4244e800bfcbc644a",
+      "mainSha256": "d7a01358d9ee0ce037e8c4684e7c5a4d227ced86996141c1f6d300ea42290cd4",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/store/[slug]/page.tsx",
+      "sourceSha256": "31cad0ae6c03bf5733cf27bc4f2fd528dd88c2c62f8be64c0930f3369750d734",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/store/[slug]/products/[productId]/page.tsx",
+      "sourceSha256": "a20b808c744d37f9c5eda01b053ab98347393109645fc183527b9674d33bffb5",
+      "mainSha256": null,
+      "action": "imported-new-route"
+    },
+    {
+      "path": "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx",
+      "sourceSha256": "d4d43655d2cfc10feddce797ae4b6b8e8b539d4fb0f6f5c6b7eea9b674e40dbd",
+      "mainSha256": "5417ec9176ef6418659bb6f3d9be375dbde08f6a861a3dca9c88b0c139f4fb52",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/vault/transactions/page.tsx",
+      "sourceSha256": "6b4cc0601ae44f30ff607906151fbee6a29066c72127052c22edd44f3e698232",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/vendor-preview/page.tsx",
+      "sourceSha256": "c77c0b839c33f83e92e2bd46d6edfab27b180481d4af645423e5ffd3812124c7",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/app/vendor-preview/start/route.ts",
+      "sourceSha256": "7f1bc22a4e8f575e9f7a5534ab8cc636172b5a469eea5e52171c33fb9c119199",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/layout/DesktopApplicationShell.tsx",
+      "sourceSha256": "4ad221d40bf3ef55527b9740d4396e01606760d60ede0885af58c4b86e640929",
+      "mainSha256": "6805613dd81ef407bf75ee263fd59c5d580ecf81f5290cd2b038f1d6d44c75f1",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/orders/CancelOrderButton.tsx",
+      "sourceSha256": "d6be0db53513d749280e634fed0381aefc2f80207e186cd7b5c3624d0244137f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/orders/ContinueOrderPayment.tsx",
+      "sourceSha256": "b1717c6b725bcfc8518e059e6000912d747f8b22ffcff244a18f475ce569798f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/orders/OrderFulfillment.tsx",
+      "sourceSha256": "83c6425fc7754e0e10913794c5d488c10585a8b674047a7147bacba96994b11d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/orders/OrderHistory.tsx",
+      "sourceSha256": "4642ad7029ae2ba56d9f5b9d343491e279d128a0a0bccaf0761e7225a0147762",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/orders/OrderRefunds.tsx",
+      "sourceSha256": "b8092aa7f8e6256ad6608c24a5e0682d9ca07b314ffb7c131ea16f03219aecbc",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/orders/OrderResolutions.tsx",
+      "sourceSha256": "733ee79529174afbbcd85e5f7aeb0cc5a9970e16a46675529c42e3a44a3eef48",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/orders/PurchaseReview.tsx",
+      "sourceSha256": "a151a25d5a4f95b698e5891adbcda6a5e4e10cfd39ac65193e10590473fe49b0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/CustomProductImporter.tsx",
+      "sourceSha256": "24f26b3086f95592a1e11205e49f7662fdf4a33eadfcb71fbc671007ef16693b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/CustomProductView.tsx",
+      "sourceSha256": "803874d4182a89104aef7752f08d76c1b8cc63bc1c2fad49c2fb83d7439e46bc",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreBatchIntake.tsx",
+      "sourceSha256": "7d0c391968a94962d76cc7fb81bb21dd2e27c3812009d3e802d1bf6b2bae3f2c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreCopyImage.tsx",
+      "sourceSha256": "d726331d22c07ff01c7dfd90c3665b046a470f61e50f4d4042c38f1e30c582b0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreEntry.tsx",
+      "sourceSha256": "58ec690320c195ee465c4d8f234fe28dba2178b29bc48bb9922b41a608b3eeb8",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreInventoryWorkspace.tsx",
+      "sourceSha256": "2c9c762e555e5559d42eb837cd22eb66d87c6e7933026cafadee63985af169e4",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreManager.module.css",
+      "sourceSha256": "47cadea8aed353000065705fc01d7439b4a884706a6f98333802dd4aa0f45c70",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreManager.tsx",
+      "sourceSha256": "0771bfb693ba553f5e039945457a015b7c168d3d933dd6177be2c025213c70d6",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StorePreorders.tsx",
+      "sourceSha256": "0d540c1161c9406f6f401637571834f91c9578efd08be55625431fccfd1980fa",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreProductImage.tsx",
+      "sourceSha256": "2058507b0cfde57f48203eb34d5bf36e06e0d9c5d1ca42161a31cc1e57ec7337",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreProductManager.tsx",
+      "sourceSha256": "e1615c58723ff2f16ad72127446a593f3471af76e690abdef35ca8fb1b68319d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreVisibility.tsx",
+      "sourceSha256": "194542f0f2830901b59aa84f295fa50422c71f7353dd59d11f301efcd32e579f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StoreWorkspaceNavigation.tsx",
+      "sourceSha256": "86e53063e7bf4b1e57c28205c10dd0ab6d711c376a5259f1eb07db1b17da283a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/StorefrontView.tsx",
+      "sourceSha256": "f678fa02c11b48676e2c11201134963cf452b151219d57bd3c39328e5bef080c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/VendorBillingManager.tsx",
+      "sourceSha256": "27c0eb1ae954ec8052251617791c46f09a117aef820030e47c6988773abc1bde",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/VendorSellerManager.tsx",
+      "sourceSha256": "283c9a27d60988c80a4aba5fe35ac366b5765d595e8f57a1b1cce983bfd2a499",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/storeManagerClient.ts",
+      "sourceSha256": "0573d19e30bdf598e38becd32fa0ee45afbd1d7fb2cfc74e6520f58f00e0eef8",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/useScanSuggestions.ts",
+      "sourceSha256": "3bb071ffbb7941811d703ab56cfe9e881b6adf4b980fd8198af02ae6cec3b397",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/stores/useStoreDraftGuard.ts",
+      "sourceSha256": "6f590fadd41d69181f0114b7b1c97fb8d9b7f56b9faab624fb456696555b0e5e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultCollectionView.tsx",
+      "sourceSha256": "ac0036f0413983c886d5abd1bf4891ff207b694b4ae1c4f7227e5bd77fda4677",
+      "mainSha256": "8ce05d1ecd987d92c3213a662a094d822a3bb09c0c6a4138f9a23a2cb71c797c",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultDispositionCard.tsx",
+      "sourceSha256": "fde7b6e53216b57f1dd3cd6ef43cefebeed66a7a69395647d00454e38707aa9e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingCloseoutPlan.ts",
+      "sourceSha256": "d58b4b6ec587485e8161e1a15fa26abf7baad6a9c52de3cec5ab3c3ac5778b1f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingCloseoutService.ts",
+      "sourceSha256": "9cb768a09ca21b32da96ad019924fb85c5ecd0476d8812629b08f84c27b7b715",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingHandlers.ts",
+      "sourceSha256": "9fb772bc25916af92c8542ad2ad4231dfdde0c221ba623fc69aa63d442400ca6",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingHttp.ts",
+      "sourceSha256": "c58b968386d3dce7cfbce5b47e186ecf1f0f068816341583784db65ba7188e17",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingReconciliation.ts",
+      "sourceSha256": "6c51e0fae49302dcdf048ed5015f6a32ea38d43bf1a3abe2a54f46c69c8402e1",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingRecovery.ts",
+      "sourceSha256": "1216453401091df30d01c36c470df11cb376fa39b8122253bfe90a4ff9fb9450",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingRepository.ts",
+      "sourceSha256": "5e250f00ef6985d9d51c0cb8b079ae4c9e4d4c3f5e25946b3ae1787ef8882f45",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingRuntime.ts",
+      "sourceSha256": "5a3e80e589b23311a281ad8c538fcd41689368380afa2778121a15ac92a0d2f5",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingService.ts",
+      "sourceSha256": "7266fde75b31f620b7183c240f4664c9b4abc5b529320ef63a80b3f8d93dc82a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorBillingTypes.ts",
+      "sourceSha256": "422f8130345a25b991b98241a0a90a2db4b52d1c2e87ed21df97af1b7a5928f4",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorStripeCloseout.ts",
+      "sourceSha256": "d053a4ff735b58593169f9b6e033b3bde9b2be9ea63701c647b1efdff704e652",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorStripeEnrollment.ts",
+      "sourceSha256": "241d631f03ce8fe61f1a74e1bc50bc89623ca1aac9cf72995e3187b35e3b000f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorStripeGateway.ts",
+      "sourceSha256": "aacf49341bfb380c119e462af6502a57b506034abcc70a519c31f4818f03484a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorStripePortal.ts",
+      "sourceSha256": "d2ea76eb9520e61a12baa64c606fe46308d5b66259ab698d0ae475e596d5fb13",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorStripeServer.ts",
+      "sourceSha256": "a0bb98487cf4099ca0c335ae19f5cf7b80283f5eddd78dbf58c433a042da0229",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/billing/vendorSubscriptionPolicy.ts",
+      "sourceSha256": "a937b3dc777f19b0732f762b785da4908daa918474c6032362dba81e51165a30",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/collectorStaging.d.mts",
+      "sourceSha256": "7d551684e3ebbb6676f103168982393ba8c30724439257a6c27c174cbdf81b9a",
+      "mainSha256": "5eb6f60abfe7d7696731e98078000751531651543c223659703147173e2d8d74",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/collectorStaging.mjs",
+      "sourceSha256": "ef2745febb94127ffc3b57e81028676174dcb8b967a6fb65a2d8f7dc34006383",
+      "mainSha256": "2e08dcfac5d0fb800489a59d9093db16712dcc90182507ba4d9b67b51e91cd24",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/entitlements/resolveServerUserEntitlement.ts",
+      "sourceSha256": "be95991ccaf5979acd328daaa230c95d53805733c7255c3178ac38973e7d58a1",
+      "mainSha256": "f12660394cd1f26bf66f4138bab27c4435bac1c062980a9d797b57cecc60a341",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/getSiteOrigin.ts",
+      "sourceSha256": "aa7211fabaf7a249ad483fee4f5159bba58cc113d3cb8215074a410db80661d9",
+      "mainSha256": "a81b9b89f05e7235bb63b59fbc6f33b232cef42d6c9a2cba470fbda61ef61af0",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/gvvi/vendorQrCore.test.ts",
+      "sourceSha256": "f3770697e67b29003fee7ee6ba40de8c11438b65654a2563eefe31b8fa44e2a7",
+      "mainSha256": "d4edb4b4d59607150599d61c0924a6eda231f5deff62f3e0509dbc2be3f3cd52",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/gvvi/vendorQrCore.ts",
+      "sourceSha256": "453e3d3c6804ca723f96620fa79171a1dc3ec1f9a3d1e4789110ed6476052d0e",
+      "mainSha256": "d5fc0e0e588106eaf0a3b713336b99b1b32e095569f2b00e7041a96f964c6ad8",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/gvvi/vendorReferralAttribution.ts",
+      "sourceSha256": "cb7cdfc2684c47b197551f91c7d327e62adf7f3c88bece1de14e8bff4e05d422",
+      "mainSha256": "b5703f35aef12ebffbdc20832fe6604f3671ac37a9227466605e25db9ad000c8",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderAcquisitionHttp.ts",
+      "sourceSha256": "efacb00b03a211acc31cc6327eeaec0b18387db7faa1285c8f276a98a986e59e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderAcquisitionPolicy.ts",
+      "sourceSha256": "34f1af286d0698fd81f5b32fca33be214c4de61bd3413ded6616721e4adf530a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderAcquisitionRuntime.ts",
+      "sourceSha256": "215f0e8040c28b2569fe4b49d37a0515cda1231ff8e13966628bfaf2fac80ba9",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderAcquisitionService.ts",
+      "sourceSha256": "706b0c857b369c21eb9ddbbc245350e90eef4db1e5fc9d3cdf3aef3f9468748a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderAcquisitionTypes.ts",
+      "sourceSha256": "55714da3439bba7d1081c11db5be18f27cc236fdccf877f468ea3c33a678f084",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderCancellation.ts",
+      "sourceSha256": "5139bfd37b469615d700d84c8d08829d1ea6275fcc78c8fa27f55e97a8661b2f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderCancellationRuntime.ts",
+      "sourceSha256": "692dff01abdf03eea5943a7d9a531a079faf24ee8c08f3450308d633daa23c8c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderFulfillment.shared.ts",
+      "sourceSha256": "28da5637c1180714afd9c1657e445eb782d5fa4652a339e2a95e87ac206d6055",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderFulfillment.ts",
+      "sourceSha256": "c3d17da10839531dbf42d3578c78532f783dc6a67e5054f1e651cff6d3b0654a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderFulfillmentRuntime.ts",
+      "sourceSha256": "41f5d43fcbd0f248b8ed8ae63f2324c89ca2194baa1f269bcf7dfd0e127384d4",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderHistory.ts",
+      "sourceSha256": "ee520d7a1e97619a0042a8c33a56a2a63274a8ebbd3502c1188587600f653684",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderPaymentAvailability.ts",
+      "sourceSha256": "552c2f812af0cf1b9d604f4a18a69f957bc12bc5a98a08569d775f501b801fb2",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderRefundReview.shared.ts",
+      "sourceSha256": "c31bdec7b1eec82a04ec9a133184940bc07979a723662d1d338631c22ad0cf61",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderRefundReview.ts",
+      "sourceSha256": "335de7cf411e380ebf0888a4e1b748a72c525b869e804ad2c5e2bdb0c7f3c924",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderRefunds.shared.ts",
+      "sourceSha256": "321d4b7a941772799f683db2ec0b6ff92d8619f81fefa841e797e42a11be737b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderRefunds.ts",
+      "sourceSha256": "5e23187e41687a2cea45e0377bedcaeda0396593b788274f892858a586a0d9d1",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderRefundsRuntime.ts",
+      "sourceSha256": "62429b6f2d950cebb7c13244f7b1468706e2282808d50890850b7fc5899d90ca",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderRefundsRuntimePolicy.ts",
+      "sourceSha256": "9b76c36a332192a2aedbc3773898251b2b6f15fa7d9d44c724c67e1a2398c0eb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderResolutionQueue.ts",
+      "sourceSha256": "78f8f0767ff10bf083e3524929dd8d4bc85df2abb82c1587000cf6d8b45639ef",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderResolutions.shared.ts",
+      "sourceSha256": "c08584bd777f1a2d39e7209efa28cf3764d5fe58602c15b6da8f6f1ab7654bd0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderResolutions.ts",
+      "sourceSha256": "15985b6e7fb3bdc7a3c1f8b03152dd83738e6cc18db5e74d72fd072d5edb2632",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderResolutionsRuntime.ts",
+      "sourceSha256": "10640184d94ff2e862f0203c110801d031bd12e136964c362dac8f656a8b8fee",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/orders/orderResolutionsRuntimePolicy.ts",
+      "sourceSha256": "92a8c14798364a53af8560dd42930755f951a45fe9809a317a67ad3f9451c561",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorCheckoutCreation.ts",
+      "sourceSha256": "c30303f7734cd1628460a5343b39e73c457e3d308bb42da18b150b203584bcd5",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorCheckoutDiscovery.ts",
+      "sourceSha256": "b09689b0545aa698940ec9f9b62f06e0436680adf89842ac8a2f34848dcf6339",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorCheckoutEvidence.ts",
+      "sourceSha256": "97d22d96d92d03aa59d036df3c1dd6225eb12ff5aff5d07593993adbf0182a9e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorCheckoutSignals.ts",
+      "sourceSha256": "89c87b9121522fc32f6c79682922e9ccf8145ac0dca46946c5acc2bc0d0408d0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderDisputeEvidence.ts",
+      "sourceSha256": "04d0ec2b937956027b8c68cc561efc1bdf519b715ac0263ed9c9fd6510239d58",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderHttp.ts",
+      "sourceSha256": "262ebe4f92e300792c90a21f8659e82c79f1217f1d1ba567525f4b8f7ffa56e6",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderQueue.ts",
+      "sourceSha256": "7deadbd38c396d5c52149847ec88425f0e071a6e52c7a6014b4ca63a52e7ef13",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderReconciliation.ts",
+      "sourceSha256": "e07776bee4c389e244365bf646d7b1ba8774437581118ffbf4d285bb9b8e6a32",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderRefundEvidence.ts",
+      "sourceSha256": "747465c4fa1f3c96c83169cffc63c8176d42eb67a3c91b71da0c276f3429e26e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderRefunds.ts",
+      "sourceSha256": "b8a705a3ac6b52dfe65cc263f45b6841e85c7aa451761b8eafb35f74b74f53c7",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderRuntime.ts",
+      "sourceSha256": "517677d52b987d80f1e65b6a710adf13bf7dc968fa6686c2ca83fb464a87488e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderRuntimePolicy.ts",
+      "sourceSha256": "d4a71d6b317c968faf85da97effd59c7260ae4df4dbc9dc8e5a3219e9f01d6b4",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderRuntimeService.ts",
+      "sourceSha256": "86bbb85b5591007c4d2dfc8a2753f4003c43ec62c7ff1627a6bf6de22d79636f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorOrderService.ts",
+      "sourceSha256": "a5fad3791b1e815ee0b553b54dd7c6b2e33e9fc3d7f688d9f456867c7452b5bd",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerCloseout.ts",
+      "sourceSha256": "39f7d695efea0719113e0f0ac2a87c15db7b229c6e7d8477f66199567d1b9759",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerEnrollment.ts",
+      "sourceSha256": "1de69f3aca04950ff60e564c290b629a7bc3924a64c04f596f461d3534bc2b3e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerFinancialReview.ts",
+      "sourceSha256": "8e5fbb64c98bde14883be3a7b2b10cd08d4d1d76d89f962e795201c6662b82ad",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerHandlers.ts",
+      "sourceSha256": "f88b0d8fe6c65982a19b511f4f6ba3b352857627da772ae8b1161c056add652d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerPolicy.ts",
+      "sourceSha256": "8b11355b850cd1da88d912b3c6e9a49ef61727a3c5d6c954425b7629d0165832",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerRepository.ts",
+      "sourceSha256": "644ea1b84332e11bdba74532ae81ca60c1687b916e8be92be1c68fea856a9b51",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerRuntime.ts",
+      "sourceSha256": "08b8709a8de3bc22106cb1ab448afdf33bb7ad8d83708d1db9ed914cae38251d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerService.ts",
+      "sourceSha256": "6bf236b3e129f6c0ab35267a97b28eec8adba2144663b4979fba4c0dc6ebad7f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/payments/vendorSellerStripeGateway.ts",
+      "sourceSha256": "ce30c03bdb189374b45be2ca25de2e8c11d895946e6f5c3e0a3a2ef4d2b41a1f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchBackup.ts",
+      "sourceSha256": "897131b6ffaf6e5721add06f3417bba5c886782ac8260b245b5bb211755daf61",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchCommitInput.ts",
+      "sourceSha256": "521e4d752aefa73fb7950dd5c130ef6572efdc25c87e11c574aef89508249a32",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchCommitServer.ts",
+      "sourceSha256": "2de869f7a6f9e5f741e0f77dafd46ec1468ee1360d12be4f06cd04fe24d0e65a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchImageDeadline.ts",
+      "sourceSha256": "2fe299b8f70d6fb9005f0e38813548ae525f3547c6087a6b3fb2635ee44ff3da",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchIntake.ts",
+      "sourceSha256": "cbef2e349206f33db50ad57b9029da5ca0764f92d7f4f18950d8c2a16a42ca01",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchIntakeImages.ts",
+      "sourceSha256": "bb7e8c5327a58426c3ee4dad39e063a4364e4cc3e9d5076d59f1c52faa7843d5",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchIntakeStorage.ts",
+      "sourceSha256": "22a7dafc281ef1133913563276c6e3bac169037454718386e1f2bed6ec62c24b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/batchSubmission.ts",
+      "sourceSha256": "25da139503bf162389635b8aa9b06ed77a70e9a9f3d769d641b19f511b392b19",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/customProductImport.ts",
+      "sourceSha256": "ce168b8738f151859e64e0ed79dc9690fb4fd4961e700104f6ef475fa15d7e58",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/customProductImportHttp.ts",
+      "sourceSha256": "03809df9f68ec6d4aeb776e1ed054643a923bc1bf8d8062eb3f9aee116a3a32b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/customProductImportService.ts",
+      "sourceSha256": "18ba66fece81f57d86a5fc0028250ef182c9314fd335cc589a9bae2d67e65685",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/customProductServer.ts",
+      "sourceSha256": "666bdd5998f4549bcda5db341bb49892428e3c167bd93f4d0b981d11cc22c5e8",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanExpandedCatalogV13.json.gz",
+      "sourceSha256": "af76e51edb06876acb5d795856f1444fc26cda437201d0743b00aa83604e532b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanExpandedFeaturesV29.json.gz",
+      "sourceSha256": "df7cbeeef8482cef84e8b519439249121ae650570fcd18efba085a1641579f1f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanExpandedManifestV13.json",
+      "sourceSha256": "b0f6fe05a92a1f4647d31cf261b981398679f28ef66f5ea664866d7f3ed83339",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanExpandedMetadataV27.json.gz",
+      "sourceSha256": "21d2c42c57bd4c9cd4251c79cdcf5ffa70346c871e3c92655e6c057c244c5aa4",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanFeatureDeliveryV29.d.mts",
+      "sourceSha256": "7386a608eb2c51330f461d4daecc152efeee025eff4b216a6a08b2304ed58d19",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanFeatureDeliveryV29.mjs",
+      "sourceSha256": "546944f39ee7d61198ad908b19398ce3e74b6aca2075df48c703b818ff9f605b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanFeatureManifestV29.d.mts",
+      "sourceSha256": "61d79caa421f67950642b77e6416fa2d532928c7071090b64f2074c1295043ea",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanFeatureManifestV29.mjs",
+      "sourceSha256": "ff1421d5309ee9c924736ae27301672ac9b0d95ecce7969912e2749b06472b28",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanFeatureRuntimeV29.mjs",
+      "sourceSha256": "7204de2e274a85957055236e30a1312c55d0cc7c7884c57620dcadbed21ebc51",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanFooterEdgesV22.mjs",
+      "sourceSha256": "7751e46967eaabfa66d75cfb09c71170033c04f0a4590ffc811a35821effc031",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanGeometryV16.mjs",
+      "sourceSha256": "0fe997bed460a5a8c2c14144bfedbd51db14106eb25171151783a75c74fabd5e",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanGeometryV17.mjs",
+      "sourceSha256": "449c6b4900862266b58735571dea974b885aa5ab140f0ecf81d5f9fe34cacd73",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanGeometryV19.mjs",
+      "sourceSha256": "bfcedcd1d0e60441ae768655803c687dddf5c914c92607c1ff0306a0000efd39",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanGeometryV22.mjs",
+      "sourceSha256": "30a9d7acfb1afc629bce443ea21b30d24a2ef551ade4f489968ec5464b2e6f58",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanGeometryV23.mjs",
+      "sourceSha256": "fc7e2b7534e3932e99c46dce36faa1272ed455afd8be1d5c75539431f2e191a3",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanLocalAlignmentV21.mjs",
+      "sourceSha256": "181471be1afe81cbd20d9946b4ef53b11aedb3fcca9611c3b86c12052c6cbf32",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV10.mjs",
+      "sourceSha256": "00af176d46509cb0f6143db5812b185f66351f3bc97633d0d755087dcc4746da",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV11.mjs",
+      "sourceSha256": "0b734bb136d0d27cfcd0493c82cb2a0836765e3c60056d194629a8eded850a3b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV12.mjs",
+      "sourceSha256": "6c2fb2b88debf9c268f54fbb972ff6a923989599ae1591e54a046da4c58fbe76",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV13.mjs",
+      "sourceSha256": "d4902750cd8d0598c2ffd5f67ca8cb8c4a3b1159797388219b3e89a8949e24ab",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV14.mjs",
+      "sourceSha256": "5ccd1ff2f3251d8aa5066318a67e25182cefd928f2899e0dd1d1aa3fbe13a283",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV15.mjs",
+      "sourceSha256": "6521b1bb8a069f2a63d5451c70f13385c49b3227b90654c0c3a316edcf91dcfa",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV2.d.mts",
+      "sourceSha256": "b30c284311d2f5adb3b24d01f6998da66f1730ced2e5cd6548979e07ca0d653f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV2.mjs",
+      "sourceSha256": "ac0b5ed5c19de6d5d1de77a9ac29e7080c6a874add34761110b73991be562409",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV3.mjs",
+      "sourceSha256": "5ba50bff808c8a6642c3112138e6cabbf4f7a325562e23ae7c5b2594d8b038cf",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV4.mjs",
+      "sourceSha256": "8d7e62a7696a42e443173c94c55bd22bc5f35df2bf05288732a3887a6f173e5a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV5.mjs",
+      "sourceSha256": "ccbfc869179a3cd215aacb08475becc1f5ab484a0872f71a6dd55545219d7334",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV6.mjs",
+      "sourceSha256": "ca4ffe7fb78503ee3d38e19f8fd3314bf91c562f94650610eea55857a690ec1a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV7.mjs",
+      "sourceSha256": "1d7beed7ac1b04be93688082ada610930a51645eea293f9d235b84250633151d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV8.mjs",
+      "sourceSha256": "20270ca1330ea99c7aaf4f376600000494c3ef0d1d3636d4881efa9c896337ee",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchV9.mjs",
+      "sourceSha256": "581845414fcc6249b1b7c7161cb1a7db23d6b0ec1423f6145a3941793b76cc76",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanMatchWorker.mjs",
+      "sourceSha256": "56942b7c4136a604aaee81c2615c28a3db2572fbd454ce14a4171eb2e9cde099",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanNumberRegionsV11.mjs",
+      "sourceSha256": "598e580096a478a58e9d97f25f622fda0b2f64f3b08de6337fa84a2b165951ce",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanOcrEvidenceV10.mjs",
+      "sourceSha256": "cbbd41f4ec7676ab97db8aee42cad2c6316be7c7872ac868f3f9c56528cc0bb1",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanOutlineV13.mjs",
+      "sourceSha256": "83bb4236e93d5e909fc2f98292995d53430e725118360abb0e8edf3a09835278",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanPrintedIdentityV8.mjs",
+      "sourceSha256": "c2086a981d9f0166be14a752a76d9a42550b35d99867c1e57494f649be867894",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanPrintedIdentityV9.mjs",
+      "sourceSha256": "d8050edb08a74e26d67adc870f99c16779ce550495dcb2a49c19f4b6ddad769b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanProcessV1.d.mts",
+      "sourceSha256": "f084d9e82e6d0df0d71ce044b118a5e40aa77de34d0a569ed21b6a4e28d2cd51",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanProcessV1.mjs",
+      "sourceSha256": "c917c7449570178aadff355d02cede8b67c9dc6ac39088bbc512bb5ca74d5c5b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanReferenceDeliveryV24.d.mts",
+      "sourceSha256": "2244c56751a5a6d3553e3dd5743d75213d9224d49b3b7965830ca9de52c8d682",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanReferenceDeliveryV24.mjs",
+      "sourceSha256": "2e446b7faea43ca2bdb80058aed4165bc82495b72db4a8d7f412b70eeccca972",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanReferenceFeaturesV28.mjs",
+      "sourceSha256": "1908c0c3696734e431907d77c7c0e96853de218630a7ffa7692dd9fe74a8740b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanReferenceMetadataV27.d.mts",
+      "sourceSha256": "548363115903a8142dbbe17c21be7b2a60814e7e8cfa7b61a889a2bbfeb7f062",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanReferenceMetadataV27.mjs",
+      "sourceSha256": "e743e2ff3ac47f7987b0a7a6153097228fdb43cee59bfc605a31b7e7507c82ad",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanReferenceRiskV18.mjs",
+      "sourceSha256": "5fd171e34a6da81c186718fa42dcf216b57e59234f709014845f94a790147679",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanReferenceRiskV20.mjs",
+      "sourceSha256": "ea85e4b9dea34a6a2d98eb08f3b0f652f28b3c41c044ce3c1ef17751cded02e9",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanRegionAlignmentV23.mjs",
+      "sourceSha256": "9be22970fa7a2cf5c8623cd92df2240164d4e29a42b602b0efe0364620672412",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanResourceSamplerV26.mjs",
+      "sourceSha256": "114e7efbf6d7b20c633273756636450fd17cddb57b0c2af0ef62ce5b5e215590",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanRuntimeFiles.mjs",
+      "sourceSha256": "3c71ef6a3263738fee2b3e2eaa58291a99eb9fea32c6008579b01cb062754c4a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanShortlistV16.mjs",
+      "sourceSha256": "7d24878a6722ebcca7cd821b1c6e85c45adfecec222e109666f10ffb661921a2",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanShortlistV19.mjs",
+      "sourceSha256": "e73ef4e6484256fb3e0b929ab8e5844e8259921122718ce6bca7d895924e3350",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanShortlistV25.mjs",
+      "sourceSha256": "9afff46d630f314d33a14623af1dfbfe4d79564231c9f9875f653b1c9bc30bec",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanStructureV12.mjs",
+      "sourceSha256": "b7a7c2364755876bae93f8f80afe196100ecafd695ef6d1371c13c6cf062bdd7",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualCatalogV24.d.mts",
+      "sourceSha256": "c7e167d77e8b6ec08f9540751326d60c77085183db4f57f19a7f2eba49fc15d7",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualCatalogV24.mjs",
+      "sourceSha256": "4163a62754804c178c2533d64bab9b8fa3b1d15a848449e8e7543ae477491b2d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualProcessV24.d.mts",
+      "sourceSha256": "f52adedc551b343b0ea48e04425cb91d528a0f49566facb5d611a2e933413d9b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualProcessV24.mjs",
+      "sourceSha256": "aaa1bc3067640b258b11e12c24e40dc7aa283e25284d002eaa9a23c2e87365e0",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualServerV24.ts",
+      "sourceSha256": "e5d3439df66da7f4dd17ec1ac349192154511642761796a36cb562a3f9db8f40",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualWorkerV24.mjs",
+      "sourceSha256": "f39760d5dc5e79f0e2a9daefe1e7540964e11d097dcd6ecb142acdde0e060714",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualWorkerV25.mjs",
+      "sourceSha256": "722071c0747fe16ed8199372a32bd0e71915ec86a4b3d37faacb9da0a78cee96",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualWorkerV26.mjs",
+      "sourceSha256": "7b174c5a5423471b5a2a41075228d9799a5d1e6f3960ab774a42a2787c2e4d1f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/scanVisualWorkerV29.mjs",
+      "sourceSha256": "9ed8d524d1d27371a3aafd167282a2db9323c960231b8a07de88839092a2dfac",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeCatalogSearch.d.mts",
+      "sourceSha256": "32355fa69f9421f365122d512267958cb86347b16306df286e596a646b89ed67",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeCatalogSearch.mjs",
+      "sourceSha256": "646b686894660380981dd63de8fcfc1ff36d6a730b05113c608f147192859dea",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeCopyPhoto.ts",
+      "sourceSha256": "6c5f01f63aaa6a5dbce8e53008075853f487c05781089b90a2adeca8fa86351a",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeInventoryInput.ts",
+      "sourceSha256": "32e01f8556484c342725e7ce70573b8dbcabe752c2b7b4bf4985a6ded0752b61",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeMediaServer.ts",
+      "sourceSha256": "e5567fa55db90c47f1e5cadbfb9fa5dd7db7096f18b42985dc98baf9d5c0e8b9",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storePreorderInput.ts",
+      "sourceSha256": "8cdb2a474f3cbb47ac2debe9f276bbfc5a0ff131224f61dcaa6efdc53fb74150",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storeReferralCore.ts",
+      "sourceSha256": "68ba9807b4b30eec9f86e3943576f62262211eca388e02b41c55181ea6fd92b6",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storefrontServer.ts",
+      "sourceSha256": "a752de07b08a2695bdcc06e7bc1ecc13cd4f445795083c42338b71a349a3daa9",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/storefrontTypes.ts",
+      "sourceSha256": "fe6bee44dc889a9ab3a70bdae979eaac962e6888ac7b626b2adc9829c36219b9",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/visualMatchCatalog.json",
+      "sourceSha256": "d4e091f4b12c57af86eb968929c7a05638e0dbbe0babda0659562f278c1e9c8f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/visualMatchCore.d.mts",
+      "sourceSha256": "9e03c5855539a7acc0bdf2a90dd02fd016d5c1ff09d2e966a1f9b4a79583f6ad",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/visualMatchCore.mjs",
+      "sourceSha256": "3debbb762a49b20f58c52c9d785c84690694544b0240b3a7f2a99498637c7702",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/visualMatchIndex.json",
+      "sourceSha256": "62aecf2e9d3592607d36c3358d833e3d96319c08516ac3941a86ea8bcde2cef5",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/stores/visualMatchServer.ts",
+      "sourceSha256": "fab20107fb9870dac6a965f79a83cc39357a7e09a44d016cecd19f4f972716bb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/telemetry/trackServerEvent.ts",
+      "sourceSha256": "a130b1fb48d79eb42e03f7cd8aceb77982b3fac6f95e1794d7b5db8acd29a854",
+      "mainSha256": "d832e58972b447852f85b53ba5510e7498b208ce6b2731383249f89dcefbc69b",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/vault/getPublicVaultInstanceByGvvi.ts",
+      "sourceSha256": "db4b74536cde02a1af84d5c3a44b43915b8fe8ab9b4041a888cda828ce50ebfb",
+      "mainSha256": "1abf73015caa26879590d3609c867041b88dc02689ae462de8c061b1292199bd",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/vault/getVaultInstanceByGvvi.ts",
+      "sourceSha256": "ac7e443f3d58b44c81b6916a844519b27b74db8ec806313e6a1c3d3acb60215b",
+      "mainSha256": "c0b6a1b74890c5af3f3046471d54f51f53e436d2b105da5fb82a16c360d0e309",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/vault/recordVaultDispositionAction.ts",
+      "sourceSha256": "551da6ad7635acdf9d1685f6b9e1963cd4b0826e4d91ea8a9ef355a6db6ce7bb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/vault/vaultDisposition.ts",
+      "sourceSha256": "cbab1c7d76239524346b09cd2120280d9ee027681b8bc99474f67e726543efbc",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/vault/vaultDispositionHistory.ts",
+      "sourceSha256": "a83bf456d23bf8d89467522b1799d4534d3e6dca5337d46db4888a2af17b6eef",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/vendorPilot.d.mts",
+      "sourceSha256": "fc515aaab6fc2b0ccfb0ead32d9872764cd203308ce17d59154495958282b67d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/lib/vendorPilot.mjs",
+      "sourceSha256": "e206a1374c092ebb40ba17ee581e22e5e628754d01f721943c4d76088ab07407",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/src/proxy.ts",
+      "sourceSha256": "793acf7b20dbaee4b01e874f37d3ae6c21bc5c222c9ebc00fbb1bcdf3411f32f",
+      "mainSha256": "effc419a5a1c5e907595145a753b13f48cf5e01dfa53e1ca204ccc6e9a24c3d7",
+      "action": "imported"
+    },
+    {
+      "path": "apps/web/vercel.json",
+      "sourceSha256": "eb1fa2bb08591f337507df0dc4183bf66630302e18592d7a116d288cf5c19cdd",
+      "mainSha256": "753703b0b8b7e223a5a992f13fe382d85f11076bc0b4845d36ea7fe6345dd6e7",
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/account_deletion_operations_v1.test.mjs",
+      "sourceSha256": "3b9e447e9ba562c47b801a2a79e848745ee52fa22500dd12166ad0fe5cc575f6",
+      "mainSha256": "5ae39a8907964e07288634c4130905c5c476447632130094aebf2c0889f01c64",
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/collector_authenticated_staging_v1.test.mjs",
+      "sourceSha256": "fb83cc5a082a9fd9224a75f97ca15ed35c50c7841f6960070a674d71e69d2275",
+      "mainSha256": "22eb7a6a83a36cebd0a9c99b6a326a1eac7a6f610c8bce2df1090b4a0860c293",
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/custom_product_import_http_v1.test.mjs",
+      "sourceSha256": "3bc2f3873ec264edc74e2e9ebbfbfd3be4a386573ea2bbbea6608b8936d32fc1",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/custom_product_import_v1.test.mjs",
+      "sourceSha256": "4456ce91718eb64c60f4143c1301eb101b836e0d4a8ee10b9683d55ae6630824",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/storefront_build_config_preservation_v1.test.mjs",
+      "sourceSha256": "6654a41ec28be2c168a474d778a67305ec97f669a52c29e4742bc4fd31b604ae",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vault_desktop_disposition_v1.test.mjs",
+      "sourceSha256": "3bf45d7cb57e8eb2b5d0136b3d4b969628842a385d455c58743ffdb106f06241",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vault_disposition_history_v1.test.mjs",
+      "sourceSha256": "011d3e0f6e02273ec81e43880f5877bcd0ccbc9bf82dfb5e3b3b478b004eeb4d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_billing_closeout_plan_v1.test.mjs",
+      "sourceSha256": "84d263100d94aa4b427aa4a3a58f3539b38fda6d867eb91958af9ee60e070832",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_billing_entitlement_reader_v1.test.mjs",
+      "sourceSha256": "e5a50287dd7074545d0dde10406d8b359e71c31d33e5f41815812fa8a78930fe",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_billing_orchestration_v1.test.mjs",
+      "sourceSha256": "349c983eb9ded34bdf916ccb7630a863ac1e154c5ff93f6895b9b2bdf0847ae3",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_billing_reconciliation_v1.test.mjs",
+      "sourceSha256": "f53c31e2d8bac6e18c3886184a69451d645f041b834ed1de0820f3c38518591c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_billing_recovery_v1.test.mjs",
+      "sourceSha256": "3575897644cee838d569cfcaaa4facfac7fa695513d65df88c4f4e0e6dbf1097",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_checkout_creation_v1.test.mjs",
+      "sourceSha256": "1451d469faa6e1475e80720996e3e3d333b705bfe564e2cfb204a2dc2f82c549",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_checkout_discovery_v1.test.mjs",
+      "sourceSha256": "82cdfe07e4c1413d4ca630db9ba77f22bbcf0735e76f53967c5c86c150787fa8",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_checkout_evidence_v1.test.mjs",
+      "sourceSha256": "d7c46ac1f92861b3cfd7c4af3f90eecfc0c96256260f51bedffbb8733f9fbd46",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_checkout_signals_v1.test.mjs",
+      "sourceSha256": "29eff157f3b57ec0bfee7bcc14226a0f0fe9a8666256f4a3dec26188262faa3f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_commerce_operations_v1.test.mjs",
+      "sourceSha256": "dc6f708b87e21d6478b69a9f69f59ef681ad09d8a29302bcdabeb6fb4be11a0c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_acquisition_v1.test.mjs",
+      "sourceSha256": "5c26fe10cf4b2efae5e314de8e65228fb9247a8d44936aafdb8ae07025d2bb4d",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_cancel_unstarted_v1.test.mjs",
+      "sourceSha256": "e2878c935022ec473e6e2751f3f0b0456e0224c17749840ddcaa16d692864570",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_cancellation_preflight_v1.test.mjs",
+      "sourceSha256": "dfd4f274677cb0d119b4f154b36bc51528eec7aa10523a91b6c00cd29b0c1eb3",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_dispute_evidence_v1.test.mjs",
+      "sourceSha256": "44dd5a75a932576217ef229a75f105d16da70bc20b2a415f1a6ca5cd28bc7dbb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_fulfillment_preflight_v1.test.mjs",
+      "sourceSha256": "397394904f431b83e0dc7b0509008d041af92aff19cfd037ed6b9b109e879acb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_fulfillment_v1.test.mjs",
+      "sourceSha256": "0cff13f74ca6fe65fda3e23f47019ca832b2d3cf3ac8b4b555fa3e714222dec3",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_http_v1.test.mjs",
+      "sourceSha256": "e53f4e7cb1c8cf45279768769ac6848adfcb8db6377c70a0157ffc55177fe2f2",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_notifications_preflight_v1.test.mjs",
+      "sourceSha256": "58a7f768b87d9f341e78861266b699271d7a1329af9a13ce61ddc0f8da173f70",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_notifications_preflight_v2.test.mjs",
+      "sourceSha256": "70705ad972a576d07c11c664d96f43d892c290a3f353d0ea5ac35a4b932af979",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_queue_v1.test.mjs",
+      "sourceSha256": "8de638ce34a88860be74287e658f64ce7f7283a85911cb70a9e69ad5939b975b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_reconciliation_v1.test.mjs",
+      "sourceSha256": "2ab82eba029af04773f16dc8e29f30e249f43e54ee9f06caf7b89bc9c88bc961",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_refund_evidence_v1.test.mjs",
+      "sourceSha256": "31af76232a8d896b636621daa2d884392ad013fe98eaf7b6ce80ad26bbf714df",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_refund_http_v1.test.mjs",
+      "sourceSha256": "67220eb3e1a9da5f1371a2fabf06a5f8743e7cfc08cc8ab2d17f575c0f4ea6db",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_refund_recovery_v1.test.mjs",
+      "sourceSha256": "a6fe3223b64dff796d26149602c5ecf239e29234fd7306f335dcf4d37a1fce46",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_refund_review_v1.test.mjs",
+      "sourceSha256": "a1d9bd0556137e980b766318aae675d6d209bba411f837a02a64cc3bd411b0bb",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_refunds_preflight_v1.test.mjs",
+      "sourceSha256": "308a442b48430c363c9692b7b951df5a24be7259237240da8fa5252b4c3c73bd",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_refunds_v1.test.mjs",
+      "sourceSha256": "e753839c8c0bb4e96eaccd74ab4eb46dccffb6d155c1a863bb6ab66679f9b6d9",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_resolutions_v1.test.mjs",
+      "sourceSha256": "a918ef9739750fd805afb8528b4d4706aa181d517e4683d3568c81e2f6ec24d5",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_retry_preflight_v1.test.mjs",
+      "sourceSha256": "7bd29b84610b5b67e562e37764148a43442d59b26b513459216fabbd22498b37",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_service_v1.test.mjs",
+      "sourceSha256": "ab60659713b7d4b4932758aae5a9d1a686764411e03fa9f08ccb0f632fe4f282",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_order_ui_v1.test.mjs",
+      "sourceSha256": "669f0ba3be15ba6e6fe39e2b844b570674b4ec4d449bd50d8d761ef666a7fca7",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_seller_closeout_config_v1.test.mjs",
+      "sourceSha256": "e6b84e3a06fdb0000b710b4e30b35537f8580bff28cd987fb2fa8f95d7c170c4",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_seller_closeout_v1.test.mjs",
+      "sourceSha256": "888360ad4847211417cbe7f5fc6c1aa25b206d8dba49e0d981fa6a2f0b1088b5",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_seller_enrollment_v1.test.mjs",
+      "sourceSha256": "1379e11c4576b69fef98ff32cdb1d242aae8bfac0c676566cecaa0f5638a06ae",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_seller_financial_review_v1.test.mjs",
+      "sourceSha256": "1f17c9648c3c84419f467540a5b322e630923a59a64c920d9fd8570f95ef0930",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_seller_gateway_v1.test.mjs",
+      "sourceSha256": "d8867b3bd665807862e6ebe3c42858f93d3a3feb80bb4fa90ae23348c812998c",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_seller_handlers_v1.test.mjs",
+      "sourceSha256": "dbd96c95f0e4c640b41662e7585ac50f118c48a923478e1389272695d1d3c34f",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_seller_readiness_v1.test.mjs",
+      "sourceSha256": "f4c12a2ec7173ddb9720c88fba869d54f878d7d3533ed7524ba34254b7dd9f03",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_store_catalog_recovery_preflight_v1.test.mjs",
+      "sourceSha256": "54cd1a59d8ba3473c82ec3bad3d0c354ae8130d64d87ebe49a10bc9e7b8e3dac",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_stripe_billing_policy_v1.test.mjs",
+      "sourceSha256": "f67af92dd36029c641edbbc32bc52f7d7f2815bc9b03a8cbe6e70e2cc3e50525",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_stripe_closeout_v1.test.mjs",
+      "sourceSha256": "3a4ba6ce732b47aa48a6c1b2d7b1d203b534d7a00507abadd2892d481b45b558",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_stripe_enrollment_v1.test.mjs",
+      "sourceSha256": "e99bcf3eb9f3a3c467c4df94ba2ae44525bc0d32d45b8a600dd8e3ae69f3768b",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/vendor_unstarted_order_preflight_v1.test.mjs",
+      "sourceSha256": "7105f6fc7799f2435f84700d328034e0c2d2787aa3d13b6eb9b175302963f7f7",
+      "mainSha256": null,
+      "action": "imported"
+    },
+    {
+      "path": "tests/contracts/xcode_cloud_bootstrap_v1.test.mjs",
+      "sourceSha256": "c58dffe2f2f759c2aba533c771cef1b0bf18f81016b860da45c09b92e134b1dd",
+      "mainSha256": "00acd4132553adb399adb7af211c2e69ce5320e02949f66c0804fb262329eb05",
+      "action": "imported"
+    }
+  ],
+  "conflicts": [],
+  "resolution": "18 bracket-parameter routes verified absent in ancestor and current main; copied without overwriting current files"
+}
