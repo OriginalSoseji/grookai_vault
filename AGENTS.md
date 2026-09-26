@@ -2,6 +2,10 @@
 
 ## Production storefront integration — September 26
 
+PR518 is merged and deployed. Current follow-up is the Add to store listing-action
+UX fix on `fix/storefront-listing-action-20260926`. Read the latest checkpoint
+section before work; existing production activation intents must not be replayed.
+
 User authorized connecting the storefront to the real database. Read
 `docs/ops/STOREFRONT_PRODUCTION_20260926.md` before continuing. This is an isolated
 current-main branch. The consolidated production migration is now applied and

@@ -5,6 +5,32 @@ integration is now authorized scope; older pilot-only stopping instructions
 do not prohibit preparing this release. Do not merely repoint the pilot.
 Payments remain disabled unless separately activated through their own gates.
 
+## Listing action follow-up — September 26
+
+PR518 is merged at `30cd85644370cd11e95378c707f85fd00180fc67`; production
+deployment `dpl_inuRsq4LihHojmYu6QQGu1a6Tusw` passed the final public route and
+invitation checks. The external checkpoint holds the completed release receipts.
+
+The owner reported that store-selection boxes could not be clicked. Inspection of
+the signed-in production page found the expected eligibility-disabled boxes (for
+example, a priced copy still marked Showcase), while Add cards/search worked.
+The `fix/storefront-listing-action-20260926` follow-up replaces unselected boxes
+with Add to store. It opens an unsaved draft with For sale, asking pricing and
+selection prepared together; Save & list copy remains explicit. Existing price,
+currency, condition and sections are retained. Missing price gets an inline prompt
+and cannot be submitted; editing a price no longer clears listing intent. Removing
+existing selections remains available with retained owner access. Database eligibility,
+ownership, publication and payment controls are unchanged.
+
+The compiled real component was exercised through Chrome against synthetic-only
+loopback HTTP fixtures on26444: opening produced zero writes; priced and unpriced
+copies each saved once with exact settings; rejected eligibility retained the draft;
+retained access blocked additions but allowed removal. This is UI/HTTP proof, not
+a new database-enforcement test. Existing database gates are unchanged. Harness and
+branch-bound normal-hook wrappers are in `.local/integration/store-listing-ux-v1/`.
+Typecheck passed. Check the current PR and hook receipts for release status; do not
+replay any completed production activation, migration, invitation or upload.
+
 ## Live release update — September 26, 19:14 UTC
 
 Source review follow-up: `2a8d4833` passed the normal commit/push hooks (5,504

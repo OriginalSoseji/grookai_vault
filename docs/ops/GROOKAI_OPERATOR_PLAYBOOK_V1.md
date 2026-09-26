@@ -2,6 +2,14 @@
 
 ## Production storefront integration — September 26
 
+PR518 is merged and the main-backed deployment `dpl_inuRsq4LihHojmYu6QQGu1a6Tusw`
+is live. The listing-action follow-up in the same isolated worktree replaces
+eligibility-disabled selection boxes with Add to store and one explicit review/save
+flow. Read the latest section of `docs/ops/STOREFRONT_PRODUCTION_20260926.md` and
+the external checkpoint for current release status. Synthetic UI fixtures use26444;
+normal Git hooks continue to use the isolated read-only290xx lab. No production
+inventory writes, entitlement changes or schema changes belong to this UI fix.
+
 Read `docs/ops/STOREFRONT_PRODUCTION_20260926.md`. New release worktree:
 `C:/gv_store_production_20260926`, now based on mainc42e163cc. Production is at402
 migrations after exact CLI applies and retained-data/schema/security readbacks.
