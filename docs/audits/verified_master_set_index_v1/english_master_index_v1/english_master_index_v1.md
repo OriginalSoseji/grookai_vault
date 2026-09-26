@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-09-25T09:03:38.844Z
+Generated: 2026-09-26T08:48:13.515Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,7 +13,7 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 207 |
-| evidence rows | 242803 |
+| evidence rows | 243380 |
 | conflicts | 0 |
 | manual review | 415 |
 
@@ -23,8 +23,8 @@ Transport: Default Node TLS verification.
 | --- | --- |
 | api_agreed | 9 |
 | candidate_unconfirmed | 126 |
-| human_source_verified | 1429 |
-| master_verified | 21733 |
+| human_source_verified | 1459 |
+| master_verified | 21703 |
 
 ## Printings By Status
 
@@ -145,7 +145,7 @@ Transport: Default Node TLS verification.
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 52045 |
+| pokemontcg_api | 52017 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -194,7 +194,7 @@ Transport: Default Node TLS verification.
 | tcgdex | 49421 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 23585 |
+| tcgplayer_price_guide | 24190 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -792,16 +792,17 @@ Transport: Default Node TLS verification.
 | human_fixtures | collected | 1 |
 | pkmncards | collected | 154 |
 | pkmncards | error | 53 |
-| pokemontcg_api | cached_snapshot | 22 |
-| pokemontcg_api | collected | 144 |
+| pokemontcg_api | cached_snapshot | 6 |
+| pokemontcg_api | collected | 159 |
 | pokemontcg_api | collected_plus_cached_snapshot | 10 |
+| pokemontcg_api | error | 1 |
 | pokemontcg_api | unavailable | 31 |
 | tcgdex | collected | 201 |
 | tcgdex | unavailable | 6 |
-| tcgplayer_price_guide | cached_snapshot | 19 |
-| tcgplayer_price_guide | collected | 121 |
-| tcgplayer_price_guide | collected_plus_cached_snapshot | 12 |
-| tcgplayer_price_guide | unavailable | 55 |
+| tcgplayer_price_guide | cached_snapshot | 6 |
+| tcgplayer_price_guide | collected | 134 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 13 |
+| tcgplayer_price_guide | unavailable | 54 |
 | thepricedex_price_list | collected | 178 |
 | thepricedex_price_list | error | 28 |
 | thepricedex_price_list | unavailable | 1 |
