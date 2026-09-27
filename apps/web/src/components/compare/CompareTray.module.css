@@ -1,0 +1,10 @@
+.tray {
+  bottom: var(--gv-bottom-dock-height, 0px);
+  max-height: calc(100dvh - var(--gv-bottom-dock-height, 0px) - 1rem);
+  overflow-y: auto;
+}
+
+.tray .content {
+  /* A visible dock already includes the bottom safe area. */
+  padding-bottom: max(1rem, calc(1rem + env(safe-area-inset-bottom) - var(--gv-bottom-dock-height, 0px)));
+}

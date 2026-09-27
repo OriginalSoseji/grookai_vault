@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileDockFrame } from "./MobileDockFrame";
 import {
   MOBILE_PRIMARY_DOCK,
   type MobilePrimaryDockKey,
@@ -57,7 +58,7 @@ export function MobileParityDock({
   wallHref?: string | null;
 }) {
   return (
-    <div className={styles.frame}>
+    <MobileDockFrame>
       <nav
         aria-label="Primary"
         className={styles.dock}
@@ -115,6 +116,6 @@ export function MobileParityDock({
           );
         })}
       </nav>
-    </div>
+    </MobileDockFrame>
   );
 }

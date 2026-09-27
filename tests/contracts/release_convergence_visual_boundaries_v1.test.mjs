@@ -66,7 +66,8 @@ test("shared product states govern root and Binder failure surfaces", () => {
   assert.match(state, /tone\?: "neutral" \| "error" \| "private"/);
   assert.match(state, /role=\{tone === "error" \? "alert" : "status"\}/);
   assert.match(rootError, /<ProductState/);
-  assert.match(rootError, /Your collection was not changed/);
+  assert.match(rootError, /If a save was interrupted, check your collection before trying it again/);
+  assert.doesNotMatch(rootError, /Your collection was not changed/);
   assert.match(notFound, /<ProductState/);
   assert.match(notFound, /old, private, or no longer shared/);
   assert.match(binderError, /<ProductState/);

@@ -17,6 +17,13 @@ function getSafeNextPath(nextParam?: string | null) {
   return getSafePostAuthPath(nextParam);
 }
 
+function getEmailConfirmationRedirect(nextPath: string) {
+  const redirect = new URL("/auth/callback", window.location.origin);
+  redirect.searchParams.set("next", nextPath);
+  redirect.searchParams.set("flow", "email");
+  return redirect.toString();
+}
+
 function getDestinationCopy(nextPath: string) {
   if (nextPath === "/vendor-preview") return { title: "the vendor preview", description: "Use your own email for a separate preview account. No payment details are needed." };
   if (nextPath === "/scan") {
@@ -68,12 +75,35 @@ function LoginPageContent() {
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState<"signin" | "signup">(searchParams.get("mode") === "signup" ? "signup" : "signin");
   const [error, setError] = useState<string | null>(
-    callbackError === "oauth_callback_failed" ? "Google sign-in could not be completed." : null,
+    callbackError === "oauth_callback_failed" ? "Google sign-in could not be completed."
+      : callbackError === "email_confirmation_failed"
+        ? "This confirmation link could not complete sign-in. If your email is confirmed, sign in below. Otherwise, request a new confirmation email."
+        : null,
   );
   const [loading, setLoading] = useState(false);
+  const [confirmationEmail, setConfirmationEmail] = useState<string | null>(null);
+
+  const resendConfirmation = async () => {
+    if (loading) return;
+    if (!email.trim()) { setError("Enter your email address first."); return; }
+    setLoading(true);
+    setError(null);
+    try {
+      const { error: resendError } = await supabase.auth.resend({
+        type: "signup", email,
+        options: { emailRedirectTo: getEmailConfirmationRedirect(nextPath) },
+      });
+      if (resendError) throw resendError;
+      setConfirmationEmail(email);
+      setPassword("");
+    } catch {
+      setError("The confirmation email could not be requested. Wait a moment and try again.");
+    } finally { setLoading(false); }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    if (loading) return;
     setError(null);
     setLoading(true);
     try {
@@ -81,7 +111,9 @@ function LoginPageContent() {
         const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
         if (signInError) throw signInError;
       } else {
-        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({ email, password });
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+          email, password, options: { emailRedirectTo: getEmailConfirmationRedirect(nextPath) },
+        });
         if (signUpError) throw signUpError;
         if (signUpData.user?.id) {
           sendTelemetryEvent({
@@ -92,6 +124,11 @@ function LoginPageContent() {
               auth_method: "email_password",
             },
           });
+        }
+        if (!signUpData.session) {
+          setConfirmationEmail(email);
+          setPassword("");
+          return;
         }
       }
       // Discard redirects prefetched before the browser acquired auth cookies.
@@ -113,6 +150,14 @@ function LoginPageContent() {
       />
 
       <PageSection surface="card" spacing="loose" className="mx-auto w-full max-w-md">
+        {confirmationEmail ? <div role="status" className="space-y-3">
+          <h2 className="text-lg font-semibold">Check your email</h2>
+          <p>Check {confirmationEmail} for a confirmation link. Open it to confirm your account, then continue to {destination.title}.</p>
+          <p>If you open the link in another browser, you may need to sign in there after confirming.</p>
+          <button type="button" className="gv-primary-button" onClick={() => {
+            setConfirmationEmail(null); setMode("signin"); setError(null);
+          }}>Return to sign in</button>
+        </div> : <>
         {!collectorStaging ? <div className="space-y-3">
           <GoogleSignInButton
             label="Sign in with Google"
@@ -143,7 +188,7 @@ function LoginPageContent() {
               required
             />
           </label>
-          {error ? <p className="text-sm text-red-600">{error}</p> : null}
+          {error ? <p role="alert" className="text-sm text-red-600">{error}</p> : null}
           <button
             className="gv-primary-button w-full"
             type="submit"
@@ -152,6 +197,9 @@ function LoginPageContent() {
             {loading ? "Working..." : mode === "signin" ? "Sign in" : "Sign up"}
           </button>
         </form>
+        {mode === "signin" ? <button type="button" disabled={loading} className="text-sm underline" onClick={resendConfirmation}>
+          Resend confirmation email
+        </button> : null}
         <div className="text-sm text-slate-600">
           {mode === "signin" ? (
             <button className="font-medium text-slate-700 hover:text-slate-950 hover:underline" onClick={() => setMode("signup")}>
@@ -163,6 +211,7 @@ function LoginPageContent() {
             </button>
           )}
         </div>
+        </>}
       </PageSection>
     </div>
   );
