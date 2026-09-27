@@ -67,6 +67,8 @@ if (!supabaseUrl || !supabaseAnon) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Hide the developer badge only in the existing local visual test mode.
+  devIndicators: process.env.GROOKAI_VISUAL_TEST_MODE === "1" ? false : undefined,
   distDir: vendorBatchLocalTest ? ".next-batch-intake" : storefrontLocalTest ? ".next-storefront" : collectorFixtureLab ? ".next-fixture" : ".next",
   outputFileTracingRoot: repoRoot,
   serverExternalPackages: ["tesseract.js", "@tesseract.js-data/eng", "@techstark/opencv-js"],

@@ -126,6 +126,12 @@ export function shouldBypassNextImageOptimization(value: string | null | undefin
           /^\/api\/canon\/cards\/[^/?#]+\/image$/.test(url.pathname))) ||
       url.hostname === "assets.tcgdex.net" ||
       url.hostname === "images.pokemontcg.io" ||
+      // Official Japanese catalog fallbacks must survive a failed canon proxy.
+      // Keep direct delivery scoped to the official HTTPS card-image directory.
+      (url.protocol === "https:" &&
+        url.hostname === "www.pokemon-card.com" &&
+        !url.port && !url.username && !url.password &&
+        url.pathname.startsWith("/assets/images/card_images/large/")) ||
       url.hostname.endsWith(".supabase.co") ||
       (url.hostname === "raw.githubusercontent.com" &&
         url.pathname.startsWith("/PokeAPI/sprites/master/sprites/pokemon/"))

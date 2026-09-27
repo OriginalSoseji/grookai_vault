@@ -104,7 +104,15 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const formRef = useRef<HTMLFormElement>(null);
+  const suggestionsDismissed = useRef(false);
   const listboxId = useId();
+  const listboxOpen = suggestionsOpen && suggestions.length > 0;
+
+  const dismissSuggestions = () => {
+    suggestionsDismissed.current = true;
+    setSuggestionsOpen(false);
+    setActiveSuggestionIndex(-1);
+  };
 
   useEffect(() => {
     setQuery(currentQuery);
@@ -151,6 +159,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
           signal: controller.signal,
         });
         const payload = (await response.json()) as SuggestionResponse;
+        if (controller.signal.aborted) return;
         if (!response.ok || !payload.ok) {
           setSuggestions([]);
           return;
@@ -164,7 +173,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
           ),
         );
         // A delayed response must not reopen the menu over another control.
-        setSuggestionsOpen(document.activeElement === formRef.current?.querySelector('input[type="search"]'));
+        setSuggestionsOpen(!suggestionsDismissed.current && document.activeElement === formRef.current?.querySelector('input[type="search"]'));
         setActiveSuggestionIndex(-1);
       } catch {
         if (!controller.signal.aborted) setSuggestions([]);
@@ -182,6 +191,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   useEffect(() => {
     const closeSuggestions = (event: PointerEvent) => {
       if (!formRef.current?.contains(event.target as Node)) {
+        suggestionsDismissed.current = true;
         setSuggestionsOpen(false);
         setActiveSuggestionIndex(-1);
       }
@@ -212,8 +222,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
 
   const runSearch = () => {
     const { destination, url } = buildSearchUrl();
-    setSuggestionsOpen(false);
-    setActiveSuggestionIndex(-1);
+    dismissSuggestions();
 
     if (destination.q && destination.pathname === "/explore") {
       sendTelemetryEvent({
@@ -232,34 +241,37 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   };
 
   const openSuggestion = (card: SearchSuggestion) => {
-    setSuggestionsOpen(false);
-    setActiveSuggestionIndex(-1);
+    dismissSuggestions();
     router.push(suggestionCardHref(card, compareCards));
   };
 
   const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (!suggestionsOpen || suggestions.length === 0) {
-      if (event.key === "Escape") setSuggestionsOpen(false);
+    if (event.key === "Escape" || event.key === "Tab") {
+      if (event.key === "Escape") event.preventDefault();
+      dismissSuggestions();
+      return;
+    }
+    if (suggestions.length === 0) {
       return;
     }
 
     if (event.key === "ArrowDown") {
       event.preventDefault();
+      suggestionsDismissed.current = false;
+      setSuggestionsOpen(true);
       setActiveSuggestionIndex((current) =>
         current >= suggestions.length - 1 ? 0 : current + 1,
       );
     } else if (event.key === "ArrowUp") {
       event.preventDefault();
+      suggestionsDismissed.current = false;
+      setSuggestionsOpen(true);
       setActiveSuggestionIndex((current) =>
         current <= 0 ? suggestions.length - 1 : current - 1,
       );
-    } else if (event.key === "Enter" && activeSuggestionIndex >= 0) {
+    } else if (event.key === "Enter" && listboxOpen && activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length) {
       event.preventDefault();
       openSuggestion(suggestions[activeSuggestionIndex]);
-    } else if (event.key === "Escape") {
-      event.preventDefault();
-      setSuggestionsOpen(false);
-      setActiveSuggestionIndex(-1);
     }
   };
 
@@ -288,6 +300,9 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       action="/search"
       method="get"
       onSubmit={handleSubmit}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) dismissSuggestions();
+      }}
       className={formClassName}
       aria-busy={!ready}
     >
@@ -303,14 +318,19 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             tone={inputTone}
             icon={<SearchIcon />}
             type="search"
+            role="combobox"
             name="q"
             value={query}
             onChange={(event) => {
+              suggestionsDismissed.current = false;
               setQuery(event.target.value);
+              setSuggestions([]);
+              setSuggestionsLoading(event.target.value.trim().length >= SEARCH_SUGGESTION_MIN_QUERY_LENGTH);
               setSuggestionsOpen(true);
               setActiveSuggestionIndex(-1);
             }}
             onFocus={() => {
+              suggestionsDismissed.current = false;
               if (suggestions.length > 0 || suggestionsLoading) setSuggestionsOpen(true);
             }}
             onKeyDown={handleSearchKeyDown}
@@ -320,10 +340,11 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             inputClassName={isHero ? "text-base" : "text-sm"}
             aria-label="Search cards, sets, numbers, or Grookai ID"
             aria-autocomplete="list"
-            aria-controls={listboxId}
-            aria-expanded={suggestionsOpen}
+            aria-controls={listboxOpen ? listboxId : undefined}
+            aria-expanded={listboxOpen}
+            aria-busy={suggestionsLoading}
             aria-activedescendant={
-              activeSuggestionIndex >= 0
+              listboxOpen && activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length
                 ? `${listboxId}-${activeSuggestionIndex}`
                 : undefined
             }
@@ -331,9 +352,6 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
 
           {suggestionsOpen && (suggestionsLoading || suggestions.length > 0) ? (
             <div
-              id={listboxId}
-              role="listbox"
-              aria-label="Card suggestions"
               className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-[80] max-h-[min(70vh,32rem)] overflow-y-auto rounded-[8px] border border-slate-200 bg-white p-1.5 shadow-2xl dark:border-slate-700 dark:bg-slate-950"
             >
               {suggestionsLoading && suggestions.length === 0 ? (
@@ -343,7 +361,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
                 </div>
               ) : null}
 
-              {suggestions.map((card, index) => {
+              {suggestions.length > 0 ? <div id={listboxId} role="listbox" aria-label="Card suggestions">{suggestions.map((card, index) => {
                 const presentation = getSearchSuggestionPresentation(card);
                 const selected = activeSuggestionIndex === index;
                 return (
@@ -352,7 +370,9 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
                     id={`${listboxId}-${index}`}
                     type="button"
                     role="option"
+                    tabIndex={-1}
                     aria-selected={selected}
+                    onMouseDown={(event) => event.preventDefault()}
                     onMouseEnter={() => setActiveSuggestionIndex(-1)}
                     onClick={() => openSuggestion(card)}
                     className={`flex w-full items-center gap-3 rounded-[6px] px-2 py-2 text-left transition ${
@@ -394,11 +414,12 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
                     ) : null}
                   </button>
                 );
-              })}
+              })}</div> : null}
 
               {suggestions.length > 0 ? (
                 <button
                   type="submit"
+                  tabIndex={-1}
                   className="mt-1 flex min-h-10 w-full items-center justify-between rounded-[6px] border-t border-slate-200 px-3 pt-2 text-left text-xs font-semibold text-slate-700 hover:text-slate-950 dark:border-slate-800 dark:text-slate-300 dark:hover:text-white"
                 >
                   <span className="truncate">View all results for &quot;{query.trim()}&quot;</span>
@@ -407,6 +428,12 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
               ) : null}
             </div>
           ) : null}
+          <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+            {suggestionsOpen ? suggestionsLoading
+              ? "Searching for suggestions"
+              : suggestions.length > 0 ? `${suggestions.length} suggestions available. Use the up and down arrow keys to choose.` : ""
+              : ""}
+          </span>
         </div>
 
         {isCollector ? <input type="hidden" name="game" value={gameScope} /> : <select

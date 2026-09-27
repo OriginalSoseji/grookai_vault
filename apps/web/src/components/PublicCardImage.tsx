@@ -62,7 +62,11 @@ export default function PublicCardImage({
   }, [initialSrc, sourceChainKey]);
 
   if (!activeSrc) {
-    return <div className={fallbackClassName}>{fallbackLabel}</div>;
+    return (
+      <div className={fallbackClassName} role="img" aria-label={`${alt} — image unavailable`}>
+        {fallbackLabel}
+      </div>
+    );
   }
 
   return (

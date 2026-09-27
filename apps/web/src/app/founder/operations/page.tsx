@@ -30,6 +30,8 @@ type Props = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
+const WORK_ITEM_FIELDS = "id,work_item_key,version,state,title,summary,domain,risk_level,scope,exclusions,plan_fingerprint,expires_at,created_at,operations_agents(agent_key,display_name)";
+
 function tone(state: string) {
   if (state === "failed" || state === "repair_requested") return "border-red-500 text-red-700";
   if (state === "queued" || state === "running") return "border-sky-500 text-sky-700";
@@ -46,10 +48,27 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
   const admin = createServerAdminClient();
   const { data, error } = await admin
     .from("founder_work_items")
-    .select("id,work_item_key,version,state,title,summary,domain,risk_level,scope,exclusions,plan_fingerprint,expires_at,created_at,operations_agents(agent_key,display_name)")
+    .select(WORK_ITEM_FIELDS)
     .order("created_at", { ascending: false })
+    .order("id", { ascending: false })
     .limit(100);
-  const rows = ((data ?? []) as unknown as WorkItem[]).sort((left, right) =>
+  let rows = (data ?? []) as unknown as WorkItem[];
+  let requestedItemMessage: string | null = null;
+  if (!error && requestedId && !rows.some((row) => row.id === requestedId)) {
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(requestedId)) {
+      requestedItemMessage = "This work item link is invalid.";
+    } else {
+      const { data: requestedRow, error: requestedError } = await admin
+        .from("founder_work_items")
+        .select(WORK_ITEM_FIELDS)
+        .eq("id", requestedId)
+        .maybeSingle();
+      if (requestedError) requestedItemMessage = "The linked work item could not be loaded. Refresh to try again.";
+      else if (!requestedRow) requestedItemMessage = "The linked work item is unavailable.";
+      else rows = [requestedRow as unknown as WorkItem, ...rows];
+    }
+  }
+  rows = rows.sort((left, right) =>
     Number(right.id === requestedId) - Number(left.id === requestedId));
 
   return (
@@ -65,6 +84,7 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
           title="Work queue"
           description="A decision never changes a frozen plan. Production writes remain behind service-only executors."
         />
+        {requestedItemMessage ? <p role="alert" className="gv-soft-surface px-5 py-5 text-sm">{requestedItemMessage}</p> : null}
         {error ? (
           <div className="gv-soft-surface px-5 py-5 text-sm text-red-700">
             Founder Operations is unavailable until its migration is active: {error.message}
