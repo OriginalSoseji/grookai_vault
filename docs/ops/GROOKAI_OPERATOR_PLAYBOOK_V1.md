@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## Mark a store card sold — September 27
+
+The owner inventory workspace exposes Mark sold on each physical copy. Follow
+`STORE_WEB_SOLD_20260927.md`. It uses the existing authenticated disposition V2
+authority, archives only that copy and retains the private transaction receipt.
+Actual sale price is entered explicitly. No Stripe charge or ownership transfer.
+The synthetic browser fixture uses loopback26446, no database; normal hooks use
+the existing read-only290xx lab. Keep paid checkout and preorder work separate.
+
 ## Bounded audit web release — September 27
 
 Read `docs/ops/AUDIT_WEB_RELEASE_SCOPE_20260927.md` first for audit continuation.
