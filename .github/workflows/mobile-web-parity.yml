@@ -6,7 +6,7 @@ on:
       - ".github/workflows/mobile-web-parity.yml"
       - "apps/web/package-lock.json"
       - "apps/web/package.json"
-      - "apps/web/playwright.config.ts"
+      - "apps/web/playwright*.config.ts"
       - "apps/web/src/app/**"
       - "apps/web/src/components/**"
       - "apps/web/src/lib/mobileParity/**"
@@ -27,6 +27,40 @@ permissions:
   contents: read
 
 jobs:
+  audit-browser:
+    name: Audit browser repairs (${{ matrix.suite }})
+    runs-on: windows-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [compare, card-images, search-a11y, account-recovery]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Install pinned web dependencies
+        run: npm ci --prefix apps/web --no-audit --no-fund
+      - name: Install pinned browsers
+        run: npm --prefix apps/web exec -- playwright install chromium webkit
+      - name: Run isolated audit suite
+        working-directory: apps/web
+        run: npx --no-install playwright test --config playwright.${{ matrix.suite }}.config.ts
+      - name: Upload audit diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-browser-${{ matrix.suite }}
+          if-no-files-found: ignore
+          retention-days: 14
+          path: |
+            apps/web/playwright-report/
+            apps/web/test-results/
   parity:
     name: Canonical Samsung visual and accessibility gates
     runs-on: windows-latest

@@ -23,6 +23,14 @@ const webServerEnv = {
 
 export default defineConfig({
   testDir: "./tests/parity",
+  // These suites use the canonical visual fixture environment. Audit recovery
+  // and search suites supply different isolated environments in their configs.
+  testMatch: [
+    "mobile.visual.spec.ts",
+    "mobile.a11y.spec.ts",
+    "gvvi-vendor-qr.responsive.spec.ts",
+    "release-convergence.spec.ts",
+  ],
   outputDir: "./test-results/mobile-parity",
   snapshotPathTemplate:
     "{testDir}/__screenshots__/{projectName}/{arg}{ext}",

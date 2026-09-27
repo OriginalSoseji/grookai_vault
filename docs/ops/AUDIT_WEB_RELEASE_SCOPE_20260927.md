@@ -72,3 +72,12 @@ account-changing tests on isolated data.
 The latest machine-readable `result.json` in the private evidence root is the
 delivery status for this batch. This source document defines scope and acceptance;
 it does not itself assert a passing gate or deployed release.
+
+## CI suite isolation
+
+The first PR run discovered that the default parity config also collected the
+new account-recovery and search specs under the wrong fixture environment. The
+canonical config now names its original four suites (104 cases); four dedicated
+CI jobs run all 40 audit cases with each suite's own isolated configuration and
+both Chromium and Windows WebKit. No assertion or release guard is disabled.
+This follow-up changes test routing only; the twelve runtime repairs are intact.
