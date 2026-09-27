@@ -2,6 +2,13 @@
 
 ## Review and release continuation
 
+Final shipcheck exposed intermittent Windows loopback fixture subprocess
+timeouts under four-way Node test execution, despite focused passes and one
+complete commit pass. Contract files now run serially, preserving the exact
+file set/assertions and all hook stages. The commerce alert test explicitly
+closes its own connections during teardown so keepalive sockets cannot hold
+the suite open. This changes test scheduling/cleanup only; no gate is skipped.
+
 PR523 is ready for review. The normal commit and push hooks passed for the
 initial candidate (5,509 Node tests, 749 Flutter tests, analysis, web checks and
 build). Review found two rollback/validation edges. Additive migration
