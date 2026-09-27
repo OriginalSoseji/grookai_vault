@@ -6,7 +6,7 @@ import { storeRequest } from "./storeManagerClient";
 import s from "./StoreTeam.module.css";
 
 export function PermissionChoices({ value, onChange, disabled = false, workflows = false }: { value: TeamPermission[]; onChange: (value: TeamPermission[]) => void; disabled?: boolean; workflows?: boolean }) {
-  return <fieldset className={s.permissions} disabled={disabled}><legend>Allowed actions</legend>{TEAM_PERMISSIONS.filter(permission => workflows || !TEAM_WORKFLOW_PERMISSIONS.some(p => p === permission)).map(permission => <label key={permission}><input type="checkbox" checked={value.includes(permission)} onChange={e => onChange(e.target.checked ? [...value, permission] : value.filter(p => p !== permission))} />{TEAM_PERMISSION_LABELS[permission]}</label>)}</fieldset>;
+  return <fieldset className={s.permissions} disabled={disabled}><legend>Allowed actions</legend>{TEAM_PERMISSIONS.filter(permission => workflows || value.includes(permission) || !TEAM_WORKFLOW_PERMISSIONS.some(p => p === permission)).map(permission => <label key={permission}><input type="checkbox" checked={value.includes(permission)} onChange={e => onChange(e.target.checked ? [...value, permission] : value.filter(p => p !== permission))} />{TEAM_PERMISSION_LABELS[permission]}{!workflows && TEAM_WORKFLOW_PERMISSIONS.some(p => p === permission) && " (temporarily unavailable; uncheck to remove)"}</label>)}</fieldset>;
 }
 function Member({ member, busy, enabled, workflows, change }: { member: StoreTeam["members"][number]; busy: boolean; enabled: boolean; workflows: boolean; change: (body: Record<string, unknown>) => Promise<void> }) {
   const [permissions, setPermissions] = useState(member.permissions);

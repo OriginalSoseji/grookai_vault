@@ -1,5 +1,31 @@
 # Manager workflows — September 27
 
+## Review and release continuation
+
+PR523 is ready for review. The normal commit and push hooks passed for the
+initial candidate (5,509 Node tests, 749 Flutter tests, analysis, web checks and
+build). Review found two rollback/validation edges. Additive migration
+`20260927160000_vendor_store_team_workflow_review_v1.sql` rejects the reserved
+Wall name for both section actions and permits retaining/removing existing
+workflow grants while the workflow flag is off, without adding any new grant.
+The owner UI displays dormant grants with an explicit removal choice.
+
+The original405 package remains immutable. The fresh406 package and receipts
+are `store-team-workflow-review-replay-v1` and
+`docs/audits/store_team_workflow_review_v1`. Run the review-specific role and
+HTTP scripts against that package; the older scripts retain historical gates.
+
+Production release uses the narrow `-VendorStoreTeamWorkflowsV1` mode in
+`scripts/migration_preflight_strict.ps1`, only AuditLinkedSchema/PrePush with
+exact expected IDs `20260927143000,20260927160000`. It compares fresh remote404
+to the captured404 baseline, verifies406 local replay/security, actual role and
+HTTP proof, and source-bound browser/normal-hook receipts. The fixed-target
+`scripts/release/store_team_workflows_v1.mjs` handles prepare, dry-run, apply,
+readback through the CLI. Never reuse a consumed intent. Both migrations leave
+workflow publication off. Verify retained data and existing flags before source
+deployment and separate workflow activation; payments stay off. A new release
+checkpoint outside the repo records the actual deployment state.
+
 ## Local implementation checkpoint
 
 Migration `20260927143000_vendor_store_team_workflows_v1.sql` is frozen in the

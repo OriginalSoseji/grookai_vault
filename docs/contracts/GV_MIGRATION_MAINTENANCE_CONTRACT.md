@@ -600,3 +600,14 @@ index; no notification migration was authored or applied. Source remains408files
 Preparation is consumed; preserve232xx and all preceding projects. Fresh readback
 now proves20260920095000 recorded/valid after the catalog build recovered. Exact
 applied-ledger source recovery precedes further schema work; no index reapply.
+# Store team workflow release boundary (September 27, 2026)
+
+`-VendorStoreTeamWorkflowsV1` is restricted to AuditLinkedSchema and PrePush,
+the fixed production project, and exact pending IDs 20260927143000 and
+20260927160000. Combined modes and target overrides are rejected. Sequential
+replacement functions are validated within each immutable migration, then by
+the complete upgrade/replay schema and security comparison. No generated diff
+is an apply payload. Production writes use only the fixed CLI migration package;
+readback must preserve owner data, grants and payment controls. Rollback disables
+the workflow flag and retains metadata. Dormant grants may be retained or
+explicitly removed, but cannot be newly granted while disabled.

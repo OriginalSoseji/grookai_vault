@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-27T15:30:49.047Z",
+  "status": "passed",
+  "origin": "http://127.0.0.1:29440",
+  "checks": [
+    "Exact printing/price/section/listing created distinct GVVI-6C56464A-000002; clearing price reset listing",
+    "Owner new invitations display seven unchecked opt-in permissions",
+    "Workflow rollback displays retained dormant grants; ordinary permission removal saves without losing dormant grants",
+    "Explicit dormant intake removal saves; other dormant grants remain selected"
+  ],
+  "screenshots": [
+    "release-intake.png",
+    "release-rollback.png"
+  ],
+  "sourceHashes": {
+    "apps/web/src/components/stores/StoreTeamOwner.tsx": "1e861b805fda6d201e94e3200ab29929d8ad9e9588f363893f83df3851a80aec",
+    "apps/web/src/components/stores/StoreTeamWorkspace.tsx": "251559baec7065606d50b7b7c63f922be7ef97ba0aaa38dccfe669a35287720b",
+    "apps/web/src/components/stores/StoreTeamWorkflows.tsx": "facb94c940239fc7b53a61746f77c5ede70f3d0be09d32f986d2b40b84b301de",
+    "apps/web/src/components/stores/StoreTeamProducts.tsx": "06a37ac456f7a1176845e874a8c9a4220f2d53253d429a28fc9eb4bad622b740",
+    "apps/web/src/components/stores/StoreTeam.module.css": "a4b3891b7ae160a83fe7314ccf98fd5aa93290e6dee5594fcfd6839755bd5dc0",
+    "apps/web/src/components/stores/storeTeamWorkflowClient.ts": "7d8587dec8d402fded4db1b1daf6b5eb84d636d1e235ac36d701d39991c77cef",
+    "apps/web/src/lib/stores/storeTeam.ts": "ecc63a023c823d57ba9d184e5c8b06405a9ad93a9ea33546d8d6ed4ab7558a50",
+    "apps/web/src/lib/stores/storeTeamServer.ts": "a00e3cdb7cbb3f1c7d634c0a1a3d5425b74f987d375e10e002a2ec96da364936"
+  },
+  "productionWrites": 0,
+  "priorResponsiveProof": "docs/audits/store_team_workflows_v1/browser.json"
+}
