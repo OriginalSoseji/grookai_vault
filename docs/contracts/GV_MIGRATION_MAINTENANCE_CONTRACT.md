@@ -1,5 +1,16 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Store team review hardening (2026-09-27)
+
+Production403 is applied with team disabled and retained-data/schema proof.
+`VendorStoreTeamHardeningV1` permits only20260927070000 over that403 baseline,
+with unchanged duplicate checks, fresh403 audit, dedicated404 upgrade/full replay,
+direct-role/HTTP regressions and normal hooks. Only the new team copy function,
+manager upload INSERT policy and new upload-budget function change. No owner
+policy, catalog data or payment control changes. Never rewrite/replay applied403.
+Gates remain private; the separate one-use hardening CLI package/readback requires
+team disabled and zero real memberships/invitations before activation.
+
 ## Store team baseline (2026-09-27)
 
 `VendorStoreTeamBaselineAudit` permits only the fixed read-only AuditLinkedSchema

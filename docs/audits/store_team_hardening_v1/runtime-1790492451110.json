@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-27T07:01:05.107Z",
+  "status": "passed",
+  "checks": [
+    "disabled-by-default; anonymous, foreign owner and base-table writes denied",
+    "explicit permissions; email binding; verified account; forged/expired/cancelled invitations",
+    "concurrent acceptance credits one membership and one audit event",
+    "workspace excludes held, foreign, unselected copies and private fields",
+    "pricing grant cannot change condition, listing, branding or owner publication",
+    "direct copy RPC rejects extra and oversized audit payloads",
+    "optimistic writes reject stale versions and leave newer data intact",
+    "permission updates allow only the selected actions; unlisting retains relisting scope",
+    "quarantine and profile privacy prevent relisting; archive and transfer immediately remove access",
+    "branding storage is scoped to the store and permission; forged paths rejected",
+    "downgrade and rollout suspension deny access; owner can revoke retained members",
+    "revocation serializes with writes and blocks subsequent edits"
+  ],
+  "migrationSha256": "4a2c44b4d1f687546a60439e34518acdd4b27b0b81829c9f3ed6e7b61a215042",
+  "productionWrites": 0,
+  "syntheticDataRemoved": true
+}

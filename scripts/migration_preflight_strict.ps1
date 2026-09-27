@@ -49,6 +49,7 @@ param(
   [switch]$StorefrontProductionTrialsV1,
   [switch]$VendorStoreTeamBaselineAudit,
   [switch]$VendorStoreTeamReleaseV1,
+  [switch]$VendorStoreTeamHardeningV1,
   [switch]$VendorStoreCatalogBaselineAudit,
   [string]$InspectionDeps,
   [string]$AuditEnvFile,
@@ -475,6 +476,24 @@ if ($VendorStoreTeamBaselineAudit) {
   Write-CommandTranscript -result $teamGate
   if ($teamGate.ExitCode -ne 0) { Fail 'Store team baseline comparison failed; no schema work or apply.' }
   Write-Section 'STRICT STORE TEAM BASELINE PASS - READ ONLY'
+  exit 0
+}
+
+if ($VendorStoreTeamHardeningV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorStoreTeamHardeningV1')
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260927070000') { Fail 'Team gate permits only its exact migration and no combined modes or target overrides.' }
+  $teamRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $teamFiles = @(Get-RepoMigrationFiles -RepoRoot $teamRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $teamFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $teamPending = @($teamFiles | Where-Object { $_.Id -eq '20260927070000' })
+  if ($teamPending.Count -ne 1) { Fail 'Team migration missing.' }
+  $teamDuplicates = Get-ObjectDuplicates -PendingFiles $teamPending
+  if ($teamDuplicates.DuplicateIndexes.Count -gt 0 -or $teamDuplicates.DuplicateViews.Count -gt 0 -or $teamDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending team objects.' }
+  Require-Command 'node'
+  $teamGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_store_team_hardening_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $teamGate
+  if ($teamGate.ExitCode -ne 0) { Fail 'Team baseline, replay or security proof failed; no apply.' }
+  Write-Section 'STRICT STORE TEAM PASS - NO APPLY'
   exit 0
 }
 

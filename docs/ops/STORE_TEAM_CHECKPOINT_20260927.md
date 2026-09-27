@@ -1,7 +1,29 @@
 # Store team permissions — September 27, 2026
 
+## Review hardening continuation
+
+PR521 review identified direct manager Storage uploads bypassing HTTP validation
+and unbounded extra fields in direct copy RPC audit payloads. Production403 was
+applied with team disabled before the delayed inline comments arrived. Retained
+inventory/profiles/entitlements, controls and schema parity passed. No managers
+or invitations exist. Do not replay that apply or alter the applied migration.
+
+The additive20260927070000 follow-up removes only the manager INSERT policy;
+validated server uploads recheck branding authorization, use a serialized20/hour
+store budget, and recheck permission on attachment. Failed attachment removes the
+new private object. Existing owner policies remain unchanged. Copy RPCs enforce
+exact per-action keys and a1024-byte bound before persisting audit data.
+
+Fresh one-use403→404 upgrade/full replay uses the same dedicated empty294xx lab
+with a new `store-team-hardening-replay-v1` intent. Earlier replay bytes remain
+frozen; their403 guard must fail once this lab reaches404. New runtime/real HTTP
+tests prove direct upload denial, budget limits and bounded RPC payloads.
+`VendorStoreTeamHardeningV1` permits only20260927070000; its private gates,
+one-use `store-team-hardening-apply-v1`, normal hooks and updated review precede
+production404. Team must remain off until the corrected main deployment passes.
+
 Status: implementation, database, real HTTP/Auth/Storage and browser proof complete;
-normal repository release checks and governed production migration/release pending.
+normal checks for the hardening update and production404/release pending.
 Nothing in this checkpoint authorizes replaying consumed reset/apply intents.
 
 Latest release continuation is retained at

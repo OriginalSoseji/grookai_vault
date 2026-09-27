@@ -29,6 +29,11 @@ inspect and revoke retained team access after downgrade or rollout suspension.
 Branding uses immutable store-scoped private paths, accepted JPEG/PNG/WebP magic
 and5MB limits. Storage policies also verify active branding membership. Attachment
 rechecks authorization after upload; an interrupted upload remains private.
+Managers cannot INSERT directly into Storage. The validated server route uploads
+only after a store-serialized20/hour budget check; it removes its newly uploaded
+object when attachment is denied. Existing owner Storage policies remain intact.
+Direct copy RPCs accept only the selected action's keys and at most1024 bytes,
+preventing callers from persisting arbitrary extra audit data.
 No checkout, payments or staff billing access is introduced.
 
 API responses and private pages are uncached. Exact-origin mutations, bounded

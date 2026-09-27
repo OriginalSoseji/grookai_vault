@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { teamClient, teamFailure, teamJson, teamUuid } from "@/lib/stores/storeTeamServer";
 import { STORE_NO_STORE } from "@/lib/stores/storefrontServer";
+import { createServerAdminClient } from "@/lib/supabase/admin";
 export const dynamic = "force-dynamic";
 type Context = { params: Promise<{ storeId: string }> };
 export async function GET(request: NextRequest, context: Context) {
@@ -30,11 +31,15 @@ export async function POST(request: NextRequest, context: Context) {
     const webp = bytes.toString("ascii", 0, 4) === "RIFF" && bytes.toString("ascii", 8, 12) === "WEBP";
     const extension = png ? "png" : jpg ? "jpg" : webp ? "webp" : null;
     if (!extension) throw new Error("Unsupported image");
+    const { error: budgetError } = await client.rpc("vendor_store_team_upload_budget_v1", { p_store: store });
+    if (budgetError) throw budgetError;
     const path = `${store}/${kind}/${randomUUID()}.${extension}`;
-    const upload = await client.storage.from("vendor-store-media").upload(path, bytes, { contentType: png ? "image/png" : jpg ? "image/jpeg" : "image/webp", upsert: false });
+    // Only this validated, authorized server path can upload manager media.
+    const storage = createServerAdminClient().storage.from("vendor-store-media");
+    const upload = await storage.upload(path, bytes, { contentType: png ? "image/png" : jpg ? "image/jpeg" : "image/webp", upsert: false });
     if (upload.error) throw upload.error;
     const attach = await client.rpc("vendor_store_team_media_v1", { p_store: store, p_kind: kind, p_path: path });
-    if (attach.error) throw attach.error;
+    if (attach.error) { await storage.remove([path]); throw attach.error; }
     return teamJson({ ok: true });
   } catch (error) { return teamFailure(error); }
 }
