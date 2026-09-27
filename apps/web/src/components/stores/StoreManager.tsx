@@ -14,7 +14,7 @@ import { useStoreDraftGuard } from "./useStoreDraftGuard";
 import s from "./StoreManager.module.css";
 
 export type StoreTask = (work: () => Promise<void>, message?: string) => Promise<void>;
-export default function StoreManager({initialProductId, pilot = false}: {initialProductId?:string; pilot?:boolean}) {
+export default function StoreManager({initialProductId, pilot = false, siteOrigin}: {initialProductId?:string; pilot?:boolean; siteOrigin:string}) {
   const [owner, setOwner] = useState<OwnerModel | null>(null);
   const [tab, setTab] = useState<string>(initialProductId ? "Custom collectibles" : "Overview");
   const [busy, setBusy] = useState(false), [dirty, setDirty] = useState(false);
@@ -36,7 +36,7 @@ export default function StoreManager({initialProductId, pilot = false}: {initial
   return <div className={s.workspace}>
     <header className={s.header}><div><span className={s.eyebrow}>Vendor workspace</span><h1>{store?.display_name || "Your store"}</h1><p className={s.muted}>A home for your inventory. Manage it all from your computer.</p></div>
       <div className={s.actions}>{!pilot && <><Link className={s.linkButton} href="/account/store/orders">Store orders</Link><Link className={s.linkButton} href="/account/store/billing">Subscription</Link><Link className={s.linkButton} href="/account/store/payments">Seller payments</Link></>}<Link className={s.linkButton} href="/vault/transactions">Transaction history</Link><button disabled={busy} onClick={() => navigate("Visibility")}>Profile & store visibility</button>{store && <Link className={s.linkButton} href={`/store/${store.slug}?preview=1`} target="_blank">Private preview ↗</Link>}</div></header>
-    {owner && <StoreSharing key={`${store?.slug}:${store?.web_published}:${owner.capabilities.store_web}:${owner.profile?.public_profile_enabled}:${owner.profile?.vault_sharing_enabled}`} owner={owner} onVisibility={() => navigate("Visibility")} />}
+    {owner && <StoreSharing key={`${store?.slug}:${store?.web_published}:${owner.capabilities.store_web}:${owner.profile?.public_profile_enabled}:${owner.profile?.vault_sharing_enabled}`} owner={owner} siteOrigin={siteOrigin} onVisibility={() => navigate("Visibility")} />}
     {error && <div className={`${s.notice} ${s.error}`} role="alert">{error} {error.includes("session ended") && <Link href="/login?next=%2Faccount%2Fstore" target="_blank">Sign in</Link>}</div>}
     {notice && <div className={s.notice} role="status">{notice}</div>}
     {!owner ? <div className={s.panel}><p role="status">{error ? "Your store could not be loaded." : "Loading your workspace…"}</p><button disabled={busy} onClick={() => task(refresh, "")}>Retry</button></div> : <div className={s.shell}>

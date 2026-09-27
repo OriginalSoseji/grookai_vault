@@ -1,6 +1,7 @@
 import { vendorPilot } from "@/lib/vendorPilot.mjs";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import StoreManager from "@/components/stores/StoreManager";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -10,5 +11,5 @@ export default async function StoreManagementPage({searchParams}: {searchParams:
   const {product} = await searchParams;
   const id = typeof product === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(product) ? product.toLowerCase() : undefined;
   await requireServerUser(id ? `/account/store?product=${id}` : "/account/store");
-  return <StoreManager pilot={vendorPilot} key={id ?? "root"} initialProductId={id} />;
+  return <StoreManager pilot={vendorPilot} siteOrigin={getSiteOrigin()} key={id ?? "root"} initialProductId={id} />;
 }

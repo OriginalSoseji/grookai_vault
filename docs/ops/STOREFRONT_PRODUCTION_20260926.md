@@ -9,6 +9,8 @@ owner session, and the manager previously emphasized that private preview.
 
 Branch `fix/storefront-public-share-20260926` adds a persistent Share your store
 panel with the canonical public URL, clipboard action and open-public-store link.
+The server page resolves `getSiteOrigin()` once and passes that public origin to
+the client, preserving server-only local configuration without browser fallback.
 The panel offers sharing only when the loaded publication, grants, rollout and
 profile-sharing state permit it. Otherwise it directs the owner to Visibility.
 Preview links and the preview banner explicitly identify their private audience.
