@@ -32,9 +32,8 @@ export default function StoreVisibility({ owner, canEdit, busy, task, refresh, s
         const published = Boolean(store?.[`${surface}_published`]);
         const available = owner.capabilities[`store_${surface}`] && owner.rollout[`${surface}_enabled`];
         return <button key={surface} disabled={busy || changed || !store || (!published && (!canEdit || !profileReady || !available))} className={published ? "" : s.primary} onClick={() => void task(async () => { await ownerChange({ action: "publish", surface, publish: !published }); await refresh(); }, published ? "Store unpublished." : "Your store is published.")}>{published ? "Unpublish" : "Publish"} {surface === "web" ? "public web store" : "in app"}</button>;
-      })}{store && <Link className={s.linkButton} href={`/store/${store.slug}?preview=1`} target="_blank">Preview store ↗</Link>}</div>
+      })}{store && <Link className={s.linkButton} href={`/store/${store.slug}?preview=1`} target="_blank">Private preview ↗</Link>}</div>
       {(!owner.capabilities.store_web || !owner.rollout.web_enabled) && <p className={s.muted}>{pilot ? "Public web publishing is not enabled in this review environment. Profile visibility and owner preview are available." : "Public web publishing requires web store access and an enabled rollout."}</p>}
-      {store?.web_published && <p><Link href={`/store/${store.slug}`} target="_blank">Open public store ↗</Link></p>}
     </section>
   </>;
 }

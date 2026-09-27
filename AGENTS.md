@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Store sharing — September 26
+
+PR519 is merged and live. Current follow-up is public sharing on
+`fix/storefront-public-share-20260926`; read the first update in
+`docs/ops/STOREFRONT_PRODUCTION_20260926.md`. Public links must use the canonical
+site origin and omit owner-preview parameters. Preserve publication checks and
+the owner's saved listings; no production data/configuration changes are needed.
+
 ## Production storefront integration — September 26
 
 PR518 is merged and deployed. Current follow-up is the Add to store listing-action

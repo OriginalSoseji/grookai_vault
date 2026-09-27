@@ -1,5 +1,27 @@
 # Production storefront connection checkpoint
 
+## Public sharing follow-up — September 26
+
+PR519 is merged at `a2d4b7419a6ff3abc3ede940841e81aebf548493` and live.
+The owner's Pikachu ex listing is saved and visible alongside Snorlax. Preserve
+these owner records. The public URL works anonymously; `?preview=1` requires the
+owner session, and the manager previously emphasized that private preview.
+
+Branch `fix/storefront-public-share-20260926` adds a persistent Share your store
+panel with the canonical public URL, clipboard action and open-public-store link.
+The panel offers sharing only when the loaded publication, grants, rollout and
+profile-sharing state permit it. Otherwise it directs the owner to Visibility.
+Preview links and the preview banner explicitly identify their private audience.
+Copy failure leaves a selectable URL and instructions for manual copying. Server
+authorization remains authoritative and unchanged. This is a UI-only follow-up;
+no schema, inventory, access, payment, DNS or hosting configuration changes.
+
+Synthetic Chrome verification uses the actual sharing component on loopback26445:
+canonical apex URL, successful clipboard action, and unpublished, downgraded,
+disabled-rollout and private-profile states. Private harness/receipts are under
+`.local/integration/store-share-v1/`. Normal hooks retain the isolated290xx lab.
+Check the external sharing checkpoint for final hook/PR/deployment proof.
+
 The user asked: "This ready to go live? Connect to real db". Production
 integration is now authorized scope; older pilot-only stopping instructions
 do not prohibit preparing this release. Do not merely repoint the pilot.

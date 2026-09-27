@@ -33,8 +33,9 @@ export function StorefrontView({
     <main className="mx-auto max-w-6xl space-y-8 px-4 py-8">
       {data.preview && (
         <p role="status" className="rounded-xl bg-amber-50 p-4 text-amber-950">
-          Owner preview. Eligible selected copies and complete custom listings
-          appear here.
+          Private owner preview. This link only works for you. To share with customers,
+          use the public link in <Link href="/account/store" className="underline">your store workspace</Link>.
+          {" "}Eligible selected copies and complete custom listings appear here.
         </p>
       )}
       <header className="overflow-hidden rounded-3xl border border-slate-200 bg-white">
