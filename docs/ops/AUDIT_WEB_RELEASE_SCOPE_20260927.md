@@ -81,3 +81,5 @@ canonical config now names its original four suites (104 cases); four dedicated
 CI jobs run all 40 audit cases with each suite's own isolated configuration and
 both Chromium and Windows WebKit. No assertion or release guard is disabled.
 This follow-up changes test routing only; the twelve runtime repairs are intact.
+The workflow also covers changes to web library helpers, including image URL and
+search utilities, so helper-only regressions cannot skip these browser jobs.
