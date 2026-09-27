@@ -10,8 +10,9 @@ import {hashes} from '../schema/storefront_production_lab_v1.mjs';
 import {snapshotSql,compareSnapshots} from 'file:///C:/gv_store_billing_20260919/scripts/schema/vendor_billing_schema_v1.mjs';
 assert.equal(process.argv.length,3);const mode=process.argv[2];assert.ok(['prepare','dry-run','apply','readback'].includes(mode));
 const target='ycdxbpibncqcchqiihfz',audit=path.join(root,'docs/audits/store_team_v1');
-const dir=path.join(root,'.local/integration/store-team-apply-v1');
+const dir=path.join(root,'.local/integration/store-team-apply-v2');
 const read=n=>JSON.parse(fs.readFileSync(path.join(audit,n)));
+const readGate=n=>JSON.parse(fs.readFileSync(path.join(root,'.local/integration/store-team-v1',n)));
 const replay=read('replay.json');assert.equal(replay.status,'passed');const name='20260927060000_vendor_store_team_v1.sql';const plan={output:{name,sha256:replay.sourceHashes[name]}};
 const expected=hashes(path.join(fixture,'supabase/migrations'));assert.equal(Object.keys(expected).length,403);
 assert.deepEqual(hashes(path.join(root,'supabase/migrations')),expected);
@@ -42,7 +43,7 @@ select jsonb_build_object(
 ) as receipt;rollback;`;
 const controlSql=`begin read only;select jsonb_build_object('stores',(select to_jsonb(r) from vendor_store_rollout r),'batch',(select enabled from vendor_batch_intake_control),'scan',(select enabled from vendor_scan_control),'seller',(select onboarding_enabled from vendor_seller_rollout),'stock',(select reservations_enabled from vendor_stock_rollout),'orders',(select orders_enabled from vendor_orders_rollout)) as receipt;rollback;`;
 if(mode==='prepare'){
-  guard();assert.equal(read('AuditLinkedSchema.json').status,'passed');assert.ok(!fs.existsSync(dir));
+  guard();assert.equal(readGate('AuditLinkedSchema.json').status,'passed');assert.ok(!fs.existsSync(dir));
   fs.mkdirSync(path.join(dir,'supabase/migrations'),{recursive:true});
   for(const name of Object.keys(expected))fs.copyFileSync(path.join(root,'supabase/migrations',name),path.join(dir,'supabase/migrations',name),fs.constants.COPYFILE_EXCL);
   fs.writeFileSync(path.join(dir,'supabase/config.toml'),`project_id = "grookai-store-team-apply-20260927"\n[db]\nmajor_version = 17\n`,{flag:'wx'});
@@ -54,7 +55,7 @@ if(mode==='prepare'){
   assert.equal(fs.readFileSync(path.join(dir,'supabase/.temp/project-ref'),'utf8').trim(),target);
   assert.deepEqual(hashes(path.join(dir,'supabase/migrations')),expected);
   if(mode==='dry-run'||mode==='apply'){
-    guard();const gate=read('PrePush.json');assert.equal(gate.status,'passed');assert.equal(gate.target,target);assert.ok(Date.now()-Date.parse(gate.at)<3600000);
+    guard();const gate=readGate('PrePush.json');assert.equal(gate.status,'passed');assert.equal(gate.target,target);assert.ok(Date.now()-Date.parse(gate.at)<3600000);
     for(const [file,digest] of Object.entries(gate.sourceHashes))assert.equal(hash(fs.readFileSync(path.join(root,file))),digest,file);
     assert.equal(hash(fs.readFileSync('C:/grookai_vault_operator_artifacts/master_index_executor_review_20260917/CHECKPOINT.md')),gate.checkpointSha256);
     const footprint=(await query(fs.readFileSync(path.join(root,'scripts/audits/storefront_schema_footprint_v1.sql'),'utf8')))[0].receipt;

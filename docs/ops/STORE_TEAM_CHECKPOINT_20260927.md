@@ -4,6 +4,11 @@ Status: implementation, database, real HTTP/Auth/Storage and browser proof compl
 normal repository release checks and governed production migration/release pending.
 Nothing in this checkpoint authorizes replaying consumed reset/apply intents.
 
+Latest release continuation is retained at
+`C:/grookai_vault_operator_artifacts/storefront_production_20260926/STORE_TEAM_CHECKPOINT.md`.
+Read that file before applying or activating anything; it records consumed intents
+and subsequent live verification independently of this source checkpoint.
+
 The owner requested a way to make someone a manager and choose their access.
 This extends the original single-owner storefront scope to optional delegated
 actions. Billing, payouts, ownership, publication and team administration remain
@@ -58,6 +63,15 @@ permission labels and owner page state this scope explicitly.
   retain unsaved price drafts. Receipts are in `docs/audits/store_team_v1/`.
 - Web typecheck, lint and3 focused privacy/HTTP contract tests pass. No production
   mutation, invitations or grants. Local synthetic data is removed; team remains off.
+- Commit97c96450 passed the complete normal hook:5507 Node tests,4 skips, web
+  typecheck/lint/build, Flutter analysis and749 Flutter tests. Push attempts
+  retained a generated-report clean-tree failure and intermittent legacy-test
+  timeouts. No check was bypassed. Final visual inspection then corrected light
+  theme readability and verified both themes; full checks must bind this correction.
+- Unapplied release packageV1 and its dry-run are superseded by V2 after that
+  source correction. V1 remains preserved and must never be applied. Fresh
+  AuditLinkedSchema/PrePush receipts now stay in `.local/integration/store-team-v1`
+  so generating release evidence cannot dirty the source tree during push.
 
 ## Remaining release gates
 

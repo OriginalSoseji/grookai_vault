@@ -16,6 +16,9 @@ source hashes, the normal commit-hook receipt, fresh402 production schema and
 paused catalog checkpoint. The gate performs no apply. The separate one-use CLI
 package allows only this migration, keeps team disabled, preserves other rollout
 controls and verifies retained data plus403 schema/security parity afterward.
+Release gate receipts are private generated evidence under
+`.local/integration/store-team-v1`. The final source uses a fresh V2 apply directory;
+the unapplied V1 package is retained, superseded, and cannot authorize V2.
 
 ## Production storefront package (2026-09-26)
 

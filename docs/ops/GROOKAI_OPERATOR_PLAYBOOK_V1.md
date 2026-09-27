@@ -12,6 +12,10 @@ Frozen403 replay and before/after footprints live in `.local/integration/store-t
 Never rerun its consumed resets. Team controls default off; no real membership,
 production apply or activation has occurred. Send no invitations on the owner's
 behalf: they select an email and permissions and copy the link themselves.
+Current release continuation is
+`C:/grookai_vault_operator_artifacts/storefront_production_20260926/STORE_TEAM_CHECKPOINT.md`.
+Read it before any apply: it records superseded V1, the final V2 release package,
+fresh private gate receipts and live-state readback as the release progresses.
 
 ## Sharing a storefront — September 26
 

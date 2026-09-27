@@ -35,4 +35,4 @@ if(phase==='PrePush'){
 }
 const checkpoint='C:/grookai_vault_operator_artifacts/master_index_executor_review_20260917/CHECKPOINT.md';assert.match(fs.readFileSync(checkpoint,'utf8'),/PAUSED At User Request/);
 const report={at:new Date().toISOString(),status:'passed',phase,target,pending:['20260927060000'],migration,migrationSha256:replay.sourceHashes[migration],local:state,sourceHashes,remoteFootprintSha256:hash(JSON.stringify(footprint.objects)),checkpointSha256:hash(fs.readFileSync(checkpoint)),comparison,privateOutput:output,productionWrites:0};
-fs.writeFileSync(path.join(output,'receipt.json'),JSON.stringify(report,null,2),{flag:'wx'});fs.writeFileSync(path.join(audit,phase+'.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({status:'passed',phase,target,pending:report.pending,productionWrites:0}));
+fs.writeFileSync(path.join(output,'receipt.json'),JSON.stringify(report,null,2),{flag:'wx'});fs.writeFileSync(path.join(root,'.local/integration/store-team-v1',phase+'.json'),JSON.stringify(report,null,2));console.log(JSON.stringify({status:'passed',phase,target,pending:report.pending,productionWrites:0}));
