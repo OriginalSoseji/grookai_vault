@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-27T18:39:33.011Z",
+  "status": "passed",
+  "base": "http://127.0.0.1:26446",
+  "productionWrites": 0,
+  "databaseWrites": 0,
+  "transport": "synthetic intercepted server action",
+  "checks": [
+    "Blank actual price is required; asking price is not copied",
+    "Review and back preserve explicit actual price and private buyer label",
+    "Double click records one sale and removes only that copy",
+    "Lost response retries identical details and creates no duplicate sale",
+    "Retained owner can record sale without store editing capability",
+    "Refresh failure preserves recorded success and removes stale copy from gallery",
+    "Manual refresh reconciles zero remaining copies",
+    "Modal keyboard dismissal writes nothing",
+    "Desktop dark and 390px mobile light/dark visually inspected; no horizontal overflow"
+  ],
+  "sourceHashes": {
+    "apps/web/src/components/stores/StoreCopySale.tsx": "2aecac5fc719d82cbbcec3ffb004bb34c16c271b247d05053778a34ea853f63a",
+    "apps/web/src/components/stores/StoreInventoryWorkspace.tsx": "12a1bcf6c3c9031e72a7aca682aa0d400b3ce2657c7ac0fed9a289453ef29b2e",
+    "apps/web/src/components/stores/StoreManager.module.css": "765f73774d318986ca67717638eefb894c62e2ecbca604b121266cc76328e7d7",
+    "scripts/tests/store_inventory_sale_preview_v1.mjs": "2dcee060e70d21788a30217c7d707468f707d0a9742b05dccdb0e8053684f9b2"
+  },
+  "syntheticSales": 3,
+  "syntheticRequests": 4,
+  "focusedContractTests": 28
+}
