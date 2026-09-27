@@ -4,6 +4,10 @@ Status: local implementation candidate, publication disabled by default.
 Scope: one owner and one browse-only store per account. Billing, orders, checkout,
 staff accounts, custom domains and production activation are separate work.
 
+The owner-requested `VENDOR_STORE_TEAM_V1` extension now defines selectable
+manager access to existing store copies and branding. Its isolated implementation
+does not change ownership or the publication/entitlement rules below.
+
 The additive `VENDOR_CUSTOM_COLLECTIBLES_V1` contract extends this candidate with
 separate seller-authored products and the mixed `VENDOR_STORE_V2` projection.
 The exact-copy eligibility and V1 RPC remain intact. Custom products never become

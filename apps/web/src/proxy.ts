@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isStoreTeamSecretUrl } from "./lib/stores/storeTeamSafePath";
 import type { NextFetchEvent } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import {
@@ -293,6 +294,13 @@ function addSecurityHeaders(response: NextResponse, request: NextRequest) {
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+
+  if (isStoreTeamSecretUrl(request.nextUrl.href) || request.nextUrl.pathname.startsWith("/account/store/team") || request.nextUrl.pathname.startsWith("/account/store/managed")) {
+    response.headers.set("Cache-Control", "private, no-store, max-age=0");
+    response.headers.append("Vary", "Cookie");
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+    response.headers.set("Referrer-Policy", "no-referrer");
+  }
 
   const orderPath = request.nextUrl.pathname === "/account/orders" ||
     request.nextUrl.pathname.startsWith("/account/orders/") ||

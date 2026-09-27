@@ -1,5 +1,36 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Store team review hardening (2026-09-27)
+
+Production403 is applied with team disabled and retained-data/schema proof.
+`VendorStoreTeamHardeningV1` permits only20260927070000 over that403 baseline,
+with unchanged duplicate checks, fresh403 audit, dedicated404 upgrade/full replay,
+direct-role/HTTP regressions and normal hooks. Only the new team copy function,
+manager upload INSERT policy and new upload-budget function change. No owner
+policy, catalog data or payment control changes. Never rewrite/replay applied403.
+Gates remain private; the separate one-use hardening CLI package/readback requires
+team disabled and zero real memberships/invitations before activation.
+
+## Store team baseline (2026-09-27)
+
+`VendorStoreTeamBaselineAudit` permits only the fixed read-only AuditLinkedSchema
+comparison of production402 and the preserved290xx baseline. Combined modes,
+target overrides and PrePush are rejected. It changes no apply authority.
+The separate294xx synthetic lab has403 replay proof, preserving10355 existing
+objects and adding73 team objects. Original preparation bytes remain preserved;
+final replay uses a new one-use directory. See STORE_TEAM_CHECKPOINT_20260927.md.
+
+`VendorStoreTeamReleaseV1` additionally permits AuditLinkedSchema/PrePush with
+only20260927060000. The unchanged duplicate-object scan remains mandatory. It
+binds403 replay,11 role/concurrency tests,6 real HTTP/Auth/Storage tests, browser
+source hashes, the normal commit-hook receipt, fresh402 production schema and
+paused catalog checkpoint. The gate performs no apply. The separate one-use CLI
+package allows only this migration, keeps team disabled, preserves other rollout
+controls and verifies retained data plus403 schema/security parity afterward.
+Release gate receipts are private generated evidence under
+`.local/integration/store-team-v1`. The final source uses a fresh V2 apply directory;
+the unapplied V1 package is retained, superseded, and cannot authorize V2.
+
 ## Production storefront package (2026-09-26)
 
 `-StorefrontProductionTrialsV1` separately permits only `20260926200000` over

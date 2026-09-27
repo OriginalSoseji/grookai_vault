@@ -1,5 +1,28 @@
 # Grookai Operator Playbook V1
 
+## Store team permissions — September 27
+
+Continuation:403 is applied with team disabled and retained-data proof. PR521
+review requires additive404 upload/audit hardening before activation. Read the
+external live checkpoint and the new first section of STORE_TEAM_CHECKPOINT.
+The dedicated294xx lab now advances through a fresh hardening replay intent;
+old403 fixtures/receipts remain preserved and must not be replayed.
+
+The optional Team page delegates existing store card edits and branding through
+independent permissions; billing, payouts, publication and staff access stay
+owner-only. Read `docs/ops/STORE_TEAM_CHECKPOINT_20260927.md` and
+`docs/contracts/VENDOR_STORE_TEAM_V1.md` before continuing. New synthetic tests
+use29421/API,29422/DB,29440/Next,29441/private sign-in bridge; the internal project
+is `grookai-store-team-20260927`, zero workers. Existing290xx remains unchanged.
+Frozen403 replay and before/after footprints live in `.local/integration/store-team-replay-v2`.
+Never rerun its consumed resets. Team is off with production403 verified;
+no real membership or activation has occurred. Send no invitations on the owner's
+behalf: they select an email and permissions and copy the link themselves.
+Current release continuation is
+`C:/grookai_vault_operator_artifacts/storefront_production_20260926/STORE_TEAM_CHECKPOINT.md`.
+Read it before any apply: it records superseded V1, the final V2 release package,
+fresh private gate receipts and live-state readback as the release progresses.
+
 ## Sharing a storefront — September 26
 
 Use the store workspace's Share your store panel to copy the public `/store/{slug}`

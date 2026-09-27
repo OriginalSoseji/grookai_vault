@@ -1,5 +1,20 @@
 # Grookai Agent Entry Point
 
+## Store team permissions — September 27
+
+Latest:403 is applied with team OFF. PR521 review requires additive404 manager
+upload/audit hardening; read the first checkpoint section and external live state.
+Do not replay403 or activate the old source. Dedicated294xx replay is advancing
+with a fresh hardening intent while all previous evidence remains preserved.
+
+Read `docs/ops/STORE_TEAM_CHECKPOINT_20260927.md` and
+`docs/contracts/VENDOR_STORE_TEAM_V1.md`. The owner requested selectable manager
+permissions. Work is isolated on `feature/store-team-permissions-20260927`.
+The294xx lab has full404 replay and real role/Auth/Storage proof. Team rollout
+is off; production403 is verified and404/release remain pending. No real staff
+invitation has been created. Preserve prior production and290xx receipts;
+never replay consumed local reset intents or impersonate an owner.
+
 ## Store sharing — September 26
 
 PR519 is merged and live. Current follow-up is public sharing on

@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-27T07:02:23.165Z",
+  "status": "passed",
+  "productionWrites": 0,
+  "checks": [
+    "real authentication, no-store responses, request bounds and origin enforcement",
+    "owner creates exact-origin link; recipient accepts once; other account denied",
+    "workspace projection, branding write and manager team-administration denial",
+    "real private branding upload/download, foreign store and anonymous storage denied",
+    "malformed media refused and revocation blocks storage and workspace immediately",
+    "invitation survives safe auth redirect with private/no-referrer headers"
+  ],
+  "sourceHashes": {
+    "apps/web/src/lib/stores/storeTeamServer.ts": "a00e3cdb7cbb3f1c7d634c0a1a3d5425b74f987d375e10e002a2ec96da364936",
+    "apps/web/src/app/api/stores/team/route.ts": "7fe4649d1d186b3b8db4386afa9a383767b98e85ab53f92ac7846c47b8851998",
+    "apps/web/src/app/api/stores/team/[storeId]/route.ts": "60e03a5d4efb5245cddd3dd108c33eb4f8961efe0f3f58a661f791eace8121ec",
+    "apps/web/src/app/api/stores/team/[storeId]/media/route.ts": "fc48cf73300f5f9f3aa19b7758fc9c7aa8a69f54fea4f6c439ecb895848f1acc"
+  }
+}
