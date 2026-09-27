@@ -37,3 +37,10 @@ button/form checks remain the release gates. Do not record a real user's sale
 merely for smoke testing. No shared service reset, schema apply or payment action.
 Current release evidence/checkpoint is retained outside source under
 C:/grookai_vault_operator_artifacts/storefront_production_20260926/STORE_WEB_SOLD_CHECKPOINT.md.
+
+PR525 review: confirmed receipts release the modal submission lock before
+refreshing inventory. A stalled read cannot block Done, Close or Escape.
+The synthetic fixture uses the same no-store read policy as production and
+adds a stalled-refresh mode. Source-bound follow-up proof: review.json in
+docs/audits/store_inventory_sale_v1; one sale, dismiss and manual refresh passed.
+The original browser.json retains its original source hashes and evidence.

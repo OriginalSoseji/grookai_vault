@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-27T19:05:08.4034069Z",
+  "status": "passed",
+  "review": "PR525 stalled inventory refresh",
+  "sourceHashes": {
+    "apps/web/src/components/stores/StoreCopySale.tsx": "b637848bc17b62b62f9c405bf82875e0cc43566acd362431fb45d2cad8360cea",
+    "scripts/tests/store_inventory_sale_preview_v1.mjs": "8eeb644d352d27b76e1cbb8bb920044320e36c6634c0d7dded03e90c864f8937"
+  },
+  "transport": "synthetic intercepted server action",
+  "checks": [
+    "Confirmed receipt releases Close and Done while inventory GET remains stalled",
+    "Done dismisses dialog and exact sold copy stays hidden",
+    "Manual uncached refresh succeeds while first GET remains stalled"
+  ],
+  "syntheticSales": 1,
+  "syntheticRequests": 1,
+  "databaseWrites": 0,
+  "productionWrites": 0
+}

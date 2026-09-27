@@ -35,6 +35,8 @@ export default function StoreCopySale({ item, close, recorded, setDirty }: {
       const result = await recordVaultDispositionAction(review);
       if (!result.ok) { setError(result.message); return; }
       setReceipt(result.receipt); setDirty(false);
+      // The sale is final: a stalled read must not trap the owner in this dialog.
+      lock.current = false; setBusy(false);
       // A failed inventory refresh must never turn a confirmed sale into a retry.
       try { await recorded(); } catch { setRefreshFailed(true); }
     } catch {
