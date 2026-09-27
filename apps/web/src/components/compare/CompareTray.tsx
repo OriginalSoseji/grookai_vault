@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildCompareHref, buildPathWithCompareCards, MAX_COMPARE_CARDS, MIN_COMPARE_CARDS, normalizeCompareCardsParam } from "@/lib/compareCards";
+import styles from "./CompareTray.module.css";
 
 type CompareTrayProps = {
   cards: string[];
@@ -34,8 +35,8 @@ export default function CompareTray({ cards, addHref = "/explore" }: CompareTray
     : "Open Compare";
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <div role="region" aria-label="Selected cards for comparison" className={`${styles.tray} fixed inset-x-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur`}>
+      <div className={`${styles.content} mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6`}>
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Compare</p>

@@ -1,5 +1,19 @@
 # Grookai Operator Playbook V1
 
+## Bounded audit web release — September 27
+
+Read `docs/ops/AUDIT_WEB_RELEASE_SCOPE_20260927.md` first for audit continuation.
+The founder approved separating ready interface repairs from the database/native
+package. Active web release is `fix/audit-web-release-20260927` in
+`C:/grookai_vault_web_audit_release_20260927`, based on main `2e5949329`.
+Scope: Compare placement, search accessibility, image fallback, account recovery,
+honest error guidance and founder display/link repairs. No schema or native changes.
+Private evidence/status: `audit_web_release_20260927` in the operator artifacts root.
+Finish this bounded release before adding audit findings. The original staged
+backend/native candidate and all populated fixtures remain preserved in
+`C:/grookai_vault_audit_release_20260927`; their release gates do not imply that
+these independent web changes need a database migration or maintenance pause.
+
 ## Store manager workflows — September 27
 
 Release521 is live at404 with team enabled, payments disabled. Its consumed

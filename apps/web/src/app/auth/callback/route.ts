@@ -26,20 +26,32 @@ export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
   const nextCookieValue = request.cookies.get(AUTH_NEXT_COOKIE)?.value ?? null;
-  const nextPath = getSafeNextPath(nextCookieValue ?? requestUrl.searchParams.get("next"));
+  const emailFlow = requestUrl.searchParams.get("flow") === "email";
+  const nextPath = getSafeNextPath(emailFlow
+    ? requestUrl.searchParams.get("next")
+    : nextCookieValue ?? requestUrl.searchParams.get("next"));
+  const failureUrl = new URL("/login", requestUrl.origin);
+  failureUrl.searchParams.set("error", emailFlow ? "email_confirmation_failed" : "oauth_callback_failed");
+  failureUrl.searchParams.set("next", nextPath);
 
   if (!code) {
-    const failureResponse = NextResponse.redirect(new URL("/login?error=oauth_callback_failed", requestUrl.origin));
+    const failureResponse = NextResponse.redirect(failureUrl);
     clearNextCookie(failureResponse);
     return failureResponse;
   }
 
   const successResponse = NextResponse.redirect(new URL(nextPath, requestUrl.origin));
   const supabase = createClient(request, successResponse);
-  const { error } = await supabase.auth.exchangeCodeForSession(code);
+  let exchangeFailed = false;
+  try {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    exchangeFailed = Boolean(error);
+  } catch {
+    exchangeFailed = true;
+  }
 
-  if (error) {
-    const failureResponse = NextResponse.redirect(new URL("/login?error=oauth_callback_failed", requestUrl.origin));
+  if (exchangeFailed) {
+    const failureResponse = NextResponse.redirect(failureUrl);
     clearNextCookie(failureResponse);
     return failureResponse;
   }
@@ -54,7 +66,7 @@ export async function GET(request: NextRequest) {
       userId: user.id,
       path: redactBinderSecretPath(nextPath),
       metadata: {
-        auth_method: "google_oauth",
+        auth_method: emailFlow ? "email_password" : "google_oauth",
       },
     });
     await consumeVendorReferralAttribution({
