@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-27T14:58:28.869Z",
+  "status": "passed",
+  "origin": "http://127.0.0.1:29440",
+  "syntheticOnly": true,
+  "checks": [
+    "owner seven independent permissions with unchecked invitation defaults",
+    "manager catalog search, explicit printing, price, section and selected copy saved in one form",
+    "distinct second GVVI and retained first copy",
+    "custom draft creation and private draft state",
+    "mobile product price save at 390x844",
+    "mobile no horizontal overflow",
+    "desktop dark and mobile light/dark screenshot inspection"
+  ],
+  "screenshots": [
+    "desktop-dark.png",
+    "mobile-dark.png",
+    "mobile-light.png",
+    "owner-choices.png"
+  ],
+  "limitations": [
+    "full-page CDP screenshot timed out; visible viewport captures succeeded",
+    "no production changes or real invitations"
+  ]
+}

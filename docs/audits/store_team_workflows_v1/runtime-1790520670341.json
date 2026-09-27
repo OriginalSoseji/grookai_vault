@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-27T14:51:28.687Z",
+  "status": "passed",
+  "checks": [
+    "disabled-by-default; anonymous, foreign owner and base-table writes denied",
+    "explicit permissions; email binding; verified account; forged/expired/cancelled invitations",
+    "concurrent acceptance credits one membership and one audit event",
+    "workspace excludes held, foreign, unselected copies and private fields",
+    "pricing grant cannot change condition, listing, branding or owner publication",
+    "direct copy RPC rejects extra and oversized audit payloads",
+    "optimistic writes reject stale versions and leave newer data intact",
+    "permission updates allow only the selected actions; unlisting retains relisting scope",
+    "quarantine and profile privacy prevent relisting; archive and transfer immediately remove access",
+    "branding storage is scoped to the store and permission; forged paths rejected",
+    "new workflow rollout defaults off; no automatic grants",
+    "concurrent intake retries allocate exactly one owner GVVI with actual actor",
+    "private sections and unshared copies excluded; section CAS and explicit listing",
+    "custom products preserve separate pricing, sections, listing and media permissions",
+    "concurrent permission removal blocks queued intake and product writes",
+    "downgrade and rollout suspension deny access; owner can revoke retained members",
+    "revocation serializes with writes and blocks subsequent edits"
+  ],
+  "migrationSha256": "a9959958c5e05ab44b127b22b1fe56ab42ce3a81739d141f1cee6a73fe0b0f78",
+  "productionWrites": 0,
+  "syntheticDataRemoved": true
+}

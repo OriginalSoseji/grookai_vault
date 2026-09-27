@@ -16,6 +16,7 @@
 .notice { background: var(--notice); padding: 14px; border-radius: 9px; overflow-wrap: anywhere; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 20px; }
 .card { padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--input); }
+.card[aria-pressed=true] { border-color: #3b9b67; box-shadow: inset 0 0 0 2px #3b9b67; }
 .art { height: 240px; display: flex; justify-content: center; align-items: center; margin-bottom: 16px; }
 .art img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 10px; }
 .muted { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }

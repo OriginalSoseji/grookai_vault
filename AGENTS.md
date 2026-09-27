@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Store manager workflows — September 27
+
+The manager release521 is complete/live at404; external STORE_TEAM_CHECKPOINT.md
+is authoritative for that completed release. The next isolated branch extends
+opt-in intake, sections and custom products. Read
+docs/ops/STORE_TEAM_WORKFLOWS_20260927.md. Preserve existing grants and actor
+identity; no owner impersonation, automatic staff grants or payment activation.
+PR523 review adds406 reserved-name/rollback hardening;405 is immutable. Use the
+review-specific406 replay/runtime/HTTP helpers and the two-ID release gate from
+the workflow operator note. Prior replay/apply intents must not be reused.
+
 ## Store team permissions — September 27
 
 Latest:403 is applied with team OFF. PR521 review requires additive404 manager

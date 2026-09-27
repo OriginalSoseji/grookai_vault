@@ -81,7 +81,7 @@ test('real loopback transport retains failed alerts, retries same ID, archives a
   let fail = true; const received = [];
   const server = http.createServer(async (req, res) => { let body = ''; for await (const chunk of req) body += chunk; received.push({ headers: req.headers, body: JSON.parse(body) }); res.writeHead(fail ? 503 : 204); res.end(); });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(() => new Promise(resolve => server.close(resolve)));
+  t.after(() => new Promise(resolve => { server.close(resolve); server.closeAllConnections(); }));
   const e = { ...alertEnv(dir), GROOKAI_COMMERCE_ALERT_TEST: 'true', GROOKAI_COMMERCE_ALERT_URL: `http://127.0.0.1:${server.address().port}/alerts` };
   let result = await deliverCommerceAlerts(readCommerceAlertConfig(e, ['--unit=grookai-commerce-orders.service']));
   assert.equal(result.failed, 1); assert.equal((await fs.readdir(dir)).filter(n => n.endsWith('.json')).length, 1);

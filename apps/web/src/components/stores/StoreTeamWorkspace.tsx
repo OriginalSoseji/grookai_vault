@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { ManagedCopy, ManagedStore, TeamWorkspace } from "@/lib/stores/storeTeam";
 import { storeRequest } from "./storeManagerClient";
+import StoreTeamWorkflows from "./StoreTeamWorkflows";
 import s from "./StoreTeam.module.css";
 
 export function ManagedStores() {
@@ -43,6 +44,7 @@ export default function StoreTeamWorkspace({ storeId }: { storeId: string }) {
   }
   return <div className={s.page}><Link className={s.link} href="/account/store/managed">← Stores you manage</Link><h1>{model?.store.display_name ?? "Manager workspace"}</h1><p>Work with the store cards your owner has shared. Your permissions determine which actions are available.</p>{error && <p role="alert" className={s.error}>{error}</p>}{notice && <p role="status" className={s.notice}>{notice}</p>}{!model && !error && <p>Loading workspace…</p>}
     {model && <>{model.permissions.includes("branding") && <BrandEditor key={model.store.id} model={model} busy={busy} save={(name, description) => change({ action: "branding", expected: model.store.updated_at, name, description })} upload={async (file, kind) => { if (!file.size || file.size > 5 * 1024 * 1024) { setError("Choose an image up to 5 MB."); return; } const data = new FormData(); data.set("file", file); data.set("kind", kind); await change(data, true); }} />}
+      {model.permissions.some(p => ["intake", "sections", "custom"].includes(p)) && <StoreTeamWorkflows model={model} refresh={() => load(model.offset)} />}
       <section className={s.panel}><h2>Store inventory</h2><form onSubmit={e => { e.preventDefault(); void load(); }}><label>Search name, GV-ID or GVVI<input maxLength={120} value={query} onChange={e => setQuery(e.target.value)} /></label><div className={s.actions}><button disabled={busy}>Search</button><button type="button" disabled={busy} onClick={() => void load(model.offset)}>Reload saved data</button></div></form><p>{model.total} matching copies</p><div className={s.grid}>{model.items.map(copy => <CopyEditor key={copy.id} copy={copy} model={model} busy={busy} save={(action, data) => change({ id: copy.id, action, expected: copy.updated_at, data })} />)}</div><div className={s.actions}><button disabled={busy || model.offset === 0} onClick={() => void load(Math.max(0, model.offset - 40))}>Previous</button><span>Page {Math.floor(model.offset / 40) + 1}</span><button disabled={busy || model.offset + 40 >= model.total} onClick={() => void load(model.offset + 40)}>Next</button></div></section></>}
   </div>;
 }

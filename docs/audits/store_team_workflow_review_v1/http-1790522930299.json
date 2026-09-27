@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-27T15:28:54.278Z",
+  "status": "passed",
+  "productionWrites": 0,
+  "checks": [
+    "real authentication, no-store responses, request bounds and origin enforcement",
+    "owner creates exact-origin link; recipient accepts once; other account denied",
+    "workspace projection, branding write and manager team-administration denial",
+    "real private branding upload/download, foreign store and anonymous storage denied",
+    "workflow rollout, exact grant checks, public catalog and atomic card intake over HTTP",
+    "custom product Auth/API/Storage flow rejects forged media and publishes explicitly",
+    "malformed media refused and revocation blocks storage and workspace immediately",
+    "invitation survives safe auth redirect with private/no-referrer headers"
+  ],
+  "sourceHashes": {
+    "apps/web/src/app/api/stores/team/[storeId]/catalog/route.ts": "0ae4bf857c80dbe4efa9585b84bcc6b6164203d44bc29b1910664391a3c89a87",
+    "apps/web/src/app/api/stores/team/[storeId]/workflows/route.ts": "3a16c9e5fd917319621885e4764db09201d4b14e2ec54cb4280aee249e0478bd",
+    "apps/web/src/app/api/stores/team/[storeId]/products/route.ts": "6254fc3991c34d669f4705ca732f69cbc19b1cbdcd23b9a6dde2c72448dae9f8",
+    "apps/web/src/app/api/stores/team/[storeId]/products/media/route.ts": "4537cb29be0aee10b208947e99f829e78d97ee3b8191a5a2ad11c5a792f39c92",
+    "apps/web/src/lib/stores/storeTeamServer.ts": "a00e3cdb7cbb3f1c7d634c0a1a3d5425b74f987d375e10e002a2ec96da364936",
+    "apps/web/src/app/api/stores/team/route.ts": "7fe4649d1d186b3b8db4386afa9a383767b98e85ab53f92ac7846c47b8851998",
+    "apps/web/src/app/api/stores/team/[storeId]/route.ts": "812de36ec4a650d6f70d939c23fb60829b15fde422fc3e6b868773b4d93df589",
+    "apps/web/src/app/api/stores/team/[storeId]/media/route.ts": "fc48cf73300f5f9f3aa19b7758fc9c7aa8a69f54fea4f6c439ecb895848f1acc"
+  }
+}
