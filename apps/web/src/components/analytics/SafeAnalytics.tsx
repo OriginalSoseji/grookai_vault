@@ -1,6 +1,7 @@
 "use client";
 
 import { Analytics } from "@vercel/analytics/react";
+import { isStoreTeamSecretUrl } from "@/lib/stores/storeTeamSafePath";
 import { isBinderSecretPath } from "@/lib/binders/safePath";
 import { collectorPreview } from "@/lib/collectorPreview";
 import { collectorStaging } from "@/lib/collectorStaging.mjs";
@@ -32,6 +33,7 @@ export function isSecretBinderAnalyticsUrl(value: string) {
 }
 
 export function sanitizeBinderAnalyticsUrl(value: string) {
+  if (isStoreTeamSecretUrl(value)) return null;
   if (isSecretBinderAnalyticsUrl(value)) {
     return null;
   }

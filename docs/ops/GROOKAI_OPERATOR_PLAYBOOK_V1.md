@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Store team permissions — September 27
+
+The optional Team page delegates existing store card edits and branding through
+independent permissions; billing, payouts, publication and staff access stay
+owner-only. Read `docs/ops/STORE_TEAM_CHECKPOINT_20260927.md` and
+`docs/contracts/VENDOR_STORE_TEAM_V1.md` before continuing. New synthetic tests
+use29421/API,29422/DB,29440/Next,29441/private sign-in bridge; the internal project
+is `grookai-store-team-20260927`, zero workers. Existing290xx remains unchanged.
+Frozen403 replay and before/after footprints live in `.local/integration/store-team-replay-v2`.
+Never rerun its consumed resets. Team controls default off; no real membership,
+production apply or activation has occurred. Send no invitations on the owner's
+behalf: they select an email and permissions and copy the link themselves.
+
 ## Sharing a storefront — September 26
 
 Use the store workspace's Share your store panel to copy the public `/store/{slug}`

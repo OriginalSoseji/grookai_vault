@@ -1,5 +1,22 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Store team baseline (2026-09-27)
+
+`VendorStoreTeamBaselineAudit` permits only the fixed read-only AuditLinkedSchema
+comparison of production402 and the preserved290xx baseline. Combined modes,
+target overrides and PrePush are rejected. It changes no apply authority.
+The separate294xx synthetic lab has403 replay proof, preserving10355 existing
+objects and adding73 team objects. Original preparation bytes remain preserved;
+final replay uses a new one-use directory. See STORE_TEAM_CHECKPOINT_20260927.md.
+
+`VendorStoreTeamReleaseV1` additionally permits AuditLinkedSchema/PrePush with
+only20260927060000. The unchanged duplicate-object scan remains mandatory. It
+binds403 replay,11 role/concurrency tests,6 real HTTP/Auth/Storage tests, browser
+source hashes, the normal commit-hook receipt, fresh402 production schema and
+paused catalog checkpoint. The gate performs no apply. The separate one-use CLI
+package allows only this migration, keeps team disabled, preserves other rollout
+controls and verifies retained data plus403 schema/security parity afterward.
+
 ## Production storefront package (2026-09-26)
 
 `-StorefrontProductionTrialsV1` separately permits only `20260926200000` over

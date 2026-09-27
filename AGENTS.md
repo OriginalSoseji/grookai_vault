@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Store team permissions — September 27
+
+Read `docs/ops/STORE_TEAM_CHECKPOINT_20260927.md` and
+`docs/contracts/VENDOR_STORE_TEAM_V1.md`. The owner requested selectable manager
+permissions. Work is isolated on `feature/store-team-permissions-20260927`.
+The294xx lab has full403 replay and real role/Auth/Storage proof. Team rollout
+defaults off; production migration/release are not yet complete. No real staff
+invitation has been created. Preserve402 production and290xx prior receipts;
+never replay consumed local reset intents or impersonate an owner.
+
 ## Store sharing — September 26
 
 PR519 is merged and live. Current follow-up is public sharing on

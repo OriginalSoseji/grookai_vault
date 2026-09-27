@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-27T06:12:41.070Z",
+  "status": "passed",
+  "origin": "http://127.0.0.1:29440",
+  "syntheticOnly": true,
+  "checks": [
+    "Owner permission checkboxes and invitation link",
+    "Verified recipient acceptance and manager navigation",
+    "No ungranted branding/listing/team controls",
+    "Price update persists after reload",
+    "390px owner and manager layouts without horizontal overflow",
+    "Saving condition preserves unsaved price; both persist after save and reload"
+  ],
+  "sourceHashes": {
+    "apps/web/src/components/stores/StoreTeamOwner.tsx": "532b2956903e42cc8a14f4ffbbdcf14a31838938ee9b9b85b53c2652554cf202",
+    "apps/web/src/components/stores/StoreTeamAccept.tsx": "9d71c89d24a98166b0d29487b6bf827c50b29e32d83858eb2f9f2e3de7dd17b7",
+    "apps/web/src/components/stores/StoreTeamWorkspace.tsx": "bb6171541a59f93858bde8d1b6b965049d94d378482c0b0fc86682f1073b5307",
+    "apps/web/src/components/stores/StoreTeam.module.css": "5726a7346cf1870465d440f17ba976926edb9811ca809d44e1bb73effcb776e7"
+  },
+  "productionWrites": 0
+}
