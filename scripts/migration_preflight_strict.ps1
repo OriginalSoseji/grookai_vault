@@ -48,6 +48,7 @@ param(
   [switch]$StorefrontProductionReleaseV1,
   [switch]$StorefrontProductionTrialsV1,
   [switch]$VendorStoreTeamBaselineAudit,
+  [switch]$VendorStoreTeamWorkflowsBaselineAudit,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
   [switch]$VendorStoreCatalogBaselineAudit,
@@ -467,6 +468,16 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($VendorStoreTeamWorkflowsBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','VendorStoreTeamWorkflowsBaselineAudit') }).Count -gt 0) { Fail 'Store team baseline permits only its fixed read-only audit, without overrides or apply.' }
+  Require-Command 'node'
+  $teamGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/audit_store_team_workflows_baseline_v1.mjs'))
+  Write-CommandTranscript -result $teamGate
+  if ($teamGate.ExitCode -ne 0) { Fail 'Store team baseline comparison failed; no schema work or apply.' }
+  Write-Section 'STRICT STORE TEAM BASELINE PASS - READ ONLY'
+  exit 0
 }
 
 if ($VendorStoreTeamBaselineAudit) {

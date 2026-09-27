@@ -1,5 +1,40 @@
 # Vendor store team V1
 
+## Opt-in workflow extension (migration405 candidate)
+
+The independent `vendor_store_team_workflow_control` defaults off. When enabled,
+owners may explicitly grant `intake`, `sections`, or `custom`; existing grants
+and invitations are retained unchanged. The original four permissions and owner
+boundaries below remain in force except for these explicitly delegated actions.
+
+- Intake adds one exact raw catalog printing to the owner's inventory. The
+  canonical public release and quarantine-aware printing boundary must pass.
+  Initial price, section assignment and listing selection each require their
+  corresponding grant. Everything commits atomically; a request UUID and exact
+  actor/payload receipt make retries idempotent. The actor is never impersonated.
+- Sections expose only active sections selected for the store. Managers can
+  create/select a new section, rename it, or assign scoped active Sell copies.
+  Existing owner section limits apply. Assignment never lists a copy. Renames
+  affect the shared Wall section too. Private section membership stays private.
+- Custom products permit draft creation, metadata/quantity edits and private
+  photos. Pricing, sections and explicit publication need the separate grants.
+  Stock guards and version checks remain active. Archive stays owner-only.
+  Product images require actor-authorized server delivery and validated upload;
+  no manager Storage policy is added. Uploads have a store-serialized20/hour
+  budget and attachment rechecks access and product version.
+
+Request receipts retain creation arguments as historical idempotency evidence;
+they are not a second current inventory, price or ownership authority. Private
+request tables and internal helpers are unavailable to authenticated/anon roles.
+Bulk scans/import, billing, payouts, ownership, destination publication and staff
+administration remain owner-only. Disabling workflow control immediately denies
+the new operations without deleting owner inventory, products, sections or grants.
+The original live404 release is preserved. This candidate requires its own
+405 upgrade/full replay, real role/concurrency/Auth/Storage/browser proof, normal
+shipcheck, review and separate migration/deployment/activation readback.
+
+## Original four-permission release
+
 The owner can grant individual managers these independent actions: existing card
 condition, asking prices, store listing selection, and business branding. Each
 manager has their own verified account. Billing, payouts, publication, ownership,

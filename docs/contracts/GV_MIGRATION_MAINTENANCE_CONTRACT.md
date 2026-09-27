@@ -1,5 +1,13 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Store manager workflows baseline (2026-09-27)
+
+VendorStoreTeamWorkflowsBaselineAudit permits only fixed, read-only
+AuditLinkedSchema at404 against the dedicated294xx replay. It rejects combined
+modes, target overrides and apply. Existing manager rollout remains unchanged.
+This baseline grants no migration/application authority; fresh workflow replay,
+authorization tests and an exact-pending release gate are separately required.
+
 ## Store team review hardening (2026-09-27)
 
 Production403 is applied with team disabled and retained-data/schema proof.

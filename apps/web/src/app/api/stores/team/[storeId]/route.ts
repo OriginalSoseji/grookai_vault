@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, context: Context) {
       return { id: item.id, gv_vi_id: item.gv_vi_id, name: item.name, gv_id: item.gv_id, printing_gv_id: item.printing_gv_id,
         condition_label: item.condition_label, finish_label: item.finish_label, is_graded: item.is_graded,
         asking_price_amount: item.asking_price_amount, asking_price_currency: item.asking_price_currency,
-        selected: item.selected, updated_at: item.updated_at, ineligible_reason: item.ineligible_reason, display_image_url: image.display_image_url };
+        selected: item.selected, updated_at: item.updated_at, ineligible_reason: item.ineligible_reason, display_image_url: image.display_image_url, section_ids: item.section_ids ?? [] };
     }));
     return teamJson(workspace);
   } catch (error) { return teamFailure(error); }

@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## Store manager workflows — September 27
+
+Release521 is live at404 with team enabled, payments disabled. Its consumed
+intents must never be replayed. The follow-up branch starts at maina0dc40640
+and adds independent opt-in manager workflows; read
+docs/ops/STORE_TEAM_WORKFLOWS_20260927.md. Read-only404 audit uses
+VendorStoreTeamWorkflowsBaselineAudit and private store-team-workflows-v1 receipts.
+No external manager is invited during development or verification.
+
 ## Store team permissions — September 27
 
 Continuation:403 is applied with team disabled and retained-data proof. PR521
