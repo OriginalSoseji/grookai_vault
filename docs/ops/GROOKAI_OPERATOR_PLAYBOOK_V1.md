@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Sharing a storefront — September 26
+
+Use the store workspace's Share your store panel to copy the public `/store/{slug}`
+URL. Private preview is owner-only and must not be sent to customers. The sharing
+panel directs unpublished/unavailable stores to Visibility; it never publishes
+or grants access. Public links use `getSiteOrigin` (production apex, no `www`).
+Follow `docs/ops/STOREFRONT_PRODUCTION_20260926.md` and the external sharing
+checkpoint for release proof. The isolated browser fixture uses loopback26445;
+normal Git hooks retain their existing read-only290xx lab and network guard.
+
 ## Production storefront integration — September 26
 
 PR518 is merged and the main-backed deployment `dpl_inuRsq4LihHojmYu6QQGu1a6Tusw`
