@@ -1,4 +1,4 @@
-import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName } from "@/lib/search/catalogSetSearch";
+import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } from "@/lib/search/catalogSetSearch";
 import { NextRequest, NextResponse } from "next/server";
 import { isIdentityFilterActive, normalizeIdentityFilterKey } from "@/lib/cards/identitySearch";
 import { getPublicProvisionalCards } from "@/lib/provisional/getPublicProvisionalCards";
@@ -393,7 +393,7 @@ export async function GET(request: NextRequest) {
         smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [candidate.matchedAlias] });
         query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
-      inlineSetIntent = candidate.requiresCardNameCheck && await isExactCatalogCardName(catalog, query, gameScope)
+      inlineSetIntent = candidate.requiresCardNameCheck && await isCatalogCardNameQuery(catalog, query, gameScope)
         ? { matchedAlias: null, setCodes: [], remainingQuery: query }
         : candidate;
       if (inlineSetIntent.matchedAlias) {

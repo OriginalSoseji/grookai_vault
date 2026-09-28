@@ -23,7 +23,7 @@ function load(file) {
   return module.exports;
 }
 
-const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
+const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
 const { buildSmartSearchIntent } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const { resolveSmartSearchQuery } = load(path.join(web, 'lib/search/resolveSmartSearchQuery.ts'));
 const sets = [
@@ -145,4 +145,11 @@ test('set cleanup handles long hostile separators without changing meaningful te
  const separators='\t,'.repeat(10000);
  assert.equal(removeSetPhrase(separators+'Mewtwo from the Base Set'+separators,'Base Set'),'Mewtwo');
  assert.equal(removeSetPhrase('Mewtwo from'+ '\t'.repeat(10000)+'the Base Set','Base Set'),'Mewtwo');
+});
+
+test('partial card disambiguation accepts literal fragments and rejects unrelated or fuzzy hits', async () => {
+ const client={rpc:async()=>({data:[{name:'Dark Charizard'}]})};
+ for (const query of ['Dark Chari','dark, CHARI','Chari Dark']) assert.equal(await isCatalogCardNameQuery(client,query,'pokemon'),true);
+ for (const query of ['Pika Ascended','Dark Chari unknown','Dark Chra','']) assert.equal(await isCatalogCardNameQuery(client,query,'pokemon'),false);
+ await assert.rejects(isCatalogCardNameQuery({rpc:async()=>({error:{message:'unavailable'}})},'Dark Chari','pokemon'),/unavailable/);
 });

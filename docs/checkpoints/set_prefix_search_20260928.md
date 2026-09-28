@@ -13,7 +13,11 @@ Word order, case and comma separators retain their existing behavior.
   localized releases. It does not include 25th/20th releases.
 - The shortcut appears in the existing removable set filter and is applied
   before pagination. Artist/finish constraints and unknown words are retained.
-- Full card names still take precedence. When competing shortcuts include a
+- Full and partial card names still take precedence. `Dark Chari`, `Shining
+  Chari` and `Mega Char` remain card-name searches even though those words also
+  open catalog set names. Returned names must match every literal query fragment;
+  fuzzy RPC hits alone cannot suppress a set filter. `Chari from Dark` explicitly
+  selects the set instead. When competing shortcuts include a
   recognized card name, the other shortcut wins: `Charizard Evolving` searches
   Evolving Skies rather than interpreting Charizard as Charizard Half Deck.
 - Quoted text remains literal. Shortcuts use complete opening words of at least
@@ -32,3 +36,9 @@ remain preserved. There are no schema, catalog, permission or native UI changes.
 Full verification/source status is in
 `C:/grookai_vault_operator_artifacts/search_set_prefix_20260928/CHECKPOINT.md`.
 Website deployment and live native/web verification are separate remaining work.
+
+The founder subsequently authorized publication with "go live". PR531 review
+caught the partial-card-name collision above before promotion. The correction
+and its regressions remain within that approved release; normal checks and
+staged/live verification must run on the corrected source. No production
+assignment or merge occurred on the original candidate.

@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [] } = {}) {
+function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {} } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -38,7 +38,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
       createServerComponentClient: async () => ({
         rpc: async (_name, args) => {
           if (exactCardName) assert.equal(args.q, exactCardName);
-          return {data: exactCardName ? [{name:exactCardName}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
+          return {data: exactCardName ? [{name:exactCardName}] : partialCardNames[args.q] ? [{name:partialCardNames[args.q]}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
         },
         from: (table) => {
           assert.equal(table, 'sets');
@@ -208,4 +208,22 @@ test('a Pokemon name also starting a product title stays card text beside anothe
   assert.equal(options.textQuery,'Charizard');
   assert.equal(options.exactSetCode,'swsh7');
  }
+});
+
+test('partial card names take precedence over opening-word set shortcuts', async () => {
+ const sets=[...searchSets,{id:'dark',code:'bw5',name:'Dark Explorers'}, {id:'shining',code:'sm35',name:'Shining Legends'}, {id:'mega',code:'me01',name:'Mega Evolution'}];
+ for (const [q,name] of [['Dark Chari','Dark Charizard'],['Shining Chari','Shining Charizard'],['Mega Char','Mega Charizard X ex']]) {
+  const get=loadRoute({sets,partialCardNames:{[q]:name}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(q)+'&pagination=1')});
+  assert.equal(response.status,200);
+  const data=await response.json();
+  assert.equal(data.smart_search.queryFilters.some(f=>f.kind==='set'),false, q);
+  assert.equal(data.smart_search.residualQuery,q);
+ }
+ let options;
+ const get=loadRoute({sets,partialCardNames:{'Chari from Dark':'Dark Charizard'},capture:value=>{options=value;}});
+ const response=await get({nextUrl:new URL('https://fixture?q=Chari+from+Dark&pagination=1')});
+ assert.equal(response.status,200);
+ assert.equal(options.exactSetCode,'bw5');
+ assert.equal(options.textQuery,'Chari');
 });
