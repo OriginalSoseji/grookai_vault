@@ -375,7 +375,18 @@ export async function GET(request: NextRequest) {
   if (!exactSetCode && query.trim() && !/^GV-/i.test(query)) {
     try {
       const catalog = await createServerComponentClient();
-      const candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, await readSearchSets(catalog, gameScope));
+      const searchSets = await readSearchSets(catalog, gameScope);
+      let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets);
+      const ignoredOpeningWords: string[] = [];
+      while (candidate.openingWordMatch && candidate.matchedAlias) {
+        const ignored = [...ignoredOpeningWords, candidate.matchedAlias];
+        const alternative = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, ignored);
+        // Charizard is also the opening word of Charizard Half Deck. In
+        // "Charizard Evolving", retain the card name and prefer Evolving Skies.
+        if (!alternative.matchedAlias || !await isExactCatalogCardName(catalog, candidate.matchedAlias, gameScope)) break;
+        ignoredOpeningWords.push(candidate.matchedAlias);
+        candidate = alternative;
+      }
       // Preserve the candidate phrase before exact-name disambiguation: words
       // such as "Team" can otherwise be consumed as an artist in a card name.
       if (candidate.matchedAlias) {
