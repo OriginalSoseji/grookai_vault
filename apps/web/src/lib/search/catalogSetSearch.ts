@@ -51,10 +51,11 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
   function add(alias: string, codes: string[], code = false, curated = false) {
     const match = phraseMatch(query, alias, code);
     if (!match) return;
-    // Short set names may belong to an actual card name (Unidentified Fossil).
-    // The route checks that name before turning such a word into a filter.
+    // Catalog set names can be part of an exact card name, including multiword
+    // names such as Team Rocket's Handiwork. Check before creating a filter
+    // unless an explicit set connector or identifier resolves the ambiguity.
     const prefix = query.slice(0, match.index);
-    const requiresCardNameCheck = !code && !curated && words(alias).length === 1 &&
+    const requiresCardNameCheck = !code && !curated &&
       stripSetConnector(prefix) === prefix;
     const key = `${match.index}:${match[0].length}`;
     const candidate = candidates.get(key) ?? { source: match[0], codes: new Set<string>(), size: match[0].length, requiresCardNameCheck };

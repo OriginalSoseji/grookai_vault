@@ -376,12 +376,16 @@ export async function GET(request: NextRequest) {
     try {
       const catalog = await createServerComponentClient();
       const candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, await readSearchSets(catalog, gameScope));
+      // Preserve the candidate phrase before exact-name disambiguation: words
+      // such as "Team" can otherwise be consumed as an artist in a card name.
+      if (candidate.matchedAlias) {
+        smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [candidate.matchedAlias] });
+        query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
+      }
       inlineSetIntent = candidate.requiresCardNameCheck && await isExactCatalogCardName(catalog, query, gameScope)
         ? { matchedAlias: null, setCodes: [], remainingQuery: query }
         : candidate;
       if (inlineSetIntent.matchedAlias) {
-        smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [inlineSetIntent.matchedAlias] });
-        query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
         inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias);
       }
     } catch {

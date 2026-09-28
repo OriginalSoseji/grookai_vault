@@ -17,10 +17,13 @@ or 30th Anniversary. A specific collection name selects that collection. No
 optional `the` immediately before a recognized set are removed with its chip.
 Both name/set orders, capitalization, commas and extra spaces are covered.
 
-Single-word sets work without special syntax. Before applying an ambiguous
-single-word set, the existing release-aware name RPC checks whether the whole
+Catalog set names work without special syntax. Before applying an ambiguous
+catalog name without a connector, the existing release-aware name RPC checks whether the whole
 remaining query is an exact card name. Thus `Aerodactyl Fossil` can select Fossil
-while `Unidentified Fossil` remains a card-name search. Quoted text is protected.
+while `Unidentified Fossil` and `Team Rocket's Handiwork` remain card-name searches.
+This includes multiword catalog names following the PR527 review. Explicit set
+connectors, identifiers and curated aliases retain their existing interpretation.
+Quoted text is protected.
 Set names containing numbers, years or finish words are protected from the
 other smart filters. Unknown words remain search constraints.
 

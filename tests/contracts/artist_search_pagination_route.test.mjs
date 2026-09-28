@@ -36,7 +36,10 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
     '@/lib/pricing/getPublicPricingByCardIds': { PublicPricingSortUnavailableError: class extends Error {} },
     '@/lib/supabase/server': {
       createServerComponentClient: async () => ({
-        rpc: async () => ({data: exactCardName ? [{name:exactCardName}] : []}),
+        rpc: async (_name, args) => {
+          if (exactCardName) assert.equal(args.q, exactCardName);
+          return {data: exactCardName ? [{name:exactCardName}] : []};
+        },
         from: (table) => {
           assert.equal(table, 'sets');
           return { select: () => ({ eq: () => ({ order: () => ({ range: async () => ({ data: sets, error: catalogFail ? { message: "offline" } : null }) }) }) }) };
@@ -117,6 +120,7 @@ const searchSets = [
  {id:'1',code:'base1',name:'Base Set'}, {id:'2',code:'base4',name:'Base Set 2'},
  {id:'3',code:'30c',name:'30th Celebration'}, {id:'4',code:'30c-classic',name:'30th Celebration Classic Collection'},
  {id:'5',code:'future1',name:'Future Garden'}, {id:'6',code:'fo',name:'Fossil'},
+ {id:'7',code:'base5',name:'Team Rocket'},
 ];
 test('actual route applies name/set intersections before complete pagination with removable set chips', async () => {
  for (const [query, text, codes] of [
@@ -128,6 +132,8 @@ test('actual route applies name/set intersections before complete pagination wit
   ['Aerodactyl Fossil','Aerodactyl',['fo']],
   ['Fossil Aerodactyl','Aerodactyl',['fo']],
   ['Eevee Future Garden','Eevee',['future1']],
+  ['Dark Charizard Team Rocket','Dark Charizard',['base5']],
+  ['Team Rocket Dark Charizard','Dark Charizard',['base5']],
  ]) {
   let options;
   const get = loadRoute({sets:searchSets,capture:value=>{options=value;}});
@@ -157,12 +163,16 @@ test('route retains artist and finish with a set and refuses catalog-read failur
  assert.equal(failed.status,503);
 });
 
-test('an actual complete card name takes precedence over a single-word set match', async () => {
- const get=loadRoute({sets:searchSets,exactCardName:'Unidentified Fossil'});
- const response=await get({nextUrl:new URL('https://fixture?q=Unidentified+Fossil&pagination=1')});
- assert.equal(response.status,200);
- const result=await response.json();
- assert.equal(result.smart_search.queryFilters.some(filter=>filter.kind==='set'),false);
+test('complete card names take precedence over single-word and multiword catalog set matches', async () => {
+ for (const name of ['Unidentified Fossil', "Team Rocket's Handiwork"]) {
+  const get=loadRoute({sets:searchSets,exactCardName:name});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(name)+'&pagination=1')});
+  assert.equal(response.status,200);
+  const result=await response.json();
+  assert.equal(result.smart_search.queryFilters.some(filter=>filter.kind==='set'),false, JSON.stringify(result.smart_search));
+  assert.equal(result.smart_search.artist, undefined);
+  assert.equal(result.smart_search.residualQuery, name);
+ }
 });
 
 test('oversized queries fail before accessing catalog services', async () => {

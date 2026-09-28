@@ -30,7 +30,7 @@ const sets = [
  ['base1', 'Base Set'], ['base4', 'Base Set 2'], ['ecard1', 'Expedition Base Set'],
  ['30c', '30th Celebration'], ['30c-classic', '30th Celebration Classic Collection'],
  ['jp30', '30th Celebration Japan'], ['cel25', '25th Anniversary Collection'],
- ['future1', 'Future Garden'], ['fossil', 'Fossil'], ['evs', 'Evolving Skies'],
+ ['future1', 'Future Garden'], ['fossil', 'Fossil'], ['evs', 'Evolving Skies'], ['base5', 'Team Rocket'],
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
 
@@ -71,9 +71,13 @@ test('new catalog names, codes and existing artist/finish interpretation combine
  assert.equal(removeSetPhrase(raw, result.matchedAlias), 'Yuka Morii Wurmple reverse holo');
 });
 
-test('unknown words and identifiers survive; ambiguous single-word set names require a card-name check', () => {
+test('unknown words and identifiers survive; ambiguous catalog set names require a card-name check', () => {
  assert.equal(resolve('GV-PK-BASE1-4', 'pokemon', sets).remainingQuery, 'GV-PK-BASE1-4');
  assert.equal(resolve('Unidentified Fossil', 'pokemon', sets).requiresCardNameCheck, true);
+ assert.equal(resolve("Team Rocket's Handiwork", 'pokemon', sets).requiresCardNameCheck, true);
+ assert.equal(resolve('Handiwork Team Rocket', 'pokemon', sets).requiresCardNameCheck, true);
+ assert.equal(resolve('Handiwork from Team Rocket', 'pokemon', sets).requiresCardNameCheck, false);
+ assert.equal(resolve('Handiwork base5', 'pokemon', sets).requiresCardNameCheck, false);
  assert.equal(resolve('Aerodactyl from Fossil', 'pokemon', [{id:'fo',code:'fo',name:'Fossil'}]).remainingQuery, 'Aerodactyl');
  assert.equal(resolve('Mewtwo unknown Future Garden', 'pokemon', sets).remainingQuery, 'Mewtwo unknown');
 });
@@ -109,7 +113,7 @@ test('set phrases protect number, year and finish-like tokens while quoted card 
  assert.equal(resolve('Unidentified Fossil', 'pokemon', sets).requiresCardNameCheck, true);
 });
 
-test('single-word set disambiguation checks actual card names and fails visibly on read errors', async () => {
+test('set disambiguation checks actual card names and fails visibly on read errors', async () => {
  const client={rpc:async (name,args)=>{assert.equal(name,'search_game_card_prints_v4');assert.equal(args.game_code_in,'pokemon');return {data:[{name:'Unidentified Fossil'}]};}};
  assert.equal(await isExactCatalogCardName(client,'Unidentified Fossil','pokemon'),true);
  assert.equal(await isExactCatalogCardName(client,'Aerodactyl Fossil','pokemon'),false);
