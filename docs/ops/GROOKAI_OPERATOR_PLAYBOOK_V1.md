@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Native delivery qualification — September 28
+
+Read `docs/ops/NATIVE_DELIVERY_20260928.md`. The website search release PR527
+is live at main `4d3427d`; authoritative private evidence is in
+`search_name_set_20260928/CHECKPOINT.md`. Do not replay its release intents.
+Samsung build409 includes that source and a profile-only CameraX compile
+dependency repair, isolated on `fix/android-profile-camera-20260928`.
+The existing phone installation was upgraded in place; production inspection
+was read-only. iOS329 is archived/exported with signature and symbols verified,
+but export is not TestFlight delivery or iOS workflow acceptance.
+Private receipts and remaining gates: `native_delivery_20260928/CHECKPOINT.md`
+under the Windows operator-artifact root. Preserve the Mac archive and export;
+only this task's rebuildable DerivedData cache was removed for disk space.
+Existing Mac checkouts, phone data, labs and prior releases remain intact.
+
 ## Card-name and set-name search — September 28
 
 Current local candidate: `fix/search-name-set-20260928` in
