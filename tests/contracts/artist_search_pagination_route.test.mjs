@@ -164,3 +164,10 @@ test('an actual complete card name takes precedence over a single-word set match
  const result=await response.json();
  assert.equal(result.smart_search.queryFilters.some(filter=>filter.kind==='set'),false);
 });
+
+test('oversized queries fail before accessing catalog services', async () => {
+ const get=loadRoute({catalogFail:true});
+ const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent('Mewtwo '+ '\t'.repeat(501)+'Base Set'))});
+ assert.equal(response.status,400);
+ assert.match((await response.json()).error,/500 characters/);
+});

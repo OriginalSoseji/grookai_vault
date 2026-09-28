@@ -116,3 +116,9 @@ test('single-word set disambiguation checks actual card names and fails visibly 
  await assert.rejects(isExactCatalogCardName({rpc:async()=>({error:{message:'unavailable'}})},'Unidentified Fossil','pokemon'),/unavailable/);
  assert.equal(resolve('Fossil Aerodactyl','pokemon',sets).remainingQuery,'Aerodactyl');
 });
+
+test('set cleanup handles long hostile separators without changing meaningful text', () => {
+ const separators='\t,'.repeat(10000);
+ assert.equal(removeSetPhrase(separators+'Mewtwo from the Base Set'+separators,'Base Set'),'Mewtwo');
+ assert.equal(removeSetPhrase('Mewtwo from'+ '\t'.repeat(10000)+'the Base Set','Base Set'),'Mewtwo');
+});

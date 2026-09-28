@@ -82,3 +82,12 @@ native build/distribution are still pending.
 The subsequent full shipcheck includes Flutter dependency resolution, analysis
 and tests as well as a fresh web build. Consult its final receipts rather than
 treating the earlier missing-package warning as a permanent native blocker.
+
+## Hosted security review follow-up
+
+PR527's CodeQL review identified polynomial backtracking in the set cleanup
+regex. Cleanup now uses linear token/boundary scanning, and the resolver rejects
+queries longer than 500 characters before catalog access. Regression checks
+cover repeated tabs/commas and the early length rejection. The finding remains
+pending hosted re-verification until the corrected head's CodeQL result passes;
+the original failed result must not be dismissed or counted as passing.

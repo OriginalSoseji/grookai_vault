@@ -362,6 +362,9 @@ async function applySmartSearchPostFilters(
 
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
+  if (rawQuery.length > 500) {
+    return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400 });
+  }
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
   const selectedGameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
   let smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });

@@ -7,6 +7,27 @@ export type SearchSet = { id: string; code: string; name: string; printed_set_ab
 const words = (value: string) => value.toLowerCase().replace(/&/g, " and ").match(/[\p{L}\p{N}]+/gu) ?? [];
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+function stripSetConnector(prefix: string) {
+  const tokens = [...prefix.matchAll(/[^\s,]+/gu)];
+  let index = tokens.length - 1;
+  if (tokens[index]?.[0].toLowerCase() === "the") index -= 1;
+  const token = tokens[index];
+  return token && ["from", "in"].includes(token[0].toLowerCase())
+    ? prefix.slice(0, token.index)
+    : prefix;
+}
+
+function cleanRemainingText(value: string) {
+  // Avoid an unanchored trailing-whitespace regex: trying each starting
+  // position can backtrack quadratically on hostile whitespace/comma input.
+  const trimmed = value.replace(/\s+/g, " ").trim();
+  let start = 0;
+  let end = trimmed.length;
+  while (start < end && (trimmed[start] === "," || trimmed[start] === " ")) start += 1;
+  while (end > start && (trimmed[end - 1] === "," || trimmed[end - 1] === " ")) end -= 1;
+  return trimmed.slice(start, end);
+}
+
 function phraseMatch(query: string, phrase: string, code = false) {
   const pattern = code ? escape(phrase) : words(phrase).map((word) => word === "and" ? "(?:and|&)" : escape(word)).join("[^\\p{L}\\p{N}]+");
   if (!pattern) return null;
@@ -19,8 +40,8 @@ function phraseMatch(query: string, phrase: string, code = false) {
 export function removeSetPhrase(query: string, phrase: string) {
   const match = phraseMatch(query, phrase);
   if (!match) return query.trim();
-  const before = query.slice(0, match.index).replace(/\b(?:from|in)(?:\s+the)?\s*$/i, "");
-  return `${before} ${query.slice(match.index + match[0].length)}`.replace(/\s+/g, " ").replace(/^[\s,]+|[\s,]+$/g, "").trim();
+  const before = stripSetConnector(query.slice(0, match.index));
+  return cleanRemainingText(`${before} ${query.slice(match.index + match[0].length)}`);
 }
 
 export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[]) {
@@ -32,8 +53,9 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
     if (!match) return;
     // Short set names may belong to an actual card name (Unidentified Fossil).
     // The route checks that name before turning such a word into a filter.
+    const prefix = query.slice(0, match.index);
     const requiresCardNameCheck = !code && !curated && words(alias).length === 1 &&
-      !/\b(?:from|in)(?:\s+the)?\s*$/i.test(query.slice(0, match.index));
+      stripSetConnector(prefix) === prefix;
     const key = `${match.index}:${match[0].length}`;
     const candidate = candidates.get(key) ?? { source: match[0], codes: new Set<string>(), size: match[0].length, requiresCardNameCheck };
     codes.forEach((value) => candidate.codes.add(value));
