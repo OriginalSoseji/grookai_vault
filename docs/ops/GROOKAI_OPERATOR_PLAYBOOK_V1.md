@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Native search recovery and store access — September28
+
+The founder requested repairs and a TestFlight update after the opening-set
+search release. Read `docs/checkpoints/search_store_testflight_20260928.md`.
+Current source is isolated in C:/gv_search_store_testflight_20260928; private
+release evidence is under search_store_testflight_20260928 in the operator
+artifact root. Preserve completed PR531 and iOS329 receipts; no replay is needed.
+This native fix restores visible Manage store navigation and search request/error
+handling while preserving the shared resolver and store permission checks.
+
 ## Opening-word set search — September 28
 
 The follow-up `fix/search-set-prefix-20260928` adds Pokemon opening-word set

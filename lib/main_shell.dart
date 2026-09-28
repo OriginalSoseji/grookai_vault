@@ -693,12 +693,22 @@ class _AppShellState extends State<AppShell> {
         unawaited(_pushPage<void>(PublicCollectorScreen(slug: route.value)));
         break;
       case GrookaiCanonicalRouteKind.storeProduct:
-        unawaited(_pushPage<void>(CustomProductScreen(slug:route.value,productId:route.productId!,preview:route.preview)));
+        unawaited(
+          _pushPage<void>(
+            CustomProductScreen(
+              slug: route.value,
+              productId: route.productId!,
+              preview: route.preview,
+            ),
+          ),
+        );
         break;
       case GrookaiCanonicalRouteKind.store:
-        unawaited(_pushPage<void>(
-          StorefrontScreen(slug: route.value, preview: route.preview),
-        ));
+        unawaited(
+          _pushPage<void>(
+            StorefrontScreen(slug: route.value, preview: route.preview),
+          ),
+        );
         break;
       case GrookaiCanonicalRouteKind.collectorSection:
         _openCollectorSection(route);
@@ -1045,6 +1055,10 @@ class _AppShellState extends State<AppShell> {
     }
     unawaited(_wallKey.currentState?.reload());
     unawaited(_vaultKey.currentState?.reload());
+  }
+
+  Future<void> _openManageStore() async {
+    await _pushPage<void>(const StoreManagementScreen());
   }
 
   Future<void> _openBinderLibrary() async {
@@ -1591,6 +1605,7 @@ class _AppShellState extends State<AppShell> {
         onOpenCompare: _openCompare,
         onOpenGrookaiObjects: _openGrookaiObjectsHub,
         onOpenVendorMode: _openVendorMode,
+        onOpenManageStore: _openManageStore,
         onOpenBinders: _openBinderLibrary,
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
@@ -2143,6 +2158,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenCompare,
     required this.onOpenGrookaiObjects,
     required this.onOpenVendorMode,
+    required this.onOpenManageStore,
     required this.onOpenBinders,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
@@ -2161,6 +2177,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenCompare;
   final Future<void> Function() onOpenGrookaiObjects;
   final Future<void> Function() onOpenVendorMode;
+  final Future<void> Function() onOpenManageStore;
   final Future<void> Function() onOpenBinders;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
@@ -2240,6 +2257,12 @@ class _GrookaiAppDrawer extends StatelessWidget {
             icon: Icons.sell_outlined,
             label: 'Vendor Mode',
             onTap: () => _closeThenAsync(context, onOpenVendorMode),
+          ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.storefront_outlined,
+            label: 'Manage store',
+            onTap: () => _closeThenAsync(context, onOpenManageStore),
           ),
         if (signedIn && BinderFeatureFlags.production.personalAvailable)
           _GrookaiDrawerTile(

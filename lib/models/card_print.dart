@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
+import '../services/search/resolver_transport.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../secrets.dart';
@@ -653,9 +653,7 @@ class CardPrintRepository {
       if (accessToken.isNotEmpty) 'Authorization': 'Bearer $accessToken',
     };
 
-    final response = await http
-        .get(resolverUri, headers: headers)
-        .timeout(const Duration(seconds: 10));
+    final response = await getSearchResolver(resolverUri, headers: headers);
 
     final decoded = jsonDecode(response.body);
     if (response.statusCode < 200 || response.statusCode >= 300) {
