@@ -9,30 +9,31 @@ import '../../services/import/collection_import_service.dart';
 enum _ImportPreviewFilter { all, matched, needsReview }
 
 class ImportCollectionScreen extends StatefulWidget {
-  const ImportCollectionScreen({super.key});
+  const ImportCollectionScreen({super.key, this.client});
+
+  final SupabaseClient? client;
 
   @override
   State<ImportCollectionScreen> createState() => _ImportCollectionScreenState();
 }
 
 class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
-  final SupabaseClient _client = Supabase.instance.client;
+  late final SupabaseClient _client = widget.client ?? Supabase.instance.client;
 
   String? _fileName;
   bool _matching = false;
   bool _importing = false;
   String? _error;
+  bool _retryImport = false;
   CollectionImportPreview? _preview;
   CollectionImportResult? _result;
   _ImportPreviewFilter _filter = _ImportPreviewFilter.all;
 
   Future<void> _pickCsv() async {
+    if (_importing || _matching) return;
     setState(() {
       _matching = true;
       _error = null;
-      _preview = null;
-      _result = null;
-      _filter = _ImportPreviewFilter.all;
     });
 
     try {
@@ -74,6 +75,9 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
       setState(() {
         _fileName = file.name;
         _preview = preview;
+        _result = null;
+        _retryImport = false;
+        _filter = _ImportPreviewFilter.all;
         _matching = false;
       });
     } catch (error) {
@@ -89,13 +93,14 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
 
   Future<void> _import() async {
     final preview = _preview;
-    if (preview == null || _importing) {
+    if (preview == null || _importing || _matching) {
       return;
     }
 
     setState(() {
       _importing = true;
       _error = null;
+      _result = null;
     });
 
     try {
@@ -110,6 +115,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
       setState(() {
         _result = result;
         _importing = false;
+        _retryImport = false;
       });
     } catch (error) {
       if (!mounted) {
@@ -117,6 +123,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
       }
       setState(() {
         _importing = false;
+        _retryImport = true;
         _error = error is Error ? error.toString() : error.toString();
       });
     }
@@ -179,7 +186,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                     children: [
                       Expanded(
                         child: OutlinedButton.icon(
-                          onPressed: _matching ? null : _pickCsv,
+                          onPressed: _matching || _importing ? null : _pickCsv,
                           icon: const Icon(Icons.upload_file_outlined),
                           label: Text(
                             _fileName == null ? 'Choose CSV' : 'Replace CSV',
@@ -319,11 +326,19 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                         ),
                         const SizedBox(width: 12),
                         FilledButton(
-                          onPressed: matchedCount == 0 || _importing
+                          onPressed:
+                              matchedCount == 0 ||
+                                  _importing ||
+                                  _matching ||
+                                  _result != null
                               ? null
                               : _import,
                           child: Text(
-                            _importing ? 'Importing…' : 'Import to Vault',
+                            _importing
+                                ? 'Importing…'
+                                : _retryImport
+                                ? 'Retry import'
+                                : 'Import to Vault',
                           ),
                         ),
                       ],

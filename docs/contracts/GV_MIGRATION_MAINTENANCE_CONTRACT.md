@@ -1,5 +1,21 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Native import recovery baseline (2026-09-27)
+
+`NativeImportRecoveryBaselineAudit` permits fixed read-only AuditLinkedSchema
+against production406 and the preserved294xx406 replay. It accepts no pending
+version or only the unchanged20260926230000 atomic import migration. It retains
+duplicate timestamp/object scanning and the pinned schema/security comparison,
+with the existing governed column-order reconciliation. PrePush, combined modes
+and target overrides are rejected. This grants no apply or reset authority.
+Fresh407 replay and data-retaining406→407 upgrade are separate local proof;
+all older populated fixtures and consumed intents must be preserved.
+The same read-only gate additionally accepts the exact pair20260926230000 and
+20260928020000 for the import receipt follow-up. The second migration is bound to
+its private source intent, with a separate408 replay and407-to-408 upgrade.
+Receipt-only, extra migrations, PrePush and apply remain rejected. This extension
+adds no release authority and preserves the historical407 fixtures.
+
 ## Store manager workflows baseline (2026-09-27)
 
 VendorStoreTeamWorkflowsBaselineAudit permits only fixed, read-only

@@ -161,11 +161,13 @@ class CollectionImportPreview {
     required this.rows,
     required this.summary,
     required this.report,
+    required this.ownerUserId,
   });
 
   final List<CollectionImportPreviewRow> rows;
   final CollectionImportPreviewSummary summary;
   final CollectionImportReport report;
+  final String ownerUserId;
 }
 
 class CollectionImportResult {
@@ -223,6 +225,8 @@ class _CollectionImportAggregatedRow {
     required this.desiredQuantity,
     required this.importQuantity,
     required this.condition,
+    this.cost,
+    this.added,
     this.notes,
   });
 
@@ -233,7 +237,16 @@ class _CollectionImportAggregatedRow {
   final int desiredQuantity;
   final int importQuantity;
   final String condition;
+  final double? cost;
+  final String? added;
   final String? notes;
+}
+
+class CollectionImportFailure implements Exception {
+  const CollectionImportFailure(this.message);
+  final String message;
+  @override
+  String toString() => message;
 }
 
 class CollectionImportService {
@@ -290,6 +303,10 @@ class CollectionImportService {
     required SupabaseClient client,
     required String csvText,
   }) async {
+    final ownerUserId = client.auth.currentUser?.id;
+    if (ownerUserId == null) {
+      throw const CollectionImportFailure('Sign in before choosing a CSV.');
+    }
     final parsedRows = parseCollectrCsv(csvText);
     final normalizedRows = parsedRows.map(normalizeRow).toList();
     final collapsedRows = _collapseRows(normalizedRows);
@@ -299,6 +316,7 @@ class CollectionImportService {
 
     if (validRows.isEmpty) {
       return CollectionImportPreview(
+        ownerUserId: ownerUserId,
         rows: const [],
         summary: const CollectionImportPreviewSummary(
           totalRows: 0,
@@ -349,6 +367,7 @@ class CollectionImportService {
 
     if (rowsToMatch.isEmpty) {
       return CollectionImportPreview(
+        ownerUserId: ownerUserId,
         rows: const [],
         summary: const CollectionImportPreviewSummary(
           totalRows: 0,
@@ -453,6 +472,7 @@ class CollectionImportService {
         .length;
 
     return CollectionImportPreview(
+      ownerUserId: ownerUserId,
       rows: previewRows,
       summary: CollectionImportPreviewSummary(
         totalRows: previewRows.length,
@@ -475,101 +495,141 @@ class CollectionImportService {
     required SupabaseClient client,
     required CollectionImportPreview preview,
   }) async {
-    final matchedPreviewRows = preview.rows
-        .where((row) => row.status == CollectionImportMatchStatus.matched)
-        .toList();
-
-    if (matchedPreviewRows.isEmpty) {
-      return CollectionImportResult(
-        importedCards: 0,
-        importedEntries: 0,
-        needsManualMatch:
-            preview.summary.multipleRows + preview.summary.unmatchedRows,
-        skippedRows:
-            preview.summary.multipleRows + preview.summary.unmatchedRows,
-      );
-    }
-
-    final aggregatedRows = _aggregateImportRows(matchedPreviewRows);
-    final existingOwnedCounts =
-        await VaultCardService.getOwnedCountsByCardPrintIds(
-          client: client,
-          cardPrintIds: aggregatedRows.map((row) => row.cardPrintId).toList(),
-        );
-    final rowsToImport = aggregatedRows
-        .map((row) {
-          final existingQty = existingOwnedCounts[row.cardPrintId] ?? 0;
-          final nextQuantity = row.desiredQuantity - existingQty;
-          if (nextQuantity <= 0) {
-            return null;
-          }
-          return _CollectionImportAggregatedRow(
-            cardPrintId: row.cardPrintId,
-            gvId: row.gvId,
-            name: row.name,
-            setName: row.setName,
-            desiredQuantity: row.desiredQuantity,
-            importQuantity: nextQuantity,
-            condition: row.condition,
-            notes: row.notes,
-          );
-        })
-        .whereType<_CollectionImportAggregatedRow>()
-        .toList();
-
-    if (rowsToImport.isEmpty) {
-      return CollectionImportResult(
-        importedCards: 0,
-        importedEntries: 0,
-        needsManualMatch:
-            preview.summary.multipleRows + preview.summary.unmatchedRows,
-        skippedRows:
-            preview.summary.multipleRows + preview.summary.unmatchedRows,
-      );
-    }
-
     final userId = client.auth.currentUser?.id;
-    if (userId == null || userId.isEmpty) {
-      throw Exception('Sign in required.');
-    }
-
-    for (final row in rowsToImport) {
-      await VaultCardService.addOrIncrementVaultItem(
-        client: client,
-        userId: userId,
-        cardId: row.cardPrintId,
-        deltaQty: row.importQuantity,
-        conditionLabel: row.condition,
-        notes: row.notes,
-        fallbackName: row.name,
-        fallbackSetName: row.setName,
+    if (userId == null || userId != preview.ownerUserId) {
+      throw const CollectionImportFailure(
+        'Your account changed. Choose the CSV again for the signed-in account.',
       );
     }
-
-    await _emitVaultImportSummary(
-      client: client,
-      userId: userId,
-      importedCards: rowsToImport.fold<int>(
-        0,
-        (sum, row) => sum + row.importQuantity,
-      ),
-      importedEntries: rowsToImport.length,
-      needsManualMatch:
-          preview.summary.multipleRows + preview.summary.unmatchedRows,
-      skippedRows: preview.summary.multipleRows + preview.summary.unmatchedRows,
-      source: 'flutter_collection_import',
+    final rows = _aggregateImportRows(
+      preview.rows
+          .where((row) => row.status == CollectionImportMatchStatus.matched)
+          .toList(),
     );
-
-    return CollectionImportResult(
-      importedCards: rowsToImport.fold<int>(
-        0,
-        (sum, row) => sum + row.importQuantity,
-      ),
-      importedEntries: rowsToImport.length,
-      needsManualMatch:
-          preview.summary.multipleRows + preview.summary.unmatchedRows,
-      skippedRows: preview.summary.multipleRows + preview.summary.unmatchedRows,
+    final needsReview =
+        preview.summary.multipleRows + preview.summary.unmatchedRows;
+    if (rows.isEmpty) {
+      return CollectionImportResult(
+        importedCards: 0,
+        importedEntries: 0,
+        needsManualMatch: needsReview,
+        skippedRows: needsReview,
+      );
+    }
+    const uncertain = CollectionImportFailure(
+      'We could not confirm the import. Some cards may already be saved. '
+      'Retry this import to check the saved quantities and add only missing copies. '
+      'If you close this screen, choose the same CSV again.',
     );
+    try {
+      final response = await client.functions.invoke(
+        'vault-import-targets-v1',
+        body: {
+          'ownerUserId': userId,
+          'rows': rows
+              .map(
+                (row) => {
+                  'cardId': row.cardPrintId,
+                  'gvId': row.gvId,
+                  'desiredQuantity': row.desiredQuantity,
+                  'condition': row.condition,
+                  'acquisitionCost': row.cost,
+                  'createdAt': row.added,
+                  'notes': row.notes,
+                },
+              )
+              .toList(),
+        },
+      );
+      final data = response.data;
+      if (response.status != 200 ||
+          data is! Map ||
+          data['success'] != true ||
+          data['importedCards'] is! int ||
+          data['importedEntries'] is! int ||
+          data['targets'] is! List) {
+        throw uncertain;
+      }
+      final importedCards = data['importedCards'] as int;
+      final importedEntries = data['importedEntries'] as int;
+      if (importedCards < 0 ||
+          importedCards >
+              rows.fold<int>(0, (sum, row) => sum + row.desiredQuantity) ||
+          importedEntries < 0 ||
+          importedEntries > rows.length) {
+        throw uncertain;
+      }
+      final desired = {
+        for (final row in rows) row.cardPrintId: row.desiredQuantity,
+      };
+      final targets = <String, int>{};
+      for (final raw in data['targets'] as List) {
+        if (raw is! Map ||
+            raw['cardPrintId'] is! String ||
+            raw['expectedCount'] is! int) {
+          throw uncertain;
+        }
+        final id = raw['cardPrintId'] as String;
+        final count = raw['expectedCount'] as int;
+        if (!desired.containsKey(id) ||
+            targets.containsKey(id) ||
+            count < desired[id]!) {
+          throw uncertain;
+        }
+        targets[id] = count;
+      }
+      if (targets.length != rows.length ||
+          client.auth.currentUser?.id != userId) {
+        throw uncertain;
+      }
+      final counts = await VaultCardService.getOwnedCountsIncludingSlabs(
+        client: client,
+        cardPrintIds: targets.keys,
+      );
+      if (client.auth.currentUser?.id != userId ||
+          targets.entries.any((entry) => counts[entry.key] != entry.value)) {
+        throw uncertain;
+      }
+      if (importedCards > 0) {
+        await _emitVaultImportSummary(
+          client: client,
+          userId: userId,
+          importedCards: importedCards,
+          importedEntries: importedEntries,
+          needsManualMatch: needsReview,
+          skippedRows: needsReview,
+          source: 'flutter_collection_import',
+        );
+      }
+      return CollectionImportResult(
+        importedCards: importedCards,
+        importedEntries: importedEntries,
+        needsManualMatch: needsReview,
+        skippedRows: needsReview,
+      );
+    } on FunctionException catch (error) {
+      final details = error.details;
+      if (details is Map && details['error'] == 'import_account_changed') {
+        throw const CollectionImportFailure(
+          'Your account changed. Choose the CSV again for the signed-in account.',
+        );
+      }
+      if (details is Map && details['error'] == 'vault_paused') {
+        throw const CollectionImportFailure(
+          'Vault imports are temporarily paused. Keep this CSV and retry when imports reopen.',
+        );
+      }
+      if (error.status == 401) {
+        throw const CollectionImportFailure(
+          'Sign in again, then choose the same CSV to check saved quantities.',
+        );
+      }
+      throw uncertain;
+    } on CollectionImportFailure {
+      rethrow;
+    } catch (_) {
+      throw uncertain;
+    }
   }
 
   static Future<void> _emitVaultImportSummary({
@@ -805,27 +865,27 @@ class CollectionImportService {
       return const {};
     }
 
-    final countsByCardId = await VaultCardService.getOwnedCountsByCardPrintIds(
+    final countsByCardId = await VaultCardService.getOwnedCountsIncludingSlabs(
       client: client,
       cardPrintIds: candidateRows.map((row) => row.id).toSet().toList(),
     );
 
-    final quantities = <String, int>{};
+    final candidatesByKey = <String, Set<String>>{};
     for (final candidate in candidateRows) {
-      final existingQty = countsByCardId[candidate.id] ?? 0;
-      if (existingQty <= 0) {
-        continue;
-      }
-
       final key = _buildMatchKey(
         normalizeImportSetForCompare(candidate.setName),
         normalizeImportNumberForCompare(candidate.number),
         normalizeImportNameForCompare(candidate.name),
       );
-      quantities[key] = (quantities[key] ?? 0) + existingQty;
+      (candidatesByKey[key] ??= <String>{}).add(candidate.id);
     }
-
-    return quantities;
+    // An ambiguous CSV row cannot claim ownership of one arbitrary printing.
+    // Keep it in review even if a different matching candidate is already owned.
+    return {
+      for (final entry in candidatesByKey.entries)
+        if (entry.value.length == 1)
+          entry.key: countsByCardId[entry.value.single] ?? 0,
+    };
   }
 
   static List<_CollectionImportAggregatedRow> _aggregateImportRows(
@@ -848,6 +908,11 @@ class CollectionImportService {
         desiredQuantity: (existing?.desiredQuantity ?? 0) + row.desiredQuantity,
         importQuantity: (existing?.importQuantity ?? 0) + row.importQuantity,
         condition: existing?.condition ?? row.row.condition,
+        cost: row.row.cost ?? existing?.cost,
+        added: ([
+          existing?.added,
+          row.row.added,
+        ].whereType<String>().toList()..sort()).firstOrNull,
         notes: existing?.notes ?? row.row.notes,
       );
     }
@@ -1113,7 +1178,7 @@ class CollectionImportService {
   }
 
   static String _buildRowKey(CollectionImportNormalizedRow row) {
-    return '${row.compareSet}|${row.compareNumber}|${row.compareName}';
+    return _buildMatchKey(row.compareSet, row.compareNumber, row.compareName);
   }
 
   static String _buildMatchKey(String setName, String number, String name) {

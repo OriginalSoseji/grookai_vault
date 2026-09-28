@@ -1,5 +1,83 @@
 # Grookai Operator Playbook V1
 
+## Native import repository release — September 27
+
+The bounded native import package is entering normal commit/pre-push checks on
+`fix/native-import-recovery-20260927`. Private release status, hook logs and PR
+metadata live under `native_import_release_20260927` in the operator artifact
+root; consult its latest checkpoint before claiming source publication. Checks
+use the existing approved local web staging API29421/read-only DB29422 with
+remote Node networking denied; native acceptance remains on full408 API57741.
+Normal hooks remain enabled. Local fixture credentials use the approved
+`localSupabaseStatusSecret` adapter, including the real endpoint harness.
+The original preparation/reset intents remain consumed and all labs preserved.
+This source review step does not apply migrations, deploy Edge or distribute
+production native builds; exact-pending remote and iOS/device gates remain open.
+
+## Native import durable receipts — September 27
+
+Latest checkpoint: `docs/ops/AUDIT_NATIVE_IMPORT_RECEIPTS_20260927.md`. Release
+review found missing persisted attempt failures under PRODUCTION_READINESS_GATE_V1.
+The new additive408 migration wraps the unchanged atomic writer with private
+terminal receipts. Actual Auth/Edge/SQL tests and the Android retry/reopen journey
+pass. Read-only406 baseline, fresh408 replay and retained-data407-to-408 upgrade
+pass. Production remains unchanged; baseline-only audit still rejects PrePush.
+
+Evidence: `native_import_receipts_20260927` in the operator artifact root.
+New labs use DB/API57740/57741 and57840/57841; all older407/411 labs remain intact.
+Gateway57550 now points to full408 API57741 and Deno57950. Resume only with
+`node scripts/tests/native_import_receipts_emulator_fixture_v1.mjs serve`.
+Its preparation intent is consumed. Original407 gateway was stopped; do not
+restart that helper with the changed Edge source. Build407's normal local APK
+is unchanged and reinstalled on emulator5580 after acceptance. Its endpoint
+remains57550; no new client binary or production-native release is claimed.
+
+Never reset populated labs, reuse preparation/upgrade intents or publish private
+fixture credentials/build logs. Remote PrePush/apply, Edge deployment, iOS/device
+qualification and broader audit closeout remain open. The following notes are
+historical where they conflict with this continuation.
+
+## Native import qualified locally — September 27
+
+Read `docs/ops/AUDIT_NATIVE_IMPORT_QUALIFICATION_20260927.md` first. The isolated
+native import branch now includes only the atomic import migration in addition
+to current main's 406 migrations. Read-only production baseline comparison,
+fresh407 replay, retained-data406-to-407 upgrade, actual Auth/Edge acceptance and
+Android emulator recovery all pass. Reopened-CSV preview identity was fixed.
+Build407 is installed as `com.grookai.vault.lockedacceptance` on emulator5580;
+normal app startup is verified. It targets local data, not production.
+
+Private evidence/APK: `native_import_qualification_20260927` under operator
+artifacts. Populated407 labs use DB/API57540/57541 and57640/57641. Preserve them,
+the historical411 lab and all consumed preparation/reset/test intents. The local
+emulator gateway57550 forwards only to the full407 lab and Deno57450. Its guarded
+`scripts/tests/native_import_emulator_fixture_v1.mjs serve` command may resume
+the gateway; `prepare`, `prepare-retry`, replay and upgrade commands are consumed
+and must not be repeated. Fixture credentials and full build logs stay private.
+
+The baseline-only `NativeImportRecoveryBaselineAudit` switch does not authorize
+PrePush or remote apply. Production migration/Edge release, production native
+distribution, iOS/device coverage and broader audit/data closeout remain open.
+Older notes below are historical. Keep the older staged audit candidate intact.
+
+## Native import recovery — September 27
+
+Web audit PR524 is merged and live; its private release checkpoint is
+`audit_web_release_20260927/LIVE_RELEASE_CHECKPOINT.md` in the operator artifacts.
+The next batch is implemented locally on `fix/native-import-recovery-20260927`
+in `C:/grookai_vault_native_import_20260927`, based on main `f44dcfeac`.
+Read `docs/ops/AUDIT_NATIVE_IMPORT_RECOVERY_20260927.md` and
+`docs/contracts/NATIVE_IMPORT_RECOVERY_V1.md` before continuing. One native import
+now uses the pending atomic desired-total RPC through an authenticated Edge route;
+interrupted requests keep a retryable preview and verify raw/slab saved counts.
+The RPC is not on main's 406 schema: no native/Edge release is claimed. Qualify
+that dependency on current main before distribution. Preserve the older staged
+411 candidate and every populated lab. New real acceptance uses the existing
+isolated 57040/57041 lab without reset or schema changes; endpoint57450 stops
+after each run. Private source hashes, failed attempts and final receipts live
+under `native_import_recovery_20260927` in the operator artifacts root. Older app
+writer retirement, device/PSA proof and audit closeout remain separate gates.
+
 ## Bounded audit web release — September 27
 
 Read `docs/ops/AUDIT_WEB_RELEASE_SCOPE_20260927.md` first for audit continuation.

@@ -49,6 +49,7 @@ param(
   [switch]$StorefrontProductionTrialsV1,
   [switch]$VendorStoreTeamBaselineAudit,
   [switch]$VendorStoreTeamWorkflowsBaselineAudit,
+  [switch]$NativeImportRecoveryBaselineAudit,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
   [switch]$VendorStoreTeamWorkflowsV1,
@@ -469,6 +470,27 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($NativeImportRecoveryBaselineAudit) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','NativeImportRecoveryBaselineAudit')
+  $nativeExpected = @(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ','
+  if ($Phase -ne 'AuditLinkedSchema' -or $nativeExpected -notin @('', '20260926230000', '20260926230000,20260928020000') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0) { Fail 'Native import baseline permits only fixed read-only AuditLinkedSchema; no combined modes, target overrides or apply.' }
+  $nativeRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $nativeFiles = @(Get-RepoMigrationFiles -RepoRoot $nativeRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $nativeFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $nativePending = @($nativeFiles | Where-Object { $_.Id -in @('20260926230000','20260928020000') })
+  if ((@($nativePending | ForEach-Object { $_.Id } | Sort-Object) -join ',') -ne $nativeExpected) { Fail 'Native import baseline expected pending set mismatch.' }
+  if ($nativePending.Count -gt 0) {
+    $nativeDuplicates = Get-ObjectDuplicates -PendingFiles $nativePending
+    if ($nativeDuplicates.DuplicateIndexes.Count -gt 0 -or $nativeDuplicates.DuplicateViews.Count -gt 0 -or $nativeDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending import objects.' }
+  }
+  Require-Command 'node'
+  $nativeAudit = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/audit_native_import_baseline_v1.mjs'))
+  Write-CommandTranscript -result $nativeAudit
+  if ($nativeAudit.ExitCode -ne 0) { Fail 'Native import baseline schema/security proof failed; no apply.' }
+  Write-Section 'STRICT NATIVE IMPORT BASELINE PASS - READ ONLY'
+  exit 0
 }
 
 if ($VendorStoreTeamWorkflowsBaselineAudit) {
