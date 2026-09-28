@@ -109,7 +109,14 @@ export function SearchToolbarInput({
   return (
     <div className={cx(CONTROL_SHELL_CLASSNAME[tone], shellClassName)}>
       {icon ? <span className="shrink-0 text-slate-400">{icon}</span> : null}
-      <input {...props} className={cx(INPUT_CLASSNAME[tone], inputClassName)} />
+      <input
+        autoCorrect="off"
+        autoCapitalize="none"
+        spellCheck={false}
+        autoComplete="off"
+        {...props}
+        className={cx(INPUT_CLASSNAME[tone], inputClassName)}
+      />
     </div>
   );
 }

@@ -29,6 +29,11 @@ The query may contain a card name, set, collector number, Grookai ID, finish,
 stamp, language, artist, or supported visible-artwork concepts. Technical
 resolver vocabulary is never required.
 
+Search entry disables keyboard autocorrection, automatic capitalization and
+spellchecking so card names, artist names and set codes stay as typed. Native
+search also disables keyboard suggestions. Web browser autocomplete is off;
+the app's explicit catalog suggestion list remains available.
+
 ## Live Suggestions
 
 After at least two non-whitespace characters, web search returns a bounded

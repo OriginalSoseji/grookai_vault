@@ -2863,6 +2863,11 @@ class VaultPageState extends State<VaultPage> {
                       Expanded(
                         child: TextField(
                           controller: _searchController,
+                          autocorrect: false,
+                          enableSuggestions: false,
+                          textCapitalization: TextCapitalization.none,
+                          spellCheckConfiguration:
+                              const SpellCheckConfiguration.disabled(),
                           decoration: InputDecoration(
                             hintText: 'Search vault · by card, set, or Pokemon',
                             prefixIcon: const Icon(Icons.search),

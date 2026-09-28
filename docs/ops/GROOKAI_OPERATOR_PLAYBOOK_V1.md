@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Card-name and set-name search — September 28
+
+Current local candidate: `fix/search-name-set-20260928` in
+`C:/gv_search_name_set_20260928`. Read
+`docs/checkpoints/card_name_set_search_20260928.md` for mixed name/set matching,
+30th anniversary interpretation, card-name collision protection and verification.
+The private `search_name_set_20260928` operator-artifact directory contains
+read-only catalog proof and the local build/test receipts. This is not yet a
+production search release. Native import is already completed; its authoritative
+live checkpoint is in `native_import_live_20260928`, and its old apply/deploy
+intents must not be replayed. Preserve all existing worktrees and populated labs.
+
+
 ## Native import pre-deployment inspection — September 28
 
 PR526 carries the native recovery package. Current main's Store Mark sold work
