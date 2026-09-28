@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Opening-word set search — September 28
+
+The follow-up `fix/search-set-prefix-20260928` adds Pokemon opening-word set
+shortcuts such as `Pika 30th` and `pika ascended`. Read
+`docs/checkpoints/set_prefix_search_20260928.md`. Its private checkpoint and
+catalog/test evidence are in `search_set_prefix_20260928` under the operator
+artifact root. This is separate from the completed PR527 website release and
+iOS329 delivery. Do not replay those release intents or claim this new resolver
+behavior is live before a separately verified web rollout. Existing native
+clients consume the shared endpoint; no keyboard or native build change is
+part of this follow-up.
+
 ## Card-name and set-name search — September 28
 
 Current local candidate: `fix/search-name-set-20260928` in

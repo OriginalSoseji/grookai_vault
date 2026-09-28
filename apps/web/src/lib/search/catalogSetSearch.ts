@@ -44,8 +44,8 @@ export function removeSetPhrase(query: string, phrase: string) {
   return cleanRemainingText(`${before} ${query.slice(match.index + match[0].length)}`);
 }
 
-export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[]) {
-  const empty = { matchedAlias: null as string | null, setCodes: [] as string[], remainingQuery: query.trim(), requiresCardNameCheck: false };
+export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[], ignoredOpeningWords: string[] = []) {
+  const empty = { matchedAlias: null as string | null, setCodes: [] as string[], remainingQuery: query.trim(), requiresCardNameCheck: false, openingWordMatch: false };
   if (!query.trim() || /^GV-/i.test(query)) return empty;
   const candidates = new Map<string, { source: string; codes: Set<string>; size: number; requiresCardNameCheck: boolean }>();
   function add(alias: string, codes: string[], code = false, curated = false) {
@@ -65,9 +65,20 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
   const bundled = resolveGameScopedSetSearchIntent(query, game);
   if (bundled.matchedAlias) add(bundled.matchedAlias, bundled.setCodes, false, true);
   const anniversaryCodes: string[] = [];
+  const openingWords = new Map<string, Set<string>>();
   for (const set of sets) {
     const presentation = getCatalogSetPresentation({ ...set, game, printedCode: set.printed_set_abbrev });
-    for (const name of new Set([set.name, presentation.name, presentation.name_ja].filter(Boolean))) add(name!, [set.code]);
+    for (const name of new Set([set.name, presentation.name, presentation.name_ja].filter(Boolean))) {
+      add(name!, [set.code]);
+      const tokens = words(name!);
+      const first = tokens[0] ?? "";
+      if (game === "pokemon" && tokens.length > 1 && first.length >= 2 && /\p{L}/u.test(first) &&
+          !["the", "and", "pokemon", "pokémon"].includes(first)) {
+        const codes = openingWords.get(first) ?? new Set<string>();
+        codes.add(set.code);
+        openingWords.set(first, codes);
+      }
+    }
     add(set.code, [set.code], words(set.code).join(" ") !== words(set.name).join(" "));
     // Printed codes are identifiers, not the generic presentation fallback.
     const printed = presentation.display_code;
@@ -75,17 +86,49 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
     if (game === "pokemon" && /\b30th\s+(?:celebration|anniversary)\b/i.test(`${set.name} ${presentation.name}`)) anniversaryCodes.push(set.code);
   }
   if (anniversaryCodes.length) add("30th anniversary", anniversaryCodes, false, true);
+  // A complete name/code remains more specific than an opening-word shortcut.
+  // Share all releases with the same opening word instead of arbitrarily
+  // choosing one. Keep the normal exact-card-name disambiguation for shortcuts.
+  let openingWordMatch = false;
+  if (!candidates.size && game === "pokemon") {
+    // Include translated/product releases whose localized title does not begin
+    // with 30th, using the same catalog-backed family as the full alias.
+    if (anniversaryCodes.length) add("30th", anniversaryCodes);
+    if (!candidates.size) {
+      openingWordMatch = true;
+      for (const [alias, codes] of openingWords) {
+        if (!ignoredOpeningWords.some((ignored) => words(ignored).join(" ") === alias)) add(alias, [...codes]);
+      }
+    }
+  }
   const selected = [...candidates.values()].sort((a, b) => b.size - a.size)[0];
-  return selected ? { matchedAlias: selected.source, setCodes: [...selected.codes].sort(), remainingQuery: removeSetPhrase(query, selected.source), requiresCardNameCheck: selected.requiresCardNameCheck } : empty;
+  return selected ? { matchedAlias: selected.source, setCodes: [...selected.codes].sort(), remainingQuery: removeSetPhrase(query, selected.source), requiresCardNameCheck: selected.requiresCardNameCheck, openingWordMatch } : empty;
 }
 
-export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game) {
+async function readCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game) {
   const { data, error } = await client.rpc("search_game_card_prints_v4", {
     game_code_in: game, q: query, set_code_in: null, number_in: null,
     illustrator_in: null, language_scope_in: "all", limit_in: 1, offset_in: 0,
   });
   if (error) throw new Error(error.message);
-  return Boolean(data?.[0]?.name && words(data[0].name).join(" ") === words(query).join(" "));
+  return data?.[0]?.name as string | undefined;
+}
+
+export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game) {
+  const name = await readCatalogCardName(client, query, game);
+  return Boolean(name && words(name).join(" ") === words(query).join(" "));
+}
+
+// A partial card name has priority over an implicit set shortcut too:
+// Dark Chari must retain Dark Charizard instead of selecting Dark Explorers.
+// Verify literal fragments against the returned name; a fuzzy RPC hit alone
+// must not silently discard a real set constraint. Explicit connectors bypass
+// this ambiguity check at the caller, so "Chari from Dark" still selects a set.
+export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game) {
+  const name = await readCatalogCardName(client, query, game);
+  const fragments = words(query);
+  const nameWords = words(name ?? "");
+  return fragments.length > 0 && fragments.every((fragment) => nameWords.some((word) => word.includes(fragment)));
 }
 
 // Request-scoped, caller-visible metadata; never cache one caller's visibility

@@ -23,7 +23,7 @@ function load(file) {
   return module.exports;
 }
 
-const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
+const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
 const { buildSmartSearchIntent } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const { resolveSmartSearchQuery } = load(path.join(web, 'lib/search/resolveSmartSearchQuery.ts'));
 const sets = [
@@ -31,8 +31,28 @@ const sets = [
  ['30c', '30th Celebration'], ['30c-classic', '30th Celebration Classic Collection'],
  ['jp30', '30th Celebration Japan'], ['cel25', '25th Anniversary Collection'],
  ['future1', 'Future Garden'], ['fossil', 'Fossil'], ['evs', 'Evolving Skies'], ['base5', 'Team Rocket'],
+ ['me02.5', 'Ascended Heroes'], ['asc-special', 'Ascended Legends'], ['silver', 'Silver Tempest'],
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
+
+test('opening set words combine with partial card names in either order', () => {
+ for (const q of ['Pika 30th', '30th Pika', 'Pika, 30TH', 'Pika from the 30th']) {
+  const result = resolve(q, 'pokemon', sets);
+  assert.deepEqual(plain(result.setCodes), ['30c', '30c-classic', 'jp30']);
+  assert.equal(result.remainingQuery, 'Pika');
+ }
+ for (const q of ['pika ascended', 'ascended pika', 'pika from Ascended']) {
+  const result = resolve(q, 'pokemon', sets);
+  assert.deepEqual(plain(result.setCodes), ['asc-special', 'me02.5']);
+  assert.equal(result.remainingQuery, 'pika');
+ }
+ assert.deepEqual(plain(resolve('pika Ascended Heroes', 'pokemon', sets).setCodes), ['me02.5']);
+ assert.deepEqual(plain(resolve('pika Silver', 'pokemon', sets).setCodes), ['silver']);
+ assert.equal(resolve('pika ascended', 'pokemon', sets).requiresCardNameCheck, true);
+ assert.equal(resolve('"ascended" pika', 'pokemon', sets).matchedAlias, null);
+ assert.equal(resolve('pika ascendedly', 'pokemon', sets).matchedAlias, null);
+ assert.equal(resolve('pika unknown ascended', 'pokemon', sets).remainingQuery, 'pika unknown');
+});
 
 test('name and set combine in either order without expanding Base Set into other releases', () => {
  for (const q of ['Chari base set', 'base set Chari', 'Chari from the Base Set', 'from Base Set Chari', 'Chari, BASE SET']) {
@@ -125,4 +145,11 @@ test('set cleanup handles long hostile separators without changing meaningful te
  const separators='\t,'.repeat(10000);
  assert.equal(removeSetPhrase(separators+'Mewtwo from the Base Set'+separators,'Base Set'),'Mewtwo');
  assert.equal(removeSetPhrase('Mewtwo from'+ '\t'.repeat(10000)+'the Base Set','Base Set'),'Mewtwo');
+});
+
+test('partial card disambiguation accepts literal fragments and rejects unrelated or fuzzy hits', async () => {
+ const client={rpc:async()=>({data:[{name:'Dark Charizard'}]})};
+ for (const query of ['Dark Chari','dark, CHARI','Chari Dark']) assert.equal(await isCatalogCardNameQuery(client,query,'pokemon'),true);
+ for (const query of ['Pika Ascended','Dark Chari unknown','Dark Chra','']) assert.equal(await isCatalogCardNameQuery(client,query,'pokemon'),false);
+ await assert.rejects(isCatalogCardNameQuery({rpc:async()=>({error:{message:'unavailable'}})},'Dark Chari','pokemon'),/unavailable/);
 });
