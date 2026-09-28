@@ -372,6 +372,7 @@ export async function GET(request: NextRequest) {
   let query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
+  let literalNameSearch = false;
   if (!exactSetCode && query.trim() && !/^GV-/i.test(query)) {
     try {
       const catalog = await createServerComponentClient();
@@ -393,7 +394,11 @@ export async function GET(request: NextRequest) {
         smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [candidate.matchedAlias] });
         query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
-      inlineSetIntent = candidate.requiresCardNameCheck && await isCatalogCardNameQuery(catalog, query, gameScope)
+      const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
+        (!candidate.matchedAlias && !smartSearchIntent.artist && query.trim() && gameScope === "pokemon")) &&
+        await isCatalogCardNameQuery(catalog, query, gameScope);
+      literalNameSearch = cardNameQuery && !smartSearchIntent.artist;
+      inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery
         ? { matchedAlias: null, setCodes: [], remainingQuery: query }
         : candidate;
       if (inlineSetIntent.matchedAlias) {
@@ -431,7 +436,7 @@ export async function GET(request: NextRequest) {
     ? exactIllustrator ?? smartSearchIntent.artist ?? (isKnownArtistQuery(rawQuery) ? rawQuery.trim() : undefined)
     : undefined;
   const completeCombinedSearch = !artistSearch && Boolean(
-    smartSearchIntent.queryFilters?.length || explicitFinishKeys.length || explicitStampLabels.length ||
+    literalNameSearch || smartSearchIntent.queryFilters?.length || explicitFinishKeys.length || explicitStampLabels.length ||
     effectiveExactSetCode || inlineSetIntent.setCodes.length || exactIllustrator || exactReleaseYear || explicitYearMin || explicitYearMax || explicitOwnedState || explicitImageState,
   );
   const completeSearch = Boolean(artistSearch) || completeCombinedSearch;
@@ -760,7 +765,7 @@ export async function GET(request: NextRequest) {
     const [resolved, provisionalResults] = await Promise.all([
       withTimeout(
         resolvedSearchPromise,
-        artistSearch ? 8000 : RESOLVER_RESPONSE_TIMEOUT_MS,
+        completeSearch ? 12000 : RESOLVER_RESPONSE_TIMEOUT_MS,
         buildDegradedSearchResult(query, effectiveSmartSearchIntent),
       ),
       includeProvisional

@@ -227,3 +227,16 @@ test('partial card names take precedence over opening-word set shortcuts', async
  assert.equal(options.exactSetCode,'bw5');
  assert.equal(options.textQuery,'Chari');
 });
+
+test('plain card-name queries expose all pages and complete legacy results', async () => {
+ for(const q of ['Pika','Charizard']) {
+  const get=loadRoute({partialCardNames:{Pika:'Pikachu',Charizard:'Charizard'}});
+  const first=await (await get({nextUrl:new URL('https://fixture?q='+q+'&limit=32&pagination=1')})).json();
+  assert.equal(first.rows.length,32);assert.equal(first.pagination.total_count,195);
+  assert.equal(first.pagination.has_more,true);assert.equal(first.pagination.next_offset,32);
+  const last=await (await get({nextUrl:new URL('https://fixture?q='+q+'&limit=32&pagination=1&offset=192')})).json();
+  assert.equal(last.rows.length,3);assert.equal(last.pagination.has_more,false);
+  const legacy=await (await get({nextUrl:new URL('https://fixture?q='+q+'&limit=32')})).json();
+  assert.equal(legacy.rows.length,195);assert.equal(legacy.pagination.total_count,195);
+ }
+});

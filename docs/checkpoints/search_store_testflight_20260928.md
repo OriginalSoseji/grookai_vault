@@ -2,7 +2,17 @@
 
 The founder reported unreliable search and missing Manage store, and explicitly
 requested fixes delivered through TestFlight. This branch starts from current
-main4ee5fc42e, preserving the released shared search parser.
+main4ee5fc42e, preserving the released artist, set and finish interpretation.
+
+Read-only live checks also reproduced truncation of ordinary names: Pika and
+Charizard returned32 cards without pagination metadata even with pagination=1.
+The shared route now recognizes literal full/partial catalog names and sends
+them through complete retrieval before pagination. Older native clients receive
+the complete result set, while web clients receive stable pages and a total.
+The name RPC accepts literal fragments only when every word matches the returned
+name, filters unrelated fuzzy candidates and checks all raw RPC pages. Unknown
+words and exact identifiers retain their established interpretation. Complete
+searches receive a bounded twelve-second resolution budget rather than4.2s.
 
 Native search invalidates prior responses immediately when text changes, avoids
 duplicating an in-flight search on keyboard submit, and clears stale results and
@@ -26,5 +36,7 @@ release gates. Do not report delivery before Apple confirms availability.
 Private receipts and authoritative progress:
 C:/grookai_vault_operator_artifacts/search_store_testflight_20260928/CHECKPOINT.md.
 Mac artifacts use the matching directory under ~/grookai_operator_artifacts.
-Build329 and prior source/archives remain preserved. No schema, catalog, billing,
-production inventory writes or website deployment are part of this native fix.
+Build329 and prior source/archives remain preserved. No schema, catalog, billing
+or production inventory writes are included. The shared resolver correction
+requires separately verified staged/live website deployment; TestFlight alone
+does not deploy the server correction.

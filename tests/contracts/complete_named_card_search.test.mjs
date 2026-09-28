@@ -25,3 +25,14 @@ test('game scope excludes Pocket without stopping at a partially eligible page',
  const result=await fetchRows({rpc:async(_,a)=>{calls.push(a.offset_in);return {data:rows.slice(a.offset_in,a.offset_in+64),error:null};}},{textQuery:'Wurmple',gameScope:'pokemon'});
  assert.deepEqual(calls,[0,64]);assert.equal(result.length,1);assert.equal(result[0].id,'64');
 });
+
+test('partial names traverse every RPC page and exclude unrelated fuzzy candidates',async()=>{
+ const rows=Array.from({length:131},(_,i)=>({id:String(i),name:i===70?'Raichu':'Pikachu ex',gv_id:`GV-PK-TEST-${i}`}));
+ const calls=[];
+ const result=await fetchRows({rpc:async(_,a)=>{calls.push(a.offset_in);return {data:rows.slice(a.offset_in,a.offset_in+64),error:null};}},{textQuery:'Pika',gameScope:'pokemon'});
+ assert.deepEqual(calls,[0,64,128]);assert.equal(result.length,130);assert.ok(result.every(r=>r.name==='Pikachu ex'));
+ for(const q of ['Dark Chari','Chari Dark']) {
+  const matched=await fetchRows({rpc:async()=>({data:[{id:'dark',name:'Dark Charizard',gv_id:'GV-PK-TEST-001'}]})},{textQuery:q,gameScope:'pokemon'});
+  assert.equal(matched.length,1);
+ }
+});
