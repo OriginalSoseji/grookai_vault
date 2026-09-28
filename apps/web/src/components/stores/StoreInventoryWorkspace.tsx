@@ -7,6 +7,7 @@ import { ownerChange, storeRequest, type OwnerModel } from "./storeManagerClient
 import type { StoreTask } from "./StoreManager";
 import StoreCopyImage from "./StoreCopyImage";
 import StoreBatchIntake from "./StoreBatchIntake";
+import StoreCopySale from "./StoreCopySale";
 import s from "./StoreManager.module.css";
 
 const endpoint = "/api/stores/owner/inventory";
@@ -19,9 +20,13 @@ export default function StoreInventoryWorkspace({ initialQuery, owner, canEdit, 
   const [draft, setDraft] = useState<Draft | null>(null), [changed, setChanged] = useState(false), [uncertain, setUncertain] = useState(false), [pendingDetails, setPendingDetails] = useState(false);
   const [sectionName, setSectionName] = useState("");
   const [batchOpen, setBatchOpen] = useState(false);
+  const [sale, setSale] = useState<StoreItem | null>(null);
+  const [soldIds, setSoldIds] = useState<Set<string>>(() => new Set());
   const submitLock = useRef(false);
   const editor = useRef<HTMLDivElement>(null);
   const inventory = owner.inventory;
+  const visibleItems = inventory?.items.filter(item => !soldIds.has(item.id)) ?? [];
+  const visibleTotal = (inventory?.total ?? 0) - (inventory?.items.filter(item => soldIds.has(item.id)).length ?? 0);
   const draftItem = inventory?.items.find((item): item is StoreItem => item.entry_type === "catalog_copy" && item.id === draft?.id);
   const search = (next: number) => load(new URLSearchParams({ q, condition, kind, offset: String(next) }).toString());
   const discard = () => !changed || window.confirm(pendingDetails ? "This copy is already in your Vault. Leave its unfinished details?" : "Discard your unsaved copy details?");
@@ -68,6 +73,7 @@ export default function StoreInventoryWorkspace({ initialQuery, owner, canEdit, 
   };
   if (!owner.store) return <section className={s.panel}><h2>Vault inventory</h2><p>Create your store in Store details, then add and manage cards here.</p></section>;
   return <section className={s.panel}>
+    {sale && <StoreCopySale key={sale.id} item={sale} close={() => setSale(null)} setDirty={setDirty} recorded={async () => { setSoldIds(ids => new Set([...ids, sale.id])); await refresh(); }} />}
     <div className={s.row}><div><h2>Vault inventory</h2><p className={s.muted}>Choose Add to store on a copy, review its price and sections, then save to list it.</p></div><div className={s.actions}><button disabled={busy || batchOpen} onClick={() => { if (!discard()) return; setAdding(false); setDraft(null); setChanged(false); setDirty(false); setBatchOpen(true); }}>{canEdit ? "Upload scans" : "Recover saved scan batch"}</button><button className={s.primary} disabled={busy || !canEdit || batchOpen} onClick={() => { if (!discard()) return; setAdding(true); setDraft(null); setChanged(false); setDirty(false); }}>Add cards</button></div></div>
     {batchOpen && <StoreBatchIntake onPendingChange={onIntakePending} owner={owner} close={() => setBatchOpen(false)} refresh={refresh} />}
     {adding && <div className={s.inventoryEditor}><div className={s.row}><h3>Find a catalog card</h3><button disabled={busy} onClick={() => { if (!discard()) return; setAdding(false); setDraft(null); setChanged(false); setDirty(false); }}>Close add cards</button></div>
@@ -92,14 +98,15 @@ export default function StoreInventoryWorkspace({ initialQuery, owner, canEdit, 
       </fieldset></form>
     </div>}
     <form className={s.filters} onSubmit={e => { e.preventDefault(); void task(() => search(0), ""); }}><label>Search copies<input maxLength={120} placeholder="Name, GV-ID or GVVI" value={q} onChange={e => setQ(e.target.value)} /></label><label>Condition<select value={condition} onChange={e => setCondition(e.target.value)}><option value="">All conditions</option>{COPY_CONDITIONS.map(c => <option key={c}>{c}</option>)}</select></label><label>Type<select value={kind} onChange={e => setKind(e.target.value)}><option value="catalog">All copies</option><option value="raw">Raw</option><option value="slab">Graded</option></select></label><button disabled={busy} type="submit">Apply</button></form>
-    <div className={s.row}><span className={s.muted}>{inventory?.total ?? 0} matching copies</span><button disabled={busy} onClick={() => task(refresh, "Inventory refreshed.")}>Refresh inventory</button></div>
-    {!inventory?.items.length ? <p className={s.muted}>No matching copies. Add cards above or change your filters.</p> : <div className={s.inventoryGallery}>{inventory.items.map(item => item.entry_type !== "catalog_copy" ? null : <article className={s.inventoryCard} key={item.id}>
+    <div className={s.row}><span className={s.muted}>{visibleTotal} matching copies</span><button disabled={busy} onClick={() => task(refresh, "Inventory refreshed.")}>Refresh inventory</button></div>
+    {!visibleItems.length ? <p className={s.muted}>No matching copies. Add cards above or change your filters.</p> : <div className={s.inventoryGallery}>{visibleItems.map(item => item.entry_type !== "catalog_copy" ? null : <article className={s.inventoryCard} key={item.id}>
       <StoreCopyImage key={item.display_image_url} id={item.id} name={item.display_name || item.name} image={item.display_image_url} catalogImage={item.catalog_image_url} userPhoto={item.has_user_photo} busy={busy} canEdit={canEdit} task={task} refresh={refresh} />
       <div className={s.inventoryCardDetails}><h3>{item.display_name || item.name}</h3><div className={s.copyFacts}><span>{item.condition_label || "Condition not set"}</span><span>{item.finish_label || "Finish unassigned"}</span>{item.is_graded && <span>{[item.grade_company, item.grade_value].filter(Boolean).join(" ") || "Graded"}</span>}</div>
       <p className={s.copyPrice}>{item.asking_price_amount ? <><span>{item.asking_price_currency}</span> {item.asking_price_amount.toFixed(2)}</> : "Price not set"}</p>
       {item.selected ? <label className={s.check}><input type="checkbox" aria-label={`Select ${item.gv_vi_id}`} checked disabled={busy || batchOpen || Boolean(draft)} onChange={() => { void task(async () => { await ownerChange({ action: "item", instance_id: item.id, selected: false }); await refresh(); }, "Copy removed from store."); }} />Listed in store</label> : <button className={s.primary} disabled={busy || batchOpen || !canEdit} aria-label={`Add ${item.gv_vi_id} to store`} onClick={() => task(() => edit(item, true), "")}>Add to store</button>}
       {item.ineligible_reason && <p className={s.copyEligibility}>{item.ineligible_reason === "Set a positive asking price in Vendor Mode" ? "Set an asking price to list this copy." : item.ineligible_reason}</p>}
       <button className={s.copyEditButton} disabled={busy || batchOpen || !canEdit} aria-label={`Edit ${item.gv_vi_id}`} onClick={() => task(() => edit(item), "")}>Edit details</button>
+      <button className={s.copyEditButton} disabled={busy || batchOpen} aria-label={`Mark ${item.gv_vi_id} sold`} onClick={() => { if (!discard()) return; setDraft(null); setAdding(false); setChanged(false); setDirty(false); setSale(item); }}>Mark sold</button>
       <div className={s.copyIdentifiers}><small>{item.gv_vi_id}</small><small>{item.printing_gv_id || "Printing unassigned"}</small></div></div>
     </article>)}</div>}
     <div className={s.row}><button disabled={busy || !inventory || inventory.offset === 0} onClick={() => task(() => search(Math.max(0, (inventory?.offset ?? 0) - 40)), "")}>Previous copies</button><span className={s.muted}>Page {Math.floor((inventory?.offset ?? 0) / 40) + 1}</span><button disabled={busy || !inventory || inventory.offset + inventory.limit >= inventory.total} onClick={() => task(() => search((inventory?.offset ?? 0) + 40), "")}>Next copies</button></div>

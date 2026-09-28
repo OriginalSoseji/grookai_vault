@@ -44,6 +44,15 @@ ownership and storefront eligibility remain authoritative on every uncached read
 
 ## Private manual transaction history
 
+The owner store inventory also provides an inline Mark sold dialog for each
+physical copy. It calls the same server action as the exact-copy page, with an
+explicit actual USD sale price and optional buyer label, followed by confirmation.
+A successful receipt removes that copy from the displayed inventory immediately;
+refresh failure does not turn a recorded sale into another write. An uncertain
+response retains the original details for identical receipt recovery. The action
+remains available for retained owner inventory after loss of store editing access.
+It does not extend manager grants or record sales of custom-product quantities.
+
 The exact-copy owner page records off-platform sales and trades through the existing
 authenticated disposition V2 RPC. Actual amounts and private partner details are
 owner-entered; they never establish payment verification or recipient ownership.

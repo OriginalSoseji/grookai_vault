@@ -1,5 +1,26 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Native import exact-pending inspection (2026-09-28)
+
+`NativeImportRecoveryReleaseV1` accepts AuditLinkedSchema and PrePush only with
+the exact pair `20260926230000,20260928020000`. It preserves duplicate checks,
+rejects combined modes and overrides, and binds the unchanged 408-file replay,
+both retained-data upgrades, actual endpoint/Android proof, fresh read-only
+production406 schema/security comparison and paused catalog checkpoint. PrePush
+also requires a clean committed tree and a fresh successful normal commit hook.
+It neither resets fixtures nor applies a migration. The baseline-only switch
+continues to reject PrePush.
+
+`scripts/release/prepare_native_import_v1.mjs` accepts only prepare and dry-run.
+Its fixed private CLI package is linked to the existing canonical project; the
+dry run requires fresh PrePush evidence, exact source/tool/tree hashes and fresh
+before/after remote schema/ledger parity. `--include-all` is required because the
+atomic migration predates already-applied store migrations; only the exact two
+SQL filenames may appear. PostgreSQL defaults to read-only for this inspection.
+There is deliberately no apply operation. Production application, Edge release,
+native distribution and iOS/device qualification remain separate gates. Private
+receipts live in `native_import_predeploy_20260928` under operator artifacts.
+
 ## Native import recovery baseline (2026-09-27)
 
 `NativeImportRecoveryBaselineAudit` permits fixed read-only AuditLinkedSchema

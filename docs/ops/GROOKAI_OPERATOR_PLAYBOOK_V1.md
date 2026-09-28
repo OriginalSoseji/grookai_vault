@@ -1,5 +1,27 @@
 # Grookai Operator Playbook V1
 
+## Native import pre-deployment inspection — September 28
+
+PR526 carries the native recovery package. Current main's Store Mark sold work
+is preserved; the documentation conflict is reconciled. The native/SQL product
+bytes remain those qualified in the receipt408 labs. The exact-pending gate is
+`scripts/migration_preflight_strict.ps1 -Phase AuditLinkedSchema` (then PrePush)
+with `-NativeImportRecoveryReleaseV1 -ExpectedLocalOnlyIds 20260926230000,20260928020000`.
+PrePush requires the normal successful commit-hook receipt and clean source.
+Then `node --use-system-ca scripts/release/prepare_native_import_v1.mjs prepare`
+creates the fixed one-use inspection package; `dry-run` verifies CLI pending
+files and unchanged production schema/ledger. Prepare uses AuditLinkedSchema;
+dry-run uses PrePush. Neither command can apply or deploy. Do not reuse prepare.
+
+Actual outcomes, private CLI/hook logs and the current checkpoint live under
+`native_import_predeploy_20260928` in the operator artifact root. Read those
+receipts before claiming checks passed. The automatic Vercel preview for the
+original PR526 head failed the existing explicit-production-activation guard;
+do not weaken that guard or count a preview as deployed. This package contains
+no new web product change. Production migration/Edge release, native distribution
+and iOS/device coverage remain distinct. Preserve all populated labs and the
+older audit candidate.
+
 ## Native import repository release — September 27
 
 The bounded native import package is entering normal commit/pre-push checks on
@@ -77,6 +99,15 @@ isolated 57040/57041 lab without reset or schema changes; endpoint57450 stops
 after each run. Private source hashes, failed attempts and final receipts live
 under `native_import_recovery_20260927` in the operator artifacts root. Older app
 writer retirement, device/PSA proof and audit closeout remain separate gates.
+
+## Mark a store card sold — September 27
+
+The owner inventory workspace exposes Mark sold on each physical copy. Follow
+`STORE_WEB_SOLD_20260927.md`. It uses the existing authenticated disposition V2
+authority, archives only that copy and retains the private transaction receipt.
+Actual sale price is entered explicitly. No Stripe charge or ownership transfer.
+The synthetic browser fixture uses loopback26446, no database; normal hooks use
+the existing read-only290xx lab. Keep paid checkout and preorder work separate.
 
 ## Bounded audit web release — September 27
 

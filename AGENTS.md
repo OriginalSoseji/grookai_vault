@@ -1,5 +1,12 @@
 # Grookai Agent Entry Point
 
+## Store inventory manual sales — September 27
+
+Read `docs/ops/STORE_WEB_SOLD_20260927.md`. The owner store inventory now exposes
+the existing exact-copy sale writer inline. No new schema, payment activation,
+manager permission or custom-product stock writer belongs to this fix. Manual
+receipts remain owner assertions. Preserve other checkouts and release intents.
+
 ## Store manager workflows — September 27
 
 The manager release521 is complete/live at404; external STORE_TEAM_CHECKPOINT.md
