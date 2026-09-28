@@ -680,6 +680,10 @@ class _CatalogSearchField extends StatelessWidget {
         onChanged: onChanged,
         onSubmitted: onSubmitted,
         textInputAction: TextInputAction.search,
+        autocorrect: false,
+        enableSuggestions: false,
+        textCapitalization: TextCapitalization.none,
+        spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
         decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.search_rounded,

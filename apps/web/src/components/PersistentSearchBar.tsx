@@ -11,6 +11,10 @@ export function PersistentSearchBarFallback() {
     <form action="/search" className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">
       <input
         type="search"
+        autoCorrect="off"
+        autoCapitalize="none"
+        spellCheck={false}
+        autoComplete="off"
         name="q"
         placeholder="Search cards, sets, numbers, or Grookai ID"
         className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-all duration-100 placeholder:text-slate-400 sm:max-w-[420px]"

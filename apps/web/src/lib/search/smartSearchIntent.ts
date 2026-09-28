@@ -210,7 +210,7 @@ function parseOwnedStateIntent(query: string): SmartSearchIntent["ownedState"] {
   return undefined;
 }
 
-export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: PublicGameScope } = {}): SmartSearchIntent {
+export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: PublicGameScope; protectedPhrases?: string[] } = {}): SmartSearchIntent {
   const originalQuery = normalizeWhitespace(rawQuery);
   const exactGvId = normalizeExactGvId(originalQuery);
   if (exactGvId) {
@@ -234,6 +234,15 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     literalText.push(text);
     return `__literal${literalText.length - 1}__`;
   });
+  // Catalog set names may contain years, numbers or finish words. Interpret
+  // them as one name rather than manufacturing extra constraints from them.
+  for (const phrase of options.protectedPhrases ?? []) {
+    const escaped = normalizeWhitespace(phrase).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    residual = residual.replace(new RegExp(escaped, "i"), (text) => {
+      literalText.push(text);
+      return `__literal${literalText.length - 1}__`;
+    });
+  }
   const gameMatch = residual.match(/\b((?<!play )pok[eé]mon(?!\s+(?:cent(?:er|re)|together))|one\s+piece|mtg|magic:\s*the\s+gathering)\b/i);
   const gameScope: PublicGameScope | undefined = gameMatch
     ? /^pok/i.test(gameMatch[0]) ? "pokemon" : /^one/i.test(gameMatch[0]) ? "one_piece" : "mtg"
@@ -342,7 +351,6 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   }
 
   residual = normalizeWhitespace(residual);
-  residual = residual.replace(/__literal(\d+)__/g, (_, index: string) => literalText[Number(index)] ?? "");
 
   // These constraints remain in the resolver text, where catalog fields are
   // matched. Expose their individual removal without maintaining a second
@@ -357,6 +365,9 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     displayText = displayText.replace(match[1], " ");
   }
   displayText = normalizeWhitespace(displayText);
+  const restoreLiterals = (value: string) => value.replace(/__literal(\d+)__/g, (_, index: string) => literalText[Number(index)] ?? "");
+  residual = restoreLiterals(residual);
+  displayText = restoreLiterals(displayText);
 
   const replaceSource = (source: string, replacement = "") => {
     const escaped = source.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");

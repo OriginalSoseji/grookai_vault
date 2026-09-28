@@ -1,3 +1,4 @@
+import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName } from "@/lib/search/catalogSetSearch";
 import { NextRequest, NextResponse } from "next/server";
 import { isIdentityFilterActive, normalizeIdentityFilterKey } from "@/lib/cards/identitySearch";
 import { getPublicProvisionalCards } from "@/lib/provisional/getPublicProvisionalCards";
@@ -288,11 +289,6 @@ function isTimeoutLikeError(error: unknown) {
   );
 }
 
-function removeSetPhrase(query: string, phrase: string) {
-  const pattern = phrase.split(/\s+/).map((word) => word === "and" ? "(?:and|&)" : word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("\\s+");
-  return query.replace(new RegExp(`(?<![\\p{L}\\p{N}])${pattern}(?![\\p{L}\\p{N}])`, "iu"), " ").replace(/\s+/g, " ").trim();
-}
-
 function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => resolve(fallback), timeoutMs);
@@ -366,40 +362,44 @@ async function applySmartSearchPostFilters(
 
 export async function GET(request: NextRequest) {
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
+  if (rawQuery.length > 500) {
+    return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400 });
+  }
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
   const selectedGameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
-  const smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });
-  const languageScope = smartSearchIntent.languageScope ?? normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
+  let smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });
   const gameScope = smartSearchIntent.gameScope ?? selectedGameScope;
-  const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
+  let query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
-  // Recognize current catalog codes, including codes added after the bundled
-  // alias snapshot. The ordinary request client retains catalog visibility.
-  if (!exactSetCode && inlineSetIntent.setCodes.length === 0 && !/^GV-/i.test(query)) {
-    const codeTokens = query.split(/\s+/).filter((token) => /^[a-z][a-z0-9.-]*$/i.test(token));
-    if (codeTokens.length) {
-      try {
-        const catalog = await createServerComponentClient();
-        const { data, error } = await catalog.from("sets").select("code").eq("game", gameScope)
-          .in("code", uniqueValues(codeTokens.flatMap((token) => [token, token.toLowerCase(), token.toUpperCase()])));
-        if (error) throw new Error(error.message);
-        if (data?.length === 1) {
-          const alias = codeTokens.find((token) => token.toLowerCase() === data[0].code.toLowerCase())!;
-          inlineSetIntent = { matchedAlias: alias, setCodes: [data[0].code], remainingQuery: removeSetPhrase(query, alias) };
-        }
-      } catch {
-        return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
+  if (!exactSetCode && query.trim() && !/^GV-/i.test(query)) {
+    try {
+      const catalog = await createServerComponentClient();
+      const candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, await readSearchSets(catalog, gameScope));
+      // Preserve the candidate phrase before exact-name disambiguation: words
+      // such as "Team" can otherwise be consumed as an artist in a card name.
+      if (candidate.matchedAlias) {
+        smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [candidate.matchedAlias] });
+        query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
+      inlineSetIntent = candidate.requiresCardNameCheck && await isExactCatalogCardName(catalog, query, gameScope)
+        ? { matchedAlias: null, setCodes: [], remainingQuery: query }
+        : candidate;
+      if (inlineSetIntent.matchedAlias) {
+        inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias);
+      }
+    } catch {
+      return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
     }
   }
+  const languageScope = smartSearchIntent.languageScope ?? normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
   const inlineExactSetCode =
     !exactSetCode && inlineSetIntent.setCodes.length === 1
       ? inlineSetIntent.setCodes[0]
       : "";
   const effectiveExactSetCode = exactSetCode || inlineExactSetCode;
   const routedQuery = !exactSetCode && inlineSetIntent.setCodes.length
-    ? removeSetPhrase(query, inlineSetIntent.matchedAlias ?? "").replace(/\bfrom\b\s*$/i, "").trim()
+    ? inlineSetIntent.remainingQuery
     : query;
   const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
   const explicitYearMin = parseReleaseYearBound(request.nextUrl.searchParams.get("year_min"));
@@ -421,7 +421,7 @@ export async function GET(request: NextRequest) {
     : undefined;
   const completeCombinedSearch = !artistSearch && Boolean(
     smartSearchIntent.queryFilters?.length || explicitFinishKeys.length || explicitStampLabels.length ||
-    effectiveExactSetCode || exactIllustrator || exactReleaseYear || explicitYearMin || explicitYearMax || explicitOwnedState || explicitImageState,
+    effectiveExactSetCode || inlineSetIntent.setCodes.length || exactIllustrator || exactReleaseYear || explicitYearMin || explicitYearMax || explicitOwnedState || explicitImageState,
   );
   const completeSearch = Boolean(artistSearch) || completeCombinedSearch;
   const artistPaginationRequested = request.nextUrl.searchParams.get("pagination") === "1";

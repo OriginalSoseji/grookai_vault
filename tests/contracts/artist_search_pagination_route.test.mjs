@@ -12,13 +12,15 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false } = {}) {
+function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     '@/lib/explore/getExploreRows': {
-      getExploreRowsForArtistSearch: async () => {
+      getExploreRowsForCombinedSearch: async (options) => { capture(options); return fixture; },
+      getExploreRowsForArtistSearch: async (artist, options) => {
+        capture({ ...options, artist });
         if (fail) throw new Error('canceling statement due to statement timeout');
         return fixture;
       },
@@ -34,9 +36,13 @@ function loadRoute({ fail = false } = {}) {
     '@/lib/pricing/getPublicPricingByCardIds': { PublicPricingSortUnavailableError: class extends Error {} },
     '@/lib/supabase/server': {
       createServerComponentClient: async () => ({
+        rpc: async (_name, args) => {
+          if (exactCardName) assert.equal(args.q, exactCardName);
+          return {data: exactCardName ? [{name:exactCardName}] : []};
+        },
         from: (table) => {
           assert.equal(table, 'sets');
-          return { select: () => ({ eq: () => ({ in: async () => ({ data: [], error: null }) }) }) };
+          return { select: () => ({ eq: () => ({ order: () => ({ range: async () => ({ data: sets, error: catalogFail ? { message: "offline" } : null }) }) }) }) };
         },
       }),
     },
@@ -108,4 +114,70 @@ test('artist timeout and malformed offsets fail explicitly rather than publishin
     const invalid = await loadRoute()({ nextUrl: new URL(`https://fixture?q=Yuka+Morii&pagination=1&offset=${offset}`) });
     assert.equal(invalid.status, 400);
   }
+});
+
+const searchSets = [
+ {id:'1',code:'base1',name:'Base Set'}, {id:'2',code:'base4',name:'Base Set 2'},
+ {id:'3',code:'30c',name:'30th Celebration'}, {id:'4',code:'30c-classic',name:'30th Celebration Classic Collection'},
+ {id:'5',code:'future1',name:'Future Garden'}, {id:'6',code:'fo',name:'Fossil'},
+ {id:'7',code:'base5',name:'Team Rocket'},
+];
+test('actual route applies name/set intersections before complete pagination with removable set chips', async () => {
+ for (const [query, text, codes] of [
+  ['Mewtwo from 30th anniversary','Mewtwo',['30c','30c-classic']],
+  ['30th anniversary Mewtwo','Mewtwo',['30c','30c-classic']],
+  ['Chari base set','Chari',['base1']],
+  ['Base Set 2 Chari','Chari',['base4']],
+  ['Chari BASE,   SET 2','Chari',['base4']],
+  ['Aerodactyl Fossil','Aerodactyl',['fo']],
+  ['Fossil Aerodactyl','Aerodactyl',['fo']],
+  ['Eevee Future Garden','Eevee',['future1']],
+  ['Dark Charizard Team Rocket','Dark Charizard',['base5']],
+  ['Team Rocket Dark Charizard','Dark Charizard',['base5']],
+ ]) {
+  let options;
+  const get = loadRoute({sets:searchSets,capture:value=>{options=value;}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(query)+'&pagination=1&limit=48&offset=192')});
+  assert.equal(response.status,200);
+  const result=await response.json();
+  assert.equal(options.textQuery,text);
+  assert.deepEqual(JSON.parse(JSON.stringify(options.exactSetCodes)), codes);
+  assert.equal(result.pagination.total_count,195);
+  assert.equal(result.rows.length,3);
+  assert.equal(result.pagination.next_offset,null);
+  const chip=result.smart_search.queryFilters.find(filter=>filter.kind==='set');
+  assert.equal(chip.queryWithout,text);
+  assert.equal(result.smart_search.queryFilters.some(filter=>filter.kind==='number'),false);
+ }
+});
+test('route retains artist and finish with a set and refuses catalog-read failures', async () => {
+ let options;
+ const get=loadRoute({sets:searchSets,capture:value=>{options=value;}});
+ const response=await get({nextUrl:new URL('https://fixture?q=Yuka+Morii+Wurmple+from+Future+Garden+reverse+holo&pagination=1')});
+ assert.equal(response.status,200);
+ assert.equal(options.artist,'Yuka Morii');
+ assert.equal(options.textQuery,'Wurmple');
+ assert.equal(options.exactSetCode,'future1');
+ assert.deepEqual(JSON.parse(JSON.stringify(options.finishKeys)),['reverse']);
+ const failed=await loadRoute({catalogFail:true})({nextUrl:new URL('https://fixture?q=Mewtwo+from+30th+anniversary')});
+ assert.equal(failed.status,503);
+});
+
+test('complete card names take precedence over single-word and multiword catalog set matches', async () => {
+ for (const name of ['Unidentified Fossil', "Team Rocket's Handiwork"]) {
+  const get=loadRoute({sets:searchSets,exactCardName:name});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(name)+'&pagination=1')});
+  assert.equal(response.status,200);
+  const result=await response.json();
+  assert.equal(result.smart_search.queryFilters.some(filter=>filter.kind==='set'),false, JSON.stringify(result.smart_search));
+  assert.equal(result.smart_search.artist, undefined);
+  assert.equal(result.smart_search.residualQuery, name);
+ }
+});
+
+test('oversized queries fail before accessing catalog services', async () => {
+ const get=loadRoute({catalogFail:true});
+ const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent('Mewtwo '+ '\t'.repeat(501)+'Base Set'))});
+ assert.equal(response.status,400);
+ assert.match((await response.json()).error,/500 characters/);
 });
