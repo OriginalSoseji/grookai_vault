@@ -5,6 +5,7 @@ import '../../utils/display_image_contract.dart';
 import '../../utils/vault_printing_identity.dart';
 import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
+import 'owned_copy_read_service.dart';
 
 class _InterestGraphCompletionSnapshot {
   const _InterestGraphCompletionSnapshot({
@@ -1590,51 +1591,21 @@ class VaultCardService {
     required SupabaseClient client,
     required String cardPrintId,
   }) async {
-    final userId = client.auth.currentUser?.id;
-    final anchor = await resolveOwnedCardAnchor(
+    final copies = await OwnedCopyReadService.load(
       client: client,
       cardPrintId: cardPrintId,
     );
-    if (anchor == null || userId == null || userId.isEmpty) {
-      return null;
-    }
-
-    final copies = await _loadManageCardCopies(
-      client: client,
-      vaultItemId: anchor.vaultItemId,
-      cardPrintId: anchor.cardPrintId,
-      fallbackOwnedCount: 0,
-    );
-    final fromCopies = _resolveOwnedTargetFromCopies(
-      anchor: anchor,
-      copies: copies,
-    );
-    if (fromCopies != null) {
-      return fromCopies;
-    }
-
-    final fromCollectorRow = await _resolveOwnedTargetFromCollectorRow(
-      client: client,
-      anchor: anchor,
-    );
-    if (fromCollectorRow != null) {
-      return fromCollectorRow;
-    }
-
-    final sharedGvviId = await _resolvePrimarySharedGvvi(
-      client: client,
-      ownerUserId: userId,
-      cardPrintId: anchor.cardPrintId,
-      copies: copies,
-    );
-    if (sharedGvviId != null) {
-      return _resolveOwnedTargetFromGvvi(
-        client: client,
-        anchor: anchor,
-        gvviId: sharedGvviId,
+    for (final copy in copies) {
+      final gvvi = _trimmedOrNull(copy['gv_vi_id']);
+      if (gvvi == null) continue;
+      return VaultOwnedCopyTarget(
+        instanceId: copy['instance_id'].toString(),
+        gvviId: gvvi,
+        vaultItemId: _trimmedOrNull(copy['legacy_vault_item_id']) ?? '',
+        cardPrintId: cardPrintId.trim(),
+        createdAt: DateTime.tryParse((copy['created_at'] ?? '').toString()),
       );
     }
-
     return null;
   }
 
@@ -1647,30 +1618,25 @@ class VaultCardService {
     if (userId == null || userId.isEmpty || normalizedCardPrintId == null) {
       return null;
     }
-
-    final anchorRaw = await client.rpc(
-      'resolve_active_vault_anchor_v1',
-      params: {
-        'p_user_id': userId,
-        'p_card_print_id': normalizedCardPrintId,
-        'p_create_if_missing': false,
-      },
-    );
-
-    if (anchorRaw == null) {
-      return null;
-    }
-
-    final anchor = Map<String, dynamic>.from(anchorRaw as Map);
-    final vaultItemId = _trimmedOrNull(anchor['id']);
-    if (vaultItemId == null) {
-      return null;
-    }
-
-    return VaultOwnedCardAnchor(
-      vaultItemId: vaultItemId,
-      cardPrintId: normalizedCardPrintId,
-    );
+    // Compatibility lookup only. Duplicate reconciliation belongs to governed
+    // writes and must never be triggered by opening a card or Messages.
+    final rows = await client
+        .from('vault_items')
+        .select('id')
+        .eq('user_id', userId)
+        .eq('card_id', normalizedCardPrintId)
+        .filter('archived_at', 'is', null)
+        .order('created_at', ascending: false)
+        .order('id', ascending: false)
+        .limit(1);
+    if (rows.isEmpty) return null;
+    final id = _trimmedOrNull(rows.first['id']);
+    return id == null
+        ? null
+        : VaultOwnedCardAnchor(
+            vaultItemId: id,
+            cardPrintId: normalizedCardPrintId,
+          );
   }
 
   static Future<void> archiveOneVaultItem({
@@ -2461,45 +2427,6 @@ class VaultCardService {
         .toList();
   }
 
-  static VaultOwnedCopyTarget? _resolveOwnedTargetFromCopies({
-    required VaultOwnedCardAnchor anchor,
-    required List<VaultManageCardCopy> copies,
-  }) {
-    if (copies.isEmpty) {
-      return null;
-    }
-
-    final sortedCopies = [...copies]
-      ..sort((a, b) {
-        final createdCompare =
-            (b.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0)).compareTo(
-              a.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0),
-            );
-        if (createdCompare != 0) {
-          return createdCompare;
-        }
-        return b.instanceId.compareTo(a.instanceId);
-      });
-
-    for (final copy in sortedCopies) {
-      final instanceId = _trimmedOrNull(copy.instanceId);
-      final gvviId = _trimmedOrNull(copy.gvviId);
-      if (instanceId == null || gvviId == null) {
-        continue;
-      }
-
-      return VaultOwnedCopyTarget(
-        instanceId: instanceId,
-        gvviId: gvviId,
-        vaultItemId: anchor.vaultItemId,
-        cardPrintId: anchor.cardPrintId,
-        createdAt: copy.createdAt,
-      );
-    }
-
-    return null;
-  }
-
   static Future<VaultManageCardCopy?> _loadManageCardCopyByGvvi({
     required SupabaseClient client,
     required String gvviId,
@@ -2527,60 +2454,6 @@ class VaultCardService {
       copies: [copy],
     );
     return enriched.single;
-  }
-
-  static Future<VaultOwnedCopyTarget?> _resolveOwnedTargetFromCollectorRow({
-    required SupabaseClient client,
-    required VaultOwnedCardAnchor anchor,
-  }) async {
-    final rows = await getCanonicalCollectorRows(client: client);
-    final rawRow = rows.cast<Map<String, dynamic>?>().firstWhere(
-      (row) => _trimmedOrNull(row?['card_id']) == anchor.cardPrintId,
-      orElse: () => null,
-    );
-    if (rawRow == null) {
-      return null;
-    }
-
-    final gvviId = _trimmedOrNull(rawRow['gv_vi_id']);
-    if (gvviId == null) {
-      return null;
-    }
-
-    return _resolveOwnedTargetFromGvvi(
-      client: client,
-      anchor: anchor,
-      gvviId: gvviId,
-    );
-  }
-
-  static Future<VaultOwnedCopyTarget?> _resolveOwnedTargetFromGvvi({
-    required SupabaseClient client,
-    required VaultOwnedCardAnchor anchor,
-    required String gvviId,
-  }) async {
-    final copy = await _loadManageCardCopyByGvvi(
-      client: client,
-      gvviId: gvviId,
-    );
-    if (copy == null) {
-      return null;
-    }
-
-    final instanceId = _trimmedOrNull(copy.instanceId);
-    final resolvedGvviId =
-        _trimmedOrNull(copy.gvviId) ?? _trimmedOrNull(gvviId);
-    if (instanceId == null || resolvedGvviId == null) {
-      return null;
-    }
-
-    return VaultOwnedCopyTarget(
-      instanceId: instanceId,
-      gvviId: resolvedGvviId,
-      vaultItemId: anchor.vaultItemId,
-      cardPrintId: anchor.cardPrintId,
-      createdAt: copy.createdAt,
-    );
   }
 
   static Future<String?> _resolvePrimarySharedGvvi({

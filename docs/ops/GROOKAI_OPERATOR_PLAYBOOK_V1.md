@@ -1,5 +1,25 @@
 # Grookai Operator Playbook V1
 
+## Native owned-copy selection — September 29
+
+Read `docs/checkpoints/native_owned_copies_20260929.md` and
+`docs/contracts/NATIVE_OWNED_COPY_SELECTION_V1.md`. The isolated current-main
+candidate repairs read-only Messages ownership and per-copy Objects selection.
+Its guarded opt-in Dart/Auth/RLS check uses the preserved 409 seller-review
+sandbox, fresh synthetic fixtures and complete before/after inventory snapshots.
+No reset or production writes. Private evidence is under native_owned_copies_20260929.
+Physical Samsung and dedicated iOS simulator screen journeys now verify saved
+private Memory, exact Sale/reopen/denial, slab selection and two-sided Lot PNGs.
+The Sale navigation avoids the legacy reconciling detail RPC while keeping the
+owner-scoped writer. Private PASS receipts and limitations are in the checkpoint.
+The raw Lot asking-price fallback is now corrected: only complete market evidence
+produces an aggregate, explicitly labeled market estimate. Offline Samsung/iOS
+PNG checks cover unknown/partial/complete prices. These checks do not establish
+full app-shell or distribution. Historical downstream PNGs retain the old finding;
+the later lot-market receipts qualify the corrected presentation.
+Use isolated native IDs and disable test uninstalls. Dispose of only task-owned
+tunnels/forwarding and restore the relay/simulator state after acceptance.
+
 ## Website import recovery — September 29
 
 Read `docs/checkpoints/web_import_recovery_20260929.md` and

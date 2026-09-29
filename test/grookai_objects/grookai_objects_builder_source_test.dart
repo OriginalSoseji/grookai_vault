@@ -9,7 +9,11 @@ void main() {
     ).readAsStringSync();
     final shell = File('lib/main_shell.dart').readAsStringSync();
 
-    expect(source, contains('VaultCardService.getCanonicalCollectorRows'));
+    expect(source, contains('widget.inventoryService.load(_client)'));
+    expect(
+      source,
+      isNot(contains('VaultCardService.getCanonicalCollectorRows')),
+    );
     expect(source, contains('resolveVaultPrintingIdentityPresentation(row)'));
     expect(source, contains('_SmallPill(label: printingIdentity.label)'));
     expect(source, contains('printingIdentityLabel:'));

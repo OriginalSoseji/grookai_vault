@@ -5,8 +5,9 @@ import '../../models/grookai_memory_card.dart';
 import '../../models/grookai_sale_listing.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/display_identity.dart';
-import '../../services/public/card_surface_pricing_service.dart';
-import '../../services/vault/vault_card_service.dart';
+import '../../services/grookai_objects/object_inventory_service.dart';
+import '../../services/grookai_objects/sale_listing_service.dart';
+import '../../services/vault/collector_memory_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../utils/vault_printing_identity.dart';
 import '../../widgets/card_surface_artwork.dart';
@@ -20,7 +21,14 @@ enum _ObjectsBuilderMode { memory, sale, lot }
 const int _maxLotCards = 12;
 
 class GrookaiObjectsHubScreen extends StatefulWidget {
-  const GrookaiObjectsHubScreen({super.key});
+  const GrookaiObjectsHubScreen({
+    super.key,
+    this.client,
+    this.inventoryService = const ObjectInventoryService(),
+  });
+
+  final SupabaseClient? client;
+  final ObjectInventoryService inventoryService;
 
   @override
   State<GrookaiObjectsHubScreen> createState() =>
@@ -28,7 +36,7 @@ class GrookaiObjectsHubScreen extends StatefulWidget {
 }
 
 class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
-  final SupabaseClient _client = Supabase.instance.client;
+  SupabaseClient get _client => widget.client ?? Supabase.instance.client;
   final TextEditingController _searchController = TextEditingController();
   final Set<String> _selectedLotRowKeys = <String>{};
   final Map<String, String> _rowErrors = <String, String>{};
@@ -38,7 +46,6 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
   String _search = '';
   String? _error;
   List<Map<String, dynamic>> _rows = const [];
-  Map<String, CardSurfacePricingData> _pricingByCardPrintId = const {};
 
   @override
   void initState() {
@@ -58,7 +65,6 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     if (_client.auth.currentUser == null) {
       setState(() {
         _rows = const [];
-        _pricingByCardPrintId = const {};
         _loading = false;
         _error = null;
       });
@@ -70,23 +76,12 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
       _error = null;
     });
     try {
-      final rows = await VaultCardService.getCanonicalCollectorRows(
-        client: _client,
-      );
-      final cardPrintIds = rows
-          .map(_cardPrintIdForRow)
-          .where((id) => id.isNotEmpty)
-          .toSet();
-      final pricing = await CardSurfacePricingService.fetchByCardPrintIds(
-        client: _client,
-        cardPrintIds: cardPrintIds,
-      ).catchError((_) => const <String, CardSurfacePricingData>{});
+      final rows = await widget.inventoryService.load(_client);
       if (!mounted) {
         return;
       }
       setState(() {
         _rows = rows;
-        _pricingByCardPrintId = pricing;
         _selectedLotRowKeys.removeWhere(
           (key) => rows.every((row) => _rowKey(row) != key),
         );
@@ -176,6 +171,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (_) => MemoryCardCaptureScreen(
+          memoryService: CollectorMemoryService(client: _client),
           gvviId: _gvviIdForRow(row),
           cardPrintId: _cardPrintIdForRow(row),
           source: GrookaiMemoryCardSource(
@@ -202,6 +198,18 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
       MaterialPageRoute<void>(
         builder: (_) => ForSaleTermsScreen(
           gvviId: _gvviIdForRow(row),
+          service: SaleListingService(client: _client),
+          // The inventory read already resolved this physical copy. Do not
+          // invoke the legacy reconciling detail RPC just to open the editor.
+          initialCopy: SaleListingCopyContext(
+            instanceId: row['instance_id'] as String,
+            gvviId: _gvviIdForRow(row),
+            vaultItemId: (row['vault_item_id'] as String?) ?? '',
+            cardPrintId: _cardPrintIdForRow(row),
+            conditionLabel: row['condition_label'] as String?,
+            askingPriceAmount: (row['asking_price_amount'] as num?)?.toDouble(),
+            askingPriceNote: row['asking_price_note'] as String?,
+          ),
           source: GrookaiSaleListingSource(
             cardName: _cardNameForRow(row),
             setLine: _setLineForRow(row),
@@ -215,6 +223,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
         ),
       ),
     );
+    if (mounted) await _loadRows();
   }
 
   void _toggleLotRow(Map<String, dynamic> row) {
@@ -403,8 +412,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
                     imageUrl: _displayImageUrlForRow(row),
                     selected: _selectedLotRowKeys.contains(_rowKey(row)),
                     selectionMode: _mode == _ObjectsBuilderMode.lot,
-                    price: _pricingByCardPrintId[_cardPrintIdForRow(row)]
-                        ?.visibleValue,
+                    price: row['market_price'] as double?,
                     error: _rowErrors[_rowKey(row)],
                     actionLabel: _rowActionLabel,
                     onTap: () => _handleRowTap(row),
@@ -454,11 +462,10 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
   }
 
   GrookaiLotListingItemSource _lotItemSourceForRow(Map<String, dynamic> row) {
-    final cardPrintId = _cardPrintIdForRow(row);
     final artwork = _objectRowArtwork(row, _displayImageUrlForRow(row));
     return GrookaiLotListingItemSource.fromVaultRow(
       row: row,
-      marketPrice: _pricingByCardPrintId[cardPrintId]?.visibleValue,
+      marketPrice: row['market_price'] as double?,
       condition: _conditionForRow(row),
       imageUrl: artwork.primaryImageUrl,
       fallbackImageUrl: artwork.fallbackImageUrl,
@@ -571,6 +578,7 @@ class _ObjectCardPickerRow extends StatelessWidget {
                           children: [
                             _SmallPill(label: printingIdentity.label),
                             _SmallPill(label: condition),
+                            _SmallPill(label: _gvviIdForRow(row)),
                             if (price != null)
                               _SmallPill(
                                 label: '\$${price!.toStringAsFixed(2)}',
@@ -748,13 +756,13 @@ class _HubMessage extends StatelessWidget {
 }
 
 String _rowKey(Map<String, dynamic> row) {
+  final instanceId = (row['instance_id'] ?? '').toString().trim();
+  if (instanceId.isNotEmpty) return instanceId;
+  final gvviId = _gvviIdForRow(row);
+  if (gvviId.isNotEmpty) return gvviId;
   final cardPrintId = _cardPrintIdForRow(row);
   if (cardPrintId.isNotEmpty) {
     return cardPrintId;
-  }
-  final gvviId = _gvviIdForRow(row);
-  if (gvviId.isNotEmpty) {
-    return gvviId;
   }
   return _cardNameForRow(row);
 }

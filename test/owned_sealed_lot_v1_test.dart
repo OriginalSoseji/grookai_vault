@@ -67,7 +67,7 @@ void main() {
           );
           await tester.pumpAndSettle();
           expect(find.text('\$25'), findsOneWidget);
-          expect(find.textContaining(' value'), findsNothing);
+          expect(find.textContaining('market estimate'), findsNothing);
           expect(tester.takeException(), isNull);
         },
       );
@@ -111,7 +111,7 @@ void main() {
         await tester.pumpAndSettle();
         expect(find.text('\$0.49'), findsOneWidget);
         expect(find.text('Unpriced'), findsNothing);
-        if (front) expect(find.text('\$0.75 value'), findsOneWidget);
+        if (front) expect(find.text('\$0.75 market estimate'), findsOneWidget);
         expect(tester.takeException(), isNull);
       },
     );
@@ -149,7 +149,7 @@ void main() {
           await tester.pumpAndSettle();
           expect(find.text('Unpriced'), findsNWidgets(count));
           expect(find.text('\$0'), findsNothing);
-          expect(find.textContaining(' value'), findsNothing);
+          expect(find.textContaining('market estimate'), findsNothing);
           expect(tester.takeException(), isNull);
         },
       );
@@ -179,29 +179,32 @@ void main() {
     expect(data.hasCompleteEstimatedValue, isFalse);
   });
   for (final includeSealed in [false, true]) {
-    test('legacy card estimates are preserved (mixed=$includeSealed)', () {
-      final data = LotListingData(
-        skin: GrookaiObjectSkin.onyx,
-        listingNo: 'test',
-        title: 'Mixed estimate',
-        items: [
-          const LotItem(cardName: 'Card', condition: 'NM', price: 7.5),
-          if (includeSealed)
-            const LotItem(
-              objectKind: 'sealed',
-              cardName: 'Box',
-              condition: 'opened',
-              price: 25,
-            ),
-        ],
-        bundlePrice: 30,
-        sellerHandle: 'fixture',
-        sellerRating: 0,
-        sellerTradeCount: 0,
-      );
-      expect(data.estimatedValue, 7.5);
-      expect(data.hasCompleteEstimatedValue, !includeSealed);
-    });
+    test(
+      'asking amounts cannot fill missing market estimates (mixed=$includeSealed)',
+      () {
+        final data = LotListingData(
+          skin: GrookaiObjectSkin.onyx,
+          listingNo: 'test',
+          title: 'Mixed estimate',
+          items: [
+            const LotItem(cardName: 'Card', condition: 'NM', price: 7.5),
+            if (includeSealed)
+              const LotItem(
+                objectKind: 'sealed',
+                cardName: 'Box',
+                condition: 'opened',
+                price: 25,
+              ),
+          ],
+          bundlePrice: 30,
+          sellerHandle: 'fixture',
+          sellerRating: 0,
+          sellerTradeCount: 0,
+        );
+        expect(data.estimatedValue, 0);
+        expect(data.hasCompleteEstimatedValue, isFalse);
+      },
+    );
   }
   test('a sealed lot cannot carry a card anchor', () {
     expect(

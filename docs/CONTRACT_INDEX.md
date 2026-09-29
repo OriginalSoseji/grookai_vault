@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| NATIVE_OWNED_COPY_SELECTION_V1 | Active implementation contract | docs/contracts/NATIVE_OWNED_COPY_SELECTION_V1.md - Read-only ownership priming and per-instance Objects selection; current candidate is not yet distributed |
 | WEB_IMPORT_RECOVERY_V1 | Active implementation contract | docs/contracts/WEB_IMPORT_RECOVERY_V1.md - Atomic CSV saves, owner-bound receipts, same-tab recovery and complete printing matching |
 | VENDOR_SELLER_ADOPTION_V1 | Active implementation contract | docs/contracts/VENDOR_SELLER_ADOPTION_V1.md - Owner-confirmed linking of operator-approved existing Stripe accounts; immutable provenance, no duplicate creation or checkout activation |
 | VENDOR_STOREFRONTS_V1 | Active implementation contract | docs/contracts/VENDOR_STOREFRONTS_V1.md - Explicit store and exact-copy publication, database package authority, privacy and printing eligibility |
