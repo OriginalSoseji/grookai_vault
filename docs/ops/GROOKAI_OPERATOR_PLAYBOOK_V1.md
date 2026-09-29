@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Website import recovery — September 29
+
+Read `docs/checkpoints/web_import_recovery_20260929.md` and
+`docs/contracts/WEB_IMPORT_RECOVERY_V1.md`. The isolated current-main candidate
+moves website CSV saves to the existing atomic import receipt RPC and adds
+same-tab retry recovery, complete catalog matching and correct owned deficits.
+Private acceptance evidence is in web_import_recovery_20260929 under the operator
+artifact root. Local verification is not deployment; preserve prior labs and
+slab/native release evidence. No new schema or production mutation is required
+to qualify this web change locally.
+
 ## Native search recovery and store access — September28
 
 The founder requested repairs and a TestFlight update after the opening-set

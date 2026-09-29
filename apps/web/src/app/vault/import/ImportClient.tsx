@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { parseCollectrCSV } from "@/lib/import/parseCollectrCSV";
 import { normalizeRow } from "@/lib/import/normalizeRow";
 import { matchCardPrints } from "@/lib/import/matchCardPrints";
 import { importVaultItems } from "@/lib/import/importVaultItems";
+import { parseStoredImportAttempt, prepareImportTargets, type StoredImportAttempt } from "@/lib/import/importAttempt";
 import type { ImportVaultItemsResult, MatchCardPrintsResult, MatchResult } from "@/types/import";
 
 type PreviewFilterKey = "all" | "matched" | "needs-review";
@@ -18,7 +19,7 @@ function getImportErrorMessage(stage: "parse" | "match" | "write") {
   if (stage === "match") {
     return "The card catalog could not be checked right now. Nothing was added to your Vault.";
   }
-  return "The import could not be completed. No unverified rows were added to your Vault.";
+  return "The save result could not be confirmed. Retry this same import to recover its result safely.";
 }
 
 function SummaryPill({
@@ -59,15 +60,38 @@ function getMatchTone(matchStatus: MatchResult["status"]) {
   return "text-slate-500";
 }
 
-export function ImportClient() {
+export function ImportClient({ ownerId }: { ownerId: string }) {
   const router = useRouter();
   const [fileName, setFileName] = useState<string | null>(null);
-  const [preview, setPreview] = useState<MatchCardPrintsResult | null>(null);
+  const [preview, setPreview] = useState<(MatchCardPrintsResult & { alreadySatisfiedRows?: number }) | null>(null);
   const [parseError, setParseError] = useState<string | null>(null);
   const [importResult, setImportResult] = useState<ImportVaultItemsResult | null>(null);
   const [activeFilter, setActiveFilter] = useState<PreviewFilterKey>("all");
   const [isMatching, startMatchTransition] = useTransition();
   const [isImporting, startImportTransition] = useTransition();
+  const [pendingAttempt, setPendingAttempt] = useState<StoredImportAttempt | null>(null);
+  const [failedAttempt, setFailedAttempt] = useState(false);
+  const [recoveryReady, setRecoveryReady] = useState(false);
+  const attemptRef = useRef<StoredImportAttempt | null>(null);
+  const fileGeneration = useRef(0);
+  const storageKey = `vault-import:v1:${ownerId}`;
+
+  useEffect(() => {
+    let mounted = true;
+    queueMicrotask(() => {
+      if (!mounted) return;
+      try {
+        const recovered = parseStoredImportAttempt(sessionStorage.getItem(storageKey), ownerId);
+        if (recovered) {
+          attemptRef.current = recovered;
+          setPendingAttempt(recovered);
+          setFileName(recovered.fileName);
+        }
+      } catch { /* The save handler requires durable tab storage before dispatch. */ }
+      setRecoveryReady(true);
+    });
+    return () => { mounted = false; };
+  }, [ownerId, storageKey]);
 
   const matchedRows = useMemo(
     () => preview?.rows.filter((row) => row.status === "matched") ?? [],
@@ -94,6 +118,8 @@ export function ImportClient() {
   }, [activeFilter, matchedRows, needsReviewRows, preview]);
 
   async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (attemptRef.current || isImporting) return;
+    const generation = ++fileGeneration.current;
     const file = event.target.files?.[0];
     setPreview(null);
     setImportResult(null);
@@ -115,28 +141,60 @@ export function ImportClient() {
       startMatchTransition(async () => {
         try {
           const nextPreview = await matchCardPrints(normalizedRows);
-          setPreview(nextPreview);
+          if (generation !== fileGeneration.current) return;
+          setPreview({ ...nextPreview, alreadySatisfiedRows: Math.max(0, nextPreview.report.rowsValid - nextPreview.rows.length) });
         } catch {
+          if (generation !== fileGeneration.current) return;
           setPreview(null);
           setParseError(getImportErrorMessage("match"));
         }
       });
     } catch {
+      if (generation !== fileGeneration.current) return;
       setParseError(getImportErrorMessage("parse"));
     }
   }
 
   function handleImport() {
-    if (!preview || matchedRows.length === 0) {
+    if (!recoveryReady || isImporting || (!attemptRef.current && (!preview || matchedRows.length === 0))) {
       return;
     }
-
     setParseError(null);
+    let attempt = attemptRef.current;
+    if (!attempt || failedAttempt) {
+      attempt = { version: 1, ownerId, requestId: crypto.randomUUID(), rows: attempt?.rows ?? preview!.rows, fileName };
+    }
+    try {
+      prepareImportTargets(attempt.rows, attempt.requestId);
+      // Freeze before dispatch; retries and reloads must reuse the same totals.
+      sessionStorage.setItem(storageKey, JSON.stringify(attempt));
+    } catch {
+      setParseError("Recovery could not be saved in this tab. Enable browser storage or use a smaller file before importing.");
+      return;
+    }
+    attemptRef.current = attempt;
+    setPendingAttempt(attempt);
+    setFailedAttempt(false);
+    const submitted = attempt;
 
     startImportTransition(async () => {
       try {
-        const result = await importVaultItems(preview.rows);
+        const result = await importVaultItems(submitted.rows, { ownerId, requestId: submitted.requestId });
+        if (!result.ok) {
+          setParseError(result.message);
+          setFailedAttempt(result.errorCode === "failed");
+          if (result.errorCode === "invalid") {
+            attemptRef.current = null;
+            setPendingAttempt(null);
+            try { sessionStorage.removeItem(storageKey); } catch { /* no write was admitted */ }
+          }
+          return;
+        }
         setImportResult(result);
+        setPreview(null);
+        attemptRef.current = null;
+        setPendingAttempt(null);
+        try { sessionStorage.removeItem(storageKey); } catch { /* receipt recovery remains safe */ }
         router.refresh();
       } catch {
         setImportResult(null);
@@ -161,7 +219,7 @@ export function ImportClient() {
               <p className="text-sm text-slate-600">No file edits required. Grookai will detect columns automatically.</p>
             </div>
             <label className="inline-flex cursor-pointer items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-900 transition hover:border-slate-400 hover:bg-slate-50">
-              <input type="file" accept=".csv,text/csv" className="sr-only" onChange={handleFileChange} />
+              <input type="file" accept=".csv,text/csv" className="sr-only" onChange={handleFileChange} disabled={!recoveryReady || isImporting || Boolean(pendingAttempt)} />
               Upload file
             </label>
           </div>
@@ -180,6 +238,15 @@ export function ImportClient() {
         </section>
       ) : null}
 
+      {pendingAttempt ? (
+        <section className="space-y-3 rounded-lg border border-amber-200 bg-amber-50 p-5 text-sm text-amber-950" role="status">
+          <p>{failedAttempt ? "The previous attempt rolled back. You can retry the same file as a new attempt." : "A previous save may have completed. Retry to recover its saved result before uploading another file."}</p>
+          <button type="button" disabled={isImporting} onClick={handleImport} className="rounded-full bg-slate-950 px-5 py-2.5 font-medium text-white disabled:opacity-50">
+            {isImporting ? "Checking import…" : "Retry import"}
+          </button>
+        </section>
+      ) : null}
+
       {isMatching ? (
         <section className="border-y border-slate-200 py-5 text-sm text-slate-600 dark:border-white/[0.08]" role="status">
           Matching your cards against Grookai’s catalog…
@@ -188,6 +255,9 @@ export function ImportClient() {
 
       {preview ? (
         <section className="space-y-5 border-y border-slate-200 py-6 dark:border-white/[0.08]">
+          {preview.alreadySatisfiedRows ? <p className="text-sm text-slate-600" role="status">
+            {preview.alreadySatisfiedRows} {preview.alreadySatisfiedRows === 1 ? "row already meets" : "rows already meet"} {preview.alreadySatisfiedRows === 1 ? "its" : "their"} requested quantity in your Vault. No additional copies are needed for {preview.alreadySatisfiedRows === 1 ? "that row" : "those rows"}.
+          </p> : null}
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Import Preview</h2>
@@ -271,7 +341,7 @@ export function ImportClient() {
             <button
               type="button"
               onClick={handleImport}
-              disabled={isImporting || matchedRows.length === 0}
+              disabled={isImporting || Boolean(pendingAttempt) || matchedRows.length === 0 || !recoveryReady}
               className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
             >
               {isImporting ? "Importing…" : "Import to Vault"}

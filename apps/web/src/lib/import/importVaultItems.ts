@@ -1,409 +1,94 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
 import { revalidatePath } from "next/cache";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import {
-  executeOwnerWriteV1,
-  getActiveOwnerWriteContextV1,
-} from "@/lib/contracts/execute_owner_write_v1";
-import {
-  createImportResultSummaryProofV1,
-  createVaultCardCountBatchProofV1,
-} from "@/lib/contracts/owner_write_proofs_v1";
-import { IMPORT_CONDITION_OPTIONS, type ImportCondition } from "@/lib/import/normalizeRow";
+import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
-import { getOwnedCountsByCardPrintIds } from "@/lib/vault/getOwnedCountsByCardPrintIds";
-import { resolveActiveVaultAnchor, type ActiveVaultAnchor } from "@/lib/vault/resolveActiveVaultAnchor";
-import type { ImportVaultItemsResult, MatchResult } from "@/types/import";
+import { prepareImportTargets, verifyImportReceipt } from "@/lib/import/importAttempt";
+import type { ImportVaultItemsResult, MatchResult, WebImportAttempt, WebImportOutcome } from "@/types/import";
 
-type MatchImportMeta = {
-  compareKey: string;
-  desiredQuantity: number;
-  importQuantity: number;
-};
-
-type MatchResultWithImportMeta = MatchResult & {
-  importMeta?: MatchImportMeta;
-};
-
-type AggregatedImportRow = {
-  cardId: string;
-  gvId: string;
-  name: string;
-  setName: string | null;
-  desiredQuantity: number;
-  quantityToImport: number;
-  condition: ImportCondition;
-  acquisitionCost: number | null;
-  createdAt: string | null;
-  notes: string | null;
-};
-
-type ImportCountProofTarget = {
-  cardPrintId: string;
-  expectedCount: number;
-};
-
-type ImportVaultItemsExecutionParams = {
-  client: SupabaseClient;
-  userId: string;
-  rows: MatchResult[];
-};
-
-function coerceCondition(value: string): ImportCondition {
-  return IMPORT_CONDITION_OPTIONS.includes(value as ImportCondition) ? (value as ImportCondition) : "NM";
+class ImportFailure extends Error {
+  constructor(readonly code: "invalid" | "failed" | "conflict" | "unconfirmed") { super(code); }
 }
 
-function getDesiredQuantity(row: MatchResultWithImportMeta) {
-  return Math.max(1, row.importMeta?.desiredQuantity ?? row.row.quantity);
-}
+export async function importVaultItemsForUser({ client, userId, rows, requestId = randomUUID() }: {
+  client: SupabaseClient; userId: string; rows: MatchResult[]; requestId?: string;
+}): Promise<ImportVaultItemsResult> {
+  await assertAuthenticatedVaultUser(client, userId);
+  let prepared: ReturnType<typeof prepareImportTargets>;
+  try { prepared = prepareImportTargets(rows, requestId); }
+  catch { throw new ImportFailure("invalid"); }
+  const { targets, needsManualMatch } = prepared;
+  if (!targets.length) return { importedCards: 0, importedEntries: 0, needsManualMatch, skippedRows: needsManualMatch, requestId };
 
-function mergeImportRows(rows: MatchResult[]): AggregatedImportRow[] {
-  const merged = new Map<string, AggregatedImportRow>();
-
-  for (const row of rows as MatchResultWithImportMeta[]) {
-    if (row.status !== "matched" || !row.match?.card_id || !row.match.gv_id) {
-      continue;
-    }
-
-    const desiredQuantity = getDesiredQuantity(row);
-    const current = merged.get(row.match.gv_id);
-    const nextCost =
-      typeof row.row.cost === "number"
-        ? row.row.cost
-        : current?.acquisitionCost ?? null;
-    const nextCreatedAt = [current?.createdAt, row.row.added]
-      .filter((value): value is string => Boolean(value))
-      .sort()[0] ?? null;
-    const nextNotes =
-      current?.notes ??
-      (row.row.notes && row.row.notes.trim().length > 0 ? row.row.notes.trim() : null);
-
-    merged.set(row.match.gv_id, {
-      cardId: row.match.card_id,
-      gvId: row.match.gv_id,
-      name: row.match.name ?? row.row.displayName,
-      setName: row.match.set_name ?? null,
-      desiredQuantity: (current?.desiredQuantity ?? 0) + desiredQuantity,
-      quantityToImport: 0,
-      condition: current?.condition ?? coerceCondition(row.row.condition),
-      acquisitionCost: nextCost,
-      createdAt: nextCreatedAt,
-      notes: nextNotes,
-    });
-  }
-
-  return Array.from(merged.values()).sort((left, right) => left.gvId.localeCompare(right.gvId));
-}
-
-async function fetchExistingOwnedCounts(userId: string, cardIds: string[]) {
-  return getOwnedCountsByCardPrintIds(userId, cardIds);
-}
-
-function requireImportOwnerWriteContext() {
-  const context = getActiveOwnerWriteContextV1();
-  if (!context) {
-    throw new Error("OWNER_WRITE: importVaultItems mutation helper called outside executeOwnerWriteV1");
-  }
-  return context;
-}
-
-// LOCK: Import write helpers must only execute from inside executeOwnerWriteV1.
-async function mirrorLegacyBucketQuantity(
-  client: SupabaseClient,
-  row: AggregatedImportRow,
-  anchor: ActiveVaultAnchor,
-  insertedAnchorId: string | null,
-) {
-  requireImportOwnerWriteContext();
-
-  if (insertedAnchorId === anchor.id) {
-    return;
-  }
-
-  const { error: updateError } = await client
-    .from("vault_items")
-    .update({
-      qty: (typeof anchor.qty === "number" ? anchor.qty : 0) + row.quantityToImport,
-    })
-    .eq("id", anchor.id)
-    .eq("user_id", anchor.user_id)
-    .is("archived_at", null);
-
-  if (updateError) {
-    throw new Error(updateError.message);
-  }
-}
-
-function reconcileAggregatedRows(rows: AggregatedImportRow[], existingByCardId: Map<string, number>) {
-  return rows
-    .map((row) => {
-      const existingQty = existingByCardId.get(row.cardId) ?? 0;
-      const delta = row.desiredQuantity - existingQty;
-
-      if (delta <= 0) {
-        return null;
-      }
-
-      return {
-        ...row,
-        quantityToImport: delta,
-      };
-    })
-    .filter((row): row is AggregatedImportRow => Boolean(row))
-    .sort((left, right) => left.gvId.localeCompare(right.gvId));
-}
-
-function buildImportCountProofTargets(
-  rows: AggregatedImportRow[],
-  existingOwnedCounts: Map<string, number>,
-) {
-  return rows
-    .map((row) => ({
-      cardPrintId: row.cardId,
-      expectedCount: (existingOwnedCounts.get(row.cardId) ?? 0) + row.quantityToImport,
-    }))
-    .sort((left, right) => left.cardPrintId.localeCompare(right.cardPrintId));
-}
-
-async function createCanonicalImportInstances(
-  userId: string,
-  row: AggregatedImportRow,
-  legacyVaultItemId: string,
-) {
-  const { adminClient } = requireImportOwnerWriteContext();
-
-  for (let copyIndex = 0; copyIndex < row.quantityToImport; copyIndex += 1) {
-    const { error } = await adminClient.rpc("admin_vault_instance_create_v1", {
-      p_user_id: userId,
-      p_card_print_id: row.cardId,
-      p_legacy_vault_item_id: legacyVaultItemId,
-      p_acquisition_cost: row.acquisitionCost,
-      p_condition_label: row.condition,
-      p_notes: row.notes,
-      p_name: row.name,
-      p_set_name: row.setName,
-      p_created_at: row.createdAt,
-    });
-
-    if (error) {
-      throw new Error(error.message);
-    }
-  }
-}
-
-export async function importVaultItemsForUser({
-  client,
-  userId,
-  rows,
-}: ImportVaultItemsExecutionParams): Promise<ImportVaultItemsResult> {
-  const normalizedUserId = userId.trim();
-  await assertAuthenticatedVaultUser(client, normalizedUserId);
-
-  console.info("vault.import.begin", {
-    userId: normalizedUserId,
-    itemCount: rows.length,
-  });
-
-  const aggregatedRows = mergeImportRows(rows);
-  const needsManualMatch = rows.filter((row) => row.status !== "matched").length;
-
-  if (aggregatedRows.length === 0) {
-    return {
-      importedCards: 0,
-      importedEntries: 0,
-      needsManualMatch,
-      skippedRows: needsManualMatch,
-    };
-  }
-
-  const existingOwnedCounts = await fetchExistingOwnedCounts(
-    normalizedUserId,
-    aggregatedRows.map((row) => row.cardId),
-  );
-  const reconciledRows = reconcileAggregatedRows(aggregatedRows, existingOwnedCounts);
-
-  if (reconciledRows.length === 0) {
-    return {
-      importedCards: 0,
-      importedEntries: 0,
-      needsManualMatch,
-      skippedRows: needsManualMatch,
-    };
-  }
-
-  const importProofTargets = buildImportCountProofTargets(
-    reconciledRows,
-    existingOwnedCounts,
-  );
-  const importedCards = reconciledRows.reduce((sum, row) => sum + row.quantityToImport, 0);
-  const importedEntries = reconciledRows.length;
-
+  // One admitted attempt is one transaction. The SQL owner lock protects its
+  // deficit calculation, exact copies, compatibility mirrors and durable receipt.
   return executeOwnerWriteV1<ImportVaultItemsResult>({
     execution_name: "import_vault_items",
-    actor_id: normalizedUserId,
-    write: async (context) => {
-      context.setMetadata("import_source", "importVaultItems");
-      context.setMetadata("import_count", rows.length);
-      context.setMetadata("import_count_proof_targets", importProofTargets);
-      context.setMetadata("expected_imported_cards", importedCards);
-      context.setMetadata("expected_imported_entries", importedEntries);
-      context.setMetadata("expected_needs_manual_match", needsManualMatch);
-      context.setMetadata("expected_skipped_rows", needsManualMatch);
-
-      for (const row of reconciledRows) {
-        const quantity = Math.max(0, Math.trunc(row.quantityToImport));
-        if (quantity <= 0) {
-          continue;
-        }
-
-        console.info("vault.import.item", {
-          userId: normalizedUserId,
-          cardPrintId: row.cardId,
-          quantity,
-        });
-
-        try {
-          const { anchor, insertedAnchorId } = await resolveActiveVaultAnchor({
-            client,
-            userId: normalizedUserId,
-            cardId: row.cardId,
-            createData: {
-              gvId: row.gvId,
-              quantity,
-              conditionLabel: row.condition,
-              acquisitionCost: row.acquisitionCost,
-              createdAt: row.createdAt,
-              notes: row.notes,
-              name: row.name,
-              setName: row.setName,
-            },
-          });
-
-          await createCanonicalImportInstances(
-            normalizedUserId,
-            {
-              ...row,
-              quantityToImport: quantity,
-            },
-            anchor.id,
-          );
-
-          try {
-            // TEMP COMPATIBILITY MIRROR (to be removed after read cutover)
-            await mirrorLegacyBucketQuantity(
-              client,
-              {
-                ...row,
-                quantityToImport: quantity,
-              },
-              anchor,
-              insertedAnchorId,
-            );
-          } catch (error) {
-            console.error("vault.import.bucket_mirror_failed", {
-              userId: normalizedUserId,
-              cardPrintId: row.cardId,
-              quantity,
-              error,
-            });
-          }
-        } catch (error) {
-          console.error("vault.import.instance_create_failed", {
-            userId: normalizedUserId,
-            cardPrintId: row.cardId,
-            quantity,
-            error,
-          });
-          throw error instanceof Error ? error : new Error("Canonical import create failed.");
-        }
-      }
-
-      console.info("[import:write]", {
-        importedCards,
-        importedEntries,
-        needsManualMatch,
+    actor_id: userId,
+    write: async context => {
+      context.setMetadata("import_request_id", requestId);
+      const { data, error } = await context.adminClient.rpc("admin_import_vault_receipted_v1", {
+        p_user_id: userId, p_request_id: requestId, p_rows: targets,
       });
-
-      return {
-        importedCards,
-        importedEntries,
-        needsManualMatch,
-        skippedRows: needsManualMatch,
-      };
+      if (error) throw new ImportFailure("unconfirmed");
+      if (data?.requestId !== requestId) throw new ImportFailure("unconfirmed");
+      if (data.success === false) {
+        if (data.error === "import_request_conflict") throw new ImportFailure("conflict");
+        // A returned terminal failure is persisted outside the rolled-back write
+        // subtransaction. Only this confirmed response permits a NEW attempt.
+        if (["vault_paused", "import_outcome_unconfirmed"].includes(data.error)) throw new ImportFailure("failed");
+        throw new ImportFailure("unconfirmed");
+      }
+      try { verifyImportReceipt(data, targets, requestId); }
+      catch { throw new ImportFailure("unconfirmed"); }
+      context.setMetadata("import_receipt", data);
+      return { importedCards: data.importedCards, importedEntries: data.importedEntries,
+        needsManualMatch, skippedRows: needsManualMatch, requestId };
     },
-    proofs: [
-      createVaultCardCountBatchProofV1<ImportVaultItemsResult>(({ getMetadata }) => {
-        return getMetadata<ImportCountProofTarget[]>("import_count_proof_targets") ?? null;
-      }),
-      createImportResultSummaryProofV1<ImportVaultItemsResult>(({ getMetadata }) => {
-        const expectedImportedCards = getMetadata<number>("expected_imported_cards");
-        const expectedImportedEntries = getMetadata<number>("expected_imported_entries");
-        const expectedNeedsManualMatch = getMetadata<number>("expected_needs_manual_match");
-        const expectedSkippedRows = getMetadata<number>("expected_skipped_rows");
-
-        if (
-          typeof expectedImportedCards !== "number" ||
-          typeof expectedImportedEntries !== "number"
-        ) {
-          return null;
-        }
-
-        return {
-          importedCards: expectedImportedCards,
-          importedEntries: expectedImportedEntries,
-          needsManualMatch:
-            typeof expectedNeedsManualMatch === "number"
-              ? expectedNeedsManualMatch
-              : undefined,
-          skippedRows:
-            typeof expectedSkippedRows === "number" ? expectedSkippedRows : undefined,
-        };
-      }),
-    ],
+    proofs: [async ({ getMetadata, result }) => {
+      // Validate the owner-bound transaction's saved outcome. A retry must not
+      // recreate copies subsequently sold/archived or require current counts to
+      // equal a historical receipt's counts.
+      const receipt = getMetadata<unknown>("import_receipt");
+      verifyImportReceipt(receipt, targets, requestId);
+      if (result.requestId !== requestId) throw new ImportFailure("unconfirmed");
+    }],
   });
 }
 
-export async function importVaultItems(rows: MatchResult[]): Promise<ImportVaultItemsResult> {
+export async function importVaultItems(rows: MatchResult[], attempt?: WebImportAttempt): Promise<WebImportOutcome> {
   const client = await createServerComponentClient();
-  const {
-    data: { user },
-  } = await client.auth.getUser();
-
-  if (!user) {
-    throw new Error("Sign in required.");
+  const { data: { user }, error } = await client.auth.getUser();
+  if (error || !user || (attempt && attempt.ownerId !== user.id)) {
+    if (!attempt) throw new Error("Sign in required.");
+    return { ok: false, errorCode: "account_changed", message: "Sign in to the account that started this import, then retry." };
   }
-
-  const result = await importVaultItemsForUser({
-    client,
-    userId: user.id,
-    rows,
-  });
-
-  const importRunId = `web_import_${Date.now()}`;
-  const { error: importEventError } = await client.rpc("card_events_emit_vault_import_summary_v1", {
-    p_user_id: user.id,
-    p_import_run_id: importRunId,
-    p_payload: {
-      source: "web_collection_import",
-      import_run_id: importRunId,
-      imported_cards: result.importedCards,
-      imported_entries: result.importedEntries,
-      needs_manual_match: result.needsManualMatch,
-      skipped_rows: result.skippedRows,
-    },
-  });
-  if (importEventError) {
-    console.error("[import:e1_event_summary_failed]", {
-      userId: user.id,
-      error: importEventError.message,
-    });
+  try {
+    if (attempt && typeof attempt.requestId !== "string") throw new ImportFailure("invalid");
+    const result = await importVaultItemsForUser({ client, userId: user.id, rows, requestId: attempt?.requestId });
+    // Stable event identity makes a recovered attempt the same activity, not a
+    // new import. Ancillary event/cache outages cannot hide a committed save.
+    try {
+      await client.rpc("card_events_emit_vault_import_summary_v1", {
+        p_user_id: user.id, p_import_run_id: `web_import_${result.requestId}`,
+        p_payload: { source: "web_collection_import", import_run_id: `web_import_${result.requestId}`,
+          imported_cards: result.importedCards, imported_entries: result.importedEntries,
+          needs_manual_match: result.needsManualMatch, skipped_rows: result.skippedRows },
+      });
+    } catch { /* Ownership outcome is retained in its durable receipt. */ }
+    try { revalidatePath("/vault"); revalidatePath("/wall"); revalidatePath("/founder"); } catch { /* Retry returns the committed receipt. */ }
+    return { ...result, ok: true };
+  } catch (error) {
+    const code = error instanceof ImportFailure ? error.code : "unconfirmed";
+    const message = code === "failed" ? "This attempt failed and no cards were added. Retry to start a new attempt."
+      : code === "invalid" ? "This import has invalid or oversized rows. Review the file and upload it again."
+      : code === "conflict" ? "This attempt already exists with different details. Keep the original import and check your Vault."
+      : "The save result could not be confirmed. Retry this same import to recover its result safely.";
+    // Existing cached clients without attempt support expect failures to throw.
+    if (!attempt) throw new Error(message);
+    return { ok: false, errorCode: code, message };
   }
-
-  revalidatePath("/vault");
-  revalidatePath("/wall");
-  revalidatePath("/founder");
-
-  return result;
 }

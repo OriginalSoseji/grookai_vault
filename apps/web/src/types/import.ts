@@ -55,8 +55,16 @@ export type MatchCardPrintsResult = {
 };
 
 export type ImportVaultItemsResult = {
+  requestId?: string;
   importedCards: number;
   importedEntries: number;
   needsManualMatch: number;
   skippedRows: number;
+};
+
+export type WebImportAttempt = { ownerId: string; requestId: string };
+export type WebImportOutcome = (ImportVaultItemsResult & { ok: true }) | {
+  ok: false;
+  errorCode: "account_changed" | "invalid" | "failed" | "conflict" | "unconfirmed";
+  message: string;
 };
