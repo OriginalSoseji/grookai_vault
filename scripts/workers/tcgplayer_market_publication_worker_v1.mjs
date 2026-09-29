@@ -8,6 +8,7 @@ import { promisify } from "node:util";
 
 import pg from "pg";
 import { readMarketActivationCoverageV1 } from "../../backend/pricing/market_activation_coverage_v1.mjs";
+import { marketSessionConnectionStringV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
 import {
   createCandidateStreamReconcilerV1,
   readMarketLedgerBatchesV1,
@@ -1823,12 +1824,13 @@ async function main() {
     );
     await ensureMtgProductionGuardArtifact();
   }
-  const url = connectionString();
-  if (!url) {
+  const configuredUrl = connectionString();
+  if (!configuredUrl) {
     throw new Error(
       "SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is required",
     );
   }
+  const url = marketSessionConnectionStringV1(configuredUrl);
   const [commitSha, branch, trackedChanges] = await Promise.all([
     git(["rev-parse", "HEAD"]),
     git(["branch", "--show-current"]),

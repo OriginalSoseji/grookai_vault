@@ -1796,3 +1796,27 @@ Deploy a new immutable runtime only from a merged producer with the governed
 shadow/reconciliation proof, retain rollback pins, and verify actual production
 publication separately. The September 29 capacity recovery alone is not proof
 that pricing or MEE ingestion has completed.
+
+# Pricing scheduler session and process containment — September 29, 2026
+
+Scheduled runner V1_2 and publication worker V1_9 select port 5432 on the
+existing Supabase shared pooler, retaining project, credentials and TLS options.
+Port 6543 transaction pooling cannot preserve the scheduler's session advisory
+lock or publication session settings. The lock connection checks its backend
+PID every 30 seconds; a changed backend or failed heartbeat revokes execution.
+
+The Linux scheduler starts the pipeline in a dedicated process group using
+spawn (execFile does not forward detached). On lost authority, timeout, output
+limit, or a parent exiting with surviving children, it terminates the complete
+group and checks /proc before retry. Cleanup failure forbids retry. Regression
+proof runs actual writing grandchildren that ignore SIGTERM in an isolated
+network-disabled Linux container, covering abort, timeout, parent failure and
+output overflow. Heartbeat queries cannot overlap and drain before unlock.
+
+The September 29 old-runtime source attempt is preserved as incomplete. Its
+unsafe scheduler timer was stopped after detecting overlapping descendants;
+systemd terminated all descendants. The root-private pricing environment now
+uses the verified session endpoint. Restore the timer only after the new
+immutable runtime and fresh frozen run are ready; do not replay the old daily
+key with a different producer. Live status and timer restoration are tracked in
+the external recovery checkpoint linked above. Preserve the separate MEE runtime.
