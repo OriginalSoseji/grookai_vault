@@ -1,22 +1,19 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { execFile } from 'node:child_process';
-import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 
 import '../../backend/env.mjs';
 import { fetchPokemonCardById } from '../../backend/clients/pokemonapi.mjs';
+import { fetchPokemonCardByIdViaCurl, pokemonReferenceFailureV1 } from '../../backend/pricing/pokemon_reference_http_v1.mjs';
 import { createBackendClient } from '../../backend/supabase_backend_client.mjs';
 import { acquirePokemonTcgIoEvidenceV1 } from '../../backend/pricing/market_evidence_pokemontcg_io_acquisition_v1.mjs';
 import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
 
-const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const DEFAULT_OUT_DIR = resolveMeeAuditRootV1(REPO_ROOT);
 const SOURCE = 'pokemontcg_io_reference';
-const DEFAULT_BASE_URL = 'https://api.pokemontcg.io/v2';
 const DB_LOOKUP_CHUNK_SIZE = 100;
 
 function parseArgs(argv) {
@@ -123,55 +120,6 @@ async function loadFixtureCards(fixturePath) {
   return JSON.parse(raw);
 }
 
-function pokemonCardUrl(cardId) {
-  const base = process.env.POKEMONAPI_BASE_URL || DEFAULT_BASE_URL;
-  const normalizedBase = base.endsWith('/') ? base : `${base}/`;
-  return new URL(`cards/${encodeURIComponent(cardId)}`, normalizedBase).toString();
-}
-
-async function fetchPokemonCardByIdViaCurl(cardId) {
-  const args = [
-    '--silent',
-    '--show-error',
-    '--location',
-    '--max-time',
-    '60',
-    '--user-agent',
-    'GrookaiMarketEvidenceAudit/1.0',
-    '--header',
-    'Accept: application/json',
-  ];
-  if (process.platform === 'win32') {
-    args.unshift('--ssl-no-revoke');
-  }
-  const apiKey = process.env.POKEMONAPI_API_KEY;
-  if (apiKey) {
-    args.push('--header', `X-Api-Key: ${apiKey}`);
-  }
-  args.push(pokemonCardUrl(cardId));
-
-  let stdout = null;
-  let lastError = null;
-  const command = process.platform === 'win32' ? 'curl.exe' : 'curl';
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
-    try {
-      ({ stdout } = await execFileAsync(command, args, {
-        timeout: 80000,
-        maxBuffer: 8 * 1024 * 1024,
-      }));
-      break;
-    } catch (error) {
-      lastError = error;
-      await new Promise((resolve) => setTimeout(resolve, 750 * attempt));
-    }
-  }
-  if (stdout === null) {
-    throw lastError;
-  }
-  const payload = JSON.parse(stdout);
-  return payload?.data ?? null;
-}
-
 async function fetchPokemonCardByIdWithMethod(cardId, fetchMethod) {
   if (fetchMethod === 'fetch') {
     return fetchPokemonCardById(cardId);
@@ -197,9 +145,7 @@ async function fetchCardsById(ids, fixtureCards, fetchMethod) {
     } catch (error) {
       errors.push({
         id,
-        error: error?.message ?? String(error),
-        cause_code: error?.cause?.code ?? null,
-        cause_message: error?.cause?.message ?? null,
+        ...pokemonReferenceFailureV1(error),
       });
     }
   }
@@ -305,6 +251,7 @@ async function main() {
   acquisition.boundary.fetch_method = fixtureCards ? 'fixture' : args.fetchMethod;
   acquisition.summary.unique_pokemonapi_ids = uniquePokemonApiIds.length;
   acquisition.summary.fetch_error_count = errors.length;
+  acquisition.fetch_errors = errors;
 
   await fs.mkdir(args.outDir, { recursive: true });
   const jsonPath = path.join(args.outDir, `mee_06a_pokemontcg_io_reference_evidence_${stamp}.json`);
