@@ -105,6 +105,7 @@ class VendorPricingWorkspaceRow {
     this.gradeLabel,
     this.marketObservedAt,
     this.marketProvenanceId,
+    this.askingPriceNote,
   });
 
   final String instanceId;
@@ -130,6 +131,7 @@ class VendorPricingWorkspaceRow {
   final DateTime? marketObservedAt;
   final String? marketProvenanceId;
   final double? askingPrice;
+  final String? askingPriceNote;
   final String currency;
   final Set<String> sectionIds;
   final List<VendorPrintingOption> printingOptions;
@@ -209,6 +211,7 @@ class VendorPricingWorkspaceRow {
           ? marketProvenanceId
           : marketProvenanceId ?? this.marketProvenanceId,
       askingPrice: askingPrice ?? this.askingPrice,
+      askingPriceNote: askingPriceNote,
       currency: currency,
       sectionIds: Set.unmodifiable(sectionIds ?? this.sectionIds),
       printingOptions: printingOptions,
@@ -230,6 +233,8 @@ class VendorPricingWorkspaceService {
   const VendorPricingWorkspaceService({
     SupabaseClient? client,
     SaleListingService? listingService,
+    this.includeSections = true,
+    this.toleratePriceFailure = false,
   }) : _client = client,
        _listingService = listingService;
 
@@ -238,6 +243,8 @@ class VendorPricingWorkspaceService {
 
   final SupabaseClient? _client;
   final SaleListingService? _listingService;
+  final bool includeSections;
+  final bool toleratePriceFailure;
 
   Future<VendorPricingWorkspaceData> load() async {
     final client = _requiredClient();
@@ -290,12 +297,19 @@ class VendorPricingWorkspaceService {
         await CardSurfacePricingService.fetchByCardPrintingIds(
           client: client,
           cardPrintingIds: printingIds,
-        );
-    final sections = await _loadSections(client, userId);
-    final membershipsByInstance = await _loadMemberships(
-      client,
-      instances.map((row) => _text(row['id'])),
-    );
+        ).catchError((Object error) {
+          if (!toleratePriceFailure) throw error;
+          return <String, CardSurfacePricingData>{};
+        });
+    final sections = includeSections
+        ? await _loadSections(client, userId)
+        : <VendorWorkspaceSection>[];
+    final membershipsByInstance = includeSections
+        ? await _loadMemberships(
+            client,
+            instances.map((row) => _text(row['id'])),
+          )
+        : <String, Set<String>>{};
 
     final rows = <VendorPricingWorkspaceRow>[];
     for (final instance in instances) {
@@ -370,6 +384,7 @@ class VendorPricingWorkspaceService {
           marketObservedAt: pricing?.observedAt,
           marketProvenanceId: pricing?.provenanceId,
           askingPrice: _money(instance['asking_price_amount']),
+          askingPriceNote: _nullable(instance['asking_price_note']),
           currency: _normalizeCurrency(instance['asking_price_currency']),
           sectionIds: Set.unmodifiable(
             membershipsByInstance[instanceId] ?? const <String>{},
@@ -617,7 +632,7 @@ class VendorPricingWorkspaceService {
       final response = await client
           .from('vault_item_instances')
           .select(
-            'id,gv_vi_id,legacy_vault_item_id,card_print_id,card_printing_id,condition_label,intent,pricing_mode,asking_price_amount,asking_price_currency,slab_cert_id,grade_company,grade_value,grade_label,created_at',
+            'id,gv_vi_id,legacy_vault_item_id,card_print_id,card_printing_id,condition_label,intent,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note,slab_cert_id,grade_company,grade_value,grade_label,created_at',
           )
           .eq('user_id', userId)
           .filter('archived_at', 'is', null)

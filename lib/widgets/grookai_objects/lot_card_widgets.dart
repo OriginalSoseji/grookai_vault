@@ -64,12 +64,11 @@ class LotCardFront extends StatelessWidget {
               CardPriceTag(tokens: t, skin: data.skin, price: data.bundlePrice),
               if (data.hasCompleteEstimatedValue) ...[
                 const SizedBox(width: 10),
-                Text(
-                  '${_lotPriceLabel(data.estimatedValue)} value',
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: t.mutedText,
-                    decoration: TextDecoration.lineThrough,
+                Flexible(
+                  child: Text(
+                    '${_lotPriceLabel(data.estimatedValue)} market estimate',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 11, color: t.mutedText),
                   ),
                 ),
               ],

@@ -311,11 +311,11 @@ class LotListingData {
     'sellerTradeCount': sellerTradeCount,
   };
 
-  // Seller asking amounts are never eligible sealed market evidence.
-  static double? _estimatedItemValue(LotItem item) =>
-      item.objectKind == 'sealed'
-      ? item.marketPrice
-      : item.marketPrice ?? item.price;
+  // Asking amounts are seller terms, never substitutes for market evidence.
+  static double? _estimatedItemValue(LotItem item) {
+    final value = item.marketPrice;
+    return value != null && value.isFinite && value > 0 ? value : null;
+  }
 
   double get estimatedValue => items.fold<double>(
     0,

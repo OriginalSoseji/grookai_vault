@@ -351,7 +351,7 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
                 ),
               const SizedBox(height: 4),
               Text(
-                'Estimated value is itemized above. Set one bundle price for the lot.',
+                'Market estimates appear when available. Set one bundle price for the lot.',
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),

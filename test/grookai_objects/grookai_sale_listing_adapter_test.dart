@@ -128,7 +128,8 @@ void main() {
     final lot = LotListingData.fromFields(object.skin, object.fields);
     expect(lot.items.first.setAndNumberLine, 'Obsidian Flames · 223/197');
     expect(lot.items.first.meaningfulVariantLabel, 'Special Illustration Rare');
-    expect(lot.estimatedValue, 210);
+    expect(lot.estimatedValue, 130);
+    expect(lot.hasCompleteEstimatedValue, isFalse);
   });
 
   test(

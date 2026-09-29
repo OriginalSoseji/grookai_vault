@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/ownership_state.dart';
 import '../public/public_collector_service.dart';
 import 'vault_card_service.dart';
+import 'owned_copy_read_service.dart';
 import 'vault_gvvi_service.dart';
 
 class OwnershipResolverService {
@@ -149,141 +150,55 @@ class OwnershipResolverService {
       };
     }
 
-    final ownedCounts = await VaultCardService.getOwnedCountsByCardPrintIds(
-      client: client,
-      cardPrintIds: cardPrintIds,
-    );
     final states = <String, OwnershipState>{};
-    final ownedIds = <String>[];
-
-    for (final cardPrintId in cardPrintIds) {
-      final ownedCount = ownedCounts[cardPrintId] ?? 0;
-      if (ownedCount <= 0) {
-        states[cardPrintId] = _buildSelfState(
-          ownedCount: 0,
-          primaryVaultItemId: null,
-          primaryGvviId: null,
-          onWall: false,
-          inPlay: false,
-        );
-        continue;
-      }
-      ownedIds.add(cardPrintId);
-    }
-
-    if (ownedIds.isEmpty) {
-      _trace('self batch resolved count=${states.length} owned=0');
-      return states;
-    }
-
-    final sharedStates = await VaultCardService.getSharedStatesByCardPrintIds(
-      client: client,
-      cardPrintIds: ownedIds,
-    );
-    final ownedStates = await Future.wait(
-      ownedIds.map(
-        (cardPrintId) => _resolveOwnedSelfContext(
-          cardPrintId: cardPrintId,
-          ownedCount: ownedCounts[cardPrintId] ?? 0,
-          sharedState: sharedStates[cardPrintId],
-        ),
-      ),
-    );
-
-    for (var index = 0; index < ownedIds.length; index += 1) {
-      states[ownedIds[index]] = ownedStates[index];
-    }
-
-    _trace(
-      'self batch resolved count=${states.length} owned=${ownedIds.length}',
-    );
-    return states;
-  }
-
-  Future<OwnershipState> _resolveOwnedSelfContext({
-    required String cardPrintId,
-    required int ownedCount,
-    VaultSharedCardState? sharedState,
-  }) async {
-    final copyTarget = await VaultCardService.resolveLatestOwnedCopyTarget(
-      client: client,
-      cardPrintId: cardPrintId,
-    );
-    final effectiveSharedState = sharedState;
-
-    VaultOwnedCardAnchor? anchor;
-    if (copyTarget != null) {
-      anchor = VaultOwnedCardAnchor(
-        vaultItemId: copyTarget.vaultItemId,
-        cardPrintId: copyTarget.cardPrintId,
+    // Bounded concurrency; every parent is checked, including slab-only parents
+    // that the older raw-only counts RPC cannot represent.
+    for (var offset = 0; offset < cardPrintIds.length; offset += 8) {
+      final ids = cardPrintIds.sublist(
+        offset,
+        (offset + 8).clamp(0, cardPrintIds.length),
       );
-    } else {
-      anchor = await VaultCardService.resolveOwnedCardAnchor(
+      final sharedStates = await VaultCardService.getSharedStatesByCardPrintIds(
         client: client,
-        cardPrintId: cardPrintId,
+        cardPrintIds: ids,
       );
+      final copiesByCard = await Future.wait(
+        ids.map(
+          (id) => OwnedCopyReadService.load(client: client, cardPrintId: id),
+        ),
+      );
+      if (_clean(client.auth.currentUser?.id) != currentUserId) {
+        throw StateError('Account changed while resolving ownership.');
+      }
+      for (var index = 0; index < ids.length; index++) {
+        final copies = copiesByCard[index];
+        Map<String, dynamic>? primary;
+        for (final copy in copies) {
+          if (_clean(copy['gv_vi_id']).isNotEmpty) {
+            primary = copy;
+            break;
+          }
+        }
+        final anchor = primary == null
+            ? (copies.isEmpty ? null : copies.first['legacy_vault_item_id'])
+            : primary['legacy_vault_item_id'];
+        states[ids[index]] = _buildSelfState(
+          ownedCount: copies.length,
+          primaryVaultItemId: _clean(anchor),
+          primaryGvviId: _clean(primary?['gv_vi_id']),
+          onWall:
+              copies.isNotEmpty && sharedStates[ids[index]]?.isShared == true,
+          inPlay: copies.any(
+            (copy) => const {
+              'sell',
+              'trade',
+              'showcase',
+            }.contains(_clean(copy['intent'])),
+          ),
+        );
+      }
     }
-
-    final primaryVaultItemId = _firstNonEmpty(<String?>[
-      _clean(anchor?.vaultItemId),
-      _clean(copyTarget?.vaultItemId),
-    ]);
-    final primaryGvviId = _firstNonEmpty(<String?>[_clean(copyTarget?.gvviId)]);
-
-    final secondaryResults = await Future.wait<dynamic>([
-      primaryVaultItemId != null
-          ? VaultCardService.loadManageCard(
-              client: client,
-              vaultItemId: primaryVaultItemId,
-              cardPrintId: cardPrintId,
-              fallbackOwnedCount: ownedCount,
-              fallbackGvviId: copyTarget?.gvviId,
-            )
-          : Future<VaultManageCardData?>.value(null),
-      primaryGvviId != null
-          ? VaultGvviService.loadPrivate(client: client, gvviId: primaryGvviId)
-          : Future<VaultGvviData?>.value(null),
-    ]);
-
-    final manageCardData = secondaryResults[0] as VaultManageCardData?;
-    final gvviData = secondaryResults[1] as VaultGvviData?;
-    final resolvedPrimaryGvviId = _firstNonEmpty(<String?>[
-      primaryGvviId,
-      _clean(gvviData?.gvviId),
-    ]);
-    final resolvedPrimaryVaultItemId = _firstNonEmpty(<String?>[
-      primaryVaultItemId,
-      _clean(gvviData?.vaultItemId),
-    ]);
-    final onWall =
-        effectiveSharedState?.isShared == true ||
-        manageCardData?.isShared == true ||
-        gvviData?.isSharedOnWall == true;
-    final inPlay =
-        (manageCardData?.inPlayCount ?? 0) > 0 ||
-        _clean(gvviData?.intent) == 'trade' ||
-        _clean(gvviData?.intent) == 'sell' ||
-        _clean(gvviData?.intent) == 'showcase';
-
-    final state = _buildSelfState(
-      ownedCount: ownedCount,
-      primaryVaultItemId: resolvedPrimaryVaultItemId,
-      primaryGvviId: resolvedPrimaryGvviId,
-      onWall: onWall,
-      inPlay: inPlay,
-    );
-
-    _trace(
-      'self resolved card_print_id=$cardPrintId '
-      'ownedCount=$ownedCount '
-      'anchor=${anchor?.vaultItemId ?? 'null'} '
-      'gvvi=${state.primaryGvviId} '
-      'onWall=${state.onWall} '
-      'inPlay=${state.inPlay} '
-      'action=${state.bestAction}',
-    );
-
-    return state;
+    return states;
   }
 
   Future<Map<String, OwnershipState>> _resolvePublicContextBatch({
@@ -379,16 +294,6 @@ class OwnershipResolverService {
   }) {
     return subjectUserId.isEmpty ||
         (currentUserId.isNotEmpty && subjectUserId == currentUserId);
-  }
-
-  String? _firstNonEmpty(Iterable<String?> values) {
-    for (final value in values) {
-      final normalized = _clean(value);
-      if (normalized.isNotEmpty) {
-        return normalized;
-      }
-    }
-    return null;
   }
 
   String _clean(dynamic value) => (value ?? '').toString().trim();
