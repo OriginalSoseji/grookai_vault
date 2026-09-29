@@ -120,7 +120,13 @@ export function classifyWorkflowRunV1(component, run, now = new Date()) {
   return { status: 'healthy', reason: 'Latest workflow completed successfully within its freshness window.', observed_at: observedAt, age_minutes: ageMinutes };
 }
 
-async function fetchGitHubWorkflowPayload(file, token, now) {
+export function selectLatestMainWorkflowRunV1(payload) {
+  return (payload?.workflow_runs ?? [])
+    .filter((run) => run.head_branch === 'main' && Number.isFinite(Date.parse(run.created_at)))
+    .sort((left, right) => Date.parse(right.created_at) - Date.parse(left.created_at) || Number(right.id) - Number(left.id))[0] ?? null;
+}
+
+export async function fetchGitHubWorkflowPayload(file, token, now, { request = fetch } = {}) {
   const workflowId = encodeURIComponent(path.basename(file));
   try {
     const headers = {
@@ -132,9 +138,9 @@ async function fetchGitHubWorkflowPayload(file, token, now) {
     };
     if (token) headers.Authorization = `Bearer ${token}`;
     const cacheBust = `${now.getTime()}-${process.pid}`;
-    const response = await fetch(
-      `https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/${workflowId}/runs?per_page=1&branch=main&cache_bust=${cacheBust}`,
-      { headers }
+    const response = await request(
+      `https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/workflows/${workflowId}/runs?per_page=100&cache_bust=${cacheBust}`,
+      { headers, signal: AbortSignal.timeout(30_000) }
     );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return await response.json();
@@ -149,9 +155,7 @@ async function fetchGitHubWorkflowPayload(file, token, now) {
           'GET',
           `repos/${GITHUB_REPOSITORY}/actions/workflows/${path.basename(file)}/runs`,
           '-f',
-          'per_page=1',
-          '-f',
-          'branch=main'
+          'per_page=100'
         ],
         {
           encoding: 'utf8',
@@ -193,7 +197,7 @@ export async function collectGitHubWorkflowComponentsV1(
       };
     }
 
-    const run = payload.workflow_runs?.[0] ?? null;
+    const run = selectLatestMainWorkflowRunV1(payload);
     const classification = classifyWorkflowRunV1(component, run, now);
     return {
       component_id: component.id,

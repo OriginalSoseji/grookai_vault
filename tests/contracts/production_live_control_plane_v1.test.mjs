@@ -17,6 +17,8 @@ import {
   classifyWorkflowRunV1,
   collectDirectEdgeProbeV1,
   collectGitHubWorkflowComponentsV1,
+  fetchGitHubWorkflowPayload,
+  selectLatestMainWorkflowRunV1,
   controlPlaneAlertFingerprintV1,
   controlPlaneAlertFindingsV1,
   resolveRuntimeCommitShaV1,
@@ -90,6 +92,8 @@ test('components sharing one workflow use one provider payload', async () => {
       return {
         workflow_runs: [{
           id: 123,
+          head_branch: 'main',
+          created_at: '2026-08-24T00:29:00.000Z',
           status: 'completed',
           conclusion: 'success',
           updated_at: '2026-08-24T00:30:00.000Z'
@@ -101,6 +105,57 @@ test('components sharing one workflow use one provider payload', async () => {
   assert.deepEqual(results.map((row) => row.component_id), ['vercel-web', 'prod-edge-probe']);
   assert.deepEqual(results.map((row) => row.status), ['healthy', 'healthy']);
   assert.deepEqual(results.map((row) => row.evidence.run_id), [123, 123]);
+});
+
+test('workflow reader requests bounded unfiltered history without requiring credentials', async () => {
+  const payload = { workflow_runs: [] };
+  const actual = await fetchGitHubWorkflowPayload('.github/workflows/mtg-catalog-supervisor.yml', null, NOW, {
+    request: async (url, options) => {
+      const parsed = new URL(url);
+      assert.equal(parsed.hostname, 'api.github.com');
+      assert.equal(parsed.searchParams.get('per_page'), '100');
+      assert.equal(parsed.searchParams.has('branch'), false);
+      assert.equal(parsed.searchParams.has('event'), false);
+      assert.equal(options.headers.Authorization, undefined);
+      assert.ok(options.signal instanceof AbortSignal);
+      return { ok: true, json: async () => payload };
+    }
+  });
+  assert.equal(actual, payload);
+});
+
+test('workflow selection excludes other branches and sorts by creation, not later rerun updates', () => {
+  const newestMain = { id: 20, head_branch: 'main', created_at: '2026-08-24T00:30:00Z', conclusion: 'failure' };
+  const payload = { workflow_runs: [
+    { id: 30, head_branch: 'feature/test', created_at: '2026-08-24T00:40:00Z', conclusion: 'success' },
+    { id: 10, head_branch: 'main', created_at: '2026-08-24T00:10:00Z', updated_at: '2026-08-24T00:50:00Z', conclusion: 'success' },
+    { id: 40, head_branch: 'main', created_at: 'invalid', conclusion: 'success' },
+    newestMain
+  ] };
+  assert.equal(selectLatestMainWorkflowRunV1(payload), newestMain);
+  assert.equal(selectLatestMainWorkflowRunV1({ workflow_runs: payload.workflow_runs.slice(0, 1) }), null);
+  assert.equal(selectLatestMainWorkflowRunV1(null), null);
+});
+
+test('a newer failed main run cannot be hidden by a healthy branch or older success', async () => {
+  const [result] = await collectGitHubWorkflowComponentsV1([
+    { id: 'mtg-catalog-supervisor', max_staleness_minutes: 45, source_files: ['.github/workflows/mtg-catalog-supervisor.yml'] }
+  ], null, NOW, { loadPayload: async () => ({ workflow_runs: [
+    { id: 3, head_branch: 'feature/test', created_at: '2026-08-24T00:45:00Z', updated_at: '2026-08-24T00:45:00Z', status: 'completed', conclusion: 'success' },
+    { id: 1, head_branch: 'main', created_at: '2026-08-24T00:10:00Z', updated_at: '2026-08-24T00:10:00Z', status: 'completed', conclusion: 'success' },
+    { id: 2, head_branch: 'main', created_at: '2026-08-24T00:30:00Z', updated_at: '2026-08-24T00:30:00Z', status: 'completed', conclusion: 'failure' }
+  ] }) });
+  assert.equal(result.status, 'failed');
+  assert.equal(result.evidence.run_id, 2);
+});
+
+test('missing main history and provider failures never become healthy evidence', async () => {
+  const components = [{ id: 'mtg-catalog-supervisor', max_staleness_minutes: 45, source_files: ['.github/workflows/mtg-catalog-supervisor.yml'] }];
+  const [missing] = await collectGitHubWorkflowComponentsV1(components, null, NOW, { loadPayload: async () => ({ workflow_runs: [] }) });
+  assert.equal(missing.status, 'unmeasured');
+  await assert.rejects(fetchGitHubWorkflowPayload(components[0].source_files[0], null, NOW, {
+    request: async () => ({ ok: false, status: 403 })
+  }), /HTTP 403/);
 });
 
 test('stale GitHub edge evidence is replaced by a healthy direct runtime probe', async () => {
