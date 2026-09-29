@@ -1,0 +1,12 @@
+[Unit]
+Description=Grookai MTG read-only audit every 15 minutes
+
+[Timer]
+OnActiveSec=1min
+OnUnitActiveSec=15min
+RandomizedDelaySec=20s
+AccuracySec=1s
+Unit=grookai-mtg-catalog-supervisor.service
+
+[Install]
+WantedBy=timers.target

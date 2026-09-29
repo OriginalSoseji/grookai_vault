@@ -1,0 +1,31 @@
+[Unit]
+Description=Grookai MTG read-only catalog supervision
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=grookai
+Group=grookai
+WorkingDirectory=/opt/grookai_mtg_supervisor_current
+EnvironmentFile=/etc/grookai/mtg-catalog-supervisor.env
+Environment=CATALOG_AUTOMATION_MODE=shadow-only
+Environment="PGOPTIONS=-c default_transaction_read_only=on"
+Environment=DOTENV_CONFIG_PATH=/nonexistent-mtg-supervisor-env
+ExecStart=/usr/bin/flock -n /var/lib/grookai/mtg-catalog-supervisor/worker.lock /usr/bin/node scripts/workers/mtg_catalog_readonly_worker_v1.mjs
+TimeoutStartSec=10m
+TimeoutStopSec=20s
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/grookai/mtg-catalog-supervisor
+UMask=0027
+Nice=10
+CPUQuota=50%
+MemoryMax=512M
+IOWeight=25
+
+[Install]
+WantedBy=multi-user.target

@@ -255,17 +255,21 @@
       "kind": "scheduled_workflow",
       "workload_class": "C",
       "criticality": "background",
-      "execution_plane": "github_actions",
+      "execution_plane": "digitalocean_systemd_and_github_actions",
       "deployment_expectation": "scheduled",
       "live_verification": "required",
-      "schedule": "*/15 * * * *",
+      "schedule": "worker every 15 minutes; GitHub at minutes 7,22,37,52",
       "max_staleness_minutes": 45,
       "source_files": [
         ".github/workflows/mtg-catalog-supervisor.yml",
-        "scripts/audits/mtg_catalog_supervisor_v1.mjs"
+        "scripts/audits/mtg_catalog_supervisor_v1.mjs",
+        "scripts/workers/mtg_catalog_readonly_worker_v1.mjs",
+        "backend/operations/mtg_worker_evidence_v1.mjs",
+        "deploy/systemd/grookai-mtg-catalog-supervisor.service",
+        "deploy/systemd/grookai-mtg-catalog-supervisor.timer"
       ],
-      "health_probe": "mtg_supervisor_terminal_artifact",
-      "write_boundary": "domain staging and contract-approved bounded workers",
+      "health_probe": "hash-verified read-only worker evidence, runtime timer and service result; retained GitHub workflow evidence",
+      "write_boundary": "read-only database audit and local evidence only; no dispatch, catalog, storage or pricing writes",
       "pause_policy": "pause on Class A/B degradation or capacity threshold"
     },
     {
