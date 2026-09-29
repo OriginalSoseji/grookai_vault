@@ -3,7 +3,8 @@ import type { SellerController, SellerScope } from "./vendorSellerPolicy.ts";
 import type { SellerAccountSignal } from "./vendorSellerStripeGateway.ts";
 export type SellerAccount = {
   id: string; owner_id: string; store_id: string; stripe_account_id: string; livemode: boolean;
-  controller: SellerController; connected_account_id: string | null; creation_attempt_id: string;
+  controller: SellerController; connected_account_id: string | null; creation_attempt_id: string | null;
+  adoption_grant_id?: string | null;
   creation_started_at: string | null; state: "reserved" | "creating" | "bound" | "deauthorized" | "closing";
   lease_token: string | null; lease_fence: number; lease_expires_at: string | null; closeout_id: string | null;
 };

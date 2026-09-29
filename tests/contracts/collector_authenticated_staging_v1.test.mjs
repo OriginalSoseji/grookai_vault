@@ -51,6 +51,18 @@ test('storefront mode has its own loopback target and cannot change other mode t
   assert.doesNotThrow(() => assertCollectorStagingTarget('http://127.0.0.1:54321'));
   assert.throws(() => assertCollectorStagingTarget('http://127.0.0.1:15439'));
 });
+test('seller adoption lab requires explicit batch mode and its exact loopback URL', () => {
+  const url = 'http://127.0.0.1:30221';
+  const batch = stagingMode({ NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST: 'true' }).assertCollectorStagingTarget;
+  assert.doesNotThrow(() => batch(url));
+  assert.throws(() => assertCollectorStagingTarget(url));
+  for (const invalid of [url + '/rest', url + '?next=prod', url + '#x',
+    'http://user@127.0.0.1:30221', 'http://localhost:30221', 'https://127.0.0.1:30221',
+    'https://ycdxbpibncqcchqiihfz.supabase.co']) assert.throws(() => batch(invalid));
+  assert.throws(() => batch(url, true));
+  assert.throws(() => batch(url, false, true));
+});
+
 test('fixture lab requires a separate explicit mode and never accepts the sample or remote DB', () => {
   assert.doesNotThrow(()=>assertCollectorStagingTarget('http://127.0.0.1:54361',true));
   assert.throws(()=>assertCollectorStagingTarget('http://127.0.0.1:54361',false));

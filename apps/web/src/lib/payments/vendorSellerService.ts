@@ -14,7 +14,7 @@ export type SellerStatus = { enabled: boolean; onboardingEnabled: boolean; testM
   readiness: Pick<SellerReadiness, "capabilitiesReady" | "reasons" | "requirements" | "checkedAt"> | null };
 function attempt(a: SellerAccount): SellerCreationAttempt {
   return { id: a.id, ownerId: a.owner_id, storeId: a.store_id, platformAccountId: a.stripe_account_id,
-    livemode: a.livemode, controller: a.controller, attemptId: a.creation_attempt_id,
+    livemode: a.livemode, controller: a.controller, attemptId: a.creation_attempt_id ?? "",
     startedAt: a.creation_started_at === null ? NaN : Math.floor(Date.parse(a.creation_started_at) / 1000) };
 }
 export function createVendorSellerService(input: { repo: VendorSellerRepository; stripe: Stripe; config: SellerStripeConfig;
@@ -54,12 +54,13 @@ export function createVendorSellerService(input: { repo: VendorSellerRepository;
           if (!(e instanceof SellerError && e.code === "seller_onboarding_unavailable")) throw e;
         }
       }
-      return { enabled: true, onboardingEnabled: allowed && (!a || ["reserved", "creating", "bound"].includes(a.state)),
+      return { enabled: true, onboardingEnabled: allowed && !a?.adoption_grant_id && (!a || ["reserved", "creating", "bound"].includes(a.state)),
         testMode: !config.scope.livemode, state: a?.state ?? "none", hasConnectedAccount: Boolean(a?.connected_account_id),
         recoveryRequired: Boolean(a && !a.connected_account_id && a.creation_started_at && now() - attempt(a).startedAt >= 23 * 3600), readiness: null };
     },
     async onboarding(owner: string): Promise<{ url: string }> {
       if (!input.onboardingEnabled) throw new SellerError("seller_onboarding_unavailable");
+      if ((await repo.account(owner))?.adoption_grant_id) throw new SellerError("seller_onboarding_blocked");
       const store = await repo.store(owner); if (!store) throw new SellerError("seller_store_required");
       const reserved = await repo.reserve(owner, store, config.scope, SELLER_CONTROLLER);
       const { account, lease } = await claim(reserved, owner);
@@ -97,6 +98,7 @@ export function createVendorSellerService(input: { repo: VendorSellerRepository;
     // Private operator primitive only: no HTTP action accepts a candidate ID.
     async recover(owner: string, candidateId: string): Promise<void> {
       const stored = await repo.account(owner); if (!stored) throw new SellerError("seller_binding_required");
+      if (stored.adoption_grant_id) throw new SellerError("seller_onboarding_blocked");
       const { account, lease } = await claim(stored, owner);
       try {
         if (account.connected_account_id && account.connected_account_id !== candidateId) throw new SellerError("seller_scope_mismatch");

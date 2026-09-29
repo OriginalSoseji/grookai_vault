@@ -1,0 +1,62 @@
+// One-use full replay in a new synthetic project. Never resets existing labs.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import net from 'node:net';
+import {createHash} from 'node:crypto';
+import {execFileSync,spawnSync} from 'node:child_process';
+import {snapshotSql,compareSnapshots} from 'file:///C:/gv_store_billing_20260919/scripts/schema/vendor_billing_schema_v1.mjs';
+assert.equal(process.argv.length,2);
+const root='C:/gv_store_seller_link_20260928',project='grookai-seller-link-20260928';
+const out=root+'/.local/integration/seller-adoption-v1',fixture=out+'/replay-409';
+const container='supabase_db_'+project,relay=project+'-relay',subnet='10.249.162.0/24';
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const docker=(...a)=>execFileSync('docker',a,{encoding:'utf8',windowsHide:true,timeout:60000,maxBuffer:64*1024*1024,stdio:['pipe','pipe','pipe']}).trim();
+const sql=q=>execFileSync('docker',['exec','-i',container,'psql','-U','postgres','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'],{input:q,encoding:'utf8',windowsHide:true,timeout:180000,maxBuffer:64*1024*1024}).trim();
+const baseline=JSON.parse(fs.readFileSync(out+'/baseline.json'));assert.equal(baseline.status,'passed');assert.equal(baseline.migrations,408);
+assert.ok(Date.now()-Date.parse(baseline.at)<6*3600000);
+const sources=Object.fromEntries(fs.readdirSync(root+'/supabase/migrations').filter(n=>n.endsWith('.sql')).sort().map(n=>[n,hash(fs.readFileSync(root+'/supabase/migrations/'+n))]));
+assert.equal(Object.keys(sources).length,409);
+for(const [n,h]of Object.entries(baseline.sourceHashes))assert.equal(sources[n],h);
+assert.deepEqual(Object.keys(sources).filter(n=>!baseline.sourceHashes[n]),['20260928213000_vendor_seller_adoption_v1.sql']);
+assert.ok(!fs.existsSync(fixture),'Do not reuse a consumed replay intent');
+assert.equal(docker('ps','-a','--filter','name='+project,'--format','{{.Names}}'),'');
+assert.equal(docker('volume','ls','--filter','name='+project,'--format','{{.Name}}'),'');
+assert.ok(fs.statfsSync(root).bavail*fs.statfsSync(root).bsize>4e9);
+for(const port of [30221,30222,30224,30228,30240])await new Promise((resolve,reject)=>{const s=net.createServer();s.once('error',reject);s.listen(port,'127.0.0.1',()=>s.close(resolve));});
+for(const network of JSON.parse(docker('network','inspect',...docker('network','ls','-q').split(/\s+/))))for(const ip of network.IPAM.Config??[])assert.notEqual(ip.Subnet,subnet);
+const prior='C:/gv_store_cart_20260927/.local/integration/store-cart-lab-v1';
+const original=fs.readFileSync(prior+'/supabase/config.toml','utf8');
+assert.equal(hash(original),JSON.parse(fs.readFileSync(prior+'/preparation.json')).configSha256);
+const config=original.replaceAll('grookai-store-cart-20260927',project).replaceAll('298','302');
+assert.ok(config.includes('max_worker_processes = 0'));assert.ok(!config.includes('ycdxbpibncqcchqiihfz'));
+fs.mkdirSync(fixture+'/supabase/migrations',{recursive:true});fs.mkdirSync(fixture+'/supabase/.temp');
+for(const name of Object.keys(sources))fs.copyFileSync(root+'/supabase/migrations/'+name,fixture+'/supabase/migrations/'+name,fs.constants.COPYFILE_EXCL);
+fs.writeFileSync(fixture+'/supabase/config.toml',config,{flag:'wx'});
+fs.writeFileSync(fixture+'/supabase/.temp/postgres-version','17.6.1.113',{flag:'wx'});
+const save=(name,value)=>fs.writeFileSync(fixture+'/'+name,JSON.stringify(value,null,2),{flag:'wx'});
+save('intent.json',{at:new Date().toISOString(),project,container,relay,sourceHashes:sources,configSha256:hash(config),consumed:true});
+const code=`import net from 'node:net';for(const [port,service,targetPort] of [[30222,'db',5432],[30221,'kong',8000],[30224,'inbucket',8025]]){net.createServer(source=>{const target=net.connect(targetPort,'supabase_'+service+'_${project}');source.on('error',()=>target.destroy());target.on('error',()=>source.destroy());source.on('close',()=>target.destroy());target.on('close',()=>source.destroy());source.pipe(target).pipe(source)}).listen(port,'0.0.0.0')}`;
+fs.writeFileSync(fixture+'/relay.mjs',code,{flag:'wx'});
+docker('network','create','--internal','--subnet',subnet,project);
+docker('create','--name',relay,'--network','bridge',...([30221,30222,30224].flatMap(p=>['-p',`127.0.0.1:${p}:${p}`])),'node:22-bookworm-slim','node','/relay.mjs');
+docker('cp',fixture+'/relay.mjs',relay+':/relay.mjs');docker('network','connect',project,relay);docker('start',relay);
+const env={...process.env,DO_NOT_TRACK:'1'};for(const k of Object.keys(env))if(/SUPABASE|DATABASE_URL|POSTGRES_URL/.test(k))delete env[k];
+function cli(args,label){const fd=fs.openSync(fixture+'/'+label+'.private.log','wx');let result;
+ try{result=spawnSync('supabase',[...args,'--workdir',fixture,'--network-id',project],{env,stdio:['ignore',fd,fd],windowsHide:true,timeout:600000});}finally{fs.closeSync(fd);}
+ assert.ifError(result.error);assert.equal(result.status,0,label+' failed; preserve consumed intent');}
+function guard(){
+ const db=JSON.parse(docker('inspect',container))[0];assert.equal(db.State.Running,true);
+ assert.equal(db.Config.Image,'public.ecr.aws/supabase/postgres:17.6.1.113');
+ assert.deepEqual(Object.keys(db.NetworkSettings.Networks),[project]);assert.equal(JSON.parse(docker('network','inspect',project))[0].Internal,true);
+ assert.deepEqual(sql('select version from supabase_migrations.schema_migrations order by version').split(/\r?\n/),Object.keys(sources).map(n=>n.split('_')[0]).sort());
+ assert.equal(sql("select current_setting('max_worker_processes')||'|'||(select count(*) from auth.users)||'|'||(select count(*) from vendor_seller_accounts)||'|'||(select count(*) from card_prints)"),'0|0|0|0');
+ assert.equal(sql('select onboarding_enabled::text from vendor_seller_rollout'),'false');
+ assert.equal(sql('select orders_enabled::text from vendor_orders_rollout'),'false');
+}
+cli(['start','--exclude','realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'],'start');guard();
+cli(['db','reset','--local','--no-seed','--yes'],'full-reset');guard();
+cli(['db','push','--local','--yes'],'push-noop');guard();
+const replayed=JSON.parse(sql(snapshotSql));save('replayed.private.json',replayed);
+const report={status:'passed',at:new Date().toISOString(),project,migrations:409,fullReplay:true,noOpPush:true,sourceHashes:sources,productionWrites:0};
+save('receipt.json',report);console.log(JSON.stringify({status:'passed',project,migrations:409,productionWrites:0}));

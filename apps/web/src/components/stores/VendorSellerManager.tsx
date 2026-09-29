@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { SellerStatus } from "@/lib/payments/vendorSellerService";
 import s from "./StoreManager.module.css";
+import ExistingSellerConnection from "./ExistingSellerConnection";
 async function request<T>(action?: "onboarding" | "refresh"): Promise<T> {
   const response = await fetch("/api/vendor-payments/owner", { method: action ? "POST" : "GET", cache: "no-store", credentials: "same-origin",
     ...(action ? { headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action }) } : {}) });
@@ -47,6 +48,7 @@ export default function VendorSellerManager() {
   }
   return <div className={s.workspace}>
     <header className={s.header}><div><span className={s.eyebrow}>Vendor workspace</span><h1>Seller payments</h1><p className={s.muted}>Set up your Stripe account from your computer.</p></div><Link className={s.linkButton} href="/account/store">Back to your store</Link></header>
+    <ExistingSellerConnection />
     {error && <div className={`${s.notice} ${s.error}`} role="alert">{error}</div>}
     {notice && <div className={s.notice} role="status">{notice}</div>}
     <section className={s.panel} aria-busy={busy}>
@@ -55,7 +57,7 @@ export default function VendorSellerManager() {
         <h2>Your seller account</h2>
         <p>{status.state === "none" ? "Seller payments have not been set up." : status.state === "bound" ? "Your Stripe account is connected." : status.state === "closing" ? "Account closure is being reviewed." : status.state === "deauthorized" ? "Stripe access was disconnected. Contact Grookai support." : "Seller setup is in progress."}</p>
         {status.recoveryRequired && <p>Your earlier setup needs review before another attempt. Contact Grookai support.</p>}
-        {!status.onboardingEnabled && <p>Seller setup is currently unavailable for this account.</p>}
+        {!status.onboardingEnabled && status.state !== "bound" && <p>Seller setup is currently unavailable for this account.</p>}
         {status.readiness && <div role="status"><p>{status.readiness.capabilitiesReady ? "Stripe currently reports payment and payout capabilities as active." : "Stripe setup or verification is still required."}</p>
           {status.readiness.requirements.currentlyDue !== null && status.readiness.requirements.currentlyDue > 0 && <p>Continue setup to provide the remaining information.</p>}
           {status.readiness.reasons.includes("verification_pending") && <p>Stripe is reviewing your information.</p>}

@@ -11,7 +11,7 @@ export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureL
   if (vendorPilot && (fixtureLab || hosted || storefrontLocalTest)) throw new Error("Vendor pilot cannot share another staging mode.");
   if (storefrontLocalTest && (fixtureLab || hosted)) throw new Error("Storefront local tests cannot share another staging mode.");
   if (fixtureLab && hosted) throw new Error("Fixture and hosted staging are mutually exclusive.");
-  const expected = vendorBatchLocalTest ? (["http://127.0.0.1:27621", "http://127.0.0.1:29021", "http://127.0.0.1:29421"].includes(target.origin) ? target.origin : "http://127.0.0.1:26421") : vendorPilot ? VENDOR_PILOT_DATABASE : storefrontLocalTest ? "http://127.0.0.1:15439" : hosted ? "https://hcdpcbpnnvtbaezefjkd.supabase.co"
+  const expected = vendorBatchLocalTest ? (["http://127.0.0.1:27621", "http://127.0.0.1:29021", "http://127.0.0.1:29421", "http://127.0.0.1:30221"].includes(target.origin) ? target.origin : "http://127.0.0.1:26421") : vendorPilot ? VENDOR_PILOT_DATABASE : storefrontLocalTest ? "http://127.0.0.1:15439" : hosted ? "https://hcdpcbpnnvtbaezefjkd.supabase.co"
     : fixtureLab ? "http://127.0.0.1:54361" : "http://127.0.0.1:54321";
   if (target.origin !== expected || target.username || target.password || target.search || target.hash) {
     throw new Error("Authenticated collector staging requires its exact verified database.");

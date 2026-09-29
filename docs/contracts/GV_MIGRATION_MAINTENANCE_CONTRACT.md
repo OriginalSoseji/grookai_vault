@@ -1,5 +1,26 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Existing seller adoption baseline (2026-09-28)
+
+`VendorSellerAdoptionReleaseV1` adds read-only AuditLinkedSchema/PrePush for exactly
+`20260928213000`. It rejects combined modes and target overrides, preserves
+duplicate checks, verifies the full409 replay and five retained seller states,
+compares the current isolated schema/security to qualified409, and refreshes the
+production408 baseline. PrePush additionally requires clean committed source
+containing origin/main and matching clean-source real Auth/Next/webhook and normal
+shipcheck receipts. It neither resets labs nor applies a migration. The separate
+baseline-only switch below still rejects PrePush.
+
+`VendorSellerAdoptionBaselineAudit` permits only fixed read-only AuditLinkedSchema
+in the seller-link worktree against the current408 source hashes and qualified
+full408 replay. It uses the existing schema/security comparator and three-table
+column-order reconciliation. PrePush, combined modes and overrides are denied.
+Re-auditing may retain only the exact pending candidate
+`20260928213000_vendor_seller_adoption_v1.sql`; it is excluded from the unchanged
+408 baseline comparison. Any other pending file or baseline hash change fails.
+No new production migration or payload authority is granted by this baseline.
+Supplementary PostgreSQL16 subset tests do not replace Supabase17 full replay.
+
 ## Native import exact-pending inspection (2026-09-28)
 
 `NativeImportRecoveryReleaseV1` accepts AuditLinkedSchema and PrePush only with
