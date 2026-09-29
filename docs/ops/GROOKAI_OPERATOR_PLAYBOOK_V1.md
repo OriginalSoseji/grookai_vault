@@ -1776,3 +1776,23 @@ sets and seven future sets. Replaying that preserved readback through the
 repaired planner passes. A deployed workflow result is separate evidence.
 Worker capacity/pricing incident receipts and the live recovery checkpoint
 are under `C:/grookai_vault_operator_artifacts/worker_pricing_recovery_20260929`.
+# Pricing guard disk I/O recovery — September 29, 2026
+
+Publication worker V1_9 uses transaction-local bitmap planner preferences only
+for the existing six-count activation coverage query. It restores the previous
+planner settings before activation; an aborted transaction restores them on
+rollback. The SQL, 120-second statement/125-second client caps, freshness,
+coverage loss tolerances and frozen producer checks remain unchanged.
+
+During source ingestion, a repeatable-read production comparison returned
+identical counts in 100.241 seconds with the old plan and 29.866 seconds with
+the candidate. Sequential probes are not controlled cold-cache benchmarks.
+Local PostgreSQL tests verify settings restoration after success and rollback,
+and preserve original-query parity at full release scale. Evidence and live
+release state: `C:/grookai_vault_operator_artifacts/worker_pricing_recovery_20260929/RECOVERY_CHECKPOINT.md`.
+
+Do not modify an in-flight V1_8 runtime or resume its frozen run as V1_9.
+Deploy a new immutable runtime only from a merged producer with the governed
+shadow/reconciliation proof, retain rollback pins, and verify actual production
+publication separately. The September 29 capacity recovery alone is not proof
+that pricing or MEE ingestion has completed.

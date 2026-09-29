@@ -520,7 +520,7 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
   assert.match(WORKER, /evaluateMtgPricingProductionActivationGuardV1/);
   assert.match(WORKER, /async function evaluateProductionActivationGuard/);
-  assert.match(WORKER, /text: MARKET_ACTIVATION_COVERAGE_SQL_V1/);
+  assert.match(WORKER, /await readMarketActivationCoverageV1\(client, \{/);
   assert.match(COVERAGE_SQL, /scoped_snapshots as materialized/);
   assert.match(COVERAGE_SQL, /scoped_decisions as materialized/);
   assert.match(COVERAGE_SQL, /count\(distinct card_printing_id\)/);

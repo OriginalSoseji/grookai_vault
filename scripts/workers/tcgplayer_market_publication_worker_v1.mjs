@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
-import { MARKET_ACTIVATION_COVERAGE_SQL_V1 } from "../../backend/pricing/market_activation_coverage_v1.mjs";
+import { readMarketActivationCoverageV1 } from "../../backend/pricing/market_activation_coverage_v1.mjs";
 import {
   createCandidateStreamReconcilerV1,
   readMarketLedgerBatchesV1,
@@ -46,7 +46,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_8";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -1345,8 +1345,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
     await client.query("select set_config('statement_timeout', $1, true)", [
       `${PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS}ms`,
     ]);
-    const result = await client.query({
-      text: MARKET_ACTIVATION_COVERAGE_SQL_V1,
+    const result = await readMarketActivationCoverageV1(client, {
       values: [publicationSet.id, run.id],
       query_timeout: PRODUCTION_GUARD_QUERY_TIMEOUT_MS,
     });
