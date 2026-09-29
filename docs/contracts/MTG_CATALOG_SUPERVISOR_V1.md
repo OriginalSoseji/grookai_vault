@@ -31,10 +31,10 @@ For each invocation it:
 3. Exits successfully when a writer is active or queued.
 4. Stops after three consecutive failed, cancelled, or timed-out writer runs.
 5. Opens a production database transaction in read-only mode.
-6. Requires the MTG release control to be `hidden` or `signed_in`.
+6. Requires the MTG release control to be `hidden`, `signed_in` or `public`.
 7. Reconciles each eligible manifest set by exact set, card, identity, printing, parent-mapping, and printing-mapping counts.
 8. Stops on any partial or drifted set.
-9. When the release is `signed_in`, requires every eligible set to be complete and exits successfully with no dispatch.
+9. When the release is `signed_in` or `public`, requires every eligible set to be complete and exits successfully with no dispatch.
 10. When the release is `hidden`, identifies the first absent eligible execution ordinal.
 11. Writes `run_plan.json` and marks the row as a shadow candidate.
 12. Performs no dispatch and grants no canonical authority.
@@ -63,11 +63,11 @@ Automation fails closed when:
 
 - the frozen runner ref moves;
 - the manifest hash or contract validation changes;
-- MTG release control is neither `hidden` nor `signed_in`;
-- an eligible set is absent after the release becomes `signed_in`;
+- MTG release control is not `hidden`, `signed_in` or `public`;
+- an eligible set is absent after the release becomes `signed_in` or `public`;
 - a selected set is partially present or count-drifted;
 - the database readback fails;
 - GitHub workflow state cannot be read;
 - three consecutive writer runs fail, time out, or are cancelled.
 
-Historical writer failures do not block a complete `signed_in` no-dispatch result because no writer authority is exercised. Every invocation preserves a summary, run plan, sanitized runner state, artifact hashes, and production readback when no writer is active.
+Historical writer failures do not block a complete `signed_in` or `public` no-dispatch result because no writer authority is exercised. Public visibility does not relax completeness checks or grant dispatch authority. Every invocation preserves a summary, run plan, sanitized runner state, artifact hashes, and production readback when no writer is active.

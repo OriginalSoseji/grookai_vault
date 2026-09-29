@@ -167,11 +167,26 @@ test("signed-in release fails closed when an eligible set is absent or drifted",
 });
 
 test("unsupported release visibility and frozen producer commit are hard stops", () => {
-  assert.throws(() => plan({ releaseStatus: "public" }), /must be hidden or signed_in/);
+  assert.throws(() => plan({ releaseStatus: "unknown" }), /must be hidden, signed_in or public/);
   assert.throws(
     () => plan({ targetCommitSha: "a".repeat(40) }),
     /Frozen runner ref moved/,
   );
+});
+
+test("public catalog remains an exact-count observer with no writer authority", () => {
+  const result = plan({ releaseStatus: "public" });
+  assert.equal(result.status, "eligible_catalog_complete_public_no_dispatch");
+  assert.equal(result.catalog.release_status, "public");
+  assert.equal(result.dispatch, null);
+  const executionOrder = [batch(0), batch(1)];
+  assert.throws(() => plan({ releaseStatus: "public", executionOrder,
+    readbackByCode: { set0: exact(executionOrder[0]) },
+  }), /Public MTG catalog has 1 absent eligible sets; automatic dispatch is forbidden/);
+  assert.throws(() => plan({ releaseStatus: "public", executionOrder,
+    readbackByCode: { set0: exact(executionOrder[0]),
+      set1: { ...exact(executionOrder[1]), card_printings: 1 } },
+  }), /Partial or drifted MTG set state/);
 });
 
 test("two failed runs retry from database truth but the third stops automation", () => {
@@ -205,15 +220,17 @@ test("historical runner failures cannot fail a complete signed-in no-dispatch st
     conclusion: "failure",
     updated_at: `2026-08-19T0${3 - index}:00:00Z`,
   }));
-  const result = plan({ releaseStatus: "signed_in", runnerRuns: failures });
-  assert.equal(result.status, "eligible_catalog_complete_signed_in_no_dispatch");
-  assert.equal(result.consecutive_runner_failures, 3);
-  assert.equal(result.dispatch, null);
+  for (const releaseStatus of ["signed_in", "public"]) {
+    const result = plan({ releaseStatus, runnerRuns: failures });
+    assert.equal(result.status, `eligible_catalog_complete_${releaseStatus}_no_dispatch`);
+    assert.equal(result.consecutive_runner_failures, 3);
+    assert.equal(result.dispatch, null);
+  }
 });
 
 test("governing contract documents signed-in completion and shadow-only observation", () => {
   assert.match(CONTRACT, /signed_in.*complete.*no dispatch/is);
-  assert.match(CONTRACT, /release control to be `hidden` or `signed_in`/i);
+  assert.match(CONTRACT, /release control to be `hidden`, `signed_in` or `public`/i);
   assert.match(CONTRACT, /records the next eligible shadow candidate/i);
   assert.match(CONTRACT, /eligible set is absent after the release becomes `signed_in`/i);
 });
