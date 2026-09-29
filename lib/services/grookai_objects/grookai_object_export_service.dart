@@ -92,9 +92,14 @@ class GrookaiObjectExportService {
     if (renderObject is! RenderRepaintBoundary) {
       throw StateError('Grookai object export boundary is not ready.');
     }
-    if (renderObject.debugNeedsPaint) {
-      throw StateError('Grookai object export boundary is not painted yet.');
-    }
+    // debugNeedsPaint throws outside debug builds. The completed frames above
+    // establish paint readiness; keep this extra diagnostic inside an assert.
+    assert(() {
+      if (renderObject.debugNeedsPaint) {
+        throw StateError('Grookai object export boundary is not painted yet.');
+      }
+      return true;
+    }());
 
     final image = await renderObject.toImage(pixelRatio: pixelRatio);
     final data = await image.toByteData(format: ui.ImageByteFormat.png);

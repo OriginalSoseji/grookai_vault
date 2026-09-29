@@ -1,5 +1,37 @@
 # Grookai Operator Playbook V1
 
+## Native release image sharing — September 29
+
+Read `docs/checkpoints/native_release_share_20260929.md`. Release-only PNG export
+failed because a debug-only Flutter getter was evaluated at runtime. The local
+fix has physical iPhone release evidence for two images, cancel and retry, plus
+32 focused tests. Use the offline release fixture in an isolated bundle; do not
+replace the signed-in app or mistake a debug/mock test for release proof. This
+fix is not yet in TestFlight. Preserve the completed 331 release receipts and the
+separate label workstream's installed 332.
+
+## Nelko P21 native label printing — September 29
+
+Read `docs/checkpoints/p21_native_printing_20260929.md` and
+`docs/contracts/P21_NATIVE_LABEL_PRINTING_V1.md`. Direct iPhone communication is
+verified through FF00/FF02/FF01; SELFTEST printed and the roll reports 14 × 40 mm.
+The actual Grookai Release332 app is installed on the paired iPhone. It connected
+to P21 and sent an Eevee label; the user confirmed readable text and usable QR.
+No TestFlight upload occurred. Include this isolated printer source in subsequent
+native releases. The user requested actual-app testing; preserve app data.
+The final installed layout is p21_14x40_v2: full name/set/number, large adaptive
+text, official emblem and permanent QR, with no price or visible GVVI. Probe20
+verifies the live Pikachu preview. Source/install receipts are in the checkpoint.
+Public vendor-card identity/price
+authority remains unchanged. Never automatically replay interrupted label jobs.
+
+Existing Mac access: discover `cesars-macbook-pro-2` through Tailscale, SSH account
+`cesarcabral`, key `~/.ssh/grookai_mac_remote_ed25519`, strict host-key checking.
+Private receipts are in `p21_probe_20260929` under the operator-artifact root on
+Windows and Mac. nRF Connect's services are the second top segment, not the
+cylinder icon. Subscribe to FF01 before expecting fresh replies. Connected status
+alone does not establish print support; actual label output remains separate proof.
+
 ## Native owned-copy selection — September 29
 
 Read `docs/checkpoints/native_owned_copies_20260929.md` and
