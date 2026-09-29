@@ -46,10 +46,14 @@ function parseArgs(argv) {
     repository: process.env.GITHUB_REPOSITORY ?? "",
     runnerCommit: DEFAULT_RUNNER_COMMIT,
     runnerRef: DEFAULT_RUNNER_REF,
+    shadowOnly: false,
+    publicReadOnly: false,
     workflowId: DEFAULT_RUNNER_WORKFLOW_ID,
   };
   for (const arg of argv) {
     if (arg === "--dispatch") args.dispatch = true;
+    else if (arg === "--shadow-only") args.shadowOnly = true;
+    else if (arg === "--public-read-only") args.publicReadOnly = true;
     else if (arg.startsWith("--as-of=")) args.asOf = arg.slice(8);
     else if (arg.startsWith("--manifest=")) args.manifest = path.resolve(arg.slice(11));
     else if (arg.startsWith("--max-consecutive-failures=")) {
@@ -75,8 +79,15 @@ function parseArgs(argv) {
   if (args.runnerCommit !== DEFAULT_RUNNER_COMMIT) {
     throw new Error("runner-commit is outside the frozen supervisor authority");
   }
-  if (args.asOf !== "2026-08-16") {
-    throw new Error("as-of is outside the frozen supervisor authority");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(args.asOf)) throw new Error("as-of must be YYYY-MM-DD");
+  if (args.dispatch && args.shadowOnly) {
+    throw new Error("--dispatch is forbidden in --shadow-only mode");
+  }
+  if (args.shadowOnly && process.env.CATALOG_AUTOMATION_MODE !== "shadow-only") {
+    throw new Error("CATALOG_AUTOMATION_MODE must equal shadow-only");
+  }
+  if (args.publicReadOnly && (!args.shadowOnly || args.dispatch)) {
+    throw new Error("Public transport requires shadow-only and forbids dispatch");
   }
   if (!Number.isInteger(args.maxSets) || args.maxSets < 1 || args.maxSets > 35) {
     throw new Error("max-sets must be between 1 and the frozen ceiling of 35");
@@ -130,6 +141,12 @@ function sanitizedRun(run) {
 }
 
 async function githubRequest(args, endpoint, options = {}) {
+  if (args.publicReadOnly) {
+    if ((options.method ?? 'GET') !== 'GET' || options.body !== undefined) {
+      throw new Error('Public supervisor transport cannot write');
+    }
+    return publicSupervisorGitHubReadV1(args, endpoint);
+  }
   const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
   if (!token) throw new Error("GH_TOKEN or GITHUB_TOKEN is required");
   const method = options.method ?? "GET";
@@ -158,26 +175,66 @@ async function githubRequest(args, endpoint, options = {}) {
   return output.trim() ? JSON.parse(output) : null;
 }
 
+export async function publicSupervisorGitHubReadV1(args, endpoint, { request = fetch } = {}) {
+  if (args.repository !== 'OriginalSoseji/grookai_vault' || !args.shadowOnly || args.dispatch) {
+    throw new Error('Public supervisor transport requires the frozen read-only repository');
+  }
+  const allowed = [
+    `/commits/${encodeURIComponent(DEFAULT_RUNNER_REF)}`,
+    `/actions/workflows/${DEFAULT_RUNNER_WORKFLOW_ID}/runs?per_page=100`,
+  ];
+  if (!allowed.includes(endpoint)) throw new Error('Public supervisor endpoint is outside read authority');
+  const response = await request(`https://api.github.com/repos/${args.repository}${endpoint}`, {
+    headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'grookai-mtg-read-only-supervisor',
+      'X-GitHub-Api-Version': '2022-11-28', 'Cache-Control': 'no-cache' },
+    signal: AbortSignal.timeout(30_000),
+  });
+  if (!response.ok) throw new Error(`Public GitHub read failed: HTTP ${response.status}`);
+  return response.json();
+}
+
 async function captureRunnerState(args) {
   const [commit, runs] = await Promise.all([
     githubRequest(args, `/commits/${encodeURIComponent(args.runnerRef)}`),
     githubRequest(
       args,
-      `/actions/workflows/${args.workflowId}/runs?event=workflow_dispatch&per_page=50`,
+      args.publicReadOnly
+        ? `/actions/workflows/${args.workflowId}/runs?per_page=100`
+        : `/actions/workflows/${args.workflowId}/runs?event=workflow_dispatch&per_page=50`,
     ),
   ]);
+  if (!Array.isArray(runs?.workflow_runs)) throw new Error('GitHub writer state is missing');
   return {
     target_commit_sha: commit.sha,
     runs: (runs.workflow_runs ?? []).map(sanitizedRun),
   };
 }
 
-function createReadOnlyClient() {
+export function verifiedSupervisorDatabaseOptionsV1(connectionString, ca) {
+  const url = new URL(connectionString);
+  if (url.hostname !== 'aws-1-us-east-2.pooler.supabase.com' || url.port !== '5432' ||
+      decodeURIComponent(url.username) !== 'postgres.ycdxbpibncqcchqiihfz' || url.pathname !== '/postgres') {
+    throw new Error('Supervisor database endpoint differs from the verified production session pooler');
+  }
+  if (!ca?.includes('-----BEGIN CERTIFICATE-----')) throw new Error('Verified supervisor CA is required');
+  for (const key of ['sslmode', 'sslcert', 'sslkey', 'sslrootcert']) url.searchParams.delete(key);
+  return { connectionString: url.href, ssl: { ca, rejectUnauthorized: true, servername: url.hostname },
+    options: '-c default_transaction_read_only=on', connectionTimeoutMillis: 15_000,
+    query_timeout: 65_000, statement_timeout: 60_000, application_name: MTG_CATALOG_SUPERVISOR_VERSION };
+}
+
+async function createReadOnlyClient(args) {
   const connectionString = process.env.SUPABASE_DB_URL;
   if (!connectionString) throw new Error("SUPABASE_DB_URL is required");
+  if (args.publicReadOnly) {
+    const caFile = process.env.MTG_SUPERVISOR_CA_FILE;
+    if (!caFile) throw new Error('MTG_SUPERVISOR_CA_FILE is required');
+    return new Client(verifiedSupervisorDatabaseOptionsV1(connectionString, await fs.readFile(caFile, 'utf8')));
+  }
   return new Client({
     connectionString,
     ssl: { rejectUnauthorized: false },
+    options: "-c default_transaction_read_only=on",
     connectionTimeoutMillis: 15_000,
     query_timeout: 300_000,
     statement_timeout: 300_000,
@@ -192,11 +249,14 @@ async function groupedCounts(client, sql, valueField) {
   );
 }
 
-async function captureCatalogReadback() {
-  const client = createReadOnlyClient();
+async function captureCatalogReadback(args) {
+  const client = await createReadOnlyClient(args);
   await client.connect();
   try {
     await client.query("begin transaction read only");
+    const transaction = await client.query("select current_setting('transaction_read_only') as read_only");
+    if (transaction.rows[0]?.read_only !== 'on') throw new Error('Supervisor transaction is not read-only');
+    if (args.publicReadOnly && client.connection.stream.authorized !== true) throw new Error('Supervisor TLS was not verified');
     const release = await client.query(`
       select release_status
       from public.catalog_game_release_controls
@@ -281,6 +341,7 @@ async function captureCatalogReadback() {
     return {
       recorded_at: new Date().toISOString(),
       transaction_read_only: true,
+      tls_verified: args.publicReadOnly ? client.connection.stream.authorized === true : null,
       release_status: release.rows.length === 1 ? release.rows[0].release_status : null,
       release_control_row_count: release.rows.length,
       by_code: byCode,
@@ -351,8 +412,8 @@ async function appendGithubMetadata(summary) {
   }
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
+export async function runMtgCatalogSupervisorV1(argv = process.argv.slice(2)) {
+  const args = parseArgs(argv);
   await fs.mkdir(args.outDir, { recursive: true });
   const startedAt = new Date().toISOString();
   let targetCommitSha = null;
@@ -376,7 +437,7 @@ async function main() {
     targetCommitSha = runnerState.target_commit_sha;
 
     if (activeMtgCatalogRunnerRunsV1(runnerState.runs).length === 0) {
-      readback = await captureCatalogReadback();
+      readback = await captureCatalogReadback(args);
       await atomicWriteJson(path.join(args.outDir, "catalog_readback.json"), readback);
     }
     runPlan = buildMtgCatalogSupervisorPlanV1({
@@ -398,6 +459,7 @@ async function main() {
       runner_workflow_id: args.workflowId,
       runner_ref: args.runnerRef,
       dispatch_requested: args.dispatch,
+      shadow_only: args.shadowOnly,
       boundaries: {
         database_access: readback ? "read_only" : "skipped_while_writer_active",
         database_writes: false,
@@ -432,7 +494,9 @@ async function main() {
         finalStatus = "dispatch_created_and_observed";
       }
     } else if (runPlan.status === "dispatch_ready") {
-      finalStatus = "plan_only_dispatch_ready";
+      finalStatus = args.shadowOnly
+        ? "shadow_only_candidate_recorded"
+        : "plan_only_dispatch_ready";
     }
 
     const summary = {
@@ -441,6 +505,7 @@ async function main() {
       completed_at: new Date().toISOString(),
       status: finalStatus,
       dispatched,
+      shadow_only: args.shadowOnly,
       repository: args.repository,
       target_commit_sha: targetCommitSha,
       catalog: runPlan.catalog,
@@ -455,6 +520,7 @@ async function main() {
     await writeArtifactHashes(args.outDir);
     await appendGithubMetadata(summary);
     process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+    return summary;
   } catch (error) {
     const failure = {
       version: MTG_CATALOG_SUPERVISOR_VERSION,
@@ -462,6 +528,7 @@ async function main() {
       failed_at: new Date().toISOString(),
       status: "stopped_fail_closed",
       dispatched: dispatchAccepted,
+      shadow_only: args.shadowOnly,
       repository: args.repository,
       target_commit_sha: targetCommitSha,
       error: String(error?.message ?? error),
@@ -484,8 +551,8 @@ async function main() {
   }
 }
 
-if (path.resolve(process.argv[1]) === SCRIPT_FILE) {
-  main().catch((error) => {
+if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_FILE) {
+  runMtgCatalogSupervisorV1().catch((error) => {
     process.stderr.write(`[mtg-catalog-supervisor-v1] ${error.stack ?? error}\n`);
     process.exitCode = 1;
   });

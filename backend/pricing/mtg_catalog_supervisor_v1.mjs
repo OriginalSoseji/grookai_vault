@@ -192,9 +192,9 @@ export function buildMtgCatalogSupervisorPlanV1({
       catalog: null,
     };
   }
-  if (!["hidden", "signed_in"].includes(releaseStatus)) {
+  if (!["hidden", "signed_in", "public"].includes(releaseStatus)) {
     throw new Error(
-      `MTG release must be hidden or signed_in, got ${releaseStatus ?? "missing"}`,
+      `MTG release must be hidden, signed_in or public, got ${releaseStatus ?? "missing"}`,
     );
   }
   if (!readbackByCode) throw new Error("MTG catalog readback is required before dispatch");
@@ -228,15 +228,15 @@ export function buildMtgCatalogSupervisorPlanV1({
     partial_or_drifted_count: partial.length,
   };
 
-  if (releaseStatus === "signed_in") {
+  if (releaseStatus === "signed_in" || releaseStatus === "public") {
     if (absent.length > 0) {
       throw new Error(
-        `Signed-in MTG catalog has ${absent.length} absent eligible sets; automatic dispatch is forbidden`,
+        `${releaseStatus === "public" ? "Public" : "Signed-in"} MTG catalog has ${absent.length} absent eligible sets; automatic dispatch is forbidden`,
       );
     }
     return {
       ...common,
-      status: "eligible_catalog_complete_signed_in_no_dispatch",
+      status: `eligible_catalog_complete_${releaseStatus}_no_dispatch`,
       catalog,
       dispatch: null,
     };

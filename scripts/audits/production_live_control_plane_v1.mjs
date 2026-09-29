@@ -10,6 +10,7 @@ import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
 
 import { OUT_DIR, TOPOLOGY_PATH, validateTopologyV1 } from './production_backend_launch_baseline_v1.mjs';
+import { readMtgWorkerEvidenceV1 } from '../../backend/operations/mtg_worker_evidence_v1.mjs';
 
 const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'OriginalSoseji/grookai_vault';
 const TERMINAL_PRICE_STATES = new Set(['published', 'verified']);
@@ -318,6 +319,34 @@ function makeSupabaseClient() {
   return createClient(url, key, {
     auth: { autoRefreshToken: false, persistSession: false }
   });
+}
+
+export function applyMtgWorkerEvidenceV1(githubResults, worker) {
+  if (!worker) return githubResults;
+  return githubResults.map(result => result.component_id !== 'mtg-catalog-supervisor' ? result : {
+    ...worker, component_id: result.component_id, provider: 'digitalocean_readonly_catalog_audit',
+    evidence: { ...worker.evidence, github_workflow: result },
+  });
+}
+
+async function collectMtgWorkerEvidenceV1(now) {
+  let expectedCommit;
+  try {
+    expectedCommit = (await fs.readFile('/opt/grookai_mtg_supervisor_current/RELEASE_COMMIT_SHA', 'utf8')).trim();
+  } catch (error) {
+    if (error.code === 'ENOENT') return null;
+    return { status: 'failed', reason: 'MTG worker runtime identity could not be read.', evidence: {} };
+  }
+  try {
+    const serviceResult = execFileSync('systemctl', ['show', 'grookai-mtg-catalog-supervisor.service', '--value', '-p', 'Result'],
+      { encoding: 'utf8', timeout: 5000 }).trim();
+    return await readMtgWorkerEvidenceV1('/var/lib/grookai/mtg-catalog-supervisor', {
+      now, expectedCommit, maxAgeMinutes: 45, serviceResult,
+      timerState: systemdState('grookai-mtg-catalog-supervisor.timer'),
+    });
+  } catch (error) {
+    return { status: 'failed', reason: `MTG worker evidence could not be verified: ${error.message}.`, evidence: {} };
+  }
 }
 
 const BACKGROUND_CATALOG_COMPONENTS_V1 = Object.freeze([
@@ -1102,6 +1131,9 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
   if (githubEdgeProbe && githubEdgeProbe.status !== 'healthy') {
     const directEdgeProbe = await collectDirectEdgeProbeV1({ now });
     githubResults = applyDirectEdgeFallbackV1(githubResults, directEdgeProbe);
+  }
+  if (process.env.GROOKAI_CONTROL_PLANE_RUNTIME_PROBES_ENABLED === '1') {
+    githubResults = applyMtgWorkerEvidenceV1(githubResults, await collectMtgWorkerEvidenceV1(now));
   }
   let supabaseResults;
   try {
