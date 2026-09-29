@@ -25,8 +25,9 @@ verifies the live Pikachu preview. Source/install receipts are in the checkpoint
 Public vendor-card identity/price
 authority remains unchanged. Never automatically replay interrupted label jobs.
 
-Existing Mac access: discover `cesars-macbook-pro-2` through Tailscale, SSH account
-`cesarcabral`, key `~/.ssh/grookai_mac_remote_ed25519`, strict host-key checking.
+Use the existing Mac build host and configured SSH identity, with strict host-key
+checking. Resolve the actual host, account and key path from private operator
+artifacts; do not copy personal connection details into repository documentation.
 Private receipts are in `p21_probe_20260929` under the operator-artifact root on
 Windows and Mac. nRF Connect's services are the second top segment, not the
 cylinder icon. Subscribe to FF01 before expecting fresh replies. Connected status
