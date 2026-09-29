@@ -143,11 +143,13 @@ test("MEE-06A script keeps writes and public prices out of the free reference la
   assert.match(pkg, /"mee:pokemontcg-io"/);
   assert.match(scriptSource, /fetchPokemonCardById/);
   assert.match(scriptSource, /fetchPokemonCardByIdViaCurl/);
-  assert.match(scriptSource, /--ssl-no-revoke/);
+  const transportSource = source("backend/pricing/pokemon_reference_http_v1.mjs");
+  assert.match(transportSource, /--ssl-no-revoke/);
+  assert.match(scriptSource, /acquisition.fetch_errors = errors/);
   assert.match(scriptSource, /fetch_method/);
   assert.match(scriptSource, /DB_LOOKUP_CHUNK_SIZE = 100/);
   assert.match(scriptSource, /read_only_db_mapping_lookup/);
 
-  const combined = `${moduleSource}\n${scriptSource}`;
+  const combined = `${moduleSource}\n${scriptSource}\n${transportSource}`;
   assert.doesNotMatch(combined, /\.insert\s*\(|\.update\s*\(|\.upsert\s*\(|\.delete\s*\(|\.rpc\s*\(/);
 });

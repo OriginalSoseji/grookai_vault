@@ -1,5 +1,12 @@
 # MEE Nightly Droplet Worker V1 Runbook
 
+## September 9 Runtime Hotfix
+
+`docs/checkpoints/pricing/MEE_RUNTIME_HISTORY_MEMORY_HOTFIX_20260909.md`
+records the narrow normalized-history selector backport. It is based on the
+actual deployed MEE SHA, not current application main. Do not deploy this
+runtime-only branch as web/mobile or merge its older application tree to main.
+
 ## Artifact Capacity
 
 The runtime artifact root is governed by
@@ -189,3 +196,19 @@ If a Supabase readback query is still running more than 30 minutes after the
 worker has stopped, treat it as an orphaned process and kill it before rerunning
 the timer. The nightly service, reference refresh service, and post-ingest
 service must not overlap.
+## Reference Normalization Recovery (2026-09-09)
+
+Use `market_evidence_engine_normalized_reference_v1.mjs --latest-per-source`
+with the external runtime artifact root. Do not select the two newest files
+globally: they may both be the same source, allowing older evidence to overwrite
+the latest normalized selection. Each output records its acquisition path/hash.
+Preserve previous artifacts. Require a clean delta-writer dry run before writes;
+normalization itself makes no provider calls or database writes.
+
+## Pokemon reference HTTP failures
+
+The default curl adapter retries bounded transient HTTP and JSON failures and
+persists sanitized terminal details in acquisition JSON. See
+`docs/contracts/MEE_REFERENCE_HTTP_RECOVERY_V1.md`. Missing external mappings,
+rate limits and provider outages remain visible; never infer complete coverage
+from a successful refresh service result.
