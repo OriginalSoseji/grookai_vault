@@ -86,3 +86,23 @@ Stop the timer for rollback, preserving cloud/local evidence. No source deletion
 new permissions, catalog writes or database backup configuration belong to this
 worker. Deployment/seed/restore receipts remain in the external recovery directory
 linked above; consult them for actual live status.
+
+## Completed canary monitoring — September 29, 2026
+
+Contract: `docs/contracts/COMPLETED_PRICING_CANARY_HEALTH_V1.md`.
+
+Backup startup exposed a stale six-hour GitHub observer for the already closed
+August 13–16 canary. It incorrectly degraded launch health and paused MTG and
+backup workers even while current production pricing was healthy. Checkpoint 94
+records the passed gate and permanent run32194979152 artifacts. The control plane
+now verifies those exact hashes and the unchanged frozen workflow before reporting
+the gate as completed. Its original August evidence date remains explicit; current
+GitHub stale/failure history remains attached. Missing/changed proof or a replacement
+canary workflow fails closed. Current pricing/source/publication health probes and
+their freshness thresholds remain independent and unchanged. Never rerun an expired
+no-op schedule just to renew its timestamp, or activate pricing to repair monitoring.
+
+Deploy only the control-plane package with its permanent closeout artifacts, keeping
+MTG, pricing, MEE and backup runtimes pinned. Refresh real control-plane evidence,
+rerun the paused read-only MTG audit, and verify manual then automatic backup runs.
+Keep the startup failure and earlier control-plane reports as incident history.
