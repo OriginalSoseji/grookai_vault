@@ -1,5 +1,33 @@
 # Existing seller connection — September 28
 
+## September29 PR540 review hardening
+
+PR540 identified expired-approval replacement and direct service-role revocation
+issues. Both are fixed in the still-unapplied409 candidate. Do not apply the old
+private CLI package or trust its prior409 hash for these revised bytes. Production
+remains408; no Vercel configuration, adoption grant or binding was changed.
+
+Fresh reviewed-source labs use `.local/integration/seller-adoption-v2`, project
+`grookai-seller-review-20260929` on310xx and separate review-upgrade on314xx.
+Preserve the original302xx/306xx labs and allV1 receipts. New replay, upgrade,
+Auth/HTTP, commit/push and release receipts are required. The operator reader now
+requires theV2 paths. The full SQL proof additionally checks historical retention,
+one-way revocation, replacement scope and observed replacement/revocation races.
+
+The founder authorized using the restricted key for server-only Account/Balance
+verification. It is never a client credential or checkout/payment-write key.
+
+Revised local proof passed September29: all409 migrations replayed, a separate
+408-to409 upgrade retained all five legacy seller states,54 PostgreSQL role/race
+groups passed, and all nine real Auth/PostgREST/Next/SSR/webhook groups passed.
+The expired approval was replaced through the real service RPC; reactivation of
+its retained predecessor was rejected.94 focused contracts and TypeScript pass.
+Docker Desktop crashed after the replay's completed reset/no-op logs; the user
+authorized its restart. Read-only recovery verified the existing database without
+another reset. Failed HTTP attempts are retained: one missing relay after restart,
+then a stale harness socket. Requests now use fresh sockets, without POST retries.
+Normal commit/push checks and production release are still pending.
+
 ## Current state
 
 Candidate: `C:/gv_store_seller_link_20260928`, branch

@@ -18,9 +18,9 @@ import {createSellerAdoptionOperator} from '../stripe/seller_adoption_operator_v
 import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs';
 import {STRIPE_BILLING_API_VERSION} from '../../apps/web/src/lib/billing/vendorStripeGateway.ts';
 assert.equal(process.argv.length,2);
-const root='C:/gv_store_seller_link_20260928',project='grookai-seller-link-20260928';
+const root='C:/gv_store_seller_link_20260928',project='grookai-seller-review-20260929';
 const stamp=Date.now();
-const base=root+'/.local/integration/seller-adoption-v1',fixture=base+'/replay-409',out=base+'/http-proof-'+stamp;
+const base=root+'/.local/integration/seller-adoption-v2',fixture=base+'/replay-409',out=base+'/http-proof-'+stamp;
 const hash=x=>createHash('sha256').update(x).digest('hex');
 const sources=Object.fromEntries(fs.readdirSync(root+'/supabase/migrations').filter(n=>n.endsWith('.sql')).sort().map(n=>[n,hash(fs.readFileSync(root+'/supabase/migrations/'+n))]));
 const proof=JSON.parse(fs.readFileSync(fixture+'/receipt.json'));assert.equal(proof.status,'passed');assert.equal(proof.fullReplay,true);assert.deepEqual(proof.sourceHashes,sources);
@@ -34,7 +34,7 @@ const sql=q=>execFileSync('docker',['exec','-i',container,'psql','-U','postgres'
 // in the already-qualified dedicated lab, never reset its retained evidence.
 assert.equal(sql("select current_setting('max_worker_processes')||'|'||(select count(*) from auth.users where email not like 'adoption-%@example.invalid')||'|'||(select count(*) from vendor_seller_accounts where stripe_account_id not like 'acct_localAdoptionPlatform%')||'|'||(select count(*) from card_prints)"),'0|0|0|0');
 const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']}));
-const api='http://127.0.0.1:30221',origin='http://127.0.0.1:30240';assert.equal(cfg.API_URL,api);
+const api='http://127.0.0.1:31021',origin='http://127.0.0.1:31040';assert.equal(cfg.API_URL,api);
 const require=createRequire(new URL('../../apps/web/package.json',import.meta.url)),{createClient}=require('@supabase/supabase-js'),Stripe=require('stripe');
 const options={auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}};
 const admin=createClient(api,localSupabaseStatusSecret(cfg),options),anon=createClient(api,cfg.ANON_KEY,options);
@@ -70,15 +70,17 @@ const server=http.createServer(async(req,res)=>{
 });
 const request=async(index=0,body,originOverride=origin)=>{
  const response=await fetch(origin+'/api/vendor-payments/adoption',{method:body===undefined?'GET':'POST',
-  headers:{origin:originOverride,...(index===null?{}:{authorization:`Bearer ${sessions[index].access_token}`}), 'content-type':'application/json'},
+  // Synchronous Docker fixture reads can outlast the harness keep-alive timer.
+  // Use fresh sockets rather than retrying a possibly committed POST.
+  headers:{origin:originOverride,connection:'close',...(index===null?{}:{authorization:`Bearer ${sessions[index].access_token}`}), 'content-type':'application/json'},
   ...(body===undefined?{}:{body:JSON.stringify(body)}),signal:AbortSignal.timeout(15000)});
  return {status:response.status,body:await response.json(),headers:response.headers};
 };
 const check=async(name,fn)=>{await fn();checks.push(name);console.log('PASS '+name);};
 fs.mkdirSync(out);let failure;
 try{
- await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(30240,'127.0.0.1',resolve);});
- for(let i=0;i<3;i++){
+ await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(31040,'127.0.0.1',resolve);});
+ for(let i=0;i<4;i++){
   const email=`adoption-${stamp}-${i}@example.invalid`,password=randomUUID()+randomUUID();
   const user=ok(await admin.auth.admin.createUser({email,password,email_confirm:true})).user;users.push(user);
   const client=createClient(api,cfg.ANON_KEY,options);clients.push(client);sessions.push(ok(await client.auth.signInWithPassword({email,password})).session);
@@ -98,8 +100,10 @@ try{
  const operator=createSellerAdoptionOperator({projectRef:project,migrationSha256:sources['20260928213000_vendor_seller_adoption_v1.sql'],scope,stripe,repo:{
   async inspect(ownerId,storeId){const user=ok(await admin.auth.admin.getUserById(ownerId)).user;
    const store=ok(await admin.from('vendor_stores').select('id,owner_id').eq('id',storeId).single());assert.equal(store.owner_id,ownerId);
+   const latest=ok(await admin.from('vendor_seller_adoption_grants').select('id,enabled,expires_at').eq('owner_id',ownerId).order('created_at',{ascending:false}).order('id',{ascending:false}).limit(1))[0];
+   const replaceableGrantId=latest?.enabled&&Date.parse(latest.expires_at)<=Date.now()?latest.id:null;
    return {owner:{id:user.id,email:user.email,emailConfirmed:Boolean(user.email_confirmed_at)},storeId:store.id,eligible:true,
-    hasBinding:Boolean(await repo.binding(ownerId)),hasGrant:Boolean(await repo.grant(ownerId))};},
+    hasBinding:Boolean(await repo.binding(ownerId)),hasGrant:Boolean(latest&&!replaceableGrantId),replaceableGrantId};},
   async assertReleased(h){assert.equal(h,sources['20260928213000_vendor_seller_adoption_v1.sql']);assert.equal(proof.migrations,409);},
   async issue(plan,evidence){return ok(await admin.rpc('vendor_seller_issue_adoption_v1',{p_plan:plan,p_evidence:evidence}));},
  }});
@@ -134,6 +138,18 @@ try{
   const status=ok(await clients[0].rpc('vendor_seller_owner_status_v1'));assert.equal(status.binding.hasConnectedAccount,true);assert.ok(!JSON.stringify(status).includes('acct_'));
   assert.equal(ok(await clients[2].rpc('vendor_seller_owner_status_v1')).binding,null);
  });
+ await check('expired approval replacement and one-way revocation through real PostgREST',async()=>{
+  const prior=randomUUID(),emailHash=hash(users[3].email.trim().toLowerCase());
+  sql(`insert into vendor_seller_adoption_grants(id,owner_id,store_id,stripe_account_id,connected_account_id,livemode,owner_email_sha256,approval_sha256,enabled,created_at,expires_at)
+   values('${prior}','${users[3].id}','${stores[3]}','${scope.accountId}','${accountId(3)}',false,'${emailHash}','${'c'.repeat(64)}',true,now()-interval '2 hours',now()-interval '1 hour');`);
+  assert.equal((await request(3)).body.available,false);
+  const plan=await operator.plan({ownerId:users[3].id,storeId:stores[3],connectedAccountId:accountId(3)});assert.equal(plan.replacesGrantId,prior);
+  await operator.apply(plan,plan.sha256);
+  const historical=ok(await admin.from('vendor_seller_adoption_grants').select('enabled').eq('id',prior).single());assert.equal(historical.enabled,false);
+  assert.ok((await admin.from('vendor_seller_adoption_grants').update({enabled:true}).eq('id',prior)).error);
+  assert.equal(ok(await admin.from('vendor_seller_adoption_grants').select('replaces_grant_id').eq('id',plan.grant.id).single()).replaces_grant_id,prior);
+  assert.equal((await request(3)).body.available,true);assert.deepEqual((await request(3,{action:'connect'})).body,{connected:true});
+ });
  // Switch from the injectable provider harness to the actual Next route. The
  // existing-binding retry makes no provider request, while testing production
  // routing/Auth/runtime configuration and the real signed webhook end to end.
@@ -152,7 +168,7 @@ try{
   STRIPE_CONNECT_WEBHOOK_SECRET:webhookSecret,NODE_OPTIONS:`--require=${path.join(root,'scripts/tests/vendor_storefront_network_guard.cjs')}`});
  restore=captureStorefrontBuildConfig(path.join(root,'apps/web'),env);
  log=fs.openSync(out+'/next.private.log','wx');
- next=spawn(process.execPath,[require.resolve('next/dist/bin/next'),'dev','--webpack','--hostname','127.0.0.1','--port','30240'],
+ next=spawn(process.execPath,[require.resolve('next/dist/bin/next'),'dev','--webpack','--hostname','127.0.0.1','--port','31040'],
   {cwd:path.join(root,'apps/web'),env,windowsHide:true,stdio:['ignore',log,log]});
  for(let n=0;;n++){if(next.exitCode!==null)throw new Error('Next server exited; inspect private log');
   try{if((await request(null)).status===401)break;}catch{}if(n===60)throw new Error('Next startup timed out');await delay(500);}

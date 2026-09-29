@@ -38,8 +38,10 @@ const repo={
     to_regclass('public.vendor_seller_adoption_grants') is not null as grant_table
     from auth.users u join public.vendor_stores s on s.owner_id=u.id where u.id='${ownerId}'::uuid and s.id='${storeId}'::uuid`);
   assert.equal(rows.length,1,'Owner/store unavailable');const row=rows[0];
-  const hasGrant=row.grant_table ? (await read(`select exists(select 1 from public.vendor_seller_adoption_grants where owner_id='${ownerId}'::uuid) as present`))[0].present : false;
-  return {owner:{id:row.id,email:row.email,emailConfirmed:row.confirmed},storeId:row.store,eligible:row.eligible,hasBinding:row.has_binding,hasGrant};
+  const latest=row.grant_table ? (await read(`select id,enabled,expires_at<=clock_timestamp() as expired from public.vendor_seller_adoption_grants where owner_id='${ownerId}'::uuid order by created_at desc,id desc limit 1`))[0] : null;
+  const replaceableGrantId=latest?.enabled&&latest.expired?latest.id:null;
+  return {owner:{id:row.id,email:row.email,emailConfirmed:row.confirmed},storeId:row.store,eligible:row.eligible,
+   hasBinding:row.has_binding,hasGrant:Boolean(latest&&!replaceableGrantId),replaceableGrantId};
  },
  async assertReleased(expected){
   assert.equal(expected,migrationSha256);
@@ -47,7 +49,7 @@ const repo={
   const release=JSON.parse(fs.readFileSync(path.join(out,'release.private.json'),'utf8'));
   assert.equal(release.status,'passed');assert.equal(release.projectRef,ref);
   assert.equal(release.commit,git('rev-parse','HEAD'));assert.equal(release.migrationSha256,expected);
-  const replayDir=path.join(root,'.local/integration/seller-adoption-v1/replay-409');
+  const replayDir=path.join(root,'.local/integration/seller-adoption-v2/replay-409');
   const replayBytes=fs.readFileSync(path.join(replayDir,'receipt.json'));
   assert.equal(hash(replayBytes),release.fullReplayReceiptSha256);
   const replay=JSON.parse(replayBytes);assert.equal(replay.status,'passed');assert.equal(replay.fullReplay,true);
@@ -56,12 +58,12 @@ const repo={
     .map(n=>[n,hash(fs.readFileSync(path.join(root,'supabase/migrations',n)))]));
   assert.deepEqual(replay.sourceHashes,sources);
   assert.match(release.httpProofDirectory,/^http-proof-\d+$/);
-  const httpBytes=fs.readFileSync(path.join(root,'.local/integration/seller-adoption-v1',release.httpProofDirectory,'receipt.json'));
+  const httpBytes=fs.readFileSync(path.join(root,'.local/integration/seller-adoption-v2',release.httpProofDirectory,'receipt.json'));
   assert.equal(hash(httpBytes),release.authHttpReceiptSha256);
   const http=JSON.parse(httpBytes);assert.equal(http.status,'passed');assert.equal(http.realAuth,true);
   assert.equal(http.migrationSha256,expected);assert.equal(http.project,replay.project);
   assert.deepEqual(http.sourceHashes,sources);assert.equal(http.commit,release.commit);assert.equal(http.sourceDirty,false);
-  const upgradeBytes=fs.readFileSync(path.join(root,'.local/integration/seller-adoption-v1/upgrade-proof/receipt.json'));
+  const upgradeBytes=fs.readFileSync(path.join(root,'.local/integration/seller-adoption-v2/upgrade-proof/receipt.json'));
   assert.equal(hash(upgradeBytes),release.upgradeReceiptSha256);
   const upgrade=JSON.parse(upgradeBytes);assert.equal(upgrade.status,'passed');
   assert.equal(upgrade.fromMigrations,408);assert.equal(upgrade.toMigrations,409);
@@ -95,7 +97,7 @@ const cipher=fs.readFileSync(path.join(external,'seller-verification-key/stripe-
 const decrypted=spawnSync('C:/Program Files/PowerShell/7/pwsh.exe',['-NoProfile','-NonInteractive','-Command',
  '$ErrorActionPreference="Stop"; $s=ConvertTo-SecureString -String ([Console]::In.ReadToEnd()); $p=[Runtime.InteropServices.Marshal]::SecureStringToBSTR($s); try {[Console]::Out.Write([Runtime.InteropServices.Marshal]::PtrToStringBSTR($p))} finally {[Runtime.InteropServices.Marshal]::ZeroFreeBSTR($p)}'],
  {input:cipher,encoding:'utf8',windowsHide:true,timeout:15000});
-assert.equal(decrypted.status,0,'Encrypted Stripe credential unavailable');assert.match(decrypted.stdout,/^rk_live_[A-Za-z0-9]+$/);
+assert.equal(decrypted.status,0,'Encrypted Stripe credential unavailable');assert.ok(/^rk_live_[A-Za-z0-9]+$/.test(decrypted.stdout),'Encrypted Stripe credential format mismatch');
 const require=createRequire(new URL('../../apps/web/package.json',import.meta.url)),Stripe=require('stripe');
 const stripe=new Stripe(decrypted.stdout,{apiVersion:STRIPE_BILLING_API_VERSION,telemetry:false,maxNetworkRetries:0,timeout:10000});decrypted.stdout='';
 const operator=createSellerAdoptionOperator({projectRef:ref,migrationSha256,scope,stripe,repo});

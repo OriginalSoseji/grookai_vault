@@ -38,6 +38,7 @@ export function createSellerAdoptionOperator(input) {
       const current = await inspect(repo, ownerId, storeId);
       assert.equal(current.hasBinding, false, 'Existing seller binding');
       assert.equal(current.hasGrant, false, 'Existing seller approval');
+      if (current.replaceableGrantId != null) assert.match(current.replaceableGrantId, uuid);
       const now = clock();
       const grant = { id: randomUUID(), ownerId, storeId, platformAccountId: scope.accountId,
         connectedAccountId, livemode: scope.livemode, ownerEmailSha256: sellerOwnerEmailHash(current.owner.email),
@@ -45,11 +46,14 @@ export function createSellerAdoptionOperator(input) {
       // This grant-shaped value is a proposed scope only; plan() performs no write.
       const evidence = await verifySellerAdoption(stripe, scope, grant, current.owner, clock);
       const body = { version: 'vendor-seller-approval-plan-v1', projectRef, migrationSha256,
-        grant, providerEvidenceSha256: evidence.sha256, createdAt: now, expiresAt: now + 1800 };
+        grant, providerEvidenceSha256: evidence.sha256, createdAt: now, expiresAt: now + 1800,
+        ...(current.replaceableGrantId ? { replacesGrantId: current.replaceableGrantId } : {}) };
       return { ...body, sha256: adoptionPlanHash(body) };
     },
     async apply(plan, approvedSha256) {
-      keys(plan, 'version projectRef migrationSha256 grant providerEvidenceSha256 createdAt expiresAt sha256');
+      keys(plan, 'version projectRef migrationSha256 grant providerEvidenceSha256 createdAt expiresAt sha256' +
+        (Object.hasOwn(plan, 'replacesGrantId') ? ' replacesGrantId' : ''));
+      if (Object.hasOwn(plan, 'replacesGrantId')) assert.match(plan.replacesGrantId, uuid);
       keys(plan.grant, 'id ownerId storeId platformAccountId connectedAccountId livemode ownerEmailSha256 createdAt expiresAt');
       const { sha256, ...body } = plan;
       assert.match(approvedSha256, sha); assert.equal(approvedSha256, sha256, 'Approval hash mismatch');

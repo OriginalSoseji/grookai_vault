@@ -55,6 +55,19 @@ hosted-onboarding verification. Later identity updates currently use the seller'
 full Stripe Dashboard; generating adopted-account onboarding links is not part
 of this candidate.
 
+Approval history is retained. At most one enabled approval exists for an owner,
+store or provider account. A fresh operator plan may explicitly name an expired,
+still-enabled predecessor using `replacesGrantId`; issuance locks and verifies that
+exact predecessor, disables it, and inserts a new approval linked by
+`replaces_grant_id`. Account/store scope cannot change. Missing, live, revoked,
+superseded or concurrently consumed predecessors are rejected. A historical
+provider account cannot be reassigned to another owner through this path.
+
+Approval metadata and expiry are immutable. The database trigger permits only
+true-to-false revocation (and no-op updates), including for direct service-role
+updates. A revoked approval cannot become enabled again. Same-plan retries retain
+their original identity and never revive revoked or superseded approvals.
+
 Connecting does not assert readiness or enable checkout. Readiness remains a
 fresh provider read using the existing conservative policy. Actual platform,
 account/controller/mode and capability fields passed live readback on September29;

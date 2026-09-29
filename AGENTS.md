@@ -2,6 +2,11 @@
 
 ## Existing live seller connection — September 28
 
+PR540 review hardening supersedes the original409 proof bytes. Production remains
+408. Read the first checkpoint section; use seller-adoption-v2 artifacts and fresh
+310xx/314xx labs. Never replay the preparedV1 production package. Expired approvals
+now have explicit retained-history replacement; revoked grants cannot reactivate.
+
 Read `docs/ops/VENDOR_SELLER_LINK_20260928.md` and
 `docs/contracts/VENDOR_SELLER_ADOPTION_V1.md`. This is the current-main seller-link
 candidate; preserve the separate dirty cart/commission tree. The existing real

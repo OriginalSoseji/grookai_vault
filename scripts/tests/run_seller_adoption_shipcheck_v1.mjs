@@ -9,7 +9,7 @@ import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs
 import {captureStorefrontBuildConfig} from '../ci/preserve_storefront_build_config.mjs';
 assert.ok(process.argv.length===2 || (process.argv.length===3&&process.argv[2]==='--commit'));
 const commit=process.argv[2]==='--commit';
-const root='C:/gv_store_seller_link_20260928',project='grookai-seller-link-20260928';
+const root='C:/gv_store_seller_link_20260928',project='grookai-seller-review-20260929';
 assert.equal(fs.realpathSync(process.cwd()).replaceAll('\\','/').toLowerCase(),root.toLowerCase());
 if(commit){
  assert.equal(execFileSync('git',['diff','--name-only'],{cwd:root,encoding:'utf8'}).trim(),'','Stage reviewed changes first');
@@ -17,7 +17,7 @@ if(commit){
  const hook=execFileSync('git',['rev-parse','--git-path','hooks/pre-commit'],{cwd:root,encoding:'utf8'}).trim();
  assert.match(fs.readFileSync(path.resolve(root,hook),'utf8'),/GROOKAI_MANAGED_HOOK_V1[\s\S]*npm run shipcheck/);
 }
-const base=root+'/.local/integration/seller-adoption-v1',fixture=base+'/replay-409';
+const base=root+'/.local/integration/seller-adoption-v2',fixture=base+'/replay-409';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const sources=Object.fromEntries(fs.readdirSync(root+'/supabase/migrations').filter(n=>n.endsWith('.sql')).sort().map(n=>[n,hash(fs.readFileSync(root+'/supabase/migrations/'+n))]));
 const proof=JSON.parse(fs.readFileSync(fixture+'/receipt.json'));
@@ -27,8 +27,8 @@ const db=JSON.parse(docker('inspect','supabase_db_'+project))[0];
 assert.equal(db.State.Running,true);assert.deepEqual(Object.keys(db.NetworkSettings.Networks),[project]);
 assert.equal(JSON.parse(docker('network','inspect',project))[0].Internal,true);
 const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']}));
-assert.equal(cfg.API_URL,'http://127.0.0.1:30221');
-const dbUrl=new URL(cfg.DB_URL);assert.equal(dbUrl.hostname,'127.0.0.1');assert.equal(dbUrl.port,'30222');
+assert.equal(cfg.API_URL,'http://127.0.0.1:31021');
+const dbUrl=new URL(cfg.DB_URL);assert.equal(dbUrl.hostname,'127.0.0.1');assert.equal(dbUrl.port,'31022');
 dbUrl.searchParams.set('options','-c default_transaction_read_only=on');
 const env={};
 for(const key of ['PATH','Path','SystemRoot','SYSTEMROOT','TEMP','TMP','USERPROFILE','APPDATA','LOCALAPPDATA','COMSPEC','PROGRAMFILES','ProgramFiles','JAVA_HOME','ANDROID_HOME','ANDROID_SDK_ROOT','PUB_CACHE','FLUTTER_ROOT'])if(process.env[key])env[key]=process.env[key];
@@ -42,13 +42,13 @@ Object.assign(env,{DOTENV_CONFIG_PATH:out+'/empty.env',SUPABASE_DB_URL:dbUrl.hre
  SUPABASE_URL:cfg.API_URL,NEXT_PUBLIC_SUPABASE_URL:cfg.API_URL,SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,
  NEXT_PUBLIC_SUPABASE_ANON_KEY:cfg.ANON_KEY,SUPABASE_SECRET_KEY:localSupabaseStatusSecret(cfg),
  NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST:'true',
- GROOKAI_DISABLE_TELEMETRY:'1',NEXT_TELEMETRY_DISABLED:'1',SITE_URL:'http://127.0.0.1:30240',NEXT_PUBLIC_SITE_URL:'http://127.0.0.1:30240',
+ GROOKAI_DISABLE_TELEMETRY:'1',NEXT_TELEMETRY_DISABLED:'1',SITE_URL:'http://127.0.0.1:31040',NEXT_PUBLIC_SITE_URL:'http://127.0.0.1:31040',
  GVVI_REFERRAL_COOKIE_SECRET:'isolated-adoption-referral-key-at-least-32-characters',
  NODE_OPTIONS:`--use-system-ca --require=${root}/scripts/tests/vendor_storefront_network_guard.cjs`});
 const restore=captureStorefrontBuildConfig(root+'/apps/web',env),logFile=out+'/shipcheck.private.log';
 const fd=fs.openSync(logFile,'wx');let code;
 try{
- const child=commit?spawn('git',['commit','-m','feat: connect approved existing Stripe sellers'],{cwd:root,env,windowsHide:true,stdio:['ignore',fd,fd]}):
+ const child=commit?spawn('git',['commit','-m','fix: preserve seller approval history and revocation'],{cwd:root,env,windowsHide:true,stdio:['ignore',fd,fd]}):
   spawn('npm.cmd',['run','shipcheck'],{cwd:root,env,shell:true,windowsHide:true,stdio:['ignore',fd,fd]});
  console.log(JSON.stringify({state:'running',project,output:out}));
  code=await new Promise((resolve,reject)=>{child.once('error',reject);child.once('exit',resolve);});

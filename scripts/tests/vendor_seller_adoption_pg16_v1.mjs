@@ -9,7 +9,7 @@ import {execFileSync} from 'node:child_process';
 import pg from 'pg';
 assert.equal(process.argv.length,2);
 const root='C:/gv_store_seller_link_20260928';
-const dir=root+'/.local/integration/seller-adoption-v1/pg16-'+Date.now(),data=dir+'/data';
+const dir=root+'/.local/integration/seller-adoption-v2/pg16-'+Date.now(),data=dir+'/data';
 const bin='C:/Program Files/PostgreSQL/16/bin',port=57942;
 const run=(name,args)=>{
  const fd=fs.openSync(dir+'/'+name+'-'+Date.now()+'.private.log','wx');
@@ -45,13 +45,13 @@ try {
  assert.ok(start>0&&end>start);await db.query(production.slice(start,end));
  const migration=fs.readFileSync(root+'/supabase/migrations/20260928213000_vendor_seller_adoption_v1.sql','utf8');
  await db.query(migration);await db.query(migration);passed.push('migration applies and repeats on source-derived seller foundation');
- async function seed(withGrant=true){const owner=randomUUID(),store=randomUUID(),grant=randomUUID(),account='acct_'+randomBytes(12).toString('hex');
+ async function seed(withGrant=true,expired=false){const owner=randomUUID(),store=randomUUID(),grant=randomUUID(),account='acct_'+randomBytes(12).toString('hex');
   const email='synthetic-'+owner+'@example.invalid',emailHash=digest(email);
   await db.query('insert into auth.users values($1,$2,now());',[owner,email]);
   await db.query('insert into public.vendor_stores values($1,$2)',[store,owner]);
   await db.query('insert into public.test_capabilities values($1,true)',[owner]);
-  if(withGrant) await db.query(`insert into public.vendor_seller_adoption_grants(id,owner_id,store_id,stripe_account_id,connected_account_id,livemode,owner_email_sha256,approval_sha256,enabled,expires_at)
-   values($1,$2,$3,'acct_platform',$4,false,$5,$6,true,now()+interval '1 hour')`,[grant,owner,store,account,emailHash,'a'.repeat(64)]);
+  if(withGrant) await db.query(`insert into public.vendor_seller_adoption_grants(id,owner_id,store_id,stripe_account_id,connected_account_id,livemode,owner_email_sha256,approval_sha256,enabled,created_at,expires_at)
+   values($1,$2,$3,'acct_platform',$4,false,$5,$6,true,now()-case when $7 then interval '2 hours' else interval '0' end,now()+case when $7 then interval '-1 hour' else interval '1 hour' end)`,[grant,owner,store,account,emailHash,'a'.repeat(64),expired]);
   const checkedAt=Math.floor(Date.now()/1000);
   return {owner,store,grant,account,emailHash,evidence:{version:'vendor-seller-adoption-v1',grantId:grant,ownerId:owner,storeId:store,
    platformAccountId:'acct_platform',connectedAccountId:account,livemode:false,ownerEmailSha256:emailHash,
@@ -73,13 +73,13 @@ try {
   ['missing evidence field',async f=>{delete f.evidence.ownerEmailSha256},/evidence_invalid/],
   ['extra evidence field',async f=>{f.evidence.forged=true},/evidence_invalid/],
   ['revoked approval',async f=>{await db.query('update vendor_seller_adoption_grants set enabled=false where id=$1',[f.grant])},/seller_adoption_denied/],
-  ['expired approval',async f=>{await db.query("update vendor_seller_adoption_grants set created_at=now()-interval '2 hours',expires_at=now()-interval '1 hour' where id=$1",[f.grant])},/seller_adoption_denied/],
+  ['expired approval',async()=>{},/seller_adoption_denied/],
   ['unconfirmed auth email',async f=>{await db.query('update auth.users set email_confirmed_at=null where id=$1',[f.owner])},/seller_adoption_denied/],
   ['changed auth email',async f=>{await db.query("update auth.users set email='changed@example.invalid' where id=$1",[f.owner])},/seller_adoption_denied/],
   ['lost package access',async f=>{await db.query('update test_capabilities set enabled=false where owner_id=$1',[f.owner])},/seller_adoption_denied/],
   ['financial hold',async f=>{await db.query('insert into vendor_account_financial_holds values($1)',[f.owner])},/seller_adoption_denied/],
   ['early deauthorization',async f=>{await db.query("select vendor_seller_enqueue_v1('acct_platform',false,$1,$2,'deauthorized',now())",['evt_'+randomBytes(8).toString('hex'),f.account])},/seller_onboarding_blocked/],
- ]){const f=await seed();await modify(f);await fail(()=>adopt(db,f),pattern);passed.push(name);}
+ ]){const f=await seed(true,name==='expired approval');await modify(f);await fail(()=>adopt(db,f),pattern);passed.push(name);}
  const f=await seed();await db.query('set role service_role');
  const bound=(await adopt(db,f)).rows[0].value;assert.equal(bound.creation_attempt_id,null);assert.equal(bound.creation_started_at,null);assert.equal(bound.adoption_grant_id,f.grant);
  assert.equal((await adopt(db,f)).rows[0].value.id,bound.id);await db.query('reset role');passed.push('service adoption and idempotent retry retain actual provenance');
@@ -97,7 +97,7 @@ try {
  await fail(()=>db.query(`insert into vendor_seller_adoption_grants(owner_id,store_id,stripe_account_id,connected_account_id,livemode,owner_email_sha256,approval_sha256,expires_at)
   values($1,$2,'acct_platform','acct_legacy_adopt',false,$3,$3,now()+interval '1 hour')`,[oldOwner,oldStore,'c'.repeat(64)]),/seller_account_already_bound/);
  passed.push('existing creation reservation blocks a later adoption grant');
- const other=await seed();await fail(()=>db.query('update vendor_seller_adoption_grants set connected_account_id=$1 where id=$2',[f.account,other.grant]),/duplicate key/);passed.push('same provider account cannot receive two owner grants');
+ const other=await seed();await fail(()=>db.query('update vendor_seller_adoption_grants set connected_account_id=$1 where id=$2',[f.account,other.grant]),/seller_approval_immutable/);passed.push('approval scope cannot be rewritten');
  const a=await client(),b=await client();
  async function blockedBy(waiting,blocker){for(let i=0;i<50;i++){const r=await db.query('select $1::int=any(pg_blocking_pids($2::int)) as waiting',[blocker.processID,waiting.processID]);if(r.rows[0].waiting)return;await new Promise(r=>setTimeout(r,20));}throw new Error('Expected database lock wait was not observed');}
  const race=await seed();await a.query('begin');const first=(await adopt(a,race)).rows[0].value;
@@ -123,6 +123,11 @@ try {
  passed.push('service-only issuer creates one grant, no seller binding; direct insert denied');
  await db.query('update vendor_seller_adoption_grants set enabled=false where id=$1',[approved.grant]);
  assert.equal((await issue(db,approved)).rows[0].value.enabled,false);passed.push('issuance response-loss retry does not reactivate revoked grant');
+ await db.query('set role service_role');
+ try{await fail(()=>db.query('update vendor_seller_adoption_grants set enabled=true where id=$1',[approved.grant]),/seller_approval_immutable/);}
+ finally{await db.query('reset role');}passed.push('direct service UPDATE cannot reactivate a revoked grant');
+ await fail(()=>db.query("update vendor_seller_adoption_grants set expires_at=expires_at+interval '1 hour' where id=$1",[approved.grant]),/seller_approval_immutable/);
+ passed.push('approval evidence and expiry remain immutable');
  for(const [name,change,pattern] of [
   ['changed owner email',async(s,p)=>db.query("update auth.users set email='new@example.invalid' where id=$1",[s.owner]),/seller_adoption_denied/],
   ['foreign store',async(s,p)=>{p.grant.storeId=randomUUID();s.evidence.storeId=p.grant.storeId},/seller_store_mismatch/],
@@ -142,11 +147,47 @@ try {
  const issueDeauth=await seed(false);await a.query('begin');await a.query("select vendor_seller_enqueue_v1('acct_platform',false,$1,$2,'deauthorized',now())",['evt_'+randomBytes(8).toString('hex'),issueDeauth.account]);
  const issuePending=issue(b,issueDeauth).then(()=>({accepted:true}),e=>({error:e.message}));await blockedBy(b,a);await a.query('commit');assert.match((await issuePending).error,/seller_onboarding_blocked/);
  passed.push('issuer racing prior deauthorization refuses grant after lock wait');
+ async function replacement(expired=true){const s=await seed(true,expired),prior=s.grant;
+  s.grant=randomUUID();s.evidence.grantId=s.grant;return {s,prior,p:{...planFor(s),replacesGrantId:prior}};}
+ const renewal=await replacement(),oldRow=(await db.query('select to_jsonb(g) v from vendor_seller_adoption_grants g where id=$1',[renewal.prior])).rows[0].v;
+ await db.query('set role service_role');try{await issue(db,renewal.s,renewal.p);}finally{await db.query('reset role');}
+ const retained=(await db.query('select to_jsonb(g) v from vendor_seller_adoption_grants g where id=$1',[renewal.prior])).rows[0].v;
+ assert.deepEqual(retained,{...oldRow,enabled:false});
+ assert.equal((await db.query('select replaces_grant_id from vendor_seller_adoption_grants where id=$1',[renewal.s.grant])).rows[0].replaces_grant_id,renewal.prior);
+ assert.equal((await issue(db,renewal.s,renewal.p)).rows[0].value.id,renewal.s.grant);
+ assert.equal((await adopt(db,renewal.s)).rows[0].value.adoption_grant_id,renewal.s.grant);
+ passed.push('expired approval replaced explicitly; historical evidence retained and new grant consumable');
+ for(const name of ['unexpired','revoked','wrong predecessor','missing predecessor','different seller']){
+  const r=await replacement(name!=='unexpired');
+  if(name==='revoked')await db.query('update vendor_seller_adoption_grants set enabled=false where id=$1',[r.prior]);
+  if(name==='wrong predecessor')r.p.replacesGrantId=randomUUID();
+  if(name==='missing predecessor')delete r.p.replacesGrantId;
+  if(name==='different seller'){r.p.grant.connectedAccountId='acct_replacementForeign';r.s.evidence.connectedAccountId='acct_replacementForeign';}
+  await fail(()=>issue(db,r.s,r.p),/seller_approval_conflict/);
+  assert.equal((await db.query('select count(*)::int n from vendor_seller_adoption_grants where owner_id=$1',[r.s.owner])).rows[0].n,1);
+  passed.push('replacement rejects '+name);
+ }
+ const shared=await replacement();await db.query('update vendor_seller_adoption_grants set enabled=false where id=$1',[shared.prior]);
+ const foreign=await seed(false);foreign.account=shared.s.account;foreign.evidence.connectedAccountId=foreign.account;
+ await fail(()=>issue(db,foreign),/seller_approval_conflict/);passed.push('revoked historical provider scope cannot move to another owner');
+ const concurrent=await replacement();await a.query('begin');const win=(await issue(a,concurrent.s,concurrent.p)).rows[0].value;
+ const retry=issue(b,concurrent.s,concurrent.p);await blockedBy(b,a);await a.query('commit');assert.deepEqual((await retry).rows[0].value,win);
+ assert.equal((await db.query('select count(*)::int n from vendor_seller_adoption_grants where owner_id=$1',[concurrent.s.owner])).rows[0].n,2);
+ passed.push('concurrent replacement retries preserve one successor after observed lock wait');
+ const competing=await replacement();await a.query('begin');await issue(a,competing.s,competing.p);
+ const rival={...competing.s,grant:randomUUID(),evidence:{...competing.s.evidence}};rival.evidence.grantId=rival.grant;
+ const rivalPlan={...planFor(rival),replacesGrantId:competing.prior};
+ const contested=issue(b,rival,rivalPlan).then(()=>({accepted:true}),e=>({error:e.message}));await blockedBy(b,a);await a.query('commit');assert.match((await contested).error,/seller_approval_conflict/);
+ assert.equal((await db.query('select count(*)::int n from vendor_seller_adoption_grants where owner_id=$1 and enabled',[competing.s.owner])).rows[0].n,1);
+ passed.push('competing reviewed replacements cannot create two active successors');
+ const revokedRace=await replacement();await a.query('begin');await a.query('update vendor_seller_adoption_grants set enabled=false where id=$1',[revokedRace.prior]);
+ const replacing=issue(b,revokedRace.s,revokedRace.p).then(()=>({accepted:true}),e=>({error:e.message}));await blockedBy(b,a);await a.query('commit');assert.match((await replacing).error,/seller_approval_conflict/);
+ passed.push('revocation racing replacement wins after observed row lock wait');
  const report={status:'passed',at:new Date().toISOString(),engine:'PostgreSQL 16.2 isolated synthetic subset',port,fullSupabaseReplay:false,
   migrationSha256:digest(migration),productionWrites:0,sharedServiceChanges:0,passed};
  fs.writeFileSync(dir+'/receipt.json',JSON.stringify(report,null,2),{flag:'wx'});console.log(JSON.stringify(report,null,2));
 }finally{
  for(const c of clients)await c.end().catch(()=>{});
- if(started){assert.ok(fs.realpathSync(data).replaceAll('\\','/').startsWith(root+'/.local/integration/seller-adoption-v1/pg16-'));
+ if(started){assert.ok(fs.realpathSync(data).replaceAll('\\','/').startsWith(root+'/.local/integration/seller-adoption-v2/pg16-'));
   run('pg_ctl',['-D',data,'-m','fast','-w','stop']);}
 }

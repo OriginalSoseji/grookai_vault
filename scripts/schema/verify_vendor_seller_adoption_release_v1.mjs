@@ -10,7 +10,7 @@ assert.equal(process.argv.length,3);
 const phase=process.argv[2];assert.ok(['AuditLinkedSchema','PrePush'].includes(phase));
 const root=fileURLToPath(new URL('../../',import.meta.url));
 assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_store_seller_link_20260928');
-const base=root+'.local/integration/seller-adoption-v1',project='grookai-seller-link-20260928';
+const base=root+'.local/integration/seller-adoption-v2',project='grookai-seller-review-20260929';
 const pending='20260928213000',candidate=pending+'_vendor_seller_adoption_v1.sql';
 const read=file=>JSON.parse(fs.readFileSync(file)),hash=value=>createHash('sha256').update(value).digest('hex');
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true}).trim();

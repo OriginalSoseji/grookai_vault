@@ -27,6 +27,11 @@ part of this follow-up.
 
 ## Existing live seller connection — September 28
 
+PR540 review fixes expired-approval replacement and direct revocation. The409
+candidate is still unapplied; all priorV1 source hashes/release intents are stale.
+Fresh proof uses seller-adoption-v2 and separate310xx/314xx labs. Read the first
+checkpoint section and preserve the original populated302xx/306xx labs.
+
 Current candidate/checkpoint: `VENDOR_SELLER_LINK_20260928.md` in
 `C:/gv_store_seller_link_20260928`, based on current main ebfaf4e66. Preserve the
 older dirty cart/commission tree. Stripe platform and founder storefront seller
@@ -37,7 +42,9 @@ payments and transfers are verified, with no due/pending requirements. Private
 receipts and a current-user DPAPI-encrypted restricted key are under the external
 storefront artifact directory, `seller-verification-key/`. The founder supplied
 the key in chat and explicitly requested using it, retaining rotation for later.
-Never copy it into source, logs or client/runtime configuration. The local capture
+Never copy it into source, logs or client configuration. The user's explicit key
+authorization permits reviewed server-only Account/Balance reads; it is not a
+checkout or payment-write credential. The local capture
 helper uses PowerShell7 and same-origin fetch; older PowerShell module loading
 failed. Its listener closes after saving. Do not create another account or key.
 Strict production408 baseline passed. Docker became available without a shared

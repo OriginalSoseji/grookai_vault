@@ -3,8 +3,8 @@
 begin;
 create table if not exists public.vendor_seller_adoption_grants (
  id uuid primary key default gen_random_uuid(),
- owner_id uuid not null unique references auth.users(id) on delete restrict,
- store_id uuid not null unique,
+ owner_id uuid not null references auth.users(id) on delete restrict,
+ store_id uuid not null,
  stripe_account_id text not null check(stripe_account_id ~ '^acct_[A-Za-z0-9]+$'),
  connected_account_id text not null check(connected_account_id ~ '^acct_[A-Za-z0-9]+$' and connected_account_id<>stripe_account_id),
  livemode boolean not null,
@@ -13,10 +13,13 @@ create table if not exists public.vendor_seller_adoption_grants (
  enabled boolean not null default false,
  created_at timestamptz not null default clock_timestamp(),
  expires_at timestamptz not null,
+ replaces_grant_id uuid unique references public.vendor_seller_adoption_grants(id) on delete restrict,
  foreign key(store_id,owner_id) references public.vendor_stores(id,owner_id) on delete restrict on update restrict,
- unique(stripe_account_id,livemode,connected_account_id),
  check(isfinite(created_at) and isfinite(expires_at) and expires_at>created_at and expires_at<=created_at+interval '7 days')
 );
+create unique index if not exists vendor_seller_adoption_active_owner on public.vendor_seller_adoption_grants(owner_id) where enabled;
+create unique index if not exists vendor_seller_adoption_active_store on public.vendor_seller_adoption_grants(store_id) where enabled;
+create unique index if not exists vendor_seller_adoption_active_account on public.vendor_seller_adoption_grants(stripe_account_id,livemode,connected_account_id) where enabled;
 alter table public.vendor_seller_adoption_grants enable row level security;
 revoke all on public.vendor_seller_adoption_grants from public,anon,authenticated,service_role;
 grant select on public.vendor_seller_adoption_grants to service_role;
@@ -25,17 +28,26 @@ grant update(enabled) on public.vendor_seller_adoption_grants to service_role;
 create or replace function public.vendor_seller_adoption_grant_guard_v1() returns trigger
 language plpgsql security definer set search_path='' as $$
 begin
+ if tg_op='UPDATE' then
+  if (to_jsonb(new)-'enabled') is distinct from (to_jsonb(old)-'enabled')
+   or (not old.enabled and new.enabled)
+  then raise exception 'seller_approval_immutable' using errcode='42501';end if;
+  return new;
+ end if;
  perform pg_advisory_xact_lock(hashtextextended('vendor-seller-connect:'||new.stripe_account_id||':'||new.livemode::text||':'||new.connected_account_id,0));
  perform 1 from auth.users where id=new.owner_id for key share;
  perform pg_advisory_xact_lock(hashtextextended('vendor-store:'||new.owner_id::text,0));
  if exists(select 1 from public.vendor_seller_accounts where owner_id=new.owner_id or
   (stripe_account_id=new.stripe_account_id and livemode=new.livemode and connected_account_id=new.connected_account_id))
  then raise exception 'seller_account_already_bound' using errcode='P0001';end if;
+ if exists(select 1 from public.vendor_seller_adoption_grants where stripe_account_id=new.stripe_account_id
+  and livemode=new.livemode and connected_account_id=new.connected_account_id and owner_id<>new.owner_id)
+ then raise exception 'seller_approval_conflict' using errcode='P0001';end if;
  return new;
 end;$$;
 do $$begin
  if not exists(select 1 from pg_trigger where tgrelid='public.vendor_seller_adoption_grants'::regclass and tgname='vendor_seller_adoption_grant_guard') then
-  create trigger vendor_seller_adoption_grant_guard before insert on public.vendor_seller_adoption_grants
+  create trigger vendor_seller_adoption_grant_guard before insert or update on public.vendor_seller_adoption_grants
   for each row execute function public.vendor_seller_adoption_grant_guard_v1();
  end if;
 end$$;
@@ -147,7 +159,9 @@ declare v jsonb; g public.vendor_seller_adoption_grants; old public.vendor_selle
  t timestamptz:=clock_timestamp(); v_email text; v_confirmed timestamptz; checked_at timestamptz;
  v_controller constant jsonb:='{"feesPayer":"account","paymentLosses":"stripe","requirementCollection":"stripe","dashboard":"full"}'::jsonb;
 begin
- if p_plan is null or jsonb_typeof(p_plan)<>'object' or (select count(*) from jsonb_object_keys(p_plan))<>8
+ if p_plan is null or jsonb_typeof(p_plan)<>'object'
+  or (select count(*) from jsonb_object_keys(p_plan))<>(case when p_plan ? 'replacesGrantId' then 9 else 8 end)
+  or (p_plan ? 'replacesGrantId' and coalesce(p_plan->>'replacesGrantId','') !~ '^[0-9a-f-]{36}$')
   or p_plan->>'version' is distinct from 'vendor-seller-approval-plan-v1'
   or coalesce(p_plan->>'projectRef','') !~ '^[a-z0-9-]{3,80}$'
   or coalesce(p_plan->>'migrationSha256','') !~ '^[a-f0-9]{64}$'
@@ -173,6 +187,7 @@ begin
  g.livemode:=(v->>'livemode')::boolean;g.owner_email_sha256:=v->>'ownerEmailSha256';
  g.approval_sha256:=p_plan->>'sha256';g.created_at:=to_timestamp((v->>'createdAt')::bigint);
  g.expires_at:=to_timestamp((v->>'expiresAt')::bigint);
+ g.replaces_grant_id:=(p_plan->>'replacesGrantId')::uuid;
  if g.created_at>t or to_timestamp((p_plan->>'expiresAt')::bigint)<=t
   or (p_plan->>'expiresAt')::bigint-(p_plan->>'createdAt')::bigint<>1800
   or g.expires_at-g.created_at<>interval '24 hours'
@@ -216,15 +231,29 @@ begin
  if exists(select 1 from public.vendor_seller_events where stripe_account_id=g.stripe_account_id
   and livemode=g.livemode and connected_account_id=g.connected_account_id and kind='deauthorized')
  then raise exception 'seller_onboarding_blocked' using errcode='P0001';end if;
- select * into old from public.vendor_seller_adoption_grants where owner_id=g.owner_id for update;
+ -- Same-plan retries return the original record even after it was revoked or
+ -- replaced. They never revive it or replace the current approval.
+ select * into old from public.vendor_seller_adoption_grants where id=g.id for update;
  if found then
-  if row(old.id,old.store_id,old.stripe_account_id,old.connected_account_id,old.livemode,old.owner_email_sha256,old.approval_sha256,old.created_at,old.expires_at)
-   is distinct from row(g.id,g.store_id,g.stripe_account_id,g.connected_account_id,g.livemode,g.owner_email_sha256,g.approval_sha256,g.created_at,g.expires_at)
+  if row(old.owner_id,old.store_id,old.stripe_account_id,old.connected_account_id,old.livemode,old.owner_email_sha256,old.approval_sha256,old.created_at,old.expires_at,old.replaces_grant_id)
+   is distinct from row(g.owner_id,g.store_id,g.stripe_account_id,g.connected_account_id,g.livemode,g.owner_email_sha256,g.approval_sha256,g.created_at,g.expires_at,g.replaces_grant_id)
   then raise exception 'seller_approval_conflict' using errcode='P0001';end if;
   return jsonb_build_object('id',old.id,'approval_sha256',old.approval_sha256,'enabled',old.enabled);
  end if;
- insert into public.vendor_seller_adoption_grants(id,owner_id,store_id,stripe_account_id,connected_account_id,livemode,owner_email_sha256,approval_sha256,enabled,created_at,expires_at)
- values(g.id,g.owner_id,g.store_id,g.stripe_account_id,g.connected_account_id,g.livemode,g.owner_email_sha256,g.approval_sha256,true,g.created_at,g.expires_at);
+ select * into old from public.vendor_seller_adoption_grants where owner_id=g.owner_id order by created_at desc,id desc limit 1 for update;
+ if found then
+  -- Only a still-enabled expired approval can be superseded, by a fresh plan
+  -- explicitly naming it and preserving the exact account/store scope.
+  if old.id is distinct from g.replaces_grant_id or not old.enabled or old.expires_at>t
+   or row(old.store_id,old.stripe_account_id,old.connected_account_id,old.livemode)
+    is distinct from row(g.store_id,g.stripe_account_id,g.connected_account_id,g.livemode)
+  then raise exception 'seller_approval_conflict' using errcode='P0001';end if;
+  update public.vendor_seller_adoption_grants set enabled=false where id=old.id;
+ elsif g.replaces_grant_id is not null then
+  raise exception 'seller_approval_conflict' using errcode='P0001';
+ end if;
+ insert into public.vendor_seller_adoption_grants(id,owner_id,store_id,stripe_account_id,connected_account_id,livemode,owner_email_sha256,approval_sha256,enabled,created_at,expires_at,replaces_grant_id)
+ values(g.id,g.owner_id,g.store_id,g.stripe_account_id,g.connected_account_id,g.livemode,g.owner_email_sha256,g.approval_sha256,true,g.created_at,g.expires_at,g.replaces_grant_id);
  return jsonb_build_object('id',g.id,'approval_sha256',g.approval_sha256,'enabled',true);
 end;$$;
 revoke all on function public.vendor_seller_issue_adoption_v1(jsonb,jsonb) from public,anon,authenticated;

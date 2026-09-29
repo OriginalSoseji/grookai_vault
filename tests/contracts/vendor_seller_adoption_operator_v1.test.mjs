@@ -44,3 +44,16 @@ test('a correctly rehashed plan cannot cross configured project or migration',as
 test('database revocation is never reported as re-enabled success',async()=>{const f=fixture(),p=await f.operator.plan(f.target);f.revoke();await assert.rejects(f.operator.apply(p,p.sha256),/revoked/);});
 test('lost-response retry preserves the approved grant ID and hash',async()=>{const f=fixture(),p=await f.operator.plan(f.target);const a=await f.operator.apply(p,p.sha256);f.current.hasGrant=true;const b=await f.operator.apply(p,p.sha256);assert.deepEqual(a,b);});
 test('planning refuses accounts already reserved or approved',async()=>{for(const flag of ['hasBinding','hasGrant']){const f=fixture();f.current[flag]=true;await assert.rejects(f.operator.plan(f.target));assert.equal(f.reads,0);assert.equal(f.writes,0);}});
+
+test('a replacement plan binds the specific expired approval into its reviewed hash',async()=>{
+ const f=fixture();f.current.replaceableGrantId='33333333-3333-4333-8333-333333333333';
+ const p=await f.operator.plan(f.target);assert.equal(p.replacesGrantId,f.current.replaceableGrantId);
+ await f.operator.apply(p,p.sha256);assert.equal(f.writes,1);
+ p.replacesGrantId='44444444-4444-4444-8444-444444444444';
+ await assert.rejects(f.operator.apply(p,p.sha256),/Plan changed/);assert.equal(f.writes,1);
+});
+
+test('replacement eligibility cannot override a revoked or live approval',async()=>{
+ const f=fixture();f.current.hasGrant=true;f.current.replaceableGrantId='33333333-3333-4333-8333-333333333333';
+ await assert.rejects(f.operator.plan(f.target),/Existing seller approval/);assert.equal(f.reads,0);
+});
