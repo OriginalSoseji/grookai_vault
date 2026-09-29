@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function VaultImportPage() {
-  await requireServerUser("/vault/import");
+  const { user } = await requireServerUser("/vault/import");
 
-  return <ImportClient />;
+  return <ImportClient key={user.id} ownerId={user.id} />;
 }

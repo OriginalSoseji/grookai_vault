@@ -58,7 +58,7 @@ function buildMatchKey(setName: string, number: string, name: string) {
   return `${normalizeKeyPart(setName)}||${(number ?? "").trim()}||${normalizeKeyPart(name)}`;
 }
 
-function buildRowKey(row: NormalizedRow) {
+function buildRowKey(row: Pick<NormalizedRow, "compareSet" | "compareNumber" | "compareName">) {
   return `${row.compareSet}|${row.compareNumber}|${row.compareName}`;
 }
 
@@ -68,6 +68,30 @@ function chunkArray<T>(items: T[], size: number) {
     chunks.push(items.slice(index, index + size));
   }
   return chunks;
+}
+
+async function readCatalogPages<T extends { id: string }>(
+  fetchPage: (afterId: string | null) => PromiseLike<{
+    data: unknown[] | null;
+    error: { message: string } | null;
+  }>,
+): Promise<T[]> {
+  const rows: T[] = [];
+  let afterId: string | null = null;
+  for (;;) {
+    const { data, error } = await fetchPage(afterId);
+    if (error) throw new Error(error.message);
+    const page = (data ?? []) as T[];
+    if (page.length === 0) return rows;
+    const lastId = page[page.length - 1].id;
+    if (!lastId || (afterId !== null && lastId <= afterId)) {
+      throw new Error("Import catalog pagination did not advance. Please retry the preview.");
+    }
+    rows.push(...page);
+    afterId = lastId;
+    // Keep reading until empty, including when the server's row cap is smaller
+    // than our requested page size. The stable ID cursor avoids offset drift.
+  }
 }
 
 async function fetchCandidateCardPrintRows(
@@ -87,30 +111,29 @@ async function fetchCandidateCardPrintRows(
       }),
     ),
   );
-  const candidateNumbers = Array.from(new Set(rows.map((row) => row.compareNumber.trim()).filter(Boolean)));
+  const candidateNumbers = new Set(rows.map((row) => row.compareNumber.trim()).filter(Boolean));
   const candidateRows: CardPrintRow[] = [];
 
-  if (candidateSetIds.length === 0 || candidateNumbers.length === 0) {
+  if (candidateSetIds.length === 0 || candidateNumbers.size === 0) {
     return candidateRows;
   }
 
   const setIdChunks = chunkArray(candidateSetIds, 100);
-  const numberChunks = chunkArray(candidateNumbers, 100);
-
   for (const setIdChunk of setIdChunks) {
-    for (const numberChunk of numberChunks) {
-      const { data, error } = await client
+    // Stored collector numbers may be padded or include a denominator. An exact
+    // SQL filter on the normalized number discards valid prints before matching.
+    // Read only the resolved sets, then use the same normalization as match keys.
+    const setCards = await readCatalogPages<CardPrintRow>((afterId) => {
+      let query = client
         .from("card_prints")
         .select("id,gv_id,name,number,set_id,set_code,sets(name)")
         .in("set_id", setIdChunk)
-        .in("number", numberChunk);
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      candidateRows.push(...((data ?? []) as CardPrintRow[]));
-    }
+        .order("id", { ascending: true })
+        .limit(500);
+      if (afterId !== null) query = query.gt("id", afterId);
+      return query;
+    });
+    candidateRows.push(...setCards.filter((card) => candidateNumbers.has(normalizeImportNumberForCompare(card.number ?? ""))));
   }
 
   return candidateRows;
@@ -129,7 +152,7 @@ async function fetchExistingVaultQuantities(
     Array.from(new Set(candidateRows.map((row) => row.id.trim()).filter(Boolean))),
   );
 
-  const quantities: Record<string, number> = {};
+  const cardIdsByRowKey = new Map<string, Set<string>>();
 
   for (const candidate of candidateRows) {
     const cardId = candidate.id.trim();
@@ -137,19 +160,26 @@ async function fetchExistingVaultQuantities(
       continue;
     }
 
-    const existingQty = existingByCardId.get(cardId) ?? 0;
-    if (existingQty <= 0) {
-      continue;
-    }
-
     const setRecord = Array.isArray(candidate.sets) ? candidate.sets[0] : candidate.sets;
-    const key = buildMatchKey(
-      normalizeImportSetForCompare(setRecord?.name ?? ""),
-      normalizeImportNumberForCompare(candidate.number ?? ""),
-      normalizeImportNameForCompare(candidate.name ?? ""),
-    );
+    const key = buildRowKey({
+      compareSet: normalizeImportSetForCompare(setRecord?.name ?? ""),
+      compareNumber: normalizeImportNumberForCompare(candidate.number ?? ""),
+      compareName: normalizeImportNameForCompare(candidate.name ?? ""),
+    });
+    const ids = cardIdsByRowKey.get(key) ?? new Set<string>();
+    ids.add(cardId);
+    cardIdsByRowKey.set(key, ids);
+  }
 
-    quantities[key] = (quantities[key] ?? 0) + existingQty;
+  const quantities: Record<string, number> = {};
+  for (const [key, ids] of cardIdsByRowKey) {
+    // Subtract ownership only after the row identifies one exact printing.
+    // Summing different variants/languages here could hide an unresolved row.
+    // Ambiguous rows retain their target until selection; the writer rechecks
+    // the selected printing's owned count before creating any copies.
+    if (ids.size !== 1) continue;
+    const [cardId] = ids;
+    quantities[key] = existingByCardId.get(cardId) ?? 0;
   }
 
   return quantities;
@@ -200,13 +230,14 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
     };
   }
 
-  const { data: setRows, error: setError } = await client.from("sets").select("id,name,code");
-  if (setError) {
-    throw new Error(setError.message);
-  }
+  const setRows = await readCatalogPages<SetRow>((afterId) => {
+    let query = client.from("sets").select("id,name,code").order("id", { ascending: true }).limit(500);
+    if (afterId !== null) query = query.gt("id", afterId);
+    return query;
+  });
 
   const setNameMap = new Map<string, SetRow[]>();
-  for (const setRow of (setRows ?? []) as SetRow[]) {
+  for (const setRow of setRows) {
     const normalizedName = normalizeImportSetForCompare(setRow.name ?? "");
     if (!normalizedName) {
       continue;
