@@ -1763,3 +1763,16 @@ Every substantial task ends with:
 Do not hand back a generic request such as "configure access" or "check the
 console." Name the exact screen, account, field, and missing evidence, after
 proving the repository and existing sessions cannot answer it.
+# MTG public catalog supervision — September 29, 2026
+
+The MTG supervisor accepts `public` as an observed release state. Like
+`signed_in`, it requires exact completeness of every eligible frozen manifest
+set and returns no dispatch. Missing or drifted sets still fail. It never
+changes visibility or invokes the historical writer. This repairs the stale
+visibility guard that rejected the already-public catalog.
+
+The September 29 failed workflow's readback contains 945 complete eligible
+sets and seven future sets. Replaying that preserved readback through the
+repaired planner passes. A deployed workflow result is separate evidence.
+Worker capacity/pricing incident receipts and the live recovery checkpoint
+are under `C:/grookai_vault_operator_artifacts/worker_pricing_recovery_20260929`.
