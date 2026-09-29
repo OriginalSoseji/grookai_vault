@@ -3,6 +3,10 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 type NamedRow = { id: string; gv_id?: string | null; name?: string | null };
 const normalize = (value: string) => value.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 
+// A brief pause after the first keystroke must not scan the whole catalog.
+export const supportsCompleteNameSearch = (value: string) =>
+  normalize(value).split(" ").some((word) => Array.from(word).length >= 3);
+
 // Once the residual text identifies an actual card name, use the existing
 // release-aware name RPC. Broad ILIKE predicates on the RLS table cannot use
 // the same candidate-first plan and time out even for Wurmple + reverse holo.
@@ -14,7 +18,7 @@ export async function fetchCompleteNamedCardRows(
     .replace(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi, " ")
     .replace(/(?<![\p{L}\p{N}])#?\d+(?:\/\d+)?(?![\p{L}\p{N}])/gu, " ")
     .replace(/\s+/g, " ").trim();
-  if (!name) return null;
+  if (!name || !supportsCompleteNameSearch(name)) return null;
   const prefix = options.gameScope === "pokemon" ? "GV-PK-" : options.gameScope === "mtg" ? "GV-MTG-" : "GV-OP-";
   const rows: NamedRow[] = [];
   const seen = new Set<string>();
@@ -27,15 +31,20 @@ export async function fetchCompleteNamedCardRows(
     });
     if (error) throw new Error(error.message);
     const page = (data ?? []) as NamedRow[];
-    // The RPC orders exact names first. Unrecognized descriptions keep the
-    // existing general discovery path; do not silently discard their words.
-    if (offset === 0 && normalize(page[0]?.name ?? "") !== normalize(name)) return null;
+    // Accept literal fragments such as Pika / Dark Chari as well as full names.
+    // Every word must match: an unrelated fuzzy hit cannot discard residual text.
+    const fragments = normalize(name).split(" ").filter(Boolean);
+    const matchesName = (row: NamedRow) => {
+      const words = normalize(row.name ?? "").split(" ");
+      return fragments.every((fragment) => words.some((word) => word.includes(fragment)));
+    };
+    if (offset === 0 && (!page[0] || !matchesName(page[0]))) return null;
     for (const row of page) {
       if (seen.has(row.id)) throw new Error("Named-card search could not advance to a complete result set");
       seen.add(row.id);
       // The shared Pokemon game also contains Pocket records. Preserve the
       // caller's physical-card scope, without shortening the raw RPC pages.
-      if (row.gv_id?.startsWith(prefix)) rows.push(row);
+      if (row.gv_id?.startsWith(prefix) && matchesName(row)) rows.push(row);
     }
     if (page.length < 64) return rows;
   }

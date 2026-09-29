@@ -1,5 +1,6 @@
 // lib/main.dart
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart';
@@ -36,6 +37,7 @@ import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/gvvi/vendor_pricing_workspace_screen.dart';
 import 'screens/stores/storefront_screen.dart';
+import 'screens/stores/store_management_screen.dart';
 import 'screens/stores/custom_product_screen.dart';
 import 'screens/grookai_objects/collector_memories_screen.dart';
 import 'screens/grookai_objects/collector_memory_route_screen.dart';
@@ -3606,6 +3608,7 @@ class HomePageState extends State<HomePage> {
   String? _searchError;
   Timer? _debounce;
   int _searchRequestVersion = 0;
+  String? _activeSearchKey;
   _RarityFilter _rarityFilter = _RarityFilter.all;
   String _identityFilter = kIdentityFilterAll;
   String _languageScope = 'all';
@@ -4220,8 +4223,26 @@ class HomePageState extends State<HomePage> {
       return;
     }
 
+    final searchKey = jsonEncode([
+      trimmed,
+      _identityFilter,
+      _languageScope,
+      _gameScope,
+      _searchParameters,
+    ]);
+    if (_loading && _activeSearchKey == searchKey) return;
+    _activeSearchKey = searchKey;
     final requestVersion = ++_searchRequestVersion;
-    setState(() => _loading = true);
+    setState(() {
+      _loading = true;
+      _searchError = null;
+      _resolverMeta = null;
+      _searchInterpretation = null;
+      _results = const [];
+      _visibleResults = const [];
+      _provisionalResults = const [];
+      _hasMoreVisibleResults = false;
+    });
     try {
       final resolved = await CardPrintRepository.searchCardPrintsResolved(
         client: supabase,
@@ -4325,10 +4346,23 @@ class HomePageState extends State<HomePage> {
 
   void _onQueryChanged(String value) {
     _debounce?.cancel();
+    // Invalidate the old response immediately, not after the typing debounce.
+    ++_searchRequestVersion;
+    _activeSearchKey = null;
     if (_shouldShowCuratedLanding(value)) {
       _resetCuratedLandingState();
       return;
     }
+    setState(() {
+      _loading = true;
+      _searchError = null;
+      _resolverMeta = null;
+      _searchInterpretation = null;
+      _results = const [];
+      _visibleResults = const [];
+      _provisionalResults = const [];
+      _hasMoreVisibleResults = false;
+    });
     _debounce = Timer(const Duration(milliseconds: 300), () {
       _runSearch(value.trim());
     });
@@ -5496,7 +5530,7 @@ class HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(999),
                   ),
                   child: Text(
-                    '$resultCount cards',
+                    '$resultCount ${resultCount == 1 ? 'card' : 'cards'}',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: colorScheme.onSurface.withValues(alpha: 0.56),
                       fontWeight: FontWeight.w600,
@@ -5559,7 +5593,10 @@ class HomePageState extends State<HomePage> {
     final hasProvisionalResults =
         !showingCuratedLanding && _provisionalResults.isNotEmpty;
     final showEmpty =
-        !isCatalogLoading && totalResultCount == 0 && !hasProvisionalResults;
+        !isCatalogLoading &&
+        _searchError == null &&
+        totalResultCount == 0 &&
+        !hasProvisionalResults;
     final theme = Theme.of(context);
     final identityFilterCounts = buildIdentityFilterCounts(
       showingCuratedLanding ? _trending : _results,
@@ -5603,6 +5640,16 @@ class HomePageState extends State<HomePage> {
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.error,
                     ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: OutlinedButton.icon(
+                    onPressed: _loading
+                        ? null
+                        : () => _submitSearch(_searchCtrl.text),
+                    icon: const Icon(Icons.refresh_rounded),
+                    label: const Text('Retry search'),
                   ),
                 ),
               ],

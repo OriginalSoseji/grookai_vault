@@ -17,6 +17,7 @@ import '../founder/founder_metrics_screen.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
 import 'submit_missing_card_screen.dart';
+import '../stores/store_management_screen.dart';
 
 enum AccountHubAction {
   wall,
@@ -559,6 +560,19 @@ class _AccountScreenState extends State<AccountScreen> {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(14, 10, 14, 18),
             children: [
+              if (_client.auth.currentUser != null)
+                _AccountSurface(
+                  child: _AccountLinkTile(
+                    icon: Icons.storefront_outlined,
+                    title: 'Manage store',
+                    subtitle: 'Open your store, inventory and listings',
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const StoreManagementScreen(),
+                      ),
+                    ),
+                  ),
+                ),
               if (_loading)
                 const Padding(
                   padding: EdgeInsets.only(top: 48),
