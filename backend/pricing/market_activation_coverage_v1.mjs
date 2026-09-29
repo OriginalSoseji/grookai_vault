@@ -71,3 +71,25 @@ select
       and source_sync_finished_at >= now() - interval '36 hours'
   )::integer as fresh_pokemon_eligible
 from matched`;
+
+// Call inside the caller's activation/read-only transaction. UUID-ordered index
+// scans fetch the large decision heap in random order; bitmap scans visit its
+// pages once. Restore planner settings before activation, and let the caller's
+// rollback restore them if the coverage query aborts the transaction.
+export async function readMarketActivationCoverageV1(client, queryOptions) {
+  const { rows: [previous] } = await client.query(
+    "select current_setting('enable_indexscan') as indexscan, current_setting('enable_bitmapscan') as bitmapscan",
+  );
+  await client.query(
+    "select set_config('enable_indexscan', 'off', true), set_config('enable_bitmapscan', 'on', true)",
+  );
+  const result = await client.query({
+    ...queryOptions,
+    text: MARKET_ACTIVATION_COVERAGE_SQL_V1,
+  });
+  await client.query(
+    "select set_config('enable_indexscan', $1, true), set_config('enable_bitmapscan', $2, true)",
+    [previous.indexscan, previous.bitmapscan],
+  );
+  return result;
+}

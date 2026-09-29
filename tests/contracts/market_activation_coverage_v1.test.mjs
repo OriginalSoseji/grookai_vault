@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
-import { MARKET_ACTIVATION_COVERAGE_SQL_V1 as sql } from '../../backend/pricing/market_activation_coverage_v1.mjs';
+import { MARKET_ACTIVATION_COVERAGE_SQL_V1 as sql, readMarketActivationCoverageV1 } from '../../backend/pricing/market_activation_coverage_v1.mjs';
 
 const original = readFileSync(new URL('../fixtures/market_activation_coverage_original_v1.sql', import.meta.url), 'utf8');
 const run = "'aaaaaaaa-0000-0000-0000-000000000001'";
@@ -20,6 +20,53 @@ test('coverage remains scoped, distinct, truth-filtered and time-bounded', () =>
   assert.match(sql, /source_sync_finished_at >= now\(\) - interval '36 hours'/);
   assert.match(sql, /select distinct card_printing_id/);
   assert.doesNotMatch(sql, /v_market_price_current|set_config|update |delete |insert /i);
+});
+
+test('planner preferences apply only to coverage and restore after success or rollback', {
+  skip: process.env.GROOKAI_LOCAL_ACTIVATION_SQL_TEST !== '1', timeout: 30_000,
+}, async () => {
+  const { Client } = await import('pg');
+  // Fixed loopback endpoint: never take credentials or a database URL from env.
+  const client = new Client({ host: '127.0.0.1', port: 54330,
+    user: 'postgres', password: 'postgres', database: 'postgres',
+    connectionTimeoutMillis: 5000, statement_timeout: 5000 });
+  await client.connect();
+  const settings = async () => (await client.query(
+    "select current_setting('enable_indexscan') as indexscan, current_setting('enable_bitmapscan') as bitmapscan",
+  )).rows[0];
+  const sessionSettings = await settings();
+  try {
+    await client.query(`begin;
+      set local enable_indexscan=on; set local enable_bitmapscan=off;
+      create temp table market_price_current_publication(singleton boolean,publication_set_id uuid,run_id uuid);
+      create temp table market_price_publication_sets(id uuid,run_id uuid,publication_state text);
+      create temp table market_price_pipeline_runs(id uuid,reconciliation_state text,state text);
+      create temp table market_price_publication_snapshots(card_printing_id uuid,qualification_decision_id integer,run_id uuid,source_sync_finished_at timestamptz,publication_set_id uuid,publication_state text,freshness_state text);
+      create temp table market_price_qualification_decisions(id integer,run_id uuid,evidence jsonb,eligible boolean,decision text,publication_lane text);
+      create temp table card_printing_truth_reviews(card_printing_id uuid,active boolean,public_visibility text);
+      insert into market_price_publication_snapshots values(${run},1,${run},now(),${run},'staging','fresh');
+      insert into market_price_qualification_decisions values(1,${run},'{"category_id":"3"}',true,'publish','current');`);
+    const scopedClient = { query: async (query, values) => {
+      if (query?.text === sql) {
+        assert.deepEqual(await settings(), { indexscan: 'off', bitmapscan: 'on' });
+        return client.query({ ...query, text: sql.replaceAll('public.', 'pg_temp.') });
+      }
+      return client.query(query, values);
+    } };
+    const result = await readMarketActivationCoverageV1(scopedClient, {
+      values: [run.slice(1,-1),run.slice(1,-1)], query_timeout: 6000,
+    });
+    assert.equal(result.rows[0].pokemon_eligible, 1);
+    assert.deepEqual(await settings(), { indexscan: 'on', bitmapscan: 'off' });
+    await assert.rejects(readMarketActivationCoverageV1(scopedClient, {
+      values: ['invalid-uuid',run.slice(1,-1)], query_timeout: 6000,
+    }), { code: '22P02' });
+    await client.query('rollback');
+    assert.deepEqual(await settings(), sessionSettings);
+  } finally {
+    await client.query('rollback').catch(() => {});
+    await client.end();
+  }
 });
 
 // Opt-in local Docker test: temporary tables only; never consumes an env DB URL.

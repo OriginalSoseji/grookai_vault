@@ -8,6 +8,8 @@ import { promisify } from "node:util";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { runMarketProcessTreeV1 } from "../../backend/pricing/market_process_tree_v1.mjs";
+import { assertMarketSchedulerSessionUrlV1, marketSessionConnectionStringV1, startMarketSchedulerHeartbeatV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
 import {
   TCGPLAYER_MARKET_OPERATIONS_POLICY_V1,
   classifyMarketPipelineFailureV1,
@@ -30,7 +32,8 @@ const PIPELINE = path.join(
   "workers",
   "tcgplayer_market_pipeline_v1.mjs",
 );
-const RUNNER_VERSION = "TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1";
+const RUNNER_VERSION = "TCGPLAYER_MARKET_SCHEDULED_RUNNER_V1_2";
+const LOCK_HEARTBEAT = Symbol("market scheduler heartbeat");
 const LOCK_NAME = "tcgplayer_market_scheduled_runner_v1";
 const FULL_SYNC_REQUEST_CEILING = 10_000;
 const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
@@ -267,6 +270,7 @@ function delay(ms) {
 }
 
 async function acquireSchedulerLockV1(url, onConnectionError) {
+  assertMarketSchedulerSessionUrlV1(url);
   const client = new Client({
     connectionString: url,
     ssl: sslConfig(url),
@@ -280,12 +284,15 @@ async function acquireSchedulerLockV1(url, onConnectionError) {
   try {
     await client.connect();
     const lock = await client.query(
-      "select pg_try_advisory_lock(hashtext($1)) as acquired",
+      "select pg_try_advisory_lock(hashtext($1)) as acquired, pg_backend_pid() as backend_pid",
       [LOCK_NAME],
     );
     if (!lock.rows[0]?.acquired) {
       throw new Error("scheduled market pipeline overlap lock was not acquired");
     }
+    client[LOCK_HEARTBEAT] = startMarketSchedulerHeartbeatV1(
+      client, lock.rows[0].backend_pid, onConnectionError,
+    );
     return client;
   } catch (error) {
     client.removeListener("error", onConnectionError);
@@ -296,6 +303,7 @@ async function acquireSchedulerLockV1(url, onConnectionError) {
 
 async function releaseSchedulerLockV1(client, onConnectionError) {
   if (!client) return;
+  await client[LOCK_HEARTBEAT]?.();
   await client
     .query("select pg_advisory_unlock(hashtext($1))", [LOCK_NAME])
     .catch(() => {});
@@ -436,12 +444,13 @@ async function main() {
     );
   }
 
-  const url = databaseUrl();
-  if (!url) {
+  const configuredUrl = databaseUrl();
+  if (!configuredUrl) {
     throw new Error(
       "SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is required",
     );
   }
+  const url = marketSessionConnectionStringV1(configuredUrl);
   let lockConnectionError = null;
   let activePipelineAbortController = null;
   const onLockConnectionError = (error) => {
@@ -486,9 +495,9 @@ async function main() {
         abortController.abort(lockConnectionError);
       }
       try {
-        const result = await execFileAsync(process.execPath, pipelineArgs, {
+        const result = await runMarketProcessTreeV1(process.execPath, pipelineArgs, {
           cwd: REPO_ROOT,
-          env: process.env,
+          env: { ...process.env, SUPABASE_DB_URL: url },
           timeout: 6 * 60 * 60 * 1000,
           maxBuffer: 128 * 1024 * 1024,
           windowsHide: true,
@@ -542,7 +551,9 @@ async function main() {
         completedAttempts = attempt;
         const state = await readPipelineState(pipelineRunDir);
         const phase = failedPhase(state);
-        const classification = classifyMarketPipelineFailureV1({
+        const classification = error.processTreeTerminated === false
+          ? { classification: "non_retryable_process_tree_cleanup_failure", retryable: false }
+          : classifyMarketPipelineFailureV1({
           failedPhase: phase,
           errorText: [
             effectiveError.message,
@@ -568,6 +579,7 @@ async function main() {
             retryable: classification.retryable,
             will_retry: willRetry,
             lock_connection_error: lockConnectionError?.message ?? null,
+            process_tree_terminated: error.processTreeTerminated ?? null,
             failed_phase: phase,
             started_at: startedAt,
             finished_at: new Date().toISOString(),
