@@ -17,7 +17,7 @@ let hasLoggedSupabaseUrl = false;
  *   SUPABASE_URL        - https://<project>.supabase.co
  *   SUPABASE_SECRET_KEY - sb_secret_... (service role)
  */
-export function createBackendClient() {
+export function createBackendClient({ fetch: transport } = {}) {
   const url = process.env.SUPABASE_URL;
   const secret = process.env.SUPABASE_SECRET_KEY;
   const userToken = process.env.GV_USER_ACCESS_TOKEN;
@@ -49,6 +49,7 @@ export function createBackendClient() {
       persistSession: false,
     },
     ...options,
+    global: { ...options.global, ...(transport ? { fetch: transport } : {}) },
   });
 
   if (process.env.NODE_ENV !== 'production') {

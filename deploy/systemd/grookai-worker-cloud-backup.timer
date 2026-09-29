@@ -1,0 +1,13 @@
+[Unit]
+Description=Daily Grookai worker cloud backup
+
+[Timer]
+OnActiveSec=1min
+OnCalendar=*-*-* 04:15:00 UTC
+Persistent=true
+RandomizedDelaySec=20s
+AccuracySec=1s
+Unit=grookai-worker-cloud-backup.service
+
+[Install]
+WantedBy=timers.target

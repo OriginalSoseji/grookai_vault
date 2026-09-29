@@ -62,3 +62,27 @@ must be reported separately; the worker is not proof of GitHub recovery.
 
 Current preparation/deployment receipts remain in the external September 29 recovery
 directory linked above. No cloud backup destination is created by this repair.
+
+## Private worker backups — September 29, 2026
+
+The founder subsequently selected private Supabase storage. Follow
+`docs/contracts/WORKER_CLOUD_BACKUPS_V1.md`. The separate immutable runtime is
+`/opt/grookai_worker_backup_current`; service/timer `grookai-worker-cloud-backup`
+runs daily at 04:15 UTC after retention. Only its receipt directory under
+`/var/lib/grookai/worker-cloud-backups` is writable. Use the existing root-private
+worker environment and the non-secret seed manifest index at
+`/etc/grookai/worker-backup-seed.json`. Keep pricing/MEE/control-plane links.
+
+The private bucket is `worker-recovery-archives`, using 6 MiB chunks, create-only
+uploads and downloaded hash verification before completion manifests. Seed the
+14 existing recovery archives and retain local copies. Daily runs verify seed
+manifests, copy finalized MEE retention archives within a 512 MiB/20-package
+budget, and back up/restore a narrow health snapshot. The 10 GB tracked payload
+budget stops growth visibly; metadata and partial uploads also consume quota.
+Inspect `latest.json` and per-run receipts for deferred archives and failures.
+
+Verify an actual timer-triggered receipt and downloaded restore after deployment.
+Stop the timer for rollback, preserving cloud/local evidence. No source deletion,
+new permissions, catalog writes or database backup configuration belong to this
+worker. Deployment/seed/restore receipts remain in the external recovery directory
+linked above; consult them for actual live status.
