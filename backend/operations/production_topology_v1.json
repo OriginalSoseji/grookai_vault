@@ -243,11 +243,18 @@
       "schedule": "17 */6 * * *",
       "max_staleness_minutes": 420,
       "source_files": [
-        ".github/workflows/tcgplayer-market-canary-observation.yml"
+        ".github/workflows/tcgplayer-market-canary-observation.yml",
+        "backend/operations/pricing_canary_closeout_v1.mjs",
+        "docs/checkpoints/pricing/PRICING_CHECKPOINT_94_TCGPLAYER_CANARY_FINAL_PASS.md",
+        "docs/audits/pricing/mee_pricing_platform_production_v1/canary_final_pass_20260818/github_main_replay_32194979152/artifact_hashes.json",
+        "docs/audits/pricing/mee_pricing_platform_production_v1/canary_final_pass_20260818/github_main_replay_32194979152/run_plan.json",
+        "docs/audits/pricing/mee_pricing_platform_production_v1/canary_final_pass_20260818/github_main_replay_32194979152/evidence.json",
+        "docs/audits/pricing/mee_pricing_platform_production_v1/canary_final_pass_20260818/github_main_replay_32194979152/summary.json",
+        "docs/audits/pricing/mee_pricing_platform_production_v1/canary_final_pass_20260818/github_main_replay_32194979152/REPORT.md"
       ],
-      "health_probe": "canary_observation_artifact_reconciliation",
+      "health_probe": "hash_verified_final_canary_closeout_with_retained_github_history",
       "write_boundary": "read-only observation evidence",
-      "pause_policy": "disabled only after final canary closeout"
+      "pause_policy": "completed gate requires verified permanent closeout; current pricing has independent live health probes"
     },
     {
       "id": "mtg-catalog-supervisor",

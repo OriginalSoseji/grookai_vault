@@ -11,6 +11,7 @@ import { createClient } from '@supabase/supabase-js';
 
 import { OUT_DIR, TOPOLOGY_PATH, validateTopologyV1 } from './production_backend_launch_baseline_v1.mjs';
 import { readMtgWorkerEvidenceV1 } from '../../backend/operations/mtg_worker_evidence_v1.mjs';
+import { readPricingCanaryCloseoutV1, applyPricingCanaryCloseoutV1 } from '../../backend/operations/pricing_canary_closeout_v1.mjs';
 
 const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'OriginalSoseji/grookai_vault';
 const TERMINAL_PRICE_STATES = new Set(['published', 'verified']);
@@ -1127,6 +1128,8 @@ export async function runProductionLiveControlPlaneV1({ rootDir = process.cwd(),
   const githubToken = resolveGitHubToken();
   const githubComponents = topology.components.filter((component) => workflowFile(component));
   let githubResults = await collectGitHubWorkflowComponentsV1(githubComponents, githubToken, now);
+  githubResults = applyPricingCanaryCloseoutV1(githubResults,
+    await readPricingCanaryCloseoutV1({ rootDir, now }));
   const githubEdgeProbe = githubResults.find((result) => result.component_id === 'prod-edge-probe');
   if (githubEdgeProbe && githubEdgeProbe.status !== 'healthy') {
     const directEdgeProbe = await collectDirectEdgeProbeV1({ now });
