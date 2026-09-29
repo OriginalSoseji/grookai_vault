@@ -1862,3 +1862,9 @@ previous active runtime; immutable retention protects all such `_current` links.
 Founder Notifications is a dated incident ledger. Preserve old failure records
 and verify current service results, publication provenance, and app prices
 separately; clearing historical failures is not a recovery check.
+
+The MTG supervisor retains four read-only checks per hour, staggered to minutes
+7, 22, 37 and 52. GitHub can delay or drop scheduled runs during high load; this
+reduces contention without widening the 45-minute freshness threshold. An active
+workflow and a successful manual audit do not prove timely scheduled execution.
+Verify actual `schedule` events; report stale evidence honestly if delays persist.
