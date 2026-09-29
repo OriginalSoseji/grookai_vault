@@ -2,7 +2,8 @@ name: MTG Catalog Supervisor
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    # Stagger checks while keeping four evenly spaced runs per hour.
+    - cron: "7,22,37,52 * * * *"
   workflow_run:
     workflows:
       - MTG Hidden Catalog Runner

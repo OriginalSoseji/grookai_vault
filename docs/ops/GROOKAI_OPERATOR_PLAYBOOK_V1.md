@@ -1820,3 +1820,51 @@ uses the verified session endpoint. Restore the timer only after the new
 immutable runtime and fresh frozen run are ready; do not replay the old daily
 key with a different producer. Live status and timer restoration are tracked in
 the external recovery checkpoint linked above. Preserve the separate MEE runtime.
+
+# Worker operations recovery — September 29, 2026
+
+The worker reached zero available disk space. Verified source archives and
+off-worker copies on the operator computer recovered capacity without removing
+failed pricing evidence or active releases. Both retention services subsequently
+completed successfully. Their current capacity success does not establish an
+unattended off-worker backup destination; that storage choice remains explicit.
+Archive manifests, restoration proofs, service receipts and live recovery status
+are retained in the September 29 external recovery directory linked above.
+
+Both `/etc/grookai/tcgplayer-market-pricing.env` and
+`/etc/grookai/mee-nightly.env` now select the existing shared session pooler on
+port 5432. Only that port changed; private environment backups stay on the worker.
+The MEE runtime remains independently pinned to `ed7414b980`. Its nightly run and
+reference refresh completed after recovery. Reference-provider errors and missing
+external IDs remain explicit coverage findings, not evidence of full coverage.
+
+The global `/usr/local/bin/supabase` link now points to the root-owned
+`/usr/local/lib/grookai/supabase-no-recursion-20260929` wrapper instead of a
+generated `/tmp` shim. Without a separately installed pinned CLI it exits 127
+promptly. Do not restore recursive self-resolution or an unpinned `npx` fallback;
+the existing MEE SQL adapter does not require that CLI.
+
+Pricing recovery uses frozen producer
+`19b177914c1dc05269f9b2540f424c6fb9d453e9` and release branch
+`release/pricing-recovery-20260929-19b177914c`. Its rollout sequence uses the actual
+pricing service for a fresh shadow run through a hash-recorded temporary `/run`
+override. Restore the daily timer while that unit is active so its overdue trigger
+cannot launch another writer. Require terminal shadow/reconciliation evidence
+before switching the runtime, removing that exact override, refreshing the
+existing active-ask cache under the pricing lock, and running governed production
+publication with the same producer and source. Verify the next timer deadline
+after the oneshot finishes. The external checkpoint is authoritative for completed
+steps and final publication/UI proof; this procedure alone proves no activation.
+
+Retain both existing rollback links. Before switching pricing, the prepared
+activation script adds `/opt/grookai_pricing_recovery_20260929_current` for the
+previous active runtime; immutable retention protects all such `_current` links.
+Founder Notifications is a dated incident ledger. Preserve old failure records
+and verify current service results, publication provenance, and app prices
+separately; clearing historical failures is not a recovery check.
+
+The MTG supervisor retains four read-only checks per hour, staggered to minutes
+7, 22, 37 and 52. GitHub can delay or drop scheduled runs during high load; this
+reduces contention without widening the 45-minute freshness threshold. An active
+workflow and a successful manual audit do not prove timely scheduled execution.
+Verify actual `schedule` events; report stale evidence honestly if delays persist.
