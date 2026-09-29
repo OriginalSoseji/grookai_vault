@@ -25,6 +25,45 @@ behavior is live before a separately verified web rollout. Existing native
 clients consume the shared endpoint; no keyboard or native build change is
 part of this follow-up.
 
+## Existing live seller connection — September 28
+
+PR540 review fixes expired-approval replacement and direct revocation. The409
+candidate is still unapplied; all priorV1 source hashes/release intents are stale.
+Fresh proof uses seller-adoption-v2 and separate310xx/314xx labs. Read the first
+checkpoint section and preserve the original populated302xx/306xx labs.
+
+Current candidate/checkpoint: `VENDOR_SELLER_LINK_20260928.md` in
+`C:/gv_store_seller_link_20260928`, based on current main ebfaf4e66. Preserve the
+older dirty cart/commission tree. Stripe platform and founder storefront seller
+have distinct IDs despite similar display names. Platform access was restored;
+four live Stripe GETs and the confirmed app-owner email comparison passed on
+September29 at06:20 UTC. The exact controller, live mode, charges, payouts, card
+payments and transfers are verified, with no due/pending requirements. Private
+receipts and a current-user DPAPI-encrypted restricted key are under the external
+storefront artifact directory, `seller-verification-key/`. The founder supplied
+the key in chat and explicitly requested using it, retaining rotation for later.
+Never copy it into source, logs or client configuration. The user's explicit key
+authorization permits reviewed server-only Account/Balance reads; it is not a
+checkout or payment-write credential. The local capture
+helper uses PowerShell7 and same-origin fetch; older PowerShell module loading
+failed. Its listener closes after saving. Do not create another account or key.
+Strict production408 baseline passed. Docker became available without a shared
+service restart. Full dedicated Supabase17 replay of409 and408-to409 retained-data
+upgrade pass; all five legacy states survive with matching schema/security.
+Real Auth, Next routes, cookie-authenticated SSR and signed duplicate webhook
+delivery pass. Production bindings/configuration remain unchanged. Read the checkpoint
+before retrying setup, requesting access, running replay or enabling checkout.
+The fixed-scope operator command `scripts/stripe/run_seller_adoption_operator_v1.mjs`
+now prepares a private30-minute account approval plan and has a guarded apply path.
+Issuance needs clean deployed source, full replay, retained-data upgrade, actual
+Auth/HTTP receipts and fresh production parity. The service-only RPC preserves
+revoked approvals on retries; direct service table insertion is removed. The
+first real plan was read-only; no production grant/binding was written.42 isolated
+PG16 groups also pass, including issuance races. Preserve the populated302xx and
+306xx labs and all failed/successful receipts; do not reuse their reset intents.
+Source integration, normal release checks, exact production migration gate,
+runtime provider/webhook configuration and owner connection remain open.
+
 ## Card-name and set-name search — September 28
 
 Current local candidate: `fix/search-name-set-20260928` in

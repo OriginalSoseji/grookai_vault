@@ -26,6 +26,8 @@ param(
   [switch]$StoreIndexBaselineAudit,
   [switch]$CustomImportBaselineAudit,
   [switch]$SellerBindingsBaselineAudit,
+  [switch]$VendorSellerAdoptionBaselineAudit,
+  [switch]$VendorSellerAdoptionReleaseV1,
   [switch]$VendorStockBaselineAudit,
   [switch]$VendorOrdersBaselineAudit,
   [switch]$VendorCheckoutBaselineAudit,
@@ -471,6 +473,32 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($VendorSellerAdoptionReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','VendorSellerAdoptionReleaseV1')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260928213000') { Fail 'Seller adoption release permits only its exact migration, without combined modes or target overrides.' }
+  $adoptionRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $adoptionFiles = @(Get-RepoMigrationFiles -RepoRoot $adoptionRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $adoptionFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $adoptionPending = @($adoptionFiles | Where-Object { $_.Id -eq '20260928213000' })
+  if ($adoptionPending.Count -ne 1) { Fail 'Seller adoption migration missing.' }
+  $adoptionDuplicates = Get-ObjectDuplicates -PendingFiles $adoptionPending
+  if ($adoptionDuplicates.DuplicateIndexes.Count -gt 0 -or $adoptionDuplicates.DuplicateViews.Count -gt 0 -or $adoptionDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending adoption objects.' }
+  Require-Command 'node'
+  $adoptionGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_vendor_seller_adoption_release_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $adoptionGate
+  if ($adoptionGate.ExitCode -ne 0) { Fail 'Seller adoption source, replay, upgrade or release gate failed; no apply.' }
+  exit 0
+}
+
+if ($VendorSellerAdoptionBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','VendorSellerAdoptionBaselineAudit') }).Count -gt 0) { Fail 'Seller adoption baseline permits only its fixed read-only audit.' }
+  Require-Command 'node'
+  $sellerAdoptionAudit = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/audit_vendor_seller_adoption_baseline_v1.mjs'))
+  Write-CommandTranscript -result $sellerAdoptionAudit
+  if ($sellerAdoptionAudit.ExitCode -ne 0) { Fail 'Seller adoption baseline failed; no schema work or apply.' }
+  exit 0
 }
 
 if ($NativeImportRecoveryReleaseV1) {

@@ -1,5 +1,26 @@
 # Grookai Agent Entry Point
 
+## Existing live seller connection — September 28
+
+PR540 review hardening supersedes the original409 proof bytes. Production remains
+408. Read the first checkpoint section; use seller-adoption-v2 artifacts and fresh
+310xx/314xx labs. Never replay the preparedV1 production package. Expired approvals
+now have explicit retained-history replacement; revoked grants cannot reactivate.
+
+Read `docs/ops/VENDOR_SELLER_LINK_20260928.md` and
+`docs/contracts/VENDOR_SELLER_ADOPTION_V1.md`. This is the current-main seller-link
+candidate; preserve the separate dirty cart/commission tree. The existing real
+seller must be adopted through explicit provenance, never fake creation recovery.
+Production is408 with no seller binding or live payment configuration. Platform
+login and four live Stripe GETs are now verified; the seller controller matches
+the candidate and its confirmed email matches the store owner. The restricted
+verification key is encrypted outside the repo; it is not a runtime checkout key.
+Docker became available without restarting shared services. Dedicated Supabase17
+409 replay and408-to409 retained-data upgrade pass, as do real Auth, Next route,
+cookie-authenticated page and signed webhook checks. Preserve the populated302xx
+and306xx labs and consumed intents. These checks are not release authority;
+checkout remains off.
+
 ## Store inventory manual sales — September 27
 
 Read `docs/ops/STORE_WEB_SOLD_20260927.md`. The owner store inventory now exposes

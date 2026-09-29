@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| VENDOR_SELLER_ADOPTION_V1 | Active implementation contract | docs/contracts/VENDOR_SELLER_ADOPTION_V1.md - Owner-confirmed linking of operator-approved existing Stripe accounts; immutable provenance, no duplicate creation or checkout activation |
 | VENDOR_STOREFRONTS_V1 | Active implementation contract | docs/contracts/VENDOR_STOREFRONTS_V1.md - Explicit store and exact-copy publication, database package authority, privacy and printing eligibility |
 | VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1 | Active implementation contract | docs/contracts/VENDOR_STOREFRONT_DESKTOP_MANAGEMENT_V1.md - Computer-based setup, inventory, pricing, sections and photos |
 | VENDOR_CUSTOM_COLLECTIBLES_V1 | Active implementation contract | docs/contracts/VENDOR_CUSTOM_COLLECTIBLES_V1.md - Owner-authored products without canonical identity or ownership duplication |
