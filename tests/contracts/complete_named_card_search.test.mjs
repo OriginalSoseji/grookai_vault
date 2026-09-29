@@ -3,6 +3,13 @@ const require=createRequire(import.meta.url),ts=require('typescript'),module={ex
 const source=fs.readFileSync('apps/web/src/lib/search/completeNamedCardSearch.ts','utf8');
 vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{module,exports:module.exports,Set,Error});
 const {fetchCompleteNamedCardRows:fetchRows}=module.exports;
+
+test('short fragments never start an exhaustive RPC scan',async()=>{
+ for(const textQuery of ['a','p','pi','a p','Ｐ','ex common 7']) {
+  const result=await fetchRows({rpc:async()=>{assert.fail('Broad fragments must remain bounded');}},{textQuery,gameScope:'pokemon'});
+  assert.equal(result,null);
+ }
+});
 test('a known name retains all RPC pages and passes caller game/language scope',async()=>{
  const rows=Array.from({length:131},(_,i)=>({id:String(i),name:'Wurmple',gv_id:'GV-PK-TEST-001'})),calls=[];
  const result=await fetchRows({rpc:async(name,args)=>{assert.equal(name,'search_game_card_prints_v4');calls.push(args);return {data:rows.slice(args.offset_in,args.offset_in+args.limit_in),error:null};}},{textQuery:'Wurmple common 7/1019',gameScope:'pokemon',languageScope:'ja'});

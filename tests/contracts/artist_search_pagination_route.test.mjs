@@ -228,6 +228,17 @@ test('partial card names take precedence over opening-word set shortcuts', async
  assert.equal(options.textQuery,'Chari');
 });
 
+test('short card-name fragments retain bounded results instead of exhaustive discovery', async () => {
+ for(const q of ['a','p','pi','a p','Ｐ']) {
+  let exhaustive=0;
+  const get=loadRoute({partialCardNames:{[q]:'Pikachu'},capture:()=>{exhaustive++;}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(q)+'&limit=32&pagination=1')});
+  assert.equal(response.status,200);
+  const result=await response.json();
+  assert.equal(exhaustive,0);assert.equal(result.rows.length,32);assert.equal(result.pagination,undefined);
+ }
+});
+
 test('plain card-name queries expose all pages and complete legacy results', async () => {
  for(const q of ['Pika','Charizard']) {
   const get=loadRoute({partialCardNames:{Pika:'Pikachu',Charizard:'Charizard'}});

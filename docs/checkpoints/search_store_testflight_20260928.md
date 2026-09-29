@@ -13,6 +13,9 @@ The name RPC accepts literal fragments only when every word matches the returned
 name, filters unrelated fuzzy candidates and checks all raw RPC pages. Unknown
 words and exact identifiers retain their established interpretation. Complete
 searches receive a bounded twelve-second resolution budget rather than4.2s.
+One- and two-character fragments retain bounded ranked search. Exhaustive name
+retrieval requires at least one literal word of three characters, including after
+rarity/number removal, so early keystrokes cannot launch full-catalog scans.
 
 Native search invalidates prior responses immediately when text changes, avoids
 duplicating an in-flight search on keyboard submit, and clears stale results and

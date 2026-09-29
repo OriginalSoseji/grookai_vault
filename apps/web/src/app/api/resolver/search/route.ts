@@ -1,4 +1,5 @@
 import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } from "@/lib/search/catalogSetSearch";
+import { supportsCompleteNameSearch } from "@/lib/search/completeNamedCardSearch";
 import { NextRequest, NextResponse } from "next/server";
 import { isIdentityFilterActive, normalizeIdentityFilterKey } from "@/lib/cards/identitySearch";
 import { getPublicProvisionalCards } from "@/lib/provisional/getPublicProvisionalCards";
@@ -395,9 +396,9 @@ export async function GET(request: NextRequest) {
         query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
       const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
-        (!candidate.matchedAlias && !smartSearchIntent.artist && query.trim() && gameScope === "pokemon")) &&
+        (!candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
         await isCatalogCardNameQuery(catalog, query, gameScope);
-      literalNameSearch = cardNameQuery && !smartSearchIntent.artist;
+      literalNameSearch = cardNameQuery && !smartSearchIntent.artist && supportsCompleteNameSearch(query);
       inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery
         ? { matchedAlias: null, setCodes: [], remainingQuery: query }
         : candidate;

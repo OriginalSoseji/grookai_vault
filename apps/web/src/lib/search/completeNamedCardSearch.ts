@@ -3,6 +3,10 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 type NamedRow = { id: string; gv_id?: string | null; name?: string | null };
 const normalize = (value: string) => value.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 
+// A brief pause after the first keystroke must not scan the whole catalog.
+export const supportsCompleteNameSearch = (value: string) =>
+  normalize(value).split(" ").some((word) => Array.from(word).length >= 3);
+
 // Once the residual text identifies an actual card name, use the existing
 // release-aware name RPC. Broad ILIKE predicates on the RLS table cannot use
 // the same candidate-first plan and time out even for Wurmple + reverse holo.
@@ -14,7 +18,7 @@ export async function fetchCompleteNamedCardRows(
     .replace(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi, " ")
     .replace(/(?<![\p{L}\p{N}])#?\d+(?:\/\d+)?(?![\p{L}\p{N}])/gu, " ")
     .replace(/\s+/g, " ").trim();
-  if (!name) return null;
+  if (!name || !supportsCompleteNameSearch(name)) return null;
   const prefix = options.gameScope === "pokemon" ? "GV-PK-" : options.gameScope === "mtg" ? "GV-MTG-" : "GV-OP-";
   const rows: NamedRow[] = [];
   const seen = new Set<string>();
