@@ -1,12 +1,13 @@
 import { fetchPokemonReferenceBatchV1 } from './pokemon_reference_batch_v1.mjs';
 import { fetchPokemonCardsPageViaCurl } from './pokemon_reference_http_v1.mjs';
+import { isPokemonReferenceIdV1 } from './pokemon_reference_id_v1.mjs';
 
 // Retrieve the public catalog in bounded pages, then select ONLY exact existing
 // external IDs. Catalog entries never infer mappings or create canonical cards.
 export async function fetchPokemonReferenceCatalogV1({ ids, onResult = () => {}, onProgress = () => {},
   fetchPage = fetchPokemonCardsPageViaCurl, ...timing } = {}) {
   if (!Array.isArray(ids) || ids.length > 5000 || new Set(ids).size !== ids.length ||
-      ids.some(id => typeof id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(id)))
+      ids.some(id => !isPokemonReferenceIdV1(id)))
     throw new Error('POKEMON_REFERENCE_INVALID_BATCH');
   const wanted = new Set(ids), seen = new Set(), cardsByExternalId = {};
   let total = null, pages = 0, broken = false;
@@ -28,7 +29,7 @@ export async function fetchPokemonReferenceCatalogV1({ ids, onResult = () => {},
             (total !== null && payload.totalCount !== total)) throw failure();
         total ??= payload.totalCount;
         for (const card of payload.data) {
-          if (!card || typeof card.id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(card.id) || seen.has(card.id)) throw failure();
+          if (!card || !isPokemonReferenceIdV1(card.id) || seen.has(card.id)) throw failure();
           seen.add(card.id);
           if (wanted.has(card.id)) cardsByExternalId[card.id] = card;
         }
