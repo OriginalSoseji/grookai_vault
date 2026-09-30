@@ -15,9 +15,13 @@ export async function auditCatalog(client, component) {
   await client.connect();
   try {
     if (client.connection.stream.authorized !== true) throw new Error('Catalog TLS verification failed');
-    await client.query("begin isolation level repeatable read read only; set local lock_timeout='3s'");
-    const mode = (await client.query("select current_setting('transaction_read_only') read_only, current_setting('default_transaction_read_only') session_read_only")).rows[0];
+    // The session pooler may ignore startup options. Establish and verify the
+    // boundary on the connected session before any catalog read.
+    await client.query('set session default_transaction_read_only=on');
+    await client.query("begin isolation level repeatable read read only; set local statement_timeout='60s'; set local lock_timeout='3s'");
+    const mode = (await client.query("select current_setting('transaction_read_only') read_only, current_setting('default_transaction_read_only') session_read_only, current_setting('statement_timeout') statement_timeout, current_setting('lock_timeout') lock_timeout")).rows[0];
     if (mode.read_only !== 'on' || mode.session_read_only !== 'on') throw new Error('Catalog database connection is not read-only');
+    if (!['1min', '60s'].includes(mode.statement_timeout) || mode.lock_timeout !== '3s') throw new Error('Catalog database deadlines were not established');
     const report = await collectCatalogReport(client, component);
     await client.query('rollback');
     return report;
