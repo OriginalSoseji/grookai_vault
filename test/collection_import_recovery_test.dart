@@ -25,6 +25,7 @@ class Fixture {
   int slabOnly = 0;
   List<Map<String, dynamic>>? catalogSets;
   List<Map<String, dynamic>>? catalogCards;
+  List<Map<String, dynamic>> catalogIdentities = [];
   int catalogPageSize = 500;
   bool failLaterCatalogPage = false;
   bool repeatCatalogPage = false;
@@ -48,6 +49,15 @@ class Fixture {
       result = result
           .where((row) => setFilter.contains(row['set_id'] as String))
           .toList();
+    }
+    final cardFilter = request.url.queryParameters['card_print_id'];
+    if (cardFilter != null) {
+      result = result
+          .where((row) => cardFilter.contains(row['card_print_id'] as String))
+          .toList();
+    }
+    if (request.url.queryParameters['is_active'] == 'eq.true') {
+      result = result.where((row) => row['is_active'] == true).toList();
     }
     if (request.url.queryParameters['order']?.startsWith('id.desc') == true) {
       result = result.reversed.toList();
@@ -153,6 +163,8 @@ class Fixture {
                     },
                 ],
           );
+        } else if (request.url.path.endsWith('/card_print_identity')) {
+          body = catalogPage(request, catalogIdentities);
         } else if (request.url.path.endsWith('/vault_item_instances')) {
           final slab =
               request.url.queryParameters['card_print_id'] == 'is.null';

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
+import fs from 'node:fs';
 import {createCollectionImportHandler} from '../../supabase/functions/vault-import-collection-v2/handler.ts';
 // Keep fixtures local: importing another test file would register its tests twice.
 const row={'Product Name':'Synthetic card',Category:'Pokemon',Set:'151','Card Number':'65',Variance:'Reverse Holofoil',Grade:'Ungraded','Card Condition':'LP',Quantity:'2','Average Cost Paid':'4.25','Portfolio Name':'Private'};
@@ -9,8 +10,13 @@ const owner=randomUUID(),cardId=randomUUID(),printing=randomUUID(),requestId=ran
 const selection={sourceIndices:[0],cardId,gvId:'GV-TEST',cardPrintingId:printing};
 function fixture(options={}) {
  const writes=[],reads=[];
- const client={from:()=>{
-  let after=null;const query={select:()=>query,in:()=>query,gt:(_,value)=>{after=value;return query;},order:()=>query,limit:async()=>{
+ const client={from:table=>{
+  let after=null;const query={select:()=>query,in:()=>query,eq:()=>query,gt:(_,value)=>{after=value;return query;},order:()=>query,limit:async()=>{
+   if(table==='card_print_identity') {
+    reads.push({table,after});
+    const rows=[...(options.identities??[])].sort((a,b)=>a.id.localeCompare(b.id));
+    return {error:options.identityError??(options.identityLateError&&after?{}:null),data:rows.filter(r=>options.repeatIdentityPage||after===null||r.id>after).slice(0,1)};
+   }
    reads.push({after});return {error:options.catalogError??null,data:after?[]:[{id:cardId,gv_id:'GV-TEST',name:'Synthetic card',number:'065/165',sets:{name:'151',game:'pokemon'},...options.card}]};
   }};return query;
  },rpc:async(name,args)=>{
@@ -56,4 +62,22 @@ test('expanded retained source is rejected before the writer',async()=>{
  assert.ok(Buffer.byteLength(csvText)<1900000);
  const f=fixture();const r=await f.send({csvText,targets:[]});
  assert.equal(r.status,400);assert.equal((await r.json()).error,'import_size_limit');assert.equal(f.writes.length,0);
+});
+
+const identityCases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_mtg_identity_v1.json',import.meta.url)));
+for(const {label,expected,input} of identityCases.filter(c=>c.input.game==='mtg'))test(`server catalog validation: ${label}`,async()=>{
+ const identities=structuredClone(input.identities).map((identity,index)=>({...identity,id:index===0?identity.id:'55555555-5555-4555-8555-555555555555',
+  card_print_id:identity.card_print_id===input.card.id?cardId:identity.card_print_id}));
+ const card={...input.card,id:cardId,gv_id:'GV-TEST',sets:{name:'Synthetic Set',game:'mtg'}};
+ const f=fixture({card,identities,printing:{finish_key:'foil'}});
+ const response=await f.send({csvText:toCsv([{...row,Category:'MTG',Set:'Synthetic Set','Product Name':input.sourceName,'Card Number':input.sourceNumber,Variance:'Foil'}])});
+ assert.equal(response.status,expected?200:label==='wrong identity card_print_id'?503:400,label);assert.equal(f.writes.length,expected?1:0);
+ if(expected)assert.equal(f.writes[0].args.p_source_rows[0]['Product Name'],input.sourceName);
+});
+for(const mode of ['unavailable','repeated','late-failure'])test(`identity read ${mode} never reaches writer`,async()=>{
+ const input=structuredClone(identityCases[0].input),identity={...input.identities[0],card_print_id:cardId};
+ const f=fixture({card:{...input.card,id:cardId,sets:{name:'Synthetic Set',game:'mtg'}},identities:[identity],printing:{finish_key:'foil'},identityError:mode==='unavailable'?{}:null,repeatIdentityPage:mode==='repeated',identityLateError:mode==='late-failure'});
+ // The capped-page repeated case must fail after reading the first identity.
+ const response=await f.send({csvText:toCsv([{...row,Category:'MTG',Set:'Synthetic Set','Product Name':input.sourceName,'Card Number':input.sourceNumber,Variance:'Foil'}])});
+ assert.equal(response.status,503);assert.equal(f.writes.length,0);
 });

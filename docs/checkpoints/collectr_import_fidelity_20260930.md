@@ -1,5 +1,49 @@
 # Collectr importer fidelity — September 30
 
+## Governed MTG matching follow-up — iPhone qualified
+
+Physical iPhone17 Pro now passes the new matching workflow in the isolated test
+bundle: actual Files CSV selection, three supported artwork rows, four held rows,
+interrupted successful save/retry, and reopening the same file. Independent SQL
+readback verifies four exact copies with the intended governed foil children,
+condition/cost/notes, all original fields, and receipt added counts4/0. Prior rows
+and rollout controls are unchanged. Screenshots and signed test-app backup are
+verified under private `collectr_matching_20260930/device`. The fixture is consumed;
+never rerun its fresh-account preparation or startup guard. TestFlight336 and the
+real collection remain unchanged. Normal repository/release checks are next.
+
+PR553 is merged as ac32fb64a. Production410 and internal TestFlight336 are live;
+the original export was previewed on the real iPhone without saving. Completed
+release and device receipts are in `collectr_import_release_20260930` and
+`collectr_live_preview_20260930` outside the repository. Do not replay them.
+
+The next isolated branch `fix/collectr-matching-20260930` resolves supported MTG
+artwork labels and front-face names using existing active identity evidence,
+checked independently in native preview and Edge. No migration, canonical edit,
+release, or real collection import belongs to this local qualification.
+
+All source rows now have a private diagnostic classification. Actual Dart replay
+and offline Edge replay agree, retain every source field, and preserve all
+previously ready parent/child identities. Added matches remain contingent on
+governed printing options; special finishes, grades, ambiguous parents, unresolved
+set labels and numberless products are still held. Counts and row-level evidence
+stay in `collectr_matching_20260930` outside source.
+
+Validation:89 focused native tests pass (one opt-in private replay separately
+passes),142 source/handler/shared-corpus checks pass, clean Flutter analysis and
+Deno type check, and all9 real sandbox HTTP scenarios pass. The existing410
+isolated lab retains prior ownership and rollout controls; only each new synthetic
+MTG set receives its own local visibility override. No lab reset. Earlier failed
+fixture runs remain preserved: MTG visibility was initially hidden; a later
+snapshot comparison needed deterministic full-row ordering. Terminal runtime
+receipt is the successful third run, not either failed run.
+
+Remaining: a fresh source-bound distribution build/release package, normal
+repository release checks, backend/native delivery, then live preview
+before the authorized real import. The remaining matching/support backlog stays
+visible in the private classification ledger. Do not describe this as support for
+the entire collection or reuse build336 for these new matching rules.
+
 ## Review fixes verified; release inspection refreshed
 
 PR553 includes all four review corrections. Fresh full replay, retained upgrade,

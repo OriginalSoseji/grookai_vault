@@ -1,9 +1,35 @@
 # Collectr import fidelity repair
 
-Status: the review-fixed candidate passes local and physical iPhone qualification.
-Build 336 is signed and verified; 335 is superseded. The fresh release inspection
-package is being prepared. No production deployment or real import is claimed.
-Catalog/grade/sealed coverage remains incomplete; retained review is not ownership.
+Status: PR553 is merged, production is at410, and build336 is released internally
+and installed on the real iPhone. Its original-export preview is verified; no real
+collection save occurred. A subsequent governed MTG matching repair is locally
+and physically qualified but not released. Private terminal release/preview evidence supersedes
+historical preparation notes. Catalog/grade/sealed coverage remains incomplete;
+retained review is not ownership.
+
+## Governed MTG name matching follow-up
+
+Source-aware V2 may resolve an English MTG decorated name only against exactly
+one active `MTG_ENG_PAPER_PRINT_IDENTITY_V1` record bound to the parent, Scryfall
+print ID, set code, collector number, language and full catalog name. Extended Art
+requires `frame_effects: extendedart`, Showcase requires `showcase`, and Borderless
+requires `border_color: borderless`. A numeric name suffix must equal the source
+and catalog collector number. Transform/modal DFC front-face names require the
+governed full two-face name and layout. Back-face-only and other layout guesses,
+unknown or duplicate suffixes, special foil labels and conflicting evidence stay
+held. No source field is rewritten and no catalog/printing is created.
+
+Both native preview and Edge validate the same synthetic fixture corpus. Candidate
+parents remain game/set/number scoped; multiple proven candidates stay ambiguous.
+The identity read uses ascending empty-page cursor completion and fails the whole
+operation on failed, repeated or unrelated pages. Finish/grade/source-size rules
+remain independent requirements. Legacy V1 does not use the fallback.
+
+Private replay, sandbox Auth/HTTP/save/retry/readback, and the real iPhone Files
+preview/save/interruption/reopen flow qualify this candidate. A distribution build
+and normal release gates are still required. Build336 and its consumed release
+package do not qualify changed code;
+include the new `mtg_identity.ts` module in fresh source/deployment verification.
 
 The physical iPhone Collectr preview exposed source fields being discarded,
 different copies collapsing into one parent, numberless rows disappearing, and

@@ -35,6 +35,27 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
+Latest: PR553/production410/internal TestFlight336 are released; real iPhone
+original-export preview passed without a save. Continue in the isolated
+collectr-matching branch and private `collectr_matching_20260930` checkpoint for
+the governed MTG name/treatment follow-up. Existing identity records are read-only
+evidence, not permission to infer or publish canonical treatments. The shared
+synthetic corpus checks Dart/Edge parity; private CSV/catalog replay stays opt-in
+and outside source. The new sandbox test
+`tests/integration/collectr_mtg_import_http_v1.test.mjs` uses
+`GV_COLLECTR_MTG_HTTP_PROOF=1` with the preserved full410 lab and new synthetic
+accounts only. It verifies the frozen410 migration/config/network boundary and
+never resets the lab. Its synthetic per-set visibility override leaves existing
+set and game controls untouched. Record failed attempts alongside terminal proof.
+
+The matching follow-up is physically qualified in the isolated iPhone test app,
+not in build336. Real Files, interrupted save/retry and duplicate-free reopening
+pass with independent exact-copy readback. The new phone fixture is consumed;
+never replay its fresh-account preparation. The signed test app is backed up on
+Windows. Distribution build and fresh ordinary release checks remain. The new Edge identity
+module must be included in source hashes/deployed-file verification. Historical
+409 pre-apply notes and consumed release intents below must not be reused.
+
 Current release preparation uses collectr_import_release_20260930 for fresh
 inspection/package receipts and collectr_import_review_20260930 for physical,
 runtime and build evidence. V16/V17 passed including archived-copy reopen; signed
