@@ -3,6 +3,8 @@ import test from "node:test";
 import {
   TCGPLAYER_TRAINER_KIT_PILOT_CARDS_V1 as CARDS,
   matchesTrainerKitPilotPublicationV1,
+  matchesTrainerKitPilotLiveMappingV1,
+  uniqueTrainerKitPrintedNumberV1,
 } from "../../backend/pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
 import {
   planTcgplayerExactMappingCandidateV1 as plan,
@@ -120,6 +122,45 @@ for (const card of CARDS) {
       { duplicate_product_row_count: 2 }, { variant_assignment_status: "unknown" },
     ]) assert.equal(qualify({ ...row, ...change }, { now: NOW }).decision, "quarantine", JSON.stringify(change));
     assert.equal(qualify({ ...row, source_sync_finished_at: "2026-09-27T00:00:00Z" }, { now: NOW }).decision, "suppress_stale");
+  });
+  test(`${card.source_product_id}: unmapped source stays a repair gap and plans its exact half deck`, () => {
+    const row = { ...candidate(card), source_mapping_count: 0, card_print_mapping_count: 0,
+      card_printing_mapping_count: 0, card_print_id: null, card_printing_id: null,
+      source_mapping_id: null, gv_id: null, printing_gv_id: null,
+      canonical_name: null, canonical_number: null, set_id: null, set_code: null,
+      variant_key: null, printing_truth_verified: false };
+    const decision = qualify(row, { now: NOW });
+    assert.equal(decision.decision, "exclude");
+    const report = coverage({ ...row, ...decision, candidate_payload: row });
+    assert.equal(report.in_denominator, true);
+    assert.equal(report.in_numerator, false);
+    assert.equal(report.primary_gap_reason, "missing_active_source_mapping");
+    assert.equal(coverage({ ...row, ...decision, decision: "publish", candidate_payload: row }).in_numerator, false);
+    const plannedGap = plan({ source: source(card), setTargets: CARDS.map(target),
+      groupConsensus: { set_count: 1, set_id: "wrong-half-deck", set_code: "wrong" } });
+    assert.equal(plannedGap.disposition, "candidate");
+    assert.equal(plannedGap.target.card_print_id, card.card_print_id);
+    assert.equal(plannedGap.evidence_lane, "reviewed_trainer_kit_product_authority");
+    assert.equal(validate(plannedGap).accepted, true);
+    for (const change of [
+      { source_product_id: 999999 }, { source_subtype_name: "Holofoil" },
+      { source_group_id: 99 }, { source_mapping_count: 1 },
+      { card_print_id: "unexpected-mapped-parent" },
+      { source_product_extended_data: [...row.source_product_extended_data, ...row.source_product_extended_data] },
+    ]) assert.equal(coverage({ ...row, ...decision, ...change }).in_denominator, false, JSON.stringify(change));
+  });
+  test(`${card.source_product_id}: live mapping requires exactly one raw number field`, () => {
+    const current = { ...source(card), product_id: card.source_product_id,
+      extended_data: [{ name: "Number", value: card.printed_number }] };
+    assert.equal(matchesTrainerKitPilotLiveMappingV1(planned(card), current, target(card)), true);
+    for (const fields of [[],
+      [...current.extended_data, { name: "Number", value: "999/999" }],
+      [...current.extended_data, { name: "number", value: card.printed_number }],
+      [{ name: "Number", value: card.canonical_number }],
+    ]) {
+      assert.equal(matchesTrainerKitPilotLiveMappingV1(planned(card), { ...current, extended_data: fields }, target(card)), false);
+    }
+    assert.equal(uniqueTrainerKitPrintedNumberV1([...current.extended_data, ...current.extended_data]), null);
   });
 }
 

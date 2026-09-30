@@ -1,7 +1,7 @@
 import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "./tcgplayer_market_publication_policy_v1.mjs";
-import { applyTrainerKitPilotPublicationScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
+import { applyTrainerKitPilotCoverageScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 import {
   classifyTcgplayerMarketProductScopeV1_2,
   TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
@@ -88,7 +88,7 @@ export function tcgplayerMarketCoverageValueBandV1(marketPrice) {
 }
 
 function productScope(row) {
-  return applyTrainerKitPilotPublicationScopeV1(
+  return applyTrainerKitPilotCoverageScopeV1(
     classifyTcgplayerMarketProductScopeV1_2(row),
     { ...row.candidate_payload, ...row },
   );
@@ -138,7 +138,8 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
   const exclusionReason = denominatorExclusion(row);
   const inDenominator = exclusionReason === null;
   const inNumerator =
-    inDenominator && ["publish", "delay"].includes(text(row.decision));
+    inDenominator && productScope(row).rule_id !== "reviewed_trainer_kit_mapping_gap" &&
+    ["publish", "delay"].includes(text(row.decision));
   const rowEvidence = evidence(row);
   const normalizedFinish =
     text(row.normalized_finish_key ?? rowEvidence.normalized_finish_key) ||

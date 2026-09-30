@@ -6,6 +6,11 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
+import {
+  trainerKitPilotCardV1,
+  trainerKitPilotPlanningAuthorityV1,
+  uniqueTrainerKitPrintedNumberV1,
+} from "../../backend/pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
 
 import "../../backend/env.mjs";
 import {
@@ -241,7 +246,9 @@ async function loadSourceContext(client, sourceRunId, groupedGaps) {
       source_product_name: product.source_product_name,
       source_group_id: Number(product.source_group_id),
       source_group_name: product.source_group_name,
-      printed_number: numberField(product.extended_data),
+      printed_number: trainerKitPilotCardV1(gap)
+        ? uniqueTrainerKitPrintedNumberV1(product.extended_data)
+        : numberField(product.extended_data),
       has_printed_number_evidence: Boolean(numberField(product.extended_data)),
       source_product_active: product.source_active === true,
       source_product_catalog_status: product.catalog_metadata_status,
@@ -372,6 +379,10 @@ async function resolveAuthorities(client, sources, consensusByGroup) {
   );
   for (const authority of authorities.values()) {
     targetSetIds.add(authority.set_id);
+  }
+  for (const source of sources) {
+    const pilotAuthority = trainerKitPilotPlanningAuthorityV1(source);
+    if (pilotAuthority) targetSetIds.add(pilotAuthority.set_id);
   }
   return { authorities, targetSetIds: [...targetSetIds].sort() };
 }

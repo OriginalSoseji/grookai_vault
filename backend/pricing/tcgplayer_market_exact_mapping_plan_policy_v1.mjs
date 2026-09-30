@@ -4,6 +4,7 @@ import {
   trainerKitPilotCardV1,
   matchesTrainerKitPilotSourceV1,
   matchesTrainerKitPilotMappingV1,
+  trainerKitPilotPlanningAuthorityV1,
 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 
 import {
@@ -263,7 +264,7 @@ export function planTcgplayerExactMappingCandidateV1({
     };
   }
 
-  const setAuthority =
+  const setAuthority = trainerKitPilotPlanningAuthorityV1(source) ?? (
     groupConsensus?.set_count === 1
       ? {
           evidence_lane: "unique_group_set_consensus",
@@ -277,7 +278,7 @@ export function planTcgplayerExactMappingCandidateV1({
             distinct_target_set_count: groupConsensus.set_count,
           },
         }
-      : authority;
+      : authority);
 
   if (!setAuthority) {
     return blocked(source, "missing_unique_set_authority", {

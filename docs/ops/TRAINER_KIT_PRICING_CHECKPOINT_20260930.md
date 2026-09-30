@@ -10,7 +10,14 @@ verified normal Trainer Kit printings. The general Trainer Kit exclusion remains
 Mapping plan, apply validation/live preflight, publication and coverage use the
 bounded exception. No schema migration is needed.
 
-Focused validation passed 274 pricing/mapping/authority contracts, plus the
+PR547 review identified missing source-only coverage gaps and ambiguous duplicate
+Number fields. The follow-up preserves unmapped pilot rows for the ordinary
+coverage/planner path, loads the two reviewed half decks without group-wide
+consensus, and rejects duplicate Number fields at planning and live apply.
+Earlier candidate fingerprints/evidence packages must not be reused after this
+planner change. Produce a fresh package from the final frozen source.
+
+Focused validation passed 278 pricing/mapping/authority contracts, plus the
 separate MTG publication suite. A verified-TLS production read in a read-only
 transaction exercised the actual candidate query and additional identity joins.
 Both current rows remain excluded because they are unmapped. Explicitly simulated

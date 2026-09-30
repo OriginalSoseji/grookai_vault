@@ -69,12 +69,42 @@ export function matchesTrainerKitPilotMappingV1(source, target) {
     matchesTrainerKitPilotTargetV1(source, target);
 }
 
-export function matchesTrainerKitPilotPublicationV1(row = {}) {
-  const fields = Array.isArray(row.source_product_extended_data)
-    ? row.source_product_extended_data.filter(
+export function uniqueTrainerKitPrintedNumberV1(extendedData) {
+  const fields = Array.isArray(extendedData)
+    ? extendedData.filter(
       (field) => String(field?.name ?? "").trim().toLowerCase() === "number",
     ) : [];
-  const source = { ...row, printed_number: fields.length === 1 ? fields[0].value : null };
+  return fields.length === 1 && typeof fields[0].value === "string" ? fields[0].value : null;
+}
+
+export function matchesTrainerKitPilotLiveMappingV1(candidate, source, target) {
+  return Number(source.product_id) === Number(candidate.source_product_id) &&
+    matchesTrainerKitPilotMappingV1({
+      ...source,
+      source_product_id: source.product_id,
+      printed_number: uniqueTrainerKitPrintedNumberV1(source.extended_data),
+      source_subtypes: candidate.source_subtypes,
+    }, target);
+}
+
+export function trainerKitPilotPlanningAuthorityV1(source) {
+  if (!matchesTrainerKitPilotSourceV1(source)) return null;
+  const card = trainerKitPilotCardV1(source);
+  return {
+    set_id: card.set_id, set_code: card.set_code,
+    evidence_lane: "reviewed_trainer_kit_product_authority",
+    mapping_method: "exact_reviewed_trainer_kit_product_v1", mapping_confidence: 1,
+    authority_evidence: {
+      authority_version: TCGPLAYER_TRAINER_KIT_PILOT_V1,
+      original_manifest_sha256: card.original_manifest_sha256,
+      identity_source_sha256: card.identity_source_sha256,
+      card_source_ref: `${card.set_code}-${card.canonical_number}`,
+    },
+  };
+}
+
+export function matchesTrainerKitPilotPublicationV1(row = {}) {
+  const source = { ...row, printed_number: uniqueTrainerKitPrintedNumberV1(row.source_product_extended_data) };
   const card = trainerKitPilotCardV1(source);
   return Boolean(card && Number(row.category_id) === 3 &&
     matchesTrainerKitPilotSourceV1(source) &&
@@ -86,6 +116,26 @@ export function matchesTrainerKitPilotPublicationV1(row = {}) {
     row.source_subtype_name === "Normal" && row.finish_key === "normal" &&
     row.normalized_finish_key === "normal" &&
     row.printing_is_provisional === false && row.printing_truth_verified === true);
+}
+
+export function applyTrainerKitPilotCoverageScopeV1(scope, row) {
+  const publicationScope = applyTrainerKitPilotPublicationScopeV1(scope, row);
+  if (publicationScope.in_scope) return publicationScope;
+  const evidence = row.evidence ?? {};
+  // Source admission exposes a repair gap; it never creates a publishable row.
+  const unmapped = Number(row.source_mapping_count ?? evidence.source_mapping_count) === 0 &&
+    Number(row.card_print_mapping_count ?? evidence.card_print_mapping_count) === 0 &&
+    Number(row.card_printing_mapping_count ?? evidence.card_printing_mapping_count) === 0 &&
+    !row.card_print_id && !row.card_printing_id;
+  if (scope.rule_id === "deck_exclusive_special_variant" && unmapped &&
+      Number(row.category_id ?? evidence.category_id) === 3 &&
+      row.source_subtype_name === "Normal" &&
+      matchesTrainerKitPilotSourceV1({ ...row,
+        printed_number: uniqueTrainerKitPrintedNumberV1(row.source_product_extended_data) })) {
+    return { ...scope, in_scope: true, scope_result: "in_scope", reason_code: null,
+      rule_id: "reviewed_trainer_kit_mapping_gap", pilot_policy_version: TCGPLAYER_TRAINER_KIT_PILOT_V1 };
+  }
+  return publicationScope;
 }
 
 export function applyTrainerKitPilotPublicationScopeV1(scope, row) {

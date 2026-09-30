@@ -40,8 +40,13 @@ The existing reconciled current source, positive USD market price, freshness,
 one-to-one mapping and exact finish checks still determine publication.
 No price is supplied by this registry.
 
-Coverage re-evaluates the same full candidate evidence. It does not trust a
-successful decision label or exception version alone to admit a kit.
+Coverage preserves exact normal source-only pilot rows with zero mappings as
+`missing_active_source_mapping` gaps, so the ordinary coverage-to-planner path
+can repair them. These rows cannot count as published coverage. The planner
+loads both reviewed target half decks and chooses product-specific authority;
+group-wide consensus cannot choose the wrong half deck. Actual publication still
+requires the full parent/child evidence. Mapped-but-drifted identities remain
+excluded. Both planning and live apply require one unique raw source Number field.
 
 Deployment requires a new immutable producer and fresh shadow/reconciliation
 proof. Do not modify an existing release or replay prior mapping applies.

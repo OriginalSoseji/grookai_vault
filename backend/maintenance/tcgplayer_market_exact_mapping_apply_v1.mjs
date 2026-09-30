@@ -40,7 +40,7 @@ import {
 import {
   classifyTcgplayerMarketProductScopeV1_2,
 } from "../pricing/tcgplayer_market_product_scope_v1.mjs";
-import { matchesTrainerKitPilotMappingV1, trainerKitPilotCardV1 } from "../pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
+import { matchesTrainerKitPilotLiveMappingV1, trainerKitPilotCardV1 } from "../pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
 import {
   loadTcgplayerMarketCanaryDefinitionV1,
 } from "../pricing/tcgplayer_market_canary_definition_v1.mjs";
@@ -455,12 +455,7 @@ function validateLiveState(selected, sourceSyncRunId, live) {
         source_group_name: source.source_group_name,
         has_printed_number_evidence: Boolean(numberField(source.extended_data)),
       });
-      const livePilot = matchesTrainerKitPilotMappingV1({
-        ...source,
-        source_product_id: source.product_id,
-        printed_number: numberField(source.extended_data),
-        source_subtypes: candidate.source_subtypes,
-      }, target);
+      const livePilot = matchesTrainerKitPilotLiveMappingV1(candidate, source, target);
       if ((trainerKitPilotCardV1(candidate) && !livePilot) ||
           (!liveScope.in_scope && !(liveScope.rule_id === "deck_exclusive_special_variant" && livePilot))) {
         rowFailures.push("source_now_out_of_scope");
