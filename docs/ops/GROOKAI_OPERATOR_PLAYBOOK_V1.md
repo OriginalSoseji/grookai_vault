@@ -35,10 +35,21 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
-Physical V4 contained-picker preview/save/interrupted-response retry/history and
-same-file reopen now pass, with independent exact-copy/source readback. The test
-account is consumed: never rerun its preparation or unused-account launch guard.
-Real iOS Files selection and release remain separate. Cursor reads must specify
+Release inspection uses the strict `CollectrImportFidelityReleaseV1` switch with
+only `-ExpectedLocalOnlyIds 20260930010000`, first AuditLinkedSchema then PrePush.
+The fixed `scripts/release/prepare_collectr_import_v1.mjs` supports only prepare
+and dry-run. Read `collectr_import_predeploy_20260930` in private operator artifacts
+for terminal receipts; preparation, a dry-run or a PR is not deployment. Preserve
+the populated full/upgrade410 labs and consumed phone fixture. No reset or apply
+is part of these checks. Product source remains the physically tested V4 source.
+
+Physical V4 preview/save/interrupted-response retry/history and same-file reopen
+now pass. A fresh state-bound continuation also passed real iOS Files selection
+and duplicate-free reconciliation. Independent readback verifies the same three
+exact copies across three receipts (added counts 3, 0, 0). The test account is
+consumed: never rerun its preparation or unused-account launch guard. Preserve
+the verified state for any explicitly qualified continuation. Release remains
+separate. Cursor reads must specify
 ascending order explicitly; fixtures must respect requested HTTP sort direction.
 For local full-gate builds, sanitize inherited credentials and select the existing
 read-only collector preview mode; do not activate a production target to build.

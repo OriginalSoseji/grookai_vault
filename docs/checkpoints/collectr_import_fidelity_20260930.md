@@ -1,5 +1,42 @@
 # Collectr importer fidelity — September 30
 
+## Release preparation
+
+Current main's catalog refresh is integrated without changing the physically
+tested native, Edge or migration bytes. The exact-pending release audit passes:
+both populated410 labs still match the qualified schema/security footprint,
+production409 matches its baseline, and the sole pending ID is20260930010000.
+Six invalid-command tests and direct wrong-ID/combined-mode checks reject before
+remote access. A CRLF-to-LF conversion in the HTTP test is explicitly bound to
+the exact original acceptance hash; product bytes are unchanged.
+
+Normal repository checks, the CLI dry run, and subsequent release outcomes are
+recorded under `collectr_import_predeploy_20260930` in private operator artifacts.
+Read its latest checkpoint before proceeding. Inspection does not apply schema,
+deploy Edge, upload TestFlight or import the real collection. The source-aware
+endpoint and schema must be available before distributing its native client.
+
+## Latest: real iOS Files journey and saved outcomes verified
+
+A fresh state-bound continuation selected the synthetic CSV through the real
+iOS Files picker, produced Ready 2 / Need Review 1, and reconciled it without
+adding copies. The earlier phone run verified interruption recovery, grade
+review and same-file reopen. Independent SQL now confirms three copies, one
+original document and three successful receipts with added counts 3, 0, 0.
+All three receipts reference the same exact copy IDs; prior rows are unchanged.
+The original user export and production inventory remain untouched.
+
+The V4 source is unchanged between the contained-picker and real-picker builds.
+Both physical runs retain signed executable hashes, source manifests, screenshots
+and independent readbacks privately. This completes the isolated physical
+workflow verification, not deployment or full catalog/grade import coverage.
+Unsupported source rows remain review-only. The full normal commit gate passed
+with the corrected isolated build environment: 5,817 contract tests and 816
+Flutter tests passed, with 10 and 2 skips respectively. Web typecheck, lint,
+production build and Flutter analysis passed. Implementation is committed as
+`5359b0848cec5231583ef7b2b992f727850e4bb2`; final phone evidence notes follow that
+commit. Terminal receipts and release state remain in the private ledger.
+
 ## Physical contained-import acceptance passed
 
 The rebuilt V4 isolated iPhone app passed preview, interrupted successful-save

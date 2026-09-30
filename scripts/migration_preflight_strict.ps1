@@ -53,6 +53,7 @@ param(
   [switch]$VendorStoreTeamWorkflowsBaselineAudit,
   [switch]$NativeImportRecoveryBaselineAudit,
   [switch]$CollectrImportFidelityBaselineAudit,
+  [switch]$CollectrImportFidelityReleaseV1,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -484,6 +485,23 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($CollectrImportFidelityReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','CollectrImportFidelityReleaseV1')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260930010000') { Fail 'Collectr release permits only its exact migration, without combined modes or target overrides.' }
+  $collectrRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $collectrFiles = @(Get-RepoMigrationFiles -RepoRoot $collectrRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $collectrFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $collectrPending = @($collectrFiles | Where-Object { $_.Id -eq '20260930010000' })
+  if ($collectrPending.Count -ne 1) { Fail 'Collectr release migration missing.' }
+  $collectrDuplicates = Get-ObjectDuplicates -PendingFiles $collectrPending
+  if ($collectrDuplicates.DuplicateIndexes.Count -gt 0 -or $collectrDuplicates.DuplicateViews.Count -gt 0 -or $collectrDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending Collectr objects.' }
+  Require-Command 'node'
+  $collectrGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_collectr_import_release_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $collectrGate
+  if ($collectrGate.ExitCode -ne 0) { Fail 'Collectr release qualification failed; no apply.' }
+  exit 0
 }
 
 if ($VendorSellerAdoptionReleaseV1) {

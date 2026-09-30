@@ -1,7 +1,7 @@
 # Collectr import fidelity repair
 
 Status: source-aware candidate implemented and locally qualified; physical
-acceptance and release remain open. Catalog/grade/sealed coverage is incomplete;
+acceptance passed and release remains open. Catalog/grade/sealed coverage is incomplete;
 retained review is not owned inventory.
 
 The physical iPhone Collectr preview exposed source fields being discarded,

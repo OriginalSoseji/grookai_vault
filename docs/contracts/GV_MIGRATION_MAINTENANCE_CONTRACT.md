@@ -1,5 +1,26 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Collectr exact-pending inspection (2026-09-30)
+
+`CollectrImportFidelityReleaseV1` accepts only AuditLinkedSchema or PrePush with
+`20260930010000`. It preserves duplicate scanning, rejects combined modes and
+target overrides, binds all410 migration hashes, the completed full replay and
+retained upgrade, real Auth/HTTP proof, both physical iPhone runs, and source
+readback. Current populated labs are inspected read-only and never reset.
+Fresh production409 schema/security comparison uses the unchanged pinned engine.
+PrePush additionally requires clean source containing origin/main and a fresh
+normal hook receipt. The baseline-only switch remains read-only and rejects
+PrePush. One test file's Git CRLF-to-LF conversion is reconstructed byte-exactly
+against its original acceptance hash; product hashes remain exact.
+
+`scripts/release/prepare_collectr_import_v1.mjs` prepares the one-use private CLI
+inspection package. Its dry-run requires fresh PrePush evidence and unchanged
+source/tree/tool hashes, checks the exact sole pending filename, and verifies
+production schema/ledger before and after with read-only PostgreSQL defaults.
+Neither tool applies migrations, deploys Edge functions or distributes a build.
+Private receipts are under `collectr_import_predeploy_20260930` in operator
+artifacts. Actual release and real collection import remain separate actions.
+
 ## Existing seller adoption baseline (2026-09-28)
 
 `VendorSellerAdoptionReleaseV1` adds read-only AuditLinkedSchema/PrePush for exactly
