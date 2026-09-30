@@ -1926,6 +1926,13 @@ the external recovery checkpoint linked above. Preserve the separate MEE runtime
 
 # Worker operations recovery — September 29, 2026
 
+Trainer Kit pricing follow-up is recorded in
+`docs/ops/TRAINER_KIT_PRICING_CHECKPOINT_20260930.md` and
+`docs/contracts/TCGPLAYER_TRAINER_KIT_PILOT_V1.md`. The two-card exception requires
+exact source/parent/normal-child evidence at mapping and publication boundaries.
+Read-only simulation is not proof of applied mappings or public prices. Continue
+from fresh reviewed packages and a new frozen producer; preserve historical runs.
+
 The worker reached zero available disk space. Verified source archives and
 off-worker copies on the operator computer recovered capacity without removing
 failed pricing evidence or active releases. Both retention services subsequently

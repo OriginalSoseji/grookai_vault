@@ -1,4 +1,11 @@
 import { createHash } from "node:crypto";
+import {
+  TCGPLAYER_TRAINER_KIT_PILOT_V1,
+  trainerKitPilotCardV1,
+  matchesTrainerKitPilotSourceV1,
+  matchesTrainerKitPilotMappingV1,
+  trainerKitPilotPlanningAuthorityV1,
+} from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 
 import {
   classifyTcgplayerMarketProductScopeV1_2,
@@ -137,6 +144,9 @@ function targetEvidence(target) {
 
 function targetFailures(source, target) {
   const failures = [];
+  if (trainerKitPilotCardV1(source) && !matchesTrainerKitPilotMappingV1(source, target)) {
+    failures.push("trainer_kit_pilot_identity_mismatch");
+  }
   if (!text(target.set_id)) failures.push("missing_target_set_id");
   if (!text(target.set_code)) failures.push("missing_target_set_code");
   if (text(target.variant_key)) failures.push("target_not_base_variant");
@@ -163,6 +173,7 @@ function targetFailures(source, target) {
 
 function baseResult(source) {
   return {
+    ...(trainerKitPilotCardV1(source) ? { pilot_policy_version: TCGPLAYER_TRAINER_KIT_PILOT_V1 } : {}),
     policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
     source_product_id: Number(source.source_product_id),
     source_product_name: text(source.source_product_name),
@@ -202,7 +213,9 @@ export function planTcgplayerExactMappingCandidateV1({
   const base = baseResult(source);
   const scope = classifyTcgplayerMarketProductScopeV1_2(source);
 
-  if (!scope.in_scope) {
+  const pilotSource = matchesTrainerKitPilotSourceV1(source);
+  if ((trainerKitPilotCardV1(source) && !pilotSource) ||
+      (!scope.in_scope && !(scope.rule_id === "deck_exclusive_special_variant" && pilotSource))) {
     return blocked(source, "source_outside_product_v1_scope", {
       product_scope: scope,
     });
@@ -251,7 +264,7 @@ export function planTcgplayerExactMappingCandidateV1({
     };
   }
 
-  const setAuthority =
+  const setAuthority = trainerKitPilotPlanningAuthorityV1(source) ?? (
     groupConsensus?.set_count === 1
       ? {
           evidence_lane: "unique_group_set_consensus",
@@ -265,7 +278,7 @@ export function planTcgplayerExactMappingCandidateV1({
             distinct_target_set_count: groupConsensus.set_count,
           },
         }
-      : authority;
+      : authority);
 
   if (!setAuthority) {
     return blocked(source, "missing_unique_set_authority", {

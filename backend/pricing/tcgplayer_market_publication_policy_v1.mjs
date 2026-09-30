@@ -1,6 +1,7 @@
 import {
   classifyTcgplayerMarketProductScopeV1_3,
 } from "./tcgplayer_market_product_scope_v1.mjs";
+import { applyTrainerKitPilotPublicationScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 
 export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1 =
   "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1";
@@ -81,7 +82,9 @@ export function evaluateTcgplayerMarketQualificationV1(
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
   const categoryId = Number(row.category_id);
   const expectedIdentityDomain = SUPPORTED_IDENTITY_DOMAINS.get(categoryId) ?? null;
-  const scope = classifyTcgplayerMarketProductScopeV1_3(row);
+  const scope = applyTrainerKitPilotPublicationScopeV1(
+    classifyTcgplayerMarketProductScopeV1_3(row), row,
+  );
   const variantAssignmentStatus = clean(
     row.variant_assignment_status ?? row.derived_variant_assignment_status,
   );
@@ -293,6 +296,7 @@ export function evaluateTcgplayerMarketQualificationV1(
       product_scope_policy_version: scope.policy_version,
       product_scope_result: scope.scope_result,
       product_scope_rule_id: scope.rule_id,
+      ...(scope.pilot_policy_version ? { pilot_policy_version: scope.pilot_policy_version } : {}),
       has_printed_number_evidence: row.has_printed_number_evidence === true,
       source_sync_mode: clean(row.source_sync_mode) || null,
       source_sync_status: clean(row.source_sync_status) || null,

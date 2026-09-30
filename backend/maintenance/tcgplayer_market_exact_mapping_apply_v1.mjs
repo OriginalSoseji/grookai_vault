@@ -40,6 +40,7 @@ import {
 import {
   classifyTcgplayerMarketProductScopeV1_2,
 } from "../pricing/tcgplayer_market_product_scope_v1.mjs";
+import { matchesTrainerKitPilotLiveMappingV1, trainerKitPilotCardV1 } from "../pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
 import {
   loadTcgplayerMarketCanaryDefinitionV1,
 } from "../pricing/tcgplayer_market_canary_definition_v1.mjs";
@@ -454,7 +455,11 @@ function validateLiveState(selected, sourceSyncRunId, live) {
         source_group_name: source.source_group_name,
         has_printed_number_evidence: Boolean(numberField(source.extended_data)),
       });
-      if (!liveScope.in_scope) rowFailures.push("source_now_out_of_scope");
+      const livePilot = matchesTrainerKitPilotLiveMappingV1(candidate, source, target);
+      if ((trainerKitPilotCardV1(candidate) && !livePilot) ||
+          (!liveScope.in_scope && !(liveScope.rule_id === "deck_exclusive_special_variant" && livePilot))) {
+        rowFailures.push("source_now_out_of_scope");
+      }
       if (source.source_active !== true) rowFailures.push("source_inactive");
       if (source.catalog_metadata_status !== "current") {
         rowFailures.push("source_not_current");

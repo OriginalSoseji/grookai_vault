@@ -1,6 +1,7 @@
 import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "./tcgplayer_market_publication_policy_v1.mjs";
+import { applyTrainerKitPilotCoverageScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 import {
   classifyTcgplayerMarketProductScopeV1_2,
   TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
@@ -86,6 +87,13 @@ export function tcgplayerMarketCoverageValueBandV1(marketPrice) {
   return "high";
 }
 
+function productScope(row) {
+  return applyTrainerKitPilotCoverageScopeV1(
+    classifyTcgplayerMarketProductScopeV1_2(row),
+    { ...row.candidate_payload, ...row },
+  );
+}
+
 function denominatorExclusion(row) {
   const rowEvidence = evidence(row);
   const categoryId = Number(row.category_id ?? rowEvidence.category_id);
@@ -100,7 +108,7 @@ function denominatorExclusion(row) {
   const normalizedFinish =
     text(row.normalized_finish_key ?? rowEvidence.normalized_finish_key) ||
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
-  const scope = classifyTcgplayerMarketProductScopeV1_2(row);
+  const scope = productScope(row);
 
   if (categoryId !== 3) return "not_pokemon_category";
   if (sourceActive !== true) return "source_product_inactive";
@@ -130,7 +138,8 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
   const exclusionReason = denominatorExclusion(row);
   const inDenominator = exclusionReason === null;
   const inNumerator =
-    inDenominator && ["publish", "delay"].includes(text(row.decision));
+    inDenominator && productScope(row).rule_id !== "reviewed_trainer_kit_mapping_gap" &&
+    ["publish", "delay"].includes(text(row.decision));
   const rowEvidence = evidence(row);
   const normalizedFinish =
     text(row.normalized_finish_key ?? rowEvidence.normalized_finish_key) ||
@@ -157,7 +166,7 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
     reason_codes: reasons(row),
     in_denominator: inDenominator,
     denominator_exclusion_reason: exclusionReason,
-    product_scope: classifyTcgplayerMarketProductScopeV1_2(row),
+    product_scope: productScope(row),
     in_numerator: inNumerator,
     primary_gap_reason:
       inDenominator && !inNumerator ? primaryGapReason(row) : null,

@@ -238,6 +238,7 @@ async function main() {
            decision.card_printing_id,
            decision.variant_assignment_status,
            decision.evidence,
+           candidate.candidate_payload,
            case
              when candidate.candidate_payload ->> 'group_id' ~ '^[0-9]+$'
                then (candidate.candidate_payload ->> 'group_id')::integer
