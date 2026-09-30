@@ -1,4 +1,5 @@
 import { pokemonReferenceFailureV1 } from './pokemon_reference_http_v1.mjs';
+import { isPokemonReferenceIdV1 } from './pokemon_reference_id_v1.mjs';
 
 // Leave time for the adapter report, normalization and warehouse phases before
 // the reference service's three-hour hard limit. HTTP attempts have their own
@@ -7,7 +8,7 @@ export async function fetchPokemonReferenceBatchV1({ ids, fetchCard, onResult = 
   onProgress = () => {}, authenticated = false, budgetMs = 90 * 60_000, stopOnFailure = false,
   now = () => performance.now(), sleep = ms => new Promise(resolve => setTimeout(resolve, ms)),
 }) {
-  if (!Array.isArray(ids) || ids.some(id => typeof id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(id)) ||
+  if (!Array.isArray(ids) || ids.some(id => !isPokemonReferenceIdV1(id)) ||
       new Set(ids).size !== ids.length || ids.length > 5000 || !Number.isFinite(budgetMs) || budgetMs <= 0 || budgetMs > 90 * 60_000)
     throw new Error('POKEMON_REFERENCE_INVALID_BATCH');
   const started = now(), deadline = started + budgetMs;

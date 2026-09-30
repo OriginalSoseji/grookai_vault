@@ -19,6 +19,12 @@ The scan may stop early if every requested exact ID is found. Such a result mark
 `all_requested_ids_found`, not `catalog_scan_complete`; it establishes no negative
 claims about unvisited pages. Any missing requested ID requires the full scan.
 No names, set labels, prices or newly discovered IDs create mappings.
+All adapter layers share exact identifier validation. The provider's published
+Unseen Forces identifiers `ex10-?` and `ex10-!` are admitted explicitly alongside
+the existing alphanumeric/underscore/hyphen grammar. Their punctuation is retained;
+single-card requests encode the path component and still require exact response
+identity. Arbitrary punctuation, query strings and path syntax remain rejected.
+Source: https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/ex10.json .
 HTTP429/auth failures stop immediately. The local900-request ceiling is not a
 claim about remaining daily quota. The provider remains authoritative.
 Source: https://docs.pokemontcg.io/getting-started/rate-limits .

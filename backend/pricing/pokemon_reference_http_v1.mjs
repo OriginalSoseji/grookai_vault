@@ -1,5 +1,6 @@
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { isPokemonReferenceIdV1 } from './pokemon_reference_id_v1.mjs';
 
 const execute = promisify(execFile);
 const RETRY_HTTP = new Set([408, 500, 502, 503, 504]);
@@ -18,7 +19,7 @@ export function pokemonReferenceFailureV1(error) {
 }
 
 export async function fetchPokemonCardByIdViaCurl(cardId, options = {}) {
-  if (typeof cardId !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(cardId))
+  if (!isPokemonReferenceIdV1(cardId))
     throw failure('POKEMON_REFERENCE_INVALID_ID', 0);
   return fetchReferenceViaCurl(`cards/${encodeURIComponent(cardId)}`, (payload, attempt) => {
     if (payload.data === null) return null;
@@ -34,7 +35,7 @@ export async function fetchPokemonCardsPageViaCurl(page, options = {}) {
     if (!Array.isArray(payload.data) || payload.page !== page || payload.pageSize !== 250 ||
         !Number.isInteger(payload.totalCount) || payload.totalCount < 1 || payload.totalCount > 50000 ||
         payload.count !== payload.data.length || payload.count !== Math.min(250, payload.totalCount - (page - 1) * 250) ||
-        payload.data.some(card => !card || typeof card !== 'object' || !/^[a-zA-Z0-9_-]{1,100}$/.test(card.id ?? '')) ||
+        payload.data.some(card => !card || typeof card !== 'object' || !isPokemonReferenceIdV1(card.id)) ||
         new Set(payload.data.map(card => card.id)).size !== payload.data.length)
       throw failure('POKEMON_REFERENCE_INVALID_PAGE', attempt, 200);
     return payload;
