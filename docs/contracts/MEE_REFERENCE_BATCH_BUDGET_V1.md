@@ -33,9 +33,14 @@ Pagination: https://docs.pokemontcg.io/api-reference/cards/search-cards/ .
 Mapping reads have a five-minute aggregate deadline and 30-second request limits.
 Provider acquisition has a 90-minute budget, reserving 80 seconds before starting
 another HTTP attempt. Single-card requests retain their three-attempt policy.
-Catalog pages allow up to nine transient attempts with exponential delays capped
-at30 seconds, all charged to the same pace/request/time gate. For the observed
-83-page catalog even nine attempts each totals747 requests, below the900 ceiling.
+Catalog pages allow three windows of nine transient attempts, separated by a
+60-second cooldown. Each window uses exponential delays capped at30 seconds.
+The full refresh twice exhausted nine attempts on HTTP500 (pages23 and43); a
+subsequent direct read of page23 recovered. The cooldown permits a short upstream
+outage to clear without discarding all completed pages. These windows all spend
+the SAME 900-request and90-minute batch budgets; the larger per-page allowance
+does not reserve27 requests for every page or reset any budget. A deadline or
+request-limit failure immediately stops further requests, including after cooldown.
 Exhaustion still fails closed; auth/quota/certificate/identity errors never gain
 retries. Per-attempt transfer/process limits and HTTPS remain unchanged.
 Any failed/truncated/changed/duplicate page stops the catalog scan.
