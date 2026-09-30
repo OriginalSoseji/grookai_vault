@@ -36,13 +36,20 @@ export async function fetchPokemonReferenceBatchV1({ ids, fetchCard, onResult = 
       attempts++; nextAttemptAt = now() + interval;
     } finally { release(); }
   };
+  const beforeRetryDelay = async delayMs => {
+    // Do not enter a cooldown that cannot leave room for another bounded HTTP
+    // attempt. Checking only after sleep would exceed the aggregate deadline.
+    if (!Number.isFinite(delayMs) || delayMs < 0) throw fail('POKEMON_REFERENCE_INVALID_RETRY_DELAY');
+    if (attempts >= ceiling) stop ||= 'POKEMON_REFERENCE_REQUEST_CEILING';
+    if (stop || now() + delayMs + 80_000 >= deadline) throw fail(stop ||= 'POKEMON_REFERENCE_BATCH_BUDGET');
+  };
   await onProgress(progress());
   async function worker() {
     while (!stop && cursor < ids.length) {
       const id = ids[cursor++];
       let result;
       try {
-        const card = await fetchCard(id, { beforeAttempt });
+        const card = await fetchCard(id, { beforeAttempt, beforeRetryDelay });
         if (card !== null && (!card || Array.isArray(card) || card.id !== id)) throw fail('POKEMON_REFERENCE_ID_MISMATCH');
         if (card) cardsByExternalId[id] = card;
         result = { id, status: card ? 'fetched' : 'missing', card };

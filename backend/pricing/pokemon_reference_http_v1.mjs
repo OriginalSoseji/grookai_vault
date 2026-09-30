@@ -49,6 +49,7 @@ async function fetchReferenceViaCurl(relativePath, validate, {
   baseUrl = process.env.POKEMONAPI_BASE_URL || 'https://api.pokemontcg.io/v2',
   apiKey = process.env.POKEMONAPI_API_KEY, platform = process.platform,
   beforeAttempt = async () => {},
+  beforeRetryDelay = async () => {},
 } = {}, attemptLimit = 3) {
   let base;
   try { base = new URL(baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`); }
@@ -96,7 +97,9 @@ async function fetchReferenceViaCurl(relativePath, validate, {
       }
     }
     if (!retry || attempt === attemptLimit) throw error;
-    await sleep(attemptLimit === 3 ? 750 * attempt :
-      attempt % 9 === 0 ? 60_000 : Math.min(30_000, 750 * 2 ** ((attempt - 1) % 9)));
+    const delayMs = attemptLimit === 3 ? 750 * attempt :
+      attempt % 9 === 0 ? 60_000 : Math.min(30_000, 750 * 2 ** ((attempt - 1) % 9));
+    await beforeRetryDelay(delayMs);
+    await sleep(delayMs);
   }
 }
