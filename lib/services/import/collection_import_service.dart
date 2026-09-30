@@ -162,6 +162,7 @@ class CollectionImportPreviewRow {
     this.matches = const [],
     this.reviewReasons = const [],
     this.cardPrintingId,
+    this.cardPrintingFinishKey,
   });
 
   final CollectionImportNormalizedRow row;
@@ -173,6 +174,7 @@ class CollectionImportPreviewRow {
   final List<CollectionImportCardMatch> matches;
   final List<String> reviewReasons;
   final String? cardPrintingId;
+  final String? cardPrintingFinishKey;
   bool get canImport =>
       status == CollectionImportMatchStatus.matched &&
       reviewReasons.isEmpty &&
@@ -475,25 +477,27 @@ class CollectionImportService {
         ..._unsupportedSaveReasons(row, sourceAware: sourceAware),
       ];
       String? printingId;
+      String? printingFinishKey;
       if (sourceAware &&
           matches.length == 1 &&
-          row.finish.trim().isNotEmpty &&
-          importFinishKey(row.finish) != null) {
+          (row.finish.trim().isEmpty || importFinishKey(row.finish) != null)) {
         final options = printingOptions
             .where(
               (option) =>
                   option['card_print_id'] == matches.single.id &&
-                  option['finish_key'] == importFinishKey(row.finish) &&
+                  (row.finish.trim().isEmpty ||
+                      option['finish_key'] == importFinishKey(row.finish)) &&
                   option['finish_is_active'] == true,
             )
             .toList();
         if (options.length == 1) {
           printingId = options.single['id'] as String;
+          printingFinishKey = options.single['finish_key'] as String;
         } else {
           reasons.add(
             options.isEmpty
-                ? 'This finish has no verified catalog printing yet.'
-                : 'More than one printing has this finish. Keep this row for review.',
+                ? 'This row has no verified catalog printing yet.'
+                : 'More than one printing matches. Specify the finish or keep this row for review.',
           );
         }
       }
@@ -550,6 +554,7 @@ class CollectionImportService {
           matches: matches.map(convert).toList(),
           reviewReasons: reasons,
           cardPrintingId: printingId,
+          cardPrintingFinishKey: printingFinishKey,
         ),
       );
     }
@@ -629,6 +634,11 @@ class CollectionImportService {
       final quantity = source.rawQuantity.trim().replaceAll(',', '');
       final cost = source.rawCost.trim().replaceAll(RegExp(r'[$,]'), '');
       final date = source.rawDate.trim();
+      if (RegExp(r'T\d{2}:\d{2}:\d{2}\.\d{7,}').hasMatch(date)) {
+        reasons.add(
+          'Date precision exceeds six fractional digits; keep the original for review.',
+        );
+      }
       if (quantity.isNotEmpty && !RegExp(r'^\d+$').hasMatch(quantity)) {
         reasons.add('Quantity needs a positive whole number.');
       }

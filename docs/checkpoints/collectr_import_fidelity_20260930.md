@@ -1,5 +1,33 @@
 # Collectr importer fidelity — September 30
 
+## PR553 review correction — release held
+
+Review identified blank-finish ambiguity, archived-copy readback, full payload
+budgeting and timestamp reconciliation gaps. Corrections are being qualified
+together. Source now requires an exact child printing, reads retained copies
+through a source-scoped owner RPC, budgets complete request/persisted JSON before
+saving, and compares timestamps at their supplied precision. The original
+unapplied410 migration is revised; production remains409. Original candidate
+bytes, populated labs, release package and physical receipts remain preserved.
+
+Private continuation is under `collectr_import_review_20260930`. Fresh585xx/586xx
+review labs are separate from the previous581xx/582xx candidate. Old release
+receipts and signed335 do not qualify the changed source and must not be applied
+or uploaded. The historical preparation and physical pass sections below describe
+that earlier source. No production or real collection mutation has occurred.
+
+## Review repair verification
+
+Fresh complete410 replay and retained409-to410 upgrade pass in the review labs.
+Real Auth/HTTP/RLS tests verify archived owner readback and visitor denial; the
+export-sized rollback test preserves all939 synthetic copies across retry without
+changing prior rows. Focused native tests pass34 cases with one opt-in private
+export skip; source/handler tests pass51. Static analysis is clean.
+The rebuilt physical test app is installed, but device unlock and new UI outcomes
+remain pending. Earlier physical evidence and build335 do not qualify this source.
+The release inspection gate intentionally remains bound to the superseded proof
+and must be refreshed only after new physical acceptance; no release is claimed.
+
 ## Release preparation
 
 Current main's catalog refresh is integrated without changing the physically

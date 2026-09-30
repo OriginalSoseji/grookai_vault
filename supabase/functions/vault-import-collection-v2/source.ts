@@ -185,6 +185,9 @@ function date(value: string): string | null {
   if (!value.trim()) return null;
   const raw = text(value),
     us = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(raw);
+  if (/T\d{2}:\d{2}:\d{2}\.\d{7,}/.test(raw)) {
+    throw new ImportValidationError("invalid_import_date_precision");
+  }
   const normalized = us
     ? `${us[3].length === 2 ? "20" : ""}${us[3]}-${us[1].padStart(2, "0")}-${
       us[2].padStart(2, "0")
@@ -203,7 +206,8 @@ function date(value: string): string | null {
     check.getUTCFullYear() !== +parts[1] ||
     check.getUTCMonth() + 1 !== +parts[2] || check.getUTCDate() !== +parts[3]
   ) throw new ImportValidationError("invalid_import_date");
-  return new Date(timestamp).toISOString();
+  // Keep sub-millisecond precision and the original timezone on timestamps.
+  return normalized.includes("T") ? normalized : new Date(timestamp).toISOString();
 }
 export type Normalized = {
   name: string;
@@ -215,6 +219,7 @@ export type Normalized = {
   condition: string;
   acquisitionCost: number | null;
   createdAt: string | null;
+  createdAtDateOnly: boolean;
   notes: string | null;
 };
 export function normalize(row: SourceRow): Normalized {
@@ -286,6 +291,21 @@ export function normalize(row: SourceRow): Normalized {
     condition,
     acquisitionCost,
     createdAt: date(field(row, "date added", "added")),
+    createdAtDateOnly: !!field(row, "date added", "added").trim() &&
+      !text(field(row, "date added", "added")).includes("T"),
     notes,
   };
+}
+
+// Upper bound for PostgreSQL jsonb text, including separator spaces and
+// numeric exponent expansion. Object key ordering cannot change byte length.
+export function jsonbByteSize(value: unknown): number {
+  if (Array.isArray(value)) return 2 + value.reduce((n, v) => n + jsonbByteSize(v), 0) + Math.max(0, value.length - 1) * 2;
+  if (value !== null && typeof value === "object") {
+    const entries = Object.entries(value);
+    return 2 + entries.reduce((n, [k, v]) => n + new TextEncoder().encode(JSON.stringify(k)).length + 2 + jsonbByteSize(v), 0) + Math.max(0, entries.length - 1) * 2;
+  }
+  const encoded = JSON.stringify(value);
+  const exponent = typeof value === "number" ? /[eE]([+-]?\d+)/.exec(encoded) : null;
+  return new TextEncoder().encode(encoded).length + (exponent ? Math.abs(Number(exponent[1])) + 2 : 0);
 }

@@ -19,18 +19,102 @@ class CollectionImportSourceSession {
     required SupabaseClient client,
     required String csvText,
   }) async {
-    if (utf8.encode(csvText).length > 1900000 ||
+    if (utf8.encode(csvText).length > _maxBytes ||
         CollectionImportService.parseCollectrCsv(csvText).length > 5000) {
-      throw const CollectionImportFailure(
-        'This CSV is too large. Split it into files of at most 5,000 rows.',
-      );
+      throw _tooLarge;
     }
     final preview = await CollectionImportService.buildPreview(
       client: client,
       csvText: csvText,
       sourceAware: true,
     );
-    return CollectionImportSourceSession._(csvText, preview);
+    final session = CollectionImportSourceSession._(csvText, preview);
+    session._validatePayloadSize();
+    return session;
+  }
+
+  static const _maxBytes = 2097152;
+  static const _tooLarge = CollectionImportFailure(
+    'This import exceeds the 2 MiB request or saved-data limit. '
+    'Split the CSV into smaller files; fewer than 5,000 rows may be needed.',
+  );
+
+  List<Map<String, dynamic>> get _selections => [
+    for (final row in preview.rows.where((r) => r.canImport))
+      {
+        'sourceIndices': row.row.sourceRows.map((n) => n - 2).toList(),
+        'cardId': row.match!.cardId,
+        'gvId': row.match!.gvId,
+        'cardPrintingId': row.cardPrintingId,
+      },
+  ];
+
+  Map<String, dynamic> get _requestBody => {
+    'ownerUserId': preview.ownerUserId,
+    'requestId': _requestId,
+    'csvText': csvText,
+    'targets': _selections,
+  };
+
+  static bool _dateOnly(CollectionImportNormalizedRow row) =>
+      row.added != null &&
+      !row.sourceRecords.first.rawDate.trim().contains('T');
+
+  // PostgreSQL jsonb text includes a space after separators and expands
+  // exponent notation. Count UTF-8 bytes, including original column names.
+  static int _jsonbBytes(Object? value) {
+    if (value is List) {
+      return 2 +
+          value.fold<int>(0, (n, v) => n + _jsonbBytes(v)) +
+          (value.isEmpty ? 0 : 2 * (value.length - 1));
+    }
+    if (value is Map) {
+      return 2 +
+          value.entries.fold<int>(
+            0,
+            (n, e) =>
+                n +
+                utf8.encode(jsonEncode(e.key)).length +
+                2 +
+                _jsonbBytes(e.value),
+          ) +
+          (value.isEmpty ? 0 : 2 * (value.length - 1));
+    }
+    final encoded = jsonEncode(value);
+    final exponent = value is num
+        ? RegExp(r'[eE]([+-]?\d+)').firstMatch(encoded)
+        : null;
+    return utf8.encode(encoded).length +
+        (exponent == null ? 0 : int.parse(exponent.group(1)!).abs() + 2);
+  }
+
+  void _validatePayloadSize() {
+    final ready = preview.rows.where((r) => r.canImport).toList();
+    final selected = _selections;
+    final targets = [
+      for (var i = 0; i < ready.length; i++)
+        {
+          ...selected[i],
+          'finishKey': ready[i].cardPrintingFinishKey,
+          'desiredQuantity': ready[i].desiredQuantity,
+          'condition': ready[i].row.condition,
+          'acquisitionCost': ready[i].row.cost,
+          'createdAt': ready[i].row.added == null
+              ? null
+              : (_dateOnly(ready[i].row)
+                    ? ready[i].row.added
+                    : ready[i].row.sourceRecords.first.rawDate.trim()),
+          'createdAtDateOnly': _dateOnly(ready[i].row),
+          'notes': ready[i].row.notes,
+        },
+    ];
+    final source = CollectionImportService.parseCollectrCsv(
+      csvText,
+    ).map((r) => r.sourceFields).toList();
+    if (utf8.encode(jsonEncode(_requestBody)).length > _maxBytes ||
+        _jsonbBytes(source) + _jsonbBytes(targets) > _maxBytes) {
+      throw _tooLarge;
+    }
   }
 
   static String _newRequestId() {
@@ -49,6 +133,7 @@ class CollectionImportSourceSession {
   );
 
   Future<CollectionImportResult> save(SupabaseClient client) async {
+    _validatePayloadSize();
     final owner = preview.ownerUserId;
     if (client.auth.currentUser?.id != owner) {
       throw const CollectionImportFailure(
@@ -64,20 +149,7 @@ class CollectionImportSourceSession {
     try {
       final response = await client.functions.invoke(
         'vault-import-collection-v2',
-        body: {
-          'ownerUserId': owner,
-          'requestId': attempt,
-          'csvText': csvText,
-          'targets': [
-            for (final row in ready)
-              {
-                'sourceIndices': row.row.sourceRows.map((n) => n - 2).toList(),
-                'cardId': row.match!.cardId,
-                'gvId': row.match!.gvId,
-                'cardPrintingId': row.cardPrintingId,
-              },
-          ],
-        },
+        body: _requestBody,
       );
       final data = response.data;
       if (response.status != 200 ||
@@ -203,13 +275,11 @@ class CollectionImportSourceSession {
           start,
           (start + 100).clamp(0, allIds.length),
         );
-        final copies = await client
-            .from('vault_item_instances')
-            .select(
-              'id,card_print_id,card_printing_id,condition_label,acquisition_cost,notes,created_at,is_graded',
-            )
-            .eq('user_id', owner)
-            .inFilter('id', chunk);
+        final copies = await client.rpc(
+          'get_collection_import_copies_v2',
+          params: {'p_source_sha256': sourceSha256, 'p_instance_ids': chunk},
+        );
+        if (copies is! List) throw _uncertain;
         for (final copy in copies) {
           final row = ids[copy['id']];
           if (row == null ||
@@ -227,12 +297,7 @@ class CollectionImportSourceSession {
                       row.row.cost ||
                   copy['notes'] != row.row.notes ||
                   (row.row.added != null &&
-                      DateTime.parse(
-                            copy['created_at'] as String,
-                          ).toUtc().toIso8601String().substring(0, 10) !=
-                          DateTime.parse(
-                            row.row.added!,
-                          ).toUtc().toIso8601String().substring(0, 10)))) {
+                      !_dateMatches(row.row, copy['created_at'] as String)))) {
             throw _uncertain;
           }
         }
@@ -265,6 +330,7 @@ class CollectionImportSourceSession {
         );
       }
       if (error.status == 400 || code == 'import_request_conflict') {
+        if (code == 'import_size_limit') throw _tooLarge;
         throw const CollectionImportFailure(
           'The import could not validate these rows. Choose the CSV again to refresh its matches; the file is unchanged.',
         );
@@ -281,5 +347,15 @@ class CollectionImportSourceSession {
     if (indices.any((n) => n is! int)) throw _uncertain;
     final sorted = indices.cast<int>().toList()..sort();
     return jsonEncode(sorted);
+  }
+
+  static bool _dateMatches(CollectionImportNormalizedRow row, String actual) {
+    final saved = DateTime.parse(actual).toUtc();
+    final expected = DateTime.parse(row.added!).toUtc();
+    return _dateOnly(row)
+        ? saved.year == expected.year &&
+              saved.month == expected.month &&
+              saved.day == expected.day
+        : saved.isAtSameMomentAs(expected);
   }
 }

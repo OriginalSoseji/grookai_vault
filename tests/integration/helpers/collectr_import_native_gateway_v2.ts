@@ -1,12 +1,12 @@
 import { createCollectionImportHandler } from "../../../supabase/functions/vault-import-collection-v2/handler.ts";
 import { requireUser, createServiceRoleClient } from "../../../supabase/functions/_shared/auth.ts";
 const upstream = Deno.env.get('SUPABASE_URL');
-if (upstream !== 'http://127.0.0.1:58141' || !Deno.env.get('GV_COLLECTR_FIXTURE_OWNER')) throw Error('Wrong local fixture');
+if (upstream !== 'http://127.0.0.1:58541' || !Deno.env.get('GV_COLLECTR_FIXTURE_OWNER')) throw Error('Wrong local fixture');
 const handler = createCollectionImportHandler({ requireUser, createServiceRoleClient });
 let dropNext = false;
-Deno.serve({hostname:'127.0.0.1',port:58450}, async request => {
+Deno.serve({hostname:'127.0.0.1',port:58850}, async request => {
   const url = new URL(request.url);
-  if (url.pathname === '/__collectr_fixture_health') return Response.json({project:'collectr-import-full-410-20260930',localOnly:true});
+  if (url.pathname === '/__collectr_fixture_health') return Response.json({project:'collectr-review-full-410-20260930',localOnly:true});
   if (url.pathname === '/__test/drop-next-import-response' && request.method === 'POST') {
     try { const auth = await requireUser(request); if (auth.userId !== Deno.env.get('GV_COLLECTR_FIXTURE_OWNER')) return new Response('denied',{status:403}); }
     catch { return new Response('denied',{status:401}); }

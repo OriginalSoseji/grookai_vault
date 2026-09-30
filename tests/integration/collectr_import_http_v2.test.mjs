@@ -8,8 +8,8 @@ import {execFileSync,spawn} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {localSupabaseStatusSecret} from '../../scripts/lib/local_supabase_cli_status_v1.mjs';
 const root=path.resolve(import.meta.dirname,'../..');
-const out='C:/grookai_vault_operator_artifacts/collectr_iphone_import_20260929';
-const fixture=out+'/full-410',project='collectr-import-full-410-20260930';
+const out='C:/grookai_vault_operator_artifacts/collectr_import_review_20260930';
+const fixture=out+'/full-410',project='collectr-review-full-410-20260930';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 test('source-aware import: real Auth, HTTP, RLS, concurrency and independent readback',{
  skip:process.env.GV_COLLECTR_HTTP_PROOF!=='1',timeout:120000,
@@ -30,13 +30,13 @@ test('source-aware import: real Auth, HTTP, RLS, concurrency and independent rea
  assert.equal(docker('network','inspect',project)[0].Internal,true);
  assert.deepEqual(Object.keys(docker('inspect','supabase_db_'+project)[0].NetworkSettings.Networks),[project]);
  for(const binding of Object.values(docker('inspect',project+'-relay')[0].NetworkSettings.Ports).flat())assert.equal(binding.HostIp,'127.0.0.1');
- await new Promise((resolve,reject)=>{const server=net.createServer();server.once('error',reject);server.listen(58350,'127.0.0.1',()=>server.close(resolve));});
+ await new Promise((resolve,reject)=>{const server=net.createServer();server.once('error',reject);server.listen(58750,'127.0.0.1',()=>server.close(resolve));});
  const runDir=out+'/http-v2-'+Date.now();fs.mkdirSync(runDir);
  const sourceFiles=['supabase/functions/vault-import-collection-v2/source.ts','supabase/functions/vault-import-collection-v2/handler.ts','supabase/functions/_shared/auth.ts','supabase/functions/_shared/key_resolver.ts','tests/integration/helpers/collectr_import_server_v2.ts', 'tests/integration/collectr_import_http_v2.test.mjs'];
  fs.writeFileSync(runDir+'/intent.json',JSON.stringify({scope:'New synthetic accounts and fixtures only; never reset or migrate',project,at:new Date().toISOString(),sourceHashes:Object.fromEntries(sourceFiles.map(p=>[p,hash(fs.readFileSync(root+'/'+p))]))}),{flag:'wx'});
- const db=new pg.Client({host:'127.0.0.1',port:58140,user:'postgres',password:'postgres',database:'postgres',statement_timeout:15000});await db.connect();
+ const db=new pg.Client({host:'127.0.0.1',port:58540,user:'postgres',password:'postgres',database:'postgres',statement_timeout:15000});await db.connect();
  const status=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true}));
- assert.equal(status.API_URL,'http://127.0.0.1:58141');
+ assert.equal(status.API_URL,'http://127.0.0.1:58541');
  const options={auth:{persistSession:false,autoRefreshToken:false}};
  const admin=createClient(status.API_URL,localSupabaseStatusSecret(status),options);
  const caller=createClient(status.API_URL,status.ANON_KEY,options),visitor=createClient(status.API_URL,status.ANON_KEY,options);
@@ -49,9 +49,9 @@ test('source-aware import: real Auth, HTTP, RLS, concurrency and independent rea
   assert.equal((await db.query('show max_worker_processes')).rows[0].max_worker_processes,'0');
   assert.equal((await db.query('select count(*)::int runs from cron.job_run_details')).rows[0].runs,0);
   before=await snapshot();fs.writeFileSync(runDir+'/before.private.json',JSON.stringify(before),{flag:'wx'});
-  child=spawn('deno',['run','--no-lock','--cached-only','--allow-env','--allow-net=127.0.0.1:58141,127.0.0.1:58350',root+'/tests/integration/helpers/collectr_import_server_v2.ts'],{cwd:root,env:{...process.env,SUPABASE_URL:status.API_URL,SUPABASE_SECRET_KEY:localSupabaseStatusSecret(status)},stdio:['ignore','pipe','pipe'],windowsHide:true});
+  child=spawn('deno',['run','--no-lock','--cached-only','--allow-env','--allow-net=127.0.0.1:58541,127.0.0.1:58750',root+'/tests/integration/helpers/collectr_import_server_v2.ts'],{cwd:root,env:{...process.env,SUPABASE_URL:status.API_URL,SUPABASE_SECRET_KEY:localSupabaseStatusSecret(status)},stdio:['ignore','pipe','pipe'],windowsHide:true});
   child.stdout.on('data',b=>serverLog+=b);child.stderr.on('data',b=>serverLog+=b);
-  let ready=false;for(let i=0;i<60;i++){try{if((await fetch('http://127.0.0.1:58350',{method:'OPTIONS'})).status===200){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,100));}assert.ok(ready,'Local handler did not start');
+  let ready=false;for(let i=0;i<60;i++){try{if((await fetch('http://127.0.0.1:58750',{method:'OPTIONS'})).status===200){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,100));}assert.ok(ready,'Local handler did not start');
   async function account(client){const email=randomUUID()+'@collectr-fixture.invalid',password=randomUUID();const created=await admin.auth.admin.createUser({email,password,email_confirm:true});assert.equal(created.error,null);const signed=await client.auth.signInWithPassword({email,password});assert.equal(signed.error,null);return{id:created.data.user.id,token:signed.data.session.access_token};}
   user=await account(caller);outsider=await account(visitor);
   const set=randomUUID(),card=randomUUID(),reverse=randomUUID(),holo=randomUUID(),gvId='GV-PK-COLLECTR-'+card;
@@ -60,7 +60,7 @@ test('source-aware import: real Auth, HTTP, RLS, concurrency and independent rea
   await db.query("insert into card_printings(id,card_print_id,finish_key) values($1,$3,'reverse'),($2,$3,'holo')",[reverse,holo,card]);
   const csvText='Product Name,Category,Set,Card Number,Variance,Grade,Card Condition,Quantity,Average Cost Paid,Portfolio Name,Price Override,Notes\nSynthetic import card,Pokemon,Synthetic import set,065/165,Reverse Holofoil,Ungraded,LP,2,4.25,Private,0,Reverse cost\nSynthetic import card,Pokemon,Synthetic import set,65,Holofoil,Ungraded,NM,1,9,Display,0,Holo cost\nSynthetic import card,Pokemon,Synthetic import set,65,Holofoil,PSA 10,NM,1,99,Slabs,0,Needs cert';
   const targets=[{sourceIndices:[0],cardId:card,gvId,cardPrintingId:reverse},{sourceIndices:[1],cardId:card,gvId,cardPrintingId:holo}];
-  const send=(override={},token=user.token)=>fetch('http://127.0.0.1:58350',{method:'POST',headers:{Authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify({ownerUserId:user.id,requestId:randomUUID(),csvText,targets,...override})});
+  const send=(override={},token=user.token)=>fetch('http://127.0.0.1:58750',{method:'POST',headers:{Authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify({ownerUserId:user.id,requestId:randomUUID(),csvText,targets,...override})});
   const copies=async()=>(await db.query('select * from vault_item_instances where user_id=$1 order by id',[user.id])).rows;
   const check=async(name,fn)=>t.test(name,async()=>{await fn();checks.push(name);});
   await check('invalid authentication and changed account do not write',async()=>{assert.equal((await send({},'invalid')).status,401);assert.equal((await send({},outsider.token)).status,409);assert.equal((await copies()).length,0);});
@@ -87,6 +87,10 @@ test('source-aware import: real Auth, HTTP, RLS, concurrency and independent rea
   await check('reopening the original export never recreates an archived copy',async()=>{
    await db.query('update vault_item_instances set archived_at=now() where user_id=$1 and id=$2',[user.id,original[0].id]);
    const response=await send();assert.equal(response.status,200);assert.equal((await response.json()).importedCards,0);assert.equal((await copies()).length,3);
+   const args={p_source_sha256:first.sourceSha256,p_instance_ids:original.map(r=>r.id)};
+   const read=await caller.rpc('get_collection_import_copies_v2',args);assert.equal(read.error,null);assert.equal(read.data.length,3);assert.equal(read.data.filter(r=>r.archived_at!==null).length,1);
+   const denied=await visitor.rpc('get_collection_import_copies_v2',args);assert.equal(denied.error,null);assert.deepEqual(denied.data,[]);
+   const unrelated=await caller.rpc('get_collection_import_copies_v2',{...args,p_source_sha256:'0'.repeat(64)});assert.equal(unrelated.error,null);assert.deepEqual(unrelated.data,[]);
   });
   const after=await snapshot();for(const table of tables)assert.deepEqual(after[table].filter(r=>r.user_id!==user.id&&r.user_id!==outsider.id),before[table]);
   const result={status:checks.length===6?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};

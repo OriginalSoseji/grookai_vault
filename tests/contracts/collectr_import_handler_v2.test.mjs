@@ -36,3 +36,24 @@ test('unresolved rows can be retained without creating inventory',async()=>{cons
 test('different purchase metadata cannot collapse into one target',async()=>{const f=fixture();const r=await f.send({csvText:toCsv([row,{...row,'Average Cost Paid':'99'}]),targets:[{...selection,sourceIndices:[0,1]}]});assert.equal(r.status,400);assert.equal(f.writes.length,0);});
 test('same-metadata records retain originals and sum only their quantities',async()=>{const f=fixture();assert.equal((await f.send({csvText:toCsv([row,{...row,Quantity:'3'}]),targets:[{...selection,sourceIndices:[1,0]}]})).status,200);assert.equal(f.writes[0].args.p_targets[0].desiredQuantity,5);assert.equal(f.writes[0].args.p_source_rows.length,2);});
 for(const options of [{transportLoss:true},{rpcError:{}},{response:{requestId:randomUUID()}},{response:{targets:[]}},{response:{importedCards:900}}])test('uncertain result never reports successful import or falls back',async()=>{const f=fixture(options);const r=await f.send();assert.equal(r.status,503);assert.equal((await r.json()).error,'import_outcome_unconfirmed');assert.equal(f.writes.length,1);});
+
+test('blank finish with multiple printings cannot bypass the native review',async()=>{
+ const f=fixture({extraPrintings:[{id:randomUUID(),card_print_id:cardId,finish_key:'holo',finish_is_active:true}]});
+ const r=await f.send({csvText:toCsv([{...row,Variance:''}]),targets:[{...selection,cardPrintingId:null}]});
+ assert.equal(r.status,400);assert.equal((await r.json()).error,'import_printing_requires_review');assert.equal(f.writes.length,0);
+});
+test('blank finish resolves only a unique selected active printing',async()=>{
+ const f=fixture();assert.equal((await f.send({csvText:toCsv([{...row,Variance:''}])})).status,200);
+ assert.equal(f.writes[0].args.p_targets[0].finishKey,'reverse');
+});
+test('blank finish cannot save when no active printing exists',async()=>{
+ const f=fixture({printing:{finish_is_active:false}});const r=await f.send({csvText:toCsv([{...row,Variance:''}])});
+ assert.equal(r.status,400);assert.equal(f.writes.length,0);
+});
+test('expanded retained source is rejected before the writer',async()=>{
+ const fields=Object.fromEntries(Array.from({length:180},(_,i)=>['Market Price '+i.toString().padStart(4,'0'),'']));
+ const csvText=toCsv(Array.from({length:700},()=>({...row,...fields})));
+ assert.ok(Buffer.byteLength(csvText)<1900000);
+ const f=fixture();const r=await f.send({csvText,targets:[]});
+ assert.equal(r.status,400);assert.equal((await r.json()).error,'import_size_limit');assert.equal(f.writes.length,0);
+});

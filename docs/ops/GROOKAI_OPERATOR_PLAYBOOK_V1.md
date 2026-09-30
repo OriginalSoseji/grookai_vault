@@ -35,6 +35,13 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
+PR553 review supersedes the prepared335 release: blank finishes, archived copy
+readback, complete payload size and timestamp precision are corrected together.
+Read the first checkpoint section and private `collectr_import_review_20260930`
+continuation. The revised, still-unapplied410 payload uses fresh585xx/586xx labs;
+never replay or reset prior populated fixtures.335 and prior CLI package remain
+preserved but cannot qualify this changed source. Production is still409.
+
 Release inspection uses the strict `CollectrImportFidelityReleaseV1` switch with
 only `-ExpectedLocalOnlyIds 20260930010000`, first AuditLinkedSchema then PrePush.
 The fixed `scripts/release/prepare_collectr_import_v1.mjs` supports only prepare

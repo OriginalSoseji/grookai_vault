@@ -166,7 +166,7 @@ begin
             and not exists(select 1 from public.card_printing_truth_reviews r where r.card_printing_id=p.id
               and r.active and r.public_visibility in ('hidden_pending_review','hidden_unsupported')) for share of p;
         if not found or finish is distinct from t->>'finishKey' then raise exception 'import_printing_identity_mismatch'; end if;
-      elsif nullif(t->>'finishKey','') is not null then raise exception 'import_printing_identity_required';
+      else raise exception 'import_printing_identity_required';
       end if;
       select coalesce(array_agg(candidate.id order by candidate.created_at,candidate.id),'{}'::uuid[]) into ids from (
         select i.id,i.created_at from public.vault_item_instances i
@@ -176,7 +176,10 @@ begin
           and i.condition_label is not distinct from t->>'condition'
           and i.acquisition_cost is not distinct from (t->>'acquisitionCost')::numeric
           and i.notes is not distinct from t->>'notes'
-          and ((t->>'createdAt') is null or (i.created_at at time zone 'UTC')::date=((t->>'createdAt')::timestamptz at time zone 'UTC')::date)
+          and ((t->>'createdAt') is null or
+            (case when coalesce((t->>'createdAtDateOnly')::boolean,false)
+              then (i.created_at at time zone 'UTC')::date=((t->>'createdAt')::timestamptz at time zone 'UTC')::date
+              else i.created_at=(t->>'createdAt')::timestamptz end))
           and not exists(select 1 from public.vault_collection_import_groups_v2 g
             where g.user_id=p_user_id and g.source_sha256=p_source_sha256 and i.id=any(g.instance_ids))
         order by i.created_at,i.id limit desired for update of i
@@ -224,5 +227,35 @@ end;
 $$;
 revoke all on function public.admin_import_vault_collection_v2(uuid,uuid,text,jsonb,jsonb) from public,anon,authenticated;
 grant execute on function public.admin_import_vault_collection_v2(uuid,uuid,text,jsonb,jsonb) to service_role;
+
+-- Owner-scoped readback includes archived/sold copies, but only IDs already
+-- attached to this owner's original source document. It grants no general
+-- archived-inventory access and accepts no caller-supplied owner identity.
+create or replace function public.get_collection_import_copies_v2(
+  p_source_sha256 text,p_instance_ids uuid[]
+) returns table (
+  id uuid,card_print_id uuid,card_printing_id uuid,condition_label text,
+  acquisition_cost numeric,notes text,created_at timestamptz,is_graded boolean,
+  archived_at timestamptz
+) language plpgsql stable security definer set search_path=pg_catalog,public
+as $$
+declare v_user uuid:=auth.uid();
+begin
+  if v_user is null then raise exception 'not_authenticated' using errcode='28000'; end if;
+  if coalesce(p_source_sha256,'') !~ '^[0-9a-f]{64}$'
+    or coalesce(cardinality(p_instance_ids),0) not between 1 and 100 then
+    raise exception 'invalid_import_readback';
+  end if;
+  return query select i.id,i.card_print_id,i.card_printing_id,i.condition_label,
+    i.acquisition_cost,i.notes,i.created_at,i.is_graded,i.archived_at
+  from public.vault_item_instances i
+  where i.user_id=v_user and i.id=any(p_instance_ids)
+    and exists(select 1 from public.vault_collection_import_groups_v2 g
+      where g.user_id=v_user and g.source_sha256=p_source_sha256 and i.id=any(g.instance_ids))
+  order by i.id;
+end;
+$$;
+revoke all on function public.get_collection_import_copies_v2(text,uuid[]) from public,anon;
+grant execute on function public.get_collection_import_copies_v2(text,uuid[]) to authenticated;
 
 commit;

@@ -1,6 +1,7 @@
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
 import {
   ImportValidationError,
+  jsonbByteSize,
   normalize,
   number,
   parseCsv,
@@ -37,6 +38,7 @@ type Target = Selection & {
   condition: string;
   acquisitionCost: number | null;
   createdAt: string | null;
+  createdAtDateOnly: boolean;
   notes: string | null;
 };
 async function body(request: Request): Promise<unknown> {
@@ -172,17 +174,26 @@ async function resolveTargets(
       setName(set.name ?? "", base.game) !== base.set ||
       number(card.number ?? "") !== base.number
     ) throw new ImportValidationError("import_card_identity_mismatch");
-    if (base.finishKey !== null) {
+    let finishKey = base.finishKey;
+    if (finishKey === null) {
+      const options = [...byPrinting.values()].filter(option =>
+        option.card_print_id === card.id && option.finish_is_active === true);
+      if (options.length !== 1 || options[0].id !== selectedRow.cardPrintingId) {
+        throw new ImportValidationError("import_printing_requires_review");
+      }
+      finishKey = options[0].finish_key;
+    }
+    if (finishKey !== null) {
       const printing = byPrinting.get(selectedRow.cardPrintingId ?? "");
       if (
         !printing || printing.card_print_id !== card.id ||
-        printing.finish_key !== base.finishKey ||
+        printing.finish_key !== finishKey ||
         printing.finish_is_active !== true
       ) throw new ImportValidationError("import_printing_identity_mismatch");
       if (
         [...byPrinting.values()].filter((option) =>
           option.card_print_id === card.id &&
-          option.finish_key === base.finishKey &&
+          option.finish_key === finishKey &&
           option.finish_is_active === true
         ).length !== 1
       ) throw new ImportValidationError("import_printing_requires_review");
@@ -191,11 +202,12 @@ async function resolveTargets(
     }
     targets.push({
       ...selectedRow,
-      finishKey: base.finishKey,
+      finishKey,
       desiredQuantity: desired,
       condition: base.condition,
       acquisitionCost: base.acquisitionCost,
       createdAt: base.createdAt,
+      createdAtDateOnly: base.createdAtDateOnly,
       notes: base.notes,
     });
   }
@@ -247,9 +259,7 @@ export function createCollectionImportHandler(dependencies: Dependencies) {
         (b) => b.toString(16).padStart(2, "0"),
       ).join("");
       if (
-        new TextEncoder().encode(
-          JSON.stringify(sourceRows) + JSON.stringify(targets),
-        ).length > 2097152
+        jsonbByteSize(sourceRows) + jsonbByteSize(targets) > 2097152
       ) throw new ImportValidationError("import_size_limit");
     } catch (error) {
       if (error instanceof ImportValidationError) {

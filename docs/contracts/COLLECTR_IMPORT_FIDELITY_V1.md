@@ -1,7 +1,9 @@
 # Collectr import fidelity repair
 
 Status: source-aware candidate implemented and locally qualified; physical
-acceptance passed and release remains open. Catalog/grade/sealed coverage is incomplete;
+acceptance passed for the earlier candidate. PR553 review fixes require fresh
+qualification and a replacement build;335 is superseded and must not be uploaded.
+Catalog/grade/sealed coverage is incomplete;
 retained review is not owned inventory.
 
 The physical iPhone Collectr preview exposed source fields being discarded,
@@ -69,6 +71,21 @@ exposes original rows and review status; source portfolios do not silently becom
 binders. Unsupported rows can be retained without creating owned inventory, raw
 downgrades, verified certificates or pricing inputs. Retry matching with the
 unchanged original CSV.
+
+Blank finishes are saveable only when exactly one active governed child printing
+can be selected. Zero or multiple options stay in review; neither Edge nor SQL may
+create a parent-only instance to bypass this requirement. Owner copy readback uses
+`get_collection_import_copies_v2`, scoped to auth.uid(), original source hash and
+at most100 mapped IDs. Archived copies remain verifiable without granting general
+archived-inventory access or exposing another owner's copies.
+
+The complete serialized request and expanded PostgreSQL source/target payload are
+budgeted before the preview becomes saveable and again before saving. The2MiB
+limit includes repeated headers, JSON separators, escaping, UTF-8 and targets;
+5000 rows is a separate ceiling, not a guarantee that an export fits. Source dates
+retain explicit date-only precision; timestamp sources reconcile exact instants,
+including timezone and up to six fractional digits. Higher precision remains
+review-only. Never collapse a timestamp to its calendar date during matching.
 
 ## Qualification and remaining implementation
 

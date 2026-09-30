@@ -28,6 +28,8 @@ class SourceFixture {
   final attempts = <String>[];
   bool loseResponse = false, badReadback = false, missingEndpoint = false;
   bool failPrintingPage = false, ambiguousPrinting = false;
+  bool singlePrinting = false, noPrintings = false;
+  bool wrongTimestamp = false;
   int terminalFailures = 0;
   SourceFixture() {
     f.catalogSets = [
@@ -48,12 +50,13 @@ class SourceFixture {
             'finish_key': 'reverse',
             'finish_is_active': true,
           },
-          {
-            'id': holoId,
-            'card_print_id': cardA,
-            'finish_key': 'holo',
-            'finish_is_active': true,
-          },
+          if (!singlePrinting)
+            {
+              'id': holoId,
+              'card_print_id': cardA,
+              'finish_key': 'holo',
+              'finish_is_active': true,
+            },
           if (ambiguousPrinting)
             {
               'id': '55555555-5555-4555-8555-555555555555',
@@ -63,7 +66,7 @@ class SourceFixture {
             },
         ];
         // Exercise a server cap below the requested size.
-        result = printings.skip(offset).take(1).toList();
+        result = noPrintings ? [] : printings.skip(offset).take(1).toList();
       } else if (request.url.path.endsWith('/vault-import-collection-v2')) {
         final body = jsonDecode(request.body) as Map;
         final attempt = body['requestId'] as String;
@@ -195,8 +198,24 @@ class SourceFixture {
                     : matching)
                 .take(1)
                 .toList();
+      } else if (request.url.path.endsWith(
+        '/get_collection_import_copies_v2',
+      )) {
+        final ids = jsonDecode(request.body)['p_instance_ids'] as List;
+        result = badReadback
+            ? []
+            : copies
+                  .where((r) => ids.contains(r['id']))
+                  .map(
+                    (r) => {
+                      ...r,
+                      if (wrongTimestamp) 'created_at': '2026-01-01T01:00:00Z',
+                    },
+                  )
+                  .toList();
       } else if (request.url.path.endsWith('/vault_item_instances')) {
-        result = badReadback ? [] : copies;
+        // The actual table RLS hides archived copies.
+        result = copies.where((r) => r['archived_at'] == null).toList();
       } else {
         return null;
       }
@@ -222,6 +241,119 @@ void main() {
     await s.f.signIn();
     return s;
   }
+
+  test('blank finish requires exactly one active printing', () async {
+    final s = await setup();
+    const csv = 'Product Name,Set,Card Number,Variance\nFixture,Set,1,';
+    Future<CollectionImportSourceSession> prepare() =>
+        CollectionImportSourceSession.prepare(client: s.f.client, csvText: csv);
+    expect((await prepare()).preview.rows.single.canImport, false);
+    s.singlePrinting = true;
+    final single = (await prepare()).preview.rows.single;
+    expect(single.canImport, true);
+    expect(single.cardPrintingId, reverseId);
+    s.noPrintings = true;
+    expect((await prepare()).preview.rows.single.canImport, false);
+  });
+
+  test('archived import can be independently verified on reopening', () async {
+    final s = await setup();
+    await (await s.prepare()).save(s.f.client);
+    s.copies.first['archived_at'] = '2026-09-30T00:00:00Z';
+    expect((await (await s.prepare()).save(s.f.client)).importedCards, 0);
+    expect(s.copies.length, 3);
+    expect(
+      s.f.requests.any(
+        (r) => r.url.path.endsWith('/get_collection_import_copies_v2'),
+      ),
+      true,
+    );
+  });
+
+  test('same UTC date is insufficient for a full source timestamp', () async {
+    final s = await setup();
+    const csv =
+        'Product Name,Set,Card Number,Variance,Date Added\nFixture,Set,1,Reverse Holofoil,2026-01-01T02:00:00Z';
+    final session = await CollectionImportSourceSession.prepare(
+      client: s.f.client,
+      csvText: csv,
+    );
+    s.wrongTimestamp = true;
+    await expectLater(
+      session.save(s.f.client),
+      throwsA(isA<CollectionImportFailure>()),
+    );
+  });
+
+  test(
+    'date-only source accepts its calendar date; excessive precision stays in review',
+    () async {
+      final s = await setup();
+      const header =
+          'Product Name,Set,Card Number,Variance,Date Added\nFixture,Set,1,Reverse Holofoil,';
+      final day = await CollectionImportSourceSession.prepare(
+        client: s.f.client,
+        csvText: '${header}2026-01-01',
+      );
+      s.wrongTimestamp = true;
+      expect((await day.save(s.f.client)).importedCards, 1);
+      final precise = await CollectionImportSourceSession.prepare(
+        client: s.f.client,
+        csvText: '${header}2026-01-01T01:23:45.1234567Z',
+      );
+      expect(precise.preview.rows.single.canImport, false);
+      expect(
+        precise.preview.rows.single.reviewReasons.join(' '),
+        contains('six fractional digits'),
+      );
+    },
+  );
+
+  test(
+    'serialized request includes every selected target in the size budget',
+    () async {
+      final s = await setup();
+      final csv =
+          'Product Name,Set,Card Number,Variance,Notes\n${List.generate(5000, (i) => 'Fixture,Set,1,Reverse Holofoil,${'x' * 245}$i').join('\n')}';
+      expect(utf8.encode(csv).length, lessThan(1900000));
+      await expectLater(
+        CollectionImportSourceSession.prepare(client: s.f.client, csvText: csv),
+        throwsA(
+          isA<CollectionImportFailure>().having(
+            (e) => e.message,
+            'message',
+            contains('2 MiB'),
+          ),
+        ),
+      );
+      expect(s.attempts, isEmpty);
+    },
+  );
+
+  test(
+    'expanded original columns are budgeted before preview is saveable',
+    () async {
+      final s = await setup();
+      final columns = List.generate(
+        180,
+        (i) => 'Market Price ${i.toString().padLeft(4, '0')}',
+      );
+      final csv =
+          'Product Name,Set,Card Number,Variance,${columns.join(',')}\n${List.filled(700, 'Fixture,Set,1,Reverse Holofoil,${List.filled(180, '').join(',')}').join('\n')}';
+      expect(utf8.encode(csv).length, lessThan(1900000));
+      await expectLater(
+        CollectionImportSourceSession.prepare(client: s.f.client, csvText: csv),
+        throwsA(
+          isA<CollectionImportFailure>().having(
+            (e) => e.message,
+            'message',
+            contains('2 MiB'),
+          ),
+        ),
+      );
+      expect(s.attempts, isEmpty);
+    },
+  );
 
   test(
     'source preview resolves finishes independently and keeps grades for review',

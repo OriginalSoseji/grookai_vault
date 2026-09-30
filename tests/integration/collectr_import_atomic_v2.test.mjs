@@ -34,6 +34,11 @@ test('atomic source import: metadata, retries, review, RLS and late rollback', {
  const sorted=[...targets].sort((a,b)=>a.cardPrintingId.localeCompare(b.cardPrintingId));
  const invalidTargets=[{...sorted[0],desiredQuantity:3,notes:'Rollback new copies'},{...sorted[1],gvId:'WRONG'}];
  const failedRequest=randomUUID(),reviewSource=[source[2]],gradeSource=[{...source[0],Grade:'Ungraded',gRaDe:'CGC 9'}];
+ const timestampSource=[{...source[0],'Portfolio Name':'Timestamp','Date Added':'2026-01-01T12:00:00Z'}];
+ const timestampTarget={...targets[0],sourceIndices:[0],desiredQuantity:1,createdAt:'2026-01-01T12:00:00Z',createdAtDateOnly:false};
+ const dateSource=[{...source[0],'Portfolio Name':'Date only','Date Added':'2026-01-01'}];
+ const zoneSource=[{...source[0],'Portfolio Name':'Other zone','Date Added':'2026-01-01T05:00:00-07:00'}];
+ const microSource=[{...source[0],'Portfolio Name':'Microseconds','Date Added':'2026-01-02T01:23:45.123456-07:00'}];
  const sql=`begin;
 set local statement_timeout='45s';
 do $$begin if (select count(*) from supabase_migrations.schema_migrations)<>409 or current_setting('max_worker_processes')<>'0' or to_regclass('public.vault_collection_import_documents_v2') is not null then raise exception 'wrong fixture';end if;end$$;
@@ -57,18 +62,29 @@ ${assertSql(`${call(randomUUID(),gradeSource,[targets[0]])}->>'success'='false'`
 ${assertSql(`${call(randomUUID(),reviewSource,[])}->>'reviewRows'='1'`,'review-only source retained without inventory')}
 update public.vault_item_instances set archived_at=now() where user_id='${user}' and card_printing_id='${holo}';
 ${assertSql(`${call(randomUUID())}->>'importedCards'='0' and (select count(*) from public.vault_item_instances where user_id='${user}')=3`,'archived import never recreated')}
+${assertSql(`${call(randomUUID(),timestampSource,[timestampTarget])}->>'importedCards'='1'`,'different time on the same UTC date creates a distinct exact copy')}
+${assertSql(`${call(randomUUID(),dateSource,[{...timestampTarget,createdAt:'2026-01-01T00:00:00Z',createdAtDateOnly:true}])}->>'importedCards'='0'`,'genuinely date-only source can reconcile the same calendar date')}
+${assertSql(`${call(randomUUID(),zoneSource,[{...timestampTarget,createdAt:'2026-01-01T05:00:00-07:00'}])}->>'importedCards'='0'`,'equivalent timezone timestamps reconcile the same instant')}
+${assertSql(`${call(randomUUID(),microSource,[{...timestampTarget,createdAt:'2026-01-02T01:23:45.123456-07:00'}])}->>'importedCards'='1'`,'microsecond timestamp saved')}
+${assertSql(`exists(select 1 from public.vault_item_instances where user_id='${user}' and created_at='2026-01-02T08:23:45.123456Z')`,'full timestamp precision retained')}
+${assertSql(`${call(randomUUID(),[{...source[0],'Portfolio Name':'No printing'}],[{...timestampTarget,cardPrintingId:null,finishKey:null}])}->>'success'='false'`,'parent-only ambiguity cannot bypass the writer')}
 ${assertSql(`not has_function_privilege('authenticated','public.admin_import_vault_collection_v2(uuid,uuid,text,jsonb,jsonb)','execute') and not has_function_privilege('anon','public.admin_import_vault_collection_v2(uuid,uuid,text,jsonb,jsonb)','execute')`,'writer denied to clients')}
 ${assertSql(`not has_table_privilege('authenticated','public.vault_collection_import_documents_v2','insert') and not has_table_privilege('authenticated','public.vault_collection_import_receipts_v2','select')`,'no client source writes or receipt access')}
+select set_config('test.import_copy_ids',(select array_agg(id)::text from public.vault_item_instances where user_id='${user}'),true);
 set local role authenticated;
 select set_config('request.jwt.claim.sub','${visitor}',true);
 ${assertSql(`(select count(*) from public.vault_collection_import_documents_v2)=0 and (select count(*) from public.vault_collection_import_groups_v2)=0`,'visitor cannot read source or mappings')}
+${assertSql(`(select count(*) from public.get_collection_import_copies_v2('${sha}',current_setting('test.import_copy_ids')::uuid[]))=0`,'visitor cannot read another owner imported copies')}
 select set_config('request.jwt.claim.sub','${user}',true);
-${assertSql(`(select count(*) from public.vault_collection_import_documents_v2)=2 and (select count(*) from public.vault_collection_import_groups_v2)=2`,'owner can recover original source and mappings')}
+${assertSql(`(select count(*) from public.vault_collection_import_documents_v2)=6 and (select count(*) from public.vault_collection_import_groups_v2)=6`,'owner can recover original source and mappings')}
+${assertSql(`(select count(*) from public.get_collection_import_copies_v2('${sha}',current_setting('test.import_copy_ids')::uuid[]))=3`,'owner readback is limited to copies mapped to this source')}
+${assertSql(`(select count(*) from public.get_collection_import_copies_v2('${sha}',current_setting('test.import_copy_ids')::uuid[]) where archived_at is not null)=1`,'owner can verify retained archived copy')}
+${assertSql(`(select count(*) from public.get_collection_import_copies_v2(repeat('0',64),current_setting('test.import_copy_ids')::uuid[]))=0`,'unknown source does not expose other owned copies')}
 reset role;
 rollback;
 select to_regclass('public.vault_collection_import_documents_v2') is null as rolled_back;`;
  const result=execFileSync('docker',['exec','-i',container,'psql','-U','postgres','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'],{input:sql,encoding:'utf8',windowsHide:true,timeout:120000,maxBuffer:4*1024*1024});
- const receipt={status:'passed',kind:'rollback-only-not-full-replay',at:new Date().toISOString(),migrationSha256:hash(migration),assertions:17,productionWrites:0,output:result};
+ const receipt={status:'passed',kind:'rollback-only-not-full-replay',at:new Date().toISOString(),migrationSha256:hash(migration),assertions:(sql.match(/select pg_temp.check_import/g)??[]).length,productionWrites:0,output:result};
  fs.writeFileSync(out+'/atomic-v2-rollback-'+Date.now()+'.private.json',JSON.stringify(receipt,null,2),{flag:'wx'});
  assert.match(result,/owner can recover original source and mappings/);assert.match(result,/\nt\s*$/);
 });

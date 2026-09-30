@@ -13,9 +13,9 @@ test('export-sized Collectr writer preserves source and exact copies on retry', 
 }, async () => {
   const root = path.resolve(import.meta.dirname, '../..');
   assert.equal(root.replaceAll('\\', '/'), 'C:/gv_collectr_import_20260930');
-  const out = 'C:/grookai_vault_operator_artifacts/collectr_iphone_import_20260929';
+  const out = 'C:/grookai_vault_operator_artifacts/collectr_import_review_20260930';
   const fixture = out + '/upgrade-410';
-  const project = 'collectr-import-upgrade-410-20260930';
+  const project = 'collectr-review-upgrade-410-20260930';
   const sha = value => createHash('sha256').update(value).digest('hex');
   const freeze = JSON.parse(fs.readFileSync(fixture + '/freeze.json'));
   assert.equal(freeze.project, project);
@@ -34,7 +34,7 @@ test('export-sized Collectr writer preserves source and exact copies on retry', 
   }
   const require = createRequire(path.join(root, 'package.json'));
   const { Client } = require('pg');
-  const db = new Client({ host: '127.0.0.1', port: 58240, user: 'postgres', password: 'postgres', database: 'postgres', statement_timeout: 60000 });
+  const db = new Client({ host: '127.0.0.1', port: 58640, user: 'postgres', password: 'postgres', database: 'postgres', statement_timeout: 60000 });
   const run = out + '/scale-v2-' + Date.now();
   fs.mkdirSync(run);
   fs.writeFileSync(run + '/intent.json', JSON.stringify({ project, scope: 'rollback-only synthetic export', sourceHash: sha(fs.readFileSync(import.meta.filename)), at: new Date().toISOString() }), { flag: 'wx' });

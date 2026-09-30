@@ -1,5 +1,14 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Collectr review hold (2026-09-30)
+
+PR553 changes the unapplied410 payload after review. The previous release gate,
+CLI package and signed335 are superseded and must not be used to release. Fresh
+585xx/586xx replay/upgrade and runtime proof are retained separately under
+`collectr_import_review_20260930`. Rebind release inspection only after physical
+acceptance of the changed source; old evidence must fail closed. Production409
+is unchanged.
+
 ## Collectr exact-pending inspection (2026-09-30)
 
 `CollectrImportFidelityReleaseV1` accepts only AuditLinkedSchema or PrePush with
