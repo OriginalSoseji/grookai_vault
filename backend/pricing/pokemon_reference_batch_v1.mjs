@@ -4,7 +4,7 @@ import { pokemonReferenceFailureV1 } from './pokemon_reference_http_v1.mjs';
 // the reference service's three-hour hard limit. HTTP attempts have their own
 // 60s transfer/80s process limits; a budget stop starts no further requests.
 export async function fetchPokemonReferenceBatchV1({ ids, fetchCard, onResult = () => {},
-  onProgress = () => {}, authenticated = false, budgetMs = 90 * 60_000,
+  onProgress = () => {}, authenticated = false, budgetMs = 90 * 60_000, stopOnFailure = false,
   now = () => performance.now(), sleep = ms => new Promise(resolve => setTimeout(resolve, ms)),
 }) {
   if (!Array.isArray(ids) || ids.some(id => typeof id !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(id)) ||
@@ -49,11 +49,12 @@ export async function fetchPokemonReferenceBatchV1({ ids, fetchCard, onResult = 
         const safe = pokemonReferenceFailureV1(error);
         // A missing provider ID is retained as a coverage finding. All other
         // transport/auth/format failures make the acquisition incomplete.
-        const missing = safe.http_status === 404;
+        const missing = !stopOnFailure && safe.http_status === 404;
         errors.push({ id, ...safe });
         result = { id, status: missing ? 'missing' : 'failed', failure: safe };
         if (!missing) {
           failures++;
+          if (stopOnFailure) stop ||= safe.code;
           if ([401, 403, 429].includes(safe.http_status) || /BATCH_BUDGET|REQUEST_CEILING/.test(safe.code)) stop ||= safe.code;
           if (failures >= 5) stop ||= 'POKEMON_REFERENCE_PROVIDER_FAILURE_LIMIT';
         }

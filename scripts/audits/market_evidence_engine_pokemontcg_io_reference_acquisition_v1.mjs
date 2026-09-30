@@ -5,8 +5,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import '../../backend/env.mjs';
-import { fetchPokemonCardByIdViaCurl } from '../../backend/pricing/pokemon_reference_http_v1.mjs';
 import { fetchPokemonReferenceBatchV1 } from '../../backend/pricing/pokemon_reference_batch_v1.mjs';
+import { fetchPokemonReferenceCatalogV1 } from '../../backend/pricing/pokemon_reference_catalog_v1.mjs';
 import { createBackendClient } from '../../backend/supabase_backend_client.mjs';
 import { acquirePokemonTcgIoEvidenceV1 } from '../../backend/pricing/market_evidence_pokemontcg_io_acquisition_v1.mjs';
 import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
@@ -227,10 +227,11 @@ async function main() {
   }), { flag: 'wx' });
   console.log(`[mee-pokemontcg-io] acquisition progress=${progressDir}`);
   let lastLogged = -1;
-  const result = await fetchPokemonReferenceBatchV1({
+  const runner = fixtureCards ? fetchPokemonReferenceBatchV1 : fetchPokemonReferenceCatalogV1;
+  const result = await runner({
     ids: uniquePokemonApiIds,
     authenticated: Boolean(process.env.POKEMONAPI_API_KEY),
-    fetchCard: fixtureCards ? async id => fixtureCards[id] ?? null : fetchPokemonCardByIdViaCurl,
+    ...(fixtureCards ? { fetchCard: async id => fixtureCards[id] ?? null } : {}),
     onResult: row => appendFileSync(journal, `${JSON.stringify({ ...row, fetched_at: new Date().toISOString() })}\n`),
     onProgress: progress => {
       const file = path.join(progressDir, 'progress.json');
@@ -256,7 +257,8 @@ async function main() {
   acquisition.summary.unique_pokemonapi_ids = uniquePokemonApiIds.length;
   acquisition.summary.fetch_error_count = errors.length;
   acquisition.fetch_errors = errors;
-  acquisition.acquisition_progress = { complete: true, completed: result.completed, attempts: result.attempts, progress_directory: progressDir };
+  acquisition.acquisition_progress = { complete: true, completed_ids: uniquePokemonApiIds.length, attempts: result.attempts,
+    pages_received: result.pages_received ?? null, catalog_count: result.catalog_count ?? null, progress_directory: progressDir };
 
   await fs.mkdir(args.outDir, { recursive: true });
   const jsonPath = path.join(args.outDir, `mee_06a_pokemontcg_io_reference_evidence_${stamp}.json`);
