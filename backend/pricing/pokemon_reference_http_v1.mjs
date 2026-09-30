@@ -21,6 +21,7 @@ export async function fetchPokemonCardByIdViaCurl(cardId, {
   run = execute, sleep = ms => new Promise(resolve => setTimeout(resolve, ms)),
   baseUrl = process.env.POKEMONAPI_BASE_URL || 'https://api.pokemontcg.io/v2',
   apiKey = process.env.POKEMONAPI_API_KEY, platform = process.platform,
+  beforeAttempt = async () => {},
 } = {}) {
   if (typeof cardId !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(cardId))
     throw failure('POKEMON_REFERENCE_INVALID_ID', 0);
@@ -39,6 +40,7 @@ export async function fetchPokemonCardByIdViaCurl(cardId, {
   // Redirects are deliberately not followed with a custom credential header.
   args.push(new URL(`cards/${encodeURIComponent(cardId)}`, base).toString());
   for (let attempt = 1; attempt <= 3; attempt++) {
+    await beforeAttempt();
     let error, retry = false, stdout;
     try {
       ({ stdout } = await run(platform === 'win32' ? 'curl.exe' : 'curl', args,
