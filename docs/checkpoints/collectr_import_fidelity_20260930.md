@@ -1,5 +1,31 @@
 # Collectr importer fidelity — September 30
 
+## Explicit set labels — local qualification
+
+PR557 and internal TestFlight337 are released. The real iPhone preview of the
+unchanged original export was verified without saving; terminal receipts are in
+private `collectr_matching_20260930/release` and `collectr_live_preview337_20260930`.
+The older preparation notes below are historical. Do not replay release intents.
+
+The next isolated branch `fix/collectr-set-labels-20260930` adds17 explicit Pokemon
+set-label mappings to native and Edge. Tests use synthetic cards with a shared
+label corpus; the real CSV, catalog snapshot and row ledger remain outside source
+in `collectr_sets_20260930`. Every previously ready exact parent/child/quantity is
+unchanged. Uncertain names, languages, editions, duplicates and grades remain held.
+No schema, catalog mutation or real collection save is included.
+
+Local proof:95 focused native tests pass with one expected private-fixture skip;
+the opt-in full-export native replay passes separately and agrees with the actual
+Edge handler offline. Source/handler tests, Flutter analysis and Deno type checking
+pass. The full410 sandbox HTTP suite passes10 scenarios, including all17 aliases,
+source/child readback and duplicate-free retries. Existing ownership and release
+controls are unchanged. The initial HTTP attempt found stopped lab containers;
+the existing dedicated lab was started intact, without reset or migration.
+
+Next: normal repository/release gates and fresh device/build qualification before
+delivery. Build337 does not contain these additional set mappings. Other matching,
+graded assertions and numberless/sealed support remain separate unfinished work.
+
 ## Governed MTG matching follow-up — iPhone qualified
 
 Physical iPhone17 Pro now passes the new matching workflow in the isolated test

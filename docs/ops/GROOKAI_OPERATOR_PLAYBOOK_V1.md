@@ -35,6 +35,19 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
+Current continuation: PR557/backend V2/internal TestFlight337 are released, and
+the original-export physical iPhone preview passed without saving. Private terminal
+evidence is in `collectr_matching_20260930/release` and
+`collectr_live_preview337_20260930`; prior release preparation below is historical.
+The next isolated set-label batch uses `C:/gv_collectr_sets_20260930` and private
+`collectr_sets_20260930` evidence. Both matchers consume the same tested finite
+aliases while retaining grade/finish/identity holds. No schema change is needed.
+For this fixed worktree, `GV_COLLECTR_SET_HTTP_PROOF=1` extends the existing
+`tests/integration/collectr_mtg_import_http_v1.test.mjs` with all17 alias save and
+readback cases. It uses fresh synthetic accounts in the same retained full410 lab;
+do not reset the lab or reuse previous accounts/intents. The original MTG switch
+and worktree remain supported. Local proof does not establish deployment.
+
 Latest: PR553/production410/internal TestFlight336 are released; real iPhone
 original-export preview passed without a save. Continue in the isolated
 collectr-matching branch and private `collectr_matching_20260930` checkpoint for

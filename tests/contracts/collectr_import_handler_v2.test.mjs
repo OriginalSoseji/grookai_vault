@@ -65,6 +65,29 @@ test('expanded retained source is rejected before the writer',async()=>{
 });
 
 const identityCases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_mtg_identity_v1.json',import.meta.url)));
+const setAliases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_set_aliases_v1.json',import.meta.url)));
+for(const alias of setAliases)test(`set label ${alias.source} retains original source and exact printing`,async()=>{
+ const f=fixture({card:{sets:{name:alias.catalog,game:'pokemon'}}});
+ const source={...row,Set:alias.source};
+ const response=await f.send({csvText:toCsv([source])});
+ assert.equal(response.status,200);assert.deepEqual(f.writes[0].args.p_source_rows,[source]);
+ assert.equal(f.writes[0].args.p_targets[0].cardPrintingId,printing);
+});
+for(const [label,source,card] of [
+ ['wrong game',{Category:'MTG'},{}],
+ ['different catalog set',{}, {sets:{name:'Sandstorm',game:'pokemon'}}],
+ ['different collector number',{'Card Number':'66'},{}],
+ ['different treatment',{'Product Name':'Synthetic card (Stamped)'},{}],
+ ['different finish',{Variance:'Holofoil'},{}],
+ ['graded copy',{Grade:'PSA 10'},{}],
+ ['Japanese set',{Set:'EX Emerald (JP)'},{}],
+ ['edition set',{Set:'EX Emerald (1st Edition)'},{}],
+ ['partial set',{Set:'EX Emeral'},{}],
+])test(`set alias rejects ${label} before atomic writer`,async()=>{
+ const f=fixture({card:{sets:{name:'Emerald',game:'pokemon'},...card}});
+ const response=await f.send({csvText:toCsv([{...row,Set:'EX Emerald',...source}])});
+ assert.equal(response.status,400);assert.equal(f.writes.length,0);
+});
 for(const {label,expected,input} of identityCases.filter(c=>c.input.game==='mtg'))test(`server catalog validation: ${label}`,async()=>{
  const identities=structuredClone(input.identities).map((identity,index)=>({...identity,id:index===0?identity.id:'55555555-5555-4555-8555-555555555555',
   card_print_id:identity.card_print_id===input.card.id?cardId:identity.card_print_id}));

@@ -1,11 +1,27 @@
 # Collectr import fidelity repair
 
-Status: PR553 is merged, production is at410, and build336 is released internally
+Status: PR557 is merged, production is at410, and build337 is released internally
 and installed on the real iPhone. Its original-export preview is verified; no real
-collection save occurred. A subsequent governed MTG matching repair is locally
-and physically qualified but not released. Private terminal release/preview evidence supersedes
+collection save occurred. The subsequent set-label batch is locally qualified,
+not released. Private terminal release/preview evidence supersedes
 historical preparation notes. Catalog/grade/sealed coverage remains incomplete;
 retained review is not ownership.
+
+## Explicit set-label follow-up
+
+Native preview and Edge recognize the same finite Pokemon set-label aliases in
+`test/fixtures/collectr_set_aliases_v1.json`. Aliases only reconcile the set name:
+parent name, collector number, game, governed child finish and supported source
+metadata must still match independently. Original set labels remain in retained
+source. No fuzzy matching, generic prefix removal, language substitution, edition
+stripping, arbitrary candidate selection or new catalog records are introduced.
+Duplicate catalog sets remain candidates; multiple matching parents stay in review.
+
+The opt-in private replay preserves all previously ready parent/child selections.
+The isolated full410 HTTP fixture also saves every alias, independently reads back
+source labels and exact children, and retries without creating duplicate copies.
+Grade rejection remains enforced. This qualifies local behavior; it does not prove
+a deployed backend, a new native build or import of the founder's collection.
 
 ## Governed MTG name matching follow-up
 
@@ -25,11 +41,10 @@ The identity read uses ascending empty-page cursor completion and fails the whol
 operation on failed, repeated or unrelated pages. Finish/grade/source-size rules
 remain independent requirements. Legacy V1 does not use the fallback.
 
-Private replay, sandbox Auth/HTTP/save/retry/readback, and the real iPhone Files
-preview/save/interruption/reopen flow qualify this candidate. A distribution build
-and normal release gates are still required. Build336 and its consumed release
-package do not qualify changed code;
-include the new `mtg_identity.ts` module in fresh source/deployment verification.
+Private replay, sandbox Auth/HTTP/save/retry/readback, the real iPhone Files
+preview/save/interruption/reopen flow and distribution release qualified this MTG
+repair in build337. Its consumed release package does not qualify later changes;
+include `mtg_identity.ts` in fresh source/deployment verification for each release.
 
 The physical iPhone Collectr preview exposed source fields being discarded,
 different copies collapsing into one parent, numberless rows disappearing, and

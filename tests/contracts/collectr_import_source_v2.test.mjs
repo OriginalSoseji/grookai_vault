@@ -1,6 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {parseCsv, normalize, number, field, jsonbByteSize} from '../../supabase/functions/vault-import-collection-v2/source.ts';
+import {parseCsv, normalize, number, field, jsonbByteSize, setName} from '../../supabase/functions/vault-import-collection-v2/source.ts';
+import fs from 'node:fs';
+
+const setAliases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_set_aliases_v1.json',import.meta.url)));
+test('explicit set labels are game scoped and do not remove language or edition qualifiers',()=>{
+ for(const {source,catalog} of setAliases){
+  assert.equal(setName('  '+source.toUpperCase()+'  ','pokemon'),catalog.toLowerCase());
+  for(const scope of ['mtg','pokemon_jpn',''])assert.equal(setName(source,scope),source.toLowerCase());
+  for(const suffix of [' (JP)',' (1st Edition)',' Deck Exclusives'])assert.equal(setName(source+suffix,'pokemon'),(source+suffix).toLowerCase());
+ }
+});
 
 export const record = (overrides={}) => ({'Product Name':'Synthetic card','Category':'Pokemon','Set':'SV: 151','Card Number':'00065/165','Variance':'Reverse Holofoil','Grade':'Ungraded','Card Condition':'Lightly Played','Quantity':'2','Average Cost Paid':'$4.25','Date Added':'01/02/2026','Notes':'Keep\nall details','Portfolio Name':'Private collection',...overrides});
 export function csv(rows) {
