@@ -12,6 +12,8 @@ import '../../models/ownership_state.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/gvvi/gvvi_vendor_offer_service.dart';
+import '../../services/printing/p21_label.dart';
+import '../../services/printing/p21_printer_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -23,6 +25,7 @@ import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
 import '../../services/sealed/owned_sealed_service_v1.dart';
 import 'sealed_copy_view.dart';
+import '../printing/p21_label_print_screen.dart';
 
 ResolvedDisplayIdentity _publicGvviDisplayIdentity(PublicGvviData data) {
   return resolveDisplayIdentityFromFields(
@@ -81,11 +84,19 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
     try {
       if (kSealedOwnershipEnabled && _client.auth.currentUser != null) {
         try {
-          final raw = await _client.rpc('get_sealed_copy_by_gvvi_v1', params: {'p_gvvi_id': widget.gvviId});
+          final raw = await _client.rpc(
+            'get_sealed_copy_by_gvvi_v1',
+            params: {'p_gvvi_id': widget.gvviId},
+          );
           if (!mounted) return;
           if (raw != null) {
-            final copy = OwnedSealedCopy.fromJson(Map<String, dynamic>.from(raw as Map));
-            setState(() { _sealedCopy = copy; _loading = false; });
+            final copy = OwnedSealedCopy.fromJson(
+              Map<String, dynamic>.from(raw as Map),
+            );
+            setState(() {
+              _sealedCopy = copy;
+              _loading = false;
+            });
             return;
           }
         } catch (_) {
@@ -353,6 +364,48 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
     PublicGvviData data,
     GvviVendorOffer offer,
   ) async {
+    if (P21PrinterService.supported) {
+      final destination = await showDialog<String>(
+        context: context,
+        builder: (context) => SimpleDialog(
+          title: const Text('Print with'),
+          children: [
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, 'p21'),
+              child: const ListTile(
+                leading: Icon(Icons.bluetooth),
+                title: Text('Nelko P21'),
+                subtitle: Text('14 × 40 mm label'),
+              ),
+            ),
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, 'airprint'),
+              child: const ListTile(
+                leading: Icon(Icons.print_outlined),
+                title: Text('AirPrint'),
+                subtitle: Text('Full vendor card'),
+              ),
+            ),
+          ],
+        ),
+      );
+      if (!mounted || destination == null) return;
+      if (destination == 'p21') {
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => P21LabelPrintScreen(
+              content: P21LabelContent(
+                title: _publicGvviDisplayIdentity(data).displayName,
+                setName: data.setName,
+                number: data.number,
+                qrUri: buildPersistentGvviQrUri(data.gvviId),
+              ),
+            ),
+          ),
+        );
+        return;
+      }
+    }
     final uri = buildPersistentGvviQrUri(data.gvviId);
     final document = pw.Document();
     final format = PdfPageFormat(
@@ -424,8 +477,12 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
   @override
   Widget build(BuildContext context) {
     if (_sealedCopy != null) {
-      return SealedCopyView(copy: _sealedCopy!,
-      ownerTools: _sealedCopy!.text('owner_id') == _client.auth.currentUser?.id && widget.showOwnerQrTools);
+      return SealedCopyView(
+        copy: _sealedCopy!,
+        ownerTools:
+            _sealedCopy!.text('owner_id') == _client.auth.currentUser?.id &&
+            widget.showOwnerQrTools,
+      );
     }
     final theme = Theme.of(context);
     final displayName = _data == null

@@ -38,6 +38,8 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Grookai uses Bluetooth to connect to your Nelko P21 and print card labels.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Grookai Vault uses the camera to scan cards, capture card photos, and add images to your collection.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

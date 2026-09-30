@@ -21,6 +21,39 @@ void main() {
     GoogleFonts.config.allowRuntimeFetching = false;
   });
 
+  testWidgets('capturePng exports a painted boundary as a real PNG', (
+    tester,
+  ) async {
+    final key = GlobalKey();
+    await tester.pumpWidget(
+      Directionality(
+        textDirection: TextDirection.ltr,
+        child: Center(
+          child: RepaintBoundary(
+            key: key,
+            child: const SizedBox(
+              width: 48,
+              height: 64,
+              child: ColoredBox(color: Colors.green),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    final capture = const GrookaiObjectExportService().capturePng(
+      key,
+      pixelRatio: 2,
+    );
+    await tester.pump();
+    await tester.pump();
+    final bytes = (await tester.runAsync(() => capture))!;
+    expect(bytes.take(8), [137, 80, 78, 71, 13, 10, 26, 10]);
+    final header = bytes.buffer.asByteData(bytes.offsetInBytes, bytes.length);
+    expect(header.getUint32(16), 96);
+    expect(header.getUint32(20), 128);
+  });
+
   test('fileNameFor builds stable png names', () {
     expect(
       GrookaiObjectExportService.fileNameFor(
