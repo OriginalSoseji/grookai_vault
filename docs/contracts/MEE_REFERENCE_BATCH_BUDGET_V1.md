@@ -15,6 +15,9 @@ The 20,670-card observed catalog needs83 pages rather than1,877 card requests.
 Every page must report the expected page/size/count and the same total; IDs must
 be valid and unique across all pages. At most200 pages/50,000 cards are admitted.
 Only exact previously mapped external IDs are selected for reference evidence.
+The scan may stop early if every requested exact ID is found. Such a result marks
+`all_requested_ids_found`, not `catalog_scan_complete`; it establishes no negative
+claims about unvisited pages. Any missing requested ID requires the full scan.
 No names, set labels, prices or newly discovered IDs create mappings.
 HTTP429/auth failures stop immediately. The local900-request ceiling is not a
 claim about remaining daily quota. The provider remains authoritative.

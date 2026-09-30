@@ -18,7 +18,8 @@ export async function fetchPokemonReferenceCatalogV1({ ids, onResult = () => {},
     fetchCard: async (key, options) => {
       if (broken) throw failure();
       const page = Number(key.slice(5));
-      if (total !== null && page > Math.ceil(total / 250)) return { id: key, skipped: true };
+      if (Object.keys(cardsByExternalId).length === wanted.size ||
+          (total !== null && page > Math.ceil(total / 250))) return { id: key, skipped: true };
       try {
         const payload = await fetchPage(page, options);
         if (!Array.isArray(payload?.data) || payload.page !== page || payload.pageSize !== 250 ||
@@ -39,7 +40,10 @@ export async function fetchPokemonReferenceCatalogV1({ ids, onResult = () => {},
     onProgress: progress => onProgress({ ...progress, pages_received: pages, catalog_count: seen.size,
       expected_catalog_count: total, selected_card_count: ids.length, exact_match_count: Object.keys(cardsByExternalId).length }),
   });
+  const catalogComplete = total !== null && seen.size === total && pages === Math.ceil(total / 250);
+  const allFound = Object.keys(cardsByExternalId).length === wanted.size;
   return { ...result, cardsByExternalId, pages_received: pages, catalog_count: seen.size, expected_catalog_count: total,
     selected_card_count: ids.length, exact_match_count: Object.keys(cardsByExternalId).length,
-    complete: result.complete && (ids.length === 0 || (seen.size === total && pages === Math.ceil(total / 250))) };
+    catalog_scan_complete: catalogComplete, all_requested_ids_found: allFound,
+    complete: result.complete && (allFound || catalogComplete) };
 }

@@ -54,3 +54,9 @@ test('no mapped IDs needs no catalog requests', async () => {
   const result = await fetchPokemonReferenceCatalogV1({ ids: [], fetchPage: () => assert.fail() });
   assert.equal(result.complete, true); assert.equal(result.attempts, 0);
 });
+test('all requested IDs found permits early completion without claiming a complete catalog scan', async () => {
+  const f = fixture(); f.options.ids = ['card-0000'];
+  const result = await fetchPokemonReferenceCatalogV1(f.options);
+  assert.deepEqual(f.calls, [1]); assert.equal(result.complete, true);
+  assert.equal(result.all_requested_ids_found, true); assert.equal(result.catalog_scan_complete, false);
+});
