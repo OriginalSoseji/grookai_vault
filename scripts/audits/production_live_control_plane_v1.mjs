@@ -11,6 +11,7 @@ import { createClient } from '@supabase/supabase-js';
 
 import { OUT_DIR, TOPOLOGY_PATH, validateTopologyV1 } from './production_backend_launch_baseline_v1.mjs';
 import { readMtgWorkerEvidenceV1 } from '../../backend/operations/mtg_worker_evidence_v1.mjs';
+import { CATALOG_COMPONENTS, readCatalogEvidence } from '../../backend/operations/background_catalog_evidence_v1.mjs';
 import { readPricingCanaryCloseoutV1, applyPricingCanaryCloseoutV1 } from '../../backend/operations/pricing_canary_closeout_v1.mjs';
 
 const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || 'OriginalSoseji/grookai_vault';
@@ -368,6 +369,7 @@ export function classifyBackgroundCatalogLaneV1({
   implemented,
   catalogRows,
   supervisorState,
+  workerEvidence = null,
   errors = []
 }) {
   if (errors.length > 0) {
@@ -389,15 +391,26 @@ export function classifyBackgroundCatalogLaneV1({
     };
   }
   if (supervisorState === 'active') {
-    return {
-      status: 'healthy',
-      reason: 'Durable catalog rows exist and the unattended supervisor timer is active.'
-    };
+    return workerEvidence ?? { status: 'degraded', reason: 'Catalog timer is active but a fresh, verified terminal audit is required.' };
   }
   return {
     status: 'degraded',
     reason: `Durable catalog rows exist, but unattended supervision is ${supervisorState ?? 'not observed'}.`
   };
+}
+
+export async function collectCatalogWorkerEvidenceV1(component, now, runtimeProbes) {
+  if (!runtimeProbes || !CATALOG_COMPONENTS.includes(component)) return null;
+  try {
+    const expectedCommit = (await fs.readFile('/opt/grookai_catalog_supervisor_current/RELEASE_COMMIT_SHA', 'utf8')).trim();
+    const serviceResult = execFileSync('systemctl', ['show', `grookai-${component}.service`, '--value', '-p', 'Result'],
+      { encoding: 'utf8', timeout: 5000 }).trim();
+    return await readCatalogEvidence(`/var/lib/grookai/catalog-supervision/${component}`, {
+      component, now, expectedCommit, timerState: systemdState(BACKGROUND_TIMER_UNITS_V1[component]), serviceResult,
+    });
+  } catch (error) {
+    return { status: 'degraded', reason: 'Catalog supervisor evidence is missing or could not be verified.', evidence: { verification_error: error.code ?? 'INVALID_EVIDENCE' } };
+  }
 }
 
 async function countSupabaseRows(supabase, table, filters = {}) {
@@ -452,6 +465,8 @@ async function collectBackgroundCatalogComponentsV1(supabase, topology, now) {
   const supervisorState = (componentId) => runtimeProbes
     ? systemdState(BACKGROUND_TIMER_UNITS_V1[componentId])
     : 'not_observed';
+  const workerEvidence = new Map(await Promise.all(CATALOG_COMPONENTS.map(async component =>
+    [component, await collectCatalogWorkerEvidenceV1(component, now, runtimeProbes)])));
 
   const [japanese, onePiece, funko, sealedFamilies, sealedVariants, sealedCandidates] = await Promise.all([
     readGameCatalogV1(supabase, 'pokemon', {
@@ -478,6 +493,7 @@ async function collectBackgroundCatalogComponentsV1(supabase, topology, now) {
         implemented,
         catalogRows: catalog.card_count,
         supervisorState: state,
+        workerEvidence: workerEvidence.get(componentId),
         errors
       }),
       observed_at: now.toISOString(),
@@ -487,6 +503,7 @@ async function collectBackgroundCatalogComponentsV1(supabase, topology, now) {
         card_count: catalog.card_count ?? 0,
         supervisor_timer: BACKGROUND_TIMER_UNITS_V1[componentId],
         supervisor_state: state,
+        worker: workerEvidence.get(componentId)?.evidence ?? null,
         errors,
         ...extra
       }
@@ -504,6 +521,7 @@ async function collectBackgroundCatalogComponentsV1(supabase, topology, now) {
       implemented: Boolean(sealedDefinition?.source_files?.length),
       catalogRows: sealedRows,
       supervisorState: sealedState,
+      workerEvidence: workerEvidence.get('cross-tcg-sealed'),
       errors: sealedErrors
     }),
     observed_at: now.toISOString(),
@@ -513,6 +531,7 @@ async function collectBackgroundCatalogComponentsV1(supabase, topology, now) {
       candidate_count: sealedCandidates.count,
       supervisor_timer: BACKGROUND_TIMER_UNITS_V1['cross-tcg-sealed'],
       supervisor_state: sealedState,
+      worker: workerEvidence.get('cross-tcg-sealed')?.evidence ?? null,
       errors: sealedErrors
     }
   };

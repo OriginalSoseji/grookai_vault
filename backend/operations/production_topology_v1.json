@@ -281,55 +281,72 @@
     },
     {
       "id": "japanese-master-index",
-      "name": "Japanese master index completion",
+      "name": "Japanese catalog supervision",
       "kind": "background_lane",
       "workload_class": "C",
       "criticality": "background",
-      "execution_plane": "unverified",
-      "deployment_expectation": "supervisor_required",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "scheduled",
       "live_verification": "required",
-      "schedule": "unverified",
+      "schedule": "read-only durable catalog audit every six hours",
       "source_files": [
-        "scripts/audits/japanese_master_index_v4/finalize_v1.mjs",
-        "docs/contracts/JAPANESE_MASTER_INDEX_COMPLETION_V1.md"
+        "scripts/workers/background_catalog_readonly_worker_v1.mjs",
+        "backend/operations/background_catalog_queries_v1.mjs",
+        "backend/operations/background_catalog_evidence_v1.mjs",
+        "deploy/systemd/grookai-japanese-master-index.service",
+        "deploy/systemd/grookai-japanese-master-index.timer",
+        "docs/contracts/BACKGROUND_CATALOG_SUPERVISION_V1.md"
       ],
-      "health_probe": "japanese_cursor_coverage_and_quarantine",
-      "write_boundary": "Japanese domain staging and separately governed canonical apply",
-      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+      "health_probe": "hash-verified fresh terminal audit, pinned runtime, timer and service status; integrity findings remain degraded",
+      "write_boundary": "read-only durable catalog integrity and coverage evidence; no ingestion, canonical, pricing, visibility or ownership writes",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold",
+      "max_staleness_minutes": 420
     },
     {
       "id": "one-piece-expansion",
-      "name": "One Piece catalog completion",
+      "name": "One Piece catalog supervision",
       "kind": "background_lane",
       "workload_class": "C",
       "criticality": "background",
-      "execution_plane": "unverified",
-      "deployment_expectation": "supervisor_required",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "scheduled",
       "live_verification": "required",
-      "schedule": "unverified",
+      "schedule": "read-only durable catalog audit every six hours",
       "source_files": [
-        "scripts/audits/one_piece_complete_canonical_reconciliation_v1.mjs"
+        "scripts/workers/background_catalog_readonly_worker_v1.mjs",
+        "backend/operations/background_catalog_queries_v1.mjs",
+        "backend/operations/background_catalog_evidence_v1.mjs",
+        "deploy/systemd/grookai-one-piece-expansion.service",
+        "deploy/systemd/grookai-one-piece-expansion.timer",
+        "docs/contracts/BACKGROUND_CATALOG_SUPERVISION_V1.md"
       ],
-      "health_probe": "one_piece_cursor_coverage_and_quarantine",
-      "write_boundary": "One Piece staging and separately governed canonical apply",
-      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+      "health_probe": "hash-verified fresh terminal audit, pinned runtime, timer and service status; integrity findings remain degraded",
+      "write_boundary": "read-only durable catalog integrity and coverage evidence; no ingestion, canonical, pricing, visibility or ownership writes",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold",
+      "max_staleness_minutes": 420
     },
     {
       "id": "cross-tcg-sealed",
-      "name": "Cross-TCG sealed catalog lane",
+      "name": "Cross-TCG sealed catalog supervision",
       "kind": "background_lane",
       "workload_class": "C",
       "criticality": "background",
-      "execution_plane": "unverified",
-      "deployment_expectation": "supervisor_required",
+      "execution_plane": "digitalocean_systemd",
+      "deployment_expectation": "scheduled",
       "live_verification": "required",
-      "schedule": "unverified",
+      "schedule": "read-only durable catalog audit every six hours",
       "source_files": [
-        "scripts/audits/cross_tcg_sealed_catalog_readiness_v1.mjs"
+        "scripts/workers/background_catalog_readonly_worker_v1.mjs",
+        "backend/operations/background_catalog_queries_v1.mjs",
+        "backend/operations/background_catalog_evidence_v1.mjs",
+        "deploy/systemd/grookai-cross-tcg-sealed.service",
+        "deploy/systemd/grookai-cross-tcg-sealed.timer",
+        "docs/contracts/BACKGROUND_CATALOG_SUPERVISION_V1.md"
       ],
-      "health_probe": "sealed_cursor_coverage_and_quarantine",
-      "write_boundary": "sealed staging; no singles or pricing publication authority",
-      "pause_policy": "pause on Class A/B degradation or capacity threshold"
+      "health_probe": "hash-verified fresh terminal audit, pinned runtime, timer and service status; integrity findings remain degraded",
+      "write_boundary": "read-only durable catalog integrity and coverage evidence; no ingestion, canonical, pricing, visibility or ownership writes",
+      "pause_policy": "pause on Class A/B degradation or capacity threshold",
+      "max_staleness_minutes": 420
     },
     {
       "id": "funko-catalog",
