@@ -15,6 +15,12 @@ class CollectionImportParsedRow {
     this.rawCost = '',
     this.rawDate = '',
     this.rawNotes = '',
+    this.rawGame = '',
+    this.rawFinish = '',
+    this.rawGrade = '',
+    this.rawPortfolio = '',
+    this.rawWatchlist = '',
+    this.sourceFields = const {},
   });
 
   final int sourceRow;
@@ -26,6 +32,13 @@ class CollectionImportParsedRow {
   final String rawCost;
   final String rawDate;
   final String rawNotes;
+  final String rawGame;
+  final String rawFinish;
+  final String rawGrade;
+  final String rawPortfolio;
+  final String rawWatchlist;
+  // Original columns, including fields this version cannot yet save.
+  final Map<String, String> sourceFields;
 }
 
 class CollectionImportNormalizedRow {
@@ -45,6 +58,16 @@ class CollectionImportNormalizedRow {
     this.cost,
     this.added,
     this.notes,
+    this.gameCode = '',
+    this.displayGame = '',
+    this.finish = '',
+    this.grade = '',
+    this.portfolio = '',
+    this.watchlist = false,
+    this.sourceFields = const {},
+    this.sourceRows = const [],
+    this.sourceRecords = const [],
+    this.reviewReasons = const [],
   });
 
   final int sourceRow;
@@ -62,8 +85,22 @@ class CollectionImportNormalizedRow {
   final double? cost;
   final String? added;
   final String? notes;
+  final String gameCode;
+  final String displayGame;
+  final String finish;
+  final String grade;
+  final String portfolio;
+  final bool watchlist;
+  final Map<String, String> sourceFields;
+  final List<int> sourceRows;
+  final List<CollectionImportParsedRow> sourceRecords;
+  final List<String> reviewReasons;
 
-  CollectionImportNormalizedRow copyWith({int? quantity}) {
+  CollectionImportNormalizedRow copyWith({
+    int? quantity,
+    List<int>? sourceRows,
+    List<CollectionImportParsedRow>? sourceRecords,
+  }) {
     return CollectionImportNormalizedRow(
       sourceRow: sourceRow,
       displayName: displayName,
@@ -80,6 +117,16 @@ class CollectionImportNormalizedRow {
       cost: cost,
       added: added,
       notes: notes,
+      gameCode: gameCode,
+      displayGame: displayGame,
+      finish: finish,
+      grade: grade,
+      portfolio: portfolio,
+      watchlist: watchlist,
+      sourceFields: sourceFields,
+      sourceRows: sourceRows ?? this.sourceRows,
+      sourceRecords: sourceRecords ?? this.sourceRecords,
+      reviewReasons: reviewReasons,
     );
   }
 }
@@ -113,6 +160,9 @@ class CollectionImportPreviewRow {
     required this.importQuantity,
     this.match,
     this.matches = const [],
+    this.reviewReasons = const [],
+    this.cardPrintingId,
+    this.cardPrintingFinishKey,
   });
 
   final CollectionImportNormalizedRow row;
@@ -122,6 +172,13 @@ class CollectionImportPreviewRow {
   final int importQuantity;
   final CollectionImportCardMatch? match;
   final List<CollectionImportCardMatch> matches;
+  final List<String> reviewReasons;
+  final String? cardPrintingId;
+  final String? cardPrintingFinishKey;
+  bool get canImport =>
+      status == CollectionImportMatchStatus.matched &&
+      reviewReasons.isEmpty &&
+      row.reviewReasons.isEmpty;
 }
 
 class CollectionImportPreviewSummary {
@@ -146,6 +203,8 @@ class CollectionImportReport {
     required this.rowsInvalid,
     required this.rowsMatched,
     required this.rowsMissing,
+    this.sourceQuantity = 0,
+    this.rowsAlreadyOwned = 0,
   });
 
   final int rowsRead;
@@ -154,6 +213,8 @@ class CollectionImportReport {
   final int rowsInvalid;
   final int rowsMatched;
   final int rowsMissing;
+  final int sourceQuantity;
+  final int rowsAlreadyOwned;
 }
 
 class CollectionImportPreview {
@@ -189,11 +250,13 @@ class _CollectionImportSetRow {
     required this.id,
     required this.name,
     this.code,
+    this.game = '',
   });
 
   final String id;
   final String name;
   final String? code;
+  final String game;
 }
 
 class _CollectionImportCandidateRow {
@@ -205,6 +268,7 @@ class _CollectionImportCandidateRow {
     required this.setId,
     required this.setName,
     this.setCode,
+    this.game = '',
   });
 
   final String id;
@@ -214,6 +278,7 @@ class _CollectionImportCandidateRow {
   final String setId;
   final String setName;
   final String? setCode;
+  final String game;
 }
 
 class _CollectionImportAggregatedRow {
@@ -280,6 +345,35 @@ class CollectionImportService {
     'black and white': 'black & white',
   };
 
+  // Explicit Collectr labels reconciled with current catalog set names.
+  // No fuzzy set-name inference or language substitution.
+  static const Map<String, Map<String, String>> _gameSetAliases = {
+    'mtg': {
+      'universes beyond: final fantasy': 'final fantasy',
+      'commander: final fantasy': 'final fantasy commander',
+      'universes beyond: final fantasy: through the ages':
+          'final fantasy: through the ages',
+      'avatar: the last airbender: eternal-legal':
+          'avatar: the last airbender eternal',
+    },
+    'pokemon': {
+      'sv: 151': '151',
+      'scarlet & violet base set': 'scarlet & violet',
+      'sword & shield base set': 'sword & shield',
+      'sun & moon base set': 'sun & moon',
+      'crown zenith: galarian gallery': 'crown zenith galarian gallery',
+      'ex holon phantoms': 'holon phantoms',
+      'ex power keepers': 'power keepers',
+      'sword & shield promo': 'swsh black star promos',
+      'sun & moon promo': 'sm black star promos',
+      'scarlet & violet promo': 'scarlet & violet black star promos',
+      'xy promos': 'xy black star promos',
+      'wotc promo': 'wizards black star promos',
+      'pokemon go': 'pokémon go',
+      'xy base set': 'xy',
+    },
+  };
+
   static const Set<String> _excludedNameHeaders = {
     'portfolio name',
     'collection name',
@@ -292,203 +386,362 @@ class CollectionImportService {
     'card name',
   ];
 
-  static const Set<String> _removableNameDecorations = {
-    'red cheeks',
-    'yellow cheeks',
-    'secret',
-    'full art',
-  };
-
   static Future<CollectionImportPreview> buildPreview({
     required SupabaseClient client,
     required String csvText,
+    bool sourceAware = false,
   }) async {
     final ownerUserId = client.auth.currentUser?.id;
     if (ownerUserId == null) {
       throw const CollectionImportFailure('Sign in before choosing a CSV.');
     }
-    final parsedRows = parseCollectrCsv(csvText);
-    final normalizedRows = parsedRows.map(normalizeRow).toList();
+    final normalizedRows = parseCollectrCsv(csvText).map(normalizeRow).toList();
     final collapsedRows = _collapseRows(normalizedRows);
-    final validation = _validateRows(collapsedRows);
-    final validRows = validation.validRows;
-    final invalidRows = validation.invalidRows;
-
-    if (validRows.isEmpty) {
-      return CollectionImportPreview(
-        ownerUserId: ownerUserId,
-        rows: const [],
-        summary: const CollectionImportPreviewSummary(
-          totalRows: 0,
-          matchedRows: 0,
-          multipleRows: 0,
-          unmatchedRows: 0,
-        ),
-        report: CollectionImportReport(
-          rowsRead: normalizedRows.length,
-          rowsCollapsed: collapsedRows.length,
-          rowsValid: 0,
-          rowsInvalid: invalidRows.length,
-          rowsMatched: 0,
-          rowsMissing: 0,
-        ),
-      );
-    }
-
-    final setRows = await _fetchAllSets(client);
+    final validRows = collapsedRows
+        .where((row) => row.reviewReasons.isEmpty)
+        .toList();
+    final setRows = validRows.isEmpty
+        ? <_CollectionImportSetRow>[]
+        : await _fetchAllSets(client);
     final setNameMap = <String, List<_CollectionImportSetRow>>{};
     for (final setRow in setRows) {
-      final normalizedName = normalizeImportSetForCompare(setRow.name);
-      if (normalizedName.isEmpty) {
-        continue;
-      }
-      final matches = setNameMap.putIfAbsent(
-        normalizedName,
-        () => <_CollectionImportSetRow>[],
-      );
-      matches.add(setRow);
+      final key = normalizeImportSetForCompare(setRow.name);
+      (setNameMap[key] ??= []).add(setRow);
     }
-
-    final candidateRows = await _fetchCandidateRows(
+    final candidates = await _fetchCandidateRows(
       client: client,
       rows: validRows,
       setNameMap: setNameMap,
     );
-
-    final existingVault = await _fetchExistingVaultQuantities(
-      client: client,
-      candidateRows: candidateRows,
-    );
-
-    final desiredQuantityByKey = <String, int>{
-      for (final row in validRows) _buildRowKey(row): row.quantity,
-    };
-    final rowsToMatch = _reconcileVaultQuantities(validRows, existingVault);
-
-    if (rowsToMatch.isEmpty) {
-      return CollectionImportPreview(
-        ownerUserId: ownerUserId,
-        rows: const [],
-        summary: const CollectionImportPreviewSummary(
-          totalRows: 0,
-          matchedRows: 0,
-          multipleRows: 0,
-          unmatchedRows: 0,
-        ),
-        report: CollectionImportReport(
-          rowsRead: normalizedRows.length,
-          rowsCollapsed: collapsedRows.length,
-          rowsValid: validRows.length,
-          rowsInvalid: invalidRows.length,
-          rowsMatched: 0,
-          rowsMissing: 0,
-        ),
-      );
-    }
-
-    final matchMap = <String, List<_CollectionImportCandidateRow>>{};
-    for (final candidate in candidateRows) {
+    final byKey = <String, List<_CollectionImportCandidateRow>>{};
+    for (final card in candidates) {
       final key = _buildMatchKey(
-        normalizeImportSetForCompare(candidate.setName),
-        normalizeImportNumberForCompare(candidate.number),
-        normalizeImportNameForCompare(candidate.name),
+        normalizeImportSetForCompare(card.setName),
+        normalizeImportNumberForCompare(card.number),
+        normalizeImportNameForCompare(card.name),
       );
-      final matches = matchMap.putIfAbsent(
-        key,
-        () => <_CollectionImportCandidateRow>[],
-      );
-      matches.add(candidate);
+      (byKey[key] ??= []).add(card);
     }
-
-    final previewRows = rowsToMatch.map((row) {
-      final compareKey = _buildRowKey(row);
-      final desiredQuantity = desiredQuantityByKey[compareKey] ?? row.quantity;
-      final candidates =
-          matchMap[_buildMatchKey(
-            row.compareSet,
-            row.compareNumber,
-            row.compareName,
-          )] ??
-          const <_CollectionImportCandidateRow>[];
-
-      if (candidates.length == 1) {
-        final match = candidates.first;
-        return CollectionImportPreviewRow(
-          row: row,
-          status: CollectionImportMatchStatus.matched,
-          compareKey: compareKey,
-          desiredQuantity: desiredQuantity,
-          importQuantity: row.quantity,
-          match: CollectionImportCardMatch(
-            cardId: match.id,
-            gvId: match.gvId,
-            name: match.name,
-            setName: match.setName,
-            setCode: match.setCode,
-            number: match.number,
-          ),
+    List<_CollectionImportCandidateRow> matchesFor(
+      CollectionImportNormalizedRow row,
+    ) =>
+        (byKey[_buildMatchKey(
+                  row.compareSet,
+                  row.compareNumber,
+                  row.compareName,
+                )] ??
+                [])
+            .where((card) => row.gameCode.isEmpty || card.game == row.gameCode)
+            .toList();
+    // The legacy writer accepts only one metadata group per canonical parent.
+    // Keep conflicting groups visible; never pick the first group's cost/grade.
+    final groupsByCard = <String, Set<String>>{};
+    for (final row in validRows) {
+      final matches = matchesFor(row);
+      if (matches.length == 1) {
+        (groupsByCard[matches.single.id] ??= {}).add(_buildRowKey(row));
+      }
+    }
+    final eligibleParentIds = <String>{};
+    for (final row in validRows) {
+      final matches = matchesFor(row);
+      if (matches.length == 1 &&
+          groupsByCard[matches.single.id]!.length == 1 &&
+          _unsupportedSaveReasons(row).isEmpty) {
+        eligibleParentIds.add(matches.single.id);
+      }
+    }
+    final owned = sourceAware
+        ? <String, int>{}
+        : await VaultCardService.getOwnedCountsIncludingSlabs(
+            client: client,
+            cardPrintIds: eligibleParentIds,
+          );
+    final printingOptions = sourceAware
+        ? await _fetchImportPrintings(
+            client,
+            validRows
+                .map(matchesFor)
+                .where((matches) => matches.length == 1)
+                .map((matches) => matches.single.id),
+          )
+        : <Map<String, dynamic>>[];
+    final previewRows = <CollectionImportPreviewRow>[];
+    var alreadyOwned = 0;
+    for (final row in collapsedRows) {
+      final matches = row.reviewReasons.isEmpty
+          ? matchesFor(row)
+          : <_CollectionImportCandidateRow>[];
+      final reasons = <String>[
+        ...row.reviewReasons,
+        ..._unsupportedSaveReasons(row, sourceAware: sourceAware),
+      ];
+      String? printingId;
+      String? printingFinishKey;
+      if (sourceAware &&
+          matches.length == 1 &&
+          (row.finish.trim().isEmpty || importFinishKey(row.finish) != null)) {
+        final options = printingOptions
+            .where(
+              (option) =>
+                  option['card_print_id'] == matches.single.id &&
+                  (row.finish.trim().isEmpty ||
+                      option['finish_key'] == importFinishKey(row.finish)) &&
+                  option['finish_is_active'] == true,
+            )
+            .toList();
+        if (options.length == 1) {
+          printingId = options.single['id'] as String;
+          printingFinishKey = options.single['finish_key'] as String;
+        } else {
+          reasons.add(
+            options.isEmpty
+                ? 'This row has no verified catalog printing yet.'
+                : 'More than one printing matches. Specify the finish or keep this row for review.',
+          );
+        }
+      }
+      if (!sourceAware &&
+          matches.length == 1 &&
+          groupsByCard[matches.single.id]!.length > 1) {
+        reasons.add(
+          'Different source rows describe this card. Keep their finishes, grades and purchase details separate before saving.',
         );
       }
-
-      if (candidates.length > 1) {
-        return CollectionImportPreviewRow(
-          row: row,
-          status: CollectionImportMatchStatus.multiple,
-          compareKey: compareKey,
-          desiredQuantity: desiredQuantity,
-          importQuantity: row.quantity,
-          matches: candidates
-              .map(
-                (candidate) => CollectionImportCardMatch(
-                  cardId: candidate.id,
-                  gvId: candidate.gvId,
-                  name: candidate.name,
-                  setName: candidate.setName,
-                  setCode: candidate.setCode,
-                  number: candidate.number,
-                ),
-              )
-              .toList(),
+      final status = matches.length == 1
+          ? CollectionImportMatchStatus.matched
+          : matches.length > 1
+          ? CollectionImportMatchStatus.multiple
+          : CollectionImportMatchStatus.missing;
+      var quantity = row.quantity;
+      if (!sourceAware && matches.length == 1 && reasons.isEmpty) {
+        quantity = (row.quantity - (owned[matches.single.id] ?? 0)).clamp(
+          0,
+          row.quantity,
+        );
+        if (quantity == 0) {
+          alreadyOwned += row.sourceRows.length;
+          continue;
+        }
+      }
+      if (matches.isEmpty && row.reviewReasons.isEmpty) {
+        reasons.add(
+          'No exact catalog match for this game, set, number and name.',
         );
       }
-
-      return CollectionImportPreviewRow(
-        row: row,
-        status: CollectionImportMatchStatus.missing,
-        compareKey: compareKey,
-        desiredQuantity: desiredQuantity,
-        importQuantity: row.quantity,
+      if (matches.length > 1) {
+        reasons.add(
+          'Multiple catalog identities match. A printing or language must be selected.',
+        );
+      }
+      CollectionImportCardMatch convert(_CollectionImportCandidateRow card) =>
+          CollectionImportCardMatch(
+            cardId: card.id,
+            gvId: card.gvId,
+            name: card.name,
+            setName: card.setName,
+            number: card.number,
+            setCode: card.setCode,
+          );
+      previewRows.add(
+        CollectionImportPreviewRow(
+          row: row,
+          status: status,
+          compareKey: _buildRowKey(row),
+          desiredQuantity: row.quantity,
+          importQuantity: quantity,
+          match: matches.length == 1 ? convert(matches.single) : null,
+          matches: matches.map(convert).toList(),
+          reviewReasons: reasons,
+          cardPrintingId: printingId,
+          cardPrintingFinishKey: printingFinishKey,
+        ),
       );
-    }).toList();
-
-    final matchedRows = previewRows
-        .where((row) => row.status == CollectionImportMatchStatus.matched)
-        .length;
-    final multipleRows = previewRows
+    }
+    if (client.auth.currentUser?.id != ownerUserId) {
+      throw const CollectionImportFailure(
+        'Your account changed. Choose the CSV again for the signed-in account.',
+      );
+    }
+    final ready = previewRows.where((row) => row.canImport).length;
+    final multiple = previewRows
         .where((row) => row.status == CollectionImportMatchStatus.multiple)
         .length;
-    final missingRows = previewRows
-        .where((row) => row.status == CollectionImportMatchStatus.missing)
-        .length;
-
     return CollectionImportPreview(
       ownerUserId: ownerUserId,
       rows: previewRows,
       summary: CollectionImportPreviewSummary(
         totalRows: previewRows.length,
-        matchedRows: matchedRows,
-        multipleRows: multipleRows,
-        unmatchedRows: missingRows,
+        matchedRows: ready,
+        multipleRows: multiple,
+        unmatchedRows: previewRows.length - ready - multiple,
       ),
       report: CollectionImportReport(
         rowsRead: normalizedRows.length,
         rowsCollapsed: collapsedRows.length,
         rowsValid: validRows.length,
-        rowsInvalid: invalidRows.length,
-        rowsMatched: matchedRows,
-        rowsMissing: missingRows,
+        rowsInvalid: collapsedRows.length - validRows.length,
+        rowsMatched: ready,
+        rowsMissing: previewRows.length - ready,
+        sourceQuantity: normalizedRows.fold(
+          0,
+          (total, row) => total + (row.quantity > 0 ? row.quantity : 0),
+        ),
+        rowsAlreadyOwned: alreadyOwned,
       ),
     );
+  }
+
+  static List<String> _unsupportedSaveReasons(
+    CollectionImportNormalizedRow row, {
+    bool sourceAware = false,
+  }) => [
+    if (!sourceAware && row.finish.trim().isNotEmpty)
+      'Finish: ${row.finish}. This import cannot yet save this finish; the row is kept for review.',
+    if (row.grade.trim().isNotEmpty &&
+        row.grade.trim().toLowerCase() != 'ungraded')
+      'Grade: ${row.grade}. Keep the grade for review; do not import this as an ungraded card.',
+    if (!sourceAware && row.portfolio.trim().isNotEmpty)
+      'Portfolio: ${row.portfolio}. This import cannot yet preserve portfolio membership.',
+    if (sourceAware &&
+        row.finish.trim().isNotEmpty &&
+        importFinishKey(row.finish) == null)
+      'Finish: ${row.finish}. This finish needs review before saving.',
+    if (sourceAware &&
+        RegExp(
+          r'1st edition|shadowless|unlimited',
+          caseSensitive: false,
+        ).hasMatch(row.displaySet))
+      'This edition needs a verified printing identity before saving.',
+    if (sourceAware && row.quantity > 50000)
+      'Quantity exceeds the import limit.',
+    if (sourceAware && (row.notes?.length ?? 0) > 4000)
+      'Notes exceed the import limit; the original text is kept for review.',
+    if (sourceAware) ..._sourceAwareValueReasons(row),
+    for (final entry in row.sourceFields.entries)
+      if (entry.value.trim().isNotEmpty &&
+          !_supportedSourceColumn(entry.key) &&
+          !(_normalizeHeader(entry.key) == 'price override' &&
+              RegExp(r'^0(?:\.0+)?$').hasMatch(entry.value.trim())))
+        'Column "${entry.key}" needs review so its value is not lost.',
+  ];
+
+  static List<String> _sourceAwareValueReasons(
+    CollectionImportNormalizedRow row,
+  ) {
+    final reasons = <String>{};
+    for (final source in row.sourceRecords) {
+      final quantity = source.rawQuantity.trim().replaceAll(',', '');
+      final cost = source.rawCost.trim().replaceAll(RegExp(r'[$,]'), '');
+      final date = source.rawDate.trim();
+      if (RegExp(r'T\d{2}:\d{2}:\d{2}\.\d{7,}').hasMatch(date)) {
+        reasons.add(
+          'Date precision exceeds six fractional digits; keep the original for review.',
+        );
+      }
+      if (quantity.isNotEmpty && !RegExp(r'^\d+$').hasMatch(quantity)) {
+        reasons.add('Quantity needs a positive whole number.');
+      }
+      if (cost.isNotEmpty &&
+          !RegExp(r'^(?:\d+(?:\.\d*)?|\.\d+)$').hasMatch(cost)) {
+        reasons.add('Purchase cost needs a decimal amount.');
+      }
+      if (date.isNotEmpty &&
+          !RegExp(
+            r'^(?:\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/(?:\d{2}|\d{4})|\d{4}-\d{2}-\d{2}T.+(?:Z|[+-]\d{2}:\d{2}))$',
+          ).hasMatch(date)) {
+        reasons.add(
+          'Date needs a calendar date or a timestamp with its time zone.',
+        );
+      }
+    }
+    return reasons.toList();
+  }
+
+  static String? importFinishKey(String value) => const {
+    'normal': 'normal',
+    'holo': 'holo',
+    'holofoil': 'holo',
+    'reverse holo': 'reverse',
+    'reverse holofoil': 'reverse',
+    'foil': 'foil',
+  }[_normalizeMatchText(value)];
+
+  static Future<List<Map<String, dynamic>>> _fetchImportPrintings(
+    SupabaseClient client,
+    Iterable<String> parents,
+  ) async {
+    final ids = parents.toSet().toList()..sort();
+    final result = <Map<String, dynamic>>[];
+    final seen = <String>{};
+    for (var start = 0; start < ids.length; start += 100) {
+      final chunk = ids.sublist(start, (start + 100).clamp(0, ids.length));
+      var offset = 0;
+      while (true) {
+        final raw = await client.rpc(
+          'get_public_card_printing_options_v1',
+          params: {
+            'p_card_print_ids': chunk,
+            'p_limit': 1000,
+            'p_offset': offset,
+          },
+        );
+        if (raw is! List) {
+          throw const CollectionImportFailure(
+            'Printing data could not be checked. Choose the CSV again.',
+          );
+        }
+        if (raw.isEmpty) break;
+        for (final value in raw) {
+          if (value is! Map ||
+              value['id'] is! String ||
+              !seen.add(value['id'] as String) ||
+              !chunk.contains(value['card_print_id'])) {
+            throw const CollectionImportFailure(
+              'Printing data was incomplete. Choose the CSV again.',
+            );
+          }
+          result.add(Map<String, dynamic>.from(value));
+        }
+        offset += raw.length;
+      }
+    }
+    return result;
+  }
+
+  static bool _supportedSourceColumn(String value) {
+    final header = _normalizeHeader(value);
+    // Market snapshots and rarity are source evidence, never acquisition cost
+    // or permission to replace canonical pricing/identity.
+    return const {
+          'product name',
+          'card name',
+          'set',
+          'series',
+          'card number',
+          'number',
+          'card condition',
+          'condition',
+          'quantity',
+          'qty',
+          'average cost paid',
+          'average cost',
+          'cost',
+          'date added',
+          'added',
+          'notes',
+          'comment',
+          'category',
+          'game',
+          'variance',
+          'finish',
+          'grade',
+          'portfolio name',
+          'collection name',
+          'watchlist',
+          'rarity',
+        }.contains(header) ||
+        header.startsWith('market price');
   }
 
   static Future<CollectionImportResult> importPreview({
@@ -501,13 +754,17 @@ class CollectionImportService {
         'Your account changed. Choose the CSV again for the signed-in account.',
       );
     }
+    if (preview.rows.any(
+      (row) => row.canImport && _unsupportedSaveReasons(row.row).isNotEmpty,
+    )) {
+      throw const CollectionImportFailure(
+        'Some source details cannot be saved by this import. Choose the CSV again and review those rows.',
+      );
+    }
     final rows = _aggregateImportRows(
-      preview.rows
-          .where((row) => row.status == CollectionImportMatchStatus.matched)
-          .toList(),
+      preview.rows.where((row) => row.canImport).toList(),
     );
-    final needsReview =
-        preview.summary.multipleRows + preview.summary.unmatchedRows;
+    final needsReview = preview.rows.where((row) => !row.canImport).length;
     if (rows.isEmpty) {
       return CollectionImportResult(
         importedCards: 0,
@@ -670,16 +927,30 @@ class CollectionImportService {
       throw Exception('This CSV does not contain any collection rows.');
     }
 
-    final headers = table.first.map((header) => header.trim()).toList();
+    final headers = table.first
+        .map((header) => header.replaceFirst('\ufeff', '').trim())
+        .toList();
+    if (headers.map(_normalizeHeader).toSet().length != headers.length ||
+        headers.any((header) => header.isEmpty)) {
+      throw const CollectionImportFailure(
+        'The CSV has duplicate or empty column names. Keep the original Collectr headers.',
+      );
+    }
     final columnMap = _buildColumnMap(headers);
 
     return table.sublist(1).asMap().entries.map((entry) {
       final rowIndex = entry.key;
       final cells = entry.value;
+      if (cells.length > headers.length) {
+        throw CollectionImportFailure(
+          'CSV row ${rowIndex + 2} has more values than column headers. Check its quoting before importing.',
+        );
+      }
       final raw = <String, String>{
         for (var headerIndex = 0; headerIndex < headers.length; headerIndex++)
-          headers[headerIndex]:
-              (cells.length > headerIndex ? cells[headerIndex] : '').trim(),
+          headers[headerIndex]: (cells.length > headerIndex
+              ? cells[headerIndex]
+              : ''),
       };
 
       return CollectionImportParsedRow(
@@ -700,6 +971,12 @@ class CollectionImportService {
             ? ''
             : (raw[columnMap.dateAdded!] ?? ''),
         rawNotes: columnMap.notes == null ? '' : (raw[columnMap.notes!] ?? ''),
+        rawGame: _sourceValue(raw, ['category', 'game']),
+        rawFinish: _sourceValue(raw, ['variance', 'finish']),
+        rawGrade: _sourceValue(raw, ['grade']),
+        rawPortfolio: _sourceValue(raw, ['portfolio name', 'collection name']),
+        rawWatchlist: _sourceValue(raw, ['watchlist']),
+        sourceFields: Map.unmodifiable(raw),
       );
     }).toList();
   }
@@ -713,6 +990,35 @@ class CollectionImportService {
     final normalizedName = _normalizeMatchText(row.rawName);
     final normalizedSet = _normalizeMatchText(row.rawSet);
     final normalizedNumber = _normalizeCardNumber(row.rawNumber);
+    final gameCode = normalizeImportGame(row.rawGame);
+    final quantity = _parseQuantity(row.rawQuantity);
+    final cost = _parseCurrency(row.rawCost);
+    final added = _parseImportedDate(row.rawDate);
+    final reasons = <String>[
+      if (normalizedName.isEmpty) 'Product name is missing.',
+      if (normalizedSet.isEmpty) 'Set is missing.',
+      if (normalizedNumber.isEmpty)
+        'No card number. Identify this product before importing; it may be a sealed product or a numberless card.',
+      if (quantity <= 0) 'Quantity must be a positive whole number.',
+      if (row.rawGame.trim().isNotEmpty && gameCode.isEmpty)
+        'This game is not supported by the card importer.',
+      if (row.rawCondition.trim().isNotEmpty &&
+          !_conditionMap.containsKey(_normalizeMatchText(row.rawCondition)))
+        'Card condition is not recognized.',
+      if (row.rawCost.trim().isNotEmpty &&
+          (cost == null || !cost.isFinite || cost < 0))
+        'Purchase cost is not a valid nonnegative amount.',
+      if (row.rawDate.trim().isNotEmpty && added == null)
+        'Date added is not a valid date.',
+      if (![
+        '',
+        'false',
+        'true',
+      ].contains(_normalizeMatchText(row.rawWatchlist)))
+        'Watchlist value is not recognized.',
+      if (_normalizeMatchText(row.rawWatchlist) == 'true')
+        'Watchlist item; not counted as owned.',
+    ];
 
     return CollectionImportNormalizedRow(
       sourceRow: row.sourceRow,
@@ -723,34 +1029,66 @@ class CollectionImportService {
       set: normalizedSet,
       number: normalizedNumber,
       compareName: normalizeImportNameForCompare(row.rawName),
-      compareSet: normalizeImportSetForCompare(row.rawSet),
+      compareSet: normalizeImportSetForCompare(row.rawSet, gameCode: gameCode),
       compareNumber: normalizeImportNumberForCompare(row.rawNumber),
-      quantity: _parseQuantity(row.rawQuantity),
+      quantity: quantity,
       condition: _normalizeCondition(row.rawCondition),
-      cost: _parseCurrency(row.rawCost),
-      added: _parseImportedDate(row.rawDate),
-      notes: _normalizeText(row.rawNotes).isEmpty
-          ? null
-          : _normalizeText(row.rawNotes),
+      cost: cost,
+      added: added,
+      notes: _normalizeText(row.rawNotes).isEmpty ? null : row.rawNotes,
+      gameCode: gameCode,
+      displayGame: row.rawGame,
+      finish: row.rawFinish,
+      grade: row.rawGrade,
+      portfolio: row.rawPortfolio,
+      watchlist: _normalizeMatchText(row.rawWatchlist) == 'true',
+      sourceFields: row.sourceFields,
+      sourceRows: [row.sourceRow],
+      sourceRecords: [row],
+      reviewReasons: reasons,
     );
   }
 
-  static String normalizeImportSetForCompare(String value) {
+  static String normalizeImportSetForCompare(
+    String value, {
+    String gameCode = '',
+  }) {
     final normalized = _normalizeMatchText(value);
-    return _setAliasMap[normalized] ?? normalized;
+    return _gameSetAliases[gameCode]?[normalized] ??
+        _setAliasMap[normalized] ??
+        normalized;
+  }
+
+  static String normalizeImportGame(String value) =>
+      const {
+        'pokemon': 'pokemon',
+        'pokémon': 'pokemon',
+        'pokémon tcg': 'pokemon',
+        'magic: the gathering': 'mtg',
+        'magic the gathering': 'mtg',
+        'mtg': 'mtg',
+        'gundam': 'gundam',
+        'gundam card game': 'gundam',
+        'one piece': 'one_piece',
+        'one piece card game': 'one_piece',
+        'yu-gi-oh!': 'yugioh',
+        'yu-gi-oh': 'yugioh',
+      }[_normalizeMatchText(value)] ??
+      '';
+
+  static String _sourceValue(Map<String, String> fields, List<String> names) {
+    for (final name in names) {
+      for (final entry in fields.entries) {
+        if (name == _normalizeHeader(entry.key)) return entry.value;
+      }
+    }
+    return '';
   }
 
   static String normalizeImportNameForCompare(String value) {
-    var normalized = _normalizeMatchText(value);
-    normalized = normalized.replaceAllMapped(RegExp(r'\s*\(([^)]*)\)'), (
-      match,
-    ) {
-      final decoration = _normalizeMatchText(match.group(1) ?? '');
-      return _removableNameDecorations.contains(decoration)
-          ? ''
-          : match.group(0) ?? '';
-    });
-    return _normalizeText(normalized).toLowerCase();
+    // Art/cheek/edition labels can distinguish physical identities. Keep them
+    // until a catalog-aware treatment resolver can prove the exact candidate.
+    return _normalizeMatchText(value);
   }
 
   static String normalizeImportNumberForCompare(String value) {
@@ -759,27 +1097,58 @@ class CollectionImportService {
       return '';
     }
     final leftSide = normalized.split('/').first.trim();
-    if (RegExp(r'^\d+$').hasMatch(leftSide)) {
-      return _stripLeadingZeros(leftSide);
+    final numbered = RegExp(
+      r'^([A-Za-z]*)(\d+)([A-Za-z]*)$',
+    ).firstMatch(leftSide);
+    if (numbered != null) {
+      return '${numbered.group(1)!.toUpperCase()}${_stripLeadingZeros(numbered.group(2)!)}${numbered.group(3)!.toUpperCase()}';
     }
-    return leftSide;
+    return leftSide.toUpperCase();
   }
 
   static Future<List<_CollectionImportSetRow>> _fetchAllSets(
     SupabaseClient client,
   ) async {
-    final response = await client.from('sets').select('id,name,code');
-    return response
-        .whereType<Map<String, dynamic>>()
-        .map((row) {
-          return _CollectionImportSetRow(
+    final records = await _readCatalogPages((after) {
+      var query = client.from('sets').select('id,name,code,game');
+      if (after != null) query = query.gt('id', after);
+      return query.order('id', ascending: true).limit(500);
+    });
+    return records
+        .map(
+          (row) => _CollectionImportSetRow(
             id: (row['id'] ?? '').toString(),
             name: (row['name'] ?? '').toString(),
             code: row['code']?.toString(),
-          );
-        })
+            game: (row['game'] ?? '').toString(),
+          ),
+        )
         .where((row) => row.id.isNotEmpty && row.name.trim().isNotEmpty)
         .toList();
+  }
+
+  static Future<List<Map<String, dynamic>>> _readCatalogPages(
+    Future<List<Map<String, dynamic>>> Function(String? after) fetch,
+  ) async {
+    final result = <Map<String, dynamic>>[];
+    String? after;
+    while (true) {
+      final page = await fetch(after);
+      if (page.isEmpty) return result;
+      for (final row in page) {
+        final id = row['id'];
+        if (id is! String ||
+            id.isEmpty ||
+            (after != null && id.compareTo(after) <= 0)) {
+          throw const CollectionImportFailure(
+            'Catalog matching was interrupted. Choose the CSV again to retry; no collection changes were made.',
+          );
+        }
+        after = id;
+        result.add(row);
+      }
+      // Continue through an empty page, even when the server caps a page below 500.
+    }
   }
 
   static Future<List<_CollectionImportCandidateRow>> _fetchCandidateRows({
@@ -787,105 +1156,52 @@ class CollectionImportService {
     required List<CollectionImportNormalizedRow> rows,
     required Map<String, List<_CollectionImportSetRow>> setNameMap,
   }) async {
-    if (rows.isEmpty) {
-      return const [];
-    }
-
-    final candidateSetIds = rows
-        .expand(
-          (row) =>
-              (setNameMap[row.compareSet] ?? const <_CollectionImportSetRow>[])
-                  .map((setRow) => setRow.id),
-        )
-        .toSet()
-        .toList();
-    final candidateNumbers = rows
-        .map((row) => row.compareNumber.trim())
-        .where((value) => value.isNotEmpty)
-        .toSet()
-        .toList();
-
-    if (candidateSetIds.isEmpty || candidateNumbers.isEmpty) {
-      return const [];
-    }
-
-    final setIdChunks = _chunkList(candidateSetIds, 100);
-    final numberChunks = _chunkList(candidateNumbers, 100);
-    final candidates = <_CollectionImportCandidateRow>[];
-
-    for (final setIdChunk in setIdChunks) {
-      for (final numberChunk in numberChunks) {
-        final response = await client
-            .from('card_prints')
-            .select('id,gv_id,name,number,set_id,set_code,sets(name)')
-            .inFilter('set_id', setIdChunk)
-            .inFilter('number', numberChunk);
-
-        for (final row in response.whereType<Map<String, dynamic>>()) {
-          final setRecord = _extractSetRecord(row['sets']);
-          final id = (row['id'] ?? '').toString().trim();
-          final gvId = (row['gv_id'] ?? '').toString().trim();
-          final name = (row['name'] ?? '').toString().trim();
-          final number = (row['number'] ?? '').toString().trim();
-          final setId = (row['set_id'] ?? '').toString().trim();
-          final setName = (setRecord?['name'] ?? '').toString().trim();
-
-          if (id.isEmpty ||
-              gvId.isEmpty ||
-              name.isEmpty ||
-              number.isEmpty ||
-              setId.isEmpty ||
-              setName.isEmpty) {
-            continue;
-          }
-
-          candidates.add(
-            _CollectionImportCandidateRow(
-              id: id,
-              gvId: gvId,
-              name: name,
-              number: number,
-              setId: setId,
-              setName: setName,
-              setCode: row['set_code']?.toString().trim(),
-            ),
-          );
+    final sets = <String, _CollectionImportSetRow>{};
+    for (final row in rows) {
+      for (final set
+          in setNameMap[row.compareSet] ?? <_CollectionImportSetRow>[]) {
+        if (row.gameCode.isEmpty || row.gameCode == set.game) {
+          sets[set.id] = set;
         }
       }
     }
-
+    final numbers = rows.map((row) => row.compareNumber).toSet();
+    final candidates = <_CollectionImportCandidateRow>[];
+    for (final chunk in _chunkList(sets.keys.toList(), 50)) {
+      final records = await _readCatalogPages((after) {
+        var query = client
+            .from('card_prints')
+            .select('id,gv_id,name,number,set_id,set_code')
+            .inFilter('set_id', chunk);
+        if (after != null) query = query.gt('id', after);
+        return query.order('id', ascending: true).limit(500);
+      });
+      for (final record in records) {
+        final set = sets[record['set_id']];
+        final number = (record['number'] ?? '').toString();
+        final gvId = (record['gv_id'] ?? '').toString();
+        final name = (record['name'] ?? '').toString();
+        if (set == null ||
+            gvId.isEmpty ||
+            name.isEmpty ||
+            !numbers.contains(normalizeImportNumberForCompare(number))) {
+          continue;
+        }
+        candidates.add(
+          _CollectionImportCandidateRow(
+            id: record['id'] as String,
+            gvId: gvId,
+            name: name,
+            number: number,
+            setId: set.id,
+            setName: set.name,
+            setCode: set.code,
+            game: set.game,
+          ),
+        );
+      }
+    }
     return candidates;
-  }
-
-  static Future<Map<String, int>> _fetchExistingVaultQuantities({
-    required SupabaseClient client,
-    required List<_CollectionImportCandidateRow> candidateRows,
-  }) async {
-    if (candidateRows.isEmpty) {
-      return const {};
-    }
-
-    final countsByCardId = await VaultCardService.getOwnedCountsIncludingSlabs(
-      client: client,
-      cardPrintIds: candidateRows.map((row) => row.id).toSet().toList(),
-    );
-
-    final candidatesByKey = <String, Set<String>>{};
-    for (final candidate in candidateRows) {
-      final key = _buildMatchKey(
-        normalizeImportSetForCompare(candidate.setName),
-        normalizeImportNumberForCompare(candidate.number),
-        normalizeImportNameForCompare(candidate.name),
-      );
-      (candidatesByKey[key] ??= <String>{}).add(candidate.id);
-    }
-    // An ambiguous CSV row cannot claim ownership of one arbitrary printing.
-    // Keep it in review even if a different matching candidate is already owned.
-    return {
-      for (final entry in candidatesByKey.entries)
-        if (entry.value.length == 1)
-          entry.key: countsByCardId[entry.value.single] ?? 0,
-    };
   }
 
   static List<_CollectionImportAggregatedRow> _aggregateImportRows(
@@ -900,6 +1216,15 @@ class CollectionImportService {
       }
 
       final existing = aggregated[match.cardId];
+      if (existing != null &&
+          (existing.condition != row.row.condition ||
+              existing.cost != row.row.cost ||
+              existing.added != row.row.added ||
+              existing.notes != row.row.notes)) {
+        throw const CollectionImportFailure(
+          'Different purchase details for the same card need review before importing.',
+        );
+      }
       aggregated[match.cardId] = _CollectionImportAggregatedRow(
         cardPrintId: match.cardId,
         gvId: match.gvId,
@@ -934,48 +1259,11 @@ class CollectionImportService {
       }
       collapsed[key] = existing.copyWith(
         quantity: existing.quantity + row.quantity,
+        sourceRows: [...existing.sourceRows, ...row.sourceRows],
+        sourceRecords: [...existing.sourceRecords, ...row.sourceRecords],
       );
     }
     return collapsed.values.toList();
-  }
-
-  static ({
-    List<CollectionImportNormalizedRow> validRows,
-    List<CollectionImportNormalizedRow> invalidRows,
-  })
-  _validateRows(List<CollectionImportNormalizedRow> rows) {
-    final validRows = <CollectionImportNormalizedRow>[];
-    final invalidRows = <CollectionImportNormalizedRow>[];
-
-    for (final row in rows) {
-      if (row.compareSet.isEmpty ||
-          row.compareNumber.isEmpty ||
-          row.compareName.isEmpty ||
-          row.quantity <= 0) {
-        invalidRows.add(row);
-      } else {
-        validRows.add(row);
-      }
-    }
-
-    return (validRows: validRows, invalidRows: invalidRows);
-  }
-
-  static List<CollectionImportNormalizedRow> _reconcileVaultQuantities(
-    List<CollectionImportNormalizedRow> rows,
-    Map<String, int> existingVault,
-  ) {
-    return rows
-        .map((row) {
-          final existingQty = existingVault[_buildRowKey(row)] ?? 0;
-          final delta = row.quantity - existingQty;
-          if (delta <= 0) {
-            return null;
-          }
-          return row.copyWith(quantity: delta);
-        })
-        .whereType<CollectionImportNormalizedRow>()
-        .toList();
   }
 
   static List<List<T>> _chunkList<T>(List<T> items, int size) {
@@ -992,10 +1280,12 @@ class CollectionImportService {
   }
 
   static List<List<String>> _parseCsvTable(String csvText) {
+    if (csvText.startsWith('\ufeff')) csvText = csvText.substring(1);
     final rows = <List<String>>[];
     var currentRow = <String>[];
     final currentValue = StringBuffer();
     var inQuotes = false;
+    var closedQuote = false;
 
     for (var index = 0; index < csvText.length; index += 1) {
       final char = csvText[index];
@@ -1005,8 +1295,15 @@ class CollectionImportService {
         if (inQuotes && nextChar == '"') {
           currentValue.write('"');
           index += 1;
+        } else if (inQuotes) {
+          inQuotes = false;
+          closedQuote = true;
+        } else if (currentValue.isEmpty && !closedQuote) {
+          inQuotes = true;
         } else {
-          inQuotes = !inQuotes;
+          throw const CollectionImportFailure(
+            'The CSV has an unexpected quote. Choose the original export again.',
+          );
         }
         continue;
       }
@@ -1014,6 +1311,7 @@ class CollectionImportService {
       if (char == ',' && !inQuotes) {
         currentRow.add(currentValue.toString());
         currentValue.clear();
+        closedQuote = false;
         continue;
       }
 
@@ -1028,12 +1326,23 @@ class CollectionImportService {
         }
         currentRow = <String>[];
         currentValue.clear();
+        closedQuote = false;
         continue;
       }
 
+      if (closedQuote) {
+        throw const CollectionImportFailure(
+          'The CSV has text after a quoted value. Choose the original export again.',
+        );
+      }
       currentValue.write(char);
     }
 
+    if (inQuotes) {
+      throw const CollectionImportFailure(
+        'The CSV ends inside a quoted value. Choose the original export again.',
+      );
+    }
     currentRow.add(currentValue.toString());
     if (currentRow.any((value) => value.trim().isNotEmpty)) {
       rows.add(currentRow);
@@ -1059,7 +1368,11 @@ class CollectionImportService {
       number: number,
       condition: _findHeader(headers, ['card condition', 'condition']),
       quantity: _findHeader(headers, ['quantity', 'qty']),
-      averageCost: _findHeader(headers, ['average cost', 'cost']),
+      averageCost: _findHeader(headers, [
+        'average cost paid',
+        'average cost',
+        'cost',
+      ]),
       dateAdded: _findHeader(headers, ['date added', 'added']),
       notes: _findHeader(headers, ['notes', 'comment']),
     );
@@ -1101,6 +1414,11 @@ class CollectionImportService {
   }
 
   static String? _findHeader(List<String> headers, List<String> matchers) {
+    for (final matcher in matchers) {
+      for (final header in headers) {
+        if (_normalizeHeader(header) == matcher) return header;
+      }
+    }
     for (final header in headers) {
       final normalized = _normalizeHeader(header);
       if (matchers.any((matcher) => normalized.contains(matcher))) {
@@ -1127,14 +1445,14 @@ class CollectionImportService {
   }
 
   static String _stripLeadingZeros(String value) {
-    final stripped = value.replaceFirst(RegExp(r'^0+(\\d+)$'), r'$1');
+    final stripped = value.replaceFirst(RegExp(r'^0+'), '');
     return stripped.isNotEmpty ? stripped : '0';
   }
 
   static int _parseQuantity(String value) {
     final normalized = _normalizeText(value).replaceAll(',', '');
     final parsed = int.tryParse(normalized);
-    return parsed != null && parsed > 0 ? parsed : 1;
+    return normalized.isEmpty ? 1 : (parsed ?? 0);
   }
 
   static double? _parseCurrency(String value) {
@@ -1142,7 +1460,8 @@ class CollectionImportService {
     if (normalized.isEmpty) {
       return null;
     }
-    return double.tryParse(normalized);
+    final parsed = double.tryParse(normalized);
+    return parsed != null && parsed.isFinite ? parsed : null;
   }
 
   static String? _parseImportedDate(String value) {
@@ -1153,6 +1472,13 @@ class CollectionImportService {
 
     final isoLike = RegExp(r'^(\d{4})-(\d{2})-(\d{2})$').firstMatch(normalized);
     if (isoLike != null) {
+      if (!_validDate(
+        int.parse(isoLike.group(1)!),
+        int.parse(isoLike.group(2)!),
+        int.parse(isoLike.group(3)!),
+      )) {
+        return null;
+      }
       return '${isoLike.group(1)}-${isoLike.group(2)}-${isoLike.group(3)}T00:00:00.000Z';
     }
 
@@ -1165,11 +1491,28 @@ class CollectionImportService {
           : usLike.group(3)!;
       final month = usLike.group(1)!.padLeft(2, '0');
       final day = usLike.group(2)!.padLeft(2, '0');
+      if (!_validDate(int.parse(year), int.parse(month), int.parse(day))) {
+        return null;
+      }
       return '$year-$month-${day}T00:00:00.000Z';
     }
 
     final parsed = DateTime.tryParse(normalized);
+    final parts = RegExp(r'^(\d{4})-(\d{2})-(\d{2})').firstMatch(normalized);
+    if (parts != null &&
+        !_validDate(
+          int.parse(parts.group(1)!),
+          int.parse(parts.group(2)!),
+          int.parse(parts.group(3)!),
+        )) {
+      return null;
+    }
     return parsed?.toUtc().toIso8601String();
+  }
+
+  static bool _validDate(int year, int month, int day) {
+    final date = DateTime.utc(year, month, day);
+    return date.year == year && date.month == month && date.day == day;
   }
 
   static String _normalizeCondition(String value) {
@@ -1178,7 +1521,29 @@ class CollectionImportService {
   }
 
   static String _buildRowKey(CollectionImportNormalizedRow row) {
-    return _buildMatchKey(row.compareSet, row.compareNumber, row.compareName);
+    // No finish, grade, portfolio, cost, date, note, or unknown source field may
+    // disappear through aggregation. Only byte-identical source groups merge.
+    final fields = Map<String, String>.from(row.sourceFields)
+      ..removeWhere(
+        (key, _) => ['quantity', 'qty'].contains(_normalizeHeader(key)),
+      );
+    final keys = fields.keys.toList()..sort();
+    return jsonEncode([
+      row.gameCode,
+      row.name,
+      row.set,
+      row.number,
+      row.condition,
+      row.cost,
+      row.added,
+      row.notes,
+      row.finish,
+      row.grade,
+      row.portfolio,
+      row.watchlist,
+      {for (final key in keys) key: fields[key]},
+      row.reviewReasons,
+    ]);
   }
 
   static String _buildMatchKey(String setName, String number, String name) {
@@ -1187,18 +1552,6 @@ class CollectionImportService {
 
   static String _normalizeKeyPart(String? value) {
     return (value ?? '').trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
-  }
-
-  static Map<String, dynamic>? _extractSetRecord(dynamic value) {
-    if (value is Map<String, dynamic>) {
-      return value;
-    }
-    if (value is List &&
-        value.isNotEmpty &&
-        value.first is Map<String, dynamic>) {
-      return value.first as Map<String, dynamic>;
-    }
-    return null;
   }
 
   static String decodeCsvBytes(List<int> bytes) {

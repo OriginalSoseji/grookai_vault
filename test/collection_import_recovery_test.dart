@@ -13,6 +13,7 @@ const cardA = '11111111-1111-4111-8111-111111111111';
 const cardB = '22222222-2222-4222-8222-222222222222';
 
 class Fixture {
+  http.Response? Function(http.Request)? intercept;
   final requests = <http.Request>[];
   final saved = <String, int>{};
   String owner = 'owner';
@@ -22,6 +23,38 @@ class Fixture {
       missingEndpoint = false,
       badReadback = false;
   int slabOnly = 0;
+  List<Map<String, dynamic>>? catalogSets;
+  List<Map<String, dynamic>>? catalogCards;
+  int catalogPageSize = 500;
+  bool failLaterCatalogPage = false;
+  bool repeatCatalogPage = false;
+  List<Map<String, dynamic>> catalogPage(
+    http.Request request,
+    List<Map<String, dynamic>> rows,
+  ) {
+    if (request.url.queryParameters.containsKey('id') && failLaterCatalogPage) {
+      throw http.ClientException('catalog page unavailable');
+    }
+    var result = [...rows]
+      ..sort((a, b) => (a['id'] as String).compareTo(b['id'] as String));
+    final after = request.url.queryParameters['id']?.replaceFirst('gt.', '');
+    if (after != null && !repeatCatalogPage) {
+      result = result
+          .where((row) => (row['id'] as String).compareTo(after) > 0)
+          .toList();
+    }
+    final setFilter = request.url.queryParameters['set_id'];
+    if (setFilter != null) {
+      result = result
+          .where((row) => setFilter.contains(row['set_id'] as String))
+          .toList();
+    }
+    if (request.url.queryParameters['order']?.startsWith('id.desc') == true) {
+      result = result.reversed.toList();
+    }
+    return result.take(catalogPageSize).toList();
+  }
+
   late final client = SupabaseClient(
     'http://127.0.0.1:54321',
     'fixture-key',
@@ -47,6 +80,8 @@ class Fixture {
         };
       } else {
         requests.add(request);
+        final intercepted = intercept?.call(request);
+        if (intercepted != null) return intercepted;
         if (request.url.path.endsWith('/vault-import-targets-v1')) {
           if (paused || missingEndpoint) {
             status = paused ? 503 : 404;
@@ -85,31 +120,39 @@ class Fixture {
             };
           }
         } else if (request.url.path.endsWith('/sets')) {
-          body = [
-            {'id': 'fixture-set', 'name': 'Set', 'code': 'TEST'},
-          ];
+          body = catalogPage(
+            request,
+            catalogSets ??
+                [
+                  {'id': 'fixture-set', 'name': 'Set', 'code': 'TEST'},
+                ],
+          );
         } else if (request.url.path.endsWith('/card_prints')) {
-          body = [
-            {
-              'id': cardA,
-              'gv_id': 'GV-$cardA',
-              'name': 'Fixture',
-              'number': '1',
-              'set_id': 'fixture-set',
-              'sets': {'name': 'Set'},
-              'set_code': 'TEST',
-            },
-            if (extraCandidate)
-              {
-                'id': cardB,
-                'gv_id': 'GV-$cardB',
-                'name': 'Fixture',
-                'number': '1',
-                'set_id': 'fixture-set',
-                'sets': {'name': 'Set'},
-                'set_code': 'TEST',
-              },
-          ];
+          body = catalogPage(
+            request,
+            catalogCards ??
+                [
+                  {
+                    'id': cardA,
+                    'gv_id': 'GV-$cardA',
+                    'name': 'Fixture',
+                    'number': '1',
+                    'set_id': 'fixture-set',
+                    'sets': {'name': 'Set'},
+                    'set_code': 'TEST',
+                  },
+                  if (extraCandidate)
+                    {
+                      'id': cardB,
+                      'gv_id': 'GV-$cardB',
+                      'name': 'Fixture',
+                      'number': '1',
+                      'set_id': 'fixture-set',
+                      'sets': {'name': 'Set'},
+                      'set_code': 'TEST',
+                    },
+                ],
+          );
         } else if (request.url.path.endsWith('/vault_item_instances')) {
           final slab =
               request.url.queryParameters['card_print_id'] == 'is.null';
@@ -197,6 +240,10 @@ CollectionImportPreview preview({String owner = 'owner'}) =>
     );
 
 class FixturePicker extends FilePicker {
+  FixturePicker({
+    this.csv = 'Product Name,Set,Card Number,Quantity\nFixture,Set,1,3',
+  });
+  final String csv;
   @override
   Future<FilePickerResult?> pickFiles({
     String? dialogTitle,
@@ -212,9 +259,7 @@ class FixturePicker extends FilePicker {
     bool lockParentWindow = false,
     bool readSequential = false,
   }) async {
-    final bytes = Uint8List.fromList(
-      utf8.encode('Product Name,Set,Card Number,Quantity\nFixture,Set,1,3'),
-    );
+    final bytes = Uint8List.fromList(utf8.encode(csv));
     return FilePickerResult([
       PlatformFile(name: 'recovery.csv', size: bytes.length, bytes: bytes),
     ]);
@@ -284,7 +329,12 @@ void main() {
       f.loseResponse = true;
       FilePicker.platform = FixturePicker();
       await tester.pumpWidget(
-        MaterialApp(home: ImportCollectionScreen(client: f.client)),
+        MaterialApp(
+          home: ImportCollectionScreen(
+            client: f.client,
+            sourceAwareImport: false,
+          ),
+        ),
       );
       await tester.tap(find.text('Choose CSV'));
       await settleUntil(find.text('File: recovery.csv'));

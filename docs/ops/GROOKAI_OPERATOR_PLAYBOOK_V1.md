@@ -33,6 +33,62 @@ Windows and Mac. nRF Connect's services are the second top segment, not the
 cylinder icon. Subscribe to FF01 before expecting fresh replies. Connected status
 alone does not establish print support; actual label output remains separate proof.
 
+## Collectr import fidelity — September 30
+
+Current release preparation uses collectr_import_release_20260930 for fresh
+inspection/package receipts and collectr_import_review_20260930 for physical,
+runtime and build evidence. V16/V17 passed including archived-copy reopen; signed
+336 and its Windows backups are verified. The strict release gate requires these
+exact sources and the 336 IPA. Superseded 335/old CLI packages must not be reused.
+Inspection is read-only; release outcomes remain separate. No device rebuild is
+needed for this inspection-only source change. Earlier preparation notes follow.
+
+
+PR553 review supersedes the prepared335 release: blank finishes, archived copy
+readback, complete payload size and timestamp precision are corrected together.
+Read the first checkpoint section and private `collectr_import_review_20260930`
+continuation. The revised, still-unapplied410 payload uses fresh585xx/586xx labs;
+never replay or reset prior populated fixtures.335 and prior CLI package remain
+preserved but cannot qualify this changed source. Production is still409.
+
+Release inspection uses the strict `CollectrImportFidelityReleaseV1` switch with
+only `-ExpectedLocalOnlyIds 20260930010000`, first AuditLinkedSchema then PrePush.
+The fixed `scripts/release/prepare_collectr_import_v1.mjs` supports only prepare
+and dry-run. Read `collectr_import_predeploy_20260930` in private operator artifacts
+for terminal receipts; preparation, a dry-run or a PR is not deployment. Preserve
+the populated full/upgrade410 labs and consumed phone fixture. No reset or apply
+is part of these checks. Product source remains the physically tested V4 source.
+
+Physical V4 preview/save/interrupted-response retry/history and same-file reopen
+now pass. A fresh state-bound continuation also passed real iOS Files selection
+and duplicate-free reconciliation. Independent readback verifies the same three
+exact copies across three receipts (added counts 3, 0, 0). The test account is
+consumed: never rerun its preparation or unused-account launch guard. Preserve
+the verified state for any explicitly qualified continuation. Release remains
+separate. Cursor reads must specify
+ascending order explicitly; fixtures must respect requested HTTP sort direction.
+For local full-gate builds, sanitize inherited credentials and select the existing
+read-only collector preview mode; do not activate a production target to build.
+
+Latest: source-aware V2 schema/Edge/native candidate now has complete410 replay,
+retained409-to410 upgrade and real Auth/HTTP/RLS/concurrent-retry proof. Native
+retry/readback and private Saved imports are implemented. Physical iPhone testing
+uses a fresh account in collectr-import-full-410-20260930, never the real account.
+The previous preview-only status below is historical. No production migration,
+Edge deployment, TestFlight upload or real collection import occurred.
+
+Read `docs/checkpoints/collectr_import_fidelity_20260930.md` and
+`docs/contracts/COLLECTR_IMPORT_FIDELITY_V1.md`. The founder asked to repair the
+importer before saving their real iPhone export. The isolated current-main native
+preview preserves source rows/metadata and completes catalog pagination; source
+details unsupported by the atomic V1 writer stay in review. This is not full
+finish/grade/portfolio/sealed save support or a release. The ordinary linked-schema
+diff is the documented three-table column-order difference. The separately scoped
+CollectrImportFidelityBaselineAudit now passes against the hash-verified409 replay
+with zero remaining schema/security delta; it has no replay/apply authority for
+the extension. Private CSV and evidence remain in
+collectr_iphone_import_20260929 outside source. No real collection import occurred.
+
 ## Native owned-copy selection — September 29
 
 Read `docs/checkpoints/native_owned_copies_20260929.md` and
