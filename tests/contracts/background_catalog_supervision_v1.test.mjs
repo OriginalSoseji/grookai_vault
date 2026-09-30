@@ -52,9 +52,27 @@ test('database session is verified read-only and always closed on errors', async
   const client = { connection: { stream: { authorized: true } }, connect: async () => {}, end: async () => { closed = true; },
     query: async sql => { statements.push(sql); return { rows: [{ read_only: 'off', session_read_only: 'on' }] }; } };
   await assert.rejects(auditCatalog(client, component), /not read-only/);
-  assert.equal(closed, true); assert.match(statements[0], /repeatable read read only/); assert.equal(statements.length, 2);
+  assert.equal(closed, true); assert.equal(statements[0], 'set session default_transaction_read_only=on');
+  assert.match(statements[1], /repeatable read read only/); assert.match(statements[1], /statement_timeout='60s'/); assert.equal(statements.length, 3);
   closed = false; client.connection.stream.authorized = false;
   await assert.rejects(auditCatalog(client, component), /TLS/); assert.equal(closed, true);
+});
+test('ignored startup options are corrected before catalog reads; unverified deadlines stop the audit', async () => {
+  let session = 'off', timeout = '2min', lock = '0', catalogReads = 0;
+  const client = { connection: { stream: { authorized: true } }, connect: async () => {}, end: async () => {},
+    query: async sql => {
+      if (sql === 'set session default_transaction_read_only=on') { session = 'on'; return { rows: [] }; }
+      if (sql.startsWith('begin ')) { timeout = '1min'; lock = '3s'; return { rows: [] }; }
+      if (sql.startsWith('select current_setting')) return { rows: [{ read_only: 'on', session_read_only: session, statement_timeout: timeout, lock_timeout: lock }] };
+      catalogReads++; throw new Error('catalog read reached');
+    } };
+  await assert.rejects(auditCatalog(client, component), /catalog read reached/);
+  assert.equal(catalogReads, 1); assert.equal(session, 'on'); assert.equal(timeout, '1min');
+  const query = client.query;
+  client.query = async sql => sql.startsWith('select current_setting')
+    ? { rows: [{ read_only: 'on', session_read_only: 'on', statement_timeout: '2min', lock_timeout: '0' }] } : query(sql);
+  await assert.rejects(auditCatalog(client, component), /deadlines/);
+  assert.equal(catalogReads, 1);
 });
 test('successful and failed attempts are immutable; changed artifacts and pointers are rejected', async t => {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'catalog-worker-'));
