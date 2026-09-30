@@ -1,4 +1,10 @@
 import { createHash } from "node:crypto";
+import {
+  TCGPLAYER_TRAINER_KIT_PILOT_V1,
+  trainerKitPilotCardV1,
+  matchesTrainerKitPilotMappingV1,
+} from "./tcgplayer_trainer_kit_pilot_v1.mjs";
+import { classifyTcgplayerMarketProductScopeV1_2 } from "./tcgplayer_market_product_scope_v1.mjs";
 
 import {
   tcgplayerExactMappingCandidateFingerprintV1,
@@ -37,6 +43,19 @@ export function tcgplayerExactMappingApplyFingerprintV1(value) {
 
 export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
   const failures = [];
+  const scope = classifyTcgplayerMarketProductScopeV1_2({
+    ...candidate,
+    has_printed_number_evidence: Boolean(text(candidate?.printed_number)),
+  });
+  const pilot = trainerKitPilotCardV1(candidate);
+  if (pilot && (candidate.pilot_policy_version !== TCGPLAYER_TRAINER_KIT_PILOT_V1 ||
+      !matchesTrainerKitPilotMappingV1(candidate, candidate.target))) {
+    failures.push("trainer_kit_pilot_identity_mismatch");
+  }
+  if (!scope.in_scope && !(scope.rule_id === "deck_exclusive_special_variant" &&
+      matchesTrainerKitPilotMappingV1(candidate, candidate?.target))) {
+    failures.push("source_outside_product_v1_scope");
+  }
   if (
     candidate?.policy_version !==
     TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2
@@ -108,6 +127,9 @@ export function validateTcgplayerExactMappingLiveTargetV1(candidate, target) {
   if (!target) return ["target_missing"];
   const failures = [];
   const frozen = candidate.target;
+  if (trainerKitPilotCardV1(candidate) && !matchesTrainerKitPilotMappingV1(candidate, target)) {
+    failures.push("trainer_kit_pilot_identity_mismatch");
+  }
   if (target.card_print_id !== frozen.card_print_id) failures.push("target_id_changed");
   if (target.gv_id !== frozen.gv_id) failures.push("target_gv_id_changed");
   if (!text(target.set_id) || target.set_id !== frozen.set_id) failures.push("target_set_id_changed");
@@ -242,6 +264,7 @@ export function selectTcgplayerExactMappingApplyBatchV1(
 
 export function buildTcgplayerExactMappingMetaV1(candidate, context) {
   return {
+    ...(trainerKitPilotCardV1(candidate) ? { pilot_policy_version: TCGPLAYER_TRAINER_KIT_PILOT_V1 } : {}),
     schema_version: TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1,
     mapping_method: candidate.mapping_method,
     confidence: Number(candidate.mapping_confidence),
