@@ -41,6 +41,9 @@ outage to clear without discarding all completed pages. These windows all spend
 the SAME 900-request and90-minute batch budgets; the larger per-page allowance
 does not reserve27 requests for every page or reset any budget. A deadline or
 request-limit failure immediately stops further requests, including after cooldown.
+Every retry delay is checked against the shared deadline before sleeping, including
+the60-second cooldown; it must leave room for a bounded80-second HTTP attempt.
+An exhausted budget stops before the sleep instead of overrunning during cooldown.
 Exhaustion still fails closed; auth/quota/certificate/identity errors never gain
 retries. Per-attempt transfer/process limits and HTTPS remain unchanged.
 Any failed/truncated/changed/duplicate page stops the catalog scan.

@@ -93,6 +93,19 @@ test('aggregate deadline prevents a new request after a page outage cooldown', a
   assert.equal(requests, 9); assert.equal(result.complete, false);
   assert.equal(result.stop_reason, 'POKEMON_REFERENCE_BATCH_BUDGET');
 });
+
+test('a slow ninth request cannot enter a cooldown that overruns the aggregate deadline', async () => {
+  let time = 0, requests = 0; const retryWaits = [];
+  const result = await fetchPokemonReferenceCatalogV1({ ids: ['missing-1'], budgetMs: 240000, now: () => time,
+    sleep: async ms => { time += ms; }, fetchPage: (n, options) => fetchPokemonCardsPageViaCurl(n, { ...options,
+      sleep: async ms => { retryWaits.push(ms); time += ms; },
+      run: async () => { requests++; if (requests === 9) time += 70000; return { stdout: '\n500' }; } }),
+  });
+  assert.equal(requests, 9); assert.equal(result.complete, false);
+  assert.equal(result.stop_reason, 'POKEMON_REFERENCE_BATCH_BUDGET');
+  assert.equal(retryWaits.includes(60000), false);
+  assert.ok(time < 240000);
+});
 test('catalog page recovers after the incident-shaped three failed attempts', async () => {
   let requests = 0;
   const result = await fetchPokemonCardsPageViaCurl(1, { sleep: async () => {}, run: async () => {
