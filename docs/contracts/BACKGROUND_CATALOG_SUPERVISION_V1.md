@@ -9,7 +9,11 @@ The monitored scope is `durable_catalog_integrity_and_coverage`. Japanese scope
 is the union of Japanese parent-domain rows and active Japanese identity rows.
 Duplicate shells are excluded only when their preserved redirect names a different
 parent with the matching GVID and an active Japanese identity. An invalid redirect
-remains in scope and its missing identity remains a finding. Japanese set integrity
+remains in scope and its missing identity remains a finding. The monitor
+also preserves the explicit identity-conflict quarantine: a suppressed inactive
+parent is excluded only when its saved target ID and GVID resolve to a different,
+active, unsuppressed Japanese identity. Verified archived and quarantined counts
+are reported separately; no record is changed. Japanese set integrity
 uses the actual set ID and code; governed product sets can belong to the shared
 Pokémon game. One Piece scope is its game ID, with `one_piece_eng_print` identities.
 Both report sets, parents, active identity and

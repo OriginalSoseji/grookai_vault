@@ -48,10 +48,18 @@ export async function collectCatalogReport(client, component) {
         where target.id::text=c.data_quality_flags#>>'{master_identity_graph_jpn_duplicate_shell,canonical_card_print_id}'
           and target.gv_id=c.data_quality_flags#>>'{master_identity_graph_jpn_duplicate_shell,canonical_gv_id}'
           and target.id<>c.id and ti.is_active and ti.identity_domain='pokemon_jpn'),false)`;
+    const quarantined = `coalesce(c.data_quality_flags#>>'{app_visibility_v1,status}'='suppressed'
+      and c.data_quality_flags#>>'{app_visibility_v1,reason}'='verified_identity_image_conflict'
+      and not exists(select 1 from public.card_print_identity own where own.card_print_id=c.id and own.is_active)
+      and exists(select 1 from public.card_prints target join public.card_print_identity ti on ti.card_print_id=target.id
+        where target.id::text=c.data_quality_flags#>>'{app_visibility_v1,canonical_target_card_print_id}'
+          and target.gv_id=c.data_quality_flags#>>'{app_visibility_v1,canonical_target_gv_id}'
+          and target.id<>c.id and ti.is_active and ti.identity_domain='pokemon_jpn'
+          and coalesce(target.data_quality_flags#>>'{app_visibility_v1,status}','')<>'suppressed'),false)`;
     const japaneseScope = `(c.identity_domain=$1 or exists
       (select 1 from public.card_print_identity i where i.card_print_id=c.id and i.identity_domain=$1 and i.is_active))`;
     const scope = japanese
-      ? `select c.* from public.card_prints c where ${japaneseScope} and not (${archived})`
+      ? `select c.* from public.card_prints c where ${japaneseScope} and not (${archived}) and not (${quarantined})`
       : `select c.* from public.card_prints c join public.games g on g.id=c.game_id where g.code=$1`;
     report.metrics = (await query(`with cards as materialized (${scope}) select
       (select count(*)::int from cards) cards,
@@ -79,6 +87,8 @@ export async function collectCatalogReport(client, component) {
     };
     report.coverage.verified_archived_duplicate_shells = japanese
       ? (await query(`select count(*)::int rows from public.card_prints c where ${japaneseScope} and (${archived})`, [domain]))[0].rows : 0;
+    report.coverage.verified_suppressed_identity_conflicts = japanese
+      ? (await query(`select count(*)::int rows from public.card_prints c where ${japaneseScope} and (${quarantined})`, [domain]))[0].rows : 0;
     if (report.metrics.missing_active_identity) report.coverage.missing_identity_samples = await query(
       `with cards as (${scope}) select c.id,c.gv_id,c.set_code,
         c.data_quality_flags#>'{master_identity_graph_jpn_duplicate_shell}' archived_redirect
