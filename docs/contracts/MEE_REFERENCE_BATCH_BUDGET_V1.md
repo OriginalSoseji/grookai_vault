@@ -26,8 +26,13 @@ Pagination: https://docs.pokemontcg.io/api-reference/cards/search-cards/ .
 
 Mapping reads have a five-minute aggregate deadline and 30-second request limits.
 Provider acquisition has a 90-minute budget, reserving 80 seconds before starting
-another HTTP attempt. Existing per-attempt limits/retries/HTTPS/identity checks
-remain. Any failed/truncated/changed/duplicate page stops the catalog scan.
+another HTTP attempt. Single-card requests retain their three-attempt policy.
+Catalog pages allow up to nine transient attempts with exponential delays capped
+at30 seconds, all charged to the same pace/request/time gate. For the observed
+83-page catalog even nine attempts each totals747 requests, below the900 ceiling.
+Exhaustion still fails closed; auth/quota/certificate/identity errors never gain
+retries. Per-attempt transfer/process limits and HTTPS remain unchanged.
+Any failed/truncated/changed/duplicate page stops the catalog scan.
 The unbounded alternative fetch transport is explicitly rejected.
 
 Each exact page response or sanitized failure is appended under a unique

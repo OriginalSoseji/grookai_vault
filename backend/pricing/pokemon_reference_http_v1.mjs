@@ -38,7 +38,7 @@ export async function fetchPokemonCardsPageViaCurl(page, options = {}) {
         new Set(payload.data.map(card => card.id)).size !== payload.data.length)
       throw failure('POKEMON_REFERENCE_INVALID_PAGE', attempt, 200);
     return payload;
-  }, options);
+  }, options, 9);
 }
 
 async function fetchReferenceViaCurl(relativePath, validate, {
@@ -46,7 +46,7 @@ async function fetchReferenceViaCurl(relativePath, validate, {
   baseUrl = process.env.POKEMONAPI_BASE_URL || 'https://api.pokemontcg.io/v2',
   apiKey = process.env.POKEMONAPI_API_KEY, platform = process.platform,
   beforeAttempt = async () => {},
-} = {}) {
+} = {}, attemptLimit = 3) {
   let base;
   try { base = new URL(baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`); }
   catch { throw failure('POKEMON_REFERENCE_INVALID_ENDPOINT', 0); }
@@ -61,7 +61,7 @@ async function fetchReferenceViaCurl(relativePath, validate, {
   if (apiKey) args.push('--header', `X-Api-Key: ${apiKey}`);
   // Redirects are deliberately not followed with a custom credential header.
   args.push(new URL(relativePath, base).toString());
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= attemptLimit; attempt++) {
     await beforeAttempt();
     let error, retry = false, stdout;
     try {
@@ -92,7 +92,7 @@ async function fetchReferenceViaCurl(relativePath, validate, {
         }
       }
     }
-    if (!retry || attempt === 3) throw error;
-    await sleep(750 * attempt);
+    if (!retry || attempt === attemptLimit) throw error;
+    await sleep(attemptLimit === 3 ? 750 * attempt : Math.min(30_000, 750 * 2 ** (attempt - 1)));
   }
 }

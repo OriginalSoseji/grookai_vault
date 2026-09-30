@@ -50,6 +50,29 @@ test('transport rejects a silently truncated successful page', async () => {
   const payload = { ...page(1), data: cards.slice(0, 10), count: 10 };
   await assert.rejects(fetchPokemonCardsPageViaCurl(1, { run: async () => ({ stdout: JSON.stringify(payload) + '\n200' }) }), { code: 'POKEMON_REFERENCE_INVALID_PAGE' });
 });
+test('page retry exhaustion stays below anonymous batch ceiling with spaced finite attempts', async () => {
+  let requests = 0, gated = 0; const waits = [];
+  await assert.rejects(fetchPokemonCardsPageViaCurl(1, { beforeAttempt: async () => { gated++; },
+    sleep: async ms => waits.push(ms), run: async () => { requests++; return { stdout: 'upstream\n500' }; }
+  }), { code: 'POKEMON_REFERENCE_HTTP_500', attempts: 9 });
+  assert.equal(requests, 9); assert.equal(gated, 9);
+  assert.deepEqual(waits, [750, 1500, 3000, 6000, 12000, 24000, 30000, 30000]);
+  assert.ok(Math.ceil(20670 / 250) * requests < 900);
+});
+test('catalog page recovers after the incident-shaped three failed attempts', async () => {
+  let requests = 0;
+  const result = await fetchPokemonCardsPageViaCurl(1, { sleep: async () => {}, run: async () => {
+    requests++; return { stdout: requests <= 3 ? 'upstream\n500' : JSON.stringify(page(1)) + '\n200' };
+  } });
+  assert.equal(requests, 4); assert.equal(result.totalCount, 501);
+});
+test('page quota failure is never retried despite the larger transient retry allowance', async () => {
+  let requests = 0;
+  await assert.rejects(fetchPokemonCardsPageViaCurl(1, { sleep: async () => assert.fail('quota retry'), run: async () => {
+    requests++; return { stdout: 'quota\n429' };
+  } }), { code: 'POKEMON_REFERENCE_HTTP_429', attempts: 1 });
+  assert.equal(requests, 1);
+});
 test('no mapped IDs needs no catalog requests', async () => {
   const result = await fetchPokemonReferenceCatalogV1({ ids: [], fetchPage: () => assert.fail() });
   assert.equal(result.complete, true); assert.equal(result.attempts, 0);
