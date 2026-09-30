@@ -17,13 +17,36 @@ export function pokemonReferenceFailureV1(error) {
     attempts: Number.isInteger(error?.attempts) ? error.attempts : null };
 }
 
-export async function fetchPokemonCardByIdViaCurl(cardId, {
+export async function fetchPokemonCardByIdViaCurl(cardId, options = {}) {
+  if (typeof cardId !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(cardId))
+    throw failure('POKEMON_REFERENCE_INVALID_ID', 0);
+  return fetchReferenceViaCurl(`cards/${encodeURIComponent(cardId)}`, (payload, attempt) => {
+    if (payload.data === null) return null;
+    if (!payload.data || typeof payload.data !== 'object' || Array.isArray(payload.data) || payload.data.id !== cardId)
+      throw failure('POKEMON_REFERENCE_ID_MISMATCH', attempt, 200);
+    return payload.data;
+  }, options);
+}
+
+export async function fetchPokemonCardsPageViaCurl(page, options = {}) {
+  if (!Number.isInteger(page) || page < 1 || page > 200) throw failure('POKEMON_REFERENCE_INVALID_PAGE', 0);
+  return fetchReferenceViaCurl(`cards?page=${page}&pageSize=250&orderBy=id`, (payload, attempt) => {
+    if (!Array.isArray(payload.data) || payload.page !== page || payload.pageSize !== 250 ||
+        !Number.isInteger(payload.totalCount) || payload.totalCount < 1 || payload.totalCount > 50000 ||
+        payload.count !== payload.data.length || payload.count !== Math.min(250, payload.totalCount - (page - 1) * 250) ||
+        payload.data.some(card => !card || typeof card !== 'object' || !/^[a-zA-Z0-9_-]{1,100}$/.test(card.id ?? '')) ||
+        new Set(payload.data.map(card => card.id)).size !== payload.data.length)
+      throw failure('POKEMON_REFERENCE_INVALID_PAGE', attempt, 200);
+    return payload;
+  }, options, 9);
+}
+
+async function fetchReferenceViaCurl(relativePath, validate, {
   run = execute, sleep = ms => new Promise(resolve => setTimeout(resolve, ms)),
   baseUrl = process.env.POKEMONAPI_BASE_URL || 'https://api.pokemontcg.io/v2',
   apiKey = process.env.POKEMONAPI_API_KEY, platform = process.platform,
-} = {}) {
-  if (typeof cardId !== 'string' || !/^[a-zA-Z0-9_-]{1,100}$/.test(cardId))
-    throw failure('POKEMON_REFERENCE_INVALID_ID', 0);
+  beforeAttempt = async () => {},
+} = {}, attemptLimit = 3) {
   let base;
   try { base = new URL(baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`); }
   catch { throw failure('POKEMON_REFERENCE_INVALID_ENDPOINT', 0); }
@@ -37,8 +60,9 @@ export async function fetchPokemonCardByIdViaCurl(cardId, {
   if (platform === 'win32') args.push('--ssl-no-revoke');
   if (apiKey) args.push('--header', `X-Api-Key: ${apiKey}`);
   // Redirects are deliberately not followed with a custom credential header.
-  args.push(new URL(`cards/${encodeURIComponent(cardId)}`, base).toString());
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  args.push(new URL(relativePath, base).toString());
+  for (let attempt = 1; attempt <= attemptLimit; attempt++) {
+    await beforeAttempt();
     let error, retry = false, stdout;
     try {
       ({ stdout } = await run(platform === 'win32' ? 'curl.exe' : 'curl', args,
@@ -63,15 +87,12 @@ export async function fetchPokemonCardByIdViaCurl(cardId, {
           if (!error) {
             if (!payload || Array.isArray(payload) || typeof payload !== 'object' || !Object.hasOwn(payload, 'data'))
               error = failure('POKEMON_REFERENCE_INVALID_PAYLOAD', attempt, status);
-            else if (payload.data === null) return null;
-            else if (!payload.data || typeof payload.data !== 'object' || Array.isArray(payload.data) || payload.data.id !== cardId)
-              error = failure('POKEMON_REFERENCE_ID_MISMATCH', attempt, status);
-            else return payload.data;
+            else return validate(payload, attempt);
           }
         }
       }
     }
-    if (!retry || attempt === 3) throw error;
-    await sleep(750 * attempt);
+    if (!retry || attempt === attemptLimit) throw error;
+    await sleep(attemptLimit === 3 ? 750 * attempt : Math.min(30_000, 750 * 2 ** (attempt - 1)));
   }
 }

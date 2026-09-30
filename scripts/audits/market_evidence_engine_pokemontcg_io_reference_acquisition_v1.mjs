@@ -1,10 +1,12 @@
 import fs from 'node:fs/promises';
+import { appendFileSync, writeFileSync, renameSync } from 'node:fs';
+import { hash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import '../../backend/env.mjs';
-import { fetchPokemonCardById } from '../../backend/clients/pokemonapi.mjs';
-import { fetchPokemonCardByIdViaCurl, pokemonReferenceFailureV1 } from '../../backend/pricing/pokemon_reference_http_v1.mjs';
+import { fetchPokemonReferenceBatchV1 } from '../../backend/pricing/pokemon_reference_batch_v1.mjs';
+import { fetchPokemonReferenceCatalogV1 } from '../../backend/pricing/pokemon_reference_catalog_v1.mjs';
 import { createBackendClient } from '../../backend/supabase_backend_client.mjs';
 import { acquirePokemonTcgIoEvidenceV1 } from '../../backend/pricing/market_evidence_pokemontcg_io_acquisition_v1.mjs';
 import { resolveMeeAuditRootV1 } from '../../backend/pricing/mee_runtime_artifacts_v1.mjs';
@@ -39,11 +41,11 @@ function parseArgs(argv) {
     }
   }
 
-  if (!Number.isInteger(parsed.limit) || parsed.limit < 1) {
-    throw new Error('[mee-pokemontcg-io] --limit must be a positive integer');
+  if (!Number.isInteger(parsed.limit) || parsed.limit < 1 || parsed.limit > 5000) {
+    throw new Error('[mee-pokemontcg-io] --limit must be 1..5000');
   }
-  if (!['curl', 'fetch'].includes(parsed.fetchMethod)) {
-    throw new Error('[mee-pokemontcg-io] --fetch-method must be curl or fetch');
+  if (parsed.fetchMethod !== 'curl') {
+    throw new Error('[mee-pokemontcg-io] bounded acquisition requires --fetch-method=curl');
   }
 
   return parsed;
@@ -73,7 +75,13 @@ async function resolvePokemonApiIds(items) {
     return new Map();
   }
 
-  const supabase = createBackendClient();
+  const lookupDeadline = performance.now() + 5 * 60_000;
+  const supabase = createBackendClient({ fetch: (url, options = {}) => {
+    const remaining = lookupDeadline - performance.now();
+    if (remaining <= 0) throw new Error('POKEMON_REFERENCE_MAPPING_LOOKUP_BUDGET');
+    const timeout = AbortSignal.timeout(Math.max(1, Math.floor(Math.min(30_000, remaining))));
+    return fetch(url, { ...options, signal: options.signal ? AbortSignal.any([options.signal, timeout]) : timeout });
+  } });
   const direct = new Map();
 
   for (let offset = 0; offset < ids.length; offset += DB_LOOKUP_CHUNK_SIZE) {
@@ -118,38 +126,6 @@ async function loadFixtureCards(fixturePath) {
   if (!fixturePath) return null;
   const raw = await fs.readFile(fixturePath, 'utf8');
   return JSON.parse(raw);
-}
-
-async function fetchPokemonCardByIdWithMethod(cardId, fetchMethod) {
-  if (fetchMethod === 'fetch') {
-    return fetchPokemonCardById(cardId);
-  }
-  return fetchPokemonCardByIdViaCurl(cardId);
-}
-
-async function fetchCardsById(ids, fixtureCards, fetchMethod) {
-  const cardsByExternalId = {};
-  const errors = [];
-  for (const id of ids) {
-    if (fixtureCards) {
-      if (fixtureCards[id]) {
-        cardsByExternalId[id] = fixtureCards[id];
-      }
-      continue;
-    }
-    try {
-      const card = await fetchPokemonCardByIdWithMethod(id, fetchMethod);
-      if (card) {
-        cardsByExternalId[id] = card;
-      }
-    } catch (error) {
-      errors.push({
-        id,
-        ...pokemonReferenceFailureV1(error),
-      });
-    }
-  }
-  return { cardsByExternalId, errors };
 }
 
 function cell(value) {
@@ -221,7 +197,8 @@ async function main() {
   const generatedAt = new Date().toISOString();
   const stamp = generatedAt.replace(/[:.]/g, '-');
 
-  const batch = JSON.parse(await fs.readFile(batchPath, 'utf8'));
+  const batchBytes = await fs.readFile(batchPath);
+  const batch = JSON.parse(batchBytes);
   const sourceItems = (batch.items ?? [])
     .filter((item) => item.source === SOURCE)
     .slice(0, args.limit);
@@ -239,7 +216,35 @@ async function main() {
     enrichedBatch.items.map((item) => item.pokemonapi_id).filter(Boolean),
   ));
   const fixtureCards = await loadFixtureCards(args.fixtureCards);
-  const { cardsByExternalId, errors } = await fetchCardsById(uniquePokemonApiIds, fixtureCards, args.fetchMethod);
+  const progressDir = path.join(args.outDir, `mee_reference_progress_${stamp}`);
+  await fs.mkdir(progressDir, { recursive: true });
+  const journal = path.join(progressDir, 'responses.jsonl');
+  await fs.writeFile(journal, '', { flag: 'wx' });
+  await fs.writeFile(path.join(progressDir, 'input.json'), JSON.stringify({
+    generated_at: generatedAt, batch_path: batchPath,
+    batch_sha256: hash('sha256', batchBytes),
+    items: enrichedBatch.items, fixture: Boolean(fixtureCards),
+  }), { flag: 'wx' });
+  console.log(`[mee-pokemontcg-io] acquisition progress=${progressDir}`);
+  let lastLogged = -1;
+  const runner = fixtureCards ? fetchPokemonReferenceBatchV1 : fetchPokemonReferenceCatalogV1;
+  const result = await runner({
+    ids: uniquePokemonApiIds,
+    authenticated: Boolean(process.env.POKEMONAPI_API_KEY),
+    ...(fixtureCards ? { fetchCard: async id => fixtureCards[id] ?? null } : {}),
+    onResult: row => appendFileSync(journal, `${JSON.stringify({ ...row, fetched_at: new Date().toISOString() })}\n`),
+    onProgress: progress => {
+      const file = path.join(progressDir, 'progress.json');
+      writeFileSync(`${file}.tmp`, JSON.stringify({ generated_at: generatedAt, ...progress }));
+      renameSync(`${file}.tmp`, file);
+      if (Math.floor(progress.completed / 25) !== lastLogged || progress.stop_reason) {
+        console.log(`[mee-pokemontcg-io] ${JSON.stringify(progress)}`);
+        lastLogged = Math.floor(progress.completed / 25);
+      }
+    },
+  });
+  const { cardsByExternalId, errors } = result;
+  if (!result.complete) throw new Error(`POKEMON_REFERENCE_ACQUISITION_INCOMPLETE: ${result.stop_reason ?? 'fetch_failures'}; progress=${progressDir}`);
   const acquisition = acquirePokemonTcgIoEvidenceV1({
     batch: enrichedBatch,
     cardsByExternalId,
@@ -252,6 +257,8 @@ async function main() {
   acquisition.summary.unique_pokemonapi_ids = uniquePokemonApiIds.length;
   acquisition.summary.fetch_error_count = errors.length;
   acquisition.fetch_errors = errors;
+  acquisition.acquisition_progress = { complete: true, completed_ids: uniquePokemonApiIds.length, attempts: result.attempts,
+    pages_received: result.pages_received ?? null, catalog_count: result.catalog_count ?? null, progress_directory: progressDir };
 
   await fs.mkdir(args.outDir, { recursive: true });
   const jsonPath = path.join(args.outDir, `mee_06a_pokemontcg_io_reference_evidence_${stamp}.json`);
@@ -275,6 +282,8 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(error);
+  // Raw provider/client errors may carry credentials or request data.
+  const code = String(error?.message ?? '').split(':')[0];
+  console.error(`[mee-pokemontcg-io] ${/^POKEMON_REFERENCE_[A-Z0-9_]+$/.test(code) ? code : 'acquisition_failed'}`);
   process.exitCode = 1;
 });

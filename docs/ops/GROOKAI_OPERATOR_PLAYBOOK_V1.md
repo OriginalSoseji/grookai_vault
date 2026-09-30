@@ -89,6 +89,15 @@ linked above; consult them for actual live status.
 
 ## Completed canary monitoring — September 29, 2026
 
+MEE September 30 reference timeout repair: read
+`docs/contracts/MEE_REFERENCE_BATCH_BUDGET_V1.md` and the latest external
+`C:/grookai_vault_operator_artifacts/worker_pricing_recovery_20260929/RECOVERY_CHECKPOINT.md`.
+The provider adapter uses bounded workers, request pacing, an aggregate deadline
+and per-result progress evidence. Incomplete acquisition fails before normalization.
+Progress directories are diagnostic evidence, not resume or publication authority.
+Preserve the independent MEE release branch and existing artifact-selection fixes;
+local tests and small provider probes do not establish a full successful refresh.
+
 Contract: `docs/contracts/COMPLETED_PRICING_CANARY_HEALTH_V1.md`.
 
 Backup startup exposed a stale six-hour GitHub observer for the already closed

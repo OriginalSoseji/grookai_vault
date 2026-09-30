@@ -141,8 +141,7 @@ test("MEE-06A script keeps writes and public prices out of the free reference la
   const pkg = source("package.json");
 
   assert.match(pkg, /"mee:pokemontcg-io"/);
-  assert.match(scriptSource, /fetchPokemonCardById/);
-  assert.match(scriptSource, /fetchPokemonCardByIdViaCurl/);
+  assert.match(scriptSource, /fetchPokemonReferenceCatalogV1/);
   const transportSource = source("backend/pricing/pokemon_reference_http_v1.mjs");
   assert.match(transportSource, /--ssl-no-revoke/);
   assert.match(scriptSource, /acquisition.fetch_errors = errors/);
