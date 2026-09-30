@@ -1,0 +1,1788 @@
+[
+  {
+    "label": "verified extended art",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "case spaces and normalized collector number",
+    "expected": true,
+    "input": {
+      "sourceName": "  FIXTURE   MAGE (EXTENDED ART) ",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "number label before treatment",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (0373) (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "number label after treatment",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art) (0373)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "number only",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (0373)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong repeated collector number",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (00374) (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "showcase needs showcase evidence",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Showcase)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified showcase",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (Showcase)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "showcase"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "borderless needs border evidence",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Borderless)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified borderless",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (Borderless)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "borderless"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "unknown surge foil is never stripped",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art) (Surge Foil)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "unknown art label",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Alternate Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "unknown number suffix",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (373a)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "duplicate labels",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art) (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "different name",
+    "expected": false,
+    "input": {
+      "sourceName": "Other Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "different collector number",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "374",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "missing source number",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong game",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "pokemon",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "missing game",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "missing identity",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": []
+    }
+  },
+  {
+    "label": "ambiguous active identities",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong identity is_active",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": false,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong identity card_print_id",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "44444444-4444-4444-8444-444444444444",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong identity identity_domain",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "pokemon",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong identity identity_key_version",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "unknown",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong identity set_code_identity",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "other",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong identity printed_number",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "374",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong identity identity_payload",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": null
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong payload language",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "ja",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong payload name",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Other Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong payload collector_number",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "374",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong payload set_code",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "other",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong payload scryfall_print_id",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "wrong",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong payload frame_effects",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong parent identity_domain",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "pokemon"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong parent variant_key",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:wrong",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong parent set_code",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "373",
+        "set_code": "",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "wrong parent number",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage",
+        "number": "374",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified transform front face",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "transform",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified modal front face and treatment",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "modal_dfc",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "full double face name with treatment",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage // Fixture Dragon (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "transform",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "back face alone remains held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Dragon",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "transform",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "unsupported split layout",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "split",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "missing layout evidence",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "three faces invalid",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon // Third",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon // Third",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "transform",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  }
+]

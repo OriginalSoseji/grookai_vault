@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../vault/vault_card_service.dart';
+import 'collection_import_mtg_identity.dart';
 
 class CollectionImportParsedRow {
   const CollectionImportParsedRow({
@@ -269,6 +270,7 @@ class _CollectionImportCandidateRow {
     required this.setName,
     this.setCode,
     this.game = '',
+    this.identityCard = const {},
   });
 
   final String id;
@@ -276,6 +278,7 @@ class _CollectionImportCandidateRow {
   final String name;
   final String number;
   final String setId;
+  final Map<String, dynamic> identityCard;
   final String setName;
   final String? setCode;
   final String game;
@@ -422,17 +425,81 @@ class CollectionImportService {
       );
       (byKey[key] ??= []).add(card);
     }
+    final byCoordinate = <String, List<_CollectionImportCandidateRow>>{};
+    for (final card in candidates.where((card) => card.game == 'mtg')) {
+      final key = _buildMatchKey(
+        normalizeImportSetForCompare(card.setName),
+        normalizeImportNumberForCompare(card.number),
+        '',
+      );
+      (byCoordinate[key] ??= []).add(card);
+    }
+    List<_CollectionImportCandidateRow> treatmentCandidates(
+      CollectionImportNormalizedRow row,
+    ) => sourceAware && row.gameCode == 'mtg'
+        ? byCoordinate[_buildMatchKey(row.compareSet, row.compareNumber, '')] ??
+              []
+        : [];
+    final identityIds = <String>{};
+    for (final row in validRows) {
+      for (final card in treatmentCandidates(row)) {
+        if (row.compareName != normalizeImportNameForCompare(card.name)) {
+          identityIds.add(card.id);
+        }
+      }
+    }
+    final identities = <String, List<Map<String, dynamic>>>{};
+    for (final chunk in _chunkList(identityIds.toList()..sort(), 100)) {
+      final records = await _readCatalogPages((after) {
+        var query = client
+            .from('card_print_identity')
+            .select(
+              'id,card_print_id,identity_domain,identity_key_version,is_active,set_code_identity,printed_number,identity_payload',
+            )
+            .inFilter('card_print_id', chunk)
+            .eq('is_active', true);
+        if (after != null) query = query.gt('id', after);
+        return query.order('id', ascending: true).limit(500);
+      });
+      for (final identity in records) {
+        if (!chunk.contains(identity['card_print_id'])) {
+          throw const CollectionImportFailure(
+            'Catalog identity matching was interrupted. Choose the CSV again to retry.',
+          );
+        }
+        (identities[identity['card_print_id'] as String] ??= []).add(identity);
+      }
+    }
+    final matchCache =
+        <CollectionImportNormalizedRow, List<_CollectionImportCandidateRow>>{};
     List<_CollectionImportCandidateRow> matchesFor(
       CollectionImportNormalizedRow row,
-    ) =>
-        (byKey[_buildMatchKey(
-                  row.compareSet,
-                  row.compareNumber,
-                  row.compareName,
-                )] ??
-                [])
-            .where((card) => row.gameCode.isEmpty || card.game == row.gameCode)
-            .toList();
+    ) => matchCache.putIfAbsent(row, () {
+      final exact =
+          (byKey[_buildMatchKey(
+                    row.compareSet,
+                    row.compareNumber,
+                    row.compareName,
+                  )] ??
+                  [])
+              .where(
+                (card) => row.gameCode.isEmpty || card.game == row.gameCode,
+              )
+              .toList();
+      final result = {for (final card in exact) card.id: card};
+      for (final card in treatmentCandidates(row)) {
+        if (matchesCollectrMtgIdentity(
+          sourceName: row.displayName,
+          sourceNumber: row.displayNumber,
+          game: row.gameCode,
+          card: card.identityCard,
+          identities: identities[card.id] ?? [],
+        )) {
+          result[card.id] = card;
+        }
+      }
+      return result.values.toList();
+    });
     // The legacy writer accepts only one metadata group per canonical parent.
     // Keep conflicting groups visible; never pick the first group's cost/grade.
     final groupsByCard = <String, Set<String>>{};
@@ -1171,7 +1238,9 @@ class CollectionImportService {
       final records = await _readCatalogPages((after) {
         var query = client
             .from('card_prints')
-            .select('id,gv_id,name,number,set_id,set_code')
+            .select(
+              'id,gv_id,name,number,set_id,set_code,variant_key,identity_domain',
+            )
             .inFilter('set_id', chunk);
         if (after != null) query = query.gt('id', after);
         return query.order('id', ascending: true).limit(500);
@@ -1197,6 +1266,7 @@ class CollectionImportService {
             setName: set.name,
             setCode: set.code,
             game: set.game,
+            identityCard: record,
           ),
         );
       }

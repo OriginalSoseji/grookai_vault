@@ -392,6 +392,13 @@ void main() {
               .map((r) => Map<String, dynamic>.from(r as Map))
               .toList();
       f.catalogPageSize = 137;
+      final identityFile = File('$root/catalog-identities.private.json');
+      if (identityFile.existsSync()) {
+        f.catalogIdentities =
+            (jsonDecode(identityFile.readAsStringSync()) as List)
+                .map((row) => Map<String, dynamic>.from(row as Map))
+                .toList();
+      }
       final text = File(
         Platform.environment['GV_COLLECTR_PRIVATE_CSV']!,
       ).readAsStringSync();
@@ -477,6 +484,30 @@ void main() {
           client: f.client,
           csvText: text,
           sourceAware: true,
+        );
+        File('$root/preview-ledger.private.json').writeAsStringSync(
+          const JsonEncoder.withIndent('  ').convert([
+            for (final entry in v2.rows)
+              {
+                'sourceRows': entry.row.sourceRows,
+                'game': entry.row.gameCode,
+                'name': entry.row.displayName,
+                'set': entry.row.displaySet,
+                'number': entry.row.displayNumber,
+                'compareSet': entry.row.compareSet,
+                'compareName': entry.row.compareName,
+                'compareNumber': entry.row.compareNumber,
+                'quantity': entry.desiredQuantity,
+                'finish': entry.row.finish,
+                'grade': entry.row.grade,
+                'ready': entry.canImport,
+                'status': entry.status.name,
+                'reasons': entry.reviewReasons,
+                'cardId': entry.match?.cardId,
+                'printingId': entry.cardPrintingId,
+                'matches': entry.matches.map((match) => match.cardId).toList(),
+              },
+          ]),
         );
         expect(v2.report.rowsRead, original.length);
         expect(

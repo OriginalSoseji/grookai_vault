@@ -1,4 +1,5 @@
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
+import { matchesCollectrMtgIdentity } from "./mtg_identity.ts";
 import {
   ImportValidationError,
   jsonbByteSize,
@@ -117,7 +118,7 @@ async function resolveTargets(
     let after: string | null = null;
     while (true) {
       let query = client.from("card_prints").select(
-        "id,gv_id,name,number,sets(name,game)",
+        "id,gv_id,name,number,set_code,variant_key,identity_domain,sets(name,game)",
       ).in("id", chunk);
       if (after !== null) query = query.gt("id", after);
       const { data, error } = await query.order("id").limit(500);
@@ -152,6 +153,31 @@ async function resolveTargets(
       offset += data.length;
     }
   }
+  const identityIds = [...new Set(selected.filter(selection => {
+    const base = normalize(source[selection.sourceIndices[0]]);
+    return base.game === "mtg" && base.name !== text(byCard.get(selection.cardId)?.name ?? "").toLowerCase();
+  }).map(selection => selection.cardId))].sort();
+  const identities = new Map<string, Record<string, any>[]>();
+  for (let start = 0; start < identityIds.length; start += 100) {
+    const chunk = identityIds.slice(start, start + 100);
+    let after: string | null = null;
+    while (true) {
+      let query = client.from("card_print_identity").select(
+        "id,card_print_id,identity_domain,identity_key_version,is_active,set_code_identity,printed_number,identity_payload",
+      ).in("card_print_id", chunk).eq("is_active", true);
+      if (after !== null) query = query.gt("id", after);
+      const {data, error} = await query.order("id").limit(500);
+      if (error || !Array.isArray(data)) throw new Error("catalog_identity_unavailable");
+      if (!data.length) break;
+      for (const identity of data) {
+        if (!validId(identity.id) || (after !== null && identity.id <= after) || !chunk.includes(identity.card_print_id)) throw new Error("catalog_identity_pagination_failed");
+        const group = identities.get(identity.card_print_id) ?? [];
+        group.push(identity);
+        identities.set(identity.card_print_id, group);
+        after = identity.id;
+      }
+    }
+  }
   for (const selectedRow of selected) {
     const original = source[selectedRow.sourceIndices[0]],
       base = normalize(original),
@@ -170,7 +196,9 @@ async function resolveTargets(
     if (
       !card || card.gv_id !== selectedRow.gvId || !object(set) ||
       (base.game && set.game !== base.game) ||
-      text(card.name ?? "").toLowerCase() !== base.name ||
+      (text(card.name ?? "").toLowerCase() !== base.name &&
+        !matchesCollectrMtgIdentity({sourceName: base.name, sourceNumber: base.number,
+          game: base.game, card, identities: identities.get(card.id) ?? []})) ||
       setName(set.name ?? "", base.game) !== base.set ||
       number(card.number ?? "") !== base.number
     ) throw new ImportValidationError("import_card_identity_mismatch");
