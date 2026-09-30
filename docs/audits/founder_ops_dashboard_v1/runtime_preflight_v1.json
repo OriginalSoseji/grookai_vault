@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-09-29T18:39:22.019Z",
+  "collected_at": "2026-09-30T18:27:37.341Z",
   "status": "PASS_WITH_DEFERRED_DEBT",
   "summary": {
     "critical_fail_checks": 0,
@@ -86,7 +86,7 @@
       {
         "issue_name": "card_prints_missing_gv_id",
         "severity_bucket": "deferred_known_debt",
-        "row_count": "62",
+        "row_count": "63",
         "notes": "Legacy canonical card_prints still missing gv_id.",
         "gate_category": "known_deferred_debt"
       },
