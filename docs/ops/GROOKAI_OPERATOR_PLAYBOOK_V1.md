@@ -35,6 +35,15 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
+Current release preparation uses collectr_import_release_20260930 for fresh
+inspection/package receipts and collectr_import_review_20260930 for physical,
+runtime and build evidence. V16/V17 passed including archived-copy reopen; signed
+336 and its Windows backups are verified. The strict release gate requires these
+exact sources and the 336 IPA. Superseded 335/old CLI packages must not be reused.
+Inspection is read-only; release outcomes remain separate. No device rebuild is
+needed for this inspection-only source change. Earlier preparation notes follow.
+
+
 PR553 review supersedes the prepared335 release: blank finishes, archived copy
 readback, complete payload size and timestamp precision are corrected together.
 Read the first checkpoint section and private `collectr_import_review_20260930`

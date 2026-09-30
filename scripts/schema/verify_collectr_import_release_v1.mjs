@@ -9,8 +9,9 @@ assert.equal(process.argv.length,3,'Use AuditLinkedSchema or PrePush only');
 const phase=process.argv[2];assert.ok(['AuditLinkedSchema','PrePush'].includes(phase));
 const root=fileURLToPath(new URL('../../',import.meta.url));
 assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_collectr_import_20260930');
-const proof='C:/grookai_vault_operator_artifacts/collectr_iphone_import_20260929';
-const out='C:/grookai_vault_operator_artifacts/collectr_import_predeploy_20260930';
+const proof='C:/grookai_vault_operator_artifacts/collectr_import_review_20260930';
+const baselineProof='C:/grookai_vault_operator_artifacts/collectr_iphone_import_20260929';
+const out='C:/grookai_vault_operator_artifacts/collectr_import_release_20260930';
 const target='ycdxbpibncqcchqiihfz',pending=['20260930010000'];
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const read=p=>JSON.parse(fs.readFileSync(p));
@@ -23,26 +24,36 @@ const full=read(proof+'/full-410/replay-result.json');
 assert.equal(full.status,'passed');assert.equal(full.fullReplay,true);assert.equal(full.noOpPush,true);assert.equal(full.retainedFixtureResets,0);
 const upgrade=read(proof+'/upgrade-410/upgrade-result.json');
 assert.equal(upgrade.status,'passed');assert.equal(upgrade.allFixtureRowsUnchanged,true);assert.equal(upgrade.resetsAfterPopulation,0);assert.equal(upgrade.comparison.rawBytes,0);
-const http=proof+'/http-v2-1790742513019';
+const http=proof+'/http-v2-1790778726052';
 assert.equal(read(http+'/result.json').status,'passed');assert.equal(read(http+'/result.json').priorRowsUnchanged,true);
-for(const [p,h]of Object.entries(read(http+'/intent.json').sourceHashes)){
-  const bytes=fs.readFileSync(root+p);
-  // Git normalized this test from CRLF to LF after acceptance. Reconstruct only
-  // those exact tested bytes; product sources retain byte-exact checks.
-  const actual=p==='tests/integration/collectr_import_http_v2.test.mjs'
-    ? hash(bytes.toString('utf8').replaceAll('\r\n','\n').replaceAll('\n','\r\n')) : hash(bytes);
-  assert.equal(actual,h,p);
-}
-for(const {file,sha256}of read(proof+'/native-source-v4-manifest.json').files)assert.equal(hash(fs.readFileSync(root+file)),sha256,file);
-for(const run of ['v14','v15']){
+for(const [p,h]of Object.entries(read(http+'/intent.json').sourceHashes))assert.equal(hash(fs.readFileSync(root+p)),h,p);
+const scale=proof+'/scale-v2-1790779012335';
+assert.equal(read(scale+'/result.json').status,'passed');assert.equal(read(scale+'/result.json').priorRowsUnchanged,true);
+assert.equal(read(scale+'/result.json').productionWrites,0);
+assert.equal(hash(fs.readFileSync(root+'tests/integration/collectr_import_scale_v2.test.mjs')),read(scale+'/intent.json').sourceHash);
+assert.equal(read(scale+'/intent.json').project,'collectr-review-upgrade-410-20260930');
+for(const {file,sha256}of read(proof+'/native-source-review-manifest.json').files)assert.equal(hash(fs.readFileSync(root+file)),sha256,file);
+assert.equal(read(proof+'/native-v2-preparation.json').project,'collectr-review-full-410-20260930');
+assert.equal(read(proof+'/native-v2-preparation.json').source,'synthetic');
+for(const run of ['v16','v17']){
   const receipt=read(proof+'/collectr-ui-'+run+'-result.json');
-  assert.equal(receipt.status,'PASS');assert.equal(receipt.sourceRestored,true);assert.equal(receipt.source,'26a5313+collectr-source-v4-ascending-pagination');
-  assert.equal(read(proof+'/collectr-ui-'+run+'-ui-proof.json').status,'PASS');
+  assert.equal(receipt.status,'PASS');assert.equal(receipt.sourceRestored,true);assert.equal(receipt.source,'425eba018+PR553-review-four-fixes');
+  assert.equal(receipt.productionWrites,0);
+  const ui=read(proof+'/collectr-ui-'+run+'-ui-proof.json');
+  assert.equal(ui.status,'PASS');assert.equal(ui.blankFinishHeld,true);assert.equal(ui.archivedReopenAddedZero,true);
 }
-const physical=read(proof+'/collectr-ui-v15-ui-proof.json');assert.equal(physical.realFilesPickerVerified,true);
+const contained=read(proof+'/collectr-ui-v16-ui-proof.json');assert.equal(contained.interruptedSaveRecovery,true);assert.equal(contained.gradeReviewVerified,true);
+const physical=read(proof+'/collectr-ui-v17-ui-proof.json');assert.equal(physical.realFilesPickerVerified,true);assert.equal(physical.screenshotsInspected,true);
 const saved=read(proof+'/'+physical.databaseReadback);
 assert.equal(saved.status,'SAVED_METADATA_VERIFIED');assert.equal(saved.priorRowsUnchanged,true);assert.equal(saved.sameExactCopyIdsAcrossAllAttempts,true);
-assert.equal(saved.copies,3);assert.equal(saved.documents,1);assert.deepEqual(saved.receiptImportedCounts,[3,0,0]);
+assert.equal(saved.copies,3);assert.equal(saved.archivedCopies,1);assert.equal(saved.blankFinishHeld,true);assert.equal(saved.documents,1);assert.deepEqual(saved.receiptImportedCounts,[3,0,0]);
+const archive=read(proof+'/testflight-archive-verified.json'),ipa=read(proof+'/testflight-export-verified.json');
+assert.equal(archive.build,336);assert.equal(archive.signatureVerified,true);assert.equal(archive.productionPublicSettingsVerified,true);
+assert.equal(archive.source,'0b54e458a620d5a78b72579fa5d0248fcc1204d4');
+git('merge-base','--is-ancestor',archive.source,'HEAD');
+assert.equal(ipa.build,336);assert.equal(ipa.signatureVerified,true);assert.equal(ipa.appStoreDistributionProfile,true);
+assert.equal(hash(fs.readFileSync(proof+'/GrookaiVault-336.ipa')),ipa.sha256);
+for(const {file,sha256}of read(proof+'/testflight-source-manifest.json').files)assert.equal(hash(fs.readFileSync(root+file)),sha256,file);
 if(phase==='PrePush'){
   assert.equal(git('status','--porcelain'),'','Committed clean source required');
   git('merge-base','--is-ancestor','origin/main','HEAD');
@@ -56,7 +67,7 @@ assert.match(snapshotSql,/begin\b[^;]*\bread only;/i);
 const directory=out+'/gate-'+phase+'-'+Date.now();fs.mkdirSync(directory,{recursive:true});
 const docker=(...args)=>execFileSync('docker',args,{encoding:'utf8',windowsHide:true,timeout:60000,maxBuffer:64*1024*1024});
 for(const mode of ['full','upgrade']){
-  const fixture=proof+'/'+mode+'-410',project=`collectr-import-${mode}-410-20260930`;
+  const fixture=proof+'/'+mode+'-410',project=`collectr-review-${mode}-410-20260930`;
   const freeze=read(fixture+'/freeze.json');assert.equal(freeze.project,project);assert.deepEqual(freeze.sourceHashes,sources);
   assert.equal(hash(fs.readFileSync(fixture+'/supabase/config.toml')),freeze.configSha256);
   assert.ok(!fs.existsSync(fixture+'/supabase/.temp/project-ref'));
@@ -75,12 +86,12 @@ for(const mode of ['full','upgrade']){
 // Refresh production409 comparison only after local source and runtime guards.
 const fd=fs.openSync(directory+'/baseline.private.log','wx');
 try{execFileSync('node',['--use-system-ca',root+'scripts/schema/audit_collectr_import_baseline_v1.mjs'],{cwd:root,stdio:['ignore',fd,fd],windowsHide:true,timeout:240000});}finally{fs.closeSync(fd);}
-const baseline=read(proof+'/baseline-latest.json');
+const baseline=read(baselineProof+'/baseline-latest.json');
 assert.equal(baseline.status,'passed');assert.equal(baseline.target,target);assert.equal(baseline.migrations,409);assert.equal(baseline.productionWrites,0);assert.deepEqual(baseline.sourceHashes,sources);
 assert.ok(Date.now()-Date.parse(baseline.at)<120000);
 assert.deepEqual(read(baseline.output+'/remote.private.json').LEDGER.map(r=>r.version),Object.keys(sources).map(n=>n.split('_')[0]).filter(v=>!pending.includes(v)));
 const checkpoint='C:/grookai_vault_operator_artifacts/master_index_executor_review_20260917/CHECKPOINT.md';assert.match(fs.readFileSync(checkpoint,'utf8'),/PAUSED At User Request/);
 const bound=['scripts/migration_preflight_strict.ps1','scripts/schema/verify_collectr_import_release_v1.mjs','scripts/schema/audit_collectr_import_baseline_v1.mjs','scripts/release/prepare_collectr_import_v1.mjs'];
-const report={at:new Date().toISOString(),status:'passed',phase,target,pending,sourceTree:git('write-tree'),sourceHashes:sources,toolHashes:Object.fromEntries(bound.map(p=>[p,hash(fs.readFileSync(root+p))])),baseline:baseline.output,baselineReceiptSha256:hash(fs.readFileSync(baseline.output+'/receipt.json')),checkpointSha256:hash(fs.readFileSync(checkpoint)),privateOutput:directory,productionWrites:0,resets:0,applyAuthority:false};
+const report={at:new Date().toISOString(),status:'passed',phase,target,pending,nativeBuild:336,qualificationRoot:proof,sourceTree:git('write-tree'),sourceHashes:sources,toolHashes:Object.fromEntries(bound.map(p=>[p,hash(fs.readFileSync(root+p))])),baseline:baseline.output,baselineReceiptSha256:hash(fs.readFileSync(baseline.output+'/receipt.json')),checkpointSha256:hash(fs.readFileSync(checkpoint)),privateOutput:directory,productionWrites:0,resets:0,applyAuthority:false};
 fs.writeFileSync(directory+'/receipt.json',JSON.stringify(report,null,2),{flag:'wx'});fs.writeFileSync(out+'/Release-'+phase+'.json',JSON.stringify(report,null,2));
 console.log(JSON.stringify({status:'passed',phase,target,pending,productionWrites:0,resets:0,applyAuthority:false}));

@@ -1,10 +1,9 @@
 # Collectr import fidelity repair
 
-Status: source-aware candidate implemented and locally qualified; physical
-acceptance passed for the earlier candidate. PR553 review fixes require fresh
-qualification and a replacement build;335 is superseded and must not be uploaded.
-Catalog/grade/sealed coverage is incomplete;
-retained review is not owned inventory.
+Status: the review-fixed candidate passes local and physical iPhone qualification.
+Build 336 is signed and verified; 335 is superseded. The fresh release inspection
+package is being prepared. No production deployment or real import is claimed.
+Catalog/grade/sealed coverage remains incomplete; retained review is not ownership.
 
 The physical iPhone Collectr preview exposed source fields being discarded,
 different copies collapsing into one parent, numberless rows disappearing, and

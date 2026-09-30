@@ -1,5 +1,23 @@
 # Collectr importer fidelity — September 30
 
+## Review fixes verified; release inspection refreshed
+
+PR553 includes all four review corrections. Fresh full replay, retained upgrade,
+real Auth/HTTP/RLS and scale checks pass. Physical V16/V17 verify interruption
+recovery, grade/blank-finish review, archived-copy reopening, and real iOS Files
+selection. Independent readback confirms three copies, one archived, one document
+and added counts 3/0/0 with the same IDs. Signed build 336 matches the tested source.
+Normal commit and push checks passed 5,829 contracts and 822 Flutter tests.
+
+Release inspection now binds this evidence and the build 336 IPA, using a fresh
+private package under collectr_import_release_20260930. Runtime/physical evidence
+remains under collectr_import_review_20260930. See the latest private checkpoint
+for gate and publication outcomes. No product source changed in this inspection
+update, so the verified native archive remains applicable. Old 335 and the former
+CLI package must not be released. Production and the real collection are unchanged.
+
+Historical checkpoints below describe superseded stages.
+
 ## PR553 review correction — release held
 
 Review identified blank-finish ambiguity, archived-copy readback, full payload

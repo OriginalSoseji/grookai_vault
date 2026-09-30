@@ -10,7 +10,7 @@ assert.equal(process.argv.length,3,'Use prepare or dry-run only');
 const mode=process.argv[2];assert.ok(['prepare','dry-run'].includes(mode),'No apply operation');
 const root=fileURLToPath(new URL('../../',import.meta.url));
 assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_collectr_import_20260930');
-const out='C:/grookai_vault_operator_artifacts/collectr_import_predeploy_20260930';
+const out='C:/grookai_vault_operator_artifacts/collectr_import_release_20260930';
 const dir=out+'/cli-package',target='ycdxbpibncqcchqiihfz';
 const names=['20260930010000_collectr_import_fidelity_v2.sql'];
 const checkpoint='C:/grookai_vault_operator_artifacts/master_index_executor_review_20260917/CHECKPOINT.md';
@@ -19,6 +19,7 @@ const read=p=>JSON.parse(fs.readFileSync(p));
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
 const hashes=d=>Object.fromEntries(fs.readdirSync(d).filter(n=>n.endsWith('.sql')).sort().map(n=>[n,hash(fs.readFileSync(path.join(d,n)))]));
 const gate=read(out+'/Release-'+(mode==='prepare'?'AuditLinkedSchema':'PrePush')+'.json');
+assert.equal(gate.nativeBuild,336);assert.equal(gate.qualificationRoot,'C:/grookai_vault_operator_artifacts/collectr_import_review_20260930');
 assert.equal(gate.status,'passed');assert.equal(gate.target,target);assert.equal(gate.applyAuthority,false);
 const age=Date.now()-Date.parse(gate.at);assert.ok(age>=0&&age<3600000,'Fresh gate required');
 assert.deepEqual(gate.pending,names.map(n=>n.split('_')[0]));
@@ -61,7 +62,7 @@ const cli=(args,name,base)=>{
 };
 if(mode==='prepare'){
   fs.mkdirSync(dir+'/supabase/migrations',{recursive:true});
-  const config='project_id = "grookai-collectr-import-inspection-20260930"\n[db]\nmajor_version = 17\n';
+  const config='project_id = "grookai-collectr-review-inspection-20260930"\n[db]\nmajor_version = 17\n';
   save(dir,'prepare-intent.json',{at:new Date().toISOString(),target,sourceHashes:gate.sourceHashes,configSha256:hash(config),gateSha256:hash(JSON.stringify(gate)),applyAuthority:false});
   for(const name of Object.keys(gate.sourceHashes))fs.copyFileSync(root+'supabase/migrations/'+name,dir+'/supabase/migrations/'+name,fs.constants.COPYFILE_EXCL);
   fs.writeFileSync(dir+'/supabase/config.toml',config,{flag:'wx'});

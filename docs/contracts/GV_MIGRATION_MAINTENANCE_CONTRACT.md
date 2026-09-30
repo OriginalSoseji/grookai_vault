@@ -1,34 +1,26 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
-## Collectr review hold (2026-09-30)
+## Collectr review-qualified inspection (2026-09-30)
 
-PR553 changes the unapplied410 payload after review. The previous release gate,
-CLI package and signed335 are superseded and must not be used to release. Fresh
-585xx/586xx replay/upgrade and runtime proof are retained separately under
-`collectr_import_review_20260930`. Rebind release inspection only after physical
-acceptance of the changed source; old evidence must fail closed. Production409
-is unchanged.
+The revised unapplied migration 20260930010000 is qualified against fresh review
+labs. Release inspection now binds the exact 410 migration hashes, full replay,
+retained 409-to-410 upgrade, real Auth/HTTP/RLS proof, export-sized rollback proof,
+physical V16/V17, archived-copy readback, and the signed build 336 source/IPA.
+Old 335 and its original CLI package remain superseded and must not be reused.
 
-## Collectr exact-pending inspection (2026-09-30)
+Use CollectrImportFidelityReleaseV1 only with AuditLinkedSchema or PrePush and
+-ExpectedLocalOnlyIds 20260930010000. The populated review labs are inspected
+read-only, never reset. Production 409 schema/security is freshly compared using
+the unchanged pinned engine. PrePush also requires clean source containing main
+and a fresh successful normal hook receipt. All tested source hashes are exact.
 
-`CollectrImportFidelityReleaseV1` accepts only AuditLinkedSchema or PrePush with
-`20260930010000`. It preserves duplicate scanning, rejects combined modes and
-target overrides, binds all410 migration hashes, the completed full replay and
-retained upgrade, real Auth/HTTP proof, both physical iPhone runs, and source
-readback. Current populated labs are inspected read-only and never reset.
-Fresh production409 schema/security comparison uses the unchanged pinned engine.
-PrePush additionally requires clean source containing origin/main and a fresh
-normal hook receipt. The baseline-only switch remains read-only and rejects
-PrePush. One test file's Git CRLF-to-LF conversion is reconstructed byte-exactly
-against its original acceptance hash; product hashes remain exact.
-
-`scripts/release/prepare_collectr_import_v1.mjs` prepares the one-use private CLI
-inspection package. Its dry-run requires fresh PrePush evidence and unchanged
-source/tree/tool hashes, checks the exact sole pending filename, and verifies
-production schema/ledger before and after with read-only PostgreSQL defaults.
-Neither tool applies migrations, deploys Edge functions or distributes a build.
-Private receipts are under `collectr_import_predeploy_20260930` in operator
-artifacts. Actual release and real collection import remain separate actions.
+scripts/release/prepare_collectr_import_v1.mjs prepares a fresh one-use private
+inspection package under collectr_import_release_20260930. Its dry-run requires
+fresh PrePush evidence, unchanged source/tree/tool hashes, the exact sole pending
+filename, and unchanged production schema/ledger with read-only DB defaults.
+Neither inspection tool applies migrations, deploys Edge, or distributes builds.
+Physical/runtime and signed-build evidence remains in collectr_import_review_20260930.
+Production release outcomes and any apply authority must be recorded separately.
 
 ## Existing seller adoption baseline (2026-09-28)
 
