@@ -2,6 +2,7 @@ import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "./tcgplayer_market_publication_policy_v1.mjs";
 import { applyTrainerKitPilotCoverageScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
+import { applyCosmosFinishPublicationScopeV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import {
   classifyTcgplayerMarketProductScopeV1_2,
   TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
@@ -88,10 +89,11 @@ export function tcgplayerMarketCoverageValueBandV1(marketPrice) {
 }
 
 function productScope(row) {
-  return applyTrainerKitPilotCoverageScopeV1(
+  const candidate = { ...row.candidate_payload, ...row };
+  return applyCosmosFinishPublicationScopeV1(applyTrainerKitPilotCoverageScopeV1(
     classifyTcgplayerMarketProductScopeV1_2(row),
-    { ...row.candidate_payload, ...row },
-  );
+    candidate,
+  ), candidate);
 }
 
 function denominatorExclusion(row) {

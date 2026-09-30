@@ -1,3 +1,4 @@
+import { applyCosmosFinishPublicationScopeV1, cosmosFinishQualificationReasonsV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import {
   classifyTcgplayerMarketProductScopeV1_3,
 } from "./tcgplayer_market_product_scope_v1.mjs";
@@ -15,7 +16,7 @@ export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3 =
 export const TCGPLAYER_MARKET_FRESHNESS_HOURS_V1 = 36;
 export const TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1 = 72;
 
-const SUPPORTED_FINISHES = new Set(["normal", "holo", "reverse", "foil"]);
+const SUPPORTED_FINISHES = new Set(["normal", "holo", "reverse", "foil", "cosmos"]);
 const SUPPORTED_IDENTITY_DOMAINS = new Map([
   [1, "mtg_eng_paper_print"],
   [3, "pokemon_eng_standard"],
@@ -58,7 +59,7 @@ export function evaluateTcgplayerMarketQualificationV1(
     suppressionHours = TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
   } = {},
 ) {
-  const reasons = [];
+  const reasons = cosmosFinishQualificationReasonsV1(row);
   const exclusionReasons = [];
   const sourceProductId = positiveInteger(row.source_product_id);
   const marketPrice = finiteNumber(row.market_price);
@@ -82,9 +83,9 @@ export function evaluateTcgplayerMarketQualificationV1(
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
   const categoryId = Number(row.category_id);
   const expectedIdentityDomain = SUPPORTED_IDENTITY_DOMAINS.get(categoryId) ?? null;
-  const scope = applyTrainerKitPilotPublicationScopeV1(
+  const scope = applyCosmosFinishPublicationScopeV1(applyTrainerKitPilotPublicationScopeV1(
     classifyTcgplayerMarketProductScopeV1_3(row), row,
-  );
+  ), row);
   const variantAssignmentStatus = clean(
     row.variant_assignment_status ?? row.derived_variant_assignment_status,
   );
@@ -274,7 +275,8 @@ export function evaluateTcgplayerMarketQualificationV1(
   const eligible = decision === "publish";
 
   return {
-    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
+    policy_version: cosmosFinishQualificationReasonsV1(row).length > 0 || normalizedFinish === "cosmos"
+      ? "TCGPLAYER_COSMOS_FINISH_V1" : TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
     decision,
     eligible,
     publication_lane: publicationLane,
@@ -288,6 +290,7 @@ export function evaluateTcgplayerMarketQualificationV1(
     source_age_hours:
       sourceAgeHours === null ? null : Math.round(sourceAgeHours * 1000) / 1000,
     evidence: {
+      cosmos_finish_authority: row.cosmos_finish_authority === true,
       category_id: categoryId,
       expected_identity_domain: expectedIdentityDomain,
       source_product_active: row.source_product_active === true,
