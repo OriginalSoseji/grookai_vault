@@ -39,7 +39,9 @@ export async function fetchPokemonCardsPageViaCurl(page, options = {}) {
         new Set(payload.data.map(card => card.id)).size !== payload.data.length)
       throw failure('POKEMON_REFERENCE_INVALID_PAGE', attempt, 200);
     return payload;
-  }, options, 9);
+  // Three finite windows let a temporarily unavailable page recover without
+  // discarding the catalog. Every attempt still spends the shared batch budget.
+  }, options, 27);
 }
 
 async function fetchReferenceViaCurl(relativePath, validate, {
@@ -94,6 +96,7 @@ async function fetchReferenceViaCurl(relativePath, validate, {
       }
     }
     if (!retry || attempt === attemptLimit) throw error;
-    await sleep(attemptLimit === 3 ? 750 * attempt : Math.min(30_000, 750 * 2 ** (attempt - 1)));
+    await sleep(attemptLimit === 3 ? 750 * attempt :
+      attempt % 9 === 0 ? 60_000 : Math.min(30_000, 750 * 2 ** ((attempt - 1) % 9)));
   }
 }

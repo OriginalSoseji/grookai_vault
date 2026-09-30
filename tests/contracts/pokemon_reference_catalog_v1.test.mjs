@@ -50,14 +50,48 @@ test('transport rejects a silently truncated successful page', async () => {
   const payload = { ...page(1), data: cards.slice(0, 10), count: 10 };
   await assert.rejects(fetchPokemonCardsPageViaCurl(1, { run: async () => ({ stdout: JSON.stringify(payload) + '\n200' }) }), { code: 'POKEMON_REFERENCE_INVALID_PAGE' });
 });
-test('page retry exhaustion stays below anonymous batch ceiling with spaced finite attempts', async () => {
+test('page retry exhaustion uses three finite windows with cooldowns', async () => {
   let requests = 0, gated = 0; const waits = [];
   await assert.rejects(fetchPokemonCardsPageViaCurl(1, { beforeAttempt: async () => { gated++; },
     sleep: async ms => waits.push(ms), run: async () => { requests++; return { stdout: 'upstream\n500' }; }
-  }), { code: 'POKEMON_REFERENCE_HTTP_500', attempts: 9 });
-  assert.equal(requests, 9); assert.equal(gated, 9);
-  assert.deepEqual(waits, [750, 1500, 3000, 6000, 12000, 24000, 30000, 30000]);
-  assert.ok(Math.ceil(20670 / 250) * requests < 900);
+  }), { code: 'POKEMON_REFERENCE_HTTP_500', attempts: 27 });
+  assert.equal(requests, 27); assert.equal(gated, 27);
+  const window = [750, 1500, 3000, 6000, 12000, 24000, 30000, 30000];
+  assert.deepEqual(waits, [...window, 60000, ...window, 60000, ...window]);
+});
+
+test('incident-shaped nine failed requests recover only after the cooldown window', async () => {
+  let requests = 0; const waits = [];
+  const result = await fetchPokemonCardsPageViaCurl(1, { sleep: async ms => waits.push(ms), run: async () => {
+    requests++; return { stdout: requests <= 9 ? '\n500' : JSON.stringify(page(1)) + '\n200' };
+  } });
+  assert.equal(requests, 10); assert.equal(result.totalCount, 501);
+  assert.equal(waits.at(-1), 60000);
+});
+
+test('all page recovery windows spend the same anonymous 900-request ceiling', async () => {
+  let time = 0, requests = 0;
+  const result = await fetchPokemonReferenceCatalogV1({ ids: ['missing-1'], now: () => time,
+    sleep: async ms => { time += ms; }, fetchPage: (n, options) => fetchPokemonCardsPageViaCurl(n, { ...options,
+      sleep: async ms => { time += ms; }, run: async () => {
+        requests++;
+        const data = Array.from({ length: 250 }, (_, i) => ({ id: `fixture-${(n - 1) * 250 + i}` }));
+        return { stdout: requests % 5 ? '\n500' : JSON.stringify({ data, page: n, pageSize: 250, count: 250, totalCount: 50000 }) + '\n200' };
+      } }),
+  });
+  assert.equal(requests, 900); assert.equal(result.attempts, 900);
+  assert.equal(result.stop_reason, 'POKEMON_REFERENCE_REQUEST_CEILING');
+  assert.equal(result.complete, false); assert.equal(result.pages_received, 180);
+});
+
+test('aggregate deadline prevents a new request after a page outage cooldown', async () => {
+  let time = 0, requests = 0;
+  const result = await fetchPokemonReferenceCatalogV1({ ids: ['missing-1'], budgetMs: 240000, now: () => time,
+    sleep: async ms => { time += ms; }, fetchPage: (n, options) => fetchPokemonCardsPageViaCurl(n, { ...options,
+      sleep: async ms => { time += ms; }, run: async () => { requests++; return { stdout: '\n500' }; } }),
+  });
+  assert.equal(requests, 9); assert.equal(result.complete, false);
+  assert.equal(result.stop_reason, 'POKEMON_REFERENCE_BATCH_BUDGET');
 });
 test('catalog page recovers after the incident-shaped three failed attempts', async () => {
   let requests = 0;
