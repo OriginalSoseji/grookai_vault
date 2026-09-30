@@ -1,0 +1,31 @@
+[Unit]
+Description=Grookai cross-tcg-sealed read-only catalog supervision
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=grookai
+Group=grookai
+WorkingDirectory=/opt/grookai_catalog_supervisor_current
+EnvironmentFile=/etc/grookai/catalog-supervisor.env
+Environment=GROOKAI_CATALOG_COMPONENT=cross-tcg-sealed
+Environment=CATALOG_AUTOMATION_MODE=shadow-only
+Environment=DOTENV_CONFIG_PATH=/nonexistent-catalog-supervisor-env
+ExecStart=/usr/bin/flock -w 120 /var/lib/grookai/catalog-supervision/worker.lock /usr/bin/node scripts/workers/background_catalog_readonly_worker_v1.mjs
+TimeoutStartSec=8m
+TimeoutStopSec=20s
+KillMode=control-group
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/grookai/catalog-supervision
+UMask=0027
+Nice=10
+CPUQuota=50%
+MemoryMax=512M
+IOWeight=25
+
+[Install]
+WantedBy=multi-user.target

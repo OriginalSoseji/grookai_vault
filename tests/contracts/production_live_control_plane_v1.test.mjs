@@ -271,7 +271,11 @@ test('background catalog adapters distinguish data health from unattended superv
     implemented: true,
     catalogRows: 100,
     supervisorState: 'active'
-  }).status, 'healthy');
+  }).status, 'degraded');
+  for (const status of ['healthy', 'failed', 'stale', 'degraded']) {
+    assert.equal(classifyBackgroundCatalogLaneV1({ implemented: true, catalogRows: 100,
+      supervisorState: 'active', workerEvidence: { status, reason: 'verified worker classification' } }).status, status);
+  }
   assert.equal(classifyBackgroundCatalogLaneV1({
     implemented: true,
     catalogRows: 100,

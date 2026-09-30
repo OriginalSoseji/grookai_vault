@@ -1,0 +1,11 @@
+[Unit]
+Description=Grookai cross-tcg-sealed six-hour read-only audit
+
+[Timer]
+OnActiveSec=3min
+OnUnitInactiveSec=6h
+AccuracySec=1s
+Unit=grookai-cross-tcg-sealed.service
+
+[Install]
+WantedBy=timers.target

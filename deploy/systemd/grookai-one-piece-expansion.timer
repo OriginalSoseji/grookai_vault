@@ -1,0 +1,11 @@
+[Unit]
+Description=Grookai one-piece-expansion six-hour read-only audit
+
+[Timer]
+OnActiveSec=2min
+OnUnitInactiveSec=6h
+AccuracySec=1s
+Unit=grookai-one-piece-expansion.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Grookai japanese-master-index six-hour read-only audit
+
+[Timer]
+OnActiveSec=1min
+OnUnitInactiveSec=6h
+AccuracySec=1s
+Unit=grookai-japanese-master-index.service
+
+[Install]
+WantedBy=timers.target
