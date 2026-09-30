@@ -52,6 +52,7 @@ param(
   [switch]$VendorStoreTeamBaselineAudit,
   [switch]$VendorStoreTeamWorkflowsBaselineAudit,
   [switch]$NativeImportRecoveryBaselineAudit,
+  [switch]$CollectrImportFidelityBaselineAudit,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -64,6 +65,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($CollectrImportFidelityBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CollectrImportFidelityBaselineAudit') }).Count -gt 0) {
+    throw 'Collectr fidelity baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_collectr_import_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Collectr baseline differs; no schema work/apply is qualified.' }
+  Write-Host 'STRICT COLLECTR BASELINE PASS — read-only, no PrePush or apply authority.'
+  exit 0
+}
 
 $script:PreflightStartedAt = Get-Date
 $script:StepIndex = 0

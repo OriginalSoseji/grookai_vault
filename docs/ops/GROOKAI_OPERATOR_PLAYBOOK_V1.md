@@ -33,6 +33,35 @@ Windows and Mac. nRF Connect's services are the second top segment, not the
 cylinder icon. Subscribe to FF01 before expecting fresh replies. Connected status
 alone does not establish print support; actual label output remains separate proof.
 
+## Collectr import fidelity — September 30
+
+Physical V4 contained-picker preview/save/interrupted-response retry/history and
+same-file reopen now pass, with independent exact-copy/source readback. The test
+account is consumed: never rerun its preparation or unused-account launch guard.
+Real iOS Files selection and release remain separate. Cursor reads must specify
+ascending order explicitly; fixtures must respect requested HTTP sort direction.
+For local full-gate builds, sanitize inherited credentials and select the existing
+read-only collector preview mode; do not activate a production target to build.
+
+Latest: source-aware V2 schema/Edge/native candidate now has complete410 replay,
+retained409-to410 upgrade and real Auth/HTTP/RLS/concurrent-retry proof. Native
+retry/readback and private Saved imports are implemented. Physical iPhone testing
+uses a fresh account in collectr-import-full-410-20260930, never the real account.
+The previous preview-only status below is historical. No production migration,
+Edge deployment, TestFlight upload or real collection import occurred.
+
+Read `docs/checkpoints/collectr_import_fidelity_20260930.md` and
+`docs/contracts/COLLECTR_IMPORT_FIDELITY_V1.md`. The founder asked to repair the
+importer before saving their real iPhone export. The isolated current-main native
+preview preserves source rows/metadata and completes catalog pagination; source
+details unsupported by the atomic V1 writer stay in review. This is not full
+finish/grade/portfolio/sealed save support or a release. The ordinary linked-schema
+diff is the documented three-table column-order difference. The separately scoped
+CollectrImportFidelityBaselineAudit now passes against the hash-verified409 replay
+with zero remaining schema/security delta; it has no replay/apply authority for
+the extension. Private CSV and evidence remain in
+collectr_iphone_import_20260929 outside source. No real collection import occurred.
+
 ## Native owned-copy selection — September 29
 
 Read `docs/checkpoints/native_owned_copies_20260929.md` and

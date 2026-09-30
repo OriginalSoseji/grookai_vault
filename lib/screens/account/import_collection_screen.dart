@@ -5,13 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/import/collection_import_service.dart';
+import '../../services/import/collection_import_source_session.dart';
+import 'import_collection_history_screen.dart';
 
 enum _ImportPreviewFilter { all, matched, needsReview }
 
 class ImportCollectionScreen extends StatefulWidget {
-  const ImportCollectionScreen({super.key, this.client});
+  const ImportCollectionScreen({
+    super.key,
+    this.client,
+    this.sourceAwareImport = true,
+  });
 
   final SupabaseClient? client;
+  final bool sourceAwareImport;
 
   @override
   State<ImportCollectionScreen> createState() => _ImportCollectionScreenState();
@@ -26,8 +33,10 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
   String? _error;
   bool _retryImport = false;
   CollectionImportPreview? _preview;
+  CollectionImportSourceSession? _sourceSession;
   CollectionImportResult? _result;
   _ImportPreviewFilter _filter = _ImportPreviewFilter.all;
+  int _displayLimit = 50;
 
   Future<void> _pickCsv() async {
     if (_importing || _matching) return;
@@ -63,10 +72,18 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
       }
 
       final csvText = CollectionImportService.decodeCsvBytes(bytes);
-      final preview = await CollectionImportService.buildPreview(
-        client: _client,
-        csvText: csvText,
-      );
+      final sourceSession = widget.sourceAwareImport
+          ? await CollectionImportSourceSession.prepare(
+              client: _client,
+              csvText: csvText,
+            )
+          : null;
+      final preview =
+          sourceSession?.preview ??
+          await CollectionImportService.buildPreview(
+            client: _client,
+            csvText: csvText,
+          );
 
       if (!mounted) {
         return;
@@ -75,9 +92,11 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
       setState(() {
         _fileName = file.name;
         _preview = preview;
+        _sourceSession = sourceSession;
         _result = null;
         _retryImport = false;
         _filter = _ImportPreviewFilter.all;
+        _displayLimit = 50;
         _matching = false;
       });
     } catch (error) {
@@ -104,10 +123,12 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
     });
 
     try {
-      final result = await CollectionImportService.importPreview(
-        client: _client,
-        preview: preview,
-      );
+      final result = _sourceSession != null
+          ? await _sourceSession!.save(_client)
+          : await CollectionImportService.importPreview(
+              client: _client,
+              preview: preview,
+            );
       if (!mounted) {
         return;
       }
@@ -137,13 +158,9 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
 
     switch (_filter) {
       case _ImportPreviewFilter.matched:
-        return preview.rows
-            .where((row) => row.status == CollectionImportMatchStatus.matched)
-            .toList();
+        return preview.rows.where((row) => row.canImport).toList();
       case _ImportPreviewFilter.needsReview:
-        return preview.rows
-            .where((row) => row.status != CollectionImportMatchStatus.matched)
-            .toList();
+        return preview.rows.where((row) => !row.canImport).toList();
       case _ImportPreviewFilter.all:
         return preview.rows;
     }
@@ -155,9 +172,28 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final matchedCount = preview?.summary.matchedRows ?? 0;
+    final filteredRows = _filteredRows;
+    final visibleRows = filteredRows.take(_displayLimit).toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Import Collection')),
+      appBar: AppBar(
+        title: const Text('Import Collection'),
+        actions: [
+          if (widget.sourceAwareImport)
+            IconButton(
+              tooltip: 'Saved imports',
+              icon: const Icon(Icons.history),
+              onPressed: _importing || _matching
+                  ? null
+                  : () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) =>
+                            ImportCollectionHistoryScreen(client: _client),
+                      ),
+                    ),
+            ),
+        ],
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(16, 10, 16, 20),
@@ -258,6 +294,16 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
+                    Text(
+                      _sourceSession != null
+                          ? '${preview.report.sourceQuantity} items in the CSV. Existing matching copies are checked when you import. '
+                                'Original rows, grades and portfolio names are saved privately for review. Rows needing review are not added as owned cards.'
+                          : '${preview.report.sourceQuantity} ${preview.report.sourceQuantity == 1 ? 'item' : 'items'} in the CSV. '
+                                '${preview.report.rowsAlreadyOwned} source rows already owned. '
+                                'Rows needing review are kept here and will not be imported.',
+                      style: theme.textTheme.bodySmall,
+                    ),
+                    const SizedBox(height: 12),
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
@@ -270,7 +316,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                           ),
                         ),
                         _FilterChip(
-                          label: 'Matched ${preview.summary.matchedRows}',
+                          label: 'Ready ${preview.summary.matchedRows}',
                           selected: _filter == _ImportPreviewFilter.matched,
                           onTap: () => setState(
                             () => _filter = _ImportPreviewFilter.matched,
@@ -289,13 +335,20 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                     const SizedBox(height: 14),
                     for (
                       var index = 0;
-                      index < _filteredRows.length;
+                      index < visibleRows.length;
                       index++
                     ) ...[
-                      _ImportPreviewTile(row: _filteredRows[index]),
-                      if (index < _filteredRows.length - 1)
+                      _ImportPreviewTile(row: visibleRows[index]),
+                      if (index < visibleRows.length - 1)
                         const SizedBox(height: 10),
                     ],
+                    if (visibleRows.length < filteredRows.length)
+                      TextButton(
+                        onPressed: () => setState(() => _displayLimit += 50),
+                        child: Text(
+                          'Show more (${filteredRows.length - visibleRows.length} remaining)',
+                        ),
+                      ),
                     const SizedBox(height: 14),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,14 +358,18 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Ready to import',
+                                _result != null && _sourceSession != null
+                                    ? 'Import saved'
+                                    : 'Ready to import',
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                matchedCount > 0
+                                _result != null && _sourceSession != null
+                                    ? 'Imported ${_result!.importedCards} cards. ${_result!.needsManualMatch} original rows need review in Saved imports.'
+                                    : matchedCount > 0
                                     ? '$matchedCount matched ${matchedCount == 1 ? 'row is' : 'rows are'} ready for import.'
                                     : 'No matched rows are ready to import yet.',
                                 style: theme.textTheme.bodySmall?.copyWith(
@@ -327,7 +384,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                         const SizedBox(width: 12),
                         FilledButton(
                           onPressed:
-                              matchedCount == 0 ||
+                              (matchedCount == 0 && _sourceSession == null) ||
                                   _importing ||
                                   _matching ||
                                   _result != null
@@ -338,6 +395,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                                 ? 'Importing…'
                                 : _retryImport
                                 ? 'Retry import'
+                                : matchedCount == 0 && _sourceSession != null
+                                ? 'Save for review'
                                 : 'Import to Vault',
                           ),
                         ),
@@ -347,7 +406,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                 ),
               ),
             ],
-            if (_result != null) ...[
+            if (_result != null && _sourceSession == null) ...[
               const SizedBox(height: 12),
               _StatusSurface(
                 tone: _StatusTone.success,
@@ -488,32 +547,45 @@ class _ImportPreviewTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final tone = switch (row.status) {
-      CollectionImportMatchStatus.matched => (
-        colorScheme.primary.withValues(alpha: 0.08),
-        colorScheme.primary,
-        'Matched',
-      ),
-      CollectionImportMatchStatus.multiple => (
-        Colors.amber.withValues(alpha: 0.12),
-        Colors.amber.shade800,
-        'Needs review',
-      ),
-      CollectionImportMatchStatus.missing => (
-        colorScheme.surfaceContainerHighest,
-        colorScheme.onSurface.withValues(alpha: 0.72),
-        'Missing match',
-      ),
-    };
+    final tone = row.reviewReasons.isNotEmpty
+        ? (
+            Colors.amber.withValues(alpha: 0.12),
+            Colors.amber.shade800,
+            'Needs review',
+          )
+        : switch (row.status) {
+            CollectionImportMatchStatus.matched => (
+              colorScheme.primary.withValues(alpha: 0.08),
+              colorScheme.primary,
+              'Matched',
+            ),
+            CollectionImportMatchStatus.multiple => (
+              Colors.amber.withValues(alpha: 0.12),
+              Colors.amber.shade800,
+              'Needs review',
+            ),
+            CollectionImportMatchStatus.missing => (
+              colorScheme.surfaceContainerHighest,
+              colorScheme.onSurface.withValues(alpha: 0.72),
+              'Missing match',
+            ),
+          };
 
     final metadata = <String>[
       row.row.displaySet,
       row.row.displayNumber,
       'Qty ${row.desiredQuantity}',
+      if (row.row.displayGame.isNotEmpty) row.row.displayGame,
+      if (row.row.finish.isNotEmpty) row.row.finish,
+      if (row.row.grade.isNotEmpty) row.row.grade,
+      if (row.row.portfolio.isNotEmpty) 'Portfolio: ${row.row.portfolio}',
+      'CSV row${row.row.sourceRows.length == 1 ? '' : 's'} ${row.row.sourceRows.join(', ')}',
     ].where((value) => value.trim().isNotEmpty && value != '—').toList();
 
     String support;
-    if (row.status == CollectionImportMatchStatus.matched &&
+    if (row.reviewReasons.isNotEmpty) {
+      support = row.reviewReasons.join('\n');
+    } else if (row.status == CollectionImportMatchStatus.matched &&
         row.match != null) {
       support = row.match!.gvId;
     } else if (row.status == CollectionImportMatchStatus.multiple) {
@@ -537,8 +609,6 @@ class _ImportPreviewTile extends StatelessWidget {
               children: [
                 Text(
                   row.row.displayName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -546,8 +616,6 @@ class _ImportPreviewTile extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   metadata.join(' • '),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.7),
                   ),
@@ -555,12 +623,48 @@ class _ImportPreviewTile extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   support,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.62),
                   ),
                 ),
+                if (row.row.sourceRecords.isNotEmpty)
+                  TextButton(
+                    onPressed: () => showModalBottomSheet<void>(
+                      context: context,
+                      isScrollControlled: true,
+                      useSafeArea: true,
+                      builder: (context) => DraggableScrollableSheet(
+                        expand: false,
+                        initialChildSize: 0.7,
+                        builder: (context, controller) => ListView(
+                          controller: controller,
+                          padding: const EdgeInsets.all(20),
+                          children: [
+                            Text(
+                              'CSV details',
+                              style: theme.textTheme.titleLarge,
+                            ),
+                            for (final source in row.row.sourceRecords) ...[
+                              const SizedBox(height: 16),
+                              Text(
+                                'CSV row ${source.sourceRow}',
+                                style: theme.textTheme.titleSmall,
+                              ),
+                              for (final field in source.sourceFields.entries)
+                                ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  title: Text(field.key),
+                                  subtitle: SelectableText(
+                                    field.value.isEmpty ? '—' : field.value,
+                                  ),
+                                ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ),
+                    child: const Text('View CSV details'),
+                  ),
               ],
             ),
           ),
