@@ -1,5 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
+// Shared with the interpretation probe; a smaller retained page could truncate results.
+export const NAMED_CARD_PAGE_SIZE = 512;
+
 type NamedRow = { id: string; gv_id?: string | null; name?: string | null };
 // Kept only by the request that performed the interpretation probe.
 export type NamedCardFirstPage = { query: string; gameScope: string; rows: NamedRow[] };
@@ -36,11 +39,11 @@ export async function fetchCompleteNamedCardRows(
     // A serialized server-action argument cannot supply a trusted RPC page.
     if (offset === 0 && first && retainedPages.has(first) && first.query === name && first.gameScope === options.gameScope &&
         (options.languageScope ?? "all") === "all" && !options.exactSetCode) return first.rows;
-    const { data, error } = await client.rpc("search_game_card_prints_v4", {
+    const { data, error } = await client.rpc("search_game_card_prints_v5", {
       game_code_in: options.gameScope, q: name,
       set_code_in: options.exactSetCode ?? null, number_in: null,
       illustrator_in: null, language_scope_in: options.languageScope ?? "all",
-      limit_in: 64, offset_in: offset,
+      limit_in: NAMED_CARD_PAGE_SIZE, offset_in: offset,
     });
     if (error) throw new Error(error.message);
     return (data ?? []) as NamedRow[];
@@ -48,7 +51,7 @@ export async function fetchCompleteNamedCardRows(
   const rows: NamedRow[] = [];
   const seen = new Set<string>();
   for (let offset = 0; offset < 10000;) {
-    const offsets = Array.from({ length: offset === 0 ? 1 : 4 }, (_, i) => offset + i * 64)
+    const offsets = Array.from({ length: offset === 0 ? 1 : 4 }, (_, i) => offset + i * NAMED_CARD_PAGE_SIZE)
       .filter((value) => value < 10000);
     // Attach both handlers immediately: speculative pages after the first short
     // page cannot cause an unhandled rejection or delay a complete result.
@@ -68,9 +71,9 @@ export async function fetchCompleteNamedCardRows(
         // Pocket exclusions must not shorten the raw RPC paging boundary.
         if (row.gv_id?.startsWith(prefix) && matchesName(row)) rows.push(row);
       }
-      if (page.length < 64) return rows;
+      if (page.length < NAMED_CARD_PAGE_SIZE) return rows;
     }
-    offset += offsets.length * 64;
+    offset += offsets.length * NAMED_CARD_PAGE_SIZE;
   }
   // The RPC caps offsets at 10,000. Never publish a truncated success.
   throw new Error("Named-card search is too broad to verify completely. Narrow your search.");
