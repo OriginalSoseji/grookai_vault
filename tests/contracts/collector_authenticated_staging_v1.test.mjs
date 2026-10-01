@@ -20,6 +20,14 @@ function stagingMode(env = {}) {
   return exports;
 }
 const { assertCollectorStagingTarget } = stagingMode();
+test('Collectr browser proof can only use its retained local lab', () => {
+  const mode = stagingMode({ NEXT_PUBLIC_COLLECTR_IMPORT_LOCAL_TEST: 'true' }).assertCollectorStagingTarget;
+  assert.doesNotThrow(() => mode('http://127.0.0.1:58541'));
+  assert.throws(() => assertCollectorStagingTarget('http://127.0.0.1:58541'));
+  for (const url of ['https://ycdxbpibncqcchqiihfz.supabase.co', 'http://127.0.0.1:54321', 'http://localhost:58541', 'http://127.0.0.1:58541/rest']) assert.throws(() => mode(url));
+  assert.throws(() => mode('http://127.0.0.1:58541', true));
+  assert.throws(() => mode('http://127.0.0.1:58541', false, true));
+});
 const module = { exports: {} };
 vm.runInNewContext(ts.transpileModule(fs.readFileSync(new URL('../../apps/web/src/lib/vault/cardAddOptions.ts', import.meta.url), 'utf8'),
   { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText,
