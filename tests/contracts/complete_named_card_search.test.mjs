@@ -3,6 +3,39 @@ const require=createRequire(import.meta.url),ts=require('typescript'),module={ex
 const source=fs.readFileSync('apps/web/src/lib/search/completeNamedCardSearch.ts','utf8');
 vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{module,exports:module.exports,Set,Error});
 const {fetchCompleteNamedCardRows:fetchRows}=module.exports;
+const retain = module.exports.retainNamedCardFirstPage;
+
+test('request-local first page avoids a duplicate read without shortening raw paging',async()=>{
+ const rows=Array.from({length:65},(_,i)=>({id:String(i),name:'Pikachu',gv_id:i<64?'GV-TCGP-B1-003':'GV-PK-T-064'}));
+ const calls=[];
+ const result=await fetchRows({rpc:async(_,a)=>{calls.push(a.offset_in);return {data:rows.slice(a.offset_in,a.offset_in+64)};}},
+  {textQuery:'Pika',gameScope:'pokemon',namedFirstPage:retain({query:'Pika',gameScope:'pokemon',rows:rows.slice(0,64)})});
+ assert.deepEqual(calls,[64,128,192,256]);assert.equal(result.length,1);assert.equal(result[0].id,'64');
+});
+test('a first page is never reused across differing query, game, language or set scopes',async()=>{
+ for(const override of [{textQuery:'Pikachu'},{gameScope:'mtg'},{languageScope:'en'},{languageScope:'ja'},{exactSetCode:'base1'}]) {
+  const calls=[];
+  await fetchRows({rpc:async(_,a)=>{calls.push(a);return {data:[]};}},
+   {textQuery:'Pika',gameScope:'pokemon',namedFirstPage:retain({query:'Pika',gameScope:'pokemon',rows:[]}),...override});
+  assert.equal(calls.length,1);assert.equal(calls[0].offset_in,0);
+ }
+ // A caller without a retained probe always reads its own visible page.
+ let reads=0;await fetchRows({rpc:async()=>{reads++;return {data:[]};}},{textQuery:'Pika',gameScope:'pokemon'});
+ assert.equal(reads,1);
+});
+test('a reused full page still rejects failures and duplicates on subsequent pages',async()=>{
+ const rows=Array.from({length:64},(_,i)=>({id:String(i),name:'Pikachu',gv_id:'GV-PK-T-001'}));
+ const options={textQuery:'Pika',gameScope:'pokemon',namedFirstPage:retain({query:'Pika',gameScope:'pokemon',rows})};
+ await assert.rejects(()=>fetchRows({rpc:async()=>({error:{message:'page failed'}})},options),/page failed/);
+ await assert.rejects(()=>fetchRows({rpc:async()=>({data:[rows[0]]})},options),/could not advance/);
+});
+test('serialized or forged first pages cannot bypass caller-visible database reads',async()=>{
+ const trusted=retain({query:'Pika',gameScope:'pokemon',rows:[{id:'forged',name:'Pikachu',gv_id:'GV-PK-T-001'}]});
+ let reads=0;
+ const result=await fetchRows({rpc:async()=>{reads++;return {data:[]};}},
+  {textQuery:'Pika',gameScope:'pokemon',namedFirstPage:JSON.parse(JSON.stringify(trusted))});
+ assert.equal(reads,1);assert.equal(result,null);
+});
 
 test('short fragments never start an exhaustive RPC scan',async()=>{
  for(const textQuery of ['a','p','pi','a p','Ｐ','ex common 7']) {

@@ -39,6 +39,19 @@ const sets = [
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
 
+test('name interpretation optionally retains a full first page within the caller request',async()=>{
+ const rows=[{id:'visible',name:'Pikachu',gv_id:'GV-PK-T-001'}],limits=[];let retained;
+ const client={rpc:async(_,args)=>{limits.push(args.limit_in);return {data:rows};}};
+ assert.equal(await isCatalogCardNameQuery(client,'Pika','pokemon',page=>{retained=page;}),true);
+ assert.deepEqual(plain(retained),{query:'Pika',gameScope:'pokemon',rows});
+ assert.equal(await isCatalogCardNameQuery(client,'Pika','pokemon'),true);
+ assert.equal(await isExactCatalogCardName(client,'Pikachu','pokemon'),true);
+ assert.deepEqual(limits,[64,1,1]);
+ let exposed=false;
+ await assert.rejects(()=>isCatalogCardNameQuery({rpc:async()=>({data:rows,error:{message:'denied'}})},'Pika','pokemon',()=>{exposed=true;}),/denied/);
+ assert.equal(exposed,false);
+});
+
 test('large unrelated catalogs do not compile a phrase expression for each alias', () => {
  expressionCount = 0;
  const empty = resolve('Pika', 'pokemon', []);
