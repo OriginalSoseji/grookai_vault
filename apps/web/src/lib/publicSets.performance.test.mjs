@@ -122,9 +122,9 @@ test("set detail counts exact visible set lanes without relationship aggregates"
 });
 
 test("card reads resolve visible game-scoped set metadata before exact indexed set-id queries", () => {
-  assert.match(exactCodesSource, /\.from\("sets"\)/);
-  assert.match(exactCodesSource, /\.ilike\("code"/);
-  assert.match(exactCodesSource, /query = query\.eq\("game", normalizedGameCode\)/);
+  assert.match(exactCodesSource, /\.rpc\("resolve_visible_set_references_v1"/);
+  assert.match(exactCodesSource, /code_in: normalizedCode/);
+  assert.match(exactCodesSource, /game_code_in: normalizedGameCode \|\| null/);
   assert.doesNotMatch(source, /\.ilike\("set_code"/);
   assert.match(cardsFunctionSource, /resolveVisiblePublicSetReferences/);
   assert.match(cardsFunctionSource, /\.in\("set_id", exactSetIds\)/);

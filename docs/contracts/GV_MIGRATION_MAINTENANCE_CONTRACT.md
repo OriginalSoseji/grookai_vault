@@ -1,5 +1,19 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Search database latency qualification (2026-10-01)
+
+`SearchDatabaseLatencyV1` accepts AuditLinkedSchema/PrePush for exactly
+20261001150000 over411. The initial baseline audit may omit the pending ID.
+Duplicate timestamp/object checks remain mandatory. PrePush binds the V2 full412
+replay/no-op push, retained411-to412 upgrade, real Auth/HTTP visibility and query
+plan proof, fresh production411 schema/security parity, and successful normal
+hooks on clean committed source containing main. All preexisting set fields and
+copy rows must be unchanged; the new generated case-folded key must equal
+lower(code). There is no policy relaxation or canonical data repair. The private
+CLI prepare/dry-run helper admits only the exact pending migration. Neither gate
+nor inspection helper applies changes; authorized application needs fresh intent
+and independent schema, data-boundary and permissions readback.
+
 ## Cosmos pricing qualification (2026-09-30)
 
 `CosmosPricingReleaseV1` accepts only AuditLinkedSchema/PrePush with exactly

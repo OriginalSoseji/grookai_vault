@@ -1,4 +1,4 @@
-import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } from "@/lib/search/catalogSetSearch";
+import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, type SearchSet } from "@/lib/search/catalogSetSearch";
 import { supportsCompleteNameSearch } from "@/lib/search/completeNamedCardSearch";
 import { NextRequest, NextResponse } from "next/server";
 import { isIdentityFilterActive, normalizeIdentityFilterKey } from "@/lib/cards/identitySearch";
@@ -362,6 +362,9 @@ async function applySmartSearchPostFilters(
 }
 
 export async function GET(request: NextRequest) {
+  const searchStartedAt = performance.now();
+  // Credentials can change set visibility even without pricing/ownership filters.
+  const hasRequestCredentials = Boolean(request.headers.get("authorization") || request.headers.get("cookie"));
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   if (rawQuery.length > 500) {
     return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400 });
@@ -374,10 +377,11 @@ export async function GET(request: NextRequest) {
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
   let literalNameSearch = false;
+  let searchSets: SearchSet[] | undefined;
   if (!exactSetCode && query.trim() && !/^GV-/i.test(query)) {
     try {
       const catalog = await createServerComponentClient();
-      const searchSets = await readSearchSets(catalog, gameScope);
+      searchSets = await readSearchSets(catalog, gameScope);
       let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets);
       const ignoredOpeningWords: string[] = [];
       while (candidate.openingWordMatch && candidate.matchedAlias) {
@@ -440,6 +444,7 @@ export async function GET(request: NextRequest) {
     literalNameSearch || smartSearchIntent.queryFilters?.length || explicitFinishKeys.length || explicitStampLabels.length ||
     effectiveExactSetCode || inlineSetIntent.setCodes.length || exactIllustrator || exactReleaseYear || explicitYearMin || explicitYearMax || explicitOwnedState || explicitImageState,
   );
+  const interpretationFinishedAt = performance.now();
   const completeSearch = Boolean(artistSearch) || completeCombinedSearch;
   const artistPaginationRequested = request.nextUrl.searchParams.get("pagination") === "1";
   const offsetText = request.nextUrl.searchParams.get("offset") ?? "0";
@@ -601,6 +606,7 @@ export async function GET(request: NextRequest) {
       !isIdentityFilterActive(identityFilter);
     const resolvedSearchPromise = artistSearch
       ? getExploreRowsForArtistSearch(artistSearch, {
+          searchSets,
           sortMode,
           exactArtist: Boolean(exactIllustrator),
           artistNames: exactIllustrator ? undefined : smartSearchIntent.artistNames,
@@ -625,6 +631,7 @@ export async function GET(request: NextRequest) {
         }))
       : completeCombinedSearch
       ? getExploreRowsForCombinedSearch({
+          searchSets,
           gameScope,
           exactIllustrator,
           exactSetCodes: exactSetCode ? undefined : inlineSetIntent.setCodes,
@@ -800,6 +807,7 @@ export async function GET(request: NextRequest) {
         },
       );
     }
+    const resolutionFinishedAt = performance.now();
     const canonicalResults = gameScope === "pokemon"
       ? resolved.rows.filter((row) => matchesPublicLanguageScope(row, languageScope))
       : resolved.rows;
@@ -887,9 +895,10 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           "Cache-Control":
-            pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
+            hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
+          "Server-Timing": `interpret;dur=${(interpretationFinishedAt - searchStartedAt).toFixed(1)}, resolve;dur=${(resolutionFinishedAt - interpretationFinishedAt).toFixed(1)}, finish;dur=${(performance.now() - resolutionFinishedAt).toFixed(1)}`,
         },
       },
     );

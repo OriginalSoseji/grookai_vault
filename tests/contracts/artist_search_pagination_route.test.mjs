@@ -37,6 +37,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
     '@/lib/supabase/server': {
       createServerComponentClient: async () => ({
         rpc: async (_name, args) => {
+          if (_name === 'get_search_set_catalog_v1') return {data:{complete:true,sets},error:catalogFail?{message:'offline'}:null};
           if (exactCardName) assert.equal(args.q, exactCardName);
           return {data: exactCardName ? [{name:exactCardName}] : partialCardNames[args.q] ? [{name:partialCardNames[args.q]}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
         },
@@ -56,7 +57,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
     const code = ts.transpileModule(fs.readFileSync(file, 'utf8'), {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
     }).outputText;
-    vm.runInNewContext(code, { module, exports: module.exports, process, console, Error,
+    vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance,
       setTimeout, clearTimeout, require: (id) => {
         if (Object.hasOwn(mocks, id)) return mocks[id];
         if (id.startsWith('@/') || id.startsWith('.')) {
@@ -69,8 +70,22 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
     }, { filename: file });
     return module.exports;
   }
-  return load(path.join(web, 'app/api/resolver/search/route.ts')).GET;
+  const get = load(path.join(web, 'app/api/resolver/search/route.ts')).GET;
+  return request => get({headers:new Headers(),...request});
 }
+
+test('credentialed catalog searches are private and reuse the same request catalog', async () => {
+ const sets=[{id:'visible',code:'base1',name:'Base Set',printed_total:102}];
+ let options;
+ const get=loadRoute({sets,capture:value=>{options=value;}});
+ for(const headers of [new Headers(),new Headers({cookie:'sb-fixture-auth-token=fixture'}),new Headers({authorization:'Bearer fixture'})]){
+  const response=await get({headers,nextUrl:new URL('https://fixture?q=Yuka+Morii+Wurmple')});
+  assert.equal(response.status,200);
+  assert.equal(response.headers.get('cache-control'),[...headers].length?'private, no-store':'public, s-maxage=120, stale-while-revalidate=300');
+  assert.equal(options.searchSets,sets);
+  assert.match(response.headers.get('server-timing'),/^interpret;dur=\d+\.\d, resolve;dur=\d+\.\d, finish;dur=\d+\.\d$/);
+ }
+});
 
 test('actual resolver route pages full, lowercase, surname and explicit artist requests without loss', async () => {
   const get = loadRoute();

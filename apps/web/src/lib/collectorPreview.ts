@@ -6,6 +6,7 @@ export const PREVIEW_READ_RPCS = new Set([
   "card_print_public_traits_v1", "get_card_print_image_faces_v1",
   "card_journey_public_counts_v1", "search_card_prints_v1",
   "search_print_identity_v1", "search_game_card_prints_v4",
+  "get_search_set_catalog_v1", "resolve_visible_set_references_v1",
 ]);
 
 export function createPreviewReadFetch(url: string, key: string, transport: typeof fetch = fetch): typeof fetch {

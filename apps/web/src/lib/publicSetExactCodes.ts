@@ -1,5 +1,4 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { escapePostgrestLikePattern } from "@/lib/publicSetCanonicalization";
 
 type PublicSetCodeRow = {
   id: string | null;
@@ -16,17 +15,10 @@ export async function resolveVisiblePublicSetReferences(
   normalizedCode: string,
   gameCode?: string | null,
 ): Promise<PublicSetReference[]> {
-  let query = supabase
-    .from("sets")
-    .select("id,code")
-    .ilike("code", escapePostgrestLikePattern(normalizedCode));
-
   const normalizedGameCode = gameCode?.trim().toLowerCase();
-  if (normalizedGameCode) {
-    query = query.eq("game", normalizedGameCode);
-  }
-
-  const { data, error } = await query;
+  const { data, error } = await supabase.rpc("resolve_visible_set_references_v1", {
+    code_in: normalizedCode, game_code_in: normalizedGameCode || null,
+  });
 
   if (error) {
     throw new Error(`[sets.resolve-exact-codes] ${error.message}`);
