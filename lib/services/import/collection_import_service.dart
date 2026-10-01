@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../vault/vault_card_service.dart';
 import 'collection_import_mtg_identity.dart';
 import 'collection_import_pokemon_name.dart';
+import 'collection_import_set_scope.dart';
 
 class CollectionImportParsedRow {
   const CollectionImportParsedRow({
@@ -433,6 +434,7 @@ class CollectionImportService {
       client: client,
       rows: validRows,
       setNameMap: setNameMap,
+      sourceAware: sourceAware,
     );
     final byKey = <String, List<_CollectionImportCandidateRow>>{};
     for (final card in candidates) {
@@ -457,12 +459,12 @@ class CollectionImportService {
     List<_CollectionImportCandidateRow> treatmentCandidates(
       CollectionImportNormalizedRow row,
     ) => sourceAware && row.gameCode == 'mtg'
-        ? (byCoordinate[_buildMatchKey(
-                    row.compareSet,
-                    row.compareNumber,
-                    '',
-                  )] ??
-                  [])
+        ? _matchingSetKeys(row, sourceAware)
+              .expand(
+                (key) =>
+                    byCoordinate[_buildMatchKey(key, row.compareNumber, '')] ??
+                    <_CollectionImportCandidateRow>[],
+              )
               .where((card) => card.game == 'mtg')
               .toList()
         : [];
@@ -501,26 +503,25 @@ class CollectionImportService {
     List<_CollectionImportCandidateRow> matchesFor(
       CollectionImportNormalizedRow row,
     ) => matchCache.putIfAbsent(row, () {
-      final exact =
-          (byKey[_buildMatchKey(
-                    row.compareSet,
-                    row.compareNumber,
-                    row.compareName,
-                  )] ??
-                  [])
-              .where(
-                (card) => row.gameCode.isEmpty || card.game == row.gameCode,
-              )
-              .toList();
+      final exact = _matchingSetKeys(row, sourceAware)
+          .expand(
+            (key) =>
+                byKey[_buildMatchKey(
+                  key,
+                  row.compareNumber,
+                  row.compareName,
+                )] ??
+                <_CollectionImportCandidateRow>[],
+          )
+          .where((card) => row.gameCode.isEmpty || card.game == row.gameCode)
+          .toList();
       final result = {for (final card in exact) card.id: card};
       if (sourceAware && row.gameCode == 'pokemon') {
-        for (final card
-            in byCoordinate[_buildMatchKey(
-                  row.compareSet,
-                  row.compareNumber,
-                  '',
-                )] ??
-                <_CollectionImportCandidateRow>[]) {
+        for (final card in _matchingSetKeys(row, sourceAware).expand(
+          (key) =>
+              byCoordinate[_buildMatchKey(key, row.compareNumber, '')] ??
+              <_CollectionImportCandidateRow>[],
+        )) {
           if (card.game == 'pokemon' &&
               matchesCollectrPokemonName(
                 sourceName: row.displayName,
@@ -1282,15 +1283,25 @@ class CollectionImportService {
     }
   }
 
+  static List<String> _matchingSetKeys(
+    CollectionImportNormalizedRow row,
+    bool sourceAware,
+  ) => sourceAware
+      ? collectrSetTargets(row.compareSet, row.gameCode, row.compareNumber)
+      : [row.compareSet];
+
   static Future<List<_CollectionImportCandidateRow>> _fetchCandidateRows({
     required SupabaseClient client,
     required List<CollectionImportNormalizedRow> rows,
     required Map<String, List<_CollectionImportSetRow>> setNameMap,
+    required bool sourceAware,
   }) async {
     final sets = <String, _CollectionImportSetRow>{};
     for (final row in rows) {
-      for (final set
-          in setNameMap[row.compareSet] ?? <_CollectionImportSetRow>[]) {
+      for (final set in _matchingSetKeys(
+        row,
+        sourceAware,
+      ).expand((key) => setNameMap[key] ?? <_CollectionImportSetRow>[])) {
         if (row.gameCode.isEmpty || row.gameCode == set.game) {
           sets[set.id] = set;
         }

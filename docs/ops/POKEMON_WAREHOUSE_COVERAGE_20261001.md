@@ -1,5 +1,27 @@
 # Pokemon warehouse coverage — October 1, 2026
 
+## Release continuation
+
+Dragonite's GameStop parent, reviewed Holo printing and exact hosted image are
+now admitted and passed anonymous public readback. All three warehouse candidates
+are PROMOTED; do not replay their consumed actions. The refreshed inventory
+accounts for 63,564 products, with 23 GameStop source relationships still open.
+Production recovery receipts remain in `gamestop_promotion_20261001/STATUS.md`.
+
+The website and recurring audit release is tracked separately in
+`C:/grookai_vault_operator_artifacts/gamestop_release_20261001/CHECKPOINT.md`.
+The branch includes current main's search and Collectr releases. Normal and hosted
+checks must qualify this integrated source. Preserve the current live deployment,
+source and environment flags; pause automatic domain assignment before merging,
+verify the exact production-target candidate, then promote and repeat public
+search/browser checks before restoring the original assignment setting. The
+ordinary Vercel preview activation guard must not be disabled. A merged workflow
+must also produce an actual hosted warehouse report before claiming operational
+coverage; unresolved relationships should retain its failing completeness status.
+
+Earlier preparation notes below are historical. The private release checkpoint
+records actual merge, deployment and scheduled/manual workflow results.
+
 Status: implementation candidate. The six-hour workflow change is not deployed.
 Dragonite's stamped parent has now been promoted with verified identity readback.
 Its exact Holo authority is prepared; consult the private follow-up checkpoint for

@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Web-first Collectr importer — October 1
+
+Read `docs/checkpoints/collectr_web_v2_20261001.md`. The founder removed physical
+iPhone testing as a prerequisite; qualify the source-aware website with real
+sandbox Auth/HTTP/SQL and browser save/retry readback. The fixed isolated web
+worktree uses `GV_COLLECTR_WEB_HTTP_PROOF=1` with the existing retained410 lab.
+`NEXT_PUBLIC_COLLECTR_IMPORT_LOCAL_TEST=true` only admits loopback58541 under
+authenticated local staging, never production or another test mode. Next runs
+on58863. The helper owns its server process and creates fresh synthetic accounts;
+never reset the populated database or reuse previous release/import intents.
+Private artifacts and terminal status are in `collectr_web_v2_20261001` under the
+operator-artifact root. Search latency remains a separate branch and release.
+
 ## Reviewed Cosmos pricing — September 30
 
 Read `docs/contracts/TCGPLAYER_COSMOS_FINISH_V1.md` and
@@ -51,6 +64,16 @@ cylinder icon. Subscribe to FF01 before expecting fresh replies. Connected statu
 alone does not establish print support; actual label output remains separate proof.
 
 ## Collectr import fidelity — September 30
+
+Current: PR561/internal TestFlight340 and its original-export iPhone preview are
+complete without saving. Continue in `C:/gv_collectr_set_scope_20261001`; private
+`collectr_set_scope_20261001/CHECKPOINT.md` is authoritative. The new V2 directional
+set scopes require `set_scope.ts` in Edge packaging and deployed-file verification.
+`GV_COLLECTR_SCOPE_HTTP_PROOF=1` qualifies all listed constituents through the
+existing retained410 Auth/HTTP/SQL lab using fresh synthetic accounts. Its finite
+MTG set visibility overrides are local fixtures; preserve previous controls.
+Never reset the populated lab or reuse340 release/device intents. Both native
+and backend distribution remain separate gates for this follow-up.
 
 Latest: PR560/backend V2 version4/internal TestFlight339 are released and the
 original-export physical339 preview passed without saving. The next isolated
@@ -2033,6 +2056,22 @@ shadow/reconciliation proof, retain rollback pins, and verify actual production
 publication separately. The September 29 capacity recovery alone is not proof
 that pricing or MEE ingestion has completed.
 
+# Search latency and web-first importer verification — October 1, 2026
+
+Read `docs/checkpoints/search_latency_20261001.md`. Named searches use the
+caller-scoped RPC, starting one page then at most four concurrent page reads,
+consumed in offset order until the first short page. Native enrichment is independently
+published for visible cards; stale responses and errors cannot erase results.
+Do not replace this with truncated search results, shared account caches or
+broader fallback queries. Preserve exact printing filters and quick-add guards.
+
+The founder removed physical iPhone testing as an importer release prerequisite.
+Validate online using the web workflow and real sandbox Auth/HTTP/SQL, then use
+native build/static checks for packaging. Do not ask for a phone or record a
+physical pass when none occurred. The private Collectr set-scope checkpoint is
+authoritative for PR562 and its remaining web/release work; keep it separate from
+the search latency candidate and do not replay prior release/import intents.
+
 # Pricing scheduler session and process containment — September 29, 2026
 
 Scheduled runner V1_2 and publication worker V1_9 select port 5432 on the
@@ -2113,6 +2152,14 @@ workflow and a successful manual audit do not prove timely scheduled execution.
 Verify actual `schedule` events; report stale evidence honestly if delays persist.
 
 ## Pokemon warehouse coverage — October 1, 2026
+
+Dragonite's parent, Holo printing and exact image are now live and publicly
+verified. All consumed promotion actions must remain preserved. The separate
+search/workflow release is tracked in private
+`gamestop_release_20261001/CHECKPOINT.md`; this includes integration with the
+current main search and Collectr releases, a staged production-target website,
+rollback preservation and actual hosted warehouse-audit proof. Do not disable the
+ordinary preview activation guard or infer deployed coverage from local tests.
 
 Read `docs/ops/POKEMON_WAREHOUSE_COVERAGE_20261001.md` before continuing
 Pokemon warehouse gaps. The coverage worker accounts for every preserved English

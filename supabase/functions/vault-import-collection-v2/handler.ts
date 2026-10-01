@@ -1,6 +1,7 @@
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
 import { matchesCollectrMtgIdentity } from "./mtg_identity.ts";
 import { matchesCollectrPokemonName } from "./pokemon_name.ts";
+import { collectrSetTargets } from "./set_scope.ts";
 import {
   ImportValidationError,
   jsonbByteSize,
@@ -202,7 +203,7 @@ async function resolveTargets(
           game: base.game, card}) &&
         !matchesCollectrMtgIdentity({sourceName: base.name, sourceNumber: base.number,
           game: base.game, card, identities: identities.get(card.id) ?? []})) ||
-      setName(set.name ?? "", base.game) !== base.set ||
+      !collectrSetTargets(base.set, base.game, base.number).includes(setName(set.name ?? "", base.game)) ||
       number(card.number ?? "") !== base.number
     ) throw new ImportValidationError("import_card_identity_mismatch");
     let finishKey = base.finishKey;

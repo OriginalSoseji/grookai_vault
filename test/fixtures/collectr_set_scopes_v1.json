@@ -1,0 +1,11 @@
+[
+  {"game":"pokemon","source":"30th Celebration: Classic Collection","catalog":["30th Celebration Classic Collection"]},
+  {"game":"pokemon","source":"Mega Evolution Promos","catalog":["MEP Black Star Promos"]},
+  {"game":"pokemon","source":"Pitch Black","catalog":["Mega Evolution: Pitch Black"]},
+  {"game":"mtg","source":"Marvel Eternal-Legal","catalog":["Marvel Universe"]},
+  {"game":"pokemon","source":"Generations: Radiant Collection","catalog":["Generations"],"numberPrefix":"RC"},
+  {"game":"pokemon","source":"Legendary Treasures: Radiant Collections","catalog":["Legendary Treasures"],"numberPrefix":"RC"},
+  {"game":"pokemon","source":"EX Trainer Kit 1: Latias & Latios","catalog":["EX Trainer Kit (Latias)","EX Trainer Kit (Latios)","EX Trainer Kit Latias","EX Trainer Kit Latios"]},
+  {"game":"pokemon","source":"SM Trainer Kit: Lycanroc & Alolan Raichu","catalog":["SM Trainer Kit (Lycanroc)","SM Trainer Kit (Alolan Raichu)"]},
+  {"game":"pokemon","source":"XY Trainer Kit: Pikachu Libre & Suicune","catalog":["XY Trainer Kit (Pikachu Libre)","XY Trainer Kit (Suicune)"]}
+]

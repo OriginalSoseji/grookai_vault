@@ -3609,6 +3609,7 @@ class HomePageState extends State<HomePage> {
   Timer? _debounce;
   int _searchRequestVersion = 0;
   String? _activeSearchKey;
+  final Set<String> _searchEnrichmentRequested = <String>{};
   _RarityFilter _rarityFilter = _RarityFilter.all;
   String _identityFilter = kIdentityFilterAll;
   String _languageScope = 'all';
@@ -4233,6 +4234,7 @@ class HomePageState extends State<HomePage> {
     if (_loading && _activeSearchKey == searchKey) return;
     _activeSearchKey = searchKey;
     final requestVersion = ++_searchRequestVersion;
+    _searchEnrichmentRequested.clear();
     setState(() {
       _loading = true;
       _searchError = null;
@@ -4277,46 +4279,7 @@ class HomePageState extends State<HomePage> {
         _searchError = null;
         _loading = false;
       });
-      var pricing = const <String, CardSurfacePricingData>{};
-      if (!widget.signedOutBrowse) {
-        try {
-          pricing = await CardSurfacePricingService.fetchByCardPrintIds(
-            client: supabase,
-            cardPrintIds: resolved.rows.map((card) => card.id),
-          );
-        } catch (_) {
-          pricing = const <String, CardSurfacePricingData>{};
-        }
-      }
-      if (!mounted || requestVersion != _searchRequestVersion) {
-        return;
-      }
-      final ownershipStates = widget.signedOutBrowse
-          ? const <String, OwnershipState>{}
-          : await _primeCatalogOwnershipStates(resolved.rows);
-      if (!mounted || requestVersion != _searchRequestVersion) {
-        return;
-      }
-      var printingOptions = const <String, List<_CatalogPrintingOption>>{};
-      try {
-        printingOptions = await _fetchCatalogPrintingOptions(resolved.rows);
-      } catch (_) {
-        printingOptions = const <String, List<_CatalogPrintingOption>>{};
-      }
-      if (!mounted || requestVersion != _searchRequestVersion) {
-        return;
-      }
-      setState(() {
-        _resultPricing = pricing;
-        _catalogPrintingOptionsByCardPrintId = {
-          ..._catalogPrintingOptionsByCardPrintId,
-          ...printingOptions,
-        };
-        _catalogOwnershipByCardPrintId = <String, OwnershipState>{
-          ..._catalogOwnershipByCardPrintId,
-          ...ownershipStates,
-        };
-      });
+      unawaited(_enrichVisibleSearchResults(requestVersion));
     } catch (error) {
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
@@ -4333,6 +4296,53 @@ class HomePageState extends State<HomePage> {
         _loading = false;
       });
     }
+  }
+
+  Future<void> _enrichVisibleSearchResults(int requestVersion) async {
+    if (!mounted || requestVersion != _searchRequestVersion) return;
+    final cards = _visibleResults
+        .where((card) => _searchEnrichmentRequested.add(card.id))
+        .toList(growable: false);
+    if (cards.isEmpty) return;
+
+    // Enrich only displayed cards. Publish independent reads as they finish;
+    // a slow price lookup must not hold ownership or printing actions hostage.
+    Future<void> publish<T>(Future<T> read, void Function(T) apply) async {
+      try {
+        final value = await read;
+        if (!mounted || requestVersion != _searchRequestVersion) return;
+        setState(() => apply(value));
+      } catch (error) {
+        // Keep results usable. An unavailable enrichment is not a zero value.
+        if (kDebugMode) debugPrint('search:enrichment_failed $error');
+      }
+    }
+
+    await Future.wait([
+      if (!widget.signedOutBrowse)
+        publish(
+          CardSurfacePricingService.fetchByCardPrintIds(
+            client: supabase,
+            cardPrintIds: cards.map((card) => card.id),
+          ),
+          (pricing) => _resultPricing = {..._resultPricing, ...pricing},
+        ),
+      if (!widget.signedOutBrowse)
+        publish(
+          _primeCatalogOwnershipStates(cards),
+          (states) => _catalogOwnershipByCardPrintId = {
+            ..._catalogOwnershipByCardPrintId,
+            ...states,
+          },
+        ),
+      publish(
+        _fetchCatalogPrintingOptions(cards),
+        (options) => _catalogPrintingOptionsByCardPrintId = {
+          ..._catalogPrintingOptionsByCardPrintId,
+          ...options,
+        },
+      ),
+    ]);
   }
 
   void _runSentenceSearchExample(String query) {
@@ -4496,6 +4506,7 @@ class HomePageState extends State<HomePage> {
       _hasMoreVisibleResults =
           filteredResults.length > nextVisibleResults.length;
     });
+    unawaited(_enrichVisibleSearchResults(_searchRequestVersion));
   }
 
   Future<void> _openCompareScreen() async {

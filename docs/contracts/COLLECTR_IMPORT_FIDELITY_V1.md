@@ -1,13 +1,39 @@
 # Collectr import fidelity repair
 
-Status: PR560, backend V2/version4 and internal TestFlight339 are released.
+Status: PR561, backend V2/version4 and internal TestFlight340 are released.
 Production has411 migrations. The unchanged original-export physical preview
-passed on339 without saving. The finish-resolution follow-up below is local
+passed on340 without saving. The directional set-scope follow-up below is local
 work, not a released build. No real collection save occurred. Private
 terminal release/preview evidence supersedes historical preparation notes.
 Catalog/grade/sealed coverage remains incomplete; retained review is not ownership.
 
-## Finish-aware parent resolution
+## Directional set scopes
+
+Source-aware V2 preview and server validation recognize the same finite scopes
+in `test/fixtures/collectr_set_scopes_v1.json`. These reconcile named promotional
+sets, the Classic Collection label, Marvel Eternal-Legal, and combined Trainer
+Kits. A combined kit searches every listed constituent, including duplicate
+catalog representations; a single-deck label never expands to another deck.
+Multiple matching parent identities still require review.
+
+Generations and Legendary Treasures Radiant Collection labels are restricted to
+normalized `RC` collector numbers. They cannot admit an ordinary numbered card
+from the parent expansion. Game, name/treatment, number, finish, grade and source
+checks remain independent. This does not enable Japanese or Chinese substitution,
+strip Full Art/stamp labels, or publish catalog records. Legacy V1 is unchanged.
+
+One repeated number suffix may include `#`, such as `Synthetic (#007)`, only
+when it agrees with both the source number and the English canonical card number.
+Prefix distinctions and all other decorations remain intact.
+
+The supported labels were reconciled against existing catalog sets and card
+coordinates. Marvel's MAR designation is described in the official
+[collecting guide](https://magic.wizards.com/en/news/feature/collecting-marvel-super-heroes);
+the combined Sun & Moon Trainer Kit appears in the official
+[2017 product gallery](https://www.pokemon.com/us/pokemon-tcg/product-gallery/2017).
+These references explain labels, not authority to change canonical printings.
+
+## Finish-aware parent resolution rules
 
 Source-aware native preview reads all governed printing pages for every matching
 parent before classifying ambiguity. An explicit supported finish can exclude a
