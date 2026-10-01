@@ -1,5 +1,19 @@
 # Cosmos pricing repair — September 30, 2026
 
+PR558 review found that the existing rollout observer requires V1_3 on every
+decision and snapshot. The correction retains that global version and records
+Cosmos policy under `evidence.finish_policy_version`. Focused Cosmos/rollout
+tests pass. Production definitions and price publication are still unchanged.
+
+Release qualification adds a fixed strict-preflight scope for the sole migration
+20260930233000. Fresh read-only production410 schema/security comparison passed
+against the qualified full410 replay using only the existing three-table column
+order reconciliation. The new isolated full411 reset and no-op push passed;
+retained410-to411 upgrade also passed, preserving both owned copies and every fixture row with exact final schema parity. Final release checks are in progress. No populated
+historical lab was reset. The private registry-writing helper prepared earlier
+is superseded and must never run; application must use the exact Supabase CLI
+package after its strict PrePush and sole-pending dry-run proof.
+
 Problem: product 609698 explicitly identifies Eevee SM184 Cosmos Holo. The
 ordinary subtype resolver joined its generic Holofoil bucket to a generic holo
 child. The special-product exclusion prevented a wrong price, but also left the

@@ -275,8 +275,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   const eligible = decision === "publish";
 
   return {
-    policy_version: cosmosFinishQualificationReasonsV1(row).length > 0 || normalizedFinish === "cosmos"
-      ? "TCGPLAYER_COSMOS_FINISH_V1" : TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
+    policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
     decision,
     eligible,
     publication_lane: publicationLane,
@@ -291,6 +290,7 @@ export function evaluateTcgplayerMarketQualificationV1(
       sourceAgeHours === null ? null : Math.round(sourceAgeHours * 1000) / 1000,
     evidence: {
       cosmos_finish_authority: row.cosmos_finish_authority === true,
+      ...(scope.finish_policy_version ? { finish_policy_version: scope.finish_policy_version } : {}),
       category_id: categoryId,
       expected_identity_domain: expectedIdentityDomain,
       source_product_active: row.source_product_active === true,

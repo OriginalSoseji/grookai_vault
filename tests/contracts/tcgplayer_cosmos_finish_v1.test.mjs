@@ -28,7 +28,8 @@ const check = (patch = {}) => evaluate({ ...valid, ...patch }, { now });
 
 test('an explicit Cosmos product with exact reviewed child authority can publish', () => {
   assert.equal(check().decision, 'publish');
-  assert.equal(check().policy_version, 'TCGPLAYER_COSMOS_FINISH_V1');
+  assert.equal(check().policy_version, 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3');
+  assert.equal(check().evidence.finish_policy_version, 'TCGPLAYER_COSMOS_FINISH_V1');
 });
 test('generic holo cannot receive a Cosmos price even with a truthy authority marker', () => {
   const result = check({ finish_key: 'holo', normalized_finish_key: 'holo' });

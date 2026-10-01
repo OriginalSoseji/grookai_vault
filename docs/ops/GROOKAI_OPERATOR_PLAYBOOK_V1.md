@@ -1,5 +1,22 @@
 # Grookai Operator Playbook V1
 
+## Reviewed Cosmos pricing — September 30
+
+Read `docs/contracts/TCGPLAYER_COSMOS_FINISH_V1.md` and
+`docs/ops/COSMOS_PRICING_CHECKPOINT_20260930.md`. An explicit Cosmos title plus
+Holofoil bucket may select only a reviewed exact Cosmos child, with an active
+printing mapping bound to the source product hash and a separate immutable
+assignment. Generic holo assignments remain ineligible. Global decision/snapshot
+policy stays V1_3; the finish policy is separate evidence so existing rollout
+audits remain compatible. Keep schema replay, merged source, immutable worker,
+reconciled shadow, production activation, and authenticated readback as separate
+release proofs. The external worker recovery checkpoint records actual completion.
+Schema inspection uses `migration_preflight_strict.ps1 -CosmosPricingReleaseV1`
+with only `-ExpectedLocalOnlyIds 20260930233000`, first AuditLinkedSchema then
+PrePush. `scripts/release/prepare_cosmos_pricing_v1.mjs` prepares and dry-runs a
+private exact-pending CLI package; it has no apply operation. Never use the
+superseded ad hoc migration-registry helper or reset either retained Cosmos lab.
+
 ## Native release image sharing — September 29
 
 Read `docs/checkpoints/native_release_share_20260929.md`. Release-only PNG export

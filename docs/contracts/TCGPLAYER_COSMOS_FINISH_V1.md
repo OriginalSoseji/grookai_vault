@@ -4,6 +4,9 @@ Explicit Pokémon product titles ending in `(Cosmos Holo)` and the provider's
 `Holofoil` price subtype describe Cosmos, not an ordinary holo printing. A Normal,
 Reverse Holofoil, or other subtype paired with that title remains unresolved.
 The source subtype is preserved in provenance; its normalized finish is `cosmos`.
+Decisions and snapshots retain `TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3` for
+existing rollout validation. The exact finish exception is recorded separately
+as `evidence.finish_policy_version=TCGPLAYER_COSMOS_FINISH_V1`.
 
 Publication requires an existing, non-provisional Cosmos child and all of:
 

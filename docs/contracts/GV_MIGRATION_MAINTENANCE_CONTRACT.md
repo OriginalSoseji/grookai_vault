@@ -1,5 +1,18 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Cosmos pricing qualification (2026-09-30)
+
+`CosmosPricingReleaseV1` accepts only AuditLinkedSchema/PrePush with exactly
+`20260930233000`. It preserves timestamp/object duplicate checks, rejects combined
+modes and target overrides, binds a fresh read-only production410 schema/security
+comparison to the qualified replay, and verifies isolated full411 reset/no-op push
+and retained-data410-to-411 upgrade. Existing populated labs are never reset.
+PrePush also requires clean committed source containing main and a fresh normal
+hook receipt. The gate performs no production writes or migration application.
+Use an exact sole-pending Supabase CLI package and independent schema/ledger,
+permissions, publication-pointer and data-boundary readback for the subsequent
+authorized apply. The prepared ad hoc registry-writing helper is not that path.
+
 ## Collectr review-qualified inspection (2026-09-30)
 
 The revised unapplied migration 20260930010000 is qualified against fresh review
