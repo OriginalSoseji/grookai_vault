@@ -2157,6 +2157,9 @@ The search and six-hour coverage release is now live from PR565, with an actual
 merged-main hosted coverage-only report (run36879465569). Its failing completeness
 status reports unresolved relationships; it does not indicate source loss.
 The latest bounded card continuation is
+`docs/ops/GAMESTOP_MAPPING_20261001.md`, for existing Duraludon/Suicune product links.
+Its private `gamestop_mapping_20261001/CHECKPOINT.md` is the current action index.
+The prior completed promotion batch is
 `docs/ops/GAMESTOP_REVERSE_20261001.md`, covering exact GameStop Lechonk and
 Iron Moth Reverse Holo scopes. Current immutable promotion and public verification
 receipts are indexed by private `gamestop_reverse_20261001/CHECKPOINT.md`.

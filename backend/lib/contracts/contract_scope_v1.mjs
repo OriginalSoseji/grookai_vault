@@ -7,6 +7,13 @@ import {
 // LOCK: Contract scope is required for canon-affecting execution and must stay local to the write path.
 
 export const CONTRACT_EXECUTION_SCOPES_V1 = {
+  reviewed_gamestop_mapping_v1: {
+    execution_name: 'reviewed_gamestop_mapping_v1', canon_affecting: true,
+    active_contracts: ['GROOKAI_GUARDRAILS','NO_ASSUMPTION_RULE','IDENTITY_CONTRACT_SUITE_V1',
+      'IDENTITY_PRECEDENCE_RULE_V1','PRINTED_IDENTITY_CONTRACT_V1','STABILIZATION_CONTRACT_V1',
+      'INGESTION_PIPELINE_CONTRACT_V1','EXTERNAL_SOURCE_INGESTION_MODEL_V1','PRICING_ENGINE_V1'],
+    checkpoints: ['CONTRACT_RUNTIME_LAYER_V1'],
+  },
   external_discovery_to_warehouse_bridge_v1: {
     execution_name: 'external_discovery_to_warehouse_bridge_v1',
     canon_affecting: true,
