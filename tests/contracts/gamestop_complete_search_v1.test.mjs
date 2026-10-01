@@ -17,6 +17,27 @@ const source = fs.readFileSync('apps/web/src/lib/explore/getExploreRows.ts', 'ut
 const reader = source.slice(source.indexOf('export async function getExploreRowsForCombinedSearch('),
   source.indexOf('\nasync function enrichCompleteSearchParents('));
 
+test('complete governed name rows are reused; fractions and sparse contracts hydrate parents', async()=>{
+ const row={id:'visible',gv_id:'GV-PK-T-001',name:'Pikachu',number:'7',rarity:'Common',artist:'Artist',
+  image_url:'https://example.test/exact.png',image_alt_url:null,image_source:'catalog',image_path:null,
+  representative_image_url:null,image_status:'exact',image_note:null,set_code:'anthology',printed_set_abbrev:null,
+  external_ids:{tcgdex:'exact'},variant_key:'gamestop_stamp',printed_identity_modifier:null,variants:{holo:true}};
+ for(const [textQuery,input,expectedReads] of [['Pika',[row],0],['Pika 7/1019',[row],1],['Pika',[{id:'visible'}],1]]) {
+  let reads=0;const searchTimings={};
+  const {getExploreRowsForCombinedSearch}=compile(reader,{
+   assertValueSortPricingEnabled(){},createServerComponentClient:async()=>({}),
+   fetchCompleteNamedCardRows:async()=>input,
+   fetchCardRowsByIds:async ids=>{reads++;assert.deepEqual(Array.from(ids),['visible']);return [{...row,printed_total:1019}];},
+   enrichCompleteSearchParents:async rows=>rows,
+  });
+  const result=await getExploreRowsForCombinedSearch({textQuery,sortMode:'relevance',searchTimings});
+  assert.equal(reads,expectedReads);assert.equal(result[0].variants.holo,true);assert.equal(result[0].image_status,'exact');
+  assert.equal(result[0].printed_total,expectedReads?1019:undefined);
+  assert.ok(searchTimings.name_pages>=0&&searchTimings.parent_read>=0);
+  if(!expectedReads) assert.equal(result[0],row);
+ }
+});
+
 test('only explicit GameStop intent activates the candidate filter', () => {
   for (const labels of [undefined, [], ['EB Games Stamp'], ['gamestop%,name.not.is.null']]) {
     assert.equal(gameStopCandidateFilter(labels), null);

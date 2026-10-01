@@ -378,10 +378,14 @@ export async function GET(request: NextRequest) {
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
   let literalNameSearch = false;
   let searchSets: SearchSet[] | undefined;
+  let namedFirstPage: import("@/lib/search/completeNamedCardSearch").NamedCardFirstPage | undefined;
+  const searchTimings: Partial<Record<"catalog" | "name_check" | "name_pages" | "parent_read", number>> = {};
   if (!exactSetCode && query.trim() && !/^GV-/i.test(query)) {
     try {
       const catalog = await createServerComponentClient();
+      const catalogStarted = performance.now();
       searchSets = await readSearchSets(catalog, gameScope);
+      searchTimings.catalog = performance.now() - catalogStarted;
       let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets);
       const ignoredOpeningWords: string[] = [];
       while (candidate.openingWordMatch && candidate.matchedAlias) {
@@ -399,9 +403,11 @@ export async function GET(request: NextRequest) {
         smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [candidate.matchedAlias] });
         query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
+      const nameCheckStarted = performance.now();
       const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
         (!candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
-        await isCatalogCardNameQuery(catalog, query, gameScope);
+        await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; });
+      searchTimings.name_check = performance.now() - nameCheckStarted;
       literalNameSearch = cardNameQuery && !smartSearchIntent.artist && supportsCompleteNameSearch(query);
       inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery
         ? { matchedAlias: null, setCodes: [], remainingQuery: query }
@@ -632,6 +638,8 @@ export async function GET(request: NextRequest) {
       : completeCombinedSearch
       ? getExploreRowsForCombinedSearch({
           searchSets,
+          namedFirstPage,
+          searchTimings,
           gameScope,
           exactIllustrator,
           exactSetCodes: exactSetCode ? undefined : inlineSetIntent.setCodes,
@@ -898,7 +906,8 @@ export async function GET(request: NextRequest) {
             hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
-          "Server-Timing": `interpret;dur=${(interpretationFinishedAt - searchStartedAt).toFixed(1)}, resolve;dur=${(resolutionFinishedAt - interpretationFinishedAt).toFixed(1)}, finish;dur=${(performance.now() - resolutionFinishedAt).toFixed(1)}`,
+          "Server-Timing": `interpret;dur=${(interpretationFinishedAt - searchStartedAt).toFixed(1)}, resolve;dur=${(resolutionFinishedAt - interpretationFinishedAt).toFixed(1)}, finish;dur=${(performance.now() - resolutionFinishedAt).toFixed(1)}` +
+            Object.entries(searchTimings).map(([stage, duration]) => `, ${stage};dur=${duration.toFixed(1)}`).join(""),
         },
       },
     );

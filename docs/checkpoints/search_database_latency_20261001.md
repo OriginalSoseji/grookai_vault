@@ -1,5 +1,28 @@
 # Search database latency — October 1
 
+## Follow-up: repeated name and parent reads
+
+PR570 is live at `a4132e6bf5ec924e6e7cacbb07b619e288b0057a`; its private
+`search_tail_latency_20261001/CHECKPOINT.json` is terminal. Continue in
+`C:/gv_search_rpc_latency_20261001`, branch `fix/search-rpc-latency-20261001`.
+Private source comparisons and release receipts belong in `search_rpc_latency_20261001`
+under the operator artifacts root. No migration or native binary is required.
+
+Read-only tracing found Pika repeated its interpretation name probe during
+retrieval, then reread parent fields already returned by the governed name RPC.
+This candidate retains the first64 raw rows only within that request, reusing
+them only for identical name/game/all-language/unrestricted-set RPC arguments.
+Other scopes still fetch independently. Full parent rows avoid ID hydration;
+collector-number fractions and sparse contracts retain hydration because V4
+does not return card-specific printed totals. Existing visibility predicates,
+complete pagination, duplicate detection and explicit failure behavior remain.
+
+Server-Timing adds catalog, name-check, name-page and parent-read durations.
+These contain no queries, identities or credentials. Qualification compares
+complete result objects as well as counts and requests; source-only timings
+must not be represented as live end-to-end measurements. Normal hooks, hosted
+checks, candidate/live search and browser readback govern release separately.
+
 ## Follow-up: first-use set parser cost
 
 PR568 is deployed with migration412; its private `CHECKPOINT.json` is terminal.
