@@ -3,6 +3,27 @@
 Status: implementation candidate. The six-hour workflow change is not deployed.
 Dragonite intake and classification were applied; no canonical promotion was applied.
 
+## Parent promotion identity repair
+
+The parent writer previously omitted `game_id`, `identity_domain` and
+`printed_identity_modifier`. A stamped parent could therefore lose its language
+and stamp semantics before child admission. Staging now binds those values from
+one exact canonical English Pokemon set and the reviewed stamp metadata.
+Execution compares that binding again under a lock and verifies the inserted
+row before commit and after commit. Missing or changed metadata blocks execution;
+older frozen parent plans require a new stage. Successful-stage rereads also
+verify the canonical identity instead of trusting the status flag alone.
+
+This does not combine parent and printing admission. Complete Dragonite promotion
+still requires its separate, source-bound Holo printing and public readback.
+The isolated PostgreSQL proof exercises actual staging/execution, a forced
+post-insert proof failure and rollback, successful retry, and a zero-write repeat.
+Its receipt is
+`C:/grookai_vault_operator_artifacts/gamestop_promotion_20261001/postgres-parent-v1.json`.
+The opt-in integration test accepts only the dedicated local database on port
+54330; it must never be repointed to production. Parent contract tests pass 24
+cases. These results prove the local repair, not a production promotion.
+
 The discovery workflow previously checked English Pokemon set inventories but did
 not reconcile the complete Pokemon product warehouse. Its product-level warehouse
 reconciliation covered One Piece. Successful discovery runs therefore did not prove

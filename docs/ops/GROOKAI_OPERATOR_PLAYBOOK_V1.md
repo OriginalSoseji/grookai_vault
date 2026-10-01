@@ -2123,3 +2123,12 @@ has been bridged and classified into warehouse candidate
 `8a259799-2c4a-4688-a43a-ad828bf9ef9a`, REVIEW_READY, but has not been promoted.
 Do not insert duplicates of existing Duraludon/Suicune GameStop parents or reuse
 the Dragonite Silver Tempest-logo printing fact for the red GameStop stamp.
+
+The parent admission follow-up now freezes the canonical set's explicit Pokemon
+game/language and the reviewed printed modifier. Old parent stages without that
+binding must be restaged, never patched in place or replayed. Readback occurs
+before commit, after commit and on a successful-stage repeat. The dedicated local
+PostgreSQL proof database is `grookai_parent_identity_20261001_v1` on port54330;
+preserve the source lab and its receipts. See the coverage checkpoint for the
+opt-in test and private proof location. Parent admission remains separate from
+the reviewed child printing, source mapping and image workflows.

@@ -3,6 +3,7 @@ import '../env.mjs';
 import pg from 'pg';
 import fs from 'node:fs';
 import { prepareWarehousePrintingAdmission } from './printing_admission_v1.mjs';
+import { readWarehouseParentIdentity } from './parent_identity_v1.mjs';
 import { printingManifestHash } from '../catalog/printing_completeness_gate_v1.mjs';
 import { auditWarehouseCandidateIdentitySlotV1 } from '../identity/identity_slot_audit_v1.mjs';
 import {
@@ -1015,64 +1016,16 @@ export async function buildPromotionWritePlanSnapshot(client, {
   if (proposedAction === 'CREATE_CARD_PRINT') {
     const setRows = await fetchSetRowsByCode(client, setCode);
     if (setRows.length !== 1) {
-      if (!sourceBackedStageableWithoutNormalization) {
-        return buildBlockedWritePlan('UNKNOWN_SET', ['Valid set_code required before staging']);
-      }
-
-      const existingRows = await fetchCardPrintBySetCodeIdentity(client, setCode, numberPlain, variantKey);
-      if (existingRows.length > 1) {
-        return buildBlockedWritePlan('AMBIGUOUS_TARGET', ['Single canonical target required before staging']);
-      }
-      if (existingRows.length === 1) {
-        const existing = existingRows[0];
-        if (normalizeNameKey(existing.name) === normalizeNameKey(name)) {
-          return buildBlockedWritePlan(
-            'CREATE_CARD_PRINT is inconsistent because the exact canonical identity already exists.',
-            ['No exact canonical identity may exist for CREATE_CARD_PRINT'],
-          );
-        }
-        return buildBlockedWritePlan('AMBIGUOUS_TARGET', ['Conflicting canonical identity already exists']);
-      }
-
-      const payload = {
-        set_id: null,
-        set_code: setCode,
-        name,
-        number: printedNumber ?? numberPlain,
-        number_plain: numberPlain,
-        variant_key: variantKey,
-        rarity: null,
-        tcgplayer_id: normalizeTextOrNull(candidate.tcgplayer_id),
-        image_url: null,
-        image_alt_url: null,
-      };
-
-      return {
-        status: 'READY',
-        reason:
-          'Source-backed CREATE_CARD_PRINT is ready to stage without a normalization asset. Canon set bootstrap is still required before executor apply.',
-        actions: {
-          card_prints: {
-            action: 'CREATE',
-            target_id: null,
-            payload,
-            reason: 'Source-backed bridge identity is deterministic and no exact canonical identity exists for this set_code, number, and variant.',
-          },
-          card_printings: buildEmptyAction('Source-backed parent creation does not create a child printing.'),
-          external_mappings: buildEmptyAction('Promotion Executor V1 does not write external_mappings.'),
-          image_fields: buildEmptyAction('No normalized promotion asset is required for source-backed CREATE_CARD_PRINT staging.'),
-        },
-        preview: {
-          before: null,
-          after: {
-            card_prints: payload,
-            card_printings: null,
-            external_mappings: null,
-            image_fields: null,
-          },
-        },
-        missing_requirements: [],
-      };
+      return buildBlockedWritePlan('UNKNOWN_OR_AMBIGUOUS_SET', ['One canonical set with an explicit English identity domain required before staging']);
+    }
+    let parentIdentity;
+    try {
+      parentIdentity = await readWarehouseParentIdentity(client, {
+        set_id: setRows[0].id, set_code: setRows[0].code, variant_key: variantKey,
+        printed_identity_modifier: normalizeTextOrNull(printedModifier?.modifier_key),
+      });
+    } catch (error) {
+      return buildBlockedWritePlan(error.message, ['Explicit canonical parent identity metadata']);
     }
 
     const existingRows = await fetchCardPrintByIdentity(client, setRows[0].id, numberPlain, variantKey);
@@ -1096,6 +1049,9 @@ export async function buildPromotionWritePlanSnapshot(client, {
       number: printedNumber ?? numberPlain,
       number_plain: numberPlain,
       variant_key: variantKey,
+      game_id: parentIdentity.game_id,
+      identity_domain: parentIdentity.identity_domain,
+      printed_identity_modifier: parentIdentity.printed_identity_modifier,
       rarity: null,
       tcgplayer_id: normalizeTextOrNull(candidate.tcgplayer_id),
       image_url: null,
@@ -1104,6 +1060,7 @@ export async function buildPromotionWritePlanSnapshot(client, {
 
     return {
       status: 'READY',
+      parent_identity: parentIdentity,
       reason: 'Promotion would create one canonical parent row from the frozen write plan.',
       actions: {
         card_prints: {
