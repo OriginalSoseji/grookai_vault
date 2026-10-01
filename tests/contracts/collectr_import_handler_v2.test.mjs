@@ -66,6 +66,15 @@ test('expanded retained source is rejected before the writer',async()=>{
 
 const identityCases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_mtg_identity_v1.json',import.meta.url)));
 const setAliases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_set_aliases_v1.json',import.meta.url)));
+const pokemonNameCases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_pokemon_name_v1.json',import.meta.url)));
+for(const {label,expected,input} of pokemonNameCases)test(`Pokemon name server enforcement: ${label}`,async()=>{
+ const f=fixture({card:input.card});
+ const source={...row,'Product Name':input.sourceName,'Card Number':input.sourceNumber,Category:input.game};
+ const response=await f.send({csvText:toCsv([source])});
+ assert.equal(response.status,expected?200:400);
+ assert.equal(f.writes.length,expected?1:0);
+ if(expected){assert.deepEqual(f.writes[0].args.p_source_rows,[source]);assert.equal(f.writes[0].args.p_targets[0].cardPrintingId,printing);}
+});
 for(const alias of setAliases)test(`set label ${alias.source} retains original source and exact printing`,async()=>{
  const f=fixture({card:{sets:{name:alias.catalog,game:'pokemon'}}});
  const source={...row,Set:alias.source};

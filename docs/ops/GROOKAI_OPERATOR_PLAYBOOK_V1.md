@@ -52,6 +52,22 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
+Latest continuation: PR559/backend V2 version3/internal TestFlight338 are released.
+The physical338 preview remains open while the iPhone is unavailable; do not reuse
+337 screenshots as338 evidence or replay consumed release intents. The next
+isolated name-format batch is `C:/gv_collectr_names_20261001`, with private evidence
+and authoritative status in
+`C:/grookai_vault_operator_artifacts/collectr_names_20261001/CHECKPOINT.md`.
+`GV_COLLECTR_NAME_HTTP_PROOF=1` opts into the existing retained full410 sandbox
+suite with fresh synthetic accounts and EX/GX/repeated-number fixtures. It checks
+the frozen410 source and database before writes; no reset or migration is allowed.
+Production411's importer SQL parity with410 is recorded in the previous338
+release package. This is local qualification, not a new deployment. Any subsequent
+Edge release must include `pokemon_name.ts` in its source and deployed-file hashes.
+Private replays use the unchanged original export and a987-ready-row baseline;
+refresh governed printing options for newly matched parents before reporting the
+final ready count. Keep the first incomplete-snapshot attempt as history.
+
 Current continuation: PR557/backend V2/internal TestFlight337 are released, and
 the original-export physical iPhone preview passed without saving. Private terminal
 evidence is in `collectr_matching_20260930/release` and
