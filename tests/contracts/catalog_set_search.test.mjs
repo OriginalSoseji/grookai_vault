@@ -46,7 +46,7 @@ test('name interpretation optionally retains a full first page within the caller
  assert.deepEqual(plain(retained),{query:'Pika',gameScope:'pokemon',rows});
  assert.equal(await isCatalogCardNameQuery(client,'Pika','pokemon'),true);
  assert.equal(await isExactCatalogCardName(client,'Pikachu','pokemon'),true);
- assert.deepEqual(limits,[64,1,1]);
+ assert.deepEqual(limits,[512,1,1]);
  let exposed=false;
  await assert.rejects(()=>isCatalogCardNameQuery({rpc:async()=>({data:rows,error:{message:'denied'}})},'Pika','pokemon',()=>{exposed=true;}),/denied/);
  assert.equal(exposed,false);

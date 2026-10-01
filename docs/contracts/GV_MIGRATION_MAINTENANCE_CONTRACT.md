@@ -1,5 +1,19 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Bounded name search qualification (2026-10-01)
+
+SearchNamePlanV1 permits AuditLinkedSchema/PrePush for only 20261001210000
+against the qualified413 baseline. The already-applied413 pricing migration is
+recovered byte-exact from its full replay, not reapplied. Initial audit may omit
+the pending ID. Duplicate checks, target/combined-mode rejection, pinned schema
+and security comparison, clean committed source, normal hooks, fresh full414
+replay/no-op push and retained-copy413-to414 upgrade remain required. Real
+Auth/HTTP tests compare V4/V5 full fields and order across roles and scopes.
+The only new SQL object is the bounded V5 read function; V4 is unchanged.
+Use prepare_search_name_plan_v1.mjs for the sole-pending CLI inspection package.
+Application needs a fresh intent, CLI apply and independent schema/data readback.
+Never reset populated labs or replay consumed intents.
+
 ## Search database latency qualification (2026-10-01)
 
 `SearchDatabaseLatencyV1` accepts AuditLinkedSchema/PrePush for exactly

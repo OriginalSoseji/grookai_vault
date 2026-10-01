@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Broad name search reads — October 1
+
+PR571 is complete/live; its request reuse is retained. The next isolated branch
+is C:/gv_search_name_plan_20261001. Read
+[the bounded search checkpoint](../checkpoints/search_name_plan_20261001.md).
+Use SearchNamePlanV1 for the exact20261001210000 migration over413. The new
+function permits512 rows per read while V4 remains capped64 for old clients.
+The fresh full/upgrade labs use64341/63941 and internal217/219 networks; never
+reset them after population. Private evidence and release status live under
+search_name_plan_20261001 in the operator-artifact root. Browser qualification
+must prove all prior example IDs and uncached timings before claiming success.
+The separate413 pricing migration is already applied and must not be replayed.
+
 ## Search database latency — October 1
 
 PR568, migration412 and PR570 are live; their private database/parser checkpoints

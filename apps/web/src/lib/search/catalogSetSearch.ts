@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { retainNamedCardFirstPage } from "./completeNamedCardSearch";
+import { NAMED_CARD_PAGE_SIZE, retainNamedCardFirstPage } from "./completeNamedCardSearch";
 import { getCatalogSetPresentation } from "../catalogPresentation";
 import { resolveGameScopedSetSearchIntent } from "../publicSets.shared";
 
@@ -119,9 +119,9 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
 
 async function readCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
   retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
-  const { data, error } = await client.rpc("search_game_card_prints_v4", {
+  const { data, error } = await client.rpc(retain ? "search_game_card_prints_v5" : "search_game_card_prints_v4", {
     game_code_in: game, q: query, set_code_in: null, number_in: null,
-    illustrator_in: null, language_scope_in: "all", limit_in: retain ? 64 : 1, offset_in: 0,
+    illustrator_in: null, language_scope_in: "all", limit_in: retain ? NAMED_CARD_PAGE_SIZE : 1, offset_in: 0,
   });
   if (error) throw new Error(error.message);
   if (retain) retain(retainNamedCardFirstPage({ query, gameScope: game, rows: data ?? [] }));
