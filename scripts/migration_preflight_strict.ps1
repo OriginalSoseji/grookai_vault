@@ -55,6 +55,7 @@ param(
   [switch]$CollectrImportFidelityBaselineAudit,
   [switch]$CollectrImportFidelityReleaseV1,
   [switch]$CosmosPricingReleaseV1,
+  [switch]$SearchDatabaseLatencyV1,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -486,6 +487,26 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($SearchDatabaseLatencyV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','SearchDatabaseLatencyV1')
+  $searchExpected = (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or $searchExpected -notin @('', '20261001150000') -or ($Phase -eq 'PrePush' -and $searchExpected -ne '20261001150000')) { Fail 'Search release permits only its exact migration, without combined modes or target overrides.' }
+  $searchRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $searchFiles = @(Get-RepoMigrationFiles -RepoRoot $searchRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $searchFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $searchPending = @($searchFiles | Where-Object { $_.Id -eq '20261001150000' })
+  if ($searchPending.Count -ne $(if ($searchExpected) { 1 } else { 0 })) { Fail 'Search pending migration differs from requested scope.' }
+  if ($searchPending.Count) {
+    $searchDuplicates = Get-ObjectDuplicates -PendingFiles $searchPending
+    if ($searchDuplicates.DuplicateIndexes.Count -gt 0 -or $searchDuplicates.DuplicateViews.Count -gt 0 -or $searchDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending search objects.' }
+  }
+  Require-Command 'node'
+  $searchGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_search_database_latency_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $searchGate
+  if ($searchGate.ExitCode -ne 0) { Fail 'Search database qualification failed; no apply.' }
+  exit 0
 }
 
 if ($CosmosPricingReleaseV1) {

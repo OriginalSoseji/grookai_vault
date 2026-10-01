@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Search database latency — October 1
+
+Read `docs/checkpoints/search_database_latency_20261001.md`. The fixed isolated
+worktree qualifies migration20261001150000 against production411. Use the
+strict `SearchDatabaseLatencyV1` AuditLinkedSchema/PrePush path with the exact
+pending ID and normal hooks. New V2 full/upgrade labs use loopback65241/65341;
+preserve the original experiment and all populated labs. Caller-scoped catalog
+reuse and indexed lookups retain RLS. The private `search_database_20261001`
+artifact directory records actual release state separately from local proof.
+
 ## Web-first Collectr importer — October 1
 
 Read `docs/checkpoints/collectr_web_v2_20261001.md`. The founder removed physical

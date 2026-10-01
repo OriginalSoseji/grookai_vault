@@ -102,23 +102,22 @@ test('unknown words and identifiers survive; ambiguous catalog set names require
  assert.equal(resolve('Mewtwo unknown Future Garden', 'pokemon', sets).remainingQuery, 'Mewtwo unknown');
 });
 
-test('caller-scoped catalog reader includes later pages and refuses partial/duplicate results', async () => {
- const rows = Array.from({length: 501}, (_, i) => ({id: String(i), code: 'set'+i, name: 'Set '+i}));
- const offsets=[];
- const client = (failure=false, duplicate=false) => ({from(table) {
-  assert.equal(table, 'sets');
-  return {select: () => ({eq: (field, game) => {
-   assert.equal(field, 'game'); assert.equal(game, 'pokemon');
-   return {order: () => ({range: async (start, end) => {
-    offsets.push(start);
-    return start && failure ? {error:{message:'catalog offline'}} : {data: duplicate && start ? [rows[0]] : rows.slice(start,end+1)};
-   }})};
-  }})};
+test('caller-scoped catalog reader exceeds the REST row cap in one call and refuses incomplete data', async () => {
+ const rows = Array.from({length: 1382}, (_, i) => ({id: String(i), code: 'set'+i, name: 'Set '+i}));
+ let calls = 0;
+ const client = (result) => ({rpc: async (name, args) => {
+  calls += 1;
+  assert.equal(name, 'get_search_set_catalog_v1');
+  assert.deepEqual(plain(args), {game_code_in:'pokemon'});
+  return result;
  }});
- assert.equal((await readSearchSets(client(), 'pokemon')).length, 501);
- assert.deepEqual(offsets, [0,500]);
- await assert.rejects(readSearchSets(client(true), 'pokemon'), /catalog offline/);
- await assert.rejects(readSearchSets(client(false,true), 'pokemon'), /did not advance/);
+ assert.equal((await readSearchSets(client({data:{complete:true,sets:rows}}), 'pokemon')).length, 1382);
+ assert.equal(calls, 1);
+ await assert.rejects(readSearchSets(client({error:{message:'catalog offline'}}), 'pokemon'), /catalog offline/);
+ await assert.rejects(readSearchSets(client({data:{complete:false,sets:rows}}), 'pokemon'), /completely/);
+ await assert.rejects(readSearchSets(client({data:{complete:true,sets:[rows[0],rows[0]]}}), 'pokemon'), /did not advance/);
+ await assert.rejects(readSearchSets(client({data:{complete:true,sets:[{id:'bad'}]}}), 'pokemon'), /invalid row/);
+ await assert.rejects(readSearchSets(client({data:null}), 'pokemon'), /completely/);
 });
 
 test('set phrases protect number, year and finish-like tokens while quoted card text stays literal', () => {

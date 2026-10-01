@@ -3,7 +3,8 @@ import { getCatalogSetPresentation } from "../catalogPresentation";
 import { resolveGameScopedSetSearchIntent } from "../publicSets.shared";
 
 type Game = "pokemon" | "one_piece" | "mtg";
-export type SearchSet = { id: string; code: string; name: string; printed_set_abbrev?: string | null };
+export type SearchSet = { id: string; code: string; name: string; printed_set_abbrev?: string | null;
+  printed_total?: number | null; release_date?: string | null; identity_model?: string | null };
 const words = (value: string) => value.toLowerCase().replace(/&/g, " and ").match(/[\p{L}\p{N}]+/gu) ?? [];
 const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -133,19 +134,20 @@ export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">
 
 // Request-scoped, caller-visible metadata; never cache one caller's visibility
 // globally or accept a truncated catalog as a complete set interpretation.
-export async function readSearchSets(client: Pick<SupabaseClient, "from">, game: Game): Promise<SearchSet[]> {
-  const rows: SearchSet[] = [];
-  const seen = new Set<string>();
-  for (let offset = 0; offset < 20000; offset += 500) {
-    const { data, error } = await client.from("sets").select("id,code,name,printed_set_abbrev")
-      .eq("game", game).order("id").range(offset, offset + 499);
-    if (error) throw new Error(error.message);
-    for (const row of (data ?? []) as SearchSet[]) {
-      if (seen.has(row.id)) throw new Error("Set search catalog did not advance");
-      seen.add(row.id);
-      rows.push(row);
-    }
-    if ((data ?? []).length < 500) return rows;
+export async function readSearchSets(client: Pick<SupabaseClient, "rpc">, game: Game): Promise<SearchSet[]> {
+  const { data, error } = await client.rpc("get_search_set_catalog_v1", { game_code_in: game });
+  if (error) throw new Error(error.message);
+  if (data?.complete !== true || !Array.isArray(data.sets) || data.sets.length > 20000) {
+    throw new Error("Set search catalog could not be read completely");
   }
-  throw new Error("Set search catalog could not be read completely");
+  const rows = data.sets as SearchSet[];
+  const seen = new Set<string>();
+  for (const row of rows) {
+    if (!row || typeof row.id !== "string" || typeof row.code !== "string" || typeof row.name !== "string") {
+      throw new Error("Set search catalog contains an invalid row");
+    }
+    if (seen.has(row.id)) throw new Error("Set search catalog did not advance");
+    seen.add(row.id);
+  }
+  return rows;
 }
