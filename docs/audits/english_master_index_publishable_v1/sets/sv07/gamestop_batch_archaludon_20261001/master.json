@@ -1,0 +1,81 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv07",
+  "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:19:27.735Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+    "gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP",
+    "name": "Archaludon",
+    "printed_coordinate": "107/142",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "archaludon-release-history",
+        "archaludon-tcgcsv-product",
+        "archaludon-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "archaludon-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Archaludon_(Stellar_Crown_107)",
+      "independence_family": "bulbapedia_release_history",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Release history explicitly identifies the red GameStop stamp variant as Cosmos. Exact product photograph and explicit source Cosmos title corroborate:180HP,Metal Bridge,Iron Blaster,SCR107/142,red stamp and star/circle glints. Illustration rare155 is excluded.",
+      "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+      "retrieved_at": "2026-10-01T20:13:30.016Z"
+    },
+    {
+      "ref": "archaludon-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/576862",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "4f1fb795ca463897bd2fdbb95166bbe77333a4415b7fdeee30443c233a801376",
+      "retrieved_at": "2026-10-01T20:14:58.834Z"
+    },
+    {
+      "ref": "archaludon-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/576862_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Release history explicitly identifies the red GameStop stamp variant as Cosmos. Exact product photograph and explicit source Cosmos title corroborate:180HP,Metal Bridge,Iron Blaster,SCR107/142,red stamp and star/circle glints. Illustration rare155 is excluded.",
+      "sha256": "0689a30d2da57c5f4453b0fee10c3efb2d6856c930e6189dcf083bdd6ef14d00",
+      "retrieved_at": "2026-10-01T20:13:28.560Z"
+    }
+  ],
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Release history explicitly identifies the red GameStop stamp variant as Cosmos. Exact product photograph and explicit source Cosmos title corroborate:180HP,Metal Bridge,Iron Blaster,SCR107/142,red stamp and star/circle glints. Illustration rare155 is excluded.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

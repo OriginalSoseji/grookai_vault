@@ -1,0 +1,81 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv02",
+  "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:19:27.725Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "441777a6-4247-4b1e-913d-6b2665077c2b",
+    "gv_id": "GV-PK-PAL-105-GAMESTOP-STAMP",
+    "name": "Tinkaton",
+    "printed_coordinate": "105/193",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-PAL-105-GAMESTOP-STAMP-HOLO",
+      "status": "verified",
+      "source_refs": [
+        "tinkaton-release-history",
+        "tinkaton-tcgcsv-product",
+        "tinkaton-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "tinkaton-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://www.pokebeach.com/2023/06/tinkaton-gamestop-promo-releasing-this-week",
+      "independence_family": "pokebeach_original_photo_report",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Original June2023 photo report explicitly identifies the GameStop Tinkaton as Holo. Preserved product image shows smooth rainbow artwork and silver borders, red stamp,140HP,PAL105/193; no Cosmos pattern or Reverse body. The separate unstamped Cosmos product does not apply.",
+      "sha256": "73c4defa9f36948991dcf276bc394beaa163b0792a7eb01d200486fe05bd39da",
+      "retrieved_at": "2026-10-01T20:13:43.008Z"
+    },
+    {
+      "ref": "tinkaton-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/502625",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "5f4936558cf60e47b53d319dbea8f8acb823a8733604656ba9c86fe4576dbe6c",
+      "retrieved_at": "2026-10-01T20:14:58.828Z"
+    },
+    {
+      "ref": "tinkaton-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/502625_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Original June2023 photo report explicitly identifies the GameStop Tinkaton as Holo. Preserved product image shows smooth rainbow artwork and silver borders, red stamp,140HP,PAL105/193; no Cosmos pattern or Reverse body. The separate unstamped Cosmos product does not apply.",
+      "sha256": "6ce37bb09ab6b41ad7402315b758345fd44c1ccc0709f3ef6a8c48d571f82b33",
+      "retrieved_at": "2026-10-01T20:13:28.732Z"
+    }
+  ],
+  "source_independence": "pokebeach_original_photo_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Original June2023 photo report explicitly identifies the GameStop Tinkaton as Holo. Preserved product image shows smooth rainbow artwork and silver borders, red stamp,140HP,PAL105/193; no Cosmos pattern or Reverse body. The separate unstamped Cosmos product does not apply.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

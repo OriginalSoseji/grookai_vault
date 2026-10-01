@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv10",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv10/gamestop_batch_rockets-zapdos_20261001/master.json",
+  "master_index_sha256": "79d601d7b60fd0f332637ce8c7eb9ca0ad3497392838e47b6de33c0510400a11",
+  "parents": [
+    {
+      "id": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "gv_id": "GV-PK-DRI-070-GAMESTOP-STAMP",
+      "name": "Team Rocket's Zapdos",
+      "printed_coordinate": "070",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-DRI-070-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "rockets-zapdos-release-history",
+          "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+          "card_print_id": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "rockets-zapdos-tcgcsv-product",
+          "sha256": "537a53494bdd4e6b4a1aacbfd663db51a467e617f2c11f4774fb9df7b78793cf",
+          "card_print_id": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "rockets-zapdos-exact-image",
+          "sha256": "9cbd1206d7461bb8d0e130114567cd3b1cdd71049e3270ceb8d8213c04ee42a2",
+          "card_print_id": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+    "source_artifacts": [
+      {
+        "ref": "rockets-zapdos-release-history",
+        "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket%27s_Zapdos_(Destined_Rivals_70)",
+        "retrieved_at": "2026-10-01T20:13:30.016Z"
+      },
+      {
+        "ref": "rockets-zapdos-tcgcsv-product",
+        "sha256": "537a53494bdd4e6b4a1aacbfd663db51a467e617f2c11f4774fb9df7b78793cf",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/635500",
+        "retrieved_at": "2026-10-01T20:14:58.839Z"
+      },
+      {
+        "ref": "rockets-zapdos-exact-image",
+        "sha256": "9cbd1206d7461bb8d0e130114567cd3b1cdd71049e3270ceb8d8213c04ee42a2",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.cardtrader.com/uploads/blueprints/image/335913/team-rocket-s-zapdos-gamestop-promo-070-182-sv-black-star-promos.jpg",
+        "retrieved_at": "2026-10-01T20:14:05.130Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv10/gamestop_batch_rockets-zapdos_20261001/review.json",
+      "sha256": "fe2d9759f09dfb562a716c618f88131c2680f3424e2b6846cc075ad517c57a99"
+    }
+  },
+  "fingerprint": "deaf5ab1c2e2bce3e2ba781285d620b1ee969ebe7ce531f37ba3b5e05939a095"
+}

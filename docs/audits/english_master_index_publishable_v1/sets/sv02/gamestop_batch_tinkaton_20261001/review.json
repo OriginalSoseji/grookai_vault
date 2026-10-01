@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "122b75394ac67ad13466909621437689bdd1b46a9b5d78c6f816596f7659ed17",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv02",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:19:27.725Z",
+  "projection_sha256": "20f05111b4bd5bfdaf48cd3213d1f86ebf07aae0226b191a73b5cdaa532fa653",
+  "adjudication": "Original June2023 photo report explicitly identifies the GameStop Tinkaton as Holo. Preserved product image shows smooth rainbow artwork and silver borders, red stamp,140HP,PAL105/193; no Cosmos pattern or Reverse body. The separate unstamped Cosmos product does not apply.",
+  "source_independence": "pokebeach_original_photo_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

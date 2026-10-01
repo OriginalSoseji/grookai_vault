@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv02",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv02/gamestop_batch_tinkaton_20261001/master.json",
+  "master_index_sha256": "122b75394ac67ad13466909621437689bdd1b46a9b5d78c6f816596f7659ed17",
+  "parents": [
+    {
+      "id": "441777a6-4247-4b1e-913d-6b2665077c2b",
+      "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+      "gv_id": "GV-PK-PAL-105-GAMESTOP-STAMP",
+      "name": "Tinkaton",
+      "printed_coordinate": "105",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "441777a6-4247-4b1e-913d-6b2665077c2b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-PAL-105-GAMESTOP-STAMP-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "tinkaton-release-history",
+          "sha256": "73c4defa9f36948991dcf276bc394beaa163b0792a7eb01d200486fe05bd39da",
+          "card_print_id": "441777a6-4247-4b1e-913d-6b2665077c2b",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "tinkaton-tcgcsv-product",
+          "sha256": "5f4936558cf60e47b53d319dbea8f8acb823a8733604656ba9c86fe4576dbe6c",
+          "card_print_id": "441777a6-4247-4b1e-913d-6b2665077c2b",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "tinkaton-exact-image",
+          "sha256": "6ce37bb09ab6b41ad7402315b758345fd44c1ccc0709f3ef6a8c48d571f82b33",
+          "card_print_id": "441777a6-4247-4b1e-913d-6b2665077c2b",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+    "source_artifacts": [
+      {
+        "ref": "tinkaton-release-history",
+        "sha256": "73c4defa9f36948991dcf276bc394beaa163b0792a7eb01d200486fe05bd39da",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.pokebeach.com/2023/06/tinkaton-gamestop-promo-releasing-this-week",
+        "retrieved_at": "2026-10-01T20:13:43.008Z"
+      },
+      {
+        "ref": "tinkaton-tcgcsv-product",
+        "sha256": "5f4936558cf60e47b53d319dbea8f8acb823a8733604656ba9c86fe4576dbe6c",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/502625",
+        "retrieved_at": "2026-10-01T20:14:58.828Z"
+      },
+      {
+        "ref": "tinkaton-exact-image",
+        "sha256": "6ce37bb09ab6b41ad7402315b758345fd44c1ccc0709f3ef6a8c48d571f82b33",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/502625_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.732Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv02/gamestop_batch_tinkaton_20261001/review.json",
+      "sha256": "95d6bee39163758b41119937e02406d3e2485328b2451d01546445151ff15f4e"
+    }
+  },
+  "fingerprint": "e8f3c91a83bb2ed57bd4b9ee23d9f0f7ef92c96876e937605e9e3cf1b1ab1966"
+}

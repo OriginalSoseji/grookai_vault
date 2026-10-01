@@ -1,0 +1,81 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv10",
+  "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:19:27.742Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+    "gv_id": "GV-PK-DRI-070-GAMESTOP-STAMP",
+    "name": "Team Rocket's Zapdos",
+    "printed_coordinate": "070/182",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-DRI-070-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "rockets-zapdos-release-history",
+        "rockets-zapdos-tcgcsv-product",
+        "rockets-zapdos-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "rockets-zapdos-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Team_Rocket%27s_Zapdos_(Destined_Rivals_70)",
+      "independence_family": "bulbapedia_release_history",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Release history explicitly identifies GameStop stamp variant as Cosmos. Independent CardTrader exact photograph shows red lower-left stamp,Cosmos star/circle foil,120HP,Jamming Wing,Wicked Thunder,DRI070/182. CardTrader physical coordinate overrides its generic SV Black Star Promos image filename; TCGplayer image403 retained.",
+      "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+      "retrieved_at": "2026-10-01T20:13:30.016Z"
+    },
+    {
+      "ref": "rockets-zapdos-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/635500",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "537a53494bdd4e6b4a1aacbfd663db51a467e617f2c11f4774fb9df7b78793cf",
+      "retrieved_at": "2026-10-01T20:14:58.839Z"
+    },
+    {
+      "ref": "rockets-zapdos-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://www.cardtrader.com/uploads/blueprints/image/335913/team-rocket-s-zapdos-gamestop-promo-070-182-sv-black-star-promos.jpg",
+      "independence_family": "cardtrader_physical_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Release history explicitly identifies GameStop stamp variant as Cosmos. Independent CardTrader exact photograph shows red lower-left stamp,Cosmos star/circle foil,120HP,Jamming Wing,Wicked Thunder,DRI070/182. CardTrader physical coordinate overrides its generic SV Black Star Promos image filename; TCGplayer image403 retained.",
+      "sha256": "9cbd1206d7461bb8d0e130114567cd3b1cdd71049e3270ceb8d8213c04ee42a2",
+      "retrieved_at": "2026-10-01T20:14:05.130Z"
+    }
+  ],
+  "source_independence": "bulbapedia_release_history and independent CardTrader physical photograph; TCGCSV source identity is supplementary.",
+  "adjudication": "Release history explicitly identifies GameStop stamp variant as Cosmos. Independent CardTrader exact photograph shows red lower-left stamp,Cosmos star/circle foil,120HP,Jamming Wing,Wicked Thunder,DRI070/182. CardTrader physical coordinate overrides its generic SV Black Star Promos image filename; TCGplayer image403 retained.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

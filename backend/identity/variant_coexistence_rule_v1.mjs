@@ -4,6 +4,17 @@ export const VARIANT_COEXISTENCE_RULE_V1 = 'VARIANT_COEXISTENCE_RULE_V1';
 
 const GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1 = 'GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1';
 const GENERIC_PLAY_POKEMON_STAMP_VARIANT_KEY = 'play_pokemon_stamp';
+const STAMPED_IDENTITY_RULE_V1 = 'STAMPED_IDENTITY_RULE_V1';
+const GAMESTOP_STAMP_VARIANT_KEY = 'gamestop_stamp';
+const GAMESTOP_COEXISTING_STAMPS = new Map([
+  ['prerelease_stamp', null],
+  ['staff_stamp', null],
+  ['staff_prerelease_stamp', null],
+  ['eb_games_stamp', null],
+  ['obsidian_flames_stamp', 'sv03'],
+  ['twilight_masquerade_stamp', 'sv06'],
+  ['mega_evolution_stamp', 'me01'],
+]);
 const ALLOWED_SET_NAME_STAMP_VARIANT_KEYS = new Set([
   'white_flare_stamp',
   'black_bolt_stamp',
@@ -24,6 +35,50 @@ function normalizeVariantKeyOrNull(value) {
 
 function asRecord(value) {
   return value && typeof value === 'object' && !Array.isArray(value) ? value : null;
+}
+
+function coordinate(value) {
+  const left = normalizeTextOrNull(value)?.replace(/[⁄∕]/g, '/').split('/')[0];
+  return left?.replace(/\s/g, '').replace(/^0+(?=\d)/, '').toLowerCase() ?? null;
+}
+
+function nameKey(value) {
+  return normalizeTextOrNull(value)?.normalize('NFKC').replace(/[’`]/g, "'").toLowerCase() ?? null;
+}
+
+// This only resolves an occupied identity slot. Evidence-byte review, approval,
+// a fresh staging plan and execution guards remain mandatory downstream.
+function gameStopEvidenceFailure(candidate, sourceIdentity, rows, baseRow) {
+  const identity = sourceIdentity ?? {};
+  const variant = asRecord(identity.variant_identity) ?? {};
+  const evidence = asRecord(variant.source_evidence) ?? {};
+  const proof = asRecord(evidence.underlying_base_proof_summary) ?? {};
+  const audit = asRecord(evidence.pre_intake_audit) ?? {};
+  const claimed = asRecord(candidate?.claimed_identity_payload) ?? {};
+  if (!identity.is_bridge_candidate || !identity.is_complete ||
+      identity.variant_key !== GAMESTOP_STAMP_VARIANT_KEY ||
+      variant.rule !== STAMPED_IDENTITY_RULE_V1 ||
+      variant.status !== 'RESOLVED_STAMPED_IDENTITY' || variant.applies !== true ||
+      variant.variant_key !== GAMESTOP_STAMP_VARIANT_KEY ||
+      !identity.source_candidate_id || audit.live_source_candidate_id !== identity.source_candidate_id ||
+      !/^[1-9]\d*$/.test(String(claimed.source_raw_import_id ?? '')) ||
+      !/^[a-f0-9]{64}$/i.test(audit.image_sha256 ?? '') ||
+      !/^https:\/\//i.test(audit.image_url ?? '')) {
+    return 'STAMPED_SOURCE_PROVENANCE_NOT_PROVEN';
+  }
+  if (proof.underlying_base_state !== 'PROVEN' ||
+      proof.live_base_card_print_id !== baseRow.id ||
+      proof.live_base_set_code !== identity.set_code) {
+    return 'STAMPED_BASE_PROOF_MISMATCH';
+  }
+  if (!identity.set_code || !nameKey(identity.name) || !coordinate(identity.number_plain) ||
+      rows.some(row => row.set_code !== identity.set_code ||
+        nameKey(row.name) !== nameKey(identity.name) ||
+        coordinate(row.number_plain ?? row.number) !== coordinate(identity.number_plain)) ||
+      rows.some(row => !row.id) || new Set(rows.map(row => row.id)).size !== rows.length) {
+    return 'STAMPED_SLOT_COORDINATE_MISMATCH';
+  }
+  return null;
 }
 
 function buildRejectedDecision(reason, details = {}) {
@@ -72,7 +127,8 @@ export function evaluateVariantCoexistenceV1({
     return buildRejectedDecision('VARIANT_KEY_MISSING');
   }
 
-  if (normalizedIncomingVariantKey !== GENERIC_PLAY_POKEMON_STAMP_VARIANT_KEY) {
+  const gameStop = normalizedIncomingVariantKey === GAMESTOP_STAMP_VARIANT_KEY;
+  if (!gameStop && normalizedIncomingVariantKey !== GENERIC_PLAY_POKEMON_STAMP_VARIANT_KEY) {
     return buildRejectedDecision('INCOMING_VARIANT_KEY_NOT_SUPPORTED', {
       incoming_variant_key: normalizedIncomingVariantKey,
     });
@@ -85,7 +141,8 @@ export function evaluateVariantCoexistenceV1({
     sourceBackedIdentity,
   });
 
-  if (!variantIdentityRules.includes(GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1)) {
+  const requiredRule = gameStop ? STAMPED_IDENTITY_RULE_V1 : GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V1;
+  if (!variantIdentityRules.includes(requiredRule)) {
     return buildRejectedDecision('VARIANT_RULE_NOT_PROVEN', {
       incoming_variant_key: normalizedIncomingVariantKey,
       variant_identity_rules: variantIdentityRules,
@@ -145,8 +202,21 @@ export function evaluateVariantCoexistenceV1({
     });
   }
 
+  if (gameStop) {
+    const failure = gameStopEvidenceFailure(candidate, sourceBackedIdentity, normalizedMatchingRows, baseRows[0]);
+    if (failure) return buildRejectedDecision(failure, { incoming_variant_key: normalizedIncomingVariantKey });
+    const matchingIds = new Set(normalizedMatchingRows.map(row => row.id));
+    if (normalizedRows.some(row => !matchingIds.has(row.id))) {
+      return buildRejectedDecision('UNRELATED_SLOT_OCCUPANTS_PRESENT');
+    }
+  }
+
   const unsupportedExistingVariantKey = existingVariantKeys.find(
-    (key) => !ALLOWED_SET_NAME_STAMP_VARIANT_KEYS.has(key),
+    (key) => gameStop
+      ? !GAMESTOP_COEXISTING_STAMPS.has(key) ||
+        (GAMESTOP_COEXISTING_STAMPS.get(key) !== null &&
+         GAMESTOP_COEXISTING_STAMPS.get(key) !== sourceBackedIdentity.set_code)
+      : !ALLOWED_SET_NAME_STAMP_VARIANT_KEYS.has(key),
   );
   if (unsupportedExistingVariantKey) {
     return buildRejectedDecision('EXISTING_VARIANT_KEY_NOT_SUPPORTED', {

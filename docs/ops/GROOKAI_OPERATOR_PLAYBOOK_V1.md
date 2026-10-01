@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## GameStop grouped recovery — October 1
+
+Read `docs/ops/GAMESTOP_BATCH_20261001.md`. Review the complete backlog and promote
+eligible records in batches with shared qualification, per-record receipts and
+one final coverage audit. The private `gamestop_batch_20261001/CHECKPOINT.md`
+tracks actual writes and the recovered disk-space interruption. Shared stamped
+coexistence fixes must reclassify original candidates; unknown or duplicated
+variants remain held. Never replay completed prior GameStop scopes.
+
 ## GameStop Sandaconda Cosmos promotion — October 1
 
 Read `docs/ops/GAMESTOP_COSMOS_20261001.md`. The current bounded continuation uses

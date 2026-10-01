@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "06ac70fe8fb8bbe786a52e166c6731b2ed1665d4e611d6f60fb97ea4360d8480",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv07",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:19:27.735Z",
+  "projection_sha256": "d8cd2a97fd11420f4c9717cb5d4e0b36dc14bf9bcd75201f236fa1d41ae3084e",
+  "adjudication": "Release history explicitly identifies the red GameStop stamp variant as Cosmos. Exact product photograph and explicit source Cosmos title corroborate:180HP,Metal Bridge,Iron Blaster,SCR107/142,red stamp and star/circle glints. Illustration rare155 is excluded.",
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

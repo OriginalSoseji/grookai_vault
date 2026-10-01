@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv05",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv05/gamestop_batch_koraidon_20261001/master.json",
+  "master_index_sha256": "ccca476bebe95863fee2869f2bbfa0bc7436b4da1e0baf1c88bb52648046a99f",
+  "parents": [
+    {
+      "id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP",
+      "name": "Koraidon",
+      "printed_coordinate": "119",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "koraidon-release-history",
+          "sha256": "41db34a7bf2009620f02908e5c6483f42b762a35eff393ddffc33838ea173de2",
+          "card_print_id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "koraidon-tcgcsv-product",
+          "sha256": "5431bec6dd4c0e8909c9c14b83084960ac36333d4323893aaa41ebb36290aa85",
+          "card_print_id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "koraidon-exact-image",
+          "sha256": "5edc15451f0072c59cdab89c1e43e0e1a5e78155401fd54c045aa43c38dcebad",
+          "card_print_id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+    "source_artifacts": [
+      {
+        "ref": "koraidon-release-history",
+        "sha256": "41db34a7bf2009620f02908e5c6483f42b762a35eff393ddffc33838ea173de2",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Koraidon_(Temporal_Forces_119)",
+        "retrieved_at": "2026-10-01T20:13:15.786Z"
+      },
+      {
+        "ref": "koraidon-tcgcsv-product",
+        "sha256": "5431bec6dd4c0e8909c9c14b83084960ac36333d4323893aaa41ebb36290aa85",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/543954",
+        "retrieved_at": "2026-10-01T20:14:58.831Z"
+      },
+      {
+        "ref": "koraidon-exact-image",
+        "sha256": "5edc15451f0072c59cdab89c1e43e0e1a5e78155401fd54c045aa43c38dcebad",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/543954_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.612Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv05/gamestop_batch_koraidon_20261001/review.json",
+      "sha256": "55416654f7857a3a900eaae2c53c1078e1bb1047de8e6b913b78dc47eefddcf0"
+    }
+  },
+  "fingerprint": "ed2ed3ff5c6bc8187f8af6da6907e34bcb02ec52ca7339fb866d88b271318986"
+}

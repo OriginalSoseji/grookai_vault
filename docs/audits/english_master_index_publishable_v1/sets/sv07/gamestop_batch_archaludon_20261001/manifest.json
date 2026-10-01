@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv07",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv07/gamestop_batch_archaludon_20261001/master.json",
+  "master_index_sha256": "06ac70fe8fb8bbe786a52e166c6731b2ed1665d4e611d6f60fb97ea4360d8480",
+  "parents": [
+    {
+      "id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP",
+      "name": "Archaludon",
+      "printed_coordinate": "107",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "archaludon-release-history",
+          "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+          "card_print_id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "archaludon-tcgcsv-product",
+          "sha256": "4f1fb795ca463897bd2fdbb95166bbe77333a4415b7fdeee30443c233a801376",
+          "card_print_id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "archaludon-exact-image",
+          "sha256": "0689a30d2da57c5f4453b0fee10c3efb2d6856c930e6189dcf083bdd6ef14d00",
+          "card_print_id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+    "source_artifacts": [
+      {
+        "ref": "archaludon-release-history",
+        "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Archaludon_(Stellar_Crown_107)",
+        "retrieved_at": "2026-10-01T20:13:30.016Z"
+      },
+      {
+        "ref": "archaludon-tcgcsv-product",
+        "sha256": "4f1fb795ca463897bd2fdbb95166bbe77333a4415b7fdeee30443c233a801376",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/576862",
+        "retrieved_at": "2026-10-01T20:14:58.834Z"
+      },
+      {
+        "ref": "archaludon-exact-image",
+        "sha256": "0689a30d2da57c5f4453b0fee10c3efb2d6856c930e6189dcf083bdd6ef14d00",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/576862_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.560Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv07/gamestop_batch_archaludon_20261001/review.json",
+      "sha256": "9cafdd557637a1f198237095bb5fb607f5f2149dceaba5f88b76f4f645a465ea"
+    }
+  },
+  "fingerprint": "297d3aee8f79c00e1b0bf2eda2c37960e4bcde1e104ee40b29c46712aad1969b"
+}

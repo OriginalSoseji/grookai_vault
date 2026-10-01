@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "b6f3db9a788b4e64cb524bd4c3d77c1afd26546175e63b47b9443b62073f10ea",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv09",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:19:27.738Z",
+  "projection_sha256": "57fb50e3fc55251439577879eb42edc228fa0e6394f54dc3efae9dba6e8dde41",
+  "adjudication": "Release history explicitly identifies the red GameStop stamp variant as Cosmos; source product title independently names Cosmos. Exact catalogue image verifies red lower-left stamp,150HP,Extra Helpings,Dynamic Press,JTG117/159. Digital render alone does not prove physical foil.",
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

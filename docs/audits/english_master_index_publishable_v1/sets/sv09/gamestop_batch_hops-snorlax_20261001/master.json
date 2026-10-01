@@ -1,0 +1,81 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv09",
+  "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:19:27.738Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "a27cca55-5d27-432b-9d45-ff330d583958",
+    "gv_id": "GV-PK-JTG-117-GAMESTOP-STAMP",
+    "name": "Hop's Snorlax",
+    "printed_coordinate": "117/159",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-JTG-117-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "hops-snorlax-release-history",
+        "hops-snorlax-tcgcsv-product",
+        "hops-snorlax-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "hops-snorlax-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Hop%27s_Snorlax_(Journey_Together_117)",
+      "independence_family": "bulbapedia_release_history",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Release history explicitly identifies the red GameStop stamp variant as Cosmos; source product title independently names Cosmos. Exact catalogue image verifies red lower-left stamp,150HP,Extra Helpings,Dynamic Press,JTG117/159. Digital render alone does not prove physical foil.",
+      "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+      "retrieved_at": "2026-10-01T20:13:30.016Z"
+    },
+    {
+      "ref": "hops-snorlax-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/626640",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "62a344ab31538287df09cd6090636af4d9c54eaa4643183c39ed7ba1a570f194",
+      "retrieved_at": "2026-10-01T20:14:58.836Z"
+    },
+    {
+      "ref": "hops-snorlax-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/626640_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Release history explicitly identifies the red GameStop stamp variant as Cosmos; source product title independently names Cosmos. Exact catalogue image verifies red lower-left stamp,150HP,Extra Helpings,Dynamic Press,JTG117/159. Digital render alone does not prove physical foil.",
+      "sha256": "d7b00d7d98c23b5f3a5345457cbceadeed6d9f2dc4ce821c1a205ee8f505091e",
+      "retrieved_at": "2026-10-01T20:13:28.554Z"
+    }
+  ],
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Release history explicitly identifies the red GameStop stamp variant as Cosmos; source product title independently names Cosmos. Exact catalogue image verifies red lower-left stamp,150HP,Extra Helpings,Dynamic Press,JTG117/159. Digital render alone does not prove physical foil.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

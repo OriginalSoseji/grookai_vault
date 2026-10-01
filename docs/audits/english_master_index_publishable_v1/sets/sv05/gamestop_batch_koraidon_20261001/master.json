@@ -1,0 +1,81 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv05",
+  "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:19:27.731Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+    "gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP",
+    "name": "Koraidon",
+    "printed_coordinate": "119/162",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "koraidon-release-history",
+        "koraidon-tcgcsv-product",
+        "koraidon-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "koraidon-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Koraidon_(Temporal_Forces_119)",
+      "independence_family": "bulbapedia_release_history",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Release history explicitly identifies the red GameStop stamp variant as Cosmos. Exact product photograph independently shows circular/star foil,red stamp,140HP,Ancient and TEF119/162.",
+      "sha256": "41db34a7bf2009620f02908e5c6483f42b762a35eff393ddffc33838ea173de2",
+      "retrieved_at": "2026-10-01T20:13:15.786Z"
+    },
+    {
+      "ref": "koraidon-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/543954",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "5431bec6dd4c0e8909c9c14b83084960ac36333d4323893aaa41ebb36290aa85",
+      "retrieved_at": "2026-10-01T20:14:58.831Z"
+    },
+    {
+      "ref": "koraidon-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/543954_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Release history explicitly identifies the red GameStop stamp variant as Cosmos. Exact product photograph independently shows circular/star foil,red stamp,140HP,Ancient and TEF119/162.",
+      "sha256": "5edc15451f0072c59cdab89c1e43e0e1a5e78155401fd54c045aa43c38dcebad",
+      "retrieved_at": "2026-10-01T20:13:28.612Z"
+    }
+  ],
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Release history explicitly identifies the red GameStop stamp variant as Cosmos. Exact product photograph independently shows circular/star foil,red stamp,140HP,Ancient and TEF119/162.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

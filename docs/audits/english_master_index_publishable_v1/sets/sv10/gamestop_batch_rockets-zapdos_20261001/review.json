@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "79d601d7b60fd0f332637ce8c7eb9ca0ad3497392838e47b6de33c0510400a11",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv10",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:19:27.742Z",
+  "projection_sha256": "860033a028a38e3af77362ed7f0e3f9b69b982628dfc073d8d2ddadab82c9419",
+  "adjudication": "Release history explicitly identifies GameStop stamp variant as Cosmos. Independent CardTrader exact photograph shows red lower-left stamp,Cosmos star/circle foil,120HP,Jamming Wing,Wicked Thunder,DRI070/182. CardTrader physical coordinate overrides its generic SV Black Star Promos image filename; TCGplayer image403 retained.",
+  "source_independence": "bulbapedia_release_history and independent CardTrader physical photograph; TCGCSV source identity is supplementary.",
+  "execution_authorized": false
+}

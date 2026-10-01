@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv09",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv09/gamestop_batch_hops-snorlax_20261001/master.json",
+  "master_index_sha256": "b6f3db9a788b4e64cb524bd4c3d77c1afd26546175e63b47b9443b62073f10ea",
+  "parents": [
+    {
+      "id": "a27cca55-5d27-432b-9d45-ff330d583958",
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "gv_id": "GV-PK-JTG-117-GAMESTOP-STAMP",
+      "name": "Hop's Snorlax",
+      "printed_coordinate": "117",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "a27cca55-5d27-432b-9d45-ff330d583958",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-JTG-117-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "hops-snorlax-release-history",
+          "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+          "card_print_id": "a27cca55-5d27-432b-9d45-ff330d583958",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "hops-snorlax-tcgcsv-product",
+          "sha256": "62a344ab31538287df09cd6090636af4d9c54eaa4643183c39ed7ba1a570f194",
+          "card_print_id": "a27cca55-5d27-432b-9d45-ff330d583958",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "hops-snorlax-exact-image",
+          "sha256": "d7b00d7d98c23b5f3a5345457cbceadeed6d9f2dc4ce821c1a205ee8f505091e",
+          "card_print_id": "a27cca55-5d27-432b-9d45-ff330d583958",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+    "source_artifacts": [
+      {
+        "ref": "hops-snorlax-release-history",
+        "sha256": "8507f65c3787ad12c5f1ce9df133f1ab61ed432f4d9793f216177e6f31493cf6",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Hop%27s_Snorlax_(Journey_Together_117)",
+        "retrieved_at": "2026-10-01T20:13:30.016Z"
+      },
+      {
+        "ref": "hops-snorlax-tcgcsv-product",
+        "sha256": "62a344ab31538287df09cd6090636af4d9c54eaa4643183c39ed7ba1a570f194",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/626640",
+        "retrieved_at": "2026-10-01T20:14:58.836Z"
+      },
+      {
+        "ref": "hops-snorlax-exact-image",
+        "sha256": "d7b00d7d98c23b5f3a5345457cbceadeed6d9f2dc4ce821c1a205ee8f505091e",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/626640_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.554Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv09/gamestop_batch_hops-snorlax_20261001/review.json",
+      "sha256": "b9ddeed20dfc3f1108271a9e94045331c822bbb967878df4f0007aeb337013a5"
+    }
+  },
+  "fingerprint": "a0f42983c8b5162880dd703aca8a20dcc31e35ae9511a618381eb5c4c38d9e9a"
+}
