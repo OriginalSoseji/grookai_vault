@@ -1,5 +1,6 @@
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
 import { matchesCollectrMtgIdentity } from "./mtg_identity.ts";
+import { matchesCollectrPokemonName } from "./pokemon_name.ts";
 import {
   ImportValidationError,
   jsonbByteSize,
@@ -197,6 +198,8 @@ async function resolveTargets(
       !card || card.gv_id !== selectedRow.gvId || !object(set) ||
       (base.game && set.game !== base.game) ||
       (text(card.name ?? "").toLowerCase() !== base.name &&
+        !matchesCollectrPokemonName({sourceName: base.name, sourceNumber: base.number,
+          game: base.game, card}) &&
         !matchesCollectrMtgIdentity({sourceName: base.name, sourceNumber: base.number,
           game: base.game, card, identities: identities.get(card.id) ?? []})) ||
       setName(set.name ?? "", base.game) !== base.set ||

@@ -1,0 +1,542 @@
+[
+  {
+    "label": "EX separator",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "GX separator",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic GX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-GX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "reverse EX separator",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic-EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "case and whitespace",
+    "expected": true,
+    "input": {
+      "sourceName": "  SYNTHETIC   EX  ",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "repeated number",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic (0007)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "prefixed repeated number",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic (BW007)",
+      "sourceNumber": "BW07",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic",
+        "number": "BW7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "combined number and EX",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic EX (007)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "explicit English",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "wrong number",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "8",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "wrong suffix number",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (8)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "wrong suffix prefix",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (BW7)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "empty number",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "different name",
+    "expected": false,
+    "input": {
+      "sourceName": "Another EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "partial name",
+    "expected": false,
+    "input": {
+      "sourceName": "Synth EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "no separator",
+    "expected": false,
+    "input": {
+      "sourceName": "SyntheticEX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "internal hyphen",
+    "expected": false,
+    "input": {
+      "sourceName": "Syn-thetic EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "unknown domain",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": null,
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "Japanese domain",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_jpn_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "Japanese language",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "ja"
+      }
+    }
+  },
+  {
+    "label": "unknown game",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "007/100",
+      "game": "",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "other game",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX",
+      "sourceNumber": "007/100",
+      "game": "mtg",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "duplicate suffix",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (7) (7)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "empty name",
+    "expected": false,
+    "input": {
+      "sourceName": "",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "multiple spaces around hyphen",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic - EX",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Full Art",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Full Art)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Secret",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Secret)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Delta Species",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Delta Species)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Red Cheeks",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Red Cheeks)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Yellow Cheeks",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Yellow Cheeks)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Stamped",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Stamped)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Cosmos Holo",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Cosmos Holo)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves JP",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (JP)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves 1st Edition",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (1st Edition)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Poke Ball Pattern",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Poke Ball Pattern)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves Reverse Holo",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (Reverse Holo)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "preserves 7 Full Art",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic EX (7 Full Art)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  }
+]

@@ -1,11 +1,28 @@
 # Collectr import fidelity repair
 
-Status: PR557 is merged, production is at410, and build337 is released internally
-and installed on the real iPhone. Its original-export preview is verified; no real
-collection save occurred. The subsequent set-label batch is locally qualified,
-not released. Private terminal release/preview evidence supersedes
-historical preparation notes. Catalog/grade/sealed coverage remains incomplete;
-retained review is not ownership.
+Status: PR559, backend V2/version3 and internal TestFlight338 are released.
+Production has411 migrations. The original-export physical preview is verified
+for337;338 device verification remains open. The name-format follow-up below is
+local work, not a released build. No real collection save occurred. Private
+terminal release/preview evidence supersedes historical preparation notes.
+Catalog/grade/sealed coverage remains incomplete; retained review is not ownership.
+
+## Pokemon name-format follow-up
+
+Source-aware V2 preview and Edge additionally recognize the separator before a
+terminal EX/GX and one repeated collector-number suffix, such as `Synthetic EX`
+versus `Synthetic-EX` or `Synthetic (007)` at number7. This fallback requires the
+Pokemon game and `pokemon_eng_standard` identity domain; the source and catalog
+number must agree. A prefixed number must keep its prefix. It never strips art,
+stamp, edition, language, cheek, rarity or finish labels. Multiple matching
+candidates remain ambiguous, including an exact-name candidate competing with a
+formatting-equivalent candidate. Legacy V1 matching is unchanged.
+
+Both runtimes share `test/fixtures/collectr_pokemon_name_v1.json`. Game, set,
+governed child finish, grade, source metadata and atomic save checks still apply
+independently. Original names and numbers are retained byte-for-value as parsed.
+Local qualification is not deployment or permission to call a partial import
+complete; all retained unsupported rows remain visible.
 
 ## Explicit set-label follow-up
 

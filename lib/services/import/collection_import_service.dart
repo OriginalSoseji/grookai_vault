@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../vault/vault_card_service.dart';
 import 'collection_import_mtg_identity.dart';
+import 'collection_import_pokemon_name.dart';
 
 class CollectionImportParsedRow {
   const CollectionImportParsedRow({
@@ -443,7 +444,9 @@ class CollectionImportService {
       (byKey[key] ??= []).add(card);
     }
     final byCoordinate = <String, List<_CollectionImportCandidateRow>>{};
-    for (final card in candidates.where((card) => card.game == 'mtg')) {
+    for (final card in candidates.where(
+      (card) => ['mtg', 'pokemon'].contains(card.game),
+    )) {
       final key = _buildMatchKey(
         normalizeImportSetForCompare(card.setName),
         normalizeImportNumberForCompare(card.number),
@@ -454,8 +457,14 @@ class CollectionImportService {
     List<_CollectionImportCandidateRow> treatmentCandidates(
       CollectionImportNormalizedRow row,
     ) => sourceAware && row.gameCode == 'mtg'
-        ? byCoordinate[_buildMatchKey(row.compareSet, row.compareNumber, '')] ??
-              []
+        ? (byCoordinate[_buildMatchKey(
+                    row.compareSet,
+                    row.compareNumber,
+                    '',
+                  )] ??
+                  [])
+              .where((card) => card.game == 'mtg')
+              .toList()
         : [];
     final identityIds = <String>{};
     for (final row in validRows) {
@@ -504,6 +513,25 @@ class CollectionImportService {
               )
               .toList();
       final result = {for (final card in exact) card.id: card};
+      if (sourceAware && row.gameCode == 'pokemon') {
+        for (final card
+            in byCoordinate[_buildMatchKey(
+                  row.compareSet,
+                  row.compareNumber,
+                  '',
+                )] ??
+                <_CollectionImportCandidateRow>[]) {
+          if (card.game == 'pokemon' &&
+              matchesCollectrPokemonName(
+                sourceName: row.displayName,
+                sourceNumber: row.displayNumber,
+                game: row.gameCode,
+                card: card.identityCard,
+              )) {
+            result[card.id] = card;
+          }
+        }
+      }
       for (final card in treatmentCandidates(row)) {
         if (matchesCollectrMtgIdentity(
           sourceName: row.displayName,

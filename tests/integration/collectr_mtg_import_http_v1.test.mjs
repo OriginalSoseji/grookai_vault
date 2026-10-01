@@ -9,13 +9,14 @@ import {createRequire} from 'node:module';
 import {localSupabaseStatusSecret} from '../../scripts/lib/local_supabase_cli_status_v1.mjs';
 const root=path.resolve(import.meta.dirname,'../..');
 const setProof=process.env.GV_COLLECTR_SET_HTTP_PROOF==='1';
-const out='C:/grookai_vault_operator_artifacts/'+(setProof?'collectr_sets_20260930':'collectr_matching_20260930');
+const nameProof=process.env.GV_COLLECTR_NAME_HTTP_PROOF==='1';
+const out='C:/grookai_vault_operator_artifacts/'+(nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
 const fixture='C:/grookai_vault_operator_artifacts/collectr_import_review_20260930/full-410',project='collectr-review-full-410-20260930';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source readback',{
- skip:!setProof&&process.env.GV_COLLECTR_MTG_HTTP_PROOF!=='1',timeout:120000,
+ skip:!nameProof&&!setProof&&process.env.GV_COLLECTR_MTG_HTTP_PROOF!=='1',timeout:120000,
 },async t=>{
- assert.equal(root.replaceAll('\\','/'),setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
+ assert.equal(root.replaceAll('\\','/'),nameProof?'C:/gv_collectr_names_20261001':setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
  const require=createRequire(process.env.GV_COLLECTR_TEST_DEPENDENCIES??path.join(root,'package.json'));
  const pg=require('pg'),{createClient}=require('@supabase/supabase-js');
  const freeze=JSON.parse(fs.readFileSync(fixture+'/freeze.json'));
@@ -35,6 +36,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
  const runDir=out+'/http-v2-'+Date.now();fs.mkdirSync(runDir);
  const sourceFiles=['supabase/functions/vault-import-collection-v2/source.ts','supabase/functions/vault-import-collection-v2/handler.ts','supabase/functions/_shared/auth.ts','supabase/functions/_shared/key_resolver.ts','tests/integration/helpers/collectr_import_server_v2.ts', 'tests/integration/collectr_mtg_import_http_v1.test.mjs','supabase/functions/vault-import-collection-v2/mtg_identity.ts'];
  if(setProof)sourceFiles.push('test/fixtures/collectr_set_aliases_v1.json');
+ if(nameProof)sourceFiles.push('supabase/functions/vault-import-collection-v2/pokemon_name.ts','test/fixtures/collectr_pokemon_name_v1.json');
  fs.writeFileSync(runDir+'/intent.json',JSON.stringify({scope:'New synthetic accounts and fixtures only; never reset or migrate',project,at:new Date().toISOString(),sourceHashes:Object.fromEntries(sourceFiles.map(p=>[p,hash(fs.readFileSync(root+'/'+p))]))}),{flag:'wx'});
  const db=new pg.Client({host:'127.0.0.1',port:58540,user:'postgres',password:'postgres',database:'postgres',statement_timeout:15000});await db.connect();
  const status=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true}));
@@ -121,15 +123,19 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   await check('governed MTG repeated import retains original exact copy IDs',async()=>{
    const response=await send({csvText:mtgCsv,targets:mtgTargets});assert.equal(response.status,200);assert.equal((await response.json()).importedCards,0);assert.deepEqual((await copies()).filter(c=>c.card_print_id===mtgCard),mtgCopies);
   });
-  if(setProof)await check('all set aliases save original labels and exact children, retry without duplicates and retain grades',async()=>{
-   const aliases=JSON.parse(fs.readFileSync(root+'/test/fixtures/collectr_set_aliases_v1.json'));
+  if(setProof||nameProof)await check('set or name formatting saves original labels and exact children, retries without duplicates and retains grades',async()=>{
+   const aliases=nameProof ? [
+    {source:'Synthetic Name EX Set',catalog:'Synthetic Name EX Set',sourceCard:'Synthetic Name EX (007)',catalogCard:'Synthetic Name-EX'},
+    {source:'Synthetic Name GX Set',catalog:'Synthetic Name GX Set',sourceCard:'Synthetic Name GX',catalogCard:'Synthetic Name-GX'},
+    {source:'Synthetic Name Number Set',catalog:'Synthetic Name Number Set',sourceCard:'Synthetic Name (7)',catalogCard:'Synthetic Name'},
+   ] : JSON.parse(fs.readFileSync(root+'/test/fixtures/collectr_set_aliases_v1.json'));
    const source=[],selections=[];
    for(const [index,alias] of aliases.entries()){
     const setId=randomUUID(),cardId=randomUUID(),childId=randomUUID(),gv='GV-ALIAS-SYN-'+cardId;
     await db.query("insert into sets(id,code,name,game) values($1,$2,$3,'pokemon')",[setId,'syn-'+setId,alias.catalog]);
-    await db.query("insert into card_prints(id,set_id,name,number,gv_id,game_id) values($1,$2,'Synthetic alias card','7',$3,(select id from games where code='pokemon'))",[cardId,setId,gv]);
+    await db.query("insert into card_prints(id,set_id,name,number,gv_id,game_id,identity_domain) values($1,$2,$4,'7',$3,(select id from games where code='pokemon'),'pokemon_eng_standard')",[cardId,setId,gv,alias.catalogCard??'Synthetic alias card']);
     await db.query("insert into card_printings(id,card_print_id,finish_key) values($1,$2,'reverse')",[childId,cardId]);
-    source.push({'Product Name':'Synthetic alias card',Category:'Pokemon',Set:alias.source,'Card Number':'007/100',Variance:'Reverse Holofoil',Grade:'Ungraded','Card Condition':'LP',Quantity:'2','Average Cost Paid':'4.25'});
+    source.push({'Product Name':alias.sourceCard??'Synthetic alias card',Category:'Pokemon',Set:alias.source,'Card Number':'007/100',Variance:'Reverse Holofoil',Grade:'Ungraded','Card Condition':'LP',Quantity:'2','Average Cost Paid':'4.25'});
     selections.push({sourceIndices:[index],cardId,gvId:gv,cardPrintingId:childId});
    }
    source.push({...source[0],Grade:'PSA 10',Quantity:'1'});
@@ -149,7 +155,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   const after=await snapshot();for(const table of tables)assert.deepEqual(after[table].filter(r=>r.user_id!==user.id&&r.user_id!==outsider.id),before[table]);
   assert.deepEqual((await db.query('select * from catalog_game_release_controls order by game_code')).rows,releaseControlsBefore);
   assert.deepEqual((await db.query('select * from catalog_set_release_controls where set_id<>$1 order by set_id',[mtgSet])).rows,setControlsBefore);
-  const result={status:checks.length===(setProof?10:9)?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};
+  const result={status:checks.length===(setProof||nameProof?10:9)?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};
   fs.writeFileSync(runDir+'/result.json',JSON.stringify(result,null,2),{flag:'wx'});assert.equal(result.status,'passed');
  }finally{
   if(child){child.kill();await new Promise(resolve=>{if(child.exitCode!==null)resolve();else child.once('exit',resolve);});}
