@@ -2153,6 +2153,15 @@ Verify actual `schedule` events; report stale evidence honestly if delays persis
 
 ## Pokemon warehouse coverage — October 1, 2026
 
+The search and six-hour coverage release is now live from PR565, with an actual
+merged-main hosted coverage-only report (run36879465569). Its failing completeness
+status reports unresolved relationships; it does not indicate source loss.
+The latest bounded card continuation is
+`docs/ops/GAMESTOP_ZOROARK_20261001.md`. Current immutable promotion and public
+verification receipts are indexed by the private
+`gamestop_zoroark_20261001/CHECKPOINT.md`. Historical undeployed wording below
+describes preparation before the completed PR565 release.
+
 Dragonite's parent, Holo printing and exact image are now live and publicly
 verified. All consumed promotion actions must remain preserved. The separate
 search/workflow release is tracked in private

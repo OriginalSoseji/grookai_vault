@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh11",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/swsh11/gamestop_zoroark_20261001/master.json",
+  "master_index_sha256": "52a1a3d1cf911f60e2e161006d2729e5a4ef1bac78eb5ebe12bdfbe8797b6637",
+  "parents": [
+    {
+      "id": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+      "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "gv_id": "GV-PK-LOR-076-GAMESTOP-STAMP",
+      "name": "Hisuian Zoroark",
+      "printed_coordinate": "076",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-LOR-076-GAMESTOP-STAMP-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "zoroark-bulbapedia-rendered-extraction",
+          "sha256": "3900d2c7a6d0cb20c720dc186af67c88bb7ac27e1735ba549e875233d17eca33",
+          "card_print_id": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "zoroark-face-to-face-product-html",
+          "sha256": "b3ac83e328deda2762327e847f415c636e2945dc62c6270aa814c278b08ce42a",
+          "card_print_id": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "zoroark-face-to-face-product-image",
+          "sha256": "65ea06e61f76eca134b87aadcfaee3e320e40381ba95a93eb5049e6a86398f30",
+          "card_print_id": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+    "source_artifacts": [
+      {
+        "ref": "zoroark-bulbapedia-rendered-extraction",
+        "sha256": "3900d2c7a6d0cb20c720dc186af67c88bb7ac27e1735ba549e875233d17eca33",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Hisuian_Zoroark_(Lost_Origin_76)",
+        "retrieved_at": "2026-10-01T14:24:29.092Z"
+      },
+      {
+        "ref": "zoroark-face-to-face-product-html",
+        "sha256": "b3ac83e328deda2762327e847f415c636e2945dc62c6270aa814c278b08ce42a",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://facetofacegames.com/products/hisuian-zoroark-076196-promo-gamestop-stamp-swsh11msp-076-holo",
+        "retrieved_at": "2026-10-01T15:32:10.410Z"
+      },
+      {
+        "ref": "zoroark-face-to-face-product-image",
+        "sha256": "65ea06e61f76eca134b87aadcfaee3e320e40381ba95a93eb5049e6a86398f30",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://facetofacegames.com/cdn/shop/files/cfdf7a3d5e5eea5fd9d903193789ee91e7c81715_Asset_PKM_SWSH11MSP_076_Event_Gamestop_ENG_H_jpg.jpg",
+        "retrieved_at": "2026-10-01T15:32:23.774Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/swsh11/gamestop_zoroark_20261001/review.json",
+      "sha256": "d0d30f6585ae4ba8e82880e3f8e85d449c27782b3a965c2b88477f812e720fe5"
+    }
+  },
+  "fingerprint": "8d71c9c394e21f82130ad8de7780ba1c09cabaaecf40493fabfb6dbbbb604073"
+}
