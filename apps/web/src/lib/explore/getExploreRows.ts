@@ -46,6 +46,7 @@ import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 import { fetchPokemonArtistRows, isKnownArtistQuery } from "@/lib/search/artistSearch";
 import { fetchCompleteNamedCardRows } from "@/lib/search/completeNamedCardSearch";
+import type { SearchSet } from "@/lib/search/catalogSetSearch";
 
 const SEARCH_LIMIT = 64;
 const SET_FETCH_PAGE_SIZE = 500;
@@ -300,6 +301,7 @@ type SortMode =
 type SmartFilterImageState = "exact" | "representative" | "missing" | "any";
 
 type SmartFilterDiscoveryOptions = {
+  searchSets?: SearchSet[];
   sortMode: SortMode;
   textQuery?: string;
   exactSetCode?: string;
@@ -3960,7 +3962,7 @@ async function enrichCompleteSearchParents(
   if (parentRows.length === 0) return [];
   const metadata = await fetchPublicSetMetadata(uniqueValues(
     parentRows.map((row) => row.set_code ?? "").filter(Boolean),
-  ));
+  ), options.searchSets);
   const parentsWithSetMetadata = parentRows.map((row) => {
     const set = metadata.get(row.set_code ?? "");
     return { ...row, set_name: set?.set_name,
@@ -4952,15 +4954,23 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   return sortRows(rows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
 }
 
-async function fetchPublicSetMetadata(setCodes: string[]) {
+async function fetchPublicSetMetadata(setCodes: string[], searchSets?: SearchSet[]) {
   if (setCodes.length === 0) {
     return new Map<string, PublicSetMetadata>();
   }
 
-  const supabase = await createServerComponentClient();
-  const data: SetMetadataLookupRow[] = [];
-  for (const codes of chunkArray(uniqueValues(setCodes), 80)) {
-    const result = await supabase.from("sets")
+  // Reuse only this request's caller-visible catalog. Unknown codes still use
+  // the existing RLS-protected lookup (including cross-game fallback rows).
+  const requestedCodes = new Set(setCodes);
+  const data: SetMetadataLookupRow[] = (searchSets ?? [])
+    .filter((set) => requestedCodes.has(set.code))
+    .map((set) => ({ code: set.code, name: set.name, printed_total: set.printed_total ?? null,
+      release_date: set.release_date ?? null, identity_model: set.identity_model ?? null }));
+  const availableCodes = new Set(data.map((set) => set.code));
+  const missingCodes = uniqueValues(setCodes).filter((code) => !availableCodes.has(code));
+  const supabase = missingCodes.length ? await createServerComponentClient() : undefined;
+  for (const codes of chunkArray(missingCodes, 80)) {
+    const result = await supabase!.from("sets")
       .select("code,name,printed_total,release_date,identity_model").in("code", codes);
     if (result.error) throw new Error(result.error.message);
     data.push(...(result.data ?? []) as SetMetadataLookupRow[]);

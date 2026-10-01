@@ -14,7 +14,9 @@ printing review, other product owner or changed dependency blocks execution.
 One proven unstamped-product association on the stamped parent may be explicitly
 invalidated by that same review. Its row, ID, source identity, timestamps and
 original metadata are retained; only active=false and an appended invalidation
-receipt change. Referenced mapping IDs require separate adjudication. This is not
+receipt change. Referenced mapping IDs require separate adjudication under
+`REVIEWED_MAPPING_PRICE_QUARANTINE_V1.md`, including installed pricing-read guards,
+immutable dependency preservation and verified price withdrawal. This is not
 an alias cleanup or permission to reassign a mapping to another card.
 
 The caller supplies current execution authorization and a separate approved manual

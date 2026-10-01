@@ -1,0 +1,100 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swshp",
+  "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop reconciliation",
+  "reviewed_at": "2026-10-01T18:22:44.765Z",
+  "parent": {
+    "id": "04e792f4-4de2-4026-994f-087e230c7bae",
+    "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+    "gv_id": "GV-PK-SWSHP-028-GAMESTOP-STAMP",
+    "name": "Duraludon",
+    "printed_coordinate": "SWSH028",
+    "identity_domain": "pokemon_eng_standard",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": null
+  },
+  "printings": [
+    {
+      "id": "8d582ee9-4bfd-42af-a153-e3c2f23bbea7",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-SWSHP-028-GAMESTOP-STAMP-HOLO",
+      "source_refs": [
+        "duraludon-exact-product",
+        "duraludon-stamped-image",
+        "duraludon-editorial-release"
+      ]
+    }
+  ],
+  "external_product": {
+    "source": "tcgplayer",
+    "id": "247362",
+    "physical_coordinate": "SWSH028"
+  },
+  "source_artifacts": [
+    {
+      "ref": "duraludon-exact-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/247362/pokemon-miscellaneous-cards-and-products-duraludon-swsh028-gamestop-exclusive",
+      "independence_family": "tcgplayer_catalogue_image",
+      "fact": "Exact warehouse product247362 identifies Duraludon SWSH028 GameStop Exclusive. Its product identity is corroborated by the stamped photograph.",
+      "sha256": "4379365f4216d5920c185e48b507bbcb8788571b1dc261183f2d6e2375cd0618",
+      "retrieved_at": "2026-10-01T18:22:44.767Z"
+    },
+    {
+      "ref": "duraludon-stamped-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/247362_200w.jpg",
+      "independence_family": "tcgplayer_catalogue_image",
+      "fact": "Reviewed English130HP Duraludon SWSH028, red GameStop stamp, vertical line Holo. Evidence image only; existing representative canonical image is preserved.",
+      "sha256": "3cfe2daf203e5b253cdba807fe03ba0d836318b09fcd3090a82f3b0f38ecb074",
+      "retrieved_at": "2026-10-01T17:23:32.425Z"
+    },
+    {
+      "ref": "duraludon-editorial-release",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Duraludon_(SWSH_Promo_28)",
+      "independence_family": "editorial_release_history",
+      "fact": "Release history distinguishes the original unstamped Cosmos Holo from the later GameStop-stamped Line Holo and separate EB Games distribution. Preserved actual web-tool extraction JSON; failed other fetches do not count as evidence.",
+      "sha256": "68080e0c12bf05e179f60337ff619d94935495cbdeb8144f108246d820862e3b",
+      "retrieved_at": "2026-10-01T17:23:19.575Z"
+    },
+    {
+      "ref": "duraludon-unstamped-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/214239/pokemon-swsh-sword-and-shield-promo-cards-duraludon-swsh028",
+      "independence_family": "tcgplayer_catalogue_image",
+      "fact": "Product214239 is the unstamped Duraludon SWSH028 and is not the GameStop release; reject its association with the stamped parent while retaining the mapping row/history.",
+      "sha256": "b62113376fc1769029d21fba149f09bdd5210bcfc1af1ed29cd7b568c119547e",
+      "retrieved_at": "2026-10-01T18:22:44.767Z"
+    },
+    {
+      "ref": "duraludon-unstamped-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/214239_200w.jpg",
+      "independence_family": "tcgplayer_catalogue_image",
+      "fact": "Original product photograph has no red GameStop stamp. It corroborates the rejected product identity, not the finish of the stamped printing.",
+      "sha256": "e4c65ad0f0f378be7b6ace535842076f7612594ff8eee2aad4fc4f7bf8c0f0c8",
+      "retrieved_at": "2026-10-01T17:23:33.013Z"
+    }
+  ],
+  "source_independence": "Two families: exact TCGplayer catalogue/images and editorial release history. Catalogue and its images count as one family.",
+  "adjudication": "Link exact GameStop product247362 to the existing stamped Duraludon SWSH028 and retain its Line Holo child. Reject unstamped214239 association. Preserve historical null printed modifier, canonical IDs, representative image and immutable pricing evidence; a separate bound pricing review requires unavailable discredited current/history prices.",
+  "limitations": [
+    "One reviewed variant scope, not whole-set completeness",
+    "No new parent, printing or image",
+    "No Cosmos inference from the unstamped original",
+    "No price transfer, history deletion or pricing activation"
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  }
+}

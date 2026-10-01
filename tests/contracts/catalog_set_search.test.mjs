@@ -8,6 +8,10 @@ const require = createRequire(import.meta.url);
 const ts = require('typescript');
 const web = path.resolve('apps/web/src');
 const cache = new Map();
+let expressionCount = 0;
+class CountedRegExp extends RegExp {
+  constructor(...args) { super(...args); expressionCount += 1; }
+}
 function load(file) {
   if (cache.has(file)) return cache.get(file).exports;
   if (file.endsWith('.json')) return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -15,7 +19,7 @@ function load(file) {
   const code = ts.transpileModule(fs.readFileSync(file, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
   }).outputText;
-  vm.runInNewContext(code, { module, exports: module.exports, require: (id) => {
+  vm.runInNewContext(code, { module, exports: module.exports, RegExp: CountedRegExp, require: (id) => {
     let target = id.startsWith('@/') ? path.join(web, id.slice(2)) : path.resolve(path.dirname(file), id);
     if (!fs.existsSync(target)) target += '.ts';
     return load(target);
@@ -34,6 +38,35 @@ const sets = [
  ['me02.5', 'Ascended Heroes'], ['asc-special', 'Ascended Legends'], ['silver', 'Silver Tempest'],
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
+
+test('large unrelated catalogs do not compile a phrase expression for each alias', () => {
+ expressionCount = 0;
+ const empty = resolve('Pika', 'pokemon', []);
+ const fixedCost = expressionCount;
+ const large = Array.from({ length: 1500 }, (_, i) => ({ id: String(i), code: `scope-${i}`, name: `Unrelated Archive ${i}` }));
+ expressionCount = 0;
+ assert.deepEqual(plain(resolve('Pika', 'pokemon', large)), plain(empty));
+ assert.equal(expressionCount, fixedCost);
+});
+
+test('candidate screening preserves Unicode folding, symbols, quotes, and literal codes', () => {
+ const catalog = [['fold-s', 'Silver Garden'], ['fold-k', 'Kelvin Garden'], ['fold-sigma', 'ΟΣ Garden'], ['fold-sharp', 'Straße Garden'], ['fold-and', 'Sun and Moon'], ['XY_123', 'Identifier Garden']]
+   .map(([code, name]) => ({ id: code, code, name }));
+ for (const [query, expected] of [['Pika ſilver Garden', 'fold-s'], ['Pika Kelvin Garden', 'fold-k'], ['Pika οσ Garden', 'fold-sigma'], ['Pika Straße Garden', 'fold-sharp'], ['Pika Sun & Moon', 'fold-and'], ['Pika xy_123', 'XY_123']]) {
+  assert.deepEqual(plain(resolve(query, 'pokemon', catalog).setCodes), [expected], query);
+ }
+ for (const query of ['Pika STRASSE Garden', 'Pika "Silver Garden"', 'Pika xy-123']) {
+  assert.equal(resolve(query, 'pokemon', catalog).matchedAlias, null, query);
+ }
+ const reordered = resolve('Pika Garden Kelvin', 'pokemon', catalog);
+ assert.equal(reordered.matchedAlias, 'Kelvin');
+ assert.equal(reordered.openingWordMatch, true);
+ assert.equal(reordered.remainingQuery, 'Pika Garden');
+ // U+0345 is a combining mark whose /iu fold is a Greek letter. Token
+ // boundaries must use that same folding, including within literal codes.
+ assert.deepEqual(plain(resolve('Pika \u0345', 'pokemon', [{ id: 'iota', code: 'iota', name: 'Ι' }]).setCodes), ['iota']);
+ assert.deepEqual(plain(resolve('Pika aιb', 'pokemon', [{ id: 'mark', code: 'a\u0345b', name: 'Other' }]).setCodes), ['a\u0345b']);
+});
 
 test('opening set words combine with partial card names in either order', () => {
  for (const q of ['Pika 30th', '30th Pika', 'Pika, 30TH', 'Pika from the 30th']) {
@@ -102,23 +135,22 @@ test('unknown words and identifiers survive; ambiguous catalog set names require
  assert.equal(resolve('Mewtwo unknown Future Garden', 'pokemon', sets).remainingQuery, 'Mewtwo unknown');
 });
 
-test('caller-scoped catalog reader includes later pages and refuses partial/duplicate results', async () => {
- const rows = Array.from({length: 501}, (_, i) => ({id: String(i), code: 'set'+i, name: 'Set '+i}));
- const offsets=[];
- const client = (failure=false, duplicate=false) => ({from(table) {
-  assert.equal(table, 'sets');
-  return {select: () => ({eq: (field, game) => {
-   assert.equal(field, 'game'); assert.equal(game, 'pokemon');
-   return {order: () => ({range: async (start, end) => {
-    offsets.push(start);
-    return start && failure ? {error:{message:'catalog offline'}} : {data: duplicate && start ? [rows[0]] : rows.slice(start,end+1)};
-   }})};
-  }})};
+test('caller-scoped catalog reader exceeds the REST row cap in one call and refuses incomplete data', async () => {
+ const rows = Array.from({length: 1382}, (_, i) => ({id: String(i), code: 'set'+i, name: 'Set '+i}));
+ let calls = 0;
+ const client = (result) => ({rpc: async (name, args) => {
+  calls += 1;
+  assert.equal(name, 'get_search_set_catalog_v1');
+  assert.deepEqual(plain(args), {game_code_in:'pokemon'});
+  return result;
  }});
- assert.equal((await readSearchSets(client(), 'pokemon')).length, 501);
- assert.deepEqual(offsets, [0,500]);
- await assert.rejects(readSearchSets(client(true), 'pokemon'), /catalog offline/);
- await assert.rejects(readSearchSets(client(false,true), 'pokemon'), /did not advance/);
+ assert.equal((await readSearchSets(client({data:{complete:true,sets:rows}}), 'pokemon')).length, 1382);
+ assert.equal(calls, 1);
+ await assert.rejects(readSearchSets(client({error:{message:'catalog offline'}}), 'pokemon'), /catalog offline/);
+ await assert.rejects(readSearchSets(client({data:{complete:false,sets:rows}}), 'pokemon'), /completely/);
+ await assert.rejects(readSearchSets(client({data:{complete:true,sets:[rows[0],rows[0]]}}), 'pokemon'), /did not advance/);
+ await assert.rejects(readSearchSets(client({data:{complete:true,sets:[{id:'bad'}]}}), 'pokemon'), /invalid row/);
+ await assert.rejects(readSearchSets(client({data:null}), 'pokemon'), /completely/);
 });
 
 test('set phrases protect number, year and finish-like tokens while quoted card text stays literal', () => {

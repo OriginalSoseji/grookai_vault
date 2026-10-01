@@ -36,7 +36,10 @@ test('all writes, auth, Storage, unknown RPCs, off-origin reads fail without net
 });
 test('bounded catalog RPCs work via POST, without broad RPC access', async () => {
   const read = createPreviewReadFetch('https://catalog.supabase.co', 'public-key', async () => Response.json([]));
-  assert.equal((await read('https://catalog.supabase.co/rest/v1/rpc/get_public_card_printing_options_v1', { method: 'POST' })).status, 200);
+  for (const rpc of ['get_public_card_printing_options_v1', 'get_search_set_catalog_v1', 'resolve_visible_set_references_v1']) {
+    assert.equal((await read(`https://catalog.supabase.co/rest/v1/rpc/${rpc}`, { method: 'POST' })).status, 200);
+    assert.equal((await read(`https://catalog.supabase.co/rest/v1/rpc/${rpc}`, { method: 'DELETE' })).status, 403);
+  }
 });
 test('HTTP boundary rejects server actions, sign-in and administration', () => {
   for (const path of ['/', '/card/GV-PK-MEW-200', '/api/telemetry', '/api/canon/cards/GV-PK-MEW-200/image']) assert.equal(previewRequestKind(path, 'POST'), 'deny');

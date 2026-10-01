@@ -1,5 +1,32 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Reviewed mapping price quarantine (2026-10-01)
+
+`ReviewedMappingPriceQuarantineV1` admits only AuditLinkedSchema/PrePush for sole
+pending20261001190000, without combined scopes or target overrides. It compares
+the production412 schema/security to the qualified full412 baseline and retains
+duplicate timestamp/object checks. PrePush additionally requires isolated full413
+replay/no-op push, retained412-to413 upgrade, real local authenticated pricing HTTP,
+actual mapping rollback/commit/repeat, exact proof source hashes, clean committed
+source containing main and a fresh normal-hook receipt. The inspection package
+prepares/dry-runs the exact Supabase CLI payload; it never applies SQL. Preserve
+all populated fixtures and historical failure receipts. Production schema apply,
+reader parity and the separate reviewed mapping execution need their own receipts.
+
+## Search database latency qualification (2026-10-01)
+
+`SearchDatabaseLatencyV1` accepts AuditLinkedSchema/PrePush for exactly
+20261001150000 over411. The initial baseline audit may omit the pending ID.
+Duplicate timestamp/object checks remain mandatory. PrePush binds the V2 full412
+replay/no-op push, retained411-to412 upgrade, real Auth/HTTP visibility and query
+plan proof, fresh production411 schema/security parity, and successful normal
+hooks on clean committed source containing main. All preexisting set fields and
+copy rows must be unchanged; the new generated case-folded key must equal
+lower(code). There is no policy relaxation or canonical data repair. The private
+CLI prepare/dry-run helper admits only the exact pending migration. Neither gate
+nor inspection helper applies changes; authorized application needs fresh intent
+and independent schema, data-boundary and permissions readback.
+
 ## Cosmos pricing qualification (2026-09-30)
 
 `CosmosPricingReleaseV1` accepts only AuditLinkedSchema/PrePush with exactly

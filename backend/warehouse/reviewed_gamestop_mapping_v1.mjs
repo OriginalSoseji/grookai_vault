@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {assertMasterPrintingAuthority} from '../catalog/master_index_printing_authority_v1.mjs';
 import {printingManifestHash as hash} from '../catalog/printing_completeness_gate_v1.mjs';
 import {assertExecuteCanonWriteV1} from '../lib/contracts/execute_canon_write_v1.mjs';
+import {assertMappingPricingAdjudication,assertMappingPricingGuards,assertRejectedMappingPriceWithdrawn} from './reviewed_mapping_pricing_adjudication_v1.mjs';
 
 export const VERSION='REVIEWED_GAMESTOP_MAPPING_V1';
 const uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/;
@@ -22,12 +23,20 @@ export async function readGameStopMappingDependencies(db,bundle){
       and f.confrelid in ('public.card_prints'::regclass,'public.card_printings'::regclass,'public.external_mappings'::regclass)))
   order by 1,2`)).rows;
  const parentIds=[bundle.target.card_print_id],childIds=bundle.before.children.map(c=>c.id),mappingIds=bundle.before.mappings.map(m=>String(m.id));
- const footprints=[];
+ // Scan a relation once even when it references parent, child and mapping.
+ // Per-column filters retain exactly the original counts and full-row digests.
+ const results=new Map(),groups=new Map();
  for(const c of columns){assert.ok(['uuid','int8','int4'].includes(c.type),'unsupported_dependency_type');const ids=c.type==='uuid'?[...parentIds,...childIds]:mappingIds;
-  if(ids.length===0){footprints.push({...c,count:0,digest:'d41d8cd98f00b204e9800998ecf8427e'});continue;}
-  const result=(await db.query(`select count(*)::int count,md5(coalesce(string_agg(md5(to_jsonb(r)::text),'' order by md5(to_jsonb(r)::text)),'')) digest from public.${identifier(c.relation)} r where ${identifier(c.field)}=any($1::${c.type}[])`,[ids])).rows[0];
-  footprints.push({...c,...result});
+  if(!ids.length){results.set(c,{count:0,digest:'d41d8cd98f00b204e9800998ecf8427e'});continue;}
+  if(!groups.has(c.relation))groups.set(c.relation,[]);groups.get(c.relation).push({c,ids});
  }
+ for(const [relation,group]of groups){
+  const conditions=group.map(({c},i)=>`${identifier(c.field)}=any($${i+1}::${c.type}[])`);
+  const selections=conditions.flatMap((condition,i)=>[`count(*) filter(where ${condition})::int c${i}`,`md5(coalesce(string_agg(md5(to_jsonb(r)::text),'' order by md5(to_jsonb(r)::text)) filter(where ${condition}),'')) d${i}`]);
+  const result=(await db.query(`select ${selections.join(',')} from public.${identifier(relation)} r where ${conditions.join(' or ')}`,group.map(g=>g.ids))).rows[0];
+  group.forEach(({c},i)=>results.set(c,{count:result['c'+i],digest:result['d'+i]}));
+ }
+ const footprints=columns.map(c=>({...c,...results.get(c)}));
  const triggers=(await db.query("select tgname,pg_get_triggerdef(oid) definition from pg_trigger where tgrelid='public.external_mappings'::regclass and not tgisinternal order by tgname")).rows;
  assert.equal(triggers.length,0,'mapping_triggers_require_separate_review');
  return {columns,footprints,triggers};
@@ -41,7 +50,7 @@ export function assertReviewedGameStopMapping(bundle){
  const {manifest,target,before}=bundle;
  const artifacts=new Map();for(const a of bundle.artifacts){assert.ok(!artifacts.has(a.ref));const b=Buffer.from(a.base64,'base64');assert.equal(b.toString('base64'),a.base64);artifacts.set(a.ref,b);}
  assertMasterPrintingAuthority(manifest,artifacts);
- assert.deepEqual([...artifacts.keys()].sort(),[...new Set([manifest.master_index_ref,manifest.authority.review.ref,...manifest.authority.source_artifacts.map(s=>s.ref)])].sort());
+ assert.deepEqual([...artifacts.keys()].sort(),[...new Set([manifest.master_index_ref,manifest.authority.review.ref,...manifest.authority.source_artifacts.map(s=>s.ref),...(manifest.pricing_dependency_adjudication?[manifest.pricing_dependency_adjudication.ref]:[])])].sort());
  assert.equal(manifest.game,'pokemon');assert.equal(manifest.language,'en');assert.equal(manifest.identity_policy_version,'POKEMON_EN_PHYSICAL_V1');
  assert.equal(manifest.parents.length,1);assert.equal(manifest.printings.length,1);
  const p=manifest.parents[0],printing=manifest.printings[0];
@@ -70,8 +79,9 @@ export function assertReviewedGameStopMapping(bundle){
  assert.equal(positive[0].discovery_snapshot_sha256,hash(before.discovery));assert.equal(positive[0].raw_snapshot_sha256,hash(before.raw));
  assert.ok(bundle.dependencies&&Array.isArray(bundle.dependencies.footprints),'dependency_inventory_required');
  assert.equal(positive[0].dependencies_sha256,hash(bundle.dependencies));
- for(const f of bundle.dependencies.footprints.filter(f=>f.type!=='uuid'))assert.equal(f.count,0,'referenced_mapping_requires_separate_adjudication');
- return {manifest,target,before,rejected};
+ const pricingReview=manifest.pricing_dependency_adjudication?assertMappingPricingAdjudication(bundle,artifacts):null;
+ if(!pricingReview)for(const f of bundle.dependencies.footprints.filter(f=>f.type!=='uuid'))assert.equal(f.count,0,'referenced_mapping_requires_separate_adjudication');
+ return {manifest,target,before,rejected,pricingReview};
 }
 
 export async function readGameStopMappingState(db,bundle,{lock=false}={}){
@@ -103,14 +113,15 @@ export function assertGameStopMappingReadback(bundle,state){
 }
 
 export async function executeReviewedGameStopMapping(db,bundle,{authorization}={}){
- const {target,before,rejected}=assertReviewedGameStopMapping(bundle);
+ const {target,before,rejected,pricingReview}=assertReviewedGameStopMapping(bundle);
  assert.equal(authorization?.approved,true,'explicit_execution_authorization_required');assert.equal(authorization?.authority_fingerprint,bundle.fingerprint);assert.ok(authorization.operator&&authorization.request);
  assert.equal((await db.query('show transaction_isolation')).rows[0].transaction_isolation,'serializable','serializable_transaction_required');
+ if(pricingReview){await db.query("select pg_advisory_xact_lock(hashtext('tcgplayer_market_publication_v1'))");await assertMappingPricingGuards(db,pricingReview);}
  assert.deepEqual(await readGameStopMappingDependencies(db,bundle),bundle.dependencies,'dependency_preflight_drift');
  const state=await readGameStopMappingState(db,bundle,{lock:true});
  const candidate=(await rows(db,'select to_jsonb(c) row from public.canon_warehouse_candidates c where id=$1 for update',[target.candidate_id]))[0];assert.ok(candidate,'review_candidate_required');
  if(candidate.state==='ARCHIVED'){
-  const mapping=assertGameStopMappingReadback(bundle,state);assert.equal(candidate.reference_hints_payload?.authority_fingerprint,bundle.fingerprint);return {status:'already_succeeded',mapping};
+  const mapping=assertGameStopMappingReadback(bundle,state);assert.equal(candidate.reference_hints_payload?.authority_fingerprint,bundle.fingerprint);if(pricingReview)await assertRejectedMappingPriceWithdrawn(db,bundle);return {status:'already_succeeded',mapping};
  }
  assert.equal(candidate.state,'APPROVED_BY_FOUNDER');assert.ok(candidate.founder_approved_by_user_id&&candidate.founder_approved_at);assert.equal(candidate.tcgplayer_id,target.external_id);
  assert.equal(candidate.reference_hints_payload?.authority_fingerprint,bundle.fingerprint);assert.equal(candidate.claimed_identity_payload?.source_raw_import_id,before.raw.id);assert.equal(candidate.claimed_identity_payload?.source_discovery_candidate_id,before.discovery.id);
@@ -118,7 +129,7 @@ export async function executeReviewedGameStopMapping(db,bundle,{authorization}={
  let mapping;
  await assertExecuteCanonWriteV1({execution_name:'reviewed_gamestop_mapping_v1',transaction_control:'external',write_target:db,audit_target:db,ledger_target:db,actor_type:'system_worker',actor_id:candidate.founder_approved_by_user_id,source_worker:VERSION,source_system:'warehouse',payload_snapshot:{target,authority_fingerprint:bundle.fingerprint,authorization},
   contract_assertions:[{ok:true,contract_name:'EXTERNAL_SOURCE_INGESTION_MODEL_V1',reason:'Exact source, reviewed Master identity and preserved raw lineage verified in the locked transaction.'}],
-  proofs:[{name:'reviewed_mapping_and_preservation',contract_name:'IDENTITY_PRECEDENCE_RULE_V1',async run(){mapping=assertGameStopMappingReadback(bundle,await readGameStopMappingState(db,bundle));assert.deepEqual(await readGameStopMappingDependencies(db,bundle),bundle.dependencies,'dependency_postwrite_drift');return {ok:true};}}],
+  proofs:[{name:'reviewed_mapping_and_preservation',contract_name:'IDENTITY_PRECEDENCE_RULE_V1',async run(){mapping=assertGameStopMappingReadback(bundle,await readGameStopMappingState(db,bundle));assert.deepEqual(await readGameStopMappingDependencies(db,bundle),bundle.dependencies,'dependency_postwrite_drift');if(pricingReview){await assertMappingPricingGuards(db,pricingReview);await assertRejectedMappingPriceWithdrawn(db,bundle);}return {ok:true};}}],
   async write(connection){
    for(const rejection of rejected){const old=before.mappings.find(m=>m.id===rejection.mapping_id);const meta={...old.meta,reviewed_invalidation:{version:VERSION,authority_fingerprint:bundle.fingerprint,reason_code:rejection.reason_code,prior_row_sha256:hash(old)}};
     assert.equal((await connection.query('update public.external_mappings set active=false,meta=$2::jsonb where id=$1 and active=true and to_jsonb(external_mappings)=$3::jsonb',[old.id,JSON.stringify(meta),JSON.stringify(old)])).rowCount,1,'invalidation_compare_and_swap');

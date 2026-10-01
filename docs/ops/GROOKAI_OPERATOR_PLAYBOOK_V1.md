@@ -1,5 +1,36 @@
 # Grookai Operator Playbook V1
 
+## Duraludon GameStop mapping and price correction — October 1
+
+Read `docs/ops/DURALUDON_MAPPING_PRICING_20261001.md` and
+`docs/contracts/REVIEWED_MAPPING_PRICE_QUARANTINE_V1.md`. The incorrect unstamped
+source has active and historical pricing dependencies. Preserve immutable history;
+the bounded repair requires installed reader exclusions and a separately bound
+pricing adjudication before the existing manual mapper may invalidate that link.
+Use the fixed strict-preflight scope and exact-pending CLI package. Preserve the
+isolated64040/64140 labs, runtime fixture receipts, prior promos and consumed actions.
+Private `gamestop_duraludon_20261001/CHECKPOINT.md` records actual completion.
+
+## Search database latency — October 1
+
+PR568 and migration412 are live; private `search_database_20261001/CHECKPOINT.json`
+is terminal. Continue the parser CPU follow-up in `C:/gv_search_tail_latency_20261001`.
+The existing checkpoint below and private `search_tail_latency_20261001` evidence
+separate local full-catalog equivalence from actual hosted deployment. This
+follow-up has no migration; never replay the completed412 apply to release it.
+
+Read `docs/checkpoints/search_database_latency_20261001.md`. The fixed isolated
+worktree qualifies migration20261001150000 against production411. Use the
+strict `SearchDatabaseLatencyV1` AuditLinkedSchema/PrePush path with the exact
+pending ID and normal hooks. New V2 full/upgrade labs use loopback65241/65341;
+preserve the original experiment and all populated labs. Caller-scoped catalog
+reuse and indexed lookups retain RLS. The private `search_database_20261001`
+artifact directory records actual release state separately from local proof.
+Use a separate TEMP/TMP directory for each Windows hook run so concurrent cleanup
+cannot remove Flutter's compiler output. After a Docker engine restart, restore
+only the required existing loopback relays after checking their bindings; never
+reset populated fixtures to recover connectivity.
+
 ## Web-first Collectr importer — October 1
 
 Read `docs/checkpoints/collectr_web_v2_20261001.md`. The founder removed physical
