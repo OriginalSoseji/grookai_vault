@@ -2,6 +2,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { NAMED_CARD_PAGE_SIZE, retainNamedCardFirstPage } from "./completeNamedCardSearch";
 import { getCatalogSetPresentation } from "../catalogPresentation";
 import { resolveGameScopedSetSearchIntent } from "../publicSets.shared";
+import { anniversarySetOrdinals } from "./anniversarySetSearch";
 
 type Game = "pokemon" | "one_piece" | "mtg";
 export type SearchSet = { id: string; code: string; name: string; printed_set_abbrev?: string | null;
@@ -76,11 +77,17 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
   }
   const bundled = resolveGameScopedSetSearchIntent(query, game);
   if (bundled.matchedAlias) add(bundled.matchedAlias, bundled.setCodes, false, true);
-  const anniversaryCodes: string[] = [];
+  const anniversaryFamilies = new Map<string, Set<string>>();
   const openingWords = new Map<string, Set<string>>();
   for (const set of sets) {
     const presentation = getCatalogSetPresentation({ ...set, game, printedCode: set.printed_set_abbrev });
-    for (const name of new Set([set.name, presentation.name, presentation.name_ja].filter(Boolean))) {
+    const names = [...new Set([set.name, presentation.name, presentation.name_ja].filter((name): name is string => Boolean(name)))];
+    for (const anniversary of anniversarySetOrdinals(game, set.code, names)) {
+      const codes = anniversaryFamilies.get(anniversary) ?? new Set<string>();
+      codes.add(set.code);
+      anniversaryFamilies.set(anniversary, codes);
+    }
+    for (const name of names) {
       add(name!, [set.code]);
       const tokens = words(name!);
       const first = tokens[0] ?? "";
@@ -95,18 +102,17 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
     // Printed codes are identifiers, not the generic presentation fallback.
     const printed = presentation.display_code;
     if (/^[a-z]+[0-9][a-z0-9.-]*$/i.test(printed)) add(printed, [set.code], true);
-    if (game === "pokemon" && /\b30th\s+(?:celebration|anniversary)\b/i.test(`${set.name} ${presentation.name}`)) anniversaryCodes.push(set.code);
   }
-  if (anniversaryCodes.length) add("30th anniversary", anniversaryCodes, false, true);
+  for (const [anniversary, codes] of anniversaryFamilies) add(`${anniversary} anniversary`, [...codes], false, true);
   // A complete name/code remains more specific than an opening-word shortcut.
   // Share all releases with the same opening word instead of arbitrarily
   // choosing one. Keep the normal exact-card-name disambiguation for shortcuts.
   let openingWordMatch = false;
-  if (!candidates.size && game === "pokemon") {
-    // Include translated/product releases whose localized title does not begin
-    // with 30th, using the same catalog-backed family as the full alias.
-    if (anniversaryCodes.length) add("30th", anniversaryCodes);
-    if (!candidates.size) {
+  if (!candidates.size) {
+    // Short and full anniversary aliases share exactly the same family, even
+    // when a localized/product title does not begin with the ordinal.
+    for (const [anniversary, codes] of anniversaryFamilies) add(anniversary, [...codes]);
+    if (!candidates.size && game === "pokemon") {
       openingWordMatch = true;
       for (const [alias, codes] of openingWords) {
         if (!ignoredOpeningWords.some((ignored) => words(ignored).join(" ") === alias)) add(alias, [...codes]);

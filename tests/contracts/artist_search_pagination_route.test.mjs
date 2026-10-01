@@ -12,17 +12,17 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {} } = {}) {
+function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     '@/lib/explore/getExploreRows': {
-      getExploreRowsForCombinedSearch: async (options) => { capture(options); return fixture; },
+      getExploreRowsForCombinedSearch: async (options) => { capture(options); return rows; },
       getExploreRowsForArtistSearch: async (artist, options) => {
         capture({ ...options, artist });
         if (fail) throw new Error('canceling statement due to statement timeout');
-        return fixture;
+        return rows;
       },
       getExploreRowsForLanguageScopedTextSearch: async () => fixture,
     },
@@ -137,6 +137,9 @@ const searchSets = [
  {id:'5',code:'future1',name:'Future Garden'}, {id:'6',code:'fo',name:'Fossil'},
  {id:'7',code:'base5',name:'Team Rocket'},
  {id:'8',code:'asc',name:'Ascended Heroes'},
+ {id:'25en',code:'cel25',name:'Celebrations'}, {id:'25classic',code:'cel25c',name:'Celebrations: Classic Collection'},
+ {id:'25ja',code:'jp25',name:'拡張パック「25th ANNIVERSARY COLLECTION」'},
+ {id:'20en',code:'g1',name:'Generations'}, {id:'20ja',code:'jp20',name:'20th Anniversary'},
 ];
 test('actual route applies name/set intersections before complete pagination with removable set chips', async () => {
  for (const [query, text, codes] of [
@@ -144,6 +147,12 @@ test('actual route applies name/set intersections before complete pagination wit
   ['30th anniversary Mewtwo','Mewtwo',['30c','30c-classic']],
   ['Pika 30th','Pika',['30c','30c-classic']],
   ['30th Pika','Pika',['30c','30c-classic']],
+  ['25th anniversary','',['cel25','cel25c','jp25']],
+  ['Pika 25th','Pika',['cel25','cel25c','jp25']],
+  ['25th anniversary Chari','Chari',['cel25','cel25c','jp25']],
+  ['Chari from the 25th anniversary','Chari',['cel25','cel25c','jp25']],
+  ['20th Pika','Pika',['g1','jp20']],
+  ['Pika 20th anniversary','Pika',['g1','jp20']],
   ['pika ascended','pika',['asc']],
   ['ascended pika','pika',['asc']],
   ['Chari base set','Chari',['base1']],
@@ -168,6 +177,29 @@ test('actual route applies name/set intersections before complete pagination wit
   const chip=result.smart_search.queryFilters.find(filter=>filter.kind==='set');
   assert.equal(chip.queryWithout,text);
   assert.equal(result.smart_search.queryFilters.some(filter=>filter.kind==='number'),false);
+ }
+});
+
+test('anniversary route combines artist, finish, language and complete legacy/paged results', async () => {
+ for(const lang of ['en','ja']) {
+  for(const pagination of ['0','1']) {
+   let options;
+   const get=loadRoute({sets:searchSets,rows:fixture.map(row=>({...row,artist:'Ken Sugimori',finish_key:'holo'})),capture:value=>{options=value;}});
+   const q='Ken Sugimori Pika 25th anniversary holo';
+   const response=await get({nextUrl:new URL('https://fixture?'+new URLSearchParams({q,game:'pokemon',lang,pagination,limit:'48'}))});
+   assert.equal(response.status,200);
+   const data=await response.json();
+   assert.equal(options.artist,'Ken Sugimori');
+   assert.equal(options.textQuery,'Pika');
+   assert.deepEqual(JSON.parse(JSON.stringify(options.exactSetCodes)),['cel25','cel25c','jp25']);
+   assert.deepEqual(JSON.parse(JSON.stringify(options.finishKeys)),['holo']);
+   assert.equal(options.languageScope,lang);
+   const expected=lang==='en'?194:1;
+   assert.equal(data.pagination.total_count,expected);
+   assert.equal(data.rows.length,pagination==='1'?Math.min(48,expected):expected);
+   const chip=data.smart_search.queryFilters.find(filter=>filter.kind==='set');
+   assert.equal(chip.queryWithout,'Ken Sugimori Pika holo');
+  }
  }
 });
 test('route retains artist and finish with a set and refuses catalog-read failures', async () => {
