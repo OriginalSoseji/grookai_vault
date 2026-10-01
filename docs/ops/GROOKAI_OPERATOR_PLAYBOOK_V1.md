@@ -52,6 +52,16 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
+Latest: PR560/backend V2 version4/internal TestFlight339 are released and the
+original-export physical339 preview passed without saving. The next isolated
+native finish-resolution candidate is `C:/gv_collectr_finish_20261001`, with
+private receipts under `collectr_finish_20261001`. Read its private CHECKPOINT.md
+and the first section of `docs/checkpoints/collectr_import_fidelity_20260930.md`.
+Refresh printing options for every ambiguous candidate before offline replay;
+missing evidence must not eliminate a competing parent. The existing server
+validates the narrowed selection without a backend/schema change. Preserve the
+populated410 labs and all consumed339 release/device intents.
+
 Latest continuation: PR559/backend V2 version3/internal TestFlight338 are released.
 The physical338 preview remains open while the iPhone is unavailable; do not reuse
 337 screenshots as338 evidence or replay consumed release intents. The next

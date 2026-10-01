@@ -1,5 +1,27 @@
 # Collectr importer fidelity — September 30
 
+## Finish resolution — October 1 local qualification
+
+PR560/backend V2 version4/internal TestFlight339 are live. The real iPhone339
+preview of the unchanged original export passed without saving. Its consumed
+release and device evidence remain under private `collectr_names_20261001` and
+`collectr_live_preview339_20261001`; do not replay those intents.
+
+The isolated `fix/collectr-finish-resolution-20261001` branch reads governed
+printing options for all candidate parents before deciding ambiguity. A supported
+explicit finish can resolve competing identities. Missing printing evidence,
+multiple matching children, grades and unsupported source details still hold the
+row. No default-parent preference or inferred stamp/finish is introduced. Legacy
+V1, server validation, schema and canonical data remain unchanged.
+
+Focused native tests cover capped pages, explicit normal/holo/reverse, selection
+of a stamped candidate, ambiguous/missing/inactive options, grade preservation and
+late-page failure. The private full-export replay and actual server handler replay
+preserve all previously ready selections and all original fields. This remains
+local evidence; normal integration checks, physical qualification and a new native
+release are separate. No real collection import occurred. Current receipts and
+remaining steps are in private `collectr_finish_20261001/CHECKPOINT.md`.
+
 ## Explicit set labels — local qualification
 
 PR557 and internal TestFlight337 are released. The real iPhone preview of the
