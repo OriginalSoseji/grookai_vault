@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv04",
+  "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T16:55:19.676Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "parent": {
+    "id": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+    "gv_id": "GV-PK-PAR-028-GAMESTOP-STAMP",
+    "name": "Iron Moth",
+    "printed_coordinate": "028/182",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-PAR-028-GAMESTOP-STAMP-REVERSE",
+      "status": "verified",
+      "source_refs": [
+        "iron-moth-pokebeach-extraction",
+        "iron-moth-merchant-product-html",
+        "iron-moth-merchant-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "iron-moth-pokebeach-extraction",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://www.pokebeach.com/2023/10/slither-wing-and-iron-moth-promos-at-best-buy-and-gamestop",
+      "format": "Preserved web-tool extraction JSON, not raw HTML. Only the exact PokeBeach release description supplies this editorial family.",
+      "independence_family": "editorial_release_reporting",
+      "fact": "PokeBeach explicitly identifies the GameStop-stamped Iron Moth as Reverse Holo.",
+      "sha256": "970fc26561404a998c00bafd98aa3fca7ba725c45c2427ff7394d2566fd3f825",
+      "retrieved_at": "2026-10-01T15:48:33.887Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time recorded separately."
+    },
+    {
+      "ref": "iron-moth-merchant-product-html",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.danireon.com/en-us/products/iron-moth-028-182-gamestop-promo-miscellaneous-cards",
+      "format": "Original HTTP200 HTML response bytes.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "The exact English GameStop Iron Moth 028/182 merchant listing identifies the physical Reverse Holo finish. Prices and stock are not finish authority.",
+      "sha256": "dc701cef133242a4ca7c27f7b65afa0984b21ab1f68560548a8ab5a78082153f",
+      "retrieved_at": "2026-10-01T15:47:57.452Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time recorded separately."
+    },
+    {
+      "ref": "iron-moth-merchant-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://www.danireon.com/cdn/shop/files/527015_729d6440-90b3-4c4d-a7ad-aebf1c26276b.jpg?v=1747267047",
+      "format": "Preserved JPEG, visually reviewed; lossless original bytes.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "English Iron Moth130HP,028/182, Future mark, red GameStop stamp and Reverse Holo pattern across the card body.",
+      "sha256": "4963db894f3feebe0c0fe08a5e603344ac1e0b6df0755ebf3dda7a1b1ae654e6",
+      "retrieved_at": "2026-10-01T15:48:55.336Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time recorded separately."
+    }
+  ],
+  "source_independence": "Two evidence families: PokeBeach original editorial release reporting and the exact merchant product/image. Merchant page and image count as one vote; mirrored editorial descriptions add no vote.",
+  "adjudication": "This additive scope identifies English Iron Moth 028/182 with the red GameStop stamp and Reverse Holo finish. Unstamped cards and other retailer stamps are separate identities outside this scope. The unstamped Iron Valiant box Cosmos version supplies no finish authority for this GameStop identity.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "No claim of whole-set or all-retailer completeness",
+    "No Normal, Holo or Cosmos option inferred",
+    "No execution approval supplied by this source review"
+  ],
+  "scope_relationship": "Additive reviewed variant scope under the existing English sv04 Master Index; historical cards.json, printings.json and evidence.json are preserved."
+}

@@ -2157,9 +2157,11 @@ The search and six-hour coverage release is now live from PR565, with an actual
 merged-main hosted coverage-only report (run36879465569). Its failing completeness
 status reports unresolved relationships; it does not indicate source loss.
 The latest bounded card continuation is
-`docs/ops/GAMESTOP_ZOROARK_20261001.md`. Current immutable promotion and public
-verification receipts are indexed by the private
-`gamestop_zoroark_20261001/CHECKPOINT.md`. Historical undeployed wording below
+`docs/ops/GAMESTOP_REVERSE_20261001.md`, covering exact GameStop Lechonk and
+Iron Moth Reverse Holo scopes. Current immutable promotion and public verification
+receipts are indexed by private `gamestop_reverse_20261001/CHECKPOINT.md`.
+Prior Zoroark receipts remain in `gamestop_zoroark_20261001/CHECKPOINT.md` and
+`docs/ops/GAMESTOP_ZOROARK_20261001.md`. Historical undeployed wording below
 describes preparation before the completed PR565 release.
 
 Dragonite's parent, Holo printing and exact image are now live and publicly

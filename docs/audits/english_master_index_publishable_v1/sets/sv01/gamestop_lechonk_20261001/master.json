@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv01",
+  "set_id": "97122072-f868-492c-913d-b3fa77deab09",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T16:55:19.666Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "parent": {
+    "id": "7cf9347e-9164-436b-8261-bf40fc1ac6e8",
+    "gv_id": "GV-PK-SVI-154-GAMESTOP-STAMP",
+    "name": "Lechonk",
+    "printed_coordinate": "154/198",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SVI-154-GAMESTOP-STAMP-REVERSE",
+      "status": "verified",
+      "source_refs": [
+        "lechonk-pokebeach-extraction",
+        "lechonk-merchant-product-html",
+        "lechonk-merchant-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "lechonk-pokebeach-extraction",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://www.pokebeach.com/2023/03/gamestop-lechonk-promo-for-scarlet-violet-changes-to-promos",
+      "format": "Preserved web-tool extraction JSON, not raw HTML. Only the exact PokeBeach release description supplies this editorial family.",
+      "independence_family": "editorial_release_reporting",
+      "fact": "PokeBeach explicitly identifies the GameStop-stamped Lechonk as Reverse Holo.",
+      "sha256": "f98ada72453053566fcc434fd537078bb106fee48e0e48f1986be63029eaab15",
+      "retrieved_at": "2026-10-01T15:46:59.869Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time recorded separately."
+    },
+    {
+      "ref": "lechonk-merchant-product-html",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://magicmadhouse.co.uk/pokemon-scarlet-violet-base-set-154-198-lechonk-reverse-holo-gamestop-stamp",
+      "format": "Original HTTP200 HTML response bytes.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "The exact English GameStop Lechonk 154/198 merchant listing identifies the physical Reverse Holo finish. Prices and stock are not finish authority.",
+      "sha256": "0d2e90ef88360de4d38a3dd20751511824a49aa405e91b95f8a92fe99e76e994",
+      "retrieved_at": "2026-10-01T15:47:56.704Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time recorded separately."
+    },
+    {
+      "ref": "lechonk-merchant-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://cdn11.bigcommerce.com/s-b4ioc4fed9/images/stencil/original/products/467892/3312027/47XLMCvOKkommC6GlWtJMvxPg__06160.1770199123.jpg",
+      "format": "Preserved JPEG, visually reviewed; lossless original bytes.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "English Lechonk60HP,154/198, red GameStop stamp and star-pattern Reverse Holo treatment across the card body.",
+      "sha256": "8bc1fdd1582937cf295ec94d159b76a9bdcaa45cfb7f116b7df3f9c9920479db",
+      "retrieved_at": "2026-10-01T15:48:55.050Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time recorded separately."
+    }
+  ],
+  "source_independence": "Two evidence families: PokeBeach original editorial release reporting and the exact merchant product/image. Merchant page and image count as one vote; mirrored editorial descriptions add no vote.",
+  "adjudication": "This additive scope identifies English Lechonk 154/198 with the red GameStop stamp and Reverse Holo finish. Unstamped cards and other retailer stamps are separate identities outside this scope.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "No claim of whole-set or all-retailer completeness",
+    "No Normal, Holo or Cosmos option inferred",
+    "No execution approval supplied by this source review"
+  ],
+  "scope_relationship": "Additive reviewed variant scope under the existing English sv01 Master Index; historical cards.json, printings.json and evidence.json are preserved."
+}
