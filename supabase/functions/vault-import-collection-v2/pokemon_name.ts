@@ -13,7 +13,7 @@ export function matchesCollectrPokemonName({sourceName, sourceNumber, game, card
     !["", "en"].includes(text(card.language)) || !number(sourceNumber) ||
     number(sourceNumber) !== number(card.number)) return false;
   let name = text(sourceName);
-  const suffix = /\s+\(([a-z]*\d+[a-z]*)\)$/.exec(name);
+  const suffix = /\s+\(#?([a-z]*\d+[a-z]*)\)$/.exec(name);
   if (suffix) {
     if (number(suffix[1]) !== number(sourceNumber)) return false;
     name = name.slice(0, suffix.index);

@@ -52,6 +52,16 @@ alone does not establish print support; actual label output remains separate pro
 
 ## Collectr import fidelity — September 30
 
+Current: PR561/internal TestFlight340 and its original-export iPhone preview are
+complete without saving. Continue in `C:/gv_collectr_set_scope_20261001`; private
+`collectr_set_scope_20261001/CHECKPOINT.md` is authoritative. The new V2 directional
+set scopes require `set_scope.ts` in Edge packaging and deployed-file verification.
+`GV_COLLECTR_SCOPE_HTTP_PROOF=1` qualifies all listed constituents through the
+existing retained410 Auth/HTTP/SQL lab using fresh synthetic accounts. Its finite
+MTG set visibility overrides are local fixtures; preserve previous controls.
+Never reset the populated lab or reuse340 release/device intents. Both native
+and backend distribution remain separate gates for this follow-up.
+
 Latest: PR560/backend V2 version4/internal TestFlight339 are released and the
 original-export physical339 preview passed without saving. The next isolated
 native finish-resolution candidate is `C:/gv_collectr_finish_20261001`, with

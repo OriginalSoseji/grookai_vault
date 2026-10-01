@@ -1,5 +1,25 @@
 # Collectr importer fidelity — September 30
 
+## Directional set scopes — October 1 local continuation
+
+PR561 and internal TestFlight340 are released. The real iPhone preview of the
+unchanged export passed without saving; terminal evidence is in private
+`collectr_finish_20261001` and `collectr_live_preview340_20261001`. Preserve all
+consumed release/device intents and the populated410 labs.
+
+The isolated `fix/collectr-set-scope-20261001` branch adds explicit V2 set scopes
+shared by preview and server validation: combined Trainer Kit constituents,
+RC-number-only Radiant subsets and supported full-set labels. It also recognizes
+a repeated collector-number suffix with `#` only when the number agrees. No
+language substitution, ambiguous-parent preference or Full Art/stamp stripping.
+V1 and schema remain unchanged. This work requires both native and Edge release;
+build340 does not contain it. No real collection import has occurred.
+
+Current private replay and remaining gates are recorded under
+`C:/grookai_vault_operator_artifacts/collectr_set_scope_20261001/CHECKPOINT.md`.
+Every previously ready identity/child/quantity and every original source field
+must remain unchanged. Local tests do not establish device or deployed behavior.
+
 ## Finish resolution — October 1 local qualification
 
 PR560/backend V2 version4/internal TestFlight339 are live. The real iPhone339
