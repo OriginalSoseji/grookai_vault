@@ -2033,6 +2033,22 @@ shadow/reconciliation proof, retain rollback pins, and verify actual production
 publication separately. The September 29 capacity recovery alone is not proof
 that pricing or MEE ingestion has completed.
 
+# Search latency and web-first importer verification — October 1, 2026
+
+Read `docs/checkpoints/search_latency_20261001.md`. Named searches use the
+caller-scoped RPC, starting one page then at most four concurrent page reads,
+consumed in offset order until the first short page. Native enrichment is independently
+published for visible cards; stale responses and errors cannot erase results.
+Do not replace this with truncated search results, shared account caches or
+broader fallback queries. Preserve exact printing filters and quick-add guards.
+
+The founder removed physical iPhone testing as an importer release prerequisite.
+Validate online using the web workflow and real sandbox Auth/HTTP/SQL, then use
+native build/static checks for packaging. Do not ask for a phone or record a
+physical pass when none occurred. The private Collectr set-scope checkpoint is
+authoritative for PR562 and its remaining web/release work; keep it separate from
+the search latency candidate and do not replay prior release/import intents.
+
 # Pricing scheduler session and process containment — September 29, 2026
 
 Scheduled runner V1_2 and publication worker V1_9 select port 5432 on the

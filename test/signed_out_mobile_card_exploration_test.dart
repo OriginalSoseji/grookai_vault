@@ -39,7 +39,14 @@ void main() {
       main,
       contains('!widget.signedOutBrowse && !(ownershipState?.owned ?? false)'),
     );
-    expect(main, contains("? const <String, OwnershipState>{}"));
+    expect(
+      main,
+      matches(
+        RegExp(
+          r'if \(!widget\.signedOutBrowse\)\s+publish\(\s+_primeCatalogOwnershipStates\(cards\)',
+        ),
+      ),
+    );
     expect(main, contains('? _openCardDetail(card)'));
   });
 
