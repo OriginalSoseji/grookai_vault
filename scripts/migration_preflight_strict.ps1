@@ -54,6 +54,7 @@ param(
   [switch]$NativeImportRecoveryBaselineAudit,
   [switch]$CollectrImportFidelityBaselineAudit,
   [switch]$CollectrImportFidelityReleaseV1,
+  [switch]$CosmosPricingReleaseV1,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -485,6 +486,23 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($CosmosPricingReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','CosmosPricingReleaseV1')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',') -ne '20260930233000') { Fail 'Cosmos release permits only its exact migration, without combined modes or target overrides.' }
+  $cosmosRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $cosmosFiles = @(Get-RepoMigrationFiles -RepoRoot $cosmosRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $cosmosFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $cosmosPending = @($cosmosFiles | Where-Object { $_.Id -eq '20260930233000' })
+  if ($cosmosPending.Count -ne 1) { Fail 'Cosmos release migration missing.' }
+  $cosmosDuplicates = Get-ObjectDuplicates -PendingFiles $cosmosPending
+  if ($cosmosDuplicates.DuplicateIndexes.Count -gt 0 -or $cosmosDuplicates.DuplicateViews.Count -gt 0 -or $cosmosDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending Cosmos objects.' }
+  Require-Command 'node'
+  $cosmosGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_cosmos_pricing_release_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $cosmosGate
+  if ($cosmosGate.ExitCode -ne 0) { Fail 'Cosmos release qualification failed; no apply.' }
+  exit 0
 }
 
 if ($CollectrImportFidelityReleaseV1) {
