@@ -574,16 +574,37 @@ class CollectionImportService {
             client,
             validRows
                 .map(matchesFor)
-                .where((matches) => matches.length == 1)
-                .map((matches) => matches.single.id),
+                .expand((matches) => matches.map((match) => match.id)),
           )
         : <Map<String, dynamic>>[];
+    final printingsByParent = <String, List<Map<String, dynamic>>>{};
+    for (final option in printingOptions) {
+      if (option['finish_is_active'] == true) {
+        (printingsByParent[option['card_print_id'] as String] ??= []).add(
+          option,
+        );
+      }
+    }
     final previewRows = <CollectionImportPreviewRow>[];
     var alreadyOwned = 0;
     for (final row in collapsedRows) {
-      final matches = row.reviewReasons.isEmpty
+      var matches = row.reviewReasons.isEmpty
           ? matchesFor(row)
           : <_CollectionImportCandidateRow>[];
+      final requestedFinish = importFinishKey(row.finish);
+      if (sourceAware && matches.length > 1 && requestedFinish != null) {
+        // Compare the explicit finish before declaring parent ambiguity. Missing
+        // printing evidence cannot rule out a competing identity. Never prefer
+        // an unstamped/default parent, or infer a finish from rarity or artwork.
+        final compatible = matches.where((card) {
+          final options = printingsByParent[card.id] ?? [];
+          return options.isEmpty ||
+              options.any((option) => option['finish_key'] == requestedFinish);
+        }).toList();
+        // Keep all candidates available for review when none supports the
+        // finish; absence of a printing is not absence of the source card.
+        if (compatible.isNotEmpty) matches = compatible;
+      }
       final reasons = <String>[
         ...row.reviewReasons,
         ..._unsupportedSaveReasons(row, sourceAware: sourceAware),
@@ -593,13 +614,11 @@ class CollectionImportService {
       if (sourceAware &&
           matches.length == 1 &&
           (row.finish.trim().isEmpty || importFinishKey(row.finish) != null)) {
-        final options = printingOptions
+        final options = (printingsByParent[matches.single.id] ?? [])
             .where(
               (option) =>
-                  option['card_print_id'] == matches.single.id &&
                   (row.finish.trim().isEmpty ||
-                      option['finish_key'] == importFinishKey(row.finish)) &&
-                  option['finish_is_active'] == true,
+                  option['finish_key'] == requestedFinish),
             )
             .toList();
         if (options.length == 1) {

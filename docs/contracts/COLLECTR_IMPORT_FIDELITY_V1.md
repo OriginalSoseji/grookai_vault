@@ -1,11 +1,32 @@
 # Collectr import fidelity repair
 
-Status: PR559, backend V2/version3 and internal TestFlight338 are released.
-Production has411 migrations. The original-export physical preview is verified
-for337;338 device verification remains open. The name-format follow-up below is
-local work, not a released build. No real collection save occurred. Private
+Status: PR560, backend V2/version4 and internal TestFlight339 are released.
+Production has411 migrations. The unchanged original-export physical preview
+passed on339 without saving. The finish-resolution follow-up below is local
+work, not a released build. No real collection save occurred. Private
 terminal release/preview evidence supersedes historical preparation notes.
 Catalog/grade/sealed coverage remains incomplete; retained review is not ownership.
+
+## Finish-aware parent resolution
+
+Source-aware native preview reads all governed printing pages for every matching
+parent before classifying ambiguity. An explicit supported finish can exclude a
+candidate only when that candidate has active printing evidence and none matches
+the requested finish. A candidate with no active printing evidence stays in the
+comparison. Blank or unsupported finishes cannot narrow parent identity; no
+default, unstamped, rarity or artwork preference is allowed.
+
+One remaining parent still requires exactly one active child for the requested
+finish and every existing grade, edition and source-metadata check. Multiple
+matching parents or children remain held. If no candidate supports the finish,
+all candidates remain available for review. Failed, repeated or unrelated
+printing pages fail the preview. Legacy V1 stays unchanged. The existing V2
+server independently validates the selected parent, child and original source;
+this native ordering fix changes no server, schema or catalog truth.
+
+The private full-export replay must preserve every previously ready parent,
+printing and quantity and all source fields. Local qualification does not establish
+physical-device behavior, distribution or a real collection save.
 
 ## Pokemon name-format follow-up
 
