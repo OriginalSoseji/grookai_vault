@@ -38,6 +38,7 @@ import {
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
+import { gameStopCandidateFilter } from "@/lib/search/stampCandidateFilter";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";
@@ -3904,6 +3905,7 @@ export async function getExploreRowsForCombinedSearch(
   const parents: CardPrintLookupRow[] = [];
   const tokens = getSmartDiscoveryTextTokens(options.textQuery);
   const firstToken = tokens.find((token) => !/^\d+$/.test(token));
+  const stampCandidateFilter = !firstToken ? gameStopCandidateFilter(options.stampLabels) : null;
   // Set names are part of the searchable text too. If the narrowing token
   // occurs in a set name, keep its parents eligible regardless of card name.
   const matchingSets: string[] = [];
@@ -3928,6 +3930,7 @@ export async function getExploreRowsForCombinedSearch(
     else if (options.exactSetCodes?.length) request = request.in("set_code", options.exactSetCodes);
     if (options.languageScope === "ja") request = request.like("gv_id", "GV-PK-JPN-%");
     if (options.languageScope === "en") request = request.not("gv_id", "like", "GV-PK-JPN-%");
+    if (stampCandidateFilter) request = request.or(stampCandidateFilter);
     if (firstToken && matchingSets.length <= 80) {
       // Candidate narrowing only. AND semantics, exact numbers and finishes are
       // applied below to the complete candidate set, before response paging.

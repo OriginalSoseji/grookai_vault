@@ -2,6 +2,7 @@ import '../env.mjs';
 import assert from 'node:assert/strict';
 import { prepareWarehousePrintingAdmission, applyWarehousePrintingAdmission, verifyWarehousePrintingAdmissionReadback } from './printing_admission_v1.mjs';
 import { printingManifestHash } from '../catalog/printing_completeness_gate_v1.mjs';
+import { assertWarehouseParentIdentity, assertWarehouseParentMutation, verifyWarehouseParentIdentity } from './parent_identity_v1.mjs';
 
 import pg from 'pg';
 import { buildCardPrintGvIdV1, resolvePromoNumberV1 } from './buildCardPrintGvIdV1.mjs';
@@ -1133,7 +1134,7 @@ async function buildExecutionPlan(client, stage, candidate) {
   }
 }
 
-async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseSummary) {
+export async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseSummary) {
   const setCode = extractSetCode(payload);
   const cardName = extractCardName(payload);
   const printedNumber = extractPrintedNumberToken(payload);
@@ -1186,6 +1187,15 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       namespaceDecision = decision;
     },
   });
+  const parentIdentity = await assertWarehouseParentIdentity(client, payload?.write_plan?.parent_identity, {
+    set_id: setRow.id, set_code: setRow.code, variant_key: variantKey,
+    printed_identity_modifier: normalizeTextOrNull(payload?.latest_metadata_extraction_package?.printed_modifier?.modifier_key),
+  });
+  const expectedParent = {
+    set_id: setRow.id, set_code: setRow.code, game_id: parentIdentity.game_id,
+    identity_domain: parentIdentity.identity_domain, printed_identity_modifier: parentIdentity.printed_identity_modifier,
+    variant_key: variantKey, name: cardName, number: canonicalNumber, gv_id: gvId, tcgplayer_id: tcgplayerId,
+  };
   const existingRows = await fetchExistingCardPrints(client, setRow.id, numberPlain, variantKey);
   if (existingRows.length > 1) {
     throw new ExecutorError('duplicate_existing_card_prints', `${setRow.code}:${numberPlain}`);
@@ -1217,7 +1227,10 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
       });
     }
 
+    await verifyWarehouseParentIdentity(client, existingRow.id, expectedParent);
     return {
+      parent_identity: parentIdentity,
+      expected_parent: expectedParent,
       ok: true,
       action_type: stage.approved_action_type,
       result_type: PROMOTION_RESULT_TYPES.NO_OP,
@@ -1249,10 +1262,13 @@ async function buildCreateCardPrintPlan(client, stage, candidate, payload, baseS
   }
 
   return {
+    parent_identity: parentIdentity,
+    expected_parent: expectedParent,
     ok: true,
     action_type: stage.approved_action_type,
     result_type: PROMOTION_RESULT_TYPES.CARD_PRINT_CREATED,
       mutation: {
+        ...expectedParent,
         type: 'insert_card_print',
         set_id: setRow.id,
         set_code: setRow.code,
@@ -1339,7 +1355,7 @@ export async function buildCreateCardPrintingPlan(client, stage, candidate, payl
 }
 
 export async function verifySucceededPrintingStage(client, stage, candidate) {
-  if (stage.approved_action_type !== 'CREATE_CARD_PRINTING') {
+  if (!['CREATE_CARD_PRINT', 'CREATE_CARD_PRINTING'].includes(stage.approved_action_type)) {
     return {status:'already_succeeded',summary:summarizeExistingSucceeded(stage,candidate)};
   }
   try {
@@ -1348,6 +1364,13 @@ export async function verifySucceededPrintingStage(client, stage, candidate) {
     assert.equal(candidate.state,'PROMOTED','warehouse_succeeded_candidate_state');
     assert.equal(candidate.current_staging_id,stage.id,'warehouse_succeeded_stage_mismatch');
     assert.equal(payload.candidate_id,candidate.id,'warehouse_succeeded_payload_mismatch');
+    if (stage.approved_action_type === 'CREATE_CARD_PRINT') {
+      const plan = await buildCreateCardPrintPlan(client, stage, candidate, payload, {});
+      assert.equal(plan.mutation.type, 'card_print_existing_noop', 'warehouse_succeeded_parent_missing');
+      assert.equal(candidate.promoted_card_print_id, plan.mutation.card_print_id, 'warehouse_succeeded_linkage_mismatch');
+      const receipt = await verifyWarehouseParentIdentity(client, candidate.promoted_card_print_id, plan.expected_parent);
+      return {status:'already_succeeded',summary:{...summarizeExistingSucceeded(stage,candidate),parent_identity_readback:receipt}};
+    }
     const receipt=await verifyWarehousePrintingAdmissionReadback(client,bundle,{
       candidate_id:candidate.id,card_print_id:extractMatchedCardPrintId(payload),
       finish_key:extractResolvedFinishKey(payload),printing_gv_id:bundle?.target?.printing_gv_id,
@@ -1865,6 +1888,8 @@ export async function applyMutation(connection, plan) {
         promoted_image_target_id: plan.result_linkage.promoted_image_target_id,
       };
     case 'insert_card_print': {
+      assertWarehouseParentMutation(plan.parent_identity, plan.mutation);
+      await assertWarehouseParentIdentity(connection, plan.parent_identity, plan.mutation, {lock: true});
       const insertSql = `
         insert into public.card_prints (
           set_id,
@@ -1876,9 +1901,12 @@ export async function applyMutation(connection, plan) {
           tcgplayer_id,
           gv_id,
           image_source,
-          image_path
+          image_path,
+          game_id,
+          identity_domain,
+          printed_identity_modifier
         )
-        values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         on conflict do nothing
         returning id
       `;
@@ -1893,6 +1921,9 @@ export async function applyMutation(connection, plan) {
         plan.mutation.gv_id,
         plan.mutation.image_source,
         plan.mutation.image_path,
+        plan.mutation.game_id,
+        plan.mutation.identity_domain,
+        plan.mutation.printed_identity_modifier,
       ]);
       let cardPrintId = insertResult.rows[0]?.id ?? null;
 
@@ -2251,6 +2282,10 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
             if (!mutationResult?.promoted_card_print_id) {
               return { ok: true };
             }
+            if (plan.expected_parent) {
+              await verifyWarehouseParentIdentity(connection, mutationResult.promoted_card_print_id, plan.expected_parent);
+              return {ok: true};
+            }
             const result = await connection.query(
               `
                 select id
@@ -2380,6 +2415,9 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
     commitAttempted = true;
     await connection.query('commit');
     committed = true;
+    const parentReadback = plan.expected_parent
+      ? await verifyWarehouseParentIdentity(connection, mutationResult.promoted_card_print_id, plan.expected_parent)
+      : null;
     let printingReadback = null;
     if (plan.mutation.type === 'reviewed_printing_admission') {
       printingReadback = await verifyWarehousePrintingAdmissionReadback(connection,
@@ -2401,6 +2439,7 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
         promoted_image_target_id: mutationResult.promoted_image_target_id,
         executed_at: executedAt,
         printing_readback: printingReadback,
+        parent_identity_readback: parentReadback,
       },
     };
   } catch (error) {

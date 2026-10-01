@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "90845cce5f9a5aa25fdf16eeee5f02d6fece1f37b65ccad5d487a886d738281d",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh12",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "reviewed_at": "2026-10-01T13:25:19.978Z",
+  "projection_sha256": "9c8068ee5b1f50d7edc55c3d29b44f002d1cd921914325a5da1a931c641a95f8",
+  "adjudication": "This scoped addendum identifies the red GameStop-stamp printing. The older generic stamped fact for131 concerns the Silver Tempest logo and cannot be inherited. The base Holo and Reverse entries and EB Games variant are outside this scope.",
+  "source_independence": "Two evidence families: the editorial release description and the exact merchant product/image. Face to Face and TCGplayer are conservatively grouped together; mirrors are not extra votes.",
+  "execution_authorized": false
+}

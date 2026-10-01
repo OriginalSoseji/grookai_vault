@@ -258,7 +258,10 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     residual = residual.replace(languageMatch[0], " ");
   }
   // Resolve the credit before removing years/finish words that may occur in it.
-  const combinedArtist = literalArtist ?? ((gameScope ?? options.gameScope ?? "pokemon") === "pokemon" ? recognizeCombinedArtist(residual) : null);
+  // Preserve offsets while keeping the retailer phrase "Game Stop" from being
+  // consumed as the partial artist credit "GAME FREAK inc.".
+  const artistQuery = residual.replace(/\bgame\s+stop\b/gi, (value) => " ".repeat(value.length));
+  const combinedArtist = literalArtist ?? ((gameScope ?? options.gameScope ?? "pokemon") === "pokemon" ? recognizeCombinedArtist(artistQuery) : null);
   if (combinedArtist) {
     if (!literalArtist) residual = residual.slice(0, combinedArtist.start) + " " + residual.slice(combinedArtist.end);
     queryFilters.push({ kind: "artist", label: `Artist: ${combinedArtist.artist}`, sourceText: combinedArtist.matchedText });

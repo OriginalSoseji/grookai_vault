@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh12",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/swsh12/gamestop_dragonite_20261001/master.json",
+  "master_index_sha256": "90845cce5f9a5aa25fdf16eeee5f02d6fece1f37b65ccad5d487a886d738281d",
+  "parents": [
+    {
+      "id": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+      "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+      "gv_id": "GV-PK-SIT-131-GAMESTOP-STAMP",
+      "name": "Dragonite",
+      "printed_coordinate": "131",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-SIT-131-GAMESTOP-STAMP-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "dragonite-bulbapedia-rendered-extraction",
+          "sha256": "54a84c416eeb3a9919b3312ccceb734c0440da3592ce5c760c1025035b704be0",
+          "card_print_id": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "dragonite-face-to-face-product-html",
+          "sha256": "0d4c1a48ddb93bc7becaa9ed8dc6df530c048589acb28de947fecfdea0240aff",
+          "card_print_id": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "dragonite-tcgplayer-product-image",
+          "sha256": "aef36bf0196147b52b6367ec0bc11ae528062c5641e73eed91dd861a78b321b0",
+          "card_print_id": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+    "source_artifacts": [
+      {
+        "ref": "dragonite-bulbapedia-rendered-extraction",
+        "sha256": "54a84c416eeb3a9919b3312ccceb734c0440da3592ce5c760c1025035b704be0",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Dragonite_(Silver_Tempest_131)",
+        "retrieved_at": "2026-10-01T13:14:33.128Z"
+      },
+      {
+        "ref": "dragonite-face-to-face-product-html",
+        "sha256": "0d4c1a48ddb93bc7becaa9ed8dc6df530c048589acb28de947fecfdea0240aff",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://facetofacegames.com/products/dragonite-131195-promo-gamestop-stamp-swsh12msp-131-holo",
+        "retrieved_at": "2026-10-01T13:14:26.351Z"
+      },
+      {
+        "ref": "dragonite-tcgplayer-product-image",
+        "sha256": "aef36bf0196147b52b6367ec0bc11ae528062c5641e73eed91dd861a78b321b0",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/456093_200w.jpg",
+        "retrieved_at": "2026-10-01T06:11:05.528Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/swsh12/gamestop_dragonite_20261001/review.json",
+      "sha256": "0db1b2b6aa7e354e72e76c3784c32a16190ffdf3dac6c53a36dbd3d4dba7a23c"
+    }
+  },
+  "fingerprint": "2a80767446149dc4f053f2e554f08aa9670b0f61915d831a46f4612e0e59aab7"
+}

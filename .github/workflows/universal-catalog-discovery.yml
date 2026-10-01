@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "17 */6 * * *"
   workflow_dispatch:
+    inputs:
+      coverage_only:
+        description: Run only read-only Pokemon warehouse reconciliation
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -14,7 +19,51 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  pokemon-warehouse-coverage:
+    # Independent of live source availability: existing warehoused products must
+    # remain visible even when an upstream checklist returns 403/503.
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 15
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+      PGOPTIONS: "-c default_transaction_read_only=on"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Verify Pokemon warehouse reconciliation
+        run: node --test tests/contracts/pokemon_warehouse_coverage_v1.test.mjs
+      - name: Account for every Pokemon warehouse product
+        run: >-
+          node scripts/workers/pokemon_warehouse_coverage_v1.mjs
+          --out-dir=${{ runner.temp }}/pokemon-warehouse-coverage
+          --require-complete
+      - name: Preserve coverage and missing-card worklist
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemon-warehouse-coverage-${{ github.run_id }}
+          path: ${{ runner.temp }}/pokemon-warehouse-coverage
+          if-no-files-found: error
+          retention-days: 90
+      - name: Publish warehouse coverage summary
+        if: always()
+        shell: bash
+        run: |
+          REPORT="$RUNNER_TEMP/pokemon-warehouse-coverage/summary.json"
+          if [ -f "$REPORT" ]; then
+            echo 'Pokemon warehouse coverage (unresolved products require follow-through)' >> "$GITHUB_STEP_SUMMARY"
+            cat "$REPORT" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
   discover:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.coverage_only }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:

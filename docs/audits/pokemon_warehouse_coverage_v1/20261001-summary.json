@@ -1,0 +1,38 @@
+{
+  "version": "POKEMON_WAREHOUSE_COVERAGE_V1",
+  "observed_at": "2026-10-01T06:19:41.966Z",
+  "database_writes": false,
+  "status": "degraded_unresolved_warehouse_products",
+  "catalog_completeness_proven": false,
+  "scope": "All preserved Pokemon and Pokemon Japan TCGCSV warehouse products, including inactive rows. Mapped relationships do not prove printing completeness.",
+  "summary": {
+    "product_count": 63563,
+    "accounted_product_count": 63563,
+    "unresolved_count": 40155,
+    "overdue_count": 40154,
+    "untracked_count": 27858,
+    "by_status": {
+      "discovery_review": 235,
+      "existing_identity_mapping_review": 11829,
+      "mapped_parent": 20874,
+      "mapped_parent_without_printings": 213,
+      "mapped_sealed_product": 2534,
+      "mapping_conflict": 5,
+      "promotion_queue_review": 2,
+      "retailer_identity_review": 13,
+      "unclassified_product_review": 5037,
+      "untracked_card_candidate": 22821
+    },
+    "by_language": {
+      "en": 32855,
+      "ja": 30708
+    },
+    "gamestop": {
+      "discovery_review": 20,
+      "existing_identity_mapping_review": 2,
+      "promotion_queue_review": 1,
+      "untracked_card_candidate": 1
+    }
+  },
+  "fingerprint": "676b8e09ae1937e4011e4a3ec7732de46808a21ad740b8451a5f0e83571bbfcd"
+}

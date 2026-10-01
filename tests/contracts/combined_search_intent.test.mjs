@@ -25,6 +25,21 @@ function load(file) {
 const { buildSmartSearchIntent: parse } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const plain = (value) => JSON.parse(JSON.stringify(value));
 
+test('Game Stop is a retailer phrase, while a separate artist retains its exact span', () => {
+  for (const q of ['gamestop', 'Game Stop', 'GAME STOP stamped']) {
+    const result = parse(q);
+    assert.equal(result.artist, undefined);
+    assert.deepEqual(plain(result.stampLabels), ['GameStop Stamp']);
+    assert.equal(result.residualQuery, '');
+    const chip = result.queryFilters.find(f => f.kind === 'stamp');
+    assert.deepEqual(plain(parse(chip.queryWithout).stampLabels), []);
+  }
+  const combined = parse('Game Stop Naoyo Kimura Dragonite');
+  assert.equal(combined.artist, 'Naoyo Kimura');
+  assert.equal(combined.residualQuery, 'Dragonite');
+  assert.deepEqual(plain(combined.stampLabels), ['GameStop Stamp']);
+});
+
 test('artist, card and finish combine independently of order, case and commas', () => {
   for (const q of ['Yuka Morii Wurmple reverse holo', 'Wurmple reverse holo Yuka Morii',
     'reverse holo, Wurmple, YUKA MORII', 'artist Yuka Morii Wurmple reverse holo',
