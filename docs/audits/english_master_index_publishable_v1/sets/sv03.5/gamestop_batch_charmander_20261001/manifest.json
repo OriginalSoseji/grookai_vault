@@ -1,0 +1,112 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv03.5",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv03.5/gamestop_batch_charmander_20261001/master.json",
+  "master_index_sha256": "2f0165e6ff0a593406280928a1f0f69cf99064219c37d231148e216f897fcfdb",
+  "parents": [
+    {
+      "id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+      "set_id": "ef51e693-459f-43d1-a823-9146f387ab32",
+      "gv_id": "GV-PK-MEW-004-GAMESTOP-STAMP",
+      "name": "Charmander",
+      "printed_coordinate": "004",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-MEW-004-GAMESTOP-STAMP-REVERSE",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "charmander-release-history",
+          "sha256": "ecb93a9a1a0ed6d540aa95dce3f66d06ea799a3235646a7a8107d696107eb43b",
+          "card_print_id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "charmander-tcgcsv-product",
+          "sha256": "61346944f7b195f13b3af886b8022226d37ddbaf572d4ed9fea12a71f9d52bed",
+          "card_print_id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "charmander-exact-image",
+          "sha256": "a0d7a2bd688718f5abdbbda8509d41b3c6f2ae1d44b6f0ef87a4d602ace72fbf",
+          "card_print_id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "charmander-physical-slab-photo",
+          "sha256": "bb5f0d3a197c217f831b651bec6d91cce8605263d173fb1371f1f827770a8db4",
+          "card_print_id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "ef51e693-459f-43d1-a823-9146f387ab32",
+    "source_artifacts": [
+      {
+        "ref": "charmander-release-history",
+        "sha256": "ecb93a9a1a0ed6d540aa95dce3f66d06ea799a3235646a7a8107d696107eb43b",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.pokebeach.com/2023/09/scarlet-violet-151-complete-set-guide-card-images-products-demigod-packs-store-giveaways-and-more",
+        "retrieved_at": "2026-10-01T20:22:35.619Z"
+      },
+      {
+        "ref": "charmander-tcgcsv-product",
+        "sha256": "61346944f7b195f13b3af886b8022226d37ddbaf572d4ed9fea12a71f9d52bed",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/517557",
+        "retrieved_at": "2026-10-01T20:34:00.221Z"
+      },
+      {
+        "ref": "charmander-exact-image",
+        "sha256": "a0d7a2bd688718f5abdbbda8509d41b3c6f2ae1d44b6f0ef87a4d602ace72fbf",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/517557_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.558Z"
+      },
+      {
+        "ref": "charmander-physical-slab-photo",
+        "sha256": "bb5f0d3a197c217f831b651bec6d91cce8605263d173fb1371f1f827770a8db4",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://cdn-vault.fanaticscollect.com/2025/11/25/rm1/medium/v2001675_2020112313591937R_101.jpg",
+        "retrieved_at": "2026-10-01T20:23:34.217Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv03.5/gamestop_batch_charmander_20261001/review.json",
+      "sha256": "237a9caf10d4045c17f50b0f585fd4c8b99389bb3107ba46fd97bcc3381affc0"
+    }
+  },
+  "fingerprint": "bd040857678a9f999eb56e377840c93fcd7f6a5299a856a8ba08a47e2f39cf1e"
+}

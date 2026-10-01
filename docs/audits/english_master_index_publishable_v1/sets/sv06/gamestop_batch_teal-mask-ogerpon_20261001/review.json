@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "3b1eae6578a1884e93f8f1eaf236c20253de5d8b144ab95286685755ce1aba67",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv06",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:36:23.022Z",
+  "projection_sha256": "0f2bab7cd1634b3209db43f99f76e28ce85d5c71171fe601463818f089872912",
+  "adjudication": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Mountain Stroll,Ogre Comeback,TWM024/167. Base and Twilight Masquerade stamp rows remain unchanged.",
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

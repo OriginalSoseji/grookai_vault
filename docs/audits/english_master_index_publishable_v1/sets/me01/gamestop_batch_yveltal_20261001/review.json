@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "19aeb63f5de3a846c2d89f58ee04c5bb52a7ad0237483e17965d395c437a73b5",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me01",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:36:23.026Z",
+  "projection_sha256": "081a597c1691b785d4f482f7cc39f6fbee4034265cff22fdebeeca8a8ba41a68",
+  "adjudication": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Clutch,Dark Feather,MEG088/132. Base and Mega Evolution stamp rows remain unchanged.",
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

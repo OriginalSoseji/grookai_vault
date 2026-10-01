@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { auditWarehouseCandidateIdentitySlotV1 } from './identity_slot_audit_v1.mjs';
+import { auditWarehouseCandidateIdentitySlotV1 } from '../../backend/identity/identity_slot_audit_v1.mjs';
 
 function fixture({ name = 'Flapple', set = 'swsh2', number = '022/192', keys = ['prerelease_stamp', 'staff_stamp'] } = {}) {
   const plain = number.split('/')[0].replace(/^0+/, '');

@@ -1,0 +1,98 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv03.5",
+  "set_id": "ef51e693-459f-43d1-a823-9146f387ab32",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:36:23.015Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+    "gv_id": "GV-PK-MEW-004-GAMESTOP-STAMP",
+    "name": "Charmander",
+    "printed_coordinate": "004/165",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-MEW-004-GAMESTOP-STAMP-REVERSE",
+      "status": "verified",
+      "source_refs": [
+        "charmander-release-history",
+        "charmander-tcgcsv-product",
+        "charmander-exact-image",
+        "charmander-physical-slab-photo"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "charmander-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://www.pokebeach.com/2023/09/scarlet-violet-151-complete-set-guide-card-images-products-demigod-packs-store-giveaways-and-more",
+      "independence_family": "pokebeach_original_release_report",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Contemporaneous PokeBeach report explicitly names a Reverse Holo GameStop Charmander. Independent Fanatics physical slab photograph shows the red GameStop stamp,MEW004/165,70HP and large Fire Energy geometric reverse pattern across the text body; no Cosmos circles/stars. This resolves the conflicting later Bulbapedia Cosmos Parallel and TCGdex-derived Normal labels in favor of Reverse. Fanatics title incorrectly says Sword & Shield; photographed MEW label and card establish exact set.",
+      "sha256": "ecb93a9a1a0ed6d540aa95dce3f66d06ea799a3235646a7a8107d696107eb43b",
+      "retrieved_at": "2026-10-01T20:22:35.619Z"
+    },
+    {
+      "ref": "charmander-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/517557",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "61346944f7b195f13b3af886b8022226d37ddbaf572d4ed9fea12a71f9d52bed",
+      "retrieved_at": "2026-10-01T20:34:00.221Z"
+    },
+    {
+      "ref": "charmander-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/517557_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Contemporaneous PokeBeach report explicitly names a Reverse Holo GameStop Charmander. Independent Fanatics physical slab photograph shows the red GameStop stamp,MEW004/165,70HP and large Fire Energy geometric reverse pattern across the text body; no Cosmos circles/stars. This resolves the conflicting later Bulbapedia Cosmos Parallel and TCGdex-derived Normal labels in favor of Reverse. Fanatics title incorrectly says Sword & Shield; photographed MEW label and card establish exact set.",
+      "sha256": "a0d7a2bd688718f5abdbbda8509d41b3c6f2ae1d44b6f0ef87a4d602ace72fbf",
+      "retrieved_at": "2026-10-01T20:13:28.558Z"
+    },
+    {
+      "ref": "charmander-physical-slab-photo",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://cdn-vault.fanaticscollect.com/2025/11/25/rm1/medium/v2001675_2020112313591937R_101.jpg",
+      "independence_family": "fanatics_physical_slab_photograph",
+      "format": "Original physical slab photograph, reviewed as finish evidence only; not used as the displayed card image.",
+      "fact": "Contemporaneous PokeBeach report explicitly names a Reverse Holo GameStop Charmander. Independent Fanatics physical slab photograph shows the red GameStop stamp,MEW004/165,70HP and large Fire Energy geometric reverse pattern across the text body; no Cosmos circles/stars. This resolves the conflicting later Bulbapedia Cosmos Parallel and TCGdex-derived Normal labels in favor of Reverse. Fanatics title incorrectly says Sword & Shield; photographed MEW label and card establish exact set.",
+      "sha256": "bb5f0d3a197c217f831b651bec6d91cce8605263d173fb1371f1f827770a8db4",
+      "retrieved_at": "2026-10-01T20:23:34.217Z"
+    }
+  ],
+  "source_independence": "pokebeach_original_release_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family. Plus independent Fanatics physical slab photograph.",
+  "adjudication": "Contemporaneous PokeBeach report explicitly names a Reverse Holo GameStop Charmander. Independent Fanatics physical slab photograph shows the red GameStop stamp,MEW004/165,70HP and large Fire Energy geometric reverse pattern across the text body; no Cosmos circles/stars. This resolves the conflicting later Bulbapedia Cosmos Parallel and TCGdex-derived Normal labels in favor of Reverse. Fanatics title incorrectly says Sword & Shield; photographed MEW label and card establish exact set.",
+  "adjudicated_conflicts": [
+    {
+      "source_file": "second-wave-finish-3.json",
+      "decision": "Contemporaneous PokeBeach report explicitly names a Reverse Holo GameStop Charmander. Independent Fanatics physical slab photograph shows the red GameStop stamp,MEW004/165,70HP and large Fire Energy geometric reverse pattern across the text body; no Cosmos circles/stars. This resolves the conflicting later Bulbapedia Cosmos Parallel and TCGdex-derived Normal labels in favor of Reverse. Fanatics title incorrectly says Sword & Shield; photographed MEW label and card establish exact set."
+    }
+  ],
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

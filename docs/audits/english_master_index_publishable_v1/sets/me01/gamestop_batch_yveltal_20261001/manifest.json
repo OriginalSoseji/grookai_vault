@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me01",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/me01/gamestop_batch_yveltal_20261001/master.json",
+  "master_index_sha256": "19aeb63f5de3a846c2d89f58ee04c5bb52a7ad0237483e17965d395c437a73b5",
+  "parents": [
+    {
+      "id": "8c6bb226-5dd3-4260-9841-98de71b86531",
+      "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+      "gv_id": "GV-PK-MEG-088-GAMESTOP-STAMP",
+      "name": "Yveltal",
+      "printed_coordinate": "088",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "8c6bb226-5dd3-4260-9841-98de71b86531",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-MEG-088-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "yveltal-release-history",
+          "sha256": "f93b42385d26fffe84eb18e2dae031c33935adbd30e60aab453b3b4a191cb9df",
+          "card_print_id": "8c6bb226-5dd3-4260-9841-98de71b86531",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "yveltal-tcgcsv-product",
+          "sha256": "6f390bf0dc8e4948caa13f57645519bdbb93ef71ece52a1d7a7305a0a08c0a0d",
+          "card_print_id": "8c6bb226-5dd3-4260-9841-98de71b86531",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "yveltal-exact-image",
+          "sha256": "79df2b7c2b2383cb1e25bdbd24adfb913320f5af1fb0d81b5140ea704d1509ba",
+          "card_print_id": "8c6bb226-5dd3-4260-9841-98de71b86531",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+    "source_artifacts": [
+      {
+        "ref": "yveltal-release-history",
+        "sha256": "f93b42385d26fffe84eb18e2dae031c33935adbd30e60aab453b3b4a191cb9df",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Yveltal_(Mega_Evolution_88)",
+        "retrieved_at": "2026-10-01T20:22:19.820Z"
+      },
+      {
+        "ref": "yveltal-tcgcsv-product",
+        "sha256": "6f390bf0dc8e4948caa13f57645519bdbb93ef71ece52a1d7a7305a0a08c0a0d",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/655978",
+        "retrieved_at": "2026-10-01T20:34:00.226Z"
+      },
+      {
+        "ref": "yveltal-exact-image",
+        "sha256": "79df2b7c2b2383cb1e25bdbd24adfb913320f5af1fb0d81b5140ea704d1509ba",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/655978_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.547Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/me01/gamestop_batch_yveltal_20261001/review.json",
+      "sha256": "1c6ea5095d01162b22e1dec1991f4b388391ec315e41e4f8c12532109a496cd4"
+    }
+  },
+  "fingerprint": "dc29fc377d76314931e95b7b387a9667762adfcb0dab64dd66e23f01dccc3d47"
+}

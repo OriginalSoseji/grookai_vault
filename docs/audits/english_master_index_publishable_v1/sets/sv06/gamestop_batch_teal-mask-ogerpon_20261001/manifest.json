@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv06",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv06/gamestop_batch_teal-mask-ogerpon_20261001/master.json",
+  "master_index_sha256": "3b1eae6578a1884e93f8f1eaf236c20253de5d8b144ab95286685755ce1aba67",
+  "parents": [
+    {
+      "id": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "gv_id": "GV-PK-TWM-024-GAMESTOP-STAMP",
+      "name": "Teal Mask Ogerpon",
+      "printed_coordinate": "024",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-TWM-024-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "teal-mask-ogerpon-release-history",
+          "sha256": "f93b42385d26fffe84eb18e2dae031c33935adbd30e60aab453b3b4a191cb9df",
+          "card_print_id": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "teal-mask-ogerpon-tcgcsv-product",
+          "sha256": "b75ee91cd402bdbd42d3fbb58b34c73bf748d6c7702afef2003c01ddbbd4e609",
+          "card_print_id": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "teal-mask-ogerpon-exact-image",
+          "sha256": "dfcba2bd58d229aeac91848e176180b05a6193bec539a51712161962b9fe92c9",
+          "card_print_id": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+    "source_artifacts": [
+      {
+        "ref": "teal-mask-ogerpon-release-history",
+        "sha256": "f93b42385d26fffe84eb18e2dae031c33935adbd30e60aab453b3b4a191cb9df",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Teal_Mask_Ogerpon_(Twilight_Masquerade_24)",
+        "retrieved_at": "2026-10-01T20:22:19.820Z"
+      },
+      {
+        "ref": "teal-mask-ogerpon-tcgcsv-product",
+        "sha256": "b75ee91cd402bdbd42d3fbb58b34c73bf748d6c7702afef2003c01ddbbd4e609",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/558552",
+        "retrieved_at": "2026-10-01T20:34:00.223Z"
+      },
+      {
+        "ref": "teal-mask-ogerpon-exact-image",
+        "sha256": "dfcba2bd58d229aeac91848e176180b05a6193bec539a51712161962b9fe92c9",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/558552_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.526Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv06/gamestop_batch_teal-mask-ogerpon_20261001/review.json",
+      "sha256": "44a5c780345c6ec5d68484433a7c093a28675844fb75ab04e876f610110ca15c"
+    }
+  },
+  "fingerprint": "ad239646558deac368045e275b980c65bebaa3e020c272f8f67e95051d81d279"
+}

@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me01",
+  "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:36:23.026Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "8c6bb226-5dd3-4260-9841-98de71b86531",
+    "gv_id": "GV-PK-MEG-088-GAMESTOP-STAMP",
+    "name": "Yveltal",
+    "printed_coordinate": "088/132",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-MEG-088-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "yveltal-release-history",
+        "yveltal-tcgcsv-product",
+        "yveltal-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "yveltal-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Yveltal_(Mega_Evolution_88)",
+      "independence_family": "bulbapedia_release_history",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Clutch,Dark Feather,MEG088/132. Base and Mega Evolution stamp rows remain unchanged.",
+      "sha256": "f93b42385d26fffe84eb18e2dae031c33935adbd30e60aab453b3b4a191cb9df",
+      "retrieved_at": "2026-10-01T20:22:19.820Z"
+    },
+    {
+      "ref": "yveltal-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/655978",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "6f390bf0dc8e4948caa13f57645519bdbb93ef71ece52a1d7a7305a0a08c0a0d",
+      "retrieved_at": "2026-10-01T20:34:00.226Z"
+    },
+    {
+      "ref": "yveltal-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/655978_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Clutch,Dark Feather,MEG088/132. Base and Mega Evolution stamp rows remain unchanged.",
+      "sha256": "79df2b7c2b2383cb1e25bdbd24adfb913320f5af1fb0d81b5140ea704d1509ba",
+      "retrieved_at": "2026-10-01T20:13:28.547Z"
+    }
+  ],
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Clutch,Dark Feather,MEG088/132. Base and Mega Evolution stamp rows remain unchanged.",
+  "adjudicated_conflicts": [],
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

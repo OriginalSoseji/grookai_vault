@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "b3d87577cf91739ade8e40c0fa928ddf7d617a96cccbde75e64129a681e5f1c0",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv03",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:36:22.998Z",
+  "projection_sha256": "c9c87fbccda238de710e7bbf83b08448dc304860f10f8a0e2b2df13d1f9c9ef6",
+  "adjudication": "Contemporaneous received-card report explicitly identifies GameStop Umbreon as Reverse Holo. Reviewed product image verifies red stamp,110HP,Feint Attack,Pitch-Black Blade,OBF130/197. Preserve both base and separate Obsidian Flames stamp identities.",
+  "source_independence": "pokebeach_original_release_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

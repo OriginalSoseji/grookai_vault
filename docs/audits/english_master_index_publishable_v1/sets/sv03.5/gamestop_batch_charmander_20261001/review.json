@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "2f0165e6ff0a593406280928a1f0f69cf99064219c37d231148e216f897fcfdb",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv03.5",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:36:23.015Z",
+  "projection_sha256": "22b7de37063181bcd8f0b7cc9b48a2bf03bf14870ba54527f8aad7174addfe15",
+  "adjudication": "Contemporaneous PokeBeach report explicitly names a Reverse Holo GameStop Charmander. Independent Fanatics physical slab photograph shows the red GameStop stamp,MEW004/165,70HP and large Fire Energy geometric reverse pattern across the text body; no Cosmos circles/stars. This resolves the conflicting later Bulbapedia Cosmos Parallel and TCGdex-derived Normal labels in favor of Reverse. Fanatics title incorrectly says Sword & Shield; photographed MEW label and card establish exact set.",
+  "source_independence": "pokebeach_original_release_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

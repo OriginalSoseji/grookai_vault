@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh2",
+  "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:36:22.992Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "d4f765f9-3833-4273-a44d-367d634a98c3",
+    "gv_id": "GV-PK-RCL-022-GAMESTOP-STAMP",
+    "name": "Flapple",
+    "printed_coordinate": "022/192",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-RCL-022-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "flapple-release-history",
+        "flapple-tcgcsv-product",
+        "flapple-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "flapple-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://www.pokebeach.com/2021/03/gamestop-flapple-promo-is-holo-no-gigantamax-event",
+      "independence_family": "pokebeach_original_photo_report",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Original March2021 manager photograph report explicitly identifies galaxy foil and black non-foil GameStop stamp. Reviewed exact image shows80HP,Apple Drop,Acid Spray,022/192 and black stamp. Galaxy is represented by the existing Cosmos finish key. Base/prerelease/staff rows remain unchanged.",
+      "sha256": "8164dcb8e512cb1b8ec208569a8a11a87a2c54e93b998f2df201b689b65e358b",
+      "retrieved_at": "2026-10-01T20:22:13.102Z"
+    },
+    {
+      "ref": "flapple-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/234699",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "0c3d6266e3550bb5284c77ed7a1e328200a35e83cf972aa44e46946a0fa84552",
+      "retrieved_at": "2026-10-01T20:34:00.213Z"
+    },
+    {
+      "ref": "flapple-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/234699_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Original March2021 manager photograph report explicitly identifies galaxy foil and black non-foil GameStop stamp. Reviewed exact image shows80HP,Apple Drop,Acid Spray,022/192 and black stamp. Galaxy is represented by the existing Cosmos finish key. Base/prerelease/staff rows remain unchanged.",
+      "sha256": "3e8569345ba579d96c5a1482823651f414cef615063fa39eaa7a20f73d342dcc",
+      "retrieved_at": "2026-10-01T20:13:28.611Z"
+    }
+  ],
+  "source_independence": "pokebeach_original_photo_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Original March2021 manager photograph report explicitly identifies galaxy foil and black non-foil GameStop stamp. Reviewed exact image shows80HP,Apple Drop,Acid Spray,022/192 and black stamp. Galaxy is represented by the existing Cosmos finish key. Base/prerelease/staff rows remain unchanged.",
+  "adjudicated_conflicts": [],
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

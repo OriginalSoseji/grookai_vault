@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "39a910dc57e3cc6ad4890f649943926d47e1c5143ff50fd1a4f8ed4bf353330b",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh2",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "reviewed_at": "2026-10-01T20:36:22.992Z",
+  "projection_sha256": "f5623d488108f3c18eb7564c5652e6c56b9d85c3df4eef9048fd0e62e834a591",
+  "adjudication": "Original March2021 manager photograph report explicitly identifies galaxy foil and black non-foil GameStop stamp. Reviewed exact image shows80HP,Apple Drop,Acid Spray,022/192 and black stamp. Galaxy is represented by the existing Cosmos finish key. Base/prerelease/staff rows remain unchanged.",
+  "source_independence": "pokebeach_original_photo_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "execution_authorized": false
+}

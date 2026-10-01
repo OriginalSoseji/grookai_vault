@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv03",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv03/gamestop_batch_umbreon_20261001/master.json",
+  "master_index_sha256": "b3d87577cf91739ade8e40c0fa928ddf7d617a96cccbde75e64129a681e5f1c0",
+  "parents": [
+    {
+      "id": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+      "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+      "gv_id": "GV-PK-OBF-130-GAMESTOP-STAMP",
+      "name": "Umbreon",
+      "printed_coordinate": "130",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-OBF-130-GAMESTOP-STAMP-REVERSE",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "umbreon-release-history",
+          "sha256": "8fcbac3133d3039ea9cd54c02ca10e1154e6f8a4f5d6fa4759e7f62e98c1fb45",
+          "card_print_id": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "umbreon-tcgcsv-product",
+          "sha256": "2320f379fa80193e9379318e88811a2ecafecce2026722626aee8c18e54636d0",
+          "card_print_id": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "umbreon-exact-image",
+          "sha256": "a8e216ca890ca9460fa2699710e2c5a2dabfd2309220f7477b6b0628160744ea",
+          "card_print_id": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+    "source_artifacts": [
+      {
+        "ref": "umbreon-release-history",
+        "sha256": "8fcbac3133d3039ea9cd54c02ca10e1154e6f8a4f5d6fa4759e7f62e98c1fb45",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.pokebeach.com/2023/08/after-some-doubt-espeon-and-umbreon-store-promos-now-available",
+        "retrieved_at": "2026-10-01T20:22:05.191Z"
+      },
+      {
+        "ref": "umbreon-tcgcsv-product",
+        "sha256": "2320f379fa80193e9379318e88811a2ecafecce2026722626aee8c18e54636d0",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/512583",
+        "retrieved_at": "2026-10-01T20:34:00.218Z"
+      },
+      {
+        "ref": "umbreon-exact-image",
+        "sha256": "a8e216ca890ca9460fa2699710e2c5a2dabfd2309220f7477b6b0628160744ea",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/512583_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.546Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv03/gamestop_batch_umbreon_20261001/review.json",
+      "sha256": "3621d71b675bf605e213f87135aad3c40163d1adeb302bf6a2f16a9017230432"
+    }
+  },
+  "fingerprint": "f23a9db1332ecfeee5f48e048fa80a2e4a7d1cdda63d804fd40553fa59eb697c"
+}

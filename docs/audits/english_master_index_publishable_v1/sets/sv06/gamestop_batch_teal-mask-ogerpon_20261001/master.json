@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv06",
+  "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:36:23.022Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+    "gv_id": "GV-PK-TWM-024-GAMESTOP-STAMP",
+    "name": "Teal Mask Ogerpon",
+    "printed_coordinate": "024/167",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-TWM-024-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "teal-mask-ogerpon-release-history",
+        "teal-mask-ogerpon-tcgcsv-product",
+        "teal-mask-ogerpon-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "teal-mask-ogerpon-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Teal_Mask_Ogerpon_(Twilight_Masquerade_24)",
+      "independence_family": "bulbapedia_release_history",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Mountain Stroll,Ogre Comeback,TWM024/167. Base and Twilight Masquerade stamp rows remain unchanged.",
+      "sha256": "f93b42385d26fffe84eb18e2dae031c33935adbd30e60aab453b3b4a191cb9df",
+      "retrieved_at": "2026-10-01T20:22:19.820Z"
+    },
+    {
+      "ref": "teal-mask-ogerpon-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/558552",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "b75ee91cd402bdbd42d3fbb58b34c73bf748d6c7702afef2003c01ddbbd4e609",
+      "retrieved_at": "2026-10-01T20:34:00.223Z"
+    },
+    {
+      "ref": "teal-mask-ogerpon-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/558552_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Mountain Stroll,Ogre Comeback,TWM024/167. Base and Twilight Masquerade stamp rows remain unchanged.",
+      "sha256": "dfcba2bd58d229aeac91848e176180b05a6193bec539a51712161962b9fe92c9",
+      "retrieved_at": "2026-10-01T20:13:28.526Z"
+    }
+  ],
+  "source_independence": "bulbapedia_release_history and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Release history explicitly identifies red GameStop stamp version as Cosmos. Exact physical product photograph independently shows star/circle foil,red stamp,110HP,Mountain Stroll,Ogre Comeback,TWM024/167. Base and Twilight Masquerade stamp rows remain unchanged.",
+  "adjudicated_conflicts": [],
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

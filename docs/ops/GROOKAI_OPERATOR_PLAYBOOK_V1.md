@@ -7,7 +7,10 @@ eligible records in batches with shared qualification, per-record receipts and
 one final coverage audit. The private `gamestop_batch_20261001/CHECKPOINT.md`
 tracks actual writes and the recovered disk-space interruption. Shared stamped
 coexistence fixes must reclassify original candidates; unknown or duplicated
-variants remain held. Never replay completed prior GameStop scopes.
+variants remain held. The ten-card scope includes the five reclassified occupied
+slots; NEXT_BATCH.md records the seven remaining distinct relationship reviews.
+Read the private checkpoint for final production/public proof. Never replay
+completed prior GameStop scopes.
 
 ## GameStop Sandaconda Cosmos promotion — October 1
 

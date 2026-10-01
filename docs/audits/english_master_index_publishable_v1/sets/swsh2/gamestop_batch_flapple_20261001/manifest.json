@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh2",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/swsh2/gamestop_batch_flapple_20261001/master.json",
+  "master_index_sha256": "39a910dc57e3cc6ad4890f649943926d47e1c5143ff50fd1a4f8ed4bf353330b",
+  "parents": [
+    {
+      "id": "d4f765f9-3833-4273-a44d-367d634a98c3",
+      "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+      "gv_id": "GV-PK-RCL-022-GAMESTOP-STAMP",
+      "name": "Flapple",
+      "printed_coordinate": "022",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "d4f765f9-3833-4273-a44d-367d634a98c3",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-RCL-022-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "flapple-release-history",
+          "sha256": "8164dcb8e512cb1b8ec208569a8a11a87a2c54e93b998f2df201b689b65e358b",
+          "card_print_id": "d4f765f9-3833-4273-a44d-367d634a98c3",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "flapple-tcgcsv-product",
+          "sha256": "0c3d6266e3550bb5284c77ed7a1e328200a35e83cf972aa44e46946a0fa84552",
+          "card_print_id": "d4f765f9-3833-4273-a44d-367d634a98c3",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "flapple-exact-image",
+          "sha256": "3e8569345ba579d96c5a1482823651f414cef615063fa39eaa7a20f73d342dcc",
+          "card_print_id": "d4f765f9-3833-4273-a44d-367d634a98c3",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+    "source_artifacts": [
+      {
+        "ref": "flapple-release-history",
+        "sha256": "8164dcb8e512cb1b8ec208569a8a11a87a2c54e93b998f2df201b689b65e358b",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.pokebeach.com/2021/03/gamestop-flapple-promo-is-holo-no-gigantamax-event",
+        "retrieved_at": "2026-10-01T20:22:13.102Z"
+      },
+      {
+        "ref": "flapple-tcgcsv-product",
+        "sha256": "0c3d6266e3550bb5284c77ed7a1e328200a35e83cf972aa44e46946a0fa84552",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/234699",
+        "retrieved_at": "2026-10-01T20:34:00.213Z"
+      },
+      {
+        "ref": "flapple-exact-image",
+        "sha256": "3e8569345ba579d96c5a1482823651f414cef615063fa39eaa7a20f73d342dcc",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/234699_400w.jpg",
+        "retrieved_at": "2026-10-01T20:13:28.611Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/swsh2/gamestop_batch_flapple_20261001/review.json",
+      "sha256": "534af6cb9c15d7b61637e8ecd12d9fd99fbf0cb7f023c31508ba29cedf843f7f"
+    }
+  },
+  "fingerprint": "1f972b889599425710632c9b87d88193548eb327a9ce4e80d9d376b2a2c43955"
+}

@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv03",
+  "set_id": "58a601d0-5d14-47a5-b589-425423207912",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T20:36:22.998Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop batch recovery",
+  "parent": {
+    "id": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+    "gv_id": "GV-PK-OBF-130-GAMESTOP-STAMP",
+    "name": "Umbreon",
+    "printed_coordinate": "130/197",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-OBF-130-GAMESTOP-STAMP-REVERSE",
+      "status": "verified",
+      "source_refs": [
+        "umbreon-release-history",
+        "umbreon-tcgcsv-product",
+        "umbreon-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "umbreon-release-history",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://www.pokebeach.com/2023/08/after-some-doubt-espeon-and-umbreon-store-promos-now-available",
+      "independence_family": "pokebeach_original_release_report",
+      "format": "Preserved actual web-tool source extraction JSON; not original HTML.",
+      "fact": "Contemporaneous received-card report explicitly identifies GameStop Umbreon as Reverse Holo. Reviewed product image verifies red stamp,110HP,Feint Attack,Pitch-Black Blade,OBF130/197. Preserve both base and separate Obsidian Flames stamp identities.",
+      "sha256": "8fcbac3133d3039ea9cd54c02ca10e1154e6f8a4f5d6fa4759e7f62e98c1fb45",
+      "retrieved_at": "2026-10-01T20:22:05.191Z"
+    },
+    {
+      "ref": "umbreon-tcgcsv-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/512583",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Live TCGCSV source product JSON.",
+      "fact": "Exact product identity; raw prices and generic Holofoil bucket do not authorize any additional finish.",
+      "sha256": "2320f379fa80193e9379318e88811a2ecafecce2026722626aee8c18e54636d0",
+      "retrieved_at": "2026-10-01T20:34:00.218Z"
+    },
+    {
+      "ref": "umbreon-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/512583_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG, visually reviewed, copied losslessly for display.",
+      "fact": "Contemporaneous received-card report explicitly identifies GameStop Umbreon as Reverse Holo. Reviewed product image verifies red stamp,110HP,Feint Attack,Pitch-Black Blade,OBF130/197. Preserve both base and separate Obsidian Flames stamp identities.",
+      "sha256": "a8e216ca890ca9460fa2699710e2c5a2dabfd2309220f7477b6b0628160744ea",
+      "retrieved_at": "2026-10-01T20:13:28.546Z"
+    }
+  ],
+  "source_independence": "pokebeach_original_release_report and TCGplayer catalogue/image. TCGCSV and TCGplayer image count as one family.",
+  "adjudication": "Contemporaneous received-card report explicitly identifies GameStop Umbreon as Reverse Holo. Reviewed product image verifies red stamp,110HP,Feint Attack,Pitch-Black Blade,OBF130/197. Preserve both base and separate Obsidian Flames stamp identities.",
+  "adjudicated_conflicts": [],
+  "unresolved_conflicts": [],
+  "limitations": [
+    "This exact stamped variant only; no whole-set completeness claim",
+    "No unstamped or other retailer/expansion variant included",
+    "No additional finish inferred from generic provider price labels",
+    "Web evidence is preserved extraction, not original HTML",
+    "Review is evidence, not execution approval"
+  ],
+  "scope_relationship": "Additive reviewed variant; existing set-wide master artifacts preserved."
+}

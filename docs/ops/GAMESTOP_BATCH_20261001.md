@@ -19,7 +19,8 @@ images accompany them. Source prices supply no physical-finish authority.
 
 The shared coexistence rule now recognizes evidence-backed GameStop variants
 alongside distinct supported stamps. Flapple, Umbreon, Charmander, Teal Mask
-Ogerpon and Yveltal qualify for fresh classification review. Gengar remains held
+Ogerpon and Yveltal were reclassified through the ordinary worker and promoted
+together. Gengar remains held
 because its slot includes both `eb_games_stamp` and `eb_games_stamped`; this change
 does not delete, merge or rename either existing identity. Preserve all base rows.
 
@@ -32,5 +33,25 @@ its retained V2 controller uses the same authority only after absence checks.
 Follow the private checkpoint for actual checked-in producer, normal hook proof,
 printing execution, public search/image readback and full warehouse coverage.
 No migration, price publication, website deployment or whole-database completeness
-claim belongs to this batch. The six-hour audit detects unresolved relationships;
+claim belongs to this batch. A separate additive search V5 migration arrived during
+execution; its exact statements were reviewed, the failed stale-baseline inspection
+was retained, and a fresh 414 snapshot passed before the second parent batch.
+The six-hour audit detects unresolved relationships;
 it still does not adjudicate or promote them automatically.
+
+The second batch admits Flapple234699 (Cosmos), Umbreon512583 and
+Charmander517557 (Reverse), Teal Mask Ogerpon558552 and Yveltal655978 (Cosmos).
+Charmander's independent physical slab photograph shows the standard Fire Energy
+reverse pattern, matching the contemporaneous original release report. Conflicting
+secondary Cosmos/Normal labels remain retained with the reason for adjudication.
+The slab is evidence only; the exact catalogue card image is used for display.
+
+The coexistence regression tests now live under tests/contracts so normal release
+hooks include all 21 positive/negative cases automatically.
+
+Seven relationships remain separate reviewed routes: Legendary Pokemon-stamped
+Groudon; alternate-foil Gengar Spirit Link; already-existing Copperajah Normal;
+expansion-stamped Hisuian Typhlosion finish discrepancy; metal Greninja ex; Ho-Oh
+discovery intake; and Gengar duplicate EB Games identities. The private NEXT_BATCH.md
+records exact IDs, physical image hashes and next actions. Do not invent GameStop
+stamps or duplicate parents to satisfy retailer keyword coverage.
