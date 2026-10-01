@@ -9,6 +9,10 @@ pending ID and normal hooks. New V2 full/upgrade labs use loopback65241/65341;
 preserve the original experiment and all populated labs. Caller-scoped catalog
 reuse and indexed lookups retain RLS. The private `search_database_20261001`
 artifact directory records actual release state separately from local proof.
+Use a separate TEMP/TMP directory for each Windows hook run so concurrent cleanup
+cannot remove Flutter's compiler output. After a Docker engine restart, restore
+only the required existing loopback relays after checking their bindings; never
+reset populated fixtures to recover connectivity.
 
 ## Web-first Collectr importer — October 1
 

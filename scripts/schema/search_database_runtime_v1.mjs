@@ -38,7 +38,8 @@ sql(`begin;
 }
 const status=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe']}));
 const url='http://127.0.0.1:65241',options={auth:{persistSession:false,autoRefreshToken:false}};
-const anon=createClient(url,status.ANON_KEY,options),admin=createClient(url,status.SERVICE_ROLE_KEY,options);
+assert.ok(status.ANON_KEY && status.SECRET_KEY, 'Local CLI keys required');
+const anon=createClient(url,status.ANON_KEY,options),admin=createClient(url,status.SECRET_KEY,options);
 const email=randomUUID()+'@search-fixture.invalid',password=randomUUID()+'-Aa9!';
 const made=await admin.auth.admin.createUser({email,password,email_confirm:true});assert.ifError(made.error);
 const member=createClient(url,status.ANON_KEY,options);assert.ifError((await member.auth.signInWithPassword({email,password})).error);
