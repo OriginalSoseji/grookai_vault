@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Pokemon bulk warehouse discovery — October 1
+
+Read `docs/ops/POKEMON_DISCOVERY_INTAKE_20261001.md`. A complete-inventory planner
+and bounded raw/discovery writer handle eligible untracked numbered products in
+batches. Private `gamestop_relationships_20261001/CHECKPOINT.md` records actual
+execution. Intake retains TCGCSV provenance and creates held review candidates;
+it does not promote parents/finishes or establish retailer stamps. Keep the
+six-hour audit read-only, preserve pending/commit receipts, and independently
+resolve unknown commits before resuming. Previous ten GameStop promotions are
+complete and must not be replayed.
+
 ## GameStop grouped recovery — October 1
 
 Read `docs/ops/GAMESTOP_BATCH_20261001.md`. Review the complete backlog and promote
