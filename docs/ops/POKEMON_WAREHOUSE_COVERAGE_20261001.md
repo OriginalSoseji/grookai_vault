@@ -18,6 +18,9 @@ search/browser checks before restoring the original assignment setting. The
 ordinary Vercel preview activation guard must not be disabled. A merged workflow
 must also produce an actual hosted warehouse report before claiming operational
 coverage; unresolved relationships should retain its failing completeness status.
+For that bounded hosted proof, dispatch `universal-catalog-discovery.yml` with
+`coverage_only=true`. This skips the existing discovery/publishing job and gives
+the coverage job only read permission. Scheduled runs retain both jobs.
 
 Earlier preparation notes below are historical. The private release checkpoint
 records actual merge, deployment and scheduled/manual workflow results.
