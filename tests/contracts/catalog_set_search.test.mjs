@@ -121,6 +121,62 @@ test('anniversary aliases use only real matching catalog releases and preserve s
  assert.equal(resolve('Mewtwo 30th anniversary', 'pokemon', []).matchedAlias, null);
 });
 
+const anniversarySets = [
+ ['g1', 'Generations'], ['xy12', 'Evolutions'], ['jp20', '20th Anniversary'],
+ ['cel25', 'Celebrations'], ['cel25c', 'Celebrations: Classic Collection'],
+ ['mcd21', "McDonald's Collection 2021"], ['2021swsh', "McDonald's Collection 2021"],
+ ['jp25', '25th Anniversary Collection'], ['promo25', 'プロモカードパック「25th ANNIVERSARY edition」'],
+ ['30c', '30th Celebration'], ['jp30', '拡張パック「30th CELEBRATION」'],
+ ['jp10', '映画10周年記念 プレミアムシート'], ['future35', '35th Anniversary Collection'],
+ ['sv08.5', 'Prismatic Evolutions'], ['new-generations', 'Start Deck Generations'],
+ ['mcd22', "McDonald's Collection 2022"], ['year2021', 'Other 2021 Release'],
+].map(([code, name]) => ({id:code,code,name}));
+
+test('every anniversary family accepts short and full aliases in either order', () => {
+ for (const [anniversary, expected] of [
+  ['10th', ['jp10']], ['20th', ['g1','jp20','xy12']],
+  ['25th', ['2021swsh','cel25','cel25c','jp25','mcd21','promo25']],
+  ['30th', ['30c','jp30']], ['35th', ['future35']],
+ ]) {
+  for (const q of [`Pika ${anniversary}`, `${anniversary} Pika`, `Pika from the ${anniversary} anniversary`, `${anniversary.toUpperCase()} ANNIVERSARY, Pika`]) {
+   const result=resolve(q,'pokemon',anniversarySets);
+   assert.deepEqual(plain(result.setCodes),expected,q);
+   assert.equal(result.remainingQuery,'Pika',q);
+  }
+ }
+});
+
+test('anniversary families preserve exact collection/code, visibility, literals and unknown terms', () => {
+ for (const [query, expected] of [
+  ['Chari Celebrations: Classic Collection',['cel25c']], ['Pika Celebrations',['cel25']],
+  ['Pika 25th Anniversary Collection',['jp25']], ['Pika cel25c',['cel25c']],
+  ['Pika Generations',['g1']], ['Pika Evolutions',['xy12']],
+  ['Pika 30th Celebration',['30c']],
+ ]) assert.deepEqual(plain(resolve(query,'pokemon',anniversarySets).setCodes),expected,query);
+ const onlyClassic=anniversarySets.filter(s=>s.code==='cel25c');
+ assert.deepEqual(plain(resolve('Pika 25th anniversary','pokemon',onlyClassic).setCodes),['cel25c']);
+ assert.equal(resolve('25th anniversary','pokemon',[]).matchedAlias,null);
+ for (const query of ['Pika "25th anniversary"','Pika 125th anniversary','Pika 25thly','GV-PK-25TH-001']) {
+  assert.equal(resolve(query,'pokemon',anniversarySets).matchedAlias,null,query);
+ }
+ assert.equal(resolve('Pika unknown 25th anniversary','pokemon',anniversarySets).remainingQuery,'Pika unknown');
+ assert.equal(resolve('Pika 25th','pokemon',anniversarySets).requiresCardNameCheck,true);
+});
+
+test('other games discover their own numbered anniversary sets without Pokemon code aliases', () => {
+ const mtg=[['30a','30th Anniversary Edition'],['p30h','30th Anniversary History Promos'],['p15a','15th Anniversary Cards'],['cel25','Unrelated Cards']]
+  .map(([code,name])=>({id:code,code,name}));
+ for(const q of ['Black Lotus 30th','30th anniversary Black Lotus']) {
+  assert.deepEqual(plain(resolve(q,'mtg',mtg).setCodes),['30a','p30h']);
+  assert.equal(resolve(q,'mtg',mtg).remainingQuery,'Black Lotus');
+ }
+ assert.deepEqual(plain(resolve('15th anniversary','mtg',mtg).setCodes),['p15a']);
+ assert.equal(resolve('25th anniversary','mtg',mtg).matchedAlias,null);
+ assert.equal(resolve('25th anniversary','one_piece',[{id:'cel25',code:'cel25',name:'Other'}]).matchedAlias,null);
+ const onePiece=[{id:'first',code:'first',name:'1st Anniversary Set'}];
+ assert.deepEqual(plain(resolve('Luffy 1st','one_piece',onePiece).setCodes),['first']);
+});
+
 test('new catalog names, codes and existing artist/finish interpretation combine without a bundled alias', () => {
  for (const q of ['Eevee Future Garden', 'Future Garden Eevee', 'Eevee future1']) {
   const result = resolve(q, 'pokemon', sets);
