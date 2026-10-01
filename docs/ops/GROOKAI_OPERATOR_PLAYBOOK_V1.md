@@ -2111,3 +2111,15 @@ The MTG supervisor retains four read-only checks per hour, staggered to minutes
 reduces contention without widening the 45-minute freshness threshold. An active
 workflow and a successful manual audit do not prove timely scheduled execution.
 Verify actual `schedule` events; report stale evidence honestly if delays persist.
+
+## Pokemon warehouse coverage — October 1, 2026
+
+Read `docs/ops/POKEMON_WAREHOUSE_COVERAGE_20261001.md` before continuing
+Pokemon warehouse gaps. The coverage worker accounts for every preserved English
+and Japanese source product and produces an ordered worklist; unresolved reviews
+remain open. A successful set-inventory scan is not warehouse coverage.
+The six-hour workflow change is an undeployed candidate. Dragonite product 456093
+has been bridged and classified into warehouse candidate
+`8a259799-2c4a-4688-a43a-ad828bf9ef9a`, REVIEW_READY, but has not been promoted.
+Do not insert duplicates of existing Duraludon/Suicune GameStop parents or reuse
+the Dragonite Silver Tempest-logo printing fact for the red GameStop stamp.

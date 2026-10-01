@@ -2,6 +2,7 @@ import '../env.mjs';
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'node:url';
 import pg from 'pg';
 
 import { derivePerfectOrderVariantIdentity } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
@@ -748,7 +749,7 @@ function evaluateRows(rows, setContext, stampedBatchLookup = null) {
   };
 }
 
-async function insertCandidate(client, founderUserId, candidate) {
+export async function insertCandidate(client, founderUserId, candidate) {
   const payloadSnapshot = {
     founder_user_id: founderUserId,
     source_candidate_id: candidate.row?.id ?? null,
@@ -812,7 +813,7 @@ async function insertCandidate(client, founderUserId, candidate) {
   let candidateId = null;
   await assertExecuteCanonWriteV1({
     execution_name: 'external_discovery_to_warehouse_bridge_v1',
-    payload_snapshot,
+    payload_snapshot: payloadSnapshot,
     write_target: client,
     audit_target: client,
     ledger_target: client,
@@ -852,14 +853,13 @@ async function insertCandidate(client, founderUserId, candidate) {
         name: 'warehouse_candidate_inserted',
         contract_name: 'EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1',
         violation_type: 'post_write_candidate_missing',
-        query: `
+        async run(connection) {
+          const result = await connection.query(`
           select state
           from public.canon_warehouse_candidates
           where id = $1
           limit 1
-        `,
-        params: [candidateId],
-        evaluate(result) {
+        `, [candidateId]);
           const state = normalizeTextOrNull(result.rows[0]?.state);
           return {
             ok: state === 'RAW',
@@ -871,14 +871,13 @@ async function insertCandidate(client, founderUserId, candidate) {
         name: 'warehouse_bridge_event_inserted',
         contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
         violation_type: 'post_write_bridge_event_missing',
-        query: `
+        async run(connection) {
+          const result = await connection.query(`
           select count(*)::int as event_count
           from public.canon_warehouse_candidate_events
           where candidate_id = $1
             and event_type = 'EXTERNAL_DISCOVERY_BRIDGED_TO_WAREHOUSE_V1'
-        `,
-        params: [candidateId],
-        evaluate(result) {
+        `, [candidateId]);
           const eventCount = Number(result.rows[0]?.event_count ?? 0);
           return {
             ok: eventCount >= 1,
@@ -1035,4 +1034,6 @@ async function main() {
   }
 }
 
-await main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await main();
+}
