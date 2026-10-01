@@ -1,0 +1,147 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swshp",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/swshp/gamestop_duraludon_mapping_20261001/master.json",
+  "master_index_sha256": "a8b056a7bd967e06f59dac6c148ae9cba512d503293399a982be401ee6a16795",
+  "parents": [
+    {
+      "id": "04e792f4-4de2-4026-994f-087e230c7bae",
+      "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+      "gv_id": "GV-PK-SWSHP-028-GAMESTOP-STAMP",
+      "name": "Duraludon",
+      "printed_coordinate": "SWSH028",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "04e792f4-4de2-4026-994f-087e230c7bae",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-SWSHP-028-GAMESTOP-STAMP-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "duraludon-exact-product",
+          "sha256": "4379365f4216d5920c185e48b507bbcb8788571b1dc261183f2d6e2375cd0618",
+          "card_print_id": "04e792f4-4de2-4026-994f-087e230c7bae",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "duraludon-stamped-image",
+          "sha256": "3cfe2daf203e5b253cdba807fe03ba0d836318b09fcd3090a82f3b0f38ecb074",
+          "card_print_id": "04e792f4-4de2-4026-994f-087e230c7bae",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "duraludon-editorial-release",
+          "sha256": "68080e0c12bf05e179f60337ff619d94935495cbdeb8144f108246d820862e3b",
+          "card_print_id": "04e792f4-4de2-4026-994f-087e230c7bae",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "target": {
+        "candidate_id": "ac8a59b8-325c-45b0-a627-0d5d39fdb013",
+        "card_print_id": "04e792f4-4de2-4026-994f-087e230c7bae",
+        "source": "tcgplayer",
+        "external_id": "247362"
+      },
+      "source_snapshot_sha256": "6f31db93db68777117923f86e6962929786d0114adff643840266c0b2c4175ba",
+      "parent_snapshot_sha256": "63ac3f6c88ba9845d23448bee32c6fedcad6e9ba74efbf22545b9ed36b31a5be",
+      "source_ref": "duraludon-exact-product",
+      "source_sha256": "4379365f4216d5920c185e48b507bbcb8788571b1dc261183f2d6e2375cd0618",
+      "discovery_snapshot_sha256": "12d3b6984a9f9310282657dc09d59ed181d63b73418d36c578e25c10f3f59b40",
+      "raw_snapshot_sha256": "72849fad6b6783ab3a0cae42b6dc78644e162fd4388e7f9160bb2e2648002d13",
+      "dependencies_sha256": "f448053f8e12d128efc84fd6c65cd14138558ff47931073d8ddb547fe454c41a"
+    }
+  ],
+  "rejected_external_mapping_assertions": [
+    {
+      "mapping_id": 132914,
+      "before_sha256": "4c7a61674c664bf6c592174fab7268fdc47b7674501cc98686818f05f9ceef3c",
+      "reason_code": "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT",
+      "source_ref": "duraludon-unstamped-product",
+      "source_sha256": "b62113376fc1769029d21fba149f09bdd5210bcfc1af1ed29cd7b568c119547e"
+    }
+  ],
+  "pricing_dependency_adjudication": {
+    "ref": "duraludon-pricing-adjudication",
+    "sha256": "98663ee29b7e6db09f75845eb88618ebcea3d8686b22a52a1ea5eb5ce7dbb406"
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+    "source_artifacts": [
+      {
+        "ref": "duraludon-exact-product",
+        "sha256": "4379365f4216d5920c185e48b507bbcb8788571b1dc261183f2d6e2375cd0618",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/247362/pokemon-miscellaneous-cards-and-products-duraludon-swsh028-gamestop-exclusive",
+        "retrieved_at": "2026-10-01T18:22:44.767Z"
+      },
+      {
+        "ref": "duraludon-stamped-image",
+        "sha256": "3cfe2daf203e5b253cdba807fe03ba0d836318b09fcd3090a82f3b0f38ecb074",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/247362_200w.jpg",
+        "retrieved_at": "2026-10-01T17:23:32.425Z"
+      },
+      {
+        "ref": "duraludon-editorial-release",
+        "sha256": "68080e0c12bf05e179f60337ff619d94935495cbdeb8144f108246d820862e3b",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Duraludon_(SWSH_Promo_28)",
+        "retrieved_at": "2026-10-01T17:23:19.575Z"
+      },
+      {
+        "ref": "duraludon-unstamped-product",
+        "sha256": "b62113376fc1769029d21fba149f09bdd5210bcfc1af1ed29cd7b568c119547e",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/214239/pokemon-swsh-sword-and-shield-promo-cards-duraludon-swsh028",
+        "retrieved_at": "2026-10-01T18:22:44.767Z"
+      },
+      {
+        "ref": "duraludon-unstamped-image",
+        "sha256": "e4c65ad0f0f378be7b6ace535842076f7612594ff8eee2aad4fc4f7bf8c0f0c8",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/214239_200w.jpg",
+        "retrieved_at": "2026-10-01T17:23:33.013Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "04e792f4-4de2-4026-994f-087e230c7bae",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/swshp/gamestop_duraludon_mapping_20261001/review.json",
+      "sha256": "9c3db902b845350a7a303ae5845002cf40f6c7ab7b009b5dc40a3a68a1d6219a"
+    }
+  },
+  "fingerprint": "4d4451d00a8ac0e3f25220eaf619d532784d73c9cc543f4b29cee205614da1d8"
+}

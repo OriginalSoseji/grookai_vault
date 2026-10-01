@@ -1,0 +1,28 @@
+// New synthetic scenario in the qualified local413 lab. Preserve prior receipts.
+import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {createHash,randomUUID} from 'node:crypto';import pg from 'pg';
+import {mappingFixture} from '../../tests/fixtures/reviewed_gamestop_mapping_v1.mjs';import {seal} from '../../tests/fixtures/warehouse_printing_authority_v1.mjs';
+import {printingManifestHash as hash} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
+import {readGameStopMappingDependencies,assertReviewedGameStopMapping,executeReviewedGameStopMapping,assertGameStopMappingReadback,readGameStopMappingState} from '../../backend/warehouse/reviewed_gamestop_mapping_v1.mjs';
+import {readMappingPricingReaderHashes,assertRejectedMappingPriceWithdrawn} from '../../backend/warehouse/reviewed_mapping_pricing_adjudication_v1.mjs';
+const out='C:/grookai_vault_operator_artifacts/gamestop_duraludon_20261001',fixture=out+'/full-413-v1',project='mapping-pricing-full-413-v1-20261001';
+const read=p=>JSON.parse(fs.readFileSync(out+'/'+p)),save=(p,v)=>fs.writeFileSync(out+'/'+p,JSON.stringify(v,null,2)+'\n',{flag:'wx'}),sha=b=>createHash('sha256').update(b).digest('hex');
+assert.equal(read('runtime-result-v4.json').status,'passed');assert.ok(!fs.existsSync(out+'/executor-proof-intent-v2.json'));assert.ok(!fs.existsSync(fixture+'/supabase/.temp/project-ref'));
+const status=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));const url=new URL(status.DB_URL);assert.equal(url.hostname,'127.0.0.1');assert.equal(url.port,'64040');
+const container=JSON.parse(execFileSync('docker',['inspect','supabase_db_'+project],{encoding:'utf8'}))[0];assert.deepEqual(Object.keys(container.NetworkSettings.Networks),[project]);
+const db=new pg.Client({connectionString:url.toString()});await db.connect();const report={at:new Date().toISOString(),project,productionWrites:0,steps:[]};
+const rows=async(q,a)=>(await db.query(q,a)).rows,one=async(q,a)=>(await rows(q,a))[0].row;
+try{
+ assert.equal(read('executor-proof-result.json').status,'failed');assert.match(read('executor-proof-result.json').error,/null value in column "notes"/);
+ const b=read('executor-proof-authority.json');assertReviewedGameStopMapping(b);assert.deepEqual(await readGameStopMappingState(db,b),b.before);
+ const candidateId=b.target.candidate_id,newProduct=b.target.external_id,discoveryId=b.before.discovery.id,raw={id:b.before.raw.id};
+ assert.equal((await rows('select count(*)::int n from canon_warehouse_candidates where id=$1',[candidateId]))[0].n,0);
+ save('executor-proof-intent-v2.json',{at:report.at,project,authority_fingerprint:b.fingerprint,consumed:true,synthetic:true,retained_preparation:'executor-proof-intent.json'});
+ const actor=(await rows('select user_id from vault_item_instances limit 1'))[0].user_id;
+ await db.query("insert into canon_warehouse_candidates(id,submitted_by_user_id,intake_channel,submission_type,notes,tcgplayer_id,submission_intent,state,claimed_identity_payload,reference_hints_payload,proposed_action_type,interpreter_decision,founder_approved_by_user_id,founder_approved_at) values($1,$2,'MANUAL','REVIEWED_GAMESTOP_MAPPING_V1','Synthetic local reviewed pricing fixture',$3,'MISSING_CARD','APPROVED_BY_FOUNDER',$4::jsonb,$5::jsonb,'REVIEW_REQUIRED','ROW',$2,now())",[candidateId,actor,String(newProduct),JSON.stringify({source_raw_import_id:raw.id,source_discovery_candidate_id:discoveryId}),JSON.stringify({authority_fingerprint:b.fingerprint})]);
+ const authorization={approved:true,authority_fingerprint:b.fingerprint,operator:'synthetic local fixture',request:'local proof only'};
+ const snapshot=async()=>hash((await rows("select to_jsonb(t) row from external_mappings t union all select to_jsonb(t) from canon_warehouse_candidates t union all select to_jsonb(t) from canon_warehouse_candidate_events t union all select to_jsonb(t) from vault_item_instances t order by row")).map(r=>r.row));const before=await snapshot();
+ await db.query('begin isolation level serializable');let inserted=false;const proxy={async query(q,a){const r=await db.query(q,a);if(q.startsWith('insert into public.external_mappings'))inserted=true;if(inserted&&q.startsWith('select * from get_market_pricing_read_model_v1'))return {rows:r.rows.map(x=>({...x,status:'available',market_close:'12.34'}))};return r;}};
+ await assert.rejects(executeReviewedGameStopMapping(proxy,b,{authorization}),/rejected_price_still_available/);assert.ok(inserted);await db.query('rollback');assert.equal(await snapshot(),before);report.steps.push('actual mapping insertion/invalidation rolled back when the pricing readback was forced to fail');
+ await db.query('begin isolation level serializable');assert.equal((await executeReviewedGameStopMapping(db,b,{authorization})).status,'applied');await db.query('commit');assertGameStopMappingReadback(b,await readGameStopMappingState(db,b));await assertRejectedMappingPriceWithdrawn(db,b);report.steps.push('committed exact mapping with rejected current/history price withdrawn and every frozen dependency retained');
+ const after=await snapshot();await db.query('begin isolation level serializable');assert.equal((await executeReviewedGameStopMapping(db,b,{authorization})).status,'already_succeeded');await db.query('commit');assert.equal(await snapshot(),after);report.steps.push('repeat verifies the committed result without additional writes');report.status='passed';
+}catch(e){report.status='failed';report.error=e.stack;await db.query('rollback').catch(()=>{});throw e;}finally{await db.end();save('executor-proof-result-v2.json',report);console.log(report);}

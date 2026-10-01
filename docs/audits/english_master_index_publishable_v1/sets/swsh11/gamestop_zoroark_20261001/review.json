@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "52a1a3d1cf911f60e2e161006d2729e5a4ef1bac78eb5ebe12bdfbe8797b6637",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh11",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "reviewed_at": "2026-10-01T15:33:07.802Z",
+  "projection_sha256": "820da7b0392f9f4e68a8de42d701d424a526437b4cab6015e069fa9174ae45ab",
+  "adjudication": "This scoped addendum identifies English Hisuian Zoroark076/196 with the red GameStop stamp and Holo finish. The unstamped base, Lost Origin-logo stamp and EB Games-logo stamp are separate identities outside this scope. No other finish is inferred. Noble Knight publication-year2026 is not adopted as the card release date.",
+  "source_independence": "Two evidence families: Bulbapedia editorial release description and exact Face to Face merchant product/image. The merchant page and image are one vote. Noble Knight text included in the combined extraction is not an extra editorial vote.",
+  "execution_authorized": false
+}

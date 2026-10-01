@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "a8b056a7bd967e06f59dac6c148ae9cba512d503293399a982be401ee6a16795",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swshp",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop reconciliation",
+  "reviewed_at": "2026-10-01T18:22:44.765Z",
+  "projection_sha256": "0d88ab94ad750c631d13603d6e7c3a985256f255054a71af29a79f0a88e9e2ae",
+  "adjudication": "Link exact GameStop product247362 to the existing stamped Duraludon SWSH028 and retain its Line Holo child. Reject unstamped214239 association. Preserve historical null printed modifier, canonical IDs, representative image and immutable pricing evidence; a separate bound pricing review requires unavailable discredited current/history prices.",
+  "source_independence": "Two families: exact TCGplayer catalogue/images and editorial release history. Catalogue and its images count as one family.",
+  "execution_authorized": false
+}

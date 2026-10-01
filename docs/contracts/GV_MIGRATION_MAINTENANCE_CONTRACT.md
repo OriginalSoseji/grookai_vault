@@ -1,5 +1,18 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Reviewed mapping price quarantine (2026-10-01)
+
+`ReviewedMappingPriceQuarantineV1` admits only AuditLinkedSchema/PrePush for sole
+pending20261001190000, without combined scopes or target overrides. It compares
+the production412 schema/security to the qualified full412 baseline and retains
+duplicate timestamp/object checks. PrePush additionally requires isolated full413
+replay/no-op push, retained412-to413 upgrade, real local authenticated pricing HTTP,
+actual mapping rollback/commit/repeat, exact proof source hashes, clean committed
+source containing main and a fresh normal-hook receipt. The inspection package
+prepares/dry-runs the exact Supabase CLI payload; it never applies SQL. Preserve
+all populated fixtures and historical failure receipts. Production schema apply,
+reader parity and the separate reviewed mapping execution need their own receipts.
+
 ## Search database latency qualification (2026-10-01)
 
 `SearchDatabaseLatencyV1` accepts AuditLinkedSchema/PrePush for exactly

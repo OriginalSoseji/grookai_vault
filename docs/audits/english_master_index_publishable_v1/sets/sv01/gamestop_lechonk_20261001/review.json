@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "b40983630476efbcd310a2939906ddc9edb3cb4d9eb94fedf22c43d64eed7f2e",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv01",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "reviewed_at": "2026-10-01T16:55:19.666Z",
+  "projection_sha256": "92536959589381d9f21a58eaf657854ade170788863505d9c84244a6ff69ffa8",
+  "adjudication": "This additive scope identifies English Lechonk 154/198 with the red GameStop stamp and Reverse Holo finish. Unstamped cards and other retailer stamps are separate identities outside this scope.",
+  "source_independence": "Two evidence families: PokeBeach original editorial release reporting and the exact merchant product/image. Merchant page and image count as one vote; mirrored editorial descriptions add no vote.",
+  "execution_authorized": false
+}

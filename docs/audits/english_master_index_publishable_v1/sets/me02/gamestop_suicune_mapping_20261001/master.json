@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me02",
+  "set_id": "3b753746-98f4-43a3-ab4c-c1a2cfe8219b",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex actual source adjudication for founder-requested GameStop reconciliation",
+  "reviewed_at": "2026-10-01T17:35:48.354Z",
+  "parent": {
+    "id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+    "set_id": "3b753746-98f4-43a3-ab4c-c1a2cfe8219b",
+    "gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP",
+    "name": "Suicune",
+    "printed_coordinate": "026",
+    "identity_domain": "pokemon_eng_standard",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "id": "8ef1005c-7207-4ae0-8683-0ca9828c63e8",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP-COSMOS",
+      "source_refs": [
+        "suicune-warehouse-product",
+        "suicune-exact-product-image",
+        "phantasmal-additional-checklist"
+      ]
+    }
+  ],
+  "external_product": {
+    "source": "tcgplayer",
+    "id": "666533",
+    "physical_coordinate": "026/094"
+  },
+  "source_artifacts": [
+    {
+      "ref": "suicune-warehouse-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/666533/pokemon-miscellaneous-cards-and-products-suicune-cosmos-holo-gamestop-exclusive",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "fact": "Preserved product666533 explicitly identifies GameStop Suicune026/094 Cosmos Holo; product identity is corroborated by its exact stamped image. Price buckets are excluded from finish authority.",
+      "sha256": "1d90b010e358b992eab0f860d30a8f94a836a63774aedaffcdddb6e00ee6d324",
+      "retrieved_at": "2026-10-01T17:35:48.354Z"
+    },
+    {
+      "ref": "suicune-exact-product-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/666533_200w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "fact": "Visually reviewed English Suicune130HP,026/094, red GameStop stamp and Cosmos treatment. Original200px JPEG is evidence only; no production image change.",
+      "sha256": "6e870cec24605c7f32e65e1fa256af20156b20d4e78958c6a36fa60803ad46ba",
+      "retrieved_at": "2026-10-01T17:23:32.727Z"
+    },
+    {
+      "ref": "phantasmal-additional-checklist",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Phantasmal_Flames_(TCG)",
+      "independence_family": "editorial_checklist",
+      "fact": "Additional Cards explicitly identifies026/094 Suicune as Pixel Cosmos Holofoil with the GameStop stamp, separately from EB Games and the unstamped Knockout version. Preserved web-tool extraction JSON, not raw HTML; other failed fetches in the artifact are not evidence.",
+      "sha256": "ad675833832a07caf2363cee41721fe9ca1568d761f9278e59c5be2e28bea189",
+      "retrieved_at": "2026-10-01T17:23:19.585Z"
+    }
+  ],
+  "source_independence": "Two evidence families: exact TCGplayer catalogue/image and the editorial additional-cards checklist. Source catalogue and its image are one vote.",
+  "adjudication": "Link product666533 to the existing English red-GameStop-stamped Suicune026 parent and preserve its existing Cosmos child. Neither the EB Games stamp nor the unstamped Knockout Collection version is this identity. Existing representative image remains explicitly representative.",
+  "limitations": [
+    "One reviewed variant scope only; no whole-set or all-GameStop completion",
+    "No new parent or printing",
+    "No Normal, generic Holo or Reverse finish inferred",
+    "No pricing activation or historical pricing repair"
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  }
+}

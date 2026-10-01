@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "22b535864e84637ff01fb83015718586ed681a3328035f7ea94eedd0e13e03eb",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv04",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "reviewed_at": "2026-10-01T16:55:19.676Z",
+  "projection_sha256": "b454cfb057c93769ddcbfc1785c17f5f0116937470086acb9bc545ad44c6c922",
+  "adjudication": "This additive scope identifies English Iron Moth 028/182 with the red GameStop stamp and Reverse Holo finish. Unstamped cards and other retailer stamps are separate identities outside this scope. The unstamped Iron Valiant box Cosmos version supplies no finish authority for this GameStop identity.",
+  "source_independence": "Two evidence families: PokeBeach original editorial release reporting and the exact merchant product/image. Merchant page and image count as one vote; mirrored editorial descriptions add no vote.",
+  "execution_authorized": false
+}

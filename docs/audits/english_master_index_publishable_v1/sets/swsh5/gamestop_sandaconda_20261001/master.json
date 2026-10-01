@@ -1,0 +1,83 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh5",
+  "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T19:34:31.390Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "parent": {
+    "id": "01112b31-39c4-4483-a4e2-081257b3a872",
+    "gv_id": "GV-PK-BST-082-GAMESTOP-STAMP",
+    "name": "Sandaconda",
+    "printed_coordinate": "082/163",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-BST-082-GAMESTOP-STAMP-COSMOS",
+      "status": "verified",
+      "source_refs": [
+        "sandaconda-psa-indexed-specification",
+        "sandaconda-tcgcsv-source-product",
+        "sandaconda-tcgplayer-exact-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "sandaconda-psa-indexed-specification",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://www.psacard.com/spec/psa/6789121",
+      "independence_family": "psa_grading_specification",
+      "format": "Actual preserved web-tool search/extraction JSON, not original HTML. Only the exact PSA specification record supplies this authority; GameStop resale of a PSA slab is the same family.",
+      "fact": "PSA identifies Sandaconda-Holo082 as Cosmos Gamestop Exclusive. Direct page fetch failed403; later open required sign-in. Indexed specification is preserved with those limitations.",
+      "sha256": "ab1042a93303ebcf9044a655f64d298915423ec258e89c2d417699534576152c",
+      "retrieved_at": "2026-10-01T19:32:00.679Z",
+      "retrieval_time_basis": "Preserved artifact capture timestamp; review time recorded separately."
+    },
+    {
+      "ref": "sandaconda-tcgcsv-source-product",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://www.tcgplayer.com/product/242553",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Exact preserved live TCGCSV source product JSON.",
+      "fact": "Product242553 identifies Sandaconda082/163 GameStop Exclusive. Generic source Holofoil labels and prices do not authorize an additional Holo printing.",
+      "sha256": "9ea38ba2e309fc9f2fe21847469fa2ff71649059f485d14a39d3b84a80735d80",
+      "retrieved_at": "2026-10-01T19:33:01.051Z",
+      "retrieval_time_basis": "Preserved artifact capture timestamp; review time recorded separately."
+    },
+    {
+      "ref": "sandaconda-tcgplayer-exact-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/242553_400w.jpg",
+      "independence_family": "tcgplayer_product_catalogue_and_image",
+      "format": "Original HTTP200 JPEG bytes, visually reviewed and copied losslessly for hosted display.",
+      "fact": "English Sandaconda130HP,082/163,black GameStop stamp and Cosmos star/circle foil within the artwork; full borders and Battle Styles mark visible.",
+      "sha256": "d6ad1bc3a7fbdcc9d71237e69fea2d6d3c9e577d441a31e68138ba94e6abd8d3",
+      "retrieved_at": "2026-10-01T19:32:16.448Z",
+      "retrieval_time_basis": "Preserved artifact capture timestamp; review time recorded separately."
+    }
+  ],
+  "source_independence": "Two families: PSA physical grading specification and exact TCGplayer source product/image. GameStop resale of the PSA slab supplies no extra vote. TCGCSV and TCGplayer image count as one family. PokeBeach early Cosmos prediction is release context only.",
+  "adjudication": "This additive scope identifies English Sandaconda082/163 with the black GameStop stamp and one Cosmos Holo finish. Unstamped Battle Styles Holo/Reverse/Cosmos and EB Games stamps are different identities. Generic provider Holofoil is not an additional physical finish.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "No whole-set or all-retailer completeness claim",
+    "No Normal, Reverse or generic Holo option inferred",
+    "PSA source is preserved indexed extraction; original HTML unavailable",
+    "No execution approval supplied by source review"
+  ],
+  "scope_relationship": "Additive reviewed variant under existing English swsh5 Master Index; existing cards.json, printings.json and evidence.json preserved."
+}

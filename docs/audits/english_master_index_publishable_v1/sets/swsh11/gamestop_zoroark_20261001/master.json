@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh11",
+  "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T15:33:07.802Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "parent": {
+    "id": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+    "gv_id": "GV-PK-LOR-076-GAMESTOP-STAMP",
+    "name": "Hisuian Zoroark",
+    "printed_coordinate": "076/196",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-LOR-076-GAMESTOP-STAMP-HOLO",
+      "status": "verified",
+      "source_refs": [
+        "zoroark-bulbapedia-rendered-extraction",
+        "zoroark-face-to-face-product-html",
+        "zoroark-face-to-face-product-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "zoroark-bulbapedia-rendered-extraction",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Hisuian_Zoroark_(Lost_Origin_76)",
+      "format": "Web-tool extraction including Bulbapedia and Noble Knight, not raw HTML. Direct Bulbapedia HTML returned403. Only Bulbapedia release text supplies this evidence family.",
+      "independence_family": "bulbapedia_editorial",
+      "fact": "The release section identifies three distinct stamped Holofoil versions, including the red GameStop logo.",
+      "sha256": "3900d2c7a6d0cb20c720dc186af67c88bb7ac27e1735ba549e875233d17eca33",
+      "retrieved_at": "2026-10-01T14:24:29.092Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time is recorded separately."
+    },
+    {
+      "ref": "zoroark-face-to-face-product-html",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://facetofacegames.com/products/hisuian-zoroark-076196-promo-gamestop-stamp-swsh11msp-076-holo",
+      "format": "Original HTTP200 HTML response bytes.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "The exact GameStop-stamped product page gives collector number076/196 and Holo as a physical finish. No price value is used.",
+      "sha256": "b3ac83e328deda2762327e847f415c636e2945dc62c6270aa814c278b08ce42a",
+      "retrieved_at": "2026-10-01T15:32:10.410Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time is recorded separately."
+    },
+    {
+      "ref": "zoroark-face-to-face-product-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://facetofacegames.com/cdn/shop/files/cfdf7a3d5e5eea5fd9d903193789ee91e7c81715_Asset_PKM_SWSH11MSP_076_Event_Gamestop_ENG_H_jpg.jpg",
+      "format": "Preserved JPEG, visually reviewed.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "English Hisuian Zoroark076/196 with a red GameStop stamp. Artwork shows the vertical Holo treatment; no Cosmos or Reverse claim is made.",
+      "sha256": "65ea06e61f76eca134b87aadcfaee3e320e40381ba95a93eb5049e6a86398f30",
+      "retrieved_at": "2026-10-01T15:32:23.774Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time is recorded separately."
+    }
+  ],
+  "source_independence": "Two evidence families: Bulbapedia editorial release description and exact Face to Face merchant product/image. The merchant page and image are one vote. Noble Knight text included in the combined extraction is not an extra editorial vote.",
+  "adjudication": "This scoped addendum identifies English Hisuian Zoroark076/196 with the red GameStop stamp and Holo finish. The unstamped base, Lost Origin-logo stamp and EB Games-logo stamp are separate identities outside this scope. No other finish is inferred. Noble Knight publication-year2026 is not adopted as the card release date.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "No claim of whole-set or all-retailer completeness",
+    "No Normal, Reverse or Cosmos option inferred",
+    "No execution approval supplied by this source review"
+  ],
+  "scope_relationship": "Additive reviewed variant scope under the existing English swsh11 Master Index; does not replace or regenerate historical cards.json, printings.json or evidence.json."
+}

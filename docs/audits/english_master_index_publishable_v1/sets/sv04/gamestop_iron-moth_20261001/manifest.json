@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv04",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/sv04/gamestop_iron-moth_20261001/master.json",
+  "master_index_sha256": "22b535864e84637ff01fb83015718586ed681a3328035f7ea94eedd0e13e03eb",
+  "parents": [
+    {
+      "id": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "gv_id": "GV-PK-PAR-028-GAMESTOP-STAMP",
+      "name": "Iron Moth",
+      "printed_coordinate": "028",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-PAR-028-GAMESTOP-STAMP-REVERSE",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "iron-moth-pokebeach-extraction",
+          "sha256": "970fc26561404a998c00bafd98aa3fca7ba725c45c2427ff7394d2566fd3f825",
+          "card_print_id": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "iron-moth-merchant-product-html",
+          "sha256": "dc701cef133242a4ca7c27f7b65afa0984b21ab1f68560548a8ab5a78082153f",
+          "card_print_id": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "iron-moth-merchant-image",
+          "sha256": "4963db894f3feebe0c0fe08a5e603344ac1e0b6df0755ebf3dda7a1b1ae654e6",
+          "card_print_id": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+    "source_artifacts": [
+      {
+        "ref": "iron-moth-pokebeach-extraction",
+        "sha256": "970fc26561404a998c00bafd98aa3fca7ba725c45c2427ff7394d2566fd3f825",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.pokebeach.com/2023/10/slither-wing-and-iron-moth-promos-at-best-buy-and-gamestop",
+        "retrieved_at": "2026-10-01T15:48:33.887Z"
+      },
+      {
+        "ref": "iron-moth-merchant-product-html",
+        "sha256": "dc701cef133242a4ca7c27f7b65afa0984b21ab1f68560548a8ab5a78082153f",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.danireon.com/en-us/products/iron-moth-028-182-gamestop-promo-miscellaneous-cards",
+        "retrieved_at": "2026-10-01T15:47:57.452Z"
+      },
+      {
+        "ref": "iron-moth-merchant-image",
+        "sha256": "4963db894f3feebe0c0fe08a5e603344ac1e0b6df0755ebf3dda7a1b1ae654e6",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.danireon.com/cdn/shop/files/527015_729d6440-90b3-4c4d-a7ad-aebf1c26276b.jpg?v=1747267047",
+        "retrieved_at": "2026-10-01T15:48:55.336Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/sv04/gamestop_iron-moth_20261001/review.json",
+      "sha256": "fd75ef124bf27af4af1fa9ae3352dfe2a59f079e57f56cc470fb68238a5d582f"
+    }
+  },
+  "fingerprint": "91c5f7ed57c45c2a76001a4030d99e9bb5bfac69b979552d09614fa138cea37d"
+}

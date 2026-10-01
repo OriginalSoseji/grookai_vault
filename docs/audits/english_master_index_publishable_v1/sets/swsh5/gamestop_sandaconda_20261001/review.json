@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "3137b5649816f28256e1ce63eccfafb53ecdca3e7d2541847a6681dca95947a7",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh5",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "reviewed_at": "2026-10-01T19:34:31.390Z",
+  "projection_sha256": "a5c3deefdb07e4197d96cf800e849f137ca677576b48035c37d77801709dc0ce",
+  "adjudication": "This additive scope identifies English Sandaconda082/163 with the black GameStop stamp and one Cosmos Holo finish. Unstamped Battle Styles Holo/Reverse/Cosmos and EB Games stamps are different identities. Generic provider Holofoil is not an additional physical finish.",
+  "source_independence": "Two families: PSA physical grading specification and exact TCGplayer source product/image. GameStop resale of the PSA slab supplies no extra vote. TCGCSV and TCGplayer image count as one family. PokeBeach early Cosmos prediction is release context only.",
+  "execution_authorized": false
+}

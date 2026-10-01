@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "4a40d49c01a9d117558f9f5b49294a61fb643a8075986a1d750d35a0510fbfb2",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me02",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex actual source adjudication for founder-requested GameStop reconciliation",
+  "reviewed_at": "2026-10-01T17:35:48.354Z",
+  "projection_sha256": "f894b76102e33079c66b3ede588d5c1176ebb186fd17e5d383a395b7253466cb",
+  "adjudication": "Link product666533 to the existing English red-GameStop-stamped Suicune026 parent and preserve its existing Cosmos child. Neither the EB Games stamp nor the unstamped Knockout Collection version is this identity. Existing representative image remains explicitly representative.",
+  "source_independence": "Two evidence families: exact TCGplayer catalogue/image and the editorial additional-cards checklist. Source catalogue and its image are one vote.",
+  "execution_authorized": false
+}

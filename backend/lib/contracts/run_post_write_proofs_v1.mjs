@@ -4,6 +4,7 @@ import { recordValidationFailureV1 } from './validate_write_v1.mjs';
 // LOCK: Proof mode must be explicit for every canon-affecting execution that uses the shared executor.
 
 export const POST_WRITE_PROOF_MODES_V1 = {
+  reviewed_gamestop_mapping_v1: 'transactional_authoritative',
   external_discovery_to_warehouse_bridge_v1: 'transactional_authoritative',
   classification_apply_write_plan_v1: 'transactional_authoritative',
   classification_apply_reclassification_result_v1: 'transactional_authoritative',

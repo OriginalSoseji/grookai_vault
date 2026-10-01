@@ -1,5 +1,25 @@
 # Grookai Operator Playbook V1
 
+## GameStop Sandaconda Cosmos promotion — October 1
+
+Read `docs/ops/GAMESTOP_COSMOS_20261001.md`. The current bounded continuation uses
+the existing Sandaconda242553 warehouse candidate, exact black-stamp image and
+one reviewed Cosmos Holo scope. Private `gamestop_cosmos_20261001/CHECKPOINT.md`
+records actual execution and coverage; preserve all consumed actions. Flapple's
+multiple-variant ambiguity remains held for a separate coexistence review.
+Duraludon's coordinated source/pricing repair is complete at413; never replay it.
+
+## Duraludon GameStop mapping and price correction — October 1
+
+Read `docs/ops/DURALUDON_MAPPING_PRICING_20261001.md` and
+`docs/contracts/REVIEWED_MAPPING_PRICE_QUARANTINE_V1.md`. The incorrect unstamped
+source has active and historical pricing dependencies. Preserve immutable history;
+the bounded repair requires installed reader exclusions and a separately bound
+pricing adjudication before the existing manual mapper may invalidate that link.
+Use the fixed strict-preflight scope and exact-pending CLI package. Preserve the
+isolated64040/64140 labs, runtime fixture receipts, prior promos and consumed actions.
+Private `gamestop_duraludon_20261001/CHECKPOINT.md` records actual completion.
+
 ## Search database latency — October 1
 
 PR568, migration412 and PR570 are live; their private database/parser checkpoints
@@ -2175,6 +2195,20 @@ workflow and a successful manual audit do not prove timely scheduled execution.
 Verify actual `schedule` events; report stale evidence honestly if delays persist.
 
 ## Pokemon warehouse coverage — October 1, 2026
+
+The search and six-hour coverage release is now live from PR565, with an actual
+merged-main hosted coverage-only report (run36879465569). Its failing completeness
+status reports unresolved relationships; it does not indicate source loss.
+The latest bounded card continuation is
+`docs/ops/GAMESTOP_MAPPING_20261001.md`, for existing Duraludon/Suicune product links.
+Its private `gamestop_mapping_20261001/CHECKPOINT.md` is the current action index.
+The prior completed promotion batch is
+`docs/ops/GAMESTOP_REVERSE_20261001.md`, covering exact GameStop Lechonk and
+Iron Moth Reverse Holo scopes. Current immutable promotion and public verification
+receipts are indexed by private `gamestop_reverse_20261001/CHECKPOINT.md`.
+Prior Zoroark receipts remain in `gamestop_zoroark_20261001/CHECKPOINT.md` and
+`docs/ops/GAMESTOP_ZOROARK_20261001.md`. Historical undeployed wording below
+describes preparation before the completed PR565 release.
 
 Dragonite's parent, Holo printing and exact image are now live and publicly
 verified. All consumed promotion actions must remain preserved. The separate

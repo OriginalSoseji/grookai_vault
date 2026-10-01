@@ -1,0 +1,121 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me02",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/me02/gamestop_suicune_mapping_20261001/master.json",
+  "master_index_sha256": "4a40d49c01a9d117558f9f5b49294a61fb643a8075986a1d750d35a0510fbfb2",
+  "parents": [
+    {
+      "id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+      "set_id": "3b753746-98f4-43a3-ab4c-c1a2cfe8219b",
+      "gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP",
+      "name": "Suicune",
+      "printed_coordinate": "026",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-PFL-026-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "suicune-warehouse-product",
+          "sha256": "1d90b010e358b992eab0f860d30a8f94a836a63774aedaffcdddb6e00ee6d324",
+          "card_print_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "suicune-exact-product-image",
+          "sha256": "6e870cec24605c7f32e65e1fa256af20156b20d4e78958c6a36fa60803ad46ba",
+          "card_print_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "phantasmal-additional-checklist",
+          "sha256": "ad675833832a07caf2363cee41721fe9ca1568d761f9278e59c5be2e28bea189",
+          "card_print_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "target": {
+        "candidate_id": "0ccf07ad-ed41-4300-95f9-f68cd4252a3e",
+        "card_print_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+        "source": "tcgplayer",
+        "external_id": "666533"
+      },
+      "source_snapshot_sha256": "8906b3ce7bbb8bac8f5c79ce8d09f429cc4895b3f7101b150b45c190dd932d57",
+      "parent_snapshot_sha256": "14845fe06b48cde82e4e628ee73aceb79e74241ca1d1d2d43d026570129fc36e",
+      "source_ref": "suicune-warehouse-product",
+      "source_sha256": "1d90b010e358b992eab0f860d30a8f94a836a63774aedaffcdddb6e00ee6d324",
+      "discovery_snapshot_sha256": "97cb8468b509ba98f6a1757858cf0c8bd4eb1bbcba200ff2ae20d29e5bb85d53",
+      "raw_snapshot_sha256": "819c8eef70f8e06fc9f63e388b9671c80b3baff69887c54a32795f0ed057d050",
+      "dependencies_sha256": "8fac7c08822010913c8ff4017053c60e40c4ee3f397ec00390c2a0d50a712fa8"
+    }
+  ],
+  "rejected_external_mapping_assertions": [],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "3b753746-98f4-43a3-ab4c-c1a2cfe8219b",
+    "source_artifacts": [
+      {
+        "ref": "suicune-warehouse-product",
+        "sha256": "1d90b010e358b992eab0f860d30a8f94a836a63774aedaffcdddb6e00ee6d324",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/666533/pokemon-miscellaneous-cards-and-products-suicune-cosmos-holo-gamestop-exclusive",
+        "retrieved_at": "2026-10-01T17:35:48.354Z"
+      },
+      {
+        "ref": "suicune-exact-product-image",
+        "sha256": "6e870cec24605c7f32e65e1fa256af20156b20d4e78958c6a36fa60803ad46ba",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/666533_200w.jpg",
+        "retrieved_at": "2026-10-01T17:23:32.727Z"
+      },
+      {
+        "ref": "phantasmal-additional-checklist",
+        "sha256": "ad675833832a07caf2363cee41721fe9ca1568d761f9278e59c5be2e28bea189",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Phantasmal_Flames_(TCG)",
+        "retrieved_at": "2026-10-01T17:23:19.585Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "61006923-79bd-4c76-b44a-df4ad41d1abe",
+        "finish_key": "cosmos"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/me02/gamestop_suicune_mapping_20261001/review.json",
+      "sha256": "d9931847c54fbad2cdc8fb3b59014998dd8aad901dae42c32b83bd13ce2d556a"
+    }
+  },
+  "fingerprint": "271c4d94334b4c3e4175acb73283dfb1a2639bc91a3b4c94f517b1aeb32c3b38"
+}

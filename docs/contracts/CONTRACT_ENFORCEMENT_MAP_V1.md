@@ -6,6 +6,7 @@ Status: Active runtime support document
 
 | Execution Path | File / Surface | Current Behavior | Canon-Affecting? | Runtime Scope |
 | --- | --- | --- | --- | --- |
+| `reviewed_gamestop_mapping_v1` | `backend/warehouse/reviewed_gamestop_mapping_v1.mjs` | Source-bound manual mapping and explicitly reviewed invalidation, with preserved identities and dependency proofs | Yes | `reviewed_gamestop_mapping_v1` |
 | `external_discovery_to_warehouse_bridge_v1` | [backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs](/C:/grookai_vault/backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs) | Inserts founder-routed warehouse candidates and candidate events | Yes | `external_discovery_to_warehouse_bridge_v1` |
 | `classification_apply_write_plan_v1` | [backend/warehouse/classification_worker_v1.mjs](/C:/grookai_vault/backend/warehouse/classification_worker_v1.mjs) | Mutates `canon_warehouse_candidates` and appends events during first classification | Yes | `classification_apply_write_plan_v1` |
 | `classification_apply_reclassification_result_v1` | [backend/warehouse/classification_worker_v1.mjs](/C:/grookai_vault/backend/warehouse/classification_worker_v1.mjs) | Mutates candidate summaries during reclassification | Yes | `classification_apply_reclassification_result_v1` |
