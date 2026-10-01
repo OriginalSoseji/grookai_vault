@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { retainNamedCardFirstPage } from "./completeNamedCardSearch";
 import { getCatalogSetPresentation } from "../catalogPresentation";
 import { resolveGameScopedSetSearchIntent } from "../publicSets.shared";
 
@@ -116,12 +117,14 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
   return selected ? { matchedAlias: selected.source, setCodes: [...selected.codes].sort(), remainingQuery: removeSetPhrase(query, selected.source), requiresCardNameCheck: selected.requiresCardNameCheck, openingWordMatch } : empty;
 }
 
-async function readCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game) {
+async function readCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
+  retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
   const { data, error } = await client.rpc("search_game_card_prints_v4", {
     game_code_in: game, q: query, set_code_in: null, number_in: null,
-    illustrator_in: null, language_scope_in: "all", limit_in: 1, offset_in: 0,
+    illustrator_in: null, language_scope_in: "all", limit_in: retain ? 64 : 1, offset_in: 0,
   });
   if (error) throw new Error(error.message);
+  if (retain) retain(retainNamedCardFirstPage({ query, gameScope: game, rows: data ?? [] }));
   return data?.[0]?.name as string | undefined;
 }
 
@@ -135,8 +138,9 @@ export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">
 // Verify literal fragments against the returned name; a fuzzy RPC hit alone
 // must not silently discard a real set constraint. Explicit connectors bypass
 // this ambiguity check at the caller, so "Chari from Dark" still selects a set.
-export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game) {
-  const name = await readCatalogCardName(client, query, game);
+export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
+  retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
+  const name = await readCatalogCardName(client, query, game, retain);
   const fragments = words(query);
   const nameWords = words(name ?? "");
   return fragments.length > 0 && fragments.every((fragment) => nameWords.some((word) => word.includes(fragment)));

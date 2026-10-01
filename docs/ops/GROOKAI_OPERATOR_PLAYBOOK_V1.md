@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## GameStop Sandaconda Cosmos promotion — October 1
+
+Read `docs/ops/GAMESTOP_COSMOS_20261001.md`. The current bounded continuation uses
+the existing Sandaconda242553 warehouse candidate, exact black-stamp image and
+one reviewed Cosmos Holo scope. Private `gamestop_cosmos_20261001/CHECKPOINT.md`
+records actual execution and coverage; preserve all consumed actions. Flapple's
+multiple-variant ambiguity remains held for a separate coexistence review.
+Duraludon's coordinated source/pricing repair is complete at413; never replay it.
+
 ## Duraludon GameStop mapping and price correction — October 1
 
 Read `docs/ops/DURALUDON_MAPPING_PRICING_20261001.md` and
@@ -13,11 +22,14 @@ Private `gamestop_duraludon_20261001/CHECKPOINT.md` records actual completion.
 
 ## Search database latency — October 1
 
-PR568 and migration412 are live; private `search_database_20261001/CHECKPOINT.json`
-is terminal. Continue the parser CPU follow-up in `C:/gv_search_tail_latency_20261001`.
-The existing checkpoint below and private `search_tail_latency_20261001` evidence
-separate local full-catalog equivalence from actual hosted deployment. This
+PR568, migration412 and PR570 are live; their private database/parser checkpoints
+are terminal. Continue the request-reuse follow-up in `C:/gv_search_rpc_latency_20261001`.
+The existing checkpoint below and private `search_rpc_latency_20261001` evidence
+separate full-result source comparisons from actual hosted deployment. This
 follow-up has no migration; never replay the completed412 apply to release it.
+The new duration-only Server-Timing stages distinguish set catalog, name probe,
+name pagination and parent hydration. Keep caller-visible pages request-local;
+fraction searches still require card-specific printed totals from hydration.
 
 Read `docs/checkpoints/search_database_latency_20261001.md`. The fixed isolated
 worktree qualifies migration20261001150000 against production411. Use the

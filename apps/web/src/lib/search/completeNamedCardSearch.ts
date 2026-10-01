@@ -1,6 +1,13 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 type NamedRow = { id: string; gv_id?: string | null; name?: string | null };
+// Kept only by the request that performed the interpretation probe.
+export type NamedCardFirstPage = { query: string; gameScope: string; rows: NamedRow[] };
+const retainedPages = new WeakSet<NamedCardFirstPage>();
+export function retainNamedCardFirstPage(page: NamedCardFirstPage): NamedCardFirstPage {
+  retainedPages.add(page);
+  return page;
+}
 const normalize = (value: string) => value.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 
 // A brief pause after the first keystroke must not scan the whole catalog.
@@ -11,7 +18,7 @@ export const supportsCompleteNameSearch = (value: string) =>
 // After the first full page, overlap at most four read-only page requests.
 export async function fetchCompleteNamedCardRows(
   client: Pick<SupabaseClient, "rpc">,
-  options: { textQuery?: string; gameScope: string; languageScope?: string; exactSetCode?: string },
+  options: { textQuery?: string; gameScope: string; languageScope?: string; exactSetCode?: string; namedFirstPage?: NamedCardFirstPage },
 ): Promise<NamedRow[] | null> {
   const name = (options.textQuery ?? "")
     .replace(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi, " ")
@@ -25,6 +32,10 @@ export async function fetchCompleteNamedCardRows(
     return fragments.every((fragment) => words.some((word) => word.includes(fragment)));
   };
   const readPage = async (offset: number) => {
+    const first = options.namedFirstPage;
+    // A serialized server-action argument cannot supply a trusted RPC page.
+    if (offset === 0 && first && retainedPages.has(first) && first.query === name && first.gameScope === options.gameScope &&
+        (options.languageScope ?? "all") === "all" && !options.exactSetCode) return first.rows;
     const { data, error } = await client.rpc("search_game_card_prints_v4", {
       game_code_in: options.gameScope, q: name,
       set_code_in: options.exactSetCode ?? null, number_in: null,

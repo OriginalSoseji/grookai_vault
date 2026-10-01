@@ -1,0 +1,98 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh5",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/swsh5/gamestop_sandaconda_20261001/master.json",
+  "master_index_sha256": "3137b5649816f28256e1ce63eccfafb53ecdca3e7d2541847a6681dca95947a7",
+  "parents": [
+    {
+      "id": "01112b31-39c4-4483-a4e2-081257b3a872",
+      "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+      "gv_id": "GV-PK-BST-082-GAMESTOP-STAMP",
+      "name": "Sandaconda",
+      "printed_coordinate": "082",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "gamestop_stamp",
+      "printed_identity_modifier": "gamestop_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "01112b31-39c4-4483-a4e2-081257b3a872",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-BST-082-GAMESTOP-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "sandaconda-psa-indexed-specification",
+          "sha256": "ab1042a93303ebcf9044a655f64d298915423ec258e89c2d417699534576152c",
+          "card_print_id": "01112b31-39c4-4483-a4e2-081257b3a872",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "sandaconda-tcgcsv-source-product",
+          "sha256": "9ea38ba2e309fc9f2fe21847469fa2ff71649059f485d14a39d3b84a80735d80",
+          "card_print_id": "01112b31-39c4-4483-a4e2-081257b3a872",
+          "finish_key": "cosmos"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "sandaconda-tcgplayer-exact-image",
+          "sha256": "d6ad1bc3a7fbdcc9d71237e69fea2d6d3c9e577d441a31e68138ba94e6abd8d3",
+          "card_print_id": "01112b31-39c4-4483-a4e2-081257b3a872",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+    "source_artifacts": [
+      {
+        "ref": "sandaconda-psa-indexed-specification",
+        "sha256": "ab1042a93303ebcf9044a655f64d298915423ec258e89c2d417699534576152c",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.psacard.com/spec/psa/6789121",
+        "retrieved_at": "2026-10-01T19:32:00.679Z"
+      },
+      {
+        "ref": "sandaconda-tcgcsv-source-product",
+        "sha256": "9ea38ba2e309fc9f2fe21847469fa2ff71649059f485d14a39d3b84a80735d80",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://www.tcgplayer.com/product/242553",
+        "retrieved_at": "2026-10-01T19:33:01.051Z"
+      },
+      {
+        "ref": "sandaconda-tcgplayer-exact-image",
+        "sha256": "d6ad1bc3a7fbdcc9d71237e69fea2d6d3c9e577d441a31e68138ba94e6abd8d3",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/242553_400w.jpg",
+        "retrieved_at": "2026-10-01T19:32:16.448Z"
+      }
+    ],
+    "protected_facts": [],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/english_master_index_publishable_v1/sets/swsh5/gamestop_sandaconda_20261001/review.json",
+      "sha256": "959ebfc89db5a747e1bafded1f80bd3689d1db02f85ce0d4d7e7c21a3475feee"
+    }
+  },
+  "fingerprint": "687f189df3b2a1f89e7bd97f53286e5d847356fa317d0c798c5c00b87fadfbac"
+}

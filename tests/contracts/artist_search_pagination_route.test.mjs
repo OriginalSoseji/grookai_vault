@@ -83,7 +83,7 @@ test('credentialed catalog searches are private and reuse the same request catal
   assert.equal(response.status,200);
   assert.equal(response.headers.get('cache-control'),[...headers].length?'private, no-store':'public, s-maxage=120, stale-while-revalidate=300');
   assert.equal(options.searchSets,sets);
-  assert.match(response.headers.get('server-timing'),/^interpret;dur=\d+\.\d, resolve;dur=\d+\.\d, finish;dur=\d+\.\d$/);
+  assert.match(response.headers.get('server-timing'),/^interpret;dur=\d+\.\d, resolve;dur=\d+\.\d, finish;dur=\d+\.\d(?:, (?:catalog|name_check|name_pages|parent_read);dur=\d+\.\d)*$/);
  }
 });
 

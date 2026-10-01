@@ -302,6 +302,8 @@ type SmartFilterImageState = "exact" | "representative" | "missing" | "any";
 
 type SmartFilterDiscoveryOptions = {
   searchSets?: SearchSet[];
+  namedFirstPage?: import("@/lib/search/completeNamedCardSearch").NamedCardFirstPage;
+  searchTimings?: Partial<Record<"name_pages" | "parent_read", number>>;
   sortMode: SortMode;
   textQuery?: string;
   exactSetCode?: string;
@@ -3899,9 +3901,23 @@ export async function getExploreRowsForCombinedSearch(
   assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const supabase = await createServerComponentClient();
   const gameScope = options.gameScope ?? "pokemon";
+  const namePagesStarted = Date.now();
   const namedRows = await fetchCompleteNamedCardRows(supabase, { ...options, gameScope });
+  if (options.searchTimings) options.searchTimings.name_pages = Date.now() - namePagesStarted;
   if (namedRows !== null) {
-    const parents = await fetchCardRowsByIds(namedRows.map((row) => row.id));
+    // V4 enforces the same visibility predicates as card_prints SELECT and
+    // already returns these parent fields. It omits printed_total, so fraction
+    // searches still hydrate the exact card denominator (including anthologies).
+    const fields = ["id", "gv_id", "name", "number", "rarity", "artist", "image_url", "image_alt_url",
+      "image_source", "image_path", "representative_image_url", "image_status", "image_note", "set_code",
+      "printed_set_abbrev", "external_ids", "variant_key", "printed_identity_modifier", "variants"];
+    const completeParents = namedRows.every((row): row is CardPrintLookupRow =>
+      fields.every((field) => Object.hasOwn(row, field)));
+    const parentReadStarted = Date.now();
+    const parents = completeParents && !/\b\d+\/\d+\b/.test(options.textQuery ?? "")
+      ? namedRows
+      : await fetchCardRowsByIds(namedRows.map((row) => row.id));
+    if (options.searchTimings) options.searchTimings.parent_read = Date.now() - parentReadStarted;
     return enrichCompleteSearchParents(parents, options, supabase);
   }
   const parents: CardPrintLookupRow[] = [];
