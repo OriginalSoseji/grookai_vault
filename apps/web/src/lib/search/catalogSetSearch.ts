@@ -48,8 +48,18 @@ export function removeSetPhrase(query: string, phrase: string) {
 export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[], ignoredOpeningWords: string[] = []) {
   const empty = { matchedAlias: null as string | null, setCodes: [] as string[], remainingQuery: query.trim(), requiresCardNameCheck: false, openingWordMatch: false };
   if (!query.trim() || /^GV-/i.test(query)) return empty;
+  // Reject impossible aliases before compiling thousands of Unicode phrase
+  // expressions. Match tokens with the same /iu semantics as phraseMatch:
+  // lowercase/includes alone would lose matches such as long-s and Greek sigma.
+  // This is only a necessary-word check; phraseMatch still owns order,
+  // punctuation, quotes, boundaries, and exact identifier matching.
+  const queryWords: string[] = query.match(/[\p{L}\p{N}]+/giu) ?? [];
+  if (query.includes("&")) queryWords.push("and");
+  const queryWordPattern = new RegExp(`^(?:${queryWords.map(escape).join("|")})$`, "iu");
   const candidates = new Map<string, { source: string; codes: Set<string>; size: number; requiresCardNameCheck: boolean }>();
   function add(alias: string, codes: string[], code = false, curated = false) {
+    const requiredWords = code ? alias.match(/[\p{L}\p{N}]+/giu) ?? [] : words(alias);
+    if (requiredWords.some((word) => !queryWordPattern.test(word))) return;
     const match = phraseMatch(query, alias, code);
     if (!match) return;
     // Catalog set names can be part of an exact card name, including multiword

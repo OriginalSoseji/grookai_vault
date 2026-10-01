@@ -2,6 +2,12 @@
 
 ## Search database latency — October 1
 
+PR568 and migration412 are live; private `search_database_20261001/CHECKPOINT.json`
+is terminal. Continue the parser CPU follow-up in `C:/gv_search_tail_latency_20261001`.
+The existing checkpoint below and private `search_tail_latency_20261001` evidence
+separate local full-catalog equivalence from actual hosted deployment. This
+follow-up has no migration; never replay the completed412 apply to release it.
+
 Read `docs/checkpoints/search_database_latency_20261001.md`. The fixed isolated
 worktree qualifies migration20261001150000 against production411. Use the
 strict `SearchDatabaseLatencyV1` AuditLinkedSchema/PrePush path with the exact

@@ -1,5 +1,29 @@
 # Search database latency — October 1
 
+## Follow-up: first-use set parser cost
+
+PR568 is deployed with migration412; its private `CHECKPOINT.json` is terminal.
+Do not replay that migration or release. The next isolated worktree is
+`C:/gv_search_tail_latency_20261001`, branch `fix/search-tail-latency-20261001`.
+Its private measurements and release status are under `search_tail_latency_20261001`
+in the operator artifacts root.
+
+Read-only profiling separated set HTTP, parser CPU, name RPC pages, and parent
+hydration. With1,382 visible sets, the old parser spent1.3–1.8 seconds in its first
+two measured executions, then16ms once regex compilation warmed. Screening
+necessary query words before constructing each alias expression reduced those
+local parser samples to5–9ms. These are CPU measurements, not end-to-end promises.
+
+The screen uses one request-local Unicode case-insensitive word expression.
+Only plausible aliases reach the original phrase matcher, which retains quote,
+order, punctuation, identifier, connector and ambiguity behavior. It does not
+share caller-visible catalog results, change database queries, or change schemas.
+Regression checks cover large unrelated catalogs and Unicode folding as well as
+the existing artist/name/set/finish journeys. The private full-catalog comparison
+and hosted readback record qualification and actual release separately.
+
+## Released database repair
+
 The production read-only diagnosis measured uncached searches at 5.7–7.7 seconds.
 It found repeated caller-visible set catalog pages, repeated metadata reads, and
 an artist scan across 171,022 card rows. Shared statement counters also showed
