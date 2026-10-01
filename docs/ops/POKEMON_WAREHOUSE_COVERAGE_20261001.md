@@ -1,7 +1,46 @@
 # Pokemon warehouse coverage — October 1, 2026
 
 Status: implementation candidate. The six-hour workflow change is not deployed.
-Dragonite intake and classification were applied; no canonical promotion was applied.
+Dragonite's stamped parent has now been promoted with verified identity readback.
+Its exact Holo authority is prepared; consult the private follow-up checkpoint for
+subsequent printing execution receipts. Website/workflow deployment remains separate.
+
+## Dragonite bounded promotion follow-up
+
+The repaired parent producer `3a75cf207` passed the normal commit shipcheck,
+including backend contracts, TypeScript, ESLint, the supported read-only web build,
+Flutter analysis and 953 Flutter tests (two skipped). The controlled admin action
+records the founder's current instruction to find and promote, with Codex operator
+attribution; it does not claim an authenticated UI click or personal hash review.
+
+Parent `bfe95820-edc9-4323-aa3d-918e2016f1b4`,
+`GV-PK-SIT-131-GAMESTOP-STAMP`, was admitted through warehouse stage
+`983993cc-2860-453a-a663-c9737de0c591`. Its game, English domain, stamp modifier,
+number and source product456093 passed pre-commit, post-commit and repeat checks.
+No base Dragonite or existing retailer identity was replaced.
+
+The reviewed additive Master Index scope is
+`docs/audits/english_master_index_publishable_v1/sets/swsh12/gamestop_dragonite_20261001/`.
+It binds the actual parent UUID to exactly one Holo printing and preserves the
+historical generic stamped entry separately. Sources are the exact Bulbapedia
+release description, Face to Face's exact stamped-product finish and the preserved
+TCGplayer product image. Merchant catalogue/image evidence is conservatively one
+independence family. Failed direct HTML fetches are retained as failures; the
+Bulbapedia artifact is explicitly a web-tool extraction, not original HTML.
+
+Finish-review candidate `3df9232c-843f-4b2f-96c0-3f1e6363e94d` was prepared from
+the original bridge lineage with a source-bound Master Index review. It does not
+claim a new provider discovery or image-normalization result. Its live admission
+preview is READY. The authority fingerprint is
+`f5ef6e1f658a73affbba4c279b5a90c70eb03ebf1b58efc533a9e6d72598dc71`.
+
+Actual current execution state and immutable receipts live in
+`C:/grookai_vault_operator_artifacts/gamestop_promotion_20261001/STATUS.md`.
+Preserve every `parent-*-v1.json` and `child-*-v1.json` receipt. Do not replay a
+consumed controlled action. The committed manifest proves reviewed evidence only;
+require successful child execution plus exact public-option readback before
+reporting the Holo printing as admitted. Source mappings, image hosting and
+website deployment are independently tracked and are not supplied by this scope.
 
 ## Parent promotion identity repair
 

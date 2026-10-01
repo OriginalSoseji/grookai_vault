@@ -2120,7 +2120,12 @@ and Japanese source product and produces an ordered worklist; unresolved reviews
 remain open. A successful set-inventory scan is not warehouse coverage.
 The six-hour workflow change is an undeployed candidate. Dragonite product 456093
 has been bridged and classified into warehouse candidate
-`8a259799-2c4a-4688-a43a-ad828bf9ef9a`, REVIEW_READY, but has not been promoted.
+`8a259799-2c4a-4688-a43a-ad828bf9ef9a`. Its stamped parent is now promoted as
+`GV-PK-SIT-131-GAMESTOP-STAMP`; the separate Holo review is candidate
+`3df9232c-843f-4b2f-96c0-3f1e6363e94d`. The reviewed manifest is under the swsh12
+Master Index's `gamestop_dragonite_20261001` directory. Exact subsequent execution
+state is in the private `gamestop_promotion_20261001/STATUS.md` checkpoint and
+immutable parent/child receipts. Do not replay consumed approval or apply steps.
 Do not insert duplicates of existing Duraludon/Suicune GameStop parents or reuse
 the Dragonite Silver Tempest-logo printing fact for the red GameStop stamp.
 

@@ -1,0 +1,82 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_REVIEWED_VARIANT_SCOPE_V1",
+  "status": "verified_scope",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh12",
+  "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+  "scope": "verified_parent_families",
+  "reviewed_at": "2026-10-01T13:25:19.978Z",
+  "reviewer": "Codex source adjudication for founder-requested GameStop recovery",
+  "parent": {
+    "id": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+    "gv_id": "GV-PK-SIT-131-GAMESTOP-STAMP",
+    "name": "Dragonite",
+    "printed_coordinate": "131/195",
+    "variant_key": "gamestop_stamp",
+    "printed_identity_modifier": "gamestop_stamp"
+  },
+  "printings": [
+    {
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-SIT-131-GAMESTOP-STAMP-HOLO",
+      "status": "verified",
+      "source_refs": [
+        "dragonite-bulbapedia-rendered-extraction",
+        "dragonite-face-to-face-product-html",
+        "dragonite-tcgplayer-product-image"
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "source_artifacts": [
+    {
+      "ref": "dragonite-bulbapedia-rendered-extraction",
+      "kind": "checked_checklist",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Dragonite_(Silver_Tempest_131)",
+      "format": "Web-tool rendered extraction, not raw HTML. The direct HTML request returned403.",
+      "independence_family": "bulbapedia_editorial",
+      "fact": "The release section identifies three distinct stamped Holofoil versions, including the red GameStop logo.",
+      "sha256": "54a84c416eeb3a9919b3312ccceb734c0440da3592ce5c760c1025035b704be0",
+      "retrieved_at": "2026-10-01T13:14:33.128Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time is recorded separately."
+    },
+    {
+      "ref": "dragonite-face-to-face-product-html",
+      "kind": "exact_printing_mapping",
+      "url_or_identifier": "https://facetofacegames.com/products/dragonite-131195-promo-gamestop-stamp-swsh12msp-131-holo",
+      "format": "Original HTTP200 HTML response bytes.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "The exact GameStop-stamped product page gives collector number131/195 and Holo as a physical finish. No price value is used.",
+      "sha256": "0d4c1a48ddb93bc7becaa9ed8dc6df530c048589acb28de947fecfdea0240aff",
+      "retrieved_at": "2026-10-01T13:14:26.351Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time is recorded separately."
+    },
+    {
+      "ref": "dragonite-tcgplayer-product-image",
+      "kind": "image_confirmed",
+      "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/456093_200w.jpg",
+      "format": "Preserved JPEG, visually reviewed.",
+      "independence_family": "merchant_product_catalogue_and_image",
+      "fact": "English Dragonite131/195 with a red GameStop stamp. Artwork shows the vertical Holo treatment; no Cosmos or Reverse claim is made.",
+      "sha256": "aef36bf0196147b52b6367ec0bc11ae528062c5641e73eed91dd861a78b321b0",
+      "retrieved_at": "2026-10-01T06:11:05.528Z",
+      "retrieval_time_basis": "Preserved artifact file capture timestamp; review time is recorded separately."
+    }
+  ],
+  "source_independence": "Two evidence families: the editorial release description and the exact merchant product/image. Face to Face and TCGplayer are conservatively grouped together; mirrors are not extra votes.",
+  "adjudication": "This scoped addendum identifies the red GameStop-stamp printing. The older generic stamped fact for131 concerns the Silver Tempest logo and cannot be inherited. The base Holo and Reverse entries and EB Games variant are outside this scope.",
+  "unresolved_conflicts": [],
+  "limitations": [
+    "No claim of whole-set or all-retailer completeness",
+    "No Normal, Reverse or Cosmos option inferred",
+    "No execution approval supplied by this source review"
+  ],
+  "scope_relationship": "Additive reviewed variant scope under the existing English swsh12 Master Index; does not replace or regenerate historical cards.json, printings.json or evidence.json."
+}
