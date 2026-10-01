@@ -27,7 +27,7 @@ bool matchesCollectrPokemonName({
     return false;
   }
   var name = text(sourceName);
-  final suffix = RegExp(r'\s+\(([a-z]*\d+[a-z]*)\)$').firstMatch(name);
+  final suffix = RegExp(r'\s+\(#?([a-z]*\d+[a-z]*)\)$').firstMatch(name);
   if (suffix != null) {
     if (number(suffix.group(1)) != number(sourceNumber)) return false;
     name = name.substring(0, suffix.start);

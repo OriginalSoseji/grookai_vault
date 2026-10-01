@@ -538,5 +538,65 @@
         "language": null
       }
     }
+  },
+  {
+    "label": "Repeated number with hash",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic (#007)",
+      "sourceNumber": "7",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "Hash number disagreement",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic (#008)",
+      "sourceNumber": "7",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "Hash preserves number prefix",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic (#RC7)",
+      "sourceNumber": "7",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
+  },
+  {
+    "label": "Hash must not remove artwork",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic (Full Art) (#7)",
+      "sourceNumber": "7",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": null
+      }
+    }
   }
 ]

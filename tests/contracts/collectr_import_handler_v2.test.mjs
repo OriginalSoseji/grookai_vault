@@ -67,6 +67,30 @@ test('expanded retained source is rejected before the writer',async()=>{
 const identityCases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_mtg_identity_v1.json',import.meta.url)));
 const setAliases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_set_aliases_v1.json',import.meta.url)));
 const pokemonNameCases=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_pokemon_name_v1.json',import.meta.url)));
+const setScopes=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_set_scopes_v1.json',import.meta.url)));
+for(const scope of setScopes)for(const catalog of scope.catalog)test(`set scope ${scope.source} validates ${catalog} before atomic writer`,async()=>{
+ const number=scope.numberPrefix?'RC7':'65';
+ const f=fixture({card:{number,sets:{name:catalog,game:scope.game}}});
+ const source={...row,Category:scope.game,Set:scope.source,'Card Number':number};
+ assert.equal((await f.send({csvText:toCsv([source])})).status,200);
+ assert.deepEqual(f.writes[0].args.p_source_rows,[source]);
+ assert.equal(f.writes[0].args.p_targets[0].cardPrintingId,printing);
+});
+for(const scope of setScopes)test(`set scope ${scope.source} rejects unsupported identity before writer`,async()=>{
+ const number=scope.numberPrefix?'RC7':'65';
+ for(const change of [{Set:scope.source+' (Japanese)'},{Set:scope.source+' (1st Edition)'},{Category:'yugioh'},{Grade:'PSA 10'},{Variance:'Holofoil'},{'Product Name':'Synthetic card (Full Art)'},...(scope.numberPrefix?[{'Card Number':'65'}]:[])]){
+  const n=change['Card Number']??number;
+  const f=fixture({card:{number:n,sets:{name:scope.catalog[0],game:scope.game}}});
+  const source={...row,Category:scope.game,Set:scope.source,'Card Number':number,...change};
+  assert.equal((await f.send({csvText:toCsv([source])})).status,400);
+  assert.equal(f.writes.length,0);
+ }
+ if(scope.catalog.length>1){
+  const f=fixture({card:{sets:{name:scope.catalog.at(-1),game:scope.game}}});
+  assert.equal((await f.send({csvText:toCsv([{...row,Category:scope.game,Set:scope.catalog[0]}])})).status,400);
+  assert.equal(f.writes.length,0);
+ }
+});
 for(const {label,expected,input} of pokemonNameCases)test(`Pokemon name server enforcement: ${label}`,async()=>{
  const f=fixture({card:input.card});
  const source={...row,'Product Name':input.sourceName,'Card Number':input.sourceNumber,Category:input.game};
