@@ -122,6 +122,10 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/vault/
+apps/web/src/app/api/vault/*
+!apps/web/src/app/api/vault/import/
+!apps/web/src/app/api/vault/import/route.ts
 !apps/web/src/app/api/stores/
 !apps/web/src/app/api/stores/**
 !apps/web/src/app/api/vendor-billing/

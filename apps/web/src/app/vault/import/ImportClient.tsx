@@ -60,7 +60,7 @@ function getMatchTone(matchStatus: MatchResult["status"]) {
   return "text-slate-500";
 }
 
-export function ImportClient({ ownerId }: { ownerId: string }) {
+export function ImportClient({ ownerId, recoveryOnly = false, onRecovered }: { ownerId: string; recoveryOnly?: boolean; onRecovered?: () => void }) {
   const router = useRouter();
   const [fileName, setFileName] = useState<string | null>(null);
   const [preview, setPreview] = useState<(MatchCardPrintsResult & { alreadySatisfiedRows?: number }) | null>(null);
@@ -118,7 +118,7 @@ export function ImportClient({ ownerId }: { ownerId: string }) {
   }, [activeFilter, matchedRows, needsReviewRows, preview]);
 
   async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if (attemptRef.current || isImporting) return;
+    if (recoveryOnly || attemptRef.current || isImporting) return;
     const generation = ++fileGeneration.current;
     const file = event.target.files?.[0];
     setPreview(null);
@@ -196,6 +196,7 @@ export function ImportClient({ ownerId }: { ownerId: string }) {
         setPendingAttempt(null);
         try { sessionStorage.removeItem(storageKey); } catch { /* receipt recovery remains safe */ }
         router.refresh();
+        onRecovered?.();
       } catch {
         setImportResult(null);
         setParseError(getImportErrorMessage("write"));
@@ -219,7 +220,7 @@ export function ImportClient({ ownerId }: { ownerId: string }) {
               <p className="text-sm text-slate-600">No file edits required. Grookai will detect columns automatically.</p>
             </div>
             <label className="inline-flex cursor-pointer items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-900 transition hover:border-slate-400 hover:bg-slate-50">
-              <input type="file" accept=".csv,text/csv" className="sr-only" onChange={handleFileChange} disabled={!recoveryReady || isImporting || Boolean(pendingAttempt)} />
+              <input type="file" accept=".csv,text/csv" className="sr-only" onChange={handleFileChange} disabled={recoveryOnly || !recoveryReady || isImporting || Boolean(pendingAttempt)} />
               Upload file
             </label>
           </div>

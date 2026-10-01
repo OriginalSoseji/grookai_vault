@@ -8,16 +8,17 @@ import {execFileSync,spawn} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {localSupabaseStatusSecret} from '../../scripts/lib/local_supabase_cli_status_v1.mjs';
 const root=path.resolve(import.meta.dirname,'../..');
+const webProof=process.env.GV_COLLECTR_WEB_HTTP_PROOF==='1';
 const setProof=process.env.GV_COLLECTR_SET_HTTP_PROOF==='1';
 const nameProof=process.env.GV_COLLECTR_NAME_HTTP_PROOF==='1';
 const scopeProof=process.env.GV_COLLECTR_SCOPE_HTTP_PROOF==='1';
-const out='C:/grookai_vault_operator_artifacts/'+(scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
+const out='C:/grookai_vault_operator_artifacts/'+(webProof?'collectr_web_v2_20261001':scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
 const fixture='C:/grookai_vault_operator_artifacts/collectr_import_review_20260930/full-410',project='collectr-review-full-410-20260930';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source readback',{
- skip:!scopeProof&&!nameProof&&!setProof&&process.env.GV_COLLECTR_MTG_HTTP_PROOF!=='1',timeout:120000,
+ skip:!webProof&&!scopeProof&&!nameProof&&!setProof&&process.env.GV_COLLECTR_MTG_HTTP_PROOF!=='1',timeout:webProof?240000:120000,
 },async t=>{
- assert.equal(root.replaceAll('\\','/'),scopeProof?'C:/gv_collectr_set_scope_20261001':nameProof?'C:/gv_collectr_names_20261001':setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
+ assert.equal(root.replaceAll('\\','/'),webProof?'C:/gv_collectr_web_v2_20261001':scopeProof?'C:/gv_collectr_set_scope_20261001':nameProof?'C:/gv_collectr_names_20261001':setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
  const require=createRequire(process.env.GV_COLLECTR_TEST_DEPENDENCIES??path.join(root,'package.json'));
  const pg=require('pg'),{createClient}=require('@supabase/supabase-js');
  const freeze=JSON.parse(fs.readFileSync(fixture+'/freeze.json'));
@@ -39,6 +40,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
  if(setProof)sourceFiles.push('test/fixtures/collectr_set_aliases_v1.json');
  if(nameProof)sourceFiles.push('supabase/functions/vault-import-collection-v2/pokemon_name.ts','test/fixtures/collectr_pokemon_name_v1.json');
  if(scopeProof)sourceFiles.push('supabase/functions/vault-import-collection-v2/pokemon_name.ts','supabase/functions/vault-import-collection-v2/set_scope.ts','test/fixtures/collectr_set_scopes_v1.json');
+ if(webProof)sourceFiles.push('supabase/functions/vault-import-collection-v2/pokemon_name.ts','supabase/functions/vault-import-collection-v2/set_scope.ts','apps/web/src/app/api/vault/import/route.ts','apps/web/src/lib/import/collectionPreviewV2.ts','apps/web/src/lib/import/collectionReadbackV2.ts','apps/web/src/app/vault/import/CollectionImportClientV2.tsx','apps/web/src/app/vault/import/ImportClient.tsx','apps/web/src/app/vault/import/page.tsx','apps/web/src/lib/collectorStaging.mjs','apps/web/src/lib/collectorRelease.mjs','apps/web/next.config.mjs','tests/integration/helpers/collectr_web_proof.mjs');
  fs.writeFileSync(runDir+'/intent.json',JSON.stringify({scope:'New synthetic accounts and fixtures only; never reset or migrate',project,at:new Date().toISOString(),sourceHashes:Object.fromEntries(sourceFiles.map(p=>[p,hash(fs.readFileSync(root+'/'+p))]))}),{flag:'wx'});
  const db=new pg.Client({host:'127.0.0.1',port:58540,user:'postgres',password:'postgres',database:'postgres',statement_timeout:15000});await db.connect();
  const status=JSON.parse(execFileSync('supabase',['status','--workdir',fixture,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true}));
@@ -46,7 +48,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
  const options={auth:{persistSession:false,autoRefreshToken:false}};
  const admin=createClient(status.API_URL,localSupabaseStatusSecret(status),options);
  const caller=createClient(status.API_URL,status.ANON_KEY,options),visitor=createClient(status.API_URL,status.ANON_KEY,options);
- let child,serverLog='',user,outsider;const checks=[];
+ let child,webServer,serverLog='',user,outsider;const checks=[];
  const tables=['vault_collection_import_documents_v2','vault_collection_import_groups_v2','vault_collection_import_receipts_v2','vault_item_instances','vault_items','vault_owners'];
  const snapshot=async()=>{const rows={};for(const table of tables)rows[table]=(await db.query('select * from public.'+table+' snapshot_row order by to_jsonb(snapshot_row)::text')).rows;return rows;};
  let before;
@@ -60,17 +62,28 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   child=spawn('deno',['run','--no-lock','--cached-only','--allow-env','--allow-net=127.0.0.1:58541,127.0.0.1:58750',root+'/tests/integration/helpers/collectr_import_server_v2.ts'],{cwd:root,env:{...process.env,SUPABASE_URL:status.API_URL,SUPABASE_SECRET_KEY:localSupabaseStatusSecret(status)},stdio:['ignore','pipe','pipe'],windowsHide:true});
   child.stdout.on('data',b=>serverLog+=b);child.stderr.on('data',b=>serverLog+=b);
   let ready=false;for(let i=0;i<60;i++){try{if((await fetch('http://127.0.0.1:58750',{method:'OPTIONS'})).status===200){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,100));}assert.ok(ready,'Local handler did not start');
-  async function account(client){const email=randomUUID()+'@collectr-fixture.invalid',password=randomUUID();const created=await admin.auth.admin.createUser({email,password,email_confirm:true});assert.equal(created.error,null);const signed=await client.auth.signInWithPassword({email,password});assert.equal(signed.error,null);return{id:created.data.user.id,token:signed.data.session.access_token};}
+  async function account(client){const email=randomUUID()+'@collectr-fixture.invalid',password=randomUUID();const created=await admin.auth.admin.createUser({email,password,email_confirm:true});assert.equal(created.error,null);const signed=await client.auth.signInWithPassword({email,password});assert.equal(signed.error,null);return{id:created.data.user.id,token:signed.data.session.access_token,session:signed.data.session};}
   user=await account(caller);outsider=await account(visitor);
+  if(webProof){const {startCollectrWebProof}=await import('./helpers/collectr_web_proof.mjs');webServer=await startCollectrWebProof({root,status,runDir});}
   const set=randomUUID(),card=randomUUID(),reverse=randomUUID(),holo=randomUUID(),gvId='GV-PK-COLLECTR-'+card;
   await db.query("insert into sets(id,code,name,game) values($1::uuid,$1::text,'Synthetic import set','pokemon')",[set]);
   await db.query("insert into card_prints(id,set_id,name,number,gv_id,game_id) values($1,$2,'Synthetic import card','65',$3,(select id from games where code='pokemon'))",[card,set,gvId]);
   await db.query("insert into card_printings(id,card_print_id,finish_key) values($1,$3,'reverse'),($2,$3,'holo')",[reverse,holo,card]);
-  const csvText='Product Name,Category,Set,Card Number,Variance,Grade,Card Condition,Quantity,Average Cost Paid,Portfolio Name,Price Override,Notes\nSynthetic import card,Pokemon,Synthetic import set,065/165,Reverse Holofoil,Ungraded,LP,2,4.25,Private,0,Reverse cost\nSynthetic import card,Pokemon,Synthetic import set,65,Holofoil,Ungraded,NM,1,9,Display,0,Holo cost\nSynthetic import card,Pokemon,Synthetic import set,65,Holofoil,PSA 10,NM,1,99,Slabs,0,Needs cert';
+  let csvText='Product Name,Category,Set,Card Number,Variance,Grade,Card Condition,Quantity,Average Cost Paid,Portfolio Name,Price Override,Notes\nSynthetic import card,Pokemon,Synthetic import set,065/165,Reverse Holofoil,Ungraded,LP,2,4.25,Private,0,Reverse cost\nSynthetic import card,Pokemon,Synthetic import set,65,Holofoil,Ungraded,NM,1,9,Display,0,Holo cost\nSynthetic import card,Pokemon,Synthetic import set,65,Holofoil,PSA 10,NM,1,99,Slabs,0,Needs cert';
+  if(webProof){await db.query('update sets set name=$2 where id=$1',[set,'Synthetic import set '+set]);csvText=csvText.replaceAll('Synthetic import set','Synthetic import set '+set);}
   const targets=[{sourceIndices:[0],cardId:card,gvId,cardPrintingId:reverse},{sourceIndices:[1],cardId:card,gvId,cardPrintingId:holo}];
-  const send=(override={},token=user.token)=>fetch('http://127.0.0.1:58750',{method:'POST',headers:{Authorization:'Bearer '+token,'content-type':'application/json'},body:JSON.stringify({ownerUserId:user.id,requestId:randomUUID(),csvText,targets,...override})});
+  const send=(override={},token=user.token)=>{
+   const attempt={version:2,ownerUserId:user.id,requestId:randomUUID(),csvText,targets,fileName:'synthetic.csv',...override};
+   return fetch(webProof?'http://127.0.0.1:58863/api/vault/import':'http://127.0.0.1:58750',{method:'POST',headers:{Authorization:'Bearer '+token,'content-type':'application/json',Origin:'http://127.0.0.1:58863'},body:JSON.stringify(webProof?{operation:'save',ownerUserId:user.id,attempt}:attempt)});
+  };
   const copies=async()=>(await db.query('select * from vault_item_instances where user_id=$1 order by id',[user.id])).rows;
   const check=async(name,fn)=>t.test(name,async()=>{await fn();checks.push(name);});
+  if(webProof)await check('web preview retains exact finishes and held grades; cross-origin saves are rejected',async()=>{
+   const endpoint='http://127.0.0.1:58863/api/vault/import';
+   const preview=await fetch(endpoint,{method:'POST',headers:{Authorization:'Bearer '+user.token,'Content-Type':'application/json',Origin:'http://127.0.0.1:58863'},body:JSON.stringify({operation:'preview',ownerUserId:user.id,csvText})});
+   assert.equal(preview.status,200,await preview.clone().text());const result=await preview.json();assert.equal(result.readyCopies,3);assert.equal(result.reviewRows,1);assert.deepEqual(result.rows.flatMap(r=>r.selection?[r.selection]:[]),targets);
+   const denied=await fetch(endpoint,{method:'POST',headers:{Authorization:'Bearer '+user.token,'Content-Type':'application/json',Origin:'https://foreign.invalid'},body:'{}'});assert.equal(denied.status,403);assert.equal((await copies()).length,0);
+  });
   await check('invalid authentication and changed account do not write',async()=>{assert.equal((await send({},'invalid')).status,401);assert.equal((await send({},outsider.token)).status,409);assert.equal((await copies()).length,0);});
   const firstRequest=randomUUID();let first,original;
   await check('atomic save keeps separate finishes, prices and all review source',async()=>{
@@ -109,7 +122,8 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   await db.query("insert into card_printings(id,card_print_id,finish_key) values($1,$2,'foil')",[mtgPrinting,mtgCard]);
   // Only this new synthetic set becomes visible; preserve the game's rollout.
   await db.query("insert into catalog_set_release_controls(set_id,release_status,release_version,evidence) values($1,'public','COLLECTR_MTG_LOCAL_FIXTURE_V1','{\"synthetic\":true}')",[mtgSet]);
-  const mtgCsv='Product Name,Category,Set,Card Number,Variance,Grade,Card Condition,Quantity,Average Cost Paid,Portfolio Name\nSynthetic Mage (Extended Art) (0373),MTG,Synthetic MTG import set,373,Foil,Ungraded,LP,2,12.5,Private\nSynthetic Mage (Surge Foil),MTG,Synthetic MTG import set,373,Foil,Ungraded,NM,1,30,Private\nSynthetic Mage (Extended Art),MTG,Synthetic MTG import set,373,Foil,PSA 10,NM,1,99,Slabs';
+  let mtgCsv='Product Name,Category,Set,Card Number,Variance,Grade,Card Condition,Quantity,Average Cost Paid,Portfolio Name\nSynthetic Mage (Extended Art) (0373),MTG,Synthetic MTG import set,373,Foil,Ungraded,LP,2,12.5,Private\nSynthetic Mage (Surge Foil),MTG,Synthetic MTG import set,373,Foil,Ungraded,NM,1,30,Private\nSynthetic Mage (Extended Art),MTG,Synthetic MTG import set,373,Foil,PSA 10,NM,1,99,Slabs';
+  if(webProof){await db.query('update sets set name=$2 where id=$1',[mtgSet,'Synthetic MTG import set '+mtgSet]);mtgCsv=mtgCsv.replaceAll('Synthetic MTG import set','Synthetic MTG import set '+mtgSet);}
   const mtgTargets=[{sourceIndices:[0],cardId:mtgCard,gvId:mtgGv,cardPrintingId:mtgPrinting}];
   let mtgResult,mtgCopies;
   await check('governed art and front-face matching saves exact copies and retains held source',async()=>{
@@ -160,12 +174,17 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
    const denied=await send({csvText:aliasCsv,targets:[{...selections[0],sourceIndices:[aliases.length]}]});assert.equal(denied.status,400);
    assert.deepEqual((await copies()).filter(c=>selections.some(s=>s.cardId===c.card_print_id)),exact);
   });
+  if(webProof)await check('browser CSV preview, interrupted save, reload and retry verify the same copies',async()=>{
+   const {proveCollectrBrowser}=await import('./helpers/collectr_web_proof.mjs');
+   const previous=await copies();await proveCollectrBrowser({root,status,runDir,user,csvText:mtgCsv});assert.deepEqual(await copies(),previous);
+  });
   const after=await snapshot();for(const table of tables)assert.deepEqual(after[table].filter(r=>r.user_id!==user.id&&r.user_id!==outsider.id),before[table]);
   assert.deepEqual((await db.query('select * from catalog_game_release_controls order by game_code')).rows,releaseControlsBefore);
   assert.deepEqual((await db.query('select * from catalog_set_release_controls where set_id<>$1 and not(set_id=any($2::uuid[])) order by set_id',[mtgSet,scopeVisibleSets])).rows,setControlsBefore);
-  const result={status:checks.length===(setProof||nameProof||scopeProof?10:9)?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};
+  const result={status:checks.length===((setProof||nameProof||scopeProof?10:9)+(webProof?2:0))?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};
   fs.writeFileSync(runDir+'/result.json',JSON.stringify(result,null,2),{flag:'wx'});assert.equal(result.status,'passed');
  }finally{
+  if(webServer)await webServer.stop();
   if(child){child.kill();await new Promise(resolve=>{if(child.exitCode!==null)resolve();else child.once('exit',resolve);});}
   fs.writeFileSync(runDir+'/server.private.log',serverLog,{flag:'wx'});await db.end();
   await caller.auth.signOut({scope:'local'});await visitor.auth.signOut({scope:'local'});

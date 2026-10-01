@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Web-first Collectr importer — October 1
+
+Read `docs/checkpoints/collectr_web_v2_20261001.md`. The founder removed physical
+iPhone testing as a prerequisite; qualify the source-aware website with real
+sandbox Auth/HTTP/SQL and browser save/retry readback. The fixed isolated web
+worktree uses `GV_COLLECTR_WEB_HTTP_PROOF=1` with the existing retained410 lab.
+`NEXT_PUBLIC_COLLECTR_IMPORT_LOCAL_TEST=true` only admits loopback58541 under
+authenticated local staging, never production or another test mode. Next runs
+on58863. The helper owns its server process and creates fresh synthetic accounts;
+never reset the populated database or reuse previous release/import intents.
+Private artifacts and terminal status are in `collectr_web_v2_20261001` under the
+operator-artifact root. Search latency remains a separate branch and release.
+
 ## Reviewed Cosmos pricing — September 30
 
 Read `docs/contracts/TCGPLAYER_COSMOS_FINISH_V1.md` and

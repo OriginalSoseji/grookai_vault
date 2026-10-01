@@ -17,7 +17,7 @@ test('release is explicit and limited to current production project/database',()
 });
 test('all sample, fixture, preview and hosted modes are incompatible with production',()=>{
   for(const key of ['NEXT_PUBLIC_COLLECTOR_STAGING','NEXT_PUBLIC_COLLECTOR_FIXTURE_LAB',
-    'NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING','NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY']) {
+    'NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING','NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY','NEXT_PUBLIC_COLLECTR_IMPORT_LOCAL_TEST']) {
     for(const value of ['true','TRUE','1'])assert.throws(()=>assertCollectorReleaseEnvironment({...valid,[key]:value}));
     assert.doesNotThrow(()=>assertCollectorReleaseEnvironment({...valid,[key]:'false'}));
   }
