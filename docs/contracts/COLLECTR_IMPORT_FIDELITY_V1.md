@@ -186,6 +186,32 @@ finish/grade/portfolio data.
 
 ## Source-aware V2 save boundary
 
+### Explicit web review choices
+
+When multiple catalog parents remain, the authenticated web preview exposes the
+matching cards, set codes, variant/modifier labels and exact printing links.
+Every such row starts unresolved. The owner may select a candidate or restore
+Keep in review; no default or unstamped preference is applied. A candidate is
+selectable only with exactly one active governed child matching the supported
+source finish (or exactly one active child total when the source finish is blank).
+Missing or duplicate child evidence remains visible but disabled. Unsupported
+grades, editions, finishes and source metadata cannot be overridden this way.
+
+Changing a choice retains every original field, record index and quantity, and
+recalculates ready/review counts. The existing server independently revalidates
+the source, parent and child at save; this UI adds no writer or catalog authority.
+An uncertain save freezes its CSV, UUID and targets across reload/retry. Only a
+confirmed failed receipt permits Review selections again, and the saved attempt
+is released only after a fresh authenticated preview succeeds. Existing source
+groups cannot be rebound to another parent by selecting a different candidate.
+Reopening review does not modify any previously saved ownership.
+
+This control is web-only. Native preview behavior is unchanged. Qualification
+uses synthetic Auth/HTTP/browser/SQL fixtures and private offline export replay;
+it is not a completed real collection import or physical-device verification.
+
+### Atomic source and ownership retention
+
 `vault-import-collection-v2` parses the original CSV and derives quantity,
 condition, acquisition cost, date and notes on the server. It verifies the selected
 canonical parent and governed visible child printing. Normal, holo, reverse and

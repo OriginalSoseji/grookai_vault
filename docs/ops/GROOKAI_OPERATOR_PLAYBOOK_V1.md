@@ -2206,6 +2206,29 @@ reduces contention without widening the 45-minute freshness threshold. An active
 workflow and a successful manual audit do not prove timely scheduled execution.
 Verify actual `schedule` events; report stale evidence honestly if delays persist.
 
+## Collectr explicit review choices — October 2, 2026
+
+Read `docs/checkpoints/collectr_review_choices_20261002.md` and the explicit web
+review section of `docs/contracts/COLLECTR_IMPORT_FIDELITY_V1.md`. Completed
+PR575 remains the live baseline. The follow-up branch
+`feature/collectr-review-choices-20261002` reuses the completed checkout at
+`C:/gv_collectr_adventure_20261001`; preserve all previous receipts and unrelated
+dirty worktrees. Private evidence and current status are in
+`C:/grookai_vault_operator_artifacts/collectr_review_choices_20261002`.
+
+The opt-in `GV_COLLECTR_REVIEW_HTTP_PROOF=1` integration mode uses the retained
+`collectr-review-full-410-20260930` lab (DB58540/API58541) and local Next58863 /
+Deno58750. It checks frozen migration hashes and isolated loopback bindings,
+creates fresh synthetic fixtures, and preserves existing accounts/data. Do not
+reset the lab or reuse old apply/release intents. The browser helpers share a
+parent-owned session; a helper must not revoke it before later journeys finish.
+
+Review choices select only existing verified children and never resolve missing
+catalog evidence. Unknown save outcomes keep frozen request/targets; only a
+confirmed failed receipt allows refreshing review. No API writer, Edge, schema
+or native deployment is part of this change. Qualification and any later website
+release require fresh source-bound receipts; local success is not live proof.
+
 ## Pokemon warehouse coverage — October 1, 2026
 
 Dragonite's parent, Holo printing and exact image are now live and publicly
