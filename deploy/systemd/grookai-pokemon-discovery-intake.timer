@@ -1,0 +1,12 @@
+[Unit]
+Description=Hourly Pokemon warehouse discovery intake
+
+[Timer]
+OnActiveSec=30s
+OnUnitActiveSec=1h
+RandomizedDelaySec=15s
+AccuracySec=5s
+Unit=grookai-pokemon-discovery-intake.service
+
+[Install]
+WantedBy=timers.target

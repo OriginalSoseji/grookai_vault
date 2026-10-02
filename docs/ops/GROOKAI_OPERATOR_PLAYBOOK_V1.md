@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Recurring Pokemon warehouse discovery — October 1
+
+Read `docs/ops/POKEMON_DISCOVERY_RUNTIME_20261001.md` and the private
+`pokemon_discovery_recurring_20261001/CHECKPOINT.md` for actual activation state.
+A separately pinned hourly service reuses the qualified raw/discovery intake,
+with explicit standing scope, non-overlap and interrupted-run blocking. Preserve
+all prior batches and existing worker runtimes. Observe a real timer run and DB
+receipt before claiming automation is active. This is review ingress, not
+automatic canonical promotion; the read-only completeness audit stays separate.
+
 ## Pokemon bulk warehouse discovery — October 1
 
 Read `docs/ops/POKEMON_DISCOVERY_INTAKE_20261001.md`. A complete-inventory planner

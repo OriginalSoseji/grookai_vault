@@ -1,6 +1,7 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';
 import pg from 'pg';
 import {VERSION,buildDiscoveryIntakePlan,applyDiscoveryIntakeBatch,verifyDiscoveryIntakeBatch,persistDiscoveryIntakeRun} from '../../backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs';
+import {CYCLE_VERSION,persistCycleRun} from '../../backend/catalog/pokemon_warehouse_discovery_runtime_v1.mjs';
 const [name,out]=process.argv.slice(2);assert.match(name??'',/^grookai_tcgcsv_discovery_[a-z0-9_]+$/);assert.ok(out);fs.mkdirSync(out);
 const url=new URL(process.env.DISCOVERY_INTAKE_PROOF_URL);assert.ok(['127.0.0.1','localhost'].includes(url.hostname),'local_fixture_only');assert.equal(url.pathname,'/postgres');
 const config={connectionString:url.toString(),ssl:false,connectionTimeoutMillis:5000};
@@ -39,5 +40,15 @@ await verifyDiscoveryIntakeBatch(db,plan,plan.entries);assert.equal((await db.qu
 await tx();const run={version:VERSION,run_id:'synthetic-run',plan_fingerprint:plan.fingerprint};const jobId=await persistDiscoveryIntakeRun(db,{status:'running',payload:run});await db.query('commit');
 await tx();await persistDiscoveryIntakeRun(db,{jobId,status:'succeeded',payload:{...run,verified:5}});await db.query('commit');assert.equal((await db.query('select status from ingestion_jobs where id=$1',[jobId])).rows[0].status,'succeeded');
 await tx();const failedId=await persistDiscoveryIntakeRun(db,{status:'failed',payload:{...run,run_id:'synthetic-failure',error_code:'INJECTED',error_detail:'verified failure persistence'}});await db.query('commit');const failed=(await db.query('select * from ingestion_jobs where id=$1',[failedId])).rows[0];assert.equal(failed.status,'failed');assert.equal(failed.payload.error_code,'INJECTED');checks.push('success and failure persist in operational job ledger');
+const cycle={version:CYCLE_VERSION,run_id:'cycle-fixture',producer_commit:'a'.repeat(40),stage:'plan'};
+await tx();const cycleId=await persistCycleRun(db,{status:'running',payload:cycle});await db.query('commit');
+await tx();await persistCycleRun(db,{jobId:cycleId,status:'failed',payload:{...cycle,stage:'apply',error_code:'UNKNOWN_COMMIT'}});await db.query('commit');
+const cycleRow=(await db.query('select * from ingestion_jobs where id=$1',[cycleId])).rows[0];assert.equal(cycleRow.status,'failed');assert.equal(cycleRow.payload.error_code,'UNKNOWN_COMMIT');
+await tx();await assert.rejects(()=>persistCycleRun(db,{jobId,status:'failed',payload:cycle}));await db.query('rollback');assert.equal((await db.query('select status from ingestion_jobs where id=$1',[jobId])).rows[0].status,'succeeded');checks.push('cycle failure durable; foreign job cannot be overwritten');
+const contender=new pg.Client(fixtureConfig);await contender.connect();try{
+ const lock="select pg_try_advisory_lock(hashtext('pokemon_discovery_cycle_v1')) locked";
+ assert.equal((await db.query(lock)).rows[0].locked,true);assert.equal((await contender.query(lock)).rows[0].locked,false);
+ await db.query("select pg_advisory_unlock(hashtext('pokemon_discovery_cycle_v1'))");assert.equal((await contender.query(lock)).rows[0].locked,true);checks.push('session lock excludes concurrent cycles and releases for next cycle');
+}finally{await contender.end();}
 const report={status:'passed',at:new Date().toISOString(),database:name,scope:'isolated synthetic schema; not full production schema replay',checks,raw_rows:await count()};fs.writeFileSync(out+'/proof.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(report);
 }catch(e){fs.writeFileSync(out+'/failure.json',JSON.stringify({status:'failed',checks,error:e.stack},null,2)+'\n',{flag:'wx'});throw e;}finally{await db.end();}

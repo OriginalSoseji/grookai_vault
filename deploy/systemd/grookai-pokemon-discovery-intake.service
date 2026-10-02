@@ -1,0 +1,30 @@
+[Unit]
+Description=Grookai Pokemon preserved warehouse discovery intake
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=grookai
+Group=grookai
+WorkingDirectory=/opt/grookai_pokemon_discovery_current
+EnvironmentFile=/etc/grookai/pokemon-discovery.env
+Environment=NODE_OPTIONS=--max-old-space-size=512
+ExecStart=/usr/bin/flock -n /var/lib/grookai/pokemon-discovery/cycle.lock /usr/bin/node scripts/workers/pokemon_warehouse_discovery_cycle_v1.mjs --policy=/etc/grookai/pokemon-discovery-policy.json --state-dir=/var/lib/grookai/pokemon-discovery --ca-file=/etc/grookai/pokemon-discovery-ca.pem
+TimeoutStartSec=25min
+KillMode=control-group
+TimeoutStopSec=30s
+Restart=no
+UMask=0077
+Nice=10
+CPUQuota=50%
+MemoryMax=768M
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/grookai/pokemon-discovery
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

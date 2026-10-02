@@ -40,7 +40,9 @@ until the database receipt is reconciled. No canonical, warehouse-promotion,
 mapping, pricing, schema or public search writes are present. Existing JustTCG
 bridge loaders do not consume TCGCSV rows; a reviewed source-aware bridge and
 physical identity/finish evidence are still required before promotion. This
-worker is operator-invoked; the six-hour coverage audit remains read-only.
+manual worker remains operator-invoked. Recurring invocation is governed
+separately by `POKEMON_WAREHOUSE_DISCOVERY_RUNTIME_V1.md`; consult its private
+checkpoint for actual activation. The six-hour coverage audit remains read-only.
 
 Validation includes pure contract tests and a fresh isolated PostgreSQL fixture
 for rollback, commit, repeated intake, atomic failure, evidence drift and new

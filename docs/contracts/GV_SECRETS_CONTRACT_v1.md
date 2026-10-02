@@ -31,6 +31,12 @@ As of the current stabilization phase:
 
 ## Naming Rules
 
+The dedicated Pokemon discovery service reuses the existing `SUPABASE_DB_URL`
+and `SUPABASE_URL` in root-private `/etc/grookai/pokemon-discovery.env`. No new
+credential is created. It receives neither pricing-provider nor scanner secrets.
+The reviewed CA and standing-policy file contain no credentials; source bundles,
+operational receipts and public logs must exclude database URLs and passwords.
+
 Stripe credentials must never enter mobile defines, browser bundles, logs or receipts.
 `STRIPE_ACCOUNT_ID`, `STRIPE_STORE_APP_PRICE_ID`, `STRIPE_STORE_WEB_PRICE_ID` and
 `STRIPE_BILLING_MODE` and `STRIPE_VENDOR_PORTAL_CONFIGURATION_ID` are non-secret

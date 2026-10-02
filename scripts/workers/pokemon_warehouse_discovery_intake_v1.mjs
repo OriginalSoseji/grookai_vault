@@ -8,12 +8,13 @@ import {fileURLToPath} from 'node:url';
 import {randomUUID} from 'node:crypto';
 import {VERSION,buildDiscoveryIntakePlan,assertIntakePlan,applyDiscoveryIntakeBatch,verifyDiscoveryIntakeBatch,persistDiscoveryIntakeRun} from '../../backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs';
 import {pokemonCoverageDatabaseTarget,readPokemonWarehouseSnapshot,reconcilePokemonWarehouse} from '../../backend/catalog/pokemon_warehouse_coverage_v1.mjs';
+import {verifyRuntimeRelease} from '../../backend/catalog/pokemon_warehouse_discovery_runtime_v1.mjs';
 
 // No implicit apply, scheduler activation, canonical promotion or retry.
 dotenv.config({path:process.env.DOTENV_CONFIG_PATH||'.env.local',quiet:true});
 const args=new Map();
 for(const arg of process.argv.slice(2)){
- const m=arg.match(/^--(mode|out-dir|plan|authorization|producer-commit)=(.+)$/);
+ const m=arg.match(/^--(mode|out-dir|plan|authorization|producer-commit|release-manifest)=(.+)$/);
  assert.ok(m&&!args.has(m[1]),'Usage: --mode=plan|apply|verify --out-dir=<new-directory> [--plan=<file> --authorization=<file> --producer-commit=<sha>]');args.set(m[1],m[2]);
 }
 const mode=args.get('mode')??'plan';assert.ok(['plan','apply','verify'].includes(mode));assert.ok(args.get('out-dir'));
@@ -24,9 +25,12 @@ let authorization,plan;
 if(mode!=='plan'){plan=assertIntakePlan(JSON.parse(await fs.readFile(args.get('plan'),'utf8')));}
 if(mode==='apply'){
  assert.ok(args.get('authorization')&&args.get('producer-commit'));
- assert.equal(git('rev-parse','HEAD'),args.get('producer-commit'),'producer_commit_mismatch');
- assert.equal(git('status','--porcelain'),'','clean_qualified_producer_required');
- for(const f of ['backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs','scripts/workers/pokemon_warehouse_discovery_intake_v1.mjs'])git('ls-files','--error-unmatch',f);
+ if(args.has('release-manifest'))verifyRuntimeRelease(root,JSON.parse(await fs.readFile(args.get('release-manifest'),'utf8')),args.get('producer-commit'));
+ else{
+  assert.equal(git('rev-parse','HEAD'),args.get('producer-commit'),'producer_commit_mismatch');
+  assert.equal(git('status','--porcelain'),'','clean_qualified_producer_required');
+  for(const f of ['backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs','scripts/workers/pokemon_warehouse_discovery_intake_v1.mjs'])git('ls-files','--error-unmatch',f);
+ }
  authorization=JSON.parse(await fs.readFile(args.get('authorization'),'utf8'));
  assert.equal(authorization.approved,true);assert.equal(authorization.plan_fingerprint,plan.fingerprint);
  assert.equal(authorization.producer_commit,args.get('producer-commit'));assert.ok(authorization.operator&&authorization.request);
