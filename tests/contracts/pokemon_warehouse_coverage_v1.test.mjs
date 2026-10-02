@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildPokemonWarehouseWorklist, pokemonCoverageDatabaseTarget, reconcilePokemonWarehouse } from '../../backend/catalog/pokemon_warehouse_coverage_v1.mjs';
+import { createHash } from 'node:crypto';
+import { coverageRowsHash, buildPokemonWarehouseWorklist, pokemonCoverageDatabaseTarget, reconcilePokemonWarehouse } from '../../backend/catalog/pokemon_warehouse_coverage_v1.mjs';
 
 const observedAt = '2026-10-01T12:00:00Z';
 const product = { product_id: 456093, category_id: 3, group_id: 2374,
@@ -10,6 +11,11 @@ const parent = { id: 'parent', gv_id: 'GV-DRAGONITE-GAMESTOP', game: 'pokemon', 
   variant_key: 'gamestop_stamp', printing_count: 1, tcgplayer_id: '456093' };
 function fixture() { return { products: [structuredClone(product)], parents: [], mappings: [], discovery: [], warehouse: [], sealed: [] }; }
 function run(input) { return reconcilePokemonWarehouse(input, { observedAt }); }
+
+test('bounded coverage hashing preserves historical JSON fingerprints including Unicode and escaping',()=>{
+ for(const rows of [[],[{name:'ホウオウ',quote:'"\\\n',optional:undefined},null],run(fixture()).rows])
+  assert.equal(coverageRowsHash(rows),createHash('sha256').update(JSON.stringify(rows)).digest('hex'));
+});
 
 test('Dragonite warehouse-only card becomes an overdue candidate, never silently complete', () => {
   const result = run(fixture());

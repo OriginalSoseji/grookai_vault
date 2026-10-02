@@ -1,8 +1,17 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {buildDiscoveryIntakePlan,assertIntakePlan,rawPayload,hash} from '../../backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs';
+import {buildDiscoveryIntakePlan,buildDiscoveryIntakePlanFromCoverage,assertIntakePlan,rawPayload,hash} from '../../backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs';
+import {reconcilePokemonWarehouse} from '../../backend/catalog/pokemon_warehouse_coverage_v1.mjs';
 const at='2026-10-01T00:00:00Z';
 function fixture(){const products=[{product_id:1,category_id:3,group_id:5,name:'Pikachu',image_url:'https://example.test/1.jpg',source_url:'https://example.test/1',extended_data:[{name:'Number',value:'025/100'}],payload_hash:'a'.repeat(64),source_active:true,raw_payload:{productId:1,name:'Pikachu',extendedData:[{name:'Number',value:'025/100'}]}}];return {products,parents:[],mappings:[],discovery:[],warehouse:[],sealed:[]};}
 const plan=s=>buildDiscoveryIntakePlan(s,s.products,{observedAt:at});
+
+test('loading only untracked full payloads preserves the exact full-inventory plan',()=>{
+ const s=fixture();s.products.push({...s.products[0],product_id:2,raw_payload:{productId:2}});s.discovery.push({id:'existing',tcgplayer_id:'2'});
+ const expected=plan(s),coverage=reconcilePokemonWarehouse(s,{observedAt:at});
+ assert.deepEqual(buildDiscoveryIntakePlanFromCoverage(coverage,[s.products[0]]),expected);
+ assert.equal(expected.coverage_summary.product_count,2);assert.equal(expected.entries.length,1);
+ assert.throws(()=>buildDiscoveryIntakePlanFromCoverage(coverage,[]),/full_source_payload_required/);
+});
 test('full preserved source enters review with no invented set, parent or finish',()=>{const s=fixture(),p=plan(s);assertIntakePlan(p);assert.equal(p.entries.length,1);const e=p.entries[0];assert.equal(e.normalization.number_plain,'25');assert.equal(e.normalization.printed_total,'100');assert.equal(e.gate.finish_key,null);assert.equal(e.gate.canonical_parent_id,null);assert.equal(e.gate.canonical_set_code,null);assert.equal(e.gate.candidate_bucket,'PRINTED_IDENTITY_REVIEW');assert.deepEqual(rawPayload(e,p.fingerprint)._source_warehouse_snapshot.raw_payload,s.products[0].raw_payload);});
 test('Japanese source remains Japanese and retailer evidence has priority without becoming a stamp',()=>{const s=fixture();s.products.push({...s.products[0],product_id:2,category_id:85,name:'Ho-Oh (GameStop Exclusive)',raw_payload:{productId:2}});const p=plan(s);assert.equal(p.entries[0].source.product_id,2);assert.equal(p.entries[0].normalization.language,'ja');assert.equal(p.entries[0].retailer,'gamestop');assert.equal(p.entries[0].gate.finish_key,null);});
 for(const [label,mutate]of [

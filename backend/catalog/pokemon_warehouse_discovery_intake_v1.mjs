@@ -28,7 +28,12 @@ export function discoveryEntry(product,coverage){
 }
 
 export function buildDiscoveryIntakePlan(snapshot,fullProducts,{observedAt}={}){
- const coverage=reconcilePokemonWarehouse(snapshot,{observedAt});const full=new Map(fullProducts.map(p=>[id(p.product_id),p]));
+ return buildDiscoveryIntakePlanFromCoverage(reconcilePokemonWarehouse(snapshot,{observedAt}),fullProducts);
+}
+
+export function buildDiscoveryIntakePlanFromCoverage(coverage,fullProducts){
+ const observedAt=coverage.observed_at;assert.ok(Number.isFinite(Date.parse(observedAt)));
+ const full=new Map(fullProducts.map(p=>[id(p.product_id),p]));
  assert.equal(full.size,fullProducts.length,'duplicate_full_product');
  const entries=[],held=[];
  for(const row of coverage.rows.filter(r=>r.status==='untracked_card_candidate')){

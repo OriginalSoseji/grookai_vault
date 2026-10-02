@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Pokemon discovery memory recovery — October 2
+
+Read `docs/ops/POKEMON_DISCOVERY_MEMORY_20261002.md`. The first later hourly
+cycle exhausted its heap while planning, before any intake. Its retained marker
+blocked later cycles. Preserve the failed release and receipts; reconcile the
+exact run and qualify the bounded-memory repair before clearing that marker.
+The private `pokemon_bulk_review_20261002/CHECKPOINT.md` records current rollout.
+The bulk promotion comparison is retained separately: Pitch Black's 112 products
+already have parents and require relationship/domain review, not duplicate cards.
+
 ## Recurring Pokemon warehouse discovery — October 1
 
 Read `docs/ops/POKEMON_DISCOVERY_RUNTIME_20261001.md` and the private

@@ -6,9 +6,9 @@ import dotenv from 'dotenv';
 import pg from 'pg';
 import {fileURLToPath} from 'node:url';
 import {randomUUID} from 'node:crypto';
-import {VERSION,buildDiscoveryIntakePlan,assertIntakePlan,applyDiscoveryIntakeBatch,verifyDiscoveryIntakeBatch,persistDiscoveryIntakeRun} from '../../backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs';
+import {VERSION,buildDiscoveryIntakePlanFromCoverage,assertIntakePlan,applyDiscoveryIntakeBatch,verifyDiscoveryIntakeBatch,persistDiscoveryIntakeRun} from '../../backend/catalog/pokemon_warehouse_discovery_intake_v1.mjs';
 import {pokemonCoverageDatabaseTarget,readPokemonWarehouseSnapshot,reconcilePokemonWarehouse} from '../../backend/catalog/pokemon_warehouse_coverage_v1.mjs';
-import {verifyRuntimeRelease} from '../../backend/catalog/pokemon_warehouse_discovery_runtime_v1.mjs';
+import {verifyRuntimeRelease,writeCoverageReport} from '../../backend/catalog/pokemon_warehouse_discovery_runtime_v1.mjs';
 
 // No implicit apply, scheduler activation, canonical promotion or retry.
 dotenv.config({path:process.env.DOTENV_CONFIG_PATH||'.env.local',quiet:true});
@@ -54,8 +54,11 @@ try{
  if(mode==='plan'){
   await db.query('begin isolation level repeatable read read only');await db.query("set local statement_timeout='90s'");
   const snapshot=await readPokemonWarehouseSnapshot(db);assert.ok(snapshot.products.length);
-  const full=(await db.query('select * from public.tcgcsv_source_products where category_id in (3,85) order by product_id')).rows;
-  plan=buildDiscoveryIntakePlan(snapshot,full,{observedAt:new Date().toISOString()});assertIntakePlan(plan);await db.query('commit');
+  const coverage=reconcilePokemonWarehouse(snapshot,{observedAt:new Date().toISOString()});
+  const productIds=coverage.rows.filter(r=>r.status==='untracked_card_candidate').map(r=>r.product_id);
+  const full=productIds.length?(await db.query('select * from public.tcgcsv_source_products where category_id in (3,85) and product_id=any($1::bigint[]) order by product_id',[productIds])).rows:[];
+  assert.equal(full.length,productIds.length,'untracked_source_scope_drift');
+  plan=buildDiscoveryIntakePlanFromCoverage(coverage,full);assertIntakePlan(plan);await db.query('commit');
   await save('plan.json',plan);const summary={mode,status:'planned',fingerprint:plan.fingerprint,eligible:plan.entries.length,held:plan.held.length,coverage:plan.coverage_summary,canonical_writes:0};await save('complete.json',summary);console.log(JSON.stringify(summary));
  }else{
   let inserted=0,existing=0,verified=0;
@@ -84,7 +87,7 @@ try{
    await reader.query('begin isolation level repeatable read read only');
    for(let offset=0;offset<plan.entries.length;offset+=500)await verifyDiscoveryIntakeBatch(reader,plan,plan.entries.slice(offset,offset+500));
    const coverage=reconcilePokemonWarehouse(await readPokemonWarehouseSnapshot(reader),{observedAt:new Date().toISOString()});const after=await counts(reader);await reader.query('commit');
-   await save('coverage.json',coverage);await save('gamestop.json',coverage.rows.filter(r=>r.retailer==='gamestop'));
+   writeCoverageReport(path.join(out,'coverage.json'),coverage);await save('gamestop.json',coverage.rows.filter(r=>r.retailer==='gamestop'));
    const result={mode,status:'passed',plan_fingerprint:plan.fingerprint,inserted,existing,verified:plan.entries.length,committed_batches:committedBatches,canonical_writes:0,pricing_writes:0,warehouse_promotion_writes:0,before,after,coverage:coverage.summary};
    if(mode==='apply')result.job_id=await terminalReceipt('succeeded',result);
    await save('complete.json',result);console.log(JSON.stringify(result));

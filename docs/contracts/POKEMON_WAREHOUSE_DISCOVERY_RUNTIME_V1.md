@@ -35,6 +35,15 @@ after exact decompression/hash verification; the compression receipt is retained
 No source or failed-run evidence is pruned. Concurrent unrelated catalog count
 changes are reported; source-linked conflicts remain hard batch blockers.
 
+Coverage keeps the entire inventory, but its SHA-256 is computed row by row
+using the exact historical JSON-array byte sequence. Report serialization uses
+bounded row batches. Parent reads select only the external ID fields consumed
+by the classifier; full source payloads are loaded only for untracked candidates,
+within the same repeatable-read snapshot. These memory bounds do not change
+eligibility, fingerprints, source preservation or the full inventory denominator.
+Qualification must include a report larger than the test process heap and repeated
+actual-host planning under the unchanged 512 MiB heap/768 MiB service limits.
+
 Activation requires normal source qualification, local SQL and runtime contract
 proof, immutable bundle verification on the actual Node 20 host, a successful
 manual invocation of the real service, independent DB readback, then observation

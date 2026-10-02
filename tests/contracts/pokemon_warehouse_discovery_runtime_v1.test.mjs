@@ -1,5 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {gunzipSync} from 'node:zlib';
-import {CYCLE_VERSION,RELEASE_VERSION,RUNTIME_FILES,sha256,dependencyFiles,verifyRuntimeRelease,authorizeRecurringPlan,claimCycleMarker,completeCycleMarker,compressCompletedCoverage,persistCycleRun} from '../../backend/catalog/pokemon_warehouse_discovery_runtime_v1.mjs';
+import {execFileSync} from 'node:child_process';
+import {CYCLE_VERSION,RELEASE_VERSION,RUNTIME_FILES,sha256,dependencyFiles,verifyRuntimeRelease,authorizeRecurringPlan,claimCycleMarker,completeCycleMarker,compressCompletedCoverage,persistCycleRun,writeCoverageReport} from '../../backend/catalog/pokemon_warehouse_discovery_runtime_v1.mjs';
 const producer='a'.repeat(40),manifestSha='b'.repeat(64);
 const policy=()=>({version:CYCLE_VERSION,enabled:true,purpose:'review_only_raw_and_discovery_intake',producer_commit:producer,release_manifest_sha256:manifestSha,categories:[3,85],allowed_tables:['raw_imports','external_discovery_candidates','ingestion_jobs'],batch_size:500,max_new_products:5000,authority:'Standing user instruction to discover warehoused products; review-only',operator:'qualified recurring service'});
 const plan=()=>({entries:[{source:{category_id:3}}],fingerprint:'c'.repeat(64),canonical_writes:0,pricing_writes:0,warehouse_promotion_writes:0});
@@ -11,6 +12,16 @@ for(const [label,edit]of [
 ])test(`${label} prevents recurring authorization`,()=>{const p=policy();edit(p);assert.throws(()=>authorize(p));});
 test('unexpected backlog, category or canonical writes stop before intake',()=>{for(const s of [{...plan(),entries:Array(5001).fill({source:{category_id:3}})},{...plan(),entries:[{source:{category_id:1}}]},{...plan(),canonical_writes:1}])assert.throws(()=>authorize(policy(),s));});
 function temp(t){const root=fs.mkdtempSync(path.join(os.tmpdir(),'gv-discovery-runtime-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));return root;}
+test('chunked report retains every row and field and refuses to overwrite evidence',t=>{
+ const root=temp(t),file=path.join(root,'coverage.json'),report={version:'fixture',summary:{count:260},rows:Array.from({length:260},(_,i)=>({id:i,name:'ホウオウ',quote:'"\\\n'})),fingerprint:'preserved'};
+ writeCoverageReport(file,report);assert.deepEqual(JSON.parse(fs.readFileSync(file)),report);assert.throws(()=>writeCoverageReport(file,report),/EEXIST/);
+});
+test('coverage hashing and writing exceed the heap size without whole-report allocations',t=>{
+ const root=temp(t),file=path.join(root,'large.json');
+ const code=`import fs from 'node:fs';import {coverageRowsHash} from ${JSON.stringify(new URL('../../backend/catalog/pokemon_warehouse_coverage_v1.mjs',import.meta.url).href)};import {writeCoverageReport} from ${JSON.stringify(new URL('../../backend/catalog/pokemon_warehouse_discovery_runtime_v1.mjs',import.meta.url).href)};const payload='x'.repeat(8192),rows=Array.from({length:8192},(_,id)=>({id,payload}));const fingerprint=coverageRowsHash(rows);writeCoverageReport(${JSON.stringify(file)},{rows,fingerprint});console.log(JSON.stringify({bytes:fs.statSync(${JSON.stringify(file)}).size,fingerprint}));`;
+ const result=JSON.parse(execFileSync(process.execPath,['--max-old-space-size=48','--input-type=module','-e',code],{encoding:'utf8',timeout:30000}));
+ assert.ok(result.bytes>64*1024*1024);assert.match(result.fingerprint,/^[a-f0-9]{64}$/);
+});
 function fixture(t){const root=temp(t),files={};for(const file of RUNTIME_FILES){const p=path.join(root,file);fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,'// synthetic fixture '+file);files[file]=sha256(fs.readFileSync(p));}fs.mkdirSync(path.join(root,'node_modules','sample'),{recursive:true});fs.writeFileSync(path.join(root,'node_modules','sample','index.js'),'module.exports = 1');return {root,manifest:{version:RELEASE_VERSION,producer_commit:producer,node_major:Number(process.versions.node.split('.')[0]),files,dependencies:dependencyFiles(root)}};}
 test('complete release and dependency bytes verify independently of Git',t=>{const {root,manifest}=fixture(t);assert.equal(verifyRuntimeRelease(root,manifest,producer),manifest);});
 test('runtime edits and dependency edits are rejected',t=>{for(const target of [RUNTIME_FILES[0],'node_modules/sample/index.js']){const {root,manifest}=fixture(t);fs.appendFileSync(path.join(root,target),' drift');assert.throws(()=>verifyRuntimeRelease(root,manifest,producer));}});

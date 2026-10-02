@@ -15,6 +15,21 @@ export const RUNTIME_FILES=Object.freeze([
  'package.json','package-lock.json',
 ]);
 export const sha256=bytes=>createHash('sha256').update(bytes).digest('hex');
+export function writeCoverageReport(file,report){
+ // Preserve all rows and report fields, using bounded serialization buffers.
+ const fd=fs.openSync(file,'wx',0o600);
+ try{
+  fs.writeFileSync(fd,'{');let fieldIndex=0;
+  for(const [key,value]of Object.entries(report)){
+   if(fieldIndex++)fs.writeFileSync(fd,',');fs.writeFileSync(fd,JSON.stringify(key)+':');
+   if(key!=='rows'){fs.writeFileSync(fd,JSON.stringify(value));continue;}
+   fs.writeFileSync(fd,'[');
+   for(let offset=0;offset<value.length;offset+=128){if(offset)fs.writeFileSync(fd,',');fs.writeFileSync(fd,JSON.stringify(value.slice(offset,offset+128)).slice(1,-1));}
+   fs.writeFileSync(fd,']');
+  }
+  fs.writeFileSync(fd,'}\n');
+ }finally{fs.closeSync(fd);}
+}
 export function claimCycleMarker(state,run){
  const marker=path.join(state,'inflight.json');assert.ok(!fs.existsSync(marker),'previous_cycle_requires_independent_reconciliation');
  fs.writeFileSync(marker,JSON.stringify(run,null,2)+'\n',{flag:'wx',mode:0o600});return marker;

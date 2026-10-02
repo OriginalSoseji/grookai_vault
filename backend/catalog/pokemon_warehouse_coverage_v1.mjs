@@ -2,6 +2,15 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 
 export const VERSION = 'POKEMON_WAREHOUSE_COVERAGE_V1';
+// Identical to SHA256(JSON.stringify(rows)), without allocating a whole-report string.
+export function coverageRowsHash(rows) {
+  const hash = createHash('sha256').update('[');
+  for (let i = 0; i < rows.length; i++) {
+    if (i) hash.update(',');
+    hash.update(JSON.stringify(rows[i]) ?? 'null');
+  }
+  return hash.update(']').digest('hex');
+}
 export function pokemonCoverageDatabaseTarget(connectionString) {
   const url = new URL(connectionString);
   assert.ok(['postgres:', 'postgresql:'].includes(url.protocol), 'Invalid database protocol');
@@ -132,7 +141,7 @@ export function reconcilePokemonWarehouse({ products, parents, mappings, discove
     catalog_completeness_proven: false,
     scope: 'All preserved Pokemon and Pokemon Japan TCGCSV warehouse products, including inactive rows. Mapped relationships do not prove printing completeness.',
     summary, rows,
-    fingerprint: createHash('sha256').update(JSON.stringify(rows)).digest('hex'),
+    fingerprint: coverageRowsHash(rows),
   };
 }
 
@@ -162,7 +171,9 @@ export async function readPokemonWarehouseSnapshot(client) {
     source_url, image_url, payload_hash, extended_data, source_active, first_seen_at
     from public.tcgcsv_source_products where category_id in (3,85) order by product_id`)).rows;
   const parents = (await client.query(`select cp.id, cp.gv_id, cp.name, cp.number, cp.set_code, cp.tcgplayer_id,
-    cp.external_ids, cp.variant_key, cp.printed_identity_modifier, s.game,
+    jsonb_build_object('tcgplayer',cp.external_ids->'tcgplayer',
+      'tcgplayer_id',cp.external_ids->'tcgplayer_id') external_ids,
+    cp.variant_key, cp.printed_identity_modifier, s.game,
     case when cp.identity_domain='pokemon_jpn' then 'ja'
       when cp.identity_domain='pokemon_eng_standard' then 'en' else 'unresolved' end language,
     (select count(*)::int from public.card_printings p where p.card_print_id=cp.id) printing_count
