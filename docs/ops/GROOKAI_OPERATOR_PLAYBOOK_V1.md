@@ -64,6 +64,17 @@ reset populated fixtures to recover connectivity.
 
 ## Web-first Collectr importer — October 1
 
+PR579 named finishes is released on the website; its private FINAL.json is
+terminal. The next local artwork-label candidate reuses the clean checkout on
+`feature/collectr-art-labels-20261002`, based on main6363e12ee. Read
+`docs/checkpoints/collectr_art_labels_20261002.md`. Private evidence is under
+`collectr_art_labels_20261002`. `GV_COLLECTR_ART_HTTP_PROOF=1` extends the retained
+410 lab with fresh synthetic art identities and save-time evidence-change tests.
+It also reruns named-finish and explicit-choice journeys. Keep ports/network and
+old fixture data intact. Runtime reads now include rarity and printed modifier
+in web, Edge handler and native preview; they must ship with pokemon_name.ts/Dart.
+No migration is needed. Native/Edge distribution remains separate from web release.
+
 The named Pokemon finish follow-up reuses the completed Adventure checkout on
 `feature/collectr-named-finishes-20261002`. Read
 `docs/checkpoints/collectr_named_finishes_20261002.md`; private evidence is under

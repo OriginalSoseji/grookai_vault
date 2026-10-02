@@ -18,6 +18,18 @@ export function matchesCollectrPokemonName({sourceName, sourceNumber, game, card
     if (number(suffix[1]) !== number(sourceNumber)) return false;
     name = name.slice(0, suffix.index);
   }
+  // Artwork labels need positive catalog evidence; they are never generic noise.
+  const art = /^([^()]+)\s+\(\s*(full art|secret|alternate art secret)\s*\)$/.exec(name);
+  if (art) {
+    const rarity = text(card.rarity), variant = text(card.variant_key);
+    const secret = ["rare secret", "secret rare", "rare rainbow"].includes(rarity);
+    const supported = art[2] === "full art"
+      ? ["rare ultra", "ultra rare"].includes(rarity) && ["", "rc"].includes(variant)
+      : art[2] === "secret" ? secret && ["", "tg"].includes(variant)
+      : secret && variant === "alt";
+    if (!supported || text(card.printed_identity_modifier)) return false;
+    name = art[1].trim();
+  }
   const canonical = (value: string) => value.replace(/[ -](ex|gx)$/, " $1");
   return !!name && canonical(name) === canonical(text(card.name));
 }

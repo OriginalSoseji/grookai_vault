@@ -121,7 +121,7 @@ async function resolveTargets(
     let after: string | null = null;
     while (true) {
       let query = client.from("card_prints").select(
-        "id,gv_id,name,number,set_code,variant_key,identity_domain,sets(name,game)",
+        "id,gv_id,name,number,set_code,variant_key,printed_identity_modifier,identity_domain,rarity,sets(name,game)",
       ).in("id", chunk);
       if (after !== null) query = query.gt("id", after);
       const { data, error } = await query.order("id").limit(500);

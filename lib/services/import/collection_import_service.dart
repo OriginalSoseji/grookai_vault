@@ -1337,7 +1337,7 @@ class CollectionImportService {
         var query = client
             .from('card_prints')
             .select(
-              'id,gv_id,name,number,set_id,set_code,variant_key,identity_domain',
+              'id,gv_id,name,number,set_id,set_code,variant_key,printed_identity_modifier,identity_domain,rarity',
             )
             .inFilter('set_id', chunk);
         if (after != null) query = query.gt('id', after);
