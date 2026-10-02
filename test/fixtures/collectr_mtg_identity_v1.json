@@ -1784,5 +1784,581 @@
         }
       ]
     }
+  },
+  {
+    "label": "verified adventure permanent name",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified adventure permanent and extended art",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified adventure permanent and borderless",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (Borderless)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "borderless"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified adventure permanent and number suffix",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage (0373) (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "verified adventure full name and treatment",
+    "expected": true,
+    "input": {
+      "sourceName": "Fixture Mage // Fixture Dragon (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure spell alone stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Dragon",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure spell with treatment stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Dragon (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure wrong collector number stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "374",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure missing identity stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": []
+    }
+  },
+  {
+    "label": "adventure wrong set evidence stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "other",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure unknown surge foil stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art) (Surge Foil)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure unsupported treatment stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure reversed face order stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Dragon // Fixture Mage",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Dragon // Fixture Mage",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure malformed full name stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // Fixture Dragon // Fixture Extra",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // Fixture Dragon // Fixture Extra",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "adventure missing spell stays held",
+    "expected": false,
+    "input": {
+      "sourceName": "Fixture Mage (Extended Art)",
+      "sourceNumber": "00373",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fixture Mage // ",
+        "number": "373",
+        "set_code": "syn",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "syn",
+          "printed_number": "373",
+          "identity_payload": {
+            "name": "Fixture Mage // ",
+            "collector_number": "373",
+            "set_code": "syn",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "adventure",
+            "frame_effects": [
+              "extendedart"
+            ],
+            "border_color": "black"
+          }
+        }
+      ]
+    }
   }
 ]
