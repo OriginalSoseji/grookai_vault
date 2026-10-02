@@ -44,7 +44,7 @@ export function mountReceiptDesk(root,options={}) {
       if(button.hasAttribute('data-add')){const items=root.querySelector('[data-items]');if(items.children.length>=50)throw Error('Maximum 50 items per receipt.');items.insertAdjacentHTML('beforeend',itemRow());}
       if(button.hasAttribute('data-remove')){if(root.querySelector('[data-items]').children.length===1)throw Error('A receipt needs at least one item.');button.closest('.rd-item').remove();}
       if(button.dataset.open)show(button.dataset.open);
-      if(button.hasAttribute('data-backup')){downloads(JSON.stringify(book,null,2),'grookai-receipts-'+new Date().toISOString().slice(0,10)+'.json','application/json');status('Backup downloaded. It contains private customer details; keep it somewhere safe.');}
+      if(button.hasAttribute('data-backup')){downloads(JSON.stringify(book),'grookai-receipts-'+new Date().toISOString().slice(0,10)+'.json','application/json');status('Backup downloaded. It contains private customer details; keep it somewhere safe.');}
       if(button.hasAttribute('data-add')||button.hasAttribute('data-remove'))search(event);
       const r=book.receipts.find(x=>x.receipt.id===selected)?.receipt;if(!r)return;
       if(button.hasAttribute('data-download')){downloads(receiptHtml(r),r.number+'.html','text/html');status('Receipt downloaded. Open it to print or save as PDF.');}

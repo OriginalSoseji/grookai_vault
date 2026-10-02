@@ -105,3 +105,17 @@ from the UI, each within20seconds. Cleanup removed all three synthetic accounts
 and their books; rollout restoredOFF, no orders/copies created.31 targeted
 contracts and final strict build pass. The release gate now explicitly requires
 actual browser capacity proof. Normal hooks and release follow on these bytes.
+
+The large-book backup follow-up changes export to compact JSON. Pretty output
+can exceed the importer limit while the saved canonical book still fits. The
+browser capacity proof now downloads all10,000 receipts/customers and verifies
+exact round-trip equivalence and file size. Migration bytes and V3 replay/upgrade
+proof are unchanged. The eef03b2d push was stopped during its normal hook before
+remote publication to qualify this final fix; no hook was bypassed. Preserve
+push-hook-v3.log/result and use final-named normal hook receipts next.
+Final compact-backup browser proof PASSED:
+.local/receipt-cloud/web-1790983041227/receipt.json. All eight scenarios pass,
+including exact equality between the downloaded10,000-record backup, its parsed
+restoration, and the saved database book. All synthetic users/books removed;
+cloudOFF restored and no inventory/orders created. Final source is frozen for
+normal commit/push and release; no further feature work belongs to this release.
