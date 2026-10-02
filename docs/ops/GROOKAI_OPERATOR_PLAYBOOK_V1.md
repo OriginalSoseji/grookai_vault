@@ -1,5 +1,31 @@
 # Grookai Operator Playbook V1
 
+## Immediate in-person receipts — October 2, 2026
+
+The user prioritized receipts for sales today. Current receipt work is isolated in
+C:/gv_vendor_receipts_20261002, feature/vendor-receipts-20261002, from main
+7e938b945dbb6f3f0af199005f5cf2570bc57f18 (414 migrations). No schema change.
+The standalone Grookai-Receipt-Desk.html is verified and copied to the user's
+Windows Desktop. Read docs/ops/VENDOR_RECEIPT_DESK_20261002.md in that worktree.
+It provides device-local receipts/customer records, print/download/share, email
+and SMS draft launch, and backup/restore. It is NOT cloud CRM, inventory mutation,
+provider-confirmed messaging or an online-payment receipt. User sends drafts.
+Website route /account/store/receipts is implemented but not deployed. Source-sale
+prefill is authenticated and owner-scoped. Production and payments unchanged.
+
+21 unit contracts, desktop/mobile browser workflows, TypeScript, lint and strict
+Next build pass. Authenticated website proof also passes against the isolated
+local lab: owner-only source prefill, account isolation and unchanged source sale.
+Main6363e12 was reconciled; normal commit/push and hosted release remain pending. Browser tool
+policy blocked opening local HTML automatically; no workaround attempted. User
+can open the Desktop file manually. No messages or actual sales were submitted.
+
+Next receipt work: durable cloud customer/receipt storage, correction/history,
+staff permissions, configured email/SMS delivery with tracked attempts, and web
+release qualification. Original notification/release work remains in
+C:/gv_store_reconcile_414_20261001 with its order-status checkpoint preserved.
+
+
 ## Broad name search reads — October 1
 
 PR571 is complete/live; its request reuse is retained. The next isolated branch

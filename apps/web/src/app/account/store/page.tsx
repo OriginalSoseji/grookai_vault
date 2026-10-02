@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { vendorPilot } from "@/lib/vendorPilot.mjs";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import StoreManager from "@/components/stores/StoreManager";
@@ -11,5 +12,5 @@ export default async function StoreManagementPage({searchParams}: {searchParams:
   const {product} = await searchParams;
   const id = typeof product === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(product) ? product.toLowerCase() : undefined;
   await requireServerUser(id ? `/account/store?product=${id}` : "/account/store");
-  return <StoreManager pilot={vendorPilot} siteOrigin={getSiteOrigin()} key={id ?? "root"} initialProductId={id} />;
+  return <><div className="mx-auto max-w-6xl px-4 pt-5"><Link href="/account/store/receipts" className="inline-flex rounded-full bg-emerald-800 px-5 py-2 text-sm font-semibold text-white">In-person sales & receipts</Link></div><StoreManager pilot={vendorPilot} siteOrigin={getSiteOrigin()} key={id ?? "root"} initialProductId={id} /></>;
 }

@@ -77,6 +77,7 @@ export default function VaultDispositionCard({ instanceId, gvviId, isActive, rec
       </div>}
     </>}
     {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
+    {receipt?.type === "sale" && <Link href={`/account/store/receipts?sale=${encodeURIComponent(receipt.id)}`} className="inline-block rounded-full bg-emerald-800 px-4 py-2 text-sm font-semibold text-white">Create customer receipt</Link>}
     <Link href="/vault/transactions" className="inline-block text-sm font-semibold text-emerald-800 underline">View transaction history</Link>
   </section>;
 }

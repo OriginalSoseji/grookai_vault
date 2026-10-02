@@ -1,0 +1,22 @@
+{
+  "status": "website_qualified_release_pending",
+  "at": "2026-10-02T18:08:32.075Z",
+  "worktree": "C:\\gv_vendor_receipts_20261002",
+  "baseline": "7e938b945dbb6f3f0af199005f5cf2570bc57f18",
+  "artifact": "C:/Users/ccabr/OneDrive/Desktop/Grookai-Receipt-Desk.html",
+  "sha256": "9e19dcc3f7fd664411dd7565a57f9c2b62ed249fd3a6e9aba91861a9bf858cb2",
+  "unitTests": 21,
+  "browserProof": "artifacts/receipts/browser-proof.json",
+  "typecheck": "artifacts/receipts/typecheck.log",
+  "lint": "artifacts/receipts/lint.log",
+  "build": "artifacts/receipts/build-fixture.log",
+  "storage": "device-local; backup/export required",
+  "automaticDelivery": false,
+  "inventoryMutation": false,
+  "deployed": false,
+  "realCustomerMessages": 0,
+  "productionWrites": 0,
+  "automaticOpening": "blocked by browser local-file URL policy; user can open Desktop file",
+  "integrationBaseline": "6363e12ee5401c48347107db641126c42ca2aa60",
+  "websiteProof": ".local/receipt-release/web-proof-1790972360153/receipt.json"
+}
