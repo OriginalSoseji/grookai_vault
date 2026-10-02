@@ -56,6 +56,7 @@ param(
   [switch]$CollectrImportFidelityReleaseV1,
   [switch]$CosmosPricingReleaseV1,
   [switch]$SearchDatabaseLatencyV1,
+  [switch]$ReceiptCloudV1,
   [switch]$SearchNamePlanV1,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
@@ -488,6 +489,26 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($ReceiptCloudV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','ReceiptCloudV1')
+  $receiptExpected = (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or $receiptExpected -notin @('', '20261002220000') -or ($Phase -eq 'PrePush' -and $receiptExpected -ne '20261002220000')) { Fail 'Receipt cloud release permits only its exact migration, without combined modes or target overrides.' }
+  $receiptRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $receiptFiles = @(Get-RepoMigrationFiles -RepoRoot $receiptRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $receiptFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $receiptPending = @($receiptFiles | Where-Object { $_.Id -eq '20261002220000' })
+  if ($receiptPending.Count -ne $(if ($receiptExpected) { 1 } else { 0 })) { Fail 'Receipt cloud pending migration differs from requested scope.' }
+  if ($receiptPending.Count) {
+    $receiptDuplicates = Get-ObjectDuplicates -PendingFiles $receiptPending
+    if ($receiptDuplicates.DuplicateIndexes.Count -gt 0 -or $receiptDuplicates.DuplicateViews.Count -gt 0 -or $receiptDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending receipt objects.' }
+  }
+  Require-Command 'node'
+  $receiptGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_receipt_cloud_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $receiptGate
+  if ($receiptGate.ExitCode -ne 0) { Fail 'Receipt cloud database qualification failed; no apply.' }
+  exit 0
 }
 
 if ($SearchNamePlanV1) {

@@ -3,4 +3,5 @@ export declare const collectorHostedStaging: boolean;
 export declare const collectorFixtureLab: boolean;
 export declare const storefrontLocalTest: boolean;
 export declare const vendorBatchLocalTest: boolean;
+export declare const receiptCloudLocalTest: boolean;
 export declare function assertCollectorStagingTarget(url: string, fixtureLab?: boolean, hosted?: boolean): void;

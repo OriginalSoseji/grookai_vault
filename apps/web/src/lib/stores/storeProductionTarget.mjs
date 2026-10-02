@@ -14,7 +14,7 @@ export function productionStoreTarget(env = process.env) {
     && ['NEXT_PUBLIC_VENDOR_PILOT','NEXT_PUBLIC_VENDOR_DEVICE_QA','NEXT_PUBLIC_COLLECTOR_STAGING',
       'NEXT_PUBLIC_COLLECTOR_FIXTURE_LAB','NEXT_PUBLIC_COLLECTOR_HOSTED_STAGING',
       'NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY','NEXT_PUBLIC_STOREFRONT_LOCAL_TEST',
-      'NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST'].every(key => !env[key] || env[key] === 'false');
+      'NEXT_PUBLIC_VENDOR_BATCH_LOCAL_TEST','NEXT_PUBLIC_RECEIPT_CLOUD_LOCAL_TEST'].every(key => !env[key] || env[key] === 'false');
 }
 export function storeBatchTarget(operation, env = process.env) {
   if (!['commit','cancel'].includes(operation)) return false;
