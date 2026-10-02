@@ -25,7 +25,7 @@ if(phase==='PrePush'){
  assert.ok(Date.now()-Date.parse(hook.at)<2*3600000);assert.equal(hash(fs.readFileSync(hook.logFile)),hook.logSha256);assert.equal(read(hook.resultFile).exit_code,0);
  const docker=(...a)=>execFileSync('docker',a,{encoding:'utf8',windowsHide:true,timeout:60000,maxBuffer:64*1024*1024});
 for(const mode of ['full','upgrade']){
- const fixture=out+'/'+mode+'-415-v2',project=`receipt-cloud-${mode}-415-v2-20261002`,freeze=read(fixture+'/freeze.json');
+ const fixture=out+'/'+mode+'-415-v3',project=`receipt-cloud-${mode}-415-v3-20261002`,freeze=read(fixture+'/freeze.json');
  assert.equal(freeze.project,project);assert.deepEqual(freeze.sourceHashes,sources);
  assert.equal(hash(fs.readFileSync(fixture+'/supabase/config.toml')),freeze.configSha256);assert.ok(!fs.existsSync(fixture+'/supabase/.temp/project-ref'));
  for(const [n,h]of Object.entries(sources))assert.equal(hash(fs.readFileSync(fixture+'/supabase/migrations/'+n)),h,n);
@@ -39,12 +39,13 @@ for(const mode of ['full','upgrade']){
  assert.equal(sql("begin read only;select current_setting('max_worker_processes');rollback;"),'0');assert.equal(sql('begin read only;select count(*) from cron.job_run_details;rollback;'),'0');
  assert.equal(sql('select enabled::text from vendor_receipt_cloud_control'),'false');
  const current=JSON.parse(sql(snapshotSql));assert.deepEqual(current.LEDGER,Object.keys(sources).map(n=>({version:n.split('_')[0]})));
- await compareSnapshots(current,read(out+'/full-415-v2/replayed.private.json'),{output:directory+'/'+mode});
+ await compareSnapshots(current,read(out+'/full-415-v3/replayed.private.json'),{output:directory+'/'+mode});
 }
 
  const runtime=read(out+'/runtime-result.json');assert.equal(runtime.status,'passed');assert.equal(runtime.productionWrites,0);assert.equal(runtime.sourceHashes['supabase/migrations/'+pending],sources[pending]);
  for(const [p,h]of Object.entries(runtime.sourceHashes))assert.equal(hash(fs.readFileSync(root+p)),h,p);
  assert.ok(runtime.checks.length>=4&&runtime.cleanup===true&&runtime.actualAuth&&runtime.actualNext&&runtime.crossDevice);
+ assert.ok(runtime.checks.some(c=>c.includes('10000 receipts')),'Actual browser capacity proof required');
 }
 const receipt={at:new Date().toISOString(),status:'passed',phase,target:ref,migrations:414,sourceHashes:sources,comparison,output:directory,
  pending:[pending.split('_')[0]],sourceTree:execFileSync('git',['write-tree'],{cwd:root,encoding:'utf8'}).trim(),

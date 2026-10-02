@@ -67,12 +67,13 @@ export function parseBackup(raw) {
   check(typeof raw==='string' && raw.length<=10000000,'Backup is too large.');const b=JSON.parse(raw);
   check(b?.version===1&&Array.isArray(b.receipts)&&Array.isArray(b.customers)&&b.receipts.length<=10000&&b.customers.length<=10000,'This is not a supported receipt backup.');
   const customers=b.customers.map(c=>{check(idPattern.test(c.id),'Invalid customer ID.');return {id:c.id,...customerInput(c),updatedAt:text(c.updatedAt,40)};});
-  const ids=new Set();const sources=new Set();const receipts=b.receipts.map(row=>{
+    const customerIds=new Set(customers.map(c=>c.id));
+    const ids=new Set();const sources=new Set();const receipts=b.receipts.map(row=>{
     const r=row.receipt;check(r&&idPattern.test(r.id)&&!ids.has(r.id),'Duplicate or invalid receipt.');ids.add(r.id);
     check(!r.sourceDispositionId||!sources.has(r.sourceDispositionId),'Duplicate source sale.');if(r.sourceDispositionId)sources.add(r.sourceDispositionId);
     const restored=createReceipt({storeName:r.storeName,customer:{name:r.customerName,email:'',phone:'',wants:'',notes:''},confirmed:true,method:r.method,items:r.items.map(i=>({description:i.description,quantity:String(i.quantity),price:(i.unitMinor/100).toFixed(2)})),discount:(r.discountMinor/100).toFixed(2),tax:(r.taxMinor/100).toFixed(2),note:r.note,sourceDispositionId:r.sourceDispositionId},r.id,r.createdAt);
     check(restored.number===r.number&&restored.totalMinor===r.totalMinor&&restored.subtotalMinor===r.subtotalMinor,'Receipt totals do not match.');
-    check(row.customerId===null||customers.some(c=>c.id===row.customerId),'Missing customer record.');return {receipt:restored,customerId:row.customerId};
-  });check(new Set(customers.map(c=>c.id)).size===customers.length,'Duplicate customer ID.');
+      check(row.customerId===null||customerIds.has(row.customerId),'Missing customer record.');return {receipt:restored,customerId:row.customerId};
+    });check(customerIds.size===customers.length,'Duplicate customer ID.');
   return {version:1,receipts,customers,storeName:text(b.storeName,120)};
 }

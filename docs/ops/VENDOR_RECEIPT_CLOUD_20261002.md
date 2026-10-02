@@ -63,3 +63,45 @@ also copied to external runtime-result.json. Supplementary five-group SQL proof,
 Normal hooks, hosted checks, fresh exact-source preflight/dry-run, production apply,
 activation and live readback still follow; this paragraph is not a live claim.
 Use external CHECKPOINT.json for subsequent release state.
+
+## PR582 review hardening (V3)
+
+The automated review identified quadratic snapshot retention and request-envelope
+capacity overhead. Both are fixed before production. SQL retention uses set
+difference; customer/source lookups are indexed JSON objects, and client customer
+validation uses a Set. A 9,999-to-10,000 receipt save with 10,000 customers passes
+a 15-second SQL deadline in 1,022 ms locally (initial save 930 ms). This is local
+measurement, not a production performance guarantee. The request permits 1 KiB
+of bounded envelope overhead and separately checks canonical UTF-8 book bytes.
+
+V2 source is retained at 45026cc19; its labs and cli-package are superseded, not
+reset. V3 uses full/upgrade-415-v3, ports64700/64720 (APIs64701/64721), internal
+10.250.246.0/24 and10.250.247.0/24, and fresh cli-package-v3. Supplementary proof:
+.local/receipt-cloud/sql-proof-v3.json. Exact revised migration SHA256:
+9ad5b30182f9d51678f018c5a2a2cb941796aeb828b6979a1e1775886eec09b2.
+
+A Docker backend fatal fault interrupted the first normal push. Normal vendor
+backend startup recovered it; no manual WSL shutdown, database reset or volume
+deletion occurred. The V2 normal push then passed, and the recovery browser proof
+passed. Fresh V3 source requires new replay, runtime, hooks and release gates.
+
+### Hosting payload boundary
+
+The subsequent Vercel limits review found its 4.5 MB request/response ceiling.
+V3 removes the unpublished Next receipt-book proxy entirely and uses the existing
+authenticated Supabase browser SDK for governed RPC reads/saves. The database
+remains the sole owner/immutability/rollout authority. A local initial-session
+binding additionally refuses a stale editor save after account switching. This
+supersedes the earlier envelope-overhead workaround: no browser receipt book is
+proxied through Vercel. The 10 MB canonical UTF-8/database JSON bounds remain;
+metadata overhead is outside the client book check. The real browser test imports
+9,999 receipts/10,000 customers, then saves receipt10,000 through this SDK path.
+Reference: https://vercel.com/docs/functions/limitations#request-body-size.
+
+V3 final browser proof PASSED at22:59UTC:
+.local/receipt-cloud/web-1790981950388/receipt.json. Seven actual SDK/Auth/Next
+checks include importing9,999 receipts and10,000 customers then savingreceipt10,000
+from the UI, each within20seconds. Cleanup removed all three synthetic accounts
+and their books; rollout restoredOFF, no orders/copies created.31 targeted
+contracts and final strict build pass. The release gate now explicitly requires
+actual browser capacity proof. Normal hooks and release follow on these bytes.

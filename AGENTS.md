@@ -8,7 +8,7 @@ Continue cloud work only in C:/gv_vendor_receipt_cloud_20261002. Read
 docs/ops/VENDOR_RECEIPT_CLOUD_20261002.md and its contract. One account-owned book,
 immutable manual receipts, explicit backup import and optimistic revisions.
 Cloud candidate is NOT deployed; rollout defaults OFF. Keep checkout and catalog
-repair work separate. Dedicated V2 full/upgrade labs use646xx; preserve V1 evidence.
+repair work separate. Dedicated V3 full/upgrade labs use647xx; preserve V1/V2 evidence.
 Never use SQLSTATE40001 for application conflicts: actual PostgREST HTTP proof
 exposed automatic retry loops. V2 uses PT409 and preserves drafts on conflict.
 

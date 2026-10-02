@@ -17,7 +17,7 @@ export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureL
   if (fixtureLab && hosted) throw new Error("Fixture and hosted staging are mutually exclusive.");
   const expected = vendorBatchLocalTest ? (["http://127.0.0.1:27621", "http://127.0.0.1:29021", "http://127.0.0.1:29421", "http://127.0.0.1:30221", "http://127.0.0.1:31021"].includes(target.origin) ? target.origin : "http://127.0.0.1:26421") : vendorPilot ? VENDOR_PILOT_DATABASE : storefrontLocalTest ? "http://127.0.0.1:15439" : hosted ? "https://hcdpcbpnnvtbaezefjkd.supabase.co"
     : fixtureLab ? "http://127.0.0.1:54361" : "http://127.0.0.1:54321";
-  const allowed = receiptCloudLocalTest ? "http://127.0.0.1:64601" : collectrImportLocalTest ? "http://127.0.0.1:58541" : expected;
+  const allowed = receiptCloudLocalTest ? "http://127.0.0.1:64701" : collectrImportLocalTest ? "http://127.0.0.1:58541" : expected;
   if (target.origin !== allowed || target.username || target.password || target.search || target.hash) {
     throw new Error("Authenticated collector staging requires its exact verified database.");
   }

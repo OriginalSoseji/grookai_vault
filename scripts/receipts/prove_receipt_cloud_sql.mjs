@@ -6,7 +6,7 @@ import {execFileSync,execFile} from 'node:child_process';
 import {promisify} from 'node:util';
 import {randomUUID,createHash} from 'node:crypto';
 import {createReceipt,emptyBook,saveSale} from '../../apps/web/src/lib/receipts/receiptBook.mjs';
-const name='gv-receipt-cloud-sql-v2-20261002',out='.local/receipt-cloud';
+const name='gv-receipt-cloud-sql-v3-20261002',out='.local/receipt-cloud';
 const container=JSON.parse(execFileSync('docker',['inspect',name],{encoding:'utf8'}))[0];
 assert.equal(container.HostConfig.NetworkMode,'none');assert.equal(container.Config.Image,'public.ecr.aws/supabase/postgres:17.6.1.113');
 const args=['exec','-i',name,'psql','-U','supabase_admin','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'];
@@ -54,8 +54,25 @@ const race=b=>run('docker',[...args,'-c',query(owner,`select public.vendor_recei
 const results=await Promise.allSettled([race(branchA),race(branchB)]);assert.equal(results.filter(r=>r.status==='fulfilled').length,1);
 book=read(owner).book;assert.equal(book.receipts.length,2);assert.equal(read(owner).revision,2);assert.equal(book.customers.length,1);
 checks.push('two actual concurrent PostgreSQL sessions: exactly one save wins, no lost receipt');
+// Exercise the advertised record bound with distinct customer references. A
+// correlated scan in either identity validation or snapshot retention times out.
+const capacityOwner=randomUUID();sql(`insert into auth.users(id) values('${capacityOwner}')`);
+const capacityBook=emptyBook();capacityBook.storeName='Capacity fixture';
+for(let i=0;i<10000;i++){
+ const id=randomUUID(),r=receipt();
+ capacityBook.customers.push({id,...customer,updatedAt:r.createdAt});
+ capacityBook.receipts.push({receipt:r,customerId:id});
+}
+const last=capacityBook.receipts.pop();
+const capacitySave=revision=>{
+ const started=performance.now();
+ const result=as(capacityOwner,`set local statement_timeout='15s';select public.vendor_receipt_book_save_v1(${revision},'${randomUUID()}',${literal(capacityBook)})->>'revision'`);
+ assert.equal(result,String(revision+1));return Math.round(performance.now()-started);
+};
+const capacityTimings=[capacitySave(0)];capacityBook.receipts.push(last);capacityTimings.push(capacitySave(1));
+checks.push('9999-to-10000 receipts with 10000 distinct customers save within a 15-second SQL timeout');
 sql('update public.vendor_receipt_cloud_control set enabled=false');assert.throws(()=>read(owner));assert.throws(()=>save(owner,2,randomUUID(),book));
-assert.equal(sql('select count(*) from public.vendor_receipt_books'),'1');
+assert.equal(sql('select count(*) from public.vendor_receipt_books'),'2');
 checks.push('rollback switch blocks reads and writes while preserving saved data');
-fs.writeFileSync(out+'/sql-proof-v2.json',JSON.stringify({status:'passed',at:new Date().toISOString(),container:name,checks,migrationSha256:createHash('sha256').update(migration).digest('hex'),productionWrites:0,scope:'isolated supplementary SQL proof; not full replay/Auth/production qualification'},null,2));
+fs.writeFileSync(out+'/sql-proof-v3.json',JSON.stringify({status:'passed',at:new Date().toISOString(),container:name,checks,capacityTimings,migrationSha256:createHash('sha256').update(migration).digest('hex'),productionWrites:0,scope:'isolated supplementary SQL proof; not full replay/Auth/production qualification'},null,2));
 console.log(JSON.stringify({status:'passed',checks:checks.length}));

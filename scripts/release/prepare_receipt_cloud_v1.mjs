@@ -11,7 +11,7 @@ const mode=process.argv[2];assert.ok(['prepare','dry-run'].includes(mode),'No ap
 const root=fileURLToPath(new URL('../../',import.meta.url));
 assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_vendor_receipt_cloud_20261002');
 const out='C:/grookai_vault_operator_artifacts/vendor_receipt_cloud_20261002';
-const dir=out+'/cli-package',target='ycdxbpibncqcchqiihfz';
+const dir=out+'/cli-package-v3',target='ycdxbpibncqcchqiihfz';
 const names=['20261002220000_vendor_receipt_cloud_v1.sql'];
 
 const hash=b=>createHash('sha256').update(b).digest('hex');

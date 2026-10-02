@@ -10,7 +10,7 @@ receipt book, not an online order, payment-confirmation service or inventory wri
   RLS remains enabled; security-definer functions use an empty search path.
 - The database control defaults OFF. Web availability also requires the explicit
   server flag `GROOKAI_RECEIPT_CLOUD_ENABLED=true`; client flags grant nothing.
-- A book is bounded to 10 MB, 10,000 receipts and 10,000 customers. This first
+- A book is bounded to 10 MB (canonical UTF-8 API book and database JSON representation), 10,000 receipts and 10,000 customers. This first
   version loads a bounded book as a whole; it is not an unbounded CRM search API.
 - A row lock and expected revision make each save atomic. A stale revision uses
   application SQLSTATE `PT409`, never PostgreSQL retryable `40001`. PostgREST may
@@ -28,8 +28,13 @@ receipt book, not an online order, payment-confirmation service or inventory wri
 - Device books remain untouched. Importing a backup is an explicit action into
   an empty account book, preserving the original file/device copy. No silent
   contact merging, overwrites, background upload or deletion.
-- All HTTP reads/writes are private/no-store. Cookie writes enforce same-origin
-  JSON requests and bounded streaming input. Backend errors do not disclose data.
+- The browser uses the existing authenticated Supabase SDK and governed RPCs.
+  It does not proxy books through a Vercel function (4.5 MB request/response cap).
+  The unpublished Next book API was removed. A canonical UTF-8 byte bound is
+  checked before SDK saves; database JSON-size and record bounds remain authority.
+  RPCs use bearer authentication, POST requests and no caller-selected owner.
+  An editor binds its initial account and refuses saves after account switching.
+  Backend errors do not disclose data.
 - Email/SMS remain user-sent drafts. No messages, marketing subscription or
   external contact sharing is authorized merely by saving a customer.
 - No staff sharing in this version. Future staff access must be explicitly

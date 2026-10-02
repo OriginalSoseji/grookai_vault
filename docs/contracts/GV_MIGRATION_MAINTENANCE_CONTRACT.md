@@ -7,12 +7,12 @@ ReceiptCloudV1 admits only AuditLinkedSchema/PrePush and migration20261002220000
 over the exact414 baseline. It rejects combined modes/target overrides, checks
 timestamp/object duplication and compares current production schema/security
 read-only against qualified414. PrePush additionally binds clean committed main,
-normal hooks, V2 full415 reset/no-op push, retained414-to415 upgrade, and actual
-Auth/Next/cross-device/conflict/retry proof. Controls remain OFF, private books
+normal hooks, V3 full415 reset/no-op push, retained414-to415 upgrade, and actual
+Auth/Next/SDK/cross-device/conflict/retry/capacity proof. Controls remain OFF, private books
 remain owner-only, and no canonical/inventory/payment rows are changed.
 prepare_receipt_cloud_v1.mjs only prepares a source-bound CLI inspection package
 and dry-run. Actual application requires a fresh consumed intent and independent
-ledger/schema/privilege/data-boundary readback. Never reset populated V1/V2 labs.
+ledger/schema/privilege/data-boundary readback. Never reset populated V1/V2/V3 labs.
 
 ## Bounded name search qualification (2026-10-01)
 

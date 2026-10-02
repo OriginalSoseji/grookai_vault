@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { openCloudReceiptBook } from "@/lib/receipts/receiptCloud.mjs";
+import { openCloudReceiptBook, receiptRpcTransport } from "@/lib/receipts/receiptCloud.mjs";
+import { supabase } from "@/lib/supabaseClient";
 import { mountReceiptDesk } from "@/lib/receipts/receiptDesk.mjs";
 import "@/lib/receipts/receiptDesk.css";
 
@@ -10,7 +11,7 @@ export default function CloudReceiptDesk() {
   const [attempt,setAttempt] = useState(0);
   useEffect(() => {
     let disposed = false; let cleanup: (() => void) | undefined;
-    openCloudReceiptBook().then(remote => {
+    openCloudReceiptBook(receiptRpcTransport(supabase)).then(remote => {
       if (!disposed && ref.current) cleanup = mountReceiptDesk(ref.current, {cloud:remote});
     }).catch(() => { if (!disposed) setError("Your account receipt book could not be loaded. Existing device records are unchanged."); });
     return () => { disposed = true; cleanup?.(); };

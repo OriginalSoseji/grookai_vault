@@ -17,8 +17,8 @@ const docker=(...a)=>execFileSync('docker',a,{encoding:'utf8',windowsHide:true,t
 assert.equal(process.argv.length,3);
 const mode=process.argv[2];assert.ok(['full','upgrade'].includes(mode));
 assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_vendor_receipt_cloud_20261002');
-const port=mode==='full'?64600:64620,project=`receipt-cloud-${mode}-415-v2-20261002`,fixture=out+'/'+mode+'-415-v2';
-const relay=project+'-relay',container='supabase_db_'+project,subnet=mode==='full'?'10.249.248.0/24':'10.249.249.0/24';
+const port=mode==='full'?64700:64720,project=`receipt-cloud-${mode}-415-v3-20261002`,fixture=out+'/'+mode+'-415-v3';
+const relay=project+'-relay',container='supabase_db_'+project,subnet=mode==='full'?'10.250.246.0/24':'10.250.247.0/24';
 const save=(name,value)=>fs.writeFileSync(fixture+'/'+name,JSON.stringify(value,null,2),{flag:'wx'});
 const sql=q=>execFileSync('docker',['exec','-i',container,'psql','-U','postgres','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'],{input:q,encoding:'utf8',windowsHide:true,timeout:180000,maxBuffer:64*1024*1024}).trim();
 const sources=hashes(root+'supabase/migrations');assert.equal(Object.keys(sources).length,415);
@@ -93,7 +93,7 @@ if(mode==='full'){
   cli(['db','push','--local','--include-all','--yes'],'upgrade');guard(415,{empty:false});
   assert.deepEqual(JSON.parse(sql(retainedSql)),retained);assert.equal(sql("select count(*) from sets where search_code_lower is distinct from lower(code)"),'0');
   const after=JSON.parse(sql(snapshotSql));save('upgraded.private.json',after);
-  const clean=JSON.parse(fs.readFileSync(out+'/full-415-v2/replayed.private.json'));assert.deepEqual(after.LEDGER,clean.LEDGER);
+  const clean=JSON.parse(fs.readFileSync(out+'/full-415-v3/replayed.private.json'));assert.deepEqual(after.LEDGER,clean.LEDGER);
   const comparison=await compareSnapshots(after,clean,{output:fixture+'/parity'});
   save('upgrade-result.json',{status:'passed',at:new Date().toISOString(),migrations:415,project,retainedCopies:retained.copies.length,allFixtureRowsUnchanged:true,comparison,productionWrites:0,resetsAfterPopulation:0});
 }

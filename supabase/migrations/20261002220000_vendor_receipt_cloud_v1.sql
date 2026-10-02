@@ -32,6 +32,7 @@ create function public.vendor_receipt_book_validate_v1(payload jsonb, actor uuid
 returns void language plpgsql security definer set search_path = '' as $$
 declare row_data jsonb; r jsonb; c jsonb; item jsonb; total bigint; subtotal bigint;
   discount bigint; tax bigint; qty bigint; price bigint; field text;
+  customer_ids jsonb; old_receipts jsonb;
 begin
   if actor is null or jsonb_typeof(payload) is distinct from 'object' or payload->'version' is distinct from '1'::jsonb
     or not public.vendor_receipt_text_valid_v1(payload->'storeName',120)
@@ -60,13 +61,18 @@ begin
   if (select count(*) <> count(distinct value->>'id') from jsonb_array_elements(payload->'customers')) then
     raise exception 'Duplicate customer' using errcode='22023';
   end if;
+  select coalesce(jsonb_object_agg(value->>'id',true),'{}'::jsonb) into customer_ids
+    from jsonb_array_elements(payload->'customers');
+  select coalesce(jsonb_object_agg(old->'receipt'->>'id',old),'{}'::jsonb) into old_receipts
+    from public.vendor_receipt_books b cross join lateral jsonb_array_elements(b.book->'receipts') old
+    where b.owner_id=actor;
   for row_data in select value from jsonb_array_elements(payload->'receipts') loop
     r := row_data->'receipt';
     if jsonb_typeof(row_data) is distinct from 'object' or jsonb_typeof(r) is distinct from 'object'
       or row_data - array['receipt','customerId'] <> '{}'::jsonb
       or not (row_data ? 'customerId')
-      or (row_data->'customerId' <> 'null'::jsonb and not exists
-        (select 1 from jsonb_array_elements(payload->'customers') x where x->'id'=row_data->'customerId'))
+      or (row_data->'customerId' <> 'null'::jsonb and
+        (jsonb_typeof(row_data->'customerId') <> 'string' or not customer_ids ? (row_data->>'customerId')))
       or r->'version' is distinct from '1'::jsonb or (r->>'id') is null
       or (r->>'id') !~* '^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'
       or not public.vendor_receipt_text_valid_v1(r->'storeName',120) or length(r->>'storeName')=0
@@ -107,9 +113,8 @@ begin
       raise exception 'Receipt totals do not match' using errcode='22023';
     end if;
     -- Existing immutable receipts retain their context if the source is later removed.
-    if r->'sourceDispositionId' <> 'null'::jsonb and not exists
-      (select 1 from public.vendor_receipt_books b, jsonb_array_elements(b.book->'receipts') old
-       where b.owner_id=actor and old=row_data) then
+    if r->'sourceDispositionId' <> 'null'::jsonb and
+      (old_receipts->(r->>'id')) is distinct from row_data then
       if not exists (select 1 from public.vault_item_instance_dispositions d
         where d.id::text=r->>'sourceDispositionId' and d.user_id=actor and d.disposition_type='sale' and d.sale_price_currency='USD') then
         raise exception 'Recorded sale unavailable' using errcode='22023';
@@ -150,10 +155,10 @@ begin
   end if;
   if current_book.revision<>p_revision then raise exception 'Receipt book changed; reload before saving' using errcode='PT409'; end if;
   perform public.vendor_receipt_book_validate_v1(p_book,actor);
-  if exists(select 1 from jsonb_array_elements(current_book.book->'receipts') old
-    where not exists(select 1 from jsonb_array_elements(p_book->'receipts') fresh where fresh=old))
-    or exists(select 1 from jsonb_array_elements(current_book.book->'customers') old
-    where not exists(select 1 from jsonb_array_elements(p_book->'customers') fresh where fresh->'id'=old->'id')) then
+  if exists(select value from jsonb_array_elements(current_book.book->'receipts')
+    except select value from jsonb_array_elements(p_book->'receipts'))
+    or exists(select value->'id' from jsonb_array_elements(current_book.book->'customers')
+    except select value->'id' from jsonb_array_elements(p_book->'customers')) then
     raise exception 'Saved receipts and customer identities must be retained' using errcode='22023';
   end if;
   update public.vendor_receipt_books set book=p_book,revision=revision+1,last_request_id=p_request_id,updated_at=now()
