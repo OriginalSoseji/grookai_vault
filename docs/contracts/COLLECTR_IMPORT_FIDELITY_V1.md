@@ -89,6 +89,22 @@ a deployed backend, a new native build or import of the founder's collection.
 
 ## Governed MTG name matching follow-up
 
+The FCA follow-up recognizes the complete `alternate name - canonical name`
+pairs in the publisher's 64-card Through the Ages checklist, keyed by exact
+English set code and collector number. `collectr_fca_names_v1.json` records the
+public source URL, PDF hash and page; `generate_collectr_fca_names_v1.mjs` produces
+both runtime tables and `--check` detects drift. The canonical identity binding
+still applies. This fallback additionally requires normal layout, borderless
+border, inverted frame effect and source-material promo evidence. It reconciles
+Collectr's Showcase suffix only for a complete reviewed pair; it does not make
+Showcase and Borderless interchangeable. Alternate-name-only inputs, mismatched
+pairs and the unreviewed dagger-number variant remain held. Curly apostrophes
+normalize only inside this reviewed pair comparison. All original source fields
+are retained. Finish, grade, ambiguity and save checks remain independent.
+
+This local follow-up is tracked in
+`docs/checkpoints/collectr_fca_20261002.md`; it does not establish deployment.
+
 Adventure layouts also accept the permanent's name when the single governed
 identity binds the complete permanent/spell name to the exact English set,
 collector number and Scryfall print. The Adventure spell alone cannot identify

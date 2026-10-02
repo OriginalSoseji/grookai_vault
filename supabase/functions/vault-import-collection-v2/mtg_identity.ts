@@ -1,4 +1,6 @@
-// Mirror the native predicate; the shared synthetic corpus checks both runtimes.
+import { collectrFcaNames } from "./fca_names.ts";
+
+// Mirror the native predicate; the shared fixture corpus checks both runtimes.
 export function matchesCollectrMtgIdentity({sourceName, sourceNumber, game, card, identities}: {
   sourceName: string; sourceNumber: string; game: string;
   card: Record<string, any>; identities: Record<string, any>[];
@@ -30,14 +32,27 @@ export function matchesCollectrMtgIdentity({sourceName, sourceNumber, game, card
     const label = text(suffix[1]);
     if (labels.has(label)) return false;
     labels.add(label);
-    const effects = payload.frame_effects;
+    name = name.slice(0, suffix.index);
+  }
+  // Collectr's FCA combined name and Showcase label describe the reviewed
+  // source-material treatment, not a generic equivalence to borderless cards.
+  const aliasText = (value: unknown) => text(value).replace(/\u2019/g, "'");
+  const pair = collectrFcaNames[number(sourceNumber)];
+  const effects = payload.frame_effects;
+  const fcaAlias = text(card.set_code) === "fca" && !!pair &&
+    payload.layout === "normal" && payload.border_color === "borderless" &&
+    Array.isArray(effects) && effects.includes("inverted") &&
+    Array.isArray(payload.promo_types) && payload.promo_types.includes("sourcematerial") &&
+    aliasText(card.name) === aliasText(pair[1]) &&
+    aliasText(name) === aliasText(`${pair[0]} - ${pair[1]}`);
+  for (const label of labels) {
     const verified = label === "extended art" ? Array.isArray(effects) && effects.includes("extendedart")
-      : label === "showcase" ? Array.isArray(effects) && effects.includes("showcase")
+      : label === "showcase" ? fcaAlias || Array.isArray(effects) && effects.includes("showcase")
       : label === "borderless" ? payload.border_color === "borderless"
       : /^\d+$/.test(label) && number(label) === number(sourceNumber);
     if (!verified) return false;
-    name = name.slice(0, suffix.index);
   }
+  if (fcaAlias) return true;
   if (name === text(card.name)) return true;
   const faces = text(payload.name).split(" // ");
   // Adventure exports may use the permanent's name without the attached spell.

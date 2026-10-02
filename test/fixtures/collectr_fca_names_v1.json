@@ -1,0 +1,329 @@
+{
+  "version": 1,
+  "setCode": "fca",
+  "sourceUrl": "https://media.wizards.com/ContentResources/WPN/deck_checklists/fin/MTGFIN_EN_DckCklst.pdf",
+  "sourcePage": 2,
+  "sourceSha256": "b065ba69dcd70edbab99b43df56847b52f90e4c565a85b060a72c93bb1437998",
+  "rows": [
+    {
+      "number": "1",
+      "alternateName": "Hero of Light",
+      "canonicalName": "Adeline, Resplendent Cathar"
+    },
+    {
+      "number": "2",
+      "alternateName": "Knights of San d'Oria",
+      "canonicalName": "Ranger-Captain of Eos"
+    },
+    {
+      "number": "3",
+      "alternateName": "Firion, Swordmaster",
+      "canonicalName": "Sram, Senior Edificer"
+    },
+    {
+      "number": "4",
+      "alternateName": "Wild Rose Rebellion",
+      "canonicalName": "Counterspell"
+    },
+    {
+      "number": "5",
+      "alternateName": "Terra Branford",
+      "canonicalName": "Urza, Lord High Artificer"
+    },
+    {
+      "number": "6",
+      "alternateName": "Master Xande",
+      "canonicalName": "Venser, Shaper Savant"
+    },
+    {
+      "number": "7",
+      "alternateName": "Kefka's Tower",
+      "canonicalName": "Bolas's Citadel"
+    },
+    {
+      "number": "8",
+      "alternateName": "Darkness of Eternity",
+      "canonicalName": "Dark Ritual"
+    },
+    {
+      "number": "9",
+      "alternateName": "Battle at the Big Bridge",
+      "canonicalName": "Fatal Push"
+    },
+    {
+      "number": "10",
+      "alternateName": "Golbez, Clad in Darkness",
+      "canonicalName": "Syr Konrad, the Grim"
+    },
+    {
+      "number": "11",
+      "alternateName": "The Emperor, Hell Tyrant",
+      "canonicalName": "Yawgmoth, Thran Physician"
+    },
+    {
+      "number": "12",
+      "alternateName": "Dragon of Mount Gulg",
+      "canonicalName": "Ancient Copper Dragon"
+    },
+    {
+      "number": "13",
+      "alternateName": "Gilgamesh, Weapon Collector",
+      "canonicalName": "Godo, Bandit Warlord"
+    },
+    {
+      "number": "14",
+      "alternateName": "Kefka Palazzo",
+      "canonicalName": "Purphoros, God of the Forge"
+    },
+    {
+      "number": "15",
+      "alternateName": "Princess Sarah",
+      "canonicalName": "Azusa, Lost but Seeking"
+    },
+    {
+      "number": "16",
+      "alternateName": "The Cloudsea Djinn",
+      "canonicalName": "Nyxbloom Ancient"
+    },
+    {
+      "number": "17",
+      "alternateName": "Warrior of Light",
+      "canonicalName": "Jodah, the Unifier"
+    },
+    {
+      "number": "18",
+      "alternateName": "Cecil Harvey",
+      "canonicalName": "Tymna the Weaver"
+    },
+    {
+      "number": "19",
+      "alternateName": "Bartz Klauser",
+      "canonicalName": "Winota, Joiner of Forces"
+    },
+    {
+      "number": "20",
+      "alternateName": "Giant of Babil",
+      "canonicalName": "Traxos, Scourge of Kroog"
+    },
+    {
+      "number": "21",
+      "alternateName": "Blessing of the Oracle",
+      "canonicalName": "Akroma's Will"
+    },
+    {
+      "number": "22",
+      "alternateName": "Squall Leonhart",
+      "canonicalName": "Danitha Capashen, Paragon"
+    },
+    {
+      "number": "23",
+      "alternateName": "Noctis Lucis Caelum",
+      "canonicalName": "Kenrith, the Returned King"
+    },
+    {
+      "number": "24",
+      "alternateName": "Garnet Til Alexandros 17th",
+      "canonicalName": "Loran of the Third Path"
+    },
+    {
+      "number": "25",
+      "alternateName": "Minwu, Rebellion Strategist",
+      "canonicalName": "Mangara, the Diplomat"
+    },
+    {
+      "number": "26",
+      "alternateName": "Memories of Nibelheim",
+      "canonicalName": "Stroke of Midnight"
+    },
+    {
+      "number": "27",
+      "alternateName": "The Imperial City of Archades",
+      "canonicalName": "Wall of Omens"
+    },
+    {
+      "number": "28",
+      "alternateName": "Endwalker",
+      "canonicalName": "Brainstorm"
+    },
+    {
+      "number": "29",
+      "alternateName": "To the Crystal Tower",
+      "canonicalName": "Cryptic Command"
+    },
+    {
+      "number": "30",
+      "alternateName": "Vana'diel Adventurers",
+      "canonicalName": "Laboratory Maniac"
+    },
+    {
+      "number": "31",
+      "alternateName": "Stay with Me",
+      "canonicalName": "Rhystic Study"
+    },
+    {
+      "number": "32",
+      "alternateName": "Edea Kramer",
+      "canonicalName": "Teferi, Mage of Zhalfir"
+    },
+    {
+      "number": "33",
+      "alternateName": "Baron Rivalry",
+      "canonicalName": "Deadly Dispute"
+    },
+    {
+      "number": "34",
+      "alternateName": "Shantotto's Coercion",
+      "canonicalName": "Diabolic Intent"
+    },
+    {
+      "number": "35",
+      "alternateName": "The Shadow Lord",
+      "canonicalName": "Gix, Yawgmoth Praetor"
+    },
+    {
+      "number": "36",
+      "alternateName": "Emet-Selch, Ascian",
+      "canonicalName": "K'rrik, Son of Yawgmoth"
+    },
+    {
+      "number": "37",
+      "alternateName": "Ardyn Izunia",
+      "canonicalName": "Varragoth, Bloodsky Sire"
+    },
+    {
+      "number": "38",
+      "alternateName": "Vaan, Aspiring Sky Pirate",
+      "canonicalName": "Captain Lannery Storm"
+    },
+    {
+      "number": "39",
+      "alternateName": "A Promise Fulfilled",
+      "canonicalName": "Light Up the Stage"
+    },
+    {
+      "number": "40",
+      "alternateName": "Thrum of the Vestige",
+      "canonicalName": "Lightning Bolt"
+    },
+    {
+      "number": "41",
+      "alternateName": "Dawn Warriors' Legacy",
+      "canonicalName": "Mizzix's Mastery"
+    },
+    {
+      "number": "42",
+      "alternateName": "Cloud Strife",
+      "canonicalName": "Najeela, the Blade-Blossom"
+    },
+    {
+      "number": "43",
+      "alternateName": "Zidane Tribal",
+      "canonicalName": "Ragavan, Nimble Pilferer"
+    },
+    {
+      "number": "44",
+      "alternateName": "Fal'Cie Paradise",
+      "canonicalName": "Carpet of Flowers"
+    },
+    {
+      "number": "45",
+      "alternateName": "Newfound Adventure",
+      "canonicalName": "Farseek"
+    },
+    {
+      "number": "46",
+      "alternateName": "Vayne Carudas Solidor",
+      "canonicalName": "Fynn, the Fangbearer"
+    },
+    {
+      "number": "47",
+      "alternateName": "Search for the Frozen Esper",
+      "canonicalName": "Nature's Claim"
+    },
+    {
+      "number": "48",
+      "alternateName": "Astral Titan",
+      "canonicalName": "Primeval Titan"
+    },
+    {
+      "number": "49",
+      "alternateName": "Sephiroth, the Savior",
+      "canonicalName": "Atraxa, Grand Unifier"
+    },
+    {
+      "number": "50",
+      "alternateName": "Hugo Kupka",
+      "canonicalName": "Bruse Tarl, Boorish Herder"
+    },
+    {
+      "number": "51",
+      "alternateName": "Shadowbringers",
+      "canonicalName": "Dovin's Veto"
+    },
+    {
+      "number": "52",
+      "alternateName": "Kuja, Mage Manufacturer",
+      "canonicalName": "Inalla, Archmage Ritualist"
+    },
+    {
+      "number": "53",
+      "alternateName": "Benedikta Harman",
+      "canonicalName": "Ishai, Ojutai Dragonspeaker"
+    },
+    {
+      "number": "54",
+      "alternateName": "Lightning, Lone Commando",
+      "canonicalName": "Isshin, Two Heavens as One"
+    },
+    {
+      "number": "55",
+      "alternateName": "Seymour Guado",
+      "canonicalName": "Kinnan, Bonder Prodigy"
+    },
+    {
+      "number": "56",
+      "alternateName": "Barnabas Tharmr",
+      "canonicalName": "Kraum, Ludevic's Opus"
+    },
+    {
+      "number": "57",
+      "alternateName": "Orphan, Cocoon fal'Cie",
+      "canonicalName": "Muldrotha, the Gravetide"
+    },
+    {
+      "number": "58",
+      "alternateName": "Tidus, Zanarkand Fayth",
+      "canonicalName": "Thrasios, Triton Hero"
+    },
+    {
+      "number": "59",
+      "alternateName": "Clive Rosfield",
+      "canonicalName": "Vial Smasher the Fierce"
+    },
+    {
+      "number": "60",
+      "alternateName": "Yuffie Kisaragi",
+      "canonicalName": "Yuriko, the Tiger's Shadow"
+    },
+    {
+      "number": "61",
+      "alternateName": "Crystal of Altar Cave",
+      "canonicalName": "Chromatic Lantern"
+    },
+    {
+      "number": "62",
+      "alternateName": "The Strahl",
+      "canonicalName": "Smuggler's Copter"
+    },
+    {
+      "number": "63",
+      "alternateName": "Luka Stadium",
+      "canonicalName": "Strixhaven Stadium"
+    },
+    {
+      "number": "64",
+      "alternateName": "Balamb Garden",
+      "canonicalName": "Command Beacon"
+    }
+  ]
+}

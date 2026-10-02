@@ -32,16 +32,16 @@ void main() {
     });
   }
 
-  Future<Fixture> fixture() async {
+  Future<Fixture> fixture([Map? override, String finish = 'foil']) async {
     final f = Fixture();
     addTearDown(f.client.dispose);
     await f.signIn();
-    final input = cases.first['input'] as Map;
+    final input = override ?? cases.first['input'] as Map;
     f.catalogSets = [
       {
         'id': 'synthetic-set',
         'name': 'Synthetic Set',
-        'code': 'syn',
+        'code': (input['card'] as Map)['set_code'],
         'game': 'mtg',
       },
     ];
@@ -67,7 +67,7 @@ void main() {
                   {
                     'id': '33333333-3333-4333-8333-333333333333',
                     'card_print_id': cardA,
-                    'finish_key': 'foil',
+                    'finish_key': finish,
                     'finish_is_active': true,
                   },
                 ]
@@ -83,6 +83,38 @@ void main() {
 
   const csv =
       'Category,Set,Product Name,Card Number,Variance,Quantity\nMTG,Synthetic Set,Fixture Mage (Extended Art),00373,Foil,2';
+  for (final finish in ['normal', 'foil']) {
+    test(
+      'FCA preview preserves $finish and holds grades and special foils',
+      () async {
+        final input =
+            cases.firstWhere(
+                  (c) => c['label'] == 'FCA official pair 4',
+                )['input']
+                as Map;
+        final f = await fixture(input, finish);
+        final name = input['sourceName'] as String;
+        final variance = finish == 'foil' ? 'Foil' : 'Normal';
+        final export =
+            'Category,Set,Product Name,Card Number,Variance,Quantity,Grade\n'
+            'MTG,Synthetic Set,$name,4,$variance,2,Ungraded\n'
+            'MTG,Synthetic Set,$name,4,$variance,1,PSA 10\n'
+            'MTG,Synthetic Set,$name,4,Surge Foil,1,Ungraded';
+        final preview = await CollectionImportService.buildPreview(
+          client: f.client,
+          csvText: export,
+          sourceAware: true,
+        );
+        expect(preview.rows.length, 3);
+        expect(preview.rows.first.canImport, true);
+        expect(preview.rows.first.cardPrintingFinishKey, finish);
+        expect(preview.rows.first.desiredQuantity, 2);
+        expect(preview.rows.first.row.sourceFields['Product Name'], name);
+        expect(preview.rows.skip(1).every((r) => !r.canImport), true);
+        expect(f.saved, isEmpty);
+      },
+    );
+  }
   test(
     'source-aware preview resolves governed art and preserves original details',
     () async {

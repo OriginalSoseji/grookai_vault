@@ -38,6 +38,18 @@ reset populated fixtures to recover connectivity.
 
 ## Web-first Collectr importer — October 1
 
+The FCA alternate-name follow-up reuses the clean completed Adventure checkout
+on `fix/collectr-fca-20261002`; see `docs/checkpoints/collectr_fca_20261002.md`.
+Historical Adventure commits, source baseline and consumed release intents are
+preserved. Never replay those intents against changed source. New private
+evidence is under `collectr_fca_20261002`. `GV_COLLECTR_FCA_HTTP_PROOF=1` uses the
+same retained410 lab and loopback Next58863, adding only synthetic accounts and
+unused reviewed FCA coordinates. It reuses an existing FCA set only if its
+fixture provenance agrees; never create a duplicate set or reset the lab.
+Releases must include and hash the new `fca_names.ts` dependency together with
+`mtg_identity.ts`. `node scripts/generate_collectr_fca_names_v1.mjs --check`
+verifies both runtime maps against the public publisher manifest.
+
 The Adventure-name follow-up is in `docs/checkpoints/collectr_adventure_20261001.md`.
 Its fixed isolated worktree uses `GV_COLLECTR_ADVENTURE_HTTP_PROOF=1` for the same
 retained410 lab and Next58863. A fresh synthetic Adventure identity exercises the

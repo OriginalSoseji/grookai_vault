@@ -1,3 +1,5 @@
+import 'collectr_fca_names.dart';
+
 // Fallback name matching requires one governed identity, never a stripped label
 // alone. Keep this predicate aligned with the server and shared fixture corpus.
 bool matchesCollectrMtgIdentity({
@@ -51,24 +53,47 @@ bool matchesCollectrMtgIdentity({
     if (suffix == null) break;
     final label = text(suffix.group(1));
     if (!labels.add(label)) return false;
-    final effects = payload['frame_effects'];
+    name = name.substring(0, suffix.start);
+  }
+  // The FCA exception requires the complete reviewed name pair and governed
+  // source-material presentation. Generic Showcase labels retain their gate.
+  String aliasText(dynamic value) => text(value).replaceAll('\u2019', "'");
+  final pair = collectrFcaNames[number(sourceNumber)];
+  final effects = payload['frame_effects'];
+  final promos = payload['promo_types'];
+  final fcaAlias =
+      text(card['set_code']) == 'fca' &&
+      pair != null &&
+      payload['layout'] == 'normal' &&
+      payload['border_color'] == 'borderless' &&
+      effects is List &&
+      effects.contains('inverted') &&
+      promos is List &&
+      promos.contains('sourcematerial') &&
+      aliasText(card['name']) == aliasText(pair[1]) &&
+      aliasText(name) == aliasText('${pair[0]} - ${pair[1]}');
+  for (final label in labels) {
     final verified = switch (label) {
       'extended art' => effects is List && effects.contains('extendedart'),
-      'showcase' => effects is List && effects.contains('showcase'),
+      'showcase' => fcaAlias || effects is List && effects.contains('showcase'),
       'borderless' => payload['border_color'] == 'borderless',
       _ =>
         RegExp(r'^\d+$').hasMatch(label) &&
             number(label) == number(sourceNumber),
     };
     if (!verified) return false;
-    name = name.substring(0, suffix.start);
   }
+  if (fcaAlias) return true;
   if (name == text(card['name'])) return true;
   // A front face or Adventure permanent name can identify the complete print
   // only when its governed layout, full name and collector number agree.
   // The Adventure spell alone must not identify the permanent.
   final faces = text(payload['name']).split(' // ');
-  return const ['transform', 'modal_dfc', 'adventure'].contains(payload['layout']) &&
+  return const [
+        'transform',
+        'modal_dfc',
+        'adventure',
+      ].contains(payload['layout']) &&
       faces.length == 2 &&
       faces.every((face) => face.isNotEmpty) &&
       name == faces.first;
