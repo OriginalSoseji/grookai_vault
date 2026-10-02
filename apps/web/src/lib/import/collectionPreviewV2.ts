@@ -5,14 +5,20 @@ import { matchesCollectrPokemonName } from "../../../../../supabase/functions/va
 import { matchesCollectrMtgIdentity } from "../../../../../supabase/functions/vault-import-collection-v2/mtg_identity.ts";
 
 export type CollectionSelection = { sourceIndices: number[]; cardId: string; gvId: string; cardPrintingId: string | null };
+export type CollectionReviewCandidate = {
+  cardId: string; gvId: string; name: string; number: string; setName: string; setCode: string;
+  variantKey: string | null; printedIdentityModifier: string | null;
+  finish: string | null; selection: CollectionSelection | null; unavailableReason: string | null;
+};
 export type CollectionPreviewRow = {
   sourceIndices: number[]; source: SourceRow; sourceRecords: SourceRow[]; quantity: number | null;
   reason: string | null; selection: CollectionSelection | null;
   matchedName: string | null; finish: string | null;
+  review?: { reason: string; candidates: CollectionReviewCandidate[]; selectedCardId: string | null };
 };
 export type CollectionPreviewV2 = { ownerId: string; rows: CollectionPreviewRow[]; sourceRows: number; readyRows: number; readyCopies: number; reviewRows: number };
-type SetRow = { id: string; name: string; game: string };
-type CardRow = { id: string; gv_id: string; name: string; number: string; set_id: string; set_code: string; variant_key: string; identity_domain: string; language: string };
+type SetRow = { id: string; name: string; code: string; game: string };
+type CardRow = { id: string; gv_id: string; name: string; number: string; set_id: string; set_code: string; variant_key: string; printed_identity_modifier: string | null; identity_domain: string; language: string };
 type Identity = { id: string; card_print_id: string } & Record<string, unknown>;
 type Printing = { id: string; card_print_id: string; finish_key: string; finish_is_active: boolean };
 type Result = PromiseLike<{ data: unknown; error: unknown }>;
@@ -68,7 +74,7 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
   const groups = [...grouped.values()];
   const valid = groups.filter(g => g.normalized !== null);
   const sets = valid.length ? await readImportPages<SetRow>(after => {
-    let query = client.from("sets").select("id,name,game").order("id").limit(500);
+    let query = client.from("sets").select("id,name,code,game").order("id").limit(500);
     if (after) query = query.gt("id", after);
     return query;
   }, row => row.id) : [];
@@ -79,7 +85,7 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
   for (let start = 0; start < wanted.length; start += 100) {
     const chunk = wanted.slice(start, start + 100);
     const page = await readImportPages<CardRow>(after => {
-      let query = client.from("card_prints").select("id,gv_id,name,number,set_id,set_code,variant_key,identity_domain").in("set_id", chunk).order("id").limit(500);
+      let query = client.from("card_prints").select("id,gv_id,name,number,set_id,set_code,variant_key,printed_identity_modifier,identity_domain").in("set_id", chunk).order("id").limit(500);
       if (after) query = query.gt("id", after);
       return query;
     }, row => row.id);
@@ -134,6 +140,24 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
     }
     if (candidates.length !== 1) {
       row.reason = candidates.length ? "Multiple catalog identities match. Keep this row for review." : "No exact match for this game, set, name and number.";
+      if (candidates.length > 1) row.review = {
+        reason: row.reason, selectedCardId: null,
+        candidates: candidates.map(card => {
+          const set = sets.find(set => set.id === card.set_id)!;
+          // Offer only the exact selections the existing server validator can
+          // accept. Missing or duplicate finish evidence is never user-overridden.
+          const options = (printings.get(card.id) ?? []).filter(p => base!.finishKey === null || p.finish_key === base!.finishKey);
+          const option = options.length === 1 ? options[0] : null;
+          return {
+            cardId: card.id, gvId: card.gv_id, name: card.name, number: card.number,
+            setName: set.name, setCode: set.code || card.set_code || "",
+            variantKey: card.variant_key || null, printedIdentityModifier: card.printed_identity_modifier || null,
+            finish: option?.finish_key ?? null,
+            selection: option ? { sourceIndices: [...row.sourceIndices], cardId: card.id, gvId: card.gv_id, cardPrintingId: option.id } : null,
+            unavailableReason: option ? null : options.length ? "More than one printing matches; this option needs further review." : "No verified printing matches the requested finish.",
+          };
+        }),
+      };
       continue;
     }
     const card = candidates[0];
