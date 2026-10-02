@@ -1,0 +1,21 @@
+[
+  {"name":"Synthetic (Cosmos Holo)","base":"synthetic","finish":"cosmos"},
+  {"name":"Synthetic (Cosmo Holo)","base":"synthetic","finish":"cosmos"},
+  {"name":"Synthetic (Cosmos Foil)","base":"synthetic","finish":"cosmos"},
+  {"name":"Synthetic (Cosmo Foil)","base":"synthetic","finish":"cosmos"},
+  {"name":"Synthetic (Cracked Ice Holo)","base":"synthetic","finish":"cracked_ice"},
+  {"name":"Synthetic (Poke Ball Pattern)","base":"synthetic","finish":"pokeball"},
+  {"name":"  SYNTHETIC   (Poké Ball Pattern) ","base":"synthetic","finish":"pokeball"},
+  {"name":"Synthetic (Master Ball Pattern)","base":"synthetic","finish":"masterball"},
+  {"name":"Synthetic (Reverse Cosmos Holo)","base":null,"finish":null},
+  {"name":"Synthetic (Cosmos Holo) (Costco Exclusive)","base":null,"finish":null},
+  {"name":"Synthetic (Holiday Calendar) (Cosmos Holo)","base":null,"finish":null},
+  {"name":"Synthetic (Poke Ball Pattern) (007)","base":null,"finish":null},
+  {"name":"Synthetic (Full Art)","base":null,"finish":null},
+  {"name":"Synthetic (Master Ball Pattern) (Poke Ball Pattern)","base":null,"finish":null},
+  {"name":"Synthetic (Surge Foil)","base":null,"finish":null},
+  {"name":"Synthetic (Water Web Holo)","base":null,"finish":null},
+  {"name":"Synthetic (Poke Ball)","base":null,"finish":null},
+  {"name":"(Cosmos Holo)","base":null,"finish":null},
+  {"name":"Synthetic (Cosmos Holo) extra","base":null,"finish":null}
+]

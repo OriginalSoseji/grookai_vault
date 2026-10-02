@@ -3,6 +3,7 @@ import { field, normalize, number, parseCsv, setName, text, type Normalized, typ
 import { collectrSetTargets } from "../../../../../supabase/functions/vault-import-collection-v2/set_scope.ts";
 import { matchesCollectrPokemonName } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_name.ts";
 import { matchesCollectrMtgIdentity } from "../../../../../supabase/functions/vault-import-collection-v2/mtg_identity.ts";
+import { collectrPokemonNamedFinish } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_named_finish.ts";
 
 export type CollectionSelection = { sourceIndices: number[]; cardId: string; gvId: string; cardPrintingId: string | null };
 export type CollectionReviewCandidate = {
@@ -109,11 +110,13 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
   const matches = new Map<CollectionPreviewRow, CardRow[]>();
   for (const group of valid) {
     const base = group.normalized!, setIds = new Set(setsFor(base).map(set => set.id));
+    const namedFinish = base.game === "pokemon" ? collectrPokemonNamedFinish(base.name) : null;
     matches.set(group.row, cards.filter(card => setIds.has(card.set_id) && number(card.number ?? "") === base.number && !!card.gv_id && (
+      namedFinish ? matchesCollectrPokemonName({ sourceName: namedFinish.name, sourceNumber: base.number, game: base.game, card }) : (
       text(card.name ?? "").toLowerCase() === base.name ||
       matchesCollectrPokemonName({ sourceName: base.name, sourceNumber: base.number, game: base.game, card }) ||
       matchesCollectrMtgIdentity({ sourceName: base.name, sourceNumber: base.number, game: base.game, card, identities: identities.get(card.id) ?? [] })
-    )));
+    ))));
   }
   const printingIds = [...new Set([...matches.values()].flat().map(card => card.id))].sort();
   const printings = new Map<string, Printing[]>();

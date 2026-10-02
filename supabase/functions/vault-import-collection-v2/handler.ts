@@ -1,6 +1,7 @@
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
 import { matchesCollectrMtgIdentity } from "./mtg_identity.ts";
 import { matchesCollectrPokemonName } from "./pokemon_name.ts";
+import { collectrPokemonNamedFinish } from "./pokemon_named_finish.ts";
 import { collectrSetTargets } from "./set_scope.ts";
 import {
   ImportValidationError,
@@ -195,14 +196,16 @@ async function resolveTargets(
     if (total > 50000) throw new ImportValidationError("import_quantity_limit");
     const card = byCard.get(selectedRow.cardId),
       set = Array.isArray(card?.sets) ? card.sets[0] : card?.sets;
+    const namedFinish = base.game === "pokemon" ? collectrPokemonNamedFinish(base.name) : null;
     if (
       !card || card.gv_id !== selectedRow.gvId || !object(set) ||
       (base.game && set.game !== base.game) ||
-      (text(card.name ?? "").toLowerCase() !== base.name &&
+      (namedFinish ? !matchesCollectrPokemonName({sourceName: namedFinish.name,
+        sourceNumber: base.number, game: base.game, card}) : (text(card.name ?? "").toLowerCase() !== base.name &&
         !matchesCollectrPokemonName({sourceName: base.name, sourceNumber: base.number,
           game: base.game, card}) &&
         !matchesCollectrMtgIdentity({sourceName: base.name, sourceNumber: base.number,
-          game: base.game, card, identities: identities.get(card.id) ?? []})) ||
+          game: base.game, card, identities: identities.get(card.id) ?? []}))) ||
       !collectrSetTargets(base.set, base.game, base.number).includes(setName(set.name ?? "", base.game)) ||
       number(card.number ?? "") !== base.number
     ) throw new ImportValidationError("import_card_identity_mismatch");

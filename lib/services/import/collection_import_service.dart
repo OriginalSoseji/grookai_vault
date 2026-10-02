@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../vault/vault_card_service.dart';
 import 'collection_import_mtg_identity.dart';
 import 'collection_import_pokemon_name.dart';
+import 'collection_import_named_finish.dart';
 import 'collection_import_set_scope.dart';
 
 class CollectionImportParsedRow {
@@ -515,7 +516,20 @@ class CollectionImportService {
           )
           .where((card) => row.gameCode.isEmpty || card.game == row.gameCode)
           .toList();
-      final result = {for (final card in exact) card.id: card};
+      final namedFinish = sourceAware && row.gameCode == 'pokemon'
+          ? collectrPokemonNamedFinish(row.displayName)
+          : null;
+      final result = {
+        for (final card in exact)
+          if (namedFinish == null ||
+              matchesCollectrPokemonName(
+                sourceName: namedFinish.name,
+                sourceNumber: row.displayNumber,
+                game: row.gameCode,
+                card: card.identityCard,
+              ))
+            card.id: card,
+      };
       if (sourceAware && row.gameCode == 'pokemon') {
         for (final card in _matchingSetKeys(row, sourceAware).expand(
           (key) =>
@@ -524,7 +538,7 @@ class CollectionImportService {
         )) {
           if (card.game == 'pokemon' &&
               matchesCollectrPokemonName(
-                sourceName: row.displayName,
+                sourceName: namedFinish?.name ?? row.displayName,
                 sourceNumber: row.displayNumber,
                 game: row.gameCode,
                 card: card.identityCard,
@@ -592,7 +606,11 @@ class CollectionImportService {
       var matches = row.reviewReasons.isEmpty
           ? matchesFor(row)
           : <_CollectionImportCandidateRow>[];
-      final requestedFinish = importFinishKey(row.finish);
+      final namedFinish = sourceAware && row.gameCode == 'pokemon'
+          ? collectrPokemonNamedFinish(row.displayName)
+          : null;
+      final requestedFinish =
+          namedFinish?.finishKey ?? importFinishKey(row.finish);
       if (sourceAware && matches.length > 1 && requestedFinish != null) {
         // Compare the explicit finish before declaring parent ambiguity. Missing
         // printing evidence cannot rule out a competing identity. Never prefer
@@ -614,11 +632,11 @@ class CollectionImportService {
       String? printingFinishKey;
       if (sourceAware &&
           matches.length == 1 &&
-          (row.finish.trim().isEmpty || importFinishKey(row.finish) != null)) {
+          (row.finish.trim().isEmpty || requestedFinish != null)) {
         final options = (printingsByParent[matches.single.id] ?? [])
             .where(
               (option) =>
-                  (row.finish.trim().isEmpty ||
+                  (requestedFinish == null ||
                   option['finish_key'] == requestedFinish),
             )
             .toList();
@@ -739,6 +757,11 @@ class CollectionImportService {
         row.finish.trim().isNotEmpty &&
         importFinishKey(row.finish) == null)
       'Finish: ${row.finish}. This finish needs review before saving.',
+    if (sourceAware &&
+        row.gameCode == 'pokemon' &&
+        collectrPokemonNamedFinish(row.displayName) != null &&
+        !collectrNamedFinishVarianceAgrees(row.finish))
+      'The named finish conflicts with the Variance column; keep the original row for review.',
     if (sourceAware &&
         RegExp(
           r'1st edition|shadowless|unlimited',

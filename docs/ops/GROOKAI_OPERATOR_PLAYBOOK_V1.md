@@ -38,6 +38,17 @@ reset populated fixtures to recover connectivity.
 
 ## Web-first Collectr importer — October 1
 
+The named Pokemon finish follow-up reuses the completed Adventure checkout on
+`feature/collectr-named-finishes-20261002`. Read
+`docs/checkpoints/collectr_named_finishes_20261002.md`; private evidence is under
+`collectr_named_finishes_20261002`. `GV_COLLECTR_NAMED_FINISH_HTTP_PROOF=1`
+extends the retained410 lab on Next58863 with synthetic exact-finish save tests.
+It inserts only absent fixture finish vocabulary and preserves existing rows;
+this is not production catalog authority or a migration. Do not reset the lab.
+Future Edge deployment must include `pokemon_named_finish.ts` with source and
+handler; native distribution remains separate from web deployment. Keep earlier
+review-choice and FCA release intents immutable.
+
 The FCA alternate-name follow-up reuses the clean completed Adventure checkout
 on `fix/collectr-fca-20261002`; see `docs/checkpoints/collectr_fca_20261002.md`.
 Historical Adventure commits, source baseline and consumed release intents are

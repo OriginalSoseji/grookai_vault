@@ -8,6 +8,26 @@ const row={'Product Name':'Synthetic card',Category:'Pokemon',Set:'151','Card Nu
 const toCsv=rows=>{const keys=Object.keys(rows[0]);return[keys,...rows.map(r=>keys.map(k=>r[k]))].map(r=>r.map(v=>'"'+v.replaceAll('"','""')+'"').join(',')).join('\n');};
 const owner=randomUUID(),cardId=randomUUID(),printing=randomUUID(),requestId=randomUUID();
 const selection={sourceIndices:[0],cardId,gvId:'GV-TEST',cardPrintingId:printing};
+const namedFinishes=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_named_finishes_v1.json',import.meta.url)));
+for(const c of namedFinishes)test('named source finish requires its exact governed child: '+c.name,async()=>{
+ const source={...row,'Product Name':c.name,Variance:'Holofoil'};
+ const options={card:{name:'Synthetic',identity_domain:'pokemon_eng_standard'},printing:{finish_key:c.finish??'holo'}};
+ const f=fixture(options),response=await f.send({csvText:toCsv([source])});
+ assert.equal(response.status,c.finish?200:400);
+ if(!c.finish){assert.equal(f.writes.length,0);return;}
+ assert.equal(f.writes[0].args.p_targets[0].finishKey,c.finish);assert.equal(f.writes[0].args.p_targets[0].cardPrintingId,printing);assert.deepEqual(f.writes[0].args.p_source_rows,[source]);
+ for(const printingChange of [{finish_key:'holo'},{finish_key:'reverse'},{finish_is_active:false}]){
+  const bad=fixture({...options,printing:{...options.printing,...printingChange}});assert.equal((await bad.send({csvText:toCsv([source])})).status,400);assert.equal(bad.writes.length,0);
+ }
+ for(const cardChange of [{identity_domain:'pokemon_jpn_standard'},{language:'ja'},{number:'66'},{name:c.name,identity_domain:'pokemon_jpn_standard'}]){
+  const bad=fixture({...options,card:{...options.card,...cardChange}});assert.equal((await bad.send({csvText:toCsv([source])})).status,400);assert.equal(bad.writes.length,0);
+ }
+ const duplicate=fixture({...options,extraPrintings:[{id:randomUUID(),card_print_id:cardId,finish_key:c.finish,finish_is_active:true}]});
+ assert.equal((await duplicate.send({csvText:toCsv([source])})).status,400);assert.equal(duplicate.writes.length,0);
+ for(const change of [{Variance:'Normal'},{Variance:'Reverse Holofoil'},{Grade:'PSA 10'}]){
+  const bad=fixture(options);assert.equal((await bad.send({csvText:toCsv([{...source,...change}])})).status,400);assert.equal(bad.writes.length,0);
+ }
+});
 function fixture(options={}) {
  const writes=[],reads=[];
  const client={from:table=>{
