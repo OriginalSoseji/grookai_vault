@@ -8,6 +8,16 @@ const row={'Product Name':'Synthetic card',Category:'Pokemon',Set:'151','Card Nu
 const toCsv=rows=>{const keys=Object.keys(rows[0]);return[keys,...rows.map(r=>keys.map(k=>r[k]))].map(r=>r.map(v=>'"'+v.replaceAll('"','""')+'"').join(',')).join('\n');};
 const owner=randomUUID(),cardId=randomUUID(),printing=randomUUID(),requestId=randomUUID();
 const selection={sourceIndices:[0],cardId,gvId:'GV-TEST',cardPrintingId:printing};
+const artLabels=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_pokemon_art_labels_v1.json',import.meta.url)));
+for(const c of artLabels)test('server enforces art evidence and preserves original source: '+c.label,async()=>{
+ const source={...row,'Product Name':c.name,'Card Number':'007/100',Variance:'Holofoil'};
+ const options={card:{name:'Synthetic-EX',number:'7',identity_domain:'pokemon_eng_standard',rarity:c.rarity,variant_key:c.variant},printing:{finish_key:'holo'}};
+ const f=fixture(options);assert.equal((await f.send({csvText:toCsv([source])})).status,c.expected?200:400);assert.equal(f.writes.length,c.expected?1:0);
+ if(!c.expected)return;
+ assert.deepEqual(f.writes[0].args.p_source_rows,[source]);assert.equal(f.writes[0].args.p_targets[0].cardPrintingId,printing);
+ for(const change of [{rarity:'Rare'},{printed_identity_modifier:'stamp'},{number:'8'},{identity_domain:'pokemon_jpn_standard'}]){const bad=fixture({...options,card:{...options.card,...change}});assert.equal((await bad.send({csvText:toCsv([source])})).status,400);assert.equal(bad.writes.length,0);}
+ for(const change of [{Grade:'PSA 10'},{Variance:'Reverse Holofoil'}]){const bad=fixture(options);assert.equal((await bad.send({csvText:toCsv([{...source,...change}])})).status,400);assert.equal(bad.writes.length,0);}
+});
 const namedFinishes=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_named_finishes_v1.json',import.meta.url)));
 for(const c of namedFinishes)test('named source finish requires its exact governed child: '+c.name,async()=>{
  const source={...row,'Product Name':c.name,Variance:'Holofoil'};

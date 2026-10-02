@@ -1,5 +1,5 @@
-// Formatting equivalence only. Artwork, edition, stamp and finish labels remain
-// part of the name. Callers must also match game, set, number and child printing.
+// Formatting and catalog-evidenced artwork labels only. Callers must also match
+// game, set, number and child printing. Original source remains unchanged.
 bool matchesCollectrPokemonName({
   required String sourceName,
   required String sourceNumber,
@@ -32,8 +32,29 @@ bool matchesCollectrPokemonName({
     if (number(suffix.group(1)) != number(sourceNumber)) return false;
     name = name.substring(0, suffix.start);
   }
-  // Only the separator before a terminal EX/GX changes. Never remove a suffix
-  // such as Full Art, Secret, Delta Species, Red Cheeks or Cosmos Holo.
+  final art = RegExp(
+    r'^([^()]+)\s+\(\s*(full art|secret|alternate art secret)\s*\)$',
+  ).firstMatch(name);
+  if (art != null) {
+    final rarity = text(card['rarity']);
+    final variant = text(card['variant_key']);
+    final secret = [
+      'rare secret',
+      'secret rare',
+      'rare rainbow',
+    ].contains(rarity);
+    final supported = art.group(2) == 'full art'
+        ? ['rare ultra', 'ultra rare'].contains(rarity) &&
+              ['', 'rc'].contains(variant)
+        : art.group(2) == 'secret'
+        ? secret && ['', 'tg'].contains(variant)
+        : secret && variant == 'alt';
+    if (!supported || text(card['printed_identity_modifier']).isNotEmpty) {
+      return false;
+    }
+    name = art.group(1)!.trim();
+  }
+  // Unrecognized decorations (including stamps and finishes) remain literal.
   String canonical(String value) => value.replaceFirstMapped(
     RegExp(r'[ -](ex|gx)$'),
     (match) => ' ${match.group(1)}',

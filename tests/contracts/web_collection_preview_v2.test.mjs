@@ -20,9 +20,18 @@ for(const c of namedFinishes)test('web named finish keeps exact child and origin
  }
  const blank=await buildCollectionPreviewV2(fixture({primaryFinish:c.finish}).client,'owner',csv([source.replace('Holofoil','')]));assert.equal(blank.rows[0].finish,c.finish);
 });
-function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=false,wrongPrinting=false,sameFinish=false,duplicatePrinting=false,inactive=false,primaryFinish='reverse',primaryActive=true,primaryDomain='pokemon_eng_standard'}={}){
+const artLabels=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_pokemon_art_labels_v1.json',import.meta.url)));
+for(const c of artLabels)test('web art labels require catalog evidence: '+c.label,async()=>{
+ const source=basic.replace('Synthetic',c.name).replace('Reverse Holofoil','Holofoil');
+ const options={primaryFinish:'holo',primaryCard:{name:'Synthetic-EX',rarity:c.rarity,variant_key:c.variant}};
+ const p=await buildCollectionPreviewV2(fixture(options).client,'owner',csv([source]));assert.equal(p.readyRows,c.expected?1:0);assert.equal(p.rows[0].source['Product Name'],c.name);
+ if(!c.expected)return;
+ assert.equal(p.rows[0].selection.cardPrintingId,'p1');assert.equal(p.readyCopies,2);
+ for(const change of [{primaryActive:false},{primaryFinish:'normal'},{primaryDomain:'pokemon_jpn_standard'},{primaryCard:{...options.primaryCard,rarity:null}}])assert.equal((await buildCollectionPreviewV2(fixture({...options,...change}).client,'owner',csv([source]))).readyRows,0);
+});
+function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=false,wrongPrinting=false,sameFinish=false,duplicatePrinting=false,inactive=false,primaryFinish='reverse',primaryActive=true,primaryDomain='pokemon_eng_standard',primaryCard={}}={}){
  const sets=[{id:'s1',name:'Test',code:'test',game:'pokemon'}];
- const cards=[{id:'c1',set_id:'s1',gv_id:'GV-1',name:'Synthetic',number:'7/100',identity_domain:primaryDomain,variant_key:''}];
+ const cards=[{id:'c1',set_id:'s1',gv_id:'GV-1',name:'Synthetic',number:'7/100',identity_domain:primaryDomain,variant_key:'',...primaryCard}];
  if(extraCard)cards.push({...cards[0],id:'c2',gv_id:'GV-2',variant_key:'play_pokemon_stamp',printed_identity_modifier:'prize_pack_stamp'});
  const printings=[{id:'p1',card_print_id:'c1',finish_key:primaryFinish,finish_is_active:primaryActive}];
  if(extraCard&&!missingPrinting)printings.push({id:'p2',card_print_id:'c2',finish_key:sameFinish?'reverse':'normal',finish_is_active:!inactive});

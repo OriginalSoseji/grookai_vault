@@ -86,7 +86,7 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
   for (let start = 0; start < wanted.length; start += 100) {
     const chunk = wanted.slice(start, start + 100);
     const page = await readImportPages<CardRow>(after => {
-      let query = client.from("card_prints").select("id,gv_id,name,number,set_id,set_code,variant_key,printed_identity_modifier,identity_domain").in("set_id", chunk).order("id").limit(500);
+      let query = client.from("card_prints").select("id,gv_id,name,number,set_id,set_code,variant_key,printed_identity_modifier,identity_domain,rarity").in("set_id", chunk).order("id").limit(500);
       if (after) query = query.gt("id", after);
       return query;
     }, row => row.id);

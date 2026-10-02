@@ -75,12 +75,36 @@ physical-device behavior, distribution or a real collection save.
 
 ## Pokemon name-format follow-up
 
+### Catalog-evidenced artwork labels
+
+Source-aware matching additionally recognizes terminal Full Art, Secret and
+Alternate Art Secret labels under `collectr_pokemon_art_labels_v1.json`.
+Full Art requires catalog Rare Ultra/Ultra Rare and an empty or RC variant.
+Secret requires Rare Secret/Secret Rare/Rare Rainbow and an empty or TG variant.
+Alternate Art Secret additionally requires the explicit `alt` variant. A printed
+identity modifier prevents this fallback. Unknown, conflicting and unsupported
+combined labels remain literal; missing rarity cannot grant a match.
+
+English identity domain, base name, collector number, set scope, grade, finish
+and exact active child checks still apply independently. The server rereads
+rarity and variant at save time; preview is not lasting authority. All original
+source fields stay unchanged. Legacy V1 is unchanged, with no schema/catalog write.
+
+The vocabulary distinguishes the catalog's separate
+[Rare Ultra, Rare Secret and Rare Rainbow values](https://docs.pokemontcg.io/api-reference/rarities/get-rarities/).
+The publisher also describes
+[full-art ultra rares and alternate-art categories](https://www.pokemon.com/us/pokemon-news/pokemon-tcg-scarlet-and-violet-revamps-pokemon-tcg-card-aesthetic).
+These references provide terminology; this bounded matcher still requires exact
+catalog identity and variant evidence. Qualification and actual release status:
+`docs/checkpoints/collectr_art_labels_20261002.md` and its private receipts.
+
 Source-aware V2 preview and Edge additionally recognize the separator before a
 terminal EX/GX and one repeated collector-number suffix, such as `Synthetic EX`
 versus `Synthetic-EX` or `Synthetic (007)` at number7. This fallback requires the
 Pokemon game and `pokemon_eng_standard` identity domain; the source and catalog
-number must agree. A prefixed number must keep its prefix. It never strips art,
-stamp, edition, language, cheek, rarity or finish labels. Multiple matching
+number must agree. A prefixed number must keep its prefix. Decorations outside
+the catalog-evidenced artwork and named-finish rules remain literal, including
+stamp, edition, language and cheek labels. Multiple matching
 candidates remain ambiguous, including an exact-name candidate competing with a
 formatting-equivalent candidate. Legacy V1 matching is unchanged.
 
