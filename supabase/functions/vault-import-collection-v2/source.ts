@@ -1,4 +1,5 @@
 // Source interpretation for the source-aware importer. No catalog/ownership writes.
+import { collectrPokemonNamedFinish, collectrNamedFinishVarianceAgrees } from "./pokemon_named_finish.ts";
 export type SourceRow = Record<string, string>;
 export class ImportValidationError extends Error {}
 export const text = (value: string) => value.trim().replace(/\s+/g, " ");
@@ -252,7 +253,11 @@ export function normalize(row: SourceRow): Normalized {
     !["", "ungraded"].includes(grade) || !["", "false"].includes(watchlist)
   ) throw new ImportValidationError("import_target_requires_review");
   const rawFinish = lower(field(row, "variance", "finish"));
-  const finishKey = finishes[rawFinish] ?? null;
+  const namedFinish = scope === "pokemon" ? collectrPokemonNamedFinish(name) : null;
+  if (namedFinish && !collectrNamedFinishVarianceAgrees(rawFinish)) {
+    throw new ImportValidationError("import_finish_requires_review");
+  }
+  const finishKey = namedFinish?.finishKey ?? finishes[rawFinish] ?? null;
   if (rawFinish && !finishKey) {
     throw new ImportValidationError("import_finish_requires_review");
   }

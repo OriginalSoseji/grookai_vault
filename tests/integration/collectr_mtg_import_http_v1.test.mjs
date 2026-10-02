@@ -8,14 +8,15 @@ import {execFileSync,spawn} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {localSupabaseStatusSecret} from '../../scripts/lib/local_supabase_cli_status_v1.mjs';
 const root=path.resolve(import.meta.dirname,'../..');
-const reviewProof=process.env.GV_COLLECTR_REVIEW_HTTP_PROOF==='1';
+const namedFinishProof=process.env.GV_COLLECTR_NAMED_FINISH_HTTP_PROOF==='1';
+const reviewProof=process.env.GV_COLLECTR_REVIEW_HTTP_PROOF==='1'||namedFinishProof;
 const fcaProof=process.env.GV_COLLECTR_FCA_HTTP_PROOF==='1';
 const adventureProof=process.env.GV_COLLECTR_ADVENTURE_HTTP_PROOF==='1';
 const webProof=process.env.GV_COLLECTR_WEB_HTTP_PROOF==='1'||adventureProof||fcaProof||reviewProof;
 const setProof=process.env.GV_COLLECTR_SET_HTTP_PROOF==='1';
 const nameProof=process.env.GV_COLLECTR_NAME_HTTP_PROOF==='1';
 const scopeProof=process.env.GV_COLLECTR_SCOPE_HTTP_PROOF==='1';
-const out='C:/grookai_vault_operator_artifacts/'+(reviewProof?'collectr_review_choices_20261002':fcaProof?'collectr_fca_20261002':adventureProof?'collectr_adventure_20261001':webProof?'collectr_web_v2_20261001':scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
+const out='C:/grookai_vault_operator_artifacts/'+(namedFinishProof?'collectr_named_finishes_20261002':reviewProof?'collectr_review_choices_20261002':fcaProof?'collectr_fca_20261002':adventureProof?'collectr_adventure_20261001':webProof?'collectr_web_v2_20261001':scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
 const fixture='C:/grookai_vault_operator_artifacts/collectr_import_review_20260930/full-410',project='collectr-review-full-410-20260930';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source readback',{
@@ -41,6 +42,8 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
  const runDir=out+'/http-v2-'+Date.now();fs.mkdirSync(runDir);
  const sourceFiles=['supabase/functions/vault-import-collection-v2/source.ts','supabase/functions/vault-import-collection-v2/handler.ts','supabase/functions/_shared/auth.ts','supabase/functions/_shared/key_resolver.ts','tests/integration/helpers/collectr_import_server_v2.ts', 'tests/integration/collectr_mtg_import_http_v1.test.mjs','supabase/functions/vault-import-collection-v2/mtg_identity.ts'];
  sourceFiles.push('supabase/functions/vault-import-collection-v2/fca_names.ts');
+ sourceFiles.push('supabase/functions/vault-import-collection-v2/pokemon_named_finish.ts');
+ if(namedFinishProof)sourceFiles.push('tests/integration/helpers/collectr_named_finish_proof.mjs','test/fixtures/collectr_named_finishes_v1.json');
  if(fcaProof)sourceFiles.push('test/fixtures/collectr_fca_names_v1.json');
  if(reviewProof)sourceFiles.push('apps/web/src/lib/import/collectionPreviewChoices.ts','apps/web/src/lib/cards/displayDiscriminator.ts','tests/integration/helpers/collectr_review_choices_proof.mjs');
  if(setProof)sourceFiles.push('test/fixtures/collectr_set_aliases_v1.json');
@@ -200,6 +203,10 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
    const {proveCollectrReviewChoices}=await import('./helpers/collectr_review_choices_proof.mjs');
    await proveCollectrReviewChoices({root,status,runDir,user,db,caller});
   });
+  if(namedFinishProof)await check('named finishes retain exact special children and reject ordinary holo substitutions',async()=>{
+   const {proveCollectrNamedFinishes}=await import('./helpers/collectr_named_finish_proof.mjs');
+   await proveCollectrNamedFinishes({root,status,runDir,user,db,caller});
+  });
   if(webProof)await check('browser CSV preview, interrupted save, reload and retry verify the same copies',async()=>{
    const {proveCollectrBrowser}=await import('./helpers/collectr_web_proof.mjs');
    const previous=await copies();await proveCollectrBrowser({root,status,runDir,user,csvText:mtgCsv});assert.deepEqual(await copies(),previous);
@@ -207,7 +214,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   const after=await snapshot();for(const table of tables)assert.deepEqual(after[table].filter(r=>r.user_id!==user.id&&r.user_id!==outsider.id),before[table]);
   assert.deepEqual((await db.query('select * from catalog_game_release_controls order by game_code')).rows,releaseControlsBefore);
   assert.deepEqual((await db.query('select * from catalog_set_release_controls where ($1::uuid is null or set_id<>$1) and not(set_id=any($2::uuid[])) order by set_id',[newMtgSet?mtgSet:null,scopeVisibleSets])).rows,setControlsBefore);
-  const result={status:checks.length===((setProof||nameProof||scopeProof?10:9)+(webProof?2:0)+(reviewProof?1:0))?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};
+  const result={status:checks.length===((setProof||nameProof||scopeProof?10:9)+(webProof?2:0)+(reviewProof?1:0)+(namedFinishProof?1:0))?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};
   fs.writeFileSync(runDir+'/result.json',JSON.stringify(result,null,2),{flag:'wx'});assert.equal(result.status,'passed');
  }finally{
   if(webServer)await webServer.stop();

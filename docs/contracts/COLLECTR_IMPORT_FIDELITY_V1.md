@@ -35,6 +35,25 @@ These references explain labels, not authority to change canonical printings.
 
 ## Finish-aware parent resolution rules
 
+### Explicit Pokemon finish labels in source names
+
+Source-aware V2 recognizes one terminal parenthesized label from
+`test/fixtures/collectr_named_finishes_v1.json`: Cosmos/Cosmo Holo or Foil,
+Cracked Ice Holo, Poke/Poké Ball Pattern, and Master Ball Pattern. These constrain
+the existing governed child to cosmos, cracked_ice, pokeball or masterball.
+The accompanying Variance must be blank, Holo or Holofoil; conflicting values
+remain held. Original names and every source field are retained unchanged.
+
+The undecorated name still requires Pokemon English identity, matching set and
+collector number, and exactly one active child with the requested finish.
+Ordinary Holo cannot substitute. Unknown or stacked labels are not stripped.
+Grades, editions, metadata guards and explicit ambiguity review still apply.
+Legacy V1 and other games are unchanged. Web/server and native share the fixture
+corpus. This adds no catalog records, schema or printing authority.
+
+Qualification and distribution status are tracked separately in
+`docs/checkpoints/collectr_named_finishes_20261002.md` and its private receipts.
+
 Source-aware native preview reads all governed printing pages for every matching
 parent before classifying ambiguity. An explicit supported finish can exclude a
 candidate only when that candidate has active printing evidence and none matches
