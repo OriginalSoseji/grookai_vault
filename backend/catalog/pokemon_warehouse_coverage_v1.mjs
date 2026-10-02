@@ -25,6 +25,14 @@ export function pokemonCoverageDatabaseTarget(connectionString) {
 }
 const text = value => String(value ?? '').normalize('NFKC').trim();
 const productId = value => /^\d+$/.test(text(value)) ? String(BigInt(text(value))) : '';
+// The original TCGCSV seed retained both group and product in its external ID.
+// Parse only that provider's exact grammar; a price product alone cannot erase group scope.
+export function pokemonWarehouseMappingKey(row) {
+  const numeric = productId(row.external_id);
+  if (numeric) return { product_id: numeric, group_id: null };
+  const match = row.source === 'tcgcsv' && /^tcgcsv:([0-9]+):([0-9]+)$/.exec(text(row.external_id));
+  return match ? { product_id: productId(match[2]), group_id: productId(match[1]) } : null;
+}
 const normalized = value => text(value).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const numberKey = value => text(value).split('/')[0].toLowerCase().replace(/^0+(?=\d)/, '');
 const sortedById = rows => [...rows].sort((a, b) => text(a.id).localeCompare(text(b.id)));
@@ -67,7 +75,7 @@ export function reconcilePokemonWarehouse({ products, parents, mappings, discove
   const links = [...mappings.filter(row => row.active && ['tcgplayer', 'tcgcsv'].includes(row.source)),
     ...parents.flatMap(p => [p.tcgplayer_id, p.external_ids?.tcgplayer, p.external_ids?.tcgplayer_id]
       .filter(value => productId(value)).map(external_id => ({ external_id, card_print_id: p.id, active: true, source: 'parent_product_id' })))];
-  const mapped = indexRows(links, row => productId(row.external_id));
+  const mapped = indexRows(links, row => pokemonWarehouseMappingKey(row)?.product_id);
   const discovered = indexRows(discovery, row => productId(row.tcgplayer_id));
   const queued = indexRows(warehouse, row => productId(row.tcgplayer_id));
   const identityHints = indexRows(parents, p => identityHintKey(p.name, p.number, p.language));
@@ -78,7 +86,10 @@ export function reconcilePokemonWarehouse({ products, parents, mappings, discove
     const number = text(product.extended_data?.find(e => e.name === 'Number')?.value);
     const relatedDiscovery = sortedById(discovered.get(id) ?? []);
     const relatedWarehouse = sortedById(queued.get(id) ?? []);
-    const parentIds = [...new Set((mapped.get(id) ?? []).map(m => m.card_print_id))].sort();
+    const parentIds = [...new Set((mapped.get(id) ?? []).filter(m => {
+      const group = pokemonWarehouseMappingKey(m).group_id;
+      return group === null || group === productId(product.group_id);
+    }).map(m => m.card_print_id))].sort();
     const candidates = parentIds.map(id => parentById.get(id)).filter(Boolean);
     const retailer = retailerVariant(product.name);
     const targetLanguage = Number(product.category_id) === 85 ? 'ja' : 'en';
@@ -121,6 +132,7 @@ export function reconcilePokemonWarehouse({ products, parents, mappings, discove
       promotion_candidates: relatedWarehouse.map(r => ({ id: r.id, state: r.state,
         reason: r.current_review_hold_reason ?? r.interpreter_reason_code, created_at: r.created_at })),
       action: !unresolved ? 'retain_relationship_verify_exact_printing_evidence'
+        : status === 'mapping_scope_conflict' ? 'review_existing_mapping_and_parent_identity_domain_without_duplicate'
         : status === 'existing_identity_mapping_review' ? 'verify_existing_parent_and_repair_mapping_without_duplicate'
         : status === 'mapped_parent_without_printings' ? 'verify_and_admit_missing_exact_child_printings'
         : 'acquire_exact_identity_and_finish_evidence_then_promote_through_reviewed_master',
@@ -180,7 +192,9 @@ export async function readPokemonWarehouseSnapshot(client) {
     from public.card_prints cp join public.sets s on s.id=cp.set_id where s.game='pokemon'`)).rows;
   const mappings = (await client.query(`select source, external_id, card_print_id, active
     from public.external_mappings where active and source in ('tcgplayer','tcgcsv')
-    and case when external_id ~ '^[0-9]+$' then external_id::numeric end in
+    and case when external_id ~ '^[0-9]+$' then external_id::numeric
+      when source='tcgcsv' and external_id ~ '^tcgcsv:[0-9]+:[0-9]+$'
+      then split_part(external_id,':',3)::numeric end in
       (select product_id from public.tcgcsv_source_products where category_id in (3,85))`)).rows;
   const discovery = (await client.query(`select id, source, tcgplayer_id, match_status, candidate_bucket, created_at
     from public.external_discovery_candidates where tcgplayer_id is not null`)).rows;

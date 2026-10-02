@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Pitch Black bulk identity recovery — October 2
+
+Read `docs/ops/ME05_IDENTITY_RECOVERY_20261002.md` and the private
+`pokemon_me05_relationships_20261002/CHECKPOINT.md`. All 120 parents exist;
+their English identity rows are missing and coverage skipped their namespaced
+TCGCSV mappings. Preserve existing IDs and printing reviews. The fixed whole-set
+repair and source-reader rollout have separate receipts; never replay completed
+applies or infer runtime deployment from a local test. A dedicated native
+PostgreSQL fixture is available on loopback65470, separate from shared Docker.
+
 ## Pokemon discovery memory recovery — October 2
 
 Read `docs/ops/POKEMON_DISCOVERY_MEMORY_20261002.md`. The first later hourly

@@ -65,6 +65,35 @@ test('inactive mappings cannot close gaps', () => {
   f.mappings.push({ source: 'tcgplayer', external_id: '456093', card_print_id: parent.id, active: false });
   assert.equal(run(f).rows[0].status, 'untracked_card_candidate');
 });
+
+test('namespaced TCGCSV mapping preserves source group and existing parent identity gates', () => {
+  const f=fixture();f.parents.push({...parent,tcgplayer_id:null});
+  f.mappings.push({source:'tcgcsv',external_id:'tcgcsv:2374:456093',card_print_id:parent.id,active:true});
+  assert.equal(run(f).rows[0].status,'mapped_parent');
+  f.parents[0].language='unresolved';
+  assert.equal(run(f).rows[0].status,'mapping_scope_conflict');
+  assert.equal(run(f).rows[0].action,'review_existing_mapping_and_parent_identity_domain_without_duplicate');
+  f.parents[0].language='en';f.parents[0].variant_key='';
+  assert.equal(run(f).rows[0].status,'retailer_identity_review');
+});
+
+test('namespaced mapping cannot cross groups, providers, or malformed identifier boundaries', () => {
+  for(const [source,external_id] of [['tcgcsv','tcgcsv:9:456093'],['tcgplayer','tcgcsv:2374:456093'],
+    ['tcgcsv','tcgcsv:2374:456093:extra'],['tcgcsv','tcgcsv:2374:456093-suffix']]){
+    const f=fixture();f.parents.push({...parent,tcgplayer_id:null});
+    f.mappings.push({source,external_id,card_print_id:parent.id,active:true});
+    assert.equal(run(f).rows[0].status,'untracked_card_candidate');
+  }
+});
+
+test('namespaced links expose conflicts with numeric mappings and remain inactive when retired', () => {
+  const f=fixture();f.parents.push({...parent,tcgplayer_id:null});
+  f.mappings.push({source:'tcgcsv',external_id:'tcgcsv:2374:456093',card_print_id:parent.id,active:false});
+  assert.equal(run(f).rows[0].status,'untracked_card_candidate');
+  f.mappings[0].active=true;
+  f.mappings.push({source:'tcgplayer',external_id:'456093',card_print_id:'other',active:true});
+  assert.equal(run(f).rows[0].status,'mapping_conflict');
+});
 test('identifier normalization handles legacy leading zeros without matching arbitrary tokens', () => {
   const f = fixture(); f.parents.push({ ...parent, tcgplayer_id: '0456093' });
   assert.equal(run(f).rows[0].status, 'mapped_parent');
