@@ -2360,5 +2360,4170 @@
         }
       ]
     }
+  },
+  {
+    "label": "FCA official pair 1",
+    "expected": true,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 2",
+    "expected": true,
+    "input": {
+      "sourceName": "Knights of San d'Oria - Ranger-Captain of Eos (Showcase)",
+      "sourceNumber": "2",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Ranger-Captain of Eos",
+        "number": "2",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "2",
+          "identity_payload": {
+            "name": "Ranger-Captain of Eos",
+            "collector_number": "2",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 3",
+    "expected": true,
+    "input": {
+      "sourceName": "Firion, Swordmaster - Sram, Senior Edificer (Showcase)",
+      "sourceNumber": "3",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Sram, Senior Edificer",
+        "number": "3",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "3",
+          "identity_payload": {
+            "name": "Sram, Senior Edificer",
+            "collector_number": "3",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 4",
+    "expected": true,
+    "input": {
+      "sourceName": "Wild Rose Rebellion - Counterspell (Showcase)",
+      "sourceNumber": "4",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Counterspell",
+        "number": "4",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "4",
+          "identity_payload": {
+            "name": "Counterspell",
+            "collector_number": "4",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 5",
+    "expected": true,
+    "input": {
+      "sourceName": "Terra Branford - Urza, Lord High Artificer (Showcase)",
+      "sourceNumber": "5",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Urza, Lord High Artificer",
+        "number": "5",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "5",
+          "identity_payload": {
+            "name": "Urza, Lord High Artificer",
+            "collector_number": "5",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 6",
+    "expected": true,
+    "input": {
+      "sourceName": "Master Xande - Venser, Shaper Savant (Showcase)",
+      "sourceNumber": "6",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Venser, Shaper Savant",
+        "number": "6",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "6",
+          "identity_payload": {
+            "name": "Venser, Shaper Savant",
+            "collector_number": "6",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 7",
+    "expected": true,
+    "input": {
+      "sourceName": "Kefka's Tower - Bolas's Citadel (Showcase)",
+      "sourceNumber": "7",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Bolas's Citadel",
+        "number": "7",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "7",
+          "identity_payload": {
+            "name": "Bolas's Citadel",
+            "collector_number": "7",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 8",
+    "expected": true,
+    "input": {
+      "sourceName": "Darkness of Eternity - Dark Ritual (Showcase)",
+      "sourceNumber": "8",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Dark Ritual",
+        "number": "8",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "8",
+          "identity_payload": {
+            "name": "Dark Ritual",
+            "collector_number": "8",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 9",
+    "expected": true,
+    "input": {
+      "sourceName": "Battle at the Big Bridge - Fatal Push (Showcase)",
+      "sourceNumber": "9",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fatal Push",
+        "number": "9",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "9",
+          "identity_payload": {
+            "name": "Fatal Push",
+            "collector_number": "9",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 10",
+    "expected": true,
+    "input": {
+      "sourceName": "Golbez, Clad in Darkness - Syr Konrad, the Grim (Showcase)",
+      "sourceNumber": "10",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Syr Konrad, the Grim",
+        "number": "10",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "10",
+          "identity_payload": {
+            "name": "Syr Konrad, the Grim",
+            "collector_number": "10",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 11",
+    "expected": true,
+    "input": {
+      "sourceName": "The Emperor, Hell Tyrant - Yawgmoth, Thran Physician (Showcase)",
+      "sourceNumber": "11",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Yawgmoth, Thran Physician",
+        "number": "11",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "11",
+          "identity_payload": {
+            "name": "Yawgmoth, Thran Physician",
+            "collector_number": "11",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 12",
+    "expected": true,
+    "input": {
+      "sourceName": "Dragon of Mount Gulg - Ancient Copper Dragon (Showcase)",
+      "sourceNumber": "12",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Ancient Copper Dragon",
+        "number": "12",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "12",
+          "identity_payload": {
+            "name": "Ancient Copper Dragon",
+            "collector_number": "12",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 13",
+    "expected": true,
+    "input": {
+      "sourceName": "Gilgamesh, Weapon Collector - Godo, Bandit Warlord (Showcase)",
+      "sourceNumber": "13",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Godo, Bandit Warlord",
+        "number": "13",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "13",
+          "identity_payload": {
+            "name": "Godo, Bandit Warlord",
+            "collector_number": "13",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 14",
+    "expected": true,
+    "input": {
+      "sourceName": "Kefka Palazzo - Purphoros, God of the Forge (Showcase)",
+      "sourceNumber": "14",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Purphoros, God of the Forge",
+        "number": "14",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "14",
+          "identity_payload": {
+            "name": "Purphoros, God of the Forge",
+            "collector_number": "14",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 15",
+    "expected": true,
+    "input": {
+      "sourceName": "Princess Sarah - Azusa, Lost but Seeking (Showcase)",
+      "sourceNumber": "15",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Azusa, Lost but Seeking",
+        "number": "15",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "15",
+          "identity_payload": {
+            "name": "Azusa, Lost but Seeking",
+            "collector_number": "15",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 16",
+    "expected": true,
+    "input": {
+      "sourceName": "The Cloudsea Djinn - Nyxbloom Ancient (Showcase)",
+      "sourceNumber": "16",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Nyxbloom Ancient",
+        "number": "16",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "16",
+          "identity_payload": {
+            "name": "Nyxbloom Ancient",
+            "collector_number": "16",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 17",
+    "expected": true,
+    "input": {
+      "sourceName": "Warrior of Light - Jodah, the Unifier (Showcase)",
+      "sourceNumber": "17",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Jodah, the Unifier",
+        "number": "17",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "17",
+          "identity_payload": {
+            "name": "Jodah, the Unifier",
+            "collector_number": "17",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 18",
+    "expected": true,
+    "input": {
+      "sourceName": "Cecil Harvey - Tymna the Weaver (Showcase)",
+      "sourceNumber": "18",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Tymna the Weaver",
+        "number": "18",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "18",
+          "identity_payload": {
+            "name": "Tymna the Weaver",
+            "collector_number": "18",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 19",
+    "expected": true,
+    "input": {
+      "sourceName": "Bartz Klauser - Winota, Joiner of Forces (Showcase)",
+      "sourceNumber": "19",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Winota, Joiner of Forces",
+        "number": "19",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "19",
+          "identity_payload": {
+            "name": "Winota, Joiner of Forces",
+            "collector_number": "19",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 20",
+    "expected": true,
+    "input": {
+      "sourceName": "Giant of Babil - Traxos, Scourge of Kroog (Showcase)",
+      "sourceNumber": "20",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Traxos, Scourge of Kroog",
+        "number": "20",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "20",
+          "identity_payload": {
+            "name": "Traxos, Scourge of Kroog",
+            "collector_number": "20",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 21",
+    "expected": true,
+    "input": {
+      "sourceName": "Blessing of the Oracle - Akroma's Will (Showcase)",
+      "sourceNumber": "21",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Akroma's Will",
+        "number": "21",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "21",
+          "identity_payload": {
+            "name": "Akroma's Will",
+            "collector_number": "21",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 22",
+    "expected": true,
+    "input": {
+      "sourceName": "Squall Leonhart - Danitha Capashen, Paragon (Showcase)",
+      "sourceNumber": "22",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Danitha Capashen, Paragon",
+        "number": "22",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "22",
+          "identity_payload": {
+            "name": "Danitha Capashen, Paragon",
+            "collector_number": "22",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 23",
+    "expected": true,
+    "input": {
+      "sourceName": "Noctis Lucis Caelum - Kenrith, the Returned King (Showcase)",
+      "sourceNumber": "23",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Kenrith, the Returned King",
+        "number": "23",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "23",
+          "identity_payload": {
+            "name": "Kenrith, the Returned King",
+            "collector_number": "23",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 24",
+    "expected": true,
+    "input": {
+      "sourceName": "Garnet Til Alexandros 17th - Loran of the Third Path (Showcase)",
+      "sourceNumber": "24",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Loran of the Third Path",
+        "number": "24",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "24",
+          "identity_payload": {
+            "name": "Loran of the Third Path",
+            "collector_number": "24",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 25",
+    "expected": true,
+    "input": {
+      "sourceName": "Minwu, Rebellion Strategist - Mangara, the Diplomat (Showcase)",
+      "sourceNumber": "25",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Mangara, the Diplomat",
+        "number": "25",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "25",
+          "identity_payload": {
+            "name": "Mangara, the Diplomat",
+            "collector_number": "25",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 26",
+    "expected": true,
+    "input": {
+      "sourceName": "Memories of Nibelheim - Stroke of Midnight (Showcase)",
+      "sourceNumber": "26",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Stroke of Midnight",
+        "number": "26",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "26",
+          "identity_payload": {
+            "name": "Stroke of Midnight",
+            "collector_number": "26",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 27",
+    "expected": true,
+    "input": {
+      "sourceName": "The Imperial City of Archades - Wall of Omens (Showcase)",
+      "sourceNumber": "27",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Wall of Omens",
+        "number": "27",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "27",
+          "identity_payload": {
+            "name": "Wall of Omens",
+            "collector_number": "27",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 28",
+    "expected": true,
+    "input": {
+      "sourceName": "Endwalker - Brainstorm (Showcase)",
+      "sourceNumber": "28",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Brainstorm",
+        "number": "28",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "28",
+          "identity_payload": {
+            "name": "Brainstorm",
+            "collector_number": "28",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 29",
+    "expected": true,
+    "input": {
+      "sourceName": "To the Crystal Tower - Cryptic Command (Showcase)",
+      "sourceNumber": "29",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Cryptic Command",
+        "number": "29",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "29",
+          "identity_payload": {
+            "name": "Cryptic Command",
+            "collector_number": "29",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 30",
+    "expected": true,
+    "input": {
+      "sourceName": "Vana'diel Adventurers - Laboratory Maniac (Showcase)",
+      "sourceNumber": "30",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Laboratory Maniac",
+        "number": "30",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "30",
+          "identity_payload": {
+            "name": "Laboratory Maniac",
+            "collector_number": "30",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 31",
+    "expected": true,
+    "input": {
+      "sourceName": "Stay with Me - Rhystic Study (Showcase)",
+      "sourceNumber": "31",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Rhystic Study",
+        "number": "31",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "31",
+          "identity_payload": {
+            "name": "Rhystic Study",
+            "collector_number": "31",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 32",
+    "expected": true,
+    "input": {
+      "sourceName": "Edea Kramer - Teferi, Mage of Zhalfir (Showcase)",
+      "sourceNumber": "32",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Teferi, Mage of Zhalfir",
+        "number": "32",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "32",
+          "identity_payload": {
+            "name": "Teferi, Mage of Zhalfir",
+            "collector_number": "32",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 33",
+    "expected": true,
+    "input": {
+      "sourceName": "Baron Rivalry - Deadly Dispute (Showcase)",
+      "sourceNumber": "33",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Deadly Dispute",
+        "number": "33",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "33",
+          "identity_payload": {
+            "name": "Deadly Dispute",
+            "collector_number": "33",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 34",
+    "expected": true,
+    "input": {
+      "sourceName": "Shantotto's Coercion - Diabolic Intent (Showcase)",
+      "sourceNumber": "34",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Diabolic Intent",
+        "number": "34",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "34",
+          "identity_payload": {
+            "name": "Diabolic Intent",
+            "collector_number": "34",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 35",
+    "expected": true,
+    "input": {
+      "sourceName": "The Shadow Lord - Gix, Yawgmoth Praetor (Showcase)",
+      "sourceNumber": "35",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Gix, Yawgmoth Praetor",
+        "number": "35",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "35",
+          "identity_payload": {
+            "name": "Gix, Yawgmoth Praetor",
+            "collector_number": "35",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 36",
+    "expected": true,
+    "input": {
+      "sourceName": "Emet-Selch, Ascian - K'rrik, Son of Yawgmoth (Showcase)",
+      "sourceNumber": "36",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "K'rrik, Son of Yawgmoth",
+        "number": "36",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "36",
+          "identity_payload": {
+            "name": "K'rrik, Son of Yawgmoth",
+            "collector_number": "36",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 37",
+    "expected": true,
+    "input": {
+      "sourceName": "Ardyn Izunia - Varragoth, Bloodsky Sire (Showcase)",
+      "sourceNumber": "37",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Varragoth, Bloodsky Sire",
+        "number": "37",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "37",
+          "identity_payload": {
+            "name": "Varragoth, Bloodsky Sire",
+            "collector_number": "37",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 38",
+    "expected": true,
+    "input": {
+      "sourceName": "Vaan, Aspiring Sky Pirate - Captain Lannery Storm (Showcase)",
+      "sourceNumber": "38",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Captain Lannery Storm",
+        "number": "38",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "38",
+          "identity_payload": {
+            "name": "Captain Lannery Storm",
+            "collector_number": "38",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 39",
+    "expected": true,
+    "input": {
+      "sourceName": "A Promise Fulfilled - Light Up the Stage (Showcase)",
+      "sourceNumber": "39",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Light Up the Stage",
+        "number": "39",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "39",
+          "identity_payload": {
+            "name": "Light Up the Stage",
+            "collector_number": "39",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 40",
+    "expected": true,
+    "input": {
+      "sourceName": "Thrum of the Vestige - Lightning Bolt (Showcase)",
+      "sourceNumber": "40",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Lightning Bolt",
+        "number": "40",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "40",
+          "identity_payload": {
+            "name": "Lightning Bolt",
+            "collector_number": "40",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 41",
+    "expected": true,
+    "input": {
+      "sourceName": "Dawn Warriors' Legacy - Mizzix's Mastery (Showcase)",
+      "sourceNumber": "41",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Mizzix's Mastery",
+        "number": "41",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "41",
+          "identity_payload": {
+            "name": "Mizzix's Mastery",
+            "collector_number": "41",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 42",
+    "expected": true,
+    "input": {
+      "sourceName": "Cloud Strife - Najeela, the Blade-Blossom (Showcase)",
+      "sourceNumber": "42",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Najeela, the Blade-Blossom",
+        "number": "42",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "42",
+          "identity_payload": {
+            "name": "Najeela, the Blade-Blossom",
+            "collector_number": "42",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 43",
+    "expected": true,
+    "input": {
+      "sourceName": "Zidane Tribal - Ragavan, Nimble Pilferer (Showcase)",
+      "sourceNumber": "43",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Ragavan, Nimble Pilferer",
+        "number": "43",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "43",
+          "identity_payload": {
+            "name": "Ragavan, Nimble Pilferer",
+            "collector_number": "43",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 44",
+    "expected": true,
+    "input": {
+      "sourceName": "Fal'Cie Paradise - Carpet of Flowers (Showcase)",
+      "sourceNumber": "44",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Carpet of Flowers",
+        "number": "44",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "44",
+          "identity_payload": {
+            "name": "Carpet of Flowers",
+            "collector_number": "44",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 45",
+    "expected": true,
+    "input": {
+      "sourceName": "Newfound Adventure - Farseek (Showcase)",
+      "sourceNumber": "45",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Farseek",
+        "number": "45",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "45",
+          "identity_payload": {
+            "name": "Farseek",
+            "collector_number": "45",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 46",
+    "expected": true,
+    "input": {
+      "sourceName": "Vayne Carudas Solidor - Fynn, the Fangbearer (Showcase)",
+      "sourceNumber": "46",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Fynn, the Fangbearer",
+        "number": "46",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "46",
+          "identity_payload": {
+            "name": "Fynn, the Fangbearer",
+            "collector_number": "46",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 47",
+    "expected": true,
+    "input": {
+      "sourceName": "Search for the Frozen Esper - Nature's Claim (Showcase)",
+      "sourceNumber": "47",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Nature's Claim",
+        "number": "47",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "47",
+          "identity_payload": {
+            "name": "Nature's Claim",
+            "collector_number": "47",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 48",
+    "expected": true,
+    "input": {
+      "sourceName": "Astral Titan - Primeval Titan (Showcase)",
+      "sourceNumber": "48",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Primeval Titan",
+        "number": "48",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "48",
+          "identity_payload": {
+            "name": "Primeval Titan",
+            "collector_number": "48",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 49",
+    "expected": true,
+    "input": {
+      "sourceName": "Sephiroth, the Savior - Atraxa, Grand Unifier (Showcase)",
+      "sourceNumber": "49",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Atraxa, Grand Unifier",
+        "number": "49",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "49",
+          "identity_payload": {
+            "name": "Atraxa, Grand Unifier",
+            "collector_number": "49",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 50",
+    "expected": true,
+    "input": {
+      "sourceName": "Hugo Kupka - Bruse Tarl, Boorish Herder (Showcase)",
+      "sourceNumber": "50",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Bruse Tarl, Boorish Herder",
+        "number": "50",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "50",
+          "identity_payload": {
+            "name": "Bruse Tarl, Boorish Herder",
+            "collector_number": "50",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 51",
+    "expected": true,
+    "input": {
+      "sourceName": "Shadowbringers - Dovin's Veto (Showcase)",
+      "sourceNumber": "51",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Dovin's Veto",
+        "number": "51",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "51",
+          "identity_payload": {
+            "name": "Dovin's Veto",
+            "collector_number": "51",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 52",
+    "expected": true,
+    "input": {
+      "sourceName": "Kuja, Mage Manufacturer - Inalla, Archmage Ritualist (Showcase)",
+      "sourceNumber": "52",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Inalla, Archmage Ritualist",
+        "number": "52",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "52",
+          "identity_payload": {
+            "name": "Inalla, Archmage Ritualist",
+            "collector_number": "52",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 53",
+    "expected": true,
+    "input": {
+      "sourceName": "Benedikta Harman - Ishai, Ojutai Dragonspeaker (Showcase)",
+      "sourceNumber": "53",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Ishai, Ojutai Dragonspeaker",
+        "number": "53",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "53",
+          "identity_payload": {
+            "name": "Ishai, Ojutai Dragonspeaker",
+            "collector_number": "53",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 54",
+    "expected": true,
+    "input": {
+      "sourceName": "Lightning, Lone Commando - Isshin, Two Heavens as One (Showcase)",
+      "sourceNumber": "54",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Isshin, Two Heavens as One",
+        "number": "54",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "54",
+          "identity_payload": {
+            "name": "Isshin, Two Heavens as One",
+            "collector_number": "54",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 55",
+    "expected": true,
+    "input": {
+      "sourceName": "Seymour Guado - Kinnan, Bonder Prodigy (Showcase)",
+      "sourceNumber": "55",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Kinnan, Bonder Prodigy",
+        "number": "55",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "55",
+          "identity_payload": {
+            "name": "Kinnan, Bonder Prodigy",
+            "collector_number": "55",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 56",
+    "expected": true,
+    "input": {
+      "sourceName": "Barnabas Tharmr - Kraum, Ludevic's Opus (Showcase)",
+      "sourceNumber": "56",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Kraum, Ludevic's Opus",
+        "number": "56",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "56",
+          "identity_payload": {
+            "name": "Kraum, Ludevic's Opus",
+            "collector_number": "56",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 57",
+    "expected": true,
+    "input": {
+      "sourceName": "Orphan, Cocoon fal'Cie - Muldrotha, the Gravetide (Showcase)",
+      "sourceNumber": "57",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Muldrotha, the Gravetide",
+        "number": "57",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "57",
+          "identity_payload": {
+            "name": "Muldrotha, the Gravetide",
+            "collector_number": "57",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 58",
+    "expected": true,
+    "input": {
+      "sourceName": "Tidus, Zanarkand Fayth - Thrasios, Triton Hero (Showcase)",
+      "sourceNumber": "58",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Thrasios, Triton Hero",
+        "number": "58",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "58",
+          "identity_payload": {
+            "name": "Thrasios, Triton Hero",
+            "collector_number": "58",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 59",
+    "expected": true,
+    "input": {
+      "sourceName": "Clive Rosfield - Vial Smasher the Fierce (Showcase)",
+      "sourceNumber": "59",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Vial Smasher the Fierce",
+        "number": "59",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "59",
+          "identity_payload": {
+            "name": "Vial Smasher the Fierce",
+            "collector_number": "59",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 60",
+    "expected": true,
+    "input": {
+      "sourceName": "Yuffie Kisaragi - Yuriko, the Tiger's Shadow (Showcase)",
+      "sourceNumber": "60",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Yuriko, the Tiger's Shadow",
+        "number": "60",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "60",
+          "identity_payload": {
+            "name": "Yuriko, the Tiger's Shadow",
+            "collector_number": "60",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 61",
+    "expected": true,
+    "input": {
+      "sourceName": "Crystal of Altar Cave - Chromatic Lantern (Showcase)",
+      "sourceNumber": "61",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Chromatic Lantern",
+        "number": "61",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "61",
+          "identity_payload": {
+            "name": "Chromatic Lantern",
+            "collector_number": "61",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 62",
+    "expected": true,
+    "input": {
+      "sourceName": "The Strahl - Smuggler's Copter (Showcase)",
+      "sourceNumber": "62",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Smuggler's Copter",
+        "number": "62",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "62",
+          "identity_payload": {
+            "name": "Smuggler's Copter",
+            "collector_number": "62",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 63",
+    "expected": true,
+    "input": {
+      "sourceName": "Luka Stadium - Strixhaven Stadium (Showcase)",
+      "sourceNumber": "63",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Strixhaven Stadium",
+        "number": "63",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "63",
+          "identity_payload": {
+            "name": "Strixhaven Stadium",
+            "collector_number": "63",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA official pair 64",
+    "expected": true,
+    "input": {
+      "sourceName": "Balamb Garden - Command Beacon (Showcase)",
+      "sourceNumber": "64",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Command Beacon",
+        "number": "64",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "64",
+          "identity_payload": {
+            "name": "Command Beacon",
+            "collector_number": "64",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA combined name without treatment",
+    "expected": true,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA curly apostrophes",
+    "expected": true,
+    "input": {
+      "sourceName": "Shantotto’s Coercion - Diabolic Intent (Showcase)",
+      "sourceNumber": "34",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Diabolic Intent",
+        "number": "34",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "34",
+          "identity_payload": {
+            "name": "Diabolic Intent",
+            "collector_number": "34",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA case spaces and leading zero",
+    "expected": true,
+    "input": {
+      "sourceName": "  HERO   OF   LIGHT   -   ADELINE,   RESPLENDENT   CATHAR   (SHOWCASE) ",
+      "sourceNumber": "001",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA repeated matching number and borderless",
+    "expected": true,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase) (Borderless) (001)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA unknown flavor",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic Hero - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA flavor only",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA canonical only Showcase still needs showcase evidence",
+    "expected": false,
+    "input": {
+      "sourceName": "Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA wrong canonical portion",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Counterspell (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA different mapped pair",
+    "expected": false,
+    "input": {
+      "sourceName": "Wild Rose Rebellion - Counterspell (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA unreviewed dagger variant",
+    "expected": false,
+    "input": {
+      "sourceName": "Luka Stadium - Strixhaven Stadium (Showcase)",
+      "sourceNumber": "63†",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Strixhaven Stadium",
+        "number": "63†",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "63†",
+          "identity_payload": {
+            "name": "Strixhaven Stadium",
+            "collector_number": "63†",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA unreviewed number",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "65",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "65",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "65",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "65",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA wrong set everywhere",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fin",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fin",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fin",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA number mismatch",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "2",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA duplicate Showcase",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase) (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA unknown suffix",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase) (Surge Foil)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA extended art without evidence",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase) (Extended Art)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA conflicting identity",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA inactive identity",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": false,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA missing identity",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": []
+    }
+  },
+  {
+    "label": "FCA wrong Scryfall binding",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:foreign",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA wrong game",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "pokemon",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA mismatched layout",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "transform",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA mismatched language",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "ja",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA mismatched border_color",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "black",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA mismatched frame_effects",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA mismatched promo_types",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": []
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA mismatched name",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Counterspell",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA missing layout",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA missing border_color",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA missing frame_effects",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "border_color": "borderless",
+            "promo_types": [
+              "sourcematerial",
+              "universesbeyond"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "label": "FCA missing promo_types",
+    "expected": false,
+    "input": {
+      "sourceName": "Hero of Light - Adeline, Resplendent Cathar (Showcase)",
+      "sourceNumber": "1",
+      "game": "mtg",
+      "card": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Adeline, Resplendent Cathar",
+        "number": "1",
+        "set_code": "fca",
+        "variant_key": "scryfall:33333333-3333-4333-8333-333333333333",
+        "identity_domain": "mtg_eng_paper_print"
+      },
+      "identities": [
+        {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "card_print_id": "11111111-1111-4111-8111-111111111111",
+          "identity_domain": "mtg_eng_paper_print",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "is_active": true,
+          "set_code_identity": "fca",
+          "printed_number": "1",
+          "identity_payload": {
+            "name": "Adeline, Resplendent Cathar",
+            "collector_number": "1",
+            "set_code": "fca",
+            "scryfall_print_id": "33333333-3333-4333-8333-333333333333",
+            "language": "en",
+            "layout": "normal",
+            "frame_effects": [
+              "inverted"
+            ],
+            "border_color": "borderless"
+          }
+        }
+      ]
+    }
   }
 ]

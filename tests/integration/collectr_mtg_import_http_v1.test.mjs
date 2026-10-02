@@ -8,18 +8,19 @@ import {execFileSync,spawn} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {localSupabaseStatusSecret} from '../../scripts/lib/local_supabase_cli_status_v1.mjs';
 const root=path.resolve(import.meta.dirname,'../..');
+const fcaProof=process.env.GV_COLLECTR_FCA_HTTP_PROOF==='1';
 const adventureProof=process.env.GV_COLLECTR_ADVENTURE_HTTP_PROOF==='1';
-const webProof=process.env.GV_COLLECTR_WEB_HTTP_PROOF==='1'||adventureProof;
+const webProof=process.env.GV_COLLECTR_WEB_HTTP_PROOF==='1'||adventureProof||fcaProof;
 const setProof=process.env.GV_COLLECTR_SET_HTTP_PROOF==='1';
 const nameProof=process.env.GV_COLLECTR_NAME_HTTP_PROOF==='1';
 const scopeProof=process.env.GV_COLLECTR_SCOPE_HTTP_PROOF==='1';
-const out='C:/grookai_vault_operator_artifacts/'+(adventureProof?'collectr_adventure_20261001':webProof?'collectr_web_v2_20261001':scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
+const out='C:/grookai_vault_operator_artifacts/'+(fcaProof?'collectr_fca_20261002':adventureProof?'collectr_adventure_20261001':webProof?'collectr_web_v2_20261001':scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
 const fixture='C:/grookai_vault_operator_artifacts/collectr_import_review_20260930/full-410',project='collectr-review-full-410-20260930';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source readback',{
  skip:!webProof&&!scopeProof&&!nameProof&&!setProof&&process.env.GV_COLLECTR_MTG_HTTP_PROOF!=='1',timeout:webProof?240000:120000,
 },async t=>{
- assert.equal(root.replaceAll('\\','/'),adventureProof?'C:/gv_collectr_adventure_20261001':webProof?'C:/gv_collectr_web_v2_20261001':scopeProof?'C:/gv_collectr_set_scope_20261001':nameProof?'C:/gv_collectr_names_20261001':setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
+ assert.equal(root.replaceAll('\\','/'),adventureProof||fcaProof?'C:/gv_collectr_adventure_20261001':webProof?'C:/gv_collectr_web_v2_20261001':scopeProof?'C:/gv_collectr_set_scope_20261001':nameProof?'C:/gv_collectr_names_20261001':setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
  const require=createRequire(process.env.GV_COLLECTR_TEST_DEPENDENCIES??path.join(root,'package.json'));
  const pg=require('pg'),{createClient}=require('@supabase/supabase-js');
  const freeze=JSON.parse(fs.readFileSync(fixture+'/freeze.json'));
@@ -38,6 +39,8 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
  await new Promise((resolve,reject)=>{const server=net.createServer();server.once('error',reject);server.listen(58750,'127.0.0.1',()=>server.close(resolve));});
  const runDir=out+'/http-v2-'+Date.now();fs.mkdirSync(runDir);
  const sourceFiles=['supabase/functions/vault-import-collection-v2/source.ts','supabase/functions/vault-import-collection-v2/handler.ts','supabase/functions/_shared/auth.ts','supabase/functions/_shared/key_resolver.ts','tests/integration/helpers/collectr_import_server_v2.ts', 'tests/integration/collectr_mtg_import_http_v1.test.mjs','supabase/functions/vault-import-collection-v2/mtg_identity.ts'];
+ sourceFiles.push('supabase/functions/vault-import-collection-v2/fca_names.ts');
+ if(fcaProof)sourceFiles.push('test/fixtures/collectr_fca_names_v1.json');
  if(setProof)sourceFiles.push('test/fixtures/collectr_set_aliases_v1.json');
  if(nameProof)sourceFiles.push('supabase/functions/vault-import-collection-v2/pokemon_name.ts','test/fixtures/collectr_pokemon_name_v1.json');
  if(scopeProof)sourceFiles.push('supabase/functions/vault-import-collection-v2/pokemon_name.ts','supabase/functions/vault-import-collection-v2/set_scope.ts','test/fixtures/collectr_set_scopes_v1.json');
@@ -114,24 +117,40 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
    const denied=await visitor.rpc('get_collection_import_copies_v2',args);assert.equal(denied.error,null);assert.deepEqual(denied.data,[]);
    const unrelated=await caller.rpc('get_collection_import_copies_v2',{...args,p_source_sha256:'0'.repeat(64)});assert.equal(unrelated.error,null);assert.deepEqual(unrelated.data,[]);
   });
-  const mtgSet=randomUUID(),mtgCard=randomUUID(),mtgPrinting=randomUUID(),mtgSource=randomUUID(),identityId=randomUUID();
-  const mtgCode='syn'+mtgSet.replaceAll('-',''),mtgGv='GV-MTG-SYN-'+mtgCard;
+  let mtgSet=randomUUID(),newMtgSet=true,fcaPair;
+  const mtgCard=randomUUID(),mtgPrinting=randomUUID(),mtgSource=randomUUID(),identityId=randomUUID();
+  if(fcaProof){
+   const existing=(await db.query("select s.id,s.name,r.release_version from sets s left join catalog_set_release_controls r on r.set_id=s.id where lower(s.code)='fca'")).rows;
+   assert.ok(existing.length<=1,'Never duplicate an FCA set');
+   if(existing.length){assert.equal(existing[0].release_version,'COLLECTR_FCA_LOCAL_FIXTURE_V1');assert.equal(existing[0].name,'Synthetic MTG import set '+existing[0].id);mtgSet=existing[0].id;newMtgSet=false;}
+   const used=new Set((await db.query('select number from card_prints where set_id=$1',[mtgSet])).rows.map(r=>r.number));
+   fcaPair=JSON.parse(fs.readFileSync(root+'/test/fixtures/collectr_fca_names_v1.json')).rows.find(r=>!used.has(r.number));
+   assert.ok(fcaPair,'All FCA fixture coordinates are occupied; use a separately qualified lab');
+  }
+  const mtgCode=fcaProof?'fca':'syn'+mtgSet.replaceAll('-',''),mtgGv='GV-MTG-SYN-'+mtgCard;
   const identityPayload={name:'Synthetic Mage // Synthetic Dragon',set_code:mtgCode,collector_number:'373',scryfall_print_id:mtgSource,language:'en',layout:adventureProof?'adventure':'transform',frame_effects:['extendedart'],border_color:'black'};
-  await db.query("insert into sets(id,code,name,game) values($1,$2,'Synthetic MTG import set','mtg')",[mtgSet,mtgCode]);
-  await db.query("insert into card_prints(id,set_id,set_code,name,number,gv_id,game_id,identity_domain,variant_key) values($1,$2,$3,$4,'373',$5,(select id from games where code='mtg'),'mtg_eng_paper_print',$6)",[mtgCard,mtgSet,mtgCode,identityPayload.name,mtgGv,'scryfall:'+mtgSource]);
-  await db.query("insert into card_print_identity(id,card_print_id,identity_domain,set_code_identity,printed_number,normalized_printed_name,source_name_raw,identity_payload,identity_key_version,identity_key_hash,is_active) values($1,$2,'mtg_eng_paper_print',$3,'373',$4,$5,$6,'MTG_ENG_PAPER_PRINT_IDENTITY_V1',$7,true)",[identityId,mtgCard,mtgCode,identityPayload.name.toLowerCase(),identityPayload.name,identityPayload,hash(JSON.stringify(identityPayload))]);
+  if(fcaProof)Object.assign(identityPayload,{name:fcaPair.canonicalName,collector_number:fcaPair.number,layout:'normal',frame_effects:['inverted'],border_color:'borderless',promo_types:['sourcematerial','universesbeyond']});
+  if(newMtgSet)await db.query("insert into sets(id,code,name,game) values($1,$2,'Synthetic MTG import set','mtg')",[mtgSet,mtgCode]);
+  await db.query("insert into card_prints(id,set_id,set_code,name,number,gv_id,game_id,identity_domain,variant_key) values($1,$2,$3,$4,$7,$5,(select id from games where code='mtg'),'mtg_eng_paper_print',$6)",[mtgCard,mtgSet,mtgCode,identityPayload.name,mtgGv,'scryfall:'+mtgSource,identityPayload.collector_number]);
+  await db.query("insert into card_print_identity(id,card_print_id,identity_domain,set_code_identity,printed_number,normalized_printed_name,source_name_raw,identity_payload,identity_key_version,identity_key_hash,is_active) values($1,$2,'mtg_eng_paper_print',$3,$8,$4,$5,$6,'MTG_ENG_PAPER_PRINT_IDENTITY_V1',$7,true)",[identityId,mtgCard,mtgCode,identityPayload.name.toLowerCase(),identityPayload.name,identityPayload,hash(JSON.stringify(identityPayload)),identityPayload.collector_number]);
   await db.query("insert into card_printings(id,card_print_id,finish_key) values($1,$2,'foil')",[mtgPrinting,mtgCard]);
   // Only this new synthetic set becomes visible; preserve the game's rollout.
-  await db.query("insert into catalog_set_release_controls(set_id,release_status,release_version,evidence) values($1,'public','COLLECTR_MTG_LOCAL_FIXTURE_V1','{\"synthetic\":true}')",[mtgSet]);
+  if(newMtgSet)await db.query("insert into catalog_set_release_controls(set_id,release_status,release_version,evidence) values($1,'public',$2,'{\"synthetic\":true}')",[mtgSet,fcaProof?'COLLECTR_FCA_LOCAL_FIXTURE_V1':'COLLECTR_MTG_LOCAL_FIXTURE_V1']);
   let mtgCsv='Product Name,Category,Set,Card Number,Variance,Grade,Card Condition,Quantity,Average Cost Paid,Portfolio Name\nSynthetic Mage (Extended Art) (0373),MTG,Synthetic MTG import set,373,Foil,Ungraded,LP,2,12.5,Private\nSynthetic Mage (Surge Foil),MTG,Synthetic MTG import set,373,Foil,Ungraded,NM,1,30,Private\nSynthetic Mage (Extended Art),MTG,Synthetic MTG import set,373,Foil,PSA 10,NM,1,99,Slabs';
-  if(webProof){await db.query('update sets set name=$2 where id=$1',[mtgSet,'Synthetic MTG import set '+mtgSet]);mtgCsv=mtgCsv.replaceAll('Synthetic MTG import set','Synthetic MTG import set '+mtgSet);}
+  let validSourceName='Synthetic Mage (Extended Art) (0373)',heldSourceName='Synthetic Mage (Surge Foil)';
+  if(fcaProof){
+   validSourceName=`${fcaPair.alternateName} - ${fcaPair.canonicalName} (Showcase)`;heldSourceName=validSourceName+' (Surge Foil)';
+   const records=[['Product Name','Category','Set','Card Number','Variance','Grade','Card Condition','Quantity','Average Cost Paid','Portfolio Name'],[validSourceName,'MTG','Synthetic MTG import set',fcaPair.number,'Foil','Ungraded','LP','2','12.5','Private'],[heldSourceName,'MTG','Synthetic MTG import set',fcaPair.number,'Foil','Ungraded','NM','1','30','Private'],[validSourceName,'MTG','Synthetic MTG import set',fcaPair.number,'Foil','PSA 10','NM','1','99','Slabs']];
+   mtgCsv=records.map(r=>r.map(v=>'"'+v.replaceAll('"','""')+'"').join(',')).join('\n');
+  }
+  if(webProof){if(newMtgSet)await db.query('update sets set name=$2 where id=$1',[mtgSet,'Synthetic MTG import set '+mtgSet]);mtgCsv=mtgCsv.replaceAll('Synthetic MTG import set','Synthetic MTG import set '+mtgSet);}
   const mtgTargets=[{sourceIndices:[0],cardId:mtgCard,gvId:mtgGv,cardPrintingId:mtgPrinting}];
   let mtgResult,mtgCopies;
   await check('governed art and front-face matching saves exact copies and retains held source',async()=>{
    const response=await send({csvText:mtgCsv,targets:mtgTargets});assert.equal(response.status,200,await response.clone().text());mtgResult=await response.json();assert.equal(mtgResult.importedCards,2);assert.equal(mtgResult.reviewRows,2);
    mtgCopies=(await copies()).filter(c=>c.card_print_id===mtgCard);assert.equal(mtgCopies.length,2);for(const c of mtgCopies){assert.equal(c.card_printing_id,mtgPrinting);assert.equal(c.condition_label,'LP');assert.equal(Number(c.acquisition_cost),12.5);}
    const read=await caller.rpc('get_collection_import_copies_v2',{p_source_sha256:mtgResult.sourceSha256,p_instance_ids:mtgCopies.map(c=>c.id)});assert.equal(read.error,null);assert.deepEqual(read.data.map(c=>c.id).sort(),mtgCopies.map(c=>c.id).sort());
-   const doc=await caller.from('vault_collection_import_documents_v2').select('source_rows').eq('source_sha256',mtgResult.sourceSha256).single();assert.equal(doc.error,null);assert.equal(doc.data.source_rows[0]['Product Name'],'Synthetic Mage (Extended Art) (0373)');assert.equal(doc.data.source_rows[1]['Product Name'],'Synthetic Mage (Surge Foil)');assert.equal(doc.data.source_rows[2].Grade,'PSA 10');
+   const doc=await caller.from('vault_collection_import_documents_v2').select('source_rows').eq('source_sha256',mtgResult.sourceSha256).single();assert.equal(doc.error,null);assert.equal(doc.data.source_rows[0]['Product Name'],validSourceName);assert.equal(doc.data.source_rows[1]['Product Name'],heldSourceName);assert.equal(doc.data.source_rows[2].Grade,'PSA 10');
   });
   await check('unsupported artwork and grades cannot bypass server matching',async()=>{
    for(const index of [1,2]){const response=await send({csvText:mtgCsv,targets:[{...mtgTargets[0],sourceIndices:[index]}]});assert.equal(response.status,400);}
@@ -181,7 +200,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   });
   const after=await snapshot();for(const table of tables)assert.deepEqual(after[table].filter(r=>r.user_id!==user.id&&r.user_id!==outsider.id),before[table]);
   assert.deepEqual((await db.query('select * from catalog_game_release_controls order by game_code')).rows,releaseControlsBefore);
-  assert.deepEqual((await db.query('select * from catalog_set_release_controls where set_id<>$1 and not(set_id=any($2::uuid[])) order by set_id',[mtgSet,scopeVisibleSets])).rows,setControlsBefore);
+  assert.deepEqual((await db.query('select * from catalog_set_release_controls where ($1::uuid is null or set_id<>$1) and not(set_id=any($2::uuid[])) order by set_id',[newMtgSet?mtgSet:null,scopeVisibleSets])).rows,setControlsBefore);
   const result={status:checks.length===((setProof||nameProof||scopeProof?10:9)+(webProof?2:0))?'passed':'failed',at:new Date().toISOString(),checks,project,productionWrites:0,priorRowsUnchanged:true,runDir};
   fs.writeFileSync(runDir+'/result.json',JSON.stringify(result,null,2),{flag:'wx'});assert.equal(result.status,'passed');
  }finally{
