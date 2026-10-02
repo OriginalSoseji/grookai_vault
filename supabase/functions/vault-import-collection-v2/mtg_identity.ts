@@ -40,5 +40,7 @@ export function matchesCollectrMtgIdentity({sourceName, sourceNumber, game, card
   }
   if (name === text(card.name)) return true;
   const faces = text(payload.name).split(" // ");
-  return ["transform", "modal_dfc"].includes(payload.layout) && faces.length === 2 && faces.every(Boolean) && name === faces[0];
+  // Adventure exports may use the permanent's name without the attached spell.
+  // Require the governed layout and complete identity; never match the spell alone.
+  return ["transform", "modal_dfc", "adventure"].includes(payload.layout) && faces.length === 2 && faces.every(Boolean) && name === faces[0];
 }

@@ -8,17 +8,18 @@ import {execFileSync,spawn} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {localSupabaseStatusSecret} from '../../scripts/lib/local_supabase_cli_status_v1.mjs';
 const root=path.resolve(import.meta.dirname,'../..');
-const webProof=process.env.GV_COLLECTR_WEB_HTTP_PROOF==='1';
+const adventureProof=process.env.GV_COLLECTR_ADVENTURE_HTTP_PROOF==='1';
+const webProof=process.env.GV_COLLECTR_WEB_HTTP_PROOF==='1'||adventureProof;
 const setProof=process.env.GV_COLLECTR_SET_HTTP_PROOF==='1';
 const nameProof=process.env.GV_COLLECTR_NAME_HTTP_PROOF==='1';
 const scopeProof=process.env.GV_COLLECTR_SCOPE_HTTP_PROOF==='1';
-const out='C:/grookai_vault_operator_artifacts/'+(webProof?'collectr_web_v2_20261001':scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
+const out='C:/grookai_vault_operator_artifacts/'+(adventureProof?'collectr_adventure_20261001':webProof?'collectr_web_v2_20261001':scopeProof?'collectr_set_scope_20261001':nameProof?'collectr_names_20261001':setProof?'collectr_sets_20260930':'collectr_matching_20260930');
 const fixture='C:/grookai_vault_operator_artifacts/collectr_import_review_20260930/full-410',project='collectr-review-full-410-20260930';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source readback',{
  skip:!webProof&&!scopeProof&&!nameProof&&!setProof&&process.env.GV_COLLECTR_MTG_HTTP_PROOF!=='1',timeout:webProof?240000:120000,
 },async t=>{
- assert.equal(root.replaceAll('\\','/'),webProof?'C:/gv_collectr_web_v2_20261001':scopeProof?'C:/gv_collectr_set_scope_20261001':nameProof?'C:/gv_collectr_names_20261001':setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
+ assert.equal(root.replaceAll('\\','/'),adventureProof?'C:/gv_collectr_adventure_20261001':webProof?'C:/gv_collectr_web_v2_20261001':scopeProof?'C:/gv_collectr_set_scope_20261001':nameProof?'C:/gv_collectr_names_20261001':setProof?'C:/gv_collectr_sets_20260930':'C:/gv_collectr_matching_20260930');
  const require=createRequire(process.env.GV_COLLECTR_TEST_DEPENDENCIES??path.join(root,'package.json'));
  const pg=require('pg'),{createClient}=require('@supabase/supabase-js');
  const freeze=JSON.parse(fs.readFileSync(fixture+'/freeze.json'));
@@ -30,7 +31,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   assert.equal(hash(fs.readFileSync(root+'/supabase/migrations/'+name)),digest);
  }
  assert.equal(hash(fs.readFileSync(fixture+'/supabase/config.toml')),freeze.configSha256);
- const docker=(...args)=>JSON.parse(execFileSync('docker',args,{encoding:'utf8',windowsHide:true}));
+ const docker=(...args)=>JSON.parse(execFileSync('docker',args,{encoding:'utf8',windowsHide:true,timeout:15000}));
  assert.equal(docker('network','inspect',project)[0].Internal,true);
  assert.deepEqual(Object.keys(docker('inspect','supabase_db_'+project)[0].NetworkSettings.Networks),[project]);
  for(const binding of Object.values(docker('inspect',project+'-relay')[0].NetworkSettings.Ports).flat())assert.equal(binding.HostIp,'127.0.0.1');
@@ -115,7 +116,7 @@ test('governed MTG import: real Auth, HTTP, RLS, retries and retained-source rea
   });
   const mtgSet=randomUUID(),mtgCard=randomUUID(),mtgPrinting=randomUUID(),mtgSource=randomUUID(),identityId=randomUUID();
   const mtgCode='syn'+mtgSet.replaceAll('-',''),mtgGv='GV-MTG-SYN-'+mtgCard;
-  const identityPayload={name:'Synthetic Mage // Synthetic Dragon',set_code:mtgCode,collector_number:'373',scryfall_print_id:mtgSource,language:'en',layout:'transform',frame_effects:['extendedart'],border_color:'black'};
+  const identityPayload={name:'Synthetic Mage // Synthetic Dragon',set_code:mtgCode,collector_number:'373',scryfall_print_id:mtgSource,language:'en',layout:adventureProof?'adventure':'transform',frame_effects:['extendedart'],border_color:'black'};
   await db.query("insert into sets(id,code,name,game) values($1,$2,'Synthetic MTG import set','mtg')",[mtgSet,mtgCode]);
   await db.query("insert into card_prints(id,set_id,set_code,name,number,gv_id,game_id,identity_domain,variant_key) values($1,$2,$3,$4,'373',$5,(select id from games where code='mtg'),'mtg_eng_paper_print',$6)",[mtgCard,mtgSet,mtgCode,identityPayload.name,mtgGv,'scryfall:'+mtgSource]);
   await db.query("insert into card_print_identity(id,card_print_id,identity_domain,set_code_identity,printed_number,normalized_printed_name,source_name_raw,identity_payload,identity_key_version,identity_key_hash,is_active) values($1,$2,'mtg_eng_paper_print',$3,'373',$4,$5,$6,'MTG_ENG_PAPER_PRINT_IDENTITY_V1',$7,true)",[identityId,mtgCard,mtgCode,identityPayload.name.toLowerCase(),identityPayload.name,identityPayload,hash(JSON.stringify(identityPayload))]);

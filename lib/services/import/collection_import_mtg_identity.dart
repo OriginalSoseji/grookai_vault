@@ -64,10 +64,11 @@ bool matchesCollectrMtgIdentity({
     name = name.substring(0, suffix.start);
   }
   if (name == text(card['name'])) return true;
-  // A Collectr front-face name can identify the full double-faced print only
-  // when its governed layout, complete name and collector number agree.
+  // A front face or Adventure permanent name can identify the complete print
+  // only when its governed layout, full name and collector number agree.
+  // The Adventure spell alone must not identify the permanent.
   final faces = text(payload['name']).split(' // ');
-  return const ['transform', 'modal_dfc'].contains(payload['layout']) &&
+  return const ['transform', 'modal_dfc', 'adventure'].contains(payload['layout']) &&
       faces.length == 2 &&
       faces.every((face) => face.isNotEmpty) &&
       name == faces.first;

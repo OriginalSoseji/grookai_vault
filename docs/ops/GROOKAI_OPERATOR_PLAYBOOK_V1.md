@@ -38,6 +38,13 @@ reset populated fixtures to recover connectivity.
 
 ## Web-first Collectr importer — October 1
 
+The Adventure-name follow-up is in `docs/checkpoints/collectr_adventure_20261001.md`.
+Its fixed isolated worktree uses `GV_COLLECTR_ADVENTURE_HTTP_PROOF=1` for the same
+retained410 lab and Next58863. A fresh synthetic Adventure identity exercises the
+web save/retry flow; prior proof modes keep their original fixtures and paths.
+Private receipts are under `collectr_adventure_20261001`. The real export remains
+unsaved; offline Ready counts and passing tests are not deployed import evidence.
+
 Read `docs/checkpoints/collectr_web_v2_20261001.md`. The founder removed physical
 iPhone testing as a prerequisite; qualify the source-aware website with real
 sandbox Auth/HTTP/SQL and browser save/retry readback. The fixed isolated web

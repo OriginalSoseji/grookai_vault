@@ -89,6 +89,21 @@ a deployed backend, a new native build or import of the founder's collection.
 
 ## Governed MTG name matching follow-up
 
+Adventure layouts also accept the permanent's name when the single governed
+identity binds the complete permanent/spell name to the exact English set,
+collector number and Scryfall print. The Adventure spell alone cannot identify
+the card. Treatment suffixes still require their own evidence; special foils,
+grades, incomplete names and conflicting identities remain held. This does not
+extend matching to split, flip, meld or other layouts.
+
+The official [FINAL FANTASY mechanics guide](https://magic.wizards.com/en/news/feature/final-fantasy-mechanics)
+describes the separately named Adventure spell on these cards, and the official
+[deck checklist](https://media.wizards.com/ContentResources/WPN/deck_checklists/fin/MTGFIN_EN_DckCklst.pdf)
+lists the permanent names and collector numbers. Catalog identity and child
+printing evidence are still required independently. The shared synthetic corpus
+covers both native and server matching. Qualification and release status are
+recorded in `docs/checkpoints/collectr_adventure_20261001.md` and its private ledger.
+
 Source-aware V2 may resolve an English MTG decorated name only against exactly
 one active `MTG_ENG_PAPER_PRINT_IDENTITY_V1` record bound to the parent, Scryfall
 print ID, set code, collector number, language and full catalog name. Extended Art
