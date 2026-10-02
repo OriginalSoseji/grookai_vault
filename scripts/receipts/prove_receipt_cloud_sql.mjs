@@ -1,0 +1,61 @@
+// Supplementary SQL behavior proof in a fresh network-none PostgreSQL fixture.
+// This is NOT the governed full migration replay or production qualification.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {execFileSync,execFile} from 'node:child_process';
+import {promisify} from 'node:util';
+import {randomUUID,createHash} from 'node:crypto';
+import {createReceipt,emptyBook,saveSale} from '../../apps/web/src/lib/receipts/receiptBook.mjs';
+const name='gv-receipt-cloud-sql-v2-20261002',out='.local/receipt-cloud';
+const container=JSON.parse(execFileSync('docker',['inspect',name],{encoding:'utf8'}))[0];
+assert.equal(container.HostConfig.NetworkMode,'none');assert.equal(container.Config.Image,'public.ecr.aws/supabase/postgres:17.6.1.113');
+const args=['exec','-i',name,'psql','-U','supabase_admin','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'];
+const sql=q=>execFileSync('docker',args,{input:q,encoding:'utf8',stdio:['pipe','pipe','pipe']}).trim();
+assert.equal(sql('select current_setting(\'max_worker_processes\')'),'0');
+assert.equal(sql("select to_regclass('public.vendor_receipt_books') is null"),'t','Never rerun against a populated fixture');
+sql(`create schema if not exists auth;
+do $$begin if not exists(select 1 from pg_roles where rolname='anon') then create role anon; end if;
+if not exists(select 1 from pg_roles where rolname='authenticated') then create role authenticated; end if; end$$;
+create table if not exists auth.users(id uuid primary key);
+create or replace function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
+grant usage on schema auth,public to authenticated,anon;
+create table public.vault_item_instance_dispositions(id uuid primary key,user_id uuid references auth.users(id),disposition_type text,sale_price_currency text);`);
+const migration=fs.readFileSync('supabase/migrations/20261002220000_vendor_receipt_cloud_v1.sql','utf8');sql(migration);
+const owner=randomUUID(),other=randomUUID(),customerId=randomUUID(),source=randomUUID(),checks=[];
+sql(`insert into auth.users(id) values('${owner}'),('${other}');insert into public.vault_item_instance_dispositions values('${source}','${owner}','sale','USD');`);
+const literal=v=>`'${JSON.stringify(v).replaceAll("'","''")}'::jsonb`;
+const query=(actor,q)=>`begin;set local role authenticated;select set_config('request.jwt.claim.sub','${actor}',true);${q};commit;`;
+const as=(actor,q)=>sql(query(actor,q)).split(/\r?\n/).at(-1);
+const read=actor=>JSON.parse(as(actor,'select public.vendor_receipt_book_read_v1()'));
+const save=(actor,revision,id,book)=>JSON.parse(as(actor,`select public.vendor_receipt_book_save_v1(${revision},'${id}',${literal(book)})`));
+assert.throws(()=>read(owner));sql('update public.vendor_receipt_cloud_control set enabled=true');
+assert.equal(read(owner).revision,0);assert.equal(read(other).book.receipts.length,0);
+assert.throws(()=>sql('begin;set local role anon;select public.vendor_receipt_book_read_v1();rollback;'));
+assert.throws(()=>as(other,'select * from public.vendor_receipt_books'));
+assert.throws(()=>as(owner,"update public.vendor_receipt_cloud_control set enabled=false"));
+checks.push('anonymous, base-table and rollout writes denied; default-off blocks RPC reads');
+const customer={name:'Synthetic buyer',email:'buyer@fixture.invalid',phone:'',wants:'Eevee',notes:'Private note'};
+const receipt=()=>createReceipt({confirmed:true,storeName:'Fixture',customer,method:'Cash',items:[{description:'Synthetic card',quantity:'2',price:'12.34'}],discount:'0',tax:'0',note:''},randomUUID(),new Date().toISOString());
+let book=saveSale(emptyBook(),{...receipt(),sourceDispositionId:source},customer,customerId);
+const request=randomUUID();const first=save(owner,0,request,book);assert.equal(first.revision,1);
+assert.deepEqual(save(owner,0,request,book),first);assert.equal(read(other).book.receipts.length,0);
+assert.throws(()=>save(other,0,randomUUID(),book));
+assert.throws(()=>save(owner,0,randomUUID(),book));
+assert.throws(()=>save(owner,1,request,{...book,storeName:'Different'}));
+checks.push('owner isolation, source ownership, stable request replay, changed-token reuse and stale revision enforcement');
+for(const change of [b=>b.receipts=[],b=>b.receipts[0].receipt.totalMinor++,b=>b.receipts[0].receipt.items[0].lineMinor++,b=>delete b.version,b=>b.customers=[],b=>b.receipts[0].receipt.items[0].quantity=1.1,b=>b.receipts[0].receipt.note='edited saved receipt']){
+ const bad=structuredClone(book);change(bad);assert.throws(()=>save(owner,1,randomUUID(),bad));assert.equal(read(owner).revision,1);
+}
+checks.push('immutable receipt snapshots, retained customer identities, integer cents and shape validation');
+const branchA=saveSale(book,receipt(),{...customer,wants:'Pikachu'},customerId),branchB=saveSale(book,receipt(),{...customer,wants:'Mew'},customerId);
+const run=promisify(execFile);
+// execFile has no stdin option: launch psql with a bounded synthetic -c query.
+const race=b=>run('docker',[...args,'-c',query(owner,`select public.vendor_receipt_book_save_v1(1,'${randomUUID()}',${literal(b)})`)],{encoding:'utf8'});
+const results=await Promise.allSettled([race(branchA),race(branchB)]);assert.equal(results.filter(r=>r.status==='fulfilled').length,1);
+book=read(owner).book;assert.equal(book.receipts.length,2);assert.equal(read(owner).revision,2);assert.equal(book.customers.length,1);
+checks.push('two actual concurrent PostgreSQL sessions: exactly one save wins, no lost receipt');
+sql('update public.vendor_receipt_cloud_control set enabled=false');assert.throws(()=>read(owner));assert.throws(()=>save(owner,2,randomUUID(),book));
+assert.equal(sql('select count(*) from public.vendor_receipt_books'),'1');
+checks.push('rollback switch blocks reads and writes while preserving saved data');
+fs.writeFileSync(out+'/sql-proof-v2.json',JSON.stringify({status:'passed',at:new Date().toISOString(),container:name,checks,migrationSha256:createHash('sha256').update(migration).digest('hex'),productionWrites:0,scope:'isolated supplementary SQL proof; not full replay/Auth/production qualification'},null,2));
+console.log(JSON.stringify({status:'passed',checks:checks.length}));

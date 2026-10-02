@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Account receipt cloud — October 2, 2026
+
+The device receipt desk is LIVE from PR580 (8dffbf8a). Its terminal receipt is
+C:/grookai_vault_operator_artifacts/vendor_receipts_20261002/release-checkpoint.json.
+Continue cloud work only in C:/gv_vendor_receipt_cloud_20261002. Read
+docs/ops/VENDOR_RECEIPT_CLOUD_20261002.md and its contract. One account-owned book,
+immutable manual receipts, explicit backup import and optimistic revisions.
+Cloud candidate is NOT deployed; rollout defaults OFF. Keep checkout and catalog
+repair work separate. Dedicated V2 full/upgrade labs use646xx; preserve V1 evidence.
+Never use SQLSTATE40001 for application conflicts: actual PostgREST HTTP proof
+exposed automatic retry loops. V2 uses PT409 and preserves drafts on conflict.
+
+
 ## Immediate in-person receipts — October 2, 2026
 
 The user prioritized receipts for sales today. Current receipt work is isolated in

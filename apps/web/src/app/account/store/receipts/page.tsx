@@ -18,5 +18,5 @@ export default async function ReceiptsPage({searchParams}:{searchParams:Promise<
     if(r.type!=='sale'||r.salePrice===null||r.saleCurrency!=='USD')return <p className="p-6">This receipt desk supports completed USD sales.</p>;
     prefill={description:r.gvviId,price:r.salePrice.toFixed(2),customerName:r.counterparty||'',sourceDispositionId:r.id};
   }
-  return <><nav className="mx-auto max-w-6xl px-5 pt-6 text-sm"><Link className="underline" href="/account/store">Store workspace</Link><span className="px-3">·</span><Link className="underline" href="/vault/transactions">Recorded sales</Link></nav><ReceiptDesk accountKey={user.id} prefill={prefill}/></>;
+  return <><nav className="mx-auto max-w-6xl px-5 pt-6 text-sm"><Link className="underline" href="/account/store">Store workspace</Link><span className="px-3">·</span><Link className="underline" href="/vault/transactions">Recorded sales</Link>{process.env.GROOKAI_RECEIPT_CLOUD_ENABLED === "true" && <><span className="px-3">·</span><Link className="underline" href="/account/store/receipts/cloud">Account receipts — across devices</Link></>}</nav><ReceiptDesk accountKey={user.id} prefill={prefill}/></>;
 }
