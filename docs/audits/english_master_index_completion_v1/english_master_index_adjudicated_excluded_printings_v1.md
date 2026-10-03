@@ -15,12 +15,11 @@ They are preserved as audit evidence only. This artifact is not deletion authori
 
 ## Summary
 
-- excluded_printing_facts: 5
+- excluded_printing_facts: 4
 
 | set_key | number | card | finish | blocker_type | reason |
 | --- | --- | --- | --- | --- | --- |
 | bw8 | 94 | Druddigon | holo | finish_label_conflict | Evidence distinguishes cracked ice holo from the base card; this audit does not collapse cracked_ice into holo. |
 | sm8 | 187 | Net Ball | stamped | card_number_conflict | Exact league/stamped evidence points to 187a/214, not exact card number 187/214. |
-| swsh3.5 | 62 | Professor's Research (Professor Magnolia) | normal | finish_label_conflict | Available exact source context does not support normal finish. |
 | sv03.5 | 146 | Moltres | normal | finish_label_conflict | Available exact source does not list normal finish. |
-| ex9 | 107 | Farfetch'd | normal | finish_label_conflict | Available exact source context does not support normal finish. |
+| swsh3.5 | 62 | Professor's Research (Professor Magnolia) | normal | finish_label_conflict | Available exact source context does not support normal finish. |

@@ -1,7 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
-import { markdownTable } from './verified_master_set_index_v1/shared.mjs';
+import { canonicalCardNameKey, markdownTable } from './verified_master_set_index_v1/shared.mjs';
+import { assertClassicMasterProfiles } from '../../backend/catalog/pokemon_classic_master_profile_v1.mjs';
+import { assertWorld2010MasterMembership } from '../../backend/catalog/pokemon_world2010_membership_v1.mjs';
 
 const SOURCE_DIR = 'docs/audits/verified_master_set_index_v1/english_master_index_v1';
 const OUTPUT_DIR = 'docs/audits/english_master_index_completion_v1';
@@ -152,8 +155,12 @@ function makeSetBucket(set) {
     source_aliases: set.source_aliases ?? {},
     source_status: set.source_status ?? {},
     source_totals: set.source_totals ?? {},
+    ...(set.anthology_membership ? { anthology_membership: structuredClone(set.anthology_membership) } : {}),
+    ...(set.completion_scope ? { completion_scope: set.completion_scope, outside_scope_reviews: set.outside_scope_reviews ?? [] } : {}),
     source_availability: {},
     card_identity: {
+      ...(set.anthology_membership ? { expected_membership: set.anthology_membership.expected_identity_count,
+        held_membership: set.anthology_membership.held_identity_count } : {}),
       total_working_facts: 0,
       master_admissible: 0,
       api_agreed: 0,
@@ -177,6 +184,7 @@ function makeSetBucket(set) {
       finish_absences: 0,
       finish_blocker_boundary: 0,
       adjudicated_excluded: 0,
+      identities_without_printing_evidence: 0,
     },
     finish_counts: {},
     source_keys: {},
@@ -290,6 +298,31 @@ function applyPrintingDerivedCardIdentity(buckets, cardsArtifact, printingsArtif
   }
 }
 
+// Missing finish facts are evidence gaps, not invented Normal/Holo rows. Count
+// identities separately from known printing facts so a zero-row set cannot
+// disappear from the source worklist, or a partially covered set appear complete.
+function applyMissingPrintingEvidence(buckets, cardsArtifact, printingsArtifact, finishBlockerMap) {
+  const coverageKey = row => {
+    const raw = String(row.card_number ?? '').trim();
+    // The retained Master uses both 1 and 001. Fold only numeric zero padding;
+    // keep denominators, prefixes and suffixes intact. Use the established
+    // Master classifier's name key (GX punctuation and Delta display),
+    // rather than treating its already-equivalent display names as new gaps.
+    const number = /^\d+$/.test(raw) ? raw.replace(/^0+(?=\d)/, '') : raw;
+    return [setKey(row), number, canonicalCardNameKey(row)].join('|');
+  };
+  const represented = new Set((printingsArtifact.printings ?? [])
+    .filter(row => !finishBlockerMap.has(finishFactKey(row)))
+    .map(coverageKey));
+  const seen = new Set();
+  for (const card of cardsArtifact.cards ?? []) {
+    const key = coverageKey(card);
+    if (seen.has(key) || represented.has(key)) continue;
+    seen.add(key);
+    ensureBucket(buckets, setKey(card)).printings.identities_without_printing_evidence += 1;
+  }
+}
+
 function applyManualReview(buckets, manualReviewArtifact) {
   for (const row of manualReviewArtifact.manual_review ?? []) {
     const bucket = ensureBucket(buckets, setKey(row), { set_name: row.set_name });
@@ -318,13 +351,15 @@ function applyConflicts(buckets, conflictsArtifact) {
 }
 
 function completionStatus(bucket) {
+  if (bucket.anthology_membership?.held_identity_count) return 'anthology_identity_membership_incomplete';
   const nonStandardReference = NON_STANDARD_SINGLE_SOURCE_REFERENCE_SETS.get(bucket.set_key);
   if (nonStandardReference) return nonStandardReference.status;
 
-  const cardTotal = bucket.card_identity.total_working_facts;
+  const cardTotal = identityExpectedTotal(bucket);
   const printingTotal = bucket.printings.total_working_facts;
   const cardComplete = cardTotal > 0 && bucket.card_identity.master_admissible === cardTotal;
-  const printingComplete = printingTotal > 0 && bucket.printings.master_admissible === printingTotal;
+  const printingComplete = printingTotal > 0 && bucket.printings.master_admissible === printingTotal
+    && bucket.printings.identities_without_printing_evidence === 0;
   const hasConflict = bucket.card_identity.conflicts || bucket.printings.conflicts;
   const hasSource = Object.values(bucket.source_availability).some((source) => source.runtime_status === 'collected' || source.evidence_rows > 0);
   const structuredSourceCount = Object.values(bucket.source_availability).filter((source) => source.runtime_status === 'collected' && source.evidence_rows > 0).length;
@@ -332,7 +367,7 @@ function completionStatus(bucket) {
 
   if (hasConflict) return 'conflict_blocked';
   if (!cardTotal && !printingTotal && !hasSource) return 'source_unavailable';
-  if (cardComplete && printingComplete) return 'complete_master_index_set';
+  if (cardComplete && printingComplete) return bucket.completion_scope ? 'complete_master_index_base_scope' : 'complete_master_index_set';
   if (cardComplete && !printingComplete) return 'card_identity_complete_finish_incomplete';
   if (structuredSourceCount >= 2 && cardTotal > 0) return 'source_agreed_card_identity';
   if (humanEvidenceRows === 0 && printingTotal > 0) return 'finish_evidence_missing';
@@ -340,8 +375,12 @@ function completionStatus(bucket) {
   return 'manual_review_required';
 }
 
+function identityExpectedTotal(bucket) {
+  return bucket.card_identity.expected_membership ?? bucket.card_identity.total_working_facts;
+}
+
 function scoreBucket(bucket) {
-  const cardPct = pct(bucket.card_identity.master_admissible, bucket.card_identity.total_working_facts);
+  const cardPct = pct(bucket.card_identity.master_admissible, identityExpectedTotal(bucket));
   const printingPct = pct(bucket.printings.master_admissible, bucket.printings.total_working_facts);
   const sourceCount = Object.values(bucket.source_availability).filter((source) => source.runtime_status === 'collected' && source.evidence_rows > 0).length;
   const sourceScore = Math.min(100, sourceCount * 50);
@@ -353,7 +392,7 @@ function finalizeBuckets(buckets) {
   return [...buckets.values()].map((bucket) => {
     const status = completionStatus(bucket);
     const nonStandardReference = NON_STANDARD_SINGLE_SOURCE_REFERENCE_SETS.get(bucket.set_key) ?? null;
-    const cardPct = pct(bucket.card_identity.master_admissible, bucket.card_identity.total_working_facts);
+    const cardPct = pct(bucket.card_identity.master_admissible, identityExpectedTotal(bucket));
     const printingPct = pct(bucket.printings.master_admissible, bucket.printings.total_working_facts);
     const completionScore = scoreBucket(bucket);
     return {
@@ -366,6 +405,8 @@ function finalizeBuckets(buckets) {
         printing_master_admissible_percent: printingPct,
         master_index_complete: status === 'complete_master_index_set',
         eligible_for_future_downstream_audit: status === 'complete_master_index_set',
+        ...(bucket.completion_scope ? { scope: bucket.completion_scope, whole_product_complete: false,
+          eligible_for_scoped_downstream_audit: status === 'complete_master_index_base_scope' } : {}),
         verification_level: nonStandardReference?.verification_level ?? 'normal_double_source_required',
         non_standard_policy: nonStandardReference?.policy ?? null,
         blocker_summary: blockerSummary(bucket, status),
@@ -379,11 +420,14 @@ function finalizeBuckets(buckets) {
 }
 
 function blockerSummary(bucket, status) {
+  if (bucket.anthology_membership?.held_identity_count) return `${bucket.anthology_membership.held_identity_count} expected anthology identities remain held with source IDs and reasons; finish evidence cannot resolve identity membership.`;
+  if (status === 'complete_master_index_base_scope') return 'Only the declared base scope is qualified; whole-product completeness is not asserted. Outside-scope claims remain separate reviews.';
   if (status === 'complete_master_index_set') return 'No current completion blocker.';
   if (status === 'conflict_blocked') return 'Resolve source conflicts before admission.';
   if (status === 'non_standard_single_source_reference') return 'Non-standard reference lane; not double verified and not normal Master Index completion authority.';
   if (status === 'source_unavailable') return 'No usable source evidence collected for this set.';
   if (bucket.card_identity.master_admissible < bucket.card_identity.total_working_facts) return 'Card identities need second-source agreement.';
+  if (bucket.printings.identities_without_printing_evidence > 0) return 'Exact printing evidence is missing for known card identities; finish count and finish labels remain unknown.';
   const printingGap = bucket.printings.total_working_facts - bucket.printings.master_admissible;
   if (printingGap > 0 && bucket.printings.finish_blocker_boundary === printingGap) {
     return 'Remaining printing/finish facts are blocker-boundary rows requiring manual finish or number adjudication.';
@@ -396,6 +440,33 @@ function buildGapQueue(setRows) {
   const queue = [];
   for (const set of setRows) {
     if (set.completion.status === 'complete_master_index_set') continue;
+    if (set.anthology_membership?.held_identity_count) {
+      queue.push({ lane: 'anthology_identity_membership_review', set_key: set.set_key, set_name: set.set_name,
+        gap_count: set.anthology_membership.held_identity_count, gap_unit: 'held_warehouse_identities_not_printing_facts',
+        priority: priorityForSet(set, 100), reviews: structuredClone(set.anthology_membership.held),
+        membership_fingerprint: set.anthology_membership.fingerprint,
+        required_evidence: 'Resolve the exact source coordinate, origin or unnumbered identity reasons through a new governed review; deck membership is not a printed denominator.',
+        mutation_authority: 'not mutation authority' });
+    }
+    if (set.outside_scope_reviews?.length) {
+      queue.push({ lane: 'outside_base_scope_review', set_key: set.set_key, set_name: set.set_name,
+        gap_count: set.outside_scope_reviews.length, gap_unit: 'outside_scope_claims_not_printing_facts',
+        priority: priorityForSet(set, 90), reviews: set.outside_scope_reviews,
+        required_evidence: 'Independent exact size/identity evidence; a base-scope finish is not evidence for an outside-scope variant.',
+        mutation_authority: 'not mutation authority' });
+    }
+    if (set.printings.identities_without_printing_evidence > 0) {
+      queue.push({
+        lane: 'card_identity_without_printing_evidence',
+        set_key: set.set_key,
+        set_name: set.set_name,
+        gap_count: set.printings.identities_without_printing_evidence,
+        gap_unit: 'card_identities_not_printing_facts',
+        priority: priorityForSet(set, 100),
+        required_evidence: 'Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.',
+        mutation_authority: 'not mutation authority',
+      });
+    }
     if (set.card_identity.master_admissible < set.card_identity.total_working_facts) {
       queue.push({
         lane: 'card_identity_second_source',
@@ -470,13 +541,16 @@ function buildSourceWorklist(setRows, gapQueue) {
         completion_status: set.completion.status,
         completion_score: set.completion.completion_score,
         total_gap_count: gaps.total_gap_count,
-        card_identity_gap_count: Math.max(0, set.card_identity.total_working_facts - set.card_identity.master_admissible),
+        card_identity_gap_count: Math.max(0, identityExpectedTotal(set) - set.card_identity.master_admissible),
+        ...(set.anthology_membership ? { held_identity_reviews: structuredClone(set.anthology_membership.held),
+          membership_fingerprint: set.anthology_membership.fingerprint } : {}),
         printing_finish_gap_count: Math.max(0, set.printings.total_working_facts - set.printings.master_admissible),
+        identities_without_printing_evidence: set.printings.identities_without_printing_evidence,
         finish_blocker_boundary_count: set.printings.finish_blocker_boundary,
         source_alias_gap: set.completion.status === 'source_unavailable',
         lanes: uniqueSorted(gaps.lanes),
         required_evidence: uniqueSorted(gaps.required_evidence),
-        card_identity_progress: `${set.card_identity.master_admissible}/${set.card_identity.total_working_facts}`,
+        card_identity_progress: `${set.card_identity.master_admissible}/${identityExpectedTotal(set)}`,
         printing_finish_progress: `${set.printings.master_admissible}/${set.printings.total_working_facts}`,
         priority: gaps.max_priority,
         mutation_authority: 'not mutation authority',
@@ -495,6 +569,7 @@ function buildSourceWorklist(setRows, gapQueue) {
 
 function statusRank(status) {
   return {
+    anthology_identity_membership_incomplete: 1,
     card_identity_complete_finish_incomplete: 1,
     source_agreed_card_identity: 2,
     finish_evidence_missing: 3,
@@ -532,6 +607,7 @@ function buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact, finis
     working_printing_facts: setRows.reduce((total, set) => total + set.printings.total_working_facts, 0),
     master_admissible_printing_facts: setRows.reduce((total, set) => total + set.printings.master_admissible, 0),
     finish_absence_facts: printingsArtifact.finish_absences?.length ?? 0,
+    identities_without_printing_evidence: setRows.reduce((total, set) => total + set.printings.identities_without_printing_evidence, 0),
     finish_blocker_boundary_facts: setRows.reduce((total, set) => total + set.printings.finish_blocker_boundary, 0),
     adjudicated_excluded_printing_facts: setRows.reduce((total, set) => total + set.printings.adjudicated_excluded, 0),
     by_completion_status: byCompletionStatus,
@@ -542,7 +618,9 @@ function buildSummary(setRows, gapQueue, cardsArtifact, printingsArtifact, finis
   };
 }
 
-function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availabilityArtifact, manualReviewArtifact, conflictsArtifact, finishBlockerClosure }) {
+export function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availabilityArtifact, manualReviewArtifact, conflictsArtifact, finishBlockerClosure }) {
+  assertClassicMasterProfiles({ setsArtifact, cardsArtifact, printingsArtifact });
+  assertWorld2010MasterMembership({ setsArtifact, cardsArtifact, printingsArtifact });
   const buckets = new Map();
   const finishBlockerMap = buildFinishBlockerMap(finishBlockerClosure);
   const adjudicatedExcludedPrintings = [];
@@ -565,6 +643,7 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
     });
   }
   applyPrintings(buckets, printingsArtifact, finishBlockerMap);
+  applyMissingPrintingEvidence(buckets, cardsArtifact, printingsArtifact, finishBlockerMap);
   applyPrintingDerivedCardIdentity(buckets, cardsArtifact, printingsArtifact);
   applyManualReview(buckets, manualReviewArtifact);
   resolveManualReviewWithPrintingDerivedIdentity(buckets);
@@ -640,6 +719,10 @@ function buildArtifacts({ setsArtifact, cardsArtifact, printingsArtifact, availa
       ...base,
       version: 'english_master_index_master_admissible_export_v1',
       rule: 'This export contains Master Index-admissible facts only. It is still audit-only and is not a Grookai write plan.',
+      ...(setRows.some(s => s.anthology_membership) ? { anthology_memberships:
+        setRows.filter(s => s.anthology_membership).map(s => structuredClone(s.anthology_membership)) } : {}),
+      bounded_scopes: setRows.filter(s => s.completion_scope).map(s => ({ set_key: s.set_key,
+        scope: s.completion_scope, whole_product_complete: false, outside_scope_reviews: s.outside_scope_reviews })),
       summary: {
         card_identity_facts: masterAdmissibleCards.length,
         printing_finish_facts: compactMasterAdmissiblePrintings.length,
@@ -692,6 +775,9 @@ function evidenceUrls(row) {
 
 function compactCardExport(card) {
   return {
+    ...(card.identity_model === 'reprint_anthology' && card.existing_parent ? {
+      key: card.key, identity_model: card.identity_model, printed_total: card.printed_total,
+      existing_parent: structuredClone(card.existing_parent) } : {}),
     set_key: card.set_key,
     set_name: card.set_name,
     card_number: card.card_number,
@@ -963,7 +1049,7 @@ async function main() {
   }, null, 2));
 }
 
-main().catch((error) => {
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });

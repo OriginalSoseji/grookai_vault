@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:10:54.256Z",
+  "generated_at": "2026-10-03T03:06:43.413Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -10,21 +10,20 @@
   "version": "english_master_index_adjudicated_excluded_printings_v1",
   "rule": "These printing facts were reviewed at the finish-blocker boundary and excluded from working Master Index truth. They are preserved as audit evidence, not publishable printings and not mutation authority.",
   "summary": {
-    "excluded_printing_facts": 5,
+    "excluded_printing_facts": 4,
     "by_set": {
       "bw8": 1,
       "sm8": 1,
-      "swsh3.5": 1,
       "sv03.5": 1,
-      "ex9": 1
+      "swsh3.5": 1
     },
     "by_finish": {
       "holo": 1,
       "stamped": 1,
-      "normal": 3
+      "normal": 2
     },
     "by_blocker_type": {
-      "finish_label_conflict": 4,
+      "finish_label_conflict": 3,
       "card_number_conflict": 1
     }
   },
@@ -96,37 +95,6 @@
       "exclusion_status": "excluded_from_master_index_working_truth"
     },
     {
-      "set_key": "swsh3.5",
-      "set_name": "Champion's Path",
-      "card_number": "62",
-      "card_name": "Professor's Research (Professor Magnolia)",
-      "finish_key": "normal",
-      "language": "en",
-      "source_count": 1,
-      "sources": [
-        "thepricedex_price_list"
-      ],
-      "source_kinds": [
-        "marketplace_checklist"
-      ],
-      "status": "human_source_verified",
-      "evidence_urls": [
-        "https://www.thepricedex.com/set/swsh35/champions-path/price-list"
-      ],
-      "blocker_type": "finish_label_conflict",
-      "reason_not_promoted": "Available exact source context does not support normal finish.",
-      "next_action": "Classify as possible unsupported normal unless exact normal evidence is found.",
-      "adjudication_evidence_urls": [
-        "https://www.tcgplayer.com/categories/trading-and-collectible-card-games/pokemon/price-guides/champions-path",
-        "https://guardiantcg.app/pokemon/champion-s-path/professor-s-research"
-      ],
-      "adjudication_evidence_labels": [
-        "TCGplayer Champion's Path price guide lists Professor's Research #62/73 with Holofoil and Reverse Holofoil printings.",
-        "Guardian TCG card page describes Professor's Research #62/73 as Holo Rare / Reverse Holofoil context."
-      ],
-      "exclusion_status": "excluded_from_master_index_working_truth"
-    },
-    {
       "set_key": "sv03.5",
       "set_name": "151",
       "card_number": "146",
@@ -156,31 +124,33 @@
       "exclusion_status": "excluded_from_master_index_working_truth"
     },
     {
-      "set_key": "ex9",
-      "set_name": "Emerald",
-      "card_number": "107",
-      "card_name": "Farfetch'd",
+      "set_key": "swsh3.5",
+      "set_name": "Champion's Path",
+      "card_number": "62",
+      "card_name": "Professor's Research (Professor Magnolia)",
       "finish_key": "normal",
       "language": "en",
       "source_count": 1,
       "sources": [
-        "cardtrader_blueprint_index"
+        "thepricedex_price_list"
       ],
       "source_kinds": [
         "marketplace_checklist"
       ],
       "status": "human_source_verified",
       "evidence_urls": [
-        "https://www.cardtrader.com/en/cards/115934-farfetch-d-secret-rare-107-106-ex-emerald"
+        "https://www.thepricedex.com/set/swsh35/champions-path/price-list"
       ],
       "blocker_type": "finish_label_conflict",
       "reason_not_promoted": "Available exact source context does not support normal finish.",
-      "next_action": "Classify as possible unsupported normal unless an exact normal-source record is found.",
+      "next_action": "Classify as possible unsupported normal unless exact normal evidence is found.",
       "adjudication_evidence_urls": [
-        "https://pokescope.app/card/ex9-107/"
+        "https://www.tcgplayer.com/categories/trading-and-collectible-card-games/pokemon/price-guides/champions-path",
+        "https://guardiantcg.app/pokemon/champion-s-path/professor-s-research"
       ],
       "adjudication_evidence_labels": [
-        "PokeScope exact card page identifies Emerald #107/106 Farfetch'd as Rare Secret with Market Price (TCG holofoil)."
+        "TCGplayer Champion's Path price guide lists Professor's Research #62/73 with Holofoil and Reverse Holofoil printings.",
+        "Guardian TCG card page describes Professor's Research #62/73 as Holo Rare / Reverse Holofoil context."
       ],
       "exclusion_status": "excluded_from_master_index_working_truth"
     }

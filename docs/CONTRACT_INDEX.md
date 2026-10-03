@@ -1,5 +1,8 @@
 # 📜 GROOKAI VAULT — CONTRACT INDEX (AUTHORITATIVE)
 
+- [Pokemon dependency lookup V1](contracts/POKEMON_DEPENDENCY_LOOKUP_V1.md) — Shared Classic/World nonempty query-plan gate; read-only inventory and synthetic proof, no migration/apply authority.
+
+
 This document is the **single source of truth** for all Grookai Vault contracts.
 
 A contract defines a **binding rule, invariant, or system behavior**.
@@ -13,6 +16,25 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| POKEMON_WORLD2010_DEPENDENCY_PRESERVATION_V1 | Active read-only observation and isolated SQL qualification | docs/contracts/POKEMON_WORLD2010_DEPENDENCY_PRESERVATION_V1.md - Exact generated-ID and retained-row preservation across all inbound World2010 write dependencies |
+| POKEMON_WORLD2010_RELATIONSHIP_EXECUTION_V1 | Active local qualification; production apply disabled | docs/contracts/POKEMON_WORLD2010_RELATIONSHIP_EXECUTION_V1.md - Atomic whole92 identity/evidence/TCGCSV mapping package with83 raw ingress and exact recovery journals |
+| POKEMON_WORLD2010_SUBSET_INGRESS_V1 | Active local qualification; production apply disabled | docs/contracts/POKEMON_WORLD2010_SUBSET_INGRESS_V1.md - World2010 bounded anthology subset ingress |
+| POKEMON_CLASSIC_CANONICAL_ADMISSION_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_CANONICAL_ADMISSION_V1.md - Pokemon Classic canonical admission V1 |
+| POKEMON_CLASSIC_DEPENDENCY_PRESERVATION_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_DEPENDENCY_PRESERVATION_V1.md - Pokemon Classic outside dependency preservation V1 |
+| POKEMON_CLASSIC_DEPENDENCY_REPLAY_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_DEPENDENCY_REPLAY_V1.md - Pokemon Classic selected dependency replay V1 |
+| POKEMON_CLASSIC_EXECUTION_JOURNAL_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_EXECUTION_JOURNAL_V1.md - Pokemon Classic frozen package and execution journal V1 |
+| POKEMON_CLASSIC_FINISH_EVIDENCE_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_FINISH_EVIDENCE_V1.md - Pokemon Classic finish evidence V1 |
+| POKEMON_CLASSIC_FINISH_STAGING_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_FINISH_STAGING_V1.md - Pokemon Classic finish staging V1 |
+| POKEMON_CLASSIC_GENERATED_ROW_JOURNAL_V2 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_GENERATED_ROW_JOURNAL_V2.md - Pokemon Classic generated-row journal V2 |
+| POKEMON_CLASSIC_IDENTITY_EVIDENCE_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_IDENTITY_EVIDENCE_V1.md - Pokemon Classic identity evidence V1 |
+| POKEMON_CLASSIC_MASTER_INTEGRATION_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_MASTER_INTEGRATION_V1.md - Pokemon Classic working Master integration V1 |
+| POKEMON_CLASSIC_MASTER_STAGING_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_MASTER_STAGING_V1.md - Pokemon Classic Master staging V1 |
+| POKEMON_CLASSIC_PRODUCTION_PLANNING_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_CLASSIC_PRODUCTION_PLANNING_V1.md - Pokemon Classic production planning V1 |
+| POKEMON_WAREHOUSE_GROUP_INTAKE_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_WAREHOUSE_GROUP_INTAKE_V1.md - Pokemon whole-group review ingress V1 |
+| POKEMON_WORLD2010_IDENTITY_PROJECTION_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_WORLD2010_IDENTITY_PROJECTION_V1.md - Pokemon World2010 existing identity projection V1 |
+| POKEMON_WORLD2010_MEMBERSHIP_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_WORLD2010_MEMBERSHIP_V1.md - Pokemon World2010 anthology membership V1 |
+| POKEMON_WORLD2010_RELATIONSHIP_REVIEW_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_WORLD2010_RELATIONSHIP_REVIEW_V1.md - Pokemon World2010 existing relationship review V1 |
+| POKEMON_WORLD2010_MASTER_INTEGRATION_V1 | Active implementation contract; production qualification remains separate | docs/contracts/POKEMON_WORLD2010_MASTER_INTEGRATION_V1.md - Pokemon World2010 Master integration V1 |
 | POKEMON_WAREHOUSE_DISCOVERY_RUNTIME_V1 | Active | docs/contracts/POKEMON_WAREHOUSE_DISCOVERY_RUNTIME_V1.md - Immutable recurring review intake, exact policy scope, interrupted-run blocking and observed timer qualification |
 | POKEMON_WAREHOUSE_DISCOVERY_INTAKE_V1 | Active | docs/contracts/POKEMON_WAREHOUSE_DISCOVERY_INTAKE_V1.md - Preserved TCGCSV raw ingress and bounded review-only discovery with immutable receipts and operational job ledger |
 | NATIVE_OWNED_COPY_SELECTION_V1 | Active implementation contract | docs/contracts/NATIVE_OWNED_COPY_SELECTION_V1.md - Read-only ownership priming and per-instance Objects selection; current candidate is not yet distributed |

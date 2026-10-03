@@ -1,0 +1,69 @@
+{{DeckInfobox
+|title=Boltevoir
+|image=WCS2010 Boltevoir Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Psychic}}{{e|Fighting}}
+|cards={{TCG ID|Secret Wonders|Gardevoir|7}}, {{TCG ID|Arceus|Spiritomb|32}}
+}}
+
+'''Boltevoir''' deck is the name of the deck used by Michael Pramawat, the Masters Division Finalist in the [[2010 World Championships]]. It predominantly features {{e|Psychic}} and {{e|Fighting}} Pokémon and works by setting up {{TCG ID|Secret Wonders|Gardevoir|7}} with {{TCG ID|Arceus|Spiritomb|32}}, and continuously exploit Gardevoir's Psychic Lock attack to prevent the opponent from using key effects on their cards to win the game. 
+
+Boltevoir is one of the four {{TCGMerch|HeartGold & SoulSilver|Series|2010 World Championships Decks}}, released in November 2010. Each deck comes packaged with a 2010 World Championships Booklet. Each card features a silver border, Pramawat's signature, and limited edition 2010 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Like a bolt from the blue, Michael Pramawat's Boltevoir deck will blast your opponent's! With lots of options—including Gardevoir to give you access to your opponent's Supporter cards and shut down Poké-Powers, Gallade to damage your opponent's Pokémon so Gardevoir LV.X can make the Knock Out, and Machamp to take care of your opponent's Pokémon that aren't evolved—its combos just keep coming!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Gardevoir LV.X|131}}|Psychic||Rare Holo LV.X}}
+{{decklist/entry|3|{{TCG ID|Secret Wonders|Gardevoir|7}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Gallade|6}}|Fighting||Rare Holo}}
+{{decklist/entry|2|{{TCG ID|Platinum|Kirlia|51}}|Psychic||Common}}
+{{decklist/entry|4|{{TCG ID|Platinum|Ralts|89}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Machamp|20}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Machop|86}}|Fighting||Common}}
+{{decklist/entry|1|{{TCG ID|Great Encounters|Unown G|57}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}
+{{decklist/entry|1|{{TCG ID|Supreme Victors|Baltoy|89}}|Psychic||Common}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf LV.X|140}}|Psychic||Rare Holo LV.X}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Dusknoir|2}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Dusclops|35}}|Psychic||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Duskull|86}}|Psychic||Common}}
+{{decklist/entry|3|{{TCG ID|Arceus|Spiritomb|32}}|Darkness||Rare}}
+{{decklist/entry|4|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Platinum|Looker's Investigation|109}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Unleashed|Judge|78}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Lucian's Assignment|92}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Arceus|Expert Belt|87}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|2|{{TCG ID|Great Encounters|Moonlight Stadium|100}}|Stadium||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Double Colorless Energy|103}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Majestic Dawn|Call Energy|92}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|5|{{TCG|Psychic Energy}}|Energy|Psychic|None}}
+{{decklist/entry|1|{{TCG|Fighting Energy}}|Energy|Fighting|None}}
+{{decklist/footer}}
+
+== Trivia ==
+* Both the physical Boltevoir deck and the list in the accompanying booklet have the wrong Machop in them - according to Pramawat's own Worlds report, he ran the {{TCG ID|Stormfront|Machop|64}} from {{TCG|Stormfront}}, which has a Retreat Cost of 1, as opposed to the wrong Machop that has a Retreat Cost of 2.<ref>[https://x.com/RoseannesSearch/status/1765829522086338782 @RoseannesSearch on Twitter/X]</ref>
+* Unnumbered versions of {{TCG|Psychic Energy}} and {{TCG|Fighting Energy}} featuring their {{TCG|HeartGold & SoulSilver}} artwork are exclusive to this deck.
+
+== References ==
+{{reflist}}
+
+{{-}}
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:Boltevoir (TCG)]]
+[[ja:Boltevoir]]
+[[zh:霹雳奈朵（TCG）]]

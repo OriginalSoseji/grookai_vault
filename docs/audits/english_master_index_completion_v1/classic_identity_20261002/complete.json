@@ -1,0 +1,9 @@
+{
+  "status": "whole102_identity_qualification_passed_finish_incomplete",
+  "identities": 102,
+  "source_records": 204,
+  "finish_admissions": 0,
+  "active_master_changed": false,
+  "production_writes": 0,
+  "fingerprint": "e36c7c3aa14946995fbcb509e907366e8161446a99552cec6ded8a81ea792a6b"
+}

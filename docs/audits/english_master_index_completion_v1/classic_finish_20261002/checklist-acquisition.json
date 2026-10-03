@@ -1,0 +1,35 @@
+[
+  {
+    "key": "pricedex-clv",
+    "url": "https://www.thepricedex.com/set/clv/pokemon-tcg-classic-venusaur/price-list",
+    "retrieved_at": "2026-10-02T19:31:00.569Z",
+    "verified_tls": true,
+    "status": 200,
+    "final_url": "https://www.thepricedex.com/set/clv/pokemon-tcg-classic-venusaur/price-list",
+    "bytes": 312781,
+    "sha256": "c48f11d53a4a4225441b2ca1e6911f1cba3977c3c1207c24e96f9a60b8863f0b",
+    "file": "source_snapshots/pricedex-clv.html.gz"
+  },
+  {
+    "key": "pricedex-clc",
+    "url": "https://www.thepricedex.com/set/clc/pokemon-tcg-classic-charizard/price-list",
+    "retrieved_at": "2026-10-02T19:31:00.632Z",
+    "verified_tls": true,
+    "status": 200,
+    "final_url": "https://www.thepricedex.com/set/clc/pokemon-tcg-classic-charizard/price-list",
+    "bytes": 310220,
+    "sha256": "0c46fc17d2228c4afeb4a4e6a18a8cb193f1a363be1916692c160234ed6e53ff",
+    "file": "source_snapshots/pricedex-clc.html.gz"
+  },
+  {
+    "key": "pricedex-clb",
+    "url": "https://www.thepricedex.com/set/clb/pokemon-tcg-classic-blastoise/price-list",
+    "retrieved_at": "2026-10-02T19:31:00.632Z",
+    "verified_tls": true,
+    "status": 200,
+    "final_url": "https://www.thepricedex.com/set/clb/pokemon-tcg-classic-blastoise/price-list",
+    "bytes": 308436,
+    "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+    "file": "source_snapshots/pricedex-clb.html.gz"
+  }
+]

@@ -1,5 +1,485 @@
 # Grookai Operator Playbook V1
 
+## October 3 — repair reference namespace and normal publication
+
+The Pokemon repair owner now uses only `pokemon-relationship-repair-20261002/work`
+in `C:/gv_pokemon_relationship_agent_20261002`. Operator maintenance preserved
+HEAD, the index, working files and unrelated refs during the ordinary rename.
+The exclusive local/remote ref and reflog directories permit Windows transient
+locks without granting the shared agent namespace. The rejected shared-directory
+proposal is historical failure evidence, not isolation proof.
+
+Read `REFERENCE_NAMESPACE_MAINTENANCE.md` and its rename/capability receipts in
+the private repair state. Before expensive hooks, reconcile HEAD and existing
+locks and verify a same-OID update of this exact ref. Do not probe other writable
+refs, change permissions or replay consumed integrations. Historical receipts keep
+their old branch names; fresh producer observations bind the current branch.
+Normal complete commit and push hooks remain mandatory on frozen source, with
+the configured private Flutter runtime and unique TEMP/TMP per invocation.
+Commit/push receipts and subsequent production qualification remain separate in
+the private checkpoint; source publication does not establish repaired cards.
+
+## Twenty-second invocation — fresh-only dependency absence
+
+Read `docs/contracts/POKEMON_DEPENDENCY_FRESH_ABSENCE_V1.md`. The separate API
+requires entirely fresh, nonpending IDs, direct streaming index access and bounded
+runtime/role checks. Any matching row aborts. Existing executors and retained-row
+digests remain on their current contract; integration needs a new explicit binding.
+
+Run `scripts/proofs/pokemon_dependency_fresh_absence_v1.mjs` with a NEW loopback
+`grookai_dependency_absence_*` database and immutable output. The proof includes
+actual concurrent insert/snapshot visibility, lock timeout, invalid index and
+full preservation checks. Snapshot absence is not a transaction fence. Two live
+READONLY fixed-UUID observations, when recorded, do not qualify generated IDs,
+mutation locking, a production CLI or release. Exact results and normal hook
+outcomes live in the private repair-owner checkpoint; preserve all earlier labs.
+
+## Twenty-first invocation — exact nonnull dependency indexes
+
+The shared lookup gate now captures the actual index predicate and accepts only
+the exact same-column IS NOT NULL partial predicate, implied by its unchanged
+nonnull equality/ANY query. It retains inactive and duplicate dependencies and
+all prior table-size, index-state and plan-cost gates. No index migration follows.
+Read `docs/contracts/POKEMON_DEPENDENCY_LOOKUP_V1.md` for the precise boundary.
+
+Run `scripts/proofs/pokemon_dependency_nonnull_lookup_v1.mjs` with a NEW
+grookai_dependency_nonnull_* loopback database and NEW output directory, using
+the existing private local proof URL. The actual failed concurrent-index fixture
+is intentional retained evidence; never edit catalog flags or reset old labs.
+Full Classic/World SQL regressions and the two-connection live96-scope observer
+remain necessary on frozen source. Live EXPLAIN is not actual generated-ID or
+production runtime proof. Exact outcomes and unchanged normal-hook receipts live
+in the repair-owner CHECKPOINT.md. Other missing-index/migration/runtime gates
+remain separate; preserve all earlier sources, receipts and consumed integrations.
+
+## Twentieth invocation — bounded dependency lookups
+
+Read docs/contracts/POKEMON_DEPENDENCY_LOOKUP_V1.md. Classic and World2010
+observers now qualify every nonempty dependency aggregate with fresh table-size/index
+metadata and a nonexecuting EXPLAIN. Large unindexed scans stop before execution;
+small fixture success remains explicitly local. No optimizer or timeout bypass.
+The new read-only inventory worker accepts --classic-plan, --world-plan, --ca-file
+and NEW --out-dir. It covers every outside FK using exact existing/fixed IDs and
+explicit prospective probes for pending IDs; no dependency payload or aggregate
+is read by that inventory. Two independent observations and frozen source bind it.
+
+The synthetic lookup proof takes a NEW grookai_dependency_lookup_* database and
+immutable output. Keep prior labs intact. Exact outcomes and failed attempts live
+in the repair-owner CHECKPOINT.md. An index migration still requires a passing
+strict baseline audit, full Supabase replay/retained upgrade and normal release
+gates. This worktree's initial strict audit could not find its link metadata and
+reported denied Docker configuration access; no migration/apply follows that failure.
+
+
+## Nineteenth invocation — World2010 outside dependencies
+
+`POKEMON_WORLD2010_DEPENDENCY_PRESERVATION_V1.md` governs the read-only observer
+and expanded SQL qualification. Run the new World2010 dependency worker with
+explicit plan-dir, verified ca-file and NEWout-dir. It binds activeMaster/source,
+fresh schema and two independent production observations. Raw receipts include
+77group rows and13historical rows with signed bigint IDs; retain them losslessly.
+Generated IDs must match independently reconciled atomic journals before outside
+checks. Dependency payloads stay inside SQL; only counts and hashes are exported.
+
+The existing relationship proof accepts two optional trailing inputs: captured
+dependency directory and fullschema file. A NEWloopback clone gains missing tables,
+constraints/indexes/triggers/policies and translated owners before its baseline.
+Capture the actual schema readback and all failed labs; do not mutate a template.
+The source closure includes25tables. Local generated-ID queries against small
+fixtures do not qualify production's unindexed source_mapping_id lookup. Exact
+results, normalhooks and next gates live in the repair-owner CHECKPOINT.md.
+Productionwriter, PG17/realAuth, performance and release remain separate.
+
+## Eighteenth invocation — atomic World2010 relationships
+
+Read `docs/contracts/POKEMON_WORLD2010_RELATIONSHIP_EXECUTION_V1.md`. The new
+offline package and local executor bind92 identities,184 evidence rows and92
+TCGCSV mappings to83 ingress pairs and two journals in one transaction. Existing
+parents, finishes, raw lineage and17holds remain intact. Discovery review rows
+are preserved; mappings drive exact warehouse coverage. Lost-response recovery
+requires independent readback of both journal IDs and all generated identities.
+
+Use a NEW loopback `grookai_world2010_subset_canonical_*` clone and immutable
+output. The proof materializes namespace/source-sync stubs only inside that new
+clone, then measures exact536inserts/six tables and preserved original rows.
+Its actual selected public/Auth schema, PostgreSQL16 and synthetic extra inbound
+sentinel are explicit limits. Full inbound mapping queries, bounded production
+locking, runtime/public proof, frozen committed producer and a new production CLI
+remain gates. The external repair-owner checkpoint records actual outcomes.
+Never run the local package against production or replay completed integrations.
+
+## Seventeenth invocation — whole109 subset ingress with complete source fence
+
+Read `docs/contracts/POKEMON_WORLD2010_SUBSET_INGRESS_V1.md`. The new policy
+explicitly selects109 products from the complete2,001-product TCGCSV group2282;
+the existing500-product whole-group policy remains unchanged. The offline CLI
+binds independent source observations and four original checklists, retaining17
+holds, nine selected lineages,68 outside lineages and1,892 outside products.
+
+The local-only executor inserts83 raw/discovery pairs plus one atomic ledger,
+using the existing worker/group locks and a separate subset lock. SQL proof must
+use a new loopback database and immutable output directory. Independently compare
+the pending generated IDs and ledger ID after any unknown outcome. Preserve failed
+labs and all prior receipts. No production apply CLI, worker change or canonical
+authority follows. The private repair-owner checkpoint records actual tests,
+normal-hook/commit results, measured coverage and next92relationship work.
+
+
+## Sixteenth invocation — additive World2010 Master integration and recovery
+
+Read `docs/contracts/POKEMON_WORLD2010_MASTER_INTEGRATION_V1.md`. The new offline
+integration CLI replays original evidence and frozen membership before adding
+92 identities, four deck configurations, eight source-availability rows and 184
+evidence records to aggregate counts. Six retained source files bind the originals
+and TCGCSV products. Existing printings, earlier arrays and preparation metadata
+remain intact; all 17 held product IDs stay in completion/worklists/publication.
+
+Only the exact repair worktree/branch/cwd is accepted. Every integration uses a
+new private journal with full Master inventory, nine baseline backups, frozen
+after bytes and an exclusive PID/journal lock. Independently run `--mode=reconcile`
+before `--mode=resume` for a known interrupted write. Unknown bytes, temporary
+files or occupied locks stop recovery; never blindly retry or delete another
+process's lock. Preserve failures and historical journals. Source integration,
+normal checks/commit, production execution and public proof are separate receipts
+in the repair-owner CHECKPOINT.md. Never replay Classic or old World writers.
+
+## Fifteenth invocation — World2010 expected membership and retained holds
+
+`docs/contracts/POKEMON_WORLD2010_MEMBERSHIP_V1.md` governs the reusable offline
+membership stager and ordinary completion/publication guard. For all four decks,
+the frozen profile binds92admitted facts and17held product IDs with exact reasons
+and source hashes. Completion progress uses109expected identities without
+turning membership into original printed denominators. Gaps remain searchable
+in derived queues/worklists/exports; later finishes cannot close identity holds.
+
+Run `scripts/audits/pokemon_world2010_membership_v1.mjs` with the six explicit
+identity-projection paths and a NEWout-dir. It replays originals, checks every
+prior set outcome, reads back outputs and leaves activeMaster untouched. Preserve
+its inputs/complete/failure receipts in the repair state. New adjudication needs
+a new governed profile, not a recalculated self hash. Active integration, raw
+ingress, transaction/executor qualification and production/public proof remain
+distinct. Never reuse historical World printing or Classic apply authority.
+
+## Fourteenth invocation — World2010 anthology identity projection
+
+Read `docs/contracts/POKEMON_WORLD2010_IDENTITY_PROJECTION_V1.md`. The new offline
+CLI replays the whole109 review and originals, stages92existing-parent Master
+identities plus184source-evidence rows, and retains all17holds. Deck membership
+and physical quantity never fill original printed denominators. Every parent
+UUID/GV-ID, modifier, replica variant and original-set provenance is preserved.
+The candidate adds no finish, mapping or parent and does not edit active Master.
+
+The read-only SQL observer uses actual identity normalization/hash functions and
+checks global identity collisions. Hash observation does not authorize insertion.
+Immutable projection, live readback, qualification and normal-hook receipts are
+under the repair-owner state directory. Active Master completeness integration,
+83newraw lineages, the new relationship executor/journal and SQL/recovery proof
+remain required. Keep Classic's runtime, nonempty dependency-query, image and
+production-executor blockers distinct; do not repeat completed source acquisition.
+
+## Thirteenth invocation — World2010 whole-group relationship review
+
+Read `docs/contracts/POKEMON_WORLD2010_RELATIONSHIP_REVIEW_V1.md`. The new offline
+automated policy reparses four exact original60-card deck checklists and binds
+all109warehouse products to92reviewed existing-parent relationships plus17holds.
+It preserves every parent UUID/GV-ID and100existing children/reviews; it neither
+creates a parent nor reuses historical printing authority. Nine retainedTCGCSV
+raw/discovery lineages are exact;83still require governed ingress. New identity
+projection, mapping executor, SQL preservation/recovery proof and frozen apply
+remain required. The private state records the independently observed snapshot,
+new automated review and tests. No repaired-count claim follows from this review.
+
+Classic's nonempty mapping-dependency EXPLAIN confirms a sequential scan over an
+estimated12million-row relation without a source_mapping_id index. Do not repeat
+large scans, extend timeouts or count the empty-array optimization as post-write
+qualification. A governed lookup/index solution and actual generated-ID readback
+remain necessary. Native Docker/WSL probes in this agent's environment are denied
+or unavailable; no shared runtime/service/permission change is authorized here.
+Keep actualAuth/PostgreSQL17, image admission, normal commit/push and the new
+production executor gates explicit in the durable repair checkpoint.
+
+
+## Twelfth invocation — outside dependency preservation qualification
+
+Read `docs/contracts/POKEMON_CLASSIC_DEPENDENCY_PRESERVATION_V1.md`. The new
+read-only observer enumerates all foreign keys into the eleven write tables,
+including other source schemas and NOT VALID constraints. It binds the full
+catalog, fixed UUIDs,81 retained raw IDs and exact generated raw/mapping/ledger
+IDs. SHA256 row digests stay inside PostgreSQL; only aggregate hashes/counts
+leave it. RLS-filtered readers are rejected. Two independent production reads
+must agree before a baseline receipt; no apply mode exists.
+
+The expanded isolated V2 SQL proof adds outside-dependency preservation and
+adversarial orphan/payload/generated-ID/schema checks to the original journal
+checks. A synthetic dependency table exercises these semantics in a new clone;
+it does not stand in for full production outside-table schema replay. Exact
+transaction footprint remains required. Final immutable results are in the
+repair-owner checkpoint. Full17/Auth/application, images, normal commit/push
+and the new production executor remain open. No production repair is implied.
+
+
+
+Whole109 World2010 coordinate qualification now replays102original checklist
+lines and exposes four greedy multi-link parse errors. The new evidence artifact
+corrects those parses without rewriting retained originals. Ten additional
+candidates need coordinate review: two stored denominator disagreements and eight
+stale original-set/number provenance records.92coordinate-consistent candidates
+retain92reviewedchildren,9TCGCSVraw/discovery IDs and83missing discovery lineages;
+the17total holds remain explicit. All109parents/100reviewedchildren remain intact.
+Use world2010-whole109-coordinate-qualification-v1 and
+world2010-whole92-lineage-qualification-v1 in private state before policy work.
+No new identity, mapping or finish authority follows from this evidence.
+
+The full inbound inventory is99constraints:11internal and88outside. It accounts
+all115older leads (83written-target and32unwritten-target constraints), adding
+five checks from selected-but-unwritten source tables. The observer avoids an
+actual30second full scan for an empty generated-ID array by returning the exact
+empty aggregate, while retaining the pending marker. Nonempty IDs always query
+the database. This does not establish post-write production query latency; the
+captured market_price_pipeline_candidates indexes lack source_mapping_id. Keep
+the failedv1/v2 observations and diagnostic timing in private state.
+
+## Eleventh invocation — generated-row receipt qualification
+
+Read `POKEMON_CLASSIC_GENERATED_ROW_JOURNAL_V2.md`. The new local-only V2
+journal retains all V1 history/guards and persists exact102raw and102mapping
+IDs, including81retained raw IDs, in the atomic whole102 receipt. Bigint IDs
+remain decimal strings. Recovery also compares the ledger ID and generated-row
+fingerprint with the immutable pending artifact; identical replacement row
+contents cannot substitute for original identities. New isolated SQL proof covers
+these replacements, rollback, lost-response readback and zero-write repeat.
+Final normal-hook and source/SQL receipts remain in the private agent checkpoint.
+This is executor qualification, not a production CLI or repaired relationships.
+
+Fresh production schema observationv8 found only additive unrelated vendor receipt
+definitions; the old observation correctly stopped on drift. A new independent
+read-only observation/reconciliation verifies no Classic scope or journal rows.
+No old package, approval or writer was replayed. Sourcecommit/push, supported
+PostgreSQL17/actual Auth, full inbound dependencies, governed images and the new
+production writer remain required. The normal commit on frozen202files passed
+all6387contracts, strictweb, analysis and990native tests, then branch.lock was
+denied; the final changed source requires its own new normal qualification.
+
+Independent whole2010World evidence now verifies109existing parents in4decks,
+0identityrows,100existing reviewed printings,0mappings and9discovery rows through
+two verified-TLS READONLY connections. Exactly102numbered source products match
+an existing parent in the correct deck. Gallade's source-number conflict,
+DragoniteFB's stored `Victors56` coordinate and5unnumbered energies remain held.
+Do not create replacement parents or infer missing finishes. All100existing
+printing reviews bind13retained original Master/review/manifest shards by exact
+hash; those historical packages remain consumed history, never fresh mapping
+or identity authority. Read `world2010-live-existing-identity-v1` and
+`world2010-retained-master-bindings-v2` in the private state for exact inputs.
+
+
+### Native anonymous HTTP qualification
+
+A private PostgREST16.4 Windows binary runs with the installed PostgreSQL16 DLL
+folder added only to its process PATH. Official release archive SHA256 is verified;
+Node acquisition uses the existing Windows root store via `--use-system-ca`.
+No TLS, shared PATH, Docker setup, launcher or service is changed. The private
+`classic-anonymous-http-proof-v2` receipt verifies12actual SDK/HTTP checks for
+all102relationships in a new clone under a unique restricted login. It preserves
+all27selected table snapshots, rejects private reads/invalid bearer tokens and
+stops its own server. This is anonymous HTTP, not production/public website proof.
+
+The same-version Auth build is an exact remaining blocker: production health
+reportsv2.197.0; that unmodified source fails on Windows at
+`cmd/serve_cmd.go:190` with unavailable Unix socket APIs. Source archives and
+unchangedgo.mod/go.sum are retained in `classic-auth-native-build-v1` and private
+`dependencies/`. Do not patch the vendor or manufacture tokens to call this a
+signed-in proof. Actual Auth/JWT/HTTP needs a supported isolated runtime. The
+82captured Auth migration versions are metadata only; zero user rows were copied.
+See the repair-owner checkpoint for immutable acquisition and runtime receipts.
+
+Independent supported Linux routes were checked read-only in
+`classic-linux-runtime-access-v1`: both Docker named pipes deny access, and WSL
+listing returns `Wsl/EnumerateDistros/Service/E_ACCESSDENIED`. No service restart,
+permission change or runtime substitution was attempted. Keep these current
+failures separate from the successful anonymous native PostgREST proof.
+
+
+## Tenth invocation — actual selected dependency and owner qualification
+
+`POKEMON_CLASSIC_DEPENDENCY_REPLAY_V1.md` governs the new loopback-only schema
+replay proof. It replaces both guard stubs with captured actual definitions and
+replays28selected public relations plus27Auth tables/one sequence. Actual
+constraints, generated columns, triggers, policies, function bodies and translated
+owners/access grants are retained. A separate connection compares694columns,
+285constraints,17triggers and33functions before the replay receipt. No production
+or Auth user rows are copied. Existing labs and shared roles remain untouched.
+
+The journal proof can consume that replay as an optional fifth argument and
+runs as the translated non-superuser PostgreSQL owner. It snapshots all selected
+public tables and requires exact transaction statistics:862new rows in11tables,
+zero updates/deletes. The original rollback, late failure, locking, lost-response
+reconciliation and exact repeat checks remain. Local restricted-role access proof
+also verifies102public parent/identity/printing results, three34-card catalogs,
+visibility exclusions, denied canonical writes and denied private-table reads.
+
+These are local SQL receipts, not production relationships or actual Auth/HTTP.
+The native16lab lacks production17 MAINTAIN privilege;115outside inboundFKs,
+actual Auth/JWT/PostgREST/HTTP, governed image admission, the production CLI and
+normal source commit/push remain separate gates. Read the private checkpoint for
+final hook and SQL results. Do not repeat source acquisition, modify protected
+setup, or replay consumed packages. The selected dependency proof never enables
+a production connection or removes the existing local writer guard.
+
+
+## Ninth invocation — frozen source and atomic receipt qualification
+
+The new `POKEMON_CLASSIC_EXECUTION_JOURNAL_V1.md` separates immutable source-review
+time from fresh database observation time. The production planner now replays
+all102 originals against exact checked-in manifests/review bytes and the active
+Master. It hashes the entire binary Git diff as a stream, including source trees
+larger than128MiB, and binds schema owners, grants and role inheritance. These
+are evidence bindings; complete Auth/application replay remains a separate gate.
+
+The new journal protocol keeps the original local-only guard. A succeeded ledger
+row shares the same serializable transaction as102canonical relationships and
+21ingress lineages. Its intent binds frozen package, observation, producer and
+schema fingerprints. Independent read-only reconciliation requires BOTH the
+exact durable rows and exact ledger, rejects partial/unreceipted data and never
+retries automatically. New isolated SQL proof and final source checks are recorded
+in the private checkpoint; no production writer, release or public proof follows.
+
+The launcher-configured runtime is now `C:/gv_pokemon_flutter_20261002` with
+`C:/gv_pokemon_flutter_pubcache_20261002`. Preserve the prior run8 dependency copy.
+Normal check subprocesses use the configured SDK, unchanged installed Git Bash
+hooks, retained `GIT_CONFIG_GLOBAL`, private APPDATA and unique TEMP/TMP. Do not
+change shared hooks, SDK, configuration, permissions, launcher or schedule.
+
+## Pokemon source integration and isolated check dependencies — October 2
+
+`POKEMON_CLASSIC_MASTER_INTEGRATION_V1.md` and its bounded CLI integrate only the
+working English Master source. Exact original replay adds102 identities/102Holo
+facts, preserves all prior facts and retains Jumbo as unresolved. Immutable
+before/pending/complete journals live in the repair agent state directory.
+An interrupted source edit requires independent per-file hash reconciliation;
+never replay blindly. Source integration does not enable the canonical writer.
+
+The protected agent Git configuration supplied by the launcher now retains
+exact repair-worktree trust through unchanged hooks and verifies GitHub TLS.
+Preserve `GIT_ENVIRONMENT_MAINTENANCE.md` and its receipts. The next normal hook
+passed contracts/web but stalled in the shared Flutter cache-lock loop. The
+supported local dependency route is an unchanged copy of `C:/src/flutter` in
+the agent's private `dependencies/flutter`, plus `dependencies/pub-cache` for
+public hosted packages. Set only the check process PATH/PUB_CACHE and unique
+TEMP/TMP; preserve shared SDK/hooks/config/launcher and all lockfiles. This is a
+normal dependency installation, not a validation bypass. Never delete shared
+Flutter locks. Read the checkpoint for actual final hook/commit/push results.
+
+Dart analysis also needs writable per-process application data: point APPDATA
+only in the check subprocess to private `check-appdata-run8` and run the copied
+`dart.bat --disable-analytics` there. The analyzer's embedded analytics ignored
+the newer suppression environment flag and tried updating the shared telemetry
+session file; preserve that failure. Private telemetry preferences do not change
+the user's preferences, agent configuration, checks or validation. Analysis then
+passes with no issues. Retain the launcher-provided GIT_CONFIG_GLOBAL unchanged.
+
+`classic-role-sql-proof-v1` adds ten real restricted SQL-role checks on a new
+native65470 clone with uniquely named NOLOGIN principals. Existing shared roles
+are untouched. Table ACL/RLS and function execution checks remain distinct from
+real Auth, HTTP and full application replay. An attempted separate native server
+was denied loopback binding; preserve its logs and do not infer service readiness.
+
+## Pokemon durable relationship repair — October 2
+
+The new read-only production planner is governed by
+`POKEMON_CLASSIC_PRODUCTION_PLANNING_V1.md`. Use a new private output directory,
+the original source bundle and explicit CA. It refreshes whole-group/raw evidence,
+binds schema/producer fingerprints and independently reconciles absence; it has
+no apply/approval mode. All production gates remain explicit in its receipt.
+Local canonical proofv4 batches eight table inserts. A separate catalog proof
+uses actual search and visibility SQL, without equating SQL role claims with
+Auth/HTTP or actual RLS/grants. Identity search currently returns hidden/inactive
+children that printing-options excludes; preserve this finding for application
+qualification. The new labs remain on the existing loopback65470 service. Docker
+access was denied in this invocation; do not restart services or alter permissions.
+
+Supplemental application-SQL proof confirms that unchanged web search code filters
+those hidden/inactive children through the actual printing-options helper,
+including direct-ID fallback and error propagation. Its transport is explicitly
+a local SQL fixture, not Supabase HTTP/Auth. Batched lost-commit-response proof is
+independently reconciled without writer retry. The fresh normal hook again fails
+13 ownership-related tests; source is preserved and no production apply follows.
+Next World Championship evidence leads retain four whole2010 decks and their
+five unnumbered Energy candidates, with original403 captures and no new authority.
+
+Latest: `POKEMON_CLASSIC_CANONICAL_ADMISSION_V1.md` defines a local-only whole102
+canonical executor candidate and three exact UUID-bound printing manifests.
+Final isolated proof uses PostgreSQL's actual generated columns, source/identity
+functions, constraints, triggers and indexes. The separate loopback65470 lab is
+`grookai_classic_canonical_proof_20261002_v3`; preserve all earlier labs. Source
+products and all81 raw/discovery lineages are retained while21 ingress rows and
+102 canonical relationships qualify atomically in this local fixture. None of
+those local writes is a production repair. Full application/public-visibility
+dependencies and the production CLI remain open; no permissive visibility stub
+is acceptable. Read the external checkpoint for exact normal-hook outcomes.
+
+Scoped Git permission maintenance now allows normal staging. The next observed
+PowerShell commit failure is `Bash/Service/CreateInstance/E_ACCESSDENIED`, not
+the former index.lock failure. Running ordinary Git from installed Git Bash with
+`/usr/bin:/bin` first in its process PATH reaches unchanged hooks. Those hooks
+then clear `GIT_CONFIG_COUNT` with Git's local environment, losing the sandbox's
+exact `safe.directory` grants for test subprocesses. Preserve the resulting
+13 ownership failures and maintenance receipts; do not edit shared hooks/config
+or the agent launcher to evade them. Direct tests retain inherited trust but
+cannot substitute for normal hook qualification.
+
+The actual public-options and visibility SQL has a separate local readback:
+102 exact children with request-role claims, plus suppression/hidden/inactive
+exclusions. It is not real Auth/HTTP or live public search. Pokemon game
+visibility defaults to public; a future canonical apply cannot be described as
+private staging merely because website deployment is separate.
+
+`POKEMON_CLASSIC_FINISH_STAGING_V1.md` adds offline source-replayed 102-card/
+102-printing staging. The ordinary completion builder asserts exact frozen
+Classic profiles and carries `standard_english_deck_cards_only` through fact
+exports. `complete_master_index_base_scope` is not whole-product completion or
+complete-set publication. The CLV017 Jumbo size claim remains in an explicit
+outside-base source-review queue. Copied source replay, exact preservation and
+ME04 readback are mandatory; read the private checkpoint for qualification.
+No active Master, canonical executor or production authority follows from this
+candidate. Normal Git commit/push and hooks remain a separate gate.
+
+Read `docs/ops/POKEMON_RELATIONSHIP_REPAIR_AGENT_20261002.md` and the private
+`pokemon_relationship_agent_20261002/CHECKPOINT.md`. This separate agent owns
+whole-group qualification and governed relationship repairs. The independently
+pinned hourly discovery runtime is preserved. Use the bounded group ingress
+contract to retain cross-set hints without starving raw/discovery staging;
+review ingress never establishes canonical identity or finish. Reconcile unknown
+commits independently and retain old receipts. The first scope is all102 English
+Classic deck identities; source acquisition is not completed finish review.
+
+`POKEMON_CLASSIC_IDENTITY_EVIDENCE_V1.md` governs the offline102-card identity
+adapter and its preserved204-row two-source fixture. Printed deck codes remain
+CLV/CLC/CLB; proposed canonical codes are classic-clv/classic-clc/classic-clb
+because the global sets.code unique index already has MTG clb. Check every game
+when qualifying a new set code. The package remains finish-incomplete and does
+not replace active Master authority. The group-ingress transaction also locks
+raw receipts and the source table through commit to exclude phantom products;
+its short transaction permits ordinary reads and releases all locks on rollback.
+
+`POKEMON_CLASSIC_MASTER_STAGING_V1.md` governs offline additive staging and exact
+preservation. Its CLI replays original source bytes, asserts the locked ME04
+profile and independently reads candidate files back. Missing printing evidence
+is counted as uncovered card identities, separate from known finish facts, so
+zero-printing decks remain in the source queue. Staging never activates the
+Master or supplies database authority. The private third-invocation receipts also
+retain a new physical-card gallery:101 successful photos and one404, separate
+from visual observations and exact finish qualification.
+
+`POKEMON_CLASSIC_FINISH_EVIDENCE_V1.md` now governs an offline candidate pairing
+each standard English Classic card's exact visible checklist variant with its
+independently reviewed physical photo. Reviews identify the automated actor;
+they never manufacture human signatures. CLC027 uses a separately acquired
+physical front photo while retaining the original404. The CLI preserves all
+original bytes and independently replays copied evidence. The extra Lugia Jumbo
+row stays unresolved outside the standard-deck scope. Qualified source facts
+and34-per-deck profiles are not active Master integration, canonical manifests
+or database execution authority. Check the private checkpoint for current gates.
+
 ## Pitch Black bulk identity recovery — October 2
 
 Read `docs/ops/ME05_IDENTITY_RECOVERY_20261002.md` and the private

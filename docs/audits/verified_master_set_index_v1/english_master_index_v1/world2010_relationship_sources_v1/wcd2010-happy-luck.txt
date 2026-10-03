@@ -1,0 +1,53 @@
+{{DeckInfobox
+|title=Happy Luck
+|image=WCS2010 Happy Luck Deck.png
+|size=280px
+|caption=Box art
+|types={{e|Water}}
+|cards={{TCG ID|Stormfront|Gyarados|19}}, [[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]], {{TCG ID|Great Encounters|Felicity's Drawing|98}}
+}}
+
+'''Happy Luck''' is the name of the deck used by Mychael Bryan, the Senior Division Finalist in the [[2010 World Championships]]. It is one of the four {{TCGMerch|HeartGold & SoulSilver|Series|2010 World Championships Decks}}, released in November 2010. Each deck comes packaged with a 2010 World Championships Booklet. Each card features a silver border, Bryan's signature, and limited edition 2010 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''Mychael Bryan's Happy Luck deck is built around Gyarados's no-cost Tail Revenge attack, which does damage based on the number of Magikarp in the discard pile. Felicity's Drawing sets up those Magikarp and adds cards to your hand. Crobat {{SP|G}} provides extra damage, Luxray {{SP|GL}} LV.X switches your opponent's Pokémon, and Poké Turn lets you bring back some of your Pokémon! Happy luck? More like amazing skill!''
+
+==Strategy==
+Happy Luck focuses on quickly hitting hard for no energy. {{TCG ID|Stormfront|Gyarados|19}}'s Tail Revenge attack does 30 damage times the amount of Magikarp in the discard pile. {{TCG ID|Great Encounters|Felicity's Drawing|98}} allows you to draw up to 4 cards while discarding Magikarp, which sets up the Tail Revenge attack. {{TCG ID|Stormfront|Sableye|48}} allows you to go first as well as discard Magikarp, and [[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]'s Bright Look Poké-Power forces the opponent to switch his or her Active Pokémon with one of their Benched Pokémon of your choice. [[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|Poké Turn]] makes it possible to put up to 6 damage counters (without attacking) on your opponents Pokémon with two [[Crobat G (Platinum 47)|Crobat]] {{SP|G}} and take off Luxray {{SP|GL}} LV.X to use Bright Look again. If everything goes well, set up can take a minimum of 2 turns.
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|1|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}
+{{decklist/entry|1|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}
+{{decklist/entry|1|{{TCG ID|Mysterious Treasures|Azelf|4}}|Psychic||Rare Holo}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Mysterious Treasures|Mesprit|14}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Majestic Dawn|Unown Q|49}}|Psychic||Uncommon}}
+{{decklist/entry|2|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Stormfront|Sableye|48}}|Darkness||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Stormfront|Gyarados|19}}|Water||Rare}}
+{{decklist/entry|4|{{TCG ID|Stormfront|Magikarp|65}}|Water||Common}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Combee|57}}|Grass||Common}}
+{{decklist/entry|3|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|4|[[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|<small>'''Team Galactic's Invention G-105'''</small> Poké Turn]]|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Platinum|Pokémon Rescue|115}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Unleashed|Super Scoop Up|83}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Great Encounters|Felicity's Drawing|98}}|Supporter||Uncommon}}
+{{decklist/entry|4|{{TCG ID|Platinum|Broken Time-Space|104}}|Stadium||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Supreme Victors|VS Seeker|140}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Cynthia's Feelings|131}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Arceus|Expert Belt|87}}|Trainer|Pokémon Tool|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Stormfront|Cyclone Energy|94}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Stormfront|Warp Energy|95}}|Energy|Colorless|Uncommon}}
+{{decklist/footer}}
+{{-}}
+{{World Championships}}
+{{-}}
+{{Project TCG notice}}
+
+[[Category:World Championship Decks]]
+
+[[de:Happy Luck (TCG)]]
+[[zh:鲤跃龙门（TCG）]]

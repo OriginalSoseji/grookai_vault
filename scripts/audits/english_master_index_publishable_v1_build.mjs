@@ -1,7 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { markdownTable } from './verified_master_set_index_v1/shared.mjs';
+import { world2010MembershipForPublication } from '../../backend/catalog/pokemon_world2010_membership_v1.mjs';
 import {
   applyMe04FinishTruthV1,
   assertMe04FinishTruthV1,
@@ -49,16 +51,19 @@ function countBy(rows, keyFn) {
 }
 
 function publishabilityStatus(set) {
+  if (world2010MembershipForPublication(set)?.held_identity_count) return 'not_publishable_card_identity_gaps';
+  if (set.completion_scope || set.completion.status === 'complete_master_index_base_scope') return 'not_publishable_whole_set_base_scope_only';
   if (set.completion.status === 'complete_master_index_set') return 'publishable_complete';
   if (set.completion.status === 'non_standard_single_source_reference') return 'non_standard_not_double_verified';
   if (set.card_identity.master_admissible < set.card_identity.total_working_facts) return 'not_publishable_card_identity_gaps';
+  if (set.printings.identities_without_printing_evidence > 0) return 'not_publishable_finish_gaps';
   if (set.printings.master_admissible < set.printings.total_working_facts) return 'not_publishable_finish_gaps';
   if (set.completion.status === 'source_unavailable') return 'source_unavailable';
   if (set.completion.status === 'conflict_blocked') return 'conflict_blocked';
   return 'not_publishable_manual_review';
 }
 
-function setManifestRow(set) {
+export function setManifestRow(set) {
   const row = {
     set_key: set.set_key,
     set_name: set.set_name,
@@ -67,19 +72,22 @@ function setManifestRow(set) {
     completion_score: set.completion.completion_score,
     cards: {
       master_admissible: set.card_identity.master_admissible,
-      total: set.card_identity.total_working_facts,
-      gap_count: Math.max(0, set.card_identity.total_working_facts - set.card_identity.master_admissible),
+      total: set.card_identity.expected_membership ?? set.card_identity.total_working_facts,
+      gap_count: Math.max(0, (set.card_identity.expected_membership ?? set.card_identity.total_working_facts) - set.card_identity.master_admissible),
     },
     printings: {
       master_admissible: set.printings.master_admissible,
       total: set.printings.total_working_facts,
       gap_count: Math.max(0, set.printings.total_working_facts - set.printings.master_admissible),
+      identities_without_printing_evidence: set.printings.identities_without_printing_evidence ?? 0,
     },
     finish_counts: set.finish_counts ?? {},
     verification_level: set.completion.verification_level ?? 'normal_double_source_required',
     non_standard_policy: set.completion.non_standard_policy ?? null,
     blocker_summary: set.completion.blocker_summary,
-    shard_refs: set.completion.status === 'complete_master_index_set'
+    ...(set.anthology_membership ? { anthology_membership: structuredClone(set.anthology_membership), whole_set_complete: false } : {}),
+    ...(set.completion_scope ? { scope: set.completion_scope, whole_product_complete: false, outside_scope_reviews: set.outside_scope_reviews } : {}),
+    shard_refs: publishabilityStatus(set) === 'publishable_complete'
       ? {
         cards: `sets/${set.set_key}/cards.json`,
         printings: `sets/${set.set_key}/printings.json`,
@@ -254,7 +262,7 @@ async function main() {
   }, null, 2));
 }
 
-main().catch((error) => {
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });

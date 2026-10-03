@@ -1,0 +1,60 @@
+{{DeckInfobox
+|title=LuxChomp of the Spirit
+|image=WCS2010 LuxChomp of the Spirit Deck.jpg
+|size=280px
+|caption=Box art
+|types={{e|Lightning}}{{e|Colorless}}
+|cards=[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]], [[Garchomp C LV.X (Supreme Victors 145)|Garchomp]] {{SP|C}} [[Garchomp C LV.X (Supreme Victors 145)|LV.X]]
+}}
+
+'''LuxChomp of the Spirit''' is the name of the deck used by Yuta Komatsuda, the Masters Division Champion in the [[2010 World Championships]]. The deck is a variant of the {{TCG|LuxChomp}} {{TCG|Deck archetype|archetype}}.
+
+LuxChomp of the Spirit is one of the four {{TCGMerch|HeartGold & SoulSilver|Series|2010 World Championships Decks}}, released in November 2010. Each deck comes packaged with a 2010 World Championships Booklet. Each card features a silver border, Komatsuda's signature, and limited edition 2010 World Championships back. None of the cards are tournament legal.
+
+==Description==
+''World Champion Yuta Komatsuda played every facet of the game with his LuxChomp of the Spirit deck. Luxray {{SP|GL}} LV.X's Bright Look Poké-Power switches around your opponent's Pokémon...Garchomp {{SP|C}} LV.X's powerful Dragon Rush attack does 80 damage to any of your opponent's Pokémon...and multiple Poké Turn Trainer cards let you get key Pokémon back into your hand to play them again. That's the spirit indeed!''
+
+==Deck list==
+{{decklist/header}}
+{{decklist/entry|2|[[Garchomp C LV.X (Supreme Victors 145)|Garchomp]] {{SP|C}} [[Garchomp C LV.X (Supreme Victors 145)|LV.X]]|Colorless||Rare Holo LV.X}}
+{{decklist/entry|2|[[Garchomp C (Supreme Victors 60)|Garchomp]] {{SP|C}}|Colorless||Uncommon}}
+{{decklist/entry|2|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}
+{{decklist/entry|2|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}
+{{decklist/entry|1|[[Dialga G (Platinum 7)|Dialga]] {{SP|G}}|Metal||Rare Holo}}
+{{decklist/entry|1|[[Dialga G LV.X (Platinum 122)|Dialga]] {{SP|G}} [[Dialga G LV.X (Platinum 122)|LV.X]]|Metal||Rare Holo LV.X}}
+{{decklist/entry|1|[[Dragonite FB (Supreme Victors 56)|Dragonite]] {{SP|FB}}|Colorless||Uncommon}}
+{{decklist/entry|1|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}
+{{decklist/entry|1|[[Lucario GL (Rising Rivals 8)|Lucario]] {{SP|GL}}|Fighting||Rare Holo}}
+{{decklist/entry|1|[[Bronzong G (Platinum 41)|Bronzong]] {{SP|G}}|Metal||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie LV.X|146}}|Psychic||Rare Holo LV.X}}
+{{decklist/entry|2|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}
+{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}
+{{decklist/entry|4|{{TCG ID|Platinum|Cyrus's Conspiracy|105}}|Supporter||Uncommon}}
+{{decklist/entry|3|{{TCG ID|HeartGold & SoulSilver|Professor Oak's New Theory|101}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}
+{{decklist/entry|2|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Rising Rivals|Aaron's Collection|88}}|Supporter||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|HeartGold & SoulSilver|Pokémon Communication|98}}|Trainer||Uncommon}}
+{{decklist/entry|4|[[Team Galactic's Invention G-101 Energy Gain (Platinum 116)|<small>'''Team Galactic's Invention G-101'''</small> Energy Gain]]|Trainer||Uncommon}}
+{{decklist/entry|3|[[Team Galactic's Invention G-103 Power Spray (Platinum 117)|<small>'''Team Galactic's Invention G-103'''</small> Power Spray]]|Trainer||Uncommon}}
+{{decklist/entry|4|[[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|<small>'''Team Galactic's Invention G-105'''</small> Poké Turn]]|Trainer||Uncommon}}
+{{decklist/entry|3|[[Team Galactic's Invention G-109 SP Radar (Rising Rivals 96)|<small>'''Team Galactic's Invention G-109'''</small> SP Radar]]|Trainer||Uncommon}}
+{{decklist/entry|1|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}
+{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Double Colorless Energy|103}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|3|{{TCG ID|Stormfront|Warp Energy|95}}|Energy|Colorless|Uncommon}}
+{{decklist/entry|2|{{TCG|Lightning Energy}}|Energy|Lightning|None}}
+{{decklist/entry|2|{{TCG|Metal Energy}}|Energy|Metal|None}}
+{{decklist/footer}}
+{{-}}
+==Trivia==
+* Unnumbered versions of {{TCG|Lightning Energy}} and {{TCG|Metal Energy}} featuring their {{TCG|HeartGold & SoulSilver}} artwork are exclusive to this deck.
+{{Project TCG notice}}
+{{-}}
+{{World Championships}}
+
+[[Category:World Championship Decks]]
+
+[[de:LuxChomp of the Spirit (TCG)]]
+[[zh:神灵伦鲨（TCG）]]

@@ -1,0 +1,1508 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "classic-clb",
+  "scope": "base_release",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "classic-master-projection.json",
+  "master_index_sha256": "da6bf3c63f354ccb30d07bdcbc05e893ede8c6a54bfb9d9378969adbcb4ac5e8",
+  "parents": [
+    {
+      "id": "14400869-7bfd-55a2-8955-2e97131e6cd1",
+      "gv_id": "GV-PK-CLB-001",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Squirtle",
+      "printed_coordinate": "001",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ce534e48-87dc-50e8-b288-d977ffbba0a0",
+      "gv_id": "GV-PK-CLB-010",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Suicune ex",
+      "printed_coordinate": "010",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "fc19b131-3c62-5935-a3f5-a0976e3c47bf",
+      "gv_id": "GV-PK-CLB-011",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Drowzee",
+      "printed_coordinate": "011",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b43b7579-aada-50c7-be9b-5548f54fa3a1",
+      "gv_id": "GV-PK-CLB-012",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Hypno",
+      "printed_coordinate": "012",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a51ed49d-3e3c-5b27-b6a3-717ef23169bf",
+      "gv_id": "GV-PK-CLB-013",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Mr. Mime",
+      "printed_coordinate": "013",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "60e81f06-f2e7-5fdc-9ff0-c5a463525500",
+      "gv_id": "GV-PK-CLB-014",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Mewtwo",
+      "printed_coordinate": "014",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b7fc5efe-db80-5f64-bbec-e32748838ee1",
+      "gv_id": "GV-PK-CLB-015",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Lt. Surge's Rattata",
+      "printed_coordinate": "015",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "01ea34aa-4a0c-55ac-b70d-2f1c5b6ef22b",
+      "gv_id": "GV-PK-CLB-016",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Lt. Surge's Raticate",
+      "printed_coordinate": "016",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "65f90ea8-476d-56d5-a175-e0aa4cf9b65b",
+      "gv_id": "GV-PK-CLB-017",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Kangaskhan",
+      "printed_coordinate": "017",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d797f2ee-3298-5553-bdcb-8e027ac5f25a",
+      "gv_id": "GV-PK-CLB-018",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Bill",
+      "printed_coordinate": "018",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "43c8a166-2d67-5205-b61f-536f150f6e3c",
+      "gv_id": "GV-PK-CLB-019",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Boss's Orders",
+      "printed_coordinate": "019",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c72461e7-d96f-56f6-8fbc-da1cee986f3b",
+      "gv_id": "GV-PK-CLB-002",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Wartortle",
+      "printed_coordinate": "002",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7480ca83-5fbe-5591-8eee-7e1631c77642",
+      "gv_id": "GV-PK-CLB-020",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Computer Search",
+      "printed_coordinate": "020",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6d4c2e70-6814-5149-af1a-ba1d7b757b02",
+      "gv_id": "GV-PK-CLB-021",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Drops in the Ocean",
+      "printed_coordinate": "021",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3f5ba13f-e51a-5d88-84cc-3fb6e47a9b1f",
+      "gv_id": "GV-PK-CLB-022",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Fisherman",
+      "printed_coordinate": "022",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "80eb3fbf-ee8c-5bac-b7cf-44c8f5cb5dad",
+      "gv_id": "GV-PK-CLB-023",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Poké Ball",
+      "printed_coordinate": "023",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6398af00-0530-54f5-8cd5-595aaa8d9989",
+      "gv_id": "GV-PK-CLB-024",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Pokémon Fan Club",
+      "printed_coordinate": "024",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1b25d3a6-b68a-5e4f-b1c2-a878380ad4d0",
+      "gv_id": "GV-PK-CLB-025",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Professor Oak",
+      "printed_coordinate": "025",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "64abd350-6ffa-5ba6-82cb-9640b2e085ca",
+      "gv_id": "GV-PK-CLB-026",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Rare Candy",
+      "printed_coordinate": "026",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "016026dd-8e62-5586-b75d-7d377e60bbe3",
+      "gv_id": "GV-PK-CLB-027",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Rocket's Admin.",
+      "printed_coordinate": "027",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f9f438e4-aadc-5141-b9ca-fbbd05965ebc",
+      "gv_id": "GV-PK-CLB-028",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Super Rod",
+      "printed_coordinate": "028",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e5b5142c-194a-50ae-bed9-41f146ff48aa",
+      "gv_id": "GV-PK-CLB-029",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Switch",
+      "printed_coordinate": "029",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1b8d0f23-26d7-59e0-8b21-596a38c8cbf9",
+      "gv_id": "GV-PK-CLB-003",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Blastoise",
+      "printed_coordinate": "003",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "dd1e0a2c-881b-5853-8be0-7c13dbcb0385",
+      "gv_id": "GV-PK-CLB-030",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Ultra Ball",
+      "printed_coordinate": "030",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "0ded502c-e09e-5555-91f6-fad553ef4260",
+      "gv_id": "GV-PK-CLB-031",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "VS Seeker",
+      "printed_coordinate": "031",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5e7532bd-2e69-5e28-8098-e680a040d677",
+      "gv_id": "GV-PK-CLB-032",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Double Colorless Energy",
+      "printed_coordinate": "032",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8d9681f1-5570-5a63-a647-d4c5ee97db97",
+      "gv_id": "GV-PK-CLB-033",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Basic Water Energy",
+      "printed_coordinate": "033",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8e186ca2-dee8-520b-94d7-7465f1d5ba25",
+      "gv_id": "GV-PK-CLB-034",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Basic Psychic Energy",
+      "printed_coordinate": "034",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5b5e4dd5-73a0-58a1-bf05-3252f40c8fdb",
+      "gv_id": "GV-PK-CLB-004",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Staryu",
+      "printed_coordinate": "004",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c5970c48-12d5-5411-87f6-34b36ea09914",
+      "gv_id": "GV-PK-CLB-005",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Starmie",
+      "printed_coordinate": "005",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "db628c1d-9e58-552c-9ccd-3c0a8f6e1dc2",
+      "gv_id": "GV-PK-CLB-006",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Magikarp",
+      "printed_coordinate": "006",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "01e87ff4-17ea-550f-b6ff-6e25dd49957e",
+      "gv_id": "GV-PK-CLB-007",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Gyarados",
+      "printed_coordinate": "007",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ccc531ba-20e8-5e95-9a29-3fea4bc0eda3",
+      "gv_id": "GV-PK-CLB-008",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Lapras",
+      "printed_coordinate": "008",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d87eb1f8-a62f-5f8b-9afd-8874c35a4884",
+      "gv_id": "GV-PK-CLB-009",
+      "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+      "name": "Articuno",
+      "printed_coordinate": "009",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "14400869-7bfd-55a2-8955-2e97131e6cd1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-001-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-001.webp",
+          "sha256": "d869e0d6c5948cc4f306c5bd78a7d067c466652785ff1b47ae0ebadec2ae13d9",
+          "card_print_id": "14400869-7bfd-55a2-8955-2e97131e6cd1",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "14400869-7bfd-55a2-8955-2e97131e6cd1",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "ce534e48-87dc-50e8-b288-d977ffbba0a0",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-010-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-010.webp",
+          "sha256": "24ab8fc3b43884babb7eacde904d57445807cfc8d95f73c18b87f95a85f79acd",
+          "card_print_id": "ce534e48-87dc-50e8-b288-d977ffbba0a0",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "ce534e48-87dc-50e8-b288-d977ffbba0a0",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "fc19b131-3c62-5935-a3f5-a0976e3c47bf",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-011-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-011.webp",
+          "sha256": "f565088b0889c096e6148f616f3e46cfafbc4042d3ac1623f7719d4e56763933",
+          "card_print_id": "fc19b131-3c62-5935-a3f5-a0976e3c47bf",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "fc19b131-3c62-5935-a3f5-a0976e3c47bf",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b43b7579-aada-50c7-be9b-5548f54fa3a1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-012-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-012.webp",
+          "sha256": "fffc69acdca3ec1922e873bcebf30c2cc0b8baba29693a0396baa9315b4b5787",
+          "card_print_id": "b43b7579-aada-50c7-be9b-5548f54fa3a1",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "b43b7579-aada-50c7-be9b-5548f54fa3a1",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "a51ed49d-3e3c-5b27-b6a3-717ef23169bf",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-013-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-013.webp",
+          "sha256": "0a2ba8c2c5b30045b20baa5a03de5a872eff36facfb984d86d70c5cb5d60c57c",
+          "card_print_id": "a51ed49d-3e3c-5b27-b6a3-717ef23169bf",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "a51ed49d-3e3c-5b27-b6a3-717ef23169bf",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "60e81f06-f2e7-5fdc-9ff0-c5a463525500",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-014-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-014.webp",
+          "sha256": "284e507812541cf5336cf4ebea9403c9a2a8bcbf40ac3631493675436dd5ef76",
+          "card_print_id": "60e81f06-f2e7-5fdc-9ff0-c5a463525500",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "60e81f06-f2e7-5fdc-9ff0-c5a463525500",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b7fc5efe-db80-5f64-bbec-e32748838ee1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-015-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-015.webp",
+          "sha256": "c10f379284e9b649b16a653dfc146e267ed3386cfe54eb3ce49dc1588bb08091",
+          "card_print_id": "b7fc5efe-db80-5f64-bbec-e32748838ee1",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "b7fc5efe-db80-5f64-bbec-e32748838ee1",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01ea34aa-4a0c-55ac-b70d-2f1c5b6ef22b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-016-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-016.webp",
+          "sha256": "510a8434b25fe56eb33eab5a1fcfb7edd667f36f7c54287dc6c2dee12a18fd4c",
+          "card_print_id": "01ea34aa-4a0c-55ac-b70d-2f1c5b6ef22b",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "01ea34aa-4a0c-55ac-b70d-2f1c5b6ef22b",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "65f90ea8-476d-56d5-a175-e0aa4cf9b65b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-017-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-017.webp",
+          "sha256": "436f9d887b5cd1c7058be00f67fe2af506ca91aae9c291e26cfd790419c89239",
+          "card_print_id": "65f90ea8-476d-56d5-a175-e0aa4cf9b65b",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "65f90ea8-476d-56d5-a175-e0aa4cf9b65b",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d797f2ee-3298-5553-bdcb-8e027ac5f25a",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-018-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-018.webp",
+          "sha256": "7452b1f30118a97cb22f2adf2a098403f27dc54b9cb756748a42bc494aa740a4",
+          "card_print_id": "d797f2ee-3298-5553-bdcb-8e027ac5f25a",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "d797f2ee-3298-5553-bdcb-8e027ac5f25a",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "43c8a166-2d67-5205-b61f-536f150f6e3c",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-019-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-019.webp",
+          "sha256": "ae8781a58b53e52f3d6c82e8bc7be2078341150c5318f4e064ba816a8cb5bef6",
+          "card_print_id": "43c8a166-2d67-5205-b61f-536f150f6e3c",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "43c8a166-2d67-5205-b61f-536f150f6e3c",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "c72461e7-d96f-56f6-8fbc-da1cee986f3b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-002-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-002.webp",
+          "sha256": "0b0a96c1c213a6159a83aa1eecc6f8a4f81fba0c70e0755db69e6cd89e2ee80e",
+          "card_print_id": "c72461e7-d96f-56f6-8fbc-da1cee986f3b",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "c72461e7-d96f-56f6-8fbc-da1cee986f3b",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7480ca83-5fbe-5591-8eee-7e1631c77642",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-020-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-020.webp",
+          "sha256": "a3607dcda0fefae5f9443fa1bebfbd216019335483db9b943018148e0e7841b1",
+          "card_print_id": "7480ca83-5fbe-5591-8eee-7e1631c77642",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "7480ca83-5fbe-5591-8eee-7e1631c77642",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6d4c2e70-6814-5149-af1a-ba1d7b757b02",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-021-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-021.webp",
+          "sha256": "cbb922a3bd9bf3905a77267dad940d41d9d1f88e43c5b222bf556c29ac85dea1",
+          "card_print_id": "6d4c2e70-6814-5149-af1a-ba1d7b757b02",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "6d4c2e70-6814-5149-af1a-ba1d7b757b02",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "3f5ba13f-e51a-5d88-84cc-3fb6e47a9b1f",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-022-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-022.webp",
+          "sha256": "6484cf52fe5798126baffb4e21a2fd6f20ac76168b3aff4fdb9cfd69e09c2cf8",
+          "card_print_id": "3f5ba13f-e51a-5d88-84cc-3fb6e47a9b1f",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "3f5ba13f-e51a-5d88-84cc-3fb6e47a9b1f",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "80eb3fbf-ee8c-5bac-b7cf-44c8f5cb5dad",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-023-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-023.webp",
+          "sha256": "335a588528ebd2a895a1ee8791cc7bdf6685d4238305d23cdf8c7896911953bf",
+          "card_print_id": "80eb3fbf-ee8c-5bac-b7cf-44c8f5cb5dad",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "80eb3fbf-ee8c-5bac-b7cf-44c8f5cb5dad",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6398af00-0530-54f5-8cd5-595aaa8d9989",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-024-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-024.webp",
+          "sha256": "b5ed161c1a92f64a055ef819aeba5ba3b7935355ac1c044ec0bbfbf255e0187e",
+          "card_print_id": "6398af00-0530-54f5-8cd5-595aaa8d9989",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "6398af00-0530-54f5-8cd5-595aaa8d9989",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "1b25d3a6-b68a-5e4f-b1c2-a878380ad4d0",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-025-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-025.webp",
+          "sha256": "fc9878ba324b3b035af177c9b03116bc50e19baa5b68ced92256b6ebc93b14c5",
+          "card_print_id": "1b25d3a6-b68a-5e4f-b1c2-a878380ad4d0",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "1b25d3a6-b68a-5e4f-b1c2-a878380ad4d0",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "64abd350-6ffa-5ba6-82cb-9640b2e085ca",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-026-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-026.webp",
+          "sha256": "2b3406c9d10de84f37e81f5f4aa7b76b666597a8eee2773f2bd341e26ecea7e9",
+          "card_print_id": "64abd350-6ffa-5ba6-82cb-9640b2e085ca",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "64abd350-6ffa-5ba6-82cb-9640b2e085ca",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "016026dd-8e62-5586-b75d-7d377e60bbe3",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-027-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-027.webp",
+          "sha256": "9e9a4aec0249a4b36c21b58709e8b126db04c30acfb7363c143e67bd3908c8b2",
+          "card_print_id": "016026dd-8e62-5586-b75d-7d377e60bbe3",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "016026dd-8e62-5586-b75d-7d377e60bbe3",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "f9f438e4-aadc-5141-b9ca-fbbd05965ebc",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-028-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-028.webp",
+          "sha256": "89977e144d362d30afa927bf56c1d801613e4e26b7445463059b11dadffc010e",
+          "card_print_id": "f9f438e4-aadc-5141-b9ca-fbbd05965ebc",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "f9f438e4-aadc-5141-b9ca-fbbd05965ebc",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e5b5142c-194a-50ae-bed9-41f146ff48aa",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-029-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-029.webp",
+          "sha256": "582575a1a1a6b67712d74fc398ff47df019e7e28b0a1dc561bb6554bec81bb78",
+          "card_print_id": "e5b5142c-194a-50ae-bed9-41f146ff48aa",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "e5b5142c-194a-50ae-bed9-41f146ff48aa",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "1b8d0f23-26d7-59e0-8b21-596a38c8cbf9",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-003-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-003.webp",
+          "sha256": "dbfea161c9193dc49fb568f1a4ae83e8172c440ab24b2da7aee633cb038c5e75",
+          "card_print_id": "1b8d0f23-26d7-59e0-8b21-596a38c8cbf9",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "1b8d0f23-26d7-59e0-8b21-596a38c8cbf9",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "dd1e0a2c-881b-5853-8be0-7c13dbcb0385",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-030-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-030.webp",
+          "sha256": "8b1a2185c0e84cf00167f587191c613593c12eb95245a86f4df65152faaff3b6",
+          "card_print_id": "dd1e0a2c-881b-5853-8be0-7c13dbcb0385",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "dd1e0a2c-881b-5853-8be0-7c13dbcb0385",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "0ded502c-e09e-5555-91f6-fad553ef4260",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-031-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-031.webp",
+          "sha256": "50b660e2540830aa865565931e6660b234f30e8e04d9428836650f34b9996de2",
+          "card_print_id": "0ded502c-e09e-5555-91f6-fad553ef4260",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "0ded502c-e09e-5555-91f6-fad553ef4260",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "5e7532bd-2e69-5e28-8098-e680a040d677",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-032-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-032.webp",
+          "sha256": "72a47289c56dde4fa5a82ac144b44830e0e0b05c52693add31f65b865360a9f7",
+          "card_print_id": "5e7532bd-2e69-5e28-8098-e680a040d677",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "5e7532bd-2e69-5e28-8098-e680a040d677",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "8d9681f1-5570-5a63-a647-d4c5ee97db97",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-033-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-033.webp",
+          "sha256": "750775c6e140237fcc1ede898d02a4003c541941214c77b02794aaf952579cab",
+          "card_print_id": "8d9681f1-5570-5a63-a647-d4c5ee97db97",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "8d9681f1-5570-5a63-a647-d4c5ee97db97",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "8e186ca2-dee8-520b-94d7-7465f1d5ba25",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-034-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-034.webp",
+          "sha256": "3e1f72fd9a27590ff092d953e2700675bedcf721c098922a4b500b80a6ed4e3b",
+          "card_print_id": "8e186ca2-dee8-520b-94d7-7465f1d5ba25",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "8e186ca2-dee8-520b-94d7-7465f1d5ba25",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "5b5e4dd5-73a0-58a1-bf05-3252f40c8fdb",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-004-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-004.webp",
+          "sha256": "9ebff1b1040382868bcc3906ffac0f7a75332db1569febbf2b9bdf83fb6533a7",
+          "card_print_id": "5b5e4dd5-73a0-58a1-bf05-3252f40c8fdb",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "5b5e4dd5-73a0-58a1-bf05-3252f40c8fdb",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "c5970c48-12d5-5411-87f6-34b36ea09914",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-005-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-005.webp",
+          "sha256": "8e1baf352d0b290c6c0282c25d7777bbd24abc160b5e522abe3fd0b6c9942bbb",
+          "card_print_id": "c5970c48-12d5-5411-87f6-34b36ea09914",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "c5970c48-12d5-5411-87f6-34b36ea09914",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "db628c1d-9e58-552c-9ccd-3c0a8f6e1dc2",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-006-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-006.webp",
+          "sha256": "f14c6f7a80bf326a6f0a470b642243e8be9a3043b31f4b938952e40061f3f7e8",
+          "card_print_id": "db628c1d-9e58-552c-9ccd-3c0a8f6e1dc2",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "db628c1d-9e58-552c-9ccd-3c0a8f6e1dc2",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "01e87ff4-17ea-550f-b6ff-6e25dd49957e",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-007-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-007.webp",
+          "sha256": "2305cf71567b52802d4892ffce3a35b85bbf1bd7f2de57afcb2abedc6cd93d41",
+          "card_print_id": "01e87ff4-17ea-550f-b6ff-6e25dd49957e",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "01e87ff4-17ea-550f-b6ff-6e25dd49957e",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "ccc531ba-20e8-5e95-9a29-3fea4bc0eda3",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-008-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-008.webp",
+          "sha256": "a3ea0205402a7f9ad7ec91b75a8e4616da150ff6b00d07f4446abe902cdf3466",
+          "card_print_id": "ccc531ba-20e8-5e95-9a29-3fea4bc0eda3",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "ccc531ba-20e8-5e95-9a29-3fea4bc0eda3",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d87eb1f8-a62f-5f8b-9afd-8874c35a4884",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CLB-009-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "photographs/CLB-009.webp",
+          "sha256": "07cbfa38b3e4253a74c93333bb4f8acf58c1d106b611ebea2ed03747cda97046",
+          "card_print_id": "d87eb1f8-a62f-5f8b-9afd-8874c35a4884",
+          "finish_key": "holo"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "source_snapshots/pricedex-clb.html.gz",
+          "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+          "card_print_id": "d87eb1f8-a62f-5f8b-9afd-8874c35a4884",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "parents": 34,
+    "printings": 34,
+    "finishes": {
+      "holo": 34
+    }
+  },
+  "suppressed_printing_facts": [],
+  "unresolved_variants": [],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "865af7d1-4404-5de3-8e81-616a1ea2ddcc",
+    "source_artifacts": [
+      {
+        "ref": "photographs/CLB-001.webp",
+        "sha256": "d869e0d6c5948cc4f306c5bd78a7d067c466652785ff1b47ae0ebadec2ae13d9",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-1-of-34-Squirtle-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.604Z"
+      },
+      {
+        "ref": "source_snapshots/pricedex-clb.html.gz",
+        "sha256": "c0a710e6b9e93c53ff38a62c97efaefd570d1455b763ee329cdaeafc6042bd60",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.thepricedex.com/set/clb/pokemon-tcg-classic-blastoise/price-list",
+        "retrieved_at": "2026-10-02T19:31:00.632Z"
+      },
+      {
+        "ref": "photographs/CLB-010.webp",
+        "sha256": "24ab8fc3b43884babb7eacde904d57445807cfc8d95f73c18b87f95a85f79acd",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-10-of-34-Suicune-ex-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.899Z"
+      },
+      {
+        "ref": "photographs/CLB-011.webp",
+        "sha256": "f565088b0889c096e6148f616f3e46cfafbc4042d3ac1623f7719d4e56763933",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-11-of-34-Drowzee-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.910Z"
+      },
+      {
+        "ref": "photographs/CLB-012.webp",
+        "sha256": "fffc69acdca3ec1922e873bcebf30c2cc0b8baba29693a0396baa9315b4b5787",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-12-of-34-Hypno-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.921Z"
+      },
+      {
+        "ref": "photographs/CLB-013.webp",
+        "sha256": "0a2ba8c2c5b30045b20baa5a03de5a872eff36facfb984d86d70c5cb5d60c57c",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-13-of-34-Mr.-Mime-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.997Z"
+      },
+      {
+        "ref": "photographs/CLB-014.webp",
+        "sha256": "284e507812541cf5336cf4ebea9403c9a2a8bcbf40ac3631493675436dd5ef76",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-14-of-34-Mewtwo-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.030Z"
+      },
+      {
+        "ref": "photographs/CLB-015.webp",
+        "sha256": "c10f379284e9b649b16a653dfc146e267ed3386cfe54eb3ce49dc1588bb08091",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-15-of-34-Lt.-Surges-Rattata-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.061Z"
+      },
+      {
+        "ref": "photographs/CLB-016.webp",
+        "sha256": "510a8434b25fe56eb33eab5a1fcfb7edd667f36f7c54287dc6c2dee12a18fd4c",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-16-of-34-Lt.-Surges-Raticate-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.068Z"
+      },
+      {
+        "ref": "photographs/CLB-017.webp",
+        "sha256": "436f9d887b5cd1c7058be00f67fe2af506ca91aae9c291e26cfd790419c89239",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-17-of-34-Kangaskhan-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.080Z"
+      },
+      {
+        "ref": "photographs/CLB-018.webp",
+        "sha256": "7452b1f30118a97cb22f2adf2a098403f27dc54b9cb756748a42bc494aa740a4",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-18-of-34-Bill-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.143Z"
+      },
+      {
+        "ref": "photographs/CLB-019.webp",
+        "sha256": "ae8781a58b53e52f3d6c82e8bc7be2078341150c5318f4e064ba816a8cb5bef6",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-19-of-34-Bosss-Orders-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.180Z"
+      },
+      {
+        "ref": "photographs/CLB-002.webp",
+        "sha256": "0b0a96c1c213a6159a83aa1eecc6f8a4f81fba0c70e0755db69e6cd89e2ee80e",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-2-of-34-Wartortle-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.607Z"
+      },
+      {
+        "ref": "photographs/CLB-020.webp",
+        "sha256": "a3607dcda0fefae5f9443fa1bebfbd216019335483db9b943018148e0e7841b1",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-20-of-34-Computer-Search-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.223Z"
+      },
+      {
+        "ref": "photographs/CLB-021.webp",
+        "sha256": "cbb922a3bd9bf3905a77267dad940d41d9d1f88e43c5b222bf556c29ac85dea1",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-21-of-34-Drops-in-the-Ocean-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.225Z"
+      },
+      {
+        "ref": "photographs/CLB-022.webp",
+        "sha256": "6484cf52fe5798126baffb4e21a2fd6f20ac76168b3aff4fdb9cfd69e09c2cf8",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-22-of-34-Fisherman-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.250Z"
+      },
+      {
+        "ref": "photographs/CLB-023.webp",
+        "sha256": "335a588528ebd2a895a1ee8791cc7bdf6685d4238305d23cdf8c7896911953bf",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-23-of-34-Poke-Ball-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.299Z"
+      },
+      {
+        "ref": "photographs/CLB-024.webp",
+        "sha256": "b5ed161c1a92f64a055ef819aeba5ba3b7935355ac1c044ec0bbfbf255e0187e",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-24-of-34-Pokemon-Fan-Club-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.327Z"
+      },
+      {
+        "ref": "photographs/CLB-025.webp",
+        "sha256": "fc9878ba324b3b035af177c9b03116bc50e19baa5b68ced92256b6ebc93b14c5",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-25-of-34-Professor-Oak-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.343Z"
+      },
+      {
+        "ref": "photographs/CLB-026.webp",
+        "sha256": "2b3406c9d10de84f37e81f5f4aa7b76b666597a8eee2773f2bd341e26ecea7e9",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-26-of-34-Rare-Candy-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.371Z"
+      },
+      {
+        "ref": "photographs/CLB-027.webp",
+        "sha256": "9e9a4aec0249a4b36c21b58709e8b126db04c30acfb7363c143e67bd3908c8b2",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-27-of-34-Rockets-Admin.-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.378Z"
+      },
+      {
+        "ref": "photographs/CLB-028.webp",
+        "sha256": "89977e144d362d30afa927bf56c1d801613e4e26b7445463059b11dadffc010e",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-28-of-34-Super-Rod-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.405Z"
+      },
+      {
+        "ref": "photographs/CLB-029.webp",
+        "sha256": "582575a1a1a6b67712d74fc398ff47df019e7e28b0a1dc561bb6554bec81bb78",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-29-of-34-Switch-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.447Z"
+      },
+      {
+        "ref": "photographs/CLB-003.webp",
+        "sha256": "dbfea161c9193dc49fb568f1a4ae83e8172c440ab24b2da7aee633cb038c5e75",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-3-of-34-Blastoise-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.698Z"
+      },
+      {
+        "ref": "photographs/CLB-030.webp",
+        "sha256": "8b1a2185c0e84cf00167f587191c613593c12eb95245a86f4df65152faaff3b6",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-30-of-34-Ultra-Ball-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.480Z"
+      },
+      {
+        "ref": "photographs/CLB-031.webp",
+        "sha256": "50b660e2540830aa865565931e6660b234f30e8e04d9428836650f34b9996de2",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-31-of-34-VS-Seeker-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.492Z"
+      },
+      {
+        "ref": "photographs/CLB-032.webp",
+        "sha256": "72a47289c56dde4fa5a82ac144b44830e0e0b05c52693add31f65b865360a9f7",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-32-of-34-Double-Colorless-Energy-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.523Z"
+      },
+      {
+        "ref": "photographs/CLB-033.webp",
+        "sha256": "750775c6e140237fcc1ede898d02a4003c541941214c77b02794aaf952579cab",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-33-of-34-Water-Energy-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.554Z"
+      },
+      {
+        "ref": "photographs/CLB-034.webp",
+        "sha256": "3e1f72fd9a27590ff092d953e2700675bedcf721c098922a4b500b80a6ed4e3b",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-34-of-34-Psychic-Energy-A.webp",
+        "retrieved_at": "2026-10-02T19:05:52.593Z"
+      },
+      {
+        "ref": "photographs/CLB-004.webp",
+        "sha256": "9ebff1b1040382868bcc3906ffac0f7a75332db1569febbf2b9bdf83fb6533a7",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-4-of-34-Staryu-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.724Z"
+      },
+      {
+        "ref": "photographs/CLB-005.webp",
+        "sha256": "8e1baf352d0b290c6c0282c25d7777bbd24abc160b5e522abe3fd0b6c9942bbb",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-5-of-34-Starmie-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.745Z"
+      },
+      {
+        "ref": "photographs/CLB-006.webp",
+        "sha256": "f14c6f7a80bf326a6f0a470b642243e8be9a3043b31f4b938952e40061f3f7e8",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-6-of-34-Magikarp-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.754Z"
+      },
+      {
+        "ref": "photographs/CLB-007.webp",
+        "sha256": "2305cf71567b52802d4892ffce3a35b85bbf1bd7f2de57afcb2abedc6cd93d41",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-7-of-34-Gyarados-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.760Z"
+      },
+      {
+        "ref": "photographs/CLB-008.webp",
+        "sha256": "a3ea0205402a7f9ad7ec91b75a8e4616da150ff6b00d07f4446abe902cdf3466",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-8-of-34-Lapras-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.849Z"
+      },
+      {
+        "ref": "photographs/CLB-009.webp",
+        "sha256": "07cbfa38b3e4253a74c93333bb4f8acf58c1d106b611ebea2ed03747cda97046",
+        "kind": "image_confirmed",
+        "url_or_identifier": "https://www.tcgmartlondon.com/wp-content/uploads/CLB-9-of-34-Articuno-A.webp",
+        "retrieved_at": "2026-10-02T19:05:51.877Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "14400869-7bfd-55a2-8955-2e97131e6cd1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "ce534e48-87dc-50e8-b288-d977ffbba0a0",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "fc19b131-3c62-5935-a3f5-a0976e3c47bf",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "b43b7579-aada-50c7-be9b-5548f54fa3a1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "a51ed49d-3e3c-5b27-b6a3-717ef23169bf",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "60e81f06-f2e7-5fdc-9ff0-c5a463525500",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "b7fc5efe-db80-5f64-bbec-e32748838ee1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "01ea34aa-4a0c-55ac-b70d-2f1c5b6ef22b",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "65f90ea8-476d-56d5-a175-e0aa4cf9b65b",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "d797f2ee-3298-5553-bdcb-8e027ac5f25a",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "43c8a166-2d67-5205-b61f-536f150f6e3c",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "c72461e7-d96f-56f6-8fbc-da1cee986f3b",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "7480ca83-5fbe-5591-8eee-7e1631c77642",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "6d4c2e70-6814-5149-af1a-ba1d7b757b02",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "3f5ba13f-e51a-5d88-84cc-3fb6e47a9b1f",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "80eb3fbf-ee8c-5bac-b7cf-44c8f5cb5dad",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "6398af00-0530-54f5-8cd5-595aaa8d9989",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "1b25d3a6-b68a-5e4f-b1c2-a878380ad4d0",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "64abd350-6ffa-5ba6-82cb-9640b2e085ca",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "016026dd-8e62-5586-b75d-7d377e60bbe3",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "f9f438e4-aadc-5141-b9ca-fbbd05965ebc",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "e5b5142c-194a-50ae-bed9-41f146ff48aa",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "1b8d0f23-26d7-59e0-8b21-596a38c8cbf9",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "dd1e0a2c-881b-5853-8be0-7c13dbcb0385",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "0ded502c-e09e-5555-91f6-fad553ef4260",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "5e7532bd-2e69-5e28-8098-e680a040d677",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "8d9681f1-5570-5a63-a647-d4c5ee97db97",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "8e186ca2-dee8-520b-94d7-7465f1d5ba25",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "5b5e4dd5-73a0-58a1-bf05-3252f40c8fdb",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "c5970c48-12d5-5411-87f6-34b36ea09914",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "db628c1d-9e58-552c-9ccd-3c0a8f6e1dc2",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "01e87ff4-17ea-550f-b6ff-6e25dd49957e",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "ccc531ba-20e8-5e95-9a29-3fea4bc0eda3",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "d87eb1f8-a62f-5f8b-9afd-8874c35a4884",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "reviews/classic-clb.json",
+      "sha256": "4010919069116c8c83cc62ae19f5b57b82089abc664246f39cff50d2c7c26f3c"
+    }
+  },
+  "fingerprint": "0a98c0e78d40239b244418f0902fd2ee502296b1f653815a81e0afb2c61d8b0b"
+}

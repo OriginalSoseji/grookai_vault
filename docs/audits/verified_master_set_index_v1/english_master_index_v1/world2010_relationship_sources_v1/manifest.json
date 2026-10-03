@@ -1,0 +1,3417 @@
+{
+  "version": "POKEMON_WORLD2010_MASTER_INTEGRATION_V1",
+  "review_fingerprint": "747682a1093be36b1b3e1ed1df22fbf5b26500eee3aa7167658cfe53e9bf1617",
+  "projected_identities": 92,
+  "expected_membership": 109,
+  "held": [
+    {
+      "product_id": "479998",
+      "deck": "Boltevoir",
+      "reasons": [
+        "stored_parent_denominator_disagrees_with_source_hint"
+      ],
+      "source_payload_hash": "257db5da7e6dcfa06d0bc2017489bbd18624dc0d0a44ac0da3be4abc085ddef7",
+      "parent_ids": [
+        "5c2da2a8-bd01-4097-b2c8-ddfab9999d3a"
+      ],
+      "source_number": "89/147",
+      "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+      "original_name_candidates": [
+        {
+          "copies": 1,
+          "line": "{{decklist/entry|1|{{TCG ID|Supreme Victors|Baltoy|89}}|Psychic||Common}}",
+          "tuple": {
+            "origin_set": "Supreme Victors",
+            "name": "Baltoy",
+            "number": "89"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "5c2da2a8-bd01-4097-b2c8-ddfab9999d3a",
+          "number": "89",
+          "printed_total": 32,
+          "origin": {
+            "deck_name": "Boltevoir",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+            "player_name": null,
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 1,
+            "source_set_name": "Supreme Victors",
+            "source_card_number": "89",
+            "source_card_print_id": "a9d68360-e4b4-4c08-a29e-56900fb18c94",
+            "source_card_print_gv_id": "GV-PK-SV-89",
+            "source_card_reference_kind": "tcg_id_template"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480030",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "canonical_coordinate_or_name_disagreement"
+      ],
+      "source_payload_hash": "3fdaf37897f457002258514eafe8c18a82ac4cd79d4296f9ee3130e5d34e278d",
+      "parent_ids": [
+        "3208f5ff-2b83-475c-9a8f-8bec5a2e3aa7"
+      ],
+      "source_number": "56/157",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 1,
+          "line": "{{decklist/entry|1|[[Dragonite FB (Supreme Victors 56)|Dragonite]] {{SP|FB}}|Colorless||Uncommon}}",
+          "tuple": {
+            "origin_set": "Supreme Victors",
+            "name": "Dragonite FB",
+            "number": "56"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "3208f5ff-2b83-475c-9a8f-8bec5a2e3aa7",
+          "number": "Victors 56",
+          "printed_total": 30,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 1,
+            "source_set_name": "Supreme",
+            "source_card_number": "Victors 56",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480042",
+      "deck": "Boltevoir",
+      "reasons": [
+        "unnumbered_source_requires_separate_energy_identity_review"
+      ],
+      "source_payload_hash": "5aebc90859a79244a060a40796ecdd4b00924900495f2644f72f2d64c8608364",
+      "parent_ids": [
+        "602d2c6c-eef8-4b55-bcdf-1ff2eabe6f8e"
+      ],
+      "source_number": null,
+      "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+      "original_name_candidates": [],
+      "parent_coordinates": [
+        {
+          "id": "602d2c6c-eef8-4b55-bcdf-1ff2eabe6f8e",
+          "number": "32",
+          "printed_total": 32,
+          "origin": {
+            "deck_name": "Boltevoir",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+            "player_name": null,
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 1,
+            "source_set_name": null,
+            "source_card_number": null,
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "tcg_named_template"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480045",
+      "deck": "Boltevoir",
+      "reasons": [
+        "source_coordinate_not_unique_in_original_deck"
+      ],
+      "source_payload_hash": "24260b17d1beb841248a2b78b01d6344967ae1631dabfd4787ba489a44fc72a8",
+      "parent_ids": [
+        "d8ef67c1-49e3-4650-9734-5a5a11a44a54"
+      ],
+      "source_number": "2/17",
+      "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+      "original_name_candidates": [
+        {
+          "copies": 1,
+          "line": "{{decklist/entry|1|{{TCG ID|Secret Wonders|Gallade|6}}|Fighting||Rare Holo}}",
+          "tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Gallade",
+            "number": "6"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "d8ef67c1-49e3-4650-9734-5a5a11a44a54",
+          "number": "6",
+          "printed_total": 32,
+          "origin": {
+            "deck_name": "Boltevoir",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+            "player_name": null,
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 1,
+            "source_set_name": "Secret Wonders",
+            "source_card_number": "6",
+            "source_card_print_id": "d0582393-a5bb-4c1a-b100-b87c7c06a324",
+            "source_card_print_gv_id": "GV-PK-SW-6",
+            "source_card_reference_kind": "tcg_id_template"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480046",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "5151e8f8d24e5ab0e9b87a2229c985dfe4dd7206fdb9d7dd2d09a8910cb2dc29",
+      "parent_ids": [
+        "9a915fcd-1533-465e-b26e-df60386650c6"
+      ],
+      "source_number": "60/147",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 2,
+          "line": "{{decklist/entry|2|[[Garchomp C (Supreme Victors 60)|Garchomp]] {{SP|C}}|Colorless||Uncommon}}",
+          "tuple": {
+            "origin_set": "Supreme Victors",
+            "name": "Garchomp C",
+            "number": "60"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "9a915fcd-1533-465e-b26e-df60386650c6",
+          "number": "60",
+          "printed_total": 147,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 2,
+            "source_set_name": "Supreme",
+            "source_card_number": "Victors 60",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480047",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "c3e0098856132b5f2e79d678214d5582f0593115b6638f6baca2bf9645ec5677",
+      "parent_ids": [
+        "b0c50609-597c-4074-be37-e230c6ab2394"
+      ],
+      "source_number": "145/147",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 2,
+          "line": "{{decklist/entry|2|[[Garchomp C LV.X (Supreme Victors 145)|Garchomp]] {{SP|C}} [[Garchomp C LV.X (Supreme Victors 145)|LV.X]]|Colorless||Rare Holo LV.X}}",
+          "tuple": {
+            "origin_set": "Supreme Victors",
+            "name": "Garchomp C LV.X",
+            "number": "145"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "b0c50609-597c-4074-be37-e230c6ab2394",
+          "number": "145",
+          "printed_total": 147,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 2,
+            "source_set_name": "Supreme",
+            "source_card_number": "Victors 145",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480051",
+      "deck": "Power Cottonweed",
+      "reasons": [
+        "unnumbered_source_requires_separate_energy_identity_review"
+      ],
+      "source_payload_hash": "016b077dd5db2a80eb7a0384aa1f4274a760bf50bdf12b3ee93c98dd110668a2",
+      "parent_ids": [
+        "9299240d-f78c-4adc-b24c-988f8f740f4b"
+      ],
+      "source_number": null,
+      "source_original_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+      "original_name_candidates": [],
+      "parent_coordinates": [
+        {
+          "id": "9299240d-f78c-4adc-b24c-988f8f740f4b",
+          "number": "23",
+          "printed_total": 23,
+          "origin": {
+            "deck_name": "Power Cottonweed",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+            "player_name": "Yuka Furusawa, the Junior Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 6,
+            "source_set_name": null,
+            "source_card_number": null,
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "tcg_named_template"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480067",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "unnumbered_source_requires_separate_energy_identity_review"
+      ],
+      "source_payload_hash": "ef609bda9276996e38158f4e320b793465322ab5d2b543449b3c7adb7e78383f",
+      "parent_ids": [
+        "244f447e-1b82-46ca-bc6d-58c2efb9150d"
+      ],
+      "source_number": null,
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [],
+      "parent_coordinates": [
+        {
+          "id": "244f447e-1b82-46ca-bc6d-58c2efb9150d",
+          "number": "29",
+          "printed_total": 30,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 2,
+            "source_set_name": null,
+            "source_card_number": null,
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "tcg_named_template"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480072",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "888469be763051d5a9475fbd5ec1e2534b79fed60e754e1e57ecafc30e2e4378",
+      "parent_ids": [
+        "2e01e608-8a37-458d-a2e5-5a88fae27445"
+      ],
+      "source_number": "8/111",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 1,
+          "line": "{{decklist/entry|1|[[Lucario GL (Rising Rivals 8)|Lucario]] {{SP|GL}}|Fighting||Rare Holo}}",
+          "tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Lucario GL",
+            "number": "8"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "2e01e608-8a37-458d-a2e5-5a88fae27445",
+          "number": "8",
+          "printed_total": 111,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 1,
+            "source_set_name": "Rising",
+            "source_card_number": "Rivals 8",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480075",
+      "deck": "Happy Luck",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "237ec107016c1da8b6bd46b77c9826eb3631b84a9488be0958016c2587bf3cc1",
+      "parent_ids": [
+        "0cfb449b-977f-452f-b51c-2f165a0237fa"
+      ],
+      "source_number": "9/111",
+      "source_original_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+      "original_name_candidates": [
+        {
+          "copies": 1,
+          "line": "{{decklist/entry|1|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}",
+          "tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Luxray GL",
+            "number": "9"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "0cfb449b-977f-452f-b51c-2f165a0237fa",
+          "number": "9",
+          "printed_total": 111,
+          "origin": {
+            "deck_name": "Happy Luck",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+            "player_name": "Mychael Bryan, the Senior Division Finalist",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 1,
+            "source_set_name": "Rising",
+            "source_card_number": "Rivals 9",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480076",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "99da65c20a7efc2cb5c4820b4fdde932d03961c1b289f08cd2e2c1f19e788ae0",
+      "parent_ids": [
+        "d6662bc8-86aa-40c8-be46-9d8e2de46bb1"
+      ],
+      "source_number": "9/111",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 2,
+          "line": "{{decklist/entry|2|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}",
+          "tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Luxray GL",
+            "number": "9"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "d6662bc8-86aa-40c8-be46-9d8e2de46bb1",
+          "number": "9",
+          "printed_total": 111,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 2,
+            "source_set_name": "Rising",
+            "source_card_number": "Rivals 9",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480077",
+      "deck": "Happy Luck",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "0b2fcfb2a457564a5c4500b71e40c36c1e5f7cfa801765bb2482045078d7097e",
+      "parent_ids": [
+        "a314854c-32a3-4006-b031-c816c8293c12"
+      ],
+      "source_number": "109/111",
+      "source_original_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+      "original_name_candidates": [
+        {
+          "copies": 1,
+          "line": "{{decklist/entry|1|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}",
+          "tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Luxray GL LV.X",
+            "number": "109"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "a314854c-32a3-4006-b031-c816c8293c12",
+          "number": "109",
+          "printed_total": 111,
+          "origin": {
+            "deck_name": "Happy Luck",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+            "player_name": "Mychael Bryan, the Senior Division Finalist",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 1,
+            "source_set_name": "Rising",
+            "source_card_number": "Rivals 109",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480078",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "f31f8ec7ab29c29c5ff494ed2c1f7d4461f9e73cc04d2f910b7d458b440096c6",
+      "parent_ids": [
+        "ec5afe73-915a-4f0d-844c-8e8ae803446e"
+      ],
+      "source_number": "109/111",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 2,
+          "line": "{{decklist/entry|2|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}",
+          "tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Luxray GL LV.X",
+            "number": "109"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "ec5afe73-915a-4f0d-844c-8e8ae803446e",
+          "number": "109",
+          "printed_total": 111,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 2,
+            "source_set_name": "Rising",
+            "source_card_number": "Rivals 109",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480087",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "unnumbered_source_requires_separate_energy_identity_review"
+      ],
+      "source_payload_hash": "1fd85ec4a3934698bd6223d65af106e4268ae9a935f7331ae20af9498f7ab229",
+      "parent_ids": [
+        "4fadcd49-2e8a-4ce2-9957-7c603edcd40f"
+      ],
+      "source_number": null,
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [],
+      "parent_coordinates": [
+        {
+          "id": "4fadcd49-2e8a-4ce2-9957-7c603edcd40f",
+          "number": "30",
+          "printed_total": 30,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 2,
+            "source_set_name": null,
+            "source_card_number": null,
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "tcg_named_template"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480100",
+      "deck": "Boltevoir",
+      "reasons": [
+        "unnumbered_source_requires_separate_energy_identity_review"
+      ],
+      "source_payload_hash": "c48bf1fc85fac92efe5785e30cb3d4a3449f825503303a35b7bf00cb3e72532b",
+      "parent_ids": [
+        "28327228-91dc-422d-bbe4-41a4b1864f98"
+      ],
+      "source_number": null,
+      "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+      "original_name_candidates": [],
+      "parent_coordinates": [
+        {
+          "id": "28327228-91dc-422d-bbe4-41a4b1864f98",
+          "number": "31",
+          "printed_total": 32,
+          "origin": {
+            "deck_name": "Boltevoir",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+            "player_name": null,
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 5,
+            "source_set_name": null,
+            "source_card_number": null,
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "tcg_named_template"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480115",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "stored_parent_denominator_disagrees_with_source_hint"
+      ],
+      "source_payload_hash": "ca766c1ec9d46044e3bc084cfc5427ff3031482c5de41913ecac6c245779e28d",
+      "parent_ids": [
+        "a484d335-4027-4dc1-b89f-ae996a928dd9"
+      ],
+      "source_number": "117/127",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 3,
+          "line": "{{decklist/entry|3|[[Team Galactic's Invention G-103 Power Spray (Platinum 117)|<small>'''Team Galactic's Invention G-103'''</small> Power Spray]]|Trainer||Uncommon}}",
+          "tuple": {
+            "origin_set": "Platinum",
+            "name": "Team Galactic's Invention G-103 Power Spray",
+            "number": "117"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "a484d335-4027-4dc1-b89f-ae996a928dd9",
+          "number": "117",
+          "printed_total": 30,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 3,
+            "source_set_name": "Platinum",
+            "source_card_number": "117",
+            "source_card_print_id": "71eaad2a-f568-4439-be34-bd1d9a007f42",
+            "source_card_print_gv_id": "GV-PK-PL-117",
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    },
+    {
+      "product_id": "480118",
+      "deck": "LuxChomp of the Spirit",
+      "reasons": [
+        "retained_origin_provenance_coordinate_disagrees_with_original"
+      ],
+      "source_payload_hash": "dbedeff54c8c975de3bd83e34f7045b0dc00edc09724d2c8b44fa8128d9ddb60",
+      "parent_ids": [
+        "6e81b03b-a9fe-4682-b9b4-3f98a4844557"
+      ],
+      "source_number": "96/111",
+      "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+      "original_name_candidates": [
+        {
+          "copies": 3,
+          "line": "{{decklist/entry|3|[[Team Galactic's Invention G-109 SP Radar (Rising Rivals 96)|<small>'''Team Galactic's Invention G-109'''</small> SP Radar]]|Trainer||Uncommon}}",
+          "tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Team Galactic's Invention G-109 SP Radar",
+            "number": "96"
+          }
+        }
+      ],
+      "parent_coordinates": [
+        {
+          "id": "6e81b03b-a9fe-4682-b9b4-3f98a4844557",
+          "number": "96",
+          "printed_total": 111,
+          "origin": {
+            "deck_name": "LuxChomp of the Spirit",
+            "deck_year": 2010,
+            "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+            "player_name": "Yuta Komatsuda, the Masters Division Champion",
+            "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+            "deck_quantity": 3,
+            "source_set_name": "Rising",
+            "source_card_number": "Rivals 96",
+            "source_card_print_id": null,
+            "source_card_print_gv_id": null,
+            "source_card_reference_kind": "wiki_card_page_link"
+          }
+        }
+      ]
+    }
+  ],
+  "finish_authority": false,
+  "production_writes": 0,
+  "sources": [
+    {
+      "file": "world2010_relationship_sources_v1/wcd2010-boltevoir.txt",
+      "sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4"
+    },
+    {
+      "file": "world2010_relationship_sources_v1/wcd2010-luxchomp-of-the-spirit.txt",
+      "sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0"
+    },
+    {
+      "file": "world2010_relationship_sources_v1/wcd2010-happy-luck.txt",
+      "sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6"
+    },
+    {
+      "file": "world2010_relationship_sources_v1/wcd2010-power-cottonweed.txt",
+      "sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc"
+    },
+    {
+      "file": "world2010_relationship_sources_v1/tcgcsv-products.json",
+      "sha256": "d808e9af9d2581006b43c706a6f69fa72ea5818c5155d2df6313ba31e8625247"
+    }
+  ],
+  "facts": [
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Rising Rivals|88|aaron's collection",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Rising Rivals|Aaron's Collection|88}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Aaron's Collection",
+            "number": "88"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479990",
+          "source_payload_hash": "240017406da1e851587a7c7988a777c89bbb87b01054efbaec036fcb521056e0",
+          "source_product_sha256": "086356155fa8f4c1df6ee92575acb9f9611e8c5346a4a56526b29fcddad9d0f7",
+          "source_name_raw": "Aaron's Collection - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "88/111"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Mysterious Treasures|4|azelf",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Mysterious Treasures|Azelf|4}}|Psychic||Rare Holo}}",
+          "original_tuple": {
+            "origin_set": "Mysterious Treasures",
+            "name": "Azelf",
+            "number": "4"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479991",
+          "source_payload_hash": "501912a1cb00e6caa1f64010928f62b9ed45bcb1a52cf06b8e5dd7e2a1d430d1",
+          "source_product_sha256": "0ecb847611bff4d13de2331f214a982dac3303298069bac15abff4d9e993da5c",
+          "source_name_raw": "Azelf (4) - 2010 (Mychael Bryan)",
+          "source_number_raw": "4/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Legends Awakened|19|azelf",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Azelf",
+            "number": "19"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479992",
+          "source_payload_hash": "f092f952a6de600119d3f4b5fd4c800b661892604068d55179b2df40ceb45a79",
+          "source_product_sha256": "e71da00db6983185c7d3ec3592ae359f41046ca499b0bb0696a72b84533fd530",
+          "source_name_raw": "Azelf - 2010 (Michael Pramawat)",
+          "source_number_raw": "19/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Legends Awakened|19|azelf",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Azelf",
+            "number": "19"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479993",
+          "source_payload_hash": "5112f0c41522999f65c6b788aee3729a436b20abf138c82227971eb3a609d528",
+          "source_product_sha256": "3dd4ca17a1116c042e01552b3994631e9e90a8504248022958663a1d3daeee2a",
+          "source_name_raw": "Azelf (19) - 2010 (Mychael Bryan)",
+          "source_number_raw": "19/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Legends Awakened|19|azelf",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf|19}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Azelf",
+            "number": "19"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479994",
+          "source_payload_hash": "298dc18a8b743568cdd889d857e6a6866c1bfe8da7083c0f07531c3bbc1a602d",
+          "source_product_sha256": "cc5976c1aa97395eb40888ea2290a955dde563fa55d070aca8850e008a77a58c",
+          "source_name_raw": "Azelf (19) - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "19/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Legends Awakened|140|azelf lv.x",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Azelf LV.X|140}}|Psychic||Rare Holo LV.X}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Azelf LV.X",
+            "number": "140"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479995",
+          "source_payload_hash": "5c19897727b9d47322e185f5f8b989b68ae19bf4d8695514e393f1b81c22cca9",
+          "source_product_sha256": "8aba64ec74d4065deb37b5860749871755ed01822b34b958596e37c0855aa41a",
+          "source_name_raw": "Azelf LV.X - 2010 (Michael Pramawat)",
+          "source_number_raw": "140/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Great Encounters|60|baltoy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Great Encounters|Baltoy|60}}|Fighting||Common}}",
+          "original_tuple": {
+            "origin_set": "Great Encounters",
+            "name": "Baltoy",
+            "number": "60"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479996",
+          "source_payload_hash": "c3f7cb67a00fa254745339678b4d666a93c2d8a590fe170c1d0813e526d32903",
+          "source_product_sha256": "4096c88ce050ef2d70b91dc8b0170fb773614e96586adbd7e609c2bb6b886f53",
+          "source_name_raw": "Baltoy - 2010 (Yuka Furusawa)",
+          "source_number_raw": "60/106"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Rising Rivals|89|bebe's search",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Bebe's Search",
+            "number": "89"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "479999",
+          "source_payload_hash": "8e991b2e632ab8f8a37533c866dc54329b46db4586f6d06bb6325d9d8d6ef693",
+          "source_product_sha256": "1294e927641a00b74092a93026586d28e3a2bce03f31b47fa2641e2aa99eca0d",
+          "source_name_raw": "Bebe's Search - 2010 (Michael Pramawat)",
+          "source_number_raw": "89/111"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Rising Rivals|89|bebe's search",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Bebe's Search",
+            "number": "89"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480000",
+          "source_payload_hash": "669d6d05d7b09014ce313589fea46ed5ef32a0ebcfb4d8179ee278fa88445f6c",
+          "source_product_sha256": "05ae9a3c8a41e63151b5e3e63be79cdeaca5702fb71459cc0afc65fb3aab3bc0",
+          "source_name_raw": "Bebe's Search - 2010 (Mychael Bryan)",
+          "source_number_raw": "89/111"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Rising Rivals|89|bebe's search",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Bebe's Search",
+            "number": "89"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480011",
+          "source_payload_hash": "c9ca5fa404a45c828be1a9c8731976964a7b9aedfe661199d821d241d65da5cd",
+          "source_product_sha256": "a04cda956c16beb38223c7c97d4b2ce4fc89cb24649b988c5e0521b37e195cc8",
+          "source_name_raw": "Bebe's Search - 2010 (Yuka Furusawa)",
+          "source_number_raw": "89/111"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Platinum|104|broken time-space",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Platinum|Broken Time-Space|104}}|Stadium||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Broken Time-Space",
+            "number": "104"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480012",
+          "source_payload_hash": "8be80e034fc39a253392436dfd484eaf49ec7c005abf40444c6f9fb267f4625f",
+          "source_product_sha256": "98efc367bf626a7a2850839a24203432e09e33786547e5237749c359dd3a1036",
+          "source_name_raw": "Broken Time-Space - 2010 (Mychael Bryan)",
+          "source_number_raw": "104/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Platinum|104|broken time-space",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Platinum|Broken Time-Space|104}}|Stadium||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Broken Time-Space",
+            "number": "104"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480013",
+          "source_payload_hash": "a490889a9b4ddde2dcdf016e0208cdf3299b44039d4c2799e4e642a3aca2c7dc",
+          "source_product_sha256": "f0f544ecb9357ccdc9ac37b2a158b0f7156568418aff36fcbd61d9b2f5e79223",
+          "source_name_raw": "Broken Time-Space - 2010 (Yuka Furusawa)",
+          "source_number_raw": "104/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Platinum|41|bronzong g",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|[[Bronzong G (Platinum 41)|Bronzong]] {{SP|G}}|Metal||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Bronzong G",
+            "number": "41"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480014",
+          "source_payload_hash": "0163bcf7473370043395a88e401b454e32dbc5f43e4314c224a8313cf35c22c6",
+          "source_product_sha256": "e7b0969eb4de47af1ce8c99fc02f9a3d509c5b062d9b68d31d847a42217e94dc",
+          "source_name_raw": "Bronzong G - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "41/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Majestic Dawn|92|call energy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Majestic Dawn|Call Energy|92}}|Energy|Colorless|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Majestic Dawn",
+            "name": "Call Energy",
+            "number": "92"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480015",
+          "source_payload_hash": "54416a17ce5a094a89004014de3b20c679ef21bf59d2046bfe7a00e3c67c04b4",
+          "source_product_sha256": "352a00643a256c8fb32f6f6576314bed47971552b42c175a6cc005a8791c9027",
+          "source_name_raw": "Call Energy - 2010 (Michael Pramawat)",
+          "source_number_raw": "92/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Great Encounters|15|claydol",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}",
+          "original_tuple": {
+            "origin_set": "Great Encounters",
+            "name": "Claydol",
+            "number": "15"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480017",
+          "source_payload_hash": "48ef0b9d065acbe69173384b38e60fea8ca4f2455f94eed20bb20c8b7f599b42",
+          "source_product_sha256": "786cfb0ad06b2b18c44574a5e03de35c90d74d30e0b4d238b942ee11947e2bfb",
+          "source_name_raw": "Claydol - 2010 (Michael Pramawat)",
+          "source_number_raw": "15/106"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Great Encounters|15|claydol",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Great Encounters|Claydol|15}}|Fighting||Rare}}",
+          "original_tuple": {
+            "origin_set": "Great Encounters",
+            "name": "Claydol",
+            "number": "15"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480018",
+          "source_payload_hash": "546fc62c50018e7b32ba79b6b23904abab6ac26abe2bafacffa743f83c7ea935",
+          "source_product_sha256": "7ee55d6ca14c53a882d2d9d16aa3fe27c8ca27c3ef45a812f13c7cb2926d23a7",
+          "source_name_raw": "Claydol - 2010 (Yuka Furusawa)",
+          "source_number_raw": "15/106"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Stormfront|57|combee",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Stormfront|Combee|57}}|Grass||Common}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Combee",
+            "number": "57"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480019",
+          "source_payload_hash": "bacb03a09a3158afe9e5a5b1de86102715a6592331c131826b8421d4de22cc17",
+          "source_product_sha256": "91a50e840230010c3953e61daf1675720a7269f1060eca9e9e8c3dbf2bd11c77",
+          "source_name_raw": "Combee - 2010 (Mychael Bryan)",
+          "source_number_raw": "57/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Platinum|47|crobat g",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|2|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Crobat G",
+            "number": "47"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480020",
+          "source_payload_hash": "4116da1a7d6335bd86e84498fd4d5b5e6255cc81964d011bda7b2ddb0d59e156",
+          "source_product_sha256": "eef2bf93743f6c0e2479a9d08906d4a31a7b35a051aa9a362087ab1d9ede6be3",
+          "source_name_raw": "Crobat G - 2010 (Mychael Bryan)",
+          "source_number_raw": "47/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Platinum|47|crobat g",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Crobat G",
+            "number": "47"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480021",
+          "source_payload_hash": "7468ebebc03224498b3f8e02f86dfc48e5b95832c3f484d8ead227874d43b148",
+          "source_product_sha256": "26e4fe536f077489aa6e65c54e6c7aeac5f9c0c582513a0a3c07d168c178c8f6",
+          "source_name_raw": "Crobat G - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "47/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Platinum|47|crobat g",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|1|[[Crobat G (Platinum 47)|Crobat]] {{SP|G}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Crobat G",
+            "number": "47"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480022",
+          "source_payload_hash": "213b5585091dd5eefd3de9cd8ae3848340a1481f9f602fc9494097a6ab0e93aa",
+          "source_product_sha256": "7519daa0753f4acda3ee61d5e7893ec8248c6b559cac729e0995fa34ac54e03e",
+          "source_name_raw": "Crobat G - 2010 (Yuka Furusawa)",
+          "source_number_raw": "47/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Stormfront|94|cyclone energy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Stormfront|Cyclone Energy|94}}|Energy|Colorless|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Cyclone Energy",
+            "number": "94"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480023",
+          "source_payload_hash": "6326e7c609cbae3710f091d88aa55a315206f1b0724ed03be050b465fc40bf48",
+          "source_product_sha256": "3f817b21058896e82ea66ab1ceb8d233dcdd29717000517bb39c161939b1cee3",
+          "source_name_raw": "Cyclone Energy - 2010 (Mychael Bryan)",
+          "source_number_raw": "94/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Legends Awakened|131|cynthia's feelings",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Cynthia's Feelings|131}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Cynthia's Feelings",
+            "number": "131"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480024",
+          "source_payload_hash": "414f9b2fd83222ee60cb0259183c289faa4b97ac239666fee3e2bc02fadbfac7",
+          "source_product_sha256": "f0c512b8541ecb400a0d1250180a0767fc28e4f96c531ddf6aea7f70886dbd60",
+          "source_name_raw": "Cynthia's Feelings - 2010 (Mychael Bryan)",
+          "source_number_raw": "131/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Platinum|105|cyrus's conspiracy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Platinum|Cyrus's Conspiracy|105}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Cyrus's Conspiracy",
+            "number": "105"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480025",
+          "source_payload_hash": "a34376c67cfccb8b64fd4e7379797ea6ef355fa09698a30da48f60f0c37ad8b3",
+          "source_product_sha256": "61ca2a6dc993309dc7386b65a20aef3fef35c80cde1295599aeed40427dc1145",
+          "source_name_raw": "Cyrus's Conspiracy - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "105/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Platinum|7|dialga g",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|[[Dialga G (Platinum 7)|Dialga]] {{SP|G}}|Metal||Rare Holo}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Dialga G",
+            "number": "7"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480026",
+          "source_payload_hash": "6aac5b3218a5e749d1629c882b141f9c338fccd2ca57e82b2db75f540abff75b",
+          "source_product_sha256": "f825977484b2dc7c3f69a017b5b2260e6b584efe46a3bb1e096ffda4497244d2",
+          "source_name_raw": "Dialga G - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "7/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Platinum|122|dialga g lv.x",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|[[Dialga G LV.X (Platinum 122)|Dialga]] {{SP|G}} [[Dialga G LV.X (Platinum 122)|LV.X]]|Metal||Rare Holo LV.X}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Dialga G LV.X",
+            "number": "122"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480027",
+          "source_payload_hash": "4e8c7444adf31a173297a74e105d84bcfc7d825815e4301cbbd2a8545f1afec0",
+          "source_product_sha256": "912215048c03991b4b9acc2d97c6ca718c6627de40877850cc8d70acef0df247",
+          "source_name_raw": "Dialga G LV.X - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "122/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|HeartGold & SoulSilver|103|double colorless energy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Double Colorless Energy|103}}|Energy|Colorless|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Double Colorless Energy",
+            "number": "103"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480028",
+          "source_payload_hash": "99677f73fe1f6bcc126f6f87fe875a98598f647babe56a0155d88c601265274e",
+          "source_product_sha256": "b70d09912b04b388408ea0a2b3a745d0bcbce7181956e6225597fbc2a1762f1c",
+          "source_name_raw": "Double Colorless Energy - 2010 (Michael Pramawat)",
+          "source_number_raw": "103/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|HeartGold & SoulSilver|103|double colorless energy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Double Colorless Energy|103}}|Energy|Colorless|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Double Colorless Energy",
+            "number": "103"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480029",
+          "source_payload_hash": "9d1ccba38872e3a4f72305517f92c4e768c1a534a704bdda7d3226055a31c313",
+          "source_product_sha256": "810170e21ad1b03c954e6a3bd1046bc79b7f6121866cbbbbd42fd44b833c0663",
+          "source_name_raw": "Double Colorless Energy - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "103/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Stormfront|35|dusclops",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Stormfront|Dusclops|35}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Dusclops",
+            "number": "35"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480031",
+          "source_payload_hash": "a5bc7f85a3384691e56cb12024a5de14241d782471b06ec734a3c3d48385bca5",
+          "source_product_sha256": "4f56fec303562a1b0f81c236568ba558075c0459aa4d2cadd1faef915c2ed27c",
+          "source_name_raw": "Dusclops - 2010 (Michael Pramawat)",
+          "source_number_raw": "35/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Diamond & Pearl|2|dusknoir",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Dusknoir|2}}|Psychic||Rare Holo}}",
+          "original_tuple": {
+            "origin_set": "Diamond & Pearl",
+            "name": "Dusknoir",
+            "number": "2"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480033",
+          "source_payload_hash": "e76c1e310dadf3bd7b6fb2a7ee694ec1870ff12fb91a1bcf8a46d057fcc1dd93",
+          "source_product_sha256": "201ceee5fce9cb02b9eb9ecdd4b8c17167a95fc4d24a94385f8b5edfc75edb3c",
+          "source_name_raw": "Dusknoir - 2010 (Michael Pramawat)",
+          "source_number_raw": "2/130"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Secret Wonders|86|duskull",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Secret Wonders|Duskull|86}}|Psychic||Common}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Duskull",
+            "number": "86"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480035",
+          "source_payload_hash": "c33f45df051312e7b2d5ff9154de240c33ada4a082c95ec67620c5b14e113234",
+          "source_product_sha256": "8045c08dff644313d10ec052631b2242160e7d1e6aae3fa5ab9973df78d9cd7e",
+          "source_name_raw": "Duskull - 2010 (Michael Pramawat)",
+          "source_number_raw": "86/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Arceus|87|expert belt",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Arceus|Expert Belt|87}}|Trainer|Pokémon Tool|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Arceus",
+            "name": "Expert Belt",
+            "number": "87"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480037",
+          "source_payload_hash": "223a0bf922f7ecb64a9d6c2a4ed59336597daa0f4f130dd93def45e6dd007889",
+          "source_product_sha256": "c3ee0336fcd9da28cced7cb3887152ba05e9481ecc6f4f14d8dac483617a6818",
+          "source_name_raw": "Expert Belt - 2010 (Michael Pramawat)",
+          "source_number_raw": "87/99"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Arceus|87|expert belt",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Arceus|Expert Belt|87}}|Trainer|Pokémon Tool|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Arceus",
+            "name": "Expert Belt",
+            "number": "87"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480039",
+          "source_payload_hash": "771e91862927d3f4e2f59a46d4ea122818aad81989af4c4e301097e3e203fd59",
+          "source_product_sha256": "cf8dc987970ea7393005ba45a4e468c41cbe19cd78e9317ce76f7e3df8a30567",
+          "source_name_raw": "Expert Belt - 2010 (Mychael Bryan)",
+          "source_number_raw": "87/99"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Arceus|87|expert belt",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Arceus|Expert Belt|87}}|Trainer|Pokémon Tool|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Arceus",
+            "name": "Expert Belt",
+            "number": "87"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480040",
+          "source_payload_hash": "1d0ff50df691754d9351e5134a73e4fdd93cfeac014f626a06e6a9cc4ebf9833",
+          "source_product_sha256": "ead108129b5e3dabedc82efb15a945171932b215a899b190cf3204d7af7e1d22",
+          "source_name_raw": "Expert Belt - 2010 (Yuka Furusawa)",
+          "source_number_raw": "87/99"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Great Encounters|98|felicity's drawing",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Great Encounters|Felicity's Drawing|98}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Great Encounters",
+            "name": "Felicity's Drawing",
+            "number": "98"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480041",
+          "source_payload_hash": "007a7ded7dfe00512bb949f37ab0b2247fe77ae5add1a4dcf334201ed8595b6e",
+          "source_product_sha256": "99a50377ccf7553131f58b19e08f03e7877e7a65d0793c365a5afe0dc54891e1",
+          "source_name_raw": "Felicity's Drawing - 2010 (Mychael Bryan)",
+          "source_number_raw": "98/106"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Secret Wonders|7|gardevoir",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Secret Wonders|Gardevoir|7}}|Psychic||Rare Holo}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Gardevoir",
+            "number": "7"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480049",
+          "source_payload_hash": "4f173ffd67cc3458137b6ca5e79a686e24ff3311bc83dce4cc1f98d1d69511ee",
+          "source_product_sha256": "f97defab8e20e15e57d999f307ec2431a3067ae2ae8521ef38d64576bbd2d290",
+          "source_name_raw": "Gardevoir - 2010 (Michael Pramawat)",
+          "source_number_raw": "7/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Secret Wonders|131|gardevoir lv.x",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Secret Wonders|Gardevoir LV.X|131}}|Psychic||Rare Holo LV.X}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Gardevoir LV.X",
+            "number": "131"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480050",
+          "source_payload_hash": "ad4643560722b002e0351c916850fb31a9d10faaeac3c1454f48c9ec952e7704",
+          "source_product_sha256": "554dfadb146f19c1abbba6237a12073befedc5d6d9f3d496aa814aa5a25d98de",
+          "source_name_raw": "Gardevoir LV.X - 2010 (Michael Pramawat)",
+          "source_number_raw": "131/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Stormfront|19|gyarados",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Stormfront|Gyarados|19}}|Water||Rare}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Gyarados",
+            "number": "19"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480052",
+          "source_payload_hash": "a9f57cfcdbd92e4643832419eb36e21cf265e7b4a902a3283d6943e5bddb1891",
+          "source_product_sha256": "9bf6477ca9222f548dde22ef813d59e5b85748ab2481479598a59d9b1b42e72c",
+          "source_name_raw": "Gyarados - 2010 (Mychael Bryan)",
+          "source_number_raw": "19/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|HeartGold & SoulSilver|67|hoppip",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|HeartGold & SoulSilver|Hoppip|67}}|Grass||Common}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Hoppip",
+            "number": "67"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480053",
+          "source_payload_hash": "866b612d2d8de1d9167307ec13c4274a11927d2a0f32515dba929bb6161a4eb9",
+          "source_product_sha256": "af214f755a74d3eb368944f40f50bb765ae4b51efc6a6aa370eff91fc55b26fd",
+          "source_name_raw": "Hoppip (67) - 2010 (Yuka Furusawa)",
+          "source_number_raw": "67/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Secret Wonders|90|hoppip",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Secret Wonders|Hoppip|90}}|Grass||Common}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Hoppip",
+            "number": "90"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480054",
+          "source_payload_hash": "e356a3550280aedec208275b1b3895d920246fee8834041156eb8ddbc26f6295",
+          "source_product_sha256": "c4ae46022854b76ef7783987234f1ce6ea4a72fcd569d07296edf3dbe542130c",
+          "source_name_raw": "Hoppip (90) - 2010 (Yuka Furusawa)",
+          "source_number_raw": "90/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Unleashed|78|judge",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Unleashed|Judge|78}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Unleashed",
+            "name": "Judge",
+            "number": "78"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480056",
+          "source_payload_hash": "74896f6168a0c609cedcc93bed63f0bfffa1e8025625372ec4f859e1b03f9829",
+          "source_product_sha256": "cd1b1900aa7a945fa28ebe79bbf2990af21124ecd9a9220f966a0c203689e8ec",
+          "source_name_raw": "Judge - 2010 (Michael Pramawat)",
+          "source_number_raw": "78/95"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Unleashed|78|judge",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Unleashed|Judge|78}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Unleashed",
+            "name": "Judge",
+            "number": "78"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480057",
+          "source_payload_hash": "36d867dab897dfbd29467b08730569db9df51fa9a8a21ab3c5790d15fdc88644",
+          "source_product_sha256": "6f2072257cc1e766e0d4ae76a7419878551b2577243bcefde0116b6fe0feaa4a",
+          "source_name_raw": "Judge - 2010 (Yuka Furusawa)",
+          "source_number_raw": "78/95"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|HeartGold & SoulSilver|6|jumpluff",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Jumpluff|6}}|Grass||Rare Holo}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Jumpluff",
+            "number": "6"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480062",
+          "source_payload_hash": "f7274f412108434e86135c0e9ea09c129b9f2ca8b5c0db47f22e08878e411484",
+          "source_product_sha256": "8bd9bd51815a1278504fd4477b2c23507ed8e9e161cf7e911575b43a7207844f",
+          "source_name_raw": "Jumpluff - 2010 (Yuka Furusawa)",
+          "source_number_raw": "6/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Platinum|51|kirlia",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Platinum|Kirlia|51}}|Psychic||Common}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Kirlia",
+            "number": "51"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480066",
+          "source_payload_hash": "cba7a9355d9399704c0a5f12d2f9ce38293c1d9b385c53326d9e42a108685e1d",
+          "source_product_sha256": "3c9e5941eafa67a6ac8176555bf7bdf4afc84c47642c3492864df175497ca42c",
+          "source_name_raw": "Kirlia - 2010 (Michael Pramawat)",
+          "source_number_raw": "51/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Platinum|109|looker's investigation",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Platinum|Looker's Investigation|109}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Looker's Investigation",
+            "number": "109"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480069",
+          "source_payload_hash": "7dff0e88d73d7a1acced6f33416f17b87dc91bed6d331f4a9eb1a9a2f576a5e4",
+          "source_product_sha256": "c621f360116bc4a27f6acecf5308845ae7c483dbd98deb640c1c4eb7cc133412",
+          "source_name_raw": "Looker's Investigation - 2010 (Michael Pramawat)",
+          "source_number_raw": "109/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Rising Rivals|92|lucian's assignment",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Rising Rivals|Lucian's Assignment|92}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Lucian's Assignment",
+            "number": "92"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480073",
+          "source_payload_hash": "d2d857bea89d3175243ba7316fb61b8f24c965b2bc02798765d5841bb8f5bf55",
+          "source_product_sha256": "5ddc8a88958e1381b306cbf7b7bede3de72cb9406ad71d47a076248e6ccd081f",
+          "source_name_raw": "Lucian's Assignment - 2010 (Michael Pramawat)",
+          "source_number_raw": "92/111"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Stormfront|86|luxury ball",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Luxury Ball",
+            "number": "86"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480079",
+          "source_payload_hash": "a1a6f2455729efa21791bcf919ce54161b1d298693634306b0119499a57169e6",
+          "source_product_sha256": "4508988522908a40725a917b7ed2a5162c1719dc5416715388ba3d65564f1905",
+          "source_name_raw": "Luxury Ball - 2010 (Michael Pramawat)",
+          "source_number_raw": "86/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Stormfront|86|luxury ball",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Luxury Ball",
+            "number": "86"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480080",
+          "source_payload_hash": "cae2804464d3aeec27d3d51e48521375342f9ffe480c5ed8a78fbd192776ca49",
+          "source_product_sha256": "87657cc0e406068724bccb98a505ad23e68895efe2a7ac21a89757e1de3e0620",
+          "source_name_raw": "Luxury Ball - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "86/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Stormfront|86|luxury ball",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Stormfront|Luxury Ball|86}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Luxury Ball",
+            "number": "86"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480081",
+          "source_payload_hash": "b763a873cfcd684776b50c4057d5e477923365cbcaed6b6d96b8abc67de484af",
+          "source_product_sha256": "fb7c55be37051e870d1fcf8e23ba403b51f61cc0a98d157abd5ac486246c37d4",
+          "source_name_raw": "Luxury Ball - 2010 (Yuka Furusawa)",
+          "source_number_raw": "86/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Stormfront|20|machamp",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Stormfront|Machamp|20}}|Fighting||Rare}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Machamp",
+            "number": "20"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480082",
+          "source_payload_hash": "56da51338aaddf234029ebacc05a7db3c9818dd059e3cf34140233d40f7fa606",
+          "source_product_sha256": "27451029bc6eeb45b7f21d48500fde1dcb746b6d08e58e6dfba07681019f6a85",
+          "source_name_raw": "Machamp - 2010 (Michael Pramawat)",
+          "source_number_raw": "20/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Diamond & Pearl|86|machop",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Diamond & Pearl|Machop|86}}|Fighting||Common}}",
+          "original_tuple": {
+            "origin_set": "Diamond & Pearl",
+            "name": "Machop",
+            "number": "86"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480084",
+          "source_payload_hash": "b0b6c4abb258b40583ed5bee533000e4aa28f243d0d0c15af9d8d04c616ffc29",
+          "source_product_sha256": "55ed3b106a4a44a37695315f5090ca61e3ffe0da4f723de7760c7ef72338aa22",
+          "source_name_raw": "Machop - 2010 (Michael Pramawat)",
+          "source_number_raw": "86/130"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Stormfront|65|magikarp",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Stormfront|Magikarp|65}}|Water||Common}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Magikarp",
+            "number": "65"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480085",
+          "source_payload_hash": "3163e83917c31415d88225d2aeda23a0759c3d80b830b5d50193f72d3cba720a",
+          "source_product_sha256": "e4796da71f401c5faa7a5b98f3db64fd96afb5ab6c9b8e2962b448712f04979a",
+          "source_name_raw": "Magikarp - 2010 (Mychael Bryan)",
+          "source_number_raw": "65/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Mysterious Treasures|14|mesprit",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Mysterious Treasures|Mesprit|14}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Mysterious Treasures",
+            "name": "Mesprit",
+            "number": "14"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480086",
+          "source_payload_hash": "25df8254785186ba76792fff8d3657c37432e2ec08af401861a21d723f73ccaa",
+          "source_product_sha256": "ad7e3f622dc9c3e5a1259022b933e4da37c8623ae0ffeb35580fa713883a5791",
+          "source_name_raw": "Mesprit - 2010 (Mychael Bryan)",
+          "source_number_raw": "14/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Great Encounters|100|moonlight stadium",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Great Encounters|Moonlight Stadium|100}}|Stadium||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Great Encounters",
+            "name": "Moonlight Stadium",
+            "number": "100"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480088",
+          "source_payload_hash": "0ec9fbc1b27850c3f83b28ba6714dd0b3160de3bd4eb482a558d5000c636e61a",
+          "source_product_sha256": "b4ae2478b4ceed8470f0aa66cc64a17304723496f8da364a0987af8011ccc833",
+          "source_name_raw": "Moonlight Stadium - 2010 (Michael Pramawat)",
+          "source_number_raw": "100/106"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Secret Wonders|120|night maintenance",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Night Maintenance",
+            "number": "120"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480089",
+          "source_payload_hash": "12781e51ccfe0ca1a7af94f7c4c85379d9cdce48514a8a455e0f2f8bea35c3a3",
+          "source_product_sha256": "e5ecdb9cf67c6a794776cd87fae5cf7ce490a059baebeccc6d03d09a46d0a5cd",
+          "source_name_raw": "Night Maintenance - 2010 (Michael Pramawat)",
+          "source_number_raw": "120/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Secret Wonders|120|night maintenance",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Night Maintenance",
+            "number": "120"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480090",
+          "source_payload_hash": "ad5c0ed774698d1b27eba83ec4fe9a40b07c9f8240667f8ae0058d64bf46c5d8",
+          "source_product_sha256": "4e6cb438fa326ed4ee39ce52a03e0c85fec2aa7199474e9bb34e5ed65db41fff",
+          "source_name_raw": "Night Maintenance - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "120/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Unleashed|80|pluspower",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Unleashed|PlusPower|80}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Unleashed",
+            "name": "PlusPower",
+            "number": "80"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480092",
+          "source_payload_hash": "f8bb351c0f2e9bcb48e6fb4872348f0e6f5230e86713a6b980f455d626600297",
+          "source_product_sha256": "e4cc8d2e4f71097034d0571fa34737a33e7ca03cde96fb96d92178a9ac76a192",
+          "source_name_raw": "PlusPower - 2010 (Yuka Furusawa)",
+          "source_number_raw": "80/95"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|HeartGold & SoulSilver|97|pokémon collector",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Pokémon Collector",
+            "number": "97"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480093",
+          "source_payload_hash": "bffa7fd706ca5edd6e07a6e27af866d441f3aacb6b3a8f7ac56040c4c2e39b6d",
+          "source_product_sha256": "8856aa2448dee007dfd2cc7f4808b1038d766483b58f81926ad701013aa28d4b",
+          "source_name_raw": "Pokemon Collector - 2010 (Mychael Bryan)",
+          "source_number_raw": "97/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|HeartGold & SoulSilver|97|pokémon collector",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|2|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Pokémon Collector",
+            "number": "97"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480094",
+          "source_payload_hash": "d9f68e136bf450f8e64c6edc15d86c7f69461e99c4d4da8fa21365d90e66e93c",
+          "source_product_sha256": "8fb7f193f37ce97051cd81f3e2900b0c44aef55940c1c218411720763f6f3889",
+          "source_name_raw": "Pokemon Collector - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "97/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|HeartGold & SoulSilver|97|pokémon collector",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Collector|97}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Pokémon Collector",
+            "number": "97"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480095",
+          "source_payload_hash": "522758fcb07e9ab07088340392b61e9523308df9e5196e13ca9992df5dddb3ee",
+          "source_product_sha256": "69728add36536b7da6990769479d537a2d48e64a58b70dc609cd43f60e04f0e2",
+          "source_name_raw": "Pokemon Collector - 2010 (Yuka Furusawa)",
+          "source_number_raw": "97/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|HeartGold & SoulSilver|98|pokémon communication",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|{{TCG ID|HeartGold & SoulSilver|Pokémon Communication|98}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Pokémon Communication",
+            "number": "98"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480096",
+          "source_payload_hash": "59fcec00747d74a7d93eae462d38615a1f441107602acca0e8540dfd29a8d1fe",
+          "source_product_sha256": "dce12ff719e2283586c0d6c35abbdf0b1237c00b5c5169e7ea5543679dd89aa7",
+          "source_name_raw": "Pokemon Communication - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "98/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|HeartGold & SoulSilver|98|pokémon communication",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|4|{{TCG ID|HeartGold & SoulSilver|Pokémon Communication|98}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Pokémon Communication",
+            "number": "98"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480097",
+          "source_payload_hash": "0d8aadb693b84156355a8559340fc0728682d3dbfff59733bb769f28e5008711",
+          "source_product_sha256": "0b0d86765d54a008ff11b1e2b516a6d33bc11764d916eb1ef154c39277033a07",
+          "source_name_raw": "Pokemon Communication - 2010 (Yuka Furusawa)",
+          "source_number_raw": "98/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Platinum|115|pokémon rescue",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Platinum|Pokémon Rescue|115}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Pokémon Rescue",
+            "number": "115"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480098",
+          "source_payload_hash": "fd796f25b43d5eecd63fddaf5eec2c0008f942b13e02a2698faa74ae8875ae74",
+          "source_product_sha256": "5f8bc5d18a3186e0143ac4271782b470a69c029274089dbb2f914188172a2578",
+          "source_name_raw": "Pokemon Rescue - 2010 (Mychael Bryan)",
+          "source_number_raw": "115/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|HeartGold & SoulSilver|101|professor oak's new theory",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|3|{{TCG ID|HeartGold & SoulSilver|Professor Oak's New Theory|101}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "HeartGold & SoulSilver",
+            "name": "Professor Oak's New Theory",
+            "number": "101"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480099",
+          "source_payload_hash": "68c2f794da34ce278d51f4e2aa38916f158956e265c838e55add1e22871d4b70",
+          "source_product_sha256": "f97c271f04fbdda0f29a8a26323239c431e71344b1b55654d0b0a51c54837d89",
+          "source_name_raw": "Professor Oak's New Theory - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "101/123"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Platinum|89|ralts",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Platinum|Ralts|89}}|Psychic||Common}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Ralts",
+            "number": "89"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480101",
+          "source_payload_hash": "822fbcb328316d1ec599930cec8cf019280aaa42fa65d6d93c867947e08f1e5f",
+          "source_product_sha256": "5ecffe03d25145c0cdb267454ab56271f6ed33469072e5424ec74c94b8e91c99",
+          "source_name_raw": "Ralts - 2010 (Michael Pramawat)",
+          "source_number_raw": "89/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Unleashed|82|rare candy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Unleashed",
+            "name": "Rare Candy",
+            "number": "82"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480105",
+          "source_payload_hash": "0a333f6a59e8e2c8a2b298b01005804a8f190bffd4feffb5bc2ce5e330deff87",
+          "source_product_sha256": "0ab6743b0e241eeb9cb4f8b497bf07fdab95ff1e681bd2471d91754a37e67fbd",
+          "source_name_raw": "Rare Candy - 2010 (Michael Pramawat)",
+          "source_number_raw": "82/95"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Unleashed|82|rare candy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Unleashed|Rare Candy|82}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Unleashed",
+            "name": "Rare Candy",
+            "number": "82"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480106",
+          "source_payload_hash": "fc236456f4ee9fb59e2a8906df88f74798490242e3bc81353df2175081342a24",
+          "source_product_sha256": "c9a2178e907f3d519088081eb6d53b93c2290e372e58d1868d32fae6c7245f8d",
+          "source_name_raw": "Rare Candy - 2010 (Yuka Furusawa)",
+          "source_number_raw": "82/95"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Secret Wonders|125|roseanne's research",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Roseanne's Research",
+            "number": "125"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480107",
+          "source_payload_hash": "5c652170af7587cf11de937f8974b4208f269e8e87daf414069491508c424aa8",
+          "source_product_sha256": "05b75b7964638b303a993f05a14da7e64c53e83e5b7a65b5d043a635b848e686",
+          "source_name_raw": "Roseanne's Research - 2010 (Michael Pramawat)",
+          "source_number_raw": "125/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Secret Wonders|125|roseanne's research",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Roseanne's Research",
+            "number": "125"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480108",
+          "source_payload_hash": "94b7f6a704b2f7dd833eaa849ff60b9764d134d96cf9c4eb8ada43b932c9d658",
+          "source_product_sha256": "f73adfbb360673585750ffeb944c5144480b2e8904ffbbeba01b9025ff1c98d3",
+          "source_name_raw": "Roseanne's Research - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "125/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Secret Wonders|125|roseanne's research",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Secret Wonders|Roseanne's Research|125}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Roseanne's Research",
+            "number": "125"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480109",
+          "source_payload_hash": "5af17de800240bca91e536bbf91467f71013b8cf78f7e15852f91fc3110895b3",
+          "source_product_sha256": "acb22a335e4111dfd0fa7edcd1bd84087b813a7c5a8312434a6b32057b0a748f",
+          "source_name_raw": "Roseanne's Research - 2010 (Yuka Furusawa)",
+          "source_number_raw": "125/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Stormfront|48|sableye",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Stormfront|Sableye|48}}|Darkness||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Sableye",
+            "number": "48"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480110",
+          "source_payload_hash": "1d59628e59118780fe4a064039ebda111a8287a0fee58b4ebb972f89bbad0e83",
+          "source_product_sha256": "1b6f499ecc16524f895d7a409ba57d5718d5ff031ecff3f36c31f065fa1e5a53",
+          "source_name_raw": "Sableye - 2010 (Mychael Bryan)",
+          "source_number_raw": "48/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Secret Wonders|65|skiploom",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Secret Wonders|Skiploom|65}}|Grass||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Skiploom",
+            "number": "65"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480111",
+          "source_payload_hash": "150aac0fc00ee28ff7d7d7e8489eb4749b1378fb091f77c01a4645463cab45e4",
+          "source_product_sha256": "ddf98b8e3794b73bf928c58721bcc873a671fa72a8f2c155b573d6953b0d39c5",
+          "source_name_raw": "Skiploom - 2010 (Yuka Furusawa)",
+          "source_number_raw": "65/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Arceus|32|spiritomb",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Arceus|Spiritomb|32}}|Darkness||Rare}}",
+          "original_tuple": {
+            "origin_set": "Arceus",
+            "name": "Spiritomb",
+            "number": "32"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480112",
+          "source_payload_hash": "f756eb5073af073efd4816c0bf33a7a5e60275f544569e5bbec9461c7ae583bf",
+          "source_product_sha256": "03fc207ce9fdcff996c2d27918099b94fea90b0aa3c7c054e60bc3918ab00743",
+          "source_name_raw": "Spiritomb - 2010 (Michael Pramawat)",
+          "source_number_raw": "32/99"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Unleashed|83|super scoop up",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Unleashed|Super Scoop Up|83}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Unleashed",
+            "name": "Super Scoop Up",
+            "number": "83"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480113",
+          "source_payload_hash": "0d1f6e3b60916021f9841354fdf9a0916caae704430ca76646f63df716504cad",
+          "source_product_sha256": "b98903807cf2b3770f02c8e36b78ca40e8d7832d2152291585f1b2455cec61c8",
+          "source_name_raw": "Super Scoop Up - 2010 (Mychael Bryan)",
+          "source_number_raw": "83/95"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Platinum|116|team galactic's invention g-101 energy gain",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|4|[[Team Galactic's Invention G-101 Energy Gain (Platinum 116)|<small>'''Team Galactic's Invention G-101'''</small> Energy Gain]]|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Team Galactic's Invention G-101 Energy Gain",
+            "number": "116"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480114",
+          "source_payload_hash": "8c3f40ea2f039bf2bd858daed69a7b35c40fc2d80ad73937a3ec6d0968914362",
+          "source_product_sha256": "fb3aeec2eab4c4c0f9bf039ab6b82accc4be710ebe99e20e6953acc21cc1f43f",
+          "source_name_raw": "Team Galactic's Invention G-101 Energy Gain - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "116/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Platinum|118|team galactic's invention g-105 poké turn",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|4|[[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|<small>'''Team Galactic's Invention G-105'''</small> Poké Turn]]|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Team Galactic's Invention G-105 Poké Turn",
+            "number": "118"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480116",
+          "source_payload_hash": "7fb34a6a9234c89aae7007554d8e97f60f9b9a29a6ee304aa0aba748aa9f4a82",
+          "source_product_sha256": "6b08c4ad5040585271b4709ff1d08cfe89453f293d5bf58b6add8748b3c18925",
+          "source_name_raw": "Team Galactic's Invention G-105 Poke Turn - 2010 (Mychael Bryan)",
+          "source_number_raw": "118/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Platinum|118|team galactic's invention g-105 poké turn",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|4|[[Team Galactic's Invention G-105 Poké Turn (Platinum 118)|<small>'''Team Galactic's Invention G-105'''</small> Poké Turn]]|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Platinum",
+            "name": "Team Galactic's Invention G-105 Poké Turn",
+            "number": "118"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480117",
+          "source_payload_hash": "2b9d8fa5c1dc885f0a51b0df9850a0ca21b5b9ff66c13b37726679f28790414a",
+          "source_product_sha256": "2ffb0689ddd06aaa21a753993659e43fb69229fe18111addcf65365b03ebfbc0",
+          "source_name_raw": "Team Galactic's Invention G-105 Poke Turn - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "118/127"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Great Encounters|57|unown g",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Great Encounters|Unown G|57}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Great Encounters",
+            "name": "Unown G",
+            "number": "57"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480119",
+          "source_payload_hash": "5dd88f77e23f66e23e8713a5a5ae88c4eef5922e3e8aafab017ca8e72cadfeae",
+          "source_product_sha256": "bd7fa98c27ba6fb76cefaf0c66c47ba8980d27cd0e7d540e7722f2bf9e1ff8af",
+          "source_name_raw": "Unown [G] - 2010 (Michael Pramawat)",
+          "source_number_raw": "57/106"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Majestic Dawn|49|unown q",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Majestic Dawn|Unown Q|49}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Majestic Dawn",
+            "name": "Unown Q",
+            "number": "49"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480120",
+          "source_payload_hash": "cf440456ad56284a54d001d01fd288bab3329e214040dbd8afdb46cd25c0c526",
+          "source_product_sha256": "77721a055e682a095848d5b582378e77a658c26d8e35c083b5ba63420ab805e8",
+          "source_name_raw": "Unown [Q] - 2010 (Mychael Bryan)",
+          "source_number_raw": "49/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Majestic Dawn|49|unown q",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Majestic Dawn|Unown Q|49}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Majestic Dawn",
+            "name": "Unown Q",
+            "number": "49"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480121",
+          "source_payload_hash": "255f6d6df5854804111b54a25ea2c2d9e59bfd2562e2586c0108e71720f0e8f5",
+          "source_product_sha256": "6a13f262c6f66922d92e94af3113c9055306ce76ace0f1b47b203e4e6bc376ce",
+          "source_name_raw": "Unown [Q] - 2010 (Yuka Furusawa)",
+          "source_number_raw": "49/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Legends Awakened|77|unown r",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|4|{{TCG ID|Legends Awakened|Unown R|77}}|Psychic||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Unown R",
+            "number": "77"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480122",
+          "source_payload_hash": "26b76125aefdde8c887708be8488b20dae67eaf77b708b2df89bbb9293b3b600",
+          "source_product_sha256": "db85229e130b5f0be5bb69369defb5a8bdd027e304ca957bd377d70f510948e5",
+          "source_name_raw": "Unown (R) - 2010 (Yuka Furusawa)",
+          "source_number_raw": "77/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Legends Awakened|43|uxie",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Uxie",
+            "number": "43"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480123",
+          "source_payload_hash": "0d3f59b234b932af7ee7bfb171daa4064de83bec692435188de722b09f03b855",
+          "source_product_sha256": "40ca3612bca0f29fa090584dbea377e686c02f34eca42e903f6b96af15c7da2f",
+          "source_name_raw": "Uxie - 2010 (Michael Pramawat)",
+          "source_number_raw": "43/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Legends Awakened|43|uxie",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Uxie",
+            "number": "43"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480124",
+          "source_payload_hash": "77448daac2d93e5873e295c8f1f74bd516341c823cca9963ad93da28648742b2",
+          "source_product_sha256": "2cb365f1f929a071e83d83df99d6bbaadf43eb611bf5441d165b525fbfcdf7c2",
+          "source_name_raw": "Uxie - 2010 (Mychael Bryan)",
+          "source_number_raw": "43/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Legends Awakened|43|uxie",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Uxie",
+            "number": "43"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480125",
+          "source_payload_hash": "a9e177f6169c7e6c7de0a061f29a1bca492ceafb256aa6ec4784a387ac8fda00",
+          "source_product_sha256": "753bb0ba88ac6561ecf2e84ada88096adc2af15aedb40ecbb2d091ec8d5a2438",
+          "source_name_raw": "Uxie - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "43/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Legends Awakened|146|uxie lv.x",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Legends Awakened|Uxie LV.X|146}}|Psychic||Rare Holo LV.X}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Uxie LV.X",
+            "number": "146"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480126",
+          "source_payload_hash": "7f7ebf8e4c797d1113708dbb58ff19c63c720843519651a557d961d5dccb34b8",
+          "source_product_sha256": "eb9acf0d9cadea2b708e97c5da57518a84d41e07b8119b7cf393accacd5130aa",
+          "source_name_raw": "Uxie LV.X - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "146/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Supreme Victors|140|vs seeker",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Supreme Victors|VS Seeker|140}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Supreme Victors",
+            "name": "VS Seeker",
+            "number": "140"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480127",
+          "source_payload_hash": "96137e8efc4d4ccc0e14e1511f15d0a6e5b216eb7ba51563d597b1acf75f3c91",
+          "source_product_sha256": "fb8f8f77c7d3e0b7758f226a9a416a03e590100f1b6b11c142458ec1c66ca3d6",
+          "source_name_raw": "VS Seeker - 2010 (Mychael Bryan)",
+          "source_number_raw": "140/147"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-happy-luck|Stormfront|95|warp energy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+          "raw_snapshot_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Stormfront|Warp Energy|95}}|Energy|Colorless|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Warp Energy",
+            "number": "95"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480128",
+          "source_payload_hash": "39ac3215e471fd86134a68349415c53928fdaa322dbf20fceceac86ca6584bbd",
+          "source_product_sha256": "b2f5b95301d40f9b4c529c69f6379e70d7821f50c202e164440661bfdffc2d65",
+          "source_name_raw": "Warp Energy - 2010 (Mychael Bryan)",
+          "source_number_raw": "95/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Stormfront|95|warp energy",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|3|{{TCG ID|Stormfront|Warp Energy|95}}|Energy|Colorless|Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Stormfront",
+            "name": "Warp Energy",
+            "number": "95"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480129",
+          "source_payload_hash": "e1e886c80ea6cddff29641d5df60aa5543ae7f2ebb17cb1bdbe747ca57ccbfa0",
+          "source_product_sha256": "613bdb9f57af5be20fa47c19da7988901a2fb96785ef622470dded45dcb56a03",
+          "source_name_raw": "Warp Energy - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "95/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-boltevoir|Majestic Dawn|88|warp point",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+          "raw_snapshot_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_line": "{{decklist/entry|1|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Majestic Dawn",
+            "name": "Warp Point",
+            "number": "88"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480131",
+          "source_payload_hash": "9c08d51dceb7878955afa7c7b874b3451d027b6bf66c5d1190f211e73bf63b98",
+          "source_product_sha256": "4969161e858ed8431dabd061288208bb6c1c2a50b39b169802e3343d70ff2674",
+          "source_name_raw": "Warp Point - 2010 (Michael Pramawat)",
+          "source_number_raw": "88/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Majestic Dawn|88|warp point",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Majestic Dawn|Warp Point|88}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Majestic Dawn",
+            "name": "Warp Point",
+            "number": "88"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "480133",
+          "source_payload_hash": "148d1a57592fabe7798a65a3b85f3a9afbd14919b9ac7cee5ae0bad0dcc9f981",
+          "source_product_sha256": "fa490fa94dc5c8ef99dc54134c26506404d7813b0c39c083e479b1b39e52c1ed",
+          "source_name_raw": "Warp Point - 2010 (Yuka Furusawa)",
+          "source_number_raw": "88/100"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Legends Awakened|43|uxie",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Legends Awakened|Uxie|43}}|Psychic||Rare}}",
+          "original_tuple": {
+            "origin_set": "Legends Awakened",
+            "name": "Uxie",
+            "number": "43"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "534467",
+          "source_payload_hash": "883bfcba279ae04a0b2b8a908ff5ffbb5ad5bea7c2bcf004b0147c465826b2bd",
+          "source_product_sha256": "19493cea1bac71c2a67d9db92e5cc7e3f4c2f298ef4503a84b2a7914d241f3ba",
+          "source_name_raw": "Uxie - 2010 (Yuka Furusawa)",
+          "source_number_raw": "43/146"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-power-cottonweed|Secret Wonders|120|night maintenance",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+          "raw_snapshot_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Secret Wonders|Night Maintenance|120}}|Trainer||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Secret Wonders",
+            "name": "Night Maintenance",
+            "number": "120"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "534491",
+          "source_payload_hash": "59db15419bec6d35486ac6f30cf4baf591bd2942b7cf7bcdff84ce0169009308",
+          "source_product_sha256": "ea1d5523ebb95dc8fdf00a0e9aca0db4a62189fd628564b2a28912f443623a6c",
+          "source_name_raw": "Night Maintenance - 2010 (Yuka Furusawa)",
+          "source_number_raw": "120/132"
+        }
+      ]
+    },
+    {
+      "key": "wcd2010-luxchomp-of-the-spirit|Rising Rivals|89|bebe's search",
+      "evidence": [
+        {
+          "source_key": "bulbapedia_set_list",
+          "source_authority": "bulbapedia.bulbagarden.net",
+          "source_kind": "deck_checklist",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+          "raw_snapshot_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_line": "{{decklist/entry|2|{{TCG ID|Rising Rivals|Bebe's Search|89}}|Supporter||Uncommon}}",
+          "original_tuple": {
+            "origin_set": "Rising Rivals",
+            "name": "Bebe's Search",
+            "number": "89"
+          }
+        },
+        {
+          "source_key": "tcgcsv",
+          "source_authority": "tcgcsv.com",
+          "source_kind": "warehouse_product",
+          "source_url": "https://tcgcsv.com/tcgplayer/3/2282/products",
+          "product_id": "690647",
+          "source_payload_hash": "90ef7c996ef1f201800df1a093be3c2041fbaabf107545b0346d30bea47331bf",
+          "source_product_sha256": "97a09807dae1f9f03f89fc57c4c8c136e1e4e4b3991809e1b750f31d384f0066",
+          "source_name_raw": "Bebe's Search - 2010 (Yuta Komatsuda)",
+          "source_number_raw": "89/111"
+        }
+      ]
+    }
+  ]
+}

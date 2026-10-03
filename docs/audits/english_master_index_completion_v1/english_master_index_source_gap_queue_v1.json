@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T00:10:54.256Z",
+  "generated_at": "2026-10-03T03:06:43.413Z",
   "contract": "ENGLISH_MASTER_INDEX_COMPLETION_V1",
   "audit_only": true,
   "db_writes_performed": false,
@@ -9,38 +9,844 @@
   "grookai_reconciliation_performed": false,
   "version": "english_master_index_source_gap_queue_v1",
   "summary": {
-    "total_queue_items": 10,
+    "total_queue_items": 116,
     "by_lane": {
-      "finish_human_checklist_evidence": 10
+      "finish_human_checklist_evidence": 64,
+      "card_identity_second_source": 23,
+      "card_identity_without_printing_evidence": 23,
+      "anthology_identity_membership_review": 4,
+      "outside_base_scope_review": 1,
+      "source_alias_or_adapter_required": 1
     },
     "top_sets": {
-      "sv03": 18,
-      "swsh7": 4,
-      "swsh10": 3,
-      "swsh6": 3,
-      "sv05": 1,
-      "sv10": 1,
-      "swsh11": 1,
-      "swsh2": 1,
-      "swsh5": 1,
-      "swsh9": 1
+      "swsh11tg": 587,
+      "swsh12tg": 575,
+      "swsh10tg": 567,
+      "swsh9tg": 503,
+      "swsh12.5gg": 432,
+      "me55c": 353,
+      "swsh4.5sv": 195,
+      "sma": 194,
+      "30th": 191,
+      "cel25cc": 100,
+      "30th-c": 60,
+      "tk-hs-g": 58,
+      "tk-hs-r": 58,
+      "mep": 54,
+      "pl2": 50,
+      "cel25": 42,
+      "sv03": 35,
+      "wcd2010-boltevoir": 32,
+      "pl3": 31,
+      "wcd2010-luxchomp-of-the-spirit": 30,
+      "mee": 24,
+      "wcd2010-happy-luck": 24,
+      "wcd2010-power-cottonweed": 23,
+      "tk-sm-r": 22,
+      "ecard3": 21,
+      "sm3": 13,
+      "ex4": 12,
+      "pl1": 12,
+      "sm2": 11,
+      "swsh11": 10
     }
   },
   "queue": [
     {
       "lane": "finish_human_checklist_evidence",
-      "set_key": "sv03",
-      "set_name": "Obsidian Flames",
-      "gap_count": 18,
+      "set_key": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "gap_count": 370,
       "priority": 100,
       "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
       "mutation_authority": "not mutation authority"
     },
     {
       "lane": "finish_human_checklist_evidence",
-      "set_key": "swsh7",
-      "set_name": "Evolving Skies",
-      "gap_count": 4,
+      "set_key": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "gap_count": 360,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "gap_count": 351,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "gap_count": 317,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh12.5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "gap_count": 272,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh11tg",
+      "set_name": "Lost Origin Trainer Gallery",
+      "gap_count": 217,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh10tg",
+      "set_name": "Astral Radiance Trainer Gallery",
+      "gap_count": 216,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh12tg",
+      "set_name": "Silver Tempest Trainer Gallery",
+      "gap_count": 215,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
+      "gap_count": 192,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "30th",
+      "set_name": "30th Celebration",
+      "gap_count": 191,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh9tg",
+      "set_name": "Brilliant Stars Trainer Gallery",
+      "gap_count": 186,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "me55c",
+      "set_name": "30th Celebration: Classic Collection",
+      "gap_count": 161,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh12.5gg",
+      "set_name": "Crown Zenith Galarian Gallery",
+      "gap_count": 160,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sma",
+      "set_name": "Hidden Fates Shiny Vault",
+      "gap_count": 125,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh4.5sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "gap_count": 122,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "sma",
+      "set_name": "Hidden Fates Shiny Vault",
+      "gap_count": 69,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "cel25cc",
+      "set_name": "Celebrations: Classic Collection",
+      "gap_count": 50,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "cel25cc",
+      "set_name": "Celebrations: Classic Collection",
+      "gap_count": 50,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv03",
+      "set_name": "Obsidian Flames",
+      "gap_count": 35,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl3",
+      "set_name": "Supreme Victors",
+      "gap_count": 31,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "30th-c",
+      "set_name": "30th Classic Collection",
+      "gap_count": 30,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "gap_count": 29,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "gap_count": 29,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-hs-g",
+      "set_name": "HS trainer Kit (Gyarados)",
+      "gap_count": 29,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "gap_count": 29,
+      "priority": 100,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-hs-r",
+      "set_name": "HS trainer Kit (Raichu)",
+      "gap_count": 29,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "wcd2010-boltevoir",
+      "set_name": "2010 World Championships Deck: Boltevoir",
+      "gap_count": 28,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "gap_count": 24,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "wcd2010-happy-luck",
+      "set_name": "2010 World Championships Deck: Happy Luck",
+      "gap_count": 22,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "wcd2010-power-cottonweed",
+      "set_name": "2010 World Championships Deck: Power Cottonweed",
+      "gap_count": 22,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "wcd2010-luxchomp-of-the-spirit",
+      "set_name": "2010 World Championships Deck: LuxChomp of the Spirit",
+      "gap_count": 20,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "gap_count": 16,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "gap_count": 14,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm2",
+      "set_name": "Guardians Rising",
+      "gap_count": 11,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "gap_count": 11,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "gap_count": 10,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh11",
+      "set_name": "Lost Origin",
+      "gap_count": 10,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "anthology_identity_membership_review",
+      "set_key": "wcd2010-luxchomp-of-the-spirit",
+      "set_name": "2010 World Championships Deck: LuxChomp of the Spirit",
+      "gap_count": 10,
+      "gap_unit": "held_warehouse_identities_not_printing_facts",
+      "priority": 100,
+      "reviews": [
+        {
+          "product_id": "480030",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "canonical_coordinate_or_name_disagreement"
+          ],
+          "source_payload_hash": "3fdaf37897f457002258514eafe8c18a82ac4cd79d4296f9ee3130e5d34e278d",
+          "parent_ids": [
+            "3208f5ff-2b83-475c-9a8f-8bec5a2e3aa7"
+          ],
+          "source_number": "56/157",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 1,
+              "line": "{{decklist/entry|1|[[Dragonite FB (Supreme Victors 56)|Dragonite]] {{SP|FB}}|Colorless||Uncommon}}",
+              "tuple": {
+                "origin_set": "Supreme Victors",
+                "name": "Dragonite FB",
+                "number": "56"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "3208f5ff-2b83-475c-9a8f-8bec5a2e3aa7",
+              "number": "Victors 56",
+              "printed_total": 30,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 1,
+                "source_set_name": "Supreme",
+                "source_card_number": "Victors 56",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480046",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "5151e8f8d24e5ab0e9b87a2229c985dfe4dd7206fdb9d7dd2d09a8910cb2dc29",
+          "parent_ids": [
+            "9a915fcd-1533-465e-b26e-df60386650c6"
+          ],
+          "source_number": "60/147",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 2,
+              "line": "{{decklist/entry|2|[[Garchomp C (Supreme Victors 60)|Garchomp]] {{SP|C}}|Colorless||Uncommon}}",
+              "tuple": {
+                "origin_set": "Supreme Victors",
+                "name": "Garchomp C",
+                "number": "60"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "9a915fcd-1533-465e-b26e-df60386650c6",
+              "number": "60",
+              "printed_total": 147,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 2,
+                "source_set_name": "Supreme",
+                "source_card_number": "Victors 60",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480047",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "c3e0098856132b5f2e79d678214d5582f0593115b6638f6baca2bf9645ec5677",
+          "parent_ids": [
+            "b0c50609-597c-4074-be37-e230c6ab2394"
+          ],
+          "source_number": "145/147",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 2,
+              "line": "{{decklist/entry|2|[[Garchomp C LV.X (Supreme Victors 145)|Garchomp]] {{SP|C}} [[Garchomp C LV.X (Supreme Victors 145)|LV.X]]|Colorless||Rare Holo LV.X}}",
+              "tuple": {
+                "origin_set": "Supreme Victors",
+                "name": "Garchomp C LV.X",
+                "number": "145"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "b0c50609-597c-4074-be37-e230c6ab2394",
+              "number": "145",
+              "printed_total": 147,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 2,
+                "source_set_name": "Supreme",
+                "source_card_number": "Victors 145",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480067",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "unnumbered_source_requires_separate_energy_identity_review"
+          ],
+          "source_payload_hash": "ef609bda9276996e38158f4e320b793465322ab5d2b543449b3c7adb7e78383f",
+          "parent_ids": [
+            "244f447e-1b82-46ca-bc6d-58c2efb9150d"
+          ],
+          "source_number": null,
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [],
+          "parent_coordinates": [
+            {
+              "id": "244f447e-1b82-46ca-bc6d-58c2efb9150d",
+              "number": "29",
+              "printed_total": 30,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 2,
+                "source_set_name": null,
+                "source_card_number": null,
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "tcg_named_template"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480072",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "888469be763051d5a9475fbd5ec1e2534b79fed60e754e1e57ecafc30e2e4378",
+          "parent_ids": [
+            "2e01e608-8a37-458d-a2e5-5a88fae27445"
+          ],
+          "source_number": "8/111",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 1,
+              "line": "{{decklist/entry|1|[[Lucario GL (Rising Rivals 8)|Lucario]] {{SP|GL}}|Fighting||Rare Holo}}",
+              "tuple": {
+                "origin_set": "Rising Rivals",
+                "name": "Lucario GL",
+                "number": "8"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "2e01e608-8a37-458d-a2e5-5a88fae27445",
+              "number": "8",
+              "printed_total": 111,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 1,
+                "source_set_name": "Rising",
+                "source_card_number": "Rivals 8",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480076",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "99da65c20a7efc2cb5c4820b4fdde932d03961c1b289f08cd2e2c1f19e788ae0",
+          "parent_ids": [
+            "d6662bc8-86aa-40c8-be46-9d8e2de46bb1"
+          ],
+          "source_number": "9/111",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 2,
+              "line": "{{decklist/entry|2|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}",
+              "tuple": {
+                "origin_set": "Rising Rivals",
+                "name": "Luxray GL",
+                "number": "9"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "d6662bc8-86aa-40c8-be46-9d8e2de46bb1",
+              "number": "9",
+              "printed_total": 111,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 2,
+                "source_set_name": "Rising",
+                "source_card_number": "Rivals 9",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480078",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "f31f8ec7ab29c29c5ff494ed2c1f7d4461f9e73cc04d2f910b7d458b440096c6",
+          "parent_ids": [
+            "ec5afe73-915a-4f0d-844c-8e8ae803446e"
+          ],
+          "source_number": "109/111",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 2,
+              "line": "{{decklist/entry|2|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}",
+              "tuple": {
+                "origin_set": "Rising Rivals",
+                "name": "Luxray GL LV.X",
+                "number": "109"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "ec5afe73-915a-4f0d-844c-8e8ae803446e",
+              "number": "109",
+              "printed_total": 111,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 2,
+                "source_set_name": "Rising",
+                "source_card_number": "Rivals 109",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480087",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "unnumbered_source_requires_separate_energy_identity_review"
+          ],
+          "source_payload_hash": "1fd85ec4a3934698bd6223d65af106e4268ae9a935f7331ae20af9498f7ab229",
+          "parent_ids": [
+            "4fadcd49-2e8a-4ce2-9957-7c603edcd40f"
+          ],
+          "source_number": null,
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [],
+          "parent_coordinates": [
+            {
+              "id": "4fadcd49-2e8a-4ce2-9957-7c603edcd40f",
+              "number": "30",
+              "printed_total": 30,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 2,
+                "source_set_name": null,
+                "source_card_number": null,
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "tcg_named_template"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480115",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "stored_parent_denominator_disagrees_with_source_hint"
+          ],
+          "source_payload_hash": "ca766c1ec9d46044e3bc084cfc5427ff3031482c5de41913ecac6c245779e28d",
+          "parent_ids": [
+            "a484d335-4027-4dc1-b89f-ae996a928dd9"
+          ],
+          "source_number": "117/127",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 3,
+              "line": "{{decklist/entry|3|[[Team Galactic's Invention G-103 Power Spray (Platinum 117)|<small>'''Team Galactic's Invention G-103'''</small> Power Spray]]|Trainer||Uncommon}}",
+              "tuple": {
+                "origin_set": "Platinum",
+                "name": "Team Galactic's Invention G-103 Power Spray",
+                "number": "117"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "a484d335-4027-4dc1-b89f-ae996a928dd9",
+              "number": "117",
+              "printed_total": 30,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 3,
+                "source_set_name": "Platinum",
+                "source_card_number": "117",
+                "source_card_print_id": "71eaad2a-f568-4439-be34-bd1d9a007f42",
+                "source_card_print_gv_id": "GV-PK-PL-117",
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480118",
+          "deck": "LuxChomp of the Spirit",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "dbedeff54c8c975de3bd83e34f7045b0dc00edc09724d2c8b44fa8128d9ddb60",
+          "parent_ids": [
+            "6e81b03b-a9fe-4682-b9b4-3f98a4844557"
+          ],
+          "source_number": "96/111",
+          "source_original_sha256": "7ba0d65d5a24a4437486264dc75933471caa2233f7b85bd9b4bc65f6e5b4aed0",
+          "original_name_candidates": [
+            {
+              "copies": 3,
+              "line": "{{decklist/entry|3|[[Team Galactic's Invention G-109 SP Radar (Rising Rivals 96)|<small>'''Team Galactic's Invention G-109'''</small> SP Radar]]|Trainer||Uncommon}}",
+              "tuple": {
+                "origin_set": "Rising Rivals",
+                "name": "Team Galactic's Invention G-109 SP Radar",
+                "number": "96"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "6e81b03b-a9fe-4682-b9b4-3f98a4844557",
+              "number": "96",
+              "printed_total": 111,
+              "origin": {
+                "deck_name": "LuxChomp of the Spirit",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/LuxChomp_of_the_Spirit_(TCG)",
+                "player_name": "Yuta Komatsuda, the Masters Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 3,
+                "source_set_name": "Rising",
+                "source_card_number": "Rivals 96",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        }
+      ],
+      "membership_fingerprint": "2bebe1546363d5b227063382743fc99477652a57b78f8f21a2dada1bf44ebbb1",
+      "required_evidence": "Resolve the exact source coordinate, origin or unnumbered identity reasons through a new governed review; deck membership is not a printed denominator.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv04",
+      "set_name": "Paradox Rift",
+      "gap_count": 9,
       "priority": 100,
       "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
       "mutation_authority": "not mutation authority"
@@ -49,9 +855,415 @@
       "lane": "finish_human_checklist_evidence",
       "set_key": "swsh10",
       "set_name": "Astral Radiance",
+      "gap_count": 9,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex1",
+      "set_name": "Ruby & Sapphire",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "gap_count": 8,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv05",
+      "set_name": "Temporal Forces",
+      "gap_count": 8,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp1",
+      "set_name": "Diamond & Pearl",
+      "gap_count": 7,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv01",
+      "set_name": "Scarlet & Violet",
+      "gap_count": 7,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh12.5",
+      "set_name": "Crown Zenith",
+      "gap_count": 7,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh7",
+      "set_name": "Evolving Skies",
+      "gap_count": 7,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv02",
+      "set_name": "Paldea Evolved",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv08.5",
+      "set_name": "Prismatic Evolutions",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh9",
+      "set_name": "Brilliant Stars",
+      "gap_count": 6,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "col1",
+      "set_name": "Call of Legends",
+      "gap_count": 5,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sm3",
+      "set_name": "Burning Shadows",
+      "gap_count": 5,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm5",
+      "set_name": "Ultra Prism",
+      "gap_count": 5,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xyp",
+      "set_name": "XY Black Star Promos",
+      "gap_count": 5,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm10",
+      "set_name": "Unbroken Bonds",
+      "gap_count": 4,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "gap_count": 4,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm7",
+      "set_name": "Celestial Storm",
+      "gap_count": 4,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm8",
+      "set_name": "Lost Thunder",
+      "gap_count": 4,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "anthology_identity_membership_review",
+      "set_key": "wcd2010-boltevoir",
+      "set_name": "2010 World Championships Deck: Boltevoir",
+      "gap_count": 4,
+      "gap_unit": "held_warehouse_identities_not_printing_facts",
+      "priority": 100,
+      "reviews": [
+        {
+          "product_id": "479998",
+          "deck": "Boltevoir",
+          "reasons": [
+            "stored_parent_denominator_disagrees_with_source_hint"
+          ],
+          "source_payload_hash": "257db5da7e6dcfa06d0bc2017489bbd18624dc0d0a44ac0da3be4abc085ddef7",
+          "parent_ids": [
+            "5c2da2a8-bd01-4097-b2c8-ddfab9999d3a"
+          ],
+          "source_number": "89/147",
+          "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_name_candidates": [
+            {
+              "copies": 1,
+              "line": "{{decklist/entry|1|{{TCG ID|Supreme Victors|Baltoy|89}}|Psychic||Common}}",
+              "tuple": {
+                "origin_set": "Supreme Victors",
+                "name": "Baltoy",
+                "number": "89"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "5c2da2a8-bd01-4097-b2c8-ddfab9999d3a",
+              "number": "89",
+              "printed_total": 32,
+              "origin": {
+                "deck_name": "Boltevoir",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+                "player_name": null,
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 1,
+                "source_set_name": "Supreme Victors",
+                "source_card_number": "89",
+                "source_card_print_id": "a9d68360-e4b4-4c08-a29e-56900fb18c94",
+                "source_card_print_gv_id": "GV-PK-SV-89",
+                "source_card_reference_kind": "tcg_id_template"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480042",
+          "deck": "Boltevoir",
+          "reasons": [
+            "unnumbered_source_requires_separate_energy_identity_review"
+          ],
+          "source_payload_hash": "5aebc90859a79244a060a40796ecdd4b00924900495f2644f72f2d64c8608364",
+          "parent_ids": [
+            "602d2c6c-eef8-4b55-bcdf-1ff2eabe6f8e"
+          ],
+          "source_number": null,
+          "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_name_candidates": [],
+          "parent_coordinates": [
+            {
+              "id": "602d2c6c-eef8-4b55-bcdf-1ff2eabe6f8e",
+              "number": "32",
+              "printed_total": 32,
+              "origin": {
+                "deck_name": "Boltevoir",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+                "player_name": null,
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 1,
+                "source_set_name": null,
+                "source_card_number": null,
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "tcg_named_template"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480045",
+          "deck": "Boltevoir",
+          "reasons": [
+            "source_coordinate_not_unique_in_original_deck"
+          ],
+          "source_payload_hash": "24260b17d1beb841248a2b78b01d6344967ae1631dabfd4787ba489a44fc72a8",
+          "parent_ids": [
+            "d8ef67c1-49e3-4650-9734-5a5a11a44a54"
+          ],
+          "source_number": "2/17",
+          "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_name_candidates": [
+            {
+              "copies": 1,
+              "line": "{{decklist/entry|1|{{TCG ID|Secret Wonders|Gallade|6}}|Fighting||Rare Holo}}",
+              "tuple": {
+                "origin_set": "Secret Wonders",
+                "name": "Gallade",
+                "number": "6"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "d8ef67c1-49e3-4650-9734-5a5a11a44a54",
+              "number": "6",
+              "printed_total": 32,
+              "origin": {
+                "deck_name": "Boltevoir",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+                "player_name": null,
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 1,
+                "source_set_name": "Secret Wonders",
+                "source_card_number": "6",
+                "source_card_print_id": "d0582393-a5bb-4c1a-b100-b87c7c06a324",
+                "source_card_print_gv_id": "GV-PK-SW-6",
+                "source_card_reference_kind": "tcg_id_template"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480100",
+          "deck": "Boltevoir",
+          "reasons": [
+            "unnumbered_source_requires_separate_energy_identity_review"
+          ],
+          "source_payload_hash": "c48bf1fc85fac92efe5785e30cb3d4a3449f825503303a35b7bf00cb3e72532b",
+          "parent_ids": [
+            "28327228-91dc-422d-bbe4-41a4b1864f98"
+          ],
+          "source_number": null,
+          "source_original_sha256": "d30a48f373040929f5154c0ddbc1edb78bd8e1d2a1b763464f14cafc9b51c1f4",
+          "original_name_candidates": [],
+          "parent_coordinates": [
+            {
+              "id": "28327228-91dc-422d-bbe4-41a4b1864f98",
+              "number": "31",
+              "printed_total": 32,
+              "origin": {
+                "deck_name": "Boltevoir",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Boltevoir_(TCG)",
+                "player_name": null,
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 5,
+                "source_set_name": null,
+                "source_card_number": null,
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "tcg_named_template"
+              }
+            }
+          ]
+        }
+      ],
+      "membership_fingerprint": "080e4da3180c74591b31964280ad187cb087e7433defd7efa2d5f4510b4883a1",
+      "required_evidence": "Resolve the exact source coordinate, origin or unnumbered identity reasons through a new governed review; deck membership is not a printed denominator.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy10",
+      "set_name": "Fates Collide",
+      "gap_count": 4,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dp2",
+      "set_name": "Mysterious Treasures",
       "gap_count": 3,
       "priority": 100,
       "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ecard2",
+      "set_name": "Aquapolis",
+      "gap_count": 3,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "gap_count": 3,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm11",
+      "set_name": "Unified Minds",
+      "gap_count": 3,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
       "mutation_authority": "not mutation authority"
     },
     {
@@ -65,8 +1277,252 @@
     },
     {
       "lane": "finish_human_checklist_evidence",
-      "set_key": "sv05",
-      "set_name": "Temporal Forces",
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm9",
+      "set_name": "Team Up",
+      "gap_count": 2,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv07",
+      "set_name": "Stellar Crown",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh1",
+      "set_name": "Sword & Shield",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "swsh2",
+      "set_name": "Rebel Clash",
+      "gap_count": 2,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "anthology_identity_membership_review",
+      "set_key": "wcd2010-happy-luck",
+      "set_name": "2010 World Championships Deck: Happy Luck",
+      "gap_count": 2,
+      "gap_unit": "held_warehouse_identities_not_printing_facts",
+      "priority": 100,
+      "reviews": [
+        {
+          "product_id": "480075",
+          "deck": "Happy Luck",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "237ec107016c1da8b6bd46b77c9826eb3631b84a9488be0958016c2587bf3cc1",
+          "parent_ids": [
+            "0cfb449b-977f-452f-b51c-2f165a0237fa"
+          ],
+          "source_number": "9/111",
+          "source_original_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_name_candidates": [
+            {
+              "copies": 1,
+              "line": "{{decklist/entry|1|[[Luxray GL (Rising Rivals 9)|Luxray]] {{SP|GL}}|Lightning||Rare Holo}}",
+              "tuple": {
+                "origin_set": "Rising Rivals",
+                "name": "Luxray GL",
+                "number": "9"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "0cfb449b-977f-452f-b51c-2f165a0237fa",
+              "number": "9",
+              "printed_total": 111,
+              "origin": {
+                "deck_name": "Happy Luck",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+                "player_name": "Mychael Bryan, the Senior Division Finalist",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 1,
+                "source_set_name": "Rising",
+                "source_card_number": "Rivals 9",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        },
+        {
+          "product_id": "480077",
+          "deck": "Happy Luck",
+          "reasons": [
+            "retained_origin_provenance_coordinate_disagrees_with_original"
+          ],
+          "source_payload_hash": "0b2fcfb2a457564a5c4500b71e40c36c1e5f7cfa801765bb2482045078d7097e",
+          "parent_ids": [
+            "a314854c-32a3-4006-b031-c816c8293c12"
+          ],
+          "source_number": "109/111",
+          "source_original_sha256": "bd32d560eb52e45802d9ef815434f0f4c4a76cc5179c06e07c721bb3b0dab9d6",
+          "original_name_candidates": [
+            {
+              "copies": 1,
+              "line": "{{decklist/entry|1|[[Luxray GL LV.X (Rising Rivals 109)|Luxray]] {{SP|GL}} [[Luxray GL LV.X (Rising Rivals 109)|LV.X]]|Lightning||Rare Holo LV.X}}",
+              "tuple": {
+                "origin_set": "Rising Rivals",
+                "name": "Luxray GL LV.X",
+                "number": "109"
+              }
+            }
+          ],
+          "parent_coordinates": [
+            {
+              "id": "a314854c-32a3-4006-b031-c816c8293c12",
+              "number": "109",
+              "printed_total": 111,
+              "origin": {
+                "deck_name": "Happy Luck",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Happy_Luck_(TCG)",
+                "player_name": "Mychael Bryan, the Senior Division Finalist",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 1,
+                "source_set_name": "Rising",
+                "source_card_number": "Rivals 109",
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "wiki_card_page_link"
+              }
+            }
+          ]
+        }
+      ],
+      "membership_fingerprint": "cdf36ad33d84b48c76ed7b1cdf88f40d167b01af5f1bd71a9a7fa1aa81f33ca8",
+      "required_evidence": "Resolve the exact source coordinate, origin or unnumbered identity reasons through a new governed review; deck membership is not a printed denominator.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex7",
+      "set_name": "Team Rocket Returns",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex8",
+      "set_name": "Deoxys",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "gap_count": 1,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "miscp",
+      "set_name": "Miscellaneous Promos",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "neo1",
+      "set_name": "Neo Genesis",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm1",
+      "set_name": "Sun & Moon",
+      "gap_count": 1,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm12",
+      "set_name": "Cosmic Eclipse",
+      "gap_count": 1,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm4",
+      "set_name": "Crimson Invasion",
+      "gap_count": 1,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "smp",
+      "set_name": "SM Black Star Promos",
+      "gap_count": 1,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 100,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv09",
+      "set_name": "Journey Together",
       "gap_count": 1,
       "priority": 100,
       "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
@@ -83,8 +1539,8 @@
     },
     {
       "lane": "finish_human_checklist_evidence",
-      "set_key": "swsh11",
-      "set_name": "Lost Origin",
+      "set_key": "svp",
+      "set_name": "Scarlet & Violet Black Star Promos",
       "gap_count": 1,
       "priority": 100,
       "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
@@ -92,8 +1548,8 @@
     },
     {
       "lane": "finish_human_checklist_evidence",
-      "set_key": "swsh2",
-      "set_name": "Rebel Clash",
+      "set_key": "swsh12",
+      "set_name": "Silver Tempest",
       "gap_count": 1,
       "priority": 100,
       "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
@@ -110,11 +1566,303 @@
     },
     {
       "lane": "finish_human_checklist_evidence",
-      "set_key": "swsh9",
-      "set_name": "Brilliant Stars",
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
       "gap_count": 1,
       "priority": 100,
       "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "anthology_identity_membership_review",
+      "set_key": "wcd2010-power-cottonweed",
+      "set_name": "2010 World Championships Deck: Power Cottonweed",
+      "gap_count": 1,
+      "gap_unit": "held_warehouse_identities_not_printing_facts",
+      "priority": 100,
+      "reviews": [
+        {
+          "product_id": "480051",
+          "deck": "Power Cottonweed",
+          "reasons": [
+            "unnumbered_source_requires_separate_energy_identity_review"
+          ],
+          "source_payload_hash": "016b077dd5db2a80eb7a0384aa1f4274a760bf50bdf12b3ee93c98dd110668a2",
+          "parent_ids": [
+            "9299240d-f78c-4adc-b24c-988f8f740f4b"
+          ],
+          "source_number": null,
+          "source_original_sha256": "fddf30e8a5c8337ba0d3895aa621f23fed5376952df4d437f1d15c3d4fc1e7fc",
+          "original_name_candidates": [],
+          "parent_coordinates": [
+            {
+              "id": "9299240d-f78c-4adc-b24c-988f8f740f4b",
+              "number": "23",
+              "printed_total": 23,
+              "origin": {
+                "deck_name": "Power Cottonweed",
+                "deck_year": 2010,
+                "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+                "source_url": "https://bulbapedia.bulbagarden.net/wiki/Power_Cottonweed_(TCG)",
+                "player_name": "Yuka Furusawa, the Junior Division Champion",
+                "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+                "deck_quantity": 6,
+                "source_set_name": null,
+                "source_card_number": null,
+                "source_card_print_id": null,
+                "source_card_print_gv_id": null,
+                "source_card_reference_kind": "tcg_named_template"
+              }
+            }
+          ]
+        }
+      ],
+      "membership_fingerprint": "24f38d2f52f31956ca78c5068f78d222980a7685c46faf1229c745efbcd4cedd",
+      "required_evidence": "Resolve the exact source coordinate, origin or unnumbered identity reasons through a new governed review; deck membership is not a printed denominator.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "xy3",
+      "set_name": "Furious Fists",
+      "gap_count": 1,
+      "priority": 100,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "ex5",
+      "set_name": "Hidden Legends",
+      "gap_count": 2,
+      "priority": 99.93,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "sv06.5",
+      "set_name": "Shrouded Fable",
+      "gap_count": 1,
+      "priority": 99.33,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "bwp",
+      "set_name": "BW Black Star Promos",
+      "gap_count": 2,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 98.54,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm3.5",
+      "set_name": "Shining Legends",
+      "gap_count": 3,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 98.46,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "gap_count": 21,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 98.42,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_without_printing_evidence",
+      "set_key": "sm7.5",
+      "set_name": "Dragon Majesty",
+      "gap_count": 2,
+      "gap_unit": "card_identities_not_printing_facts",
+      "priority": 98.38,
+      "required_evidence": "Exact card-level physical finish evidence with independent agreement; no finish or printing count is inferred.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "swsh4.5sv",
+      "set_name": "Shining Fates Shiny Vault",
+      "gap_count": 73,
+      "priority": 98.28,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "base2",
+      "set_name": "Jungle",
+      "gap_count": 1,
+      "priority": 97.98,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "dpp",
+      "set_name": "DP Black Star Promos",
+      "gap_count": 1,
+      "priority": 97,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "fut2020",
+      "set_name": "Pokémon Futsal 2020",
+      "gap_count": 4,
+      "priority": 94.88,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "finish_human_checklist_evidence",
+      "set_key": "pop8",
+      "set_name": "POP Series 8",
+      "gap_count": 3,
+      "priority": 93.13,
+      "required_evidence": "Human-readable/checklist exact finish evidence with second-source agreement.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "gap_count": 24,
+      "priority": 92.96,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "tk-sm-r",
+      "set_name": "SM trainer Kit (Alolan Raichu)",
+      "gap_count": 11,
+      "priority": 92.45,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "pl2",
+      "set_name": "Rising Rivals",
+      "gap_count": 23,
+      "priority": 92.22,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "mee",
+      "set_name": "Mega Evolution Energy",
+      "gap_count": 8,
+      "priority": 91.19,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "miscp",
+      "set_name": "Miscellaneous Promos",
+      "gap_count": 1,
+      "priority": 91.14,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ecard3",
+      "set_name": "Skyridge",
+      "gap_count": 7,
+      "priority": 90.7,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "pl1",
+      "set_name": "Platinum",
+      "gap_count": 6,
+      "priority": 90.6,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "pl4",
+      "set_name": "Arceus",
+      "gap_count": 3,
+      "priority": 90.41,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "ex4",
+      "set_name": "Team Magma vs Team Aqua",
+      "gap_count": 2,
+      "priority": 90.41,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "hgss1",
+      "set_name": "HeartGold & SoulSilver",
+      "gap_count": 1,
+      "priority": 90.11,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "card_identity_second_source",
+      "set_key": "cel25",
+      "set_name": "Celebrations",
+      "gap_count": 21,
+      "priority": 88.42,
+      "required_evidence": "Independent source agreement for set + card_number + card_name.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "outside_base_scope_review",
+      "set_key": "classic-clv",
+      "set_name": "Pokémon Trading Card Game Classic: Venusaur & Lugia ex Deck",
+      "gap_count": 1,
+      "gap_unit": "outside_scope_claims_not_printing_facts",
+      "priority": 83.33,
+      "reviews": [
+        {
+          "deck_code": "CLV",
+          "number": "017",
+          "raw_name": "Lugia ex",
+          "raw_rarity": "Special",
+          "raw_variant": "Jumbo",
+          "status": "outside_standard_deck_scope_review_required",
+          "resolved": false,
+          "source_url": "https://www.thepricedex.com/set/clv/pokemon-tcg-classic-venusaur/price-list",
+          "source_sha256": "c48f11d53a4a4225441b2ca1e6911f1cba3977c3c1207c24e96f9a60b8863f0b",
+          "reason": "Jumbo is a separate size claim, not a standard-card finish. No jumbo existence, identity or mapping admission is made."
+        }
+      ],
+      "required_evidence": "Independent exact size/identity evidence; a base-scope finish is not evidence for an outside-scope variant.",
+      "mutation_authority": "not mutation authority"
+    },
+    {
+      "lane": "source_alias_or_adapter_required",
+      "set_key": "rc",
+      "set_name": "Radiant Collection",
+      "gap_count": 1,
+      "priority": 60,
+      "required_evidence": "At least one stable source alias and source adapter/fixture.",
       "mutation_authority": "not mutation authority"
     }
   ]
