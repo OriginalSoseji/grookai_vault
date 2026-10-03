@@ -65,6 +65,7 @@ param(
   [switch]$JungleEditionSearchBaselineAudit,
   [switch]$JungleSlabBaselineAudit,
   [switch]$JungleReceiptBaselineAudit,
+  [switch]$JungleReleaseV32,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -77,6 +78,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($JungleReleaseV32) {
+  $jungleExpected = @('20261001050000','20261001203000','20261001211000','20261001213000','20261001220000','20261001223000','20261001224000','20261002010000')
+  $jungleRequested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleReleaseV32','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($jungleRequested.Count -gt 0 -and ($jungleRequested -join ',') -ne ($jungleExpected -join ',')) -or ($Phase -eq 'PrePush' -and ($jungleRequested -join ',') -ne ($jungleExpected -join ','))) {
+    throw 'Jungle V32 permits only the exact eight migrations, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_jungle_release_v32.mjs') $Phase
+  exit $LASTEXITCODE
+}
 
 if ($JungleReceiptBaselineAudit) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleReceiptBaselineAudit') }).Count -gt 0) {

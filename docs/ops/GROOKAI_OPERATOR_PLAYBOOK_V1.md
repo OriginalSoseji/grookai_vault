@@ -1,5 +1,44 @@
 # Grookai Operator Playbook V1
 
+## Jungle release qualification V32 — October3
+
+Main c9ae9d798 (receipt-sale flow and refreshed language indexes) is integrated;
+V31 commit9960fec and its bundle/proofs remain preserved. The rebased candidate
+is fce2dc8e5. Production is415; the exact eight unchanged Jungle SQL files lead
+to423. Receipt cloud is already live and must not be replayed.
+
+Separate catalog V3 accepts423 only and fixed isolated53600/10.248.23 rehearsal,
+retaining V2 guards unchanged.24 rollback checks preserve all332 public tables,
+five synthetic saved copies and a populated receipt book. Actual639-row commit,
+observed competing lock wait/safe40001 rejection, zero-insert retry and independent
+readback pass.128 identity links remain STAGED; bindings/publication remain empty.
+full-423-v31 is now POPULATED; never reset or reseed it. The large populated V30
+lab53400 remains untouched at423 with164804 snapshots.
+
+Refresh V2 uses a fresh415 production capture. Original83 parents/84 children,
+151 species and84 FK definitions are unchanged. All historical dependency bytes
+remain intact. Exactly252 new rows in each of three pricing tables are bound to
+the verified October2/3 runs. Exactly272 rows in each of two reference tables are
+hash-pinned, linked and non-publishing; no missing acquisition-run provenance is
+invented.42 hostile-evidence checks pass. Source review V2 validates128/128 quotes
+against actual October3 source244bc6f7-bb9f-4b6d-a154-246393c61b8e. The previous
+208279-decision durable worker proof remains historical October2 evidence; worker,
+publication policy, physical manifest and eight SQL bodies are unchanged.
+
+JungleReleaseV32 accepts only AuditLinkedSchema/PrePush with the exact eight IDs;
+PrePush requires clean committed current-main source, its normal hook receipt,
+qualified source/proof hashes, fresh live415 schema, and actual423 schema/readback
+of both preserved labs. It never applies SQL. prepare_jungle_cli_v32 supports only
+prepare/dry-run, always read-only, with include-all for the tested backdated IDs.
+V4 review packages the exact pending files,639 staged rows and128 reviewed bindings.
+The external recovery checkpoint records actual hook/PrePush/dry-run outcomes.
+
+Production catalog mutation still requires a fresh actual423 plan, exact bounded
+authority and same-plan production rollback. Binding activation, governed pricing
+publication and deployed client readback remain separate. Existing-copy correction
+stays later opt-in; slab OFF. No production write or Jungle price publication yet.
+
+
 ## Recorded-sale receipt flow — October 3, 2026
 
 Account receipts are LIVE from PR582/main7a53b16a1 with415migrations.
