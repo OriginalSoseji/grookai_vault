@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Collectr name fidelity — October 3
+
+The real import is now saved and verified: 1,342 added copies, one compatible
+copy reused, 706 source rows retained. Its private `collectr_real_import_20261003`
+receipt supersedes older unsaved notes. PR585 review workspace is live; do not
+replay its release intents. The next local candidate is
+`fix/collectr-name-fidelity-20261003` in `C:/gv_collectr_adventure_20261001`.
+Read `docs/checkpoints/collectr_name_fidelity_20261003.md`. Private evidence is
+under `collectr_name_fidelity_20261003`. The explicit
+`GV_COLLECTR_NAME_FIDELITY_HTTP_PROOF=1` flag extends the retained410 lab with
+name-format save/retry and stale Delta-evidence rejection; it includes prior
+review-workspace journeys. Preserve original imports, populated labs and all
+prior receipts. Additional ready counts are local qualification, not deployment
+or newly imported copies. Release and original-file reconciliation remain pending.
+
 ## Sales desk workflow and dashboard — October 3, 2026
 
 Read SALES_DESK_PRO_20261003.md and its contract. Prior cart release is LIVE

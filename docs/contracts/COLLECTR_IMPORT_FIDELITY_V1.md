@@ -1,5 +1,28 @@
 # Collectr import fidelity repair
 
+## Name fidelity follow-up — October 3
+
+The original real collection save is verified in the private
+`collectr_real_import_20261003/verified-import.private.json`: 1,342 new copies,
+one existing compatible copy reused, and 706 retained review rows. Historical
+unsaved status below predates that receipt.
+
+The next local candidate accepts bounded English name formatting: Poké/Poke
+(including decomposed acute), typographic apostrophes, Nidoran M/F gender symbols,
+and different blank-owner underscore counts specifically for ___'s Pikachu.
+It does not remove gender or arbitrary accents, names, punctuation or suffixes.
+Delta Species text may become δ only when the catalog name ends in δ and the
+printed identity modifier is exactly `delta_species`. Ordinary cards cannot
+satisfy this rule. EX/GX spacing still applies before the retained δ symbol.
+Game, English identity domain, set, collector number, current governed printing,
+grade, ambiguity and save-time evidence checks remain independent.
+
+The original source fields are never rewritten. Both matchers share the fixture
+corpus; server validation rereads the current catalog at save. Local replay resolves
+14 additional source rows / 18 copies while preserving all previous selections.
+Qualification and distribution are separate; see
+`docs/checkpoints/collectr_name_fidelity_20261003.md`.
+
 Status: PR561, backend V2/version4 and internal TestFlight340 are released.
 Production has411 migrations. The unchanged original-export physical preview
 passed on340 without saving. The directional set-scope follow-up below is local
