@@ -15,8 +15,9 @@ const cfg=JSON.parse(execFileSync('supabase',['status','-o','json','--workdir',f
 cfg.API_URL='http://127.0.0.1:64801';
 cfg.DB_URL=new URL(cfg.DB_URL);cfg.DB_URL.hostname='127.0.0.1';cfg.DB_URL.port='64800';cfg.DB_URL=cfg.DB_URL.href;
 const db=new Client({connectionString:cfg.DB_URL});await db.connect();
-const admin=createClient(cfg.API_URL,cfg.SECRET_KEY??cfg.SERVICE_ROLE_KEY,{auth:{persistSession:false}});
-const publicKey=cfg.PUBLISHABLE_KEY??cfg.ANON_KEY;
+assert.equal(typeof cfg.SECRET_KEY,'string');assert.equal(typeof cfg.PUBLISHABLE_KEY,'string');
+const admin=createClient(cfg.API_URL,cfg.SECRET_KEY,{auth:{persistSession:false}});
+const publicKey=cfg.PUBLISHABLE_KEY;
 const create=()=>createClient(cfg.API_URL,publicKey,{auth:{persistSession:false}});
 const out='C:/grookai_vault_operator_artifacts/ipad_sales_cart_20261003/runtime-'+Date.now();fs.mkdirSync(out);
 const ids=[],copies=[],anchors=[],password=randomUUID()+'Aa9!',set=randomUUID(),card=randomUUID(),checks=[];
