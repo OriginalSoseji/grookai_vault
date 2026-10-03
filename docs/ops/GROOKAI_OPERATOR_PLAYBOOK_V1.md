@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Recorded-sale receipt flow — October 3, 2026
+
+Account receipts are LIVE from PR582/main7a53b16a1 with415migrations.
+Do not replay its migration or activation; its external release-checkpoint.json
+is authoritative. Follow-up source is C:/gv_receipt_sale_flow_20261003.
+Read docs/ops/RECEIPT_SALE_FLOW_20261003.md. Web-only sale-to-receipt navigation
+and owner-scoped prefill; no schema/inventory/payment changes. Preserve the
+separate checkout candidate and active catalog agent. Local proof reuses only
+our retained647xx receipt lab without reset. Future status is in the external
+receipt_sale_flow_20261003 checkpoint. Historical sections below remain receipts.
+
 ## Account receipt cloud — October 2, 2026
 
 The device receipt desk is LIVE from PR580 (8dffbf8a). Its terminal receipt is

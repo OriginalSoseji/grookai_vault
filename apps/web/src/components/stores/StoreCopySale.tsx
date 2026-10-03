@@ -51,6 +51,7 @@ export default function StoreCopySale({ item, close, recorded, setDirty }: {
         <p role="status">This copy is sold and removed from your active Vault and storefront.</p>
         <p>Recorded sale: {receipt.saleCurrency} {receipt.salePrice?.toFixed(2)}</p>
         {receipt.counterparty && <p>Buyer: {receipt.counterparty}</p>}
+        <a href={`/account/store/receipts/start?sale=${encodeURIComponent(receipt.id)}`} className={s.linkButton}>Create receipt & save customer</a>
         {refreshFailed && <p role="alert">Your sale is saved. The inventory refresh failed; use Refresh inventory after closing this window.</p>}
         <button type="button" className={s.primary} disabled={busy} onClick={dismiss}>Done</button>
       </> : <>

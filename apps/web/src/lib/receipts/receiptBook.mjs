@@ -40,7 +40,7 @@ export function createReceipt(input, id, createdAt) {
 export function emptyBook() { return { version:BOOK_VERSION,receipts:[],customers:[],storeName:'' }; }
 export function saveSale(book,receipt,customer,id) {
   check(!book.receipts.some(r=>r.receipt.id===receipt.id),'This receipt has already been saved.');
-  check(!receipt.sourceDispositionId || !book.receipts.some(r=>r.receipt.sourceDispositionId===receipt.sourceDispositionId),'A receipt for this recorded sale already exists on this device.');
+  check(!receipt.sourceDispositionId || !book.receipts.some(r=>r.receipt.sourceDispositionId===receipt.sourceDispositionId),'A receipt for this recorded sale already exists in this receipt book.');
   const c=customerInput(customer),hasCustomer=Object.values(c).some(Boolean);
   check(!hasCustomer||idPattern.test(id),'Customer identity is invalid.');
   const customers=hasCustomer?book.customers.filter(row=>row.id!==id):[...book.customers];

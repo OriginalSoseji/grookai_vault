@@ -35,6 +35,7 @@ export default async function TransactionHistoryPage({ searchParams }: { searchP
           <div className="text-right text-sm font-semibold">{item.salePrice !== null ? money(item.salePrice, item.saleCurrency) : item.cashAmount !== null ? `Cash ${item.cashDirection}: ${money(item.cashAmount, item.cashCurrency)}` : "No cash recorded"}</div></div>
         {item.counterparty && <p className="mt-2 break-words text-sm">Partner: {item.counterparty}</p>}
         {item.tradeReceived && <p className="mt-2 whitespace-pre-wrap break-words text-sm text-slate-600">Received: {item.tradeReceived}</p>}
+        {item.type === "sale" && item.saleCurrency === "USD" && item.salePrice !== null && item.salePrice > 0 && item.salePrice <= 1000000 && <Link className="mt-3 inline-flex font-semibold text-emerald-800 underline" href={`/account/store/receipts/start?sale=${encodeURIComponent(item.id)}`}>Create or view receipt</Link>}
       </li>)}</ol>
       <nav aria-label="Receipt pages" className="flex flex-wrap justify-between gap-3 text-sm font-semibold">{filters.after ? <Link href={historyHref({...filters, after:""})}>Newest matching receipts</Link> : <span />}{result.next && <Link href={historyHref({...filters, after:result.next})}>Older receipts</Link>}</nav>
     </> : <div className="rounded-xl border border-slate-200 p-6"><h2 className="font-semibold">No matching receipts</h2><p className="mt-2 text-sm text-slate-600">Record a completed sale or trade from an exact copy in your Vault, or change your search.</p></div>}
