@@ -36,6 +36,7 @@ import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/gvvi/vendor_pricing_workspace_screen.dart';
+import 'screens/sales/sales_desk_screen.dart';
 import 'screens/stores/storefront_screen.dart';
 import 'screens/stores/store_management_screen.dart';
 import 'screens/stores/custom_product_screen.dart';

@@ -1,5 +1,35 @@
 # Jungle edition pricing preparation — October 1
 
+## Jungle integration with the live sales cart — October 3, V34
+
+Current main fe3e4b23f includes PR586 and its completed production migration
+20261003100000. The authoritative ipad_sales_cart_20261003/CHECKPOINT.json
+records production416, enabled sales cart and TestFlight341. Preserve that
+completed release and its648xx labs; do not repeat its migration or activation.
+All eight Jungle SQL bodies, pricing worker and publication policy are unchanged.
+The combined candidate has424 migrations. The historical415/423 release gates
+remain historical evidence and must not authorize this combined release.
+
+JungleSalesCartBaselineAudit is a new read-only416-to424 source/schema audit,
+using the exact full416 replay from the cart release and the original eight
+hash-pinned Jungle migrations. PrePush, combined scopes and overrides reject.
+Fresh424 replay and retained-data upgrade proofs are separate prerequisites.
+The external recovery checkpoint records actual outcomes; source integration
+alone does not qualify schema application, catalog admission or publication.
+Preserve every populated Jungle lab and immutable prior proof. Prices NOT LIVE.
+
+
+Local V34 qualification passed: full424 CLI reset/no-op push and a separate
+416-to424 retained-data CLI upgrade/no-op push converge exactly at
+1153 security definitions. All330 existing public-table digests,
+two synthetic saved copies and a populated receipt book remain unchanged.
+New labs: full424 on53800/53801/internal10.248.25, retained upgrade on
+53820/53821/internal10.248.26. The upgrade lab is now POPULATED; never reset
+or reseed it. All prior labs remain unchanged.31 focused gate/integration
+checks pass. Normal hook/push outcomes are recorded in the external checkpoint.
+The424 catalog executor, exact release gate and production application remain
+unqualified; this local proof does not publish prices.
+
 ## Jungle release qualification V32 — October3
 
 Main b066c1164 (Collectr review workspace, receipt-sale flow and language indexes)

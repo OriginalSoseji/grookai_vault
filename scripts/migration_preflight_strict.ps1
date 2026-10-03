@@ -57,6 +57,8 @@ param(
   [switch]$CosmosPricingReleaseV1,
   [switch]$SearchDatabaseLatencyV1,
   [switch]$ReceiptCloudV1,
+  [switch]$SalesCartBaselineV1,
+  [switch]$SalesCartReleaseV1,
   [switch]$SearchNamePlanV1,
   [switch]$JungleEditionBaselineAudit,
   [switch]$JungleEditionBaseline412Audit,
@@ -66,6 +68,7 @@ param(
   [switch]$JungleSlabBaselineAudit,
   [switch]$JungleReceiptBaselineAudit,
   [switch]$JungleReleaseV32,
+  [switch]$JungleSalesCartBaselineAudit,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -78,6 +81,14 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($JungleSalesCartBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleSalesCartBaselineAudit') }).Count -gt 0) {
+    throw 'Jungle sales-cart baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v11.mjs')
+  exit $LASTEXITCODE
+}
 
 if ($JungleReleaseV32) {
   $jungleExpected = @('20261001050000','20261001203000','20261001211000','20261001213000','20261001220000','20261001223000','20261001224000','20261002010000')
@@ -111,6 +122,15 @@ if ($JungleEditionSearchBaselineAudit) {
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v8.mjs')
   exit $LASTEXITCODE
+}
+
+if ($SalesCartBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SalesCartBaselineV1') }).Count -gt 0) {
+    throw 'Sales cart baseline is read-only; no combined scopes, PrePush or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_sales_cart_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Sales cart baseline failed; no schema work or application qualified.' }
+  exit 0
 }
 
 if ($CollectrImportFidelityBaselineAudit) {
@@ -531,6 +551,24 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($SalesCartReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','SalesCartReleaseV1')
+  $cartExpected = (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or $cartExpected -ne '20261003100000') { Fail 'Sales cart release requires its exact migration without combined scopes or overrides.' }
+  $cartRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $cartFiles = @(Get-RepoMigrationFiles -RepoRoot $cartRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $cartFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $cartPending = @($cartFiles | Where-Object { $_.Id -eq '20261003100000' })
+  if ($cartPending.Count -ne 1) { Fail 'Sales cart pending scope mismatch.' }
+  $cartDuplicates = Get-ObjectDuplicates -PendingFiles $cartPending
+  if ($cartDuplicates.DuplicateIndexes.Count -gt 0 -or $cartDuplicates.DuplicateViews.Count -gt 0 -or $cartDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate cart objects.' }
+  Require-Command 'node'
+  $cartGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_sales_cart_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $cartGate
+  if ($cartGate.ExitCode -ne 0) { Fail 'Sales cart qualification failed; no application.' }
+  exit 0
 }
 
 if ($ReceiptCloudV1) {

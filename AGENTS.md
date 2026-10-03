@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## iPad in-person sales cart — October 3, 2026
+
+Read docs/ops/IPAD_SALES_CART_20261003.md and its contract. Current candidate is
+C:/gv_ipad_sales_cart_20261003; production remains415. New416 cart schema is
+local-only/default-off. Exact-copy cart completion reuses the existing disposition
+writer atomically with the account receipt book; quick-add creates receipt lines,
+not inventory. Preserve the separate checkout and active catalog repair work.
+Only task-owned648xx labs may be used; never reset populated fixtures. External
+ipad_sales_cart_20261003 checkpoints distinguish implementation, proof and release.
+
 ## Recorded-sale receipt flow — October 3, 2026
 
 Account receipts are LIVE from PR582/main7a53b16a1 with415migrations.
