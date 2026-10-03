@@ -1,23 +1,33 @@
 import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
 import {createHash} from 'node:crypto';import {spawnSync} from 'node:child_process';import test from 'node:test';
-const root='C:/gv_jungle_edition_20261001/';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../../',import.meta.url)).replaceAll('\\','/');
 const script=fs.readFileSync(root+'scripts/schema/audit_jungle_edition_baseline_v9.mjs','utf8');
-// Run the actual pre-network source gate with a read-only filesystem adapter.
-// No fixture file is edited, and none of the production-query code is evaluated.
-const prefix=script.slice(script.indexOf('const base='),script.indexOf('const directory='));
+// Exercise the actual source-comparison section with hermetic baseline fixtures.
+// Private operator replay receipts are tested by the separate release gate,
+// never fabricated here or required from a hosted CI filesystem.
+const sourceGate=s=>s.slice(s.indexOf('const sourceHashes='),s.indexOf('const stagedBytes='));
+const pending=JSON.parse(script.match(/const pending=(\[[^\n]+\]);/)[1].replaceAll("'",'"'));
 const receiptMigration='20261002220000_vendor_receipt_cloud_v1.sql';
 const historicalReadDir=p=>fs.readdirSync(p).filter(n=>n!==receiptMigration);
-const run=overrides=>vm.runInNewContext(prefix,{root,fs:{...fs,readdirSync:historicalReadDir,...overrides},assert,
- createHash,process:{argv:['node','audit'],execArgv:['--use-system-ca']}});
-test('qualified historical422 source passes its actual pre-network gate',()=>run({}));
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const execute=(source,integrated,overrides={})=>{
+ const base='/synthetic-jungle-baseline';
+ const names=fs.readdirSync(root+'supabase/migrations').filter(n=>n.endsWith('.sql')&&!pending.includes(n)&&(integrated||n!==receiptMigration));
+ const freeze={sourceHashes:Object.fromEntries(names.map(n=>[n,sha(fs.readFileSync(root+'supabase/migrations/'+n))]))};
+ const readFileSync=p=>(overrides.readFileSync??fs.readFileSync)(String(p).replace(base+'/',root));
+ return vm.runInNewContext('const pending='+JSON.stringify(pending)+';\n'+sourceGate(source),{root,base,freeze,sha,assert,fs:{readdirSync:overrides.readdirSync??(integrated?fs.readdirSync:historicalReadDir),readFileSync}});
+};
+const run=overrides=>execute(script,false,overrides);
+test('historical422 source matches a hermetic414 baseline fixture',()=>run({}));
 test('historical422 gate rejects integrated423 source before any connection',()=>assert.throws(()=>run({readdirSync:fs.readdirSync}),/20261002220000_vendor_receipt_cloud_v1/));
-test('qualified integrated423 source passes the receipt-baseline pre-network gate',()=>{
+test('integrated423 source matches a hermetic415 baseline fixture',()=>{
  const current=fs.readFileSync(root+'scripts/schema/audit_jungle_edition_baseline_v10.mjs','utf8');
- vm.runInNewContext(current.slice(current.indexOf('const base='),current.indexOf('const directory=')),{root,fs,assert,createHash,process:{argv:['node','audit'],execArgv:['--use-system-ca']}});
+ execute(current,true);
 });
 test('extra pending migration rejects before any connection',()=>assert.throws(()=>run({readdirSync:p=>[...historicalReadDir(p),'20261002020000_unreviewed.sql'],readFileSync:p=>String(p).endsWith('unreviewed.sql')?Buffer.from('select 1;'):fs.readFileSync(p)})));
 test('duplicate migration version rejects before any connection',()=>assert.throws(()=>run({readdirSync:p=>[...historicalReadDir(p),'20261002010000_duplicate.sql'],readFileSync:p=>String(p).endsWith('duplicate.sql')?Buffer.from('select 1;'):fs.readFileSync(p)})));
-test('changed frozen slab SQL rejects before any connection',()=>assert.throws(()=>run({readFileSync:p=>String(p)===root+'supabase/migrations/20261002010000_jungle_slab_atomic_intake_v1.sql'?Buffer.concat([fs.readFileSync(p),Buffer.from('\n-- changed')]):fs.readFileSync(p)})));
+test('changed pinned artifact-date SQL rejects before any connection',()=>assert.throws(()=>run({readFileSync:p=>String(p)===root+'supabase/migrations/'+pending[2]?Buffer.concat([fs.readFileSync(p),Buffer.from('\n-- changed')]):fs.readFileSync(String(p).replace('/synthetic-jungle-baseline/',root))}),/Renumbered unapplied migration body changed/));
 test('missing expected slab SQL rejects before any connection',()=>assert.throws(()=>run({readdirSync:p=>historicalReadDir(p).filter(n=>!n.startsWith('20261002010000_'))})));
 for(const [name,args]of [
  ['PrePush',['-Phase','PrePush','-JungleSlabBaselineAudit']],
