@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## iPad sales desk — October 3, 2026
+
+Read [the active sales-desk note](IPAD_SALES_CART_20261003.md). Native card cart,
+manual quick-add, receipt/customer capture and atomic disposition are isolated in
+C:/gv_ipad_sales_cart_20261003. Local416 labs use648xx and internal10.245.128/129
+networks; production415 remains unchanged. SalesCartBaselineV1 is audit-only.
+Preserve all prior release receipts, checkout work and catalog repair fingerprints.
+Mac build cache cleanup and iPad proof are recorded under this task's artifacts;
+do not infer TestFlight or live activation without their independent readbacks.
+
 ## Recorded-sale receipt flow — October 3, 2026
 
 Account receipts are LIVE from PR582/main7a53b16a1 with415migrations.
