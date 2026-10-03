@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../gvvi/vendor_pricing_workspace_service.dart';
+import '../../models/card_print.dart';
+import '../public/public_card_printing_options_service.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
 int? saleMoneyInput(String value) {
@@ -55,12 +57,14 @@ class SalesDeskData {
     required this.rows,
     required this.storeName,
     required this.customers,
+    this.receipts = const [],
     this.pending,
   });
   final bool available;
   final List<VendorPricingWorkspaceRow> rows;
   final String storeName;
   final List<Map<String, dynamic>> customers;
+  final List<Map<String, dynamic>> receipts;
   final Map<String, dynamic>? pending;
 }
 
@@ -126,6 +130,9 @@ class SalesCartService {
           .map((c) => Map<String, dynamic>.from(c as Map))
           .toList(),
       pending: pending,
+      receipts: (book['receipts'] as List)
+          .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
+          .toList(),
     );
   }
 
@@ -141,6 +148,105 @@ class SalesCartService {
     }
     if (!await preferences.setString(_key, encoded)) {
       throw StateError('Could not preserve this sale for recovery.');
+    }
+    _checkOwner();
+  }
+
+  Future<List<CardPrint>> searchCatalog(String query, String game) async {
+    _checkOwner();
+    if (query.trim().length < 2) return [];
+    final result = await CardPrintRepository.searchCardPrintsResolved(
+      client: client,
+      options: CardSearchOptions(
+        query: query.trim(),
+        gameScope: game,
+        limit: 30,
+      ),
+      searchLimit: 30,
+    );
+    _checkOwner();
+    final seen = <String>{};
+    return result.rows
+        .where((card) => (card.gvId ?? '').isNotEmpty && seen.add(card.id))
+        .toList();
+  }
+
+  Future<List<Map<String, dynamic>>> catalogPrintings(String cardId) async {
+    _checkOwner();
+    final rows = await PublicCardPrintingOptionsService.fetch(
+      client: client,
+      cardPrintIds: [cardId],
+    );
+    _checkOwner();
+    return rows
+        .where(
+          (p) =>
+              p['card_print_id'] == cardId &&
+              (p['printing_gv_id'] as String? ?? '').isNotEmpty,
+        )
+        .toList();
+  }
+
+  String get _catalogKey => 'grookai.pending-sales-catalog.v1.${_owner!}';
+  Future<Map<String, dynamic>?> pendingCatalogAdd() async {
+    _checkOwner();
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    final raw = preferences.getString(_catalogKey);
+    return raw == null
+        ? null
+        : Map<String, dynamic>.from(jsonDecode(raw) as Map);
+  }
+
+  Future<void> stageCatalogAdd(Map<String, dynamic> request) async {
+    _checkOwner();
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    final raw = preferences.getString(_catalogKey),
+        encoded = jsonEncode(request);
+    if (raw != null && raw != encoded) {
+      throw StateError('Recover the previous catalog add first.');
+    }
+    if (!await preferences.setString(_catalogKey, encoded)) {
+      throw StateError('Could not preserve the card request.');
+    }
+    _checkOwner();
+  }
+
+  Future<Map<String, dynamic>> completeCatalogAdd(
+    Map<String, dynamic> request,
+  ) async {
+    _checkOwner();
+    final result = Map<String, dynamic>.from(
+      await client.rpc(
+            'vendor_sales_catalog_add_v1',
+            params: {'p_request_id': request['id'], 'p_card': request['card']},
+          )
+          as Map,
+    );
+    _checkOwner();
+    if (result['requestId'] != request['id'] ||
+        result['cardId'] != request['card']['cardId'] ||
+        result['printingId'] != request['card']['printingId']) {
+      throw StateError(
+        'Card response could not be verified. Recover the saved request.',
+      );
+    }
+    return result;
+  }
+
+  Future<void> clearCatalogAdd(String requestId) async {
+    _checkOwner();
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    final raw = preferences.getString(_catalogKey);
+    if (raw != null &&
+        (jsonDecode(raw) as Map)['id'] == requestId &&
+        !await preferences.remove(_catalogKey)) {
+      throw StateError('Could not clear the recovered card request.');
     }
     _checkOwner();
   }
@@ -189,6 +295,7 @@ String saleReceiptText(Map<String, dynamic> receipt) {
       '${receipt['customerName'] == '' ? '' : 'Customer: ${receipt['customerName']}\n'}\n'
       '${items.map((i) => '${i['quantity']} × ${i['description']} — USD ${saleMoney(i['lineMinor'] as int)}').join('\n')}\n\n'
       'Subtotal: USD ${saleMoney(receipt['subtotalMinor'] as int)}\n'
+      'Discount: USD ${saleMoney(receipt['discountMinor'] as int? ?? 0)}\n'
       'Tax collected: USD ${saleMoney(receipt['taxMinor'] as int)}\n'
       'Total received: USD ${saleMoney(receipt['totalMinor'] as int)}\n'
       '${receipt['method']} · Recorded by vendor\n${receipt['note']}';

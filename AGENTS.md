@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Sales desk workflow and dashboard — October 3, 2026
+
+Read docs/ops/SALES_DESK_PRO_20261003.md and its contract. Prior cart release is LIVE
+at production416/TestFlight341; its external release checkpoint supersedes the
+historical local-only notes below. New work is isolated in
+C:/gv_sales_desk_pro_20261003: drag/drop, exact canonical quick-add with durable
+request recovery, and in-person receipt reporting. New417 schema has local proof
+only until direct release readback. Use task-owned650xx labs, preserve648xx and
+all catalog/checkout work. Never replay old migration/activation/upload intents.
+
+
 ## iPad in-person sales cart — October 3, 2026
 
 Read docs/ops/IPAD_SALES_CART_20261003.md and its contract. Current candidate is

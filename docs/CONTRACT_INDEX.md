@@ -13,7 +13,8 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
-| VENDOR_SALES_CART_V1 | Active implementation contract | docs/contracts/VENDOR_SALES_CART_V1.md - Owner-only iPad quick-add/cart with atomic exact-copy dispositions and account receipts; local candidate/default-off |
+| SALES_DESK_PRO_V1 | Active implementation contract | docs/contracts/SALES_DESK_PRO_V1.md - Card drag/drop, durable canonical quick-add, and in-person receipt dashboard; release requires independent proof |
+| VENDOR_SALES_CART_V1 | Active implementation contract | docs/contracts/VENDOR_SALES_CART_V1.md - Owner-only iPad quick-add/cart with atomic exact-copy dispositions and account receipts; live production416/TestFlight341 |
 | NATIVE_OWNED_COPY_SELECTION_V1 | Active implementation contract | docs/contracts/NATIVE_OWNED_COPY_SELECTION_V1.md - Read-only ownership priming and per-instance Objects selection; current candidate is not yet distributed |
 | WEB_IMPORT_RECOVERY_V1 | Active implementation contract | docs/contracts/WEB_IMPORT_RECOVERY_V1.md - Atomic CSV saves, owner-bound receipts, same-tab recovery and complete printing matching |
 | VENDOR_SELLER_ADOPTION_V1 | Active implementation contract | docs/contracts/VENDOR_SELLER_ADOPTION_V1.md - Owner-confirmed linking of operator-approved existing Stripe accounts; immutable provenance, no duplicate creation or checkout activation |
