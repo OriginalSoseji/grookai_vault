@@ -1057,6 +1057,13 @@ class _AppShellState extends State<AppShell> {
     unawaited(_vaultKey.currentState?.reload());
   }
 
+  Future<void> _openSalesDesk() async {
+    await _pushPage<void>(const SalesDeskScreen());
+    if (!mounted) return;
+    unawaited(_wallKey.currentState?.reload());
+    unawaited(_vaultKey.currentState?.reload());
+  }
+
   Future<void> _openManageStore() async {
     await _pushPage<void>(const StoreManagementScreen());
   }
@@ -1605,6 +1612,7 @@ class _AppShellState extends State<AppShell> {
         onOpenCompare: _openCompare,
         onOpenGrookaiObjects: _openGrookaiObjectsHub,
         onOpenVendorMode: _openVendorMode,
+        onOpenSalesDesk: _openSalesDesk,
         onOpenManageStore: _openManageStore,
         onOpenBinders: _openBinderLibrary,
         onOpenNearby: _openNearby,
@@ -2158,6 +2166,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenCompare,
     required this.onOpenGrookaiObjects,
     required this.onOpenVendorMode,
+    required this.onOpenSalesDesk,
     required this.onOpenManageStore,
     required this.onOpenBinders,
     required this.onOpenNearby,
@@ -2177,6 +2186,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenCompare;
   final Future<void> Function() onOpenGrookaiObjects;
   final Future<void> Function() onOpenVendorMode;
+  final Future<void> Function() onOpenSalesDesk;
   final Future<void> Function() onOpenManageStore;
   final Future<void> Function() onOpenBinders;
   final Future<void> Function() onOpenNearby;
@@ -2257,6 +2267,12 @@ class _GrookaiAppDrawer extends StatelessWidget {
             icon: Icons.sell_outlined,
             label: 'Vendor Mode',
             onTap: () => _closeThenAsync(context, onOpenVendorMode),
+          ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.point_of_sale,
+            label: 'Sales desk',
+            onTap: () => _closeThenAsync(context, onOpenSalesDesk),
           ),
         if (signedIn)
           _GrookaiDrawerTile(

@@ -3,7 +3,14 @@ import assert from 'node:assert/strict';
 import { receiptSaleId, receiptDestination, readReceiptSale } from '../../apps/web/src/lib/receipts/receiptSale.ts';
 const id='12345678-1234-4234-8234-123456789abc',owner='22345678-1234-4234-8234-123456789abc';
 const row={id,gv_vi_id:'GVVI-FIXTURE-000001',disposition_type:'sale',sale_price_amount:'12.34',sale_price_currency:'USD',counterparty_label:'Fixture buyer'};
-function client(result){const calls=[],q={};for(const method of ['select','eq'])q[method]=(...args)=>{calls.push([method,...args]);return q;};q.maybeSingle=async()=>result;return {calls,from(table){calls.push(['from',table]);return q;}};}
+function client(result,source={data:null,error:null}){const calls=[],q={};for(const method of ['select','eq'])q[method]=(...args)=>{calls.push([method,...args]);return q;};q.maybeSingle=async()=>result;return {calls,rpc:async()=>source,from(table){calls.push(['from',table]);return q;}};}
+
+test('all copies from one cart reopen its shared receipt and failed resolution does not create a second draft',async()=>{
+ const c=client({data:row,error:null},{data:owner,error:null});
+ assert.equal((await readReceiptSale(c,owner,id)).sourceDispositionId,owner);
+ await assert.rejects(readReceiptSale(client({data:row,error:null},{data:null,error:{code:'503'}}),owner,id),/Please retry/);
+ assert.equal((await readReceiptSale(client({data:row,error:null},{data:null,error:{code:'PGRST202'}}),owner,id)).sourceDispositionId,id);
+});
 test('receipt destinations preserve exact sale identity and support disabled-cloud fallback',()=>{
  assert.equal(receiptDestination(true,id.toUpperCase()),'/account/store/receipts/cloud?sale='+id);
  assert.equal(receiptDestination(false,id),'/account/store/receipts?sale='+id);

@@ -1,5 +1,19 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## In-person sales cart qualification (2026-10-03)
+
+SalesCartBaselineV1 is read-only audit against the qualified415 schema/security.
+SalesCartReleaseV1 admits only AuditLinkedSchema/PrePush with20261003100000.
+It rejects target overrides/combined scopes, preserves duplicate timestamp/object
+checks, and freshly compares production415 to the governed replay. PrePush binds
+clean source containing main, normal hooks, dedicated full416 reset/no-op push,
+retained415→416 upgrade, real Auth/RPC/concurrency/rollback proof, iPad native Auth
+and website receipt-reopening proof. Every tested source hash must still match.
+Both controls must be OFF in retained labs at release inspection. The prepared
+CLI package/dry-run cannot apply. Authorized production application needs a fresh
+consumed intent and independent schema/ledger/security readback. Never reset
+populated task or shared labs, or import the separate checkout candidate.
+
 
 ## Account receipt cloud qualification (2026-10-02)
 

@@ -25,6 +25,10 @@ export async function readReceiptSale(client: SupabaseClient, ownerId: string, s
       !Number.isFinite(record.salePrice) || record.salePrice <= 0 || record.salePrice > 1000000) {
     throw new Error("This receipt desk supports completed USD sales up to $1,000,000.");
   }
+  const source = await client.rpc("vendor_sales_cart_source_v1", { p_disposition_id: record.id });
+  // Compatibility while the additive cart migration is not released. Other
+  // failures must not offer a new receipt for an already-recorded cart sale.
+  if (source.error && source.error.code !== "PGRST202") throw new Error("Could not load this sale's receipt. Please retry.");
   return { description: record.gvviId, price: record.salePrice.toFixed(2),
-    customerName: record.counterparty || "", sourceDispositionId: record.id };
+    customerName: record.counterparty || "", sourceDispositionId: receiptSaleId(source.data) || record.id };
 }
