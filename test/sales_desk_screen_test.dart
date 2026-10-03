@@ -93,6 +93,54 @@ Future<void> open(
 }
 
 void main() {
+  testWidgets(
+    'hold and drag a physical copy into cart; duplicate drags are disabled',
+    (tester) async {
+      final service = FakeSalesService();
+      await open(tester, service, const Size(1194, 834));
+      final source = find.byKey(const ValueKey('drag-copy-one'));
+      final gesture = await tester.startGesture(tester.getCenter(source));
+      await tester.pump(const Duration(milliseconds: 600));
+      await gesture.moveTo(
+        tester.getCenter(find.byKey(const ValueKey('cart-drop'))),
+      );
+      await tester.pump();
+      await gesture.up();
+      await tester.pumpAndSettle();
+      expect(find.text('Use asking price: USD 12.34'), findsOneWidget);
+      await tester.tap(find.text('Use asking price: USD 12.34'));
+      await tester.tap(find.text('Add to cart'));
+      await tester.pumpAndSettle();
+      expect(find.text('In cart'), findsOneWidget);
+      expect(
+        tester
+            .widget<LongPressDraggable<VendorPricingWorkspaceRow>>(source)
+            .maxSimultaneousDrags,
+        0,
+      );
+      expect(service.calls, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('dashboard opens without losing the unsubmitted sale cart', (
+    tester,
+  ) async {
+    await open(tester, FakeSalesService(), const Size(1194, 834));
+    await tester.tap(find.text('Add to sale'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Use asking price: USD 12.34'));
+    await tester.tap(find.text('Add to cart'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('Sales dashboard'));
+    await tester.pumpAndSettle();
+    expect(find.text('Your sales, at a glance'), findsOneWidget);
+    expect(find.text('Sales by hour'), findsOneWidget);
+    await tester.tap(find.byTooltip('Back to selling'));
+    await tester.pumpAndSettle();
+    expect(find.text('In cart'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
   test(
     'USD entry rejects rounding, scientific notation and oversized input',
     () {
@@ -163,7 +211,11 @@ void main() {
       expect(service.calls.single['cart']['items'][1]['instanceId'], isNull);
       expect(find.text('Sale recorded'), findsOneWidget);
       expect(tester.takeException(), isNull);
-      await tester.ensureVisible(find.text('Start next sale'));
+      await tester.scrollUntilVisible(
+        find.text('Start next sale'),
+        150,
+        scrollable: find.byType(Scrollable).last,
+      );
       await tester.pumpAndSettle();
       await tester.tap(find.text('Start next sale'));
       await tester.pumpAndSettle();

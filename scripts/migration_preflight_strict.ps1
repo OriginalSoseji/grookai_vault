@@ -58,6 +58,8 @@ param(
   [switch]$SearchDatabaseLatencyV1,
   [switch]$ReceiptCloudV1,
   [switch]$SalesCartBaselineV1,
+  [switch]$SalesDeskProBaselineV1,
+  [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
   [switch]$SearchNamePlanV1,
   [switch]$NativeImportRecoveryReleaseV1,
@@ -72,6 +74,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($SalesDeskProBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SalesDeskProBaselineV1') }).Count -gt 0) {
+    throw 'Sales desk baseline is read-only; no combined scopes, PrePush or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_sales_desk_pro_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Sales desk baseline audit failed.' }
+  exit 0
+}
 
 if ($SalesCartBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SalesCartBaselineV1') }).Count -gt 0) {
@@ -500,6 +511,24 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($SalesDeskProReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','SalesDeskProReleaseV1')
+  $cartExpected = (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or $cartExpected -ne '20261003230000') { Fail 'Sales desk release requires its exact migration without combined scopes or overrides.' }
+  $cartRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $cartFiles = @(Get-RepoMigrationFiles -RepoRoot $cartRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $cartFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $cartPending = @($cartFiles | Where-Object { $_.Id -eq '20261003230000' })
+  if ($cartPending.Count -ne 1) { Fail 'Sales desk pending scope mismatch.' }
+  $cartDuplicates = Get-ObjectDuplicates -PendingFiles $cartPending
+  if ($cartDuplicates.DuplicateIndexes.Count -gt 0 -or $cartDuplicates.DuplicateViews.Count -gt 0 -or $cartDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate cart objects.' }
+  Require-Command 'node'
+  $cartGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_sales_desk_pro_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $cartGate
+  if ($cartGate.ExitCode -ne 0) { Fail 'Sales desk qualification failed; no application.' }
+  exit 0
 }
 
 if ($SalesCartReleaseV1) {
