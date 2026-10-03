@@ -32,11 +32,11 @@ export async function proveCollectrNamedFinishes({root,status,runDir,user,db,cal
  for(const target of targets){const response=await send({operation:'save',attempt:{version:2,ownerUserId:user.id,requestId:randomUUID(),csvText,targets:[{...target,cardPrintingId:ordinary[target.sourceIndices[0]]}]}});assert.equal(response.status,400);}
  for(const index of [4,5,6]){const response=await send({operation:'save',attempt:{version:2,ownerUserId:user.id,requestId:randomUUID(),csvText,targets:[{...targets[0],sourceIndices:[index]}]}});assert.equal(response.status,400);}
  assert.deepEqual(await copies(),before);
- const require=createRequire(root+'/apps/web/package.json'),{chromium}=require('@playwright/test'),{createServerClient}=require('@supabase/ssr');
+ const require=createRequire(root+'/apps/web/package.json'),{chromium,expect}=require('@playwright/test'),{createServerClient}=require('@supabase/ssr');
  let cookies=[];const auth=createServerClient(status.API_URL,status.ANON_KEY,{cookies:{getAll:()=>cookies,setAll:v=>{cookies=v;}}});assert.equal((await auth.auth.setSession(user.session)).error,null);
  const browser=await chromium.launch();try{
   const context=await browser.newContext({viewport:{width:390,height:844}});await context.addCookies(cookies.map(c=>({name:c.name,value:c.value,url:origin,httpOnly:false,secure:false,sameSite:'Lax'})));
-  const page=await context.newPage();await page.goto(origin+'/vault/import');await page.locator('#collectr-csv').setInputFiles({name:'named-finishes.csv',mimeType:'text/csv',buffer:Buffer.from(csvText)});
+  const page=await context.newPage();await page.goto(origin+'/vault/import');await expect(page.locator('#collectr-csv')).toBeEnabled();await page.locator('#collectr-csv').setInputFiles({name:'named-finishes.csv',mimeType:'text/csv',buffer:Buffer.from(csvText)});
   await page.getByText('7 source rows · 4 ready (8 copies) · 3 need review',{exact:true}).waitFor();
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:runDir+'/named-finishes-preview.png',fullPage:true});
   await page.getByRole('button',{name:'Save 8 ready copies and retain review rows',exact:true}).click();await page.getByRole('heading',{name:'Import verified',exact:true}).waitFor();await page.getByText('8 copies added. 3 source rows retained for review.',{exact:true}).waitFor();

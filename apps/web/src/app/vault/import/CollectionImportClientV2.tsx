@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ImportClient } from "./ImportClient";
 import { sourceLabel, type CollectionPreviewV2 } from "@/lib/import/collectionPreviewV2";
 import { chooseCollectionReviewCandidate } from "@/lib/import/collectionPreviewChoices";
+import { collectionReviewCounts, collectionReviewCsv, filterCollectionRows, reviewGroups, type ReviewGroup } from "@/lib/import/collectionReviewWorkspace";
 import { getCardPrintingFinishLabel, getPrintedIdentityModifierDisplayLabel, getVariantDisplayLabel } from "@/lib/cards/displayDiscriminator";
 import type { CollectionAttemptV2, CollectionReceiptV2 } from "@/lib/import/collectionReadbackV2";
 
@@ -19,6 +20,7 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false), [newRequest, setNewRequest] = useState(false);
   const [filter, setFilter] = useState<"all" | "ready" | "review">("all"), [limit, setLimit] = useState(50);
+  const [reviewGroup, setReviewGroup] = useState<ReviewGroup | "all">("all"), [search, setSearch] = useState("");
   const csv = useRef(""), generation = useRef(0), active = useRef(false);
   const attemptRef = useRef<CollectionAttemptV2 | null>(null);
   const storageKey = `vault-import:v2:${ownerId}`;
@@ -52,6 +54,7 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
     if (!file || active.current || attemptRef.current) return;
     const current = ++generation.current;
     active.current = true; setBusy(true); setError(null); setPreview(null); setReceipt(null); setFileName(file.name); setFilter("all"); setLimit(50);
+    setReviewGroup("all"); setSearch("");
     try {
       if (file.size > 2097152) throw new Error("This CSV exceeds the 2 MiB limit.");
       const original = await file.text();
@@ -96,6 +99,18 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
     try { setPreview(chooseCollectionReviewCandidate(preview, sourceIndices, cardId)); setError(null); }
     catch (cause) { setError(cause instanceof Error ? cause.message : "This choice could not be confirmed."); }
   }
+  function downloadReview() {
+    if (!preview) return;
+    try {
+      const contents = collectionReviewCsv(preview, csv.current);
+      const url = URL.createObjectURL(new Blob([contents], { type: "text/csv;charset=utf-8" }));
+      const link = document.createElement("a");
+      link.href = url; link.download = "collectr-review.csv";
+      document.body.appendChild(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setError(null);
+    } catch (cause) { setError(cause instanceof Error ? cause.message : "Review rows could not be downloaded. Keep the original file."); }
+  }
   async function reviewFailedAttempt() {
     const attempt = attemptRef.current;
     // Only a confirmed failed transaction may release its frozen selection.
@@ -111,11 +126,13 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
       if (sessionStorage.getItem(storageKey) !== null) throw new Error("Browser storage could not release the failed attempt. Keep the original file and retry.");
       csv.current = attempt.csvText; attemptRef.current = null;
       setPending(null); setNewRequest(false); setPreview(data); setReceipt(null); setFilter("all"); setLimit(50);
+      setReviewGroup("all"); setSearch("");
     } catch (cause) { if (current === generation.current) setError(cause instanceof Error ? cause.message : "The preview could not be refreshed."); }
     finally { active.current = false; if (current === generation.current) setBusy(false); }
   }
   if (legacy) return <ImportClient ownerId={ownerId} recoveryOnly onRecovered={() => setLegacy(false)} />;
-  const rows = preview?.rows.filter(row => filter === "all" || (filter === "ready" ? !!row.selection : !row.selection)) ?? [];
+  const rows = preview ? filterCollectionRows(preview, filter, reviewGroup, search) : [];
+  const reviewCounts = preview ? collectionReviewCounts(preview) : null;
   return <div className="space-y-6">
     <header className="space-y-3"><p className="text-sm font-medium uppercase tracking-wider text-slate-500">Vault Import</p>
       <h1 className="text-3xl font-semibold text-slate-950 dark:text-white">Import your collection</h1>
@@ -132,7 +149,26 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
     {receipt && <section role="status" className="rounded-xl border border-emerald-300 p-5"><h2 className="font-semibold">Import verified</h2><p className="mt-2">{receipt.importedCards} copies added. {receipt.reviewRows} source rows retained for review.</p><p className="mt-2 text-sm">Grades and other unsupported details remain in the original source; review rows have not been added as owned cards.</p><Link className="mt-3 inline-block underline" href="/vault">Open your Vault</Link></section>}
     {preview && <section className="space-y-4">
       <p>{preview.sourceRows} source rows · {preview.readyRows} ready ({preview.readyCopies} copies) · {preview.reviewRows} need review</p>
-      <div className="flex flex-wrap gap-2" aria-label="Preview filters">{(["all", "ready", "review"] as const).map(value => <button key={value} type="button" aria-pressed={filter === value} className={`rounded-full border px-4 py-2 text-sm ${filter === value ? "bg-slate-900 text-white" : "border-slate-300"}`} onClick={() => { setFilter(value); setLimit(50); }}>{value === "all" ? "All rows" : value === "ready" ? "Ready" : "Needs review"}</button>)}</div>
+      <div className="flex flex-wrap gap-2" aria-label="Preview filters">{(["all", "ready", "review"] as const).map(value => <button key={value} type="button" aria-pressed={filter === value} className={`rounded-full border px-4 py-2 text-sm ${filter === value ? "bg-slate-900 text-white" : "border-slate-300"}`} onClick={() => { setFilter(value); setReviewGroup("all"); setLimit(50); }}>{value === "all" ? "All rows" : value === "ready" ? "Ready" : "Needs review"}</button>)}</div>
+      <div className="space-y-3 rounded-xl border border-slate-200 p-4 dark:border-white/15">
+        <label className="block text-sm font-medium" htmlFor="collection-search">Search this import</label>
+        <input id="collection-search" type="search" autoCorrect="off" autoCapitalize="none" spellCheck={false} value={search} onChange={event => { setSearch(event.target.value); setLimit(50); }} placeholder="Name, set, number, grade or original details" className="w-full min-w-0 rounded-lg border border-slate-300 bg-transparent px-3 py-3" />
+        {filter === "review" && <>
+          <label className="block text-sm font-medium" htmlFor="collection-review-group">Review task (source rows)</label>
+          <select id="collection-review-group" value={reviewGroup} onChange={event => { setReviewGroup(event.target.value as ReviewGroup | "all"); setLimit(50); }} className="w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 py-3 text-slate-950 dark:bg-slate-900 dark:text-white">
+            <option value="all">All review tasks ({preview.reviewRows})</option>
+            {reviewGroups.map(group => <option key={group.id} value={group.id}>{group.label} ({reviewCounts![group.id]})</option>)}
+          </select>
+          <p className="text-sm text-slate-500">Each row appears under one task. Check its original details for any additional issues.</p>
+        </>}
+        <div className="flex flex-wrap items-center gap-3">
+          <button type="button" disabled={!preview.reviewRows} onClick={downloadReview} className="rounded-lg border px-4 py-3 text-sm disabled:opacity-50">Download all {preview.reviewRows} review rows</button>
+          {(search || reviewGroup !== "all" || filter !== "all") && <button type="button" onClick={() => { setSearch(""); setReviewGroup("all"); setFilter("all"); setLimit(50); }} className="px-3 py-3 text-sm underline">Clear filters</button>}
+        </div>
+        <p className="text-sm text-slate-500">The download includes every unresolved source row, in its original order, even when this view is filtered. Original field values are preserved.</p>
+      </div>
+      <p role="status" className="text-sm text-slate-500">Showing {Math.min(rows.length, limit)} of {rows.length} matching entries ({rows.reduce((sum, row) => sum + row.sourceIndices.length, 0)} source rows). Filters only change this view; saving includes all ready copies.</p>
+      {!rows.length && <p className="rounded-lg border p-4">No entries match these filters. Clear filters to see the full preview.</p>}
       <div className="space-y-3">{rows.slice(0, limit).map(row => <article key={row.sourceIndices.join(",")} className="rounded-xl border border-slate-200 p-4 dark:border-white/15">
         <div className="flex flex-wrap justify-between gap-2"><h3 className="font-semibold">{sourceLabel(row.source, "product name", "card name") || "Unnamed product"}</h3><span className={row.selection ? "text-emerald-700" : "text-amber-700"}>{row.review?.selectedCardId ? "Ready · Chosen by you" : row.selection ? "Ready" : "Needs review"}</span></div>
         <p className="mt-1 text-sm text-slate-500">{sourceLabel(row.source, "set", "series")} · #{sourceLabel(row.source, "card number", "number") || "—"} · Quantity: {row.quantity ?? sourceLabel(row.source, "quantity", "qty")}</p>
