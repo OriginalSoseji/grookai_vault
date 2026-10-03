@@ -2,7 +2,8 @@
 
 ## Jungle release qualification V32 — October3
 
-Main c9ae9d798 (receipt-sale flow and refreshed language indexes) is integrated;
+Main b066c1164 (Collectr review workspace, receipt-sale flow and language indexes)
+is integrated. PrePush correctly refused the earlier source when this main landed;
 V31 commit9960fec and its bundle/proofs remain preserved. The rebased candidate
 is fce2dc8e5. Production is415; the exact eight unchanged Jungle SQL files lead
 to423. Receipt cloud is already live and must not be replayed.
