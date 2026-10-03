@@ -1,0 +1,29 @@
+// Actual populated publication fixture; all drift experiments roll back.
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';import pg from 'pg';
+const base='C:/grookai_vault_operator_artifacts/jungle_edition_pricing_20261001',fixture=base+'/full-415-v17',project='jungle-edition-full-415-v17-20261001';
+assert.equal(process.argv.length,2);const read=p=>JSON.parse(fs.readFileSync(p));const freeze=read(fixture+'/freeze.json');
+for(const [name,digest]of Object.entries(freeze.sourceHashes))assert.equal(createHash('sha256').update(fs.readFileSync('supabase/migrations/'+name)).digest('hex'),digest);
+const receipts=fs.readdirSync(base).filter(n=>n.startsWith('publication-pipeline-v5-')&&fs.existsSync(base+'/'+n+'/receipt.json'));assert.equal(receipts.length,1);const prior=base+'/'+receipts[0],proof=read(prior+'/receipt.json'),seed=read(prior+'/seed.json');assert.equal(proof.status,'passed');assert.equal(proof.project,project);
+assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8',windowsHide:true}))[0].Internal,true);
+const c=new pg.Client({host:'127.0.0.1',port:64840,user:'postgres',password:'postgres',database:'postgres'});await c.connect();
+const out=base+'/alias-release-v1/quarantine-integration-'+Date.now();fs.mkdirSync(out);const save=(name,x)=>fs.writeFileSync(out+'/'+name,JSON.stringify(x,null,2),{flag:'wx'});
+const tables=['vault_item_instances','vault_items','external_mappings','market_price_current_publication','market_price_pipeline_runs','market_price_pipeline_candidates','market_price_qualification_decisions','market_price_publication_sets','market_price_publication_snapshots','market_evidence_variant_assignments','jungle_edition_identity_links_v1','tcgplayer_jungle_edition_assignments_v1'];
+const footprint=async()=>{const rows=[];for(const table of tables)rows.push({table,...(await c.query(`select count(*)::int n,md5(coalesce(string_agg(md5(to_jsonb(t)::text),'' order by md5(to_jsonb(t)::text)),'')) digest from ${table} t`)).rows[0]});return rows;};
+const tests=[];const prices=async()=> (await c.query('select card_print_id from v_market_price_current_v1 order by card_print_id')).rows.map(r=>r.card_print_id);
+const rpc=async()=> (await c.query('select card_print_id,status,market_close from get_market_pricing_read_model_v1($1::uuid[],$2::uuid[])',[[seed.pk.parent,proof.ids.first,proof.ids.unlimited,seed.mtg.parent],[seed.pk.child,proof.ids.firstChild,proof.ids.unlimitedChild,seed.mtg.child]])).rows;
+try{
+ const target=(await c.query("select host(inet_server_addr()) address,current_setting('max_worker_processes') workers,(select count(*)::int from supabase_migrations.schema_migrations) migrations")).rows[0];assert.match(target.address,/^10\.248\.4\./);assert.equal(target.workers,'0');assert.equal(target.migrations,415);
+ const before=await footprint();assert.equal((await prices()).length,4);const beforeHistory=(await c.query('select count(*)::int n from v_market_price_history_v1 where card_print_id=$1',[seed.pk.parent])).rows[0].n;assert.ok(beforeHistory>0);
+ save('intent.json',{at:new Date().toISOString(),productionWrites:0,mode:'rollback_only',project,sourceHashes:freeze.sourceHashes});
+ await c.query('begin');await c.query("set local statement_timeout='30s'");
+ await c.query('update external_mappings set active=false where card_print_id=$1',[seed.pk.parent]);assert.equal((await prices()).length,4);tests.push('ordinary_inactive_mapping_retains_current_price');
+ await c.query("update external_mappings set meta=meta||jsonb_build_object('reviewed_invalidation',jsonb_build_object('reason_code','PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT')) where card_print_id=$1",[seed.pk.parent]);
+ assert.deepEqual(new Set(await prices()),new Set([proof.ids.first,proof.ids.unlimited,seed.mtg.parent]));tests.push('quarantine_removes_only_rejected_mapping');
+ let rows=await rpc();assert.equal(rows.filter(r=>r.card_print_id===seed.pk.parent&&r.status==='unavailable'&&r.market_close===null).length,2);assert.equal(rows.filter(r=>r.status==='available').length,6);tests.push('parent_and_child_rpc_preserve_three_unrelated_prices');
+ assert.equal((await c.query('select count(*)::int n from v_market_price_history_v1 where card_print_id=$1',[seed.pk.parent])).rows[0].n,0);tests.push('rejected_mapping_history_reader_is_also_held');
+ await c.query('update external_mappings set active=true where card_print_id=$1',[seed.pk.parent]);assert.equal((await prices()).includes(seed.pk.parent),false);tests.push('reactivation_cannot_restore_rejected_price');
+ await c.query("update jungle_edition_identity_links_v1 set state='retired' where card_print_id=$1",[proof.ids.first]);assert.deepEqual(new Set(await prices()),new Set([seed.mtg.parent]));tests.push('incomplete_edition_pair_is_held_alongside_quarantine');
+ rows=await rpc();assert.equal(rows.filter(r=>[seed.pk.parent,proof.ids.first,proof.ids.unlimited].includes(r.card_print_id)&&r.status==='unavailable'&&r.market_close===null).length,6);assert.equal(rows.filter(r=>r.status==='available').length,2);tests.push('combined_rpc_has_no_cross_edition_or_mapping_fallback');
+ await c.query('rollback');assert.deepEqual(await footprint(),before);assert.equal((await prices()).length,4);assert.equal((await c.query('select count(*)::int n from v_market_price_history_v1 where card_print_id=$1',[seed.pk.parent])).rows[0].n,beforeHistory);tests.push('full_rollback_preserves_all_twelve_ledger_copy_mapping_footprints');
+ const receipt={at:new Date().toISOString(),status:'passed',tests,testCount:tests.length,rollback:true,productionWrites:0,localDurableMutationRows:0};save('receipt.json',receipt);console.log(JSON.stringify({...receipt,out}));
+}catch(e){await c.query('rollback').catch(()=>{});save('failure.json',{at:new Date().toISOString(),message:e.message});throw e;}finally{await c.end();}

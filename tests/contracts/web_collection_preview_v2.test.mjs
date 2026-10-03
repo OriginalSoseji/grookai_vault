@@ -1,6 +1,6 @@
+import fs from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
 import {buildCollectionPreviewV2} from '../../apps/web/src/lib/import/collectionPreviewV2.ts';
 import {chooseCollectionReviewCandidate} from '../../apps/web/src/lib/import/collectionPreviewChoices.ts';
 const csv=(rows)=>['Product Name,Category,Set,Card Number,Variance,Grade,Quantity,Portfolio Name',...rows].join('\n');
@@ -29,10 +29,11 @@ for(const c of artLabels)test('web art labels require catalog evidence: '+c.labe
  assert.equal(p.rows[0].selection.cardPrintingId,'p1');assert.equal(p.readyCopies,2);
  for(const change of [{primaryActive:false},{primaryFinish:'normal'},{primaryDomain:'pokemon_jpn_standard'},{primaryCard:{...options.primaryCard,rarity:null}}])assert.equal((await buildCollectionPreviewV2(fixture({...options,...change}).client,'owner',csv([source]))).readyRows,0);
 });
-function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=false,wrongPrinting=false,sameFinish=false,duplicatePrinting=false,inactive=false,primaryFinish='reverse',primaryActive=true,primaryDomain='pokemon_eng_standard',primaryCard={}}={}){
+function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=false,wrongPrinting=false,sameFinish=false,duplicatePrinting=false,inactive=false,primaryFinish='reverse',primaryActive=true,primaryDomain='pokemon_eng_standard',primaryCard={},jungle=null}={}){
  const sets=[{id:'s1',name:'Test',code:'test',game:'pokemon'}];
  const cards=[{id:'c1',set_id:'s1',gv_id:'GV-1',name:'Synthetic',number:'7/100',identity_domain:primaryDomain,variant_key:'',...primaryCard}];
  if(extraCard)cards.push({...cards[0],id:'c2',gv_id:'GV-2',variant_key:'play_pokemon_stamp',printed_identity_modifier:'prize_pack_stamp'});
+ if(jungle)cards.forEach(card=>{card.set_code='base2';});
  const printings=[{id:'p1',card_print_id:'c1',finish_key:primaryFinish,finish_is_active:primaryActive}];
  if(extraCard&&!missingPrinting)printings.push({id:'p2',card_print_id:'c2',finish_key:sameFinish?'reverse':'normal',finish_is_active:!inactive});
  if(duplicatePrinting)printings.push({id:'p3',card_print_id:'c2',finish_key:'reverse',finish_is_active:true});
@@ -41,7 +42,7 @@ function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=
   reads.push([table,after]);let rows=table==='sets'?sets:table==='card_prints'?cards:[];
   if(failLate&&table==='card_prints'&&after)return resolve({data:null,error:{message:'offline'}});
   rows=rows.filter(r=>(!after||repeated||r.id>after)&&(!filter||filter[1].includes(r[filter[0]]))).slice(0,1);
-  return resolve({data:rows,error:null});}};return q;},rpc:async(_,a)=>({data:printings.filter(p=>a.p_card_print_ids.includes(p.card_print_id)).slice(a.p_offset,a.p_offset+1).map(p=>wrongPrinting?{...p,card_print_id:'foreign'}:p),error:null})};
+  return resolve({data:rows,error:null});}};return q;},rpc:async(name,a)=>{reads.push([name,a]);if(name==='get_jungle_edition_resolution_v1')return jungle;return {data:printings.filter(p=>a.p_card_print_ids.includes(p.card_print_id)).slice(a.p_offset,a.p_offset+1).map(p=>wrongPrinting?{...p,card_print_id:'foreign'}:p),error:null};}};
  return{client,reads};
 }
 test('complete capped pages, normalized number and explicit finish preserve exact selection',async()=>{
@@ -104,4 +105,33 @@ test('manual choice keeps the 50000-copy limit and exact source grouping',async(
  const corrupt=structuredClone(p);corrupt.rows[0].review.candidates[0].selection.sourceIndices=[99];
  assert.throws(()=>chooseCollectionReviewCandidate(corrupt,[0],'c1'));
  assert.equal(p.readyRows,0);
+});
+
+for(const status of ['selection_required','ready','unavailable'])test('Jungle '+status+' remains review even when a finish could pick one parent',async()=>{
+ const data={...JSON.parse(fs.readFileSync('tests/fixtures/jungle_edition_resolution_v1.json')),status};
+ const f=fixture({extraCard:true,jungle:{data,error:null}});
+ const p=await buildCollectionPreviewV2(f.client,'owner',csv([basic]));
+ assert.equal(p.readyRows,0);assert.equal(p.readyCopies,0);assert.equal(p.reviewRows,1);assert.equal(p.rows[0].selection,null);assert.equal(p.rows[0].review,undefined);assert.throws(()=>chooseCollectionReviewCandidate(p,[0],'c1'),/no catalog choices/);
+ assert.equal(p.rows[0].source['Portfolio Name'],'Private');assert.equal(p.rows[0].quantity,2);
+ assert.match(p.rows[0].reason,/edition|First Edition/);assert.ok(!f.reads.some(([name])=>name==='get_public_card_printing_options_v1'));
+});
+for(const jungle of [{error:{code:'57014',message:'timeout'}},{data:{version:1,status:'ready',options:[]},error:null}])test('unavailable or malformed Jungle evidence cannot become a ready import',async()=>{
+ const p=await buildCollectionPreviewV2(fixture({jungle}).client,'owner',csv([basic]));
+ assert.equal(p.readyRows,0);assert.match(p.rows[0].reason,/could not be checked/);
+});
+test('non-governed Jungle special keeps exact finish matching',async()=>{
+ const p=await buildCollectionPreviewV2(fixture({extraCard:true,jungle:{data:{version:1,status:'not_applicable',options:[]},error:null}}).client,'owner',csv([basic]));
+ assert.equal(p.readyRows,1);assert.equal(p.rows[0].selection.cardId,'c1');assert.equal(p.rows[0].selection.cardPrintingId,'p1');
+});
+for(const status of ['selection_required','ready','unavailable'])test('named finish cannot bypass Jungle '+status+' hold',async()=>{
+ const data={...JSON.parse(fs.readFileSync('tests/fixtures/jungle_edition_resolution_v1.json')),status};
+ const p=await buildCollectionPreviewV2(fixture({primaryFinish:'cosmos_holo',jungle:{data,error:null}}).client,'owner',csv([basic.replace('Synthetic','Synthetic (Cosmos Holo)').replace('Reverse Holofoil','Holofoil')]));
+ assert.equal(p.readyRows,0);assert.equal(p.rows[0].selection,null);assert.equal(p.rows[0].review,undefined);assert.match(p.rows[0].reason,/edition|First Edition/);
+});
+
+for(const status of ['selection_required','ready','unavailable'])test('catalog-supported artwork label cannot bypass Jungle '+status+' hold',async()=>{
+ const c=artLabels.find(c=>c.expected);assert.ok(c);
+ const data={...JSON.parse(fs.readFileSync('tests/fixtures/jungle_edition_resolution_v1.json')),status};
+ const p=await buildCollectionPreviewV2(fixture({primaryFinish:'holo',primaryCard:{name:'Synthetic-EX',rarity:c.rarity,variant_key:c.variant},jungle:{data,error:null}}).client,'owner',csv([basic.replace('Synthetic',c.name).replace('Reverse Holofoil','Holofoil')]));
+ assert.equal(p.readyRows,0);assert.equal(p.readyCopies,0);assert.equal(p.rows[0].selection,null);assert.match(p.rows[0].reason,/edition|First Edition/);
 });

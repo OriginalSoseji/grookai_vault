@@ -53,7 +53,7 @@ function getMatchTone(matchStatus: MatchResult["status"]) {
     return "text-emerald-700";
   }
 
-  if (matchStatus === "multiple") {
+  if (matchStatus === "multiple" || matchStatus === "review") {
     return "text-amber-700";
   }
 
@@ -98,7 +98,7 @@ export function ImportClient({ ownerId, recoveryOnly = false, onRecovered }: { o
     [preview],
   );
   const needsReviewRows = useMemo(
-    () => preview?.rows.filter((row) => row.status === "missing" || row.status === "multiple") ?? [],
+    () => preview?.rows.filter((row) => row.status !== "matched") ?? [],
     [preview],
   );
   const filteredRows = useMemo(() => {
@@ -318,6 +318,8 @@ export function ImportClient({ ownerId, recoveryOnly = false, onRecovered }: { o
                           </p>
                           <p className="text-xs text-slate-500">Grookai ID {row.match.gv_id}</p>
                         </div>
+                      ) : row.status === "review" ? (
+                        <p role="status">{row.reviewReason}</p>
                       ) : row.status === "multiple" ? (
                         `${row.matches?.length ?? 0} possible exact cards — not imported`
                       ) : (

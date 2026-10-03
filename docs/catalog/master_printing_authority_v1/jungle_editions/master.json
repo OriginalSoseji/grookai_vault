@@ -1,0 +1,3213 @@
+{
+  "version": "JUNGLE_EDITION_MASTER_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "base2",
+  "scope": "ordinary_first_edition_and_unlimited_base_release_only",
+  "expected": {
+    "parents": 128,
+    "printings": 128,
+    "finishes": {
+      "holo": 32,
+      "normal": 96
+    }
+  },
+  "facts": [
+    {
+      "number": "1",
+      "name": "Clefable",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-1"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-1",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        36
+      ]
+    },
+    {
+      "number": "1",
+      "name": "Clefable",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-1"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-1",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        36
+      ]
+    },
+    {
+      "number": "2",
+      "name": "Electrode",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-2"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-2",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        101
+      ]
+    },
+    {
+      "number": "2",
+      "name": "Electrode",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-2"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-2",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        101
+      ]
+    },
+    {
+      "number": "3",
+      "name": "Flareon",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-3"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-3",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        136
+      ]
+    },
+    {
+      "number": "3",
+      "name": "Flareon",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-3"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-3",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        136
+      ]
+    },
+    {
+      "number": "4",
+      "name": "Jolteon",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-4"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-4",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        135
+      ]
+    },
+    {
+      "number": "4",
+      "name": "Jolteon",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-4"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-4",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        135
+      ]
+    },
+    {
+      "number": "5",
+      "name": "Kangaskhan",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-5"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-5",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        115
+      ]
+    },
+    {
+      "number": "5",
+      "name": "Kangaskhan",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-5"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-5",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        115
+      ]
+    },
+    {
+      "number": "6",
+      "name": "Mr. Mime",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-6"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-6",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        122
+      ]
+    },
+    {
+      "number": "6",
+      "name": "Mr. Mime",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-6"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-6",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        122
+      ]
+    },
+    {
+      "number": "7",
+      "name": "Nidoqueen",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-7"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-7",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        31
+      ]
+    },
+    {
+      "number": "7",
+      "name": "Nidoqueen",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-7"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-7",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        31
+      ]
+    },
+    {
+      "number": "8",
+      "name": "Pidgeot",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-8"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-8",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        18
+      ]
+    },
+    {
+      "number": "8",
+      "name": "Pidgeot",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-8"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-8",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        18
+      ]
+    },
+    {
+      "number": "9",
+      "name": "Pinsir",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-9"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-9",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        127
+      ]
+    },
+    {
+      "number": "9",
+      "name": "Pinsir",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-9"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-9",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        127
+      ]
+    },
+    {
+      "number": "10",
+      "name": "Scyther",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-10"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-10",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        123
+      ]
+    },
+    {
+      "number": "10",
+      "name": "Scyther",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-10"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-10",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        123
+      ]
+    },
+    {
+      "number": "11",
+      "name": "Snorlax",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-11"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-11",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        143
+      ]
+    },
+    {
+      "number": "11",
+      "name": "Snorlax",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-11"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-11",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        143
+      ]
+    },
+    {
+      "number": "12",
+      "name": "Vaporeon",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-12"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-12",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        134
+      ]
+    },
+    {
+      "number": "12",
+      "name": "Vaporeon",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-12"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-12",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        134
+      ]
+    },
+    {
+      "number": "13",
+      "name": "Venomoth",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-13"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-13",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        49
+      ]
+    },
+    {
+      "number": "13",
+      "name": "Venomoth",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-13"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-13",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        49
+      ]
+    },
+    {
+      "number": "14",
+      "name": "Victreebel",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-14"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-14",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        71
+      ]
+    },
+    {
+      "number": "14",
+      "name": "Victreebel",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-14"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-14",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        71
+      ]
+    },
+    {
+      "number": "15",
+      "name": "Vileplume",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-15"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-15",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        45
+      ]
+    },
+    {
+      "number": "15",
+      "name": "Vileplume",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-15"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-15",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        45
+      ]
+    },
+    {
+      "number": "16",
+      "name": "Wigglytuff",
+      "edition": "first_edition",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-16"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-16",
+        "variant_id": "3a83wf50ts0izj268xwv3crwi"
+      },
+      "national_dex_numbers": [
+        40
+      ]
+    },
+    {
+      "number": "16",
+      "name": "Wigglytuff",
+      "edition": "unlimited",
+      "finish_key": "holo",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-16"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-16",
+        "variant_id": "jr7oetx1mqug9"
+      },
+      "national_dex_numbers": [
+        40
+      ]
+    },
+    {
+      "number": "17",
+      "name": "Clefable",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-17"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-17",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        36
+      ]
+    },
+    {
+      "number": "17",
+      "name": "Clefable",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-17"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-17",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        36
+      ]
+    },
+    {
+      "number": "18",
+      "name": "Electrode",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-18"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-18",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        101
+      ]
+    },
+    {
+      "number": "18",
+      "name": "Electrode",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-18"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-18",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        101
+      ]
+    },
+    {
+      "number": "19",
+      "name": "Flareon",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-19"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-19",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        136
+      ]
+    },
+    {
+      "number": "19",
+      "name": "Flareon",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-19"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-19",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        136
+      ]
+    },
+    {
+      "number": "20",
+      "name": "Jolteon",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-20"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-20",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        135
+      ]
+    },
+    {
+      "number": "20",
+      "name": "Jolteon",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-20"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-20",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        135
+      ]
+    },
+    {
+      "number": "21",
+      "name": "Kangaskhan",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-21"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-21",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        115
+      ]
+    },
+    {
+      "number": "21",
+      "name": "Kangaskhan",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-21"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-21",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        115
+      ]
+    },
+    {
+      "number": "22",
+      "name": "Mr. Mime",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-22"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-22",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        122
+      ]
+    },
+    {
+      "number": "22",
+      "name": "Mr. Mime",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-22"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-22",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        122
+      ]
+    },
+    {
+      "number": "23",
+      "name": "Nidoqueen",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-23"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-23",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        31
+      ]
+    },
+    {
+      "number": "23",
+      "name": "Nidoqueen",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-23"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-23",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        31
+      ]
+    },
+    {
+      "number": "24",
+      "name": "Pidgeot",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-24"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-24",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        18
+      ]
+    },
+    {
+      "number": "24",
+      "name": "Pidgeot",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-24"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-24",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        18
+      ]
+    },
+    {
+      "number": "25",
+      "name": "Pinsir",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-25"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-25",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        127
+      ]
+    },
+    {
+      "number": "25",
+      "name": "Pinsir",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-25"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-25",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        127
+      ]
+    },
+    {
+      "number": "26",
+      "name": "Scyther",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-26"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-26",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        123
+      ]
+    },
+    {
+      "number": "26",
+      "name": "Scyther",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-26"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-26",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        123
+      ]
+    },
+    {
+      "number": "27",
+      "name": "Snorlax",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-27"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-27",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        143
+      ]
+    },
+    {
+      "number": "27",
+      "name": "Snorlax",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-27"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-27",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        143
+      ]
+    },
+    {
+      "number": "28",
+      "name": "Vaporeon",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-28"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-28",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        134
+      ]
+    },
+    {
+      "number": "28",
+      "name": "Vaporeon",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-28"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-28",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        134
+      ]
+    },
+    {
+      "number": "29",
+      "name": "Venomoth",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-29"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-29",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        49
+      ]
+    },
+    {
+      "number": "29",
+      "name": "Venomoth",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-29"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-29",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        49
+      ]
+    },
+    {
+      "number": "30",
+      "name": "Victreebel",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-30"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-30",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        71
+      ]
+    },
+    {
+      "number": "30",
+      "name": "Victreebel",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-30"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-30",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        71
+      ]
+    },
+    {
+      "number": "31",
+      "name": "Vileplume",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-31"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-31",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        45
+      ]
+    },
+    {
+      "number": "31",
+      "name": "Vileplume",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-31"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-31",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        45
+      ]
+    },
+    {
+      "number": "32",
+      "name": "Wigglytuff",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-32"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-32",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        40
+      ]
+    },
+    {
+      "number": "32",
+      "name": "Wigglytuff",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-32"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-32",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        40
+      ]
+    },
+    {
+      "number": "33",
+      "name": "Butterfree",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-33"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-33",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        12
+      ]
+    },
+    {
+      "number": "33",
+      "name": "Butterfree",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-33"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-33",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        12
+      ]
+    },
+    {
+      "number": "34",
+      "name": "Dodrio",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-34"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-34",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        85
+      ]
+    },
+    {
+      "number": "34",
+      "name": "Dodrio",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-34"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-34",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        85
+      ]
+    },
+    {
+      "number": "35",
+      "name": "Exeggutor",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-35"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-35",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        103
+      ]
+    },
+    {
+      "number": "35",
+      "name": "Exeggutor",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-35"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-35",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        103
+      ]
+    },
+    {
+      "number": "36",
+      "name": "Fearow",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-36"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-36",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        22
+      ]
+    },
+    {
+      "number": "36",
+      "name": "Fearow",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-36"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-36",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        22
+      ]
+    },
+    {
+      "number": "37",
+      "name": "Gloom",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-37"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-37",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        44
+      ]
+    },
+    {
+      "number": "37",
+      "name": "Gloom",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-37"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-37",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        44
+      ]
+    },
+    {
+      "number": "38",
+      "name": "Lickitung",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-38"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-38",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        108
+      ]
+    },
+    {
+      "number": "38",
+      "name": "Lickitung",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-38"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-38",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        108
+      ]
+    },
+    {
+      "number": "39",
+      "name": "Marowak",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-39"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-39",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        105
+      ]
+    },
+    {
+      "number": "39",
+      "name": "Marowak",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-39"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-39",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        105
+      ]
+    },
+    {
+      "number": "40",
+      "name": "Nidorina",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-40"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-40",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        30
+      ]
+    },
+    {
+      "number": "40",
+      "name": "Nidorina",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-40"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-40",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        30
+      ]
+    },
+    {
+      "number": "41",
+      "name": "Parasect",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-41"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-41",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        47
+      ]
+    },
+    {
+      "number": "41",
+      "name": "Parasect",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-41"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-41",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        47
+      ]
+    },
+    {
+      "number": "42",
+      "name": "Persian",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-42"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-42",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        53
+      ]
+    },
+    {
+      "number": "42",
+      "name": "Persian",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-42"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-42",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        53
+      ]
+    },
+    {
+      "number": "43",
+      "name": "Primeape",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-43"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-43",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        57
+      ]
+    },
+    {
+      "number": "43",
+      "name": "Primeape",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-43"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-43",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        57
+      ]
+    },
+    {
+      "number": "44",
+      "name": "Rapidash",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-44"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-44",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        78
+      ]
+    },
+    {
+      "number": "44",
+      "name": "Rapidash",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-44"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-44",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        78
+      ]
+    },
+    {
+      "number": "45",
+      "name": "Rhydon",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-45"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-45",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        112
+      ]
+    },
+    {
+      "number": "45",
+      "name": "Rhydon",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-45"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-45",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        112
+      ]
+    },
+    {
+      "number": "46",
+      "name": "Seaking",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-46"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-46",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        119
+      ]
+    },
+    {
+      "number": "46",
+      "name": "Seaking",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-46"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-46",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        119
+      ]
+    },
+    {
+      "number": "47",
+      "name": "Tauros",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-47"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-47",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        128
+      ]
+    },
+    {
+      "number": "47",
+      "name": "Tauros",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-47"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-47",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        128
+      ]
+    },
+    {
+      "number": "48",
+      "name": "Weepinbell",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-48"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-48",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        70
+      ]
+    },
+    {
+      "number": "48",
+      "name": "Weepinbell",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-48"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-48",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        70
+      ]
+    },
+    {
+      "number": "49",
+      "name": "Bellsprout",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-49"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-49",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        69
+      ]
+    },
+    {
+      "number": "49",
+      "name": "Bellsprout",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-49"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-49",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        69
+      ]
+    },
+    {
+      "number": "50",
+      "name": "Cubone",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-50"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-50",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        104
+      ]
+    },
+    {
+      "number": "50",
+      "name": "Cubone",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-50"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-50",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        104
+      ]
+    },
+    {
+      "number": "51",
+      "name": "Eevee",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-51"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-51",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        133
+      ]
+    },
+    {
+      "number": "51",
+      "name": "Eevee",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-51"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-51",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        133
+      ]
+    },
+    {
+      "number": "52",
+      "name": "Exeggcute",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-52"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-52",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        102
+      ]
+    },
+    {
+      "number": "52",
+      "name": "Exeggcute",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-52"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-52",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        102
+      ]
+    },
+    {
+      "number": "53",
+      "name": "Goldeen",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-53"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-53",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        118
+      ]
+    },
+    {
+      "number": "53",
+      "name": "Goldeen",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-53"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-53",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        118
+      ]
+    },
+    {
+      "number": "54",
+      "name": "Jigglypuff",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-54"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-54",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        39
+      ]
+    },
+    {
+      "number": "54",
+      "name": "Jigglypuff",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-54"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-54",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        39
+      ]
+    },
+    {
+      "number": "55",
+      "name": "Mankey",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-55"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-55",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        56
+      ]
+    },
+    {
+      "number": "55",
+      "name": "Mankey",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-55"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-55",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        56
+      ]
+    },
+    {
+      "number": "56",
+      "name": "Meowth",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-56"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-56",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        52
+      ]
+    },
+    {
+      "number": "56",
+      "name": "Meowth",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-56"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-56",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        52
+      ]
+    },
+    {
+      "number": "57",
+      "name": "Nidoran ♀",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-57"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-57",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        29
+      ]
+    },
+    {
+      "number": "57",
+      "name": "Nidoran ♀",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-57"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-57",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        29
+      ]
+    },
+    {
+      "number": "58",
+      "name": "Oddish",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-58"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-58",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        43
+      ]
+    },
+    {
+      "number": "58",
+      "name": "Oddish",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-58"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-58",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        43
+      ]
+    },
+    {
+      "number": "59",
+      "name": "Paras",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-59"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-59",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        46
+      ]
+    },
+    {
+      "number": "59",
+      "name": "Paras",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-59"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-59",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        46
+      ]
+    },
+    {
+      "number": "60",
+      "name": "Pikachu",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-60"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-60",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        25
+      ]
+    },
+    {
+      "number": "60",
+      "name": "Pikachu",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-60"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-60",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        25
+      ]
+    },
+    {
+      "number": "61",
+      "name": "Rhyhorn",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-61"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-61",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        111
+      ]
+    },
+    {
+      "number": "61",
+      "name": "Rhyhorn",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-61"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-61",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        111
+      ]
+    },
+    {
+      "number": "62",
+      "name": "Spearow",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-62"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-62",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        21
+      ]
+    },
+    {
+      "number": "62",
+      "name": "Spearow",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-62"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-62",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        21
+      ]
+    },
+    {
+      "number": "63",
+      "name": "Venonat",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-63"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-63",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": [
+        48
+      ]
+    },
+    {
+      "number": "63",
+      "name": "Venonat",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-63"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-63",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": [
+        48
+      ]
+    },
+    {
+      "number": "64",
+      "name": "Poké Ball",
+      "edition": "first_edition",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-64"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-64",
+        "variant_id": "2fnyg4g532wu2uft0spaa3eefrz"
+      },
+      "national_dex_numbers": []
+    },
+    {
+      "number": "64",
+      "name": "Poké Ball",
+      "edition": "unlimited",
+      "finish_key": "normal",
+      "status": "master_verified",
+      "source_names": [
+        "psa",
+        "tcgdex",
+        "bulbapedia"
+      ],
+      "source_refs": [
+        "psa:jungle-chart",
+        "psa:jungle-editions",
+        "bulbapedia:jungle-review",
+        "tcgdex:base2-64"
+      ],
+      "provider_variant_identity": {
+        "card_id": "base2-64",
+        "variant_id": "endfynwn4n10gzq"
+      },
+      "national_dex_numbers": []
+    }
+  ]
+}

@@ -11,6 +11,18 @@ separate checkout candidate and active catalog agent. Local proof reuses only
 our retained647xx receipt lab without reset. Future status is in the external
 receipt_sale_flow_20261003 checkpoint. Historical sections below remain receipts.
 
+## Jungle integration after receipt-cloud release — October3, V31
+
+Main7a53b16a1 is integrated; stash9792b039e3060d5b679e737632aa50dfe66c8129
+is retained. Production415/current candidate423 have the same eight pending
+Jungle SQL bodies. Fresh bounded read-only audit passes1,119 security objects.
+New53600 full423 CLI replay and populated53400 upgrade converge at1,147 security
+objects, retaining all330 existing table digests/five copies/164,804 snapshots.
+Never reset the populated V30 fixture, now423. Normal release checks and commit
+use the V31 local read-only runner and normal hooks; actual outcome is external.
+Historical422 catalog V2 must reject423. A423 executor/context, exact migration
+apply gate and deployed readback remain. No production writes; prices NOT LIVE.
+
 ## Account receipt cloud — October 2, 2026
 
 The device receipt desk is LIVE from PR580 (8dffbf8a). Its terminal receipt is
@@ -50,6 +62,216 @@ release qualification. Original notification/release work remains in
 C:/gv_store_reconcile_414_20261001 with its order-status checkpoint preserved.
 
 
+## Jungle full durable worker and catalog concurrency — October2, V30
+
+See the latest Jungle pricing note and external recovery checkpoint. Current
+October2 source passes208,279 durable decisions and164,804 snapshots, including
+128 Jungle prices. All206,404 ordinary candidates/policies and every saved price
+and date match; worker retry and five-copy preservation pass. Catalog639-row
+actual commit, second-client lock wait/safe timeout and zero-insert retry pass.
+49 guards and23 rollback checks pass. Fresh full422 lab53400/53401/internal
+10.248.21 is now POPULATED: preserve it, all previous labs and failed attempts.
+CLI post-restart502 was independently qualified by exact422 schema/ledger parity
+and no-op push, without repeating reset. No production writes or publication.
+Next: clean commit/hooks/build/shipcheck, refreshed review package, then exact
+production migration/catalog authority and deployed readback. Jungle NOT LIVE.
+
+## Jungle current-source parity and refresh — October2, V29
+
+See latest Jungle pricing note. Fresh414 source capture retains83/84 identities
+and all reviewed facts; three history tables have exactly126 proven append-only
+rows each. Immutable authority is preserved; new `--execution-refresh` binds a
+fresh under-one-hour capture/delta to it before any V2 production plan can write.
+38 refresh guards pass. Current full-feed projection passes208,279 observations,
+128 newly eligible Jungle outcomes and206,404 unchanged ordinary decisions; zero
+newly held. This is read-only projection, not a current-source durable worker run.
+All330 local tables/two copies survive the current assignment and23-check executor
+rollback proofs.43 existing execution guards pass. Main6363e12ee/PR579 integrated
+with stash22aa8b1849798ea0f016637cdf680727b729605b retained:521 Node tests,51 Flutter
+tests and web typecheck/lint pass. Review V3 includes fresh context and current
+pricing evidence, but grants no apply authority. Next: current durable shadow,
+V2 durable/concurrent proof and clean release/migration gates. Prices NOT LIVE.
+
+## Jungle catalog staging executor — October2, V28
+
+See latest Jungle pricing note. New V2 engine/guard/production CLI prepares exactly
+639 catalog inserts at422, with staged links and no pricing/ownership activation.
+23 rollback-only database checks preserve all330 public tables/two original copies;
+43 guard tests pass. Savepoint rehearsal is not a durable commit or production
+rollback receipt. Exact founder authority and fresh production rollback remain
+required for a live apply. CLI uses `--database-env-path` to avoid Node consuming
+`--env-file` before script guards. Recovery never deletes admitted records.
+Old24-hour authority snapshot has expired for production; historical bytes are
+allowed only in the fixed local rehearsal. Next: refreshed source authority,
+current-source full shadow, V2 durable/concurrent proof and normal release gates.
+Retained422 DB now10.248.16.7; only its stopped65520 relay was restarted. Preserve
+all populated labs, failed/successful attempts and original executor. No live write.
+
+## Jungle current-main pricing review — October2, V27
+
+See latest Jungle pricing note. Main7e938b945 (PR575/577/578) is integrated;
+stash d1354609a6082a571779aa0df25a66402eab3da8 is retained.189 import/consumer
+tests and web typecheck/lint pass; new ordinary import choices cannot bypass
+Jungle holds.12 current422 rollback checks prove saved-copy preservation across
+330 public tables. Existing-copy CAS is future opt-in work under the contract,
+not a mandatory new feature before restoring prices with saved identities intact.
+Keep reassignment blocked; no correction writer or new migration was added.
+Fresh read-only production414/source review still supports128 bindings and83/84
+retained identities. Three history tables gained126 rows each from the verified
+October2 refresh; exact old-row hashes are preserved in dependency-delta-v2.
+Review-only release-review-v2 packages freeze639 staged inserts/eight migrations;
+no apply/deployment authority. Next is bounded production executor/rollback,
+current-source full reconciliation and clean integrated release checks. Slab OFF.
+
+## Jungle slab committed and browser proof — October2, V26
+
+Jungle pricing note has the full continuation. Seventeen real local Auth/PostgREST
+checks and thirteen Chromium/Next server-action checks pass, including proven
+overlapping requests, lost committed responses, owner isolation, explicit choices
+and visible saved-copy readback. PSA was a local synthetic service, not live
+verification. Full-422-v25 is now POPULATED: seven receipts/copies (one archived),
+six certificates/seven provenance events. Never reset/reseed it or replay its
+consumed test intent. Preserve every failed and successful browser attempt.
+Browser, Next and temporary54361/53261 relays are stopped; Next-generated config
+was restored. The normal dedicated53200/53201/53204 lab relay remains running.
+Docker recovery closed only orphan GUI processes after confirming the backend/
+engine absent; installed launcher restored it. No database volumes were deleted.
+Fresh read-only retained-runtime-v26 preserves329 original tables/two saved copies.
+Next: existing-copy explicit-owner CAS, production catalog executor/authority and
+rollback, current-main/fresh baseline reconciliation, then guarded release. No
+production data/schema changes or hosted feature activation occurred.
+
+## Jungle422 fresh replay qualified — October2, V25
+
+See `docs/ops/JUNGLE_EDITION_PRICING_20261001.md`. Fresh full422 CLI start/reset/
+no-op push passes in full-422-v25 at53200, internal10.248.19.0/24. V24's52300 is
+Windows-reserved and rejected before any fixture creation; preserve its source.
+V25 convergence with retained upgrade422 is exact, including1,141 security objects.
+Fresh read-only retained inspection preserves329 tables and both saved copies.
+Host capacity recovered and normal Docker API28.4.0 now responds. Temporary
+bridges are stopped; no forced restart or context change. Never reset/reseed the
+retained labs or reuse V25 consumed intents. Production audit remains414 with
+eight unchanged pending migrations; prices remain unpublished and slab flag OFF.
+Next is real Auth/HTTP/UI plus committed concurrency/lost-response proof before
+production authority, catalog execution and release. Remote PR575 is inspected,
+not integrated into this source. Evidence and backups are in the Jungle artifact
+root; external worker recovery checkpoint remains the continuation authority.
+
+## Jungle422 baseline and retained upgrade — October1, V24
+
+Read the newest Jungle pricing note. MainPR574 is integrated; preserve stash
+f195c48dbd96fa17f0b4a822f64e2c5bac7decd1. New JungleSlabBaselineAudit permits only
+read-only AuditLinkedSchema for eight pinned migrations/422 versions over live414.
+PrePush/target overrides/mixed flags reject. Old seven-file scope remains unchanged.
+Live414 schema/security parity and ten gate tests pass;167 import/slab tests pass.
+
+Existing upgrade-421-v23 at65520 is now422, with both original copies and all329
+existing tables preserved. Never rerun upgrade_jungle_retained_slab_v1.mjs or reset
+this populated fixture. Read retained-slab-upgrade-v1 receipts. Exact schema
+boundary preserves18,871 unrelated metadata rows. Fresh full422/parity still open.
+After runtime restart, Docker attests this DB at10.248.16.2; native relay works.
+Only its stale Windows gateway111668 was stopped after command verification.
+Do not reuse historical helpers pinned to.3 or treat them as current attestation.
+
+Fresh full422 helper V24 targets52300/internal10.248.17.0/24 and is unconsumed.
+Capacity guard stopped before creating it:10GiB required, about6.2GiB remained.
+User authorized safe cache cleanup, but automatic approval review blocked deletion
+of the verified3.88GiB Gradle8.12 transforms directory. No files were deleted.
+Manual cleanup is pending; do not bypass the capacity guard or erase retained
+labs/evidence. Recheck free space before continuing. Slab rollout remains OFF.
+
+## Jungle web slab verification/save flow — October1, V23
+
+The ready-edition card page has staged two-step intake with an explicit edition
+and ownership choice. Read the newest Jungle note. Preparation is read-only and
+seals server-fetched PSA evidence; save reauthenticates, checks the exact selection,
+calls the atomic422 RPC and verifies certificate/copy/anchor readback. Retry uses
+the same30-minute encrypted token and request UUID. Original generic/upgrade Jungle
+holds remain; existing copies are not converted or corrected by this flow.
+
+JUNGLE_SLAB_INTAKE_ENABLED=true and dedicated JUNGLE_SLAB_INTAKE_SECRET (at least
+32random characters) are required on the server; defaults remain OFF. Use a fresh
+secret, never a PSA/Supabase key, stable across replicas and restarts. Rotation
+invalidates outstanding tokens. No config was provisioned/activated in this step.
+Release remains schema-first after full422/upgrade and real authenticated/race
+proofs. Token state is in-page only; refresh/expiry requires verification again.
+
+122 focused action/crypto/UI-handler/consumer tests, typecheck and lint pass.
+Auth/DB/provider transports are mocked in action tests; do not describe them as
+real HTTP or concurrent database proof. Build with the existing read-only local
+run_jungle_release_checks_v1.mjs build workflow; do not enable production merely
+to compile. New private evidence lives under Jungle artifact root/slab-app-v1.
+
+## Jungle atomic slab component — October1, V22
+
+Read the newest Jungle note. The new service-only atomic intake migration makes
+the candidate422/eight pending over production414. Do not reuse seven-file audit
+scope or full421 qualification as422 proof. Preserve all prior migration bytes.
+The component binds certificate, child printing, anchor, copy and private retry
+receipt; conflicting/archived retries reject. The app still holds Jungle slab
+saves pending authenticated integration and concurrent/lost-response tests.
+Existing-copy owner correction remains separate. No production writes or prices.
+
+`test_jungle_slab_atomic_intake_v1.mjs` runs only on attested65040/internal10.248.6.3
+with schema419/workers0. New DDL and synthetic data roll back; never reset/reseed
+this populated lab. Raw schema snapshots are retained; only planner page/row
+estimates are excluded from schema parity. All329 public table contents must
+remain identical. Private evidence: Jungle artifact root/slab-atomic-v1.
+Final58 database checks pass, including all128 canonical coordinates;68 existing
+certificate/action tests also pass. V22 source/proof backup preserves V21 evidence.
+Normal Docker API responded; the existing stopped65040 relay was started, with
+no shared-service restart or configuration changes. Reattest existing gateways
+before reuse; old process receipts alone are insufficient after a runtime restart.
+
+## Jungle certificate review boundary — October1
+
+Read the newest Jungle pricing note. PSA verification now binds returned/requested
+certificate strings (including leading zeroes) and rejects explicit provider
+errors, conflicting grades and nested fallback records. A read-only Jungle
+matcher requires exact server canonical identity plus an explicit edition/finish;
+blank labels remain unresolved.86 tests include all128 synthetic reviewed
+coordinates. This is not a live PSA lookup or completed slab-intake release.
+The existing slab writer cannot attach the required exact child printing while
+keeping certificate identity. Preserve its current hold until a new atomic
+owner-authorized path passes actual authenticated/race/retry checks. Existing
+copies/slabs and the seven migration bodies are unchanged. Private protocol and
+test evidence: Jungle artifact root/slab-verification-v1; latest source freezeV21.
+
+## Jungle421 CLI qualification and temporary Docker transport — October1
+
+Read the newest Jungle pricing note. Full421 replay/no-op push and retained414
+to421 upgrade now pass on dedicated full-421-v22/upgrade-421-v23 fixtures. Two
+saved copies survive; schema and1,136 security objects match. Base includesPR573.
+Preserve these populated/qualified labs, all older labs and failed V19-V23 intents.
+The V23 baseline reset's post-restart502 remains a failure; independent qualified
+414 parity precedes its successful first seed/upgrade. Never rerun consumed resets.
+
+Docker Desktop is still degraded. Temporary local named pipe
+grookai-jungle-replay-v20 reaches the existing raw daemon socket; bounded private
+log capture unblocked daemon logging. No shared service restart or Docker context
+edit. Local Windows gateways at65200/65520 reach verified fixture relays through
+the daemon network namespace, not the Linuxkit parent network namespace. Exact
+SQL transport is pinned to10.248.13.3/10.248.16.3 and workers0. Docker API is never
+exposed on TCP. Helpers, private logs, process receipts and recovery history live
+under the Jungle operator-artifact root/docker-control-v20. Retain source bytes;
+do not treat a transport workaround as permanent Desktop repair or release authority.
+Owner/slab, production executor/authority/rollback, clean commit and deployed
+verification remain. No production changes or live Jungle price restoration.
+
+## Jungle release integration with live414 — October1
+
+PR572 is live414 and owns20261001210000. The Jungle candidate incorporates
+98e75510b, renumbers its unapplied artifact-date SQL to20261001211000 without body
+changes, and adds V5 discovery integration20261001224000: seven pending/421 total.
+27 populated rollback checks preserve legacy lookup, pagination, permissions,
+five copies and164,815 snapshots. Fresh414 schema/security comparison passes;
+use read-only JungleEditionSearchBaselineAudit, never PrePush. Review package,
+web build and complete normal shipcheck pass:6,302 contract/1,030 mobile tests. Docker
+API timeout blocks fresh421 CLI replay; prepared v19 labs are NOT created.
+Never rewrite/reset419 labs to claim421 qualification. Read the latest Jungle
+note, preserve stash f319a51cd9ee12f33edbc1d9ac4875020801fa1f and earlier evidence.
+No production changes or live Jungle prices.
+
 ## Broad name search reads — October 1
 
 PR571 is complete/live; its request reuse is retained. The next isolated branch
@@ -62,6 +284,106 @@ reset them after population. Private evidence and release status live under
 search_name_plan_20261001 in the operator-artifact root. Browser qualification
 must prove all prior example IDs and uncached timings before claiming success.
 The separate413 pricing migration is already applied and must not be replayed.
+## Full-source durable Jungle qualification — October1
+
+The complete208,305-row worker shadow passes locally at65040/schema419 in253.2s:
+164,815 snapshots,including128 reviewed Jungle additions;0 reconciliation issues.
+Every decision and stored source price/date is audited.206,430 ordinary outcomes
+are unchanged; two ordinary records acquire missing assignments from the unchanged
+production preparer and remain excluded.1,747 unreviewed edition rows stay held.
+Five synthetic saved copies survive and completed-run resume is idempotent.
+No current pointer or production write. The65040 lab is now populated: no reset
+or reseed. Read the latest Jungle note and full-source-durable-v1 evidence.
+Docker API stalled; independent live WSL/process/route/relay attestation verifies
+the existing isolated target without shared restarts. Docker itself is not repaired.
+NEXT is production execution/release packaging and remaining owner/slab/build/
+clean-commit/schema-first deployment gates. No live Jungle prices restored yet.
+
+## Actual-source Jungle qualification — October1, schema419
+
+Read the latest Jungle note. Real source exposed optional artifact-date handling
+and repeated full-card readiness checks. Four additive migrations preserve exact
+source dates/provenance and bound validation without changing duplicate/edition
+guards. Actual133-quote shadow passes in35.5s:128 snapshots,5 sealed excluded,
+7 saved copies unchanged. No current pointer activated. Full65040 and populated
+64940 labs are now419, with zero schema/security drift; do not reset/reseed them.
+Use read-only JungleEditionSourceBaselineAudit (live413/six pending files). Normal
+release/execution/clean-commit gates remain. Full-feed projection passes208,305 rows:128 newly eligible,0 other decision
+changes. It does not replace a full-source durable publisher shadow. No live
+Jungle prices. Full evidence is retained underpopulated-source-v1 andV5 package.
+
+## Jungle edition pricing preparation — October 1
+
+Latest V17: main a6032c616 plus exact applied413 mapping-price quarantine are
+integrated. Preserve stash c9b6eaea52a6f50b108309ee18d9b34504757cf8. New20261001203000
+adds the #64 alias and combines Jungle/quarantine price-reader guards. Full415
+replay and retained413-to415 upgrade pass with identical schema/security and
+unchanged copies. Use read-only JungleEditionAliasBaselineAudit; old412 rejects.
+100 foundation/55 assignment/33 worker/14 HTTP/8 combined-reader checks pass,
+plus128 source bindings in rollback. New labs64840/64940 leave34.8GiB free; all
+old populated labs remain intact. NEXT is fresh production execution/release
+package and populated full-source shadow. No production writes or live prices.
+
+Current source review: fresh production412 snapshot at18:43:52UTC retains83
+parents/84 children and matches all84 direct dependency footprints, including
+ownership, with no proposed-ID collisions.133 verified source quotes yield128
+single-card edition pairs; five sealed quotes are excluded.126 pass current SQL;
+Poké Ball #64 requires the exact source spelling Poke Ball in both editions.
+A local transaction-only correction passes128 staged bindings, rejects three
+other names, and rolls back with all329 table footprints/schema unchanged.
+Read the current Jungle note and pricing-source-review.json. NEXT is versioned
+alias correction/replay/retained upgrade, then production execution package and
+populated full-source shadow. No live writes/prices. C: about3.4GiB free now;
+no new lab pair without capacity planning. Preserve all populated fixtures.
+
+Latest: the local-only canonical executor has passed28 execution and13 retry
+checks plus staged discovery/intake readback. It inserted639 rows in the retained
+64740 upgrade lab:128 parents/children/reviews/staged links,126 species mappings
+and1 raw source document. All seven synthetic saved copies and329 protected
+public-table footprints are unchanged. Lost-commit-response recovery, conflicting
+state rollback and concurrent zero-write retries pass. Preserve this populated
+lab; never reseed/reset it. Production targets are rejected by this executor.
+No live schema, catalog or prices changed; reviewed manifest flags remain false.
+Fresh read-only412 baseline passes. See the current Jungle operator note for
+receipts, explicit local game-UUID translation and qualification limits.
+
+V16 integrates the dirty candidate onto main bc4b80629, preserving the old source
+in stash fd0cd5e949190c6561f137b86326e90687fb88a3 and frozen V12 evidence. Current
+production412 schema/security matches the search replay. The new read-only
+JungleEditionBaseline412Audit rejects PrePush/combined modes; the unchanged411
+route still rejects drift. Fresh full413 and retained412-to413 upgrade pass at
+646xx/647xx with zero schema diff and unchanged saved test copies. PR568 search
+objects remain intact.100 foundation,55 assignment,35 HTTP,20 combined search/web
+import,33 worker and14 price checks pass; web type/lint and63 mobile tests pass.
+The newer web V2 import now holds unresolved Jungle editions before finish
+narrowing. No production schema, canonical rows, runtime or prices changed.
+
+The reviewed Jungle Master manifest reserves128 parent and128 child IDs
+with32 Holo/96 Normal printings, plus126 primary species memberships across47
+species.73 actual source/input artifacts validate;31 contract tests pass. No
+production canonical rows or prices were written. Preserve83 existing parents,84 children,
+19 special parents and all five saved copies. Poké Ball gets no species mapping;
+Nidoran57 stays female; Electrode18 images/artist cannot be cloned across editions.
+Read `docs/ops/JUNGLE_EDITION_PRICING_20261001.md` and the Jungle contract.
+
+Production independently advanced to412 through PR568 search_database_latency_v1.
+New web releasebc4b80629e03e9e232eb9b71e0e2845e3e03a6c7 is live; Jungle tables
+remain absent. Fresh read-only snapshot pins412 and finds zero proposed ID/GV-ID
+collisions, with84 direct single-column FK footprints. This is not complete
+application dependency or executor proof. Do not overwrite the newer search work.
+
+NEXT: fresh production reconciliation and bounded production execution/release
+package, then populated full-source pricing shadow. Keep proposed IDs stable. The prior411-only baseline
+and V15 local412 labs remain historical proof, not current release authority.
+Then qualify the populated full-source shadow,
+slab certificate and owner-selected CAS paths, full shipcheck/CLI and deployed
+app/Edge/native/live readback. Schema precedes V1_10/clients; invalidate catalog
+and Dex caches on admission. Existing legacy copies never move automatically.
+
+Prior V15 full-source pre-admission parity covered208305 observations with no
+eligibility changes; edition publication worked on local fixtures only. Preserve
+all labs/failed receipts, completed Cosmos runtime and sent Funko inquiry. C:
+capacity is about13GiB after V16: check before another lab pair; no unplanned reset.
 
 ## Search database latency — October 1
 

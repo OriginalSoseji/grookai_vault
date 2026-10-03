@@ -14,6 +14,9 @@ import AddToVaultCardAction, {
 import { findPrintingByReference } from "@/lib/cards/printingSelection";
 import type { CardPricingUiRecord } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { CardPrinting } from "@/types/cards";
+import JungleEditionChoices from "@/components/cards/JungleEditionChoices";
+import type { JungleEditionResolution } from "@/lib/cards/jungleEditionResolution";
+import AddJungleSlabAction from "@/components/slabs/AddJungleSlabAction";
 
 type AddToVaultCardServerAction = (
   previousState: AddToVaultActionResult | null,
@@ -41,6 +44,8 @@ type CardPageMarketVaultPanelsProps = {
   ownershipLabel: string;
   rawCount: number;
   slabCount: number;
+  editionResolution?: JungleEditionResolution | null;
+  jungleSlabIntakeEnabled?: boolean;
 };
 
 function getInitialPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
@@ -73,6 +78,8 @@ export default function CardPageMarketVaultPanels({
   ownershipLabel,
   rawCount,
   slabCount,
+  editionResolution = null,
+  jungleSlabIntakeEnabled = false,
 }: CardPageMarketVaultPanelsProps) {
   const initialPrinting = useMemo(() => getInitialPrinting(printings, initialPrintingId), [initialPrintingId, printings]);
   const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(initialPrinting);
@@ -88,7 +95,8 @@ export default function CardPageMarketVaultPanels({
   return (
     <aside className="gv-detail-market-vault grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
       <div className="gv-detail-market gv-action-panel p-5 sm:p-6">
-        <CardPagePricingRail
+        {editionResolution && ["selection_required", "unavailable"].includes(editionResolution.status)
+          ? <p className="text-sm">Choose a confirmed edition to view its price.</p> : <CardPagePricingRail
           isAuthenticated={isAuthenticated}
           loginHref={loginHref}
           gvId={gvId}
@@ -97,7 +105,7 @@ export default function CardPageMarketVaultPanels({
           pricingRecords={pricingRecords}
           selectedCardPrintingId={selectedPrintingId}
           selectedPrintingGvId={selectedPrintingGvId}
-        />
+        />}
       </div>
 
       <div className="gv-detail-vault gv-action-panel space-y-5 p-5 sm:p-6">
@@ -113,7 +121,8 @@ export default function CardPageMarketVaultPanels({
           ) : null}
         </div>
 
-        <AddToVaultCardAction
+        {editionResolution && ["selection_required", "unavailable"].includes(editionResolution.status)
+          ? <JungleEditionChoices resolution={editionResolution} /> : <AddToVaultCardAction
           compactPresentation
           action={addToVaultAction}
           isAuthenticated={isAuthenticated}
@@ -124,11 +133,13 @@ export default function CardPageMarketVaultPanels({
           initialPrintingId={initialPrintingId}
           selectedPrintingId={selectedPrintingId}
           onSelectedPrintingChange={setSelectedPrinting}
-        />
+        />}
 
         <div className="gv-detail-secondary-actions flex flex-wrap items-center gap-3">
           {cardPrintId ? <SaveCardButton cardPrintId={cardPrintId} isAuthenticated={isAuthenticated} loginHref={loginHref} /> : null}
-          {isAuthenticated ? <AddSlabCardAction action={createSlabAction} cardName={cardName} /> : null}
+          {isAuthenticated && (!editionResolution || editionResolution.status === "not_applicable") ? <AddSlabCardAction action={createSlabAction} cardName={cardName} /> : null}
+          {isAuthenticated && jungleSlabIntakeEnabled && editionResolution?.status === "ready"
+            ? <AddJungleSlabAction options={editionResolution.options} /> : null}
           <CompareCardButton gvId={gvId} />
           <ShareCardButton gvId={gvId} printingReference={printingReference} cardName={cardName} />
         </div>

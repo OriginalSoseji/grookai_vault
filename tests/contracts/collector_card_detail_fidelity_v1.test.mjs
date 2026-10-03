@@ -4,13 +4,21 @@ import { createHash } from 'node:crypto';
 import test from 'node:test';
 const read = path => readFileSync(new URL(`../../apps/web/src/${path}`, import.meta.url), 'utf8');
 
-test('card detail preserves readers and slab action outside the authorized copy-options action', () => {
+test('card detail preserves readers and slab action around the bounded edition lookup', () => {
   const current = read('app/card/[gv_id]/page.tsx');
   // Frozen normalized business-body digest from preserved bcbf8bab754528bd78f65e983bb270c27de48579.
   // The private historical ref is not a prerequisite for a fresh public CI checkout.
   const baselineDigest = 'a8659114e83ea724106467f9d8a3ed8819774e987d4f73d85d71cc6a3559246d';
+  // The edition transition adds only this read to the previously frozen body.
+  // Strip its exact bytes, retaining the original digest for every old reader.
+  const editionRead = `  const editionResolution: JungleEditionResolution | null = resolvedCard.set_code === "base2"
+    ? await getJungleEditionResolution(supabase, resolvedCard.id).catch(() => ({
+        version: 1 as const, status: "unavailable" as const, legacy_card_print_id: resolvedCard.id, options: [],
+      })) : null;
+`;
+  assert.equal(current.replaceAll('\r\n','\n').split(editionRead).length, 2);
   const business = source => source.replaceAll('\r\n', '\n').split('async function CardPageContent(')[1].split('  const initialRenderMs')[0]
-    .replace(/  async function addToVaultAction\([\s\S]*?(?=  async function createSlabAction)/, '');
+    .replace(/  async function addToVaultAction\([\s\S]*?(?=  async function createSlabAction)/, '').replace(editionRead, '');
   assert.equal(createHash('sha256').update(business(current)).digest('hex'), baselineDigest);
   assert.match(current, /parseCardAddOptions\(_formData.get\("condition"\), _formData.get\("quantity"\)\)/);
   assert.match(current, /conditionLabel: options.conditionLabel/);

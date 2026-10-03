@@ -41,7 +41,8 @@ export type MatchResult = {
   row: NormalizedRow;
   match?: CardMatch;
   matches?: CardMatch[];
-  status: "matched" | "multiple" | "missing";
+  status: "matched" | "multiple" | "missing" | "review";
+  reviewReason?: string;
 };
 
 export type MatchCardPrintsResult = {

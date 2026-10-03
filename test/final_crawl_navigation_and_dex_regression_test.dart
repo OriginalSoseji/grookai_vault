@@ -50,7 +50,7 @@ void main() {
     );
   });
 
-  test('Dex initial load scopes completion mappings to owned cards', () {
+  test('Dex initial load scopes mappings to owned and excluded cards', () {
     final dexService = File(
       'lib/services/grookai_dex/grookai_dex_service.dart',
     ).readAsStringSync();
@@ -70,7 +70,11 @@ void main() {
 
     expect(ownedCountsIndex, greaterThanOrEqualTo(0));
     expect(mappingsIndex, greaterThan(ownedCountsIndex));
-    expect(dexService, contains('cardPrintIds: ownedCounts.keys'));
+    expect(
+      dexService,
+      contains('cardPrintIds: {...ownedCounts.keys, ...exclusions}'),
+    );
+    expect(dexService, contains('getJungleDiscoveryExclusions(client)'));
     expect(
       dexService,
       contains(".inFilter('card_print_id', cardPrintIdChunk)"),

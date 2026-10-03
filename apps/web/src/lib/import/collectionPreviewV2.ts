@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { getJungleEditionResolution } from "../cards/jungleEditionResolution.ts";
 import { field, normalize, number, parseCsv, setName, text, type Normalized, type SourceRow } from "../../../../../supabase/functions/vault-import-collection-v2/source.ts";
 import { collectrSetTargets } from "../../../../../supabase/functions/vault-import-collection-v2/set_scope.ts";
 import { matchesCollectrPokemonName } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_name.ts";
@@ -118,7 +119,18 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
       matchesCollectrMtgIdentity({ sourceName: base.name, sourceNumber: base.number, game: base.game, card, identities: identities.get(card.id) ?? [] })
     ))));
   }
-  const printingIds = [...new Set([...matches.values()].flat().map(card => card.id))].sort();
+  const editionReview = new Map<string, string>();
+  for (const card of cards.filter(card => card.set_code === "base2")) {
+    try {
+      const edition = await getJungleEditionResolution(client, card.id);
+      if (edition.status !== "not_applicable") editionReview.set(card.id, edition.status === "unavailable"
+        ? "Jungle edition choices are being reviewed. Keep this row for review."
+        : "Confirm First Edition or Unlimited on the physical card. Automatic edition import is not available yet.");
+    } catch {
+      editionReview.set(card.id, "Jungle edition choices could not be checked. Retry the preview; this row cannot be imported.");
+    }
+  }
+  const printingIds = [...new Set([...matches.values()].flat().map(card => card.id).filter(id => !editionReview.has(id)))].sort();
   const printings = new Map<string, Printing[]>();
   for (let start = 0; start < printingIds.length; start += 100) {
     const chunk = printingIds.slice(start, start + 100), seen = new Set<string>();
@@ -137,6 +149,12 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
   }
   for (const { row, normalized: base } of valid) {
     let candidates = matches.get(row) ?? [];
+    // Finish matching must never choose an edition for the collector.
+    const editionReason = candidates.map(card => editionReview.get(card.id)).find(Boolean);
+    if (editionReason) {
+      row.reason = editionReason;
+      continue;
+    }
     if (candidates.length > 1 && base!.finishKey !== null) {
       const compatible = candidates.filter(card => !(printings.get(card.id)?.length) || printings.get(card.id)!.some(p => p.finish_key === base!.finishKey));
       if (compatible.length) candidates = compatible;

@@ -38,6 +38,8 @@ const Map<String, String> _variantKeyMap = <String, String>{
 const Map<String, String> _printedIdentityModifierMap = <String, String>{
   'delta_species': 'δ Delta Species',
   'first_edition': 'First Edition',
+  'edition:first_edition': '1st Edition',
+  'edition:unlimited': 'Unlimited',
   'gamestop_stamp': 'GameStop Stamp',
   'league_stamp': 'League Stamp',
   'pikachu_jack_o_lantern_stamp': 'Pikachu Jack-o\'-Lantern Stamp',
@@ -280,6 +282,33 @@ ResolvedDisplayIdentity resolveDisplayIdentityFromFields({
   }
   suffix ??= formatVariantKey(variantKey);
   suffix ??= formatPrintedIdentityModifier(printedIdentityModifier);
+
+  final modifier = _normalizeToken(printedIdentityModifier);
+  final edition = modifier == 'edition:first_edition'
+      ? '1st Edition'
+      : modifier == 'edition:unlimited'
+      ? 'Unlimited'
+      : setCode == 'base2' &&
+            RegExp(r'^([1-9]|[1-5][0-9]|6[0-4])$').hasMatch(number ?? '') &&
+            (variantKey ?? '').trim().isEmpty &&
+            modifier.isEmpty
+      ? 'Edition unconfirmed'
+      : null;
+  if (edition != null) {
+    final finish = searchObjectType == 'child_printing'
+        ? formatFinishLabel(finishKey: finishKey, finishLabel: finishLabel)
+        : null;
+    final context = formatSearchContextLabel(displayDiscriminator);
+    final variant = formatVariantKey(variantKey);
+    suffix = [
+      edition,
+      if (variant != null &&
+          ![edition, 'First Edition', '1st Edition'].contains(variant))
+        variant,
+      ?finish,
+      ?context,
+    ].join(' · ');
+  }
 
   if (suffix == null &&
       _normalizeToken(setIdentityModel) == 'reprint_anthology') {

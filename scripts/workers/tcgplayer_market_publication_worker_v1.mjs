@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
+import { hydrateTcgplayerEditionCandidateV1 } from "../../backend/pricing/tcgplayer_edition_identity_v1.mjs";
 import { TRAINER_KIT_CANDIDATE_COLUMNS_V1, TRAINER_KIT_CANDIDATE_JOINS_V1 } from "../../backend/pricing/tcgplayer_trainer_kit_candidate_evidence_v1.mjs";
 import { readMarketActivationCoverageV1 } from "../../backend/pricing/market_activation_coverage_v1.mjs";
 import { marketSessionConnectionStringV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
@@ -48,11 +49,11 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_10";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
-const MIGRATION_VERSION = "20260728010000";
+const MIGRATION_VERSION = "20261001050000";
 const REQUIRED_PHASES = [
   "prepare_variant_assignments",
   "stage_candidates",
@@ -401,17 +402,19 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${TRAINER_KIT_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v1 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v2 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${TRAINER_KIT_CANDIDATE_JOINS_V1}
        where candidate.card_printing_id = any($1::uuid[])
          and candidate.source_sync_run_id = $2
+         and candidate.source_product_id = any($3::integer[])
        order by candidate.source_product_id,
                 candidate.source_subtype_name,
                 candidate.source_observation_id`,
-      [printingIds, sourceRun.id],
+      [printingIds, sourceRun.id, [...new Set(canaryDefinition.printings.map(printing => Number(printing.source_product_id)))]],
     );
+    result.rows = result.rows.map(hydrateTcgplayerEditionCandidateV1);
     assertCandidateScopeEvidence(result.rows);
     const rowsBySourceKey = new Map();
     for (const row of result.rows) {
@@ -486,7 +489,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${TRAINER_KIT_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v1 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v2 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${TRAINER_KIT_CANDIDATE_JOINS_V1}
@@ -497,6 +500,7 @@ async function candidateRows(client, {
                 candidate.source_observation_id`,
       [sourceRun.id, productIds],
     );
+    result.rows = result.rows.map(hydrateTcgplayerEditionCandidateV1);
     const batch = limit === null ? result.rows : result.rows.slice(0, limit - selectedCount);
     tracker.accept(batch);
     assertCandidateScopeEvidence(batch);
@@ -532,6 +536,7 @@ function buildCandidate(row, runId) {
     source_subtype_name: row.source_subtype_name,
     source_mapping_id: row.source_mapping_id,
     variant_assignment_id: row.variant_assignment_id,
+    edition_assignment_id: row.edition_assignment_id ?? null,
     card_print_id: row.card_print_id,
     card_printing_id: row.card_printing_id,
     candidate_hash: sha256({
@@ -539,6 +544,7 @@ function buildCandidate(row, runId) {
       source_row_hash: row.source_row_hash,
       source_mapping_id: row.source_mapping_id,
       variant_assignment_id: row.variant_assignment_id,
+      edition_assignment_id: row.edition_assignment_id ?? null,
       card_printing_id: row.card_printing_id,
     }),
     candidate_payload: row,
@@ -568,13 +574,17 @@ function buildDecision(candidate, evaluation, run, phaseAttemptId, evaluatedAt) 
     source_price_row_identity: row.source_price_row_identity,
     source_row_hash: row.source_row_hash,
     source_mapping_id: row.source_mapping_id,
-    candidate_mapping_identity: [
+    candidate_mapping_identity: row.edition_assignment_id ? [
+      "tcgplayer_edition", row.source_product_id, row.source_subtype_name,
+      row.edition_binding_id, row.edition_assignment_id, row.card_print_id,
+    ].join(":") : [
       "tcgplayer",
       row.source_product_id,
       row.source_mapping_id ?? "unmapped",
       row.card_print_id ?? "unmapped",
     ].join(":"),
     variant_assignment_id: row.variant_assignment_id,
+    edition_assignment_id: row.edition_assignment_id ?? null,
     variant_assignment_status:
       row.variant_assignment_status ?? row.derived_variant_assignment_status,
     variant_assignment_version: row.variant_assignment_version,
@@ -886,6 +896,7 @@ async function insertCandidates(client, candidates, batchSize) {
            source_subtype_name text,
            source_mapping_id bigint,
            variant_assignment_id uuid,
+           edition_assignment_id uuid,
            card_print_id uuid,
            card_printing_id uuid,
            candidate_hash text,
@@ -903,6 +914,7 @@ async function insertCandidates(client, candidates, batchSize) {
          source_subtype_name,
          source_mapping_id,
          variant_assignment_id,
+         edition_assignment_id,
          card_print_id,
          card_printing_id,
          candidate_hash,
@@ -919,6 +931,7 @@ async function insertCandidates(client, candidates, batchSize) {
          source_subtype_name,
          source_mapping_id,
          variant_assignment_id,
+         edition_assignment_id,
          card_print_id,
          card_printing_id,
          candidate_hash,
@@ -952,6 +965,7 @@ async function insertDecisions(client, decisions, batchSize) {
            source_mapping_id bigint,
            candidate_mapping_identity text,
            variant_assignment_id uuid,
+           edition_assignment_id uuid,
            variant_assignment_status text,
            variant_assignment_version text,
            mapping_method text,
@@ -1000,6 +1014,7 @@ async function insertDecisions(client, decisions, batchSize) {
          source_mapping_id,
          candidate_mapping_identity,
          variant_assignment_id,
+         edition_assignment_id,
          variant_assignment_status,
          variant_assignment_version,
          mapping_method,
@@ -1047,6 +1062,7 @@ async function insertDecisions(client, decisions, batchSize) {
          source_mapping_id,
          candidate_mapping_identity,
          variant_assignment_id,
+         edition_assignment_id,
          variant_assignment_status,
          variant_assignment_version,
          mapping_method,
@@ -1132,6 +1148,7 @@ async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
        source_row_hash,
        source_mapping_id,
        variant_assignment_id,
+       edition_assignment_id,
        source_product_id,
        source_subtype_name,
        source_observed_on,
@@ -1168,6 +1185,7 @@ async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
        decision.source_row_hash,
        decision.source_mapping_id,
        decision.variant_assignment_id,
+       decision.edition_assignment_id,
        decision.source_product_id,
        decision.source_subtype_name,
        decision.source_observed_on,
@@ -1627,7 +1645,13 @@ async function runDurable(client, args, sourceRun, runPlan) {
           `select public.prepare_tcgplayer_market_variant_assignments_v1($1) as inserted_count`,
           [sourceRun.id],
         );
-        const insertedCount = Number(result.rows[0].inserted_count);
+        const editionResult = await client.query(
+          'select public.prepare_tcgplayer_jungle_edition_assignments_v1($1) as inserted_count',
+          [sourceRun.id],
+        );
+        const genericCount = Number(result.rows[0].inserted_count);
+        const editionCount = Number(editionResult.rows[0].inserted_count);
+        const insertedCount = genericCount + editionCount;
         return {
           input_count: insertedCount,
           output_count: insertedCount,
@@ -1635,6 +1659,8 @@ async function runDurable(client, args, sourceRun, runPlan) {
           resumability_data: {
             source_sync_run_id: sourceRun.id,
             inserted_assignment_count: insertedCount,
+            inserted_generic_assignment_count: genericCount,
+            inserted_edition_assignment_count: editionCount,
             idempotent_prepare_no_op: insertedCount === 0,
           },
         };
@@ -1995,7 +2021,11 @@ async function main() {
   }
 }
 
-main().catch(async (error) => {
+// Importing the pipeline for isolated database tests must not start a CLI run.
+// The CLI retains its clean-tree, source-run and production activation guards.
+export { candidateRows, runDryRun, runDurable, latestSourceRun, parseArgs };
+
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) main().catch(async (error) => {
   await persistMtgProductionWorkerFailure(error).catch((artifactError) => {
     process.stderr.write(
       `[tcgplayer-market-publication] guard artifact failure: ${artifactError.message}\n`,

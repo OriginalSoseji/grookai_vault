@@ -1,0 +1,22 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "a02a95cd316a26e0b01eeff614c0d33b20ad334bf420a60a1369fc63880df0fb",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "base2",
+  "scope": "base_release",
+  "reviewer": "Codex source adjudication; not mutation approval",
+  "reviewed_at": "2026-10-01T17:00:53.861Z",
+  "projection_sha256": "d26708bbffbee760a2fa397bb9669252ae90d3fcc2b81ba8a8916bc029095630",
+  "reasoning": [
+    "PSA chart inspected directly:16 holographic entries1–16,16 explicitly non-holographic rares17–32,16 uncommon33–48 and16 common49–64. Its article identifies the Unlimited counterparts and16 holographic cards total.",
+    "All64 newly preserved TCGdex card payloads provide an explicit detailed normal/holo type for the unmarked standard and First Edition entries, matching the reviewed profile. No finish is derived from a missing token, rarity alone, price key or aggregate flag.",
+    "PSA and Bulbapedia establish both edition releases. An absent provider stamp alone does not establish Unlimited; special subtype/stamp rows are excluded.",
+    "Every species number agrees between TCGdex and the independently preserved PokemonTCG dataset.63 Pokemon cards per edition have primary membership; Poké Ball64 has none.",
+    "Provider variantId repeats across cards; reference identity always includes source card ID.",
+    "Electrode18 artwork differs by edition. No images, artist fields or family-level provider IDs are cloned. Nidoran57 retains its female symbol and reviewed spacing difference.",
+    "Existing83 parents,84 children and all dependency fingerprints are retained.256 new UUIDs are proposals with fresh global collision checks; no rows are created.",
+    "This base-release review does not certify all regional/errors or authorize catalog, mapping, ownership or pricing writes. An executor, current-schema integration and release proofs remain."
+  ],
+  "mutation_authority": false
+}

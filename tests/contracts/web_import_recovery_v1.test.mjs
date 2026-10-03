@@ -6,6 +6,15 @@ import {createRequire} from 'node:module';
 const require=createRequire(new URL('../../apps/web/package.json',import.meta.url)),ts=require('typescript');
 const owner='10000000-0000-4000-8000-000000000001',request='20000000-0000-4000-8000-000000000001',card='30000000-0000-4000-8000-000000000001';
 const row=()=>({status:'matched',match:{card_id:card,gv_id:'GV-PK-TEST-1'},row:{quantity:3,condition:'LP',cost:4.25,notes:'fixture'}});
+test('edition review rows survive draft recovery and never become import targets', async () => {
+  const f=fixture(), review={...row(),status:'review',reviewReason:'Confirm First Edition or Unlimited'};
+  const draft=JSON.stringify({version:1,ownerId:owner,requestId:request,rows:[review],fileName:'fixture.csv'});
+  const recovered=f.load('@/lib/import/importAttempt').parseStoredImportAttempt(draft,owner);
+  assert.equal(recovered.rows[0].reviewReason,review.reviewReason);
+  const result=await f.run(recovered.rows);
+  assert.equal(result.ok,true); assert.equal(result.importedCards,0); assert.equal(result.needsManualMatch,1);
+  assert.equal(f.calls.filter(c=>c.name==='admin_import_vault_receipted_v1').length,0);
+});
 function fixture({user=owner,rpcError=false,reply,cacheFailure=false,eventFailure=false}={}){
  const calls=[],cache=[];let payload;const client={auth:{getUser:async()=>({data:{user:user?{id:user}:null},error:null})},rpc:async(name,args)=>{calls.push({name,args});if(name==='card_events_emit_vault_import_summary_v1'){if(eventFailure)throw Error('event down');return {data:null,error:null};}payload=args;return rpcError?{data:null,error:{code:'FETCH_ERROR'}}:{data:reply??{success:true,requestId:args.p_request_id,importedCards:3,importedEntries:1,targets:[{cardPrintId:card,expectedCount:3}]},error:null};}};
  const modules=new Map();function load(name){if(name==='server-only')return{};if(name==='next/cache')return{revalidatePath:p=>{cache.push(p);if(cacheFailure)throw Error('cache down');}};if(name==='@/lib/supabase/admin')return{createServerAdminClient:()=>client};if(name==='@/lib/supabase/server')return{createServerComponentClient:async()=>client};if(name.startsWith('node:'))return require(name);if(modules.has(name))return modules.get(name).exports;assert.ok(name.startsWith('@/'));const module={exports:{}};modules.set(name,module);const source=fs.readFileSync(new URL('../../apps/web/src/'+name.slice(2)+'.ts',import.meta.url),'utf8');const compiled=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText;vm.runInNewContext(compiled,{module,exports:module.exports,require:load,console,TextEncoder,Map,Set});return module.exports;}

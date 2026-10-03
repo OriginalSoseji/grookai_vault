@@ -6,6 +6,7 @@ import '../../utils/vault_printing_identity.dart';
 import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 import 'owned_copy_read_service.dart';
+import '../public/jungle_edition_resolution_service.dart';
 
 class _InterestGraphCompletionSnapshot {
   const _InterestGraphCompletionSnapshot({
@@ -1010,14 +1011,17 @@ class VaultCardService {
 
     const pageSize = 1000;
     final cardPrintIds = <String>{};
+    var hasJungle = false;
     for (var offset = 0; ; offset += pageSize) {
       final parentRows = await client
           .from('card_prints')
-          .select('id')
+          .select('id,set_code')
           .eq('set_id', normalizedSetId)
           .order('id', ascending: true)
           .range(offset, offset + pageSize - 1);
       final rows = parentRows as List<dynamic>;
+      hasJungle =
+          hasJungle || rows.any((row) => (row as Map)['set_code'] == 'base2');
       cardPrintIds.addAll(
         rows
             .map((raw) => _trimmedOrNull((raw as Map)['id']))
@@ -1035,8 +1039,14 @@ class VaultCardService {
     }
 
     final options = <VaultSetCompletionOption>[];
+    final exclusions = hasJungle
+        ? await getJungleDiscoveryExclusions(client)
+        : <String>{};
+    final discoveryIds = cardPrintIds
+        .where((id) => !exclusions.contains(id))
+        .toSet();
     final printingIdsByCardPrintId = <String, Set<String>>{};
-    for (final chunk in _idChunks(cardPrintIds)) {
+    for (final chunk in _idChunks(discoveryIds)) {
       for (var offset = 0; ; offset += pageSize) {
         final printingRows = await client
             .from('card_printings')
@@ -1061,7 +1071,7 @@ class VaultCardService {
         }
       }
     }
-    for (final cardPrintId in cardPrintIds) {
+    for (final cardPrintId in discoveryIds) {
       final printingIds = printingIdsByCardPrintId[cardPrintId];
       if (printingIds == null || printingIds.isEmpty) {
         options.add(VaultSetCompletionOption(cardPrintId: cardPrintId));
@@ -1244,6 +1254,10 @@ class VaultCardService {
     String? cardPrintingId,
   }) async {
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
+    (await getJungleEditionResolution(
+      client,
+      cardId,
+    )).assertSelection(cardId, cardPrintingId);
     debugPrint('vault.mobile.add.begin: $cardId');
     final completionBefore = await _fetchInterestGraphCompletionSnapshot(
       client: client,
@@ -1252,22 +1266,31 @@ class VaultCardService {
       cardPrintingId: cardPrintingId,
     );
 
-    final response = await client.functions.invoke(
-      'vault-add-card-instance-v1',
-      body: {
-        'card_print_id': cardId,
-        'quantity': qtyDelta,
-        'condition_label': conditionLabel,
-        'notes': notes,
-        'name': fallbackName,
-        'set_name': fallbackSetName,
-        'photo_url': fallbackImageUrl,
-        if (_trimmedOrNull(cardPrintingId) != null)
-          'card_printing_id': _trimmedOrNull(cardPrintingId),
-      },
-    );
+    late final FunctionResponse response;
+    try {
+      response = await client.functions.invoke(
+        'vault-add-card-instance-v1',
+        body: {
+          'card_print_id': cardId,
+          'quantity': qtyDelta,
+          'condition_label': conditionLabel,
+          'notes': notes,
+          'name': fallbackName,
+          'set_name': fallbackSetName,
+          'photo_url': fallbackImageUrl,
+          if (_trimmedOrNull(cardPrintingId) != null)
+            'card_printing_id': _trimmedOrNull(cardPrintingId),
+        },
+      );
+    } on FunctionException catch (error) {
+      final message = jungleEditionFailureMessage(error.details);
+      if (message != null) throw JungleEditionWriteFailure(message);
+      rethrow;
+    }
 
     if (response.status < 200 || response.status >= 300) {
+      final message = jungleEditionFailureMessage(response.data);
+      if (message != null) throw JungleEditionWriteFailure(message);
       throw Exception('Vault add failed.');
     }
 
@@ -1384,6 +1407,7 @@ class VaultCardService {
       return const <String, _InterestGraphCompletionSnapshot>{};
     }
     final cardPrintIdsBySpeciesId = <String, Set<String>>{};
+    final discoveryExclusions = await getJungleDiscoveryExclusions(client);
     for (final chunk in _idChunks(normalizedSpeciesIds)) {
       for (var offset = 0; ; offset += 1000) {
         final mappingRows = await client
@@ -1400,7 +1424,9 @@ class VaultCardService {
           final row = raw as Map;
           final speciesId = _trimmedOrNull(row['species_id']);
           final mappedCardPrintId = _trimmedOrNull(row['card_print_id']);
-          if (speciesId != null && mappedCardPrintId != null) {
+          if (speciesId != null &&
+              mappedCardPrintId != null &&
+              !discoveryExclusions.contains(mappedCardPrintId)) {
             (cardPrintIdsBySpeciesId[speciesId] ??= <String>{}).add(
               mappedCardPrintId,
             );
