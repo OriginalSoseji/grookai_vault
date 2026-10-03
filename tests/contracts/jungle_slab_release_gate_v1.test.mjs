@@ -6,7 +6,7 @@ const script=fs.readFileSync(root+'scripts/schema/audit_jungle_edition_baseline_
 // Exercise the actual source-comparison section with hermetic baseline fixtures.
 // Private operator replay receipts are tested by the separate release gate,
 // never fabricated here or required from a hosted CI filesystem.
-const sourceGate=s=>s.slice(s.indexOf('const sourceHashes='),s.indexOf('const stagedBytes='));
+const sourceGate=s=>s.slice(s.indexOf('const sourceHashes='),Math.min(...['const stagedBytes=','const local='].map(marker=>s.indexOf(marker)).filter(index=>index>=0)));
 const pending=JSON.parse(script.match(/const pending=(\[[^\n]+\]);/)[1].replaceAll("'",'"'));
 const fixtureNames=JSON.parse(fs.readFileSync(root+'tests/fixtures/jungle_source_gate_migrations_v1.json','utf8')).migrations;
 assert.equal(fixtureNames.length,423);
@@ -15,12 +15,12 @@ const fixtureReadDir=()=>[...fixtureNames];
 const receiptMigration='20261002220000_vendor_receipt_cloud_v1.sql';
 const historicalReadDir=()=>fixtureReadDir().filter(n=>n!==receiptMigration);
 const sha=b=>createHash('sha256').update(b).digest('hex');
-const execute=(source,integrated,overrides={})=>{
+const execute=(source,integrated,overrides={},expectedPending=pending)=>{
  const base='/synthetic-jungle-baseline';
  const names=fixtureReadDir().filter(n=>!pending.includes(n)&&(integrated||n!==receiptMigration));
  const freeze={sourceHashes:Object.fromEntries(names.map(n=>[n,sha(fs.readFileSync(root+'supabase/migrations/'+n))]))};
  const readFileSync=p=>(overrides.readFileSync??fs.readFileSync)(String(p).replace(base+'/',root));
- return vm.runInNewContext('const pending='+JSON.stringify(pending)+';\n'+sourceGate(source),{root,base,freeze,sha,assert,fs:{readdirSync:overrides.readdirSync??(integrated?fixtureReadDir:historicalReadDir),readFileSync}});
+ return vm.runInNewContext('const pending='+JSON.stringify(expectedPending)+';\n'+sourceGate(source),{root,base,freeze,sha,assert,fs:{readdirSync:overrides.readdirSync??(integrated?fixtureReadDir:historicalReadDir),readFileSync}});
 };
 const run=overrides=>execute(script,false,overrides);
 test('historical422 source matches a hermetic414 baseline fixture',()=>run({}));
@@ -43,6 +43,8 @@ for(const [name,args]of [
  assert.ifError(r.error);assert.notEqual(r.status,0);assert.match(r.stderr+r.stdout,/Jungle slab baseline is read-only/);
 });
 test('historical seven-file route still rejects the eighth migration',()=>{
- const r=spawnSync(process.execPath,['--use-system-ca',root+'scripts/schema/audit_jungle_edition_baseline_v8.mjs'],{encoding:'utf8',windowsHide:true,timeout:15000});
- assert.ifError(r.error);assert.notEqual(r.status,0);assert.match(r.stderr+r.stdout,/AssertionError/);
+ const historical=fs.readFileSync(root+'scripts/schema/audit_jungle_edition_baseline_v8.mjs','utf8');
+ const seven=JSON.parse(historical.match(/const pending=(\[[^\n]+\]);/)[1].replaceAll("'",'"'));
+ assert.equal(seven.length,7);
+ assert.throws(()=>execute(historical,false,{},seven),/20261002010000_jungle_slab_atomic_intake_v1/);
 });
