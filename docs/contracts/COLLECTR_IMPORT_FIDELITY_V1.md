@@ -253,6 +253,22 @@ This control is web-only. Native preview behavior is unchanged. Qualification
 uses synthetic Auth/HTTP/browser/SQL fixtures and private offline export replay;
 it is not a completed real collection import or physical-device verification.
 
+### Web review workspace
+
+Preview search and review-task filters are local presentation controls. They
+must not modify matching, source rows, saved targets, or uncertain-attempt
+recovery. Save always uses all selected preview rows, independent of filtering
+and pagination. Task counts count original source rows, including grouped rows;
+each unresolved entry has one primary task and retains its complete reason.
+
+The review CSV download contains every unresolved original row in source order,
+with original field values, regardless of visible filters or page size. Manual
+selection removes that row from the download; undo restores it. Validate complete,
+unique source-index coverage and original-field agreement before exporting; reject
+incomplete evidence instead of silently producing a partial file. This download
+does not grant catalog identity or grade/certificate authority. Retry uncertain
+saves with the retained original attempt, never a newly downloaded subset.
+
 ### Atomic source and ownership retention
 
 `vault-import-collection-v2` parses the original CSV and derives quantity,

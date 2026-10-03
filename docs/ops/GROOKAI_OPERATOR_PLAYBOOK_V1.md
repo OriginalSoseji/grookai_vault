@@ -88,6 +88,16 @@ reset populated fixtures to recover connectivity.
 
 ## Web-first Collectr importer — October 1
 
+PR581 artwork matching is released. The next local web-only review workspace is
+`feature/collectr-review-workspace-20261003` in the same isolated checkout, based
+on main7a53b16a1 with415 migrations. Read
+`docs/checkpoints/collectr_review_workspace_20261003.md`. Private evidence lives
+under `collectr_review_workspace_20261003`. `GV_COLLECTR_WORKSPACE_HTTP_PROOF=1`
+extends the retained410 lab with complete-download, review filtering, pagination
+and filtered-save coverage, plus earlier importer journeys. Preserve all lab data
+and release intents. Downloads retain all unresolved original rows; view filters
+never change saved targets. This batch adds no matcher, schema or native changes.
+
 PR579 named finishes is released on the website; its private FINAL.json is
 terminal. The next local artwork-label candidate reuses the clean checkout on
 `feature/collectr-art-labels-20261002`, based on main6363e12ee. Read
