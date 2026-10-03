@@ -8,19 +8,23 @@ const script=fs.readFileSync(root+'scripts/schema/audit_jungle_edition_baseline_
 // never fabricated here or required from a hosted CI filesystem.
 const sourceGate=s=>s.slice(s.indexOf('const sourceHashes='),s.indexOf('const stagedBytes='));
 const pending=JSON.parse(script.match(/const pending=(\[[^\n]+\]);/)[1].replaceAll("'",'"'));
+const fixtureNames=JSON.parse(fs.readFileSync(root+'tests/fixtures/jungle_source_gate_migrations_v1.json','utf8')).migrations;
+assert.equal(fixtureNames.length,423);
+assert.equal(new Set(fixtureNames).size,423);
+const fixtureReadDir=()=>[...fixtureNames];
 const receiptMigration='20261002220000_vendor_receipt_cloud_v1.sql';
-const historicalReadDir=p=>fs.readdirSync(p).filter(n=>n!==receiptMigration);
+const historicalReadDir=()=>fixtureReadDir().filter(n=>n!==receiptMigration);
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const execute=(source,integrated,overrides={})=>{
  const base='/synthetic-jungle-baseline';
- const names=fs.readdirSync(root+'supabase/migrations').filter(n=>n.endsWith('.sql')&&!pending.includes(n)&&(integrated||n!==receiptMigration));
+ const names=fixtureReadDir().filter(n=>!pending.includes(n)&&(integrated||n!==receiptMigration));
  const freeze={sourceHashes:Object.fromEntries(names.map(n=>[n,sha(fs.readFileSync(root+'supabase/migrations/'+n))]))};
  const readFileSync=p=>(overrides.readFileSync??fs.readFileSync)(String(p).replace(base+'/',root));
- return vm.runInNewContext('const pending='+JSON.stringify(pending)+';\n'+sourceGate(source),{root,base,freeze,sha,assert,fs:{readdirSync:overrides.readdirSync??(integrated?fs.readdirSync:historicalReadDir),readFileSync}});
+ return vm.runInNewContext('const pending='+JSON.stringify(pending)+';\n'+sourceGate(source),{root,base,freeze,sha,assert,fs:{readdirSync:overrides.readdirSync??(integrated?fixtureReadDir:historicalReadDir),readFileSync}});
 };
 const run=overrides=>execute(script,false,overrides);
 test('historical422 source matches a hermetic414 baseline fixture',()=>run({}));
-test('historical422 gate rejects integrated423 source before any connection',()=>assert.throws(()=>run({readdirSync:fs.readdirSync}),/20261002220000_vendor_receipt_cloud_v1/));
+test('historical422 gate rejects integrated423 source before any connection',()=>assert.throws(()=>run({readdirSync:fixtureReadDir}),/20261002220000_vendor_receipt_cloud_v1/));
 test('integrated423 source matches a hermetic415 baseline fixture',()=>{
  const current=fs.readFileSync(root+'scripts/schema/audit_jungle_edition_baseline_v10.mjs','utf8');
  execute(current,true);
