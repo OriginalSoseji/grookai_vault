@@ -2,6 +2,7 @@ import "server-only";
 
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import { parseCardAddOptions } from "@/lib/vault/cardAddOptions";
+import { assertJungleEditionSelection, getJungleEditionResolution } from "@/lib/cards/jungleEditionResolution";
 
 import type { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
 import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
@@ -106,6 +107,8 @@ export async function addCardToVault({
     throw new Error("GVVI create failed: missing cardPrintId.");
   }
   const normalizedCardPrintingId = cardPrintingId?.trim() || null;
+  assertJungleEditionSelection(await getJungleEditionResolution(client, normalizedCardPrintId),
+    normalizedCardPrintId, normalizedCardPrintingId);
 
   return executeOwnerWriteV1({
     execution_name: "add_card_to_vault",

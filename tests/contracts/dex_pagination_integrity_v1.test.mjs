@@ -65,7 +65,8 @@ test("Dex and child-image reads apply stable paging to every unbounded row set",
   );
 
   assert.match(detailSource, /chunkValues\(cardPrintIds, SUPABASE_IN_FILTER_CHUNK_SIZE\)/);
-  assert.match(detailSource, /getPublicCardPrintingOptions\(admin, cardPrintIds\)/);
+  assert.match(detailSource, /discoveryCardPrintIds = cardPrintIds\.filter\(\(id\) => !exclusions\.has\(id\)\)/);
+  assert.match(detailSource, /getPublicCardPrintingOptions\(admin, discoveryCardPrintIds\)/);
   assert.match(printingOptionsSource, /MAX_IDS_PER_REQUEST = 250/);
   assert.match(printingOptionsSource, /PAGE_SIZE = 1000/);
   assert.match(printingOptionsSource, /p_offset: offset/);

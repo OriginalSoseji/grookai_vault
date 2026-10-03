@@ -1,5 +1,56 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Jungle release qualification V32 — October3
+
+Main b066c1164 (Collectr review workspace, receipt-sale flow and language indexes)
+is integrated. PrePush correctly refused the earlier source when this main landed;
+V31 commit9960fec and its bundle/proofs remain preserved. The rebased candidate
+is fce2dc8e5. Production is415; the exact eight unchanged Jungle SQL files lead
+to423. Receipt cloud is already live and must not be replayed.
+
+Separate catalog V3 accepts423 only and fixed isolated53600/10.248.23 rehearsal,
+retaining V2 guards unchanged.24 rollback checks preserve all332 public tables,
+five synthetic saved copies and a populated receipt book. Actual639-row commit,
+observed competing lock wait/safe40001 rejection, zero-insert retry and independent
+readback pass.128 identity links remain STAGED; bindings/publication remain empty.
+full-423-v31 is now POPULATED; never reset or reseed it. The large populated V30
+lab53400 remains untouched at423 with164804 snapshots.
+
+Refresh V2 uses a fresh415 production capture. Original83 parents/84 children,
+151 species and84 FK definitions are unchanged. All historical dependency bytes
+remain intact. Exactly252 new rows in each of three pricing tables are bound to
+the verified October2/3 runs. Exactly272 rows in each of two reference tables are
+hash-pinned, linked and non-publishing; no missing acquisition-run provenance is
+invented.42 hostile-evidence checks pass. Source review V2 validates128/128 quotes
+against actual October3 source244bc6f7-bb9f-4b6d-a154-246393c61b8e. The previous
+208279-decision durable worker proof remains historical October2 evidence; worker,
+publication policy, physical manifest and eight SQL bodies are unchanged.
+
+JungleReleaseV32 accepts only AuditLinkedSchema/PrePush with the exact eight IDs;
+PrePush requires clean committed current-main source, its normal hook receipt,
+qualified source/proof hashes, fresh live415 schema, and actual423 schema/readback
+of both preserved labs. It never applies SQL. prepare_jungle_cli_v32 supports only
+prepare/dry-run, always read-only, with include-all for the tested backdated IDs.
+V4 review packages the exact pending files,639 staged rows and128 reviewed bindings.
+The external recovery checkpoint records actual hook/PrePush/dry-run outcomes.
+
+Production catalog mutation still requires a fresh actual423 plan, exact bounded
+authority and same-plan production rollback. Binding activation, governed pricing
+publication and deployed client readback remain separate. Existing-copy correction
+stays later opt-in; slab OFF. No production write or Jungle price publication yet.
+
+
+## Jungle receipt baseline V10 (2026-10-03)
+
+JungleReceiptBaselineAudit permits AuditLinkedSchema only for fixed production415,
+the qualified PR582 full415 replay and exactly eight unchanged pending Jungle
+files to423. PrePush, combined modes and custom targets/IDs reject before SQL.
+It does not extend old414 audit or apply authority. Fresh423 CLI replay/no-op push
+and populated422-to423 CLI upgrade converge with1,147 security objects, preserving
+all330 old public-table digests/five copies/164,804 price snapshots. Do not reset
+the populated V30 lab or reapply the independently completed receipt migration.
+A423-specific production apply gate remains separate qualification work.
+
 
 ## Account receipt cloud qualification (2026-10-02)
 
@@ -14,6 +65,51 @@ prepare_receipt_cloud_v1.mjs only prepares a source-bound CLI inspection package
 and dry-run. Actual application requires a fresh consumed intent and independent
 ledger/schema/privilege/data-boundary readback. Never reset populated V1/V2/V3 labs.
 
+## Jungle422 local replay qualification (2026-10-02)
+
+V25 fresh full422 CLI start/reset/no-op push passes and converges exactly with
+the preserved retained421-to422 upgrade (public schema and1,141 security objects).
+Fresh runtime inspection preserves all329 existing table digests and two copies.
+V24's Windows-reserved port rejected before fixture creation; V25 is a separate
+one-use project at53200/internal10.248.19.0/24. Preserve every consumed intent.
+Read-only production414 baseline remains matched with exactly eight pending
+files. These local proofs do not expand PrePush or authorize production apply.
+Real Auth/HTTP/concurrency and bounded release authority remain required.
+
+## Jungle slab baseline audit V9 (2026-10-01)
+
+JungleSlabBaselineAudit allows AuditLinkedSchema only against fixed production414
+and the qualified PR572 replay. Exactly eight pending files/422 unique versions
+are allowed; every pending body is pinned to V23 immutable source evidence.
+All414 applied files must match the replay freeze. PrePush, custom target/deps,
+custom expected IDs and mixed scopes reject before connection. Historical V8
+remains seven-file scoped and must reject422. This read-only mode is not apply
+authority. Retained421-to422 CLI/no-op push and exact schema boundary pass with
+the original414 saved fixture unchanged. Fresh full422 replay/parity still needs
+the local10GiB capacity prerequisite; no empty-lab reset intent was consumed.
+
+## Jungle slab candidate422 (2026-10-01)
+
+The additive20261002010000 atomic slab migration is the eighth pending file over
+live414. Read-only seven-file baseline passed before drafting it. Historical
+JungleEditionSearchBaselineAudit intentionally rejects the new scope; no422
+PrePush/apply gate is qualified. Keep earlier421 CLI receipts and all seven SQL
+bodies unchanged. Rollback-only DDL tests on retained419 do not qualify a full422
+replay, retained upgrade or deployment. A new bounded audit/release scope and
+fresh CLI proof are required before production application.
+
+## Jungle integration over live414 (2026-10-01)
+
+JungleEditionSearchBaselineAudit is strictly READ ONLY AuditLinkedSchema against
+the hash-qualified414 PR572 replay and fresh production metadata. Exactly seven
+Jungle files may be pending, through20261001224000. Duplicate versions reject.
+PrePush and combined flags reject before inspection. This does not claim a live
+retained-runtime inspection or authorize applying a421 candidate. Renumbered
+unapplied artifact-date SQL20261001211000 preserves its original body; applied
+20261001210000 belongs to search V5. Prior419 fixtures/ledgers stay untouched.
+New v19 full421/retained414-to421 CLI proof is still required; Docker API timeout
+must not be bypassed by relabeling old receipts or editing migration history.
+
 ## Bounded name search qualification (2026-10-01)
 
 SearchNamePlanV1 permits AuditLinkedSchema/PrePush for only 20261001210000
@@ -27,6 +123,108 @@ The only new SQL object is the bounded V5 read function; V4 is unchanged.
 Use prepare_search_name_plan_v1.mjs for the sole-pending CLI inspection package.
 Application needs a fresh intent, CLI apply and independent schema/data readback.
 Never reset populated labs or replay consumed intents.
+## Jungle actual-source baseline (2026-10-01)
+
+JungleEditionSourceBaselineAudit permits only AuditLinkedSchema and compares live
+413 against the retained qualified413 replay. Exactly foundation,reader integration,
+current-artifact date,artifact-date lineage,scoped lineage andresolved readiness
+may be pending. PrePush/combined flags reject. The old alias and412/411 modes keep
+their prior scope. The complete local sequence through419 and populated415-to419
+upgrades converge; prior bytes/rows are preserved. This is not a production apply
+gate. Read the current Jungle operator note before using any retained fixture.
+
+## Jungle edition baseline (2026-10-01)
+
+Current V17: production413 independently includes20261001190000 reviewed mapping
+price quarantine. Preserve that exact applied file. New20261001203000 combines
+both overlapping price-reader protections and the exact #64 source-name alias.
+Full415 replay and retained413-to415 upgrade converge with unchanged fixture rows.
+JungleEditionAliasBaselineAudit compares the qualified mapping-pricing413 replay
+to production, allowing only the two pending Jungle files. AuditLinkedSchema only;
+PrePush/mixed switches reject. Older baseline routes reject newer production.
+No production apply gate exists yet for415; normal release qualification remains.
+
+V16 now integrates main bc4b80629 and qualifies combined413 full replay plus
+retained412-to413 upgrade with zero schema/security diff and unchanged copies.
+The pending Jungle file and the applied search migration are unchanged. The
+backdated pending Jungle timestamp is tested with isolated CLI include-all;
+it is never manually inserted into the registry. Production remains412.
+
+JungleEditionBaseline412Audit permits only fixed read-only AuditLinkedSchema,
+comparing all412 applied source hashes and schema/security against the retained
+qualified search412 replay. Duplicate timestamp/object checks remain. Only the
+Jungle candidate is permitted beyond that baseline. PrePush, target overrides
+and combined scopes fail closed. The separate old411 audit remains unchanged
+and rejects the newer state. Both modes have zero production apply authority.
+See the V16 operator section for frozen source, new labs and runtime proofs.
+
+Production advanced independently to412 on October1 through PR568 and migration
+20261001150000_search_database_latency_v1. Jungle's new tables are still absent.
+The reviewed canonical preparation uses a fresh read-only412 snapshot. The source
+now includes the newer search release and combined413 local qualification;
+production deployment still needs the release gate. The fixed411 baseline route
+must reject this drift. No catalog manifest validation grants schema apply rights.
+
+Historical V15 qualifies the source-selector paging fix at642xx/643xx in internal
+networks10.248.0.0/24 and10.248.1.0/24. SHA256
+`8f999fe06e70c73e45c27ea573213e4a6c0bce4e6210ffe69696edb77e330c93`
+is pinned by baseline-411-1790868839327. Full replay and retained-copy upgrade
+PASS, preserving all18,817 V14 metadata rows except the private candidate view
+body. Production read-only full-source parity passes with empty edition relations;
+this is not schema apply or populated publication authority. Preserve the V14
+query timeout, V15 pre-fixture subnet rejection, and every earlier lab/intention.
+
+Historical V14 publication integration was qualified in fresh V14 full/upgrade labs
+at640xx/641xx, networks10.249.77.0/24 and10.249.89.0/24. Migration SHA256
+`a5084781b0fb9f921685f7a6ac87db10b416532bfc494b829c3b0dddc7e0a473` is pinned by
+read-only baseline-411-1790865616947. Replay and retained-copy upgrade PASS.
+The explicit schema boundary preserves18,730 prior metadata rows, accounting
+only for the reviewed current-price predicates, snapshot lane constraint changes
+and new edition column entries. No historical migration changed. V13's snapshot
+lineage alias failure is retained with diagnostics; V14 corrects the alias.
+Never reset retained fixtures or replay consumed intents. This local qualification
+does not authorize production apply. Schema precedes V1_10 worker/client release.
+
+Historical qualification below describes earlier bytes, not the current candidate.
+The immutable assignment extension uses fresh V12 full/upgrade fixtures at
+636xx/637xx, internal networks10.249.29.0/24 and10.249.41.0/24. The prior V10
+bytes no longer qualify the candidate. V11 full replay passed but assignment
+proof caught missing raw-payload binding; retain that rolled-back attempt and
+populated foundation. V12 adds only a private assignment ledger, two readers,
+two functions and supporting metadata. All18,676 prior V10 metadata rows are
+unchanged. See the Jungle operator note for final replay/upgrade/test receipts.
+Assignment preparation is not publication or production apply authority.
+
+The search/server-completion extension now qualifies412 in V10 fresh632xx/633xx
+fixtures with100 SQL/role and24 real HTTP checks. Two read-only security-invoker
+discovery views are additive; six further reader overloads change only reviewed
+discovery predicates. Existing security metadata and all other reader bodies are
+preserved. V6 no longer qualifies the current migration bytes. Retain V7/V8
+failed rehearsal intents and V9 superseded replay/upgrade unchanged. See the
+Jungle operator note for exact hashes, failure history and deployment order.
+
+The set-discovery extension qualifies revised412 bytes in V6 fresh624xx/625xx
+fixtures, with79 SQL/role and12 real HTTP checks. V4 and the superseded V5 full
+replay remain historical evidence and must not be reset. Only the two public
+set-count reader definitions change; existing direct/owned readers and security
+metadata remain intact. See the Jungle operator note for current hashes and
+remaining discovery callers. This local proof grants no production apply authority.
+
+`JungleEditionBaselineAudit` permits only the fixed read-only AuditLinkedSchema
+comparison in the isolated Jungle worktree. It verifies all411 applied migration
+hashes against the retained qualified Cosmos411 replay, fresh production ledger
+and schema/security parity, and unchanged duplicate timestamp/object checks.
+It permits only the candidate `20261001050000_jungle_edition_foundation_v1.sql`
+in addition to that baseline. PrePush, combined modes and overrides are rejected.
+No production apply authority is granted. Separate one-use full412 replay and
+retained411-to412 upgrade fixtures qualify the candidate locally; revisionV2
+uses fresh fixtures rather than rewriting historicalV1 migration copies or
+replaying populated labs. See `JUNGLE_EDITION_PRICING_V1.md` and the external
+worker recovery checkpoint for the current source hashes and qualification.
+The consumer extension still uses this unapplied sole-pending migration; V4
+fresh620xx/621xx qualification supersedes V1/V2/V3 bytes. It adds a public bounded
+catalog resolver and intake guards without altering existing read definitions.
+Retain every populated earlier lab and consumed reset intent as history.
 
 ## Search database latency qualification (2026-10-01)
 

@@ -566,7 +566,13 @@ class CardPrintRepository {
     required int searchLimit,
   }) async {
     final trimmed = options.query.trim();
-    var request = client.from('card_prints').select(_publicCardPrintSelect);
+    var request = client
+        .from(
+          trimmed.toUpperCase().startsWith('GV-PK-')
+              ? 'card_prints'
+              : 'v_card_prints_discovery_v1',
+        )
+        .select(_publicCardPrintSelect);
     if (trimmed.toUpperCase().startsWith('GV-PK-')) {
       request = request.ilike('gv_id', trimmed);
     } else if (trimmed.isNotEmpty) {
@@ -794,7 +800,7 @@ class CardPrintRepository {
         return const <CardPrint>[];
       }
       final List<dynamic> data = await client
-          .from('card_prints')
+          .from('v_card_prints_discovery_v1')
           .select(_cardPrintSelect)
           .eq('game_id', gameId)
           .order(options.sort, ascending: true)
@@ -1016,7 +1022,7 @@ class CardPrintRepository {
           final relaxedPattern = '%$first%';
 
           final List<dynamic> data2 = await client
-              .from('card_prints')
+              .from('v_card_prints_discovery_v1')
               .select(_cardPrintSelect)
               .eq('game_id', gameId)
               .ilike('name', relaxedPattern)
@@ -1291,7 +1297,7 @@ class CardPrintRepository {
   }) {
     final fullSetNumber = _escapePostgrestLikePattern('$setCode-$pad3');
     return client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
         .ilike('set_code', _escapePostgrestLikePattern(setCode))
@@ -1310,7 +1316,7 @@ class CardPrintRepository {
     required String sort,
   }) {
     return client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
         .ilike('set_code', _escapePostgrestLikePattern(setCode))
@@ -1325,7 +1331,7 @@ class CardPrintRepository {
     bool exactCollectorToken = false,
   }) {
     return client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
         .or(
@@ -1346,7 +1352,7 @@ class CardPrintRepository {
     bool exactCollectorToken = false,
   }) {
     return client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
         .ilike('name', namePattern)
@@ -1366,7 +1372,7 @@ class CardPrintRepository {
     required String sort,
   }) {
     return client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
         .ilike('set_code', _escapePostgrestLikePattern(setCode))
@@ -1381,7 +1387,7 @@ class CardPrintRepository {
     required String sort,
   }) {
     return client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .eq('game_id', gameId)
         .ilike('name', namePattern)
@@ -1453,7 +1459,7 @@ class CardPrintRepository {
 
     for (final name in popularNames) {
       final List<dynamic> data = await client
-          .from('card_prints')
+          .from('v_card_prints_discovery_v1')
           .select(_cardPrintSelect)
           .ilike('name', '%$name%')
           .order('name', ascending: true)
@@ -1507,7 +1513,7 @@ class CardPrintRepository {
     }
 
     final data = await client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .ilike('name', '%$trimmed%')
         .order('name', ascending: true)
@@ -1527,7 +1533,7 @@ class CardPrintRepository {
     }
 
     final data = await client
-        .from('card_prints')
+        .from('v_card_prints_discovery_v1')
         .select(_cardPrintSelect)
         .eq('set_code', normalizedSetCode)
         .order('name', ascending: true)

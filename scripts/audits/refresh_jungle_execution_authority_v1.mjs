@@ -1,0 +1,12 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+import {assertJungleExecutionRefreshV1,JUNGLE_EXECUTION_REFRESH_V1} from '../../backend/catalog/jungle_edition_execution_refresh_v1.mjs';
+import {printingManifestHash as hash} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
+import {reviewJungleEditionSourcesV1} from '../../backend/pricing/jungle_edition_source_review_v1.mjs';
+const args=new Map();for(const a of process.argv.slice(2)){const m=/^--(artifact-map|snapshot|delta|out)=(.+)$/.exec(a);assert.ok(m&&!args.has(m[1]));args.set(m[1],path.resolve(m[2]));}assert.equal(args.size,4);
+const read=p=>JSON.parse(fs.readFileSync(p)),sha=b=>createHash('sha256').update(b).digest('hex');
+const manifest=read(new URL('../../docs/catalog/master_printing_authority_v1/jungle_editions/manifest.json',import.meta.url)),map=args.get('artifact-map');const artifacts=new Map(read(map).map(e=>[e.ref,fs.readFileSync(path.resolve(path.dirname(map),e.path))]));
+const snapshotBytes=fs.readFileSync(args.get('snapshot')),snapshot=JSON.parse(snapshotBytes),deltaBytes=fs.readFileSync(args.get('delta')),delta=JSON.parse(deltaBytes),old=JSON.parse(String(artifacts.get('jungle:production-snapshot')));
+const refresh={version:JUNGLE_EXECUTION_REFRESH_V1,manifestFingerprint:manifest.fingerprint,originalSnapshotHash:hash(old),snapshot,delta};const result=assertJungleExecutionRefreshV1(manifest,artifacts,refresh);
+const artifactBytes=new Map(snapshot.capturedArtifacts.map(a=>{assert.equal(a.file,path.basename(a.file));const b=fs.readFileSync(path.join(path.dirname(args.get('snapshot')),a.file));assert.equal(sha(b),a.sha256);return[a.id,b];}));
+const review=reviewJungleEditionSourcesV1({manifest,snapshot,artifactBytes,asOf:new Date().toISOString()});assert.equal(review.summary.compatible,128);assert.equal(review.summary.held,0);
+const out=args.get('out');fs.mkdirSync(out);const save=(n,v)=>fs.writeFileSync(out+'/'+n,JSON.stringify(v,null,2),{flag:'wx'});save('execution-refresh.json',refresh);save('pricing-review.json',{...review,snapshot_sha256:sha(snapshotBytes)});save('receipt.json',{...result,at:new Date().toISOString(),status:'passed',snapshotSha256:sha(snapshotBytes),deltaSha256:sha(deltaBytes),summary:review.summary,sourceSha256:sha(fs.readFileSync(new URL(import.meta.url)))});console.log(JSON.stringify({...result,summary:review.summary,out}));

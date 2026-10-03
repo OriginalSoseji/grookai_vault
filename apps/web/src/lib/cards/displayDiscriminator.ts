@@ -5,6 +5,8 @@ export type CardPrintDisplayDiscriminatorInput = {
   finishLabel?: string | null;
   hasDuplicateCaption?: boolean;
   fallbackIndex?: number;
+  setCode?: string | null;
+  number?: string | null;
 };
 
 export type CardPrintDisplayDiscriminator = {
@@ -87,6 +89,7 @@ const PRINTED_IDENTITY_MODIFIER_LABELS: Record<string, string> = {
   winner_stamp: "Winner Stamp",
   wotc_stamp: "WOTC Stamp",
   "edition:first_edition": "1st Edition",
+  "edition:unlimited": "Unlimited",
   "recognized_error:black_flame": "Black Flame Error",
   "recognized_error:corrected_text": "Corrected Text Variant",
   "recognized_error:d_fending": "D. Fending Error",
@@ -198,6 +201,13 @@ export function getPrintedIdentityModifierDisplayLabel(value?: string | null) {
 export function getCardPrintDisplayDiscriminator(
   input: CardPrintDisplayDiscriminatorInput,
 ): CardPrintDisplayDiscriminator {
+  const edition = getJungleEditionDisplayLabel(input);
+  if (edition) {
+    const finish = getCardPrintingFinishLabel(input);
+    const variant = getVariantDisplayLabel(input.variantKey);
+    const extraVariant = variant && ![edition, "First Edition", "1st Edition"].includes(variant) ? variant : null;
+    return { label: [edition, extraVariant, finish].filter(Boolean).join(" · "), source: "printed_identity_modifier" };
+  }
   const variantLabel = getVariantDisplayLabel(input.variantKey);
   if (variantLabel) {
     return { label: variantLabel, source: "parent_variant" };
@@ -225,4 +235,15 @@ export function getCardPrintDisplayDiscriminator(
   }
 
   return { label: null, source: "none" };
+}
+
+export function getJungleEditionDisplayLabel(input: {
+  setCode?: string | null; number?: string | null; variantKey?: string | null; printedIdentityModifier?: string | null;
+}) {
+  const modifier = normalizeKey(input.printedIdentityModifier);
+  if (modifier === "edition:first_edition") return "1st Edition";
+  if (modifier === "edition:unlimited") return "Unlimited";
+  if (input.setCode === "base2" && /^([1-9]|[1-5][0-9]|6[0-4])$/.test(input.number ?? "")
+    && !clean(input.variantKey) && !modifier) return "Edition unconfirmed";
+  return null;
 }

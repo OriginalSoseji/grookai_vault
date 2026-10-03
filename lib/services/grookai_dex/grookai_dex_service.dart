@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../utils/display_image_contract.dart';
 import '../public/public_card_printing_options_service.dart';
+import '../public/jungle_edition_resolution_service.dart';
 import '../vault/vault_card_service.dart';
 
 @visibleForTesting
@@ -129,6 +130,7 @@ class GrookaiDexCardPrint {
     required this.ownedCount,
     required this.printings,
     this.unassignedPrintingCount = 0,
+    this.editionReviewRequired = false,
     this.gvId,
     this.setCode,
     this.setName,
@@ -159,6 +161,7 @@ class GrookaiDexCardPrint {
   final String? imageUrl;
   final String role;
   final bool countsForCompletion;
+  final bool editionReviewRequired;
   final int ownedCount;
   final int unassignedPrintingCount;
   final List<GrookaiDexPrintingOption> printings;
@@ -174,8 +177,11 @@ class GrookaiDexCardPrint {
   int get assignedPrintingCopyCount =>
       printings.fold<int>(0, (sum, option) => sum + option.ownedCount);
   bool get needsPrintingSelection => unassignedPrintingCount > 0;
-  int get totalOptionCount => printings.isEmpty ? 1 : printings.length;
-  int get ownedOptionCount => printings.isEmpty
+  int get totalOptionCount =>
+      editionReviewRequired ? 0 : (printings.isEmpty ? 1 : printings.length);
+  int get ownedOptionCount => editionReviewRequired
+      ? 0
+      : printings.isEmpty
       ? (isOwned ? 1 : 0)
       : printings.where((option) => option.ownedCount > 0).length;
   int get missingOptionCount =>
@@ -217,8 +223,9 @@ class GrookaiDexSpeciesDetail {
   int get totalPrintCount => completionCards.length;
   int get ownedPrintCount =>
       completionCards.where((card) => card.isOwned).length;
-  int get ownedCopyCount =>
-      completionCards.fold<int>(0, (sum, card) => sum + card.ownedCount);
+  int get ownedCopyCount => cards
+      .where((card) => card.countsForCompletion || card.editionReviewRequired)
+      .fold<int>(0, (sum, card) => sum + card.ownedCount);
   int get completionPercent => totalPrintCount <= 0
       ? 0
       : ((ownedPrintCount / totalPrintCount) * 100).round().clamp(0, 100);
@@ -253,14 +260,41 @@ class GrookaiDexService {
     final userId = _clean(client.auth.currentUser?.id);
     late List<Map<String, dynamic>> rawRows;
     late Map<String, int> ownedCounts;
+    late Set<String> exclusions;
     await Future.wait<void>([
       _fetchAllSpeciesRows(client).then((value) => rawRows = value),
+      getJungleDiscoveryExclusions(client).then((value) => exclusions = value),
       (userId.isEmpty
               ? Future<Map<String, int>>.value(const <String, int>{})
               : _fetchAllOwnedCounts(client))
           .then((value) => ownedCounts = value),
     ]);
+    // Read only owned/excluded mappings. Preserve copy totals but exclude
+    // unresolved references from both the denominator and completion credit.
+    final completionRows = await _fetchDexCompletionRows(
+      client,
+      cardPrintIds: {...ownedCounts.keys, ...exclusions},
+    );
+    final excludedPrintsBySpecies = <String, Set<String>>{};
+    for (final row in completionRows) {
+      final speciesId = _clean(row['species_id']);
+      final cardPrintId = _clean(row['card_print_id']);
+      if (speciesId.isNotEmpty && exclusions.contains(cardPrintId)) {
+        (excludedPrintsBySpecies[speciesId] ??= <String>{}).add(cardPrintId);
+      }
+    }
     final baseSpecies = rawRows
+        .map(
+          (row) => <String, dynamic>{
+            ...row,
+            'total_print_count':
+                (_intValue(row['total_print_count']) -
+                        (excludedPrintsBySpecies[_clean(row['species_id'])]
+                                ?.length ??
+                            0))
+                    .clamp(0, _intValue(row['total_print_count'])),
+          },
+        )
         .map(_speciesFromRow)
         .where((row) => row.speciesId.isNotEmpty && row.slug.isNotEmpty)
         .toList(growable: false);
@@ -279,13 +313,6 @@ class GrookaiDexService {
       );
     }
 
-    // The species view already owns the full-Dex denominator. Start from the
-    // collector's small owned set, then fetch only mappings that can affect
-    // their progress instead of scanning every completion mapping on entry.
-    final completionRows = await _fetchDexCompletionRows(
-      client,
-      cardPrintIds: ownedCounts.keys,
-    );
     final ownedPrintsBySpecies = <String, Set<String>>{};
     final ownedCopiesBySpecies = <String, int>{};
     final seenCompletionPairs = <String>{};
@@ -299,7 +326,9 @@ class GrookaiDexService {
       if (!seenCompletionPairs.add('$speciesId:$cardPrintId')) {
         continue;
       }
-      (ownedPrintsBySpecies[speciesId] ??= <String>{}).add(cardPrintId);
+      if (!exclusions.contains(cardPrintId)) {
+        (ownedPrintsBySpecies[speciesId] ??= <String>{}).add(cardPrintId);
+      }
       ownedCopiesBySpecies[speciesId] =
           (ownedCopiesBySpecies[speciesId] ?? 0) + ownedCount;
     }
@@ -492,6 +521,8 @@ class GrookaiDexService {
       return null;
     }
 
+    final exclusions = await getJungleDiscoveryExclusions(client);
+
     final rawRows = _dedupeSpeciesCardPrintRows(
       await _fetchSpeciesDetailRows(client: client, speciesSlug: slug),
     );
@@ -527,7 +558,7 @@ class GrookaiDexService {
           }),
       _fetchCardPrintingData(
         client: client,
-        cardPrintIds: cardPrintIds,
+        cardPrintIds: cardPrintIds.where((id) => !exclusions.contains(id)),
       ).then((value) => cardPrintingData = value),
     ]);
     final printingsByCardPrintId = cardPrintingData.buildPrintingOptions(
@@ -541,6 +572,11 @@ class GrookaiDexService {
     );
 
     final cards = rawRows
+        .where(
+          (row) =>
+              !exclusions.contains(_clean(row['card_print_id'])) ||
+              (ownedCounts[_clean(row['card_print_id'])] ?? 0) > 0,
+        )
         .map((row) {
           final cardPrintId = _clean(row['card_print_id']);
           final parentImage = imageMetadata[cardPrintId];
@@ -596,7 +632,10 @@ class GrookaiDexService {
                 childImage?.imageNote,
             imageUrl: resolvedDisplayImage,
             role: _optional(row['role']) ?? 'primary',
-            countsForCompletion: row['counts_for_completion'] == true,
+            countsForCompletion:
+                row['counts_for_completion'] == true &&
+                !exclusions.contains(cardPrintId),
+            editionReviewRequired: exclusions.contains(cardPrintId),
             ownedCount: ownedCounts[cardPrintId] ?? 0,
             unassignedPrintingCount: printings.isEmpty
                 ? 0

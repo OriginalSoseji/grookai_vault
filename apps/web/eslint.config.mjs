@@ -46,6 +46,7 @@ export default defineConfig([
   },
   globalIgnores([
     ".next/**",
+    ".next-fixture/**",
     ".next-batch-intake/**",
     ".next-storefront/**",
     "node_modules/**",

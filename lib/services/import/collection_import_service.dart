@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../vault/vault_card_service.dart';
+import '../public/jungle_edition_resolution_service.dart';
 import 'collection_import_mtg_identity.dart';
 import 'collection_import_pokemon_name.dart';
 import 'collection_import_named_finish.dart';
@@ -437,6 +438,22 @@ class CollectionImportService {
       setNameMap: setNameMap,
       sourceAware: sourceAware,
     );
+    // Import rows have no collector-confirmed edition selection yet. Keep all
+    // governed candidates for review, including an apparently unique edition.
+    final editionReview = <String, String>{};
+    for (final card in candidates.where((card) => card.setCode == 'base2')) {
+      try {
+        final edition = await getJungleEditionResolution(client, card.id);
+        if (edition.status != 'not_applicable') {
+          editionReview[card.id] = edition.status == 'unavailable'
+              ? 'Jungle edition choices are being reviewed. This row is not imported; keep the original CSV.'
+              : 'Confirm First Edition or Unlimited on the physical card. This row is kept for review; automatic edition import is not available yet.';
+        }
+      } catch (_) {
+        editionReview[card.id] =
+            'Jungle edition choices could not be checked. Choose the CSV again to retry; this row is not imported.';
+      }
+    }
     final byKey = <String, List<_CollectionImportCandidateRow>>{};
     for (final card in candidates) {
       final key = _buildMatchKey(
@@ -573,6 +590,7 @@ class CollectionImportService {
     for (final row in validRows) {
       final matches = matchesFor(row);
       if (matches.length == 1 &&
+          !editionReview.containsKey(matches.single.id) &&
           groupsByCard[matches.single.id]!.length == 1 &&
           _unsupportedSaveReasons(row).isEmpty) {
         eligibleParentIds.add(matches.single.id);
@@ -589,7 +607,8 @@ class CollectionImportService {
             client,
             validRows
                 .map(matchesFor)
-                .expand((matches) => matches.map((match) => match.id)),
+                .expand((matches) => matches.map((match) => match.id))
+                .where((id) => !editionReview.containsKey(id)),
           )
         : <Map<String, dynamic>>[];
     final printingsByParent = <String, List<Map<String, dynamic>>>{};
@@ -627,11 +646,16 @@ class CollectionImportService {
       final reasons = <String>[
         ...row.reviewReasons,
         ..._unsupportedSaveReasons(row, sourceAware: sourceAware),
+        ...matches
+            .map((card) => editionReview[card.id])
+            .whereType<String>()
+            .toSet(),
       ];
       String? printingId;
       String? printingFinishKey;
       if (sourceAware &&
           matches.length == 1 &&
+          !editionReview.containsKey(matches.single.id) &&
           (row.finish.trim().isEmpty || requestedFinish != null)) {
         final options = (printingsByParent[matches.single.id] ?? [])
             .where(

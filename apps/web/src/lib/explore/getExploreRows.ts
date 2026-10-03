@@ -2448,7 +2448,7 @@ async function addIdentityFilterRequests(
   if (variantKey) {
     addRequest(
       supabase
-        .from("card_prints")
+        .from("v_card_prints_discovery_v1")
         .select(selectClause)
         .eq("variant_key", variantKey)
         .limit(160),
@@ -2459,7 +2459,7 @@ async function addIdentityFilterRequests(
   if (normalizedFilter === "classic_collection") {
     addRequest(
       supabase
-        .from("card_prints")
+        .from("v_card_prints_discovery_v1")
         .select(selectClause)
         .eq("variant_key", "cc")
         .limit(160),
@@ -2468,7 +2468,7 @@ async function addIdentityFilterRequests(
     if (anthologySetCodes.length > 0) {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .in("set_code", anthologySetCodes)
           .limit(200),
@@ -2513,7 +2513,7 @@ async function fetchNameFamilyRows(query: ResolverQuery, selectClause: string) {
 
   for (const token of familyTokens.slice(0, 2)) {
     let request = supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .ilike("name", `%${token}%`)
       .limit(120);
@@ -2590,7 +2590,7 @@ async function fetchIntentScopedRows(
     ) {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("rarity", `%${intent}%`)
           .limit(120),
@@ -2602,7 +2602,7 @@ async function fetchIntentScopedRows(
     if (intent === "promo") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("rarity", "%promo%")
           .limit(120),
@@ -2613,14 +2613,14 @@ async function fetchIntentScopedRows(
     if (intent === "stamp") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("variant_key", "%stamp%")
           .limit(120),
       );
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .eq("variants->>stamped", "true")
           .limit(120),
@@ -2631,14 +2631,14 @@ async function fetchIntentScopedRows(
     if (intent === "felt hat") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("name", "%felt hat%")
           .limit(120),
       );
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("variant_key", "%felt hat%")
           .limit(120),
@@ -2649,14 +2649,14 @@ async function fetchIntentScopedRows(
     if (intent === "baby shiny") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("rarity", "%shiny rare%")
           .limit(120),
       );
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("name", "%baby shiny%")
           .limit(120),
@@ -2667,7 +2667,7 @@ async function fetchIntentScopedRows(
     if (intent === "shiny") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("rarity", "%shiny%")
           .limit(120),
@@ -2694,7 +2694,7 @@ async function fetchIntentScopedRows(
     if (intent === "delta species") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .eq("printed_identity_modifier", "delta_species")
           .limit(120),
@@ -2706,14 +2706,14 @@ async function fetchIntentScopedRows(
     if (cue === "alt_art") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("variant_key", "%alt%")
           .limit(120),
       );
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("rarity", "%special illustration rare%")
           .limit(120),
@@ -2724,14 +2724,14 @@ async function fetchIntentScopedRows(
     if (cue === "gold" || cue === "rainbow") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("rarity", "%hyper rare%")
           .limit(120),
       );
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("variant_key", `%${cue}%`)
           .limit(120),
@@ -2742,7 +2742,7 @@ async function fetchIntentScopedRows(
     if (cue === "promo") {
       addRequest(
         supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .ilike("rarity", "%promo%")
           .limit(120),
@@ -2906,11 +2906,11 @@ async function fetchExactCardRows(
     ids.length > 0
       ? hasExpectedSetScope
         ? supabase
-            .from("card_prints")
+            .from("v_card_prints_discovery_v1")
             .select(selectClause)
             .in("set_code", normalizedExpectedSetCodes)
             .in("id", ids)
-        : supabase.from("card_prints").select(selectClause).in("id", ids)
+        : supabase.from("v_card_prints_discovery_v1").select(selectClause).in("id", ids)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
     printIdentityParentGvIds.length > 0
       ? hasExpectedSetScope
@@ -2927,12 +2927,12 @@ async function fetchExactCardRows(
     tcgdexCardIds.length > 0
       ? hasExpectedSetScope
         ? supabase
-            .from("card_prints")
+            .from("v_card_prints_discovery_v1")
             .select(selectClause)
             .in("set_code", normalizedExpectedSetCodes)
             .in("external_ids->>tcgdex", tcgdexCardIds)
         : supabase
-            .from("card_prints")
+            .from("v_card_prints_discovery_v1")
             .select(selectClause)
             .in("external_ids->>tcgdex", tcgdexCardIds)
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
@@ -2952,7 +2952,7 @@ async function fetchExactCardRows(
       : Promise.resolve({ data: [] as CardPrintLookupRow[], error: null }),
     hasExpectedSetScope
       ? supabase
-          .from("card_prints")
+          .from("v_card_prints_discovery_v1")
           .select(selectClause)
           .in("set_code", normalizedExpectedSetCodes)
           .limit(250)
@@ -3039,7 +3039,7 @@ async function fetchCardRowsBySetCode(setCode: string) {
 
   for (let offset = 0; ; offset += SET_FETCH_PAGE_SIZE) {
     const { data, error } = await supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .eq("set_code", setCode)
       .order("id", { ascending: true })
@@ -3090,7 +3090,7 @@ async function fetchCardRowsByStructuredTextQuery(query: ResolverQuery) {
   }
 
   let request = supabase
-    .from("card_prints")
+    .from("v_card_prints_discovery_v1")
     .select(selectClause)
     .limit(500);
 
@@ -3124,7 +3124,7 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
   const variantKey = getVariantKeyForFilter(normalizedFilter);
   if (variantKey) {
     const { data, error } = await supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .eq("variant_key", variantKey)
       .limit(200);
@@ -3139,7 +3139,7 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
 
   if (normalizedFilter === "classic_collection") {
     const { data: ccRows, error: ccError } = await supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .eq("variant_key", "cc")
       .limit(200);
@@ -3154,7 +3154,7 @@ async function fetchCardRowsByIdentityFilter(filterKey: IdentityFilterKey) {
     const anthologySetCodes = await fetchReprintAnthologySetCodes();
     if (anthologySetCodes.length > 0) {
       const { data: anthologyRows, error: anthologyError } = await supabase
-        .from("card_prints")
+        .from("v_card_prints_discovery_v1")
         .select(selectClause)
         .in("set_code", anthologySetCodes)
         .limit(250);
@@ -3238,7 +3238,7 @@ async function fetchCardRowsByReleaseYear(year: number) {
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const { data, error } = await supabase
-    .from("card_prints")
+    .from("v_card_prints_discovery_v1")
     .select(selectClause)
     .in("set_code", setCodes)
     .limit(250);
@@ -3260,7 +3260,7 @@ async function fetchCardRowsByReleaseYearRange(minYear?: number, maxYear?: numbe
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const { data, error } = await supabase
-    .from("card_prints")
+    .from("v_card_prints_discovery_v1")
     .select(selectClause)
     .in("set_code", setCodes)
     .limit(300);
@@ -3701,7 +3701,7 @@ async function fetchSpeciesFamilyRows(
   const rowsById = new Map<string, CardPrintLookupRow>();
   for (const idChunk of chunkArray(cardPrintIds, 200)) {
     const { data, error } = await supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .in("id", idChunk);
 
@@ -3827,7 +3827,7 @@ async function fetchLanguageScopedTextRows(
     }
 
     const baseRequest = supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .limit(languageScope === "ja" ? 96 : 80);
     const scopedRequest = applyLanguageScopeQuery(baseRequest, languageScope);
@@ -3939,7 +3939,7 @@ export async function getExploreRowsForCombinedSearch(
   }
   let afterId: string | undefined;
   for (;;) {
-    let request = supabase.from("card_prints")
+    let request = supabase.from("v_card_prints_discovery_v1")
       .select("id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants")
       .like("gv_id", gameScope === "pokemon" ? "GV-PK-%" : gameScope === "mtg" ? "GV-MTG-%" : "GV-OP-%")
       .order("id", { ascending: true }).limit(500);
@@ -4361,7 +4361,7 @@ export async function getExploreRowsForGameScopedTextSearch(
           : [null];
     const resultRows: CardPrintLookupRow[] = [];
     for (const releaseSetChunk of releaseSetChunks) {
-      let query = supabase.from("card_prints").select(selectClause).eq("game_id", gameId);
+      let query = supabase.from(directGvIdSearch ? "card_prints" : "v_card_prints_discovery_v1").select(selectClause).eq("game_id", gameId);
       if (typeof releaseSetChunk === "string") query = query.ilike("set_code", releaseSetChunk);
       if (Array.isArray(releaseSetChunk)) query = query.in("set_code", releaseSetChunk);
       if (exactIllustrator) query = query.ilike("artist", exactIllustrator);
@@ -4465,7 +4465,7 @@ async function fetchCardRowsBySmartText(textQuery?: string) {
       ])
       .join(",");
     const { data, error } = await supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .or(orExpression)
       .limit(SMART_FILTER_DISCOVERY_LIMIT);
@@ -4503,7 +4503,7 @@ async function fetchCardRowsByStampLabels(stampLabels: string[]) {
       ])
       .join(",");
     const { data, error } = await supabase
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .or(orExpression)
       .limit(250);
@@ -4699,6 +4699,7 @@ async function fetchSmartDiscoveryChildRows(
   options: SmartFilterDiscoveryOptions,
   parentRows: CardPrintLookupRow[],
   complete = false,
+  preserveOwned = false,
 ) {
   const supabase = await createServerComponentClient();
   const selectClause =
@@ -4710,7 +4711,7 @@ async function fetchSmartDiscoveryChildRows(
   const runChildQuery = async (scopedParentIds?: string[]) => {
     for (let offset = 0; ; offset += 500) {
       let request = supabase
-        .from("card_printings")
+        .from(preserveOwned ? "card_printings" : "v_card_printings_discovery_v1")
         .select(selectClause)
         .order("printing_gv_id", { ascending: true })
         .order("id", { ascending: true })
@@ -4935,7 +4936,7 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
     Boolean(options.imageState && options.imageState !== "any");
   const exactRows = await filterSmartDiscoveryRowsByScope(
     shouldUseChildScope
-      ? await fetchSmartDiscoveryChildRows(options, parentRows)
+      ? await fetchSmartDiscoveryChildRows(options, parentRows, false, true)
       : applyLanguageScopeRows(parentRows, options.languageScope),
     options,
   );

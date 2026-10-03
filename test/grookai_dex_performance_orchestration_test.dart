@@ -112,6 +112,8 @@ void main() {
 
           final Object body;
           switch (request.url.path) {
+            case '/rest/v1/rpc/get_jungle_edition_discovery_exclusions_v1':
+              body = <String>[];
             case '/rest/v1/v_grookai_dex_species_v1':
               final offset = request.url.queryParameters['offset'];
               body = offset == '0'
@@ -195,6 +197,8 @@ void main() {
           requests.add(request);
           final Object body;
           switch (request.url.path) {
+            case '/rest/v1/rpc/get_jungle_edition_discovery_exclusions_v1':
+              body = <String>[];
             case '/rest/v1/v_grookai_dex_card_prints_v1':
               body = <Map<String, dynamic>>[
                 _speciesDetailRow(
@@ -310,6 +314,8 @@ void main() {
         httpClient: MockClient((request) async {
           requests.add(request);
           switch (request.url.path) {
+            case '/rest/v1/rpc/get_jungle_edition_discovery_exclusions_v1':
+              return _jsonResponse(request, <String>[]);
             case '/rest/v1/v_grookai_dex_card_prints_v1':
               return _jsonResponse(request, <Map<String, dynamic>>[
                 _speciesDetailRow(

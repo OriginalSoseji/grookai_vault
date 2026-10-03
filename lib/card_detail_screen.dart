@@ -30,12 +30,14 @@ import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_card_printing_options_service.dart';
+import 'services/public/jungle_edition_resolution_service.dart';
 import 'services/vault/collector_memory_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
 import 'utils/display_image_contract.dart';
 import 'widgets/card_surface_artwork.dart';
+import 'widgets/jungle_edition_choice_sheet.dart';
 import 'widgets/contact_owner_button.dart';
 import 'widgets/gv_surface.dart';
 import 'widgets/ownership/ownership_signal.dart';
@@ -1442,6 +1444,39 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final navigator = Navigator.of(context);
     late final _CardDetailPrintingOption printingOption;
     try {
+      final edition = await getJungleEditionResolution(
+        supabase,
+        widget.cardPrintId,
+      );
+      if (!mounted) return;
+      if (edition.requiresSelection) {
+        await showModalBottomSheet<void>(
+          context: context,
+          builder: (sheetContext) => JungleEditionChoiceSheet(
+            resolution: edition,
+            onSelect: (option) {
+              Navigator.of(sheetContext).pop();
+              navigator.push(
+                MaterialPageRoute<void>(
+                  builder: (_) => CardDetailScreen(
+                    cardPrintId: option.cardPrintId,
+                    gvId: option.gvId,
+                    name: _displayName,
+                    setName: _resolvedSetName,
+                    setCode: _resolvedSetCode,
+                    number: _resolvedCollectorNumber,
+                    selectedPrintingGvId: option.printingGvId,
+                    selectedFinishLabel: option.finishKey == 'holo'
+                        ? 'Holo'
+                        : 'Normal',
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+        return;
+      }
       printingOption = await _resolvePrintingOptionForVaultAdd();
     } catch (error) {
       if (!mounted) {

@@ -1,4 +1,6 @@
 import "server-only";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { getJungleDiscoveryExclusions, jungleAwareCatalogCount } from "@/lib/cards/jungleEditionResolution";
 
 import { cache } from "react";
 import { readPublicSetCardOrderIndex, readPublicSetCardPage, SET_ORDER_CHUNK, type PublicSetCardOrderRow } from "@/lib/publicSetCardOrder";
@@ -233,7 +235,7 @@ const publicSetCardCounts = publicSetCardCountManifest.counts as Readonly<Record
 const PUBLIC_CATALOG_GAME_CODES = ["pokemon", "one_piece", "mtg"] as const;
 
 async function getVisiblePopulatedSetRowsForGame(
-  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  supabase: SupabaseClient,
   gameCode: string,
 ) {
   const normalizedGameCode = gameCode.trim().toLowerCase();
@@ -267,19 +269,24 @@ async function getVisiblePopulatedSetRows(
 }
 
 async function getVisibleCardCountBySetIds(
-  supabase: Awaited<ReturnType<typeof createServerSupabase>>,
+  supabase: SupabaseClient,
   setIds: string[],
+  setCode: string,
 ) {
   const exactSetIds = Array.from(new Set(setIds.map((id) => id.trim()).filter(Boolean)));
   if (exactSetIds.length === 0) {
     return 0;
   }
 
-  const { count, error } = await supabase
+  const exclusions = setCode === "base2" ? await getJungleDiscoveryExclusions(supabase) : [];
+  const query = supabase
     .from("card_prints")
     .select("id", { count: "exact", head: true })
     .in("set_id", exactSetIds)
     .not("gv_id", "is", null);
+  const { count, error } = exclusions.length
+    ? await query.not("id", "in", `(${exclusions.join(",")})`)
+    : await query;
   if (error) {
     throw new Error(`[sets.card-count-by-id] ${error.message}`);
   }
@@ -349,9 +356,10 @@ export const getPublicSets = cache(async (
 
     const manifestCount = getManifestCardPrintCount(publicSetCardCounts, normalizedCode);
     const readModelCount = Number(row.card_count ?? 0);
-    const cardCount = Math.max(
+    const cardCount = jungleAwareCatalogCount(
+      normalizedCode,
       manifestCount,
-      Number.isFinite(readModelCount) ? readModelCount : 0,
+      readModelCount,
     );
     const existing = equivalentSetsByCode.get(normalizedCode);
     equivalentSetsByCode.set(normalizedCode, {
@@ -433,6 +441,7 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   const combinedCardCount = await getVisibleCardCountBySetIds(
     supabase,
     rows.map((row) => row.id ?? ""),
+    normalizedCode,
   );
   const setInfo = preferredRow ? mapSetRowToSummary(preferredRow, combinedCardCount) : null;
   return setInfo && setInfo.card_count > 0 ? setInfo : null;
@@ -547,7 +556,8 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   }
 
   const orderedIndex = await getPublicSetCardOrderIndex(JSON.stringify([...exactSetIds].sort()));
-  const pageIds = orderedIndex.slice(offset, offset + limit).map(row => row.id);
+  const exclusions = new Set(normalizedCode === "base2" ? await getJungleDiscoveryExclusions(supabase) : []);
+  const pageIds = orderedIndex.filter(row => !exclusions.has(row.id)).slice(offset, offset + limit).map(row => row.id);
   if (!pageIds.length) return [];
   const { rows: pageRows, printingRows } = await readPublicSetCardPage(
     pageIds,

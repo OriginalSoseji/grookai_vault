@@ -41,7 +41,7 @@ export async function fetchPokemonArtistRows(
 
   const requestForPage = () => {
     let request = client
-      .from("card_prints")
+      .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .like("gv_id", "GV-PK-%")
       .in("artist", names);

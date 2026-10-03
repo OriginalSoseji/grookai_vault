@@ -1974,9 +1974,12 @@ class _DexCardTile extends StatelessWidget {
                       runSpacing: 6,
                       children: [
                         _DexOptionChip(
-                          label:
-                              '${card.ownedOptionCount}/${card.totalOptionCount} options',
-                          owned: card.missingOptionCount == 0,
+                          label: card.editionReviewRequired
+                              ? 'Edition review required'
+                              : '${card.ownedOptionCount}/${card.totalOptionCount} options',
+                          owned:
+                              !card.editionReviewRequired &&
+                              card.missingOptionCount == 0,
                         ),
                         if (card.missingOptionCount > 0)
                           _DexOptionChip(

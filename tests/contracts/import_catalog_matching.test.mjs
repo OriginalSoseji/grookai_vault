@@ -16,10 +16,16 @@ const print = (id, number, overrides = {}) => ({
 
 // A read-only PostgREST adapter with filtering, ordering and server row caps.
 // The real CSV parser, normalization, matching action and report code run below.
-function harness({ cards = [], sets = [set], cap = 1000, signedIn = true, fail, ignoreCursor = false, owned = new Map(), ownershipError = false } = {}) {
+function harness({ cards = [], sets = [set], cap = 1000, signedIn = true, fail, ignoreCursor = false, owned = new Map(), ownershipError = false, editionResponse } = {}) {
   const calls = [];
   const ownershipReads = [];
   const client = {
+    rpc: async (name, args) => {
+      assert.equal(name, 'get_jungle_edition_resolution_v1');
+      calls.push({rpc: name, parent: args.p_card_print_id});
+      assert.ok(editionResponse, 'Unexpected edition lookup');
+      return editionResponse;
+    },
     auth: { getUser: async () => ({ data: { user: signedIn ? { id: 'fixture-owner' } : null } }) },
     from(table) {
       assert.ok(['sets', 'card_prints'].includes(table), `unexpected table: ${table}`);
@@ -89,6 +95,45 @@ function harness({ cards = [], sets = [set], cap = 1000, signedIn = true, fail, 
     },
   };
 }
+
+const editionFixture = JSON.parse(fs.readFileSync('tests/fixtures/jungle_edition_resolution_v1.json'));
+const jungleSet = {id: 'jungle', name: 'Jungle', code: 'base2'};
+function junglePrint(id = editionFixture.legacy_card_print_id) {
+  return print(id, '1', {name: 'Clefable', gv_id: 'GV-PK-JU-1', set_id: jungleSet.id,
+    set_code: 'base2', sets: {name: 'Jungle'}});
+}
+for (const status of ['selection_required', 'ready', 'unavailable']) {
+  test(`Jungle ${status} stays in review even when saved quantities meet the target`, async () => {
+    const c = junglePrint();
+    const h = harness({cards: [c], sets: [jungleSet], owned: new Map([[c.id, 10]]),
+      editionResponse: {data: {...editionFixture, status}, error: null}});
+    const result = await h.preview('1', 'Clefable', 'Jungle');
+    assert.equal(result.rows.length, 1);
+    assert.equal(result.rows[0].status, 'review');
+    assert.equal(result.rows[0].row.quantity, 2);
+    assert.equal(result.rows[0].match, undefined);
+    assert.match(result.rows[0].reviewReason, /review/);
+    assert.equal(result.summary.matchedRows, 0);
+    assert.equal(result.summary.unmatchedRows, 1);
+    assert.equal(h.calls.filter(c => c.rpc).length, 1);
+  });
+}
+test('Jungle lookup failure holds that row while unrelated exact matches stay ready', async () => {
+  const h = harness({cards: [junglePrint(), print('other', '65')], sets: [jungleSet, set],
+    editionResponse: {error: {code: '57014', message: 'private detail'}}});
+  const result = await h.previewCsv('Product Name,Set,Card Number,Quantity\nClefable,Jungle,1,2\nAlakazam ex,151,65,1');
+  assert.equal(result.rows[0].status, 'review');
+  assert.match(result.rows[0].reviewReason, /could not be checked/);
+  assert.doesNotMatch(result.rows[0].reviewReason, /private detail/);
+  assert.equal(result.rows[1].status, 'matched');
+});
+for (const response of [
+  {data: {version: 1, status: 'not_applicable', options: []}},
+  {error: {code: 'PGRST202', message: 'get_jungle_edition_resolution_v1 missing'}}
+]) test('non-governed Jungle and exact pre-migration compatibility retain existing matching', async () => {
+  const h = harness({cards: [junglePrint()], sets: [jungleSet], editionResponse: response});
+  assert.equal((await h.preview('1', 'Clefable', 'Jungle')).rows[0].status, 'matched');
+});
 
 for (const [input, stored] of [['065', '065'], ['65', '065'], ['00065/165', '65'], ['#065', '000065'], ['65', '065/165'], ['188', '188']]) {
   test(`CSV ${input} finds stored ${stored} without changing the catalog identifier`, async () => {

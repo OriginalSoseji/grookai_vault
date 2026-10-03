@@ -570,9 +570,9 @@ export default async function GrookaiDexSpeciesPage(
                     </span>
                   ) : null}
                   <span className="inline-flex rounded-md border border-[var(--gv-border-hairline)] bg-[var(--gv-surface-base)] px-2 py-1 text-xs font-medium text-[var(--gv-text-secondary)]">
-                    {ownedOptions}/{totalOptions} options owned
+                    {card.editionReviewRequired ? "Edition review required" : `${ownedOptions}/${totalOptions} options owned`}
                   </span>
-                  {missingOptions > 0 ? (
+                  {!card.editionReviewRequired && missingOptions > 0 ? (
                     <span className="inline-flex rounded-md border border-[var(--gv-border-hairline)] bg-[var(--gv-surface-container)] px-2 py-1 text-xs font-medium text-[var(--gv-text-tertiary)]">
                       {missingOptions} missing
                     </span>
@@ -604,10 +604,12 @@ export default async function GrookaiDexSpeciesPage(
               <div className={variantClassName}>
                 <div className="mb-2 flex items-center justify-between gap-3">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--gv-text-tertiary)]">Variant Options</p>
-                  <p className="text-xs font-medium text-[var(--gv-text-tertiary)]">{ownedOptions}/{totalOptions}</p>
+                  {!card.editionReviewRequired ? <p className="text-xs font-medium text-[var(--gv-text-tertiary)]">{ownedOptions}/{totalOptions}</p> : null}
                 </div>
 
-                {card.printings.length > 0 ? (
+                {card.editionReviewRequired ? (
+                  <p className="text-xs text-[var(--gv-text-tertiary)]">Saved copies are retained. Edition review is required before they count toward completion.</p>
+                ) : card.printings.length > 0 ? (
                   <div className="grid gap-1.5">
                   {card.printings.map((printing) => {
                     const isOwned = printing.ownedCount > 0;

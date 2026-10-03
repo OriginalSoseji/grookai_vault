@@ -43,6 +43,7 @@ import { findPrintingByReference } from "@/lib/cards/printingSelection";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { getVariantOriginPublicCopy } from "@/lib/cards/variantOriginPublicCopy";
 import { getVariantLabels } from "@/lib/cards/variantPresentation";
+import { getJungleEditionResolution, assertJungleEditionSelection, JungleEditionRequiredError, type JungleEditionResolution } from "@/lib/cards/jungleEditionResolution";
 import { getAdjacentPublicCardsByGvId } from "@/lib/getAdjacentPublicCardsByGvId";
 import { buildCompareCardsParam, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { getCardStreamRows } from "@/lib/network/getCardStreamRows";
@@ -732,6 +733,7 @@ async function CardPageContent({
     let quantity = 1;
     try {
       const options = parseCardAddOptions(_formData.get("condition"), _formData.get("quantity"));
+      assertJungleEditionSelection(await getJungleEditionResolution(actionClient, resolvedCard.id), resolvedCard.id, selectedPrintingId);
       quantity = options.quantity;
       const batch = await addCopies(quantity, () => addCardToVault({
         client: actionClient,
@@ -753,6 +755,10 @@ async function CardPageContent({
       }
       result = batch.completed[batch.completed.length - 1];
     } catch (error) {
+      if (error instanceof JungleEditionRequiredError) return {
+        ok: false, status: "edition-required", message: error.message,
+        editionResolution: error.resolution, submissionKey,
+      };
       const detail =
         error instanceof Error
           ? error.message
@@ -857,6 +863,10 @@ async function CardPageContent({
   }
 
   const supabase = await createServerComponentClient();
+  const editionResolution: JungleEditionResolution | null = resolvedCard.set_code === "base2"
+    ? await getJungleEditionResolution(supabase, resolvedCard.id).catch(() => ({
+        version: 1 as const, status: "unavailable" as const, legacy_card_print_id: resolvedCard.id, options: [],
+      })) : null;
   const authStartedAt = performance.now();
   const shouldReadAuthenticatedState = await hasSupabaseServerAuthCookie();
   const {
@@ -1245,6 +1255,8 @@ async function CardPageContent({
 
             <div id="vault-actions" className="order-1 scroll-mt-28">
               <CardPageMarketVaultPanels
+                editionResolution={editionResolution}
+                jungleSlabIntakeEnabled={process.env.JUNGLE_SLAB_INTAKE_ENABLED === "true" && (process.env.JUNGLE_SLAB_INTAKE_SECRET?.length ?? 0) >= 32}
                 addToVaultAction={addToVaultAction}
                 createSlabAction={createSlabAction}
                 isAuthenticated={Boolean(user)}

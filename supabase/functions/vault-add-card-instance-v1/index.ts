@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createServiceRoleClient, requireUser } from "../_shared/auth.ts";
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
+import { jungleEditionErrorResponse } from "../_shared/jungle_edition_error.ts";
 
 type VaultAddPayload = {
   card_print_id?: string;
@@ -77,6 +78,8 @@ serve(async (req) => {
     });
 
     if (error || !data) {
+      const editionError = jungleEditionErrorResponse(error);
+      if (editionError) return corsJson(409, editionError);
       return corsJson(500, {
         error: "vault_add_failed",
       });

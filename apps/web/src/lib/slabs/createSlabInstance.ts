@@ -8,6 +8,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizePsaGradeValue } from "@/lib/slabs/normalizePsaGrade";
 import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
 import { verifyPsaCert } from "@/lib/slabs/psaVerificationAdapter";
+import { getJungleEditionResolution } from "@/lib/cards/jungleEditionResolution";
 
 export type CreateSlabInstanceInput = {
   userId: string;
@@ -309,6 +310,11 @@ async function createSlabInstanceUncheckedV1(
 
   const client = await createServerComponentClient();
   await assertAuthenticatedVaultUser(client, userId);
+  const editionResolution = await getJungleEditionResolution(client, cardPrintId);
+  if (editionResolution.status !== "not_applicable") return {
+    ok: false, errorCode: "CARD_IDENTITY_UNVERIFIED",
+    message: "Slab intake for these editions is not available yet. Your existing slabs remain in your Vault.",
+  };
 
   const verification = await verifyPsaCert(certNumber);
   if (!verification.verified || !verification.grade || verification.grader !== "PSA") {

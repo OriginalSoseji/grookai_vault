@@ -10,6 +10,8 @@ import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/identity_scan_service.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../services/public/jungle_edition_resolution_service.dart';
+import '../scanner/jungle_edition_scan_review.dart';
 import '../../widgets/card_surface_artwork.dart';
 
 enum _IdentityScanStep { capture, processing, hintReady, results, error }
@@ -269,6 +271,9 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
       );
       if (!mounted) return;
       _snack('Added to Vault.');
+    } on JungleEditionSelectionRequired catch (error) {
+      if (!mounted) return;
+      await reviewScannedJungleEdition(context, error.resolution);
     } catch (e) {
       _snack('Add to Vault failed: $e');
     } finally {
