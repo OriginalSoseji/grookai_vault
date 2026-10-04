@@ -7,7 +7,7 @@ import {localSupabaseStatusSecret} from '../../../scripts/lib/local_supabase_cli
 const origin='http://127.0.0.1:58863';
 
 export async function startCollectrWebProof({root,status,runDir}) {
- assert.equal(root.replaceAll('\\','/'),process.env.GV_COLLECTR_WORKSPACE_HTTP_PROOF==='1'||process.env.GV_COLLECTR_ART_HTTP_PROOF==='1'||process.env.GV_COLLECTR_ADVENTURE_HTTP_PROOF==='1'||process.env.GV_COLLECTR_FCA_HTTP_PROOF==='1'||process.env.GV_COLLECTR_REVIEW_HTTP_PROOF==='1'||process.env.GV_COLLECTR_NAMED_FINISH_HTTP_PROOF==='1'?'C:/gv_collectr_adventure_20261001':'C:/gv_collectr_web_v2_20261001');
+ assert.equal(root.replaceAll('\\','/'),process.env.GV_COLLECTR_NAME_FIDELITY_HTTP_PROOF==='1'||process.env.GV_COLLECTR_WORKSPACE_HTTP_PROOF==='1'||process.env.GV_COLLECTR_ART_HTTP_PROOF==='1'||process.env.GV_COLLECTR_ADVENTURE_HTTP_PROOF==='1'||process.env.GV_COLLECTR_FCA_HTTP_PROOF==='1'||process.env.GV_COLLECTR_REVIEW_HTTP_PROOF==='1'||process.env.GV_COLLECTR_NAMED_FINISH_HTTP_PROOF==='1'?'C:/gv_collectr_adventure_20261001':'C:/gv_collectr_web_v2_20261001');
  assert.equal(status.API_URL,'http://127.0.0.1:58541');
  await new Promise((resolve,reject)=>{const s=net.createServer();s.once('error',reject);s.listen(58863,'127.0.0.1',()=>s.close(resolve));});
  const env={...process.env};

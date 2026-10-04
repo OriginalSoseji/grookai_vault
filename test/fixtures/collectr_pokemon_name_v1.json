@@ -598,5 +598,387 @@
         "language": null
       }
     }
+  },
+  {
+    "label": "name fidelity: Pokemon accent",
+    "expected": true,
+    "input": {
+      "sourceName": "Pokemon Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Pokémon Widget",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Poke accent",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic Poke Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic Poké Widget",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: decomposed accent",
+    "expected": true,
+    "input": {
+      "sourceName": "Poke Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Poké Widget",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: curly apostrophe",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic's Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic’s Widget",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: male symbol",
+    "expected": true,
+    "input": {
+      "sourceName": "Nidoran M",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Nidoran ♂",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: female symbol",
+    "expected": true,
+    "input": {
+      "sourceName": "Nidoran F",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Nidoran♀",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: gender remains distinct",
+    "expected": false,
+    "input": {
+      "sourceName": "Nidoran M",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Nidoran ♀",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: bare gender ambiguous",
+    "expected": false,
+    "input": {
+      "sourceName": "Nidoran",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Nidoran ♂",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: no suffix guessing",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic M",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic ♂",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: blank owner underscores",
+    "expected": true,
+    "input": {
+      "sourceName": "______'s Pikachu",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "_____'s Pikachu",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: named owner unchanged",
+    "expected": false,
+    "input": {
+      "sourceName": "Ash's Pikachu",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "_____'s Pikachu",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: other underscores unchanged",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic______",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic_____",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Delta Species",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic (Delta Species)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic δ",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en",
+        "printed_identity_modifier": "delta_species"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Delta EX separator",
+    "expected": true,
+    "input": {
+      "sourceName": "Synthetic EX (Delta Species)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic-EX δ",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en",
+        "printed_identity_modifier": "delta_species"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Delta evidence absent",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic (Delta Species)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic δ",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Delta conflicting modifier",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic (Delta Species)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic δ",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en",
+        "printed_identity_modifier": "other"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Delta cannot match ordinary",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic (Delta Species)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en",
+        "printed_identity_modifier": "delta_species"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Delta cannot disappear",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic δ",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en",
+        "printed_identity_modifier": "delta_species"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: other accent remains literal",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic Cafe",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic Café",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: unknown decoration preserved",
+    "expected": false,
+    "input": {
+      "sourceName": "Poke Widget (Stamped)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Poké Widget",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: foreign domain excluded",
+    "expected": false,
+    "input": {
+      "sourceName": "Pokemon Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Pokémon Widget",
+        "number": "7",
+        "identity_domain": "pokemon_jpn_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: foreign language excluded",
+    "expected": false,
+    "input": {
+      "sourceName": "Pokemon Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Pokémon Widget",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "ja"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: number still exact",
+    "expected": false,
+    "input": {
+      "sourceName": "Pokemon Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Pokémon Widget",
+        "number": "8",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: number prefix still exact",
+    "expected": false,
+    "input": {
+      "sourceName": "Pokemon Widget",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Pokémon Widget",
+        "number": "TG7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en"
+      }
+    }
+  },
+  {
+    "label": "name fidelity: Delta stacked decoration held",
+    "expected": false,
+    "input": {
+      "sourceName": "Synthetic (Delta Species) (Full Art)",
+      "sourceNumber": "007/100",
+      "game": "pokemon",
+      "card": {
+        "name": "Synthetic δ",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "language": "en",
+        "printed_identity_modifier": "delta_species",
+        "rarity": "Rare Ultra"
+      }
+    }
   }
 ]

@@ -1,5 +1,57 @@
 # Grookai Operator Playbook V1
 
+## Collectr name fidelity — October 3
+
+The real import is now saved and verified: 1,342 added copies, one compatible
+copy reused, 706 source rows retained. Its private `collectr_real_import_20261003`
+receipt supersedes older unsaved notes. PR585 review workspace is live; do not
+replay its release intents. The next local candidate is
+`fix/collectr-name-fidelity-20261003` in `C:/gv_collectr_adventure_20261001`.
+Read `docs/checkpoints/collectr_name_fidelity_20261003.md`. Private evidence is
+under `collectr_name_fidelity_20261003`. The explicit
+`GV_COLLECTR_NAME_FIDELITY_HTTP_PROOF=1` flag extends the retained410 lab with
+name-format save/retry and stale Delta-evidence rejection; it includes prior
+review-workspace journeys. Preserve original imports, populated labs and all
+prior receipts. Additional ready counts are local qualification, not deployment
+or newly imported copies. Release and original-file reconciliation remain pending.
+
+## Jungle schema release V35 — October 4 UTC
+
+Main 81f1e6fe1 / PR588 is integrated. Sales desk Pro is independently LIVE at
+production417 with TestFlight342; preserve its release and 650xx labs. The exact
+eight Jungle SQL bodies remain unchanged; the combined candidate is425.
+Fresh read-only JungleSalesDeskBaselineAudit matches the full417 replay and
+1,128 security definitions. It cannot authorize PrePush or combine scopes.
+
+New full425 CLI reset/no-op push and retained417-to425 CLI upgrade converge
+exactly at 1156 security definitions. All 331 old public-table digests,
+two saved copies and the populated receipt book survive unchanged. Both new
+labs are isolated: full425 on54000/54001/internal10.248.27 and retained425 on
+54020/54021/internal10.248.28. Preserve all earlier labs and consumed intents.
+
+Catalog V4 is an explicitly LOCAL rehearsal engine for425; production targets
+reject before SQL. Original physical review bytes and the common advisory lock
+namespace are unchanged.26 rollback/failure checks protect all335 public tables,
+five saved copies, a receipt book and synthetic cart/catalog-add recovery rows.
+Actual639-row commit, concurrent lock wait with safe rejection, zero-insert retry
+and independent readback pass.128 links remain STAGED, with no bindings or price
+publication. The full425 lab is now POPULATED: never reset or reseed either lab.
+
+JungleReleaseV35 qualifies only the exact eight pending schema files against
+fresh production417 and these source-bound proofs. It requires normal committed
+source checks for PrePush and re-reads both labs, retained records and catalog
+state. prepare_jungle_cli_v35 supports prepare/dry-run only. Neither script
+applies schema, grants catalog authority or publishes prices. Actual outcomes
+are recorded in the external recovery checkpoint and release-v35 receipts.
+
+Schema must precede production catalog preparation. A fresh actual425 capture,
+schema-aware retained-data reconciliation, production-qualified execution code,
+exact bounded authority and same-plan production rollback remain necessary
+before catalog admission. The historical415 refresh cannot stand in for425.
+Original worker/policy and physical manifest remain unchanged. Prices NOT LIVE;
+slab OFF. Do not replay the completed receipt/cart/Pro migrations or activation.
+
+
 ## Jungle integration with the live sales cart — October 3, V34
 
 Current main fe3e4b23f includes PR586 and its completed production migration
@@ -68,6 +120,16 @@ Production catalog mutation still requires a fresh actual423 plan, exact bounded
 authority and same-plan production rollback. Binding activation, governed pricing
 publication and deployed client readback remain separate. Existing-copy correction
 stays later opt-in; slab OFF. No production write or Jungle price publication yet.
+
+## Sales desk workflow and dashboard — October 3, 2026
+
+Read SALES_DESK_PRO_20261003.md and its contract. Prior cart release is LIVE
+at production416/TestFlight341; its external release checkpoint supersedes the
+historical local-only notes below. New work is isolated in
+C:/gv_sales_desk_pro_20261003: drag/drop, exact canonical quick-add with durable
+request recovery, and in-person receipt reporting. New417 schema has local proof
+only until direct release readback. Use task-owned650xx labs, preserve648xx and
+all catalog/checkout work. Never replay old migration/activation/upload intents.
 
 
 ## iPad sales desk — October 3, 2026

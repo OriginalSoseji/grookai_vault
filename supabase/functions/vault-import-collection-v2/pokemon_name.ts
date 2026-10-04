@@ -30,6 +30,18 @@ export function matchesCollectrPokemonName({sourceName, sourceNumber, game, card
     if (!supported || text(card.printed_identity_modifier)) return false;
     name = art[1].trim();
   }
-  const canonical = (value: string) => value.replace(/[ -](ex|gx)$/, " $1");
+  // Delta Species is an identity constraint, not a removable decoration.
+  const delta = /^([^()]+)\s+\(delta species\)$/.exec(name);
+  if (delta) {
+    if (text(card.printed_identity_modifier) !== "delta_species" || !/ δ$/.test(text(card.name))) return false;
+    name = delta[1].trim() + " δ";
+  }
+  const canonical = (value: string) => value
+    .replace(/’/g, "'")
+    .replace(/\bpok(?:é|e\u0301)/g, "poke")
+    .replace(/^nidoran\s*(?:m|♂)$/, "nidoran ♂")
+    .replace(/^nidoran\s*(?:f|♀)$/, "nidoran ♀")
+    .replace(/^_{2,}'s pikachu$/, "__'s pikachu")
+    .replace(/[ -](ex|gx)(?= δ$|$)/, " $1");
   return !!name && canonical(name) === canonical(text(card.name));
 }

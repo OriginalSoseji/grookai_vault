@@ -58,6 +58,8 @@ param(
   [switch]$SearchDatabaseLatencyV1,
   [switch]$ReceiptCloudV1,
   [switch]$SalesCartBaselineV1,
+  [switch]$SalesDeskProBaselineV1,
+  [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
   [switch]$SearchNamePlanV1,
   [switch]$JungleEditionBaselineAudit,
@@ -68,7 +70,9 @@ param(
   [switch]$JungleSlabBaselineAudit,
   [switch]$JungleReceiptBaselineAudit,
   [switch]$JungleReleaseV32,
+  [switch]$JungleReleaseV35,
   [switch]$JungleSalesCartBaselineAudit,
+  [switch]$JungleSalesDeskBaselineAudit,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -82,11 +86,29 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+if ($JungleSalesDeskBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleSalesDeskBaselineAudit') }).Count -gt 0) {
+    throw 'Jungle sales-desk baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v12.mjs')
+  exit $LASTEXITCODE
+}
+
 if ($JungleSalesCartBaselineAudit) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleSalesCartBaselineAudit') }).Count -gt 0) {
     throw 'Jungle sales-cart baseline is read-only and cannot combine scopes or authorize PrePush.'
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v11.mjs')
+  exit $LASTEXITCODE
+}
+
+if ($JungleReleaseV35) {
+  $jungleExpected = @('20261001050000','20261001203000','20261001211000','20261001213000','20261001220000','20261001223000','20261001224000','20261002010000')
+  $jungleRequested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleReleaseV35','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($jungleRequested.Count -gt 0 -and ($jungleRequested -join ',') -ne ($jungleExpected -join ',')) -or ($Phase -eq 'PrePush' -and ($jungleRequested -join ',') -ne ($jungleExpected -join ','))) {
+    throw 'Jungle V35 permits only the exact eight migrations, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_jungle_release_v35.mjs') $Phase
   exit $LASTEXITCODE
 }
 
@@ -122,6 +144,15 @@ if ($JungleEditionSearchBaselineAudit) {
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v8.mjs')
   exit $LASTEXITCODE
+}
+
+if ($SalesDeskProBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SalesDeskProBaselineV1') }).Count -gt 0) {
+    throw 'Sales desk baseline is read-only; no combined scopes, PrePush or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_sales_desk_pro_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Sales desk baseline audit failed.' }
+  exit 0
 }
 
 if ($SalesCartBaselineV1) {
@@ -551,6 +582,24 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($SalesDeskProReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','SalesDeskProReleaseV1')
+  $cartExpected = (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or $cartExpected -ne '20261003230000') { Fail 'Sales desk release requires its exact migration without combined scopes or overrides.' }
+  $cartRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $cartFiles = @(Get-RepoMigrationFiles -RepoRoot $cartRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $cartFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $cartPending = @($cartFiles | Where-Object { $_.Id -eq '20261003230000' })
+  if ($cartPending.Count -ne 1) { Fail 'Sales desk pending scope mismatch.' }
+  $cartDuplicates = Get-ObjectDuplicates -PendingFiles $cartPending
+  if ($cartDuplicates.DuplicateIndexes.Count -gt 0 -or $cartDuplicates.DuplicateViews.Count -gt 0 -or $cartDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate cart objects.' }
+  Require-Command 'node'
+  $cartGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_sales_desk_pro_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $cartGate
+  if ($cartGate.ExitCode -ne 0) { Fail 'Sales desk qualification failed; no application.' }
+  exit 0
 }
 
 if ($SalesCartReleaseV1) {

@@ -54,10 +54,25 @@ bool matchesCollectrPokemonName({
     }
     name = art.group(1)!.trim();
   }
-  // Unrecognized decorations (including stamps and finishes) remain literal.
-  String canonical(String value) => value.replaceFirstMapped(
-    RegExp(r'[ -](ex|gx)$'),
-    (match) => ' ${match.group(1)}',
-  );
+  // Delta Species remains an explicit, positively evidenced identity.
+  final delta = RegExp(r'^([^()]+)\s+\(delta species\)$').firstMatch(name);
+  if (delta != null) {
+    if (text(card['printed_identity_modifier']) != 'delta_species' ||
+        !text(card['name']).endsWith(' δ')) {
+      return false;
+    }
+    name = '${delta.group(1)!.trim()} δ';
+  }
+  // Keep unknown decorations, gender distinctions and all other accents literal.
+  String canonical(String value) => value
+      .replaceAll('’', "'")
+      .replaceAll(RegExp('\\bpok(?:é|e\u0301)'), 'poke')
+      .replaceAll(RegExp(r'^nidoran\s*(?:m|♂)$'), 'nidoran ♂')
+      .replaceAll(RegExp(r'^nidoran\s*(?:f|♀)$'), 'nidoran ♀')
+      .replaceAll(RegExp(r"^_{2,}'s pikachu$"), "__'s pikachu")
+      .replaceFirstMapped(
+        RegExp(r'[ -](ex|gx)(?= δ$|$)'),
+        (match) => ' ${match.group(1)}',
+      );
   return name.isNotEmpty && canonical(name) == canonical(text(card['name']));
 }

@@ -9,6 +9,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../widgets/card_surface_artwork.dart';
+import 'sales_dashboard.dart';
+import 'sales_catalog_dialog.dart';
 
 class SalesDeskScreen extends StatefulWidget {
   const SalesDeskScreen({super.key, this.service});
@@ -31,18 +33,29 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   SalesDeskData? _data;
   Map<String, dynamic>? _pending, _receipt, _customer;
   bool _loading = true, _busy = false, _showCart = false;
-  bool _accountChanged = false;
+  bool _accountChanged = false, _dashboard = false, _editing = false;
   StreamSubscription<void>? _accountSubscription;
   String? _error;
   String _method = 'Cash';
-  bool get _locked => _busy || _pending != null || _receipt != null;
+  bool get _locked =>
+      _accountChanged ||
+      _editing ||
+      _busy ||
+      _pending != null ||
+      _receipt != null;
 
   @override
   void initState() {
     super.initState();
     _search.addListener(_filter);
     _accountSubscription = _service.accountChanges.listen((_) {
-      if (mounted) setState(() => _accountChanged = true);
+      if (mounted) {
+        setState(() => _accountChanged = true);
+        final route = ModalRoute.of(context);
+        if (route != null) {
+          Navigator.of(context).popUntil((candidate) => candidate == route);
+        }
+      }
     });
     unawaited(_load());
   }
@@ -147,11 +160,14 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       return;
     }
     final old = index == null ? null : _lines[index];
+    setState(() => _editing = true);
     final line = await showDialog<SalesCartLine>(
       context: context,
       builder: (_) => _SaleLineDialog(copy: copy, line: old),
     );
-    if (line == null || !mounted) return;
+    if (!mounted) return;
+    setState(() => _editing = false);
+    if (line == null || _accountChanged) return;
     setState(() {
       if (index == null) {
         _lines.add(line);
@@ -160,6 +176,35 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       }
       _error = null;
     });
+  }
+
+  Future<void> _catalog() async {
+    if (_locked || _lines.length >= 50) return;
+    setState(() => _editing = true);
+    final result = await showDialog<SalesCatalogResult>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => SalesCatalogDialog(service: _service),
+    );
+    if (!mounted) return;
+    setState(() => _editing = false);
+    if (_accountChanged || result == null) return;
+    setState(() {
+      if (result.line != null &&
+          !_lines.any((line) => line.instanceId == result.line!.instanceId)) {
+        _lines.add(result.line!);
+      }
+    });
+    await _load();
+    if (mounted && !_accountChanged) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Copy ${result.gvviId} added${result.line == null ? ' to your Vault' : ' to your cart'}.',
+          ),
+        ),
+      );
+    }
   }
 
   Future<void> _complete() async {
@@ -353,12 +398,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Tap a card. Build a sale.',
+                'Your cards. Ready to sell.',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
               const Text(
-                'Your active Vault copies. Quick-add anything you have not entered yet.',
+                'Tap to add, or hold a card and drag it into the cart.',
               ),
               const SizedBox(height: 16),
               TextField(
@@ -370,6 +415,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                 ),
               ),
               const SizedBox(height: 12),
+              OutlinedButton.icon(
+                onPressed: _locked || _lines.length >= 50 ? null : _catalog,
+                icon: const Icon(Icons.search),
+                label: const Text('Search catalog & add a card'),
+              ),
+              const SizedBox(height: 8),
               FilledButton.icon(
                 onPressed: _locked ? null : () => _edit(),
                 icon: const Icon(Icons.add),
@@ -401,7 +452,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                         selected = _lines.any(
                           (line) => line.instanceId == rows[index].instanceId,
                         );
-                    return Card(
+                    final card = Card(
                       clipBehavior: Clip.antiAlias,
                       child: InkWell(
                         onTap: _locked || selected
@@ -465,6 +516,30 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                           ),
                         ),
                       ),
+                    );
+                    return LongPressDraggable<VendorPricingWorkspaceRow>(
+                      key: ValueKey('drag-${row.instanceId}'),
+                      data: row,
+                      maxSimultaneousDrags: _locked || selected ? 0 : 1,
+                      feedback: Material(
+                        elevation: 12,
+                        borderRadius: BorderRadius.circular(16),
+                        child: SizedBox(
+                          width: 140,
+                          height: 210,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: CardSurfaceArtwork(
+                              label: row.displayName,
+                              imageUrl: row.imageUrl,
+                              fallbackImageUrl: row.fallbackImageUrl,
+                              enableTapToZoom: false,
+                            ),
+                          ),
+                        ),
+                      ),
+                      childWhenDragging: Opacity(opacity: .35, child: card),
+                      child: card,
                     );
                   },
                 ),
@@ -625,6 +700,35 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       ],
     );
   }
+
+  Widget _dropCart({required Widget child, bool compact = false}) =>
+      DragTarget<VendorPricingWorkspaceRow>(
+        key: ValueKey(compact ? 'cart-drop-compact' : 'cart-drop'),
+        onWillAcceptWithDetails: (details) =>
+            !_locked &&
+            _lines.length < 50 &&
+            !_lines.any((line) => line.instanceId == details.data.instanceId),
+        onAcceptWithDetails: (details) {
+          if (compact) setState(() => _showCart = true);
+          unawaited(_edit(copy: details.data));
+        },
+        builder: (context, candidates, rejected) => AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+          decoration: BoxDecoration(
+            color: candidates.isEmpty
+                ? null
+                : Theme.of(context).colorScheme.primaryContainer,
+            border: Border.all(
+              width: 2,
+              color: candidates.isEmpty
+                  ? Colors.transparent
+                  : Theme.of(context).colorScheme.primary,
+            ),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Material(type: MaterialType.transparency, child: child),
+        ),
+      );
 
   Widget _cartLine(int index) {
     final line = _lines[index];
@@ -792,6 +896,15 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
               title: const Text('Sales desk'),
               actions: [
                 IconButton(
+                  tooltip: _dashboard ? 'Back to selling' : 'Sales dashboard',
+                  onPressed: _data == null || _busy
+                      ? null
+                      : () => setState(() => _dashboard = !_dashboard),
+                  icon: Icon(
+                    _dashboard ? Icons.point_of_sale : Icons.insights_outlined,
+                  ),
+                ),
+                IconButton(
                   tooltip: 'Refresh cards',
                   onPressed: _loading || _locked ? null : _load,
                   icon: const Icon(Icons.refresh),
@@ -830,6 +943,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                               ),
                             ),
                           )
+                        : _dashboard
+                        ? SalesDashboard(
+                            receipts: [...?_data?.receipts, ?_receipt],
+                            refresh: _load,
+                          )
                         : LayoutBuilder(
                             builder: (context, constraints) {
                               if (constraints.maxWidth >= 900) {
@@ -837,12 +955,32 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                                   children: [
                                     Expanded(child: _inventory()),
                                     const VerticalDivider(width: 1),
-                                    SizedBox(width: 390, child: _cart()),
+                                    SizedBox(
+                                      width: 390,
+                                      child: _dropCart(child: _cart()),
+                                    ),
                                   ],
                                 );
                               }
                               return Column(
                                 children: [
+                                  if (!_showCart)
+                                    _dropCart(
+                                      compact: true,
+                                      child: ListTile(
+                                        leading: const Icon(
+                                          Icons.shopping_cart_outlined,
+                                        ),
+                                        title: Text(
+                                          'Drop here to add · ${_lines.length} in cart',
+                                        ),
+                                        trailing: const Icon(
+                                          Icons.chevron_right,
+                                        ),
+                                        onTap: () =>
+                                            setState(() => _showCart = true),
+                                      ),
+                                    ),
                                   Padding(
                                     padding: const EdgeInsets.all(8),
                                     child: SegmentedButton<bool>(

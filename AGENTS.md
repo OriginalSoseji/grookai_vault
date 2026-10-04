@@ -1,5 +1,27 @@
 # Grookai Agent Entry Point
 
+## Collectr name fidelity — October 3
+
+The original real import is verified in the private `collectr_real_import_20261003`
+receipt: 1,342 added copies, one reused, 706 review rows retained. The next isolated
+candidate is `fix/collectr-name-fidelity-20261003` in
+`C:/gv_collectr_adventure_20261001`; read
+`docs/checkpoints/collectr_name_fidelity_20261003.md`. Local formatting repair
+resolves 14 more rows / 18 copies without changing prior selections. It is not live.
+The explicit name-fidelity HTTP proof flag extends the retained410 lab, never a
+production backend. Preserve real import mappings and all prior release receipts.
+
+## Sales desk workflow and dashboard — October 3, 2026
+
+Read docs/ops/SALES_DESK_PRO_20261003.md and its contract. Prior cart release is LIVE
+at production416/TestFlight341; its external release checkpoint supersedes the
+historical local-only notes below. New work is isolated in
+C:/gv_sales_desk_pro_20261003: drag/drop, exact canonical quick-add with durable
+request recovery, and in-person receipt reporting. New417 schema has local proof
+only until direct release readback. Use task-owned650xx labs, preserve648xx and
+all catalog/checkout work. Never replay old migration/activation/upload intents.
+
+
 ## iPad in-person sales cart — October 3, 2026
 
 Read docs/ops/IPAD_SALES_CART_20261003.md and its contract. Current candidate is
