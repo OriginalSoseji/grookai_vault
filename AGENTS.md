@@ -41,6 +41,15 @@ New full/retained426 proofs use542xx only; all prior populated labs are retained
 Existing records are verified unchanged. New prices/catalog remain inactive.
 The worker recovery checkpoint and projection-v37 artifacts record actual release state.
 
+## Collectr review coverage — October 4
+
+PR589 is live and its real incremental import is verified: 1,361 accounted copies,
+692 held rows. Read `docs/checkpoints/collectr_review_coverage_20261004.md`.
+Current branch `fix/collectr-review-coverage-20261004` adds catalog-evidenced MTG
+Surge Foil matching; it is not deployed. Keep the 417-migration production state,
+all previous copy mappings, and retained410 lab intact. Use the explicit
+`GV_COLLECTR_SURGE_HTTP_PROOF=1` for local proof. Private receipts are under
+`collectr_review_coverage_20261004`; never replay earlier release/import intents.
 
 ## Collectr name fidelity — October 3
 

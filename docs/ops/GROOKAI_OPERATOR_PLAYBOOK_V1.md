@@ -53,6 +53,19 @@ and seven preflight boundary tests pass. Preserve every populated prior lab.
 Latest proof/release state is external under
 projection-v37 and the worker recovery checkpoint; do not infer deployment here.
 
+## Collectr review coverage — October 4
+
+The name-fidelity release PR589 and incremental real import are complete: 1,361
+copies accounted for, 692 held rows. The external
+`collectr_name_fidelity_20261003/release-and-import-checkpoint.json` supersedes
+the older local-only notes below. The next isolated candidate remains in
+`C:/gv_collectr_adventure_20261001` on `fix/collectr-review-coverage-20261004`.
+Read `docs/checkpoints/collectr_review_coverage_20261004.md` for the full review
+classification and governed Surge Foil repair. Its explicit proof flag is
+`GV_COLLECTR_SURGE_HTTP_PROOF=1`; the retained410 lab must not be reset. The proof
+publishes only its new synthetic MTG set, never changing game-wide visibility.
+Production stays at417; new eligibility is not deployment or a real import.
+Private qualification/release receipts belong in `collectr_review_coverage_20261004`.
 
 ## Collectr name fidelity — October 3
 

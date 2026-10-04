@@ -5,6 +5,7 @@ import 'collectr_fca_names.dart';
 bool matchesCollectrMtgIdentity({
   required String sourceName,
   required String sourceNumber,
+  String? sourceFinishKey,
   required String game,
   required Map<String, dynamic> card,
   required List<Map<String, dynamic>> identities,
@@ -77,6 +78,13 @@ bool matchesCollectrMtgIdentity({
       'extended art' => effects is List && effects.contains('extendedart'),
       'showcase' => fcaAlias || effects is List && effects.contains('showcase'),
       'borderless' => payload['border_color'] == 'borderless',
+      'surge foil' =>
+        sourceFinishKey == 'foil' &&
+            promos is List &&
+            promos.contains('surgefoil') &&
+            payload['finishes'] is List &&
+            (payload['finishes'] as List).length == 1 &&
+            (payload['finishes'] as List).single == 'foil',
       _ =>
         RegExp(r'^\d+$').hasMatch(label) &&
             number(label) == number(sourceNumber),

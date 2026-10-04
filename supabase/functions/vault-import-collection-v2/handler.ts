@@ -204,7 +204,7 @@ async function resolveTargets(
         sourceNumber: base.number, game: base.game, card}) : (text(card.name ?? "").toLowerCase() !== base.name &&
         !matchesCollectrPokemonName({sourceName: base.name, sourceNumber: base.number,
           game: base.game, card}) &&
-        !matchesCollectrMtgIdentity({sourceName: base.name, sourceNumber: base.number,
+        !matchesCollectrMtgIdentity({sourceName: base.name, sourceNumber: base.number, sourceFinishKey: base.finishKey,
           game: base.game, card, identities: identities.get(card.id) ?? []}))) ||
       !collectrSetTargets(base.set, base.game, base.number).includes(setName(set.name ?? "", base.game)) ||
       number(card.number ?? "") !== base.number

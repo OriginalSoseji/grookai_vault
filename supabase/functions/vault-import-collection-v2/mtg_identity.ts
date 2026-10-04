@@ -1,8 +1,9 @@
 import { collectrFcaNames } from "./fca_names.ts";
 
 // Mirror the native predicate; the shared fixture corpus checks both runtimes.
-export function matchesCollectrMtgIdentity({sourceName, sourceNumber, game, card, identities}: {
+export function matchesCollectrMtgIdentity({sourceName, sourceNumber, sourceFinishKey, game, card, identities}: {
   sourceName: string; sourceNumber: string; game: string;
+  sourceFinishKey?: string | null;
   card: Record<string, any>; identities: Record<string, any>[];
 }): boolean {
   const text = (value: unknown): string => typeof value === "string" ? value.trim().replace(/\s+/g, " ").toLowerCase() : "";
@@ -49,6 +50,11 @@ export function matchesCollectrMtgIdentity({sourceName, sourceNumber, game, card
     const verified = label === "extended art" ? Array.isArray(effects) && effects.includes("extendedart")
       : label === "showcase" ? fcaAlias || Array.isArray(effects) && effects.includes("showcase")
       : label === "borderless" ? payload.border_color === "borderless"
+      // A special treatment belongs to the exact governed parent. Ordinary
+      // foil availability alone cannot establish Surge Foil identity.
+      : label === "surge foil" ? sourceFinishKey === "foil" &&
+        Array.isArray(payload.promo_types) && payload.promo_types.includes("surgefoil") &&
+        Array.isArray(payload.finishes) && payload.finishes.length === 1 && payload.finishes[0] === "foil"
       : /^\d+$/.test(label) && number(label) === number(sourceNumber);
     if (!verified) return false;
   }
