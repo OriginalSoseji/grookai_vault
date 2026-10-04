@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Jungle discovery projection correction — October 4
+
+Read the first Jungle projection section of docs/ops/JUNGLE_EDITION_PRICING_20261001.md.
+PR587 is merged and all eight migrations are LIVE at425. Do not replay them.
+Strict readback exposed SELECT-star view column-order drift; the additive426
+correction is in C:/gv_jungle_edition_20261001 on fix/jungle-discovery-projection-20261004.
+New full/retained426 proofs use542xx only; all prior populated labs are retained.
+Existing records are verified unchanged. New prices/catalog remain inactive.
+The worker recovery checkpoint and projection-v37 artifacts record actual release state.
+
+
 ## Collectr name fidelity — October 3
 
 The original real import is verified in the private `collectr_real_import_20261003`
