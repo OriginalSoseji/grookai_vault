@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createServerAdminClient } from "@/lib/supabase/admin";
+import { getJungleDiscoveryExclusions } from "@/lib/cards/jungleEditionResolution";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFallbacks";
 import {
@@ -52,6 +53,7 @@ export type GrookaiDexCardPrintRow = {
   imageFallbackUrls: string[];
   role: string;
   countsForCompletion: boolean;
+  editionReviewRequired: boolean;
   ownedCount: number;
   unassignedPrintingCount: number;
   isOwned: boolean;
@@ -185,6 +187,7 @@ export async function getGrookaiDexSpeciesDetail(
   }
 
   const admin = createServerAdminClient();
+  const exclusions = new Set(await getJungleDiscoveryExclusions(admin));
   const detailRows: DexCardPrintViewRow[] = [];
   for (let detailFrom = 0; ; detailFrom += SUPABASE_DETAIL_PAGE_SIZE) {
     const detailTo = detailFrom + SUPABASE_DETAIL_PAGE_SIZE - 1;
@@ -282,7 +285,8 @@ export async function getGrookaiDexSpeciesDetail(
         },
       ];
   const ownedPrintingCounts = ownedPrintingOwnership.countsByCardPrintId;
-  const printingRows = await getPublicCardPrintingOptions(admin, cardPrintIds);
+  const discoveryCardPrintIds = cardPrintIds.filter((id) => !exclusions.has(id));
+  const printingRows = await getPublicCardPrintingOptions(admin, discoveryCardPrintIds);
 
   const printingOptionsByCardPrintId = new Map<string, Array<GrookaiDexCardPrintingOption & { sortOrder: number }>>();
   for (const row of (printingRows ?? []) as unknown as CardPrintingRow[]) {
@@ -325,7 +329,7 @@ export async function getGrookaiDexSpeciesDetail(
     })),
   );
   const resolvedCards = await Promise.all(
-    rows.map(async (row) => {
+    rows.filter((row) => !exclusions.has(clean(row.card_print_id)!) || (ownedCounts.get(clean(row.card_print_id)!) ?? 0) > 0).map(async (row) => {
       const cardPrintId = clean(row.card_print_id)!;
       const metadata = cardPrintMetadataByCardPrintId.get(cardPrintId);
       const imageFields = await resolveCardImageFieldsV1({
@@ -371,7 +375,8 @@ export async function getGrookaiDexSpeciesDetail(
         imageUrl,
         imageFallbackUrls,
         role: clean(row.role) ?? "primary",
-        countsForCompletion: row.counts_for_completion === true,
+        countsForCompletion: row.counts_for_completion === true && !exclusions.has(cardPrintId),
+        editionReviewRequired: exclusions.has(cardPrintId),
         ownedCount,
         unassignedPrintingCount:
           printings.length > 0
@@ -404,6 +409,8 @@ export async function getGrookaiDexSpeciesDetail(
     const discriminator = getCardPrintDisplayDiscriminator({
       variantKey: card.variantKey,
       printedIdentityModifier: card.printedIdentityModifier,
+      setCode: card.setCode,
+      number: card.number,
       hasDuplicateCaption,
       fallbackIndex: duplicateOrdinalByCardPrintId.get(card.cardPrintId) ?? 0,
     });
@@ -416,7 +423,9 @@ export async function getGrookaiDexSpeciesDetail(
 
   const completionCards = cards.filter((row) => row.countsForCompletion);
   const ownedPrintCount = completionCards.filter((row) => row.isOwned).length;
-  const ownedCopyCount = completionCards.reduce((sum, row) => sum + row.ownedCount, 0);
+  const ownedCopyCount = cards
+    .filter((row) => row.countsForCompletion || row.editionReviewRequired)
+    .reduce((sum, row) => sum + row.ownedCount, 0);
   const unassignedPrintingCount = completionCards.reduce(
     (sum, row) => sum + row.unassignedPrintingCount,
     0,

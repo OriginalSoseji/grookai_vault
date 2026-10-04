@@ -6,6 +6,7 @@ import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
 import { resolveVisiblePublicSetReferences } from "@/lib/publicSetExactCodes";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
+import { getJungleDiscoveryExclusions } from "@/lib/cards/jungleEditionResolution";
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
   getBaseSetPrintRunLaneSpecialVariantKeys,
@@ -174,16 +175,18 @@ export async function getPublicSetMasterSetStats(
 ): Promise<PublicSetMasterSetStats> {
   const supabase = requestScopedCatalogClient ?? createPublicServerClient();
   const cardPrintIds = await fetchSetCardPrintIds(supabase, setCode, gameCode);
-  const printings = await fetchCardPrintings(supabase, cardPrintIds);
+  const excluded = new Set(resolvePublicSetRouteCode(setCode) === "base2" ? await getJungleDiscoveryExclusions(supabase) : []);
+  const discoveryIds = cardPrintIds.filter(id => !excluded.has(id));
+  const printings = await fetchCardPrintings(supabase, discoveryIds);
   const parentIdsWithChildPrintings = new Set(printings.map((printing) => printing.cardPrintId));
-  const fallbackParentIds = cardPrintIds.filter((id) => !parentIdsWithChildPrintings.has(id));
+  const fallbackParentIds = discoveryIds.filter((id) => !parentIdsWithChildPrintings.has(id));
   const availablePrintingIds = new Set(printings.map((printing) => printing.id));
   const variantOptionCount = printings.length + fallbackParentIds.length;
   const normalizedUserId = userId?.trim() ?? "";
 
   if (!normalizedUserId) {
     return {
-      parentPrintCount: cardPrintIds.length,
+      parentPrintCount: discoveryIds.length,
       variantOptionCount,
       ownedVariantOptionCount: null,
       missingVariantOptionCount: null,
@@ -218,7 +221,7 @@ export async function getPublicSetMasterSetStats(
     variantOptionCount > 0 ? Math.round((ownedVariantOptionCount / variantOptionCount) * 100) : 0;
 
   return {
-    parentPrintCount: cardPrintIds.length,
+    parentPrintCount: discoveryIds.length,
     variantOptionCount,
     ownedVariantOptionCount,
     missingVariantOptionCount,

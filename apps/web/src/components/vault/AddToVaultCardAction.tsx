@@ -13,6 +13,8 @@ import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresen
 import { sendTelemetryEvent } from "@/lib/telemetry/client";
 import type { CardPrinting } from "@/types/cards";
 import { useClientReady } from "@/components/layout/useClientReady";
+import JungleEditionChoices from "@/components/cards/JungleEditionChoices";
+import type { JungleEditionResolution } from "@/lib/cards/jungleEditionResolution";
 
 export type AddToVaultActionResult =
   | {
@@ -24,7 +26,8 @@ export type AddToVaultActionResult =
     }
   | {
       ok: false;
-      status: "login-required" | "not-found" | "error";
+      status: "login-required" | "not-found" | "error" | "edition-required";
+      editionResolution?: JungleEditionResolution;
       message?: string;
       submissionKey: number;
       addedCount?: number;
@@ -100,6 +103,8 @@ function getStatusMessage(result: AddToVaultActionResult | null) {
         title: "Card unavailable",
         body: "This card could not be added right now.",
       };
+    case "edition-required":
+      return { tone: "error" as const, title: "Choose an edition", body: result.message ?? "Choose the edition on your card." };
     case "error":
       return {
         tone: "error" as const,
@@ -340,6 +345,7 @@ export default function AddToVaultCardAction({
           ) : null}
         </div>
       ) : null}
+      {state && !state.ok && state.editionResolution ? <JungleEditionChoices resolution={state.editionResolution} /> : null}
     </div>
   );
 }

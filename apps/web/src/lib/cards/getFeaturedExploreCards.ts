@@ -157,7 +157,7 @@ async function getFeaturedExploreCandidates() {
   ]));
 
   const { data, error } = await supabase
-    .from("card_prints")
+    .from("v_card_prints_discovery_v1")
     .select("id,gv_id,name,number,rarity,set_code,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,identity_model)")
     // card_prints has a set_code index but no rarity index. Keep the query on
     // the indexed recent-set lane and use exact rarity values so discovery

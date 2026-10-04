@@ -8,6 +8,7 @@ import {
   normalizeGrookaiDexSearchQuery,
 } from "@/lib/grookaiDex/dexQuery";
 import { getAllOwnedCountsForUser } from "@/lib/vault/getOwnedCountsByCardPrintIds";
+import { getJungleDiscoveryExclusions } from "@/lib/cards/jungleEditionResolution";
 import {
   chunkValues,
   getRemainingPageIndexes,
@@ -335,13 +336,14 @@ export async function getGrookaiDexSpeciesPage(
   // owned parent identity rather than only the species on this page. There is
   // no server-side aggregate for this user-scoped mapping; pagination below
   // keeps the required complete read bounded per request.
-  const [requestedPublicPage, overviewBase, ownedCountsByCardPrintId] =
+  const [requestedPublicPage, overviewBase, ownedCountsByCardPrintId, excludedIds] =
     await Promise.all([
       getCachedGrookaiDexBaseSpeciesPage(page, pageSize, searchQuery),
       getCachedGrookaiDexOverviewBase(),
       normalizedUserId
         ? getAllOwnedCountsForUser(normalizedUserId)
         : Promise.resolve(new Map<string, number>()),
+      getJungleDiscoveryExclusions(createServerAdminClient()),
     ]);
   const effectivePage = getEffectiveGrookaiDexPage(
     page,
@@ -356,13 +358,15 @@ export async function getGrookaiDexSpeciesPage(
           searchQuery,
         );
 
+  const exclusions = new Set(excludedIds);
   const mappings =
-    ownedCountsByCardPrintId.size > 0
+    ownedCountsByCardPrintId.size > 0 || exclusions.size > 0
       ? await getOwnedCompletionMappings(
-          Array.from(ownedCountsByCardPrintId.keys()),
+          [...Array.from(ownedCountsByCardPrintId.keys()), ...excludedIds],
         )
       : [];
   const speciesByCardPrintId = new Map<string, Set<string>>();
+  const excludedPrintsBySpecies = new Map<string, Set<string>>();
   for (const row of mappings) {
     const speciesId = normalizeString(row.species_id);
     const cardPrintId = normalizeString(row.card_print_id);
@@ -372,6 +376,11 @@ export async function getGrookaiDexSpeciesPage(
     const current = speciesByCardPrintId.get(cardPrintId) ?? new Set<string>();
     current.add(speciesId);
     speciesByCardPrintId.set(cardPrintId, current);
+    if (exclusions.has(cardPrintId)) {
+      const excluded = excludedPrintsBySpecies.get(speciesId) ?? new Set<string>();
+      excluded.add(cardPrintId);
+      excludedPrintsBySpecies.set(speciesId, excluded);
+    }
   }
 
   const ownedPrintsBySpecies = new Map<string, Set<string>>();
@@ -384,7 +393,7 @@ export async function getGrookaiDexSpeciesPage(
     for (const speciesId of speciesByCardPrintId.get(cardPrintId) ?? []) {
       const ownedPrints =
         ownedPrintsBySpecies.get(speciesId) ?? new Set<string>();
-      ownedPrints.add(cardPrintId);
+      if (!exclusions.has(cardPrintId)) ownedPrints.add(cardPrintId);
       ownedPrintsBySpecies.set(speciesId, ownedPrints);
       ownedCopiesBySpecies.set(
         speciesId,
@@ -393,18 +402,28 @@ export async function getGrookaiDexSpeciesPage(
     }
   }
 
+  // Adjust the public cached totals per request, without hiding owned records
+  // or caching any collector state. Only existing active species mappings count.
+  const discoveryTotal = (row: DexSpeciesOverviewBaseRow) => Math.max(
+    0, row.totalPrintCount - (excludedPrintsBySpecies.get(row.speciesId)?.size ?? 0),
+  );
   return {
     ...publicPage,
-    overview: buildGrookaiDexOverview(overviewBase, ownedPrintsBySpecies),
+    overview: buildGrookaiDexOverview(
+      overviewBase.map((row) => ({ ...row, totalPrintCount: discoveryTotal(row) })),
+      ownedPrintsBySpecies,
+    ),
     species: publicPage.species.map((row) => {
       const ownedPrintCount =
         ownedPrintsBySpecies.get(row.speciesId)?.size ?? 0;
+      const totalPrintCount = discoveryTotal(row);
       const completionPercent =
-        row.totalPrintCount > 0
-          ? Math.round((ownedPrintCount / row.totalPrintCount) * 100)
+        totalPrintCount > 0
+          ? Math.round((ownedPrintCount / totalPrintCount) * 100)
           : 0;
       return {
         ...row,
+        totalPrintCount,
         ownedPrintCount,
         ownedCopyCount: ownedCopiesBySpecies.get(row.speciesId) ?? 0,
         completionPercent,

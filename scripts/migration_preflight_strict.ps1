@@ -62,6 +62,17 @@ param(
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
   [switch]$SearchNamePlanV1,
+  [switch]$JungleEditionBaselineAudit,
+  [switch]$JungleEditionBaseline412Audit,
+  [switch]$JungleEditionAliasBaselineAudit,
+  [switch]$JungleEditionSourceBaselineAudit,
+  [switch]$JungleEditionSearchBaselineAudit,
+  [switch]$JungleSlabBaselineAudit,
+  [switch]$JungleReceiptBaselineAudit,
+  [switch]$JungleReleaseV32,
+  [switch]$JungleReleaseV35,
+  [switch]$JungleSalesCartBaselineAudit,
+  [switch]$JungleSalesDeskBaselineAudit,
   [switch]$NativeImportRecoveryReleaseV1,
   [switch]$VendorStoreTeamReleaseV1,
   [switch]$VendorStoreTeamHardeningV1,
@@ -74,6 +85,66 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($JungleSalesDeskBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleSalesDeskBaselineAudit') }).Count -gt 0) {
+    throw 'Jungle sales-desk baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v12.mjs')
+  exit $LASTEXITCODE
+}
+
+if ($JungleSalesCartBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleSalesCartBaselineAudit') }).Count -gt 0) {
+    throw 'Jungle sales-cart baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v11.mjs')
+  exit $LASTEXITCODE
+}
+
+if ($JungleReleaseV35) {
+  $jungleExpected = @('20261001050000','20261001203000','20261001211000','20261001213000','20261001220000','20261001223000','20261001224000','20261002010000')
+  $jungleRequested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleReleaseV35','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($jungleRequested.Count -gt 0 -and ($jungleRequested -join ',') -ne ($jungleExpected -join ',')) -or ($Phase -eq 'PrePush' -and ($jungleRequested -join ',') -ne ($jungleExpected -join ','))) {
+    throw 'Jungle V35 permits only the exact eight migrations, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_jungle_release_v35.mjs') $Phase
+  exit $LASTEXITCODE
+}
+
+if ($JungleReleaseV32) {
+  $jungleExpected = @('20261001050000','20261001203000','20261001211000','20261001213000','20261001220000','20261001223000','20261001224000','20261002010000')
+  $jungleRequested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleReleaseV32','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($jungleRequested.Count -gt 0 -and ($jungleRequested -join ',') -ne ($jungleExpected -join ',')) -or ($Phase -eq 'PrePush' -and ($jungleRequested -join ',') -ne ($jungleExpected -join ','))) {
+    throw 'Jungle V32 permits only the exact eight migrations, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_jungle_release_v32.mjs') $Phase
+  exit $LASTEXITCODE
+}
+
+if ($JungleReceiptBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleReceiptBaselineAudit') }).Count -gt 0) {
+    throw 'Jungle receipt baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v10.mjs')
+  exit $LASTEXITCODE
+}
+
+if ($JungleSlabBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleSlabBaselineAudit') }).Count -gt 0) {
+    throw 'Jungle slab baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v9.mjs')
+  exit $LASTEXITCODE
+}
+
+if ($JungleEditionSearchBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleEditionSearchBaselineAudit') }).Count -gt 0) {
+    throw 'Jungle search baseline is read-only and cannot combine scopes or authorize PrePush.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v8.mjs')
+  exit $LASTEXITCODE
+}
 
 if ($SalesDeskProBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SalesDeskProBaselineV1') }).Count -gt 0) {
@@ -606,6 +677,74 @@ if ($SearchDatabaseLatencyV1) {
   $searchGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_search_database_latency_v1.mjs'),$Phase)
   Write-CommandTranscript -result $searchGate
   if ($searchGate.ExitCode -ne 0) { Fail 'Search database qualification failed; no apply.' }
+  exit 0
+}
+
+if ($JungleEditionSourceBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleEditionSourceBaselineAudit') }).Count -gt 0) { Fail 'Jungle baseline permits only its fixed read-only audit; no PrePush or combined modes.' }
+  $jungleRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $jungleFiles = @(Get-RepoMigrationFiles -RepoRoot $jungleRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $jungleFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $junglePending = @($jungleFiles | Where-Object { $_.Id -eq '20261001050000' })
+  if ($junglePending.Count -gt 0) {
+    $jungleDuplicates = Get-ObjectDuplicates -PendingFiles $junglePending
+    if ($jungleDuplicates.DuplicateIndexes.Count -gt 0 -or $jungleDuplicates.DuplicateViews.Count -gt 0 -or $jungleDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending Jungle objects.' }
+  }
+  $jungleAudit = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v7.mjs'))
+  Write-CommandTranscript -result $jungleAudit
+  if ($jungleAudit.ExitCode -ne 0) { Fail 'Jungle baseline differs; no schema work or apply.' }
+  Write-Host 'STRICT JUNGLE 413 BASELINE PASS - READ ONLY, NO APPLY AUTHORITY'
+  exit 0
+}
+
+if ($JungleEditionAliasBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleEditionAliasBaselineAudit') }).Count -gt 0) { Fail 'Jungle baseline permits only its fixed read-only audit; no PrePush or combined modes.' }
+  $jungleRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $jungleFiles = @(Get-RepoMigrationFiles -RepoRoot $jungleRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $jungleFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $junglePending = @($jungleFiles | Where-Object { $_.Id -eq '20261001050000' })
+  if ($junglePending.Count -gt 0) {
+    $jungleDuplicates = Get-ObjectDuplicates -PendingFiles $junglePending
+    if ($jungleDuplicates.DuplicateIndexes.Count -gt 0 -or $jungleDuplicates.DuplicateViews.Count -gt 0 -or $jungleDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending Jungle objects.' }
+  }
+  $jungleAudit = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v3.mjs'))
+  Write-CommandTranscript -result $jungleAudit
+  if ($jungleAudit.ExitCode -ne 0) { Fail 'Jungle baseline differs; no schema work or apply.' }
+  Write-Host 'STRICT JUNGLE 413 ALIAS BASELINE PASS - READ ONLY, NO APPLY AUTHORITY'
+  exit 0
+}
+
+if ($JungleEditionBaseline412Audit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleEditionBaseline412Audit') }).Count -gt 0) { Fail 'Jungle baseline permits only its fixed read-only audit; no PrePush or combined modes.' }
+  $jungleRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $jungleFiles = @(Get-RepoMigrationFiles -RepoRoot $jungleRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $jungleFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $junglePending = @($jungleFiles | Where-Object { $_.Id -eq '20261001050000' })
+  if ($junglePending.Count -gt 0) {
+    $jungleDuplicates = Get-ObjectDuplicates -PendingFiles $junglePending
+    if ($jungleDuplicates.DuplicateIndexes.Count -gt 0 -or $jungleDuplicates.DuplicateViews.Count -gt 0 -or $jungleDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending Jungle objects.' }
+  }
+  $jungleAudit = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v2.mjs'))
+  Write-CommandTranscript -result $jungleAudit
+  if ($jungleAudit.ExitCode -ne 0) { Fail 'Jungle baseline differs; no schema work or apply.' }
+  Write-Host 'STRICT JUNGLE 412 BASELINE PASS - READ ONLY, NO APPLY AUTHORITY'
+  exit 0
+}
+
+if ($JungleEditionBaselineAudit) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleEditionBaselineAudit') }).Count -gt 0) { Fail 'Jungle baseline permits only its fixed read-only audit; no PrePush or combined modes.' }
+  $jungleRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $jungleFiles = @(Get-RepoMigrationFiles -RepoRoot $jungleRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $jungleFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $junglePending = @($jungleFiles | Where-Object { $_.Id -eq '20261001050000' })
+  if ($junglePending.Count -gt 0) {
+    $jungleDuplicates = Get-ObjectDuplicates -PendingFiles $junglePending
+    if ($jungleDuplicates.DuplicateIndexes.Count -gt 0 -or $jungleDuplicates.DuplicateViews.Count -gt 0 -or $jungleDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate pending Jungle objects.' }
+  }
+  $jungleAudit = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v1.mjs'))
+  Write-CommandTranscript -result $jungleAudit
+  if ($jungleAudit.ExitCode -ne 0) { Fail 'Jungle baseline differs; no schema work or apply.' }
+  Write-Host 'STRICT JUNGLE BASELINE PASS - READ ONLY, NO APPLY AUTHORITY'
   exit 0
 }
 

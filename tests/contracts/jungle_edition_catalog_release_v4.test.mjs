@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {assertJungleReleaseTarget,assertJungleReleasePlan,JUNGLE_RELEASE_EXECUTION_V4} from '../../backend/catalog/jungle_edition_catalog_release_v4.mjs';
+import {printingManifestHash as hash} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
+const valid={address:'10.248.27.4',workers:'0',migrations:425};
+function client(parameters={},state=valid){let calls=0;return {connectionParameters:{host:'127.0.0.1',port:54000,user:'postgres',database:'postgres',...parameters},query:async()=>{calls++;return {rows:[state]};},calls:()=>calls};}
+test('425 rehearsal accepts only its qualified fixed target',async()=>{const c=client();await assertJungleReleaseTarget(c,'local_rehearsal');assert.equal(c.calls(),1);});
+test('production cannot enter rehearsal engine before SQL',async()=>{const c=client({host:'aws-1-us-east-2.pooler.supabase.com',port:5432,user:'postgres.ycdxbpibncqcchqiihfz',ssl:{rejectUnauthorized:true}});await assert.rejects(assertJungleReleaseTarget(c,'production'),/post_migration_production_context_not_qualified/);assert.equal(c.calls(),0);});
+for(const [name,p]of [['remote host',{host:'aws-1-us-east-2.pooler.supabase.com'}],['historical port',{port:53600}],['other database',{database:'other'}],['other role',{user:'other'}]])test('reject '+name+' before SQL',async()=>{const c=client(p);await assert.rejects(assertJungleReleaseTarget(c,'local_rehearsal'));assert.equal(c.calls(),0);});
+for(const [name,state]of [['production417',{...valid,migrations:417}],['historical424',{...valid,migrations:424}],['future426',{...valid,migrations:426}],['other subnet',{...valid,address:'10.248.25.4'}],['enabled workers',{...valid,workers:'8'}]])test('reject '+name,async()=>{await assert.rejects(assertJungleReleaseTarget(client({},state),'local_rehearsal'));});
+test('rehashing a production plan does not bypass the closed production boundary',()=>{const p={version:JUNGLE_RELEASE_EXECUTION_V4,target:'production',production_execution_authorized:false,activation:false};p.fingerprint=hash(p);assert.throws(()=>assertJungleReleasePlan(p,p.fingerprint,{},new Map()),/post_migration_production_context_not_qualified/);});

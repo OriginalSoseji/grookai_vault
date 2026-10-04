@@ -18,7 +18,7 @@ export function prepareImportTargets(input: unknown, requestId: string) {
   const merged = new Map<string, ImportTarget>();
   let needsManualMatch = 0;
   for (const item of input) {
-    if (!object(item) || !["matched", "missing", "multiple"].includes(String(item.status))) throw new Error("invalid_import");
+    if (!object(item) || !["matched", "missing", "multiple", "review"].includes(String(item.status))) throw new Error("invalid_import");
     if (item.status !== "matched") { needsManualMatch++; continue; }
     if (!object(item.row) || !object(item.match)) throw new Error("invalid_import");
     const row = item.row, match = item.match;

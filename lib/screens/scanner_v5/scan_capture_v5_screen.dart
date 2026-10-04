@@ -14,6 +14,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/scanner_v5/scanner_v5_identity_service.dart';
 import '../../services/onboarding/onboarding_ladder_service.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../services/public/jungle_edition_resolution_service.dart';
+import '../scanner/jungle_edition_scan_review.dart';
 import 'widgets/scanner_result_sheet.dart';
 import 'widgets/scanner_v5_palette.dart';
 import 'widgets/scanner_viewfinder_chrome.dart';
@@ -462,6 +464,12 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       if (!mounted) return;
       await HapticFeedback.heavyImpact();
       _resetToLiveScanner();
+    } on JungleEditionSelectionRequired catch (error) {
+      if (!mounted) return;
+      await reviewScannedJungleEdition(context, error.resolution);
+    } on JungleEditionWriteFailure catch (error) {
+      if (!mounted) return;
+      _showScanNotice('Edition needs review', error.message);
     } catch (_) {
       if (!mounted) return;
       _showScanNotice(

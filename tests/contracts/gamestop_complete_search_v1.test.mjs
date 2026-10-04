@@ -56,7 +56,7 @@ test('stamp-only combined search narrows every page using either canonical stamp
   ];
   const calls = [];
   const db = { from(table) {
-    assert.equal(table, 'card_prints');
+    assert.equal(table, 'v_card_prints_discovery_v1');
     const call = { after: null, or: null }; calls.push(call);
     const query = {
       select() { return query; }, like() { return query; }, order() { return query; },

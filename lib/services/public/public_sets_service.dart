@@ -2,6 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'card_surface_pricing_service.dart';
 import 'public_card_printing_options_service.dart';
+import 'jungle_edition_resolution_service.dart';
 import '../vault/vault_card_service.dart';
 import '../identity/image_presentation.dart';
 import '../../utils/display_image_contract.dart';
@@ -638,13 +639,20 @@ class PublicSetsService {
       return const [];
     }
 
-    final rows = await client
+    final exclusions = normalizedCode == 'base2'
+        ? await getJungleDiscoveryExclusions(client)
+        : <String>{};
+    var query = client
         .from('card_prints')
         .select(
           'id,gv_id,name,number,number_plain,variant_key,printed_identity_modifier,rarity,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(identity_model)',
         )
         .inFilter('set_code', exactSetCodes)
-        .not('gv_id', 'is', null)
+        .not('gv_id', 'is', null);
+    if (exclusions.isNotEmpty) {
+      query = query.not('id', 'in', '(${exclusions.join(',')})');
+    }
+    final rows = await query
         .order('number_plain', ascending: true, nullsFirst: false)
         .order('number', ascending: true)
         .range(offset, offset + limit - 1);
@@ -803,12 +811,26 @@ class PublicSetsService {
       setCode: summary.code,
     );
 
+    var retainedEditionOwnedCount = 0;
+    if (summary.code == 'base2' && client.auth.currentUser != null) {
+      final excluded = await getJungleDiscoveryExclusions(client);
+      final owned = await VaultCardService.getOwnedCountsIncludingSlabs(
+        client: client,
+        cardPrintIds: excluded,
+      );
+      retainedEditionOwnedCount = owned.values.fold(
+        0,
+        (sum, count) => sum + count,
+      );
+    }
+
     return PublicSetDetail(
       summary: summary,
       cards: cards,
       masterSetStats: _buildMasterSetStats(
         cards: cards,
         signedIn: _cleanText(client.auth.currentUser?.id).isNotEmpty,
+        retainedEditionOwnedCount: retainedEditionOwnedCount,
       ),
       worldChampionshipDecklist: worldChampionshipDecklist,
     );
@@ -1189,10 +1211,11 @@ class PublicSetsService {
   static PublicSetMasterSetStats _buildMasterSetStats({
     required List<PublicSetCard> cards,
     required bool signedIn,
+    int retainedEditionOwnedCount = 0,
   }) {
     var variantOptionCount = 0;
     var ownedVariantOptionCount = 0;
-    var unclassifiedOwnedCount = 0;
+    var unclassifiedOwnedCount = retainedEditionOwnedCount;
 
     for (final card in cards) {
       if (card.printings.isEmpty) {

@@ -1,6 +1,7 @@
 "use server";
 
 import { collapseRows } from "@/lib/import/collapseRows";
+import { getJungleEditionResolution } from "@/lib/cards/jungleEditionResolution";
 import { createImportReport, type ImportReport } from "@/lib/import/importReport";
 import {
   normalizeImportNameForCompare,
@@ -142,6 +143,7 @@ async function fetchCandidateCardPrintRows(
 async function fetchExistingVaultQuantities(
   userId: string,
   candidateRows: CardPrintRow[],
+  editionReview: Map<string, string>,
 ): Promise<Record<string, number>> {
   if (candidateRows.length === 0) {
     return {};
@@ -177,7 +179,7 @@ async function fetchExistingVaultQuantities(
     // Summing different variants/languages here could hide an unresolved row.
     // Ambiguous rows retain their target until selection; the writer rechecks
     // the selected printing's owned count before creating any copies.
-    if (ids.size !== 1) continue;
+    if (ids.size !== 1 || [...ids].some(id => editionReview.has(id))) continue;
     const [cardId] = ids;
     quantities[key] = existingByCardId.get(cardId) ?? 0;
   }
@@ -249,7 +251,20 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
   }
 
   const candidateRows = await fetchCandidateCardPrintRows(valid, setNameMap);
-  const existingVault = await fetchExistingVaultQuantities(user.id, candidateRows);
+  const editionReview = new Map<string, string>();
+  for (const card of candidateRows.filter(card => card.set_code === "base2")) {
+    try {
+      const edition = await getJungleEditionResolution(client, card.id);
+      if (edition.status !== "not_applicable") {
+        editionReview.set(card.id, edition.status === "unavailable"
+          ? "Jungle edition choices are being reviewed. This row is not imported; keep the original CSV."
+          : "Confirm First Edition or Unlimited on the physical card. This row is kept for review; automatic edition import is not available yet.");
+      }
+    } catch {
+      editionReview.set(card.id, "Jungle edition choices could not be checked. Upload the CSV again to retry; this row is not imported.");
+    }
+  }
+  const existingVault = await fetchExistingVaultQuantities(user.id, candidateRows, editionReview);
   const desiredQuantityByKey = new Map(valid.map((row) => [buildRowKey(row), row.quantity]));
   const rowsToMatch = reconcileVaultQuantities(valid, existingVault);
 
@@ -298,6 +313,9 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
     }
 
     const candidates = matchMap.get(buildMatchKey(row.compareSet, row.compareNumber, row.compareName)) ?? [];
+
+    const reviewReason = candidates.map(card => editionReview.get(card.id)).find(Boolean);
+    if (reviewReason) return { importMeta, row, status: "review", reviewReason };
 
     if (candidates.length === 1) {
       const match = candidates[0];
@@ -348,7 +366,7 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
   const report = createImportReport({
     ...reportBase,
     rowsMatched: previewRows.filter((row) => row.status === "matched").length,
-    rowsMissing: previewRows.filter((row) => row.status === "missing").length,
+    rowsMissing: previewRows.filter((row) => row.status === "missing" || row.status === "review").length,
   });
 
   console.info("[import:match]", report);
@@ -359,7 +377,7 @@ export async function matchCardPrints(rows: NormalizedRow[]): Promise<MatchCardP
       totalRows: previewRows.length,
       matchedRows: previewRows.filter((row) => row.status === "matched").length,
       multipleRows: previewRows.filter((row) => row.status === "multiple").length,
-      unmatchedRows: previewRows.filter((row) => row.status === "missing").length,
+      unmatchedRows: previewRows.filter((row) => row.status === "missing" || row.status === "review").length,
     },
     report,
   };

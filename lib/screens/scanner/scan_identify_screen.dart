@@ -9,6 +9,8 @@ import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
+import '../../services/public/jungle_edition_resolution_service.dart';
+import 'jungle_edition_scan_review.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
@@ -139,6 +141,9 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
         'set': setName,
         'image_url': cand['image_url'],
       });
+    } on JungleEditionSelectionRequired catch (error) {
+      if (!mounted) return;
+      await reviewScannedJungleEdition(context, error.resolution);
     } catch (e) {
       _snack('Add failed: $e');
     } finally {

@@ -1,6 +1,7 @@
 import {
   getPrintedIdentityModifierDisplayLabel,
   getVariantDisplayLabel,
+  getJungleEditionDisplayLabel,
 } from "@/lib/cards/displayDiscriminator";
 import { JAPANESE_POKEMON_NAME_TO_ENGLISH } from "@/lib/cards/pokemonJapaneseNameMap";
 
@@ -140,6 +141,10 @@ export function resolveDisplayIdentity(card: Partial<CardPrint> & { name?: strin
       : null;
 
   let suffix = formatVariantKey(card.variant_key);
+  const edition = getJungleEditionDisplayLabel({ setCode: card.set_code, number: card.number,
+    variantKey: card.variant_key, printedIdentityModifier: card.printed_identity_modifier });
+  if (edition) suffix = suffix && ![edition, "First Edition", "1st Edition"].includes(suffix)
+    ? `${edition} · ${suffix}` : edition;
 
   if (!suffix) {
     suffix = formatPrintedIdentityModifier(card.printed_identity_modifier);

@@ -52,6 +52,7 @@ const CONTROLLED_SUFFIX_REGISTRY_V2 = new Map([
 ]);
 const CONTROLLED_PRINTED_IDENTITY_MODIFIER_SUFFIX_REGISTRY_V1 = new Map([
   ['edition:first_edition', 'FIRST-EDITION'],
+  ['edition:unlimited', 'UNLIMITED'],
   ['trainer_subject:giovanni', 'GIOVANNI'],
   ['trainer_subject:lysandre', 'LYSANDRE'],
   ['trainer_subject:professor_juniper', 'PROFESSOR-JUNIPER'],
