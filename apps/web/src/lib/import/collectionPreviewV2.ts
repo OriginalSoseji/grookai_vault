@@ -116,7 +116,7 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
       namedFinish ? matchesCollectrPokemonName({ sourceName: namedFinish.name, sourceNumber: base.number, game: base.game, card }) : (
       text(card.name ?? "").toLowerCase() === base.name ||
       matchesCollectrPokemonName({ sourceName: base.name, sourceNumber: base.number, game: base.game, card }) ||
-      matchesCollectrMtgIdentity({ sourceName: base.name, sourceNumber: base.number, game: base.game, card, identities: identities.get(card.id) ?? [] })
+      matchesCollectrMtgIdentity({ sourceName: base.name, sourceNumber: base.number, sourceFinishKey: base.finishKey, game: base.game, card, identities: identities.get(card.id) ?? [] })
     ))));
   }
   const editionReview = new Map<string, string>();
