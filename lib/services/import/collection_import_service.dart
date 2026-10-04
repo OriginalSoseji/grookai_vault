@@ -568,6 +568,7 @@ class CollectionImportService {
         if (matchesCollectrMtgIdentity(
           sourceName: row.displayName,
           sourceNumber: row.displayNumber,
+          sourceFinishKey: importFinishKey(row.finish),
           game: row.gameCode,
           card: card.identityCard,
           identities: identities[card.id] ?? [],

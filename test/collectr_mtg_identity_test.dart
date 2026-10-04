@@ -21,6 +21,7 @@ void main() {
         matchesCollectrMtgIdentity(
           sourceName: input['sourceName'] as String,
           sourceNumber: input['sourceNumber'] as String,
+          sourceFinishKey: input['sourceFinishKey'] as String?,
           game: input['game'] as String,
           card: Map<String, dynamic>.from(input['card'] as Map),
           identities: (input['identities'] as List)
@@ -80,6 +81,39 @@ void main() {
     };
     return f;
   }
+
+  test(
+    'Surge preview preserves treatment and holds conflicting source finishes',
+    () async {
+      final input =
+          cases.firstWhere(
+                (c) => c['label'] == 'surge: governed foil-only parent',
+              )['input']
+              as Map;
+      final f = await fixture(input);
+      final export =
+          'Category,Set,Product Name,Card Number,Variance,Quantity,Grade\n'
+          'MTG,Synthetic Set,Fixture Mage (Borderless) (Surge Foil),373,Foil,2,Ungraded\n'
+          'MTG,Synthetic Set,Fixture Mage (Borderless) (Surge Foil),373,Normal,1,Ungraded\n'
+          'MTG,Synthetic Set,Fixture Mage (Borderless) (Surge Foil),373,,1,Ungraded\n'
+          'MTG,Synthetic Set,Fixture Mage (Borderless) (Surge Foil),373,Foil,1,PSA 10';
+      final preview = await CollectionImportService.buildPreview(
+        client: f.client,
+        csvText: export,
+        sourceAware: true,
+      );
+      expect(preview.rows.length, 4);
+      expect(preview.rows.first.canImport, true);
+      expect(preview.rows.first.cardPrintingFinishKey, 'foil');
+      expect(preview.rows.first.desiredQuantity, 2);
+      expect(
+        preview.rows.first.row.sourceFields['Product Name'],
+        'Fixture Mage (Borderless) (Surge Foil)',
+      );
+      expect(preview.rows.skip(1).every((row) => !row.canImport), true);
+      expect(f.saved, isEmpty);
+    },
+  );
 
   const csv =
       'Category,Set,Product Name,Card Number,Variance,Quantity\nMTG,Synthetic Set,Fixture Mage (Extended Art),00373,Foil,2';

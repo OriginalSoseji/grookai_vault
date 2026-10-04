@@ -1,5 +1,22 @@
 # Collectr import fidelity repair
 
+## Governed Surge Foil — October 4
+
+Source-aware matching accepts a terminal Surge Foil label only with an explicit
+Foil source finish and a single bound English MTG identity whose `promo_types`
+includes `surgefoil` and whose `finishes` is exactly `["foil"]`. Ordinary foil,
+missing or conflicting treatment evidence and an unspecified source finish do
+not satisfy this rule. Exact parent, set, collector number, Scryfall binding,
+active child, grade and metadata checks remain independent. Borderless, other
+art labels and repeated-number suffixes retain their existing gates. The server
+rereads evidence at save; both runtime predicates share the fixture corpus.
+
+Original source fields and existing saved mappings are unchanged. No catalog or
+schema write is part of this repair. Local replay adds 14 eligible copies; see
+`docs/checkpoints/collectr_review_coverage_20261004.md` and external receipts for
+qualification versus deployment. PR589's earlier repair is already live and its
+1,361 accounted copies are verified; do not replay its release intents.
+
 ## Name fidelity follow-up — October 3
 
 The original real collection save is verified in the private

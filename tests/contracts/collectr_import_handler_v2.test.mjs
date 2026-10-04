@@ -156,7 +156,8 @@ for(const {label,expected,input} of identityCases.filter(c=>c.input.game==='mtg'
   card_print_id:identity.card_print_id===input.card.id?cardId:identity.card_print_id}));
  const card={...input.card,id:cardId,gv_id:'GV-TEST',sets:{name:'Synthetic Set',game:'mtg'}};
  const f=fixture({card,identities,printing:{finish_key:'foil'}});
- const response=await f.send({csvText:toCsv([{...row,Category:'MTG',Set:'Synthetic Set','Product Name':input.sourceName,'Card Number':input.sourceNumber,Variance:'Foil'}])});
+ const variance=Object.hasOwn(input,'sourceFinishKey') ? ({foil:'Foil',normal:'Normal'}[input.sourceFinishKey]??'') : 'Foil';
+ const response=await f.send({csvText:toCsv([{...row,Category:'MTG',Set:'Synthetic Set','Product Name':input.sourceName,'Card Number':input.sourceNumber,Variance:variance}])});
  assert.equal(response.status,expected?200:label==='wrong identity card_print_id'?503:400,label);assert.equal(f.writes.length,expected?1:0);
  if(expected)assert.equal(f.writes[0].args.p_source_rows[0]['Product Name'],input.sourceName);
 });
