@@ -8,9 +8,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../services/sales/sales_cart_service.dart';
+import '../../services/sales/sales_trade.dart';
 import '../../widgets/card_surface_artwork.dart';
 import 'sales_dashboard.dart';
 import 'sales_catalog_dialog.dart';
+import 'sales_trade_dialog.dart';
+import 'sales_price_reference.dart';
 
 class SalesDeskScreen extends StatefulWidget {
   const SalesDeskScreen({super.key, this.service});
@@ -30,6 +33,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   final _tax = TextEditingController(text: '0.00');
   final _note = TextEditingController();
   final List<SalesCartLine> _lines = [];
+  final List<SalesTradeLine> _trades = [];
   SalesDeskData? _data;
   Map<String, dynamic>? _pending, _receipt, _customer;
   bool _loading = true, _busy = false, _showCart = false;
@@ -101,6 +105,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           _method = cart['method'] as String;
           _tax.text = saleMoney(cart['taxMinor'] as int);
           _note.text = cart['note'] as String;
+          _trades
+            ..clear()
+            ..addAll(
+              (cart['trades'] as List? ?? []).map(
+                (item) => SalesTradeLine.fromJson(item as Map),
+              ),
+            );
           final customer = cart['customer'] as Map;
           _name.text = customer['name'] as String;
           _email.text = customer['email'] as String;
@@ -163,7 +174,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     setState(() => _editing = true);
     final line = await showDialog<SalesCartLine>(
       context: context,
-      builder: (_) => _SaleLineDialog(copy: copy, line: old),
+      builder: (_) =>
+          _SaleLineDialog(copy: copy ?? _copyFor(old?.instanceId), line: old),
     );
     if (!mounted) return;
     setState(() => _editing = false);
@@ -207,6 +219,74 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
   }
 
+  Future<void> _trade({int? index}) async {
+    if (_locked ||
+        _data?.tradesAvailable != true ||
+        (index == null && _trades.length >= 50)) {
+      return;
+    }
+    setState(() => _editing = true);
+    final line = await showDialog<SalesTradeLine>(
+      context: context,
+      builder: (_) => SalesTradeDialog(
+        service: _service,
+        line: index == null ? null : _trades[index],
+      ),
+    );
+    if (!mounted) return;
+    setState(() {
+      _editing = false;
+      if (line != null && !_accountChanged) {
+        if (index == null) {
+          _trades.add(line);
+        } else {
+          _trades[index] = line;
+        }
+        _error = null;
+      }
+    });
+  }
+
+  Widget _tradeSummary(int total) {
+    final credit = _trades.fold<int>(0, (n, t) => n + t.creditMinor);
+    final balance = total - credit;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final trade in _trades)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  trade.description,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                if (trade.condition != null)
+                  Text('Condition: ${trade.condition}'),
+                Text(
+                  '${trade.quantity} × USD ${saleMoney(trade.valueMinor)} × ${tradeRate(trade.rateBps)}% = USD ${saleMoney(trade.creditMinor)} credit',
+                ),
+              ],
+            ),
+          ),
+        const Divider(),
+        Text('Purchase total: USD ${saleMoney(total)}'),
+        Text('Trade credit: − USD ${saleMoney(credit)}'),
+        const SizedBox(height: 8),
+        Text(
+          balance < 0
+              ? 'Pay customer: USD ${saleMoney(-balance)}'
+              : balance == 0
+              ? 'Even trade · no money due'
+              : 'Customer pays: USD ${saleMoney(balance)}',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ],
+    );
+  }
+
   Future<void> _complete() async {
     if (_busy || _receipt != null) return;
     if (_pending == null) {
@@ -225,15 +305,51 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _message('A sale must be no more than USD 1,000,000.');
         return;
       }
+      final credit = _trades.fold<int>(0, (n, t) => n + t.creditMinor);
+      if (credit > 100000000 ||
+          _trades.fold<int>(0, (n, t) => n + t.valueMinor * t.quantity) >
+              100000000 ||
+          (_trades.isNotEmpty && _note.text.trim().length > 350)) {
+        _message(
+          'Trade value and credit must be at most USD 1,000,000. Trade receipts allow a note up to 350 characters.',
+        );
+        return;
+      }
+      final balance = total - credit;
       final confirmed = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Record this sale?'),
-          content: Text(
-            'Confirm you received USD ${saleMoney(total)} by $_method. '
-            '${_lines.where((l) => l.instanceId != null).length} Vault copies will be marked sold and one receipt saved. '
-            'This does not charge a card.',
+          title: Text(
+            _trades.isEmpty ? 'Record this sale?' : 'Review the full deal',
           ),
+          content: _trades.isNotEmpty
+              ? SizedBox(
+                  width: 540,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _tradeSummary(total),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Confirm the trade cards have been received${balance > 0
+                              ? ' and USD ${saleMoney(balance)} received by $_method'
+                              : balance < 0
+                              ? ' and USD ${saleMoney(-balance)} paid to the customer by $_method'
+                              : ''}. '
+                          '${_trades.where((t) => t.addToVault).length} incoming copies will be added to your Vault; '
+                          '${_lines.where((l) => l.instanceId != null).length} outgoing copies will be marked sold. '
+                          'This records the exchange and does not move money.',
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : Text(
+                  'Confirm you received USD ${saleMoney(total)} by $_method. '
+                  '${_lines.where((l) => l.instanceId != null).length} Vault copies will be marked sold and one receipt saved. '
+                  'This does not charge a card.',
+                ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
@@ -241,7 +357,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
-              child: const Text('Payment received · Record sale'),
+              child: Text(
+                _trades.isNotEmpty
+                    ? 'Exchange completed · Record deal'
+                    : 'Payment received · Record sale',
+              ),
             ),
           ],
         ),
@@ -250,7 +370,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       _pending = {
         'id': newSaleId(),
         'cart': {
-          'version': 1,
+          'version': _trades.isEmpty ? 1 : 2,
+          if (_trades.isNotEmpty)
+            'trades': _trades.map((t) => t.toJson()).toList(),
           'storeName': _store.text.trim(),
           'items': _lines.map((line) => line.toJson()).toList(),
           'method': _method,
@@ -322,6 +444,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       if (!mounted) return;
       setState(() {
         _lines.clear();
+        _trades.clear();
         _pending = null;
         _receipt = null;
         _customer = null;
@@ -442,7 +565,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 230,
-                    mainAxisExtent: 350,
+                    mainAxisExtent: 420,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
                   ),
@@ -495,6 +618,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                                 style: Theme.of(context).textTheme.labelSmall,
                               ),
                               const SizedBox(height: 6),
+                              SalesVendorPrice(copy: row),
+                              SalesTcgplayerLink(
+                                reference: salesCopyReference(row),
+                              ),
                               SizedBox(
                                 width: double.infinity,
                                 child: FilledButton.tonalIcon(
@@ -581,12 +708,50 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           label: const Text('Quick-add item'),
         ),
         const Divider(height: 32),
+        if (_data?.tradesAvailable == true || _trades.isNotEmpty) ...[
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Customer trade-ins',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              OutlinedButton.icon(
+                onPressed: _locked || _trades.length >= 50
+                    ? null
+                    : () => _trade(),
+                icon: const Icon(Icons.swap_horiz),
+                label: const Text('Add trade-in'),
+              ),
+            ],
+          ),
+          for (var i = 0; i < _trades.length; i++)
+            Card(
+              child: ListTile(
+                title: Text(_trades[i].description),
+                subtitle: Text(
+                  '${_trades[i].quantity} × USD ${saleMoney(_trades[i].valueMinor)} at ${tradeRate(_trades[i].rateBps)}%\n'
+                  'USD ${saleMoney(_trades[i].creditMinor)} trade credit${_trades[i].addToVault ? ' · add to Vault' : ''}',
+                ),
+                onTap: _locked ? null : () => _trade(index: i),
+                trailing: IconButton(
+                  tooltip: 'Remove trade ${i + 1}',
+                  icon: const Icon(Icons.close),
+                  onPressed: _locked
+                      ? null
+                      : () => setState(() => _trades.removeAt(i)),
+                ),
+              ),
+            ),
+          const Divider(height: 32),
+        ],
         _field(_store, 'Store name on receipt', 120),
         DropdownButtonFormField<String>(
           initialValue: _method,
           isExpanded: true,
           decoration: const InputDecoration(
-            labelText: 'Payment received by',
+            labelText: 'Payment / payout method',
             border: OutlineInputBorder(),
           ),
           items:
@@ -614,10 +779,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           onChanged: (_) => setState(() {}),
         ),
         Text('Subtotal: USD ${saleMoney(subtotal)}'),
-        Text(
-          'Total: USD ${saleMoney(subtotal + (saleMoneyInput(_tax.text) ?? 0))}',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
+        if (_trades.isNotEmpty)
+          _tradeSummary(subtotal + (saleMoneyInput(_tax.text) ?? 0)),
+        if (_trades.isEmpty)
+          Text(
+            'Total: USD ${saleMoney(subtotal + (saleMoneyInput(_tax.text) ?? 0))}',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
         const SizedBox(height: 20),
         ExpansionTile(
           tilePadding: EdgeInsets.zero,
@@ -667,7 +835,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
               1000,
               readOnly: _customer != null,
             ),
-            _field(_note, 'Receipt note', 500),
+            _field(_note, 'Receipt note', _trades.isEmpty ? 500 : 350),
           ],
         ),
         const SizedBox(height: 16),
@@ -730,8 +898,17 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         ),
       );
 
+  VendorPricingWorkspaceRow? _copyFor(String? instanceId) {
+    if (instanceId == null) return null;
+    for (final copy in _data?.rows ?? <VendorPricingWorkspaceRow>[]) {
+      if (copy.instanceId == instanceId) return copy;
+    }
+    return null;
+  }
+
   Widget _cartLine(int index) {
     final line = _lines[index];
+    final copy = _copyFor(line.instanceId);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -758,7 +935,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text('${line.quantity} × USD ${saleMoney(line.unitMinor)}'),
+                  if (copy != null) SalesVendorPrice(copy: copy),
+                  Text(
+                    'Checkout: ${line.quantity} × USD ${saleMoney(line.unitMinor)}',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  if (copy != null)
+                    SalesTcgplayerLink(reference: salesCopyReference(copy)),
                   Text(
                     line.gvviId ?? 'Quick-added item',
                     style: Theme.of(context).textTheme.labelSmall,
@@ -854,7 +1037,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
 
   @override
   Widget build(BuildContext context) => PopScope(
-    canPop: _lines.isEmpty || _pending != null || _receipt != null,
+    canPop:
+        (_lines.isEmpty && _trades.isEmpty) ||
+        _pending != null ||
+        _receipt != null,
     onPopInvokedWithResult: (didPop, result) async {
       if (didPop) return;
       final leave = await showDialog<bool>(
@@ -877,7 +1063,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         ),
       );
       if (leave == true && context.mounted) {
-        setState(() => _lines.clear());
+        setState(() {
+          _lines.clear();
+          _trades.clear();
+        });
         Navigator.of(context).pop();
       }
     },
@@ -1094,6 +1283,14 @@ class _SaleLineDialogState extends State<_SaleLineDialog> {
                 'Sell an item without adding it to your Vault or publishing a listing.',
               ),
             const SizedBox(height: 16),
+            if (widget.copy != null) ...[
+              SalesVendorPrice(copy: widget.copy!),
+              SalesTcgplayerLink(reference: salesCopyReference(widget.copy!)),
+              const Text(
+                'Check the set, card number, finish and condition on TCGplayer.',
+              ),
+              const SizedBox(height: 12),
+            ],
             TextField(
               controller: _description,
               autofocus: !_exact,

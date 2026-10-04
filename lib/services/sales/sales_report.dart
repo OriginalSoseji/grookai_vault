@@ -1,3 +1,5 @@
+import 'sales_trade.dart';
+
 /// A receipt is a transaction, regardless of how many physical copies it holds.
 /// These are vendor-recorded receipts, not a Stripe settlement or profit ledger.
 class SalesReport {
@@ -19,7 +21,8 @@ class SalesReport {
       if (method != null && receipt['method'] != method) continue;
       final search =
           '${receipt['number']} ${receipt['customerName']} '
-          '${(receipt['items'] as List).map((i) => i['description']).join(' ')}';
+          '${(receipt['items'] as List).map((i) => i['description']).join(' ')} '
+          '${((receipt['tradeIn'] as Map?)?['items'] as List? ?? []).map((i) => i['description']).join(' ')}';
       if (!search.toLowerCase().contains(query.trim().toLowerCase())) continue;
       rows.add(receipt);
       final net =
@@ -27,7 +30,11 @@ class SalesReport {
           (receipt['discountMinor'] as int? ?? 0);
       salesMinor += net;
       taxMinor += receipt['taxMinor'] as int;
-      totalMinor += receipt['totalMinor'] as int;
+      final balance = receiptBalance(receipt);
+      totalMinor += balance > 0 ? balance : 0;
+      paidToCustomerMinor += balance < 0 ? -balance : 0;
+      tradeCreditMinor +=
+          (receipt['tradeIn'] as Map?)?['totalCreditMinor'] as int? ?? 0;
       discountMinor += receipt['discountMinor'] as int? ?? 0;
       for (final item in receipt['items'] as List) {
         units += item['quantity'] as int;
@@ -36,8 +43,7 @@ class SalesReport {
       hourlySales[hour] += net;
       hourlyTransactions[hour]++;
       final payment = receipt['method'] as String;
-      payments[payment] =
-          (payments[payment] ?? 0) + (receipt['totalMinor'] as int);
+      payments[payment] = (payments[payment] ?? 0) + balance;
     }
     rows.sort(
       (a, b) => DateTime.parse(
@@ -56,6 +62,8 @@ class SalesReport {
   int salesMinor = 0,
       taxMinor = 0,
       totalMinor = 0,
+      tradeCreditMinor = 0,
+      paidToCustomerMinor = 0,
       units = 0,
       discountMinor = 0;
   int get transactions => rows.length;
@@ -72,7 +80,7 @@ class SalesReport {
 
     String amount(int n) => (n / 100).toStringAsFixed(2);
     return [
-      'Receipt,Recorded at,Customer,Payment method,Units,Sales USD,Discount USD,Tax USD,Total USD',
+      'Receipt,Recorded at,Customer,Payment method,Units,Sales USD,Discount USD,Tax USD,Purchase total USD,Trade credit USD,Received USD,Paid to customer USD',
       ...rows.map(
         (r) => [
           r['number'],
@@ -89,6 +97,9 @@ class SalesReport {
           amount(r['discountMinor'] as int? ?? 0),
           amount(r['taxMinor'] as int),
           amount(r['totalMinor'] as int),
+          amount((r['tradeIn'] as Map?)?['totalCreditMinor'] as int? ?? 0),
+          amount(receiptBalance(r) > 0 ? receiptBalance(r) : 0),
+          amount(receiptBalance(r) < 0 ? -receiptBalance(r) : 0),
         ].map(cell).join(','),
       ),
     ].join('\r\n');

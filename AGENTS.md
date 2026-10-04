@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## Checkout trade-ins — October 3, 2026
+
+Read docs/ops/SALES_TRADE_INS_20261003.md and its contract. Docker recovery was
+explicitly authorized and completed October4. Current main2409d2c3f and production426
+include the Jungle work; trade-ins are now additive427/default-off in
+C:/gv_sales_trade_ins_20261003. New full/upgrade427 V2 labs use653xx. Preserve the
+completed historical418/652xx replay and all other retained labs. Sales desk's
+last native release is TestFlight342. Database proofs must follow the external
+checkpoint; preserve Windows PostgreSQL and retained volumes. Preserve all prior proofs, Mac
+archives, catalog and checkout work. External sales_trade_ins_20261003 checkpoint
+is authoritative for tests/release; do not replay completed intents.
+
 ## Jungle discovery projection correction — October 4
 
 Read the first Jungle projection section of docs/ops/JUNGLE_EDITION_PRICING_20261001.md.
