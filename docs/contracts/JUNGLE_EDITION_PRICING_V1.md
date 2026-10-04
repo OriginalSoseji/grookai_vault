@@ -1,5 +1,36 @@
 # Jungle edition separation and pricing preparation
 
+## Jungle catalog inspection and rehearsal — October 4, V39
+
+Production426 is already released by PR590; never replay its schema intent.
+Work is now on fix/jungle-catalog-production-20261004 from main2409d2c3f/PR591.
+That Master Index refresh leaves Jungle's64 card facts/131 printing facts exact.
+Read the external worker recovery checkpoint and catalog-production-v39 evidence.
+
+The new V5 state reader fingerprints all89 direct legacy FK scopes,13 global
+account/recovery/control tables and the83/84 legacy identities. It retains every
+field using PostgreSQL record text under UTC. This is a bounded inspection,
+not a claim to fingerprint every production table. Full schema/ledger checks
+remain necessary. The initial JSON checksum query hit its15-second timeout on
+89780 JustTCG history rows; the preserved optimized probe and full inspection
+pass, with the full production read taking30.190seconds and no writes.
+
+V5 execution remains LOCAL ONLY on54200/internal10.248.29 at426.33 rollback
+checks and actual639-row commit, observed concurrent wait/safe40001 rejection,
+zero-insert retry and independent readback pass. An independent whole335-table
+oracle proves no changes outside the planned rows. Five synthetic copies and
+customer/receipt/cart recovery records survive. Full426-v37 is now POPULATED;
+never reset/reseed it. All earlier labs and consumed intents remain protected.
+
+Source reviewV3 pins the entire426 migration inventory and retains raw source
+payload/quote checks.43 portable source/target tests pass, and the actual current
+capture matches128 editions with no holds. It grants no publication authority.
+No new migration, production catalog write, binding or price publication occurs.
+The V5 rehearsal's production target still rejects before SQL. A production
+freeze/executor/authority and same-plan live rollback remain separate work;
+these tests and read timings cannot be relabeled as production write approval.
+
+
 ## Jungle schema release V35 — October 4 UTC
 
 Main 81f1e6fe1 / PR588 is integrated. Sales desk Pro is independently LIVE at
