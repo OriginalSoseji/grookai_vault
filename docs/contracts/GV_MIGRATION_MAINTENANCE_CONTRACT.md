@@ -1,5 +1,28 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Jungle discovery projection correction — October 4
+
+PR587/main808134869 applied all eight Jungle migrations to production425.
+The strict readback found one genuine view-order mismatch: SELECT-star inherited
+card_prints physical column order (number_plain13 on replay,29 in production).
+Do not suppress this difference, edit applied SQL or replay the consumed apply.
+External schema-release-v36 evidence records the production operation and retained
+data readback. New prices/catalog remain inactive. The Git-triggered website
+deployment now serves the tested808134869 source; www remains on its old target.
+
+Additive20261004090000 uses the explicit existing production projection. Production
+already has this order and must retain the view OID; the alternate fresh-replay
+layout is replaced with RESTRICT in one transaction. Unknown columns/security
+reject. No base-table, identity, ownership, receipt or pricing-row mutations.
+New426 replay and retained425 upgrade use only542xx/internal10.248.29/30 labs.
+Clean426 replay/no-op and retained425 upgrade/no-op pass with all335 public-table
+fingerprints, two saved copies and the populated receipt book unchanged. The
+production-shaped view keeps its OID. Four rollback guard/retained-dependent tests
+and seven preflight boundary tests pass. Preserve every populated prior lab.
+Latest proof/release state is external under
+projection-v37 and the worker recovery checkpoint; do not infer deployment here.
+
+
 ## Jungle schema release V35 — October 4 UTC
 
 Main 81f1e6fe1 / PR588 is integrated. Sales desk Pro is independently LIVE at

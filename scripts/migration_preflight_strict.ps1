@@ -71,6 +71,7 @@ param(
   [switch]$JungleReceiptBaselineAudit,
   [switch]$JungleReleaseV32,
   [switch]$JungleReleaseV35,
+  [switch]$JungleProjectionV37,
   [switch]$JungleSalesCartBaselineAudit,
   [switch]$JungleSalesDeskBaselineAudit,
   [switch]$NativeImportRecoveryReleaseV1,
@@ -85,6 +86,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($JungleProjectionV37) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleProjectionV37','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261004090000') -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261004090000')) {
+    throw 'Jungle projection permits only 20261004090000, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_jungle_projection_v37.mjs') $Phase
+  exit $LASTEXITCODE
+}
 
 if ($JungleSalesDeskBaselineAudit) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','JungleSalesDeskBaselineAudit') }).Count -gt 0) {
