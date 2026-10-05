@@ -1,5 +1,79 @@
 # Grookai Operator Playbook V1
 
+## Collectr sealed release preparation — October 5 UTC
+
+Use `C:/gv_collectr_adventure_20261001`, feature/collectr-sealed-planner-20261004.
+Current main reconciliation needs no merge at82dcfa714. Runtime/browser evidence
+is WEB_CHECKPOINT.json; new release outcomes belong to RELEASE_CHECKPOINT.json
+in private collectr_sealed_save_20261005. The SQL hash remains f507d243d389db85c3430fa983c1a202f402ecce2b25beef0cd9c2c088a39f26.
+
+Run strict preflight with `-CollectrSealedReleaseV1`: AuditLinkedSchema is readonly;
+PrePush additionally requires `-ExpectedLocalOnlyIds 20261005080000`, clean current-
+main source and the fresh normal-hook receipt. It rereads retained5868x/5870x labs
+without resetting them. CLI `prepare_collectr_sealed_cli_v1.mjs prepare` consumes
+a new inspection-package intent; `dry-run` requires PrePush and does no apply.
+Never repeat prepare against a consumed package or reset populated labs.
+
+Release order: qualify/merge source while the server flag stays off; apply only
+the exact pending migration through the reviewed migration boundary; verify427
+ledger, schema/security and retained real records; deploy/read back the tested
+web commit; then explicitly activate `GV_COLLECTR_SEALED_IMPORT_V3=1`. Do not enable
+broader sealed ownership permissions or alter catalog release pointers as part
+of this change. If rollout is paused, disable this flag: new V3 requests reject,
+while successful V3 receipts remain recoverable and V2 card imports still work.
+Do not drop the receipt table or roll back to code that cannot recover V3 receipts.
+Original-file import follows live qualification and explicit purchase currency;
+verify added/reused/held counts and all1375 prior accounted copies independently.
+
+
+## Collectr sealed website integration — October 5 UTC
+
+Web integration is locally verified in the existing feature worktree. Read the
+latest top sealed checkpoint and contract; private current-source evidence is
+collectr_sealed_save_20261005/WEB_CHECKPOINT.json. `GV_COLLECTR_SEALED_IMPORT_V3=1`
+is the server opt-in; default-off preserves old previews and blocks fresh V3 saves
+while permitting durable V3 recovery. Broad SQL ownership permission is separate.
+The guarded test helper uses only full427-v2/API58681, Next58883 and new synthetic
+accounts, retaining prior rows/labs. HTTP concurrency, original V2 copy preservation,
+mobile network-loss/reload and V2 browser recovery pass. Do not replay earlier
+real imports. Current main, release/build/schema gates and live activation/readback
+remain. Local dev server is stopped; no production, native or user-file write.
+
+## Collectr sealed atomic backend — October 5 UTC
+
+The local candidate now saves mixed card/sealed targets in one transaction and
+provides owner-scoped recovery/readback. It is not connected to website/native
+routes or deployed. Read the latest checkpoint and sealed import contract; private
+qualification is under collectr_sealed_save_20261005. The final CHECKPOINT.json
+binds source hashes, 478 contract tests, 22 SQL assertions and exact migration labs.
+Preserve V2 groups/receipts and all prior import/release intents. Use explicit
+purchase currency, unknown seal/package states, exact released catalog identity
+and broad ownership permissions; never bypass canary quotas. Continue with local
+web/HTTP and concurrency integration before any production operation.
+
+## Collectr sealed identity planning — October 4
+
+PR592/main82f7c6cce is live. Independent real-import readback confirms 14 new
+Surge Foil copies, 1,375 accounted export copies and 678 retained review rows.
+The external `collectr_review_coverage_20261004/release-and-import-checkpoint.json`
+supersedes the older local-only status below. Do not replay completed intents.
+
+Continue in `C:/gv_collectr_adventure_20261001`, branch
+`feature/collectr-sealed-planner-20261004`; read
+`docs/checkpoints/collectr_sealed_planner_20261004.md` and the sealed import contract.
+The new offline command is `scripts/audits/collectr_sealed_identity_plan_v1.mjs`:
+pass original CSV, complete catalog JSON, source-verified prior preview and a
+fresh private output folder using its four named options (`--help`). It makes
+no network calls or writes beyond private plan files. Never use its identity
+matches as save selections or as authority to publish new catalog products.
+
+Current production426 is read-only for this package. A single-snapshot capture
+qualifies 118 source rows / 225 source items for exact identity, not addition.
+The existing sealed Add RPC lacks the import document/group/date/notes transaction;
+the next writer must preserve source and reconcile existing copies atomically.
+Keep private evidence in `collectr_sealed_planner_20261004` and all populated labs
+intact. No frontend/native release or schema apply belongs to this planner.
+
 ## Jungle discovery projection correction — October 4
 
 PR587/main808134869 applied all eight Jungle migrations to production425.

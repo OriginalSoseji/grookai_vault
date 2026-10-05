@@ -2,7 +2,7 @@ import type { CollectionPreviewV2 } from "./collectionPreviewV2";
 
 // Choices come from the authenticated preview, never from free-text card IDs.
 // Saving independently rechecks every original source field and exact printing.
-export function chooseCollectionReviewCandidate(preview: CollectionPreviewV2, sourceIndices: number[], cardId: string | null): CollectionPreviewV2 {
+export function chooseCollectionReviewCandidate<T extends CollectionPreviewV2>(preview: T, sourceIndices: number[], cardId: string | null): T {
   const key = JSON.stringify(sourceIndices);
   const row = preview.rows.find(row => JSON.stringify(row.sourceIndices) === key);
   if (!row?.review) throw new Error("This row has no catalog choices. Refresh its preview.");
@@ -17,7 +17,7 @@ export function chooseCollectionReviewCandidate(preview: CollectionPreviewV2, so
     matchedName: candidate?.name ?? null, finish: candidate?.finish ?? null,
     review: { ...row.review!, selectedCardId: candidate?.cardId ?? null },
   });
-  const selected = rows.filter(row => row.selection !== null);
+  const selected = rows.filter(row => row.selection || row.sealedSelection);
   const readyRows = selected.reduce((sum, row) => sum + row.sourceIndices.length, 0);
   const readyCopies = selected.reduce((sum, row) => sum + (row.quantity ?? 0), 0);
   if (readyCopies > 50000) throw new Error("This selection exceeds the 50,000-copy import limit.");

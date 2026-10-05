@@ -54,6 +54,7 @@ param(
   [switch]$NativeImportRecoveryBaselineAudit,
   [switch]$CollectrImportFidelityBaselineAudit,
   [switch]$CollectrImportFidelityReleaseV1,
+  [switch]$CollectrSealedReleaseV1,
   [switch]$CosmosPricingReleaseV1,
   [switch]$SearchDatabaseLatencyV1,
   [switch]$ReceiptCloudV1,
@@ -86,6 +87,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($CollectrSealedReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CollectrSealedReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261005080000') -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261005080000')) {
+    throw 'Collectr sealed release permits only 20261005080000, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_collectr_sealed_release_v1.mjs') $Phase
+  exit $LASTEXITCODE
+}
 
 if ($JungleProjectionV37) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

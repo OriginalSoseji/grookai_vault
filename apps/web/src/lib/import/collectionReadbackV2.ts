@@ -13,7 +13,7 @@ function timestampMicros(value: string) {
 
 // Read the persisted document, group mapping and exact copies through owner RLS.
 // A historical receipt remains valid after a copy is sold or archived.
-export async function verifyCollectionReadbackV2(client: SupabaseClient, attempt: CollectionAttemptV2, receipt: CollectionReceiptV2) {
+export async function verifyCollectionReadbackV2(client: SupabaseClient, attempt: CollectionAttemptV2, receipt: CollectionReceiptV2, options: {verifyCurrentMetadata?: boolean} = {}) {
   const source = parseCsv(attempt.csvText);
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(attempt.csvText));
   const sha = Array.from(new Uint8Array(digest), n => n.toString(16).padStart(2, "0")).join("");
@@ -57,7 +57,7 @@ export async function verifyCollectionReadbackV2(client: SupabaseClient, attempt
       if (!target || !chunk.includes(copy.id) || seen.has(copy.id) || copy.card_print_id !== target.cardId || copy.card_printing_id !== target.cardPrintingId || copy.is_graded === true) throw uncertain();
       seen.add(copy.id);
       const row = normalize(source[target.sourceIndices[0]]);
-      if (receipt.importedCards > 0 && (copy.condition_label !== row.condition || copy.acquisition_cost !== row.acquisitionCost || copy.notes !== row.notes || (row.createdAt && (row.createdAtDateOnly ? new Date(copy.created_at).toISOString().slice(0, 10) !== row.createdAt.slice(0, 10) : timestampMicros(copy.created_at) !== timestampMicros(row.createdAt))))) throw uncertain();
+      if (options.verifyCurrentMetadata !== false && receipt.importedCards > 0 && (copy.condition_label !== row.condition || copy.acquisition_cost !== row.acquisitionCost || copy.notes !== row.notes || (row.createdAt && (row.createdAtDateOnly ? new Date(copy.created_at).toISOString().slice(0, 10) !== row.createdAt.slice(0, 10) : timestampMicros(copy.created_at) !== timestampMicros(row.createdAt))))) throw uncertain();
     }
   }
   if (seen.size !== copies.size) throw uncertain();
