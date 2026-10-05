@@ -107,10 +107,7 @@ void main() {
       await tester.pump();
       await gesture.up();
       await tester.pumpAndSettle();
-      expect(find.text('Use asking price: USD 12.34'), findsOneWidget);
-      await tester.tap(find.text('Use asking price: USD 12.34'));
-      await tester.tap(find.text('Add to cart'));
-      await tester.pumpAndSettle();
+      expect(find.text('Checkout: 1 × USD 12.34'), findsOneWidget);
       expect(find.text('In cart'), findsOneWidget);
       expect(
         tester
@@ -128,9 +125,6 @@ void main() {
   ) async {
     await open(tester, FakeSalesService(), const Size(1194, 834));
     await tester.tap(find.text('Add to sale'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Use asking price: USD 12.34'));
-    await tester.tap(find.text('Add to cart'));
     await tester.pumpAndSettle();
     await tester.tap(find.byTooltip('Sales dashboard'));
     await tester.pumpAndSettle();
@@ -168,9 +162,6 @@ void main() {
       expect(find.text('Sale cart'), findsOneWidget);
       expect(find.text('Pikachu'), findsWidgets);
       await tester.tap(find.text('Add to sale'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Use asking price: USD 12.34'));
-      await tester.tap(find.text('Add to cart'));
       await tester.pumpAndSettle();
       expect(find.text('In cart'), findsOneWidget);
       await tester.tap(find.text('Quick-add unlisted item'));

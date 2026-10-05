@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Sales desk fast entry — October 5, 2026
+
+Read [the current checkpoint](SALES_FAST_ENTRY_20261005.md). Trade-ins are already
+LIVE at427/TestFlight343. New candidate C:/gv_sales_fast_entry_20261005 improves
+native search/cart entry without schema changes. The external
+sales_fast_entry_20261005 checkpoint distinguishes tests, native proof and release.
+Use only synthetic fixtures in the retained full427/653xx lab; preserve its schema,
+populated upgrade lab, catalog work, old archives and consumed release intents.
+Receipt email/SMS provider configuration is still unresolved; composition is not delivery.
+
 ## Checkout trade-ins — October 3, 2026
 
 Read [the trade-in checkpoint](SALES_TRADE_INS_20261003.md). Docker restart was

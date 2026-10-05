@@ -8,6 +8,7 @@ import '../gvvi/vendor_pricing_workspace_service.dart';
 import '../../models/card_print.dart';
 import '../public/public_card_printing_options_service.dart';
 import 'sales_trade.dart';
+import 'sales_search_cache.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
 int? saleMoneyInput(String value) {
@@ -20,6 +21,20 @@ int? saleMoneyInput(String value) {
 
 String saleMoney(int minor) =>
     '${minor < 0 ? '-' : ''}${minor.abs() ~/ 100}.${(minor.abs() % 100).toString().padLeft(2, '0')}';
+
+bool salesCopyMatches(VendorPricingWorkspaceRow row, String query) {
+  String normalize(String value) => value
+      .toLowerCase()
+      .replaceAll(RegExp(r'[^a-z0-9\u00c0-\uffff]+'), ' ')
+      .trim();
+  final words = normalize(
+    query,
+  ).split(RegExp(r'\s+')).where((word) => word.isNotEmpty);
+  final text = normalize(
+    '${row.displayName} ${row.gvId} ${row.gvviId} ${row.setName ?? ''} ${row.setCode ?? ''} ${row.number} ${row.printingLabel} ${row.conditionLabel}',
+  );
+  return words.every(text.contains);
+}
 
 String newSaleId() {
   final random = Random.secure();
@@ -69,12 +84,30 @@ class SalesDeskData {
   final List<Map<String, dynamic>> customers;
   final List<Map<String, dynamic>> receipts;
   final Map<String, dynamic>? pending;
+
+  SalesDeskData withRows(List<VendorPricingWorkspaceRow> value) =>
+      SalesDeskData(
+        available: available,
+        rows: value,
+        storeName: storeName,
+        customers: customers,
+        receipts: receipts,
+        tradesAvailable: tradesAvailable,
+        pending: pending,
+      );
+}
+
+class SalesCatalogPage {
+  const SalesCatalogPage(this.cards, {this.pagination});
+  final List<CardPrint> cards;
+  final CardSearchPagination? pagination;
 }
 
 class SalesCartService {
   SalesCartService({SupabaseClient? client}) : _client = client;
   final SupabaseClient? _client;
   String? _owner;
+  final _searchCache = SalesSearchCache<SalesCatalogPage>();
   SupabaseClient get client => _client ?? Supabase.instance.client;
   Stream<void> get accountChanges => client.auth.onAuthStateChange
       .where((event) => _owner != null && event.session?.user.id != _owner)
@@ -83,6 +116,7 @@ class SalesCartService {
 
   void _checkOwner() {
     if (_owner == null || client.auth.currentUser?.id != _owner) {
+      _searchCache.clear();
       throw StateError('Your account changed. Reopen the sales desk.');
     }
   }
@@ -115,21 +149,14 @@ class SalesCartService {
         pending: pending,
       );
     }
-    var tradesAvailable = false;
-    try {
-      tradesAvailable =
-          await client.rpc('vendor_sales_trade_available_v1') == true;
-    } on PostgrestException catch (error) {
-      if (error.code != 'PGRST202') rethrow;
-    }
-    final workspace = await VendorPricingWorkspaceService(
-      client: client,
-      includeSections: false,
-      toleratePriceFailure: true,
-    ).load();
-    final result = Map<String, dynamic>.from(
-      await client.rpc('vendor_receipt_book_read_v1') as Map,
-    );
+    final results = await Future.wait<Object>([
+      _tradesAvailable(),
+      _workspace.load(),
+      client.rpc('vendor_receipt_book_read_v1'),
+    ]);
+    final tradesAvailable = results[0] as bool;
+    final workspace = results[1] as VendorPricingWorkspaceData;
+    final result = Map<String, dynamic>.from(results[2] as Map);
     final book = Map<String, dynamic>.from(result['book'] as Map);
     _checkOwner();
     return SalesDeskData(
@@ -145,6 +172,31 @@ class SalesCartService {
           .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
           .toList(),
     );
+  }
+
+  Future<bool> _tradesAvailable() async {
+    try {
+      return await client.rpc('vendor_sales_trade_available_v1') == true;
+    } on PostgrestException catch (error) {
+      if (error.code != 'PGRST202') rethrow;
+    }
+    return false;
+  }
+
+  VendorPricingWorkspaceService get _workspace => VendorPricingWorkspaceService(
+    client: client,
+    includeSections: false,
+    includeMarketPrices: false,
+    toleratePriceFailure: true,
+  );
+
+  Future<List<VendorPricingWorkspaceRow>> loadAddedCopy(
+    String instanceId,
+  ) async {
+    _checkOwner();
+    final data = await _workspace.loadCopies({instanceId});
+    _checkOwner();
+    return data.rows;
   }
 
   Future<void> stage(Map<String, dynamic> request) async {
@@ -164,22 +216,63 @@ class SalesCartService {
   }
 
   Future<List<CardPrint>> searchCatalog(String query, String game) async {
+    // Existing trade search presents one list, so retain its complete-result
+    // behavior while the catalog entry dialog consumes bounded pages.
+    var page = await searchCatalogPage(query, game);
+    final cards = [...page.cards];
+    final seen = cards.map((card) => card.id).toSet();
+    while (page.pagination?.nextOffset != null) {
+      page = await searchCatalogPage(
+        query,
+        game,
+        offset: page.pagination!.nextOffset!,
+      );
+      cards.addAll(page.cards.where((card) => seen.add(card.id)));
+    }
+    return cards;
+  }
+
+  Future<SalesCatalogPage> searchCatalogPage(
+    String query,
+    String game, {
+    int offset = 0,
+  }) async {
     _checkOwner();
-    if (query.trim().length < 2) return [];
-    final result = await CardPrintRepository.searchCardPrintsResolved(
-      client: client,
-      options: CardSearchOptions(
-        query: query.trim(),
-        gameScope: game,
-        limit: 30,
-      ),
-      searchLimit: 30,
+    if (query.trim().length < 2) return const SalesCatalogPage([]);
+    if (offset < 0 || offset > 10000) throw ArgumentError.value(offset);
+    final page = await _searchCache.get(
+      jsonEncode([query.trim(), game, offset]),
+      () async {
+        final result = await CardPrintRepository.searchCardPrintsResolved(
+          client: client,
+          options: CardSearchOptions(
+            query: query.trim(),
+            gameScope: game,
+            limit: 64,
+            pageOffset: offset,
+          ),
+          searchLimit: 64,
+        );
+        _checkOwner();
+        if (result.pagination != null && result.pagination!.offset != offset ||
+            offset > 0 && result.pagination == null) {
+          throw StateError('Search pagination changed. Search again.');
+        }
+        final seen = <String>{};
+        return SalesCatalogPage(
+          List.unmodifiable(
+            result.rows
+                .where(
+                  (card) => (card.gvId ?? '').isNotEmpty && seen.add(card.id),
+                )
+                .toList(),
+          ),
+          pagination: result.pagination,
+        );
+      },
     );
     _checkOwner();
-    final seen = <String>{};
-    return result.rows
-        .where((card) => (card.gvId ?? '').isNotEmpty && seen.add(card.id))
-        .toList();
+    return page;
   }
 
   Future<List<Map<String, dynamic>>> catalogPrintings(String cardId) async {

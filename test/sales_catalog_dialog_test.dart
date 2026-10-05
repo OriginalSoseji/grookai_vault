@@ -3,12 +3,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/card_print.dart';
 import 'package:grookai_vault/screens/sales/sales_catalog_dialog.dart';
+import 'package:grookai_vault/services/sales/sales_cart_service.dart';
+import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 import 'sales_desk_screen_test.dart' show FakeSalesService, open;
 
 class CatalogService extends FakeSalesService {
   Map<String, dynamic>? draft;
   bool loseCatalogReply = false;
-  int created = 0;
+  int created = 0, loads = 0;
+  final refreshed = <String>[];
+  @override
+  Future<SalesDeskData> load() async {
+    loads++;
+    return super.load();
+  }
+
+  @override
+  Future<List<VendorPricingWorkspaceRow>> loadAddedCopy(String id) async {
+    refreshed.add(id);
+    return [];
+  }
+
+  @override
+  Future<SalesCatalogPage> searchCatalogPage(
+    String query,
+    String game, {
+    int offset = 0,
+  }) async => SalesCatalogPage(await searchCatalog(query, game));
+
   final submits = <Map<String, dynamic>>[];
   final changes = StreamController<void>.broadcast();
   @override
@@ -85,7 +107,14 @@ void main() {
             .onPressed,
         isNull,
       );
-      await tester.tap(find.descendant(of: find.byType(SalesCatalogDialog), matching: find.byType(DropdownButtonFormField<String>)).first);
+      await tester.tap(
+        find
+            .descendant(
+              of: find.byType(SalesCatalogDialog),
+              matching: find.byType(DropdownButtonFormField<String>),
+            )
+            .first,
+      );
       await tester.pumpAndSettle();
       await tester.tap(find.text('Holo · GV-PK-TEST-001-HOLO').last);
       await tester.pumpAndSettle();
@@ -113,7 +142,11 @@ void main() {
       expect(service.submits[0], service.submits[1]);
       expect(service.created, 1);
       expect(service.draft, isNull);
-      expect(find.byType(SalesCatalogDialog), findsNothing);
+      expect(find.byType(SalesCatalogDialog), findsOneWidget);
+      expect(service.loads, 1);
+      expect(service.refreshed, ['created-copy']);
+      await tester.tap(find.byTooltip('Close catalog'));
+      await tester.pumpAndSettle();
       expect(find.text('Catalog Charizard'), findsWidgets);
       expect(service.calls, isEmpty);
       expect(tester.takeException(), isNull);
