@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## Receipt delivery release preparation — October 5
+
+PR598 has complete local application proof against main62d287019 and schema429.
+The new `ReceiptDeliveryReleaseV1` gate permits only the exact receipt migration
+20261005150000 over production428. It rereads both retained labs, receipt/copy
+fixtures and production schema without resetting or applying anything. PrePush
+also requires clean committed source, current-main ancestry and fresh normal hooks.
+The fixed CLI inspection package supports preparation and dry-run only. Sending
+remains off; sender setup and authorized real delivery proof are still pending.
+Read external receipt_delivery_20261005/CHECKPOINT.json for actual outcomes.
+Do not replay previous fast-entry, Collectr, migration or native upload intents.
+
 ## Receipt delivery combined integration — October 5
 
 PR598 source is being integrated with PR597/main62d287019. The Collectr release

@@ -62,6 +62,7 @@ param(
   [switch]$SalesDeskProBaselineV1,
   [switch]$SalesTradeBaselineV1,
   [switch]$ReceiptDeliveryBaselineV1,
+  [switch]$ReceiptDeliveryReleaseV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
@@ -90,6 +91,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ReceiptDeliveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ReceiptDeliveryReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261005150000') -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261005150000')) {
+    throw 'Receipt delivery release permits only 20261005150000, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_receipt_delivery_release_v1.mjs') $Phase
+  exit $LASTEXITCODE
+}
 
 if ($ReceiptDeliveryBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ReceiptDeliveryBaselineV1') }).Count -gt 0) {
