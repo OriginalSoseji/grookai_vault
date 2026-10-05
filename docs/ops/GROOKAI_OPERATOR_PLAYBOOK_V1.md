@@ -1,5 +1,13 @@
 # Grookai Operator Playbook V1
 
+## Direct receipt delivery — October 5, 2026
+
+Read [the receipt delivery checkpoint](RECEIPT_DELIVERY_20261005.md). Native fast
+entry is released as344 and PR595 is merged. New receipt delivery is a local-only
+candidate with default-off428 schema and654xx labs. Preserve populated upgrade
+fixtures and catalog/Collectr work. Real sender configuration/delivery is pending;
+the external receipt_delivery_20261005 checkpoint distinguishes proof from release.
+
 ## Sales desk fast entry — October 5, 2026
 
 Read [the current checkpoint](SALES_FAST_ENTRY_20261005.md). Trade-ins are already

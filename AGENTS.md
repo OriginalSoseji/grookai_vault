@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Direct receipt delivery — October 5, 2026
+
+Read docs/ops/RECEIPT_DELIVERY_20261005.md and its contract. PR595 is merged;
+TestFlight344 is live to the existing internal group. New candidate is isolated in
+C:/gv_receipt_delivery_20261005. Additive428 is local-only, sending switches OFF.
+External receipt_delivery_20261005 checkpoint owns proof and release state.
+Use only dedicated654xx labs; preserve all populated prior labs/catalog work.
+Sender accounts/configuration and actual authorized delivery proof are pending.
+Do not replay consumed native344 or merge595 intents.
+
 ## Sales desk fast entry — October 5, 2026
 
 Read docs/ops/SALES_FAST_ENTRY_20261005.md and its contract. Prior trade-ins are

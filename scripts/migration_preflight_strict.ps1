@@ -60,6 +60,7 @@ param(
   [switch]$SalesCartBaselineV1,
   [switch]$SalesDeskProBaselineV1,
   [switch]$SalesTradeBaselineV1,
+  [switch]$ReceiptDeliveryBaselineV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
@@ -88,6 +89,14 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ReceiptDeliveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ReceiptDeliveryBaselineV1') }).Count -gt 0) {
+    throw 'Receipt delivery baseline is read-only; no apply, reset or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_receipt_delivery_baseline_v1.mjs')
+  exit $LASTEXITCODE
+}
 
 if ($JungleProjectionV37) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
