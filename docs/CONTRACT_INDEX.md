@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| SALES_TRADE_INS_V1 | Active implementation contract | docs/contracts/SALES_TRADE_INS_V1.md - Explicit trade valuation/percentage, transparent deal receipts and atomic optional incoming inventory; default-off pending runtime/release proof |
 | SALES_DESK_PRO_V1 | Active implementation contract | docs/contracts/SALES_DESK_PRO_V1.md - Card drag/drop, durable canonical quick-add, and in-person receipt dashboard; release requires independent proof |
 | VENDOR_SALES_CART_V1 | Active implementation contract | docs/contracts/VENDOR_SALES_CART_V1.md - Owner-only iPad quick-add/cart with atomic exact-copy dispositions and account receipts; live production416/TestFlight341 |
 | NATIVE_OWNED_COPY_SELECTION_V1 | Active implementation contract | docs/contracts/NATIVE_OWNED_COPY_SELECTION_V1.md - Read-only ownership priming and per-instance Objects selection; current candidate is not yet distributed |

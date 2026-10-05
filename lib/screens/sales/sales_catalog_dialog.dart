@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import '../../services/sales/sales_card_reference.dart';
+import 'sales_price_reference.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../models/card_print.dart';
 import '../../services/sales/sales_cart_service.dart';
@@ -405,6 +407,13 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
                                 Text(
                                   '${_selected!.displaySet} · ${_selected!.displayNumber}\n${_selected!.gvId}',
                                   textAlign: TextAlign.center,
+                                ),
+                                SalesTcgplayerLink(
+                                  reference: SalesCardReference(
+                                    name: _selected!.name,
+                                    setName: _selected!.displaySet,
+                                    number: _selected!.displayNumber,
+                                  ),
                                 ),
                                 const SizedBox(height: 16),
                                 if (!_loading && _printings.isEmpty)

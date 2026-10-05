@@ -1,5 +1,74 @@
 # Grookai Operator Playbook V1
 
+## Jungle timestamp preservation correction — October 5 UTC, V45
+
+This supersedes V44's executor source, not its historical proof. Its first actual
+production CLI prepare stopped read-only: the immutable old node-postgres capture
+serialized timestamps to milliseconds, but live records retain microseconds.
+The new historical comparison uses only the precision present in those original
+bytes and explicitly records missing submillisecond fields. A six-digit historical
+timestamp remains exact. Fresh plan rows and native PostgreSQL record fingerprints
+retain full precision; no stored record or original artifact is rounded or edited.
+
+80 portable contracts pass. A fresh full427 replay/no-op lab at54800/internal
+10.248.35 seeds microseconds absent from historical evidence. All37 real database
+checks pass, including accepted historical precision, retained microseconds and
+rejected one-microsecond changes to both legacy and planned rows.639 local staged
+rows commit, all336 other public-table scopes and five synthetic copies remain
+protected; uncertain commit recovery/concurrency/zero-write retry pass. The54800
+lab is now POPULATED: never reset/reseed it. All54400/54600 and earlier labs remain.
+
+The same producer's actual production CLI prepare and preflight pass under pinned
+TLS and forced read-only sessions. The resulting plan is held for saved-copy
+review, is time-limited, and grants no write authority. Five changed account/recovery
+scopes and the olderV39 saved-copy gap remain unresolved. User clarification must
+not be invented from next-step messages. No production catalog/schema/write,
+binding, assignment or price publication occurred. V40 and expired later plans
+remain immutable. New source/proofs and original failures are retained under
+executor-qualification-v45 and V44; use the worker checkpoint for commit/push
+and hosted-check results. PR593 remains draft and Jungle prices remain inactive.
+
+
+## Jungle staging executor qualification — October 5 UTC, V44
+
+Production is427 after PR594/main499208eab; preserve its completed trade-in
+release and TestFlight343. This candidate adds a separately versioned V6 catalog
+executor and source reviewV4. Older executors/readers and consumed intents remain
+immutable. It stages639 catalog rows for128 reviewed Jungle editions, with zero
+updates, deletes, saved-copy writes, bindings, assignments or price publication.
+
+The new isolated full427 lab at54600/internal10.248.33 passed clean replay and
+no-op push. All35 real database checks pass:639-row rollback, failure injection,
+native microsecond protection, controls (including trade-ins), actual commit with
+lost acknowledgement, competing-writer rejection, independent readback and a
+zero-insert retry. An independent336-public-table oracle preserves everything
+outside the planned rows and all five synthetic copies. This lab is now POPULATED;
+never reset/reseed it. Historical426/V43 proof and source are retained externally.
+79 portable source/authority/target/schema contracts also pass.
+
+Fresh read-only production capture verifies all89 dependency files and128 source
+matches. Every prior full schema row remains exact; two SECURITY INVOKER realtime
+WAL helper functions (15 parameter rows) were added after the PR594 capture.
+Their complete definitions are pinned rather than omitted. Query result rows are
+compared as multisets with duplicates retained; nested array order, OIDs, ACLs
+and definitions remain protected. No production schema mutation was performed.
+
+Do not repeat the earlier claim that all104 state fingerprints equal V42:99 do;
+five account/recovery scopes changed. Later full-row capture shows two added
+copies, nine changed copies, four added dispositions and one catalog-add receipt;
+all prior receipt books/cart receipts/catalog-add rows are unchanged. The older
+V39 historical saved-copy hold also remains. These are review findings, not
+baseline acceptance or permission to overwrite current data.
+
+The production CLI validates original approval bytes, exact plan/code, expiry,
+TLS and same-plan live rollback before writes. Prepare/preflight/readback force
+read-only connections. Preparation retains the account hold; no production writer
+has run. Evidence is under executor-qualification-v44 and the worker recovery
+checkpoint. PR593 remains draft; local checks are not deployment. Jungle prices
+remain inactive. Release hooks, hosted checks and CLI status must be read from
+the external receipts; do not infer their result from this source note.
+
+
 ## Jungle history reader qualification — October 5 UTC, V42
 
 V6 is a read-only wrapper around the unchanged V5 state reader. Only the exact
@@ -60,6 +129,18 @@ The V5 rehearsal's production target still rejects before SQL. A production
 freeze/executor/authority and same-plan live rollback remain separate work;
 these tests and read timings cannot be relabeled as production write approval.
 
+
+## Checkout trade-ins — October 3, 2026
+
+Read [the trade-in checkpoint](SALES_TRADE_INS_20261003.md). Docker restart was
+explicitly authorized October4 and engine recovery completed. Current production426
+and main2409d2c3f include Jungle; prior native release is TestFlight342.
+New work is C:/gv_sales_trade_ins_20261003:
+canonical/quick trades, explicit valuation and percentage, atomic incoming/outgoing
+inventory and transparent receipts/reporting. New427 defaults OFF; existing
+sale receipts remain immutable. New full/upgrade427 V2 labs use653xx; preserve
+the historical418/652xx replay,650xx/648xx labs and catalog repair. External
+sales_trade_ins_20261003 receipts distinguish unit proof from runtime and release.
 
 ## Jungle discovery projection correction — October 4
 

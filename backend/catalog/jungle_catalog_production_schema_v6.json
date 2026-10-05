@@ -1,0 +1,9 @@
+{
+  "version": "JUNGLE_QUALIFIED_PRODUCTION_SCHEMA_V6",
+  "migrations": 427,
+  "productionCaptureAt": "2026-10-05T06:09:49.735Z",
+  "fullSchemaFingerprint": "a95ec281a0321ff6ef7b9e91e5f4189572a073fc37cc2b364804eefe47a8019c",
+  "ledgerFingerprint": "f895e3ce3919273f7e150e5c787f4bb0306742c596ac04e03ba19d9516f22555",
+  "querySha256": "fb13b2011fc4c2736e0a712fda3db7583b2c63d6b6610490ccd357fe0d41e5fe",
+  "basis": "427 release comparison retains every prior complete schema row and duplicate. Fresh capture adds exactly two reviewed SECURITY INVOKER realtime WAL helper functions (15 parameter rows), pinned in full. Result-row order alone is canonicalized; nested arrays, OIDs, definitions and security remain protected. Five account/recovery scopes changed since V42 and remain unresolved; no baseline acceptance or production write qualification."
+}
