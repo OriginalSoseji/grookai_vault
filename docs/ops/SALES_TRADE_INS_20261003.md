@@ -1,5 +1,37 @@
 # Sales desk trade-ins — October 3, 2026
 
+## October 4 evening — native checkout proof completed
+
+Main `82dcfa714` adds only founder dashboard snapshots and is reconciled in this
+candidate. PR594 remains the review/release boundary; external checkpoint records
+the exact committed producer and current deployment state.
+
+The original Homebrew Dart loader still stalls, but the existing official
+`~/flutter-3.44.9` checkout has the identical framework revision and starts normally.
+No macOS security setting was changed. The isolated native source directory is
+`~/grookai_sales_trade_native_v2_20261004`; both local65301 Auth/RPC and local65310
+real website resolver must be forwarded for the integration test.
+
+Actual iPad simulator proof now passes, including real sign-in, saved vendor price,
+TCGplayer reference button, negotiated checkout price, canonical/quick trades,
+full customer review, receipt, dashboard and account-change privacy. Independent
+database readback confirms two sale lines totaling10000 cents,5000 trade credit,
+5000 balance, one archived outgoing copy and one incoming Hold copy. Five retained
+screenshots include the full-deal review and saved receipt. External `native-v2`
+retains every failed attempt; successful `native-drive-result-v6.json` and
+`native-readback.json` bind the actual result. The driver now selects the result
+label separately from its image placeholder and scrolls the keyed cart container.
+
+Only synthetic fixtures were removed afterward and all three local controls were
+disabled. Task-owned resolver/simulator stopped; retained databases and other Mac
+work preserved. `native-proof.json` binds tested sources and screenshot hashes.
+Normal hooks, exact migration dry-run and release readbacks remain required.
+
+`prepare_sales_trade_v1.mjs` prepares an isolated linked CLI inspection package or
+runs a read-only dry-run for only20261004160000. It has no apply operation, rejects
+target overrides, binds fresh gates/source hashes, and compares before/after
+production schema snapshots. It never enables trade-ins or changes inventory.
+
 ## October 4 native qualification and source integration
 
 Current source baseline is `82f7c6cce7a61166bf07168779c2384adf3407de` (PR592).

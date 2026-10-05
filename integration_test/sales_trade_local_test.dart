@@ -41,6 +41,18 @@ void main() {
     }
 
     Future<void> tapText(String label) async {
+      if (find.text(label).evaluate().isEmpty) {
+        await tester.scrollUntilVisible(
+          find.text(label),
+          180,
+          scrollable: find
+              .descendant(
+                of: find.byKey(const Key('sales-cart-scroll')),
+                matching: find.byType(Scrollable),
+              )
+              .first,
+        );
+      }
       final finder = find.text(label).last;
       await tester.ensureVisible(finder);
       await tester.tap(finder);
@@ -74,7 +86,9 @@ void main() {
       matching: find.text('Synthetic trade Pikachu'),
     );
     await waitFor(canonical);
-    await tester.tap(canonical);
+    // Missing artwork repeats the title inside the honest image placeholder.
+    // Tap the result label, not every matching Text in the result tile.
+    await tester.tap(canonical.last);
     await tester.pumpAndSettle();
     final printing = find
         .descendant(

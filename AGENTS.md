@@ -3,7 +3,7 @@
 ## Checkout trade-ins — October 3, 2026
 
 Read docs/ops/SALES_TRADE_INS_20261003.md and its contract. Docker recovery was
-explicitly authorized and completed October4. Current main2409d2c3f and production426
+explicitly authorized and completed October4. Current main82dcfa714 and production426
 include the Jungle work; trade-ins are now additive427/default-off in
 C:/gv_sales_trade_ins_20261003. New full/upgrade427 V2 labs use653xx. Preserve the
 completed historical418/652xx replay and all other retained labs. Sales desk's
@@ -11,6 +11,11 @@ last native release is TestFlight342. Database proofs must follow the external
 checkpoint; preserve Windows PostgreSQL and retained volumes. Preserve all prior proofs, Mac
 archives, catalog and checkout work. External sales_trade_ins_20261003 checkpoint
 is authoritative for tests/release; do not replay completed intents.
+PR594 is the draft trade candidate. Mac Homebrew Flutter stalls before startup;
+the existing official ~/flutter-3.44.9 checkout at the same framework revision
+works. Native V2 uses a fresh synthetic fixture and final native sources in
+~/grookai_sales_trade_native_v2_20261004. Forward both65301 (Auth/RPC) and65310
+(real local web resolver) for the native journey. Keep original failed logs.
 
 ## Jungle discovery projection correction — October 4
 

@@ -3,6 +3,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {spawnSync} from 'node:child_process';
 
+test('trade migration preparation cannot apply SQL or accept a target override',()=>{
+  for(const args of [[],['apply'],['dry-run','--project-ref=other']]){
+    const result=spawnSync(process.execPath,['scripts/release/prepare_sales_trade_v1.mjs',...args],{encoding:'utf8',timeout:10000,env:{PATH:process.env.PATH,SystemRoot:process.env.SystemRoot}});
+    assert.ifError(result.error);assert.notEqual(result.status,0);
+    assert.match(result.stdout+result.stderr,/Use prepare or dry-run only|No apply operation/);
+  }
+});
+
 test('trade release gate rejects missing/wrong migrations and combined scopes before database access',()=>{
   for(const extra of [[],['-ExpectedLocalOnlyIds','20261003230000'],['-ExpectedLocalOnlyIds','20261004160000','-SalesDeskProReleaseV1'],['-ExpectedLocalOnlyIds','20261004160000','-SalesTradeBaselineV1']]){
     const result=spawnSync('pwsh',['-NoProfile','-File','scripts/migration_preflight_strict.ps1','-Phase','PrePush','-SalesTradeReleaseV1',...extra],{encoding:'utf8',timeout:30000,env:{PATH:process.env.PATH,SystemRoot:process.env.SystemRoot,USERPROFILE:process.env.USERPROFILE}});

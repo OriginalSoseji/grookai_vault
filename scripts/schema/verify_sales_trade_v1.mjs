@@ -54,6 +54,6 @@ for(const mode of ['full','upgrade']){
 }
 const receipt={at:new Date().toISOString(),status:'passed',phase,target:ref,migrations:426,sourceHashes:sources,comparison,output:directory,
  pending:[pending.split('_')[0]],sourceTree:execFileSync('git',['write-tree'],{cwd:root,encoding:'utf8'}).trim(),
- toolHashes:Object.fromEntries(['scripts/migration_preflight_strict.ps1','scripts/schema/verify_sales_trade_v1.mjs','scripts/schema/sales_trade_lab_v1.mjs','scripts/receipts/prove_sales_trade_v1.mjs','scripts/receipts/sales_trade_native_fixture_v1.mjs'].map(p=>[p,hash(fs.readFileSync(root+p))])),
+  toolHashes:Object.fromEntries(['scripts/migration_preflight_strict.ps1','scripts/schema/verify_sales_trade_v1.mjs','scripts/schema/sales_trade_lab_v1.mjs','scripts/receipts/prove_sales_trade_v1.mjs','scripts/receipts/sales_trade_native_fixture_v1.mjs','scripts/release/prepare_sales_trade_v1.mjs'].map(p=>[p,hash(fs.readFileSync(root+p))])),
  baseline:directory,baselineReceiptSha256:null,productionWrites:0,applyAuthority:false};
 fs.writeFileSync(directory+'/receipt.json',JSON.stringify(receipt,null,2),{flag:'wx'});fs.writeFileSync(out+'/baseline-latest.json',JSON.stringify(receipt,null,2));fs.writeFileSync(out+'/Release-'+phase+'.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify({status:'passed',phase,migrations:426,productionWrites:0,output:directory}));
