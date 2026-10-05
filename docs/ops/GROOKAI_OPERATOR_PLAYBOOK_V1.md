@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Checkout trade-ins — October 3, 2026
+
+Read [the trade-in checkpoint](SALES_TRADE_INS_20261003.md). Docker restart was
+explicitly authorized October4 and engine recovery completed. Current production426
+and main2409d2c3f include Jungle; prior native release is TestFlight342.
+New work is C:/gv_sales_trade_ins_20261003:
+canonical/quick trades, explicit valuation and percentage, atomic incoming/outgoing
+inventory and transparent receipts/reporting. New427 defaults OFF; existing
+sale receipts remain immutable. New full/upgrade427 V2 labs use653xx; preserve
+the historical418/652xx replay,650xx/648xx labs and catalog repair. External
+sales_trade_ins_20261003 receipts distinguish unit proof from runtime and release.
+
 ## Jungle discovery projection correction — October 4
 
 PR587/main808134869 applied all eight Jungle migrations to production425.

@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../gvvi/vendor_pricing_workspace_service.dart';
 import '../../models/card_print.dart';
 import '../public/public_card_printing_options_service.dart';
+import 'sales_trade.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
 int? saleMoneyInput(String value) {
@@ -18,7 +19,7 @@ int? saleMoneyInput(String value) {
 }
 
 String saleMoney(int minor) =>
-    '${minor ~/ 100}.${(minor % 100).toString().padLeft(2, '0')}';
+    '${minor < 0 ? '-' : ''}${minor.abs() ~/ 100}.${(minor.abs() % 100).toString().padLeft(2, '0')}';
 
 String newSaleId() {
   final random = Random.secure();
@@ -58,9 +59,11 @@ class SalesDeskData {
     required this.storeName,
     required this.customers,
     this.receipts = const [],
+    this.tradesAvailable = false,
     this.pending,
   });
   final bool available;
+  final bool tradesAvailable;
   final List<VendorPricingWorkspaceRow> rows;
   final String storeName;
   final List<Map<String, dynamic>> customers;
@@ -112,6 +115,13 @@ class SalesCartService {
         pending: pending,
       );
     }
+    var tradesAvailable = false;
+    try {
+      tradesAvailable =
+          await client.rpc('vendor_sales_trade_available_v1') == true;
+    } on PostgrestException catch (error) {
+      if (error.code != 'PGRST202') rethrow;
+    }
     final workspace = await VendorPricingWorkspaceService(
       client: client,
       includeSections: false,
@@ -124,6 +134,7 @@ class SalesCartService {
     _checkOwner();
     return SalesDeskData(
       available: true,
+      tradesAvailable: tradesAvailable,
       rows: workspace.rows,
       storeName: book['storeName'] as String,
       customers: (book['customers'] as List)
@@ -264,7 +275,9 @@ class SalesCartService {
   Future<Map<String, dynamic>> complete(Map<String, dynamic> request) async {
     _checkOwner();
     final receipt = await client.rpc(
-      'vendor_sales_cart_complete_v1',
+      request['cart']['version'] == 2
+          ? 'vendor_sales_cart_complete_v2'
+          : 'vendor_sales_cart_complete_v1',
       params: {'p_request_id': request['id'], 'p_cart': request['cart']},
     );
     _checkOwner();
@@ -291,12 +304,25 @@ class SalesCartService {
 
 String saleReceiptText(Map<String, dynamic> receipt) {
   final items = (receipt['items'] as List).cast<Map>();
+  final trade = receipt['tradeIn'] as Map?;
+  final balance = receiptBalance(receipt);
+  final tradeText = trade == null
+      ? ''
+      : '\nTRADE-INS\n'
+            '${(trade['items'] as List).map((t) => '${t['description']}\n${t['quantity']} × USD ${saleMoney(t['valueMinor'] as int)} × ${tradeRate(t['rateBps'] as int)}% = USD ${saleMoney(t['creditMinor'] as int)} credit').join('\n')}\n'
+            'Total trade credit: USD ${saleMoney(trade['totalCreditMinor'] as int)}\n'
+            '${balance < 0
+                ? 'Paid to customer'
+                : balance == 0
+                ? 'Even trade · money due'
+                : 'Payment received'}: USD ${saleMoney(balance.abs())}\n';
   return '${receipt['storeName']}\nReceipt ${receipt['number']}\n${receipt['createdAt']}\n'
       '${receipt['customerName'] == '' ? '' : 'Customer: ${receipt['customerName']}\n'}\n'
       '${items.map((i) => '${i['quantity']} × ${i['description']} — USD ${saleMoney(i['lineMinor'] as int)}').join('\n')}\n\n'
       'Subtotal: USD ${saleMoney(receipt['subtotalMinor'] as int)}\n'
       'Discount: USD ${saleMoney(receipt['discountMinor'] as int? ?? 0)}\n'
       'Tax collected: USD ${saleMoney(receipt['taxMinor'] as int)}\n'
-      'Total received: USD ${saleMoney(receipt['totalMinor'] as int)}\n'
+      '${trade == null ? 'Total received' : 'Purchase total'}: USD ${saleMoney(receipt['totalMinor'] as int)}\n'
+      '$tradeText'
       '${receipt['method']} · Recorded by vendor\n${receipt['note']}';
 }

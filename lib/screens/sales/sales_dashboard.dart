@@ -187,7 +187,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
         const SizedBox(height: 6),
         const Text(
           'Saved in-person receipts · USD · Times use this device’s time zone.\n'
-          'Vendor-recorded payments. Online orders, unreceipted sales, refunds and payouts are not included.',
+          'Vendor-recorded exchanges. Online orders, unreceipted sales, refunds and Stripe payouts are not included.',
         ),
         const SizedBox(height: 20),
         Wrap(
@@ -290,6 +290,26 @@ class _SalesDashboardState extends State<SalesDashboard> {
               Icons.payments_outlined,
               width: metricWidth,
             ),
+            if (data.tradeCreditMinor > 0 || data.paidToCustomerMinor > 0) ...[
+              _stat(
+                'Trade credit accepted',
+                'USD ${saleMoney(data.tradeCreditMinor)}',
+                Icons.swap_horiz,
+                width: metricWidth,
+              ),
+              _stat(
+                'Paid to customers',
+                'USD ${saleMoney(data.paidToCustomerMinor)}',
+                Icons.payments,
+                width: metricWidth,
+              ),
+              _stat(
+                'Net money received',
+                'USD ${saleMoney(data.totalMinor - data.paidToCustomerMinor)}',
+                Icons.account_balance_wallet,
+                width: metricWidth,
+              ),
+            ],
           ],
         ),
         const SizedBox(height: 20),
