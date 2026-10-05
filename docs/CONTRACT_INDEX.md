@@ -14,6 +14,7 @@ If a contract is missing from this index, it is not authoritative.
 | Contract | Status | Description |
 |--------|--------|-------------|
 | SALES_FAST_ENTRY_V1 | Active implementation contract | docs/contracts/SALES_FAST_ENTRY_V1.md - Continuous canonical entry, bounded search, targeted owner reads and saved-price cart entry; native proof required before release |
+| RECEIPT_DELIVERY_V1 | Active implementation contract; local candidate | docs/contracts/RECEIPT_DELIVERY_V1.md - Owner-bound saved receipts, durable one-attempt delivery, sender gates and honest delivery status; no live sending implied |
 | SALES_TRADE_INS_V1 | Active implementation contract | docs/contracts/SALES_TRADE_INS_V1.md - Explicit trade valuation/percentage, transparent deal receipts and atomic optional incoming inventory; default-off pending runtime/release proof |
 | SALES_DESK_PRO_V1 | Active implementation contract | docs/contracts/SALES_DESK_PRO_V1.md - Card drag/drop, durable canonical quick-add, and in-person receipt dashboard; release requires independent proof |
 | VENDOR_SALES_CART_V1 | Active implementation contract | docs/contracts/VENDOR_SALES_CART_V1.md - Owner-only iPad quick-add/cart with atomic exact-copy dispositions and account receipts; live production416/TestFlight341 |

@@ -14,6 +14,7 @@ import 'sales_dashboard.dart';
 import 'sales_catalog_dialog.dart';
 import 'sales_trade_dialog.dart';
 import 'sales_price_reference.dart';
+import 'receipt_delivery_panel.dart';
 
 class SalesDeskScreen extends StatefulWidget {
   const SalesDeskScreen({super.key, this.service});
@@ -1033,6 +1034,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       const SizedBox(height: 24),
       SelectableText(saleReceiptText(_receipt!)),
       const SizedBox(height: 24),
+      ReceiptDeliveryPanel(
+        key: ValueKey(_receipt!['id']),
+        receiptId: _receipt!['id'] as String,
+        email: _customer?['email'] as String? ?? _email.text,
+        phone: _customer?['phone'] as String? ?? _phone.text,
+      ),
       Builder(
         builder: (context) => FilledButton.icon(
           onPressed: () async {

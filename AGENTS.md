@@ -1,5 +1,37 @@
 # Grookai Agent Entry Point
 
+## Receipt delivery release preparation — October 5
+
+PR598 has complete local application proof against main62d287019 and schema429.
+The new `ReceiptDeliveryReleaseV1` gate permits only the exact receipt migration
+20261005150000 over production428. It rereads both retained labs, receipt/copy
+fixtures and production schema without resetting or applying anything. PrePush
+also requires clean committed source, current-main ancestry and fresh normal hooks.
+The fixed CLI inspection package supports preparation and dry-run only. Sending
+remains off; sender setup and authorized real delivery proof are still pending.
+Read external receipt_delivery_20261005/CHECKPOINT.json for actual outcomes.
+Do not replay previous fast-entry, Collectr, migration or native upload intents.
+
+## Receipt delivery combined integration — October 5
+
+PR598 source is being integrated with PR597/main62d287019. The Collectr release
+receipt reports production428; verify fresh baseline before receipt schema work.
+The combined receipt candidate is429 on fresh full/upgrade3270x/3272x labs.
+Earlier428 receipt labs and all Collectr fixtures are retained and must not reset.
+Receipt product/SQL bytes stay unchanged; only proof routing and integration change.
+External receipt_delivery_20261005/CHECKPOINT.json owns current proof/release state.
+Sending remains disabled; no receipt migration or sender activation in production.
+
+## Direct receipt delivery — October 5, 2026
+
+Read docs/ops/RECEIPT_DELIVERY_20261005.md and its contract. PR595 is merged;
+TestFlight344 is live to the existing internal group. New candidate is isolated in
+C:/gv_receipt_delivery_20261005. Additive428 is local-only, sending switches OFF.
+External receipt_delivery_20261005 checkpoint owns proof and release state.
+Use only dedicated654xx labs; preserve all populated prior labs/catalog work.
+Sender accounts/configuration and actual authorized delivery proof are pending.
+Do not replay consumed native344 or merge595 intents.
+
 ## Collectr sealed live-release continuation — October 5
 
 Release source now includes PR595/main a186a9bb2 (native Sales desk fast entry)

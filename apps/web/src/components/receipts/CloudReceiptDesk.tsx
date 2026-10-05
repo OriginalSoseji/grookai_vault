@@ -4,6 +4,7 @@ import { openCloudReceiptBook, receiptRpcTransport } from "@/lib/receipts/receip
 import { supabase } from "@/lib/supabaseClient";
 import { mountReceiptDesk, type ReceiptDeskOptions } from "@/lib/receipts/receiptDesk.mjs";
 import "@/lib/receipts/receiptDesk.css";
+import { receiptDeliveryTransport } from "@/lib/receipts/receiptDelivery.mjs";
 
 export default function CloudReceiptDesk({ prefill = null }: { prefill?: ReceiptDeskOptions["prefill"] }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,7 +13,7 @@ export default function CloudReceiptDesk({ prefill = null }: { prefill?: Receipt
   useEffect(() => {
     let disposed = false; let cleanup: (() => void) | undefined;
     openCloudReceiptBook(receiptRpcTransport(supabase)).then(remote => {
-      if (!disposed && ref.current) cleanup = mountReceiptDesk(ref.current, {cloud:remote, prefill});
+      if (!disposed && ref.current) cleanup = mountReceiptDesk(ref.current, {cloud:remote, prefill, delivery:receiptDeliveryTransport(supabase)});
     }).catch(() => { if (!disposed) setError("Your account receipt book could not be loaded. Existing device records are unchanged."); });
     return () => { disposed = true; cleanup?.(); };
   },[attempt, prefill]);
