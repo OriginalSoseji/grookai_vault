@@ -1,5 +1,31 @@
 # Direct receipt delivery candidate — October 5
 
+## Receipt delivery combined integration — October 5
+
+PR598 source is being integrated with PR597/main62d287019. The Collectr release
+receipt reports production428; verify fresh baseline before receipt schema work.
+The combined receipt candidate is429 on fresh full/upgrade3270x/3272x labs.
+Earlier428 receipt labs and all Collectr fixtures are retained and must not reset.
+Receipt product/SQL bytes stay unchanged; only proof routing and integration change.
+External receipt_delivery_20261005/CHECKPOINT.json owns current proof/release state.
+Sending remains disabled; no receipt migration or sender activation in production.
+
+Historical isolated candidate and receipts follow. The fresh combined proof
+supersedes the earlier427-to428 qualification for future release work.
+
+The combined full429 replay is `full-429-v1/replay-result.json`; actual local
+Auth/RPC proof is `runtime-1791214142285/receipt.json` (eight checks, mocked
+providers, users removed and switches off). `BASELINE_428.json` records the fresh
+read-only production comparison. Upgrade evidence is retained under
+`upgrade-429-v1`; normal integration commit/push and real Next HTTP receipts are
+tracked by the external checkpoint. The new API is32701, web proof32710, and
+upgrade API32721. An occupied65444 port was rejected before fixture creation;
+that service and all earlier654xx labs were left untouched.
+
+PR598 is a draft. The original receipt product/SQL from a5817e645 is unchanged;
+the integration preserves the merged Collectr implementation and both operator
+histories. Do not rerun any consumed Collectr migration or deployment intent.
+
 Source: C:/gv_receipt_delivery_20261005, feature/receipt-delivery-20261005, from
 main a186a9bb2a891d7e36752afb12f1a5041331d080. PR595 is merged; TestFlight344 is
 already available. Never replay its consumed merge/upload/configuration intents.

@@ -26,9 +26,9 @@ test('receipt proof mode accepts only the isolated local API and production reje
   const base={};for(const [k,v]of Object.entries(process.env))if(!/SUPABASE|NEXT_PUBLIC_|VERCEL|GROOKAI/.test(k))base[k]=v;
   const module=new URL('../../apps/web/src/lib/collectorStaging.mjs',import.meta.url).href;
   const check=(url,extra={})=>spawnSync(process.execPath,['--input-type=module','-e',`import {assertCollectorStagingTarget} from ${JSON.stringify(module)};assertCollectorStagingTarget(${JSON.stringify(url)});`],{env:{...base,NEXT_PUBLIC_RECEIPT_DELIVERY_LOCAL_TEST:'true',...extra},encoding:'utf8'}).status;
-  assert.equal(check('http://127.0.0.1:65401'),0);
-  for(const url of ['http://127.0.0.1:65301','http://127.0.0.1:65421','https://ycdxbpibncqcchqiihfz.supabase.co','http://localhost:65401','http://127.0.0.1:65401/path'])assert.notEqual(check(url),0);
-  assert.notEqual(check('http://127.0.0.1:65401',{NEXT_PUBLIC_SALES_TRADE_LOCAL_TEST:'true'}),0);
+  assert.equal(check('http://127.0.0.1:32701'),0);
+  for(const url of ['http://127.0.0.1:65401','http://127.0.0.1:65301','http://127.0.0.1:65421','https://ycdxbpibncqcchqiihfz.supabase.co','http://localhost:32701','http://127.0.0.1:32701/path'])assert.notEqual(check(url),0);
+  assert.notEqual(check('http://127.0.0.1:32701',{NEXT_PUBLIC_SALES_TRADE_LOCAL_TEST:'true'}),0);
   assert.throws(()=>assertCollectorReleaseEnvironment({GROOKAI_COLLECTOR_RELEASE_V1:'true',NEXT_PUBLIC_RECEIPT_DELIVERY_LOCAL_TEST:'true'}),/test modes/);
 });
 test('email uses a fixed endpoint, one recipient, escaped HTML and stable idempotency key',async()=>{

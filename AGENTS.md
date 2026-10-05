@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Receipt delivery combined integration — October 5
+
+PR598 source is being integrated with PR597/main62d287019. The Collectr release
+receipt reports production428; verify fresh baseline before receipt schema work.
+The combined receipt candidate is429 on fresh full/upgrade3270x/3272x labs.
+Earlier428 receipt labs and all Collectr fixtures are retained and must not reset.
+Receipt product/SQL bytes stay unchanged; only proof routing and integration change.
+External receipt_delivery_20261005/CHECKPOINT.json owns current proof/release state.
+Sending remains disabled; no receipt migration or sender activation in production.
+
 ## Direct receipt delivery — October 5, 2026
 
 Read docs/ops/RECEIPT_DELIVERY_20261005.md and its contract. PR595 is merged;
@@ -9,6 +19,77 @@ External receipt_delivery_20261005 checkpoint owns proof and release state.
 Use only dedicated654xx labs; preserve all populated prior labs/catalog work.
 Sender accounts/configuration and actual authorized delivery proof are pending.
 Do not replay consumed native344 or merge595 intents.
+
+## Collectr sealed live-release continuation — October 5
+
+Release source now includes PR595/main a186a9bb2 (native Sales desk fast entry)
+and PR596 (language index reports). Neither changes the sealed importer or SQL.
+All implementation/migration hashes remain bound to WEB_CHECKPOINT_V2.json;
+normal full hooks qualify the final combined source. Production baseline is427;
+only the sealed migration advances it to428. Preserve the newer sales release.
+
+Private `collectr_sealed_save_20261005/live-release-complete.json` records actual
+deployment when it exists; absence means release is not complete. Producer,
+schema-readback and live owner UI receipts record intermediate outcomes. Keep
+RELEASE_CHECKPOINT.json as the historical preparation receipt. Original-file
+save still requires purchase currency and separate added/reused/held readback.
+
+
+## Collectr sealed combined release — October 5 UTC
+
+Normal-hook commit b8274c9cc passed, then the final fetch found PR594/main499208eab
+and its already-LIVE sales trade-in migration427/TestFlight343. The branch is
+being integrated with that main; preserve the completed trade release. Sealed SQL
+bytes are unchanged. The current candidate is428, with fresh full/upgrade labs
+on5872x/5874x and internal10.245.140/141. Old427 proofs/package remain historical.
+Use WEB_CHECKPOINT_V2.json and RELEASE_CHECKPOINT.json in the private sealed
+artifact directory for actual qualification/commit/dry-run outcomes. The current
+strict sealed gate requires the live427 baseline; never reuse the old426 gate.
+
+
+## Collectr sealed release preparation — October 5 UTC
+
+Current main82dcfa714 matches the tested candidate baseline. Sealed V3 website
+implementation remains default-off. The exact426-to427 release gate and readonly
+CLI package preparation are now in source; see the migration maintenance contract.
+Private `collectr_sealed_save_20261005/RELEASE_CHECKPOINT.json` records actual
+normal-hook, source commit, gate and dry-run outcomes when preparation finishes.
+Do not infer deployment or a real import from source alone. Preserve every
+populated lab and all1375 accounted real copies; never replay consumed intents.
+
+
+## Collectr sealed website integration — October 5 UTC
+
+Same feature branch/worktree. Website V3 preview/save/recovery is now implemented,
+default-off via server GV_COLLECTR_SEALED_IMPORT_V3=1. Existing V2 attempts remain
+supported; native stays V2. Read the latest top checkpoint/contract. 555 focused
+contracts, 16 staging contracts and 9 real HTTP/browser scenarios pass, including
+concurrency, incremental V2→V3 and interrupted mobile reload recovery. Final local
+evidence is collectr_sealed_save_20261005/WEB_CHECKPOINT.json. No production writes,
+deployment or real import. Next is current-main reconciliation and release gates.
+Preserve all source groups, 1,375 accounted real copies and populated 427 labs.
+
+## Collectr sealed atomic backend — October 5 UTC
+
+Continue in C:/gv_collectr_adventure_20261001 on feature/collectr-sealed-planner-20261004.
+Read the new top section of docs/checkpoints/collectr_sealed_planner_20261004.md
+and the sealed import contract. Candidate V3 metadata/targets/receipt recovery,
+atomic mixed writer and sealed readback are implemented; 478 contracts and 22 SQL
+checks pass locally. Routes still use V2. No release or real import occurred.
+Final migration replay/upgrade authority is private collectr_sealed_save_20261005/
+CHECKPOINT.json, not the older first replay. Keep all labs/receipts and 1,375 real
+accounted copies intact. Next is website integration and HTTP/concurrency proof.
+Purchase-cost currency needs an explicit choice; never silently default to USD.
+
+## Collectr sealed identity planner — October 4
+
+PR592 is live and the Surge Foil import is verified: 1,375 accounted copies,
+678 held rows. Read `docs/checkpoints/collectr_sealed_planner_20261004.md` and
+`docs/contracts/COLLECTR_SEALED_IMPORT_V1.md`. The current branch implements an
+offline exact sealed-identity planner only; it does not save or deploy sealed
+imports. Production is426. Preserve all old groups, copies, receipts and labs.
+Next is atomic sealed source/group/copy persistence, not per-product Add loops.
+Private source-bound qualification is under `collectr_sealed_planner_20261004`.
 
 ## Sales desk fast entry — October 5, 2026
 

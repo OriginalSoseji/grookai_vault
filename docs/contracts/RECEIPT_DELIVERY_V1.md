@@ -32,7 +32,7 @@ never truncated; use email or Share. Sender setup and any carrier requirements
 are separate from this implementation. Provider keys stay server-only.
 
 Local staging blocks the default outbound transport; tests inject mocks. The
-receipt proof flag accepts only loopback API65401 and cannot combine with other
+receipt proof flag accepts only loopback API32701 (combined429 lab; earlier65401 proof is historical) and cannot combine with other
 proof modes or appear in a production build. Required proof includes actual local
 Auth/RPC ownership/claim concurrency, clean migration replay, retained-data upgrade,
 and desktop/phone DOM checks. Mock provider acceptance is not actual delivery proof.

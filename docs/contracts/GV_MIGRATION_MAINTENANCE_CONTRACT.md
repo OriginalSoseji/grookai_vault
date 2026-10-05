@@ -1,5 +1,38 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Collectr sealed release qualification — October 5 UTC
+
+The current gate targets live427 after PR594/main499208eab sales trade-ins;
+the combined candidate is428. It freezes all427 baseline SQL files against the
+sales-trade full427 replay and keeps the sealed SQL unchanged. Fresh full428 and
+retained427-to428 proofs use5872x/5874x, with combined WEB_CHECKPOINT_V2 evidence
+and normal-hook-v2.json. CLI inspection package v2 and dry-run-v2 are the current
+receipts. The earlier426 qualification described below is historical and cannot
+authorize the combined source. Never reapply the completed trade-in migration.
+
+Initial qualification (superseded by the427 baseline above):
+
+`CollectrSealedReleaseV1` admits only AuditLinkedSchema or PrePush for the exact
+pending migration `20261005080000`. Overrides and combined scopes reject before
+connection. It pins all 426 baseline SQL files and the qualified candidate hash,
+rejects duplicate timestamps, and verifies the complete 427 replay and retained
+426-to-427 upgrade. The exact candidate contains the qualified object definitions;
+changed SQL cannot pass under this scope.
+
+Fresh reads compare both retained labs to the qualified 427 schema/security and
+verify all retained copies, source groups and receipts. Production must still
+match426, including the canonical count gates and existing historical base-table
+column-order handling. The populated5868x/5870x labs are never reset. PrePush
+also requires clean committed current-main source and a fresh normal-hook receipt.
+
+`scripts/release/prepare_collectr_sealed_cli_v1.mjs` supports only prepare/dry-run.
+It copies the complete hash-bound source into an isolated CLI inspection package,
+checks fresh production ledger/schema before and after the CLI dry-run, and
+requires exactly the single pending migration. Neither script applies schema,
+activates the web flag, imports inventory or grants production-apply authority.
+External `collectr_sealed_save_20261005` receipts record actual gate/build outcomes.
+
+
 ## Jungle discovery projection correction — October 4
 
 PR587/main808134869 applied all eight Jungle migrations to production425.

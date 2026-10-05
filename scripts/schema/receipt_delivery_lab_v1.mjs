@@ -1,4 +1,4 @@
-// One-use local428 sales-trade replay and retained-copy427 upgrade. Local proof only; never remote.
+// One-use local429 receipt-delivery replay and retained-copy428 upgrade. Local proof only; never remote.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -18,18 +18,18 @@ const docker=(...a)=>execFileSync('docker',a,{encoding:'utf8',windowsHide:true,t
 assert.equal(process.argv.length,3);
 const mode=process.argv[2];assert.ok(['full','upgrade'].includes(mode));
 assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_receipt_delivery_20261005');
-const port=mode==='full'?65400:65420,project=`receipt-delivery-${mode}-428-v2-20261005`,fixture=out+'/'+mode+'-428-v2';
-const relay=project+'-relay',container='supabase_db_'+project,subnet=mode==='full'?'10.246.42.0/24':'10.246.43.0/24';
+const port=mode==='full'?32700:32720,project=`receipt-delivery-${mode}-429-v1-20261005`,fixture=out+'/'+mode+'-429-v1';
+const relay=project+'-relay',container='supabase_db_'+project,subnet=mode==='full'?'10.246.44.0/24':'10.246.45.0/24';
 const save=(name,value)=>fs.writeFileSync(fixture+'/'+name,JSON.stringify(value,null,2),{flag:'wx'});
 const sql=q=>execFileSync('docker',['exec','-i',container,'psql','-U','postgres','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'],{input:q,encoding:'utf8',windowsHide:true,timeout:180000,maxBuffer:64*1024*1024}).trim();
-const sources=hashes(root+'supabase/migrations');assert.equal(Object.keys(sources).length,428);
-const baselinePath=out+'/baseline-1791208604262/receipt.json';
+const sources=hashes(root+'supabase/migrations');assert.equal(Object.keys(sources).length,429);
+const baselinePath=out+'/BASELINE_428.json';
 const baseline=JSON.parse(fs.readFileSync(baselinePath));
-assert.equal(baseline.status,'passed');assert.equal(baseline.migrations,427);
+assert.equal(baseline.status,'passed');assert.equal(baseline.migrations,428);
 assert.equal(baseline.comparison.normalizedBytes,0);assert.equal(baseline.productionWrites,0);
-const baseFiles=execFileSync('git',['ls-tree','-r','--name-only','a186a9bb2a891d7e36752afb12f1a5041331d080','--','supabase/migrations'],{cwd:root,encoding:'utf8'}).trim().split(/\r?\n/).filter(n=>/^supabase\/migrations\/[^/]+\.sql$/.test(n));
-assert.equal(baseFiles.length,427);
-for(const file of baseFiles)assert.equal(hash(fs.readFileSync(root+file)),hash(execFileSync('git',['show','a186a9bb2a891d7e36752afb12f1a5041331d080:'+file],{cwd:root,maxBuffer:16*1024*1024})));
+const baseFiles=execFileSync('git',['ls-tree','-r','--name-only','62d287019d86db20c461d54e35944e634ec54752','--','supabase/migrations'],{cwd:root,encoding:'utf8'}).trim().split(/\r?\n/).filter(n=>/^supabase\/migrations\/[^/]+\.sql$/.test(n));
+assert.equal(baseFiles.length,428);
+for(const file of baseFiles)assert.equal(hash(fs.readFileSync(root+file)),hash(execFileSync('git',['show','62d287019d86db20c461d54e35944e634ec54752:'+file],{cwd:root,maxBuffer:16*1024*1024})));
 assert.ok(sources[migration]);
 const env={...process.env,DO_NOT_TRACK:'1'};for(const k of Object.keys(env))if(/SUPABASE|DATABASE_URL|POSTGRES_URL/.test(k))delete env[k];
 function cli(args,label){
@@ -41,18 +41,18 @@ function guard(count,{empty=true}={}){
   const plan=JSON.parse(fs.readFileSync(fixture+'/freeze.json'));
   assert.equal(plan.project,project);assert.equal(hash(fs.readFileSync(fixture+'/supabase/config.toml')),plan.configSha256);
   assert.ok(!fs.existsSync(fixture+'/supabase/.temp/project-ref'));
-  assert.deepEqual(hashes(fixture+'/supabase/migrations'),Object.fromEntries(Object.entries(sources).filter(([n])=>count===428||n!==migration)));
+  assert.deepEqual(hashes(fixture+'/supabase/migrations'),Object.fromEntries(Object.entries(sources).filter(([n])=>count===429||n!==migration)));
   const db=JSON.parse(docker('inspect',container))[0];assert.equal(db.State.Running,true);
   assert.equal(db.Config.Image,'public.ecr.aws/supabase/postgres:17.6.1.113');
   assert.deepEqual(Object.keys(db.NetworkSettings.Networks),[project]);assert.equal(JSON.parse(docker('network','inspect',project))[0].Internal,true);
   for(const bindings of Object.values(JSON.parse(docker('inspect',relay))[0].NetworkSettings.Ports))for(const binding of bindings)assert.equal(binding.HostIp,'127.0.0.1');
-  assert.deepEqual(sql('select version from supabase_migrations.schema_migrations order by version').split(/\r?\n/),Object.keys(sources).filter(n=>count===428||n!==migration).map(n=>n.split('_')[0]).sort());
+  assert.deepEqual(sql('select version from supabase_migrations.schema_migrations order by version').split(/\r?\n/),Object.keys(sources).filter(n=>count===429||n!==migration).map(n=>n.split('_')[0]).sort());
   const state=JSON.parse(sql("select json_build_object('users',(select count(*) from auth.users),'cards',(select count(*) from card_prints),'copies',(select count(*) from vault_item_instances),'stores',(select count(*) from vendor_stores),'runs',(select count(*) from cron.job_run_details),'workers',current_setting('max_worker_processes'))"));
   assert.equal(state.workers,'0');assert.equal(state.runs,0);assert.equal(state.stores,0);
   if(empty){assert.equal(state.users,0);assert.equal(state.cards,0);assert.equal(state.copies,0);}
   assert.equal(sql('select app_enabled::text||web_enabled::text||custom_enabled::text from vendor_store_rollout'),'falsefalsefalse');
   assert.equal(sql('select enabled::text from vendor_store_team_control'),'false');
-  if(count===428){assert.equal(sql('select enabled::text from vendor_sales_trade_control'),'false');assert.equal(sql('select enabled::text from vendor_sales_cart_control'),'false');assert.equal(sql('select email_enabled::text||sms_enabled::text from vendor_receipt_delivery_control'),'falsefalse');}
+  if(count===429){assert.equal(sql('select enabled::text from vendor_sales_trade_control'),'false');assert.equal(sql('select enabled::text from vendor_sales_cart_control'),'false');assert.equal(sql('select email_enabled::text||sms_enabled::text from vendor_receipt_delivery_control'),'falsefalse');}
   return state;
 }
 
@@ -74,13 +74,13 @@ docker('network','create','--internal','--subnet',subnet,project);
 docker('create','--name',relay,'--network','bridge',...([port,port+1,port+4].flatMap(p=>['-p',`127.0.0.1:${p}:${p}`])),'node:22-bookworm-slim','node','/relay.mjs');
 docker('cp',fixture+'/relay.mjs',relay+':/relay.mjs');docker('network','connect',project,relay);docker('start',relay);
 cli(['start','--exclude','realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor'],'start');
-const initial=guard(mode==='full'?428:427);save('before-reset.json',initial);
+const initial=guard(mode==='full'?429:428);save('before-reset.json',initial);
 save('reset-intent.json',{at:new Date().toISOString(),project,sourceHashes:sources,initial,consumed:true});
-cli(['db','reset','--local','--no-seed','--yes'],'full-reset');guard(mode==='full'?428:427);
+cli(['db','reset','--local','--no-seed','--yes'],'full-reset');guard(mode==='full'?429:428);
 if(mode==='full'){
   cli(['db','push','--local','--yes'],'push-noop');
   save('replayed.private.json',JSON.parse(sql(snapshotSql)));
-  save('replay-result.json',{status:'passed',at:new Date().toISOString(),fullReplay:true,noOpPush:true,migrations:428,project,productionWrites:0,retainedFixtureResets:0,state:guard(428)});
+  save('replay-result.json',{status:'passed',at:new Date().toISOString(),fullReplay:true,noOpPush:true,migrations:429,project,productionWrites:0,retainedFixtureResets:0,state:guard(429)});
 }else{
   const before=JSON.parse(sql(snapshotSql));save('baseline.private.json',before);
   const user=randomUUID(),card=randomUUID(),set=randomUUID(),gvId='GV-PK-UPGRADE-'+randomUUID();
@@ -96,14 +96,14 @@ if(mode==='full'){
     insert into public.vendor_receipt_books(owner_id,revision,book) values('${user}',1,'${oldBook}'::jsonb);commit;`);
   const retainedSql="select json_build_object('copies',(select json_agg(t order by id) from vault_item_instances t),'anchors',(select json_agg(t order by id) from vault_items t),'owners',(select json_agg(t order by user_id) from vault_owners t),'cards',(select json_agg(t order by id) from card_prints t),'sets',(select json_agg(to_jsonb(t)-'search_code_lower' order by id) from sets t),'receiptBooks',(select json_agg(t order by owner_id) from vendor_receipt_books t))";
   const retained=JSON.parse(sql(retainedSql));save('before-upgrade.private.json',retained);
-  guard(427,{empty:false});fs.copyFileSync(root+'supabase/migrations/'+migration,fixture+'/supabase/migrations/'+migration,fs.constants.COPYFILE_EXCL);
+  guard(428,{empty:false});fs.copyFileSync(root+'supabase/migrations/'+migration,fixture+'/supabase/migrations/'+migration,fs.constants.COPYFILE_EXCL);
   save('upgrade-intent.json',{at:new Date().toISOString(),project,migration,sha256:sources[migration],consumed:true});
-  cli(['db','push','--local','--include-all','--yes'],'upgrade');guard(428,{empty:false});
+  cli(['db','push','--local','--include-all','--yes'],'upgrade');guard(429,{empty:false});
   assert.deepEqual(JSON.parse(sql(retainedSql)),retained);assert.equal(sql("select count(*) from sets where search_code_lower is distinct from lower(code)"),'0');
   sql(`select public.vendor_receipt_book_validate_v1(book,owner_id) from public.vendor_receipt_books where owner_id='${user}'::uuid`);
   const after=JSON.parse(sql(snapshotSql));save('upgraded.private.json',after);
-  const clean=JSON.parse(fs.readFileSync(out+'/full-428-v2/replayed.private.json'));assert.deepEqual(after.LEDGER,clean.LEDGER);
+  const clean=JSON.parse(fs.readFileSync(out+'/full-429-v1/replayed.private.json'));assert.deepEqual(after.LEDGER,clean.LEDGER);
   const comparison=await compareSnapshots(after,clean,{output:fixture+'/parity'});
-  save('upgrade-result.json',{status:'passed',at:new Date().toISOString(),migrations:428,project,retainedCopies:retained.copies.length,retainedReceiptBooks:retained.receiptBooks.length,priorReceiptFormatValidated:true,allFixtureRowsUnchanged:true,comparison,productionWrites:0,resetsAfterPopulation:0});
+  save('upgrade-result.json',{status:'passed',at:new Date().toISOString(),migrations:429,project,retainedCopies:retained.copies.length,retainedReceiptBooks:retained.receiptBooks.length,priorReceiptFormatValidated:true,allFixtureRowsUnchanged:true,comparison,productionWrites:0,resetsAfterPopulation:0});
 }
-console.log(JSON.stringify({status:'passed',mode,project,fixture,migrations:428}));
+console.log(JSON.stringify({status:'passed',mode,project,fixture,migrations:429}));
