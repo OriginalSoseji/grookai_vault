@@ -24,6 +24,7 @@ class CardSearchOptions {
     this.languageScope = 'all',
     this.gameScope = 'pokemon',
     this.searchParameters = const {},
+    this.pageOffset,
   });
 
   final String query;
@@ -36,6 +37,9 @@ class CardSearchOptions {
   final String languageScope;
   final String gameScope;
   final Map<String, String> searchParameters;
+
+  /// Explicit opt-in; legacy callers keep complete combined results.
+  final int? pageOffset;
 
   CardSearchOptions copyWith({
     String? query,
@@ -59,6 +63,7 @@ class CardSearchOptions {
       languageScope: languageScope ?? this.languageScope,
       gameScope: gameScope ?? this.gameScope,
       searchParameters: searchParameters,
+      pageOffset: pageOffset,
     );
   }
 }
@@ -422,6 +427,7 @@ class CardPrintSearchResult {
     required this.meta,
     required this.source,
     this.interpretation,
+    this.pagination,
   });
 
   final List<CardPrint> rows;
@@ -429,6 +435,36 @@ class CardPrintSearchResult {
   final CardSearchResolverMeta? meta;
   final String source;
   final SearchInterpretation? interpretation;
+  final CardSearchPagination? pagination;
+}
+
+class CardSearchPagination {
+  const CardSearchPagination({
+    required this.total,
+    required this.offset,
+    this.nextOffset,
+  });
+  final int total, offset;
+  final int? nextOffset;
+
+  factory CardSearchPagination.fromJson(Map<String, dynamic> json) {
+    final total = json['total_count'], offset = json['offset'];
+    final next = json['next_offset'], more = json['has_more'];
+    if (total is! int ||
+        total < 0 ||
+        offset is! int ||
+        offset < 0 ||
+        more is! bool ||
+        (more && (next is! int || next <= offset || next >= total)) ||
+        (!more && next != null)) {
+      throw const FormatException('Invalid search pagination.');
+    }
+    return CardSearchPagination(
+      total: total,
+      offset: offset,
+      nextOffset: next as int?,
+    );
+  }
 }
 
 const _cardPrintSelect =
@@ -623,6 +659,10 @@ class CardPrintRepository {
         .resolve('/api/resolver/search')
         .replace(
           queryParameters: {
+            if (options.pageOffset != null) ...{
+              'pagination': '1',
+              'offset': options.pageOffset!.clamp(0, 10000).toString(),
+            },
             'limit': options.limit.clamp(1, searchLimit).toString(),
             'game': gameScope,
             if (_normalizeLanguageScope(options.languageScope) != 'all')
@@ -727,6 +767,11 @@ class CardPrintRepository {
       provisionalRows: provisionalRows,
       meta: meta,
       source: (decoded['source'] ?? 'web_ranked_resolver_v1').toString(),
+      pagination: decoded['pagination'] is Map<String, dynamic>
+          ? CardSearchPagination.fromJson(
+              decoded['pagination'] as Map<String, dynamic>,
+            )
+          : null,
       interpretation: decoded['smart_search'] is Map<String, dynamic>
           ? SearchInterpretation.fromJson(
               decoded['smart_search'] as Map<String, dynamic>,

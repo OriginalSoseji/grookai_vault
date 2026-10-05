@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Sales desk fast entry — October 5, 2026
+
+Read docs/ops/SALES_FAST_ENTRY_20261005.md and its contract. Prior trade-ins are
+LIVE at production427/TestFlight343; their consumed release intents stay closed.
+New native-only candidate is C:/gv_sales_fast_entry_20261005 from main499208eab.
+External sales_fast_entry_20261005 checkpoint owns proof/release status. No schema
+or production mutation in this batch. Preserve all catalog work and retained labs;
+native proof uses synthetic fixtures on the dedicated full427/653xx lab without reset.
+Direct receipt delivery still needs provider configuration; existing buttons compose drafts.
+
 ## Checkout trade-ins — October 3, 2026
 
 Read docs/ops/SALES_TRADE_INS_20261003.md and its contract. Docker recovery was
