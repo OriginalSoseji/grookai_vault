@@ -199,7 +199,7 @@ const supportedColumns = new Set([
   "watchlist",
   "rarity",
 ]);
-function date(value: string): string | null {
+export function date(value: string): string | null {
   if (!value.trim()) return null;
   const raw = text(value),
     us = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(raw);

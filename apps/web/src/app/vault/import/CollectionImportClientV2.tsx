@@ -4,26 +4,27 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ImportClient } from "./ImportClient";
-import { sourceLabel, type CollectionPreviewV2 } from "@/lib/import/collectionPreviewV2";
+import { sourceLabel } from "@/lib/import/collectionPreviewV2";
 import { chooseCollectionReviewCandidate } from "@/lib/import/collectionPreviewChoices";
 import { collectionReviewCounts, collectionReviewCsv, filterCollectionRows, reviewGroups, type ReviewGroup } from "@/lib/import/collectionReviewWorkspace";
 import { getCardPrintingFinishLabel, getPrintedIdentityModifierDisplayLabel, getVariantDisplayLabel } from "@/lib/cards/displayDiscriminator";
-import type { CollectionAttemptV2, CollectionReceiptV2 } from "@/lib/import/collectionReadbackV2";
+import { isV3Preview, importReady, mixedImportCounts, type CollectionAttempt, type CollectionReceipt, type CollectionPreview } from "@/lib/import/collectionPreviewV3";
 
 export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
   const router = useRouter();
   const [ready, setReady] = useState(false), [legacy, setLegacy] = useState(false);
   const [fileName, setFileName] = useState("");
-  const [preview, setPreview] = useState<CollectionPreviewV2 | null>(null);
-  const [pending, setPending] = useState<CollectionAttemptV2 | null>(null);
-  const [receipt, setReceipt] = useState<CollectionReceiptV2 | null>(null);
+  const [preview, setPreview] = useState<CollectionPreview | null>(null);
+  const [pending, setPending] = useState<CollectionAttempt | null>(null);
+  const [receipt, setReceipt] = useState<CollectionReceipt | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false), [newRequest, setNewRequest] = useState(false);
   const [filter, setFilter] = useState<"all" | "ready" | "review">("all"), [limit, setLimit] = useState(50);
   const [reviewGroup, setReviewGroup] = useState<ReviewGroup | "all">("all"), [search, setSearch] = useState("");
   const csv = useRef(""), generation = useRef(0), active = useRef(false);
-  const attemptRef = useRef<CollectionAttemptV2 | null>(null);
+  const attemptRef = useRef<CollectionAttempt | null>(null);
   const storageKey = `vault-import:v2:${ownerId}`;
+  const sealedStorageKey = `vault-import:v3:${ownerId}`;
 
   useEffect(() => {
     let mounted = true;
@@ -32,23 +33,27 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
       if (!mounted) return;
       try {
         setLegacy(!!sessionStorage.getItem(`vault-import:v1:${ownerId}`));
-        const raw = sessionStorage.getItem(storageKey);
+        const oldRaw = sessionStorage.getItem(storageKey), sealedRaw = sessionStorage.getItem(sealedStorageKey);
+        if (oldRaw && sealedRaw) throw new Error("multiple_recovery_attempts");
+        const raw = sealedRaw ?? oldRaw;
         if (raw) {
-          const saved = JSON.parse(raw) as CollectionAttemptV2;
-          if (saved.version !== 2 || saved.ownerUserId !== ownerId || typeof saved.csvText !== "string" || typeof saved.requestId !== "string" || !Array.isArray(saved.targets)) throw new Error("recovery");
+          const saved = JSON.parse(raw) as CollectionAttempt;
+          if (saved.version !== (sealedRaw ? 3 : 2) || saved.ownerUserId !== ownerId || typeof saved.csvText !== "string" || typeof saved.requestId !== "string" || !Array.isArray(saved.targets) || (saved.version === 3 && !Array.isArray(saved.sealedTargets))) throw new Error("recovery");
           attemptRef.current = saved; setPending(saved); setFileName(saved.fileName);
         }
         setReady(true);
       } catch { setError("The saved import could not be read. Keep the original CSV and restore browser storage before continuing."); }
     });
     return () => { mounted = false; generationRef.current++; };
-  }, [ownerId, storageKey]);
+  }, [ownerId, storageKey, sealedStorageKey]);
 
   async function send(body: unknown) {
     const encoded = JSON.stringify(body);
     if (new TextEncoder().encode(encoded).length > 2097152) throw new Error("This import exceeds the 2 MiB request limit. Split the CSV into smaller files.");
-    const response = await fetch("/api/vault/import", { method: "POST", headers: { "Content-Type": "application/json" }, body: encoded });
-    return { response, data: await response.json() };
+    try {
+      const response = await fetch("/api/vault/import", { method: "POST", headers: { "Content-Type": "application/json" }, body: encoded });
+      return { response, data: await response.json() };
+    } catch { throw new Error("The connection was interrupted. Retry; your saved import attempt has been kept."); }
   }
   async function chooseFile(file?: File) {
     if (!file || active.current || attemptRef.current) return;
@@ -70,13 +75,17 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
     if (!ready || active.current || (!attemptRef.current && !preview)) return;
     const current = generation.current;
     let attempt = attemptRef.current;
-    if (!attempt) attempt = { version: 2, ownerUserId: ownerId, requestId: crypto.randomUUID(), csvText: csv.current,
-      targets: preview!.rows.flatMap(row => row.selection ? [row.selection] : []), fileName };
+    if (!attempt) {
+      const common = { ownerUserId: ownerId, requestId: crypto.randomUUID(), csvText: csv.current,
+        targets: preview!.rows.flatMap(row => row.selection ? [row.selection] : []), fileName };
+      attempt = isV3Preview(preview!) ? {...common,version:3,sealedTargets:preview!.rows.flatMap(row=>row.sealedSelection?[row.sealedSelection]:[]),sealedAcquisitionCurrency:preview!.sealedAcquisitionCurrency} : {...common,version:2};
+    }
     else if (newRequest) attempt = { ...attempt, requestId: crypto.randomUUID() };
     try {
       // The original CSV and selection remain frozen across network loss/reload.
-      sessionStorage.setItem(storageKey, JSON.stringify(attempt));
-      if (sessionStorage.getItem(storageKey) !== JSON.stringify(attempt)) throw new Error("storage");
+      const key = attempt.version === 3 ? sealedStorageKey : storageKey;
+      sessionStorage.setItem(key, JSON.stringify(attempt));
+      if (sessionStorage.getItem(key) !== JSON.stringify(attempt)) throw new Error("storage");
     } catch { setError("Browser storage could not retain this import. Enable it before saving; nothing was sent."); return; }
     attemptRef.current = attempt; setPending(attempt); setNewRequest(false); active.current = true; setBusy(true); setError(null);
     try {
@@ -88,7 +97,7 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
       if (data.success !== true || data.requestId !== attempt.requestId) throw new Error("The saved result could not be confirmed. Retry this same import.");
       setReceipt(data); setPreview(null);
       // Keep recovery active if storage cleanup fails; replay remains safe.
-      sessionStorage.removeItem(storageKey);
+      sessionStorage.removeItem(attempt.version === 3 ? sealedStorageKey : storageKey);
       attemptRef.current = null; setPending(null); csv.current = "";
       router.refresh();
     } catch (cause) { if (current === generation.current) setError(cause instanceof Error ? cause.message : "The save result could not be confirmed. Retry this same import safely."); }
@@ -98,6 +107,20 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
     if (!preview || active.current || attemptRef.current || busy || pending) return;
     try { setPreview(chooseCollectionReviewCandidate(preview, sourceIndices, cardId)); setError(null); }
     catch (cause) { setError(cause instanceof Error ? cause.message : "This choice could not be confirmed."); }
+  }
+  async function chooseCurrency(currency: string) {
+    if (!preview || !isV3Preview(preview) || active.current || attemptRef.current) return;
+    const current = generation.current;
+    active.current = true; setBusy(true); setError(null);
+    try {
+      const {response,data} = await send({operation:"preview",ownerUserId:ownerId,csvText:csv.current,sealedAcquisitionCurrency:currency||null});
+      if(current !== generation.current)return;
+      if(!response.ok || data.ownerId!==ownerId || !Array.isArray(data.rows))throw new Error(data.error || "The currency preview could not be confirmed.");
+      let updated: CollectionPreview = data;
+      for(const row of preview.rows)if(row.review?.selectedCardId)updated=chooseCollectionReviewCandidate(updated,row.sourceIndices,row.review.selectedCardId);
+      setPreview(updated);
+    } catch(cause){if(current===generation.current)setError(cause instanceof Error?cause.message:"The preview could not be refreshed.");}
+    finally{active.current=false;if(current===generation.current)setBusy(false);}
   }
   function downloadReview() {
     if (!preview) return;
@@ -119,11 +142,12 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
     const current = generation.current;
     active.current = true; setBusy(true); setError(null);
     try {
-      const { response, data } = await send({ operation: "preview", ownerUserId: ownerId, csvText: attempt.csvText });
+      const { response, data } = await send({ operation: "preview", ownerUserId: ownerId, csvText: attempt.csvText, sealedAcquisitionCurrency:attempt.version===3?attempt.sealedAcquisitionCurrency:null });
       if (current !== generation.current) return;
       if (!response.ok || data.ownerId !== ownerId || !Array.isArray(data.rows)) throw new Error("The preview could not be refreshed. Your saved attempt is still retained.");
-      sessionStorage.removeItem(storageKey);
-      if (sessionStorage.getItem(storageKey) !== null) throw new Error("Browser storage could not release the failed attempt. Keep the original file and retry.");
+      const key = attempt.version === 3 ? sealedStorageKey : storageKey;
+      sessionStorage.removeItem(key);
+      if (sessionStorage.getItem(key) !== null) throw new Error("Browser storage could not release the failed attempt. Keep the original file and retry.");
       csv.current = attempt.csvText; attemptRef.current = null;
       setPending(null); setNewRequest(false); setPreview(data); setReceipt(null); setFilter("all"); setLimit(50);
       setReviewGroup("all"); setSearch("");
@@ -133,10 +157,13 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
   if (legacy) return <ImportClient ownerId={ownerId} recoveryOnly onRecovered={() => setLegacy(false)} />;
   const rows = preview ? filterCollectionRows(preview, filter, reviewGroup, search) : [];
   const reviewCounts = preview ? collectionReviewCounts(preview) : null;
+  const counts = preview ? mixedImportCounts(preview) : null;
+  const addedSealed = receipt && "importedSealed" in receipt ? receipt.importedSealed : 0;
+  const reused = receipt ? receipt.targets.reduce((n,r)=>n+r.instanceIds.length,0) + ("sealedTargets" in receipt ? receipt.sealedTargets.reduce((n,r)=>n+r.instanceIds.length,0) : 0) - receipt.importedCards - addedSealed : 0;
   return <div className="space-y-6">
     <header className="space-y-3"><p className="text-sm font-medium uppercase tracking-wider text-slate-500">Vault Import</p>
       <h1 className="text-3xl font-semibold text-slate-950 dark:text-white">Import your collection</h1>
-      <p className="max-w-2xl text-slate-600 dark:text-slate-300">Upload your original Collectr CSV. Review exact cards and finishes before saving. Rows that need review stay in your saved import with their original details.</p></header>
+      <p className="max-w-2xl text-slate-600 dark:text-slate-300">Upload your original Collectr CSV. Review matching cards, finishes and supported sealed products before saving. Rows that need review stay in your saved import with their original details.</p></header>
     <section className="rounded-xl border border-slate-200 p-5 dark:border-white/15">
       <label className="block font-medium" htmlFor="collectr-csv">Choose Collectr CSV</label>
       <input id="collectr-csv" className="mt-3 block max-w-full text-sm" type="file" accept=".csv,text/csv" disabled={!ready || busy || !!pending} onChange={event => void chooseFile(event.target.files?.[0])} />
@@ -146,9 +173,19 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
     {error && <p role="alert" className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-amber-950">{error}</p>}
     {pending && <section className="rounded-xl border border-sky-200 p-5"><h2 className="font-semibold">Import waiting for confirmation</h2><p className="mt-2 text-sm">Retry this saved attempt to confirm the outcome. Keep the original file; retrying will not add the same imported copies again.</p></section>}
     {pending && newRequest && <button type="button" disabled={busy} className="rounded-lg border px-4 py-3 disabled:opacity-50" onClick={() => void reviewFailedAttempt()}>Review selections again</button>}
-    {receipt && <section role="status" className="rounded-xl border border-emerald-300 p-5"><h2 className="font-semibold">Import verified</h2><p className="mt-2">{receipt.importedCards} copies added. {receipt.reviewRows} source rows retained for review.</p><p className="mt-2 text-sm">Grades and other unsupported details remain in the original source; review rows have not been added as owned cards.</p><Link className="mt-3 inline-block underline" href="/vault">Open your Vault</Link></section>}
+    {receipt && <section role="status" className="rounded-xl border border-emerald-300 p-5"><h2 className="font-semibold">Import verified</h2><p className="mt-2">Cards added: {receipt.importedCards}. Sealed copies added: {addedSealed}. Already accounted for: {reused}. Source rows retained for review: {receipt.reviewRows}.</p><p className="mt-2 text-sm">Grades and other unsupported details remain in the original source; review rows have not been added to your inventory.</p><Link className="mt-3 inline-block underline" href="/vault">Open your Vault</Link></section>}
     {preview && <section className="space-y-4">
       <p>{preview.sourceRows} source rows · {preview.readyRows} ready ({preview.readyCopies} copies) · {preview.reviewRows} need review</p>
+      {isV3Preview(preview) && <div className="space-y-3 rounded-xl border border-slate-200 p-4 dark:border-white/15">
+        <p className="font-medium">Ready card copies: {counts!.cards} · Sealed copies: {counts!.sealed}</p>
+        <label htmlFor="sealed-purchase-currency" className="block text-sm font-medium">Purchase currency for sealed products</label>
+        <select id="sealed-purchase-currency" disabled={busy || !!pending} value={preview.sealedAcquisitionCurrency ?? ""} onChange={event=>void chooseCurrency(event.target.value)} className="w-full rounded-lg border border-slate-300 bg-white px-3 py-3 text-slate-950 dark:bg-slate-900 dark:text-white">
+          <option value="">Use currency in file; keep unlabeled costs in review</option>
+          {["USD","CAD","EUR","GBP","JPY","AUD","NZD","CHF"].map(code=><option key={code} value={code}>{code}</option>)}
+        </select>
+        <p className="text-sm text-slate-500">Choose only if the sealed purchase costs use this currency. Mixed or conflicting currencies stay in review. Original card condition is retained as source detail; seal and package condition remain unknown.</p>
+        {!preview.sealedImportEnabled && <p className="text-sm text-amber-700">Sealed imports are currently unavailable. You can save matched cards and retain the other rows for review.</p>}
+      </div>}
       <div className="flex flex-wrap gap-2" aria-label="Preview filters">{(["all", "ready", "review"] as const).map(value => <button key={value} type="button" aria-pressed={filter === value} className={`rounded-full border px-4 py-2 text-sm ${filter === value ? "bg-slate-900 text-white" : "border-slate-300"}`} onClick={() => { setFilter(value); setReviewGroup("all"); setLimit(50); }}>{value === "all" ? "All rows" : value === "ready" ? "Ready" : "Needs review"}</button>)}</div>
       <div className="space-y-3 rounded-xl border border-slate-200 p-4 dark:border-white/15">
         <label className="block text-sm font-medium" htmlFor="collection-search">Search this import</label>
@@ -170,9 +207,9 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
       <p role="status" className="text-sm text-slate-500">Showing {Math.min(rows.length, limit)} of {rows.length} matching entries ({rows.reduce((sum, row) => sum + row.sourceIndices.length, 0)} source rows). Filters only change this view; saving includes all ready copies.</p>
       {!rows.length && <p className="rounded-lg border p-4">No entries match these filters. Clear filters to see the full preview.</p>}
       <div className="space-y-3">{rows.slice(0, limit).map(row => <article key={row.sourceIndices.join(",")} className="rounded-xl border border-slate-200 p-4 dark:border-white/15">
-        <div className="flex flex-wrap justify-between gap-2"><h3 className="font-semibold">{sourceLabel(row.source, "product name", "card name") || "Unnamed product"}</h3><span className={row.selection ? "text-emerald-700" : "text-amber-700"}>{row.review?.selectedCardId ? "Ready · Chosen by you" : row.selection ? "Ready" : "Needs review"}</span></div>
+        <div className="flex flex-wrap justify-between gap-2"><h3 className="font-semibold">{sourceLabel(row.source, "product name", "card name") || "Unnamed product"}</h3><span className={importReady(row) ? "text-emerald-700" : "text-amber-700"}>{row.sealedSelection ? "Ready · Sealed product" : row.review?.selectedCardId ? "Ready · Chosen by you" : row.selection ? "Ready" : "Needs review"}</span></div>
         <p className="mt-1 text-sm text-slate-500">{sourceLabel(row.source, "set", "series")} · #{sourceLabel(row.source, "card number", "number") || "—"} · Quantity: {row.quantity ?? sourceLabel(row.source, "quantity", "qty")}</p>
-        <p className="mt-2 text-sm">{row.reason ?? `${row.matchedName} · ${row.finish}`}</p>
+        <p className="mt-2 text-sm">{row.reason ?? (row.sealedSelection ? `${row.matchedName} · Seal unknown · Package condition unknown` : `${row.matchedName} · ${row.finish}`)}</p>
         {row.review && <details className="mt-3 rounded-lg border border-slate-200 p-3 dark:border-white/15">
           <summary className="cursor-pointer font-medium">Review matching cards ({row.review.candidates.length})</summary>
           <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Compare the card, variant and finish with your copy. Choose only a match you can confirm; otherwise keep this row for review. Card links open in a new tab.</p>

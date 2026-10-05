@@ -13,14 +13,14 @@ import {
   type SourceRow,
   text,
 } from "./source.ts";
-type Client = {
+export type Client = {
   from: (name: string) => any;
   rpc: (
     name: string,
     args: Record<string, unknown>,
   ) => PromiseLike<{ data: any; error: any }>;
 };
-type Dependencies = {
+export type Dependencies = {
   requireUser: (request: Request) => Promise<{ userId: string; sb: Client }>;
   createServiceRoleClient: () => Client;
 };
@@ -30,13 +30,13 @@ const object = (value: unknown): value is Record<string, any> =>
   value !== null && typeof value === "object" && !Array.isArray(value);
 const validId = (id: unknown): id is string =>
   typeof id === "string" && uuid.test(id);
-type Selection = {
+export type Selection = {
   sourceIndices: number[];
   cardId: string;
   gvId: string;
   cardPrintingId: string | null;
 };
-type Target = Selection & {
+export type Target = Selection & {
   finishKey: string | null;
   desiredQuantity: number;
   condition: string;
@@ -45,7 +45,7 @@ type Target = Selection & {
   createdAtDateOnly: boolean;
   notes: string | null;
 };
-async function body(request: Request): Promise<unknown> {
+export async function body(request: Request): Promise<unknown> {
   const reader = request.body?.getReader();
   if (!reader) throw new ImportValidationError("invalid_request");
   const parts: Uint8Array[] = [];
@@ -78,7 +78,7 @@ const sourceSignature = (row: SourceRow) =>
       .filter(([key]) => !["quantity", "qty"].includes(text(key).toLowerCase()))
       .sort(([a], [b]) => a.localeCompare(b)),
   ));
-function selections(raw: unknown, count: number): Selection[] {
+export function selections(raw: unknown, count: number): Selection[] {
   if (!Array.isArray(raw) || raw.length > 5000) {
     throw new ImportValidationError("invalid_import_targets");
   }
@@ -107,7 +107,7 @@ function selections(raw: unknown, count: number): Selection[] {
     };
   });
 }
-async function resolveTargets(
+export async function resolveTargets(
   client: Client,
   source: SourceRow[],
   selected: Selection[],
