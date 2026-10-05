@@ -1,5 +1,35 @@
 # Jungle edition pricing preparation — October 1
 
+## Jungle history reader qualification — October 5 UTC, V42
+
+V6 is a read-only wrapper around the unchanged V5 state reader. Only the exact
+JustTCG history aggregate uses a cursor: 2,000 complete PostgreSQL record hashes
+per batch, including duplicates, bounded to 250,000 rows and a 120-second fetch
+loop. Callers retain 15-second statement timeouts and must use UTC with repeatable
+read or serializable isolation. Failure closes the cursor without hiding the
+original database error. This adds no production writer or publication authority.
+
+15 reader contracts and the 12 existing production-target rejection contracts
+pass. The retained 54200 PostgreSQL lab proves six aggregate comparisons on 4,128
+temporary rows, covering numeric scale, NULL/empty values, Unicode, JSON and
+microseconds; rollback removes the fixture. Never reset/reseed this populated lab.
+
+Read-only production qualification checked all 104 scopes and 89,780 history rows
+in 46 batches (maximum 627 ms). An initial old-state comparison correctly rejected
+new reference data. Separate reconciliation proves all 15,771 historical rows in
+each reference table exact, both by full JSON rows and native record digests;
+270 additions in each table have one-to-one links and cannot publish prices.
+The other 102 scopes equal V40, including current saved copies. This does not
+resolve the older V39 saved-copy baseline hold: user clarification is pending.
+
+Evidence is external under jungle_edition_pricing_20261001/reader-release-v42;
+the worker recovery checkpoint records commit/check status. PR593 remains draft.
+V40's plan is expired and immutable. V5 execution remains local only. Production
+executor qualification, saved-copy review, fresh exact authority and same-plan
+rollback are still required before staging, binding and governed publication.
+Jungle prices remain inactive; no production write or migration occurred.
+
+
 ## Jungle catalog inspection and rehearsal — October 4, V39
 
 Production426 is already released by PR590; never replay its schema intent.
