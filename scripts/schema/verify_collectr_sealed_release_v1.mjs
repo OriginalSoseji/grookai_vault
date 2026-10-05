@@ -5,8 +5,6 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
-import pg from 'pg';
-import {snapshotSql,compareSnapshots} from './vendor_billing_schema_v1.mjs';
 
 export const sealedRelease = Object.freeze({
   root:'C:/gv_collectr_adventure_20261001',
@@ -32,6 +30,11 @@ export async function verifyCollectrSealedRelease(phase) {
   validateSealedReleaseArguments([phase]);
   const {root,evidence,target,migration}=sealedRelease;
   assert.equal(fs.realpathSync('.').replaceAll('\\','/').toLowerCase(),root.toLowerCase());
+  // Pure scope validation also runs in Linux CI. Load workstation-bound
+  // database tooling only when executing the qualified local release gate.
+  const [{default:pg},{snapshotSql,compareSnapshots}]=await Promise.all([
+    import('pg'),import('./vendor_billing_schema_v1.mjs'),
+  ]);
   const read=p=>JSON.parse(fs.readFileSync(p));
   const hash=b=>createHash('sha256').update(b).digest('hex');
   const git=(...a)=>execFileSync('git',a,{cwd:root,encoding:'utf8',windowsHide:true}).trim();

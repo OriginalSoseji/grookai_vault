@@ -1,5 +1,15 @@
 # Collectr sealed identity planner — October 4
 
+## Release-tool Linux validation — October 5
+
+Hosted PR597 found that importing pure scope validators also loaded a Windows-
+bound database helper. The gate now loads that helper only inside the actual
+workstation-validated gate execution. No importer or SQL bytes changed. All18
+Windows boundary checks and14 pure scope checks in isolated Linux pass; normal
+hooks, hosted checks and fresh production preflight remain release requirements.
+Private LIVE_CHECKPOINT.json records progress; no production apply is implied.
+
+
 ## Combined release baseline — October 5 UTC
 
 Commit b8274c9cc passed the normal hook:7200 contracts and1259 Flutter tests,
