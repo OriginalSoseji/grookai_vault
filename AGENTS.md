@@ -1,5 +1,20 @@
 # Grookai Agent Entry Point
 
+## Collectr sealed live-release continuation — October 5
+
+Release source now includes PR595/main a186a9bb2 (native Sales desk fast entry)
+and PR596 (language index reports). Neither changes the sealed importer or SQL.
+All implementation/migration hashes remain bound to WEB_CHECKPOINT_V2.json;
+normal full hooks qualify the final combined source. Production baseline is427;
+only the sealed migration advances it to428. Preserve the newer sales release.
+
+Private `collectr_sealed_save_20261005/live-release-complete.json` records actual
+deployment when it exists; absence means release is not complete. Producer,
+schema-readback and live owner UI receipts record intermediate outcomes. Keep
+RELEASE_CHECKPOINT.json as the historical preparation receipt. Original-file
+save still requires purchase currency and separate added/reused/held readback.
+
+
 ## Collectr sealed combined release — October 5 UTC
 
 Normal-hook commit b8274c9cc passed, then the final fetch found PR594/main499208eab
@@ -55,6 +70,17 @@ offline exact sealed-identity planner only; it does not save or deploy sealed
 imports. Production is426. Preserve all old groups, copies, receipts and labs.
 Next is atomic sealed source/group/copy persistence, not per-product Add loops.
 Private source-bound qualification is under `collectr_sealed_planner_20261004`.
+
+## Sales desk fast entry — October 5, 2026
+
+Read docs/ops/SALES_FAST_ENTRY_20261005.md and its contract. Prior trade-ins are
+LIVE at production427/TestFlight343; their consumed release intents stay closed.
+New native-only candidate is C:/gv_sales_fast_entry_20261005 from main499208eab.
+External sales_fast_entry_20261005 checkpoint owns proof/release status. No schema
+or production mutation in this batch. Preserve all catalog work and retained labs;
+native proof uses synthetic fixtures on the dedicated full427/653xx lab without reset.
+Direct receipt delivery still needs provider configuration; existing buttons compose drafts.
+
 ## Checkout trade-ins — October 3, 2026
 
 Read docs/ops/SALES_TRADE_INS_20261003.md and its contract. Docker recovery was

@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Collectr sealed live-release continuation — October 5
+
+Release source now includes PR595/main a186a9bb2 (native Sales desk fast entry)
+and PR596 (language index reports). Neither changes the sealed importer or SQL.
+All implementation/migration hashes remain bound to WEB_CHECKPOINT_V2.json;
+normal full hooks qualify the final combined source. Production baseline is427;
+only the sealed migration advances it to428. Preserve the newer sales release.
+
+Private `collectr_sealed_save_20261005/live-release-complete.json` records actual
+deployment when it exists; absence means release is not complete. Producer,
+schema-readback and live owner UI receipts record intermediate outcomes. Keep
+RELEASE_CHECKPOINT.json as the historical preparation receipt. Original-file
+save still requires purchase currency and separate added/reused/held readback.
+
+
 ## Collectr sealed integration with live trade-ins — October 5 UTC
 
 During release preparation PR594/main499208eab shipped sales trade-ins at427,
@@ -90,6 +105,17 @@ The existing sealed Add RPC lacks the import document/group/date/notes transacti
 the next writer must preserve source and reconcile existing copies atomically.
 Keep private evidence in `collectr_sealed_planner_20261004` and all populated labs
 intact. No frontend/native release or schema apply belongs to this planner.
+
+## Sales desk fast entry — October 5, 2026
+
+Read [the current checkpoint](SALES_FAST_ENTRY_20261005.md). Trade-ins are already
+LIVE at427/TestFlight343. New candidate C:/gv_sales_fast_entry_20261005 improves
+native search/cart entry without schema changes. The external
+sales_fast_entry_20261005 checkpoint distinguishes tests, native proof and release.
+Use only synthetic fixtures in the retained full427/653xx lab; preserve its schema,
+populated upgrade lab, catalog work, old archives and consumed release intents.
+Receipt email/SMS provider configuration is still unresolved; composition is not delivery.
+
 ## Checkout trade-ins — October 3, 2026
 
 Read [the trade-in checkpoint](SALES_TRADE_INS_20261003.md). Docker restart was

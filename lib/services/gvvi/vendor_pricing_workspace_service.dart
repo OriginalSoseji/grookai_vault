@@ -237,6 +237,7 @@ class VendorPricingWorkspaceService {
     SupabaseClient? client,
     SaleListingService? listingService,
     this.includeSections = true,
+    this.includeMarketPrices = true,
     this.toleratePriceFailure = false,
   }) : _client = client,
        _listingService = listingService;
@@ -247,16 +248,27 @@ class VendorPricingWorkspaceService {
   final SupabaseClient? _client;
   final SaleListingService? _listingService;
   final bool includeSections;
+  final bool includeMarketPrices;
   final bool toleratePriceFailure;
 
-  Future<VendorPricingWorkspaceData> load() async {
+  Future<VendorPricingWorkspaceData> load() => _load();
+
+  /// Refresh only confirmed copies without reloading an owner's whole Vault.
+  Future<VendorPricingWorkspaceData> loadCopies(Set<String> instanceIds) {
+    if (instanceIds.isEmpty || instanceIds.length > _readChunkSize) {
+      throw ArgumentError('Request between 1 and 200 copies.');
+    }
+    return _load(instanceIds: instanceIds);
+  }
+
+  Future<VendorPricingWorkspaceData> _load({Set<String>? instanceIds}) async {
     final client = _requiredClient();
     final userId = (client.auth.currentUser?.id ?? '').trim();
     if (userId.isEmpty) {
       throw Exception('Sign in required.');
     }
 
-    final instances = await _loadActiveInstances(client, userId);
+    final instances = await _loadActiveInstances(client, userId, instanceIds);
     if (instances.isEmpty) {
       return const VendorPricingWorkspaceData(rows: [], sections: []);
     }
@@ -296,14 +308,15 @@ class VendorPricingWorkspaceService {
         .map((row) => _text(row['card_printing_id']))
         .where((value) => value.isNotEmpty)
         .toSet();
-    final pricingByPrintingId =
-        await CardSurfacePricingService.fetchByCardPrintingIds(
-          client: client,
-          cardPrintingIds: printingIds,
-        ).catchError((Object error) {
-          if (!toleratePriceFailure) throw error;
-          return <String, CardSurfacePricingData>{};
-        });
+    final pricingByPrintingId = includeMarketPrices
+        ? await CardSurfacePricingService.fetchByCardPrintingIds(
+            client: client,
+            cardPrintingIds: printingIds,
+          ).catchError((Object error) {
+            if (!toleratePriceFailure) throw error;
+            return <String, CardSurfacePricingData>{};
+          })
+        : <String, CardSurfacePricingData>{};
     final sections = includeSections
         ? await _loadSections(client, userId)
         : <VendorWorkspaceSection>[];
@@ -630,16 +643,21 @@ class VendorPricingWorkspaceService {
   Future<List<Map<String, dynamic>>> _loadActiveInstances(
     SupabaseClient client,
     String userId,
+    Set<String>? instanceIds,
   ) async {
     final rows = <Map<String, dynamic>>[];
     for (var offset = 0; ; offset += _pageSize) {
-      final response = await client
+      var query = client
           .from('vault_item_instances')
           .select(
             'id,gv_vi_id,legacy_vault_item_id,card_print_id,card_printing_id,condition_label,intent,pricing_mode,asking_price_amount,asking_price_currency,asking_price_note,slab_cert_id,grade_company,grade_value,grade_label,created_at',
           )
           .eq('user_id', userId)
-          .filter('archived_at', 'is', null)
+          .filter('archived_at', 'is', null);
+      if (instanceIds != null) {
+        query = query.inFilter('id', instanceIds.toList());
+      }
+      final response = await query
           .order('created_at', ascending: false)
           .range(offset, offset + _pageSize - 1);
       final page = (response as List<dynamic>)
