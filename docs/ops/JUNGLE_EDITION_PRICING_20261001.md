@@ -1,5 +1,39 @@
 # Jungle edition pricing preparation — October 1
 
+## Jungle confirmed inventory and schema428 compatibility — October 5 UTC, V48/V49
+
+The founder explicitly answered "yes all mine" to Mimikyu asking60USD,
+Umbreon-GX asking100USD, Pikachu80→75USD, the Oddish printing change and three
+Pikachu archives. This resolves attribution of those edits. Do not ask again
+whether they were intentional. Fresh pinned-TLS read-only capture preserves all
+5096 saved copies and six related account scopes exactly against V44, by full
+JSON and native PostgreSQL record digests. No newer account differences appeared.
+Older V39 full rows remain unavailable; do not invent historical equality.
+
+Production is428 after completed PR597/main62d287019. Preserve its Collectr
+sealed import release and PR595 Sales desk fast entry. Fresh complete schema
+matches PR597's release readback exactly; all427 prior ledger entries/statements
+remain exact.100 V45 protected scopes are unchanged; four pricing scopes changed.
+Three retain every historical row and add126 records each; all126 added legacy
+edition decisions remain ineligible. Current publication is captured, not altered.
+The new daily source independently matches all128 physical editions.
+
+V7 staging executor/source reviewV5 qualify428 separately; V6 and older modules
+remain immutable. A fresh isolated55000/internal10.248.37 lab passes full428 replay,
+no-op push and38 actual database checks.639 staged rows commit locally; all337
+public-table scopes outside planned rows, five synthetic copies and a new sealed
+import recovery receipt remain protected. Mutation of that receipt is rejected.
+This lab is POPULATED: never reset/reseed it. All previous labs remain unchanged.
+80 portable contracts pass. No new production migration, catalog write, binding,
+assignment, publication or release authority has occurred.
+
+Exact current baseline and plan authority are still separately enforced by the
+executor; user attribution is not a fabricated hash-bearing approval record.
+Expired plans/consumed intents stay immutable. Read the external worker checkpoint
+and release-review-v48/executor-qualification-v49 receipts for actual CLI, normal
+hook, hosted-check and approval status. Jungle prices remain inactive.
+
+
 ## Jungle timestamp preservation correction — October 5 UTC, V45
 
 This supersedes V44's executor source, not its historical proof. Its first actual

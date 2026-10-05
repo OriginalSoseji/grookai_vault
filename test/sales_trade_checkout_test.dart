@@ -49,9 +49,6 @@ void main() {
       await open(tester, service, const Size(1194, 834));
       await tester.tap(find.text('Add to sale'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Use asking price: USD 12.34'));
-      await tester.tap(find.text('Add to cart'));
-      await tester.pumpAndSettle();
       await tester.ensureVisible(find.text('Add trade-in'));
       await tester.tap(find.text('Add trade-in'));
       await tester.pumpAndSettle();

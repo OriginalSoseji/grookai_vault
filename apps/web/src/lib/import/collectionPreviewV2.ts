@@ -16,6 +16,8 @@ export type CollectionPreviewRow = {
   sourceIndices: number[]; source: SourceRow; sourceRecords: SourceRow[]; quantity: number | null;
   reason: string | null; selection: CollectionSelection | null;
   matchedName: string | null; finish: string | null;
+  sealedSelection?: { sourceIndices: number[]; sealedVariantId: string } | null;
+  sealedStatus?: string;
   review?: { reason: string; candidates: CollectionReviewCandidate[]; selectedCardId: string | null };
 };
 export type CollectionPreviewV2 = { ownerId: string; rows: CollectionPreviewRow[]; sourceRows: number; readyRows: number; readyCopies: number; reviewRows: number };

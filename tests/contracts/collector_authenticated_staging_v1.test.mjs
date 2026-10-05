@@ -27,6 +27,16 @@ test('Collectr browser proof can only use its retained local lab', () => {
   for (const url of ['https://ycdxbpibncqcchqiihfz.supabase.co', 'http://127.0.0.1:54321', 'http://localhost:58541', 'http://127.0.0.1:58541/rest']) assert.throws(() => mode(url));
   assert.throws(() => mode('http://127.0.0.1:58541', true));
   assert.throws(() => mode('http://127.0.0.1:58541', false, true));
+  assert.doesNotThrow(() => mode('http://127.0.0.1:58681'));
+  assert.throws(() => assertCollectorStagingTarget('http://127.0.0.1:58681'));
+  for (const url of ['http://localhost:58681','http://127.0.0.1:58681/rest','http://user@127.0.0.1:58681','http://127.0.0.1:58682']) assert.throws(() => mode(url));
+  assert.throws(() => mode('http://127.0.0.1:58681',true));
+  assert.throws(() => mode('http://127.0.0.1:58681',false,true));
+  assert.doesNotThrow(() => mode('http://127.0.0.1:58721'));
+  assert.throws(() => assertCollectorStagingTarget('http://127.0.0.1:58721'));
+  for (const url of ['http://localhost:58721','http://127.0.0.1:58721/rest','http://user@127.0.0.1:58721','http://127.0.0.1:58722']) assert.throws(() => mode(url));
+  assert.throws(() => mode('http://127.0.0.1:58721',true));
+  assert.throws(() => mode('http://127.0.0.1:58721',false,true));
 });
 const module = { exports: {} };
 vm.runInNewContext(ts.transpileModule(fs.readFileSync(new URL('../../apps/web/src/lib/vault/cardAddOptions.ts', import.meta.url), 'utf8'),

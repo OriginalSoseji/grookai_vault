@@ -71,16 +71,18 @@ void main() {
         }
         await tester.tap(find.text('Add to sale'));
         await tester.pumpAndSettle();
+        if (size.width < 900) {
+          await tester.tap(find.textContaining('Cart ('));
+          await tester.pumpAndSettle();
+        }
+        await tester.tap(find.byTooltip('Edit sale line'));
+        await tester.pumpAndSettle();
         await tester.enterText(
           find.widgetWithText(TextField, 'Actual sale price (USD)'),
           '10',
         );
         await tester.tap(find.text('Add to cart'));
         await tester.pumpAndSettle();
-        if (size.width < 900) {
-          await tester.tap(find.textContaining('Cart ('));
-          await tester.pumpAndSettle();
-        }
         expect(find.text('Checkout: 1 × USD 10.00'), findsOneWidget);
         expect(find.text('Your price: USD 12.34'), findsWidgets);
         await tester.tap(find.byTooltip('Edit sale line'));

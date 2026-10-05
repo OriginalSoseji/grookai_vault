@@ -1,0 +1,9 @@
+{
+  "version": "JUNGLE_QUALIFIED_PRODUCTION_SCHEMA_V7",
+  "migrations": 428,
+  "productionCaptureAt": "2026-10-05T18:24:35.301Z",
+  "fullSchemaFingerprint": "5486c0d2c550caca06b3ed0d2816654084fd82a8076babc34403ac2871c25ab8",
+  "ledgerFingerprint": "2a296b5d92fda8284871a1173e160c9bf38c65348344fc7235c286f836a9a977",
+  "querySha256": "fb13b2011fc4c2736e0a712fda3db7583b2c63d6b6610490ccd357fe0d41e5fe",
+  "basis": "Fresh pinned-TLS read-only capture exactly equals completed PR597 schema readback in every projected full schema section. All427 prior ledger entries/statements remain exact; only released Collectr sealed import V3 entry added. This pin alone grants no execution authority."
+}

@@ -8,20 +8,31 @@ import '../../services/sales/sales_cart_service.dart';
 import '../../widgets/card_surface_artwork.dart';
 
 class SalesCatalogResult {
-  const SalesCatalogResult(this.line, this.gvviId);
+  const SalesCatalogResult(this.line, this.gvviId, this.instanceId);
   final SalesCartLine? line;
   final String gvviId;
+  final String instanceId;
 }
 
 class SalesCatalogDialog extends StatefulWidget {
-  const SalesCatalogDialog({super.key, required this.service});
+  const SalesCatalogDialog({
+    super.key,
+    required this.service,
+    this.onAdded,
+    this.canAddToCart,
+    this.initialQuery = '',
+  });
   final SalesCartService service;
+  final ValueChanged<SalesCatalogResult>? onAdded;
+  final bool Function()? canAddToCart;
+  final String initialQuery;
   @override
   State<SalesCatalogDialog> createState() => _SalesCatalogDialogState();
 }
 
 class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
   final _query = TextEditingController(), _price = TextEditingController();
+  final _searchFocus = FocusNode();
   Timer? _debounce;
   StreamSubscription<void>? _account;
   List<CardPrint> _cards = [];
@@ -31,11 +42,15 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
   String _game = 'pokemon', _condition = 'NM', _action = 'cart';
   String? _printing, _error;
   int _generation = 0;
+  int _added = 0;
+  CardSearchPagination? _pagination;
+  bool _loadingMore = false;
   bool _loading = true, _busy = false, _changed = false;
 
   @override
   void initState() {
     super.initState();
+    _query.text = widget.initialQuery;
     _account = widget.service.accountChanges.listen((_) {
       if (mounted) {
         setState(() {
@@ -55,6 +70,7 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
     unawaited(_account?.cancel());
     _query.dispose();
     _price.dispose();
+    _searchFocus.dispose();
     super.dispose();
   }
 
@@ -72,6 +88,13 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
     } finally {
       if (mounted) setState(() => _loading = false);
     }
+    if (mounted &&
+        !_changed &&
+        _pending == null &&
+        _error == null &&
+        _query.text.trim().length >= 2) {
+      _search();
+    }
   }
 
   void _search() {
@@ -79,16 +102,23 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
     final generation = ++_generation;
     setState(() {
       _cards = [];
+      _pagination = null;
+      _loadingMore = false;
       _selected = null;
+      _printing = null;
+      _price.clear();
       _error = null;
       _loading = _query.text.trim().length >= 2;
     });
     if (!_loading) return;
     _debounce = Timer(const Duration(milliseconds: 350), () async {
       try {
-        final cards = await widget.service.searchCatalog(_query.text, _game);
+        final page = await widget.service.searchCatalogPage(_query.text, _game);
         if (mounted && !_changed && generation == _generation) {
-          setState(() => _cards = cards);
+          setState(() {
+            _cards = page.cards;
+            _pagination = page.pagination;
+          });
         }
       } catch (_) {
         if (mounted && !_changed && generation == _generation) {
@@ -102,11 +132,46 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
     });
   }
 
+  Future<void> _more() async {
+    final offset = _pagination?.nextOffset;
+    if (offset == null || _loadingMore || _busy) return;
+    final generation = _generation;
+    setState(() {
+      _loadingMore = true;
+      _error = null;
+    });
+    try {
+      final page = await widget.service.searchCatalogPage(
+        _query.text,
+        _game,
+        offset: offset,
+      );
+      if (!mounted || _changed || generation != _generation) return;
+      final seen = _cards.map((card) => card.id).toSet();
+      setState(() {
+        _cards = [..._cards, ...page.cards.where((card) => seen.add(card.id))];
+        _pagination = page.pagination;
+      });
+    } catch (_) {
+      if (mounted && !_changed && generation == _generation) {
+        setState(
+          () => _error = 'More results could not load. Try Load more again.',
+        );
+      }
+    } finally {
+      if (mounted && generation == _generation) {
+        setState(() => _loadingMore = false);
+      }
+    }
+  }
+
   Future<void> _choose(CardPrint card) async {
     final generation = ++_generation;
     _debounce?.cancel();
     setState(() {
       _selected = card;
+      _loadingMore = false;
+      _price.clear();
       _printings = [];
       _printing = null;
       _loading = true;
@@ -134,6 +199,14 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
   Future<void> _save() async {
     if (_busy || _changed) return;
     Map<String, dynamic>? request = _pending;
+    if ((request?['action'] ?? _action) == 'cart' &&
+        widget.canAddToCart?.call() == false) {
+      setState(
+        () => _error =
+            'The cart has 50 lines. Finish this sale or add to your Vault.',
+      );
+      return;
+    }
     if (request == null) {
       final price = saleMoneyInput(_price.text);
       if (_selected == null ||
@@ -173,22 +246,34 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
       final result = await widget.service.completeCatalogAdd(saved);
       await widget.service.clearCatalogAdd(saved['id'] as String);
       if (!mounted || _changed) return;
-      Navigator.pop(
-        context,
-        SalesCatalogResult(
-          saved['action'] == 'cart'
-              ? SalesCartLine(
-                  description: saved['name'] as String,
-                  unitMinor: saved['price'] as int,
-                  instanceId: result['instanceId'] as String,
-                  gvviId: result['gvviId'] as String,
-                  imageUrl: saved['image'] as String?,
-                  fallbackImageUrl: saved['fallback'] as String?,
-                )
-              : null,
-          result['gvviId'] as String,
-        ),
+      final added = SalesCatalogResult(
+        saved['action'] == 'cart'
+            ? SalesCartLine(
+                description: saved['name'] as String,
+                unitMinor: saved['price'] as int,
+                instanceId: result['instanceId'] as String,
+                gvviId: result['gvviId'] as String,
+                imageUrl: saved['image'] as String?,
+                fallbackImageUrl: saved['fallback'] as String?,
+              )
+            : null,
+        result['gvviId'] as String,
+        result['instanceId'] as String,
       );
+      if (widget.onAdded == null) {
+        Navigator.pop(context, added);
+      } else {
+        widget.onAdded!(added);
+        setState(() {
+          _added++;
+          _pending = null;
+          _selected = null;
+          _printing = null;
+          _printings = [];
+          _price.clear();
+        });
+        _searchFocus.requestFocus();
+      }
     } on PostgrestException catch (error) {
       // These are authoritative transaction rejections. Network failures keep
       // the exact request locked for recovery; never generate a replacement.
@@ -270,6 +355,8 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
                           Expanded(
                             child: TextField(
                               controller: _query,
+                              focusNode: _searchFocus,
+                              enabled: !_busy,
                               autofocus: true,
                               onChanged: (_) => _search(),
                               decoration: const InputDecoration(
@@ -318,6 +405,24 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
                         ),
                       ),
                     if (_loading || _busy) const LinearProgressIndicator(),
+                    if (_added > 0)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          '$_added ${_added == 1 ? 'copy' : 'copies'} added · Choose another card or close to return to your sale.',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    if (_pending == null &&
+                        _selected == null &&
+                        _cards.isNotEmpty)
+                      Text(
+                        _pagination == null
+                            ? '${_cards.length} top matches · Narrow by set or card number.'
+                            : '${_cards.length} of ${_pagination!.total} results',
+                      ),
                     Expanded(
                       child: _pending != null
                           ? Center(
@@ -338,8 +443,25 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
                                     ),
                                   )
                                 : ListView.builder(
-                                    itemCount: _cards.length,
+                                    itemCount:
+                                        _cards.length +
+                                        (_pagination?.nextOffset == null
+                                            ? 0
+                                            : 1),
                                     itemBuilder: (context, index) {
+                                      if (index == _cards.length) {
+                                        return TextButton.icon(
+                                          onPressed: _loadingMore
+                                              ? null
+                                              : _more,
+                                          icon: const Icon(Icons.expand_more),
+                                          label: Text(
+                                            _loadingMore
+                                                ? 'Loading more…'
+                                                : 'Load more',
+                                          ),
+                                        );
+                                      }
                                       final card = _cards[index];
                                       return Card(
                                         child: ListTile(
@@ -463,6 +585,7 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
                                 const SizedBox(height: 12),
                                 DropdownButtonFormField<String>(
                                   initialValue: _action,
+                                  isExpanded: true,
                                   decoration: const InputDecoration(
                                     labelText: 'After adding',
                                     border: OutlineInputBorder(),

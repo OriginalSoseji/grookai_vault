@@ -38,6 +38,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Map<String, dynamic>? _pending, _receipt, _customer;
   bool _loading = true, _busy = false, _showCart = false;
   bool _accountChanged = false, _dashboard = false, _editing = false;
+  int _inventoryGeneration = 0;
   StreamSubscription<void>? _accountSubscription;
   String? _error;
   String _method = 'Cash';
@@ -88,6 +89,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   }
 
   Future<void> _load() async {
+    _inventoryGeneration++;
     setState(() {
       _loading = true;
       _error = null;
@@ -193,30 +195,85 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Future<void> _catalog() async {
     if (_locked || _lines.length >= 50) return;
     setState(() => _editing = true);
-    final result = await showDialog<SalesCatalogResult>(
+    await showDialog<void>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => SalesCatalogDialog(service: _service),
+      builder: (_) => SalesCatalogDialog(
+        service: _service,
+        initialQuery: _search.text,
+        canAddToCart: () => _lines.length < 50,
+        onAdded: (result) {
+          if (!mounted || _accountChanged) return;
+          setState(() {
+            if (result.line != null &&
+                !_lines.any((line) => line.instanceId == result.instanceId)) {
+              _lines.add(result.line!);
+            }
+          });
+          unawaited(_refreshAddedCopy(result.instanceId));
+        },
+      ),
     );
     if (!mounted) return;
     setState(() => _editing = false);
-    if (_accountChanged || result == null) return;
-    setState(() {
-      if (result.line != null &&
-          !_lines.any((line) => line.instanceId == result.line!.instanceId)) {
-        _lines.add(result.line!);
+  }
+
+  Future<void> _refreshAddedCopy(String instanceId) async {
+    final generation = _inventoryGeneration;
+    try {
+      final rows = await _service.loadAddedCopy(instanceId);
+      if (!mounted || _accountChanged || generation != _inventoryGeneration) {
+        return;
       }
-    });
-    await _load();
-    if (mounted && !_accountChanged) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Copy ${result.gvviId} added${result.line == null ? ' to your Vault' : ' to your cart'}.',
-          ),
+      setState(
+        () => _data = _data?.withRows([
+          ...rows,
+          ...?_data?.rows.where((row) => row.instanceId != instanceId),
+        ]),
+      );
+    } catch (_) {
+      if (mounted && !_accountChanged) {
+        setState(
+          () => _error =
+              'Copy added. Inventory preview could not refresh; use Refresh when ready. Your cart is kept.',
+        );
+      }
+    }
+  }
+
+  Future<void> _addCopy(VendorPricingWorkspaceRow copy) async {
+    if (_locked ||
+        _lines.length >= 50 ||
+        _lines.any((line) => line.instanceId == copy.instanceId)) {
+      return;
+    }
+    final price = copy.askingPrice;
+    if (copy.currency != 'USD' ||
+        price == null ||
+        !price.isFinite ||
+        price <= 0 ||
+        price > 1000000) {
+      await _edit(copy: copy);
+      return;
+    }
+    final minor = (price * 100).round();
+    if (minor <= 0) {
+      await _edit(copy: copy);
+      return;
+    }
+    setState(() {
+      _lines.add(
+        SalesCartLine(
+          description: copy.displayName,
+          unitMinor: minor,
+          instanceId: copy.instanceId,
+          gvviId: copy.gvviId,
+          imageUrl: copy.imageUrl,
+          fallbackImageUrl: copy.fallbackImageUrl,
         ),
       );
-    }
+      _error = null;
+    });
   }
 
   Future<void> _trade({int? index}) async {
@@ -506,12 +563,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Widget _inventory() {
     final query = _search.text.trim().toLowerCase();
     final rows = (_data?.rows ?? <VendorPricingWorkspaceRow>[])
-        .where(
-          (row) =>
-              '${row.displayName} ${row.gvId} ${row.gvviId} ${row.setName ?? ''}'
-                  .toLowerCase()
-                  .contains(query),
-        )
+        .where((row) => salesCopyMatches(row, query))
         .toList();
     return Column(
       children: [
@@ -526,7 +578,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
               ),
               const SizedBox(height: 8),
               const Text(
-                'Tap to add, or hold a card and drag it into the cart.',
+                'Tap or drag to add at your saved USD price. Edit the price in your cart.',
               ),
               const SizedBox(height: 16),
               TextField(
@@ -578,9 +630,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     final card = Card(
                       clipBehavior: Clip.antiAlias,
                       child: InkWell(
-                        onTap: _locked || selected
-                            ? null
-                            : () => _edit(copy: row),
+                        onTap: _locked || selected ? null : () => _addCopy(row),
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -627,7 +677,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                                 child: FilledButton.tonalIcon(
                                   onPressed: _locked || selected
                                       ? null
-                                      : () => _edit(copy: row),
+                                      : () => _addCopy(row),
                                   icon: Icon(
                                     selected
                                         ? Icons.check
@@ -878,7 +928,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             !_lines.any((line) => line.instanceId == details.data.instanceId),
         onAcceptWithDetails: (details) {
           if (compact) setState(() => _showCart = true);
-          unawaited(_edit(copy: details.data));
+          unawaited(_addCopy(details.data));
         },
         builder: (context, candidates, rejected) => AnimatedContainer(
           duration: const Duration(milliseconds: 160),
