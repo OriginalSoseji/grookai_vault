@@ -8,7 +8,7 @@ import {createRequire} from 'node:module';
 import {localSupabaseStatusSecret} from '../../scripts/lib/local_supabase_cli_status_v1.mjs';
 import {seedCollectrSealedFixture} from './helpers/collectr_sealed_fixture.mjs';
 const root='C:/gv_collectr_adventure_20261001',out='C:/grookai_vault_operator_artifacts/collectr_sealed_save_20261005';
-const lab=out+'/full-427-v2',project='collectr-sealed-full-427-v2-20261005',origin='http://127.0.0.1:58883';
+const lab=out+'/full-428-v3',project='collectr-sealed-full-428-v3-20261005',origin='http://127.0.0.1:58883';
 const hash=b=>createHash('sha256').update(b).digest('hex');
 test('sealed website: real Auth, HTTP, mixed saves, concurrency, browser recovery and V2 compatibility',{
  skip:process.env.GV_COLLECTR_SEALED_WEB_PROOF!=='1',timeout:600000,
@@ -16,7 +16,7 @@ test('sealed website: real Auth, HTTP, mixed saves, concurrency, browser recover
  const require=createRequire(root+'/apps/web/package.json'),{createClient}=require('@supabase/supabase-js'),{createServerClient}=require('@supabase/ssr'),{chromium}=require('@playwright/test');
  const pg=createRequire(root+'/package.json')('pg');
  const freeze=JSON.parse(fs.readFileSync(lab+'/freeze.json'));
- assert.equal(freeze.project,project);assert.equal(Object.keys(freeze.sourceHashes).length,427);
+ assert.equal(freeze.project,project);assert.equal(Object.keys(freeze.sourceHashes).length,428);
  assert.equal(JSON.parse(fs.readFileSync(lab+'/replay-result.json')).status,'passed');
  assert.ok(!fs.existsSync(lab+'/supabase/.temp/project-ref'));
  for(const [name,digest]of Object.entries(freeze.sourceHashes))assert.equal(hash(fs.readFileSync(root+'/supabase/migrations/'+name)),digest);
@@ -26,10 +26,10 @@ test('sealed website: real Auth, HTTP, mixed saves, concurrency, browser recover
  assert.deepEqual(Object.keys(inspect('inspect','supabase_db_'+project)[0].NetworkSettings.Networks),[project]);
  for(const binding of Object.values(inspect('inspect',project+'-relay')[0].NetworkSettings.Ports).flat())assert.equal(binding.HostIp,'127.0.0.1');
  await new Promise((resolve,reject)=>{const s=net.createServer();s.once('error',reject);s.listen(58883,'127.0.0.1',()=>s.close(resolve));});
- const status=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true}));assert.equal(status.API_URL,'http://127.0.0.1:58681');
+ const status=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true}));assert.equal(status.API_URL,'http://127.0.0.1:58721');
  const run=out+'/web-'+Date.now();fs.mkdirSync(run);
  fs.writeFileSync(run+'/intent.json',JSON.stringify({at:new Date().toISOString(),project,localOnly:true,productionWrites:0,originalFileUsed:false}),{flag:'wx'});
- const db=new pg.Client({host:'127.0.0.1',port:58680,user:'postgres',password:'postgres',database:'postgres',statement_timeout:30000});await db.connect();
+ const db=new pg.Client({host:'127.0.0.1',port:58720,user:'postgres',password:'postgres',database:'postgres',statement_timeout:30000});await db.connect();
  const clients=[],users=[],checks=[];let child,browser,log;
  const admin=createClient(status.API_URL,localSupabaseStatusSecret(status),{auth:{persistSession:false,autoRefreshToken:false}});
  const q=async(sql,args=[])=>(await db.query(sql,args)).rows;
@@ -45,7 +45,7 @@ test('sealed website: real Auth, HTTP, mixed saves, concurrency, browser recover
  try{
   assert.equal((await q('show max_worker_processes'))[0].max_worker_processes,'0');assert.equal((await q('select count(*)::int n from cron.job_run_details'))[0].n,0);
   const owner=await account(),visitor=await account(),concurrent=await account(),mobile=await account();
-  const catalogPath=out+'/web-catalog.private.json';let catalog;
+  const catalogPath=out+'/web-catalog-v2.private.json';let catalog;
   if(fs.existsSync(catalogPath)){catalog=JSON.parse(fs.readFileSync(catalogPath));assert.equal((await q('select id from sealed_product_variants where id=$1',[catalog.variant])).length,1);}
   else {assert.equal((await q('select count(*)::int n from sealed_product_release_pointer'))[0].n,0);catalog=await seedCollectrSealedFixture(db,owner.id);fs.writeFileSync(catalogPath,JSON.stringify(catalog),{flag:'wx'});}
   const env={...process.env};for(const key of Object.keys(env))if(/SUPABASE|DATABASE_URL|POSTGRES_URL|SECRET|TOKEN|API_KEY|PASSWORD|VERCEL|STRIPE|DOTENV_CONFIG_PATH|NODE_OPTIONS|GROOKAI_COLLECTOR_RELEASE|NEXT_PUBLIC_COLLECTOR|NEXT_PUBLIC_VENDOR|NEXT_PUBLIC_STOREFRONT|NEXT_PUBLIC_.*LOCAL_TEST/.test(key))delete env[key];

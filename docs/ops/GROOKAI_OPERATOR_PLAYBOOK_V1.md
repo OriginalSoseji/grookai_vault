@@ -1,5 +1,22 @@
 # Grookai Operator Playbook V1
 
+## Collectr sealed integration with live trade-ins — October 5 UTC
+
+During release preparation PR594/main499208eab shipped sales trade-ins at427,
+TestFlight343. Preserve that completed release; no trade migration or activation
+belongs to the sealed apply. b8274c9cc passed normal hooks against the previous
+baseline. Current combined sealed candidate is428 with the SAME sealed SQL hash.
+New full428/retained427-to428 labs use58720/58740 and private internal140/141
+networks. Preserve all earlier populated427 labs and their historical receipts.
+
+WEB_CHECKPOINT_V2.json binds the combined runtime/browser qualification. The
+current CollectrSealedReleaseV1 gate rereads live427 and the new428 labs; its fresh
+normal hook receipt is normal-hook-v2.json. CLI package v2 and dry-run-v2 receipts
+replace the old426-target preparation. All old evidence remains immutable.
+Read RELEASE_CHECKPOINT.json for actual source/release status, not historical
+sections below. Activation and original-file import remain separate actions.
+
+
 ## Collectr sealed release preparation — October 5 UTC
 
 Use `C:/gv_collectr_adventure_20261001`, feature/collectr-sealed-planner-20261004.
@@ -73,6 +90,17 @@ The existing sealed Add RPC lacks the import document/group/date/notes transacti
 the next writer must preserve source and reconcile existing copies atomically.
 Keep private evidence in `collectr_sealed_planner_20261004` and all populated labs
 intact. No frontend/native release or schema apply belongs to this planner.
+## Checkout trade-ins — October 3, 2026
+
+Read [the trade-in checkpoint](SALES_TRADE_INS_20261003.md). Docker restart was
+explicitly authorized October4 and engine recovery completed. Current production426
+and main2409d2c3f include Jungle; prior native release is TestFlight342.
+New work is C:/gv_sales_trade_ins_20261003:
+canonical/quick trades, explicit valuation and percentage, atomic incoming/outgoing
+inventory and transparent receipts/reporting. New427 defaults OFF; existing
+sale receipts remain immutable. New full/upgrade427 V2 labs use653xx; preserve
+the historical418/652xx replay,650xx/648xx labs and catalog repair. External
+sales_trade_ins_20261003 receipts distinguish unit proof from runtime and release.
 
 ## Jungle discovery projection correction — October 4
 

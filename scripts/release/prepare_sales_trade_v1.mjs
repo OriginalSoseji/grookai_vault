@@ -9,10 +9,10 @@ import {fileURLToPath} from 'node:url';
 assert.equal(process.argv.length,3,'Use prepare or dry-run only');
 const mode=process.argv[2];assert.ok(['prepare','dry-run'].includes(mode),'No apply operation');
 const root=fileURLToPath(new URL('../../',import.meta.url));
-assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_collectr_adventure_20261001');
-const out='C:/grookai_vault_operator_artifacts/collectr_sealed_save_20261005';
-const dir=out+'/cli-package-v2',target='ycdxbpibncqcchqiihfz';
-const names=['20261005080000_collectr_sealed_import_v3.sql'];
+assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_sales_trade_ins_20261003');
+const out='C:/grookai_vault_operator_artifacts/sales_trade_ins_20261003';
+const dir=out+'/cli-package-v1',target='ycdxbpibncqcchqiihfz';
+const names=['20261004160000_sales_trade_ins_v1.sql'];
 
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const read=p=>JSON.parse(fs.readFileSync(p));
@@ -23,13 +23,13 @@ const gate=read(out+'/Release-'+(mode==='prepare'?'AuditLinkedSchema':'PrePush')
 assert.equal(gate.status,'passed');assert.equal(gate.target,target);assert.equal(gate.applyAuthority,false);
 const age=Date.now()-Date.parse(gate.at);assert.ok(age>=0&&age<3600000,'Fresh gate required');
 assert.deepEqual(gate.pending,names.map(n=>n.split('_')[0]));
-assert.equal(git('branch','--show-current'),'feature/collectr-sealed-planner-20261004');
+assert.equal(git('branch','--show-current'),'feature/sales-trade-ins-20261003');
 assert.equal(git('write-tree'),gate.sourceTree);assert.equal(git('diff','--name-only'),'');
 assert.deepEqual(hashes(root+'supabase/migrations'),gate.sourceHashes);
-assert.equal(Object.keys(gate.sourceHashes).length,428);
+assert.equal(Object.keys(gate.sourceHashes).length,427);
 for(const [p,h]of Object.entries(gate.toolHashes))assert.equal(hash(fs.readFileSync(root+p)),h,p);
 
-assert.equal(hash(fs.readFileSync(gate.baseline+'/remote.private.json')),gate.baselineReceiptSha256);
+assert.deepEqual(read(gate.baseline+'/receipt.json'),gate);
 if(mode==='prepare')assert.ok(!fs.existsSync(dir),'Preparation intent consumed; preserve package');
 else{
   assert.equal(git('status','--porcelain'),'','Committed clean source required');
@@ -62,7 +62,7 @@ const cli=(args,name,base)=>{
 };
 if(mode==='prepare'){
   fs.mkdirSync(dir+'/supabase/migrations',{recursive:true});
-  const config='project_id = "grookai-collectr-sealed-inspection-v2-20261005"\n[db]\nmajor_version = 17\n';
+  const config='project_id = "grookai-sales-trade-ins-inspection-20261003"\n[db]\nmajor_version = 17\n';
   save(dir,'prepare-intent.json',{at:new Date().toISOString(),target,sourceHashes:gate.sourceHashes,configSha256:hash(config),gateSha256:hash(JSON.stringify(gate)),applyAuthority:false});
   for(const name of Object.keys(gate.sourceHashes))fs.copyFileSync(root+'supabase/migrations/'+name,dir+'/supabase/migrations/'+name,fs.constants.COPYFILE_EXCL);
   fs.writeFileSync(dir+'/supabase/config.toml',config,{flag:'wx'});
@@ -71,13 +71,13 @@ if(mode==='prepare'){
   save(dir,'prepared.json',{at:new Date().toISOString(),status:'passed',target,applyAuthority:false});
   console.log(JSON.stringify({status:'prepared',target,applyAuthority:false}));
 }else{
-  const evidence=out+'/dry-run-v2-'+Date.now();fs.mkdirSync(evidence);
+  const evidence=out+'/dry-run-'+Date.now();fs.mkdirSync(evidence);
   const before=await snapshot();save(evidence,'before.private.json',before);
   await compareSnapshots(before,read(gate.baseline+'/remote.private.json'),{output:evidence+'/before'});
-  const log=cli(['db','push','--linked','--include-all','--dry-run','--yes'],'dry-run',evidence);
+  const log=cli(['db','push','--linked','--dry-run','--yes'],'dry-run',evidence);
   const pending=[...new Set(log.match(/\d{14}_[a-z0-9_]+\.sql/g)??[])];assert.deepEqual(pending,names,'Unexpected CLI pending migrations');
   const after=await snapshot();save(evidence,'after.private.json',after);
   assert.deepEqual(after.LEDGER,before.LEDGER);await compareSnapshots(after,before,{output:evidence+'/after'});
   const result={at:new Date().toISOString(),status:'passed',target,pending,commit:git('rev-parse','HEAD'),sourceTree:gate.sourceTree,gateSha256:hash(JSON.stringify(gate)),logSha256:hash(log),evidence,productionMigrationsUnchanged:true,productionWrites:0,applyAuthority:false};
-  save(evidence,'receipt.json',result);fs.writeFileSync(out+'/dry-run-v2-latest.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));
+  save(evidence,'receipt.json',result);fs.writeFileSync(out+'/dry-run-latest.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));
 }

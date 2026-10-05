@@ -1,5 +1,20 @@
 # Collectr sealed identity planner — October 4
 
+## Combined release baseline — October 5 UTC
+
+Commit b8274c9cc passed the normal hook:7200 contracts and1259 Flutter tests,
+10/2 explicit skips, strict web build, full lint/analysis. Final fetch then found
+PR594/main499208eab had shipped trade-ins at production427/TestFlight343.
+The original PrePush stopped correctly before dry-run or any production write.
+
+Conflicts in staging routing and the entry/playbook notes retain both features.
+The sealed SQL hash is unchanged. Candidate428 uses a fresh read-only427 baseline,
+new full428 replay and retained427-to428 upgrade on5872x/5874x. Preserve all previous
+populated labs and consumed CLI preparations. WEB_CHECKPOINT_V2.json binds the
+combined runtime; RELEASE_CHECKPOINT.json records actual final hook, source and
+CLI dry-run outcomes. Old426/427 sealed-only proof cannot authorize this release.
+
+
 ## Release preparation continuation — October 5 UTC
 
 Fetched main82dcfa714; the candidate already contains it, so no merge is needed.

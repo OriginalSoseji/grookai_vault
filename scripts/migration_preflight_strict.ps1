@@ -60,6 +60,8 @@ param(
   [switch]$ReceiptCloudV1,
   [switch]$SalesCartBaselineV1,
   [switch]$SalesDeskProBaselineV1,
+  [switch]$SalesTradeBaselineV1,
+  [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
   [switch]$SearchNamePlanV1,
@@ -164,6 +166,15 @@ if ($JungleEditionSearchBaselineAudit) {
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_jungle_edition_baseline_v8.mjs')
   exit $LASTEXITCODE
+}
+
+if ($SalesTradeBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SalesTradeBaselineV1') }).Count -gt 0) {
+    throw 'Sales trade baseline is read-only AuditLinkedSchema only.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_sales_trade_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Sales trade baseline failed.' }
+  exit 0
 }
 
 if ($SalesDeskProBaselineV1) {
@@ -602,6 +613,24 @@ function Get-LocalDiffBody([string]$StdOut) {
   }
 
   return $StdOut.Trim()
+}
+
+if ($SalesTradeReleaseV1) {
+  $allowedParameters = @('Phase','ExpectedLocalOnlyIds','SalesTradeReleaseV1')
+  $tradeExpected = (@(Normalize-ExpectedIds -ids $ExpectedLocalOnlyIds) -join ',')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or $tradeExpected -ne '20261004160000') { Fail 'Trade release requires its exact migration without combined scopes or overrides.' }
+  $tradeRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
+  $tradeFiles = @(Get-RepoMigrationFiles -RepoRoot $tradeRoot)
+  if (@(Get-DuplicateTimestampGroups -MigrationFiles $tradeFiles).Count -gt 0) { Fail 'Duplicate migration timestamps.' }
+  $tradePending = @($tradeFiles | Where-Object { $_.Id -eq '20261004160000' })
+  if ($tradePending.Count -ne 1) { Fail 'Trade pending scope mismatch.' }
+  $tradeDuplicates = Get-ObjectDuplicates -PendingFiles $tradePending
+  if ($tradeDuplicates.DuplicateIndexes.Count -gt 0 -or $tradeDuplicates.DuplicateViews.Count -gt 0 -or $tradeDuplicates.DuplicateFunctions.Count -gt 0) { Fail 'Duplicate trade objects.' }
+  Require-Command 'node'
+  $tradeGate = Invoke-ExternalCommand -FileName 'node' -Arguments @('--use-system-ca',(Join-Path $PSScriptRoot 'schema/verify_sales_trade_v1.mjs'),$Phase)
+  Write-CommandTranscript -result $tradeGate
+  if ($tradeGate.ExitCode -ne 0) { Fail 'Trade qualification failed; no application.' }
+  exit 0
 }
 
 if ($SalesDeskProReleaseV1) {

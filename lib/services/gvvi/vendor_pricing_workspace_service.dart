@@ -106,6 +106,7 @@ class VendorPricingWorkspaceRow {
     this.marketObservedAt,
     this.marketProvenanceId,
     this.askingPriceNote,
+    this.tcgplayerProductId,
   });
 
   final String instanceId;
@@ -132,6 +133,7 @@ class VendorPricingWorkspaceRow {
   final String? marketProvenanceId;
   final double? askingPrice;
   final String? askingPriceNote;
+  final String? tcgplayerProductId;
   final String currency;
   final Set<String> sectionIds;
   final List<VendorPrintingOption> printingOptions;
@@ -212,6 +214,7 @@ class VendorPricingWorkspaceRow {
           : marketProvenanceId ?? this.marketProvenanceId,
       askingPrice: askingPrice ?? this.askingPrice,
       askingPriceNote: askingPriceNote,
+      tcgplayerProductId: tcgplayerProductId,
       currency: currency,
       sectionIds: Set.unmodifiable(sectionIds ?? this.sectionIds),
       printingOptions: printingOptions,
@@ -385,6 +388,7 @@ class VendorPricingWorkspaceService {
           marketProvenanceId: pricing?.provenanceId,
           askingPrice: _money(instance['asking_price_amount']),
           askingPriceNote: _nullable(instance['asking_price_note']),
+          tcgplayerProductId: _nullable(card['tcgplayer_id']),
           currency: _normalizeCurrency(instance['asking_price_currency']),
           sectionIds: Set.unmodifiable(
             membershipsByInstance[instanceId] ?? const <String>{},
@@ -657,7 +661,7 @@ class VendorPricingWorkspaceService {
       client: client,
       table: 'card_prints',
       columns:
-          'id,gv_id,name,set_code,number,variant_key,printed_identity_modifier,image_url,image_alt_url,image_path,representative_image_url,set:sets(name,code,identity_model)',
+          'id,gv_id,name,set_code,number,tcgplayer_id,variant_key,printed_identity_modifier,image_url,image_alt_url,image_path,representative_image_url,set:sets(name,code,identity_model)',
       ids: ids,
     );
     if (rows.isEmpty) {

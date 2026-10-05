@@ -2,6 +2,16 @@
 
 ## Collectr sealed release qualification — October 5 UTC
 
+The current gate targets live427 after PR594/main499208eab sales trade-ins;
+the combined candidate is428. It freezes all427 baseline SQL files against the
+sales-trade full427 replay and keeps the sealed SQL unchanged. Fresh full428 and
+retained427-to428 proofs use5872x/5874x, with combined WEB_CHECKPOINT_V2 evidence
+and normal-hook-v2.json. CLI inspection package v2 and dry-run-v2 are the current
+receipts. The earlier426 qualification described below is historical and cannot
+authorize the combined source. Never reapply the completed trade-in migration.
+
+Initial qualification (superseded by the427 baseline above):
+
 `CollectrSealedReleaseV1` admits only AuditLinkedSchema or PrePush for the exact
 pending migration `20261005080000`. Overrides and combined scopes reject before
 connection. It pins all 426 baseline SQL files and the qualified candidate hash,

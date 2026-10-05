@@ -6,7 +6,7 @@ import {sealedRelease,validateSealedReleaseArguments,validateSealedMigrationSour
 
 for(const phase of ['AuditLinkedSchema','PrePush'])test('sealed release accepts read-only phase '+phase,()=>assert.equal(validateSealedReleaseArguments([phase]),phase));
 for(const args of [[],['apply'],['PrePush','--target=other'],['AuditLinkedSchema','PrePush']])test('sealed release rejects unbounded arguments '+JSON.stringify(args),()=>assert.throws(()=>validateSealedReleaseArguments(args)));
-const baseline=Object.fromEntries(Array.from({length:426},(_,i)=>[String(20000101000000+i)+'_synthetic.sql',String(i)]));
+const baseline=Object.fromEntries(Array.from({length:427},(_,i)=>[String(20000101000000+i)+'_synthetic.sql',String(i)]));
 const candidate={...baseline,[sealedRelease.migration]:sealedRelease.migrationSha256};
 test('sealed release admits only the unchanged complete baseline and exact candidate',()=>validateSealedMigrationSources(candidate,baseline));
 for(const [name,change]of [

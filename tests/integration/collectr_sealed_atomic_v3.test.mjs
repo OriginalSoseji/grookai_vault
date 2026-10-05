@@ -11,12 +11,12 @@ const hash=s=>createHash('sha256').update(typeof s==='string'?s:JSON.stringify(s
 test('mixed import database transaction, reuse, recovery, privacy, and rollback', {skip:process.env.GV_COLLECTR_SEALED_SQL_PROOF!=='1'},async()=>{
  const root=path.resolve(import.meta.dirname,'../..'),out='C:/grookai_vault_operator_artifacts/collectr_sealed_save_20261005';
  assert.equal(root.replaceAll('\\','/').toLowerCase(),'c:/gv_collectr_adventure_20261001');
- const project='collectr-sealed-full-427-20261005',container='supabase_db_'+project;
+ const project='collectr-sealed-full-428-v3-20261005',container='supabase_db_'+project;
  const inspect=JSON.parse(execFileSync('docker',['inspect',container],{encoding:'utf8',windowsHide:true}))[0];
  assert.equal(inspect.State.Running,true);assert.deepEqual(Object.keys(inspect.NetworkSettings.Networks),[project]);
  const network=JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8',windowsHide:true}))[0];assert.equal(network.Internal,true);
- const replay=JSON.parse(fs.readFileSync(out+'/full-427/replay-result.json'));assert.equal(replay.status,'passed');
- const db=new pg.Client({host:'127.0.0.1',port:58640,user:'postgres',password:'postgres',database:'postgres',statement_timeout:30000});
+ const replay=JSON.parse(fs.readFileSync(out+'/full-428-v3/replay-result.json'));assert.equal(replay.status,'passed');
+ const db=new pg.Client({host:'127.0.0.1',port:58720,user:'postgres',password:'postgres',database:'postgres',statement_timeout:30000});
  const checks=[];await db.connect();
  const q=async(sql,args=[])=>(await db.query(sql,args)).rows;
  const scalar=async(sql,args=[])=>(await q(sql,args))[0]?.value;
@@ -36,7 +36,7 @@ test('mixed import database transaction, reuse, recovery, privacy, and rollback'
   'owner',(select to_jsonb(o) from vault_owners o where user_id=$1)) value`,[user]);
  try{
   assert.equal(await scalar("select current_setting('max_worker_processes') value"),'0');
-  assert.equal(await scalar('select count(*)::int value from supabase_migrations.schema_migrations'),427);
+  assert.equal(await scalar('select count(*)::int value from supabase_migrations.schema_migrations'),428);
   await q('begin');
   // Candidate functions may evolve after the first replay. Changes remain within
   // this transaction and rollback; a fresh final replay remains a separate gate.
@@ -153,7 +153,7 @@ test('mixed import database transaction, reuse, recovery, privacy, and rollback'
    const copy=stable.copies.find(c=>c.card_print_id===card);assert.deepEqual(await scalar('select to_jsonb(i) value from vault_item_instances i where id=$1',[copy.id]),copy);
   });
   await q('rollback');assert.equal(await scalar('select count(*)::int value from auth.users where id=any($1::uuid[])',[[user,visitor]]),0);
-  const receipt={status:'passed',at:new Date().toISOString(),checks,migrationSha256:hash(migration),productionWrites:0,allFixturesRolledBack:true,kind:'rollback-only; final replay separate'};
+  const receipt={status:'passed',at:new Date().toISOString(),checks,migrationSha256:hash(migration),productionWrites:0,allFixturesRolledBack:true,kind:'rollback-only; final replay separate',project,migrations:428};
   fs.writeFileSync(out+'/atomic-'+Date.now()+'.json',JSON.stringify(receipt,null,2),{flag:'wx'});console.log(JSON.stringify(receipt));
  }finally{await db.query('rollback').catch(()=>{});await db.end();}
 });

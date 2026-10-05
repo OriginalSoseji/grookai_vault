@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## Collectr sealed combined release — October 5 UTC
+
+Normal-hook commit b8274c9cc passed, then the final fetch found PR594/main499208eab
+and its already-LIVE sales trade-in migration427/TestFlight343. The branch is
+being integrated with that main; preserve the completed trade release. Sealed SQL
+bytes are unchanged. The current candidate is428, with fresh full/upgrade labs
+on5872x/5874x and internal10.245.140/141. Old427 proofs/package remain historical.
+Use WEB_CHECKPOINT_V2.json and RELEASE_CHECKPOINT.json in the private sealed
+artifact directory for actual qualification/commit/dry-run outcomes. The current
+strict sealed gate requires the live427 baseline; never reuse the old426 gate.
+
+
 ## Collectr sealed release preparation — October 5 UTC
 
 Current main82dcfa714 matches the tested candidate baseline. Sealed V3 website
@@ -43,6 +55,22 @@ offline exact sealed-identity planner only; it does not save or deploy sealed
 imports. Production is426. Preserve all old groups, copies, receipts and labs.
 Next is atomic sealed source/group/copy persistence, not per-product Add loops.
 Private source-bound qualification is under `collectr_sealed_planner_20261004`.
+## Checkout trade-ins — October 3, 2026
+
+Read docs/ops/SALES_TRADE_INS_20261003.md and its contract. Docker recovery was
+explicitly authorized and completed October4. Current main82dcfa714 and production426
+include the Jungle work; trade-ins are now additive427/default-off in
+C:/gv_sales_trade_ins_20261003. New full/upgrade427 V2 labs use653xx. Preserve the
+completed historical418/652xx replay and all other retained labs. Sales desk's
+last native release is TestFlight342. Database proofs must follow the external
+checkpoint; preserve Windows PostgreSQL and retained volumes. Preserve all prior proofs, Mac
+archives, catalog and checkout work. External sales_trade_ins_20261003 checkpoint
+is authoritative for tests/release; do not replay completed intents.
+PR594 is the draft trade candidate. Mac Homebrew Flutter stalls before startup;
+the existing official ~/flutter-3.44.9 checkout at the same framework revision
+works. Native V2 uses a fresh synthetic fixture and final native sources in
+~/grookai_sales_trade_native_v2_20261004. Forward both65301 (Auth/RPC) and65310
+(real local web resolver) for the native journey. Keep original failed logs.
 
 ## Jungle discovery projection correction — October 4
 
