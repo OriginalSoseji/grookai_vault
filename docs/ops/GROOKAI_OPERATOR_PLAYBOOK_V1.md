@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Collectr preview catalog timeout — October 6
+
+The original USD import and PR599 receipt recovery are complete. Never replay
+their consumed intents. Follow the new
+[preview checkpoint](../checkpoints/collectr_preview_catalog_timeout_20261006.md)
+for the set-scoped reader, exact preview parity and bounded-concurrency proof.
+Private evidence is collectr_remaining_review_20261006; CHECKPOINT.json owns
+actual release state. Read-only catalog measurements do not imply deployment
+or additional imports. Preserve the 1,540 accounted copies, retained 578 rows,
+original source, current catalog permissions and all populated local labs.
+The final batch also accepts padded exact-cent costs, qualifying 16 rows / 50
+sealed copies. Genuine fractional cents stay held. Use the private cost-padding
+normal-hook, catalog, qualification and live-save receipts for actual outcomes.
+PR600 is integrated; its receipt migration/activation/native releases are separate.
+
 ## Refined Sales Desk — October 5
 
 Active candidate: C:/gv_sales_desk_refined_20261005, based on main b5444e82f

@@ -82,19 +82,53 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
     if (after) query = query.gt("id", after);
     return query;
   }, row => row.id) : [];
-  const setsFor = (base: Normalized) => sets.filter(set => (!base.game || set.game === base.game) && collectrSetTargets(base.set, base.game, base.number).includes(setName(set.name ?? "", base.game)));
-  const wanted = [...new Set(valid.flatMap(group => setsFor(group.normalized!).map(set => set.id)))].sort();
+  const setScopes = new Map<Normalized, SetRow[]>();
+  const normalizedSets = new Map<string, { set: SetRow; name: string }[]>();
+  const numbersBySet = new Map<string, Set<string>>();
+  for (const { normalized } of valid) {
+    const base = normalized!;
+    let index = normalizedSets.get(base.game);
+    if (!index) {
+      index = sets.filter(set => !base.game || set.game === base.game).map(set => ({ set, name: setName(set.name ?? "", base.game) }));
+      normalizedSets.set(base.game, index);
+    }
+    const targets = new Set(collectrSetTargets(base.set, base.game, base.number));
+    const scope = index.filter(entry => targets.has(entry.name)).map(entry => entry.set);
+    setScopes.set(base, scope);
+    for (const set of scope) {
+      const numbers = numbersBySet.get(set.id) ?? new Set<string>();
+      numbers.add(base.number);
+      numbersBySet.set(set.id, numbers);
+    }
+  }
+  const setsFor = (base: Normalized) => setScopes.get(base) ?? [];
+  const wanted = [...numbersBySet.keys()].sort();
   const cards: CardRow[] = [];
-  const numbers = new Set(valid.map(group => group.normalized!.number));
   for (let start = 0; start < wanted.length; start += 100) {
     const chunk = wanted.slice(start, start + 100);
-    const page = await readImportPages<CardRow>(after => {
-      let query = client.from("card_prints").select("id,gv_id,name,number,set_id,set_code,variant_key,printed_identity_modifier,identity_domain,rarity").in("set_id", chunk).order("id").limit(500);
-      if (after) query = query.gt("id", after);
-      return query;
-    }, row => row.id);
-    if (page.some(card => !chunk.includes(card.set_id))) throw new Error("The catalog returned an unrelated card.");
-    cards.push(...page.filter(card => numbers.has(number(card.number ?? ""))));
+    const pages: CardRow[] = [];
+    // A global UUID sort across many sets evaluates catalog visibility for
+    // thousands of unrelated rows before returning a page. Bound each indexed
+    // scan to one set, with at most four reads in flight. Keep paging to empty:
+    // the server's row cap can be smaller than our requested page size.
+    for (let batch = 0; batch < chunk.length; batch += 4) {
+      const results = await Promise.allSettled(chunk.slice(batch, batch + 4).map(async setId => {
+        const page = await readImportPages<CardRow>(after => {
+          let query = client.from("card_prints").select("id,gv_id,name,number,set_id,set_code,variant_key,printed_identity_modifier,identity_domain,rarity").in("set_id", [setId]).order("id").limit(500);
+          if (after) query = query.gt("id", after);
+          return query;
+        }, row => row.id);
+        if (page.some(card => card.set_id !== setId)) throw new Error("The catalog returned an unrelated card.");
+        return page;
+      }));
+      for (const result of results) {
+        if (result.status === "rejected") throw result.reason;
+        pages.push(...result.value);
+      }
+    }
+    // Preserve the previous stable candidate order, independent of completion.
+    pages.sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+    cards.push(...pages.filter(card => numbersBySet.get(card.set_id)!.has(number(card.number ?? ""))));
   }
   const identities = new Map<string, Identity[]>();
   const identityIds = cards.filter(card => card.identity_domain === "mtg_eng_paper_print").map(card => card.id).sort();

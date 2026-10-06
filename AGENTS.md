@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Collectr preview catalog timeout — October 6
+
+Read docs/checkpoints/collectr_preview_catalog_timeout_20261006.md. The USD import
+and receipt recovery are complete; never replay them. New source-only preview
+work bounds catalog reads by set, preserves exact choices and avoids redundant
+identity reads. Actual measurement/release state belongs to the private
+collectr_remaining_review_20261006/CHECKPOINT.json. The added cost-padding repair
+qualifies 16 rows / 50 sealed copies without rounding. Their actual save/release
+status belongs to private cost-padding receipts, not source-only qualification.
+Preserve PR600 Sales Desk work and all prior import mappings. No schema changes.
+
 ## Refined Sales Desk — October 5
 
 Active candidate: C:/gv_sales_desk_refined_20261005, based on main b5444e82f
