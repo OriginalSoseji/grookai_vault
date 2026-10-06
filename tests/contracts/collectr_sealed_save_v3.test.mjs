@@ -30,6 +30,20 @@ for(const [name,extra,code]of [
  ['ambiguous quantity',{Quantity:'1,,2'},'invalid_import_quantity'],['conflicting identity',{'Card Name':'Another box'},'conflicting_sealed_metadata'],
 ])test(name,()=>assert.throws(()=>sealedMetadata(row(extra),'USD'),new RegExp(code)));
 test('recorded currency and decimal money preserved without rounding',()=>{const r=sealedMetadata(row({Currency:'CAD','Average Cost Paid':'$1,234.50'}));assert.equal(r.acquisitionCost,1234.5);assert.equal(r.acquisitionCurrency,'CAD');});
+
+for(const [raw,expected] of [['45.0000',45],['34.9900',34.99],['$1,234.5000',1234.5],['0.0000',0],['9999999999.9900',9999999999.99]])test('padded cents preserve the amount and original source: '+raw,async()=>{
+ const original=row({'Average Cost Paid':raw}),before=structuredClone(original);
+ assert.equal(sealedMetadata(original,'USD').acquisitionCost,expected);assert.deepEqual(original,before);
+ const h=harness(),p=input();p.csvText=csv([original]);
+ assert.equal((await h.handler(request(p))).status,200);
+ assert.equal(h.saved.p_sealed_targets[0].acquisitionCost,expected);assert.deepEqual(h.saved.p_source_rows,[original]);
+});
+for(const raw of ['4.9980','0.0001','1.23001','1.234000','9999999999.9901','1.0001','1.00e0'])test('sub-cent values and exponent notation remain held: '+raw,async()=>{
+ assert.throws(()=>sealedMetadata(row({'Average Cost Paid':raw}),'USD'),/invalid_import_cost/);
+ const h=harness(),p=input();p.csvText=csv([row({'Average Cost Paid':raw})]);
+ assert.equal((await h.handler(request(p))).status,400);assert.equal(h.saved,undefined);
+});
+test('padded zero still requires explicit currency',()=>assert.throws(()=>sealedMetadata(row({'Average Cost Paid':'0.0000'})),/currency_requires_review/));
 test('source overlap with card selection rejects',()=>assert.throws(()=>sealedSelections([{sealedVariantId:id(1),sourceIndices:[0]}],2,new Set([0])),/source_indices/));
 test('duplicate and out of bounds selections reject',()=>{for(const sourceIndices of [[0,0],[2],[-1],[0.5]])assert.throws(()=>sealedSelections([{sealedVariantId:id(1),sourceIndices}],2));});
 test('compatible source groups aggregate quantities but keep source indices',()=>{

@@ -37,6 +37,10 @@ owner's durable request receipt before consulting the current catalog, so a lost
 successful response can recover even after a release or rollout change. The
 existing V2 handler behavior is unchanged; only its validation helpers are exported.
 
+Trailing decimal zeroes such as `45.0000` are formatting and may normalize to the
+same exact cent amount. Any nonzero sub-cent digit still requires review; no
+rounding is allowed. The original cost string remains in the saved source.
+
 `sealed_metadata.ts` preserves purchase cost, explicit currency, timestamp precision
 and notes. Zero is a real cost and needs currency. A dollar symbol is not evidence
 of USD. A conflicting currency, fractional cents, conflicting aliases or unknown

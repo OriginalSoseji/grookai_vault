@@ -1,5 +1,18 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Receipt delivery release qualification — October 5
+
+`-ReceiptDeliveryReleaseV1` accepts only AuditLinkedSchema or PrePush and exact
+pending ID20261005150000 on the fixed production project. It rejects combined
+scopes, target/output overrides, changed historical SQL and modified candidate SQL.
+Fresh schema/security comparisons, retained-copy and receipt-book readback,
+unchanged qualified application bytes and default-off sender controls are required.
+PrePush additionally binds the clean current-main descendant to a fresh ordinary
+hook receipt. Neither phase applies SQL. `prepare_receipt_delivery_cli_v1.mjs`
+creates a fixed inspection package and permits only `db push --dry-run`, with
+read-only connection defaults and before/after production ledger/schema checks.
+This proof does not activate sending or establish actual provider delivery.
+
 ## Collectr sealed release qualification — October 5 UTC
 
 The current gate targets live427 after PR594/main499208eab sales trade-ins;

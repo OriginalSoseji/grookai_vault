@@ -17,13 +17,13 @@ Search uses the existing web resolver with explicit bounded pagination (64 rows)
 where supported. Show totals and Load more only from validated server metadata.
 Unpaged responses are top matches, not a completeness claim. Preserve the
 query's game/finish/identity constraints and fail closed on degraded resolution.
-Legacy repository callers retain their unpaged behavior. Trade search retains
-complete paged results. A per-service 30-second, 32-entry read cache coalesces
+Legacy repository callers retain their unpaged behavior. The refined Sales Desk displays trade search one explicit
+page at a time (see SALES_DESK_REFINED_V1). A per-service 30-second, 32-entry read cache coalesces
 identical queries, evicts old entries, never caches errors and rejects changed
 accounts. It grants no write eligibility.
 
-Sales desk omits unused market-price and section enrichment. Independent initial
-reads run together. Confirmed catalog adds update the cart immediately and request
+Sales desk omits unused market-price and section enrichment. After authority and recovery load, independent inventory and receipt
+reads hydrate without blocking quick entry (see SALES_DESK_REFINED_V1). Confirmed catalog adds update the cart immediately and request
 only the new active owner copy for inventory display; they do not reload the
 receipt book or whole Vault. A failed refresh retains the confirmed cart line and
 reports the display failure. A subsequent full load invalidates older copy reads.
