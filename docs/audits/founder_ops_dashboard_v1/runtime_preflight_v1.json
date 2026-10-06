@@ -1,5 +1,5 @@
 {
-  "collected_at": "2026-10-05T21:12:46.163Z",
+  "collected_at": "2026-10-06T18:55:36.096Z",
   "status": "PASS_WITH_DEFERRED_DEBT",
   "summary": {
     "critical_fail_checks": 0,
@@ -100,7 +100,7 @@
       {
         "issue_name": "identity_active_missing_for_canonical_card_print",
         "severity_bucket": "deferred_known_debt",
-        "row_count": "2330",
+        "row_count": "2458",
         "notes": "Canonical non-excluded card_prints without active identity rows remain deferred debt.",
         "gate_category": "known_deferred_debt"
       }
