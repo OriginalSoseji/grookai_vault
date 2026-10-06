@@ -40,8 +40,9 @@ The native client persists the exact pending request in account-keyed app storag
 before sending. Network ambiguity locks cart edits and retains the request across
 relaunch. A retry is the same request, never a new sale. Authoritative transaction
 rejection allows correcting the preserved cart. Account changes conceal the desk
-and reject writes; drafts never migrate between accounts. Unsubmitted carts are
-in-memory with a leave confirmation. This is not offline sale completion.
+and reject writes; drafts never migrate between accounts. The refined candidate persists unsubmitted carts in owner-local storage,
+with revision checks and held deals under SALES_DESK_REFINED_V1. Prior clients
+keep their in-memory leave confirmation. This is not offline sale completion.
 
 Optional new customer details are private receipt-book records. Selecting an
 existing customer uses the current server record without overwriting changes from

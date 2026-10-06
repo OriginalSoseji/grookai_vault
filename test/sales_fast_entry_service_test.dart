@@ -6,6 +6,7 @@ import 'package:http/testing.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 import 'package:grookai_vault/services/sales/sales_cart_service.dart';
+import 'package:grookai_vault/services/sales/sales_drafts.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -99,8 +100,37 @@ void main() {
       );
       final service = SalesCartService(client: client);
       final data = await service.load();
-      expect(data.rows.single.askingPrice, 12.34);
+      expect(data.needsHydration, true);
+      expect(data.rows, isEmpty);
+      expect(
+        requests.any(
+          (r) =>
+              r.url.path.contains('vault_item') ||
+              r.url.path.contains('receipt_book'),
+        ),
+        false,
+      );
+      expect((await service.loadInventory()).single.askingPrice, 12.34);
+      expect((await service.loadBook())['storeName'], 'Fixture');
       expect(requests.any((r) => r.url.path.contains('market_pricing')), false);
+      final otherScreen = SalesCartService(client: client);
+      await otherScreen.load();
+      final draft = blankSalesDraft(newSaleId(), 'Fixture');
+      final draftBook = {
+        'version': 1,
+        'revision': 0,
+        'active': draft['id'],
+        'drafts': [draft],
+      };
+      await service.saveDrafts(draftBook);
+      await expectLater(otherScreen.saveDrafts(draftBook), throwsStateError);
+      final preferences = await SharedPreferences.getInstance();
+      expect(
+        readSalesDrafts(
+          preferences.getString('grookai.sales-drafts.v1.$owner'),
+        )['revision'],
+        1,
+      );
       requests.clear();
       expect((await service.loadAddedCopy('copy')).single.instanceId, 'copy');
       final request = requests.singleWhere(
@@ -140,6 +170,15 @@ void main() {
             throwsStateError,
           );
           await expectLater(service.loadAddedCopy('copy'), throwsStateError);
+          expect(() => service.saveDrafts(draftBook), throwsStateError);
+          expect(
+            readSalesDrafts(
+              preferences.getString(
+                'grookai.sales-drafts.v1.11111111-1111-4111-8111-111111111111',
+              ),
+            )['drafts'],
+            hasLength(1),
+          );
           expect(resolverReads, 1);
         },
         () => MockClient((request) async {

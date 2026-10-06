@@ -72,7 +72,7 @@ void main() {
     expect(find.text('Checkout: 1 × USD 100.00'), findsOneWidget);
     expect(find.text('Actual sale price (USD)'), findsNothing);
     if (compact) await tap('Cards');
-    await tap('Search catalog & add a card');
+    await tap('Catalog');
     await tester.enterText(
       find.widgetWithText(TextField, 'Name, card number or GV-ID'),
       'GV-PK-FASTENTRY-001',

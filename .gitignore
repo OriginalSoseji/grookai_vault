@@ -128,6 +128,11 @@ apps/web/src/app/api/vault/*
 !apps/web/src/app/api/vault/import/route.ts
 !apps/web/src/app/api/stores/
 !apps/web/src/app/api/stores/**
+!apps/web/src/app/api/receipts/
+apps/web/src/app/api/receipts/*
+!apps/web/src/app/api/receipts/delivery/
+apps/web/src/app/api/receipts/delivery/*
+!apps/web/src/app/api/receipts/delivery/route.ts
 !apps/web/src/app/api/vendor-billing/
 !apps/web/src/app/api/vendor-billing/**
 !apps/web/src/app/api/vendor-orders/

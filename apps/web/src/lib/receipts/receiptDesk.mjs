@@ -1,21 +1,38 @@
 import { tradeReceiptLines } from './tradeReceipt.mjs';
+import { receiptDeliveryLabel } from './receiptDelivery.mjs';
 import { emptyBook, createReceipt, saveSale, parseBackup, customerInput, receiptText, receiptHtml, deliveryLink, money, paymentMethods, escapeHtml as h } from './receiptBook.mjs';
 
 export function mountReceiptDesk(root,options={}) {
   options={...options};
   const key='grookai.receipt-book.v1.'+(options.accountKey||'offline'),storage=options.cloud?null:(options.storage||localStorage);
   let book,savedRaw=null,selected=null,draftId=crypto.randomUUID(),customerId=crypto.randomUUID(),disposed=false,busy=false,draftCreatedAt=null;
-  const setBusy=value=>{busy=value;root.setAttribute('aria-busy',String(value));for(const field of root.querySelectorAll('input,button,select,textarea'))field.disabled=value;};
+  const setBusy=value=>{busy=value;root.setAttribute('aria-busy',String(value));for(const field of root.querySelectorAll('input,button,select,textarea'))field.disabled=value||field.hasAttribute('data-delivery-disabled');};
   const status=(message,error=false)=>{const el=root.querySelector('[data-status]');if(el){el.textContent=message;el.setAttribute('role',error?'alert':'status');}};
   const persist=async next=>{if(options.cloud){await options.cloud.save(next);book=next;return;}if(storage.getItem(key)!==savedRaw)throw Error('Records changed in another tab. Reload before saving; your existing records were not overwritten.');const raw=JSON.stringify(next);storage.setItem(key,raw);savedRaw=raw;book=next;};
   try { if(options.cloud)book=parseBackup(JSON.stringify(options.cloud.book));else{const raw=storage.getItem(key);book=raw?parseBackup(raw):emptyBook();savedRaw=raw;} }
   catch { root.innerHTML='<p role="alert">Saved receipt data could not be opened. Do not clear this browser’s storage. Export or recover your existing data before creating more receipts.</p>';return ()=>{}; }
   const input=(name,label,value='',extra='')=>`<label>${label}<input name="${name}" value="${h(value)}" ${extra}></label>`;
+  const deliveryRequests=new Map();
+  function deliveryRows(rows) {
+    return rows.map(r=>`<p><strong>${h(r.channel==='email'?'Email':'Text')}</strong> · ${h(r.destination)}<br><span>${h(receiptDeliveryLabel(r.status))}</span></p>`).join('')||'<p>No receipt messages requested yet.</p>';
+  }
+  async function deliveryPanel(id) {
+    if(!options.cloud||!options.delivery)return;
+    const editor=root.querySelector('.rd-editor');
+    editor.querySelectorAll('.rd-section')[1].insertAdjacentHTML('afterend','<div class="rd-section" data-direct-delivery><h2>Send directly from Grookai</h2><p data-direct-state>Checking receipt delivery…</p></div>');
+    const panel=editor.querySelector('[data-direct-delivery]');
+    try {
+      const [settings,result]=await Promise.all([options.delivery(),options.delivery(undefined,id)]);
+      if(disposed||selected!==id||!root.contains(panel))return;
+      const capabilities=settings.capabilities??{},smsLong=receiptText(book.receipts.find(r=>r.receipt.id===id).receipt).length>1600;
+      panel.innerHTML=`<h2>Send directly from Grookai</h2><p>Use the email or phone above. Phone numbers need + and country code.</p>${capabilities.email||capabilities.sms?'<label class="rd-check"><input type="checkbox" data-receipt-consent> The customer requested this receipt and I checked the destination.</label>':'<p>Direct sending is not available yet. You can still share or open a draft above.</p>'}<div class="rd-actions">${capabilities.email?'<button data-direct-email>Send email receipt</button>':''}${capabilities.sms?`<button data-direct-sms ${smsLong?'disabled data-delivery-disabled':''}>Send text receipt</button>`:''}<button data-delivery-refresh>Check delivery status</button></div>${capabilities.sms&&smsLong?'<p>This receipt is too long for a text message. Use email or Share for the complete receipt.</p>':''}<div data-direct-state aria-live="polite">${deliveryRows(result.deliveries??[])}</div>`;
+    } catch { if(!disposed&&root.contains(panel))panel.querySelector('[data-direct-state]').textContent='Direct sending is unavailable. Your receipt is saved; use Share or open a draft above.'; }
+  }
   function itemRow(description='',price='',quantity=1){return `<div class="rd-item">${input('description','Item / card',description,'required maxlength="200" placeholder="Card name, condition, or item"')}${input('quantity','Qty',quantity,'required type="number" min="1" max="999" step="1"')}${input('price','Unit price (USD)',price,'required inputmode="decimal" placeholder="0.00"')}<button type="button" data-remove aria-label="Remove item">×</button></div>`;}
   const downloads=(content,name,type)=>{const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);};
   function layout(){
     root.innerHTML=`<div class="rd"><header class="rd-header"><div><span class="rd-eyebrow">GROOKAI · VENDOR TOOLS</span><h1>${options.cloud?'Account receipt desk':'Receipt desk'}</h1><p>In-person sales. A receipt and a customer to remember.</p></div><div class="rd-toolbar"><button data-new>New sale</button><button data-backup>Back up records</button><label class="rd-file">${options.cloud?'Import device backup':'Restore backup'}<input data-import type="file" accept="application/json,.json" aria-label="Restore receipt backup"></label></div></header>
-      <div class="rd-notice">${options.cloud?'<strong>Saved to your account.</strong> Open this account receipt desk on another device to access saved records. Reload to see changes from other devices. Device-only receipts stay separate; import their backup into an empty account book to move a copy here.':'<strong>Saved on this device only.</strong> Back up your records after selling. These records do not sync to other devices or update Vault inventory.'} Email and text buttons open drafts; you send them from your own app. These receipts do not update inventory.</div>
+      <div class="rd-notice">${options.cloud?'<strong>Saved to your account.</strong> Open this account receipt desk on another device to access saved records. Reload to see changes from other devices. Device-only receipts stay separate; import their backup into an empty account book to move a copy here.':'<strong>Saved on this device only.</strong> Back up your records after selling. These records do not sync to other devices or update Vault inventory.'} Draft buttons open your own email or messaging app. Direct delivery, when available, is tracked separately. These receipts do not update inventory.</div>
       <p data-status role="status" class="rd-status" aria-live="polite"></p><div class="rd-grid"><section class="rd-editor"></section><aside class="rd-side"><h2>Sales & customers</h2><label>Find a receipt or customer<input data-search placeholder="Name, phone, email, card, receipt #"></label><div data-history></div></aside></div></div>`;
     form();history();bind();
   }
@@ -35,8 +52,9 @@ export function mountReceiptDesk(root,options={}) {
   function show(id){
     const row=book.receipts.find(x=>x.receipt.id===id);if(!row)return;selected=id;const r=row.receipt,c=book.customers.find(x=>x.id===row.customerId);
     root.querySelector('.rd-editor').innerHTML=`<div class="rd-section"><div class="rd-success">${options.cloud?'Sale saved to your account':'Sale saved on this device'}</div><h2>${h(r.storeName)}</h2><p class="rd-small">${h(r.number)} · ${h(new Date(r.createdAt).toLocaleString())}</p>${r.customerName?`<p>Customer: ${h(r.customerName)}</p>`:''}<table class="rd-table"><thead><tr><th>Item</th><th>Qty</th><th>Amount</th></tr></thead><tbody>${r.items.map(i=>`<tr><td>${h(i.description)}<small>${h(money(i.unitMinor))} each</small></td><td>${i.quantity}</td><td>${h(money(i.lineMinor))}</td></tr>`).join('')}</tbody></table><dl class="rd-totals"><dt>Subtotal</dt><dd>${money(r.subtotalMinor)}</dd><dt>Discount</dt><dd>−${money(r.discountMinor)}</dd><dt>Tax collected</dt><dd>${money(r.taxMinor)}</dd><dt class="rd-total">${r.tradeIn?'Purchase total':'Total received'}</dt><dd class="rd-total">${money(r.totalMinor)}</dd></dl>${r.tradeIn?`<h3>Trade-in breakdown</h3><pre class="rd-wrap">${h(tradeReceiptLines(r,money).join('\n'))}</pre>`:''}<p>${h(r.method)} · Recorded by vendor</p>${r.note?`<p class="rd-wrap">${h(r.note)}</p>`:''}<div class="rd-actions"><button data-print class="rd-primary">Print / save PDF</button><button data-download>Download receipt</button><button data-share>Share receipt</button><button data-copy>Copy receipt text</button></div></div>
-      <div class="rd-section"><h2>Send a receipt</h2><p class="rd-small">Check the destination, then send the draft from your email or messaging app. Grookai cannot confirm delivery.</p>${input('sendEmail','Email',c?.email||'','type="email" maxlength="254"')}${input('sendPhone','Phone',c?.phone||'','type="tel" maxlength="40"')}<div class="rd-actions"><button data-email>Open email draft</button><button data-sms>Open text draft</button></div><p class="rd-small">No email or messaging app? Use Share, or copy the receipt text.</p></div>
+      <div class="rd-section"><h2>Receipt destination & sharing</h2><p class="rd-small">Check the destination below. Drafts are sent from your own app; their delivery is not tracked by Grookai.</p>${input('sendEmail','Email',c?.email||'','type="email" maxlength="254"')}${input('sendPhone','Phone',c?.phone||'','type="tel" maxlength="40"')}<div class="rd-actions"><button data-email>Open email draft</button><button data-sms>Open text draft</button></div><p class="rd-small">No email or messaging app? Use Share, or copy the receipt text.</p></div>
       ${c?`<div class="rd-section"><h2>Private customer record</h2><p>${h(c.name||'Unnamed customer')}</p><p>${h(c.email)} ${h(c.phone)}</p><p class="rd-wrap"><strong>Looking for:</strong> ${h(c.wants||'Not recorded')}</p><p class="rd-wrap"><strong>Notes:</strong> ${h(c.notes||'None')}</p><p class="rd-small">${book.receipts.filter(x=>x.customerId===c.id).length} saved purchase(s). Choose this customer on a new sale to update their contact details and notes.</p></div>`:''}`;
+    void deliveryPanel(id);
   }
   async function click(event){
     const button=event.target.closest('button');if(!button||busy)return;
@@ -48,6 +66,26 @@ export function mountReceiptDesk(root,options={}) {
       if(button.hasAttribute('data-backup')){downloads(JSON.stringify(book),'grookai-receipts-'+new Date().toISOString().slice(0,10)+'.json','application/json');status('Backup downloaded. It contains private customer details; keep it somewhere safe.');}
       if(button.hasAttribute('data-add')||button.hasAttribute('data-remove'))search(event);
       const r=book.receipts.find(x=>x.receipt.id===selected)?.receipt;if(!r)return;
+      if(button.hasAttribute('data-direct-email')||button.hasAttribute('data-direct-sms')||button.hasAttribute('data-delivery-refresh')) {
+        if(!options.delivery)return;
+        const panel=root.querySelector('[data-direct-delivery]');
+        let request;
+        if(button.hasAttribute('data-delivery-refresh'))request={refreshReceiptId:r.id};
+        else {
+          if(!panel.querySelector('[data-receipt-consent]')?.checked)throw Error('Confirm that the customer requested this receipt and check the destination.');
+          const channel=button.hasAttribute('data-direct-email')?'email':'sms';
+          const destination=root.querySelector(`[name="${channel==='email'?'sendEmail':'sendPhone'}"]`).value.trim();
+          const fingerprint=JSON.stringify([r.id,channel,destination]);
+          if(!deliveryRequests.has(fingerprint))deliveryRequests.set(fingerprint,crypto.randomUUID());
+          request={requestId:deliveryRequests.get(fingerprint),receiptId:r.id,channel,destination,confirmed:true};
+        }
+        setBusy(true);
+        try {
+          const result=await options.delivery(request);
+          if(!disposed&&root.contains(panel))panel.querySelector('[data-direct-state]').innerHTML=deliveryRows(result.deliveries??[]);
+        } finally { setBusy(false); }
+        return;
+      }
       if(button.hasAttribute('data-download')){downloads(receiptHtml(r),r.number+'.html','text/html');status('Receipt downloaded. Open it to print or save as PDF.');}
       if(button.hasAttribute('data-print')){const popup=window.open('','_blank');if(!popup)throw Error('Your browser blocked the print window. Download the receipt and open it instead.');popup.opener=null;popup.document.write(receiptHtml(r));popup.document.close();popup.focus();popup.print();}
       if(button.hasAttribute('data-copy')){await navigator.clipboard.writeText(receiptText(r));status('Receipt text copied. Paste it into your message.');}
@@ -68,7 +106,7 @@ export function mountReceiptDesk(root,options={}) {
     if(event.target.matches('[data-customer]')){const c=book.customers.find(x=>x.id===event.target.value);customerId=c?.id||crypto.randomUUID();for(const name of ['name','email','phone','wants','notes'])root.querySelector(`[name="${name}"]`).value=c?.[name]||'';}
     if(event.target.matches('[data-import]'))try{const file=event.target.files?.[0];if(!file)return;if(file.size>10000000)throw Error('Backup is too large.');const restored=parseBackup(await file.text());if(book.receipts.length||book.customers.length)throw Error('Restore is available only in an empty receipt book. Use a separate browser profile to inspect another backup. Your existing records were not changed.');setBusy(true);await persist(restored);if(disposed)return;form();history();status(options.cloud?'Backup saved to your account. Your original device copy is unchanged.':'Backup restored on this device.');}catch(e){status(e.message,true);}finally{setBusy(false);event.target.value='';}
   }
-  const search=e=>{if(e.target.matches('[data-search]'))history(e.target.value);const f=root.querySelector('[data-sale]'),preview=root.querySelector('[data-total-preview]');if(!f||!preview)return;try{const values=new FormData(f),get=n=>String(values.get(n)||'');const r=createReceipt({storeName:get('storeName')||'Seller',customer:{name:'',email:'',phone:'',wants:'',notes:''},confirmed:true,method:get('method'),note:'',discount:get('discount'),tax:get('tax'),items:[...root.querySelectorAll('.rd-item')].map(row=>({description:row.querySelector('[name=description]').value||'Item',quantity:row.querySelector('[name=quantity]').value,price:row.querySelector('[name=price]').value}))},draftId,new Date().toISOString());preview.textContent='Total: '+money(r.totalMinor);}catch{preview.textContent='Total: check item prices, quantities and discount';}};
+  const search=e=>{if(e.target.matches('[name=sendEmail],[name=sendPhone]')){const consent=root.querySelector('[data-receipt-consent]');if(consent)consent.checked=false;}if(e.target.matches('[data-search]'))history(e.target.value);const f=root.querySelector('[data-sale]'),preview=root.querySelector('[data-total-preview]');if(!f||!preview)return;try{const values=new FormData(f),get=n=>String(values.get(n)||'');const r=createReceipt({storeName:get('storeName')||'Seller',customer:{name:'',email:'',phone:'',wants:'',notes:''},confirmed:true,method:get('method'),note:'',discount:get('discount'),tax:get('tax'),items:[...root.querySelectorAll('.rd-item')].map(row=>({description:row.querySelector('[name=description]').value||'Item',quantity:row.querySelector('[name=quantity]').value,price:row.querySelector('[name=price]').value}))},draftId,new Date().toISOString());preview.textContent='Total: '+money(r.totalMinor);}catch{preview.textContent='Total: check item prices, quantities and discount';}};
   function bind(){root.addEventListener('click',click);root.addEventListener('submit',submit);root.addEventListener('change',change);root.addEventListener('input',search);}
   layout();return()=>{if(disposed)return;disposed=true;root.removeEventListener('click',click);root.removeEventListener('submit',submit);root.removeEventListener('change',change);root.removeEventListener('input',search);root.replaceChildren();};
 }
