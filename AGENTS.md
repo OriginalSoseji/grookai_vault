@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Collectr preview catalog timeout — October 6
+
+Read docs/checkpoints/collectr_preview_catalog_timeout_20261006.md. The USD import
+and receipt recovery are complete; never replay them. New source-only preview
+work bounds catalog reads by set, preserves exact choices and avoids redundant
+identity reads. Actual measurement/release state belongs to the private
+collectr_remaining_review_20261006/CHECKPOINT.json. All 578 review rows remain
+held; no schema, identity, inventory or currency changes are part of this repair.
+
 ## Collectr USD import and receipt recovery — October 6 UTC
 
 Read docs/checkpoints/collectr_receipt_recovery_20261006.md. The real import is
