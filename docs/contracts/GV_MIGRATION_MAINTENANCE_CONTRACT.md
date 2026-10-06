@@ -1,5 +1,23 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Split external payments release qualification — October 6
+
+`-SalesSplitPaymentsReleaseV1` admits only AuditLinkedSchema or PrePush for
+20261006140000 against production428. Source has430 files: all428 applied files,
+the unchanged deferred receipt migration and split payments. The isolated CLI
+package has429 files and omits only receipt20261005150000; source history is
+retained. The old receipt gate cannot authorize this operation.
+
+Fresh full429 replay and retained428-to429 upgrade use3290x/3292x labs and
+internal10.246.50/51 networks. Populated labs must never be reset. The gate
+rereads their schema/security and retained copies/book, checks actual Auth/RPC
+proof without receipt delivery, freezes qualified product bytes and compares
+fresh production to428. PrePush additionally requires clean current-main source
+and fresh ordinary hooks. The CLI package supports prepare/dry-run only and
+requires exactly the split migration. Neither command applies SQL or enables
+split writes; compatible web/native readers must precede write activation.
+All consumed intents and separate receipt-delivery evidence remain retained.
+
 ## Receipt delivery release qualification — October 5
 
 `-ReceiptDeliveryReleaseV1` accepts only AuditLinkedSchema or PrePush and exact

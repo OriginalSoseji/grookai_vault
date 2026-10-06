@@ -5,6 +5,15 @@ Branch: `feature/sales-split-payments-20261006`.
 Source baseline: main `04980f98dc574cacbf42702e92711d7962e450c6`.
 Contract: [Sales split payments](../contracts/SALES_SPLIT_PAYMENTS_V1.md).
 
+Release preparation now has a separate exact package:428 applied migrations
+plus split20261006140000, excluding deferred receipt20261005150000. All430
+source SQL files remain intact. Fresh full429 and retained428-to429 labs use
+ports32900/32901 and32920/32921, with internal10.246.50/51 networks. Their
+one-use preparation scripts never reset an existing fixture. The production
+gate is `SalesSplitPaymentsReleaseV1`; the previous receipt gate is not reused
+for PrePush. The external `Release-*`, `RELEASE_RPC.json`, normal-hook and
+dry-run receipts own actual outcomes. None alone is a production apply receipt.
+
 This batch adds external split payments and cash change to desktop and native
 Sales Desk, held deals, atomic sale completion, receipts and tender reporting.
 Existing single-payment writers, catalog authority and collector access remain

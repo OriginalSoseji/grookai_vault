@@ -4,9 +4,11 @@ import assert from 'node:assert/strict';
 import {randomUUID,createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
-const root='C:/gv_sales_split_payments_20261006',project='sales-pay-full-430-v2-20261006';
+assert.ok(process.argv.length===2||(process.argv.length===3&&process.argv[2]==='--release-package'));
+const release=process.argv[2]==='--release-package';
+const root='C:/gv_sales_split_payments_20261006',project=release?'sales-pay-full-429-release-v1-20261006':'sales-pay-full-430-v2-20261006';
 assert.equal(process.cwd().replaceAll('\\','/'),root);
-const fixture='C:/grookai_vault_operator_artifacts/sales_split_payments_20261006/full-430-v2';
+const fixture='C:/grookai_vault_operator_artifacts/sales_split_payments_20261006/'+(release?'full-429-release-v1':'full-430-v2');
 const req=createRequire('C:/gv_sales_split_payments_20261006/package.json');
 const web=createRequire('C:/gv_sales_split_payments_20261006/apps/web/package.json');
 const {Client}=req('pg'),{createClient}=web('@supabase/supabase-js');
@@ -14,7 +16,8 @@ const {Client}=req('pg'),{createClient}=web('@supabase/supabase-js');
 const freeze=JSON.parse(fs.readFileSync(fixture+'/freeze.json'));
 const replay=JSON.parse(fs.readFileSync(fixture+'/replay-result.json'));
 assert.equal(freeze.project,project);assert.equal(replay.project,project);
-assert.equal(replay.status,'passed');assert.equal(replay.migrations,430);
+assert.equal(replay.status,'passed');assert.equal(replay.migrations,release?429:430);
+if(release)assert.ok(!Object.hasOwn(freeze.sourceHashes,'20261005150000_vendor_receipt_delivery_v1.sql'));
 assert.equal(replay.fullReplay,true);assert.equal(replay.noOpPush,true);
 assert.ok(!fs.existsSync(fixture+'/supabase/.temp/project-ref'));
 const digest=file=>createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -30,11 +33,12 @@ assert.equal(database.Config.Image,'public.ecr.aws/supabase/postgres:17.6.1.113'
 assert.deepEqual(Object.keys(database.NetworkSettings.Networks),[project]);
 assert.equal(inspect('network','inspect',project)[0].Internal,true);
 const relay=inspect('inspect',project+'-relay')[0];assert.equal(relay.State.Running,true);
-for(const port of [32840,32841])assert.deepEqual(relay.NetworkSettings.Ports[port+'/tcp'],[{HostIp:'127.0.0.1',HostPort:String(port)}]);
+const dbPort=release?32900:32840;
+for(const port of [dbPort,dbPort+1])assert.deepEqual(relay.NetworkSettings.Ports[port+'/tcp'],[{HostIp:'127.0.0.1',HostPort:String(port)}]);
 const cfg=JSON.parse(execFileSync('supabase',['status','-o','json','--workdir',fixture],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));
 // CLI network is internal; all callers use only the task-specific loopback relay.
-cfg.API_URL='http://127.0.0.1:32841';
-cfg.DB_URL=new URL(cfg.DB_URL);cfg.DB_URL.hostname='127.0.0.1';cfg.DB_URL.port='32840';cfg.DB_URL=cfg.DB_URL.href;
+cfg.API_URL='http://127.0.0.1:'+(dbPort+1);
+cfg.DB_URL=new URL(cfg.DB_URL);cfg.DB_URL.hostname='127.0.0.1';cfg.DB_URL.port=String(dbPort);cfg.DB_URL=cfg.DB_URL.href;
 const db=new Client({connectionString:cfg.DB_URL});await db.connect();
 assert.equal(typeof cfg.SECRET_KEY,'string');assert.equal(typeof cfg.PUBLISHABLE_KEY,'string');
 const admin=createClient(cfg.API_URL,cfg.SECRET_KEY,{auth:{persistSession:false}});
@@ -99,5 +103,7 @@ try{
  checks.push('database-generated legacy and split receipts round-trip through actual web backup parser and receipt renderer');
 }catch(e){failure={message:e.message,stack:e.stack};}
 finally{await q('update vendor_receipt_cloud_control set enabled=false;update vendor_sales_cart_control set enabled=false;update vendor_sales_payment_control set enabled=false;update vendor_sales_trade_control set enabled=false');await db.end();}
-fs.writeFileSync(out+'/receipt.json',JSON.stringify({at:new Date().toISOString(),status:failure?'failed':'passed',failure,checks,project,syntheticUsers:ids,retainedSyntheticFixture:true,productionRequests:0,moneyMoved:0,flagsRestoredOff:true},null,2));
+const receipt={at:new Date().toISOString(),status:failure?'failed':'passed',failure,checks,project,syntheticUsers:ids,retainedSyntheticFixture:true,productionRequests:0,moneyMoved:0,flagsRestoredOff:true,releasePackage:release,out};
+fs.writeFileSync(out+'/receipt.json',JSON.stringify(receipt,null,2));
+if(release&&!failure)fs.writeFileSync('C:/grookai_vault_operator_artifacts/sales_split_payments_20261006/RELEASE_RPC.json',JSON.stringify(receipt,null,2),{flag:'wx'});
 console.log(JSON.stringify({out,status:failure?'failed':'passed',checks,failure}));if(failure)process.exitCode=1;
