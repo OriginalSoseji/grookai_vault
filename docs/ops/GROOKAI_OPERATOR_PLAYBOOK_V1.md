@@ -1,5 +1,24 @@
 # Grookai Operator Playbook V1
 
+## Bounded publication snapshots — October 6
+
+The October 6 deployed V1_9 worker timed out three times while inserting all
+164,677 eligible snapshots in one statement. V1_11 pages the already-qualified
+decision ledger using its run/publish/UUID index, then inserts at most the
+configured batch size (default 500, maximum 2,000). Snapshot columns, source
+values, conflict identity and activation guards are unchanged. Each completed
+page is durable only in the staging publication; interruption does not activate
+partial prices. Retry starts from the first decision and fills gaps through the
+existing conflict rule, preserving the original phase lineage of prior inserts.
+Exact frozen counts and normal full reconciliation still gate activation.
+
+Use a new immutable producer and new frozen run keys. Never resume the failed
+V1_9 run under V1_11 or deploy the divergent control-plane worktree as a pricing
+runtime. Preserve the old publication, failed evidence, and rollback runtime.
+Deployment, shadow/reconciliation and production readback are separate proofs.
+Current receipts are under the external `pricing_snapshot_batches_20261006`
+operator-artifact directory and the shared worker recovery checkpoint.
+
 ## Reviewed Cosmos pricing — September 30
 
 Read `docs/contracts/TCGPLAYER_COSMOS_FINISH_V1.md` and

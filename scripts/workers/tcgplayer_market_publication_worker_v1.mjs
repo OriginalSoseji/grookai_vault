@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
+import { writeMarketSnapshotBatchesV1 } from "../../backend/pricing/market_snapshot_batches_v1.mjs";
 import { TRAINER_KIT_CANDIDATE_COLUMNS_V1, TRAINER_KIT_CANDIDATE_JOINS_V1 } from "../../backend/pricing/tcgplayer_trainer_kit_candidate_evidence_v1.mjs";
 import { readMarketActivationCoverageV1 } from "../../backend/pricing/market_activation_coverage_v1.mjs";
 import { marketSessionConnectionStringV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
@@ -48,7 +49,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_9";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_11";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -1114,7 +1115,7 @@ async function ensurePublicationSet(client, run) {
   return publicationSet;
 }
 
-async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
+async function insertSnapshotBatch(client, run, publicationSet, phaseAttemptId, decisionIds) {
   const result = await client.query(
     `insert into public.market_price_publication_snapshots (
        publication_set_id,
@@ -1195,6 +1196,7 @@ async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
        and decision.eligible = true
        and decision.decision = 'publish'
        and decision.publication_lane = 'current'
+       and decision.id = any($6::uuid[])
      on conflict (
        publication_set_id,
        source_observation_id,
@@ -1207,6 +1209,7 @@ async function insertSnapshots(client, run, publicationSet, phaseAttemptId) {
       phaseAttemptId,
       SNAPSHOT_SCHEMA_VERSION,
       WORKER_VERSION,
+      decisionIds,
     ],
   );
   return result.rowCount;
@@ -1730,7 +1733,15 @@ async function runDurable(client, args, sourceRun, runPlan) {
       phaseName: "build_publication",
       operation: async ({ phaseAttemptId }) => {
         publicationSet = await ensurePublicationSet(client, run);
-        await insertSnapshots(client, run, publicationSet, phaseAttemptId);
+        await writeMarketSnapshotBatchesV1(client, {
+          runId: run.id,
+          expectedCount: Number(publicationSet.expected_snapshot_count),
+          batchSize: args.batchSize,
+          insertBatch: ids => insertSnapshotBatch(client, run, publicationSet, phaseAttemptId, ids),
+          onBatch: progress => process.stdout.write(
+            `[tcgplayer-market-publication] snapshot_batch=${progress.pages} selected=${progress.selected} inserted=${progress.inserted}\n`,
+          ),
+        });
         const counts = await decisionCounts(client, run.id);
         const snapshotResult = await client.query(
           `select count(*)::integer as snapshot_count
