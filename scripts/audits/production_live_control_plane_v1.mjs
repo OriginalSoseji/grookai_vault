@@ -553,7 +553,16 @@ export function classifyPricingRunV1(run, now = new Date(), maxStalenessMinutes 
   if (!run) return { status: 'failed', reason: 'No production pricing run exists.' };
   const terminalAt = run.completed_at ?? run.failed_at ?? run.created_at;
   const ageMinutes = minutesSince(terminalAt, now);
-  if (run.state === 'failed' || run.failed_at) {
+  const failedAt = Date.parse(run.failed_at ?? '');
+  const completedAt = Date.parse(run.completed_at ?? '');
+  // Retries retain the original failure timestamp as incident history. Only a
+  // later reconciled terminal completion with cleared errors supersedes it.
+  const recoveredFailure = TERMINAL_PRICE_STATES.has(run.state)
+    && run.reconciliation_state === 'reconciled'
+    && run.error == null && run.error_classification == null
+    && Number.isFinite(failedAt) && Number.isFinite(completedAt)
+    && completedAt > failedAt && completedAt <= now.getTime();
+  if (run.state === 'failed' || (run.failed_at && !recoveredFailure)) {
     return { status: 'failed', reason: `Latest production pricing run failed: ${run.error_classification ?? 'unclassified'}.`, observed_at: terminalAt, age_minutes: ageMinutes };
   }
   if (!TERMINAL_PRICE_STATES.has(run.state) || run.reconciliation_state !== 'reconciled') {

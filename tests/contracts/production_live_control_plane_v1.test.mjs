@@ -342,6 +342,37 @@ test('pricing requires terminal state, reconciliation, and freshness', () => {
   }, NOW).status, 'failed');
 });
 
+test('reconciled pricing recovery supersedes an earlier failure without erasing history', () => {
+  for (const state of ['published', 'verified']) {
+    const run = { state, reconciliation_state: 'reconciled',
+      failed_at: '2026-08-24T00:00:00.000Z', completed_at: '2026-08-24T00:30:00.000Z',
+      error: null, error_classification: null };
+    const before = structuredClone(run);
+    const result = classifyPricingRunV1(run, NOW);
+    assert.equal(result.status, 'healthy');
+    assert.equal(result.observed_at, run.completed_at);
+    assert.equal(result.age_minutes, 30);
+    assert.deepEqual(run, before);
+    assert.equal(classifyPricingRunV1(run, NOW, 15).status, 'stale');
+  }
+});
+
+test('ambiguous or unsuccessful pricing retries keep the failure visible', () => {
+  const recovered = { state: 'verified', reconciliation_state: 'reconciled',
+    failed_at: '2026-08-24T00:00:00.000Z', completed_at: '2026-08-24T00:30:00.000Z',
+    error: null, error_classification: null };
+  for (const change of [
+    { state: 'failed' }, { state: 'running' }, { reconciliation_state: 'pending' },
+    { error: 'still failing' }, { error_classification: 'READBACK_FAILED' },
+    { completed_at: null }, { completed_at: 'invalid' }, { failed_at: 'invalid' },
+    { completed_at: '2026-08-23T23:59:00.000Z' },
+    { completed_at: recovered.failed_at }, { completed_at: '2026-08-24T02:00:00.000Z' },
+    { failed_at: '2026-08-24T00:40:00.000Z' },
+  ]) {
+    assert.equal(classifyPricingRunV1({ ...recovered, ...change }, NOW).status, 'failed', JSON.stringify(change));
+  }
+});
+
 test('source sync rejects partial or row-level failures', () => {
   assert.equal(classifySourceSyncV1({
     status: 'completed',

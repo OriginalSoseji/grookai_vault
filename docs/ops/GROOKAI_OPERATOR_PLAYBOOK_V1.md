@@ -115,3 +115,23 @@ Deploy only the control-plane package with its permanent closeout artifacts, kee
 MTG, pricing, MEE and backup runtimes pinned. Refresh real control-plane evidence,
 rerun the paused read-only MTG audit, and verify manual then automatic backup runs.
 Keep the startup failure and earlier control-plane reports as incident history.
+
+## Recovered pricing health — October 6, 2026
+
+Pricing retries can retain `failed_at` after a successful completion. The control
+plane accepts that historical failure only when the current state is published
+or verified, reconciliation succeeded, both error fields are cleared, and valid
+completion time is strictly later than the failure and no later than observation.
+Freshness still uses the completion time and the existing threshold. An active
+failure, ambiguous chronology, missing completion, or uncleared error stays failed.
+Never clear stored incident timestamps or manufacture healthy worker receipts.
+
+The repair checkout is `C:/gv_agent_health_20261006`, based on the actually deployed
+control-plane producer `1379bbf192e92bba86ef1d4cf8b6c3161b5fa85e`; these runtime
+files are absent from the current application main tree. Keep the application
+release and the separate pricing/MEE/catalog worker runtimes unchanged. Private
+qualification and deployment receipts belong in
+`C:/grookai_vault_operator_artifacts/agent_health_recovery_20261006`.
+After a qualified immutable control-plane release, collect real health evidence
+and rerun the blocked read-only catalog audits sequentially. Their actual catalog
+findings remain visible; a recovered pricing status is not catalog completeness.
