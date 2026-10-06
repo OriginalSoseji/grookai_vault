@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Collectr sealed product labels — October 6
+
+PR601 and its 50-copy incremental import are complete: 1,590 accounted copies,
+562 retained source rows. The next local candidate on main04980f98d adds four
+exact full-label aliases, qualifying 12 more rows / 19 copies without changing
+other preview results. See the [product-label checkpoint](../checkpoints/collectr_sealed_product_labels_20261006.md)
+and private collectr_sealed_labels_20261006/CHECKPOINT.json for actual status.
+No new production save or release is implied by qualification. Preserve original
+source groups, all consumed requests and retained labs. No schema changes.
+
 ## Collectr preview catalog timeout — October 6
 
 The original USD import and PR599 receipt recovery are complete. Never replay

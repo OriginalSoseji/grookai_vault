@@ -1,10 +1,25 @@
 # Collectr sealed import
 
-Status: identity planner, atomic V3 backend and website integration are implemented
-and locally tested. Web V3 is off by default behind server
-`GV_COLLECTR_SEALED_IMPORT_V3=1`; native clients remain V2. V3 is not deployed and
-no further real collection import has occurred. Existing card import behavior
-and the completed Surge Foil release remain unchanged.
+Status: the V3 website importer is live, with 1,590 source-accounted copies and
+562 retained review rows independently verified after PR601. Native clients
+remain V2. The next product-label candidate is local only; its actual evidence
+and release state belong to private `collectr_sealed_labels_20261006/CHECKPOINT.json`.
+The website remains controlled by server `GV_COLLECTR_SEALED_IMPORT_V3=1`.
+
+## Exact product labels
+
+Four explicit, one-way full-label aliases cover the Final Fantasy Collector
+Booster Display, Gift Bundle and Starter Kit with the Collectr `Universes Beyond:`
+prefix, plus Prismatic Evolutions `Super Premium` / `Super-Premium` punctuation.
+Each alias binds the source game, normalized set and physical package form.
+This does not permit generic prefix removal, fuzzy matching or suffix stripping.
+The canonical or reviewed mapping name must equal the complete target label.
+
+All existing release, mapping, language, region, edition, wave, quantity and cost
+checks still apply. Exact-name and alias candidates are considered together;
+an alias never wins over another valid identity. Cases, Japanese products,
+retailer editions and unknown labels stay in review. Original CSV names and
+metadata remain unchanged through preview and server target resolution.
 
 ## Website and recovery
 
@@ -83,9 +98,11 @@ exactly, then examines only its unresolved indices. It never adds inventory.
 - Missing card numbers alone do not establish sealed identity. Numbered rows
   remain on the card path. Unknown games, grades, watchlist rows, unsupported
   finishes and invalid quantities are held separately.
-- Match a complete canonical or reviewed source name within the same game.
+- Match a complete canonical or reviewed source name within the same game,
+  including only the explicitly scoped full-label aliases documented above.
   Preserve package size, case/display distinctions, retailer exclusives and art
-  labels. Only case, whitespace and NFC normalization are permitted for names.
+  labels. Outside those aliases, only case, whitespace and NFC normalization
+  are permitted for names.
 - Require a frozen active release, exact member/mapping/variant binding and a
   confirmed sealed review. Full release member counts and unique variant IDs
   must agree; incomplete snapshots fail the entire plan.

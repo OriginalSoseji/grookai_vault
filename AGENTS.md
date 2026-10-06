@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Collectr sealed product labels — October 6
+
+Read docs/checkpoints/collectr_sealed_product_labels_20261006.md. PR601 is live;
+its 1,590 accounted copies and 562 remaining rows are verified. Do not replay
+its imports. The new main04980f98d-based candidate adds four exact scoped labels,
+qualifying 12 rows / 19 copies locally. Private collectr_sealed_labels_20261006/
+CHECKPOINT.json owns actual release state. Preserve all previous mappings,
+PR602 language-index work and populated labs. No schema or permission changes.
+
 ## Collectr preview catalog timeout — October 6
 
 Read docs/checkpoints/collectr_preview_catalog_timeout_20261006.md. The USD import
