@@ -1,3 +1,4 @@
+import {paymentSnapshot, paymentMethod, tenderMethods} from './salesPayments.mjs';
 // Draft estimates only. Authenticated database writers validate final amounts.
 export const conditions = ['NM', 'LP', 'MP', 'HP', 'DMG'];
 export const methods = ['Cash', 'Card (external terminal)', 'Bank / payment app', 'Other'];
@@ -7,7 +8,7 @@ const integer = (value, min, max) => Number.isSafeInteger(value) && value >= min
 const customerValid = c => c && text(c.name, 120) && text(c.email, 254) && text(c.phone, 40) && text(c.wants, 1000) && text(c.notes, 2000);
 function draftValid(d) {
     return d && uuid(d.id) && text(d.label, 120) && text(d.storeName, 120) && text(d.note, 500) &&
-        methods.includes(d.method) && integer(d.taxMinor, 0, 100000000) && (d.customerId === null || uuid(d.customerId)) && customerValid(d.customer) &&
+        methods.includes(d.method) && (d.payments === undefined || Array.isArray(d.payments) && d.payments.length <= 4 && d.payments.every(e => e && tenderMethods.includes(e.method) && integer(e.amountMinor, 0, 100000000) && integer(e.tenderedMinor, 0, 100000000))) && integer(d.taxMinor, 0, 100000000) && (d.customerId === null || uuid(d.customerId)) && customerValid(d.customer) &&
         Array.isArray(d.items) && d.items.length <= 50 && d.items.every(l => text(l.description, 200) && integer(l.unitMinor, 1, 100000000) && integer(l.quantity, 1, 999) && (!l.instanceId || uuid(l.instanceId) && l.quantity === 1)) &&
         Array.isArray(d.trades) && d.trades.length <= 50 && d.trades.every(t => text(t.description, 200) && integer(t.valueMinor, 1, 100000000) && integer(t.quantity, 1, 999) && integer(t.rateBps, 1, 10000));
 }
@@ -15,7 +16,7 @@ function validateJournal(b) {
     if (!b || b.version !== 2 || !integer(b.revision, 0, Number.MAX_SAFE_INTEGER - 1) || !Array.isArray(b.drafts) || b.drafts.length > 20 ||
         !b.drafts.every(draftValid) || new Set(b.drafts.map(d => d.id)).size !== b.drafts.length ||
         (b.active !== null && !b.drafts.some(d => d.id === b.active)) ||
-        (b.pending !== null && (!b.pending || !uuid(b.pending.id) || !b.pending.cart || ![1, 2].includes(b.pending.cart.version))) ||
+        (b.pending !== null && (!b.pending || !uuid(b.pending.id) || !b.pending.cart || ![1, 2, 3].includes(b.pending.cart.version))) ||
         (b.catalog !== null && (!b.catalog || !uuid(b.catalog.id) || !b.drafts.some(d => d.id === b.catalog.draftId) || !uuid(b.catalog.card?.cardId) || !uuid(b.catalog.card?.printingId) || !conditions.includes(b.catalog.card?.condition) || b.catalog.card?.intent !== 'hold' || b.catalog.card?.priceMinor !== null || !b.catalog.line)) ||
         (b.pending && b.catalog))
         throw Error('Saved deals could not be read. Preserve this browser data.');
@@ -67,8 +68,9 @@ export function saleRequest(d, id) {
         if (!t.description.trim() || !integer(t.valueMinor * t.quantity, 1, 100000000) || t.cardId && (!uuid(t.cardId) || !uuid(t.printingId) || !conditions.includes(t.condition) || t.quantity !== 1) || !t.cardId && (t.printingId !== null || t.condition !== null) || t.addToVault && !t.cardId)
             throw Error('Check trade value, percentage and printing.');
     }
-    return { id, cart: { version: d.trades.length ? 2 : 1, storeName: d.storeName.trim(), items: d.items.map(({ instanceId = null, description, quantity, unitMinor }) => ({ instanceId, description, quantity, unitMinor })),
-            ...(d.trades.length ? { trades: d.trades.map(({ description, valueMinor, rateBps, quantity, cardId, printingId, condition, addToVault }) => ({ description, valueMinor, rateBps, quantity, cardId, printingId, condition, addToVault })) } : {}), taxMinor: d.taxMinor, method: d.method, note: d.note.trim(), customerId: d.customerId, customer: { ...d.customer } } };
+    const payments = d.payments === undefined ? null : paymentSnapshot(d.payments, amount.balance);
+    return { id, cart: { version: payments ? 3 : d.trades.length ? 2 : 1, storeName: d.storeName.trim(), items: d.items.map(({ instanceId = null, description, quantity, unitMinor }) => ({ instanceId, description, quantity, unitMinor })),
+            ...(d.trades.length || payments ? { trades: d.trades.map(({ description, valueMinor, rateBps, quantity, cardId, printingId, condition, addToVault }) => ({ description, valueMinor, rateBps, quantity, cardId, printingId, condition, addToVault })) } : {}), taxMinor: d.taxMinor, ...(payments ? {payments: payments.entries} : {}), method: payments ? paymentMethod(payments.entries) : d.method, note: d.note.trim(), customerId: d.customerId, customer: { ...d.customer } } };
 }
 // Explicit projection: never pass customer contacts, private notes or costs.
 export function customerDeal(d) {

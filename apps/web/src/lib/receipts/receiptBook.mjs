@@ -1,3 +1,4 @@
+import {validatePayments, paymentLines} from '../sales/salesPayments.mjs';
 import { validateTradeReceipt, tradeReceiptLines } from './tradeReceipt.mjs';
 export const BOOK_VERSION = 1;
 const METHODS = ['Cash', 'Card (external terminal)', 'Bank / payment app', 'Other'];
@@ -52,7 +53,7 @@ export function receiptText(r) {
   return [r.storeName,'SALES RECEIPT',r.number,new Date(r.createdAt).toLocaleString(),r.customerName?`Customer: ${r.customerName}`:'',
     ...r.items.map(i=>`${i.quantity} × ${i.description} @ ${money(i.unitMinor)} — ${money(i.lineMinor)}`),
     `Subtotal: ${money(r.subtotalMinor)}`,`Discount: ${money(r.discountMinor)}`,`Tax recorded: ${money(r.taxMinor)}`,`TOTAL: ${money(r.totalMinor)}`,
-    ...tradeReceiptLines(r,money),
+    ...tradeReceiptLines(r,money), ...paymentLines(r,money),
     `${r.tradeIn?'Payment / payout method':'Payment method'}: ${r.method}`,r.tradeIn?'Exchange completed and recorded by the vendor. Grookai did not move money.':'Payment received and recorded by the vendor. This is not a Grookai-processed payment.',r.note,'Thank you for your purchase!'].filter(Boolean).join('\n');
 }
 export const escapeHtml = value => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -73,9 +74,10 @@ export function parseBackup(raw) {
     const ids=new Set();const sources=new Set();const receipts=b.receipts.map(row=>{
     const r=row.receipt;check(r&&idPattern.test(r.id)&&!ids.has(r.id),'Duplicate or invalid receipt.');ids.add(r.id);
     check(!r.sourceDispositionId||!sources.has(r.sourceDispositionId),'Duplicate source sale.');if(r.sourceDispositionId)sources.add(r.sourceDispositionId);
-    const restored=createReceipt({storeName:r.storeName,customer:{name:r.customerName,email:'',phone:'',wants:'',notes:''},confirmed:true,method:r.method,items:r.items.map(i=>({description:i.description,quantity:String(i.quantity),price:(i.unitMinor/100).toFixed(2)})),discount:(r.discountMinor/100).toFixed(2),tax:(r.taxMinor/100).toFixed(2),note:r.note,sourceDispositionId:r.sourceDispositionId},r.id,r.createdAt);
+    const restored=createReceipt({storeName:r.storeName,customer:{name:r.customerName,email:'',phone:'',wants:'',notes:''},confirmed:true,method:r.payments && r.method === 'Split payment' ? 'Other' : r.method,items:r.items.map(i=>({description:i.description,quantity:String(i.quantity),price:(i.unitMinor/100).toFixed(2)})),discount:(r.discountMinor/100).toFixed(2),tax:(r.taxMinor/100).toFixed(2),note:r.note,sourceDispositionId:r.sourceDispositionId},r.id,r.createdAt);
     check(restored.number===r.number&&restored.totalMinor===r.totalMinor&&restored.subtotalMinor===r.subtotalMinor,'Receipt totals do not match.');
     if(Object.hasOwn(r,'tradeIn'))restored.tradeIn=validateTradeReceipt(r.tradeIn,r.totalMinor);
+    if(Object.hasOwn(r,'payments')) {restored.payments=validatePayments(r.payments,restored.tradeIn?.balanceMinor??restored.totalMinor,r.method);restored.method=r.method;}
       check(row.customerId===null||customerIds.has(row.customerId),'Missing customer record.');return {receipt:restored,customerId:row.customerId};
     });check(customerIds.size===customers.length,'Duplicate customer ID.');
   return {version:1,receipts,customers,storeName:text(b.storeName,120)};

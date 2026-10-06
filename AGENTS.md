@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Split external payments — October 6
+
+Candidate: C:/gv_sales_split_payments_20261006, base main04980f98d. Read
+docs/ops/SALES_SPLIT_PAYMENTS_20261006.md and the SALES_SPLIT_PAYMENTS_V1 contract.
+Desktop/native split payments, cash change, receipt breakdown and tender reports
+use an additive default-off v3 writer. Existing v1/v2 writers remain unchanged.
+External sales_split_payments_20261006/CHECKPOINT.json owns proof/release state.
+Local430 replay/upgrade includes deferred receipt429; it is not authority to
+apply receipt delivery remotely. Preserve production428, prior web/TestFlight346,
+receipt sender deferral, catalog work and every retained lab/upload intent.
+
 ## Collectr preview catalog timeout — October 6
 
 Read docs/checkpoints/collectr_preview_catalog_timeout_20261006.md. The USD import

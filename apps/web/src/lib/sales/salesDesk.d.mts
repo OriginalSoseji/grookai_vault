@@ -1,3 +1,4 @@
+import type {Tender} from './salesPayments.mjs';
 export type SaleLine = {
     instanceId?: string | null;
     gvviId?: string;
@@ -32,6 +33,7 @@ export type SaleDraft = {
     trades: TradeLine[];
     taxMinor: number;
     method: string;
+    payments?: Tender[];
     note: string;
     customerId: string | null;
     customer: Customer;
@@ -45,6 +47,7 @@ export type SaleRequest = {
         trades?: TradeLine[];
         taxMinor: number;
         method: string;
+    payments?: Tender[];
         note: string;
         customerId: string | null;
         customer: Customer;

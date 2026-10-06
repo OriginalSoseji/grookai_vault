@@ -9,6 +9,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_trade.dart';
+import '../../services/sales/sales_payments.dart';
+import 'sales_payment_editor.dart';
 import '../../services/sales/sales_drafts.dart';
 import '../../widgets/card_surface_artwork.dart';
 import 'sales_dashboard.dart';
@@ -47,6 +49,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   StreamSubscription<void>? _accountSubscription;
   String? _error;
   String _method = 'Cash';
+  List<Map<String, dynamic>>? _payments;
+  int get _balance =>
+      _lines.fold<int>(
+        saleMoneyInput(_tax.text) ?? 0,
+        (n, l) => n + l.quantity * l.unitMinor,
+      ) -
+      _trades.fold<int>(0, (n, t) => n + t.creditMinor);
   Map<String, dynamic>? _draftBook;
   Future<void> _draftWrites = Future<void>.value();
   bool _restoringDraft = true;
@@ -151,7 +160,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         if (_pending != null) {
           final cart = _pending!['cart'] as Map;
           _store.text = cart['storeName'] as String;
-          _method = cart['method'] as String;
+          _method = salesTenderMethods.contains(cart['method'])
+              ? cart['method'] as String
+              : 'Other';
+          _payments = (cart['payments'] as List?)
+              ?.map((e) => Map<String, dynamic>.from(e as Map))
+              .toList();
           _tax.text = saleMoney(cart['taxMinor'] as int);
           _note.text = cart['note'] as String;
           _trades
@@ -221,6 +235,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     _tax.text = d['tax'] as String;
     _note.text = d['note'] as String;
     _method = d['method'] as String;
+    _payments = (d['payments'] as List?)
+        ?.map((e) => Map<String, dynamic>.from(e as Map))
+        .toList();
     final customer = d['customer'] as Map;
     _name.text = customer['name'] as String;
     _email.text = customer['email'] as String;
@@ -266,6 +283,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       'tax': _tax.text,
       'note': _note.text,
       'method': _method,
+      if (_payments != null)
+        'payments': _payments!
+            .map((e) => Map<String, dynamic>.from(e))
+            .toList(),
       'customerId': _customer?['id'],
       'customer': {
         'name': _name.text,
@@ -716,6 +737,20 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         return;
       }
       final balance = total - credit;
+      if (_payments != null) {
+        try {
+          if (_data?.paymentsAvailable != true) {
+            throw StateError(
+              'Split payments are unavailable. Keep this deal saved and retry later.',
+            );
+          }
+          salesPaymentSnapshot(_payments!, balance);
+        } catch (error) {
+          _message(error.toString());
+          return;
+        }
+      }
+
       setState(() => _editing = true);
       try {
         if (_draftBook != null && await _service.pendingCatalogAdd() != null) {
@@ -736,7 +771,32 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           title: Text(
             _trades.isEmpty ? 'Record this sale?' : 'Review the full deal',
           ),
-          content: _trades.isNotEmpty
+          content: _payments != null
+              ? SizedBox(
+                  width: 540,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (_trades.isNotEmpty) _tradeSummary(total),
+                        ...salesPaymentLines({
+                          'payments': salesPaymentSnapshot(_payments!, balance),
+                          'method': salesPaymentMethod(_payments!),
+                          'totalMinor': total,
+                          if (_trades.isNotEmpty)
+                            'tradeIn': {'balanceMinor': balance},
+                        }, (n) => 'USD ${saleMoney(n)}').map(
+                          (line) => Text(line),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Confirm the cards and money have been exchanged. ${_lines.where((l) => l.instanceId != null).length} outgoing copies will be marked sold. This records the exchange and does not move money.',
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              : _trades.isNotEmpty
               ? SizedBox(
                   width: 540,
                   child: SingleChildScrollView(
@@ -786,12 +846,22 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         'id': newSaleId(),
         if (_draftBook != null) 'draftId': _draftBook!['active'],
         'cart': {
-          'version': _trades.isEmpty ? 1 : 2,
-          if (_trades.isNotEmpty)
+          'version': _payments != null
+              ? 3
+              : _trades.isEmpty
+              ? 1
+              : 2,
+          if (_trades.isNotEmpty || _payments != null)
             'trades': _trades.map((t) => t.toJson()).toList(),
           'storeName': _store.text.trim(),
           'items': _lines.map((line) => line.toJson()).toList(),
-          'method': _method,
+          'method': _payments == null
+              ? _method
+              : salesPaymentMethod(_payments!),
+          if (_payments != null)
+            'payments': _payments!
+                .map((e) => Map<String, dynamic>.from(e))
+                .toList(),
           'taxMinor': tax,
           'note': _note.text.trim(),
           'customerId': _customer?['id'],
@@ -878,6 +948,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _restoringDraft = true;
         _lines.clear();
         _trades.clear();
+        _payments = null;
+        _method = 'Cash';
         _pending = null;
         _receipt = null;
         _customer = null;
@@ -1243,29 +1315,59 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           const Divider(height: 32),
         ],
         _field(_store, 'Store name on receipt', 120),
-        DropdownButtonFormField<String>(
-          initialValue: _method,
-          isExpanded: true,
-          decoration: const InputDecoration(
-            labelText: 'Payment / payout method',
-            border: OutlineInputBorder(),
+        if (_data?.paymentsAvailable == true || _payments != null)
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Split payment / cash change'),
+            value: _payments != null,
+            onChanged: _locked
+                ? null
+                : (enabled) => _edited(
+                    () => _payments = enabled
+                        ? (_balance == 0
+                              ? []
+                              : [
+                                  {
+                                    'method': _method,
+                                    'amountMinor': _balance.abs(),
+                                    'tenderedMinor': _balance.abs(),
+                                  },
+                                ])
+                        : null,
+                  ),
           ),
-          items:
-              const [
-                    'Cash',
-                    'Card (external terminal)',
-                    'Bank / payment app',
-                    'Other',
-                  ]
-                  .map(
-                    (method) =>
-                        DropdownMenuItem(value: method, child: Text(method)),
-                  )
-                  .toList(),
-          onChanged: _locked
-              ? null
-              : (value) => _edited(() => _method = value!),
-        ),
+        if (_payments != null)
+          SalesPaymentEditor(
+            key: ValueKey(_draftBook?['active']),
+            entries: _payments!,
+            balance: _balance,
+            disabled: _locked,
+            onChanged: (entries) => _edited(() => _payments = entries),
+          ),
+        if (_payments == null)
+          DropdownButtonFormField<String>(
+            initialValue: _method,
+            isExpanded: true,
+            decoration: const InputDecoration(
+              labelText: 'Payment / payout method',
+              border: OutlineInputBorder(),
+            ),
+            items:
+                const [
+                      'Cash',
+                      'Card (external terminal)',
+                      'Bank / payment app',
+                      'Other',
+                    ]
+                    .map(
+                      (method) =>
+                          DropdownMenuItem(value: method, child: Text(method)),
+                    )
+                    .toList(),
+            onChanged: _locked
+                ? null
+                : (value) => _edited(() => _method = value!),
+          ),
         const SizedBox(height: 12),
         _field(
           _tax,

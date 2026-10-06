@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import SalesDialog from './SalesDialog';
+import SalesPaymentEditor from './SalesPaymentEditor';
+import {paymentLines, paymentSnapshot} from '@/lib/sales/salesPayments.mjs';
 import SalesDashboard from './SalesDashboard';
 import type {SalesReceipt} from '@/lib/sales/salesReport.mjs';
 import { ArrowLeft, Search, ShoppingBag, Plus, Pause, Users, Eye, X, ArrowRightLeft, Check, LoaderCircle } from 'lucide-react';
@@ -38,6 +40,7 @@ type Session = {
     owner: string;
     available: boolean;
     trades: boolean;
+    payments: boolean;
 };
 type Book = {
     book: {
@@ -62,6 +65,7 @@ async function request<T>(query: Record<string, string> = {}, body?: object): Pr
     return result as T;
 }
 const emptyJournal: Journal = { version: 2, revision: 0, drafts: [], active: null, pending: null, catalog: null };
+function paymentsValid(d:SaleDraft) {try {if(d.payments)paymentSnapshot(d.payments,totals(d).balance);return true;}catch{return false;}}
 export default function SalesDesk() {
     const [dashboard,setDashboard]=useState(false),[historyBusy,setHistoryBusy]=useState(false);
     const [session, setSession] = useState<Session | null>(null), [journal, setJournal] = useState<Journal>(emptyJournal), [book, setBook] = useState<Book['book'] | null>(null);
@@ -268,7 +272,7 @@ export default function SalesDesk() {
             if (!pending) {
                 const staged = await mutate(j => { if (j.catalog)
                     throw Error('Recover the catalog add first.'); const current = j.drafts.find(d => d.id === j.active); if (!current)
-                    throw Error('Reopen the saved deal.'); return { ...j, pending: saleRequest(current, crypto.randomUUID()) }; });
+                    throw Error('Reopen the saved deal.'); if(current.payments !== undefined && !session?.payments) throw Error('Split payments are unavailable. Keep this deal saved and retry later.'); return { ...j, pending: saleRequest(current, crypto.randomUUID()) }; });
                 pending = staged.pending!;
             }
             if (disabled.current)
@@ -360,10 +364,10 @@ export default function SalesDesk() {
             setError('Check the tax amount.');
         } }}/></label><label>Receipt note<input maxLength={draft.trades.length ? 350 : 500} disabled={locked} key={draft.id} defaultValue={draft.note} onChange={e => { const value=e.target.value; edit(d => ({ ...d, note: value })); }}/></label></details>
     <div className={s.checkout}><dl><dt>Items</dt><dd>${money(balance!.subtotal)}</dd><dt>Tax recorded</dt><dd>${money(draft.taxMinor)}</dd>{draft.trades.length > 0 && <><dt>Trade credit</dt><dd>−${money(balance!.credit)}</dd></>}<dt className={s.total}>{balance!.balance < 0 ? 'You pay customer' : 'Customer pays'}</dt><dd className={s.total}>${money(Math.abs(balance!.balance))}</dd></dl>
-    {receipt ? <div className={s.saved}><Check /> Sale recorded · {receipt.number}<Link href="/account/store/receipts/cloud">Open receipts to print, share or send</Link><button onClick={() => void fresh().catch(e => setError(e.message))}>Next customer</button></div> : journal.pending ? <button className={s.primary} disabled={busy} onClick={() => void complete()}>Recover this sale</button> : <button className={s.primary} disabled={locked || !draft.items.length} onClick={() => setReview(true)}>Review deal <span>${money(Math.abs(balance!.balance))}</span></button>}
+    {receipt ? <div className={s.saved}><Check /> Sale recorded · {receipt.number}{paymentLines(receipt,n=>'$'+money(n)).map((line,i)=><p key={i}>{line}</p>)}<Link href="/account/store/receipts/cloud">Open receipts to print, share or send</Link><button onClick={() => void fresh().catch(e => setError(e.message))}>Next customer</button></div> : journal.pending ? <button className={s.primary} disabled={busy} onClick={() => void complete()}>Recover this sale</button> : <button className={s.primary} disabled={locked || !draft.items.length} onClick={() => setReview(true)}>Review deal <span>${money(Math.abs(balance!.balance))}</span></button>}
     <small>Drafts stay on this browser. Payment is collected with cash or your external terminal.</small></div></>}
   </aside></div>}
-  {review && draft && <SalesDialog className={s.modal} label="Review deal" busy={busy} onClose={() => setReview(false)}><h2>Complete the exchange</h2><p>{draft.items.length} sale lines · {draft.trades.length} trade lines</p><h3>{balance!.balance < 0 ? 'Pay customer' : 'Receive'} ${money(Math.abs(balance!.balance))}</h3><label>Payment / payout method<select disabled={busy} value={draft.method} onChange={e => { const value=e.target.value; edit(d => ({ ...d, method: value })); }}>{methods.map(m => <option key={m}>{m}</option>)}</select></label><p>Confirm the physical cards and payment have been exchanged. This records the sale; it does not charge a payment card.</p><div className={s.actions}><button disabled={busy} onClick={() => setReview(false)}>Back to deal</button><button className={s.primary} disabled={busy} onClick={() => void complete()}>{busy ? <LoaderCircle size={18}/> : <Check size={18}/>} Exchange completed · Record</button></div></SalesDialog>}
+  {review && draft && <SalesDialog className={s.modal} label="Review deal" busy={busy} onClose={() => setReview(false)}><h2>Complete the exchange</h2><p>{draft.items.length} sale lines · {draft.trades.length} trade lines</p><h3>{balance!.balance < 0 ? 'Pay customer' : 'Receive'} ${money(Math.abs(balance!.balance))}</h3>{(session?.payments || draft.payments !== undefined) && <label className={s.paymentToggle}><input type="checkbox" disabled={busy} checked={draft.payments !== undefined} onChange={e=>{const checked=e.target.checked; edit(d=>({...d,payments:checked?(balance!.balance===0?[]:[{method:d.method,amountMinor:Math.abs(balance!.balance),tenderedMinor:Math.abs(balance!.balance)}]):undefined}));}}/> Split payment / cash change</label>}{draft.payments !== undefined ? <SalesPaymentEditor entries={draft.payments} balance={balance!.balance} disabled={busy} onChange={update=>edit(d=>({...d,payments:update(d.payments??[])}))}/> : <label>Payment / payout method<select disabled={busy} value={draft.method} onChange={e => { const value=e.target.value; edit(d => ({ ...d, method: value })); }}>{methods.map(m => <option key={m}>{m}</option>)}</select></label>}<p>Confirm the physical cards and payment have been exchanged. This records the sale; it does not charge a payment card.</p><div className={s.actions}><button disabled={busy} onClick={() => setReview(false)}>Back to deal</button><button className={s.primary} disabled={busy || (draft.payments !== undefined && (!session?.payments || !paymentsValid(draft)))} onClick={() => void complete()}>{busy ? <LoaderCircle size={18}/> : <Check size={18}/>} Exchange completed · Record</button></div></SalesDialog>}
   {showDeal && deal && <SalesDialog className={s.customerDisplay} label="Customer deal" onClose={() => setShowDeal(false)}><button className={s.close} aria-label="Close customer view" onClick={() => setShowDeal(false)}><X /></button><small>YOUR DEAL</small><h2>{deal.storeName}</h2>{deal.items.map((l, i) => <div className={s.displayLine} key={i}>{l.image && <Image unoptimized width={300} height={420} src={l.image} alt=""/>}<div><strong>{l.description}</strong>{l.askingMinor != null && <small>Asking ${money(l.askingMinor)}</small>}<small>{l.quantity} × ${money(l.unitMinor)}</small></div><strong>${money(l.quantity * l.unitMinor)}</strong></div>)}{deal.trades.map((t, i) => <div className={s.displayLine} key={'t' + i}><div><strong>Trade-in · {t.description}</strong><small>{t.quantity} × ${money(t.valueMinor)} × {t.rateBps / 100}%</small></div><strong>−${money(t.creditMinor)}</strong></div>)}<p>Tax recorded: ${money(deal.taxMinor)}</p><h3>{deal.balance < 0 ? 'You receive' : 'You pay'} ${money(Math.abs(deal.balance))}</h3><p>{receipt ? 'Sale recorded · ' + receipt.number : 'Deal preview · payment not confirmed'}</p></SalesDialog>}
  {!dashboard&&draft && <a className={s.mobileCart} href="#sales-cart"><ShoppingBag size={18}/>{draft.items.length} items · View deal <strong>${money(Math.abs(balance!.balance))}</strong></a>}
  </main>;

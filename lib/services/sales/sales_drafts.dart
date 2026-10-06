@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'sales_payments.dart';
 
 /// Device-local work in progress. A held deal never reserves inventory.
 Map<String, dynamic> readSalesDrafts(String? raw) {
@@ -25,6 +26,16 @@ Map<String, dynamic> readSalesDrafts(String? raw) {
           'Bank / payment app',
           'Other',
         ].contains(d['method']) ||
+        (d['payments'] != null &&
+            (d['payments'] is! List ||
+                (d['payments'] as List).length > 4 ||
+                !(d['payments'] as List).every(
+                  (e) =>
+                      e is Map &&
+                      salesTenderMethods.contains(e['method']) &&
+                      number(e['amountMinor'], 0, 100000000) &&
+                      number(e['tenderedMinor'], 0, 100000000),
+                ))) ||
         d['items'] is! List ||
         d['trades'] is! List ||
         d['customer'] is! Map) {
