@@ -1,5 +1,46 @@
 # Grookai Operator Playbook V1
 
+## Refined Sales Desk — October 5
+
+Active candidate: C:/gv_sales_desk_refined_20261005, based on main b5444e82f
+with receipt candidate103c1838 integrated. Read docs/ops/SALES_DESK_REFINED_20261005.md
+and docs/contracts/SALES_DESK_REFINED_V1.md. Desktop/native held carts, continuous
+stock/catalog/trade entry, customer view and desktop reporting are local candidates.
+The external sales_desk_refined_20261005/CHECKPOINT.json records actual checks.
+Preserve receipt PR598, signed unuploaded iOS345 and live TestFlight344. Sender
+setup remains deferred; no production mutation, actual message or upload is implied.
+Do not reset retained labs, replay migration/upload intents or edit repair trees.
+
+## Receipt delivery release preparation — October 5
+
+PR598 has complete local application proof against main62d287019 and schema429.
+The new `ReceiptDeliveryReleaseV1` gate permits only the exact receipt migration
+20261005150000 over production428. It rereads both retained labs, receipt/copy
+fixtures and production schema without resetting or applying anything. PrePush
+also requires clean committed source, current-main ancestry and fresh normal hooks.
+The fixed CLI inspection package supports preparation and dry-run only. Sending
+remains off; sender setup and authorized real delivery proof are still pending.
+Read external receipt_delivery_20261005/CHECKPOINT.json for actual outcomes.
+Do not replay previous fast-entry, Collectr, migration or native upload intents.
+
+## Receipt delivery combined integration — October 5
+
+PR598 source is being integrated with PR597/main62d287019. The Collectr release
+receipt reports production428; verify fresh baseline before receipt schema work.
+The combined receipt candidate is429 on fresh full/upgrade3270x/3272x labs.
+Earlier428 receipt labs and all Collectr fixtures are retained and must not reset.
+Receipt product/SQL bytes stay unchanged; only proof routing and integration change.
+External receipt_delivery_20261005/CHECKPOINT.json owns current proof/release state.
+Sending remains disabled; no receipt migration or sender activation in production.
+
+## Direct receipt delivery — October 5, 2026
+
+Read [the receipt delivery checkpoint](RECEIPT_DELIVERY_20261005.md). Native fast
+entry is released as344 and PR595 is merged. New receipt delivery is a local-only
+candidate with default-off428 schema and654xx labs. Preserve populated upgrade
+fixtures and catalog/Collectr work. Real sender configuration/delivery is pending;
+the external receipt_delivery_20261005 checkpoint distinguishes proof from release.
+
 ## Collectr sealed live-release continuation — October 5
 
 Release source now includes PR595/main a186a9bb2 (native Sales desk fast entry)

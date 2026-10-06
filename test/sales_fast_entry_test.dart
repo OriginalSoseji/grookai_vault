@@ -65,6 +65,11 @@ Future<void> chooseAndPrice(WidgetTester tester, String price) async {
     120,
     scrollable: scrollable,
   );
+  await Scrollable.ensureVisible(
+    tester.element(find.byKey(const ValueKey('canonical-0'))),
+    alignment: .25,
+  );
+  await tester.pumpAndSettle();
   await tester.tap(
     find
         .descendant(
@@ -212,12 +217,19 @@ void main() {
           find.widgetWithText(TextField, 'Find a card, GV-ID or copy ID'),
           'Pikachu',
         );
-        await tester.tap(find.text('Search catalog & add a card'));
+        await tester.tap(find.text('Catalog'));
         await tester.pumpAndSettle();
         await tester.pump(const Duration(milliseconds: 400));
         await tester.pumpAndSettle();
         expect(find.text('1 of 2 results'), findsOneWidget);
-        await tester.tap(find.text('Catalog card 0').last);
+        await tester.tap(
+          find
+              .descendant(
+                of: find.byType(SalesCatalogDialog),
+                matching: find.text('Catalog card 0'),
+              )
+              .last,
+        );
         await tester.pumpAndSettle();
         await chooseAndPrice(tester, '20');
         expect(find.byType(SalesCatalogDialog), findsOneWidget);
@@ -231,7 +243,14 @@ void main() {
               .text,
           'Pikachu',
         );
-        await tester.tap(find.text('Catalog card 0').last);
+        await tester.tap(
+          find
+              .descendant(
+                of: find.byType(SalesCatalogDialog),
+                matching: find.text('Catalog card 0'),
+              )
+              .last,
+        );
         await tester.pumpAndSettle();
         await chooseAndPrice(tester, '25');
         expect(service.ids.toSet(), hasLength(2));
@@ -257,7 +276,7 @@ void main() {
     final service = BatchCatalog();
     addTearDown(service.changes.close);
     await open(tester, service, const Size(1194, 834));
-    await tester.tap(find.text('Search catalog & add a card'));
+    await tester.tap(find.text('Catalog'));
     await tester.pumpAndSettle();
     await tester.enterText(
       find.widgetWithText(TextField, 'Name, card number or GV-ID'),

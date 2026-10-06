@@ -89,7 +89,7 @@ void main() {
       final service = CatalogService()..loseCatalogReply = true;
       addTearDown(service.changes.close);
       await open(tester, service, const Size(1194, 834));
-      await tester.tap(find.text('Search catalog & add a card'));
+      await tester.tap(find.text('Catalog'));
       await tester.pumpAndSettle();
       await tester.enterText(
         find.widgetWithText(TextField, 'Name, card number or GV-ID'),
@@ -121,7 +121,12 @@ void main() {
       await tester.scrollUntilVisible(
         find.widgetWithText(TextField, 'Actual sale price (USD)'),
         150,
-        scrollable: find.byType(Scrollable).last,
+        scrollable: find
+            .descendant(
+              of: find.byType(SalesCatalogDialog),
+              matching: find.byType(Scrollable),
+            )
+            .last,
       );
       await tester.enterText(
         find.widgetWithText(TextField, 'Actual sale price (USD)'),
@@ -134,7 +139,7 @@ void main() {
       expect(find.text('Recover saved add'), findsOneWidget);
       await tester.tap(find.byTooltip('Close catalog'));
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Search catalog & add a card'));
+      await tester.tap(find.text('Catalog'));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Recover saved add'));
       await tester.pumpAndSettle();
@@ -159,7 +164,7 @@ void main() {
       final service = CatalogService();
       addTearDown(service.changes.close);
       await open(tester, service, const Size(768, 1024));
-      await tester.tap(find.text('Search catalog & add a card'));
+      await tester.tap(find.text('Catalog'));
       await tester.pumpAndSettle();
       service.changes.add(null);
       await tester.pumpAndSettle();

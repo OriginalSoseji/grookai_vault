@@ -21,11 +21,17 @@ class SalesCatalogDialog extends StatefulWidget {
     this.onAdded,
     this.canAddToCart,
     this.initialQuery = '',
+    this.embedded = false,
+    this.onClose,
+    this.onBusyChanged,
   });
   final SalesCartService service;
-  final ValueChanged<SalesCatalogResult>? onAdded;
+  final FutureOr<void> Function(SalesCatalogResult)? onAdded;
   final bool Function()? canAddToCart;
   final String initialQuery;
+  final bool embedded;
+  final VoidCallback? onClose;
+  final ValueChanged<bool>? onBusyChanged;
   @override
   State<SalesCatalogDialog> createState() => _SalesCatalogDialogState();
 }
@@ -238,13 +244,13 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
       _busy = true;
       _error = null;
     });
+    widget.onBusyChanged?.call(true);
     var staged = false;
     try {
       await widget.service.stageCatalogAdd(saved);
       staged = true;
       if (mounted && !_changed) setState(() => _pending = saved);
       final result = await widget.service.completeCatalogAdd(saved);
-      await widget.service.clearCatalogAdd(saved['id'] as String);
       if (!mounted || _changed) return;
       final added = SalesCatalogResult(
         saved['action'] == 'cart'
@@ -261,9 +267,13 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
         result['instanceId'] as String,
       );
       if (widget.onAdded == null) {
+        await widget.service.clearCatalogAdd(saved['id'] as String);
+        if (!mounted || _changed) return;
         Navigator.pop(context, added);
       } else {
-        widget.onAdded!(added);
+        await widget.onAdded!(added);
+        await widget.service.clearCatalogAdd(saved['id'] as String);
+        if (!mounted || _changed) return;
         setState(() {
           _added++;
           _pending = null;
@@ -307,355 +317,347 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
         );
       }
     } finally {
-      if (mounted) setState(() => _busy = false);
+      if (mounted) {
+        setState(() => _busy = false);
+        widget.onBusyChanged?.call(false);
+      }
     }
   }
 
   @override
-  Widget build(BuildContext context) => PopScope(
-    canPop: !_busy,
-    child: Dialog(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 820, maxHeight: 760),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: _changed
-              ? const Center(
-                  child: Text(
-                    'Your account changed. Close and reopen the sales desk.',
-                  ),
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+  Widget build(BuildContext context) => widget.embedded
+      ? _content(context)
+      : PopScope(
+          canPop: !_busy,
+          child: Dialog(child: _content(context)),
+        );
+
+  Widget _content(BuildContext context) => ConstrainedBox(
+    constraints: const BoxConstraints(maxWidth: 820, maxHeight: 760),
+    child: Padding(
+      padding: const EdgeInsets.all(20),
+      child: _changed
+          ? const Center(
+              child: Text(
+                'Your account changed. Close and reopen the sales desk.',
+              ),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Find a catalog card',
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                        ),
-                        IconButton(
-                          tooltip: 'Close catalog',
-                          onPressed: _busy
-                              ? null
-                              : () => Navigator.pop(context),
-                          icon: const Icon(Icons.close),
-                        ),
-                      ],
-                    ),
-                    const Text(
-                      'Choose the exact card and printing. Each add creates one physical copy in your Vault.',
-                    ),
-                    const SizedBox(height: 12),
-                    if (_pending == null) ...[
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: _query,
-                              focusNode: _searchFocus,
-                              enabled: !_busy,
-                              autofocus: true,
-                              onChanged: (_) => _search(),
-                              decoration: const InputDecoration(
-                                labelText: 'Name, card number or GV-ID',
-                                prefixIcon: Icon(Icons.search),
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          DropdownButton<String>(
-                            value: _game,
-                            items: const [
-                              DropdownMenuItem(
-                                value: 'pokemon',
-                                child: Text('Pokémon'),
-                              ),
-                              DropdownMenuItem(
-                                value: 'mtg',
-                                child: Text('Magic'),
-                              ),
-                              DropdownMenuItem(
-                                value: 'one_piece',
-                                child: Text('One Piece'),
-                              ),
-                            ],
-                            onChanged: _busy
-                                ? null
-                                : (value) {
-                                    _game = value!;
-                                    _search();
-                                  },
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                    ],
-                    if (_error != null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Text(
-                          _error!,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                        ),
-                      ),
-                    if (_loading || _busy) const LinearProgressIndicator(),
-                    if (_added > 0)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Text(
-                          '$_added ${_added == 1 ? 'copy' : 'copies'} added · Choose another card or close to return to your sale.',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                      ),
-                    if (_pending == null &&
-                        _selected == null &&
-                        _cards.isNotEmpty)
-                      Text(
-                        _pagination == null
-                            ? '${_cards.length} top matches · Narrow by set or card number.'
-                            : '${_cards.length} of ${_pagination!.total} results',
-                      ),
                     Expanded(
-                      child: _pending != null
-                          ? Center(
-                              child: Text(
-                                'Saved request: ${_pending!['name']}\nRecover it to confirm the same copy was added.',
-                                textAlign: TextAlign.center,
-                              ),
-                            )
-                          : _selected == null
-                          ? _cards.isEmpty
-                                ? Center(
-                                    child: Text(
-                                      _loading
-                                          ? 'Searching catalog…'
-                                          : _query.text.trim().length < 2
-                                          ? 'Search by name, set, number or exact Grookai ID.'
-                                          : 'No matching cards. Refine your search.',
-                                    ),
-                                  )
-                                : ListView.builder(
-                                    itemCount:
-                                        _cards.length +
-                                        (_pagination?.nextOffset == null
-                                            ? 0
-                                            : 1),
-                                    itemBuilder: (context, index) {
-                                      if (index == _cards.length) {
-                                        return TextButton.icon(
-                                          onPressed: _loadingMore
-                                              ? null
-                                              : _more,
-                                          icon: const Icon(Icons.expand_more),
-                                          label: Text(
-                                            _loadingMore
-                                                ? 'Loading more…'
-                                                : 'Load more',
-                                          ),
-                                        );
-                                      }
-                                      final card = _cards[index];
-                                      return Card(
-                                        child: ListTile(
-                                          contentPadding: const EdgeInsets.all(
-                                            12,
-                                          ),
-                                          leading: SizedBox(
-                                            width: 48,
-                                            height: 68,
-                                            child: CardSurfaceArtwork(
-                                              label: card.name,
-                                              imageUrl: card.catalogImageUrl,
-                                              fallbackImageUrl:
-                                                  card.providerFallbackImageUrl,
-                                              enableTapToZoom: false,
-                                            ),
-                                          ),
-                                          title: Text(card.name),
-                                          subtitle: Text(
-                                            '${card.displaySet} · ${card.displayNumber}\n${card.gvId}',
-                                          ),
-                                          isThreeLine: true,
-                                          trailing: const Icon(
-                                            Icons.chevron_right,
-                                          ),
-                                          onTap: () => _choose(card),
-                                        ),
-                                      );
-                                    },
-                                  )
-                          : ListView(
-                              children: [
-                                TextButton.icon(
-                                  onPressed: _busy
-                                      ? null
-                                      : () => setState(() {
-                                          _generation++;
-                                          _selected = null;
-                                          _loading = false;
-                                        }),
-                                  icon: const Icon(Icons.arrow_back),
-                                  label: const Text('Back to results'),
-                                ),
-                                SizedBox(
-                                  height: 170,
-                                  child: Center(
-                                    child: AspectRatio(
-                                      aspectRatio: .69,
-                                      child: CardSurfaceArtwork(
-                                        label: _selected!.name,
-                                        imageUrl: _selected!.catalogImageUrl,
-                                        fallbackImageUrl:
-                                            _selected!.providerFallbackImageUrl,
-                                        enableTapToZoom: false,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  _selected!.name,
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                Text(
-                                  '${_selected!.displaySet} · ${_selected!.displayNumber}\n${_selected!.gvId}',
-                                  textAlign: TextAlign.center,
-                                ),
-                                SalesTcgplayerLink(
-                                  reference: SalesCardReference(
-                                    name: _selected!.name,
-                                    setName: _selected!.displaySet,
-                                    number: _selected!.displayNumber,
-                                  ),
-                                ),
-                                const SizedBox(height: 16),
-                                if (!_loading && _printings.isEmpty)
-                                  const Text(
-                                    'No eligible printing is available. This card cannot be added here yet.',
-                                  ),
-                                DropdownButtonFormField<String>(
-                                  key: ValueKey(_selected!.id),
-                                  initialValue: _printing,
-                                  isExpanded: true,
-                                  decoration: const InputDecoration(
-                                    labelText: 'Exact printing / finish',
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  items: _printings
-                                      .map(
-                                        (p) => DropdownMenuItem(
-                                          value: p['id'] as String,
-                                          child: Text(
-                                            '${p['finish_label']} · ${p['printing_gv_id']}',
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
-                                  onChanged: (value) =>
-                                      setState(() => _printing = value),
-                                ),
-                                const SizedBox(height: 12),
-                                DropdownButtonFormField<String>(
-                                  initialValue: _condition,
-                                  decoration: const InputDecoration(
-                                    labelText: 'Condition',
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  items: ['NM', 'LP', 'MP', 'HP', 'DMG']
-                                      .map(
-                                        (c) => DropdownMenuItem(
-                                          value: c,
-                                          child: Text(c),
-                                        ),
-                                      )
-                                      .toList(),
-                                  onChanged: (value) =>
-                                      setState(() => _condition = value!),
-                                ),
-                                const SizedBox(height: 12),
-                                DropdownButtonFormField<String>(
-                                  initialValue: _action,
-                                  isExpanded: true,
-                                  decoration: const InputDecoration(
-                                    labelText: 'After adding',
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  items: const [
-                                    DropdownMenuItem(
-                                      value: 'cart',
-                                      child: Text('Add to this sale cart'),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 'vault',
-                                      child: Text('Keep in my Vault'),
-                                    ),
-                                    DropdownMenuItem(
-                                      value: 'listing',
-                                      child: Text('Mark for sale in my Vault'),
-                                    ),
-                                  ],
-                                  onChanged: (value) =>
-                                      setState(() => _action = value!),
-                                ),
-                                if (_action != 'vault') ...[
-                                  const SizedBox(height: 12),
-                                  TextField(
-                                    controller: _price,
-                                    keyboardType:
-                                        const TextInputType.numberWithOptions(
-                                          decimal: true,
-                                        ),
-                                    decoration: InputDecoration(
-                                      labelText: _action == 'cart'
-                                          ? 'Actual sale price (USD)'
-                                          : 'Asking price (USD)',
-                                      border: const OutlineInputBorder(),
-                                    ),
-                                  ),
-                                ],
-                                if (_action == 'listing')
-                                  const Padding(
-                                    padding: EdgeInsets.only(top: 8),
-                                    child: Text(
-                                      'Uses your existing profile sharing settings. Select it separately to list it in your store.',
-                                    ),
-                                  ),
-                              ],
-                            ),
-                    ),
-                    const SizedBox(height: 12),
-                    FilledButton.icon(
-                      onPressed:
-                          _busy ||
-                              _loading ||
-                              (_pending == null && _printing == null)
-                          ? null
-                          : _save,
-                      icon: Icon(_pending != null ? Icons.refresh : Icons.add),
-                      label: Text(
-                        _pending != null
-                            ? 'Recover saved add'
-                            : _action == 'cart'
-                            ? 'Add copy to Vault & cart'
-                            : _action == 'listing'
-                            ? 'Add copy for sale'
-                            : 'Add copy to Vault',
+                      child: Text(
+                        'Find a catalog card',
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
+                    ),
+                    IconButton(
+                      tooltip: 'Close catalog',
+                      onPressed: _busy
+                          ? null
+                          : widget.onClose ?? () => Navigator.pop(context),
+                      icon: const Icon(Icons.close),
                     ),
                   ],
                 ),
-        ),
-      ),
+                const Text(
+                  'Choose the exact card and printing. Each add creates one physical copy in your Vault.',
+                ),
+                const SizedBox(height: 12),
+                if (_pending == null) ...[
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _query,
+                          focusNode: _searchFocus,
+                          enabled: !_busy,
+                          autofocus: true,
+                          onChanged: (_) => _search(),
+                          decoration: const InputDecoration(
+                            labelText: 'Name, card number or GV-ID',
+                            prefixIcon: Icon(Icons.search),
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      DropdownButton<String>(
+                        value: _game,
+                        items: const [
+                          DropdownMenuItem(
+                            value: 'pokemon',
+                            child: Text('Pokémon'),
+                          ),
+                          DropdownMenuItem(value: 'mtg', child: Text('Magic')),
+                          DropdownMenuItem(
+                            value: 'one_piece',
+                            child: Text('One Piece'),
+                          ),
+                        ],
+                        onChanged: _busy
+                            ? null
+                            : (value) {
+                                _game = value!;
+                                _search();
+                              },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                ],
+                if (_error != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      _error!,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
+                  ),
+                if (_loading || _busy) const LinearProgressIndicator(),
+                if (_added > 0)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(
+                      '$_added ${_added == 1 ? 'copy' : 'copies'} added · Choose another card or close to return to your sale.',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ),
+                if (_pending == null && _selected == null && _cards.isNotEmpty)
+                  Text(
+                    _pagination == null
+                        ? '${_cards.length} top matches · Narrow by set or card number.'
+                        : '${_cards.length} of ${_pagination!.total} results',
+                  ),
+                Expanded(
+                  child: _pending != null
+                      ? Center(
+                          child: Text(
+                            'Saved request: ${_pending!['name']}\nRecover it to confirm the same copy was added.',
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : _selected == null
+                      ? _cards.isEmpty
+                            ? Center(
+                                child: Text(
+                                  _loading
+                                      ? 'Searching catalog…'
+                                      : _query.text.trim().length < 2
+                                      ? 'Search by name, set, number or exact Grookai ID.'
+                                      : 'No matching cards. Refine your search.',
+                                ),
+                              )
+                            : ListView.builder(
+                                itemCount:
+                                    _cards.length +
+                                    (_pagination?.nextOffset == null ? 0 : 1),
+                                itemBuilder: (context, index) {
+                                  if (index == _cards.length) {
+                                    return TextButton.icon(
+                                      onPressed: _loadingMore ? null : _more,
+                                      icon: const Icon(Icons.expand_more),
+                                      label: Text(
+                                        _loadingMore
+                                            ? 'Loading more…'
+                                            : 'Load more',
+                                      ),
+                                    );
+                                  }
+                                  final card = _cards[index];
+                                  return Card(
+                                    child: ListTile(
+                                      contentPadding: const EdgeInsets.all(12),
+                                      leading: SizedBox(
+                                        width: 48,
+                                        height: 68,
+                                        child: CardSurfaceArtwork(
+                                          label: card.name,
+                                          imageUrl: card.catalogImageUrl,
+                                          fallbackImageUrl:
+                                              card.providerFallbackImageUrl,
+                                          enableTapToZoom: false,
+                                        ),
+                                      ),
+                                      title: Text(card.name),
+                                      subtitle: Text(
+                                        '${card.displaySet} · ${card.displayNumber}\n${card.gvId}',
+                                      ),
+                                      isThreeLine: true,
+                                      trailing: const Icon(Icons.chevron_right),
+                                      onTap: () => _choose(card),
+                                    ),
+                                  );
+                                },
+                              )
+                      : ListView(
+                          children: [
+                            TextButton.icon(
+                              onPressed: _busy
+                                  ? null
+                                  : () => setState(() {
+                                      _generation++;
+                                      _selected = null;
+                                      _loading = false;
+                                    }),
+                              icon: const Icon(Icons.arrow_back),
+                              label: const Text('Back to results'),
+                            ),
+                            SizedBox(
+                              height: 170,
+                              child: Center(
+                                child: AspectRatio(
+                                  aspectRatio: .69,
+                                  child: CardSurfaceArtwork(
+                                    label: _selected!.name,
+                                    imageUrl: _selected!.catalogImageUrl,
+                                    fallbackImageUrl:
+                                        _selected!.providerFallbackImageUrl,
+                                    enableTapToZoom: false,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              _selected!.name,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                            Text(
+                              '${_selected!.displaySet} · ${_selected!.displayNumber}\n${_selected!.gvId}',
+                              textAlign: TextAlign.center,
+                            ),
+                            SalesTcgplayerLink(
+                              reference: SalesCardReference(
+                                name: _selected!.name,
+                                setName: _selected!.displaySet,
+                                number: _selected!.displayNumber,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            if (!_loading && _printings.isEmpty)
+                              const Text(
+                                'No eligible printing is available. This card cannot be added here yet.',
+                              ),
+                            DropdownButtonFormField<String>(
+                              key: ValueKey(_selected!.id),
+                              initialValue: _printing,
+                              isExpanded: true,
+                              decoration: const InputDecoration(
+                                labelText: 'Exact printing / finish',
+                                border: OutlineInputBorder(),
+                              ),
+                              items: _printings
+                                  .map(
+                                    (p) => DropdownMenuItem(
+                                      value: p['id'] as String,
+                                      child: Text(
+                                        '${p['finish_label']} · ${p['printing_gv_id']}',
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: (value) =>
+                                  setState(() => _printing = value),
+                            ),
+                            const SizedBox(height: 12),
+                            DropdownButtonFormField<String>(
+                              initialValue: _condition,
+                              decoration: const InputDecoration(
+                                labelText: 'Condition',
+                                border: OutlineInputBorder(),
+                              ),
+                              items: ['NM', 'LP', 'MP', 'HP', 'DMG']
+                                  .map(
+                                    (c) => DropdownMenuItem(
+                                      value: c,
+                                      child: Text(c),
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: (value) =>
+                                  setState(() => _condition = value!),
+                            ),
+                            const SizedBox(height: 12),
+                            DropdownButtonFormField<String>(
+                              initialValue: _action,
+                              isExpanded: true,
+                              decoration: const InputDecoration(
+                                labelText: 'After adding',
+                                border: OutlineInputBorder(),
+                              ),
+                              items: const [
+                                DropdownMenuItem(
+                                  value: 'cart',
+                                  child: Text('Add to this sale cart'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'vault',
+                                  child: Text('Keep in my Vault'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'listing',
+                                  child: Text('Mark for sale in my Vault'),
+                                ),
+                              ],
+                              onChanged: (value) =>
+                                  setState(() => _action = value!),
+                            ),
+                            if (_action != 'vault') ...[
+                              const SizedBox(height: 12),
+                              TextField(
+                                controller: _price,
+                                keyboardType:
+                                    const TextInputType.numberWithOptions(
+                                      decimal: true,
+                                    ),
+                                decoration: InputDecoration(
+                                  labelText: _action == 'cart'
+                                      ? 'Actual sale price (USD)'
+                                      : 'Asking price (USD)',
+                                  border: const OutlineInputBorder(),
+                                ),
+                              ),
+                            ],
+                            if (_action == 'listing')
+                              const Padding(
+                                padding: EdgeInsets.only(top: 8),
+                                child: Text(
+                                  'Uses your existing profile sharing settings. Select it separately to list it in your store.',
+                                ),
+                              ),
+                          ],
+                        ),
+                ),
+                const SizedBox(height: 12),
+                FilledButton.icon(
+                  onPressed:
+                      _busy ||
+                          _loading ||
+                          (_pending == null && _printing == null)
+                      ? null
+                      : _save,
+                  icon: Icon(_pending != null ? Icons.refresh : Icons.add),
+                  label: Text(
+                    _pending != null
+                        ? 'Recover saved add'
+                        : _action == 'cart'
+                        ? 'Add copy to Vault & cart'
+                        : _action == 'listing'
+                        ? 'Add copy for sale'
+                        : 'Add copy to Vault',
+                  ),
+                ),
+              ],
+            ),
     ),
   );
 }

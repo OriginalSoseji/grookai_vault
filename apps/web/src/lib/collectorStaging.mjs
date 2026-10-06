@@ -9,9 +9,11 @@ export const receiptCloudLocalTest = process.env.NEXT_PUBLIC_RECEIPT_CLOUD_LOCAL
 export const salesDeskProLocalTest = process.env.NEXT_PUBLIC_SALES_DESK_PRO_LOCAL_TEST === "true";
 export const salesCartLocalTest = process.env.NEXT_PUBLIC_SALES_CART_LOCAL_TEST === "true";
 export const salesTradeLocalTest = process.env.NEXT_PUBLIC_SALES_TRADE_LOCAL_TEST === "true";
+export const receiptDeliveryLocalTest = process.env.NEXT_PUBLIC_RECEIPT_DELIVERY_LOCAL_TEST === "true";
 
 export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureLab, hosted = collectorHostedStaging) {
   const target = new URL(url);
+  if (receiptDeliveryLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest)) throw new Error("Receipt delivery proof requires its own local database.");
   if (salesTradeLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest)) throw new Error("Sales trade proof requires its own local database.");
   if (salesDeskProLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest)) throw new Error("Sales desk proof requires its own local database.");
   if (salesCartLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest)) throw new Error("Sales cart proof requires its own local database.");
@@ -23,7 +25,7 @@ export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureL
   if (fixtureLab && hosted) throw new Error("Fixture and hosted staging are mutually exclusive.");
   const expected = vendorBatchLocalTest ? (["http://127.0.0.1:27621", "http://127.0.0.1:29021", "http://127.0.0.1:29421", "http://127.0.0.1:30221", "http://127.0.0.1:31021"].includes(target.origin) ? target.origin : "http://127.0.0.1:26421") : vendorPilot ? VENDOR_PILOT_DATABASE : storefrontLocalTest ? "http://127.0.0.1:15439" : hosted ? "https://hcdpcbpnnvtbaezefjkd.supabase.co"
     : fixtureLab ? "http://127.0.0.1:54361" : "http://127.0.0.1:54321";
-  const allowed = salesTradeLocalTest ? "http://127.0.0.1:65301" : salesDeskProLocalTest ? "http://127.0.0.1:65001" : salesCartLocalTest ? "http://127.0.0.1:64801" : receiptCloudLocalTest ? "http://127.0.0.1:64701" : collectrImportLocalTest ? (["http://127.0.0.1:58681", "http://127.0.0.1:58721"].includes(target.origin) ? target.origin : "http://127.0.0.1:58541") : expected;
+  const allowed = receiptDeliveryLocalTest ? "http://127.0.0.1:32701" : salesTradeLocalTest ? "http://127.0.0.1:65301" : salesDeskProLocalTest ? "http://127.0.0.1:65001" : salesCartLocalTest ? "http://127.0.0.1:64801" : receiptCloudLocalTest ? "http://127.0.0.1:64701" : collectrImportLocalTest ? (["http://127.0.0.1:58681", "http://127.0.0.1:58721"].includes(target.origin) ? target.origin : "http://127.0.0.1:58541") : expected;
   if (target.origin !== allowed || target.username || target.password || target.search || target.hash) {
     throw new Error("Authenticated collector staging requires its exact verified database.");
   }

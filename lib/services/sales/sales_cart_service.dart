@@ -9,6 +9,7 @@ import '../../models/card_print.dart';
 import '../public/public_card_printing_options_service.dart';
 import 'sales_trade.dart';
 import 'sales_search_cache.dart';
+import 'sales_drafts.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
 int? saleMoneyInput(String value) {
@@ -76,6 +77,8 @@ class SalesDeskData {
     this.receipts = const [],
     this.tradesAvailable = false,
     this.pending,
+    this.needsHydration = false,
+    this.localDrafts,
   });
   final bool available;
   final bool tradesAvailable;
@@ -84,6 +87,8 @@ class SalesDeskData {
   final List<Map<String, dynamic>> customers;
   final List<Map<String, dynamic>> receipts;
   final Map<String, dynamic>? pending;
+  final bool needsHydration;
+  final Map<String, dynamic>? localDrafts;
 
   SalesDeskData withRows(List<VendorPricingWorkspaceRow> value) =>
       SalesDeskData(
@@ -94,7 +99,25 @@ class SalesDeskData {
         receipts: receipts,
         tradesAvailable: tradesAvailable,
         pending: pending,
+        needsHydration: needsHydration,
+        localDrafts: localDrafts,
       );
+
+  SalesDeskData withBook(Map<String, dynamic> book) => SalesDeskData(
+    available: available,
+    rows: rows,
+    storeName: book['storeName'] as String,
+    customers: (book['customers'] as List)
+        .map((c) => Map<String, dynamic>.from(c as Map))
+        .toList(),
+    receipts: (book['receipts'] as List)
+        .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
+        .toList(),
+    tradesAvailable: tradesAvailable,
+    pending: pending,
+    needsHydration: needsHydration,
+    localDrafts: localDrafts,
+  );
 }
 
 class SalesCatalogPage {
@@ -107,6 +130,8 @@ class SalesCartService {
   SalesCartService({SupabaseClient? client}) : _client = client;
   final SupabaseClient? _client;
   String? _owner;
+  int _draftRevision = 0;
+  static final _draftLocks = <String, Future<void>>{};
   final _searchCache = SalesSearchCache<SalesCatalogPage>();
   SupabaseClient get client => _client ?? Supabase.instance.client;
   Stream<void> get accountChanges => client.auth.onAuthStateChange
@@ -133,6 +158,15 @@ class SalesCartService {
     final pending = raw == null
         ? null
         : Map<String, dynamic>.from(jsonDecode(raw) as Map);
+    Map<String, dynamic>? drafts;
+    try {
+      drafts = readSalesDrafts(
+        preferences.getString('grookai.sales-drafts.v1.$_owner'),
+      );
+    } catch (_) {
+      if (pending == null) rethrow;
+    } // An attempted sale must remain recoverable even if an unrelated editable draft is corrupt.
+    _draftRevision = drafts?['revision'] as int? ?? 0;
     bool available;
     try {
       available = await client.rpc('vendor_sales_cart_available_v1') == true;
@@ -147,31 +181,66 @@ class SalesCartService {
         storeName: '',
         customers: const [],
         pending: pending,
+        localDrafts: drafts,
       );
     }
-    final results = await Future.wait<Object>([
-      _tradesAvailable(),
-      _workspace.load(),
-      client.rpc('vendor_receipt_book_read_v1'),
-    ]);
-    final tradesAvailable = results[0] as bool;
-    final workspace = results[1] as VendorPricingWorkspaceData;
-    final result = Map<String, dynamic>.from(results[2] as Map);
-    final book = Map<String, dynamic>.from(result['book'] as Map);
+    final tradesAvailable = await _tradesAvailable();
     _checkOwner();
     return SalesDeskData(
       available: true,
       tradesAvailable: tradesAvailable,
-      rows: workspace.rows,
-      storeName: book['storeName'] as String,
-      customers: (book['customers'] as List)
-          .map((c) => Map<String, dynamic>.from(c as Map))
-          .toList(),
+      rows: const [],
+      storeName: '',
+      customers: const [],
       pending: pending,
-      receipts: (book['receipts'] as List)
-          .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
-          .toList(),
+      needsHydration: true,
+      localDrafts: drafts,
     );
+  }
+
+  Future<void> saveDrafts(Map<String, dynamic> book) {
+    _checkOwner();
+    final key = 'grookai.sales-drafts.v1.$_owner';
+    final snapshot = readSalesDrafts(jsonEncode(book));
+    final operation = (_draftLocks[key] ?? Future<void>.value()).then((
+      _,
+    ) async {
+      _checkOwner();
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final current = readSalesDrafts(preferences.getString(key));
+      if (current['revision'] != _draftRevision) {
+        throw StateError(
+          'Saved deals changed in another screen. Reopen the sales desk.',
+        );
+      }
+      final encoded = jsonEncode({...snapshot, 'revision': _draftRevision + 1});
+      if (encoded.length > 2000000 ||
+          !await preferences.setString(key, encoded)) {
+        throw StateError(
+          'Could not save this draft. Keep the desk open and retry.',
+        );
+      }
+      _draftRevision++;
+      _checkOwner();
+    });
+    _draftLocks[key] = operation.then((_) {}, onError: (Object _) {});
+    return operation;
+  }
+
+  Future<List<VendorPricingWorkspaceRow>> loadInventory() async {
+    _checkOwner();
+    final data = await _workspace.load();
+    _checkOwner();
+    return data.rows;
+  }
+
+  Future<Map<String, dynamic>> loadBook() async {
+    _checkOwner();
+    final result = await client.rpc('vendor_receipt_book_read_v1');
+    _checkOwner();
+    return Map<String, dynamic>.from(result['book'] as Map);
   }
 
   Future<bool> _tradesAvailable() async {

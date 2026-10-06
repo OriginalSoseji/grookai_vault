@@ -66,7 +66,7 @@ void main() {
       await tester.tap(find.text('Cards'));
       await tester.pumpAndSettle();
     }
-    await tester.tap(find.text('Search catalog & add a card'));
+    await tester.tap(find.text('Catalog'));
     await tester.pumpAndSettle();
     await tester.enterText(
       find.widgetWithText(TextField, 'Name, card number or GV-ID'),

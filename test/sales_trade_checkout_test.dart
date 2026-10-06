@@ -88,7 +88,9 @@ void main() {
       );
       await tester.tap(find.text('Add trade to deal'));
       await tester.pumpAndSettle();
-      expect(find.byType(SalesTradeDialog), findsNothing);
+      expect(find.byType(SalesTradeDialog), findsOneWidget);
+      await tester.tap(find.text('Back to stock'));
+      await tester.pumpAndSettle();
       expect(service.created, 0);
       expect(service.calls, isEmpty);
       await tester.scrollUntilVisible(
