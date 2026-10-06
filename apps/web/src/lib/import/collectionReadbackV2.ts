@@ -30,8 +30,12 @@ export async function verifyCollectionReadbackV2(client: SupabaseClient, attempt
   if (returned.size !== expected.size) throw uncertain();
   const document = await client.from("vault_collection_import_documents_v2").select("source_rows").eq("user_id", attempt.ownerUserId).eq("source_sha256", sha).single();
   if (document.error || canonical(document.data?.source_rows) !== canonical(source)) throw uncertain();
-  const groups = await readImportPages<{ group_key: string; source_indices: number[]; instance_ids: string[] }>(after => {
-    let query = client.from("vault_collection_import_groups_v2").select("group_key,source_indices,instance_ids").eq("user_id", attempt.ownerUserId).eq("source_sha256", sha).order("group_key").limit(500);
+  // A V3 increment with no new cards must preserve later owner printing edits.
+  // Bind existing copies to their immutable group before allowing a current
+  // printing to differ. Fresh card imports and V2 retain strict printing checks.
+  const existingCardsOnly = options.verifyCurrentMetadata === false && receipt.importedCards === 0;
+  const groups = await readImportPages<{ group_key: string; source_indices: number[]; instance_ids: string[]; target?: {cardId: string; cardPrintingId: string | null; sourceIndices: number[]; desiredQuantity: number} }>(after => {
+    let query = client.from("vault_collection_import_groups_v2").select("group_key,source_indices,instance_ids,target").eq("user_id", attempt.ownerUserId).eq("source_sha256", sha).order("group_key").limit(500);
     if (after) query = query.gt("group_key", after);
     return query;
   }, group => group.group_key);
@@ -43,6 +47,8 @@ export async function verifyCollectionReadbackV2(client: SupabaseClient, attempt
     const key = JSON.stringify(group.source_indices), ids = returned.get(key);
     if (ids) {
       if (canonical([...ids].sort()) !== canonical([...group.instance_ids].sort()) || verified.has(key)) throw uncertain();
+      const original = expected.get(key)!;
+      if (existingCardsOnly && (!group.target || group.target.cardId !== original.cardId || group.target.cardPrintingId !== original.cardPrintingId || canonical(group.target.sourceIndices) !== canonical(original.sourceIndices) || group.target.desiredQuantity !== ids.length)) throw uncertain();
       verified.add(key);
     }
   }
@@ -54,7 +60,7 @@ export async function verifyCollectionReadbackV2(client: SupabaseClient, attempt
     if (error || !Array.isArray(data)) throw uncertain();
     for (const copy of data) {
       const target = copies.get(copy.id);
-      if (!target || !chunk.includes(copy.id) || seen.has(copy.id) || copy.card_print_id !== target.cardId || copy.card_printing_id !== target.cardPrintingId || copy.is_graded === true) throw uncertain();
+      if (!target || !chunk.includes(copy.id) || seen.has(copy.id) || copy.card_print_id !== target.cardId || (!existingCardsOnly && copy.card_printing_id !== target.cardPrintingId) || copy.is_graded === true) throw uncertain();
       seen.add(copy.id);
       const row = normalize(source[target.sourceIndices[0]]);
       if (options.verifyCurrentMetadata !== false && receipt.importedCards > 0 && (copy.condition_label !== row.condition || copy.acquisition_cost !== row.acquisitionCost || copy.notes !== row.notes || (row.createdAt && (row.createdAtDateOnly ? new Date(copy.created_at).toISOString().slice(0, 10) !== row.createdAt.slice(0, 10) : timestampMicros(copy.created_at) !== timestampMicros(row.createdAt))))) throw uncertain();

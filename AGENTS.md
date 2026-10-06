@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Collectr USD import and receipt recovery — October 6 UTC
+
+Read docs/checkpoints/collectr_receipt_recovery_20261006.md. The real import is
+saved and independently verified: 165 sealed additions, 1,540 accounted copies,
+578 review rows. Preserve the original pending browser request; do not import
+again. A pre-existing printing edit prevents the browser's old confirmation
+check from accepting its successful receipt. Candidate recovery verifies the
+immutable original group and preserves the current card. No schema/data writes.
+Actual release/recovery status belongs to private collectr_sealed_save_20261005/
+usd-original-import receipts; earlier currency and release blockers are historical.
+
 ## Collectr sealed live-release continuation — October 5
 
 Release source now includes PR595/main a186a9bb2 (native Sales desk fast entry)
