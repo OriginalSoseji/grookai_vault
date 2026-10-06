@@ -40,3 +40,16 @@ or automated outreach is authorized by a CRM draft. Keep sender setup checkpoint
 Before release, reconcile current main/open work again, run normal hooks, retain
 the receipt migration gate, and verify a new website/native build. Do not upload
 the old345 archive as if it contained these changes. Rollback retains all data.
+
+## Completed implementation proof
+
+Implementation commit1e6d74ccb passed normal hooks: 7250 Node contracts,
+1285 Flutter tests (two existing skips), full analysis/lint/type checks and
+strict web build. Actual local browser/API proof passed in
+local-1791260679688/receipt.json, including lost-response sale recovery.
+
+Main advanced to169d9dcac (PR599 Collectr receipt recovery). Integration retains
+its product/test bytes unchanged and resolves only the AGENTS checkpoint conflict
+by retaining both records. The external checkpoint records the combined hook result.
+No new web/native release has occurred. Mac free space was9.1 GiB; the existing
+native proof runner requires more than12 GiB. No Mac build or deletion was done.
