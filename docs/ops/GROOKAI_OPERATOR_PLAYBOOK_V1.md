@@ -1,5 +1,33 @@
 # Grookai Operator Playbook V1
 
+## Combined economics and iOS acceptance — October 7
+
+Continue in `C:/gv_product_integrated_20261007`; read
+[the integration checkpoint](PRODUCT_INTEGRATED_20261007.md). This combines
+committed editor `bead8c328` and report `dc630120c`; combined validation and the
+merge commit remain pending. Preserve the original trees and all pending journals.
+
+Daily-workflow iPad simulator acceptance passes at native source `2c7bd7242`.
+Mac checkout: `/Users/cesarcabral/grookai_product_overhaul_20261007`. External
+`product_overhaul_20261007/native-acceptance/ios-run-1791414011722-retry4` has six
+screenshots and the driver result; `run-1791414011722` has independent database
+readback and scoped cleanup. Only the task simulator was removed; existing
+simulators retain their prior states. Physical iOS acceptance is still open.
+
+For future local iOS runs, inspect free space before building and retain archives.
+The bounded cache receipts document exact removed paths and retained hashes;
+never replay these consumed cleanups. The first pass preserved dependency source;
+a subsequent pass removed only clean GitHub dependencies matching recorded
+download revisions, preserving their version metadata. Product worktrees, archives,
+build products and logs survived. The transfer bundle remains on Windows.
+
+Flutter `drive` has no `--build-number` option in this installed version. Host
+drivers need package resolution inside the checkout. iOS console output may omit
+the VM URL: the passing local harness used an explicit loopback VM port, verified
+the VM response, and attached with `--use-existing-app` to the already built test
+binary. Its temporary backend relay was closed and synthetic Auth/copies removed.
+This is a local test workflow, not signing, TestFlight or release authorization.
+
 ## Private cost editor — October 7
 
 Continue the owner-only UI in `C:/gv_product_cost_ui_20261007`; read
@@ -16,6 +44,20 @@ The dedicated `NEXT_PUBLIC_COPY_COST_LOCAL_TEST` accepts only retained431/33061.
 source/network attestation and exact before/after retention hashes. Its cleanup
 removes only recorded test events/copies/owners, never resets or edits prior rows.
 Normal checks use `run_product_cost_ui_checks_v1.mjs` and read-only credentials.
+
+## Known-cost reporting — October 7
+
+Continue in `C:/gv_product_profit_20261007`; read
+[the report checkpoint](PRODUCT_PROFIT_20261007.md). Receipt totals must reconcile
+before calculation; costs must align to the immutable sale snapshot. Show uncovered
+sales and exclusion reasons. Never infer old costs from today's inventory or
+silently allocate discounts. Server `GV_VENDOR_PROFIT_V1` controls the private
+report panel and GET-only snapshot API. Cost reads are owner-bound and batched;
+failed or partial reads cannot appear as missing costs. Real database-to-screen
+proof passes, including recovery, flag-off behavior and 13 retained table hashes.
+Run normal hooks with `node scripts/tests/run_product_profit_checks_v1.mjs commit`;
+stage reviewed source first and do not edit it during the hook. External
+`product_profit_20261007/CHECKPOINT.json` owns actual proof.
 
 ## Product economics — October 7
 

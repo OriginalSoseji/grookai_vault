@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Combined economics workflow — October 7
+
+Continue in `C:/gv_product_integrated_20261007`; read
+[the integration checkpoint](docs/ops/PRODUCT_INTEGRATED_20261007.md).
+Editor `bead8c328` and report `dc630120c` passed their separate normal hooks.
+Their merge is resolved but uncommitted and needs combined validation. Preserve
+all source worktrees, pending requests and labs. The daily-workflow iPad simulator
+acceptance now passes; physical iOS and production release remain separate.
+
 ## Private cost editor — October 7
 
 Read [the cost UI checkpoint](docs/ops/PRODUCT_COST_UI_20261007.md). Work in
@@ -7,6 +16,16 @@ Read [the cost UI checkpoint](docs/ops/PRODUCT_COST_UI_20261007.md). Work in
 is separate. Preserve pending owner/copy journals and all retained labs. New UI
 entry remains default-off; recovery survives switch-off. External product_cost_ui
 evidence owns actual validation. No production or public release is authorized.
+
+## Known-cost report — October 7
+
+Read [the report checkpoint](docs/ops/PRODUCT_PROFIT_20261007.md) and its contract.
+This independent worktree starts from cost backend `3f3a30e88`. Report arithmetic
+uses immutable cost-at-sale evidence, never current copy costs. Private API/UI are
+wired and verified against real local Auth, receipts and snapshots; normal hooks
+remain tracked by the external checkpoint. Preserve
+separate editor/release-gate work, all labs and pending
+requests. No production activation or full-overhaul completion is implied.
 
 ## Product economics — October 7
 
