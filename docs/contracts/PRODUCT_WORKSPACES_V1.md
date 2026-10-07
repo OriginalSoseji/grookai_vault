@@ -44,7 +44,7 @@ printing, currency, publication and archive/disposition boundaries still apply.
 | Destination | Existing or new route |
 |---|---|
 | Desk | `/account/store/sales` |
-| Inventory | `/account/store?view=inventory` |
+| Inventory | `/account/store/inventory` |
 | Scan | `/scan` |
 | Reports | `/account/store/reports` |
 | Store | `/account/store` |
@@ -53,9 +53,19 @@ The signed-in header exposes the vendor entry. Vendor routes replace the collect
 mobile dock and desktop navigation with vendor destinations; existing URLs remain
 valid. The vendor route layout owns its mobile dock independently of collector
 shell suppression, and hides it while the software keyboard is visible.
-Inventory opens the current Store inventory editor and retains its access
-requirements. This web inventory route is not yet equivalent to the native
-owner-only inventory surface for accounts without a store.
+Inventory requires an authenticated owner, independently of storefront or new-sale
+capability. The existing stock reader returns active exact card copies, with saved
+asking currency, condition and intent. Search and priced/unpriced filters preserve
+context when opening the existing copy editor and returning. Pagination deduplicates
+only identical instance IDs, never distinct physical copies. Sealed products reuse
+the existing owner panel only when its existing rollout flag is enabled. The legacy
+`/account/store?view=inventory` Store editor remains valid.
+
+The vendor copy editor uses a compact identity header and places pricing before
+secondary details on phones. The same pricing, publication, condition and disposition
+authorities remain in effect. Changing an asking price never rewrites an existing
+negotiated deal. Inventory aborts stale reads and clears private copies on account
+change; refresh failures offer a retry of the failed page.
 
 Reports require server authentication, use private uncached receipt reads and
 clear on account change. Link navigation from Desk waits for queued local journal

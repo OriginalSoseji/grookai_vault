@@ -38,7 +38,7 @@ for (const width of [384, 768, 1440]) {
     const nav = page.getByRole("navigation", { name: "Vendor workspace" }).filter({ visible: true });
     await expect(nav.getByRole("link")).toHaveCount(5);
     await expect(nav.getByRole("link", { name: "Reports", exact: true })).toHaveAttribute('aria-current', 'page');
-    await expect(nav.getByRole("link", { name: "Inventory", exact: true })).toHaveAttribute("href", "/account/store?view=inventory");
+    await expect(nav.getByRole("link", { name: "Inventory", exact: true })).toHaveAttribute("href", "/account/store/inventory");
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: info.outputPath(`reports-${width}.png`), fullPage: true });
     if (width === 384) {

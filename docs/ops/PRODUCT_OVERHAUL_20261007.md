@@ -11,8 +11,8 @@ Base: `ecb33552cbbbf6ec9295f50a809ec393680e469c` (current main when work began).
 Contract: [Product Workspaces V1](../contracts/PRODUCT_WORKSPACES_V1.md).
 
 This is the first implementation slice following the DeckTradr comparison. It is
-not the completed overhaul and has not been deployed or installed on the founder's
-phone. The [broader plan](../product/OVERHAUL_PLAN_20261007.md) defines the target
+not the completed overhaul and has not been deployed. A separate local-test package
+has passed Samsung acceptance; the primary app is unchanged. The [broader plan](../product/OVERHAUL_PLAN_20261007.md) defines the target
 journeys and releases. The source audit remains in
 `C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/`.
 
@@ -68,7 +68,10 @@ The first combined normal hook passed all contracts, the production web build an
 native analysis, then completed with 1,381 native passes, two skips and one failure.
 That price-reference test still dragged the former GridView. It now reveals the
 actual action and settles its scroll; all four price-reference cases pass with
-their negotiated-versus-asking-price assertions intact. A new normal hook is required.
+their negotiated-versus-asking-price assertions intact. The corrected normal hook
+passed and committed `5d24fa1f895d435825bdf28dc46f2c8886ca904c`: 7,476 contract cases
+(10 skipped), full web type/lint/production build, analyzer and 1,382 native cases
+(two skipped). Retained lab counts matched. Evidence: external `checks-1791405115425`.
 
 Native device acceptance uses `integration_test/product_workspaces_local_test.dart`
 with an external local-only fixture and the existing real sale writer. The test
@@ -87,6 +90,30 @@ remains build 409. The tested APK SHA256 is
 This is a synthetic local-backend device test, not production release, camera
 identification, Bluetooth pairing or iOS proof. Mac access is verified, but its
 observed free disk space was only 1.7 GiB; no new iOS build was attempted.
+
+## Owner Inventory follow-up
+
+The next source slice adds `/account/store/inventory` independently of Store setup
+and new-sale access, through the existing authenticated stock read. Compact exact
+copies retain asking currency, zero amounts and private/sale/trade intent. Search,
+price filters and incremental pages lead to the existing copy editor with a compact
+vendor header, phone-first pricing and a return link that restores the search.
+Sealed inventory reuses its existing gated owner panel. No new writer or schema.
+
+Eighteen browser scenarios pass across the main run and the sealed-tab follow-up,
+including 384/768/1440 layouts, dark/light contrast, account changes, pagination,
+failed refresh and the existing Store form's discard guard on Inventory links.
+This does not establish a Store form guard for browser Back. The actual-auth local
+runtime script is `scripts/audits/product_inventory_runtime_v1.mjs`; external
+`inventory-runtime/local-1791406406578/receipt.json` records its passing run:
+anonymous/foreign isolation, 48+4 distinct copies, price filters without a storefront
+or sales capability, a CAD 81.25 edit through the existing writer and independently
+matched database state. Back restores the exact search; returning to Desk retains
+the original three USD deal amounts. Scanner regression also passes. No receipt or
+disposition was created, and scoped cleanup restored retained counts/control flags.
+The previous run passed editing but the local Next warning badge intercepted the
+bottom Desk link; the retry used the ordinary header link. Its fixture cleanup also
+passed. Final combined normal checks for this source slice are still required.
 
 ## Reference prototype
 

@@ -25,6 +25,16 @@ drive install/stop paths can uninstall an app. Remove only this run's ADB mappin
 and fixtures; never reset the lab. Private defines and APKs stay outside git.
 iOS evidence and physical Bluetooth pairing remain separate gates.
 
+The follow-up owner Inventory route is `/account/store/inventory`, using the existing
+authenticated stock read and copy editor independently of storefront setup.
+`scripts/audits/product_inventory_runtime_v1.mjs` runs its real-auth local journey
+against retained internal430/32841, with fresh synthetic owners/copies only, scoped
+cleanup and control-flag restoration. It includes scanner regression, pagination,
+CAD price editing and preservation of negotiated USD deal values. Run it separately
+from normal checks or other Next servers using this worktree. Its evidence remains
+outside git under `product_overhaul_20261007/inventory-runtime`; a source script
+alone is not passing runtime proof. Do not reset the retained lab.
+
 ## Collectr mixed receipt confirmation — October 7
 
 PR607's seven additions are saved and independently verified: 1,616 accounted

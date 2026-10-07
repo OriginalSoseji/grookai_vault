@@ -46,7 +46,9 @@ export async function GET(req: NextRequest) {
         if (!['stock', 'catalog', 'scan'].includes(action))
             return json({ error: 'Unknown read' }, 400);
         const q = (p.get('q') ?? '').trim(), game = p.get('game') ?? 'pokemon', offset = Number(p.get('offset') ?? 0), copyOffset = action === 'scan' ? 0 : Number(p.get('copyOffset') ?? 0);
-        if (q.length > 120 || !['pokemon', 'mtg', 'one_piece'].includes(game) || ![offset, copyOffset].every(n => Number.isInteger(n) && n >= 0 && n <= 10000))
+        const inventory = action === 'stock' && p.get('view') === 'inventory';
+        const price = inventory ? p.get('price') ?? 'all' : 'all';
+        if (q.length > 120 || !['all', 'priced', 'unpriced'].includes(price) || !['pokemon', 'mtg', 'one_piece'].includes(game) || ![offset, copyOffset].every(n => Number.isInteger(n) && n >= 0 && n <= 10000))
             return json({ error: 'Invalid search' }, 400);
         type CardRow = {
             id: string;
@@ -85,13 +87,18 @@ export async function GET(req: NextRequest) {
                 return json({ cards: cards.map(c => ({ ...c, image: c.image_url ?? null, printings: options.filter(o => o.card_print_id === c.id && o.printing_gv_id && (!c.search_card_printing_id || c.search_card_printing_id === o.id)) })), next: pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: pagination?.total_count ?? null });
             }
             if (!cards.length)
-                return json({ cards: [], next: null, total: 0 });
+                return json({ owner: user.id, cards: [], next: null, total: 0 });
         }
         else if (action === 'catalog')
             return json({ cards: [], next: null, total: null });
         // An empty slab embed filters slab-only copies without loading the owner's
         // entire inventory. Keep the unfiltered relation for its canonical parent.
-        let query = client.from('vault_item_instances').select('id,gv_vi_id,card_print_id,card_printing_id,condition_label,asking_price_amount,asking_price_currency,slab_cert_id,slab:slab_certs(card_print_id,grader,grade),match_slab:slab_certs()').eq('user_id', user.id).is('archived_at', null);
+        let query = client.from('vault_item_instances').select('id,gv_vi_id,card_print_id,card_printing_id,condition_label,intent,asking_price_amount,asking_price_currency,slab_cert_id,slab:slab_certs(card_print_id,grader,grade),match_slab:slab_certs()').eq('user_id', user.id).is('archived_at', null);
+        // Card inventory uses the same owner read; sealed copies retain their
+        // existing dedicated read/edit surface and rollout settings.
+        if (inventory) query = query.is('sealed_product_variant_id', null);
+        if (price === 'priced') query = query.not('asking_price_amount', 'is', null);
+        if (price === 'unpriced') query = query.is('asking_price_amount', null);
         if (exactCopy)
             query = query.eq('gv_vi_id', q.toUpperCase());
         else if (q.length >= 2) {
@@ -114,7 +121,7 @@ export async function GET(req: NextRequest) {
         if (parentError)
             throw parentError;
         const options = await getPublicCardPrintingOptions(client, ids);
-        const rows = await Promise.all(copies.map(async (copy) => { const c = parents?.find(c => c.id === copy.card_print_id); const printing = options.find(o => o.id === copy.card_printing_id); return { instanceId: copy.id, gvviId: copy.gv_vi_id, id: copy.card_print_id, gv_id: c?.gv_id, name: c ? resolveDisplayIdentity(c).display_name : 'Unresolved card', number: c?.number, set_code: c?.set_code, condition: copy.slab ? [copy.slab.grader, copy.slab.grade].filter(Boolean).join(' ') : copy.condition_label, printing: printing?.finish_label ?? (copy.slab_cert_id ? 'Slab' : 'Printing unassigned'), image: c ? (await resolveCardImageFieldsV1(c)).display_image_url : null, askingMinor: copy.asking_price_currency === 'USD' && copy.asking_price_amount != null ? Math.round(Number(copy.asking_price_amount) * 100) : null, tcgplayer_id: c?.tcgplayer_id }; }));
+        const rows = await Promise.all(copies.map(async (copy) => { const c = parents?.find(c => c.id === copy.card_print_id); const printing = options.find(o => o.id === copy.card_printing_id); return { instanceId: copy.id, gvviId: copy.gv_vi_id, id: copy.card_print_id, gv_id: c?.gv_id, name: c ? resolveDisplayIdentity(c).display_name : 'Unresolved card', number: c?.number, set_code: c?.set_code, condition: copy.slab ? [copy.slab.grader, copy.slab.grade].filter(Boolean).join(' ') : copy.condition_label, printing: printing?.finish_label ?? (copy.slab_cert_id ? 'Slab' : 'Printing unassigned'), image: c ? (await resolveCardImageFieldsV1(c)).display_image_url : null, intent: copy.intent, askingAmount: copy.asking_price_amount == null ? null : Number(copy.asking_price_amount), askingCurrency: copy.asking_price_currency, askingMinor: copy.asking_price_currency === 'USD' && copy.asking_price_amount != null ? Math.round(Number(copy.asking_price_amount) * 100) : null, tcgplayer_id: c?.tcgplayer_id }; }));
         return json({ owner: user.id, cards: rows.filter(row => !cards.length || cards.some(c => c.id === row.id && (!c.search_card_printing_id || copies.find(i => i.id === row.instanceId)?.card_printing_id === c.search_card_printing_id))), next: (raw?.length ?? 0) > 48 ? { offset, copyOffset: copyOffset + 48 } : pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
     }
     catch {

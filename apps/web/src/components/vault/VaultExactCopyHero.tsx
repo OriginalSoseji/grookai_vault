@@ -3,6 +3,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { VaultEvidenceDisclosure } from "@/components/vault/VaultCardPrimitives";
 
 type VaultExactCopyHeroProps = {
+  compact?: boolean;
   eyebrow: string;
   cardName: string;
   setName?: string | null;
@@ -38,6 +39,7 @@ function getSetLine({
 }
 
 export default function VaultExactCopyHero({
+  compact = false,
   eyebrow,
   cardName,
   setName,
@@ -71,6 +73,28 @@ export default function VaultExactCopyHero({
       ? `Cert ${certNumber}`
       : "Certificate not recorded"
     : conditionLabel || "Condition not recorded";
+
+  if (compact) return <section className="border-b border-slate-200 pb-5 dark:border-white/10" data-vault-exact-copy-hero>
+    <div className="grid grid-cols-[64px_minmax(0,1fr)] items-start gap-4 sm:grid-cols-[90px_minmax(0,1fr)]">
+      <PublicCardImage src={primaryImageUrl ?? undefined} fallbackSrc={fallbackImageUrl ?? undefined}
+        fallbackSources={fallbackImageUrls} alt={cardName} loading="eager" decoding="async"
+        imageClassName="aspect-[5/7] w-full object-contain"
+        fallbackClassName="flex aspect-[5/7] items-center justify-center rounded-lg bg-slate-100 text-center text-xs text-slate-600"
+        fallbackLabel="No image" />
+      <div className="min-w-0 space-y-2"><p className="gv-eyebrow">{eyebrow}</p>
+        <h1 className="break-words text-2xl font-semibold leading-tight text-slate-950 dark:text-white">{cardName}</h1>
+        {setLine && <p className="text-sm text-slate-600 dark:text-slate-300">{setLine}</p>}
+        {contextLabel && <div className="text-sm text-slate-600 dark:text-slate-300">{contextLabel}</div>}
+      </div>
+      {featuredContent && <div className="col-span-2">{featuredContent}</div>}
+      <dl className="col-span-2 grid grid-cols-2 gap-x-4 gap-y-3 rounded-xl bg-slate-50 p-3 text-sm dark:bg-white/5 sm:grid-cols-4" aria-label="Exact copy details">
+        {[["Version", exactVersionLabel], ["Condition", conditionOrCert], ["Format", formatLabel], ["Status", `${statusLabel} · ${intentLabel}`]].map(([label, value]) =>
+          <div key={label} className="min-w-0"><dt className="text-xs text-slate-600 dark:text-slate-300">{label}</dt><dd className="mt-1 break-words font-semibold">{value}</dd></div>)}
+      </dl>
+      {actions && <div className="col-span-2 flex flex-wrap gap-2">{actions}</div>}
+      <div className="col-span-2"><VaultEvidenceDisclosure>{gvId && <p>Grookai card ID: {gvId}</p>}<p>Copy ID: {gvviId}</p>{evidence}</VaultEvidenceDisclosure></div>
+    </div>
+  </section>;
 
   return (
     <section className="border-b border-slate-200/80 pb-8 dark:border-white/[0.08] md:pb-10" data-vault-exact-copy-hero>
