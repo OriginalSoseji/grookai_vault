@@ -8,6 +8,7 @@ import SalesDesk from "@/components/sales/SalesDesk";
 import SalesReports from "@/components/sales/SalesReports";
 import VendorInventory from "@/components/workspace/VendorInventory";
 import StoreManager from "@/components/stores/StoreManager";
+import PricingEditorFixture from "./PricingEditorFixture";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function VendorWorkspaceFixture() {
@@ -26,7 +27,7 @@ export default function VendorWorkspaceFixture() {
     <Link href="/visual-fixtures/vendor-workspace">Fixture Desk</Link>{" · "}<Link href="/visual-fixtures/vendor-workspace?view=reports">Fixture Reports</Link>
     {" · "}<Link href="/visual-fixtures/vendor-workspace?view=inventory">Fixture Inventory</Link>
     <VendorWorkspaceNavigation routePath={routePath} />
-    {ready ? view === "store" ? <StoreManager siteOrigin="https://fixture.invalid" /> : view === "inventory" ? <VendorInventory ownerId={owner} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
+    {ready ? view === "pricing" ? <PricingEditorFixture /> : view === "store" ? <StoreManager siteOrigin="https://fixture.invalid" /> : view === "inventory" ? <VendorInventory ownerId={owner} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
     <button onClick={() => void supabase.auth.signOut({ scope: "local" })}>Fixture sign out</button>
     <VendorWorkspaceNavigation mobile routePath={routePath} />
   </div>;

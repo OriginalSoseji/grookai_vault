@@ -35,6 +35,13 @@ from normal checks or other Next servers using this worktree. Its evidence remai
 outside git under `product_overhaul_20261007/inventory-runtime`; a source script
 alone is not passing runtime proof. Do not reset the retained lab.
 
+The pricing follow-up uses `scripts/audits/product_pricing_runtime_v1.mjs` on the
+same retained lab, run separately from other test mutations and normal hooks. It
+adds cancelled departure, a held server-action request, pending-save navigation
+blocking and confirmed-save checks. Evidence and synthetic fixture cleanup belong
+to external `product_overhaul_20261007/pricing-runtime`. Form guards cover ordinary
+links/document exits; they are not a replacement for the Desk's history-safe journal.
+
 ## Collectr mixed receipt confirmation — October 7
 
 PR607's seven additions are saved and independently verified: 1,616 accounted

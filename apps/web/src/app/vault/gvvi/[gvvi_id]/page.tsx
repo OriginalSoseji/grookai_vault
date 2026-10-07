@@ -252,6 +252,7 @@ export default async function VaultInstancePage(
 
         <div className={vendor ? "order-1 space-y-6 xl:order-2" : "space-y-6"}>
           <VaultInstancePricingCard
+            key={`pricing-${detail.instanceId}`}
             instanceId={detail.instanceId}
             isActive={isActive}
             isGraded={detail.isGraded}

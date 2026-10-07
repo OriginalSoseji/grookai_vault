@@ -67,6 +67,18 @@ authorities remain in effect. Changing an asking price never rewrites an existin
 negotiated deal. Inventory aborts stale reads and clears private copies on account
 change; refresh failures offer a retry of the failed page.
 
+The copy editor keeps qualified exact-printing market evidence visible while an
+asking price is edited. TCGPlayer Market, USD, observed date and publication date
+are distinct from the owner's asking amount. Slabs, unsupported sources and
+incomplete evidence do not receive a market value. Reference refreshes do not
+replace an unsaved asking price. Existing pricing read/publication rules apply.
+
+Unsaved pricing uses the existing form departure guard with copy-specific wording.
+Ordinary links require an explicit discard; an in-progress save blocks those links.
+Document exits use the browser guard. A successful save updates the local saved
+baseline immediately, and changing copy identity remounts the editor. This guard
+does not add durable draft storage or protect SPA browser-history transitions.
+
 Reports require server authentication, use private uncached receipt reads and
 clear on account change. Link navigation from Desk waits for queued local journal
 writes. Failed queued writes keep the page open with an error. Document exits while

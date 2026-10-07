@@ -7,8 +7,9 @@ and Product Workspaces V1 before continuing the DeckTradr-driven overhaul.
 The isolated candidate adds vendor navigation and compact inventory around the
 existing Sales Desk. Scanner integration, SPA draft persistence and a physical
 Samsung local-backend sale/recovery flow are verified in the same candidate;
-the corrected combined normal hook passed at `5d24fa1f`. The next owner-only web
-Inventory slice uses existing reads/editors without requiring a storefront;
+the corrected combined normal hook passed at `5d24fa1f`. Owner-only web Inventory
+is committed and fully checked at `811680d3c`, using existing reads/editors without
+requiring a storefront. The next pricing-evidence/edit-protection slice is local;
 its runtime and final-check outcomes are tracked externally. The original
 scanner worktree is intact. iOS and production release remain unproved.
 The six-screen sample prototype and reference specification are under docs/product.

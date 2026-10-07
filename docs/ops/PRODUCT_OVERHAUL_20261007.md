@@ -113,7 +113,38 @@ the original three USD deal amounts. Scanner regression also passes. No receipt 
 disposition was created, and scoped cleanup restored retained counts/control flags.
 The previous run passed editing but the local Next warning badge intercepted the
 bottom Desk link; the retry used the ordinary header link. Its fixture cleanup also
-passed. Final combined normal checks for this source slice are still required.
+passed. The Inventory slice is committed as `811680d3cde1c14c2ee40d7c605d133b494205c2`.
+Its normal hook passed 7,476 contract cases (10 skipped), full web type/lint/build,
+the analyzer and 1,382 native cases (two skipped). Before/after retained lab state
+matched: two users, four copies, 430 migrations and zero workers. Evidence is in
+external `checks-1791406497694/receipt.json`.
+
+## Pricing evidence and edit protection
+
+The next local source slice keeps supported TCGPlayer Market evidence visible
+alongside asking-price edits, labels its USD currency, and separates observed and
+published dates. Unsupported/slab/incomplete evidence stays unavailable. Reference
+refreshes retain the owner's typed asking price. Existing reads and writes remain
+authoritative; there is no added provider or pricing activation.
+
+The existing form departure guard gains optional copy-specific wording and a
+pending-save block, preserving its Store defaults. A confirmed save updates the
+editor's saved baseline, different copies receive separate editor state, and
+transport failures leave an explicit unconfirmed result with edits retained.
+This is ordinary-link/document-exit protection, not a browser-history draft journal.
+
+Twenty-three browser cases pass together, including pricing at 384/1440 pixels,
+source/date/currency evidence, unsupported evidence, unsaved departure and existing
+Inventory/Store/Desk regression. Twenty pricing-surface contracts, changed-file
+lint and full type checking pass. Actual-backend save protection is exercised by
+`scripts/audits/product_pricing_runtime_v1.mjs` passed against local430. External
+`pricing-runtime/local-1791407455669/receipt.json` records cancelled departure,
+blocked navigation during a held real save, confirmed-save state, CAD database
+readback and an unchanged USD deal. No sale/disposition was created; cleanup
+restored retained counts and control flags. The earlier passing journey exposed
+a duplicate sibling React key in its console; the editor now uses a prefixed copy
+key and the final run explicitly rejects duplicate-key warnings. Final combined
+normal checks for this new slice are pending.
 
 ## Reference prototype
 

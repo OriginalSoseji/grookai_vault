@@ -5,7 +5,7 @@ if (!server || Array.isArray(server)) throw new Error("Expected one isolated fix
 
 export default defineConfig({
   ...base,
-  testMatch: ["vendor-workspace.spec.ts", "vendor-inventory.spec.ts"],
+  testMatch: ["vendor-workspace.spec.ts", "vendor-inventory.spec.ts", "vendor-pricing.spec.ts"],
   outputDir: "./test-results/vendor-workspace",
   webServer: { ...server,
     url: `http://127.0.0.1:${process.env.GROOKAI_PLAYWRIGHT_PORT ?? "3100"}/visual-fixtures/vendor-workspace`,
