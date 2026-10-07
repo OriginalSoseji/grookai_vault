@@ -9,6 +9,7 @@ import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
 import { getVendorQrDestinationUrl, renderVendorQrSvg, svgToDataUrl } from "@/lib/gvvi/vendorQr";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
+import VaultCopyCostCard from "@/components/vault/VaultCopyCostCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSectionMembershipCard from "@/components/vault/VaultInstanceSectionMembershipCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
@@ -251,6 +252,7 @@ export default async function VaultInstancePage(
         </div>
 
         <div className={vendor ? "order-1 space-y-6 xl:order-2" : "space-y-6"}>
+          <VaultCopyCostCard key={`cost-${user.id}-${detail.instanceId}`} ownerId={user.id} instanceId={detail.instanceId} enabled={process.env.GV_COPY_COST_V1 === '1'} />
           <VaultInstancePricingCard
             key={`pricing-${detail.instanceId}`}
             instanceId={detail.instanceId}

@@ -1,5 +1,22 @@
 # Grookai Operator Playbook V1
 
+## Private cost editor — October 7
+
+Continue the owner-only UI in `C:/gv_product_cost_ui_20261007`; read
+[its checkpoint](PRODUCT_COST_UI_20261007.md). Entry is controlled by server
+`GV_COPY_COST_V1`; both backend switches remain independently default-off.
+IndexedDB drafts precede requests, preserve owner/request identity through retry,
+and require explicit review after competing edits. Recovery reads remain available
+when the web entry is disabled. Do not clear a user's pending journal to fix a save.
+External `product_cost_ui_20261007/CHECKPOINT.json` records browser and real-auth
+results. Keep release-gate work in the separate economics tree, preserve all labs,
+and do not point the development app at production.
+The dedicated `NEXT_PUBLIC_COPY_COST_LOCAL_TEST` accepts only retained431/33061.
+`product_cost_ui_runtime_v1.mjs` uses server33210, temporary synthetic fixtures,
+source/network attestation and exact before/after retention hashes. Its cleanup
+removes only recorded test events/copies/owners, never resets or edits prior rows.
+Normal checks use `run_product_cost_ui_checks_v1.mjs` and read-only credentials.
+
 ## Product economics — October 7
 
 Continue cost-at-sale work in `C:/gv_product_economics_20261007`; read

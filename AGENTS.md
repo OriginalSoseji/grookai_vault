@@ -1,5 +1,13 @@
 # Grookai Agent Entry Point
 
+## Private cost editor — October 7
+
+Read [the cost UI checkpoint](docs/ops/PRODUCT_COST_UI_20261007.md). Work in
+`C:/gv_product_cost_ui_20261007` on backend `3f3a30e88`; the economics release gate
+is separate. Preserve pending owner/copy journals and all retained labs. New UI
+entry remains default-off; recovery survives switch-off. External product_cost_ui
+evidence owns actual validation. No production or public release is authorized.
+
 ## Product economics — October 7
 
 Read [the economics checkpoint](docs/ops/PRODUCT_ECONOMICS_20261007.md) and
