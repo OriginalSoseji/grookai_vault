@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Collectr printed identity labels — October 7
+
+The [card-label checkpoint](../checkpoints/collectr_card_labels_20261007.md) records
+a local candidate resolving seven more cards with positive identity/finish
+evidence. Fresh public card reads and server target resolution passed. Every
+previously saved source group and all other preview rows remain unchanged.
+Actual live counts remain 1,609 accounted copies and 550 review rows; projected
+counts after a future verified incremental save are 1,616 and 543. Private
+collectr_card_labels_20261007/CHECKPOINT.json tracks checks and remaining release
+work. Never replay PR603 or old save intents. The graded-item choice is pending.
+
 ## Split external payments — October 6
 
 PR604 now preserves PR603/main ddb7c764b's exact sealed-label update. The split
@@ -20,6 +31,16 @@ External sales_split_payments_20261006/CHECKPOINT.json owns proof/release state.
 Local430 replay/upgrade includes deferred receipt429; it is not authority to
 apply receipt delivery remotely. Preserve production428, prior web/TestFlight346,
 receipt sender deferral, catalog work and every retained lab/upload intent.
+
+## Collectr remaining card review — October 6
+
+PR603's deployed product-label fix and 19-copy save are verified. The live export
+now has 1,609 accounted copies and 550 held rows. The [card-review checkpoint](../checkpoints/collectr_card_review_20261006.md)
+and private collectr_card_review_20261006/CHECKPOINT.json describe the full
+source-bound action ledger and fresh read-only catalog evidence. Graded source
+rows lack certificates; a user preference about unverified graded support is
+pending. Keep catalog coverage, source labels and owner variant choices distinct.
+No additional production mutation occurred in this review.
 
 ## Collectr sealed product labels — October 6
 

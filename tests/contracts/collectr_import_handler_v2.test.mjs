@@ -8,6 +8,23 @@ const row={'Product Name':'Synthetic card',Category:'Pokemon',Set:'151','Card Nu
 const toCsv=rows=>{const keys=Object.keys(rows[0]);return[keys,...rows.map(r=>keys.map(k=>r[k]))].map(r=>r.map(v=>'"'+v.replaceAll('"','""')+'"').join(',')).join('\n');};
 const owner=randomUUID(),cardId=randomUUID(),printing=randomUUID(),requestId=randomUUID();
 const selection={sourceIndices:[0],cardId,gvId:'GV-TEST',cardPrintingId:printing};
+const identityLabels=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_pokemon_identity_labels_v1.json',import.meta.url)));
+for(const c of identityLabels)test('server identity label: '+c.label,async()=>{
+ const source={...row,'Product Name':c.sourceName,'Card Number':c.sourceNumber,Variance:c.variance};
+ const options={card:c.card,printing:{finish_key:c.finish}};
+ const f=fixture(options),r=await f.send({csvText:toCsv([source])});
+ assert.equal(r.status,c.expected?200:400);assert.equal(f.writes.length,c.expected?1:0);
+ if(!c.expected)return;
+ assert.deepEqual(f.writes[0].args.p_source_rows,[source]);assert.equal(f.writes[0].args.p_targets[0].cardPrintingId,printing);
+ assert.equal(f.writes[0].args.p_targets[0].acquisitionCost,4.25);
+ for(const printingChange of [{finish_is_active:false},{finish_key:c.finish==='holo'?'normal':'holo'}]){
+  const bad=fixture({...options,printing:{...options.printing,...printingChange}});
+  assert.equal((await bad.send({csvText:toCsv([source])})).status,400);assert.equal(bad.writes.length,0);
+ }
+ const duplicate=fixture({...options,extraPrintings:[{id:randomUUID(),card_print_id:cardId,finish_key:c.finish,finish_is_active:true}]});
+ assert.equal((await duplicate.send({csvText:toCsv([source])})).status,400);assert.equal(duplicate.writes.length,0);
+ const graded=fixture(options);assert.equal((await graded.send({csvText:toCsv([{...source,Grade:'PSA 10'}])})).status,400);assert.equal(graded.writes.length,0);
+});
 const artLabels=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_pokemon_art_labels_v1.json',import.meta.url)));
 for(const c of artLabels)test('server enforces art evidence and preserves original source: '+c.label,async()=>{
  const source={...row,'Product Name':c.name,'Card Number':'007/100',Variance:'Holofoil'};

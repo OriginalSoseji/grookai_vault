@@ -1,0 +1,506 @@
+[
+  {
+    "label": "Pokemon Center label selects stamped parent",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp"
+    },
+    "expected": true
+  },
+  {
+    "label": "Holo Common requires rarity and holo",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": true
+  },
+  {
+    "label": "Imakuni punctuation scoped to Evolutions 112",
+    "sourceName": "Imakuni's Doduo",
+    "sourceNumber": "112/108",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Imakuni?'s Doduo",
+      "number": "112",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "set_code": "xy12"
+    },
+    "expected": true
+  },
+  {
+    "label": "Pokemon Center label selects stamped parent / wrong_number",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "8",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp"
+    },
+    "expected": false
+  },
+  {
+    "label": "Pokemon Center label selects stamped parent / foreign_domain",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_jpn_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp"
+    },
+    "expected": false
+  },
+  {
+    "label": "Pokemon Center label selects stamped parent / wrong_name",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Different",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp"
+    },
+    "expected": false
+  },
+  {
+    "label": "Pokemon Center label selects stamped parent / foreign_language",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "language": "ja"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common requires rarity and holo / wrong_number",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "8",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common requires rarity and holo / foreign_domain",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_jpn_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common requires rarity and holo / wrong_name",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Different",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common requires rarity and holo / foreign_language",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common",
+      "language": "ja"
+    },
+    "expected": false
+  },
+  {
+    "label": "Imakuni punctuation scoped to Evolutions 112 / wrong_number",
+    "sourceName": "Imakuni's Doduo",
+    "sourceNumber": "112/108",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Imakuni?'s Doduo",
+      "number": "8",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "set_code": "xy12"
+    },
+    "expected": false
+  },
+  {
+    "label": "Imakuni punctuation scoped to Evolutions 112 / foreign_domain",
+    "sourceName": "Imakuni's Doduo",
+    "sourceNumber": "112/108",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Imakuni?'s Doduo",
+      "number": "112",
+      "identity_domain": "pokemon_jpn_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "set_code": "xy12"
+    },
+    "expected": false
+  },
+  {
+    "label": "Imakuni punctuation scoped to Evolutions 112 / wrong_name",
+    "sourceName": "Imakuni's Doduo",
+    "sourceNumber": "112/108",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Different",
+      "number": "112",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "set_code": "xy12"
+    },
+    "expected": false
+  },
+  {
+    "label": "Imakuni punctuation scoped to Evolutions 112 / foreign_language",
+    "sourceName": "Imakuni's Doduo",
+    "sourceNumber": "112/108",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Imakuni?'s Doduo",
+      "number": "112",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "set_code": "xy12",
+      "language": "ja"
+    },
+    "expected": false
+  },
+  {
+    "label": "Center / base",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    "expected": false
+  },
+  {
+    "label": "Center / other_stamp",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "prize_pack_stamp",
+      "printed_identity_modifier": "prize_pack_stamp"
+    },
+    "expected": false
+  },
+  {
+    "label": "Center / missing_modifier",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": null
+    },
+    "expected": false
+  },
+  {
+    "label": "Center / missing_variant",
+    "sourceName": "Synthetic (Pokemon Center Exclusive)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": null,
+      "printed_identity_modifier": "pokemon_center_stamp"
+    },
+    "expected": false
+  },
+  {
+    "label": "Common / rare",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Rare"
+    },
+    "expected": false
+  },
+  {
+    "label": "Common / missing_rarity",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": null
+    },
+    "expected": false
+  },
+  {
+    "label": "Common / stamped",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Common / conflicting Normal",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Normal",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Common / conflicting Reverse Holofoil",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "Reverse Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common infers named holo with blank variance",
+    "sourceName": "Synthetic (Holo Common)",
+    "sourceNumber": "007/100",
+    "variance": "",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": true
+  },
+  {
+    "label": "Imakuni / different set",
+    "sourceName": "Imakuni's Doduo",
+    "sourceNumber": "112/108",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Imakuni?'s Doduo",
+      "number": "112",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "set_code": "other"
+    },
+    "expected": false
+  },
+  {
+    "label": "Imakuni / stamped variant",
+    "sourceName": "Imakuni's Doduo",
+    "sourceNumber": "112/108",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Imakuni?'s Doduo",
+      "number": "112",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "stamp",
+      "printed_identity_modifier": null,
+      "set_code": "xy12"
+    },
+    "expected": false
+  },
+  {
+    "label": "Unrecognized generic stamp is retained",
+    "sourceName": "Synthetic (Stamped)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp"
+    },
+    "expected": false
+  },
+  {
+    "label": "Stacked qualifiers are retained",
+    "sourceName": "Synthetic (Pokemon Center Exclusive) (Full Art)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common numbered decoration retains review: Normal",
+    "sourceName": "Synthetic (Holo Common) (007)",
+    "sourceNumber": "007/100",
+    "variance": "Normal",
+    "finish": "normal",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common numbered decoration retains review: blank",
+    "sourceName": "Synthetic (Holo Common) (007)",
+    "sourceNumber": "007/100",
+    "variance": "",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  },
+  {
+    "label": "Holo Common numbered decoration retains review: Holofoil",
+    "sourceName": "Synthetic (Holo Common) (007)",
+    "sourceNumber": "007/100",
+    "variance": "Holofoil",
+    "finish": "holo",
+    "card": {
+      "name": "Synthetic",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "rarity": "Common"
+    },
+    "expected": false
+  }
+]

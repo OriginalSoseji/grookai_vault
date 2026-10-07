@@ -18,6 +18,28 @@ export function matchesCollectrPokemonName({sourceName, sourceNumber, game, card
     if (number(suffix[1]) !== number(sourceNumber)) return false;
     name = name.slice(0, suffix.index);
   }
+  // These labels describe printed identity, not optional search decorations.
+  const center = /^([^()]+)\s+\(pokemon center exclusive\)$/.exec(name);
+  if (center) {
+    if (text(card.variant_key) !== "pokemon_center_stamp" ||
+      text(card.printed_identity_modifier) !== "pokemon_center_stamp") return false;
+    name = center[1].trim();
+  }
+  const common = /^([^()]+)\s+\(holo common\)$/.exec(name);
+  if (common) {
+    // A trailing number prevents the named-finish parser from recognizing the
+    // original label. Do not accept that stacked form without its finish gate.
+    if (suffix) return false;
+    // The named-finish resolver separately requires a governed holo child and
+    // rejects conflicting Variance. Keep this label until rarity is checked.
+    if (text(card.rarity) !== "common" || text(card.variant_key) ||
+      text(card.printed_identity_modifier)) return false;
+    name = common[1].trim();
+  }
+  // One reviewed punctuation difference; never drop question marks generally.
+  if (name === "imakuni's doduo" && text(card.set_code) === "xy12" &&
+    number(card.number) === "112" && !text(card.variant_key) &&
+    !text(card.printed_identity_modifier)) name = "imakuni?'s doduo";
   // Artwork labels need positive catalog evidence; they are never generic noise.
   const art = /^([^()]+)\s+\(\s*(full art|secret|alternate art secret)\s*\)$/.exec(name);
   if (art) {

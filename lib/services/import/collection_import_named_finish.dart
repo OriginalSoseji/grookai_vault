@@ -10,13 +10,20 @@
     'poke ball pattern': 'pokeball',
     'poké ball pattern': 'pokeball',
     'master ball pattern': 'masterball',
+    'holo common': 'holo',
   };
   final match = RegExp(
     r'^([^()]+)\s+\(([^()]+)\)$',
   ).firstMatch(value.trim().replaceAll(RegExp(r'\s+'), ' ').toLowerCase());
   final finishKey = match == null ? null : labels[match.group(2)];
   return match != null && finishKey != null
-      ? (name: match.group(1)!.trim(), finishKey: finishKey)
+      ? (
+          // Preserve the rarity assertion for the catalog name matcher.
+          name: match.group(2) == 'holo common'
+              ? match.group(0)!
+              : match.group(1)!.trim(),
+          finishKey: finishKey,
+        )
       : null;
 }
 

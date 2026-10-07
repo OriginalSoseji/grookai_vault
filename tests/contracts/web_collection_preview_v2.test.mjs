@@ -5,6 +5,17 @@ import {buildCollectionPreviewV2} from '../../apps/web/src/lib/import/collection
 import {chooseCollectionReviewCandidate} from '../../apps/web/src/lib/import/collectionPreviewChoices.ts';
 const csv=(rows)=>['Product Name,Category,Set,Card Number,Variance,Grade,Quantity,Portfolio Name',...rows].join('\n');
 const basic='Synthetic,Pokemon,Test,007,Reverse Holofoil,Ungraded,2,Private';
+const identityLabels=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_pokemon_identity_labels_v1.json',import.meta.url)));
+for(const c of identityLabels)test('web identity label: '+c.label,async()=>{
+ const source=[c.sourceName,'Pokemon','Test',c.sourceNumber,c.variance,'Ungraded','2','Private'].join(',');
+ const options={primaryCard:c.card,primaryFinish:c.finish};
+ const p=await buildCollectionPreviewV2(fixture(options).client,'owner',csv([source]));
+ assert.equal(p.readyRows,c.expected?1:0);assert.equal(p.rows[0].source['Product Name'],c.sourceName);
+ if(!c.expected)return;
+ assert.equal(p.rows[0].selection.cardPrintingId,'p1');assert.equal(p.readyCopies,2);
+ for(const change of [{primaryActive:false},{primaryFinish:c.finish==='holo'?'normal':'holo'}])assert.equal((await buildCollectionPreviewV2(fixture({...options,...change}).client,'owner',csv([source]))).readyRows,0);
+ assert.equal((await buildCollectionPreviewV2(fixture(options).client,'owner',csv([source.replace('Ungraded','PSA 10')]))).readyRows,0);
+});
 const namedFinishes=JSON.parse(fs.readFileSync(new URL('../../test/fixtures/collectr_named_finishes_v1.json',import.meta.url)));
 for(const c of namedFinishes)test('web named finish keeps exact child and original source: '+c.name,async()=>{
  const source=basic.replace('Synthetic',c.name).replace('Reverse Holofoil','Holofoil');

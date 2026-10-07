@@ -7,10 +7,13 @@ export function collectrPokemonNamedFinish(value: string): { name: string; finis
     "cracked ice holo": "cracked_ice",
     "poke ball pattern": "pokeball", "poké ball pattern": "pokeball",
     "master ball pattern": "masterball",
+    "holo common": "holo",
   };
   const match = /^([^()]+)\s+\(([^()]+)\)$/.exec(value.trim().replace(/\s+/g, " ").toLowerCase());
   const finishKey = match ? labels[match[2]] : null;
-  return match && finishKey ? { name: match[1].trim(), finishKey } : null;
+  // Holo Common also asserts rarity. Preserve that label for the name matcher;
+  // stripping it here would let a rare or stamped parent satisfy this source.
+  return match && finishKey ? { name: match[2] === "holo common" ? match[0] : match[1].trim(), finishKey } : null;
 }
 export function collectrNamedFinishVarianceAgrees(value: string): boolean {
   // Collectr uses its generic Holofoil column for these explicit name labels.
