@@ -1,5 +1,30 @@
 # Collectr import fidelity repair
 
+## Printed identity labels — October 7
+
+Source-aware preview and server validation accept `Pokemon Center Exclusive`
+only when both canonical variant and printed identity modifier are exactly
+`pokemon_center_stamp`. Unstamped parents, other stamps and missing evidence
+cannot satisfy the label. This is not generic removal of promotional labels.
+
+`Holo Common` requests an existing governed holo child and requires catalog
+rarity Common, an empty variant and no printed identity modifier. The named-
+finish helper retains this label for the name matcher to verify its rarity.
+Blank, Holo or Holofoil Variance may accompany it; conflicting Normal, Reverse
+or other values remain held. No child printing is inferred or created.
+The stacked form `Holo Common` followed by a repeated-number suffix stays held:
+it must not bypass named-finish validation through number-suffix normalization.
+
+The source spelling `Imakuni's Doduo` may match `Imakuni?'s Doduo` only at
+Evolutions/xy12 number112 with an empty variant and no modifier. Other punctuation
+and card-name differences stay literal. All three rules independently retain
+English Pokemon identity, exact set/number, current active child, grade,
+metadata and ambiguity checks. Original CSV fields are unchanged.
+
+Web/server and native use the same identity-label fixture corpus. Seven source
+rows qualify locally; deployment and a real save remain separate. Read
+`docs/checkpoints/collectr_card_labels_20261007.md` for evidence and current status.
+
 ## Governed Surge Foil — October 4
 
 Source-aware matching accepts a terminal Surge Foil label only with an explicit

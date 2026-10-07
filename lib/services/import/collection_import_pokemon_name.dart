@@ -32,6 +32,36 @@ bool matchesCollectrPokemonName({
     if (number(suffix.group(1)) != number(sourceNumber)) return false;
     name = name.substring(0, suffix.start);
   }
+  final center = RegExp(
+    r'^([^()]+)\s+\(pokemon center exclusive\)$',
+  ).firstMatch(name);
+  if (center != null) {
+    if (text(card['variant_key']) != 'pokemon_center_stamp' ||
+        text(card['printed_identity_modifier']) != 'pokemon_center_stamp') {
+      return false;
+    }
+    name = center.group(1)!.trim();
+  }
+  final common = RegExp(r'^([^()]+)\s+\(holo common\)$').firstMatch(name);
+  if (common != null) {
+    // The original stacked label did not pass through named-finish resolution.
+    if (suffix != null) return false;
+    // Named-finish resolution enforces holo; retain the label for rarity proof.
+    if (text(card['rarity']) != 'common' ||
+        text(card['variant_key']).isNotEmpty ||
+        text(card['printed_identity_modifier']).isNotEmpty) {
+      return false;
+    }
+    name = common.group(1)!.trim();
+  }
+  // Reviewed punctuation at one coordinate, not a general punctuation alias.
+  if (name == "imakuni's doduo" &&
+      text(card['set_code']) == 'xy12' &&
+      number(card['number']) == '112' &&
+      text(card['variant_key']).isEmpty &&
+      text(card['printed_identity_modifier']).isEmpty) {
+    name = "imakuni?'s doduo";
+  }
   final art = RegExp(
     r'^([^()]+)\s+\(\s*(full art|secret|alternate art secret)\s*\)$',
   ).firstMatch(name);

@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Collectr printed identity labels — October 7
+
+Read docs/checkpoints/collectr_card_labels_20261007.md. Local candidate on
+main4f0af6c54 resolves seven additional copies; it is not deployed or saved.
+PR603's 1,609 live accounted copies and all 1,322 source groups remain unchanged.
+Private collectr_card_labels_20261007/CHECKPOINT.json owns current qualification.
+Preserve PR604, all consumed receipts and retained labs. Graded support remains
+pending; no schema, catalog, permissions or inventory changes are included.
+
 ## Split external payments — October 6
 
 PR604 integration preserves PR603/main ddb7c764b; split SQL/native bytes remain
@@ -19,6 +28,15 @@ External sales_split_payments_20261006/CHECKPOINT.json owns proof/release state.
 Local430 replay/upgrade includes deferred receipt429; it is not authority to
 apply receipt delivery remotely. Preserve production428, prior web/TestFlight346,
 receipt sender deferral, catalog work and every retained lab/upload intent.
+
+## Collectr remaining card review — October 6
+
+PR603 and its 19-copy incremental save are complete: 1,609 accounted copies,
+550 review rows. Read docs/checkpoints/collectr_card_review_20261006.md and private
+collectr_card_review_20261006/CHECKPOINT.json. All remaining rows are classified;
+graded-item handling awaits the user's preference. No product/schema change
+belongs to this review. Preserve all 1,322 source groups and consumed receipts;
+do not infer missing catalog data solely from an unresolved English set label.
 
 ## Collectr sealed product labels — October 6
 
