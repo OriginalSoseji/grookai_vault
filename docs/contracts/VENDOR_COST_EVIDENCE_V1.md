@@ -19,6 +19,30 @@ Unknown is a null pair; zero is a known cost. A new amount requires explicit
 uppercase currency, finite nonnegative decimal value and at most two decimals.
 Legacy amounts without currency remain visible and require owner review.
 
+## Native editing and recovery
+
+Native Inventory uses the existing owner-only RPCs and a separate app-sandbox
+SQLite journal. `GV_COPY_COST_V1` defaults off for new entry. Pending recovery is
+independent of that switch and active inventory, including archived copies.
+This does not replace existing sale drafts, import receipts or public pricing.
+
+Persist the exact owner/copy/request payload in a transaction before dispatch.
+Revision checks reject stale screens; an unresolved payload cannot be changed or
+cleared by normal editing. Only a matching confirmation or a specifically known
+definitive server rejection can settle it. A transport error, timeout or failed
+local acknowledgment retains the same request. Failed reads never mean zero cost.
+
+Keep raw proposals separately from immutable requests. Serialize device writes
+and drain them before saving or leaving. Device-storage failure keeps text visible
+and blocks departure; reloading a stored proposal requires an explicit choice.
+Account changes hide private fields and invalidate the service and late replies.
+Never use current copy edits to revise immutable historical sale costs.
+
+Qualification includes real SQLite rollback/reopen/CAS, account-scoped paging,
+large-text UI, loss of a successful response followed by actual process restart,
+and recovery from empty Inventory after archival. Local fixtures must restore
+their retained table hashes and leave the primary installed application intact.
+
 ## Sale evidence
 
 A default-off AFTER INSERT trigger on the immutable cart receipt ledger captures

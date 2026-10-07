@@ -6,9 +6,77 @@ import 'package:grookai_vault/screens/gvvi/vendor_pricing_workspace_screen.dart'
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 import 'package:grookai_vault/screens/workspace/vendor_workspace_screen.dart';
 import 'package:grookai_vault/theme/gv_tokens.dart';
+import 'package:grookai_vault/services/vault/copy_cost_service.dart';
+import 'support/copy_cost_fakes.dart' as cost;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  testWidgets('private cost opens from exact inventory row', (tester) async {
+    final gateway = cost.FakeCostGateway([]);
+    final costs = CopyCostService(
+      gateway: gateway,
+      store: cost.MemoryCostStore([]),
+    );
+    addTearDown(() async {
+      costs.dispose();
+      await gateway.changes.close();
+    });
+    await tester.pumpWidget(
+      MaterialApp(
+        home: VendorPricingWorkspaceScreen(
+          service: _FakeVendorService(
+            VendorPricingWorkspaceData(
+              rows: [_row(instanceId: cost.instance)],
+              sections: [],
+            ),
+          ),
+          copyCosts: costs,
+          costEntryEnabled: true,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('vendor_edit_${cost.instance}')));
+    await tester.pumpAndSettle();
+    final entry = find.byKey(const Key('vendor_cost_${cost.instance}'));
+    await tester.ensureVisible(entry);
+    await tester.tap(entry);
+    await tester.pumpAndSettle();
+    expect(find.text('Private cost'), findsOneWidget);
+    expect(find.text('Cost unknown'), findsOneWidget);
+    expect(find.byKey(const Key('copy_cost_amount')), findsOneWidget);
+  });
+  testWidgets(
+    'empty inventory keeps recovery reachable with new entry disabled',
+    (tester) async {
+      final gateway = cost.FakeCostGateway([]);
+      final costs = CopyCostService(
+        gateway: gateway,
+        store: cost.MemoryCostStore([]),
+      );
+      addTearDown(() async {
+        costs.dispose();
+        await gateway.changes.close();
+      });
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(
+            service: _FakeVendorService(
+              VendorPricingWorkspaceData(rows: [], sections: []),
+            ),
+            copyCosts: costs,
+            costEntryEnabled: false,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('No vendor inventory yet'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('vendor_cost_recovery')));
+      await tester.pumpAndSettle();
+      expect(find.text('No pending cost saves.'), findsOneWidget);
+      expect(find.byKey(const Key('copy_cost_save')), findsNothing);
+    },
+  );
   setUpAll(() async {
     if (const bool.fromEnvironment('OVERHAUL_VISUALS')) {
       await (FontLoader(

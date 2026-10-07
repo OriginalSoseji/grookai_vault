@@ -2,12 +2,22 @@
 
 ## Combined economics workflow — October 7
 
-Continue in `C:/gv_product_integrated_20261007`; read
+The combined source is in `C:/gv_product_integrated_20261007`; read
 [the integration checkpoint](docs/ops/PRODUCT_INTEGRATED_20261007.md).
 Editor `bead8c328` and report `dc630120c` passed their separate normal hooks.
-Their merge is resolved but uncommitted and needs combined validation. Preserve
+Their combined commit `12f806945` passed the normal hook and 43 browser scenarios.
+The native cost tree now includes that committed result. Preserve
 all source worktrees, pending requests and labs. The daily-workflow iPad simulator
 acceptance now passes; physical iOS and production release remain separate.
+## Native private cost entry — October 7
+
+Read [the native cost checkpoint](docs/ops/PRODUCT_NATIVE_COST_20261007.md).
+This independent tree now begins at integrated `12f806945`. Exact native models,
+the SQLite journal and owner-bound service are implemented. All 33 model/service
+tests pass, as do ten real SQLite tests and native editor/Inventory widget checks.
+Samsung process-restart recovery and visual checks pass. The full normal hook
+remains tracked by the external native checkpoint. Continue native work here.
+Preserve all pending requests and labs. No production writes or activation.
 
 ## Private cost editor — October 7
 

@@ -5,8 +5,10 @@ Worktree `C:/gv_product_integrated_20261007`, branch
 
 The base is cost editor `bead8c328`; report `dc630120c` is merged with conflicts
 resolved in the documentation and shared browser fixture. Both fixture entries
-remain available. Shared environment guards are identical. The merge is not yet
-committed or qualified as a combined product.
+remain available. Shared environment guards are identical. The combined product
+is committed locally at `12f806945`; 43 browser scenarios and normal hook
+`checks-1791415086901` pass (7,525 contracts, web types/lint/build, native analysis
+and 1,382 native tests). The native cost candidate includes this exact base.
 
 Reuse the existing [cost evidence](../contracts/VENDOR_COST_EVIDENCE_V1.md),
 [private report](../contracts/VENDOR_PROFIT_REPORT_V1.md) and editor contracts.

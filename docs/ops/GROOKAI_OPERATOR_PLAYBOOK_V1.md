@@ -4,8 +4,9 @@
 
 Continue in `C:/gv_product_integrated_20261007`; read
 [the integration checkpoint](PRODUCT_INTEGRATED_20261007.md). This combines
-committed editor `bead8c328` and report `dc630120c`; combined validation and the
-merge commit remain pending. Preserve the original trees and all pending journals.
+committed editor `bead8c328` and report `dc630120c` in `12f806945`. Combined
+runtime, 43 browser scenarios and the normal hook pass. Preserve the original
+trees and all pending journals.
 
 Daily-workflow iPad simulator acceptance passes at native source `2c7bd7242`.
 Mac checkout: `/Users/cesarcabral/grookai_product_overhaul_20261007`. External
@@ -27,6 +28,23 @@ the VM URL: the passing local harness used an explicit loopback VM port, verifie
 the VM response, and attached with `--use-existing-app` to the already built test
 binary. Its temporary backend relay was closed and synthetic Auth/copies removed.
 This is a local test workflow, not signing, TestFlight or release authorization.
+## Native cost entry — October 7
+
+Continue in `C:/gv_product_native_cost_20261007`; read
+[the native checkpoint](PRODUCT_NATIVE_COST_20261007.md). Use the existing cost
+RPCs and preserve exact decimal/currency evidence. Native requests require a
+transactional local journal before network writes, owner/copy isolation and the
+same immutable request through recovery. Recovery must remain reachable after
+entry is disabled or the copy is sold. The existing SharedPreferences sale drafts
+are outside this slice; do not replace, clear or migrate them incidentally.
+The native candidate now includes integrated `12f806945`. Model/service tests
+pass (33), with ten real SQLite and native editor/Inventory widget checks. Samsung
+process-restart recovery and visual checks pass; the normal hook remains tracked
+externally. Use
+`scripts/audits/product_native_cost_fixture_v1.mjs` only for fresh synthetic runs
+on retained full431; read its manifest before verify/cleanup. Device entry is
+default-off `GV_COPY_COST_V1`, independent from pending-request recovery. Preserve all
+lab fixtures and the pre-integration native snapshot/stash until final validation.
 
 ## Private cost editor — October 7
 
