@@ -1,7 +1,22 @@
 // Explicit source labels only. A combined kit searches every constituent deck;
 // it never makes one deck interchangeable with another. Original fields stay intact.
-List<String> collectrSetTargets(String source, String game, String number) {
+List<String> collectrSetTargets(
+  String source,
+  String game,
+  String number, [
+  String sourceName = '',
+  String sourceNumber = '',
+]) {
   final key = source.trim().replaceAll(RegExp(r'\s+'), ' ').toLowerCase();
+  // An exact product coordinate, never an umbrella-category set alias.
+  if (game == 'pokemon' &&
+      key == 'miscellaneous cards & products' &&
+      sourceName.trim().replaceAll(RegExp(r'\s+'), ' ').toLowerCase() ==
+          'pikachu (toys r us)' &&
+      number == '26' &&
+      RegExp(r'^#?0*26\s*/\s*0*83$').hasMatch(sourceNumber.trim())) {
+    return ['generations'];
+  }
   const scopes = <String, Map<String, List<String>>>{
     'pokemon': {
       "30th celebration: classic collection": [

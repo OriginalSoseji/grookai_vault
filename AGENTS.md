@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Collectr catalog scope review — October 7
+
+PR608 recovery is complete; preserve 1,616 accounted copies and 543 held rows.
+Read docs/checkpoints/collectr_scope_review_20261007.md. Fresh review covers all
+216 set/number gap rows. The retailer candidate qualifies two source rows/four
+copies using existing stamped identity and Holo evidence. Nothing is saved by
+qualification. Private collectr_scope_review_20261007/CHECKPOINT.json owns actual
+release/save status. Japanese candidates have no public printing options; do not
+broaden aliases or revive hidden children to bypass that boundary. Keep every
+saved group, consumed receipt, retained lab and the pending graded-item choice.
+
 ## Collectr mixed receipt confirmation — October 7
 
 PR607 is live; its seven-card save is independently verified: 1,616 accounted
