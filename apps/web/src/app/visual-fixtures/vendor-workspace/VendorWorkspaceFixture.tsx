@@ -15,7 +15,7 @@ export default function VendorWorkspaceFixture() {
   const [ready, setReady] = useState(false);
   const view = useSearchParams().get("view");
   const owner = "00000000-0000-4000-8000-000000000001";
-  const routePath = view === "store" ? "/account/store" : view === "inventory" ? "/account/store/inventory" : view === "reports" ? "/account/store/reports" : "/account/store/sales";
+  const routePath = view === "store" ? "/account/store" : view === "inventory" ? "/account/store/inventory" : view === "reports" || view === 'profit' ? "/account/store/reports" : "/account/store/sales";
   useEffect(() => {
     // Synthetic credentials are valid only against intercepted local fixture Auth.
     const token = `e30.${btoa(JSON.stringify({ exp: 4000000000, sub: owner }))}.fixture`;
@@ -27,7 +27,7 @@ export default function VendorWorkspaceFixture() {
     <Link href="/visual-fixtures/vendor-workspace">Fixture Desk</Link>{" · "}<Link href="/visual-fixtures/vendor-workspace?view=reports">Fixture Reports</Link>
     {" · "}<Link href="/visual-fixtures/vendor-workspace?view=inventory">Fixture Inventory</Link>
     <VendorWorkspaceNavigation routePath={routePath} />
-    {ready ? view === "pricing" ? <PricingEditorFixture /> : view === "store" ? <StoreManager siteOrigin="https://fixture.invalid" /> : view === "inventory" ? <VendorInventory ownerId={owner} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
+    {ready ? view === 'profit' ? <SalesReports ownerId={owner} profitEnabled /> : view === "pricing" ? <PricingEditorFixture /> : view === "store" ? <StoreManager siteOrigin="https://fixture.invalid" /> : view === "inventory" ? <VendorInventory ownerId={owner} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
     <button onClick={() => void supabase.auth.signOut({ scope: "local" })}>Fixture sign out</button>
     <VendorWorkspaceNavigation mobile routePath={routePath} />
   </div>;

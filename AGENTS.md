@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Known-cost report — October 7
+
+Read [the report checkpoint](docs/ops/PRODUCT_PROFIT_20261007.md) and its contract.
+This independent worktree starts from cost backend `3f3a30e88`. Report arithmetic
+uses immutable cost-at-sale evidence, never current copy costs. Private API/UI are
+wired and verified against real local Auth, receipts and snapshots; normal hooks
+remain tracked by the external checkpoint. Preserve
+separate editor/release-gate work, all labs and pending
+requests. No production activation or full-overhaul completion is implied.
+
 ## Product economics — October 7
 
 Read [the economics checkpoint](docs/ops/PRODUCT_ECONOMICS_20261007.md) and

@@ -28,10 +28,11 @@ export async function GET(req: NextRequest) {
             return json({ owner: user.id, payments: payments === true, available: available === true, trades: trades === true });
         }
         if (action === 'book') {
+            if (p.has('owner') && p.get('owner') !== user.id) return json({error:'Account changed. Reopen Reports.'},409);
             const { data, error } = await client.rpc('vendor_receipt_book_read_v1');
             if (error)
                 throw error;
-            return json(data);
+            return json({ ...data, ownerId: user.id });
         }
         if (action === 'recover') {
             if (!uuid(p.get('id')))

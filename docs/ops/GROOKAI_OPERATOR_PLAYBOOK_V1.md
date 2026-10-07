@@ -1,5 +1,19 @@
 # Grookai Operator Playbook V1
 
+## Known-cost reporting — October 7
+
+Continue in `C:/gv_product_profit_20261007`; read
+[the report checkpoint](PRODUCT_PROFIT_20261007.md). Receipt totals must reconcile
+before calculation; costs must align to the immutable sale snapshot. Show uncovered
+sales and exclusion reasons. Never infer old costs from today's inventory or
+silently allocate discounts. Server `GV_VENDOR_PROFIT_V1` controls the private
+report panel and GET-only snapshot API. Cost reads are owner-bound and batched;
+failed or partial reads cannot appear as missing costs. Real database-to-screen
+proof passes, including recovery, flag-off behavior and 13 retained table hashes.
+Run normal hooks with `node scripts/tests/run_product_profit_checks_v1.mjs commit`;
+stage reviewed source first and do not edit it during the hook. External
+`product_profit_20261007/CHECKPOINT.json` owns actual proof.
+
 ## Product economics — October 7
 
 Continue cost-at-sale work in `C:/gv_product_economics_20261007`; read
