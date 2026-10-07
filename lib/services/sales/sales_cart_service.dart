@@ -11,6 +11,7 @@ import 'sales_trade.dart';
 import 'sales_payments.dart';
 import 'sales_search_cache.dart';
 import 'sales_drafts.dart';
+import 'sales_scanner.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
 int? saleMoneyInput(String value) {
@@ -291,6 +292,26 @@ class SalesCartService {
     final data = await _workspace.loadCopies({instanceId});
     _checkOwner();
     return data.rows;
+  }
+
+  Future<VendorPricingWorkspaceRow?> loadScannedCopy(String gvviId) async {
+    _checkOwner();
+    if (scannedCopyId(gvviId) != gvviId) {
+      throw ArgumentError('Invalid copy label');
+    }
+    final copy = await client
+        .from('vault_item_instances')
+        .select('id')
+        .eq('user_id', _owner!)
+        .eq('gv_vi_id', gvviId)
+        .isFilter('archived_at', null)
+        .maybeSingle();
+    _checkOwner();
+    if (copy == null) return null;
+    final rows = await loadAddedCopy(copy['id'] as String);
+    return rows.length == 1 && rows.single.gvviId == gvviId
+        ? rows.single
+        : null;
   }
 
   Future<void> stage(Map<String, dynamic> request) async {

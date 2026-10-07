@@ -13,20 +13,28 @@ class WorkspaceExitCoordinator {
   }
 }
 
-/// Changes only when a retained destination is revisited (or a scan returns).
+/// Visibility and refresh revision for retained workspace destinations.
 class WorkspaceActivation extends InheritedWidget {
   const WorkspaceActivation({
     super.key,
     required this.revision,
+    this.active = true,
     this.exits,
     required super.child,
   });
 
   final int revision;
+  final bool active;
   final WorkspaceExitCoordinator? exits;
 
   static WorkspaceExitCoordinator? exitsOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<WorkspaceActivation>()?.exits;
+
+  static bool activeOf(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<WorkspaceActivation>()
+          ?.active ??
+      true;
 
   static int? of(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<WorkspaceActivation>()
@@ -34,5 +42,5 @@ class WorkspaceActivation extends InheritedWidget {
 
   @override
   bool updateShouldNotify(WorkspaceActivation oldWidget) =>
-      revision != oldWidget.revision;
+      revision != oldWidget.revision || active != oldWidget.active;
 }

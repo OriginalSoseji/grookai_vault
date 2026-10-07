@@ -94,3 +94,76 @@ test("workspace navigation waits for an already requested draft write", async ({
   const saved = await page.evaluate(() => Object.values(localStorage).some(value => value.includes('Saved before leaving')));
   expect(saved).toBe(true);
 });
+
+test("browser Back and an immediate return retain every accepted queued edit", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await fixture(page);
+  await page.goto("/visual-fixtures/vendor-workspace?view=reports");
+  await page.getByRole("link", { name: "Fixture Desk", exact: true }).click();
+  await expect(page.getByLabel("Store name", { exact: true })).toHaveValue("Sample store");
+  await page.getByText("Store, tax & receipt note", { exact: true }).click();
+  await page.evaluate(() => {
+    const request = navigator.locks.request.bind(navigator.locks);
+    let release: () => void;
+    const held = new Promise<void>(resolve => { release = resolve; });
+    Object.defineProperty(window, '__releaseDraft', { value: () => release(), configurable: true });
+    navigator.locks.request = ((...args: Parameters<typeof request>) => held.then(() => request(...args))) as typeof request;
+  });
+  await page.getByLabel("Store name", { exact: true }).fill("Retained through Back");
+  await page.getByLabel("Receipt note", { exact: true }).fill("Second accepted edit");
+  await page.goBack();
+  await expect(page).toHaveURL(/view=reports/);
+  await page.goForward();
+  await page.evaluate(() => (window as unknown as { __releaseDraft: () => void }).__releaseDraft());
+  await expect(page.getByLabel("Store name", { exact: true })).toHaveValue("Retained through Back");
+  await expect(page.getByLabel("Receipt note", { exact: true })).toHaveValue("Second accepted edit");
+});
+
+test("a failed local edit blocks links until the edit is retried", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await fixture(page);
+  await page.goto("/visual-fixtures/vendor-workspace");
+  await expect(page.getByLabel("Store name", { exact: true })).toHaveValue("Sample store");
+  await page.getByText("Store, tax & receipt note", { exact: true }).click();
+  await page.evaluate(() => {
+    const request = navigator.locks.request.bind(navigator.locks);
+    navigator.locks.request = (() => {
+      navigator.locks.request = request;
+      return Promise.reject(new Error("Synthetic storage failure"));
+    }) as typeof request;
+  });
+  await page.getByLabel("Store name", { exact: true }).fill("Retry this name");
+  await expect(page.getByText("Synthetic storage failure", { exact: true })).toBeVisible();
+  await page.getByRole("link", { name: "Fixture Reports", exact: true }).click();
+  await expect(page).not.toHaveURL(/view=reports/);
+  await expect(page.getByText(/Your last edit could not save/)).toBeVisible();
+  await page.getByLabel("Store name", { exact: true }).fill("Retried successfully");
+  await page.getByRole("link", { name: "Fixture Reports", exact: true }).click();
+  await expect(page).toHaveURL(/view=reports/);
+  expect(await page.evaluate(() => Object.values(localStorage).some(v => v.includes("Retried successfully")))).toBe(true);
+});
+
+test("sign-out after Back rejects old-owner edits waiting on the journal lock", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await fixture(page);
+  await page.goto("/visual-fixtures/vendor-workspace?view=reports");
+  await page.getByRole("link", { name: "Fixture Desk", exact: true }).click();
+  await expect(page.getByLabel("Store name", { exact: true })).toHaveValue("Sample store");
+  await page.getByText("Store, tax & receipt note", { exact: true }).click();
+  await page.evaluate(() => {
+    const request = navigator.locks.request.bind(navigator.locks);
+    let release: () => void;
+    const held = new Promise<void>(resolve => { release = resolve; });
+    Object.defineProperty(window, '__releaseDraft', { value: () => release(), configurable: true });
+    navigator.locks.request = ((...args: Parameters<typeof request>) => held.then(() => request(...args))) as typeof request;
+  });
+  await page.getByLabel("Store name", { exact: true }).fill("Must not save after signout");
+  await page.getByLabel("Receipt note", { exact: true }).fill("Old-owner second edit");
+  await page.goBack();
+  await page.getByRole("button", { name: "Fixture sign out", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Reports closed", exact: true })).toBeVisible();
+  await page.evaluate(() => (window as unknown as { __releaseDraft: () => void }).__releaseDraft());
+  await page.goForward();
+  await expect(page.getByText("Your account changed. Reopen the sales desk.", { exact: true })).toBeVisible();
+  expect(await page.evaluate(() => Object.values(localStorage).some(v => v.includes("Must not save after signout") || v.includes("Old-owner second edit")))).toBe(false);
+});

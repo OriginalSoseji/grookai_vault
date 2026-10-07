@@ -140,6 +140,7 @@ class _VendorWorkspaceScreenState extends State<VendorWorkspaceScreen> {
               child: WorkspaceActivation(
                 revision: _revisions[destination] ?? 0,
                 exits: _exits,
+                active: destination == _selected && !_scanning,
                 child: _pages[destination] ?? const SizedBox.shrink(),
               ),
             ),

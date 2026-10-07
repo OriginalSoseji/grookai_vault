@@ -65,10 +65,7 @@ void main() {
         expect(find.text('Your price: USD 12.34'), findsOneWidget);
         expect(find.text('Search TCGplayer'), findsOneWidget);
         await tester.ensureVisible(find.text('Add to sale'));
-        if (size.width < 900) {
-          await tester.drag(find.byType(GridView), const Offset(0, -260));
-          await tester.pumpAndSettle();
-        }
+        await tester.pumpAndSettle();
         await tester.tap(find.text('Add to sale'));
         await tester.pumpAndSettle();
         if (size.width < 900) {

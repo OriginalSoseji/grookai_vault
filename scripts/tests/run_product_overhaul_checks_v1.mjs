@@ -8,8 +8,10 @@ import { execFileSync, spawn } from 'node:child_process';
 import pg from 'pg';
 
 const mode = process.argv[2];
-assert.equal(process.argv.length, 3);
 assert.ok(['shipcheck', 'commit'].includes(mode));
+assert.ok(process.argv.length === 3 || (mode === 'commit' && process.argv.length === 4));
+const commitTitle = process.argv[3] ?? 'feat: connect vendor workspaces and preserve draft edits';
+assert.ok(commitTitle.length > 0 && commitTitle.length <= 120 && !/[\r\n]/.test(commitTitle));
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 assert.equal(fs.realpathSync('.'), fs.realpathSync(root));
 const base = 'C:/grookai_vault_operator_artifacts/product_overhaul_20261007';
@@ -94,7 +96,7 @@ fs.writeFileSync(out + '/intent.json', JSON.stringify({ at: new Date().toISOStri
   scriptSha256: sha(fileURLToPath(import.meta.url)), localReadOnly: true, productionWrites: 0 }, null, 2));
 const fd = fs.openSync(out + '/checks.private.log', 'wx');
 const child = mode === 'commit'
-  ? spawn('git', ['commit', '-m', 'feat: connect vendor workspaces and preserve draft edits'], { cwd: root, env, windowsHide: true, stdio: ['ignore', fd, fd] })
+  ? spawn('git', ['commit', '-m', commitTitle], { cwd: root, env, windowsHide: true, stdio: ['ignore', fd, fd] })
   : spawn('npm.cmd', ['run', 'shipcheck'], { cwd: root, env, shell: true, windowsHide: true, stdio: ['ignore', fd, fd] });
 console.log(JSON.stringify({ status: 'running', mode, out }));
 const code = await new Promise((resolve, reject) => { child.once('error', reject); child.once('exit', resolve); });

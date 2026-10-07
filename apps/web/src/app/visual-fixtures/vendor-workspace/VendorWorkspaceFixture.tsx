@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { VendorWorkspaceNavigation } from "@/components/workspace/VendorWorkspaceNavigation";
@@ -19,6 +20,7 @@ export default function VendorWorkspaceFixture() {
   }, []);
   return <div style={{ maxWidth: 1400, margin: "auto", padding: "12px 16px 110px" }} data-vendor-workspace-fixture>
     <p>Local fixture · Sample sales · No live transactions</p>
+    <Link href="/visual-fixtures/vendor-workspace">Fixture Desk</Link>{" · "}<Link href="/visual-fixtures/vendor-workspace?view=reports">Fixture Reports</Link>
     <VendorWorkspaceNavigation routePath={view === 'reports' ? '/account/store/reports' : '/account/store/sales'} />
     {ready ? view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
     <button onClick={() => void supabase.auth.signOut({ scope: "local" })}>Fixture sign out</button>

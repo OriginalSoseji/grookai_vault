@@ -5,6 +5,7 @@ import { GET as resolveSearch } from '@/app/api/resolver/search/route';
 import { getPublicCardPrintingOptions } from '@/lib/cards/getPublicCardPrintingOptions';
 import { resolveCardImageFieldsV1 } from '@/lib/canon/resolveCardImageFieldsV1';
 import { resolveDisplayIdentity } from '@/lib/cards/resolveDisplayIdentity';
+import { scannedCopyId } from '@/lib/sales/salesScanner.mjs';
 export const dynamic = 'force-dynamic';
 const headers = { 'Cache-Control': 'private, no-store', 'Vary': 'Cookie, Authorization' };
 const json = (data: unknown, status = 200) => NextResponse.json(data, { status, headers });
@@ -40,9 +41,11 @@ export async function GET(req: NextRequest) {
                 throw error;
             return json({ receipt: data });
         }
-        if (!['stock', 'catalog'].includes(action))
+        if (action === 'scan' && (p.get('owner') !== user.id || !scannedCopyId(p.get('q')) || scannedCopyId(p.get('q')) !== p.get('q')))
+            return json({error: 'Invalid scan or changed account'}, 400);
+        if (!['stock', 'catalog', 'scan'].includes(action))
             return json({ error: 'Unknown read' }, 400);
-        const q = (p.get('q') ?? '').trim(), game = p.get('game') ?? 'pokemon', offset = Number(p.get('offset') ?? 0), copyOffset = Number(p.get('copyOffset') ?? 0);
+        const q = (p.get('q') ?? '').trim(), game = p.get('game') ?? 'pokemon', offset = Number(p.get('offset') ?? 0), copyOffset = action === 'scan' ? 0 : Number(p.get('copyOffset') ?? 0);
         if (q.length > 120 || !['pokemon', 'mtg', 'one_piece'].includes(game) || ![offset, copyOffset].every(n => Number.isInteger(n) && n >= 0 && n <= 10000))
             return json({ error: 'Invalid search' }, 400);
         type CardRow = {
@@ -106,13 +109,13 @@ export async function GET(req: NextRequest) {
             grade: string;
         } | null; return { ...c, slab, card_print_id: c.card_print_id ?? slab?.card_print_id }; }), ids = [...new Set(copies.map(c => c.card_print_id).filter(Boolean))];
         if (!copies.length)
-            return json({ cards: [], next: pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
+            return json({ owner: user.id, cards: [], next: pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
         const { data: parents, error: parentError } = await client.from('card_prints').select('id,gv_id,name,number,set_code,variant_key,printed_identity_modifier,set_identity_model,tcgplayer_id,image_source,image_path,image_url,image_alt_url,image_status,image_note').in('id', ids);
         if (parentError)
             throw parentError;
         const options = await getPublicCardPrintingOptions(client, ids);
         const rows = await Promise.all(copies.map(async (copy) => { const c = parents?.find(c => c.id === copy.card_print_id); const printing = options.find(o => o.id === copy.card_printing_id); return { instanceId: copy.id, gvviId: copy.gv_vi_id, id: copy.card_print_id, gv_id: c?.gv_id, name: c ? resolveDisplayIdentity(c).display_name : 'Unresolved card', number: c?.number, set_code: c?.set_code, condition: copy.slab ? [copy.slab.grader, copy.slab.grade].filter(Boolean).join(' ') : copy.condition_label, printing: printing?.finish_label ?? (copy.slab_cert_id ? 'Slab' : 'Printing unassigned'), image: c ? (await resolveCardImageFieldsV1(c)).display_image_url : null, askingMinor: copy.asking_price_currency === 'USD' && copy.asking_price_amount != null ? Math.round(Number(copy.asking_price_amount) * 100) : null, tcgplayer_id: c?.tcgplayer_id }; }));
-        return json({ cards: rows.filter(row => !cards.length || cards.some(c => c.id === row.id && (!c.search_card_printing_id || copies.find(i => i.id === row.instanceId)?.card_printing_id === c.search_card_printing_id))), next: (raw?.length ?? 0) > 48 ? { offset, copyOffset: copyOffset + 48 } : pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
+        return json({ owner: user.id, cards: rows.filter(row => !cards.length || cards.some(c => c.id === row.id && (!c.search_card_printing_id || copies.find(i => i.id === row.instanceId)?.card_printing_id === c.search_card_printing_id))), next: (raw?.length ?? 0) > 48 ? { offset, copyOffset: copyOffset + 48 } : pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
     }
     catch {
         return json({ error: 'The sales desk could not load this request. Retry; your saved deals are unchanged.' }, 503);

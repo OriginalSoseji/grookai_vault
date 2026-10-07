@@ -6,8 +6,24 @@ Follow [the overhaul checkpoint](PRODUCT_OVERHAUL_20261007.md) for the isolated
 `C:/gv_product_overhaul_20261007` candidate and external verification artifacts.
 This first slice adds workspace navigation, compact native inventory, private
 Reports and draft-safe navigation around existing authorities. It does not mark
-the full overhaul or any release complete. Preserve the separate scanner worktree
-and deliberately integrate its overlapping Sales Desk changes before release.
+the full overhaul or any release complete. The follow-up integrates a hash-checked
+snapshot of the separate scanner worktree, retaining the original unchanged.
+It adds retained-tab cancellation and completion of accepted local journal writes
+across SPA Back/Forward. Source, runtime and physical pairing proof remain distinct.
+The six-screen sample prototype and authority/component specification live under
+`docs/product`; the local review server binds only `127.0.0.1:32992`.
+
+Physical Samsung local-backend acceptance passed in external
+`product_overhaul_20261007/native-acceptance/run-1791404973783/`: identical sale
+retry, one receipt/disposition, Reports/Inventory reconciliation and account-change
+clearing. All synthetic fixtures were cleaned with retained counts matched.
+The primary app remains 409; only the separate locked-acceptance app was updated
+to 408 after checking its signer and retaining its prior APK. Preserve app data:
+use an explicit `adb install -r -t` with no uninstall fallback, launch the test,
+and attach `flutter drive --use-existing-app=... --keep-app-running`. Ordinary
+drive install/stop paths can uninstall an app. Remove only this run's ADB mappings
+and fixtures; never reset the lab. Private defines and APKs stay outside git.
+iOS evidence and physical Bluetooth pairing remain separate gates.
 
 ## Collectr mixed receipt confirmation — October 7
 

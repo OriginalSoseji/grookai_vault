@@ -15,3 +15,11 @@
 .shell .paymentToggle {display:flex;align-items:center;gap:10px;margin:16px 0;font-size:15px}.shell .paymentToggle input {width:20px;height:20px;accent-color:var(--mint)}
 
 .paymentEditor fieldset {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}.paymentEditor fieldset label:first-of-type {grid-column:1/-1}.paymentEditor fieldset button {grid-column:1/-1;justify-self:end;padding:6px 10px;font-size:13px}.paymentEditor [role=status] {padding:12px;border:1px solid var(--line);border-radius:10px;font-weight:650;color:var(--mint)}@media(max-width:480px){.paymentEditor fieldset {grid-template-columns:minmax(0,1fr)}}
+
+.scanner {border:1px solid #587666;border-radius:14px;padding:14px;margin-bottom:16px;background:rgba(80,150,110,.08)}
+.scanner>div,.scanner form {display:flex;align-items:center;gap:10px}
+.scanner>div button {margin-left:auto}
+.scanner p {margin:10px 0;font-size:14px}
+.scanner input {flex:1;min-width:0;padding:12px;border:1px solid #849b8b;border-radius:8px;background:transparent;color:inherit}
+.scanner input:focus {outline:3px solid #2b9a71;outline-offset:2px}
+.scanner small {display:block;margin-top:10px;opacity:.75}

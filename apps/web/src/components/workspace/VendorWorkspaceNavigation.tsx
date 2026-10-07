@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { BarChart3, Boxes, ScanLine, ShoppingBag, Store } from "lucide-react";
 import { MobileDockFrame } from "@/components/mobileParity/MobileDockFrame";
+import { useKeyboardVisible } from "@/components/mobileParity/useKeyboardVisible";
 import { activeVendorDestination, vendorDestinations } from "@/lib/vendorWorkspace";
 import s from "./VendorWorkspaceNavigation.module.css";
 
@@ -12,6 +13,8 @@ const icons = { desk: ShoppingBag, inventory: Boxes, scan: ScanLine, reports: Ba
 export function VendorWorkspaceNavigation({ mobile = false, routePath }: { mobile?: boolean; routePath?: string }) {
   const path = usePathname();
   const params = useSearchParams();
+  const keyboardVisible = useKeyboardVisible();
+  if (mobile && keyboardVisible) return null;
   const active = activeVendorDestination(routePath ?? path, params.get("view"));
   const links = <nav className={mobile ? s.dock : s.tabs} aria-label="Vendor workspace">
     {vendorDestinations.map(item => {

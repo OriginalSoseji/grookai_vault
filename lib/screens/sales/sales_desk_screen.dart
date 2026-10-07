@@ -19,6 +19,7 @@ import 'sales_trade_dialog.dart';
 import 'sales_price_reference.dart';
 import 'receipt_delivery_panel.dart';
 import '../workspace/workspace_activation.dart';
+import 'sales_scanner_input.dart';
 
 class SalesDeskScreen extends StatefulWidget {
   const SalesDeskScreen({super.key, this.service});
@@ -42,6 +43,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   SalesDeskData? _data;
   Map<String, dynamic>? _pending, _receipt, _customer;
   bool _loading = true, _busy = false, _showCart = false;
+  int _pendingScans = 0;
+  bool get _scanPending => _pendingScans > 0;
   bool _accountChanged = false, _dashboard = false, _editing = false;
   int _inventoryGeneration = 0, _deskGeneration = 0;
   bool _catalogOpen = false, _catalogBusy = false, _tradeOpen = false;
@@ -61,6 +64,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Future<void> _draftWrites = Future<void>.value();
   bool _restoringDraft = true;
   String? _draftError;
+  bool _workspaceActive = true;
   int? _workspaceActivation;
   WorkspaceExitCoordinator? _workspaceExits;
 
@@ -70,6 +74,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     _workspaceExits?.unregister(this);
     _workspaceExits = WorkspaceActivation.exitsOf(context);
     _workspaceExits?.register(this, _prepareToLeave);
+    _workspaceActive = WorkspaceActivation.activeOf(context);
     final revision = WorkspaceActivation.of(context);
     if (_workspaceActivation != null && revision != _workspaceActivation) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -119,7 +124,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
   }
 
-  bool get _locked =>
+  bool get _locked => _baseLocked || _scanPending;
+  bool get _baseLocked =>
       _accountChanged ||
       _editing ||
       _catalogBusy ||
@@ -573,8 +579,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
   }
 
-  Future<void> _edit({VendorPricingWorkspaceRow? copy, int? index}) async {
-    if (_locked) return;
+  Future<void> _edit({
+    VendorPricingWorkspaceRow? copy,
+    int? index,
+    bool scanned = false,
+  }) async {
+    if (_baseLocked || (_scanPending && !scanned)) return;
     if (index == null && _lines.length >= 50) {
       _message('A sale can contain up to 50 lines.');
       return;
@@ -658,8 +668,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
   }
 
-  Future<void> _addCopy(VendorPricingWorkspaceRow copy) async {
-    if (_locked ||
+  Future<void> _addCopy(
+    VendorPricingWorkspaceRow copy, {
+    bool scanned = false,
+  }) async {
+    if (_baseLocked ||
+        (_scanPending && !scanned) ||
         _lines.length >= 50 ||
         _lines.any((line) => line.instanceId == copy.instanceId)) {
       return;
@@ -670,12 +684,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         !price.isFinite ||
         price <= 0 ||
         price > 1000000) {
-      await _edit(copy: copy);
+      await _edit(copy: copy, scanned: scanned);
       return;
     }
     final minor = (price * 100).round();
     if (minor <= 0) {
-      await _edit(copy: copy);
+      await _edit(copy: copy, scanned: scanned);
       return;
     }
     _edited(() {
@@ -691,6 +705,50 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       );
       _error = null;
     });
+  }
+
+  Future<String> _addScan(String id, bool Function() current) async {
+    final target = _draftBook?['active'], generation = _deskGeneration;
+    final copy = await _service
+        .loadScannedCopy(id)
+        .timeout(const Duration(seconds: 15));
+    if (!mounted ||
+        !current() ||
+        _baseLocked ||
+        _accountChanged ||
+        generation != _deskGeneration ||
+        target != _draftBook?['active']) {
+      throw StateError('The deal changed. Scan again in the intended cart.');
+    }
+    if (copy == null) {
+      throw StateError(
+        'This copy is not in your active inventory. Check its QR label.',
+      );
+    }
+    if (_lines.any((line) => line.instanceId == copy.instanceId)) {
+      return '${copy.displayName} is already in this cart.';
+    }
+    if (_lines.length >= 50) {
+      throw StateError('A sale can contain up to 50 lines.');
+    }
+    setState(() {
+      _data = _data!.withRows([
+        ..._data!.rows.where((row) => row.instanceId != copy.instanceId),
+        copy,
+      ]);
+    });
+    await _addCopy(copy, scanned: true);
+    if (!mounted || _accountChanged) {
+      throw StateError('Your account changed. Reopen the sales desk.');
+    }
+    await _flushDraft();
+    final added = _lines.where((line) => line.instanceId == copy.instanceId);
+    if (added.isEmpty) {
+      throw StateError(
+        'Card not added. Scan again when ready to enter its price.',
+      );
+    }
+    return '${copy.displayName} added · \$${saleMoney(added.single.unitMinor)} · Draft saved';
   }
 
   Future<void> _trade({int? index}) async {
@@ -763,7 +821,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   }
 
   Future<void> _complete() async {
-    if (_busy ||
+    if (_scanPending ||
+        _busy ||
         _receipt != null ||
         _accountChanged ||
         _catalogBusy ||
@@ -1070,58 +1129,80 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     ),
   );
 
-  Widget _entryPanel() => Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-        child: SegmentedButton<String>(
-          segments: [
-            const ButtonSegment(
-              value: 'stock',
-              label: Text('Your stock'),
-              icon: Icon(Icons.style_outlined),
-            ),
-            const ButtonSegment(
-              value: 'catalog',
-              label: Text('Catalog'),
-              icon: Icon(Icons.search),
-            ),
-            if (_data?.tradesAvailable == true)
-              const ButtonSegment(
-                value: 'trade',
-                label: Text('Trade-in'),
-                icon: Icon(Icons.swap_horiz),
-              ),
-          ],
-          selected: {
-            _tradeOpen
-                ? 'trade'
-                : _catalogOpen
-                ? 'catalog'
-                : 'stock',
-          },
-          onSelectionChanged: _locked
-              ? null
-              : (values) {
-                  switch (values.first) {
-                    case 'catalog':
-                      unawaited(_catalog());
-                    case 'trade':
-                      unawaited(_trade());
-                    default:
-                      setState(() {
-                        _catalogOpen = false;
-                        _tradeOpen = false;
-                      });
-                  }
-                },
-        ),
-      ),
-      Expanded(child: _inventory()),
-    ],
+  Widget _entryPanel() {
+    final selector = _entryModeSelector();
+    if (_catalogOpen || _tradeOpen) {
+      return Column(
+        children: [
+          selector,
+          Expanded(child: _inventory()),
+        ],
+      );
+    }
+    return _inventory(header: [_scannerInput(), selector]);
+  }
+
+  Widget _scannerInput() => SalesScannerInput(
+    disabled:
+        !_workspaceActive ||
+        _baseLocked ||
+        _data?.available != true ||
+        _catalogOpen ||
+        _tradeOpen,
+    target: '$_deskGeneration:${_draftBook?['active']}',
+    add: _addScan,
+    pending: (value) {
+      if (mounted) setState(() => _pendingScans += value);
+    },
   );
 
-  Widget _inventory() {
+  Widget _entryModeSelector() => Padding(
+    padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+    child: SegmentedButton<String>(
+      segments: [
+        const ButtonSegment(
+          value: 'stock',
+          label: Text('Your stock'),
+          icon: Icon(Icons.style_outlined),
+        ),
+        const ButtonSegment(
+          value: 'catalog',
+          label: Text('Catalog'),
+          icon: Icon(Icons.search),
+        ),
+        if (_data?.tradesAvailable == true)
+          const ButtonSegment(
+            value: 'trade',
+            label: Text('Trade-in'),
+            icon: Icon(Icons.swap_horiz),
+          ),
+      ],
+      selected: {
+        _tradeOpen
+            ? 'trade'
+            : _catalogOpen
+            ? 'catalog'
+            : 'stock',
+      },
+      onSelectionChanged: _locked
+          ? null
+          : (values) {
+              switch (values.first) {
+                case 'catalog':
+                  unawaited(_catalog());
+                case 'trade':
+                  unawaited(_trade());
+                default:
+                  setState(() {
+                    _catalogOpen = false;
+                    _tradeOpen = false;
+                  });
+              }
+            },
+    ),
+  );
+
+  Widget _inventory({List<Widget> header = const []}) {
     if (_tradeOpen) {
       return SalesTradeDialog(
         service: _service,
@@ -1136,48 +1217,58 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     final rows = (_data?.rows ?? <VendorPricingWorkspaceRow>[])
         .where((row) => salesCopyMatches(row, query))
         .toList();
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16),
+    final textScale = MediaQuery.textScalerOf(context).scale(14) / 14;
+    return CustomScrollView(
+      key: const Key('sales-stock-scroll'),
+      slivers: [
+        SliverToBoxAdapter(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                'Your cards. Ready to sell.',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Tap or drag to add at your saved USD price. Edit the price in your cart.',
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _search,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  labelText: 'Find a card, GV-ID or copy ID',
-                  border: OutlineInputBorder(),
+              ...header,
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'Your cards. Ready to sell.',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'Tap or drag to add at your saved USD price. Edit the price in your cart.',
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: _search,
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.search),
+                        labelText: 'Find a card, GV-ID or copy ID',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    FilledButton.icon(
+                      onPressed: _locked ? null : () => _edit(),
+                      icon: const Icon(Icons.add),
+                      label: const Text('Quick-add unlisted item'),
+                    ),
+                    if (_inventoryLoading) const LinearProgressIndicator(),
+                    if (_inventoryError != null)
+                      TextButton(
+                        onPressed: _hydrateInventory,
+                        child: Text('$_inventoryError Retry stock'),
+                      ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 12),
-              FilledButton.icon(
-                onPressed: _locked ? null : () => _edit(),
-                icon: const Icon(Icons.add),
-                label: const Text('Quick-add unlisted item'),
-              ),
-              if (_inventoryLoading) const LinearProgressIndicator(),
-              if (_inventoryError != null)
-                TextButton(
-                  onPressed: _hydrateInventory,
-                  child: Text('$_inventoryError Retry stock'),
-                ),
             ],
           ),
         ),
-        Expanded(
-          child: rows.isEmpty
-              ? Center(
+        rows.isEmpty
+            ? SliverFillRemaining(
+                hasScrollBody: false,
+                child: Center(
                   child: Text(
                     _inventoryLoading
                         ? 'Loading your stock… You can use catalog search or Quick-add now.'
@@ -1185,12 +1276,15 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                         ? 'No Vault cards yet. Use Quick-add to start a sale.'
                         : 'No matching copies.',
                   ),
-                )
-              : GridView.builder(
-                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 230,
-                    mainAxisExtent: 420,
+                ),
+              )
+            : SliverPadding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                sliver: SliverGrid.builder(
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: textScale >= 1.5 ? 460 : 230,
+                    mainAxisExtent:
+                        420 + (textScale > 1 ? (textScale - 1) * 170 : 0),
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
                   ),
@@ -1293,7 +1387,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     );
                   },
                 ),
-        ),
+              ),
       ],
     );
   }
@@ -1310,7 +1404,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       children: [
         Text('Sale cart', style: Theme.of(context).textTheme.headlineSmall),
         OutlinedButton.icon(
-          onPressed: _lines.isEmpty || _busy ? null : _customerView,
+          onPressed: _lines.isEmpty || _busy || _scanPending
+              ? null
+              : _customerView,
           icon: const Icon(Icons.visibility_outlined),
           label: const Text('Customer view'),
         ),
@@ -1499,7 +1595,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         const SizedBox(height: 16),
         FilledButton.icon(
           onPressed:
-              _busy ||
+              _scanPending ||
+                  _busy ||
                   (_pending == null &&
                       (_lines.isEmpty || _data?.available != true))
               ? null
@@ -1773,6 +1870,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   );
 
   Future<bool> _prepareToLeave() async {
+    if (_scanPending) {
+      _message('Wait for the current scan before leaving.');
+      return false;
+    }
     if (_draftBook != null && !_locked) {
       try {
         await _flushDraft();
@@ -1819,12 +1920,15 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Widget build(BuildContext context) => PopScope(
     canPop:
         _workspaceExits != null ||
-        ((_lines.isEmpty && _trades.isEmpty) ||
-            _pending != null ||
-            _receipt != null),
+        (!_scanPending &&
+            ((_lines.isEmpty && _trades.isEmpty) ||
+                _pending != null ||
+                _receipt != null)),
     onPopInvokedWithResult: (didPop, result) async {
       if (didPop || _workspaceExits != null) return;
-      if (await _prepareToLeave() && context.mounted) Navigator.of(context).pop();
+      if (await _prepareToLeave() && context.mounted) {
+        Navigator.of(context).pop();
+      }
     },
     child: _accountChanged
         ? const Scaffold(
@@ -1848,7 +1952,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                   ),
                 IconButton(
                   tooltip: _dashboard ? 'Back to selling' : 'Sales dashboard',
-                  onPressed: _data == null || _busy
+                  onPressed: _data == null || _busy || _scanPending
                       ? null
                       : () => setState(() => _dashboard = !_dashboard),
                   icon: Icon(
@@ -1934,8 +2038,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                                         trailing: const Icon(
                                           Icons.chevron_right,
                                         ),
-                                        onTap: () =>
-                                            setState(() => _showCart = true),
+                                        onTap: _scanPending
+                                            ? null
+                                            : () => setState(
+                                                () => _showCart = true,
+                                              ),
                                       ),
                                     ),
                                   Padding(
@@ -1958,9 +2065,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                                         ),
                                       ],
                                       selected: {_showCart},
-                                      onSelectionChanged: (values) => setState(
-                                        () => _showCart = values.single,
-                                      ),
+                                      onSelectionChanged: _scanPending
+                                          ? null
+                                          : (values) => setState(
+                                              () => _showCart = values.single,
+                                            ),
                                     ),
                                   ),
                                   Expanded(

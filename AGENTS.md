@@ -5,7 +5,12 @@
 Read [the product overhaul checkpoint](docs/ops/PRODUCT_OVERHAUL_20261007.md)
 and Product Workspaces V1 before continuing the DeckTradr-driven overhaul.
 The isolated candidate adds vendor navigation and compact inventory around the
-existing Sales Desk. It is not deployed. Preserve concurrent scanner changes and
+existing Sales Desk. Scanner integration, SPA draft persistence and a physical
+Samsung local-backend sale/recovery flow are verified in the same candidate;
+the corrected combined normal-hook result is tracked externally. The original
+scanner worktree is intact. iOS and production release remain unproved.
+The six-screen sample prototype and reference specification are under docs/product.
+It is not deployed. Preserve concurrent scanner changes and
 all retained import/receipt/deal requests; synthetic renders are not device or
 production-release proof. The external checkpoint records current validation.
 

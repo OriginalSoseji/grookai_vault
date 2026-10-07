@@ -26,8 +26,10 @@ collector redesign and scan handoff are subsequent work, not completed by this s
 - Workspace exit coordinates Inventory autosaves and the existing Desk draft
   flush/leave behavior. Invalid prices and active inventory writes prevent exit.
 - Account changes dispose retained private screens and dismiss child routes.
-- Scan uses the existing scan entry; scanner-to-cart work remains a separate
-  integration dependency. Opening Scan is not evidence of a completed transaction.
+- Scan uses the existing camera scan entry. Dedicated Desk keyboard QR input uses
+  Sales Scanner V1. Leaving a retained Desk or opening the camera cancels earlier
+  keyboard lookups; revisiting never revives those results. Opening Scan is not
+  evidence of a completed transaction.
 
 ## Inventory presentation
 
@@ -49,15 +51,21 @@ printing, currency, publication and archive/disposition boundaries still apply.
 
 The signed-in header exposes the vendor entry. Vendor routes replace the collector
 mobile dock and desktop navigation with vendor destinations; existing URLs remain
-valid. Inventory opens the current Store inventory editor and retains its access
+valid. The vendor route layout owns its mobile dock independently of collector
+shell suppression, and hides it while the software keyboard is visible.
+Inventory opens the current Store inventory editor and retains its access
 requirements. This web inventory route is not yet equivalent to the native
 owner-only inventory surface for accounts without a store.
 
 Reports require server authentication, use private uncached receipt reads and
 clear on account change. Link navigation from Desk waits for queued local journal
 writes. Failed queued writes keep the page open with an error. Document exits while
-writes are pending use the browser's unload guard. Browser-history transitions
-still require dedicated verification before release.
+writes are pending use the browser's unload guard. Accepted local journal writes
+finish across SPA history transitions. A returning Desk waits for that owner's
+queued writes before reading the journal. Owner changes and storage conflicts
+still invalidate writes, including after the page unmounts. Failed saves block
+ordinary links until retried; this is not a durable outbox for browser termination
+or unavailable storage.
 
 ## Verification and release boundary
 

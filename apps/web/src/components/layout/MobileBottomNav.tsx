@@ -1,9 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
-import { VendorWorkspaceNavigation } from "@/components/workspace/VendorWorkspaceNavigation";
+import { useKeyboardVisible } from "@/components/mobileParity/useKeyboardVisible";
 import { isVendorWorkspacePath } from "@/lib/vendorWorkspace";
 import {
   shouldSuppressMobileChrome,
@@ -52,27 +51,6 @@ function getActiveMobileNavKey(
   return null;
 }
 
-function useKeyboardVisible() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const viewport = window.visualViewport;
-    if (!viewport) {
-      return;
-    }
-
-    const update = () => {
-      setVisible(window.innerHeight - viewport.height > 150);
-    };
-
-    update();
-    viewport.addEventListener("resize", update);
-    return () => viewport.removeEventListener("resize", update);
-  }, []);
-
-  return visible;
-}
-
 export function MobileBottomNav({ wallHref, pulseUnreadCount = 0 }: MobileBottomNavProps) {
   const pathname = usePathname();
   const keyboardVisible = useKeyboardVisible();
@@ -88,7 +66,8 @@ export function MobileBottomNav({ wallHref, pulseUnreadCount = 0 }: MobileBottom
       ? pathname
       : wallHref;
 
-  if (isVendorWorkspacePath(pathname)) return <VendorWorkspaceNavigation mobile />;
+  // Vendor routes own their dock, including when collector chrome is suppressed.
+  if (isVendorWorkspacePath(pathname)) return null;
 
   return (
     <MobileParityDock

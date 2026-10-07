@@ -31,6 +31,78 @@ journeys and releases. The source audit remains in
 No database migrations or production record writes were made for this slice.
 Existing schema/read/writer access checks remain authoritative.
 
+The first slice is committed as `994bcf94168b263811c2fea5402aeeb607a1ea84`.
+Its normal pre-commit hook passed all repository checks: 7,456 contract cases
+(10 skipped), full web type/lint/production build, Flutter analyzer and 1,357
+native cases (two skipped). The previous attempt hit an unchanged ingestion
+test's ten-second timeout; its focused cases and the complete retry passed.
+Both runs retained the local lab's four copies and two users.
+
+## Follow-up integration
+
+The working candidate now includes keyboard QR-to-Desk input from the unchanged
+scanner worktree, cancellation across retained native tabs and disabled intervals,
+and accepted local journal writes that finish across SPA Back/Forward. Returning
+to Desk waits for that owner's queued writes; account changes still invalidate
+those writes. Failed local saves block ordinary links until an edit is retried.
+
+The follow-up's nine browser cases pass together, including Back with an immediate
+return, failed-save recovery and rejecting queued old-owner edits after sign-out.
+Node's 20 shared scanner parser cases pass.
+The 39 targeted native cases pass together, including a phone at double text size.
+The large-text test exposed fixed stock-header overflow; stock controls and cards
+now share one scroll surface, scanner controls wrap, and enlarged cards have room
+for their prices/actions. The stock-row test scrolls and settles before its tap.
+Actual authenticated route testing also exposed a missing mobile vendor dock when
+collector chrome was suppressed. The vendor layout now owns that dock and its
+keyboard visibility; the global collector dock yields on vendor routes.
+Actual-auth runtime passed on the internal local430 lab: exact copies, owner
+isolation, saved/unpriced amounts, cancelled results, archived copies and saved
+draft restoration. The real Reports route opens for a synthetic owner without a
+store, and Back restores the same three-copy draft. No sale or message was created.
+The script restored control flags and removed only its fresh synthetic fixtures;
+the before/after account, catalog and copy counts matched. The final combined
+normal-hook result is recorded externally. This does not establish physical pairing.
+
+The first combined normal hook passed all contracts, the production web build and
+native analysis, then completed with 1,381 native passes, two skips and one failure.
+That price-reference test still dragged the former GridView. It now reveals the
+actual action and settles its scroll; all four price-reference cases pass with
+their negotiated-versus-asking-price assertions intact. A new normal hook is required.
+
+Native device acceptance uses `integration_test/product_workspaces_local_test.dart`
+with an external local-only fixture and the existing real sale writer. The test
+simulates loss of the first committed response and requires an identical retry,
+one receipt, one disposed copy, refreshed Reports and remaining Inventory.
+Its driver writes evidence outside git. The physical Samsung run passed on
+October 7 at 20:30 UTC, with six screenshots and independent database readback:
+one USD 12.34 receipt, one disposition, the sold row archived and the spare active.
+Reports reconciled, Inventory showed the spare, and sign-out cleared the workspace.
+The retained lab's original counts matched after fixture cleanup. Evidence is under
+external `native-acceptance/run-1791404973783/`. Earlier unsuccessful runs remain
+preserved; launcher and scroll/RLS test corrections did not change production code.
+The separate locked-acceptance package is build 408; the Samsung's primary app
+remains build 409. The tested APK SHA256 is
+`873535d685990368426c385a36093b2d8b4d88cbbb9e3f46b85833ad30d12988`.
+This is a synthetic local-backend device test, not production release, camera
+identification, Bluetooth pairing or iOS proof. Mac access is verified, but its
+observed free disk space was only 1.7 GiB; no new iOS build was attempted.
+
+## Reference prototype
+
+[Component and authority specification](../product/PRODUCT_REFERENCE_SPEC_20261007.md)
+and [six-screen prototype](../product/prototype/index.html) cover Vault, research,
+scan review, Desk, Inventory and proposed event Reports. Run
+`node docs/product/prototype/serve.mjs` to serve it on `127.0.0.1:32992` when that
+port is free. The current review server serves the identical retained external
+artifact and is open in Chrome. All data is synthetic and stays in page memory.
+
+Phone/desktop flow checks cover hold/resume, sale-to-report, private intake without
+a price and explicit deal pricing. Automated axe checks reported no violations
+on the six phone screens after contrast repair. Event economics and alerts remain
+proposed. The first implementation retains existing native/web visual tokens;
+the prototype explores a proposed unified palette.
+
 ## Evidence
 
 External checkpoint and build logs:
@@ -78,18 +150,21 @@ The initial read-only environment check matched the configured production projec
 or existing import/receipt/deal requests. This candidate has narrow changes in
 `SalesDesk.tsx`, `sales_desk_screen.dart` and `sales_cart_service.dart`; integrate
 them deliberately with that scanner work before releasing the combined workflow.
-No scanner functionality was copied or claimed as integrated here.
+The original scanner files remain unchanged; the follow-up snapshot and merge
+review are retained under external `scanner-integration/`. This integration is
+local code, not a scanner hardware or release qualification.
 
 ## Next work and release gates
 
-1. Finish normal repository shipcheck and compilation; resolve current-main and
-   scanner overlap without discarding either change.
-2. Verify the actual authenticated web paths, store-form navigation, browser Back,
-   large text and native account/exit flows against fresh synthetic local accounts.
-3. Complete the six reference journeys from the broader plan, including Collector
-   Vault, card research and Scan review. The current renders cover only this slice.
-4. Prove a designated device deal through receipt and uncertain-response recovery;
-   obtain equivalent iOS evidence through the existing Mac release workflow.
+1. Complete the follow-up's corrected normal-hook run; preserve both worktrees
+   and verify current-main ancestry before release preparation. Actual-auth web
+   runtime and the designated physical Samsung sale/recovery flow have passed.
+2. Complete Store form and owner-without-store Inventory parity, native device
+   account/exit flows and large-text coverage beyond the verified Desk/scanner.
+3. Carry the six reference journeys into the working Collector/card/scan surfaces;
+   distinguish the completed sample prototype from implemented product behavior.
+4. Obtain equivalent iOS evidence through the existing Mac release workflow.
+   Retain the passing Samsung receipt/recovery and independent readback evidence.
 5. Continue collector navigation and card hierarchy, then cost/price evidence and
    event economics. Do not label item sales as profit or invent portfolio history.
 

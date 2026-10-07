@@ -1,0 +1,21 @@
+[
+  {"input":"GVVI-FIXTURE-000001","expected":"GVVI-FIXTURE-000001"},
+  {"input":" gvvi-fixture-000002\r\n","expected":"GVVI-FIXTURE-000002"},
+  {"input":"https://grookaivault.com/q/GVVI-FIXTURE-000001","expected":"GVVI-FIXTURE-000001"},
+  {"input":"https://www.grookaivault.com/gvvi/GVVI-FIXTURE-000002/?ref=abc#card","expected":"GVVI-FIXTURE-000002"},
+  {"input":"https://grookaivault.com:443/q/GVVI-FIXTURE-000001","expected":"GVVI-FIXTURE-000001"},
+  {"input":"https://grookaivault.com/q/%47VVI-FIXTURE-000001","expected":"GVVI-FIXTURE-000001"},
+  {"input":"https://evil.example/q/GVVI-FIXTURE-000001","expected":null},
+  {"input":"https://grookaivault.com.evil.example/q/GVVI-FIXTURE-000001","expected":null},
+  {"input":"https://user@grookaivault.com/q/GVVI-FIXTURE-000001","expected":null},
+  {"input":"https://grookaivault.com:444/q/GVVI-FIXTURE-000001","expected":null},
+  {"input":"http://grookaivault.com/q/GVVI-FIXTURE-000001","expected":null},
+  {"input":"https://grookaivault.com/card/GV-PK-MEW-173","expected":null},
+  {"input":"GV-PK-MEW-173-HOLO","expected":null},
+  {"input":"GVVI-FIXTURE-000001 GVVI-FIXTURE-000002","expected":null},
+  {"input":"https://grookaivault.com/q/GVVI-FIXTURE-000001%2Fbad","expected":null},
+  {"input":"https://grookaivault.com/q/%ZZ","expected":null},
+  {"input":"https://grookaivault.com/q/GVVI-FIXTURE-000001/extra","expected":null},
+  {"input":"012345678912","expected":null},
+  {"input":"","expected":null}
+]

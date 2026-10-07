@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import SalesDialog from './SalesDialog';
+import SalesScanner from './SalesScanner';
 import SalesPaymentEditor from './SalesPaymentEditor';
 import {paymentLines, paymentSnapshot} from '@/lib/sales/salesPayments.mjs';
 import SalesDashboard from './SalesDashboard';
@@ -58,16 +59,22 @@ type Receipt = SalesReceipt;
 class RequestError extends Error {
     constructor(message: string, readonly rejected = false) { super(message); }
 }
-async function request<T>(query: Record<string, string> = {}, body?: object): Promise<T> {
-    const response = await fetch('/api/sales/desk?' + new URLSearchParams(query), { cache: 'no-store', credentials: 'same-origin', ...(body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {}) });
+async function request<T>(query: Record<string, string> = {}, body?: object, signal?: AbortSignal): Promise<T> {
+    const response = await fetch('/api/sales/desk?' + new URLSearchParams(query), { cache: 'no-store', credentials: 'same-origin', signal, ...(body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {}) });
     const result = await response.json();
     if (!response.ok)
         throw new RequestError(result.error ?? 'Request could not complete.', result.rejected === true);
     return result as T;
 }
+// Queue lifetime crosses route remounts; the existing owner journal remains the only draft store.
+const pendingDraftWrites = new Map<string, Promise<void>>();
+async function waitForAcceptedWrites(owner: string) {
+    while (pendingDraftWrites.has(owner)) await pendingDraftWrites.get(owner);
+}
 const emptyJournal: Journal = { version: 2, revision: 0, drafts: [], active: null, pending: null, catalog: null };
 function paymentsValid(d:SaleDraft) {try {if(d.payments)paymentSnapshot(d.payments,totals(d).balance);return true;}catch{return false;}}
 export default function SalesDesk() {
+    const [scanPending, setScanPending] = useState(false);
     const [dashboard,setDashboard]=useState(false),[historyBusy,setHistoryBusy]=useState(false);
     const [session, setSession] = useState<Session | null>(null), [journal, setJournal] = useState<Journal>(emptyJournal), [book, setBook] = useState<Book['book'] | null>(null);
     const [scope, setScope] = useState<'stock' | 'catalog'>('stock'), [intent, setIntent] = useState<'sell' | 'trade'>('sell'), [query, setQuery] = useState(''), [game, setGame] = useState('pokemon');
@@ -77,29 +84,37 @@ export default function SalesDesk() {
     const [selected, setSelected] = useState<Card | null>(null), [quick, setQuick] = useState(false), [showHeld, setShowHeld] = useState(false), [showCustomer, setShowCustomer] = useState(false), [showDeal, setShowDeal] = useState(false), [review, setReview] = useState(false), [receipt, setReceipt] = useState<Receipt | null>(null);
     const [printing, setPrinting] = useState(''), [condition, setCondition] = useState('NM'), [price, setPrice] = useState(''), [percent, setPercent] = useState(''), [description, setDescription] = useState(''), [quantity, setQuantity] = useState('1'), [intake, setIntake] = useState(false);
     const repository = useRef<ReturnType<typeof draftJournal> | null>(null), state = useRef(journal), owner = useRef<string | null>(null), generation = useRef(0), queue = useRef(Promise.resolve()), searchRef = useRef<HTMLInputElement>(null), disabled = useRef(false);
-    const writing = useRef(0), writeFailed = useRef(false);
-    const hasPendingWrites = useCallback(() => writing.current > 0, []);
+    const writing = useRef(0), writeFailed = useRef(false), writeOwnerValid = useRef(true);
+    const hasPendingWrites = useCallback(() => writing.current > 0 || (!disabled.current && writeFailed.current), []);
     const flushForNavigation = useCallback(async () => {
         while (writing.current > 0) await queue.current;
+        if (disabled.current) return true;
         if (writeFailed.current) setError('Your last edit could not save. Keep this page open and retry the edit before leaving.');
         return !writeFailed.current;
     }, []);
     useSalesNavigationGuard(hasPendingWrites, flushForNavigation);
-    const draft = journal.drafts.find(d => d.id === journal.active) ?? null, locked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true;
+    const draft = journal.drafts.find(d => d.id === journal.active) ?? null, baseLocked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true, locked = baseLocked || scanPending;
     const balance = draft ? totals(draft) : null;
     const searchKey = JSON.stringify([query, game, scope, intent, revision]), stale = resultKey !== searchKey;
     const mutate = useCallback((change: (j: Journal) => Journal) => {
+        if (disabled.current || !repository.current || !owner.current) return Promise.reject(new Error('Reopen the sales desk before editing.'));
+        const repo = repository.current, writeOwner = owner.current;
         writing.current++;
         writeFailed.current = false;
         const operation = queue.current.then(async () => {
-            if (disabled.current || !repository.current)
-                throw Error('Reopen the sales desk before editing.');
-            const updated = await repository.current.update(state.current.revision, change);
+            if (!writeOwnerValid.current) throw Error('Your account or saved deals changed. Reopen the sales desk.');
+            const updated = await repo.update(state.current.revision, j => {
+                if (!writeOwnerValid.current) throw Error('Your account or saved deals changed. Reopen the sales desk.');
+                return change(j);
+            });
             state.current = updated;
             setJournal(updated);
             return updated;
         });
         queue.current = operation.then(() => { writing.current--; }, () => { writing.current--; writeFailed.current = true; });
+        const settled = queue.current;
+        pendingDraftWrites.set(writeOwner, settled);
+        void settled.then(() => { if (pendingDraftWrites.get(writeOwner) === settled) pendingDraftWrites.delete(writeOwner); });
         return operation;
     }, []);
     const edit = useCallback((change: (d: SaleDraft) => SaleDraft) => { if (locked)
@@ -108,6 +123,7 @@ export default function SalesDesk() {
     useEffect(() => {
         let alive = true;
         disabled.current = false;
+        writeOwnerValid.current = true;
         async function start() {
             try {
                 const auth = await request<Session>();
@@ -115,6 +131,11 @@ export default function SalesDesk() {
                     return;
                 if (!navigator.locks)
                     throw Error('This browser cannot safely save simultaneous deals. Use a current browser.');
+                await waitForAcceptedWrites(auth.owner);
+                if (!alive) return;
+                const currentSession = await supabase.auth.getSession();
+                if (!alive) return;
+                if (currentSession.data.session?.user.id !== auth.owner) throw Error('Your account changed. Reopen the sales desk.');
                 owner.current = auth.owner;
                 const repo = draftJournal(localStorage, auth.owner, async (name, fn) => await navigator.locks.request(name, fn));
                 repository.current = repo;
@@ -146,6 +167,7 @@ export default function SalesDesk() {
         void start();
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, current) => { if (owner.current && current?.user.id !== owner.current) {
             disabled.current = true;
+            writeOwnerValid.current = false;
             setChanged(true);
             setCards([]);
             setBook(null);
@@ -154,11 +176,16 @@ export default function SalesDesk() {
         } });
         const storage = (e: StorageEvent) => { if (e.key === repository.current?.key) {
             disabled.current = true;
+            writeOwnerValid.current = false;
             setChanged(true);
             setError('Saved deals changed in another tab. Reload this page to use the latest version.');
         } };
         window.addEventListener('storage', storage);
-        return () => { alive = false; disabled.current = true; subscription.unsubscribe(); window.removeEventListener('storage', storage); };
+        return () => {
+            alive = false; disabled.current = true;
+            // Accepted local edits finish across SPA Back; keep owner/conflict checks until settled.
+            void queue.current.finally(() => { subscription.unsubscribe(); window.removeEventListener('storage', storage); });
+        };
     }, [mutate]);
     const invalidateSearch = useCallback(() => { generation.current++; }, []);
     const search = useCallback(async (cursor: Cursor | null = null, signal?: AbortSignal) => {
@@ -200,6 +227,26 @@ export default function SalesDesk() {
         }
         void mutate(j => { if (j.pending || j.catalog)
             throw Error('Recover the pending request first.'); return { ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(d, { instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, image: card.image }) : d) }; }).then(() => { setNotice(card.name + ' added'); searchRef.current?.focus(); }).catch(e => setError(e.message));
+    }
+    async function addScan(id: string, current: () => boolean) {
+        const target = state.current.active, expectedOwner = owner.current;
+        const found = await request<{owner: string; cards: Card[]}>({action: 'scan', q: id, owner: expectedOwner ?? ''}, undefined, AbortSignal.timeout(15000));
+        if (!current() || disabled.current || owner.current !== expectedOwner || state.current.active !== target)
+            throw Error('The deal changed. Scan again in the intended cart.');
+        if (found.owner !== expectedOwner) throw Error('Your account changed. Reopen the sales desk.');
+        const card = found.cards.length === 1 ? found.cards[0] : null;
+        if (!card?.instanceId || card.gvviId !== id) throw Error('This copy is not in your active inventory. Check its QR label.');
+        if (state.current.drafts.find(d => d.id === target)?.items.some(l => l.instanceId === card.instanceId))
+            return `${card.name} is already in this cart.`;
+        if (!Number.isSafeInteger(card.askingMinor) || card.askingMinor! <= 0 || card.askingMinor! > 100000000) {
+            setIntent('sell'); setScope('stock'); setSelected(card); setQuick(false); setDescription(card.name); setPrice(''); setQuantity('1');
+            throw Error(`${card.name} needs a sale price. Enter it below, then resume scanning.`);
+        }
+        await mutate(j => {
+            if (!current() || j.active !== target || j.pending || j.catalog) throw Error('The deal changed. Scan again.');
+            return {...j, drafts: j.drafts.map(d => d.id === target ? addLine(d, {instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, image: card.image}) : d)};
+        });
+        return `${card.name} added · $${money(card.askingMinor!)} · Draft saved`;
     }
     async function catalogAttempt(saved: CatalogAttempt) {
         if (disabled.current)
@@ -322,7 +369,7 @@ export default function SalesDesk() {
         return <main className={s.shell}><h1>Reopen your sales desk</h1><p>{error || 'Your account changed. Saved deals remain with their original owner.'}</p><button onClick={() => location.reload()}>Reload saved deals</button></main>;
     return <main className={s.shell}>
   <header className={s.header}><div><Link href="/account/store"><ArrowLeft size={15}/> Store workspace</Link><h1>Sales desk <span>Ready for your next deal.</span></h1></div><div className={s.actions}>
-   <button disabled={!session} onClick={()=>setDashboard(!dashboard)}>{dashboard?'Back to selling':'Dashboard'}</button><Link href="/account/store/receipts/cloud">Receipts & customers</Link><button disabled={locked} onClick={() => setShowHeld(!showHeld)}><Pause size={16}/> Held deals ({journal.drafts.length})</button><button disabled={busy || changed || !!journal.catalog || !!journal.pending && !receipt} onClick={() => void fresh().catch(e => setError(e.message))}><Plus size={16}/> {receipt ? 'Next customer' : 'New deal'}</button></div></header>
+   <button disabled={!session || scanPending} onClick={()=>setDashboard(!dashboard)}>{dashboard?'Back to selling':'Dashboard'}</button><Link href="/account/store/receipts/cloud">Receipts & customers</Link><button disabled={locked} onClick={() => setShowHeld(!showHeld)}><Pause size={16}/> Held deals ({journal.drafts.length})</button><button disabled={scanPending || busy || changed || !!journal.catalog || !!journal.pending && !receipt} onClick={() => void fresh().catch(e => setError(e.message))}><Plus size={16}/> {receipt ? 'Next customer' : 'New deal'}</button></div></header>
   {error && <div role="alert" className={s.error}>{error}<button aria-label="Dismiss error" onClick={() => setError('')}><X size={15}/></button></div>}
   {notice && <p role="status" className={s.notice}>{notice} · Draft saved on this browser</p>}
   {!session && <p role="status">{error?<button onClick={()=>location.reload()}>Retry opening sales desk</button>:'Opening your sales desk…'}</p>}
@@ -330,6 +377,7 @@ export default function SalesDesk() {
   {journal.catalog && <div className={s.error}>A catalog add needs verification. <button disabled={busy} onClick={() => void recoverCatalog()}>Recover saved add</button></div>}
   {showHeld && <section className={s.held} aria-label="Held deals">{journal.drafts.map(d => <div key={d.id}><button disabled={locked} onClick={() => void mutate(j => ({ ...j, active: d.id })).then(() => setShowHeld(false)).catch(e => setError(e.message))}><strong>{d.customer.name || d.label}</strong><small>{d.items.length} items · ${money(totals(d).balance)}</small></button><button disabled={locked} aria-label={`Discard ${d.customer.name||d.label}`} onClick={()=>void discard(d.id).catch(e=>setError(e.message))}>Discard draft</button></div>)}<p>Holding a deal saves your work. Availability is checked again when recording the sale; it does not reserve online inventory.</p></section>}
   {dashboard?<SalesDashboard receipts={book?[...book.receipts.map(r=>r.receipt),...(receipt?[receipt]:[])]:null} loading={historyBusy} refresh={()=>void refreshHistory()}/>:<div className={s.workspace}><section className={s.inventory} aria-label="Find cards">
+   <SalesScanner disabled={baseLocked || intent === 'trade' || !!selected || quick || showHeld || showCustomer || showDeal || review} context={`${session?.owner}:${draft?.id}`} add={addScan} pending={setScanPending}/>
    <div className={s.toolbar}><div className={s.tabs}><button aria-pressed={intent === 'sell'} disabled={locked} onClick={() => { setIntent('sell'); setSelected(null); setQuick(false); }}>Sell</button><button aria-pressed={intent === 'trade'} disabled={locked || !session?.trades} onClick={() => { setIntent('trade'); setSelected(null); setQuick(false); }}><ArrowRightLeft size={16}/> Trade-in</button></div>
    {intent === 'sell' && <div className={s.tabs}><button aria-pressed={scope === 'stock'} onClick={() => { setScope('stock'); setSelected(null); }}>Your stock</button><button aria-pressed={scope === 'catalog'} onClick={() => { setScope('catalog'); setSelected(null); }}>Catalog</button></div>}</div>
    <div className={s.search}><Search size={19}/><input ref={searchRef} aria-label="Find a card" placeholder="Name, set, number or exact Grookai ID" value={query} onChange={e => { setQuery(e.target.value); setSelected(null); setQuick(false); }}/>{(scope === 'catalog' || intent === 'trade' || query.trim().length >= 2) && <select aria-label="Game" value={game} onChange={e => { setGame(e.target.value); setSelected(null); setQuick(false); }}><option value="pokemon">Pokémon</option><option value="mtg">Magic</option><option value="one_piece">One Piece</option></select>}</div>

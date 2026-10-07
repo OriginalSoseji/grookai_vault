@@ -102,6 +102,8 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('Add to sale'));
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Add to sale'));
       await tester.pumpAndSettle();
       expect(find.text('Checkout: 1 × USD 12.34'), findsOneWidget);
