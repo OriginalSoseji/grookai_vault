@@ -14,9 +14,9 @@ import { useStoreDraftGuard } from "./useStoreDraftGuard";
 import s from "./StoreManager.module.css";
 
 export type StoreTask = (work: () => Promise<void>, message?: string) => Promise<void>;
-export default function StoreManager({initialProductId, pilot = false, siteOrigin}: {initialProductId?:string; pilot?:boolean; siteOrigin:string}) {
+export default function StoreManager({initialProductId, initialInventory = false, pilot = false, siteOrigin}: {initialProductId?:string; initialInventory?:boolean; pilot?:boolean; siteOrigin:string}) {
   const [owner, setOwner] = useState<OwnerModel | null>(null);
-  const [tab, setTab] = useState<string>(initialProductId ? "Custom collectibles" : "Overview");
+  const [tab, setTab] = useState<string>(initialProductId ? "Custom collectibles" : initialInventory ? "Vault inventory" : "Overview");
   const [busy, setBusy] = useState(false), [dirty, setDirty] = useState(false);
   const [notice, setNotice] = useState(""), [error, setError] = useState("");
   const [intakePending, setIntakePending] = useState(false);

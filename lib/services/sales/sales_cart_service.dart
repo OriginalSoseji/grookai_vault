@@ -250,6 +250,15 @@ class SalesCartService {
     return Map<String, dynamic>.from(result['book'] as Map);
   }
 
+  /// Report access does not depend on opening or decoding an editable deal.
+  Future<Map<String, dynamic>> loadReportBook() async {
+    final owner = client.auth.currentUser?.id;
+    if (owner == null) throw StateError('Sign in to view reports.');
+    _owner ??= owner;
+    _checkOwner();
+    return loadBook();
+  }
+
   Future<bool> _paymentsAvailable() async {
     try {
       return await client.rpc('vendor_sales_payments_available_v1') == true;

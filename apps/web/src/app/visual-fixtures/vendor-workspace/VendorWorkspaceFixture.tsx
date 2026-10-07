@@ -1,0 +1,27 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { VendorWorkspaceNavigation } from "@/components/workspace/VendorWorkspaceNavigation";
+import SalesDesk from "@/components/sales/SalesDesk";
+import SalesReports from "@/components/sales/SalesReports";
+import { supabase } from "@/lib/supabaseClient";
+
+export default function VendorWorkspaceFixture() {
+  const [ready, setReady] = useState(false);
+  const view = useSearchParams().get("view");
+  const owner = "00000000-0000-4000-8000-000000000001";
+  useEffect(() => {
+    // Synthetic credentials are valid only against intercepted local fixture Auth.
+    const token = `e30.${btoa(JSON.stringify({ exp: 4000000000, sub: owner }))}.fixture`;
+    void supabase.auth.setSession({ access_token: token, refresh_token: "fixture-only" })
+      .then(() => setReady(true));
+  }, []);
+  return <div style={{ maxWidth: 1400, margin: "auto", padding: "12px 16px 110px" }} data-vendor-workspace-fixture>
+    <p>Local fixture · Sample sales · No live transactions</p>
+    <VendorWorkspaceNavigation routePath={view === 'reports' ? '/account/store/reports' : '/account/store/sales'} />
+    {ready ? view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
+    <button onClick={() => void supabase.auth.signOut({ scope: "local" })}>Fixture sign out</button>
+    <VendorWorkspaceNavigation mobile routePath={view === 'reports' ? '/account/store/reports' : '/account/store/sales'} />
+  </div>;
+}

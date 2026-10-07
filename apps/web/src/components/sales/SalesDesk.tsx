@@ -6,6 +6,7 @@ import SalesDialog from './SalesDialog';
 import SalesPaymentEditor from './SalesPaymentEditor';
 import {paymentLines, paymentSnapshot} from '@/lib/sales/salesPayments.mjs';
 import SalesDashboard from './SalesDashboard';
+import { useSalesNavigationGuard } from './useSalesNavigationGuard';
 import type {SalesReceipt} from '@/lib/sales/salesReport.mjs';
 import { ArrowLeft, Search, ShoppingBag, Plus, Pause, Users, Eye, X, ArrowRightLeft, Check, LoaderCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
@@ -76,10 +77,20 @@ export default function SalesDesk() {
     const [selected, setSelected] = useState<Card | null>(null), [quick, setQuick] = useState(false), [showHeld, setShowHeld] = useState(false), [showCustomer, setShowCustomer] = useState(false), [showDeal, setShowDeal] = useState(false), [review, setReview] = useState(false), [receipt, setReceipt] = useState<Receipt | null>(null);
     const [printing, setPrinting] = useState(''), [condition, setCondition] = useState('NM'), [price, setPrice] = useState(''), [percent, setPercent] = useState(''), [description, setDescription] = useState(''), [quantity, setQuantity] = useState('1'), [intake, setIntake] = useState(false);
     const repository = useRef<ReturnType<typeof draftJournal> | null>(null), state = useRef(journal), owner = useRef<string | null>(null), generation = useRef(0), queue = useRef(Promise.resolve()), searchRef = useRef<HTMLInputElement>(null), disabled = useRef(false);
+    const writing = useRef(0), writeFailed = useRef(false);
+    const hasPendingWrites = useCallback(() => writing.current > 0, []);
+    const flushForNavigation = useCallback(async () => {
+        while (writing.current > 0) await queue.current;
+        if (writeFailed.current) setError('Your last edit could not save. Keep this page open and retry the edit before leaving.');
+        return !writeFailed.current;
+    }, []);
+    useSalesNavigationGuard(hasPendingWrites, flushForNavigation);
     const draft = journal.drafts.find(d => d.id === journal.active) ?? null, locked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true;
     const balance = draft ? totals(draft) : null;
     const searchKey = JSON.stringify([query, game, scope, intent, revision]), stale = resultKey !== searchKey;
     const mutate = useCallback((change: (j: Journal) => Journal) => {
+        writing.current++;
+        writeFailed.current = false;
         const operation = queue.current.then(async () => {
             if (disabled.current || !repository.current)
                 throw Error('Reopen the sales desk before editing.');
@@ -88,7 +99,7 @@ export default function SalesDesk() {
             setJournal(updated);
             return updated;
         });
-        queue.current = operation.then(() => { }, () => { });
+        queue.current = operation.then(() => { writing.current--; }, () => { writing.current--; writeFailed.current = true; });
         return operation;
     }, []);
     const edit = useCallback((change: (d: SaleDraft) => SaleDraft) => { if (locked)

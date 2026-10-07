@@ -18,6 +18,7 @@ import 'sales_catalog_dialog.dart';
 import 'sales_trade_dialog.dart';
 import 'sales_price_reference.dart';
 import 'receipt_delivery_panel.dart';
+import '../workspace/workspace_activation.dart';
 
 class SalesDeskScreen extends StatefulWidget {
   const SalesDeskScreen({super.key, this.service});
@@ -60,6 +61,64 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Future<void> _draftWrites = Future<void>.value();
   bool _restoringDraft = true;
   String? _draftError;
+  int? _workspaceActivation;
+  WorkspaceExitCoordinator? _workspaceExits;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _workspaceExits?.unregister(this);
+    _workspaceExits = WorkspaceActivation.exitsOf(context);
+    _workspaceExits?.register(this, _prepareToLeave);
+    final revision = WorkspaceActivation.of(context);
+    if (_workspaceActivation != null && revision != _workspaceActivation) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && !_loading && !_locked && _data != null) {
+          unawaited(_refreshWorkspaceInventory());
+        }
+      });
+    }
+    _workspaceActivation = revision;
+  }
+
+  // Returning from pricing refreshes stock, never the negotiated deal or journal.
+  Future<void> _refreshWorkspaceInventory() async {
+    final generation = ++_inventoryGeneration;
+    final previousIds = _data!.rows.map((row) => row.instanceId).toSet();
+    setState(() {
+      _inventoryLoading = true;
+      _inventoryError = null;
+    });
+    try {
+      final rows = await _service.loadInventory();
+      if (!mounted || _accountChanged || generation != _inventoryGeneration) {
+        return;
+      }
+      final seen = rows.map((row) => row.instanceId).toSet();
+      setState(
+        () => _data = _data?.withRows([
+          ...rows,
+          ...?_data?.rows.where(
+            (row) =>
+                !previousIds.contains(row.instanceId) &&
+                !seen.contains(row.instanceId),
+          ),
+        ]),
+      );
+    } catch (_) {
+      if (mounted && !_accountChanged && generation == _inventoryGeneration) {
+        setState(
+          () => _inventoryError =
+              'Stock could not refresh. Your current deal is kept. Retry Refresh when ready.',
+        );
+      }
+    } finally {
+      if (mounted && generation == _inventoryGeneration) {
+        setState(() => _inventoryLoading = false);
+      }
+    }
+  }
+
   bool get _locked =>
       _accountChanged ||
       _editing ||
@@ -97,6 +156,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
 
   @override
   void dispose() {
+    _workspaceExits?.unregister(this);
     unawaited(_accountSubscription?.cancel());
     for (final c in [
       _search,
@@ -1712,49 +1772,59 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     ],
   );
 
+  Future<bool> _prepareToLeave() async {
+    if (_draftBook != null && !_locked) {
+      try {
+        await _flushDraft();
+        return true;
+      } catch (error) {
+        _message(error.toString());
+        return false;
+      }
+    }
+    if ((_lines.isEmpty && _trades.isEmpty) ||
+        _pending != null ||
+        _receipt != null) {
+      return true;
+    }
+    final leave = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Leave this cart?'),
+        content: const Text(
+          'This sale has not been recorded. Leaving clears the unsold cart.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Keep selling'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Leave'),
+          ),
+        ],
+      ),
+    );
+    if (leave == true && context.mounted) {
+      setState(() {
+        _lines.clear();
+        _trades.clear();
+      });
+    }
+    return leave == true;
+  }
+
   @override
   Widget build(BuildContext context) => PopScope(
     canPop:
-        (_lines.isEmpty && _trades.isEmpty) ||
-        _pending != null ||
-        _receipt != null,
+        _workspaceExits != null ||
+        ((_lines.isEmpty && _trades.isEmpty) ||
+            _pending != null ||
+            _receipt != null),
     onPopInvokedWithResult: (didPop, result) async {
-      if (didPop) return;
-      if (_draftBook != null && !_locked) {
-        try {
-          await _flushDraft();
-          if (context.mounted) Navigator.of(context).pop();
-        } catch (error) {
-          _message(error.toString());
-        }
-        return;
-      }
-      final leave = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Leave this cart?'),
-          content: const Text(
-            'This sale has not been recorded. Leaving clears the unsold cart.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Keep selling'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Leave'),
-            ),
-          ],
-        ),
-      );
-      if (leave == true && context.mounted) {
-        setState(() {
-          _lines.clear();
-          _trades.clear();
-        });
-        Navigator.of(context).pop();
-      }
+      if (didPop || _workspaceExits != null) return;
+      if (await _prepareToLeave() && context.mounted) Navigator.of(context).pop();
     },
     child: _accountChanged
         ? const Scaffold(

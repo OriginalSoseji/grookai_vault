@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| PRODUCT_WORKSPACES_V1 | Active implementation contract; local candidate | docs/contracts/PRODUCT_WORKSPACES_V1.md - Retained vendor navigation, compact exact-copy inventory, private reports and draft-safe workspace exits |
 | SALES_SPLIT_PAYMENTS_V1 | Active implementation contract; default-off local candidate | docs/contracts/SALES_SPLIT_PAYMENTS_V1.md - Atomic external split payments, cash change, receipt snapshots and tender reports |
 | SALES_DESK_REFINED_V1 | Active implementation contract; local candidate | docs/contracts/SALES_DESK_REFINED_V1.md - Unified desktop/native entry, owner-local held carts, private customer view and in-person reporting |
 | SALES_FAST_ENTRY_V1 | Active implementation contract | docs/contracts/SALES_FAST_ENTRY_V1.md - Continuous canonical entry, bounded search, targeted owner reads and saved-price cart entry; native proof required before release |

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Activity, PanelsTopLeft, ScanLine, Archive, Search, Library, Grid2X2, ArrowLeftRight, BookOpen, MessageCircle } from "lucide-react";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { isVendorWorkspacePath } from "@/lib/vendorWorkspace";
 import {
   DESKTOP_PRIMARY_NAV,
   DESKTOP_SECONDARY_NAV,
@@ -81,6 +82,10 @@ export function DesktopApplicationShell({
             </span>
           ) : null}
           <ThemeToggle />
+          {isAuthenticated && <Link href={isVendorWorkspacePath(pathname) ? "/vault" : "/account/store/sales"}
+            className="gv-secondary-button min-h-9 px-3 py-2 text-sm">
+            {isVendorWorkspacePath(pathname) ? "Collector workspace" : "Vendor workspace"}
+          </Link>}
           {isAuthenticated ? (
             <details className="gv-desktop-account-menu relative">
               <summary className="gv-secondary-button min-h-9 cursor-pointer list-none px-3 py-2 text-sm">
@@ -99,7 +104,7 @@ export function DesktopApplicationShell({
         </div>
       </div>
 
-      <div className="gv-desktop-shell-nav-frame">
+      {!isVendorWorkspacePath(pathname) && <div className="gv-desktop-shell-nav-frame">
         <nav className="gv-desktop-primary-nav" aria-label="Primary navigation" data-desktop-primary-navigation>
           {DESKTOP_PRIMARY_NAV.map((item) => {
             const href = item.key === "search" ? searchHref : item.href;
@@ -142,9 +147,8 @@ export function DesktopApplicationShell({
             );
           })}
         </nav>
-      </div>
-
-      {routeState.context ? (
+      </div>}
+      {routeState.context && !isVendorWorkspacePath(pathname) ? (
         <div className="gv-desktop-route-context" data-desktop-route-context>
           <Link href={routeState.context.parentHref}>Back to {routeState.context.parentLabel}</Link>
           <span aria-hidden="true">/</span>

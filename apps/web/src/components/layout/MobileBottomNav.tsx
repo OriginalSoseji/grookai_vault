@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
+import { VendorWorkspaceNavigation } from "@/components/workspace/VendorWorkspaceNavigation";
+import { isVendorWorkspacePath } from "@/lib/vendorWorkspace";
 import {
   shouldSuppressMobileChrome,
   type MobilePrimaryDockKey,
@@ -86,6 +88,8 @@ export function MobileBottomNav({ wallHref, pulseUnreadCount = 0 }: MobileBottom
       ? pathname
       : wallHref;
 
+  if (isVendorWorkspacePath(pathname)) return <VendorWorkspaceNavigation mobile />;
+
   return (
     <MobileParityDock
       wallHref={currentWallHref}
@@ -102,6 +106,8 @@ export function MobileBottomNavFallback() {
   if (shouldSuppressMobileChrome(pathname) || keyboardVisible) {
     return null;
   }
+
+  if (isVendorWorkspacePath(pathname)) return null;
 
   return (
     <MobileParityDock

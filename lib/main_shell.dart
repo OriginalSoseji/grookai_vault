@@ -1049,7 +1049,27 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _openVendorMode() async {
-    await _pushPage<void>(const VendorPricingWorkspaceScreen());
+    await _openVendorWorkspace(VendorDestination.inventory);
+  }
+
+  Future<void> _openVendorWorkspace(VendorDestination destination) async {
+    final owner = _supabase.auth.currentUser?.id;
+    if (owner == null) return;
+    await _pushPage<void>(VendorWorkspaceScreen(
+      initialDestination: destination,
+      accountChanges: _supabase.auth.onAuthStateChange
+          .where((event) => event.session?.user.id != owner).map((_) {}),
+      onScan: _startScanFlow,
+      pageBuilder: (context, destination, select) => switch (destination) {
+        VendorDestination.desk => const SalesDeskScreen(),
+        VendorDestination.inventory => VendorPricingWorkspaceScreen(
+          onOpenSalesDesk: () => select(VendorDestination.desk),
+          onOpenStore: () => select(VendorDestination.store),
+        ),
+        VendorDestination.reports => const SalesReportsScreen(),
+        VendorDestination.store => const StoreManagementScreen(),
+      },
+    ));
     if (!mounted) {
       return;
     }
@@ -1058,10 +1078,7 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _openSalesDesk() async {
-    await _pushPage<void>(const SalesDeskScreen());
-    if (!mounted) return;
-    unawaited(_wallKey.currentState?.reload());
-    unawaited(_vaultKey.currentState?.reload());
+    await _openVendorWorkspace(VendorDestination.desk);
   }
 
   Future<void> _openManageStore() async {
@@ -1508,6 +1525,12 @@ class _AppShellState extends State<AppShell> {
           icon: Icons.public,
           tooltip: 'Open public collector',
           onPressed: _openPublicCollectorPrompt,
+        ),
+      if (_supabase.auth.currentUser != null)
+        _appBarActionButton(
+          icon: Icons.storefront_outlined,
+          tooltip: 'Open vendor workspace',
+          onPressed: _openSalesDesk,
         ),
       _appBarActionButton(
         icon: Icons.mail_outline_rounded,

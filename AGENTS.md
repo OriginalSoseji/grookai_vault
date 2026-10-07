@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Product overhaul — October 7
+
+Read [the product overhaul checkpoint](docs/ops/PRODUCT_OVERHAUL_20261007.md)
+and Product Workspaces V1 before continuing the DeckTradr-driven overhaul.
+The isolated candidate adds vendor navigation and compact inventory around the
+existing Sales Desk. It is not deployed. Preserve concurrent scanner changes and
+all retained import/receipt/deal requests; synthetic renders are not device or
+production-release proof. The external checkpoint records current validation.
+
 ## Collectr mixed receipt confirmation — October 7
 
 PR607 is live; its seven-card save is independently verified: 1,616 accounted

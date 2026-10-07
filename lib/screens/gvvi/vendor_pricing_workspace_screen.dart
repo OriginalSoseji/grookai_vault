@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../stores/store_management_screen.dart';
 import '../sales/sales_desk_screen.dart';
+import '../workspace/workspace_activation.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../services/gvvi/gvvi_vendor_offer_service.dart';
 import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
+import '../../widgets/vendor_inventory_summary.dart';
 import 'public_gvvi_screen.dart';
 import '../../services/sealed/owned_sealed_service_v1.dart';
 import '../../widgets/vault/owned_sealed_panel.dart';
@@ -30,10 +32,14 @@ enum _TradeCashMode { none, received, paid }
 class VendorPricingWorkspaceScreen extends StatefulWidget {
   const VendorPricingWorkspaceScreen({
     this.service = const VendorPricingWorkspaceService(),
+    this.onOpenSalesDesk,
+    this.onOpenStore,
     super.key,
   });
 
   final VendorPricingWorkspaceService service;
+  final VoidCallback? onOpenSalesDesk;
+  final VoidCallback? onOpenStore;
 
   @override
   State<VendorPricingWorkspaceScreen> createState() =>
@@ -48,6 +54,7 @@ class _VendorPricingWorkspaceScreenState
   final Set<String> _busyIds = {};
   final Map<String, String> _errors = {};
   final Set<String> _savedIds = {};
+  final Set<String> _expandedIds = {};
 
   List<VendorPricingWorkspaceRow> _rows = const [];
   List<VendorWorkspaceSection> _sections = const [];
@@ -55,6 +62,54 @@ class _VendorPricingWorkspaceScreenState
   bool _loading = true;
   bool _showSealed = false;
   String? _loadError;
+  int? _activation;
+  WorkspaceExitCoordinator? _workspaceExits;
+
+  bool get _hasPriceEdits => _rows.any(
+    (row) =>
+        _priceControllers[row.instanceId]?.text !=
+        (row.askingPrice?.toStringAsFixed(2) ?? ''),
+  );
+
+  Future<bool> _prepareWorkspaceExit() async {
+    if (_busyIds.isNotEmpty) {
+      _showStatus('Wait for your inventory changes to finish saving.');
+      return false;
+    }
+    for (final id in _saveTimers.keys.toList()) {
+      await _savePrice(id);
+      if (!mounted) return false;
+    }
+    if (_hasPriceEdits) {
+      _showStatus(
+        'A price has not saved. Correct it before leaving the workspace.',
+      );
+      return false;
+    }
+    return true;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _workspaceExits?.unregister(this);
+    _workspaceExits = WorkspaceActivation.exitsOf(context);
+    _workspaceExits?.register(this, _prepareWorkspaceExit);
+    final revision = WorkspaceActivation.of(context);
+    if (_activation != null && revision != _activation) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted || _loading) return;
+        final editing =
+            _saveTimers.isNotEmpty || _busyIds.isNotEmpty || _hasPriceEdits;
+        if (editing) {
+          _showStatus('Finish saving your edits, then refresh inventory.');
+        } else {
+          unawaited(_load());
+        }
+      });
+    }
+    _activation = revision;
+  }
 
   @override
   void initState() {
@@ -65,6 +120,7 @@ class _VendorPricingWorkspaceScreenState
 
   @override
   void dispose() {
+    _workspaceExits?.unregister(this);
     _searchController
       ..removeListener(_refreshFilter)
       ..dispose();
@@ -657,7 +713,8 @@ class _VendorPricingWorkspaceScreenState
     final visibleRows = _visibleRows;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Vendor Mode'),
+        title: const Text('Inventory'),
+        automaticallyImplyLeading: widget.onOpenSalesDesk == null,
         bottom: kSealedOwnershipEnabled
             ? PreferredSize(
                 preferredSize: const Size.fromHeight(48),
@@ -687,6 +744,10 @@ class _VendorPricingWorkspaceScreenState
           IconButton(
             tooltip: 'Sales desk · quick-add and cart',
             onPressed: () async {
+              if (widget.onOpenSalesDesk != null) {
+                widget.onOpenSalesDesk!();
+                return;
+              }
               await Navigator.of(context).push(
                 MaterialPageRoute<void>(
                   builder: (_) => const SalesDeskScreen(),
@@ -696,14 +757,16 @@ class _VendorPricingWorkspaceScreenState
             },
             icon: const Icon(Icons.point_of_sale),
           ),
-          TextButton.icon(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const StoreManagementScreen(),
-              ),
-            ),
+          IconButton(
+            tooltip: 'Manage store',
+            onPressed:
+                widget.onOpenStore ??
+                () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const StoreManagementScreen(),
+                  ),
+                ),
             icon: const Icon(Icons.storefront_outlined),
-            label: const Text('Manage store'),
           ),
           IconButton(
             tooltip: 'Refresh inventory',
@@ -771,6 +834,20 @@ class _VendorPricingWorkspaceScreenState
                                 child: _VendorInventoryRow(
                                   key: Key('vendor_row_${row.instanceId}'),
                                   row: row,
+                                  expanded: _expandedIds.contains(
+                                    row.instanceId,
+                                  ),
+                                  onToggleExpanded: () {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
+                                    setState(() {
+                                      if (!_expandedIds.remove(
+                                        row.instanceId,
+                                      )) {
+                                        _expandedIds.add(row.instanceId);
+                                      }
+                                    });
+                                  },
                                   sections: _sections,
                                   controller:
                                       _priceControllers[row.instanceId]!,
@@ -1331,6 +1408,8 @@ class _VendorSecondaryFilterSheet extends StatelessWidget {
 class _VendorInventoryRow extends StatelessWidget {
   const _VendorInventoryRow({
     required this.row,
+    required this.expanded,
+    required this.onToggleExpanded,
     required this.sections,
     required this.controller,
     required this.busy,
@@ -1351,6 +1430,8 @@ class _VendorInventoryRow extends StatelessWidget {
   static const _conditions = ['NM', 'LP', 'MP', 'HP', 'DMG'];
 
   final VendorPricingWorkspaceRow row;
+  final bool expanded;
+  final VoidCallback onToggleExpanded;
   final List<VendorWorkspaceSection> sections;
   final TextEditingController controller;
   final bool busy;
@@ -1368,6 +1449,15 @@ class _VendorInventoryRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!expanded) {
+      return VendorInventorySummary(
+        row: row,
+        onEdit: onToggleExpanded,
+        busy: busy,
+        saved: saved,
+        error: error,
+      );
+    }
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final assignedSections = sections
@@ -1380,6 +1470,15 @@ class _VendorInventoryRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Align(
+          alignment: Alignment.centerRight,
+          child: TextButton.icon(
+            key: Key('vendor_collapse_${row.instanceId}'),
+            onPressed: onToggleExpanded,
+            icon: const Icon(Icons.expand_less),
+            label: const Text('Done editing'),
+          ),
+        ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

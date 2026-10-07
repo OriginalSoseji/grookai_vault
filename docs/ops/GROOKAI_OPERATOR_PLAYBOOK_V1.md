@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## Product overhaul — October 7
+
+Follow [the overhaul checkpoint](PRODUCT_OVERHAUL_20261007.md) for the isolated
+`C:/gv_product_overhaul_20261007` candidate and external verification artifacts.
+This first slice adds workspace navigation, compact native inventory, private
+Reports and draft-safe navigation around existing authorities. It does not mark
+the full overhaul or any release complete. Preserve the separate scanner worktree
+and deliberately integrate its overlapping Sales Desk changes before release.
+
 ## Collectr mixed receipt confirmation — October 7
 
 PR607's seven additions are saved and independently verified: 1,616 accounted
