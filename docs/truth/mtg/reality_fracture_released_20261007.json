@@ -1,0 +1,67 @@
+{
+  "version": "MTG_REALITY_FRACTURE_RELEASED_TRUTH_V1",
+  "production_authority": false,
+  "as_of": "2026-10-07",
+  "source_bulk_sha256": "2115c5b0e666476475d53347918b869cdcf6bd57cecc5cde3858505325624e5f",
+  "source_updated_at": "2026-10-07T21:05:42.958+00:00",
+  "held_future_print_ids": [
+    "16c5f0f3-2578-40d3-9012-6eaef17fa0b1",
+    "236b2024-9141-4a91-b5f8-2180ecc3a761",
+    "29a7f3e8-efcd-42bb-b315-9e9c0794dddb",
+    "3d580fa2-954d-4de6-a64c-369c5ab8e03f",
+    "60b9f969-694a-4445-9b0f-525c259edfc8",
+    "65e9f4df-02e5-4ac7-86da-795688bfb66f",
+    "91e787cb-a9b0-4353-86b4-a4340122fd2f",
+    "ee609b68-5c9c-43e0-aff4-eb1bbc8b2911",
+    "f1a15a83-2f74-4513-ae4b-4cdc17016a84",
+    "f28b1518-8347-4385-9f34-a9c48818c770"
+  ],
+  "held_until": "2026-10-23",
+  "unpriced_source_print_ids": [
+    "2261c33e-1667-4554-ad31-0adf4805a69d",
+    "7c9013bc-bc85-49b2-ad9b-745b97d6775d",
+    "8f273559-b6af-4dc1-9980-b132988c68b1",
+    "984491e5-4005-42d4-b144-29a87e388f15",
+    "a2008313-659e-4132-85a2-e7b7be93bcdc",
+    "e8f47203-40a9-4a2c-8440-c0354f894c61",
+    "e9e31f13-8a2c-4ae2-854e-27d6c62936f2"
+  ],
+  "sets": [
+    {
+      "code": "fra",
+      "payload_fingerprint": "b86ccc01cc2e43e227e06f92efade5eafd859d2da77aa2f02dee39c05e89eb76",
+      "rows_sha256": "95c0758fb40da038ad8a28350430e242f5b6e1cc6abc3d2963dbcdbfc0ae4563",
+      "row_counts": {
+        "sets": 1,
+        "card_prints": 452,
+        "card_print_identity": 452,
+        "card_printings": 855,
+        "external_mappings": 452,
+        "external_printing_mappings": 840
+      },
+      "finish_counts": {
+        "foil": 439,
+        "normal": 416
+      },
+      "protected_printing_facts_sha256": "533b92f73331815b7f0d0f7acd52a8e9cc5b0da7491717ada0f41ecba70cfc95"
+    },
+    {
+      "code": "frc",
+      "payload_fingerprint": "9d946850d44f546f2cf22c9cc155875d60ac22e87315c1bf0e45b892f4a65f6e",
+      "rows_sha256": "58644e98dc1f76b1a2a99b2742c001d0f4d9759c92e2bd34e3eb38f50cbd8e13",
+      "row_counts": {
+        "sets": 1,
+        "card_prints": 103,
+        "card_print_identity": 103,
+        "card_printings": 105,
+        "external_mappings": 103,
+        "external_printing_mappings": 105
+      },
+      "finish_counts": {
+        "normal": 103,
+        "foil": 2
+      },
+      "protected_printing_facts_sha256": "54732c0017db05865beb2ca67f689f10fa34200ddcac110e7f63d7ea23d6bce3"
+    }
+  ]
+}

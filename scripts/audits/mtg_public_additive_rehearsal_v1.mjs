@@ -51,7 +51,7 @@ export async function captureMtgPublicProtectedStateV1(client, plan) {
   return { tables: digests, security_sha256: mtgDigestV1(security) };
 }
 
-async function stage(client, { payload: p, contract: c }) {
+export async function stageMtgPublicReviewV1(client, { payload: p, contract: c }) {
   const batch = await client.query(`insert into public.mtg_canonical_import_batches
     (id,payload_fingerprint_sha256,plan_version,source_bulk_sha256,foundation_migration_sha256,
      producing_commit_sha,producing_branch,selected_set_code,selected_set_name,status,row_counts,execution_boundaries)
@@ -85,7 +85,7 @@ export async function rehearseMtgPublicAdditiveInTransactionV1(client, plan) {
   const collisions = await captureMtgPromotionCollisionsV1(client, plan.rows);
   assert.ok(Object.values(collisions).every(n => Number(n) === 0), 'Canonical collision or partial prior apply');
   const before = await captureMtgPublicProtectedStateV1(client, plan);
-  for (const s of plan.stages) await stage(client, s);
+  for (const s of plan.stages) await stageMtgPublicReviewV1(client, s);
   // Local rollback uses reserved negative surrogate mapping IDs to avoid advancing
   // a nontransactional production-style sequence in the retained database.
   // A production executor must separately qualify its actual mapping-ID allocation.
