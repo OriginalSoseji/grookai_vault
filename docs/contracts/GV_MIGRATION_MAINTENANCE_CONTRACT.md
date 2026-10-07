@@ -1,5 +1,17 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Product economics baseline — October 7, 2026
+
+`-Phase AuditLinkedSchema -ProductEconomicsBaselineV1` is a read-only baseline
+route for `C:/gv_product_economics_20261007`. It permits no PrePush phase or other
+switches. The gate checks live429, the retained qualified429 replay, unchanged
+source hashes and exact permitted pending files: deferred receipt delivery and
+the candidate cost-evidence migration. It executes only a repeatable-read,
+read-only schema/security/ledger snapshot and never generated diff SQL.
+System-CA verification remains enabled. External product_economics_20261007/
+BASELINE_429.json records results. This baseline route grants no apply authority;
+full replay, retained upgrade and future exact release/shadow gates still apply.
+
 ## Split external payments release qualification — October 6
 
 `-SalesSplitPaymentsReleaseV1` admits only AuditLinkedSchema or PrePush for

@@ -64,6 +64,7 @@ param(
   [switch]$ReceiptDeliveryBaselineV1,
   [switch]$ReceiptDeliveryReleaseV1,
   [switch]$SalesSplitPaymentsReleaseV1,
+  [switch]$ProductEconomicsBaselineV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
@@ -92,6 +93,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductEconomicsBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEconomicsBaselineV1') }).Count -gt 0) {
+    throw 'ProductEconomicsBaselineV1 supports only the read-only linked audit.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_economics_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product economics baseline failed.' }
+  exit 0
+}
 
 if ($SalesSplitPaymentsReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

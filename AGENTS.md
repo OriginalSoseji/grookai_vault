@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Product economics — October 7
+
+Read [the economics checkpoint](docs/ops/PRODUCT_ECONOMICS_20261007.md) and
+Vendor Cost Evidence V1 before schema or cost work. The daily-workflow candidate
+is verified through `2c7bd7242`; economics is isolated in
+`C:/gv_product_economics_20261007`. Live429 and source430 differ by deferred
+receipt delivery. The new default-off cost migration is local candidate431 only.
+Private product_economics_20261007/CHECKPOINT.json owns qualification state.
+Preserve all existing labs, archives, inventory and pending requests. No production
+application, activation, public push or native upload is implied by this work.
+
 ## Product overhaul — October 7
 
 Read [the product overhaul checkpoint](docs/ops/PRODUCT_OVERHAUL_20261007.md)

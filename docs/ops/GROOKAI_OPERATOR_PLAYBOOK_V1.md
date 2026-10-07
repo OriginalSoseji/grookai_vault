@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Product economics — October 7
+
+Continue cost-at-sale work in `C:/gv_product_economics_20261007`; read
+[the economics checkpoint](PRODUCT_ECONOMICS_20261007.md) and its contract.
+Live429 is independently audited read-only. Source431 includes deferred receipt
+delivery; it is not a production release package. Corrected full/upgrade labs use
+3306x/3308x with internal10.246.56/57; exact-package labs use3314x/3316x and
+internal10.246.60/61. Original3302x/3304x labs are retained historical proof.
+Never reset populated or prior labs.
+External product_economics_20261007/CHECKPOINT.json records actual outcomes.
+Both cost switches stay off outside synthetic proof. Preserve the separately
+verified daily-workflow commit `2c7bd7242` and all prior operator evidence.
+
 ## Product overhaul — October 7
 
 Follow [the overhaul checkpoint](PRODUCT_OVERHAUL_20261007.md) for the isolated
