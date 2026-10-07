@@ -69,6 +69,22 @@ export function sealedSourceSetKey(value: string, scope: string): string {
   return label;
 }
 
+// Reviewed full product labels, not fuzzy matching or general prefix removal.
+// Each alias is one-way and bound to its game, set and physical package form.
+// Extra language, retailer, artwork, case or edition text never matches a key.
+const productLabels = [
+  { game: "mtg", set: "final fantasy", source: "universes beyond: final fantasy - collector booster display", target: "final fantasy - collector booster display", form: "display" },
+  { game: "mtg", set: "final fantasy", source: "universes beyond: final fantasy - gift bundle", target: "final fantasy - gift bundle", form: "bundle" },
+  { game: "mtg", set: "final fantasy", source: "universes beyond: final fantasy - starter kit", target: "final fantasy - starter kit", form: "kit" },
+  { game: "pokemon", set: "prismatic evolutions", source: "prismatic evolutions super premium collection", target: "prismatic evolutions super-premium collection", form: "collection" },
+] as const;
+
+function matchesProductLabel(name: string, set: string, scope: string, variant: SealedVariantEvidence): boolean {
+  return productLabels.some(alias => alias.game === scope && alias.set === set && alias.source === name &&
+    variant.packageForm === alias.form &&
+    (key(variant.name) === alias.target || (variant.memberMappingId !== null && key(variant.sourceName!) === alias.target)));
+}
+
 // The planner consumes a complete, single-snapshot catalog. A short/truncated
 // export or conflicting bindings must fail, not manufacture unique matches.
 export function validateSealedCatalogEvidence(catalog: SealedCatalogEvidence): void {
@@ -139,7 +155,7 @@ export function planCollectrSealedIdentities(csv: string, catalog: SealedCatalog
     const name = key(field(row, "product name", "card name")), set = sealedSourceSetKey(field(row, "set", "series"), scope);
     if (!name || !set) return result("missing_identity", [], quantity);
     const named = catalog.variants.filter(v => v.game === scope &&
-      (key(v.name) === name || (v.memberMappingId !== null && key(v.sourceName!) === name)));
+      (key(v.name) === name || (v.memberMappingId !== null && key(v.sourceName!) === name) || matchesProductLabel(name, set, scope, v)));
     if (!named.length) return result("missing_identity", [], quantity);
     const released = named.filter(v => v.memberMappingId !== null);
     if (!released.length) return result("unreleased_identity", named, quantity);

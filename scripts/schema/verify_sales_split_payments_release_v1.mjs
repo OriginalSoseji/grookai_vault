@@ -14,6 +14,7 @@ export const splitRelease=Object.freeze({
  deferred:'20261005150000_vendor_receipt_delivery_v1.sql',
  deferredSha256:'b23a47b9892a5a2ccfc65f9fb81b350496ba560baaaab0ac8cd961d6eb2da84d',
  qualifiedCommit:'39a275d5ab0d212ac3203a10c1775ede375f16b2',
+ upstreamCommit:'ddb7c764b3d39dd74bca424f6632f2c029019e26',
 });
 export function validateSplitReleaseArguments(args){
  assert.equal(args.length,1,'Use AuditLinkedSchema or PrePush only');
@@ -40,7 +41,11 @@ export async function verifySalesSplitRelease(phase){
  const baselineDir='C:/grookai_vault_operator_artifacts/collectr_sealed_save_20261005/full-428-v3';
  const baseline=read(baselineDir+'/freeze.json');
  const packageHashes=splitReleaseSources(sources,baseline.sourceHashes);
- assert.equal(git('diff',qualifiedCommit,'--','apps','backend','lib','test','supabase'),'','Qualified product bytes changed');
+ // Preserve PR603's independently reviewed sealed-label correction. Split
+ // product/native/SQL bytes still match the original qualified implementation.
+ const integrated='supabase/functions/vault-import-collection-v2/sealed_identity.ts';
+ assert.equal(git('diff','--name-only',qualifiedCommit,'--','apps','backend','lib','test','supabase'),integrated,'Unexpected product changes');
+ assert.equal(hash(fs.readFileSync(root+'/'+integrated)),hash(execFileSync('git',['show',splitRelease.upstreamCommit+':'+integrated],{cwd:root})),integrated);
  const local=read(evidence+'/LOCAL_COMPLETE.json');assert.equal(local.status,'LOCAL_CANDIDATE_COMPLETE_NOT_DEPLOYED');
  assert.equal(local.implementationCommit,qualifiedCommit);assert.equal(local.normalChecks.status,'passed');
  for(const p of [local.authenticatedRpc,local.webRuntime,local.canonicalIntakeProof])assert.equal(read(evidence+'/'+p).status,'passed');
@@ -56,7 +61,7 @@ export async function verifySalesSplitRelease(phase){
  if(phase==='PrePush'){
   assert.equal(git('status','--porcelain'),'','Clean committed source required');
   const main=git('ls-remote','origin','refs/heads/main').split(/\s+/)[0];assert.match(main,/^[a-f0-9]{40}$/);git('merge-base','--is-ancestor',main,'HEAD');
-  const hook=read(evidence+'/release-normal-hook-v1.json');
+  const hook=read(evidence+'/release-normal-hook-v2.json');
   assert.equal(hook.status,'passed');assert.equal(hook.normalHooks,true);assert.equal(hook.exitCode,0);assert.equal(hook.head,git('rev-parse','HEAD'));
   const age=Date.now()-Date.parse(hook.at);assert.ok(age>=0&&age<7200000,'Fresh normal hooks required');
   assert.equal(hash(fs.readFileSync(hook.log)),hook.logSha256);

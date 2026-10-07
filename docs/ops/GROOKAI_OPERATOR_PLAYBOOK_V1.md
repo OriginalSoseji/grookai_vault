@@ -2,6 +2,11 @@
 
 ## Split external payments — October 6
 
+PR604 now preserves PR603/main ddb7c764b's exact sealed-label update. The split
+SQL and native implementation stay unchanged; retain signed unuploaded347.
+Refresh normal hooks and gates for the combined source. The external checkpoint
+tracks simulator proof and actual release, never infer them from the archive.
+
 The exact release package is428+split=429, excluding deferred receipt delivery;
 all430 source migrations remain. Read the SalesSplitPaymentsReleaseV1 gate and
 external Release-* receipts. Fresh3290x/3292x labs and every old lab are retained.
@@ -15,6 +20,16 @@ External sales_split_payments_20261006/CHECKPOINT.json owns proof/release state.
 Local430 replay/upgrade includes deferred receipt429; it is not authority to
 apply receipt delivery remotely. Preserve production428, prior web/TestFlight346,
 receipt sender deferral, catalog work and every retained lab/upload intent.
+
+## Collectr sealed product labels — October 6
+
+PR601 and its 50-copy incremental import are complete: 1,590 accounted copies,
+562 retained source rows. The next local candidate on main04980f98d adds four
+exact full-label aliases, qualifying 12 more rows / 19 copies without changing
+other preview results. See the [product-label checkpoint](../checkpoints/collectr_sealed_product_labels_20261006.md)
+and private collectr_sealed_labels_20261006/CHECKPOINT.json for actual status.
+No new production save or release is implied by qualification. Preserve original
+source groups, all consumed requests and retained labs. No schema changes.
 
 ## Collectr preview catalog timeout — October 6
 

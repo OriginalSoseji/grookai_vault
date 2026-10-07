@@ -5,6 +5,14 @@ Branch: `feature/sales-split-payments-20261006`.
 Source baseline: main `04980f98dc574cacbf42702e92711d7962e450c6`.
 Contract: [Sales split payments](../contracts/SALES_SPLIT_PAYMENTS_V1.md).
 
+PR604 integration preserves main ddb7c764b and PR603's exact Collectr sealed
+labels. Only AGENTS/playbook needed conflict resolution; both checkpoints remain.
+The release gate permits that exact upstream sealed-identity file and continues
+to freeze all split product/native/SQL bytes to39a275d5a. Signed unuploaded347
+remains valid only while its native-source parity receipt passes. Existing local
+labs, CLI package and archive are retained; refresh gates/hooks without replaying
+their consumed preparation intents. External CHECKPOINT.json owns actual results.
+
 Release preparation now has a separate exact package:428 applied migrations
 plus split20261006140000, excluding deferred receipt20261005150000. All430
 source SQL files remain intact. Fresh full429 and retained428-to429 labs use
