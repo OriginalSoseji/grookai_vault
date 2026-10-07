@@ -1,7 +1,7 @@
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
 import { buildCollectionPreviewV2 } from "@/lib/import/collectionPreviewV2";
-import { verifyCollectionReadbackV2, type CollectionAttemptV2, type CollectionReceiptV2 } from "@/lib/import/collectionReadbackV2";
+import { readPriorCollectionGroupsV3, verifyCollectionReadbackV2, type CollectionAttemptV2, type CollectionReceiptV2 } from "@/lib/import/collectionReadbackV2";
 import { createCollectionImportHandler } from "../../../../../../../supabase/functions/vault-import-collection-v2/handler.ts";
 import { createImportHandlerV3 } from "../../../../../../../supabase/functions/vault-import-collection-v2/handler_v3.ts";
 import { verifySealedImportReadback } from "../../../../../../../supabase/functions/vault-import-collection-v2/sealed_readback.ts";
@@ -54,6 +54,9 @@ export async function POST(request: Request) {
   if (input.operation !== "save" || !input.attempt || ![2,3].includes(input.attempt.version) || input.attempt.ownerUserId !== user.id) return reply({ error: "This import request is invalid." }, 400);
   const attempt = input.attempt;
   try {
+    // Capture owner-scoped immutable mappings before invoking the writer. On a
+    // receipt recovery these are already saved; new groups stay strict on save.
+    const priorGroups = attempt.version === 3 ? await readPriorCollectionGroupsV3(client, attempt) : undefined;
     const result = await executeOwnerWriteV1({
       execution_name: attempt.version === 3 ? "import_vault_collection_v3" : "import_vault_collection_v2", actor_id: user.id,
       write: async context => {
@@ -69,7 +72,7 @@ export async function POST(request: Request) {
       },
       proofs: [async ({ result }) => {
         if (result.status === 200) {
-          await verifyCollectionReadbackV2(client, {...attempt,version:2} as CollectionAttemptV2, result.data as CollectionReceiptV2, {verifyCurrentMetadata:attempt.version===2});
+          await verifyCollectionReadbackV2(client, {...attempt,version:2} as CollectionAttemptV2, result.data as CollectionReceiptV2, {verifyCurrentMetadata:attempt.version===2,priorGroups});
           if (attempt.version === 3) await verifySealedImportReadback(client,attempt,result.data);
         }
       }],

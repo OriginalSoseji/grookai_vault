@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Collectr mixed receipt confirmation — October 7
+
+PR607 is live; its seven-card save is independently verified: 1,616 accounted
+copies, 543 review rows. Never import again to resolve its pending confirmation.
+Read docs/checkpoints/collectr_mixed_receipt_20261007.md. The new candidate binds
+historical copies to owner/source mappings captured before the writer; fresh
+copies remain strict. Private collectr_mixed_receipt_20261007/CHECKPOINT.json owns
+actual release/recovery status. Preserve the pending browser request, all 1,329
+source groups, all 3,223 owner copies and every retained lab. No schema changes.
+
 ## Collectr printed identity labels — October 7
 
 Read docs/checkpoints/collectr_card_labels_20261007.md. Local candidate on
