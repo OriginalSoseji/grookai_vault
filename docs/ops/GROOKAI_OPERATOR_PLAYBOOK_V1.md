@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Collectr mixed receipt confirmation — October 7
+
+PR607's seven additions are saved and independently verified: 1,616 accounted
+copies, 543 held rows. Its pending browser confirmation exposed a mixed-increment
+case in the earlier receipt repair. Follow the [mixed receipt checkpoint](../checkpoints/collectr_mixed_receipt_20261007.md).
+The pre-write mapping snapshot preserves earlier owner printing edits while
+requiring exact fresh printings. Private collectr_mixed_receipt_20261007 evidence
+records actual deployment and recovery. Recover the same durable request only;
+do not re-upload, clear its session or create another save. Prior source/copies
+must remain unchanged. The graded-item preference remains pending.
+
 ## Collectr printed identity labels — October 7
 
 The [card-label checkpoint](../checkpoints/collectr_card_labels_20261007.md) records
