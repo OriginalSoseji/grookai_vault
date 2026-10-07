@@ -63,6 +63,7 @@ param(
   [switch]$SalesTradeBaselineV1,
   [switch]$ReceiptDeliveryBaselineV1,
   [switch]$ReceiptDeliveryReleaseV1,
+  [switch]$SalesSplitPaymentsReleaseV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
@@ -91,6 +92,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($SalesSplitPaymentsReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SalesSplitPaymentsReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261006140000') -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261006140000')) {
+    throw 'Split payments release permits only 20261006140000, without combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_sales_split_payments_release_v1.mjs') $Phase
+  exit $LASTEXITCODE
+}
 
 if ($ReceiptDeliveryReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

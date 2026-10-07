@@ -1,4 +1,5 @@
 import 'sales_trade.dart';
+import 'sales_payments.dart';
 
 /// A receipt is a transaction, regardless of how many physical copies it holds.
 /// These are vendor-recorded receipts, not a Stripe settlement or profit ledger.
@@ -18,7 +19,12 @@ class SalesReport {
       if (!seen.add(id)) continue;
       final date = DateTime.parse(receipt['createdAt'] as String);
       if (date.isBefore(start) || !date.isBefore(end)) continue;
-      if (method != null && receipt['method'] != method) continue;
+      final tenders = receiptTenders(receipt);
+      if (method != null &&
+          receipt['method'] != method &&
+          !tenders.any((e) => e['method'] == method)) {
+        continue;
+      }
       final search =
           '${receipt['number']} ${receipt['customerName']} '
           '${(receipt['items'] as List).map((i) => i['description']).join(' ')} '
@@ -42,8 +48,11 @@ class SalesReport {
       final hour = toLocal(date).hour;
       hourlySales[hour] += net;
       hourlyTransactions[hour]++;
-      final payment = receipt['method'] as String;
-      payments[payment] = (payments[payment] ?? 0) + balance;
+      for (final e in tenders) {
+        final payment = e['method'] as String;
+        payments[payment] =
+            (payments[payment] ?? 0) + balance.sign * (e['amountMinor'] as int);
+      }
     }
     rows.sort(
       (a, b) => DateTime.parse(
@@ -80,7 +89,7 @@ class SalesReport {
 
     String amount(int n) => (n / 100).toStringAsFixed(2);
     return [
-      'Receipt,Recorded at,Customer,Payment method,Units,Sales USD,Discount USD,Tax USD,Purchase total USD,Trade credit USD,Received USD,Paid to customer USD',
+      'Receipt,Recorded at,Customer,Payment method,Units,Sales USD,Discount USD,Tax USD,Purchase total USD,Trade credit USD,Received USD,Paid to customer USD,Payment breakdown USD,Cash tendered USD,Cash change USD',
       ...rows.map(
         (r) => [
           r['number'],
@@ -100,6 +109,19 @@ class SalesReport {
           amount((r['tradeIn'] as Map?)?['totalCreditMinor'] as int? ?? 0),
           amount(receiptBalance(r) > 0 ? receiptBalance(r) : 0),
           amount(receiptBalance(r) < 0 ? -receiptBalance(r) : 0),
+          receiptTenders(r)
+              .map((e) => '${e['method']}: ${amount(e['amountMinor'] as int)}')
+              .join('; '),
+          r['payments'] == null
+              ? ''
+              : amount(
+                  receiptTenders(r)
+                      .where((e) => e['method'] == 'Cash')
+                      .fold<int>(0, (n, e) => n + (e['tenderedMinor'] as int)),
+                ),
+          r['payments'] == null
+              ? ''
+              : amount(r['payments']['changeMinor'] as int),
         ].map(cell).join(','),
       ),
     ].join('\r\n');

@@ -1,5 +1,25 @@
 # Grookai Agent Entry Point
 
+## Split external payments — October 6
+
+PR604 integration preserves PR603/main ddb7c764b; split SQL/native bytes remain
+unchanged. Retain signed unuploaded347 and refresh combined-source gates/hooks.
+External CHECKPOINT.json owns simulator and actual deployment status.
+
+The exact release package is428+split=429, excluding deferred receipt delivery;
+all430 source migrations remain. Read the new SalesSplitPaymentsReleaseV1 gate
+and external Release-* receipts. Fresh3290x/3292x labs and every old lab are
+retained. Do not apply receipt429 or reuse consumed intents to close a gap.
+
+Candidate: C:/gv_sales_split_payments_20261006, base main04980f98d. Read
+docs/ops/SALES_SPLIT_PAYMENTS_20261006.md and the SALES_SPLIT_PAYMENTS_V1 contract.
+Desktop/native split payments, cash change, receipt breakdown and tender reports
+use an additive default-off v3 writer. Existing v1/v2 writers remain unchanged.
+External sales_split_payments_20261006/CHECKPOINT.json owns proof/release state.
+Local430 replay/upgrade includes deferred receipt429; it is not authority to
+apply receipt delivery remotely. Preserve production428, prior web/TestFlight346,
+receipt sender deferral, catalog work and every retained lab/upload intent.
+
 ## Collectr sealed product labels — October 6
 
 Read docs/checkpoints/collectr_sealed_product_labels_20261006.md. PR601 is live;

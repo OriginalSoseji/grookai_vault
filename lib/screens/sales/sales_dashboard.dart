@@ -418,6 +418,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
               'Card (external terminal)',
               'Bank / payment app',
               'Other',
+              'Split payment',
             ])
               ChoiceChip(
                 label: Text(method ?? 'All payments'),

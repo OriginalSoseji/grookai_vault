@@ -8,6 +8,7 @@ import '../gvvi/vendor_pricing_workspace_service.dart';
 import '../../models/card_print.dart';
 import '../public/public_card_printing_options_service.dart';
 import 'sales_trade.dart';
+import 'sales_payments.dart';
 import 'sales_search_cache.dart';
 import 'sales_drafts.dart';
 
@@ -76,12 +77,14 @@ class SalesDeskData {
     required this.customers,
     this.receipts = const [],
     this.tradesAvailable = false,
+    this.paymentsAvailable = false,
     this.pending,
     this.needsHydration = false,
     this.localDrafts,
   });
   final bool available;
   final bool tradesAvailable;
+  final bool paymentsAvailable;
   final List<VendorPricingWorkspaceRow> rows;
   final String storeName;
   final List<Map<String, dynamic>> customers;
@@ -98,6 +101,7 @@ class SalesDeskData {
         customers: customers,
         receipts: receipts,
         tradesAvailable: tradesAvailable,
+        paymentsAvailable: paymentsAvailable,
         pending: pending,
         needsHydration: needsHydration,
         localDrafts: localDrafts,
@@ -114,6 +118,7 @@ class SalesDeskData {
         .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
         .toList(),
     tradesAvailable: tradesAvailable,
+    paymentsAvailable: paymentsAvailable,
     pending: pending,
     needsHydration: needsHydration,
     localDrafts: localDrafts,
@@ -185,10 +190,12 @@ class SalesCartService {
       );
     }
     final tradesAvailable = await _tradesAvailable();
+    final paymentsAvailable = await _paymentsAvailable();
     _checkOwner();
     return SalesDeskData(
       available: true,
       tradesAvailable: tradesAvailable,
+      paymentsAvailable: paymentsAvailable,
       rows: const [],
       storeName: '',
       customers: const [],
@@ -241,6 +248,15 @@ class SalesCartService {
     final result = await client.rpc('vendor_receipt_book_read_v1');
     _checkOwner();
     return Map<String, dynamic>.from(result['book'] as Map);
+  }
+
+  Future<bool> _paymentsAvailable() async {
+    try {
+      return await client.rpc('vendor_sales_payments_available_v1') == true;
+    } on PostgrestException catch (error) {
+      if (error.code != 'PGRST202') rethrow;
+    }
+    return false;
   }
 
   Future<bool> _tradesAvailable() async {
@@ -437,7 +453,9 @@ class SalesCartService {
   Future<Map<String, dynamic>> complete(Map<String, dynamic> request) async {
     _checkOwner();
     final receipt = await client.rpc(
-      request['cart']['version'] == 2
+      request['cart']['version'] == 3
+          ? 'vendor_sales_cart_complete_v3'
+          : request['cart']['version'] == 2
           ? 'vendor_sales_cart_complete_v2'
           : 'vendor_sales_cart_complete_v1',
       params: {'p_request_id': request['id'], 'p_cart': request['cart']},
@@ -486,5 +504,6 @@ String saleReceiptText(Map<String, dynamic> receipt) {
       'Tax collected: USD ${saleMoney(receipt['taxMinor'] as int)}\n'
       '${trade == null ? 'Total received' : 'Purchase total'}: USD ${saleMoney(receipt['totalMinor'] as int)}\n'
       '$tradeText'
+      '${salesPaymentLines(receipt, (n) => 'USD ${saleMoney(n)}').join('\n')}\n'
       '${receipt['method']} · Recorded by vendor\n${receipt['note']}';
 }

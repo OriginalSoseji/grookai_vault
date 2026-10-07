@@ -1,3 +1,4 @@
-export type SalesReceipt={id:string;number:string;createdAt:string;customerName:string;method:string;items:{description:string;quantity:number;unitMinor:number}[];subtotalMinor:number;discountMinor?:number;taxMinor:number;totalMinor:number;tradeIn?:{balanceMinor:number;totalCreditMinor:number;items:{description:string}[]}};
+import type {Payments} from './salesPayments.mjs';
+export type SalesReceipt={id:string;number:string;createdAt:string;customerName:string;method:string;payments?:Payments;items:{description:string;quantity:number;unitMinor:number}[];subtotalMinor:number;discountMinor?:number;taxMinor:number;totalMinor:number;tradeIn?:{balanceMinor:number;totalCreditMinor:number;items:{description:string}[]}};
 export function salesReport(receipts:SalesReceipt[],options:{start:Date;end:Date;query?:string;method?:string;hour?:(d:Date)=>number}):{rows:SalesReceipt[];hours:{sales:number;transactions:number}[];payments:Record<string,number>;sales:number;tax:number;received:number;paid:number;credit:number;units:number;transactions:number;average:number};
 export function reportCsv(receipts:SalesReceipt[]):string;

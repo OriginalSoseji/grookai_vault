@@ -1,0 +1,301 @@
+[
+  {
+    "name": "cash exact",
+    "balance": 10000,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 10000,
+        "tenderedMinor": 10000
+      }
+    ],
+    "valid": true,
+    "change": 0
+  },
+  {
+    "name": "cash change",
+    "balance": 10000,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 10000,
+        "tenderedMinor": 12000
+      }
+    ],
+    "valid": true,
+    "change": 2000
+  },
+  {
+    "name": "cash and terminal",
+    "balance": 10000,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 4000,
+        "tenderedMinor": 5000
+      },
+      {
+        "method": "Card (external terminal)",
+        "amountMinor": 6000,
+        "tenderedMinor": 6000
+      }
+    ],
+    "valid": true,
+    "change": 1000
+  },
+  {
+    "name": "even trade",
+    "balance": 0,
+    "entries": [],
+    "valid": true,
+    "change": 0
+  },
+  {
+    "name": "payout split",
+    "balance": -10000,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 2000,
+        "tenderedMinor": 2000
+      },
+      {
+        "method": "Bank / payment app",
+        "amountMinor": 8000,
+        "tenderedMinor": 8000
+      }
+    ],
+    "valid": true,
+    "change": 0
+  },
+  {
+    "name": "cent",
+    "balance": 1,
+    "entries": [
+      {
+        "method": "Card (external terminal)",
+        "amountMinor": 1,
+        "tenderedMinor": 1
+      }
+    ],
+    "valid": true,
+    "change": 0
+  },
+  {
+    "name": "limit",
+    "balance": 100000000,
+    "entries": [
+      {
+        "method": "Card (external terminal)",
+        "amountMinor": 100000000,
+        "tenderedMinor": 100000000
+      }
+    ],
+    "valid": true,
+    "change": 0
+  },
+  {
+    "name": "under",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 99,
+        "tenderedMinor": 99
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "over",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 101,
+        "tenderedMinor": 101
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "cash too little",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 100,
+        "tenderedMinor": 99
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "terminal change",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Card (external terminal)",
+        "amountMinor": 100,
+        "tenderedMinor": 101
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "payout change",
+    "balance": -100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 100,
+        "tenderedMinor": 101
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "duplicate",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 50,
+        "tenderedMinor": 50
+      },
+      {
+        "method": "Cash",
+        "amountMinor": 50,
+        "tenderedMinor": 50
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "zero entry",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 0,
+        "tenderedMinor": 0
+      },
+      {
+        "method": "Card (external terminal)",
+        "amountMinor": 100,
+        "tenderedMinor": 100
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "zero balance entry",
+    "balance": 0,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 1,
+        "tenderedMinor": 1
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "fraction",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 99.5,
+        "tenderedMinor": 99.5
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "negative",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": -100,
+        "tenderedMinor": -100
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "missing",
+    "balance": 100,
+    "entries": [],
+    "valid": false
+  },
+  {
+    "name": "unknown",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Stripe",
+        "amountMinor": 100,
+        "tenderedMinor": 100
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "string amount",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": "100",
+        "tenderedMinor": "100"
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "extra field",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 100,
+        "tenderedMinor": 100,
+        "credit": true
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "oversized",
+    "balance": 100000001,
+    "entries": [
+      {
+        "method": "Card (external terminal)",
+        "amountMinor": 100000001,
+        "tenderedMinor": 100000001
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "missing tendered",
+    "balance": 100,
+    "entries": [
+      {
+        "method": "Cash",
+        "amountMinor": 100
+      }
+    ],
+    "valid": false
+  },
+  {
+    "name": "null entry",
+    "balance": 100,
+    "entries": [
+      null
+    ],
+    "valid": false
+  }
+]
