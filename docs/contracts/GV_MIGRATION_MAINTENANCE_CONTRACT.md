@@ -1,5 +1,19 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Product economics release preparation — October 7
+
+`-ProductEconomicsReleaseV1` permits only AuditLinkedSchema or PrePush and the
+exact pending cost migration20261007180000. Live baseline429, source431 and the
+cost-only release package430 are distinct; deferred receipt20261005150000 remains
+excluded from the package. Source and qualified backend bytes must match.
+The gate rereads full431/retained430 upgrade and full430/retained429 package labs,
+verifies private Auth/RPC and idempotency receipts, unchanged retained inventory
+and receipts, disabled controls, schema/security and the actual production ledger.
+PrePush requires clean committed current-main ancestry and fresh ordinary hooks.
+It grants no apply authority. The fixed CLI package allows prepare/dry-run only,
+with production connections read-only and before/after schema/ledger verification.
+Shadow inspection remains a separate required proof before schema completion.
+
 ## Product economics baseline — October 7, 2026
 
 `-Phase AuditLinkedSchema -ProductEconomicsBaselineV1` is a read-only baseline

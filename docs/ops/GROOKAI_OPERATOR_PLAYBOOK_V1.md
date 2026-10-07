@@ -12,6 +12,11 @@ Never reset populated or prior labs.
 External product_economics_20261007/CHECKPOINT.json records actual outcomes.
 Both cost switches stay off outside synthetic proof. Preserve the separately
 verified daily-workflow commit `2c7bd7242` and all prior operator evidence.
+Backend commit `3f3a30e8` passed all normal checks and the four corrected local
+replay/upgrade paths. Use ProductEconomicsReleaseV1 for exact cost-only release
+inspection; its CLI helper cannot apply SQL. Keep deferred receipt delivery out.
+External LOCAL_COMPLETE.json records implementation proof; shadow/release gates
+and the owner-facing cost/report workflows remain pending.
 
 ## Product overhaul — October 7
 

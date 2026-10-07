@@ -65,6 +65,7 @@ param(
   [switch]$ReceiptDeliveryReleaseV1,
   [switch]$SalesSplitPaymentsReleaseV1,
   [switch]$ProductEconomicsBaselineV1,
+  [switch]$ProductEconomicsReleaseV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
@@ -93,6 +94,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductEconomicsReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEconomicsReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261007180000') -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261007180000')) {
+    throw 'ProductEconomicsReleaseV1 requires the exact cost-only scope 20261007180000.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_economics_release_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Product economics release qualification failed.' }
+  exit 0
+}
 
 if ($ProductEconomicsBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEconomicsBaselineV1') }).Count -gt 0) {

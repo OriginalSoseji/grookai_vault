@@ -1,5 +1,22 @@
 # Product economics — October 7
 
+## Backend implementation and release preparation
+
+Backend commit `3f3a30e88ba35519514af1b7e3e65efcc8010032` passed ordinary hooks:
+7,480 contracts (10 skipped), web types/lint/build, native analysis and 1,382
+native tests (two skipped). All four current replay/upgrade labs passed; both
+real Auth suites and the V2 idempotency proof passed. External LOCAL_COMPLETE.json
+is an implementation receipt, not release completion or application authority.
+
+`ProductEconomicsReleaseV1` admits only read-only AuditLinkedSchema and PrePush
+for migration20261007180000. It rereads all four retained labs, checks private
+RPC proof, costs/receipts retained through upgrade, disabled controls and unchanged
+backend source, then compares fresh live429 to its qualified baseline. PrePush
+also requires clean current-main ancestry and fresh ordinary hooks. The fixed
+CLI inspection package supports only preparation and dry-run; it excludes deferred
+receipt delivery while retaining all source history. Shadow inspection and actual
+production release remain separate outstanding gates.
+
 Worktree: `C:/gv_product_economics_20261007`, branch
 `feature/product-economics-20261007`, based on verified daily-workflow commit
 `2c7bd72427191fdf8ebacdc23fc8f1fc692d6429`.
