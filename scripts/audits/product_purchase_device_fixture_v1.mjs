@@ -62,7 +62,7 @@ try{
   }else if(mode==='verify'){
    assert.equal(f.state,'disabled');const a=read(run+'/phase-1/device-response.json'),b=read(run+'/phase-2/device-response.json');
    assert.equal(a.phase,'pending_after_commit');assert.equal(b.phase,'recovered_after_process_restart');assert.equal(a.owner,f.owner);assert.equal(b.owner,f.owner);assert.equal(a.requestId,b.requestId);
-   assert.ok(a.noEarlyIntake&&a.heldReload&&b.accountClosed&&b.featureOff&&b.exactPending);assert.equal(b.completionCalls,0);
+   assert.ok(a.noEarlyIntake&&a.heldReload&&b.accountClosed&&b.featureOff&&b.exactPending);assert.equal(b.completionCalls,0);assert.equal(a.presetChosen,true);assert.equal(b.presetRetained,true);assert.equal(a.presetId,b.presetId);
    const rows=await q('select request_id,receipt from vendor_sales_cart_receipts where owner_id=$1',[f.owner]);assert.equal(rows.length,1);assert.equal(rows[0].request_id,a.requestId);
    const receipt=rows[0].receipt;assert.equal(receipt.kind,'purchase');assert.equal(receipt.purchaseMinor,650);assert.equal(receipt.items.length,2);
    const copies=await q('select id,card_print_id,card_printing_id,acquisition_cost::text amount,acquisition_currency currency from vault_item_instances where user_id=$1 order by acquisition_cost',[f.owner]);assert.equal(copies.length,2);
@@ -77,4 +77,3 @@ try{
   console.log(JSON.stringify({run,state:f.state}));
  }
 }catch(error){await db.query('rollback').catch(()=>{});throw error;}finally{await db.end();}
-

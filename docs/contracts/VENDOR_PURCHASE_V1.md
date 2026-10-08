@@ -101,6 +101,30 @@ draft changes until their exact receipt is confirmed. Account changes reject lat
 replies and close the private UI. Purchase receipts use safe copy/share text;
 the separately deferred receipt-delivery provider is not enabled for purchases.
 
+## Private named percentage presets
+
+Web and native Buy line entry may save up to20 named percentage presets per owner,
+using the separate local `grookai.offer-presets.v1.<owner>` settings key. Each
+version1 book has a bounded monotonic revision; each preset has a UUID, a1–80
+character name and an integer1–10,000 basis-point percentage. There is no implicit
+default or automatic application. Label storage as this browser/device, without
+claiming cloud synchronization. Missing settings mean no presets; malformed or
+future settings must remain intact and cannot be silently replaced.
+
+Selection fills only the editable percentage. The agreed unit amount changes
+only through the existing explicit suggestion action or direct editing. Held
+lines and pending requests retain their numeric snapshots; editing or deleting
+a preset never reprices them. Preset identity/name stays outside transaction
+payloads and seller displays. Presets do not record payments or create inventory.
+
+Writes use owner-scoped serialization, expected revisions and verified storage
+readback. A stale revision rejects with reload guidance. Account changes close
+the editor and discard late replies. Settings failure leaves manual offer entry
+available. These are editing preferences, not a market-price or ledger authority.
+
+This first slice does not complete CR-07: cash/trade defaults, source and condition
+basis, rounding choices and optional low-value tiers remain separately scoped.
+
 ## Exit evidence
 
 Prove1–50 incoming copies without any outgoing sale; mixed canonical/quick items;

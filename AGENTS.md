@@ -30,6 +30,15 @@ All13 retained-table checks pass; retain59 copies and nine accounts, controls of
 The external checkpoint owns native normal-hook status. Freeze source/full432
 while that hook runs. Reusable policies, iOS, release qualification, activation
 and the remaining overhaul remain pending; no production deployment occurred.
+Native Buy normal commit8f68ac2e now passes7,657 contracts and1,620 native tests;
+all59 copies/nine users are retained. The next named percentage preset slice is
+in progress. It preserves held/pending amounts and uses separate owner-local
+preferences. External CHECKPOINT.json tracks build413/device proof and ordinary
+checks. Keep the broader CR-07 policies and the full overhaul open.
+Build413 now passes actual Samsung preset/restart/recovery proof, four inspected
+screens and13 retained-table checks. Retain61 copies/10 users with controls off.
+The external checkpoint owns the next normal hook; freeze source/full432 while
+it runs. No production release or physical iOS acceptance is implied.
 
 
 ## Web inventory cost review — October 7

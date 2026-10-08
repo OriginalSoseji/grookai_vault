@@ -152,3 +152,34 @@ External product_buy_20261007/CHECKPOINT.json owns the native normal-hook outcom
 freeze source/full432 while that check runs. Reusable offer policies, iOS purchase
 acceptance, independent shadow/exact release gates, production activation and the
 remaining overhaul are open. These local checks are not a released buy workflow.
+
+Native Buy commit8f68ac2e passes the full normal hook in checks-1791430024623:
+7,657 contracts (10 skipped), web types/lint/build, analysis and1,620 native tests
+(three skipped). All59 copies/nine users remain retained; its freeze is lifted.
+
+The next slice adds private named percentage presets to web/native Buy entry.
+They use a separate owner-local versioned settings key with revision conflicts,
+serialized writes and durable readback. Selection changes the proposal percentage
+only. Existing negotiated amounts, held lines and pending requests are unchanged
+by preset edits/deletion. Malformed storage stays intact; manual entry remains
+available. No schema or transaction payload change is introduced.
+
+The first17 Node and30 native model/service/widget/regression cases pass. Web
+types/lint and scoped native analysis pass. Browser scenarios pass22 in the first
+run, plus the corrected storage-failure selector in the second run; the initial
+failure matched Next's empty route-announcer as well as the expected alert. Both
+384/1440 preset screenshots were inspected. External CHECKPOINT.json owns the
+fresh build413 Samsung proof and subsequent ordinary hook; do not claim those
+from source alone. The advanced CR-07 cash/trade/source/rounding/tier scope remains
+open, as do iOS and release qualification. Retain every consumed fixture.
+
+Build413 Samsung acceptance now passes in device-1791431116513. The named60%
+preset is saved/selected through native UI while the agreed USD6.50 stays intact;
+its same UUID/rate survives a real second process with all entry controls off.
+The same purchase recovers without another completion. Two incoming copies retain
+USD0.00/6.50 costs, one receipt and zero sale snapshots. All13 retained-table checks
+pass, all controls are restored and the resolver is stopped. Preserve61 copies,
+10 accounts, prior APKs and the primary Samsung app. Four final screens inspected:
+preset selection, opaque seller view, recovered receipt and account closure.
+The external checkpoint owns the named-preset normal-hook outcome; source and
+full432 must remain frozen while that ordinary check runs.

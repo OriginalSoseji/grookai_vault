@@ -141,7 +141,34 @@ void main() {
           if (amount == '6.50') {
             await tap(find.text('Calculate an offer · optional'));
             await fill('Reference value per item (USD)', '10.00');
-            await fill('Buy percentage', '60');
+            await tap(find.text('Offer presets'));
+            await fill('Preset name', 'Private device cash');
+            await fill('Preset percentage', '60');
+            await tap(find.text('Save new preset'));
+            await tap(find.text('Use Private device cash'));
+            expect(
+              tester
+                  .widget<TextField>(
+                    find.widgetWithText(TextField, 'Buy percentage'),
+                  )
+                  .controller!
+                  .text,
+              '60',
+            );
+            expect(
+              tester
+                  .widget<TextField>(
+                    find.widgetWithText(
+                      TextField,
+                      'Agreed price per item (USD)',
+                    ),
+                  )
+                  .controller!
+                  .text,
+              '6.50',
+            );
+            await binding.takeScreenshot('purchase-offer-presets');
+            await tap(find.text('Offer presets'));
             expect(
               find.textContaining('Agreed price overridden'),
               findsWidgets,
@@ -194,6 +221,8 @@ void main() {
         });
         // Readback does not clear the screen or device journal: restart is still required.
         expect(prefs.getString(pendingKey), service.attempts.single);
+        final presetBook = await service.loadOfferPresets();
+        expect(presetBook['presets'], hasLength(1));
         await binding.takeScreenshot('purchase-unconfirmed');
         binding.reportData = {
           ...?binding.reportData,
@@ -202,6 +231,8 @@ void main() {
           'requestId': pending['id'],
           'noEarlyIntake': true,
           'heldReload': true,
+          'presetChosen': true,
+          'presetId': presetBook['presets'][0]['id'],
         };
       } else {
         expect(initial.available, isFalse);
@@ -210,6 +241,10 @@ void main() {
         await prefs.reload();
         expect(prefs.getString(pendingKey), beforePending);
         expect(service.attempts, isEmpty);
+        final presetBook = await service.loadOfferPresets();
+        expect(presetBook['presets'], hasLength(1));
+        expect(presetBook['presets'][0]['name'], 'Private device cash');
+        expect(presetBook['presets'][0]['rateBps'], 6000);
         await binding.takeScreenshot('purchase-recovered');
         final receipt = await service.recover(initial.pending!['id'] as String);
         expect(receipt!['purchaseMinor'], 650);
@@ -219,6 +254,7 @@ void main() {
         expect(publicText, contains('6.50'));
         expect(publicText, contains('0.00'));
         expect(publicText, isNot(contains('PRIVATE DEVICE PURCHASE')));
+        expect(publicText, isNot(contains('Private device cash')));
         await tap(find.text('Continue to deals'));
         await waitFor(
           find.textContaining('The sales desk is not available yet.'),
@@ -238,6 +274,8 @@ void main() {
           'featureOff': true,
           'exactPending': true,
           'completionCalls': 0,
+          'presetRetained': true,
+          'presetId': presetBook['presets'][0]['id'],
         };
       }
     },

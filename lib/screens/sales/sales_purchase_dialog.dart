@@ -5,6 +5,7 @@ import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_trade.dart';
 import '../../services/sales/sales_purchase.dart';
 import '../../widgets/card_surface_artwork.dart';
+import 'sales_offer_presets.dart';
 
 class SalesPurchaseDialog extends StatefulWidget {
   const SalesPurchaseDialog({
@@ -492,6 +493,13 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                 'Calculate an offer · optional',
                               ),
                               children: [
+                                SalesOfferPresets(
+                                  service: widget.service,
+                                  disabled: _loading || _changed,
+                                  select: (rate) => setState(
+                                    () => _rate.text = tradeRate(rate),
+                                  ),
+                                ),
                                 _money(
                                   _reference,
                                   'Reference value per item (USD)',

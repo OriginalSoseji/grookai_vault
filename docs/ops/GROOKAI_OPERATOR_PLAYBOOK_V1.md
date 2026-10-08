@@ -46,6 +46,20 @@ retain certificate verification and do not change global trust. Keep build logs
 private because Gradle may print encoded fixture defines. Restore generated
 next-env.d.ts only after every local Next process has stopped.
 
+Native Buy normal commit8f68ac2e passes with59 copies/nine users retained. The
+private named percentage preset slice uses a separate owner-local settings book,
+not a new draft or transaction ledger. Its actual-device proof extends the same
+fresh fixture procedure: save/select a preset, keep the negotiated price, then
+verify the same preset UUID/rate survives the process restart with controls off.
+Build413 remains confined to the locked acceptance package; retain build412 and
+the prior host script. External CHECKPOINT.json owns current results. Never reuse
+a consumed device fixture to qualify new source. No cloud-sync claim or advanced
+buy-policy completion follows from this first percentage-preset slice.
+Fresh device-1791431116513 now passes build413 with the same saved preset UUID
+after process restart, preserved negotiated amount and no repeated completion.
+All controls are restored;61 copies/10 users and13 retained tables are preserved.
+Four screenshots were inspected. The ordinary hook remains a separate receipt.
+
 
 ## Web inventory cost review — October 7
 

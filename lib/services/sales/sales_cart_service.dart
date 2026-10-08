@@ -13,6 +13,7 @@ import 'sales_payments.dart';
 import 'sales_search_cache.dart';
 import 'sales_drafts.dart';
 import 'purchase_drafts.dart';
+import 'offer_presets.dart';
 import 'sales_scanner.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
@@ -145,6 +146,7 @@ class SalesCartService {
   int _draftRevision = 0;
   static final _draftLocks = <String, Future<void>>{};
   static final _requestLocks = <String, Future<void>>{};
+  static final _presetLocks = <String, Future<void>>{};
   final _confirmedPurchaseIds = <String>{};
   final _searchCache = SalesSearchCache<SalesCatalogPage>();
   SupabaseClient get client => _client ?? Supabase.instance.client;
@@ -281,6 +283,59 @@ class SalesCartService {
     final data = await _workspace.load();
     _checkOwner();
     return data.rows;
+  }
+
+  Future<Map<String, dynamic>> loadOfferPresets() async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    return readOfferPresets(preferences.getString(key));
+  }
+
+  Future<Map<String, dynamic>> saveOfferPresets(
+    int expectedRevision,
+    List<Map<String, dynamic>> presets,
+  ) async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final next = validateOfferPresets({
+      'version': 1,
+      'revision': expectedRevision + 1,
+      'presets': presets,
+    });
+    final operation = (_presetLocks[key] ?? Future<void>.value()).then((
+      _,
+    ) async {
+      _checkOwner();
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final current = readOfferPresets(preferences.getString(key));
+      if (current['revision'] != expectedRevision) {
+        throw StateError(
+          'Offer presets changed in another screen. Reload presets before editing.',
+        );
+      }
+      final encoded = jsonEncode(next);
+      _checkOwner();
+      if (!await preferences.setString(key, encoded)) {
+        throw StateError(
+          'Offer presets could not save. Reload before retrying.',
+        );
+      }
+      await preferences.reload();
+      if (preferences.getString(key) != encoded) {
+        throw StateError(
+          'Offer presets could not be verified. Reload before retrying.',
+        );
+      }
+      _checkOwner();
+      return next;
+    });
+    _presetLocks[key] = operation.then((_) {}, onError: (Object _) {});
+    return operation;
   }
 
   Future<Map<String, dynamic>> loadBook() async {

@@ -55,6 +55,57 @@ async function quick(page: Page, name = 'Manual item', amount = '6.50') {
     await page.getByRole('button', {name: 'Add to purchase', exact: true}).click();
     await expect(page.getByRole('region', {name: 'Purchase item details'})).toHaveCount(0);
 }
+for (const width of [384, 1440]) test(`private presets retain negotiated offers after edit and deletion at ${width}px`, async ({page}, info) => {
+    await page.setViewportSize({width, height: 900}); await fixture(page); await openBuy(page);
+    await page.getByRole('button', {name: 'Quick purchase', exact: true}).click();
+    await page.getByLabel('Item description', {exact: true}).fill('Preset card');
+    await page.getByLabel('Agreed price per item (USD)', {exact: true}).fill('6.50');
+    await page.getByText('Calculate an offer · optional', {exact: true}).click();
+    await page.getByText('Offer presets', {exact: true}).click();
+    await page.getByLabel('Preset name', {exact: true}).fill('Standard cash');
+    await page.getByLabel('Preset percentage', {exact: true}).fill('60');
+    await page.getByRole('button', {name: 'Save new preset', exact: true}).click();
+    await page.getByRole('button', {name: 'Use Standard cash', exact: true}).click();
+    await page.getByLabel('Reference value per item (USD)').fill('10.00');
+    await expect(page.getByLabel('Buy percentage', {exact: true})).toHaveValue('60');
+    await expect(page.getByLabel('Agreed price per item (USD)', {exact: true})).toHaveValue('6.50');
+    await page.screenshot({path: info.outputPath(`offer-presets-${width}.png`), fullPage: true});
+    await page.getByRole('button', {name: 'Add to purchase', exact: true}).click();
+    await page.reload();
+    await expect(page.getByRole('heading', {name: 'Your purchase', exact: true})).toBeVisible();
+    const held = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).drafts, key);
+    await page.getByRole('button', {name: 'Quick purchase', exact: true}).click();
+    await page.getByText('Calculate an offer · optional', {exact: true}).click();
+    await page.getByText('Offer presets', {exact: true}).click();
+    await page.getByRole('button', {name: 'Edit Standard cash', exact: true}).click();
+    await page.getByLabel('Preset percentage', {exact: true}).fill('70');
+    await page.getByRole('button', {name: 'Save preset changes', exact: true}).click();
+    await expect(page.getByRole('button', {name: 'Delete Standard cash', exact: true})).toBeEnabled();
+    await page.getByRole('button', {name: 'Delete Standard cash', exact: true}).click();
+    await expect(page.getByText('No saved presets yet.')).toBeVisible();
+    expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).drafts, key)).toEqual(held);
+    const a11y = await new AxeBuilder({page}).analyze();
+    expect(a11y.violations.filter(value => ['serious', 'critical'].includes(value.impact ?? ''))).toEqual([]);
+});
+test('preset storage failure keeps manual offer entry available', async ({page}) => {
+    await fixture(page); await openBuy(page);
+    await page.evaluate(() => {
+        const set = Storage.prototype.setItem;
+        Storage.prototype.setItem = function(key, value) {if (key.startsWith('grookai.offer-presets.')) throw Error('fixture disk full'); return set.call(this, key, value);};
+    });
+    await page.getByRole('button', {name: 'Quick purchase', exact: true}).click();
+    await page.getByText('Calculate an offer · optional', {exact: true}).click();
+    await page.getByText('Offer presets', {exact: true}).click();
+    await page.getByLabel('Preset name', {exact: true}).fill('Unstored');
+    await page.getByLabel('Preset percentage', {exact: true}).fill('60');
+    await page.getByRole('button', {name: 'Save new preset', exact: true}).click();
+    await expect(page.getByRole('alert').filter({hasText: 'fixture disk full'})).toBeVisible();
+    await expect(page.getByRole('button', {name: 'Use Unstored', exact: true})).toHaveCount(0);
+    await page.getByLabel('Item description', {exact: true}).fill('Manual despite storage failure');
+    await page.getByLabel('Agreed price per item (USD)', {exact: true}).fill('6.50');
+    await page.getByRole('button', {name: 'Add to purchase', exact: true}).click();
+    await expect(page.getByText('Manual despite storage failure', {exact: true})).toBeVisible();
+});
 for (const width of [384, 1440]) test(`buy offer holds manual override and zero cost at ${width}px`, async ({page}, info) => {
     await page.setViewportSize({width, height: 900}); const proof = await fixture(page); await openBuy(page);
     await page.getByRole('button', {name: 'Quick purchase', exact: true}).click();

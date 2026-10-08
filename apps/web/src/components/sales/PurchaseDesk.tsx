@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {Check, Eye, Plus, Search, X} from 'lucide-react';
 import SalesDialog from './SalesDialog';
 import SalesPaymentEditor from './SalesPaymentEditor';
+import OfferPresets from './OfferPresets';
 import {conditions, methods, minor, money, rate} from '@/lib/sales/salesDesk.mjs';
 import type {Customer} from '@/lib/sales/salesDesk.mjs';
 import {addPurchaseItem, purchaseDraftRequest, purchaseDraftTotal, purchaseOfferView} from '@/lib/sales/purchaseDraft.mjs';
@@ -19,6 +20,7 @@ type CatalogCard = {
     printings?: {id: string; finish_label: string; printing_gv_id: string}[];
 };
 type Props = {
+    owner: string; currentOwner: () => string | null;
     draft: PurchaseDraft; locked: boolean; busy: boolean; pending: boolean; receipt: PurchaseReceipt | null;
     customers: (Customer & {id: string})[];
     edit: (change: (draft: PurchaseDraft) => PurchaseDraft) => Promise<unknown>;
@@ -27,7 +29,7 @@ type Props = {
 const errorText = (error: unknown) => error instanceof Error ? error.message : 'Purchase could not update.';
 
 // Uses the parent's owner-bound held-deal journal and completion/recovery queue.
-export default function PurchaseDesk({draft, locked, busy, pending, receipt, customers, edit, complete, next}: Props) {
+export default function PurchaseDesk({owner, currentOwner, draft, locked, busy, pending, receipt, customers, edit, complete, next}: Props) {
     const [query, setQuery] = useState(''), [game, setGame] = useState('pokemon');
     const [cards, setCards] = useState<CatalogCard[]>([]), [cursor, setCursor] = useState<number | null>(null);
     const [searching, setSearching] = useState(false), [searchError, setSearchError] = useState('');
@@ -137,7 +139,8 @@ export default function PurchaseDesk({draft, locked, busy, pending, receipt, cus
                             <label>Condition<select value={condition} disabled={disabled} onChange={event => setCondition(event.target.value)}>{conditions.map(value => <option key={value}>{value}</option>)}</select></label></>}
                         <label>Agreed price per item (USD)<input inputMode="decimal" value={agreed} disabled={disabled} onChange={event => setAgreed(event.target.value)}/></label>
                         {!selected && <label>Quantity<input inputMode="numeric" value={quantity} disabled={disabled} onChange={event => setQuantity(event.target.value)}/></label>}
-                        <details><summary>Calculate an offer · optional</summary><div className={s.fields}>
+                        <details><summary>Calculate an offer · optional</summary>
+                            <OfferPresets owner={owner} currentOwner={currentOwner} disabled={disabled} select={value => setPercentage(String(value / 100))}/><div className={s.fields}>
                             <label>Reference value per item (USD)<input inputMode="decimal" value={reference} disabled={disabled} onChange={event => setReference(event.target.value)}/></label>
                             <label>Buy percentage<input inputMode="decimal" value={percentage} disabled={disabled} onChange={event => setPercentage(event.target.value)}/></label></div>
                             {suggestion !== null && <p>Suggested offer ${money(suggestion)} per item{minor(agreed) !== null && minor(agreed) !== suggestion ? ' · Agreed price overridden' : ''}</p>}
