@@ -130,6 +130,8 @@ apps/web/src/app/api/sales/*
 apps/web/src/app/api/vault/*
 !apps/web/src/app/api/vault/cost/
 !apps/web/src/app/api/vault/cost/route.ts
+!apps/web/src/app/api/vault/cost-review/
+!apps/web/src/app/api/vault/cost-review/route.ts
 !apps/web/src/app/api/vault/import/
 !apps/web/src/app/api/vault/import/route.ts
 !apps/web/src/app/api/stores/

@@ -8,9 +8,9 @@ export const metadata = { title: "Inventory | Grookai Vault", robots: { index: f
 export default async function InventoryPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const search = await searchParams;
   const query = new URLSearchParams();
-  for (const key of ["q", "game", "price", "kind"]) {
+  for (const key of ["q", "game", "price", "kind", "review"]) {
     if (typeof search[key] === "string") query.set(key, search[key].slice(0, 120));
   }
   const { user } = await requireServerUser(`/account/store/inventory${query.size ? `?${query}` : ""}`);
-  return <VendorInventory key={user.id} ownerId={user.id} />;
+  return <VendorInventory key={user.id} ownerId={user.id} costReviewEnabled={process.env.GV_COPY_COST_V1 === '1'} />;
 }

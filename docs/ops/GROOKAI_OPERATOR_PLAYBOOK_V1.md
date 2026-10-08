@@ -1,5 +1,23 @@
 # Grookai Operator Playbook V1
 
+## Web inventory cost review — October 7
+
+Follow [the web review checkpoint](PRODUCT_COST_REVIEW_WEB_20261007.md) in
+`C:/gv_product_cost_review_web_20261007`. The integrated native review611231081
+passed Samsung acceptance and its normal hook. New web review entry is governed
+by the existing GV_COPY_COST_V1 server switch; cost recovery retains its separate
+existing path when entry is off. The API is private/read-only and publishes no
+partial batch coverage. Its edit links return to the same Inventory filters.
+
+The fresh web fixture/runtime producers use the attested retained full431 lab,
+loopback port33250 and synthetic Auth/copies only. They refuse a native check
+freeze, consume each runtime intent once, verify the single currency repair and
+restore14 table hashes. Preserve failed attempts and private evidence. Normal
+qualification uses `scripts/tests/run_product_cost_review_web_checks_v1.mjs`;
+freeze staged source and the lab until terminal. Outcomes belong to external
+product_cost_review_web_20261007/CHECKPOINT.json, not this workflow description.
+
+
 ## Inventory cost completeness — October 7
 
 Follow [the native cost review checkpoint](PRODUCT_COST_REVIEW_20261007.md) in

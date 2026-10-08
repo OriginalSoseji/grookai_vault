@@ -55,6 +55,21 @@ remain separate. Account changes close private review; failed refresh clears old
 metrics. Repairs reuse the existing journaled per-copy editor and reread on return.
 New entry remains behind the existing flag; pending recovery remains independent.
 
+## Web completeness review
+
+Vendor Inventory may open a private review of its explicitly shown card copies,
+separate from sealed stock. The existing GV_COPY_COST_V1 switch controls new entry.
+Its GET route accepts at most100 exact IDs per owner-bound read and disables
+caching. Unknown/archived copies are unavailable, never newly missing costs.
+Only a fully validated set of batches may publish coverage; refresh clears old
+values and account changes permanently invalidate the current view and replies.
+
+Known zero and foreign currency count as recorded costs without conversion.
+Missing currency retains its original amount. Repairs use the existing exact-copy
+editor and journal. Return links preserve Inventory search/game/price and review
+context, then reload saved evidence. The review has no bulk mutation authority and
+cannot revise previous sale snapshots. Feature-off leaves existing recovery intact.
+
 ## Sale evidence
 
 A default-off AFTER INSERT trigger on the immutable cart receipt ledger captures

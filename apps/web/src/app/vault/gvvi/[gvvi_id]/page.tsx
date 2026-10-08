@@ -77,7 +77,7 @@ function formatMessageSummary(activeCount: number, unreadCount: number) {
 export default async function VaultInstancePage(
   props: {
     params: Promise<{ gvvi_id: string }>;
-    searchParams?: Promise<{ workspace?: string | string[]; inventoryQuery?: string | string[]; inventoryGame?: string | string[]; inventoryPrice?: string | string[] }>;
+    searchParams?: Promise<{ workspace?: string | string[]; inventoryQuery?: string | string[]; inventoryGame?: string | string[]; inventoryPrice?: string | string[]; inventoryCostReview?: string | string[] }>;
   }
 ) {
   const params = await props.params;
@@ -87,6 +87,10 @@ export default async function VaultInstancePage(
   const returnContext = new URLSearchParams();
   if (vendor) {
     returnContext.set("workspace", "vendor");
+    if (context.inventoryCostReview === '1') {
+      inventoryQuery.set('review', 'cost');
+      returnContext.set('inventoryCostReview', '1');
+    }
     if (typeof context.inventoryQuery === "string") {
       inventoryQuery.set("q", context.inventoryQuery.slice(0, 120));
       returnContext.set("inventoryQuery", context.inventoryQuery.slice(0, 120));
@@ -252,7 +256,7 @@ export default async function VaultInstancePage(
         </div>
 
         <div className={vendor ? "order-1 space-y-6 xl:order-2" : "space-y-6"}>
-          <VaultCopyCostCard key={`cost-${user.id}-${detail.instanceId}`} ownerId={user.id} instanceId={detail.instanceId} enabled={process.env.GV_COPY_COST_V1 === '1'} />
+          <div id="private-cost" style={{ scrollMarginTop: 80 }}><VaultCopyCostCard key={`cost-${user.id}-${detail.instanceId}`} ownerId={user.id} instanceId={detail.instanceId} enabled={process.env.GV_COPY_COST_V1 === '1'} /></div>
           <VaultInstancePricingCard
             key={`pricing-${detail.instanceId}`}
             instanceId={detail.instanceId}

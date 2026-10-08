@@ -9,6 +9,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
 import { sealedOwnershipEnabled } from "@/lib/sealed/ownedSealedV1";
 import s from "./VendorInventory.module.css";
+import InventoryCostReview from './InventoryCostReview';
 
 type Copy = {
   instanceId: string; gvviId: string; gv_id?: string; name: string;
@@ -28,11 +29,12 @@ function asking(copy: Copy) {
 }
 
 /** Exact active copies through the existing authenticated stock reader. */
-export default function VendorInventory({ ownerId }: { ownerId: string }) {
+export default function VendorInventory({ ownerId, costReviewEnabled = false }: { ownerId: string; costReviewEnabled?: boolean }) {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
   const sealed = sealedOwnershipEnabled && params.get("kind") === "sealed";
+  const reviewingCosts = costReviewEnabled && params.get('review') === 'cost';
   const q = (params.get("q") ?? "").trim().slice(0, 120);
   const game = games.includes(params.get("game") ?? "") ? params.get("game")! : "pokemon";
   const price = ["priced", "unpriced"].includes(params.get("price") ?? "") ? params.get("price")! : "all";
@@ -115,6 +117,8 @@ export default function VendorInventory({ ownerId }: { ownerId: string }) {
   if (closed) return <section className={s.shell}><h1>Inventory closed</h1><p>Your account changed. Reopen inventory to continue.</p><a href="/account/store/inventory">Reopen inventory</a></section>;
   const current = resultKey === queryKey ? page : null;
   const kindHref = (kind: string) => { const next = new URLSearchParams(params.toString()); next.set("kind", kind); return `${pathname}?${next}`; };
+  const reviewQuery = new URLSearchParams(params.toString());
+  if (reviewingCosts) reviewQuery.delete('review'); else reviewQuery.set('review', 'cost');
   return <section className={s.shell} aria-label="Inventory">
     <header className={s.header}><div><h1>Inventory</h1><p>{sealed ? "Your sealed products. Manage each copy through your existing Vault tools." : "Your active card copies. Edit a copy to manage its price, condition and details."}</p></div>
       <Link href="/account/store/sales" prefetch={false} className={s.primary}>Open Desk</Link></header>
@@ -137,9 +141,12 @@ export default function VendorInventory({ ownerId }: { ownerId: string }) {
     <div className={s.tools}><p aria-live="polite">{current ? `${current.cards.length} ${current.cards.length === 1 ? "copy" : "copies"} shown${current.next ? " · more available" : ""}` : "Loading your copies…"}</p>
       <button type="button" disabled={loading} onClick={() => void load()}><RefreshCw size={16} aria-hidden="true" />Refresh</button></div>
     {error && <p role="alert" className={s.notice}>{error} <button disabled={loading} onClick={() => void load(failedCursor.current ?? undefined)}>Try again</button></p>}
+    {costReviewEnabled && current && <div className={s.tools}><Link href={`${pathname}?${reviewQuery}`} prefetch={false} className={s.primary}>{reviewingCosts ? 'Hide cost review' : 'Review costs for shown copies'}</Link></div>}
+    {reviewingCosts && current && !loading && <InventoryCostReview key={`${ownerId}:${queryKey}`} ownerId={ownerId} copies={current.cards}
+      editHref={copy => `/vault/gvvi/${encodeURIComponent(copy.gvviId)}?${new URLSearchParams({ workspace: 'vendor', inventoryQuery: q, inventoryGame: game, inventoryPrice: price, inventoryCostReview: '1' })}#private-cost`} />}
     {loading && !current ? <p role="status">Loading inventory…</p> : current && !current.cards.length ?
       <div className={s.empty}><Boxes size={32} aria-hidden="true" /><h2>No matching active copies</h2><p>Change your search or price filter, or add cards from your Vault.</p><Link href="/vault" prefetch={false}>Open Vault</Link></div> :
-      <ul className={s.rows}>{current?.cards.map(copy => <li key={copy.instanceId} className={s.copy}>
+      !reviewingCosts && <ul className={s.rows}>{current?.cards.map(copy => <li key={copy.instanceId} className={s.copy}>
         <div className={s.art}>{copy.image ? <Image src={copy.image} alt="" width={60} height={84} unoptimized /> : <Boxes size={28} aria-hidden="true" />}</div>
         <div className={s.identity}><h2>{copy.name}</h2><p>{[copy.set_code, copy.number && `#${copy.number}`, copy.printing].filter(Boolean).join(" · ")}</p><p>{[copy.condition, intents[copy.intent ?? ""]].filter(Boolean).join(" · ")}</p><small>{copy.gvviId}</small></div>
         <div className={s.price}><span>Asking price</span><strong>{asking(copy)}</strong></div>
@@ -147,7 +154,7 @@ export default function VendorInventory({ ownerId }: { ownerId: string }) {
           {copy.gv_id && <Link href={`/card/${encodeURIComponent(copy.gv_id)}`} prefetch={false}>View card<span className={s.srOnly}> {copy.gvviId}</span></Link>}</div>
       </li>)}</ul>}
     {current?.next && <button className={s.more} disabled={loading} onClick={() => void load(current.next!)}>{loading ? "Loading more…" : "Load more copies"}</button>}
-    <p className={s.footnote}>Browsing without a search shows all games. Search game applies to name and catalog searches. Asking prices are saved copy prices, not market estimates or completed sales.</p>
+    <p className={s.footnote}>Browsing without a search shows all games. Search game applies to name and catalog searches.{!reviewingCosts && ' Asking prices are saved copy prices, not market estimates or completed sales.'}</p>
     </>}
   </section>;
 }

@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Web inventory cost review — October 7
+
+Read [the web cost-review checkpoint](docs/ops/PRODUCT_COST_REVIEW_WEB_20261007.md).
+This tree now includes qualified native review611231081. Its Samsung proof and
+full normal hook pass. Web review uses existing owner-bound reads and the existing
+recoverable editor, with explicit loaded-copy scope and preserved return context.
+The external product_cost_review_web_20261007 checkpoint owns runtime and normal
+hook outcomes. Preserve all consumed fixtures and prior worktrees; no deployment.
+Run full hooks serially and freeze source/lab while they run.
+
 ## Inventory cost review — October 7
 
 Read [the cost review checkpoint](docs/ops/PRODUCT_COST_REVIEW_20261007.md).
