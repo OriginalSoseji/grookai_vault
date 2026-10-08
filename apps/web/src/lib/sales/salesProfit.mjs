@@ -1,6 +1,7 @@
 // Private cost-at-sale evidence only. Current inventory cost is never an input.
 import {isPurchaseReceipt,validatePurchaseReceipt} from './salesPurchase.mjs';
 import {validateNegotiatedSaleReceipt} from './negotiatedTrade.mjs';
+import {validateSaleDiscountAllocation} from './saleDiscount.mjs';
 const uuid = value => typeof value==='string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 const integer = (value,positive=false) => {
   if(!Number.isSafeInteger(value) || value < (positive?1:0))throw Error('Recorded sales need review before profit can be calculated.');
@@ -28,9 +29,12 @@ function qualifiedMinor(cost) {
 }
 const unknownStatuses=new Set(['missing_amount','missing_currency','invalid_amount','invalid_currency','oversized_legacy_value']);
 function alignedSnapshot(snapshot,receipt,items) {
-  if(!snapshot || snapshot.version!==1 || snapshot.receiptId!==receipt.id || snapshot.salesCurrency!=='USD' ||
+  if(!snapshot || ![1,2].includes(snapshot.version) || snapshot.receiptId!==receipt.id || snapshot.salesCurrency!=='USD' ||
     typeof snapshot.soldAt!=='string' || !Number.isFinite(Date.parse(snapshot.soldAt)) || Date.parse(snapshot.soldAt)!==Date.parse(receipt.createdAt) ||
     !Array.isArray(snapshot.lines) || snapshot.lines.length!==items.length)return false;
+  if(snapshot.version===2){
+    try{validateSaleDiscountAllocation(snapshot.allocation,receipt.items,receipt.discountMinor??0);}catch{return false;}
+  }
   const copies=new Set();
   return snapshot.lines.every((line,index)=>{
     if(!line || line.index!==index || line.quantity!==receipt.items[index].quantity || typeof line.salesMinor!=='string' ||
@@ -64,15 +68,15 @@ export function salesProfit(receipts,snapshots) {
     const net=subtotal-discount;
     sales+=net;units+=quantity;lines+=items.length;
     const snapshot=evidence.get(receipt.id);
-    const reason=!snapshot?'missing_snapshot':!alignedSnapshot(snapshot,receipt,items)?'snapshot_mismatch':discount>0n?'discount_allocation_missing':null;
+    const reason=!snapshot?'missing_snapshot':!alignedSnapshot(snapshot,receipt,items)?'snapshot_mismatch':discount>0n&&snapshot.version===1?'discount_allocation_missing':null;
     if(reason){excluded(reason,receipt.id,items.length,quantity,net);details.push({receiptId:receipt.id,knownLines:0,totalLines:items.length,knownSalesMinor:'0',knownCostMinor:'0',knownProfitMinor:null,reasons:[reason]});continue;}
     let coveredSales=0n,coveredCost=0n,coveredLines=0;const receiptReasons=new Set();
     snapshot.lines.forEach((line,index)=>{
-      const item=items[index];
+      const item=items[index],netSales=snapshot.version===2?BigInt(snapshot.allocation.lines[index].netMinor):item.sales;
       if(line.status==='known'){
         const cost=qualifiedMinor(line.cost); // validated by alignedSnapshot
-        coveredSales+=item.sales;coveredCost+=cost;coveredLines++;knownUnits+=item.units;
-      }else{excluded(line.status,receipt.id,1,item.units,item.sales);receiptReasons.add(line.status);}
+        coveredSales+=netSales;coveredCost+=cost;coveredLines++;knownUnits+=item.units;
+      }else{excluded(line.status,receipt.id,1,item.units,netSales);receiptReasons.add(line.status);}
     });
     knownSales+=coveredSales;costs+=coveredCost;knownLines+=coveredLines;
     details.push({receiptId:receipt.id,knownLines:coveredLines,totalLines:items.length,knownSalesMinor:String(coveredSales),knownCostMinor:String(coveredCost),knownProfitMinor:coveredLines?String(coveredSales-coveredCost):null,reasons:[...receiptReasons].sort()});

@@ -3,6 +3,7 @@ import 'negotiated_draft.dart';
 import 'dart:convert';
 import './sales_payments.dart';
 import './purchase_drafts.dart';
+import 'discounted_draft.dart';
 
 /// Device-local work in progress. A held deal never reserves inventory.
 Map<String, dynamic> readSalesDrafts(String? raw) {
@@ -17,8 +18,17 @@ Map<String, dynamic> readSalesDrafts(String? raw) {
   bool number(dynamic v, int min, int max) => v is int && v >= min && v <= max;
   bool optionalText(dynamic v) => v == null || text(v, 4096);
   bool valid(dynamic d) {
+    if (isDiscountedDraft(d)) {
+      if (book is! Map || book['version'] != 4) return false;
+      try {
+        validateDiscountedDraft(d);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
     if (isNegotiatedDraft(d)) {
-      if (book is! Map || book['version'] != 3) return false;
+      if (book is! Map || ![3, 4].contains(book['version'])) return false;
       try {
         validateNegotiatedDraft(d);
         return true;
@@ -27,7 +37,7 @@ Map<String, dynamic> readSalesDrafts(String? raw) {
       }
     }
     if (isPurchaseDraft(d)) {
-      if (book is! Map || ![2, 3].contains(book['version'])) return false;
+      if (book is! Map || ![2, 3, 4].contains(book['version'])) return false;
       try {
         validatePurchaseDraft(d);
         return true;
@@ -101,7 +111,7 @@ Map<String, dynamic> readSalesDrafts(String? raw) {
   }
 
   if (book is! Map ||
-      ![1, 2, 3].contains(book['version']) ||
+      ![1, 2, 3, 4].contains(book['version']) ||
       !number(book['revision'], 0, 9007199254740990) ||
       book['drafts'] is! List) {
     throw StateError(

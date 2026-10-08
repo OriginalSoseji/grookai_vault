@@ -1,0 +1,190 @@
+// Actual authenticated local discount transactions. Retain every fixture and restore controls.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {randomUUID,createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {createClient} from '@supabase/supabase-js';
+import pg from 'pg';
+import {validateDiscountedSaleRequest,confirmedDiscountedSale,confirmedDiscountedSaleCancellation,discountedSaleCustomerView} from '../../apps/web/src/lib/sales/discountedSale.mjs';
+import {salesProfit} from '../../apps/web/src/lib/sales/salesProfit.mjs';
+import {validateSaleDiscountAllocation} from '../../apps/web/src/lib/sales/saleDiscount.mjs';
+import {validateEventRequest,confirmedEventRequest} from '../../apps/web/src/lib/sales/vendorEvents.mjs';
+import {loadEventReportInput} from '../../apps/web/src/lib/sales/eventReportLoader.mjs';
+import {eventReport,eventReportCsv} from '../../apps/web/src/lib/sales/eventReport.mjs';
+import {parseBackup} from '../../apps/web/src/lib/receipts/receiptBook.mjs';
+const root=fileURLToPath(new URL('../../',import.meta.url));
+assert.equal(process.argv.length,2);assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_product_discount_20261008');assert.equal(fs.realpathSync('.'),fs.realpathSync(root));
+const base='C:/grookai_vault_operator_artifacts/product_discount_20261008',lab=base+'/full-436-v1',project='discount-full-436-v1-20261008';
+const read=p=>JSON.parse(fs.readFileSync(p)),hash=b=>createHash('sha256').update(b).digest('hex');
+const freeze=read(lab+'/freeze.json'),replay=read(lab+'/replay-result.json');assert.equal(freeze.project,project);assert.equal(replay.status,'passed');assert.equal(replay.project,project);assert.equal(replay.migrations,436);assert.ok(replay.fullReplay&&replay.noOpPush);assert.ok(!fs.existsSync(lab+'/supabase/.temp/project-ref'));
+for(const [name,digest]of Object.entries(freeze.sourceHashes))assert.equal(hash(fs.readFileSync(root+'supabase/migrations/'+name)),digest,name);
+assert.equal(hash(fs.readFileSync(lab+'/supabase/config.toml')),freeze.configSha256);
+const command=(n,a)=>execFileSync(n,a,{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe'],timeout:30000});
+const cfg=JSON.parse(command('supabase',['status','-o','json','--workdir',lab]));assert.equal(cfg.API_URL,'http://127.0.0.1:34601');
+const container=JSON.parse(command('docker',['inspect','supabase_db_'+project]))[0];assert.equal(container.State.Running,true);assert.deepEqual(Object.keys(container.NetworkSettings.Networks),[project]);assert.equal(JSON.parse(command('docker',['network','inspect',project]))[0].Internal,true);
+const relay=JSON.parse(command('docker',['inspect',project+'-relay']))[0];for(const p of [34600,34601])assert.deepEqual(relay.NetworkSettings.Ports[p+'/tcp'],[{HostIp:'127.0.0.1',HostPort:String(p)}]);
+const dbUrl='postgresql://postgres:postgres@127.0.0.1:34600/postgres',db=new pg.Client({connectionString:dbUrl,connectionTimeoutMillis:10000});await db.connect();
+const q=async(sql,args=[])=>(await db.query(sql,args)).rows;
+const auth={persistSession:false,autoRefreshToken:false},admin=createClient(cfg.API_URL,cfg.SECRET_KEY,{auth}),clients=[];
+const out=base+'/cancellation-rpc-'+Date.now();fs.mkdirSync(out);const save=(n,v)=>fs.writeFileSync(out+'/'+n,JSON.stringify(v,null,2),{flag:'wx'});
+fs.copyFileSync(fileURLToPath(import.meta.url),out+'/producer.mjs',fs.constants.COPYFILE_EXCL);
+const controls=['vendor_discount_control','vendor_event_control','vendor_receipt_cloud_control','vendor_sales_cart_control','vendor_sales_payment_control','vendor_sales_trade_control','vendor_purchase_control','vendor_negotiated_trade_control'];
+const tables=['auth.users','public.vault_owners','public.vault_items','public.vault_item_instances','public.vault_item_instance_dispositions','public.vault_copy_cost_requests','public.card_events','public.pricing_watch','public.card_prints','public.card_printings','public.sets','public.vendor_receipt_books','public.vendor_sales_cart_receipts','public.vendor_sale_cost_snapshots','public.vendor_event_owners','public.vendor_events','public.vendor_event_expenses','public.vendor_event_assignments','public.vendor_event_requests','public.vendor_sales_cart_cancellations'];
+const fixture={at:new Date().toISOString(),users:[],requests:[],set:randomUUID(),card:randomUUID(),printing:randomUUID()};
+const persist=()=>fs.writeFileSync(out+'/fixture.private.json',JSON.stringify(fixture,null,2));
+const ok=r=>{assert.equal(r.error,null,JSON.stringify(r.error));return r.data;};
+let flags,cost,result,locker;
+try{
+ const state=(await q("select host(inet_server_addr()) address,current_setting('max_worker_processes') workers,(select count(*)::int from supabase_migrations.schema_migrations) migrations"))[0];assert.equal(state.address,container.NetworkSettings.Networks[project].IPAddress);assert.equal(state.workers,'0');assert.equal(state.migrations,436);
+ flags={};for(const t of controls)flags[t]=(await q(`select enabled from ${t}`))[0].enabled;assert.ok(Object.values(flags).every(v=>v===false));cost=(await q('select edit_enabled,capture_enabled from vendor_cost_evidence_control'))[0];assert.deepEqual(cost,{edit_enabled:false,capture_enabled:false});
+ const retained={};for(const t of tables)retained[t]=await q(`select to_jsonb(t) row from ${t} t order by to_jsonb(t)::text`);
+ save('intent.private.json',{at:fixture.at,project,sourceSha256:freeze.sourceHashes['20261008160000_vendor_discounts_v1.sql'],producerSha256:hash(fs.readFileSync(fileURLToPath(import.meta.url))),flags,cost,retained,consumed:true,productionWrites:0});persist();
+ // Existing entry/recovery bodies stay byte-identical to the qualified parent lab.
+ const oldDb=new pg.Client({connectionString:'postgresql://postgres:postgres@127.0.0.1:34060/postgres?options=-c%20default_transaction_read_only%3Don',connectionTimeoutMillis:10000});await oldDb.connect();
+ try{const names=[1,2,3,4,5].map(v=>'vendor_sales_cart_complete_v'+v).concat(['vendor_sales_cart_read_v1','vendor_sales_cart_read_v2','vault_record_exact_instance_disposition_v2','vendor_receipt_book_validate_v1']);const sql="select p.proname,pg_get_functiondef(p.oid) definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname=any($1::text[]) order by p.proname";const before=(await oldDb.query(sql,[names])).rows;assert.equal(before.length,names.length);assert.deepEqual(await q(sql,[names]),before);save('old-writers-unchanged.json',{names,definitionsSha256:hash(JSON.stringify(before)),parentMigrations:434,localWrites:0});}finally{await oldDb.end();}
+ for(let i=0;i<2;i++){const email=randomUUID()+'@discount-proof.invalid',password=randomUUID()+'Aa9!',made=await admin.auth.admin.createUser({email,password,email_confirm:true});assert.equal(made.error,null);fixture.users.push({owner:made.data.user.id,email});persist();const c=createClient(cfg.API_URL,cfg.PUBLISHABLE_KEY,{auth});ok(await c.auth.signInWithPassword({email,password}));clients.push(c);}
+ const owner=fixture.users[0].owner,client=clients[0],customer={name:'',email:'',phone:'',wants:'',notes:''};
+ const call=(r,c=client)=>c.rpc('vendor_sales_cart_complete_v6',{p_request_id:r.id,p_cart:r.cart}),recover=(r,c=client)=>c.rpc('vendor_sales_cart_read_v3',{p_request_id:r.id,p_cart:r.cart});
+ const request=(patch={})=>{const cart={version:6,storeName:'Synthetic discount shop',method:'Cash',items:[{instanceId:null,description:'Quick discounted sale',quantity:1,unitMinor:1000}],discountMinor:100,taxMinor:0,note:'',customerId:null,customer,...patch};if(!Object.hasOwn(patch,'payments')){const total=cart.items.reduce((n,i)=>n+i.quantity*i.unitMinor,0)-cart.discountMinor+cart.taxMinor;cart.payments=[{method:'Cash',amountMinor:total,tenderedMinor:total}];}const r=validateDiscountedSaleRequest({id:randomUUID(),cart});fixture.requests.push(r);persist();return r;};
+ const initial=request();assert.equal(ok(await client.rpc('vendor_sales_discount_available_v1')),false);assert.equal((await call(initial)).error?.code,'42501');assert.equal(ok(await recover(initial)),null);
+ assert.equal((await call({...initial,id:'a2000000-0000-0000-8000-000000000001'})).error?.code,'22023');
+ const anonymous=createClient(cfg.API_URL,cfg.PUBLISHABLE_KEY,{auth});for(const name of ['vendor_sales_cart_complete_v6','vendor_sales_cart_read_v3'])assert.equal((await anonymous.rpc(name,{p_request_id:initial.id,p_cart:initial.cart})).error?.code,'42501');
+ for(const t of ['vendor_discount_control','vendor_sales_cart_receipts','vendor_sale_cost_snapshots'])assert.equal((await client.from(t).select('*')).error?.code,'42501');
+ await q('begin');for(const t of controls)await q(`update ${t} set enabled=true`);await q('update vendor_cost_evidence_control set capture_enabled=true');await q('commit');
+ for(const t of ['vendor_discount_control','vendor_receipt_cloud_control','vendor_sales_cart_control','vendor_sales_payment_control']){await q(`update ${t} set enabled=false`);assert.equal(ok(await client.rpc('vendor_sales_discount_available_v1')),false);assert.equal((await call(initial)).error?.code,'42501');await q(`update ${t} set enabled=true`);}
+ await q('update vendor_cost_evidence_control set capture_enabled=false');assert.equal((await call(initial)).error?.code,'42501');await q('update vendor_cost_evidence_control set capture_enabled=true');
+ await q('begin');await q("insert into sets(id,code,name,game) values($1,$2,'Discount synthetic set','pokemon')",[fixture.set,fixture.set]);await q("insert into card_prints(id,game_id,set_id,name,number,gv_id,image_status) values($1,(select id from games where code='pokemon'),$2,'Discount synthetic card','1',$3,'missing')",[fixture.card,fixture.set,'GV-PK-DISCOUNT-'+fixture.card]);await q("insert into card_printings(id,card_print_id,finish_key,printing_gv_id) values($1,$2,(select key from finish_keys where is_active order by sort_order limit 1),$3)",[fixture.printing,fixture.card,'GV-PK-DISCOUNT-'+fixture.card+'-STD']);
+ for(let i=0;i<6;i++)await q("select public.admin_vault_instance_create_v1(p_user_id=>$1::uuid,p_card_print_id=>$2::uuid,p_condition_label=>'NM',p_card_printing_id=>$3::uuid)",[owner,fixture.card,fixture.printing]);
+ await q("select public.admin_vault_instance_create_v1(p_user_id=>$1::uuid,p_card_print_id=>$2::uuid,p_condition_label=>'NM',p_card_printing_id=>$3::uuid)",[fixture.users[1].owner,fixture.card,fixture.printing]);
+ const copies=await q('select id from vault_item_instances where user_id=$1 order by id',[owner]);assert.equal(copies.length,6);fixture.copies=copies.map(r=>r.id);persist();
+ const costs=[[60,'USD'],[0,'USD'],[null,null],[5,'CAD'],[0.02,'USD'],[10,'USD']];for(let i=0;i<6;i++)await q('update vault_item_instances set acquisition_cost=$1,acquisition_currency=$2 where id=$3',[...costs[i],copies[i].id]);await q('commit');
+ const first=request({method:'Split payment',items:[{instanceId:copies[0].id,description:'Known sixty-dollar cost',quantity:1,unitMinor:10000},{instanceId:copies[1].id,description:'Known zero cost',quantity:1,unitMinor:5000},{instanceId:null,description:'Unlinked lot',quantity:2,unitMinor:2500}],discountMinor:2000,taxMinor:100,payments:[{method:'Cash',amountMinor:10000,tenderedMinor:12000},{method:'Card (external terminal)',amountMinor:8100,tenderedMinor:8100}]});
+ const replies=await Promise.all([call(first),call(first)]),ack=ok(replies[0]);assert.deepEqual(ok(replies[1]),ack);confirmedDiscountedSale(ack,first);assert.deepEqual(ok(await recover(first)),ack);assert.equal(ok(await recover(first,clients[1])),null);
+ const costRead=ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[first.id]}));assert.equal(costRead.ownerId,owner);assert.equal(costRead.snapshots.length,1);const snap=costRead.snapshots[0];assert.equal(snap.version,2);validateSaleDiscountAllocation(snap.allocation,ack.receipt.items,2000);
+ const profit=salesProfit([ack.receipt],[snap]);assert.equal(profit.knownProfitMinor,'7500');assert.equal(profit.knownSalesMinor,'13500');assert.equal(profit.unknownSalesMinor,'4500');
+ assert.deepEqual((await q('select sale_price_amount::text amount from vault_item_instance_dispositions where user_id=$1 order by sale_price_amount',[owner])).map(r=>Number(r.amount)),[45,90]);
+ assert.equal(discountedSaleCustomerView(ack.receipt).discountMinor,2000);assert.ok(!JSON.stringify(discountedSaleCustomerView(ack.receipt)).includes(copies[0].id));
+ const changed=structuredClone(first);changed.cart.note='Changed retry';for(const r of await Promise.all([call(changed),recover(changed)]))assert.equal(r.error?.code,'22023');
+ assert.equal((await client.rpc('vendor_sales_cart_read_v2',{p_request_id:first.id,p_cart:first.cart})).error?.code,'22023');
+ const raced=request(),alternate=structuredClone(raced);alternate.cart.note='Other request';const race=await Promise.all([call(raced),call(alternate)]),winner=race.findIndex(r=>r.error===null);assert.ok(winner>=0);assert.equal(race[1-winner].error?.code,'22023');confirmedDiscountedSale(ok(race[winner]),[raced,alternate][winner]);
+ const ownerState=async()=>{const result={};for(const t of ['vendor_receipt_books','vendor_sales_cart_receipts','vendor_sale_cost_snapshots'])result[t]=await q(`select to_jsonb(t) row from ${t} t where owner_id=$1 order by to_jsonb(t)::text`,[owner]);for(const t of ['vault_item_instances','vault_item_instance_dispositions'])result[t]=await q(`select to_jsonb(t) row from ${t} t where user_id=$1 order by to_jsonb(t)::text`,[owner]);return result;};
+ const foreignCopy=(await q('select id from vault_item_instances where user_id=$1',[fixture.users[1].owner]))[0].id,beforeForeign=await ownerState();
+ const foreign=request({items:[{instanceId:copies[2].id,description:'Owned copy',quantity:1,unitMinor:1000},{instanceId:foreignCopy,description:'Foreign copy',quantity:1,unitMinor:1000}]});assert.equal((await call(foreign)).error?.code,'PT409');assert.deepEqual(await ownerState(),beforeForeign);assert.equal(ok(await recover(foreign)),null);
+ const sold=request({items:[{instanceId:copies[0].id,description:'Already sold copy',quantity:1,unitMinor:1000}]});assert.equal((await call(sold)).error?.code,'PT409');assert.deepEqual(await ownerState(),beforeForeign);
+ // Fill an owned synthetic book to its supported customer bound. The attempted
+ // sale disposes its copies before final book validation; all of that rolls back.
+ const beforeBook=ok(await client.rpc('vendor_receipt_book_read_v1')),fullBook=structuredClone(beforeBook.book);
+ while(fullBook.customers.length<10000)fullBook.customers.push({id:randomUUID(),name:'Synthetic capacity customer',email:'',phone:'',wants:'',notes:'',updatedAt:'2030-01-01T00:00:00.000Z'});
+ ok(await client.rpc('vendor_receipt_book_save_v1',{p_revision:beforeBook.revision,p_request_id:randomUUID(),p_book:fullBook}));
+ const lateBefore=await ownerState(),late=request({customer:{...customer,name:'One additional synthetic customer'},items:[{instanceId:copies[2].id,description:'First rollback copy',quantity:1,unitMinor:1000},{instanceId:copies[3].id,description:'Last rollback copy',quantity:1,unitMinor:1000}]});
+ assert.equal((await call(late)).error?.code,'22023');assert.deepEqual(await ownerState(),lateBefore);assert.equal(ok(await recover(late)),null);
+ const fullRead=ok(await client.rpc('vendor_receipt_book_read_v1'));assert.deepEqual(fullRead.book,fullBook);
+ // Customer identities are retained by the existing book contract. Keep this
+ // synthetic capacity fixture; later blank-customer sales add no new customer.
+ const missingForeign=request({items:[{instanceId:copies[2].id,description:'Missing recorded cost',quantity:1,unitMinor:1000},{instanceId:copies[3].id,description:'Foreign recorded cost',quantity:1,unitMinor:1000}],discountMinor:200});
+ const missingAck=ok(await call(missingForeign));confirmedDiscountedSale(missingAck,missingForeign);const missingCosts=ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[missingForeign.id]})),missingProfit=salesProfit([missingAck.receipt],missingCosts.snapshots);
+ assert.equal(missingProfit.knownProfitMinor,null);assert.equal(missingProfit.unknownSalesMinor,'1800');assert.deepEqual(missingProfit.reasons.map(r=>r.reason),['foreign_currency','missing_amount']);
+ assert.equal((await client.rpc('vault_record_exact_instance_disposition_v2',{p_instance_id:copies[4].id,p_disposition_type:'sale',p_sale_price_amount:0,p_sale_price_currency:'USD'})).error?.code,'22023');
+ assert.equal((await client.rpc('vendor_discount_disposition_v1',{p_instance_id:copies[4].id,p_disposition_type:'sale',p_sale_price_amount:0,p_sale_price_currency:'USD'})).error?.code,'42501');
+ const zero=request({items:[{instanceId:copies[4].id,description:'Zero net exact copy',quantity:1,unitMinor:1},{instanceId:null,description:'Remainder sale',quantity:1,unitMinor:100}],discountMinor:100});const zeroAck=ok(await call(zero));confirmedDiscountedSale(zeroAck,zero);
+ assert.equal(Number((await q('select sale_price_amount::text amount from vault_item_instance_dispositions where vault_item_instance_id=$1',[copies[4].id]))[0].amount),0);
+ const zeroCosts=ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[zero.id]}));assert.equal(salesProfit([zeroAck.receipt],zeroCosts.snapshots).knownProfitMinor,'-2');
+ // Disable capture after the accepted writer is blocked on its exact-copy lock.
+ // The in-flight sale must still record complete v2 evidence when it resumes.
+ locker=new pg.Client({connectionString:dbUrl,connectionTimeoutMillis:10000});await locker.connect();await locker.query('begin');const lockerPid=(await locker.query('select pg_backend_pid() pid')).rows[0].pid;await locker.query('select id from vault_item_instances where id=$1 for update',[copies[5].id]);
+ const switching=request({items:[{instanceId:copies[5].id,description:'Capture switch race',quantity:1,unitMinor:500}],discountMinor:50});const pendingCall=Promise.resolve(call(switching));let waiting=false,waitFailure;
+ try{for(let i=0;i<80;i++){const n=(await q("select count(*)::int n from pg_stat_activity where wait_event_type='Lock' and $1::int=any(pg_blocking_pids(pid))",[lockerPid]))[0].n;if(n>0){waiting=true;break;}await new Promise(r=>setTimeout(r,100));}assert.equal(waiting,true);await q('update vendor_cost_evidence_control set capture_enabled=false');}catch(error){waitFailure=error;}finally{await locker.query('commit');await locker.end();locker=null;}
+ const switchReply=await pendingCall;if(waitFailure)throw waitFailure;const switchAck=ok(switchReply);confirmedDiscountedSale(switchAck,switching);assert.equal(ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[switching.id]})).snapshots[0].version,2);assert.equal((await call(request())).error?.code,'42501');await q('update vendor_cost_evidence_control set capture_enabled=true');
+ const fifty=request({items:Array.from({length:50},(_,i)=>({instanceId:null,description:'Line '+i,quantity:1,unitMinor:2})),discountMinor:49});const fiftyAck=ok(await call(fifty));confirmedDiscountedSale(fiftyAck,fifty);const fiftySnapshot=ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[fifty.id]})).snapshots[0];assert.deepEqual(fiftySnapshot.allocation.lines.map(l=>l.discountMinor),[...Array(49).fill('1'),'0']);
+ for(const discountMinor of [0,100]){const r=request({items:[{instanceId:null,description:'Boundary',quantity:1,unitMinor:100}],discountMinor,taxMinor:discountMinor===100?1:0});confirmedDiscountedSale(ok(await call(r)),r);}
+ const legacy=ok(await client.rpc('vendor_sales_cart_complete_v1',{p_request_id:randomUUID(),p_cart:{version:1,storeName:'Synthetic discount shop',method:'Cash',items:[{instanceId:null,description:'Legacy sale after discount',quantity:1,unitMinor:100}],taxMinor:0,note:'',customerId:null,customer}}));
+ const legacySnap=ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[legacy.id]})).snapshots[0];assert.equal(legacySnap.version,1);assert.ok(!Object.hasOwn(legacySnap,'allocation'));
+ const buy=ok(await client.rpc('vendor_sales_cart_complete_v4',{p_request_id:randomUUID(),p_cart:{version:4,kind:'purchase',storeName:'Synthetic discount shop',items:[{description:'Quick purchase',quantity:1,unitMinor:100,referenceMinor:null,rateBps:null,cardId:null,printingId:null,condition:null,addToVault:false}],payments:[{method:'Cash',amountMinor:100,tenderedMinor:100}],note:'',customerId:null,customer}}));assert.deepEqual(ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[buy.id]})).snapshots,[]);
+ const trade=ok(await client.rpc('vendor_sales_cart_complete_v5',{p_request_id:randomUUID(),p_cart:{version:5,storeName:'Synthetic discount shop',method:'Cash',items:[{instanceId:null,description:'Existing negotiated trade',quantity:1,unitMinor:200}],taxMinor:0,note:'',customerId:null,customer,trades:[{description:'Quick agreed credit',quantity:1,valueMinor:null,rateBps:null,creditMinor:100,cardId:null,printingId:null,condition:null,addToVault:false}],payments:[{method:'Cash',amountMinor:100,tenderedMinor:100}]}}));assert.equal(trade.receipt.discountMinor,0);
+ const eventId=randomUUID(),date=ack.receipt.createdAt.slice(0,10),operations=[{type:'event_create',eventId,name:'Discount reconciliation',startDate:date,endDate:date,timeZone:'UTC',currency:'USD',notes:''},{type:'expense_create',eventId,expenseId:randomUUID(),category:'booth',description:'Booth fee',amountMinor:'500',currency:'USD',incurredOn:date},{type:'receipts_assign',eventId,receipts:[{receiptId:first.id,previousEventId:null}]}];
+ for(const[index,operation]of operations.entries()){const r=validateEventRequest({version:1,requestId:randomUUID(),expectedRevision:String(index),operation});confirmedEventRequest(r,ok(await client.rpc('vendor_event_mutate_v1',{p_request:r})),owner);}
+ const reportOwner=ok(await client.auth.getUser()).user.id;
+ const input=await loadEventReportInput({ownerId:owner,eventId,readState:async id=>ok(await client.rpc('vendor_event_read_v1',{p_event_id:id})),readBook:async()=>ok(await client.rpc('vendor_receipt_book_read_v1')),readCosts:async ids=>ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:ids})),checkOwner:()=>assert.equal(reportOwner,owner)}),report=eventReport(input),csv=eventReportCsv(report);
+ assert.equal(report.salesMinor,'18000');assert.equal(report.profit.knownProfitMinor,'7500');assert.equal(report.knownCostEventSubtotalMinor,'7000');assert.equal(report.profit.unknownSalesMinor,'4500');assert.equal(report.taxMinor,'100');assert.equal(report.knownCashChangeMinor,'2000');assert.match(csv,/"180.00"/);assert.match(csv,/"75.00"/);save('event-report.private.json',report);
+ const mixedBook=ok(await client.rpc('vendor_receipt_book_read_v1'));parseBackup(JSON.stringify(mixedBook.book));ok(await client.rpc('vendor_receipt_book_save_v1',{p_revision:mixedBook.revision,p_request_id:randomUUID(),p_book:mixedBook.book}));
+ const originalSnapshot=JSON.stringify(snap);assert.equal(JSON.stringify(ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[first.id]})).snapshots[0]),originalSnapshot);
+ await q('begin');for(const t of controls)await q(`update ${t} set enabled=false`);await q('update vendor_cost_evidence_control set capture_enabled=false');await q('commit');
+ const offBefore=await ownerState();assert.deepEqual(ok(await recover(first)),ack);assert.deepEqual(ok(await call(first)),ack);assert.equal((await call(request())).error?.code,'42501');assert.deepEqual(await ownerState(),offBefore);
+ // Entry is now off. Cancellation and recovery must still settle the exact saved
+ // request, while no empty read alone is treated as permission to edit.
+ const cancel=(r,c=client)=>c.rpc('vendor_sales_cart_cancel_v1',{p_request_id:r.id,p_cart:r.cart});
+ assert.equal(ok(await client.rpc('vendor_sales_discount_entry_available_v1')),false);
+ for(const role of ['anon','authenticated','service_role'])assert.equal((await q("select has_table_privilege($1,'public.vendor_sales_cart_cancellations','SELECT,INSERT,UPDATE,DELETE,TRUNCATE,REFERENCES,TRIGGER') allowed",[role]))[0].allowed,false);
+ assert.equal((await q("select relrowsecurity enabled from pg_class where oid='public.vendor_sales_cart_cancellations'::regclass"))[0].enabled,true);
+ for(const [signature,exposed]of [['vendor_sales_cart_cancellation_guard_v1()',false],['vendor_sales_cart_cancellation_immutable_v1()',false],['vendor_sales_cart_cancel_v1(uuid,jsonb)',true],['vendor_sales_discount_entry_available_v1()',true]]){
+  const f=(await q("select p.proconfig config from pg_proc p where p.oid=$1::regprocedure",[signature]))[0];assert.ok(f.config.includes('search_path=""'));
+  for(const role of ['anon','authenticated','service_role'])assert.equal((await q("select has_function_privilege($1,$2,'EXECUTE') allowed",[role,signature]))[0].allowed,role==='authenticated'&&exposed);
+ }
+ assert.equal((await cancel(first,anonymous)).error?.code,'42501');
+ const cancelled=request(),cancelAck=ok(await cancel(cancelled));confirmedDiscountedSaleCancellation(cancelAck,cancelled);
+ assert.deepEqual(ok(await cancel(cancelled)),cancelAck);assert.deepEqual(ok(await recover(cancelled)),cancelAck);
+ assert.equal(ok(await recover(cancelled,clients[1])),null);
+ assert.deepEqual(ok(await cancel(first)),ack);assert.deepEqual(ok(await recover(first)),ack);
+ const changedCancel=structuredClone(cancelled);changedCancel.cart.note='changed';assert.equal((await cancel(changedCancel)).error?.code,'22023');assert.equal((await recover(changedCancel)).error?.code,'22023');
+ const invalid=request(),invalidBefore=(await q('select count(*)::int n from vendor_sales_cart_cancellations'))[0].n;
+ const bad={...invalid,cart:{...invalid.cart,discountMinor:-1}};assert.equal((await cancel(bad)).error?.code,'22023');
+ assert.equal((await cancel({...invalid,id:'a2000000-0000-0000-8000-000000000001'})).error?.code,'22023');
+ assert.equal((await q('select count(*)::int n from vendor_sales_cart_cancellations'))[0].n,invalidBefore);
+ for(const method of ['select','insert']){
+  const response=method==='select'?await client.from('vendor_sales_cart_cancellations').select('*'):await client.from('vendor_sales_cart_cancellations').insert({owner_id:owner,request_id:randomUUID(),request:cancelled.cart});assert.equal(response.error?.code,'42501');
+ }
+ // An exact cancellation acknowledges only this owner. Another owner can use
+ // the same UUID independently without reading private cart details.
+ confirmedDiscountedSaleCancellation(ok(await cancel(cancelled,clients[1])),cancelled);
+ const immutableBefore=(await q('select request from vendor_sales_cart_cancellations where owner_id=$1 and request_id=$2',[owner,cancelled.id]))[0];
+ await assert.rejects(q('update vendor_sales_cart_cancellations set request=request where owner_id=$1 and request_id=$2',[owner,cancelled.id]),e=>e.code==='42501');
+ assert.deepEqual((await q('select request from vendor_sales_cart_cancellations where owner_id=$1 and request_id=$2',[owner,cancelled.id]))[0],immutableBefore);
+ const identicalCancel=request();const identicalReplies=await Promise.all([cancel(identicalCancel),cancel(identicalCancel)]);assert.deepEqual(ok(identicalReplies[0]),ok(identicalReplies[1]));
+ const competingCancel=request(),otherCancel=structuredClone(competingCancel);otherCancel.cart.note='other';
+ const cancelReplies=await Promise.all([cancel(competingCancel),cancel(otherCancel)]),cancelWinner=cancelReplies.findIndex(r=>r.error===null);assert.ok(cancelWinner>=0);assert.equal(cancelReplies[1-cancelWinner].error?.code,'22023');confirmedDiscountedSaleCancellation(ok(cancelReplies[cancelWinner]),[competingCancel,otherCancel][cancelWinner]);
+ await q('begin');for(const t of controls)await q(`update ${t} set enabled=true`);await q('update vendor_cost_evidence_control set capture_enabled=true');await q('commit');
+ assert.equal(ok(await client.rpc('vendor_sales_discount_entry_available_v1')),true);
+ const newCopy=async()=>{
+  const before=new Set((await q('select id from vault_item_instances where user_id=$1',[owner])).map(r=>r.id));
+  await q("select public.admin_vault_instance_create_v1(p_user_id=>$1::uuid,p_card_print_id=>$2::uuid,p_condition_label=>'NM',p_card_printing_id=>$3::uuid)",[owner,fixture.card,fixture.printing]);
+  const candidates=(await q('select id from vault_item_instances where user_id=$1 and archived_at is null',[owner])).filter(r=>!before.has(r.id));assert.equal(candidates.length,1);return candidates[0].id;
+ };
+ const rollbackCopy=await newCopy(),fenced=request({items:[{instanceId:rollbackCopy,description:'Cancel before delayed completion',quantity:1,unitMinor:1000}]});
+ confirmedDiscountedSaleCancellation(ok(await cancel(fenced)),fenced);const fencedBefore=await ownerState();
+ assert.equal((await call(fenced)).error?.code,'PT409');assert.deepEqual(await ownerState(),fencedBefore);
+ // Legacy writer bodies are preserved, but all journal insertions observe the
+ // fence. Even effects applied before that insertion must roll back.
+ const legacyCancelled={version:1,storeName:'Synthetic discount shop',method:'Cash',items:fenced.cart.items,taxMinor:0,note:'',customerId:null,customer};
+ assert.equal((await client.rpc('vendor_sales_cart_complete_v1',{p_request_id:fenced.id,p_cart:legacyCancelled})).error?.code,'PT409');assert.deepEqual(await ownerState(),fencedBefore);
+ const lockEvidence=[];
+ const waitForLock=async(pid,name)=>{for(let i=0;i<100;i++){const rows=await q("select pid,pg_blocking_pids(pid) blockers from pg_stat_activity where wait_event_type='Lock' and $1::int=any(pg_blocking_pids(pid)) and strpos(query,$2)>0",[pid,name]);if(rows.length){lockEvidence.push({name,...rows[0]});return rows[0].pid;}await new Promise(r=>setTimeout(r,80));}throw Error('Expected blocking lock was not observed: '+name);};
+ // Force completion to hold the owner book while waiting on stock. Cancellation
+ // must wait for that completion and return the same committed acknowledgement.
+ const racingCopy=await newCopy(),completionFirst=request({items:[{instanceId:racingCopy,description:'Completion wins cancellation race',quantity:1,unitMinor:1000}]});
+ locker=new pg.Client({connectionString:dbUrl});await locker.connect();await locker.query('begin');let pid=(await locker.query('select pg_backend_pid() pid')).rows[0].pid;await locker.query('select id from vault_item_instances where id=$1 for update',[racingCopy]);
+ let completing=Promise.resolve(call(completionFirst)),cancelling,blockedError;
+ try{const completePid=await waitForLock(pid,'vendor_sales_cart_complete_v6');cancelling=Promise.resolve(cancel(completionFirst));await waitForLock(completePid,'vendor_sales_cart_cancel_v1');}catch(e){blockedError=e;}finally{await locker.query('commit');await locker.end();locker=null;}
+ const completedReply=ok(await completing);if(cancelling)assert.deepEqual(ok(await cancelling),completedReply);if(blockedError)throw blockedError;confirmedDiscountedSale(completedReply,completionFirst);
+ // Force cancellation to queue first on the book, then let completion queue
+ // behind it. Once released, cancellation is terminal and completion rolls back.
+ const cancellationFirst=request();locker=new pg.Client({connectionString:dbUrl});await locker.connect();await locker.query('begin');pid=(await locker.query('select pg_backend_pid() pid')).rows[0].pid;await locker.query('select owner_id from vendor_receipt_books where owner_id=$1 for update',[owner]);
+ cancelling=Promise.resolve(cancel(cancellationFirst));completing=null;blockedError=null;
+ try{const cancelPid=await waitForLock(pid,'vendor_sales_cart_cancel_v1');completing=Promise.resolve(call(cancellationFirst));await waitForLock(cancelPid,'vendor_sales_cart_complete_v6');}catch(e){blockedError=e;}finally{await locker.query('commit');await locker.end();locker=null;}
+ const cancelledReply=ok(await cancelling);confirmedDiscountedSaleCancellation(cancelledReply,cancellationFirst);if(completing)assert.equal((await completing).error?.code,'PT409');if(blockedError)throw blockedError;
+ assert.deepEqual(ok(await recover(cancellationFirst)),cancelledReply);
+ assert.equal((await q('select count(*)::int n from vendor_sales_cart_receipts where owner_id=$1 and request_id=$2',[owner,cancellationFirst.id]))[0].n,0);
+ assert.equal((await q('select count(*)::int n from vendor_sale_cost_snapshots where owner_id=$1 and request_id=$2',[owner,cancellationFirst.id]))[0].n,0);
+ assert.equal(JSON.stringify(ok(await client.rpc('vendor_sale_cost_read_v1',{p_request_ids:[first.id]})).snapshots[0]),originalSnapshot);
+ await q('begin');for(const t of controls)await q(`update ${t} set enabled=false`);await q('update vendor_cost_evidence_control set capture_enabled=false');await q('commit');
+ assert.deepEqual(ok(await recover(cancellationFirst)),cancelledReply);assert.deepEqual(ok(await cancel(completionFirst)),completedReply);
+ save('cancellation-outcomes.json',{at:new Date().toISOString(),lockEvidence,completed:completionFirst.id,cancelled:cancellationFirst.id,retainedCancelledCopy:rollbackCopy,immutable:true,entryOff:true,ownerIsolated:true,legacyRollback:true,productionWrites:0});
+
+ for(const t of tables){const after=await q(`select to_jsonb(t) row from ${t} t`),set=new Set(after.map(r=>JSON.stringify(r)));for(const prior of retained[t])assert.ok(set.has(JSON.stringify(prior)),t+': retained row changed');}
+ result={at:new Date().toISOString(),status:'passed',project,actualAuthRpc:true,cancellationFenced:true,cancellationEntryOff:true,cancellationRaces:true,cancelledIdLegacyRollback:true,oldWritersUnchanged:true,concurrentIdentical:true,concurrentChanged:true,allEntryDependenciesEnforced:true,changedRetryAndRecoveryRejected:true,ownerIsolation:true,foreignCopyRollback:true,unavailableCopyRollback:true,lateBookFailureRollsBackCopies:true,zeroNetDisposition:true,oldZeroWriterStillRefuses:true,privateHelperDenied:true,captureOffWhileBlockedStillCaptures:true,knownZeroAndMissingCosts:true,exactAllocationAndNetProfit:true,fiftyLineRounding:true,zeroAndFullDiscount:true,legacySaleBuyTradeCompatible:true,mixedBookRoundTrip:true,eventTotalsAndCsv:true,customerCostPrivacy:true,entryOffExactRecovery:true,originalSnapshotRetained:true,retainedTables:tables.length,productionWrites:0,resets:0,sourceSha256:freeze.sourceHashes['20261008160000_vendor_discounts_v1.sql']};
+}finally{
+ if(locker){await locker.query('rollback').catch(()=>{});await locker.end().catch(()=>{});}await db.query('rollback').catch(()=>{});
+ if(flags){await db.query('begin');for(const t of controls)await db.query(`update ${t} set enabled=$1`,[flags[t]]);if(cost)await db.query('update vendor_cost_evidence_control set edit_enabled=$1,capture_enabled=$2',[cost.edit_enabled,cost.capture_enabled]);await db.query('commit');for(const t of controls)assert.equal((await q(`select enabled from ${t}`))[0].enabled,flags[t]);if(cost)assert.deepEqual((await q('select edit_enabled,capture_enabled from vendor_cost_evidence_control'))[0],cost);save('flags-restored.json',{at:new Date().toISOString(),flags,cost});}
+ for(const c of clients)await c.auth.signOut({scope:'local'});await db.end();
+}
+assert.ok(result);save('result.json',result);console.log(JSON.stringify({status:'passed',out,retainedTables:result.retainedTables}));

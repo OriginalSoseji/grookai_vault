@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'sales_purchase.dart';
 import 'negotiated_trade.dart';
+import 'sale_discount.dart';
 
 // Private, immutable cost-at-sale evidence. Current inventory cost is not an input.
 final _uuid = RegExp(
@@ -91,7 +92,7 @@ bool _aligned(
   List<({BigInt units, BigInt sales})> items,
 ) {
   if (snapshot == null ||
-      snapshot['version'] != 1 ||
+      ![1, 2].contains(snapshot['version']) ||
       snapshot['receiptId'] != receipt['id'] ||
       snapshot['salesCurrency'] != 'USD' ||
       _date(snapshot['soldAt']) == null ||
@@ -99,6 +100,17 @@ bool _aligned(
       snapshot['lines'] is! List ||
       (snapshot['lines'] as List).length != items.length) {
     return false;
+  }
+  if (snapshot['version'] == 2) {
+    try {
+      validateSaleDiscountAllocation(
+        snapshot['allocation'],
+        receipt['items'],
+        receipt['discountMinor'] ?? 0,
+      );
+    } catch (_) {
+      return false;
+    }
   }
   final copies = <String>{};
   for (var index = 0; index < items.length; index++) {
@@ -215,7 +227,7 @@ Map<String, Object?> salesProfit(
         ? 'missing_snapshot'
         : !_aligned(snapshot, receipt, items)
         ? 'snapshot_mismatch'
-        : discount > BigInt.zero
+        : discount > BigInt.zero && snapshot['version'] == 1
         ? 'discount_allocation_missing'
         : null;
     if (reason != null) {
@@ -236,13 +248,18 @@ Map<String, Object?> salesProfit(
     for (var index = 0; index < items.length; index++) {
       final line = (snapshot!['lines'] as List)[index] as Map;
       final item = items[index];
+      final netSales = snapshot['version'] == 2
+          ? BigInt.parse(
+              snapshot['allocation']['lines'][index]['netMinor'] as String,
+            )
+          : item.sales;
       if (line['status'] == 'known') {
-        coveredSales += item.sales;
+        coveredSales += netSales;
         coveredCost += _qualifiedMinor(line['cost'])!;
         coveredLines++;
         knownUnits += item.units;
       } else {
-        excluded(line['status'] as String, id, 1, item.units, item.sales);
+        excluded(line['status'] as String, id, 1, item.units, netSales);
         receiptReasons.add(line['status'] as String);
       }
     }

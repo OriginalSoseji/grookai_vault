@@ -9,3 +9,4 @@ export declare function assertCollectorStagingTarget(url: string, fixtureLab?: b
 
 export declare const salesNegotiatedTradeLocalTest: boolean;
 export declare const vendorEventsLocalTest: boolean;
+export declare const salesDiscountLocalTest: boolean;

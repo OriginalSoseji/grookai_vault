@@ -1,5 +1,35 @@
 # Grookai Operator Playbook V1
 
+## Discount evidence — October 8
+
+Work in C:/gv_product_discount_20261008 from qualified event commit
+072705f76bc7c11cb49c6d1108c971aaf9042989. Read docs/ops/PRODUCT_DISCOUNT_20261008.md
+and external product_discount_20261008/SCOPE.json. Preserve all prior clean trees,
+populated labs, sealed exact433/432 packages and Samsung432. No subagents.
+Run ProductDiscountBaselineV1 before product/schema edits; inherited wrappers pin
+other roots and must not run here. Extend existing Sale and split-payment authority
+with explicit discounted settlement and immutable per-line allocation. Existing
+positive-only dispositions require truthful zero-net handling. Preserve old
+writers, receipt bytes, cost snapshots and every pending/held journal version.
+Negotiated Trade discounts need their own explicit compatibility boundary; do
+not silently force discount into credit or reference values. External CHECKPOINT
+owns actual status. No production apply, deployment, activation, provider fetch,
+upload or external messaging. Full overhaul, history correction, R3/R4, physical
+iOS and measured competitor usability remain open.
+
+The pre-change baseline passes atbaseline-1791474532222 (live429/source434).
+Do not rerun that baseline against changed source435. Allocation/request/profit
+models pass180 Node/195 native checks, focused analysis and web types. Migration
+20261008160000 is implemented but unqualified. V1 replay/retained upgrade and
+actual Auth pass;84 SQL cases pass but inherited service_role grants failed ACL.
+Those grants are corrected; dedicated helpers now pin fresh full/upgrade435-v2
+namespaces on34440/34441 and34460/34461. Keep every v1 fixture, including the
+10000-customer rollback book. No entry UI or new device build exists yet.
+External CHECKPOINT.json owns active sessions and final v2 outcomes. Preserve
+the old exact433/432 seals and Samsung432. No whole-source freeze is active yet;
+do not change migration bytes while the new replay/upgrade runs.
+
+
 ## Event closeout — October 8
 
 Work in C:/gv_product_event_closeout_20261008 from qualified integrated release

@@ -10,6 +10,8 @@ import '../public/public_card_printing_options_service.dart';
 import 'sales_trade.dart';
 import 'negotiated_trade.dart';
 import 'negotiated_draft.dart';
+import 'discounted_draft.dart';
+import 'discounted_sale.dart';
 import 'sales_purchase.dart';
 import 'sales_payments.dart';
 import 'sales_search_cache.dart';
@@ -87,6 +89,7 @@ class SalesDeskData {
     this.paymentsAvailable = false,
     this.purchasesAvailable = false,
     this.negotiatedTradesAvailable = false,
+    this.discountsAvailable = false,
     this.pending,
     this.needsHydration = false,
     this.localDrafts,
@@ -96,6 +99,7 @@ class SalesDeskData {
   final bool paymentsAvailable;
   final bool purchasesAvailable;
   final bool negotiatedTradesAvailable;
+  final bool discountsAvailable;
   final List<VendorPricingWorkspaceRow> rows;
   final String storeName;
   final List<Map<String, dynamic>> customers;
@@ -115,6 +119,7 @@ class SalesDeskData {
         paymentsAvailable: paymentsAvailable,
         purchasesAvailable: purchasesAvailable,
         negotiatedTradesAvailable: negotiatedTradesAvailable,
+        discountsAvailable: discountsAvailable,
         pending: pending,
         needsHydration: needsHydration,
         localDrafts: localDrafts,
@@ -140,6 +145,7 @@ class SalesDeskData {
     paymentsAvailable: paymentsAvailable,
     purchasesAvailable: purchasesAvailable,
     negotiatedTradesAvailable: negotiatedTradesAvailable,
+    discountsAvailable: discountsAvailable,
     pending: pending,
     needsHydration: needsHydration,
     localDrafts: localDrafts,
@@ -162,6 +168,7 @@ class SalesCartService {
   static final _presetLocks = <String, Future<void>>{};
   final _confirmedPurchaseIds = <String>{};
   final _confirmedNegotiatedRequests = <String, String>{};
+  final _confirmedDiscountedRequests = <String, String>{};
   final _searchCache = SalesSearchCache<SalesCatalogPage>();
   SupabaseClient get client => _client ?? Supabase.instance.client;
   Stream<void> get accountChanges => client.auth.onAuthStateChange
@@ -218,6 +225,7 @@ class SalesCartService {
     final paymentsAvailable = await _paymentsAvailable();
     final purchasesAvailable = await _purchasesAvailable();
     final negotiatedTradesAvailable = await _negotiatedTradesAvailable();
+    final discountsAvailable = paymentsAvailable && await _discountsAvailable();
     _checkOwner();
     return SalesDeskData(
       available: true,
@@ -225,6 +233,7 @@ class SalesCartService {
       paymentsAvailable: paymentsAvailable,
       purchasesAvailable: purchasesAvailable,
       negotiatedTradesAvailable: negotiatedTradesAvailable,
+      discountsAvailable: discountsAvailable,
       rows: const [],
       storeName: '',
       customers: const [],
@@ -248,6 +257,11 @@ class SalesCartService {
         [1, 2].contains(candidate['version'])) {
       candidate['version'] = 3;
     }
+    if (candidate['drafts'] is List &&
+        (candidate['drafts'] as List).any(isDiscountedDraft) &&
+        [1, 2, 3].contains(candidate['version'])) {
+      candidate['version'] = 4;
+    }
     final snapshot = readSalesDrafts(jsonEncode(candidate));
     final operation = (_draftLocks[key] ?? Future<void>.value()).then(
       (_) => _serializeRequest(() async {
@@ -259,6 +273,15 @@ class SalesCartService {
         final pendingRaw = preferences.getString(_key);
         if (pendingRaw != null) {
           final pending = jsonDecode(pendingRaw) as Map;
+          if (pending['cart'] is Map &&
+              pending['cart']['version'] == 6 &&
+              _confirmedDiscountedRequests[(pending['id'] as String)
+                      .toLowerCase()] !=
+                  pendingRaw) {
+            throw StateError(
+              'Recover or confirm cancellation of the pending sale before editing held deals.',
+            );
+          }
           if (pending['cart'] is Map &&
               pending['cart']['version'] == 5 &&
               _confirmedNegotiatedRequests[(pending['id'] as String)
@@ -458,6 +481,16 @@ class SalesCartService {
     return false;
   }
 
+  Future<bool> _discountsAvailable() async {
+    try {
+      return await client.rpc('vendor_sales_discount_entry_available_v1') ==
+          true;
+    } on PostgrestException catch (error) {
+      if (error.code != 'PGRST202') rethrow;
+    }
+    return false;
+  }
+
   Future<bool> _purchasesAvailable() async {
     try {
       return await client.rpc('vendor_sales_purchase_available_v1') == true;
@@ -529,6 +562,12 @@ class SalesCartService {
   Future<void> stage(Map<String, dynamic> request) async {
     _checkOwner();
     final encoded = jsonEncode(request);
+    if (request['cart'] is Map && request['cart']['version'] == 6) {
+      validateDiscountedSaleRequest({
+        'id': request['id'],
+        'cart': request['cart'],
+      });
+    }
     if (request['cart'] is Map && request['cart']['version'] == 5) {
       validateNegotiatedTradeRequest({
         'id': request['id'],
@@ -763,24 +802,31 @@ class SalesCartService {
     final raw = preferences.getString(_key);
     final pending = raw == null ? null : jsonDecode(raw) as Map;
     final negotiated = pending?['cart']?['version'] == 5;
-    if (negotiated) {
+    final discounted = pending?['cart']?['version'] == 6;
+    if (discounted || negotiated) {
       if ((pending!['id'] as String).toLowerCase() != requestId.toLowerCase()) {
         throw StateError('Pending trade changed. Reopen the sales desk.');
       }
-      validateNegotiatedTradeRequest({
+      (discounted
+          ? validateDiscountedSaleRequest
+          : validateNegotiatedTradeRequest)({
         'id': pending['id'],
         'cart': pending['cart'],
       });
     }
     final receipt = await client.rpc(
-      negotiated ? 'vendor_sales_cart_read_v2' : 'vendor_sales_cart_read_v1',
+      discounted
+          ? 'vendor_sales_cart_read_v3'
+          : negotiated
+          ? 'vendor_sales_cart_read_v2'
+          : 'vendor_sales_cart_read_v1',
       params: {
         'p_request_id': requestId,
-        if (negotiated) 'p_cart': pending!['cart'],
+        if (discounted || negotiated) 'p_cart': pending!['cart'],
       },
     );
     _checkOwner();
-    if (negotiated) {
+    if (discounted || negotiated) {
       await preferences.reload();
       _checkOwner();
       if (preferences.getString(_key) != raw) {
@@ -789,6 +835,14 @@ class SalesCartService {
     }
     if (receipt == null) return null;
     final result = Map<String, dynamic>.from(receipt as Map);
+    if (discounted) {
+      final request = {'id': pending!['id'], 'cart': pending['cart']};
+      final confirmed = result['status'] == 'cancelled'
+          ? confirmedDiscountedSaleCancellation(result, request)
+          : confirmedDiscountedSale(result, request);
+      _confirmedDiscountedRequests[requestId.toLowerCase()] = raw!;
+      return confirmed;
+    }
     if (negotiated) {
       final confirmed = confirmedNegotiatedTrade(result, {
         'id': pending!['id'],
@@ -826,13 +880,15 @@ class SalesCartService {
       jsonDecode(jsonEncode(request)) as Map,
     );
     final version = sent['cart'] is Map ? sent['cart']['version'] : null;
-    if (![1, 2, 3, 4, 5].contains(version)) {
+    if (![1, 2, 3, 4, 5, 6].contains(version)) {
       throw StateError(
         'Unsupported deal request. Preserve the pending request.',
       );
     }
-    if (version == 4 || version == 5) {
-      if (version == 5) {
+    if (version == 4 || version == 5 || version == 6) {
+      if (version == 6) {
+        validateDiscountedSaleRequest({'id': sent['id'], 'cart': sent['cart']});
+      } else if (version == 5) {
         validateNegotiatedTradeRequest({
           'id': sent['id'],
           'cart': sent['cart'],
@@ -850,7 +906,9 @@ class SalesCartService {
       }
     }
     final receipt = await client.rpc(
-      version == 5
+      version == 6
+          ? 'vendor_sales_cart_complete_v6'
+          : version == 5
           ? 'vendor_sales_cart_complete_v5'
           : version == 4
           ? 'vendor_sales_cart_complete_v4'
@@ -863,6 +921,22 @@ class SalesCartService {
     );
     _checkOwner();
     final result = Map<String, dynamic>.from(receipt as Map);
+    if (version == 6) {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final encoded = jsonEncode(sent);
+      if (preferences.getString(_key) != encoded) {
+        throw StateError('Pending sale changed. Preserve this device data.');
+      }
+      final confirmed = confirmedDiscountedSale(result, {
+        'id': sent['id'],
+        'cart': sent['cart'],
+      });
+      _confirmedDiscountedRequests[(sent['id'] as String).toLowerCase()] =
+          encoded;
+      return confirmed;
+    }
     if (version == 5) {
       final preferences = await SharedPreferences.getInstance();
       await preferences.reload();
@@ -893,6 +967,41 @@ class SalesCartService {
     return result;
   }
 
+  Future<Map<String, dynamic>> cancelDiscounted(String requestId) async {
+    _checkOwner();
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    final raw = preferences.getString(_key);
+    if (raw == null) {
+      throw StateError('Pending sale is missing. Preserve this device data.');
+    }
+    final saved = jsonDecode(raw) as Map;
+    final request = validateDiscountedSaleRequest({
+      'id': saved['id'],
+      'cart': saved['cart'],
+    });
+    if ((request['id'] as String).toLowerCase() != requestId.toLowerCase()) {
+      throw StateError('Pending sale changed. Reopen the sales desk.');
+    }
+    final response = await client.rpc(
+      'vendor_sales_cart_cancel_v1',
+      params: {'p_request_id': request['id'], 'p_cart': request['cart']},
+    );
+    _checkOwner();
+    await preferences.reload();
+    _checkOwner();
+    if (preferences.getString(_key) != raw) {
+      throw StateError('Pending sale changed. Preserve this device data.');
+    }
+    final value = Map<String, dynamic>.from(response as Map);
+    final confirmed = value['status'] == 'cancelled'
+        ? confirmedDiscountedSaleCancellation(value, request)
+        : confirmedDiscountedSale(value, request);
+    _confirmedDiscountedRequests[requestId.toLowerCase()] = raw;
+    return confirmed;
+  }
+
   Future<void> clearPending(String requestId) async {
     _checkOwner();
     await _serializeRequest(() async {
@@ -902,6 +1011,13 @@ class SalesCartService {
       final raw = preferences.getString(_key);
       if (raw != null && (jsonDecode(raw) as Map)['id'] == requestId) {
         final pending = jsonDecode(raw) as Map;
+        if (pending['cart'] is Map &&
+            pending['cart']['version'] == 6 &&
+            _confirmedDiscountedRequests[requestId.toLowerCase()] != raw) {
+          throw StateError(
+            'Recover or confirm cancellation of this sale before clearing it.',
+          );
+        }
         if (pending['cart'] is Map &&
             pending['cart']['version'] == 5 &&
             _confirmedNegotiatedRequests[requestId.toLowerCase()] != raw) {
@@ -916,6 +1032,7 @@ class SalesCartService {
         }
         _confirmedPurchaseIds.remove(requestId.toLowerCase());
         _confirmedNegotiatedRequests.remove(requestId.toLowerCase());
+        _confirmedDiscountedRequests.remove(requestId.toLowerCase());
       }
     });
   }

@@ -1,0 +1,1112 @@
+[
+  {
+    "name": "explicit split survives draft",
+    "draftValid": true,
+    "requestValid": true,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "single method produces explicit payment",
+    "draftValid": true,
+    "requestValid": true,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "empty draft is editable",
+    "draftValid": true,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [],
+      "discountMinor": 0,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "zero discount retains new kind",
+    "draftValid": true,
+    "requestValid": true,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 0,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "full discount with tax",
+    "draftValid": true,
+    "requestValid": true,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 200,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "changed discount retains original split for review",
+    "draftValid": true,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 21,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "removed line retains discount for review",
+    "draftValid": true,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "discount greater than subtotal remains editable",
+    "draftValid": true,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 201,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "tax exceeding receipt total stays editable",
+    "draftValid": true,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 100000000,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "contact can remain incomplete during editing",
+    "draftValid": true,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "typing",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "store can remain empty during editing",
+    "draftValid": true,
+    "requestValid": false,
+    "draft": {
+      "storeName": "",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "private note allows500 characters",
+    "draftValid": true,
+    "requestValid": true,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "no incoming trade allowed",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": [
+        {
+          "description": "Incoming",
+          "quantity": 1,
+          "valueMinor": 20,
+          "rateBps": 10000
+        }
+      ]
+    }
+  },
+  {
+    "name": "negative discount rejected",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": -1,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "fractional discount rejected",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 0.1,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "text discount rejected",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": "20",
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "excess gross rejected",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100000000
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "unknown field cannot disappear",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": [],
+      "future": "unknown"
+    }
+  },
+  {
+    "name": "legacy kind does not imply discount",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "unsupported line metadata rejected",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100,
+          "privateCost": 10
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "duplicate copy regardless of case",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": "B2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "copy quantity must be one",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 2,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "missing customer field",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  },
+  {
+    "name": "payment extras rejected",
+    "draftValid": false,
+    "requestValid": false,
+    "draft": {
+      "storeName": "Discount fixture",
+      "method": "Cash",
+      "items": [
+        {
+          "instanceId": "b2000000-0000-4000-8000-000000000001",
+          "description": "Exact copy",
+          "quantity": 1,
+          "unitMinor": 100
+        },
+        {
+          "instanceId": null,
+          "description": "Quick lot",
+          "quantity": 2,
+          "unitMinor": 50
+        }
+      ],
+      "discountMinor": 20,
+      "taxMinor": 5,
+      "note": "PRIVATE_NOTE",
+      "customerId": null,
+      "customer": {
+        "name": "Buyer",
+        "email": "private@example.invalid",
+        "phone": "+123456789",
+        "wants": "PRIVATE_WANTS",
+        "notes": "PRIVATE_CUSTOMER_NOTE"
+      },
+      "payments": [
+        {
+          "method": "Cash",
+          "amountMinor": 100,
+          "tenderedMinor": 200,
+          "extra": 1
+        },
+        {
+          "method": "Card (external terminal)",
+          "amountMinor": 85,
+          "tenderedMinor": 85
+        }
+      ],
+      "id": "d3000000-0000-4000-8000-000000000001",
+      "kind": "discounted-sale",
+      "label": "Saved buyer",
+      "trades": []
+    }
+  }
+]

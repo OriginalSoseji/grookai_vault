@@ -1,0 +1,1657 @@
+[
+  {
+    "name": "mixed known and unlinked net sales",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "9000",
+      "unknownSalesMinor": "4500",
+      "knownCostMinor": "6000",
+      "knownProfitMinor": "3000",
+      "knownLines": 1,
+      "totalLines": 2,
+      "knownUnits": "1",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "unlinked"
+    ]
+  },
+  {
+    "name": "known zero cost stays covered",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "0",
+            "currency": "USD",
+            "minor": "0",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "9000",
+      "unknownSalesMinor": "4500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": "9000",
+      "knownLines": 1,
+      "totalLines": 2,
+      "knownUnits": "1",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "unlinked"
+    ]
+  },
+  {
+    "name": "foreign cost stays uncovered",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "foreign_currency",
+          "cost": {
+            "amount": "60.00",
+            "currency": "CAD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "foreign_currency",
+      "unlinked"
+    ]
+  },
+  {
+    "name": "legacy gross snapshot cannot invent allocation",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 1,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "discount_allocation_missing"
+    ]
+  },
+  {
+    "name": "extra allocation on legacy snapshot cannot qualify history",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 1,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "discount_allocation_missing"
+    ]
+  },
+  {
+    "name": "missing allocation",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "snapshot_mismatch"
+    ]
+  },
+  {
+    "name": "changed allocation method",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "arbitrary",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "snapshot_mismatch"
+    ]
+  },
+  {
+    "name": "changed net sales",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9001"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "snapshot_mismatch"
+    ]
+  },
+  {
+    "name": "line order does not realign private costs",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        },
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "snapshot_mismatch"
+    ]
+  },
+  {
+    "name": "allocation order must match receipt",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          },
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "snapshot_mismatch"
+    ]
+  },
+  {
+    "name": "unknown snapshot version",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 3,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "snapshot_mismatch"
+    ]
+  },
+  {
+    "name": "cost amount and minor must agree",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 100,
+      "totalMinor": 13600
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6001",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "13500",
+      "knownCostMinor": "0",
+      "knownProfitMinor": null,
+      "knownLines": 0,
+      "totalLines": 2,
+      "knownUnits": "0",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "snapshot_mismatch"
+    ]
+  },
+  {
+    "name": "tax does not increase profit",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 1500,
+      "taxMinor": 1500,
+      "totalMinor": 15000
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "1500",
+        "netSalesMinor": "13500",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "1000",
+            "netMinor": "9000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "500",
+            "netMinor": "4500"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "13500",
+      "knownSalesMinor": "9000",
+      "unknownSalesMinor": "4500",
+      "knownCostMinor": "6000",
+      "knownProfitMinor": "3000",
+      "knownLines": 1,
+      "totalLines": 2,
+      "knownUnits": "1",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "unlinked"
+    ]
+  },
+  {
+    "name": "zero discount version2",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 0,
+      "taxMinor": 100,
+      "totalMinor": 15100
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "0",
+        "netSalesMinor": "15000",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "0",
+            "netMinor": "10000"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "0",
+            "netMinor": "5000"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "15000",
+      "knownSalesMinor": "10000",
+      "unknownSalesMinor": "5000",
+      "knownCostMinor": "6000",
+      "knownProfitMinor": "4000",
+      "knownLines": 1,
+      "totalLines": 2,
+      "knownUnits": "1",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "unlinked"
+    ]
+  },
+  {
+    "name": "original version1 remains compatible",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 0,
+      "taxMinor": 100,
+      "totalMinor": 15100
+    },
+    "snapshot": {
+      "version": 1,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "15000",
+      "knownSalesMinor": "10000",
+      "unknownSalesMinor": "5000",
+      "knownCostMinor": "6000",
+      "knownProfitMinor": "4000",
+      "knownLines": 1,
+      "totalLines": 2,
+      "knownUnits": "1",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "unlinked"
+    ]
+  },
+  {
+    "name": "zero net known line retains its loss",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 1,
+          "lineMinor": 1
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 1,
+          "unitMinor": 100,
+          "lineMinor": 100
+        }
+      ],
+      "subtotalMinor": 101,
+      "discountMinor": 100,
+      "taxMinor": 0,
+      "totalMinor": 1
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "101",
+        "discountMinor": "100",
+        "netSalesMinor": "1",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "1",
+            "discountMinor": "1",
+            "netMinor": "0"
+          },
+          {
+            "index": 1,
+            "grossMinor": "100",
+            "discountMinor": "99",
+            "netMinor": "1"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "1",
+          "status": "known",
+          "cost": {
+            "amount": "0.02",
+            "currency": "USD",
+            "minor": "2",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 1,
+          "salesMinor": "100",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "1",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "1",
+      "knownCostMinor": "2",
+      "knownProfitMinor": "-2",
+      "knownLines": 1,
+      "totalLines": 2,
+      "knownUnits": "1",
+      "totalUnits": "2"
+    },
+    "reasons": [
+      "unlinked"
+    ]
+  },
+  {
+    "name": "full discount retains cost and separate tax",
+    "receipt": {
+      "version": 1,
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "number": "GV-20300101-A1000000",
+      "createdAt": "2030-01-01T12:00:00.000Z",
+      "storeName": "Fixture",
+      "customerName": "",
+      "method": "Cash",
+      "note": "",
+      "sourceDispositionId": null,
+      "items": [
+        {
+          "description": "Known copy",
+          "quantity": 1,
+          "unitMinor": 10000,
+          "lineMinor": 10000
+        },
+        {
+          "description": "Unlinked copies",
+          "quantity": 2,
+          "unitMinor": 2500,
+          "lineMinor": 5000
+        }
+      ],
+      "subtotalMinor": 15000,
+      "discountMinor": 15000,
+      "taxMinor": 1,
+      "totalMinor": 1
+    },
+    "snapshot": {
+      "version": 2,
+      "receiptId": "a1000000-0000-4000-8000-000000000001",
+      "soldAt": "2030-01-01T12:00:00.000Z",
+      "salesCurrency": "USD",
+      "allocation": {
+        "version": 1,
+        "method": "proportional_largest_remainder_v1",
+        "subtotalMinor": "15000",
+        "discountMinor": "15000",
+        "netSalesMinor": "0",
+        "lines": [
+          {
+            "index": 0,
+            "grossMinor": "10000",
+            "discountMinor": "10000",
+            "netMinor": "0"
+          },
+          {
+            "index": 1,
+            "grossMinor": "5000",
+            "discountMinor": "5000",
+            "netMinor": "0"
+          }
+        ]
+      },
+      "lines": [
+        {
+          "index": 0,
+          "instanceId": "b1000000-0000-4000-8000-000000000001",
+          "quantity": 1,
+          "salesMinor": "10000",
+          "status": "known",
+          "cost": {
+            "amount": "60.00",
+            "currency": "USD",
+            "minor": "6000",
+            "status": "known"
+          }
+        },
+        {
+          "index": 1,
+          "instanceId": null,
+          "quantity": 2,
+          "salesMinor": "5000",
+          "status": "unlinked",
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "minor": null,
+            "status": "missing_amount"
+          }
+        }
+      ]
+    },
+    "want": {
+      "itemSalesMinor": "0",
+      "knownSalesMinor": "0",
+      "unknownSalesMinor": "0",
+      "knownCostMinor": "6000",
+      "knownProfitMinor": "-6000",
+      "knownLines": 1,
+      "totalLines": 2,
+      "knownUnits": "1",
+      "totalUnits": "3"
+    },
+    "reasons": [
+      "unlinked"
+    ]
+  }
+]

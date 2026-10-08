@@ -9,7 +9,9 @@ import PurchaseDesk from './PurchaseDesk';
 import NegotiatedTradeEditor from './NegotiatedTradeEditor';
 import {isNegotiatedDraft, newNegotiatedDraft, negotiatedDraftRequest} from '@/lib/sales/negotiatedDraft.mjs';
 import type {NegotiatedDraft} from '@/lib/sales/negotiatedDraft.mjs';
-type ExchangeDraft = SaleDraft | NegotiatedDraft;
+import {isDiscountedDraft,validateDiscountedDraft,discountedDraftRequest} from '@/lib/sales/discountedDraft.mjs';
+import type {DiscountedDraft} from '@/lib/sales/discountedDraft.mjs';
+type ExchangeDraft = SaleDraft | NegotiatedDraft | DiscountedDraft;
 import {isPurchaseDraft, newPurchaseDraft, purchaseDraftTotal, purchaseDraftRequest} from '@/lib/sales/purchaseDraft.mjs';
 import type {PurchaseDraft} from '@/lib/sales/purchaseDraft.mjs';
 import {confirmedPurchaseReceipt, isPurchaseReceipt} from '@/lib/sales/salesPurchase.mjs';
@@ -53,6 +55,7 @@ type Session = {
     payments: boolean;
     purchases?: boolean;
     negotiatedTrades?: boolean;
+    discounts?: boolean;
 };
 type Book = {
     book: {
@@ -110,10 +113,11 @@ export default function SalesDesk() {
     useSalesNavigationGuard(hasPendingWrites, flushForNavigation);
     const activeDraft = journal.drafts.find(d => d.id === journal.active) ?? null;
     const purchase = isPurchaseDraft(activeDraft) ? activeDraft : null, draft = activeDraft && !isPurchaseDraft(activeDraft) ? activeDraft : null;
-    const negotiated = draft?.kind === 'negotiated-trade';
+    const negotiated = draft?.kind === 'negotiated-trade', discounted = draft?.kind === 'discounted-sale';
     const journalLocked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || scanPending;
-    const baseLocked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true || negotiated && !session?.negotiatedTrades, locked = baseLocked || scanPending;
+    const baseLocked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true || negotiated && !session?.negotiatedTrades || discounted && !session?.discounts, locked = baseLocked || scanPending;
     const balance = draft ? totals(draft) : null;
+    const discountNeedsReview = discounted && (draft.discountMinor > balance!.subtotal || balance!.balance <= 0 || balance!.balance > 100000000);
     const searchKey = JSON.stringify([query, game, scope, intent, revision]), stale = resultKey !== searchKey;
     const mutate = useCallback((change: (j: Journal) => Journal) => {
         if (disabled.current || !repository.current || !owner.current) return Promise.reject(new Error('Reopen the sales desk before editing.'));
@@ -155,6 +159,17 @@ export default function SalesDesk() {
             return {...j, drafts: j.drafts.map(d => d.id === target && isNegotiatedDraft(d) ? change(d) : d)};
         });
     }, [journalLocked, session?.negotiatedTrades, mutate]);
+    const acceptDiscountOutcome = useCallback(async (result: unknown, pending: NonNullable<Journal['pending']>, responseOwner: string) => {
+        if (disabled.current || responseOwner !== owner.current || !repository.current) throw Error('Sale account changed. Keep this request saved.');
+        if (result && typeof result === 'object' && 'status' in result && result.status === 'cancelled') {
+            repository.current.confirmDiscountedCancellation(result,pending);
+            await mutate(j=>({...j,pending:null}));
+            setReceipt(null);setReview(false);
+            setNotice('Recording cancelled. Review card availability and payment before recording again. External payments were not reversed.');
+        } else {
+            setReceipt(repository.current.confirmDiscounted(result,pending));setReview(false);
+        }
+    },[mutate]);
     useEffect(() => {
         let alive = true;
         disabled.current = false;
@@ -187,7 +202,10 @@ export default function SalesDesk() {
                     return; void mutate(j => j.pending || j.catalog ? j : ({ ...j, drafts: j.drafts.map(d => d.storeName ? d : { ...d, storeName: data.book.storeName }) })).catch(e => setError(e.message)); }).catch(() => { if (alive && !disabled.current)
                     if (!state.current.pending) setError('Contact history could not load. Your saved deals are kept.'); });
                 if (saved.pending) {
-                    if (saved.pending.cart.version === 5) {
+                    if (saved.pending.cart.version === 6) {
+                        const found=await request<{result:unknown;owner:string}>({}, {action:'recover-discounted-sale',owner:auth.owner,...saved.pending});
+                        if (alive && !disabled.current && found.result !== null) await acceptDiscountOutcome(found.result,saved.pending,found.owner);
+                    } else if (saved.pending.cart.version === 5) {
                         const found = await request<{result: unknown; owner: string}>({}, {action: 'recover-trade', owner: auth.owner, ...saved.pending});
                         if (alive && !disabled.current && found.result !== null) {
                             if (found.owner !== auth.owner) throw Error('Trade account changed. Keep this request saved.');
@@ -230,7 +248,7 @@ export default function SalesDesk() {
             // Accepted local edits finish across SPA Back; keep owner/conflict checks until settled.
             void queue.current.finally(() => { subscription.unsubscribe(); window.removeEventListener('storage', storage); });
         };
-    }, [mutate]);
+    }, [mutate,acceptDiscountOutcome]);
     const invalidateSearch = useCallback(() => { generation.current++; }, []);
     const search = useCallback(async (cursor: Cursor | null = null, signal?: AbortSignal) => {
         const g = ++generation.current;
@@ -325,7 +343,7 @@ export default function SalesDesk() {
             if (intent === 'trade') {
                 const t: TradeLine = { description: description.trim(), quantity: selected ? 1 : qty, valueMinor: value, rateBps: bps!, cardId: selected?.id ?? null, printingId: selected ? printing : null, condition: selected ? condition : null, addToVault: !!selected && intake };
                 await mutate(j => ({ ...j, drafts: j.drafts.map(d => { if (d.id !== j.active)
-                        return d; if (isPurchaseDraft(d) || isNegotiatedDraft(d)) throw Error('Reopen the intended sale.'); if (d.trades.length >= 50)
+                        return d; if (isPurchaseDraft(d) || isNegotiatedDraft(d) || isDiscountedDraft(d)) throw Error('Reopen the intended sale.'); if (d.trades.length >= 50)
                         throw Error('This deal has 50 trade lines.'); return { ...d, trades: [...d.trades, t] }; }) }));
             }
             else if (selected && !selected.instanceId) {
@@ -386,13 +404,25 @@ export default function SalesDesk() {
                         if (!session?.negotiatedTrades) throw Error('New trades are unavailable. Keep this deal saved.');
                         return {...j, pending: negotiatedDraftRequest(current, crypto.randomUUID(), true)};
                     }
+                    if (isDiscountedDraft(current)) {
+                        if (!session?.discounts) throw Error('New discounted sales are unavailable. Keep this deal saved.');
+                        return {...j,pending:discountedDraftRequest(current,crypto.randomUUID(),true)};
+                    }
                     if(current.payments !== undefined && !session?.payments) throw Error('Split payments are unavailable. Keep this deal saved and retry later.'); return { ...j, pending: saleRequest(current, crypto.randomUUID()) }; });
                 pending = staged.pending!;
             }
             if (disabled.current)
                 throw Error('Reopen the sales desk.');
-            const found = await request<{result: unknown; owner?: string}>({}, {action: pending.cart.version === 5 ? 'trade' : pending.cart.version === 4 ? 'purchase' : 'sale', owner: owner.current, ...pending});
+            if (pending.cart.version === 6) {
+                const recovered=await request<{result:unknown;owner:string}>({}, {action:'recover-discounted-sale',owner:owner.current,...pending});
+                if(disabled.current)return;
+                if(recovered.result!==null){await acceptDiscountOutcome(recovered.result,pending,recovered.owner);return;}
+            }
+            const found = await request<{result: unknown; owner?: string}>({}, {action: pending.cart.version === 6 ? 'discounted-sale' : pending.cart.version === 5 ? 'trade' : pending.cart.version === 4 ? 'purchase' : 'sale', owner: owner.current, ...pending});
             if (disabled.current) return;
+            if (pending.cart.version === 6) {
+                await acceptDiscountOutcome(found.result,pending,found.owner??'');return;
+            }
             if (pending.cart.version === 5) {
                 if (found.owner !== owner.current || !repository.current) throw Error('Trade account changed. Keep this request saved.');
                 setReceipt(repository.current.confirmNegotiated(found.result, pending));
@@ -408,7 +438,7 @@ export default function SalesDesk() {
             setReview(false);
         }
         catch (e) {
-            if (e instanceof RequestError && e.rejected && state.current.pending?.cart.version !== 5) {
+            if (e instanceof RequestError && e.rejected && ![5,6].includes(state.current.pending?.cart.version ?? 0)) {
                 await mutate(j => ({ ...j, pending: null }));
                 setReview(false);
             }
@@ -418,6 +448,19 @@ export default function SalesDesk() {
         finally {
             setBusy(false);
         }
+    }
+    async function returnDiscountToEditing() {
+        const pending=state.current.pending;
+        if(busy||changed||!pending||pending.cart.version!==6||receipt)return;
+        if(!window.confirm('Confirm cancellation of this sale recording and return to editing? If it already completed, its receipt will be recovered. This does not reverse an external payment.'))return;
+        setBusy(true);setError('');
+        try {
+            await queue.current;
+            if(disabled.current)throw Error('Reopen the sales desk.');
+            const found=await request<{result:unknown;owner:string}>({}, {action:'cancel-discounted-sale',owner:owner.current,...pending});
+            await acceptDiscountOutcome(found.result,pending,found.owner);
+        } catch(e) {setError(e instanceof Error?e.message:'Cancellation unconfirmed. Keep and recover this same request.');}
+        finally {setBusy(false);}
     }
     async function fresh(kind: 'sale' | 'purchase' | 'trade' = 'sale') { if (busy || changed || journal.catalog || journal.pending && !receipt)
         return; if (kind === 'purchase' && !session?.purchases) throw Error('New purchases are unavailable.');
@@ -440,11 +483,12 @@ export default function SalesDesk() {
   {session && !session.available && !purchase && <p className={s.error}>New sales are currently unavailable. Existing saved deals and recovery remain available.</p>}
   {purchase && session && !session.purchases && <p className={s.error}>New purchases are currently unavailable. Your held offer is kept and pending purchases can still be recovered.</p>}
   {negotiated && session && !session.negotiatedTrades && <p className={s.error}>New trades are unavailable. Your saved agreement and pending recovery are kept.</p>}
+  {discounted && session && !session.discounts && <p className={s.error}>New discounted sales are unavailable. Your saved deal and pending recovery are kept.</p>}
   {journal.catalog && <div className={s.error}>A catalog add needs verification. <button disabled={busy} onClick={() => void recoverCatalog()}>Recover saved add</button></div>}
   {showHeld && <section className={s.held} aria-label="Held deals">{journal.drafts.map(d => <div key={d.id}><button disabled={journalLocked} onClick={() => void mutate(j => ({ ...j, active: d.id })).then(() => {setShowHeld(false); setIntent('sell'); setScope('stock'); setSelected(null); setQuick(false);}).catch(e => setError(e.message))}><strong>{d.customer.name || d.label}</strong><small>{isPurchaseDraft(d) ? 'Buy' : isNegotiatedDraft(d) ? 'Trade' : 'Sale'} · {d.items.length} items · ${money(isPurchaseDraft(d) ? purchaseDraftTotal(d) : totals(d).balance)}</small></button><button disabled={journalLocked} aria-label={`Discard ${d.customer.name||d.label}`} onClick={()=>void discard(d.id).catch(e=>setError(e.message))}>Discard draft</button></div>)}<p>Holding a deal saves your work. Availability is checked again when recording it; holding does not reserve inventory.</p></section>}
   {dashboard?<SalesDashboard receipts={book?[...book.receipts.map(r=>r.receipt),...(receipt?[receipt]:[])]:null} loading={historyBusy} refresh={()=>void refreshHistory()}/>:purchase?<PurchaseDesk key={purchase.id} owner={session!.owner} currentOwner={presetOwner} draft={purchase} locked={journalLocked || !session?.purchases} busy={busy} pending={!!journal.pending} receipt={receipt && isPurchaseReceipt(receipt) ? receipt : null} customers={book?.customers ?? []} edit={editPurchase} complete={complete} next={() => fresh('purchase')}/>:<div className={s.workspace}><section className={s.inventory} aria-label="Find cards">
    <SalesScanner disabled={baseLocked || intent === 'trade' || !!selected || quick || showHeld || showCustomer || showDeal || review} context={`${session?.owner}:${draft?.id}`} add={addScan} pending={setScanPending}/>
-   <div className={s.toolbar}><div className={s.tabs}><button aria-pressed={intent === 'sell'} disabled={locked} onClick={() => { setIntent('sell'); setSelected(null); setQuick(false); }}>Sell</button><button aria-pressed={intent === 'trade'} disabled={locked || !(negotiated ? session?.negotiatedTrades : session?.trades)} onClick={() => { setIntent('trade'); setSelected(null); setQuick(false); }}><ArrowRightLeft size={16}/> Trade-in</button></div>
+   <div className={s.toolbar}><div className={s.tabs}><button aria-pressed={intent === 'sell'} disabled={locked} onClick={() => { setIntent('sell'); setSelected(null); setQuick(false); }}>Sell</button><button aria-pressed={intent === 'trade'} disabled={locked || discounted || !(negotiated ? session?.negotiatedTrades : session?.trades)} onClick={() => { setIntent('trade'); setSelected(null); setQuick(false); }}><ArrowRightLeft size={16}/> Trade-in</button></div>
    {intent === 'sell' && <div className={s.tabs}><button aria-pressed={scope === 'stock'} onClick={() => { setScope('stock'); setSelected(null); }}>Your stock</button>{!negotiated && <button disabled={locked} aria-pressed={scope === 'catalog'} onClick={() => { setScope('catalog'); setSelected(null); }}>Catalog</button>}</div>}</div>
    {negotiated && intent === 'trade' ? <NegotiatedTradeEditor key={draft!.id} owner={session!.owner} currentOwner={presetOwner} locked={locked} edit={editNegotiated}/> : <>
    <div className={s.search}><Search size={19}/><input ref={searchRef} aria-label="Find a card" placeholder="Name, set, number or exact Grookai ID" value={query} onChange={e => { setQuery(e.target.value); setSelected(null); setQuick(false); }}/>{(scope === 'catalog' || intent === 'trade' || query.trim().length >= 2) && <select aria-label="Game" value={game} onChange={e => { setGame(e.target.value); setSelected(null); setQuick(false); }}><option value="pokemon">Pokémon</option><option value="mtg">Magic</option><option value="one_piece">One Piece</option></select>}</div>
@@ -484,18 +528,19 @@ export default function SalesDesk() {
             return;
         } edit(d => ({ ...d, items: d.items.map((x, j) => j === i ? { ...x, unitMinor: n } : x) })); }}/></label></div><button disabled={locked} aria-label={`Remove ${l.description}`} onClick={() => edit(d => ({ ...d, items: d.items.filter((_, j) => j !== i) }))}><X size={16}/></button></div>)}</div>
     {draft.trades.length > 0 && <section className={s.trades}><h3>Customer trade-ins</h3>{draft.trades.map((t, i) => <div className={s.trade} key={i}><div><strong>{t.description}</strong>{'creditMinor' in t && negotiated ? <><small>{t.quantity} item(s) · Agreed whole-line credit</small><label>Agreed credit $<input aria-label={`Agreed credit for ${t.description}`} key={t.creditMinor} inputMode="decimal" defaultValue={money(t.creditMinor)} disabled={locked} onBlur={e => {const amount=minor(e.target.value); if(amount===null){e.target.value=money(t.creditMinor);setError('Enter agreed credit, including zero when agreed.');return;} void editNegotiated(d => ({...d,trades:d.trades.map((line,index)=>index===i?{...line,creditMinor:amount}:line)})).catch(error=>setError(error.message));}}/></label></> : <><small>{t.quantity} × ${money(t.valueMinor!)} × {t.rateBps! / 100}%</small><strong>−${money(tradeCredit(t as TradeLine))}</strong></>}</div><button disabled={locked} aria-label={`Remove trade ${t.description}`} onClick={() => edit(d => isNegotiatedDraft(d) ? {...d, trades:d.trades.filter((_,j)=>j!==i)} : {...d,trades:d.trades.filter((_,j)=>j!==i)})}><X size={16}/></button></div>)}</section>}
+    {discounted ? <div className={s.details}><label>Sale discount (USD)<input aria-label="Sale discount (USD)" inputMode="decimal" disabled={locked} key={draft.id+':'+draft.discountMinor} defaultValue={money(draft.discountMinor)} onBlur={e=>{const n=minor(e.target.value);if(n===null){e.target.value=money(draft.discountMinor);setError('Enter a nonnegative discount with at most two decimal places.');return;}edit(d=>isDiscountedDraft(d)?{...d,discountMinor:n}:d);}}/></label>{discountNeedsReview&&<p className={s.error}>Review the discount and tax. Discount cannot exceed the item subtotal, and the recorded total must be positive.</p>}</div> : !negotiated && !draft.trades.length && session?.discounts && <button disabled={locked} onClick={()=>{edit(d=>{if(isNegotiatedDraft(d)||d.trades.length)throw Error('Discounts currently apply to sales without trade-ins.');return validateDiscountedDraft({...d,kind:'discounted-sale',discountMinor:0});});}}>Add discount</button>}
     <details className={s.details}><summary>Store, tax & receipt note</summary><label>Store name<input maxLength={120} disabled={locked} key={draft.id} defaultValue={draft.storeName} onChange={e => { const value=e.target.value; edit(d => ({ ...d, storeName: value })); }}/></label><label>Tax collected (USD)<input inputMode="decimal" disabled={locked} defaultValue={money(draft.taxMinor)} key={draft.id} onBlur={e => { const n = minor(e.target.value); if (n !== null)
             edit(d => ({ ...d, taxMinor: n }));
         else {
             e.target.value = money(draft.taxMinor);
             setError('Check the tax amount.');
         } }}/></label><label>{negotiated ? 'Private trade note' : 'Receipt note'}<input maxLength={negotiated || draft.trades.length ? 350 : 500} disabled={locked} key={draft.id} defaultValue={draft.note} onChange={e => { const value=e.target.value; edit(d => ({ ...d, note: value })); }}/></label></details>
-    <div className={s.checkout}><dl><dt>Items</dt><dd>${money(balance!.subtotal)}</dd><dt>Tax recorded</dt><dd>${money(draft.taxMinor)}</dd>{draft.trades.length > 0 && <><dt>Trade credit</dt><dd>−${money(balance!.credit)}</dd></>}<dt className={s.total}>{balance!.balance < 0 ? 'You pay customer' : 'Customer pays'}</dt><dd className={s.total}>${money(Math.abs(balance!.balance))}</dd></dl>
-    {receipt ? <div className={s.saved}><Check /> {negotiated ? 'Trade recorded' : 'Sale recorded'} · {receipt.number}{paymentLines(receipt,n=>'$'+money(n)).map((line,i)=><p key={i}>{line}</p>)}<Link href="/account/store/receipts/cloud">Open receipts to print, share or send</Link><button onClick={() => void fresh().catch(e => setError(e.message))}>Next customer</button></div> : journal.pending ? <button className={s.primary} disabled={busy} onClick={() => void complete()}>{negotiated ? 'Recover this trade' : 'Recover this sale'}</button> : <button className={s.primary} disabled={locked || !draft.items.length || negotiated && !draft.trades.length} onClick={() => setReview(true)}>Review deal <span>${money(Math.abs(balance!.balance))}</span></button>}
+    <div className={s.checkout}><dl><dt>Items</dt><dd>${money(balance!.subtotal)}</dd>{discounted&&<><dt>Discount</dt><dd>−${money(draft.discountMinor)}</dd></>}<dt>Tax recorded</dt><dd>${money(draft.taxMinor)}</dd>{draft.trades.length > 0 && <><dt>Trade credit</dt><dd>−${money(balance!.credit)}</dd></>}<dt className={s.total}>{discountNeedsReview ? 'Total needs review' : balance!.balance < 0 ? 'You pay customer' : 'Customer pays'}</dt><dd className={s.total}>${money(Math.abs(balance!.balance))}</dd></dl>
+    {receipt ? <div className={s.saved}><Check /> {negotiated ? 'Trade recorded' : 'Sale recorded'} · {receipt.number}{paymentLines(receipt,n=>'$'+money(n)).map((line,i)=><p key={i}>{line}</p>)}<Link href="/account/store/receipts/cloud">Open receipts to print, share or send</Link><button onClick={() => void fresh().catch(e => setError(e.message))}>Next customer</button></div> : journal.pending ? <><button className={s.primary} disabled={busy} onClick={() => void complete()}>{negotiated ? 'Recover this trade' : 'Recover this sale'}</button>{journal.pending.cart.version===6&&<button disabled={busy} onClick={()=>void returnDiscountToEditing()}>Return to editing</button>}</> : <button className={s.primary} disabled={locked || discountNeedsReview || !draft.items.length || negotiated && !draft.trades.length} onClick={() => setReview(true)}>Review deal <span>${money(Math.abs(balance!.balance))}</span></button>}
     <small>Drafts stay on this browser. Payment is collected with cash or your external terminal.</small></div></>}
   </aside></div>}
-  {review && draft && <SalesDialog className={s.modal} label="Review deal" busy={busy} onClose={() => setReview(false)}><h2>Complete the exchange</h2><p>{draft.items.length} sale lines · {draft.trades.length} trade lines</p><h3>{balance!.balance < 0 ? 'Pay customer' : 'Receive'} ${money(Math.abs(balance!.balance))}</h3>{(session?.payments || draft.payments !== undefined) && <label className={s.paymentToggle}><input type="checkbox" disabled={busy} checked={draft.payments !== undefined} onChange={e=>{const checked=e.target.checked; edit(d=>({...d,payments:checked?(balance!.balance===0?[]:[{method:d.method,amountMinor:Math.abs(balance!.balance),tenderedMinor:Math.abs(balance!.balance)}]):undefined}));}}/> Split payment / cash change</label>}{draft.payments !== undefined ? <SalesPaymentEditor entries={draft.payments} balance={balance!.balance} disabled={busy} onChange={update=>edit(d=>({...d,payments:update(d.payments??[])}))}/> : <label>Payment / payout method<select disabled={busy} value={draft.method} onChange={e => { const value=e.target.value; edit(d => ({ ...d, method: value })); }}>{methods.map(m => <option key={m}>{m}</option>)}</select></label>}<p>Confirm the physical cards and payment have been exchanged. This records the sale; it does not charge a payment card.</p><div className={s.actions}><button disabled={busy} onClick={() => setReview(false)}>Back to deal</button><button className={s.primary} disabled={busy || (draft.payments !== undefined && (!session?.payments || !paymentsValid(draft)))} onClick={() => void complete()}>{busy ? <LoaderCircle size={18}/> : <Check size={18}/>} Exchange completed · Record</button></div></SalesDialog>}
-  {showDeal && deal && <SalesDialog className={s.customerDisplay} label="Customer deal" onClose={() => setShowDeal(false)}><button className={s.close} aria-label="Close customer view" onClick={() => setShowDeal(false)}><X /></button><small>YOUR DEAL</small><h2>{deal.storeName}</h2>{deal.items.map((l, i) => <div className={s.displayLine} key={i}>{l.image && <Image unoptimized width={300} height={420} src={l.image} alt=""/>}<div><strong>{l.description}</strong>{l.askingMinor != null && <small>Asking ${money(l.askingMinor)}</small>}<small>{l.quantity} × ${money(l.unitMinor)}</small></div><strong>${money(l.quantity * l.unitMinor)}</strong></div>)}{deal.trades.map((t, i) => <div className={s.displayLine} key={'t' + i}><div><strong>Trade-in · {t.description}</strong><small>{t.valueMinor !== undefined && t.rateBps !== undefined ? `${t.quantity} × ${money(t.valueMinor)} × ${t.rateBps / 100}%` : `${t.quantity} item(s) · Agreed credit`}</small></div><strong>−${money(t.creditMinor)}</strong></div>)}<p>Tax recorded: ${money(deal.taxMinor)}</p><h3>{deal.balance < 0 ? 'You receive' : 'You pay'} ${money(Math.abs(deal.balance))}</h3><p>{receipt ? 'Sale recorded · ' + receipt.number : 'Deal preview · payment not confirmed'}</p></SalesDialog>}
- {!dashboard&&draft && <a className={s.mobileCart} href="#sales-cart"><ShoppingBag size={18}/>{draft.items.length} items · View deal <strong>${money(Math.abs(balance!.balance))}</strong></a>}
+  {review && draft && <SalesDialog className={s.modal} label="Review deal" busy={busy} onClose={() => setReview(false)}><h2>Complete the exchange</h2>{discounted&&<dl><dt>Subtotal</dt><dd>${money(balance!.subtotal)}</dd><dt>Discount</dt><dd>−${money(draft.discountMinor)}</dd><dt>Tax recorded</dt><dd>${money(draft.taxMinor)}</dd></dl>}<p>{draft.items.length} sale lines · {draft.trades.length} trade lines</p><h3>{balance!.balance < 0 ? 'Pay customer' : 'Receive'} ${money(Math.abs(balance!.balance))}</h3>{(session?.payments || draft.payments !== undefined) && <label className={s.paymentToggle}><input type="checkbox" disabled={busy} checked={draft.payments !== undefined} onChange={e=>{const checked=e.target.checked; edit(d=>({...d,payments:checked?(balance!.balance===0?[]:[{method:d.method,amountMinor:Math.abs(balance!.balance),tenderedMinor:Math.abs(balance!.balance)}]):undefined}));}}/> Split payment / cash change</label>}{draft.payments !== undefined ? <SalesPaymentEditor entries={draft.payments} balance={balance!.balance} disabled={busy} onChange={update=>edit(d=>({...d,payments:update(d.payments??[])}))}/> : <label>Payment / payout method<select disabled={busy} value={draft.method} onChange={e => { const value=e.target.value; edit(d => ({ ...d, method: value })); }}>{methods.map(m => <option key={m}>{m}</option>)}</select></label>}<p>Confirm the physical cards and payment have been exchanged. This records the sale; it does not charge a payment card.</p><div className={s.actions}><button disabled={busy} onClick={() => setReview(false)}>Back to deal</button><button className={s.primary} disabled={busy || discountNeedsReview || (draft.payments !== undefined && (!session?.payments || !paymentsValid(draft)))} onClick={() => void complete()}>{busy ? <LoaderCircle size={18}/> : <Check size={18}/>} Exchange completed · Record</button></div></SalesDialog>}
+  {showDeal && deal && <SalesDialog className={s.customerDisplay} label="Customer deal" onClose={() => setShowDeal(false)}><button className={s.close} aria-label="Close customer view" onClick={() => setShowDeal(false)}><X /></button><small>YOUR DEAL</small><h2>{deal.storeName}</h2>{deal.items.map((l, i) => <div className={s.displayLine} key={i}>{l.image && <Image unoptimized width={300} height={420} src={l.image} alt=""/>}<div><strong>{l.description}</strong>{l.askingMinor != null && <small>Asking ${money(l.askingMinor)}</small>}<small>{l.quantity} × ${money(l.unitMinor)}</small></div><strong>${money(l.quantity * l.unitMinor)}</strong></div>)}{deal.trades.map((t, i) => <div className={s.displayLine} key={'t' + i}><div><strong>Trade-in · {t.description}</strong><small>{t.valueMinor !== undefined && t.rateBps !== undefined ? `${t.quantity} × ${money(t.valueMinor)} × ${t.rateBps / 100}%` : `${t.quantity} item(s) · Agreed credit`}</small></div><strong>−${money(t.creditMinor)}</strong></div>)}{deal.discount!==undefined&&<><p>Subtotal: ${money(deal.subtotal)}</p><p>Discount: −${money(deal.discount)}</p></>}<p>Tax recorded: ${money(deal.taxMinor)}</p><h3>{discountNeedsReview ? 'Total needs review' : deal.balance < 0 ? 'You receive' : 'You pay'} ${money(Math.abs(deal.balance))}</h3><p>{receipt ? 'Sale recorded · ' + receipt.number : 'Deal preview · payment not confirmed'}</p></SalesDialog>}
+ {!dashboard&&draft && <a className={s.mobileCart} href="#sales-cart"><ShoppingBag size={18}/>{draft.items.length} items · View deal <strong>{discountNeedsReview ? 'Needs review' : `$${money(Math.abs(balance!.balance))}`}</strong></a>}
  </main>;
 }

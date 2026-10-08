@@ -1,0 +1,10 @@
+import type {SaleDraft,SaleLine} from './salesDesk.mjs';
+import type {DiscountedSaleRequest} from './discountedSale.mjs';
+export type DiscountedDraft=Omit<SaleDraft,'kind'>&{kind:'discounted-sale';discountMinor:number};
+export type DiscountedDraftTotals={subtotal:number;discount:number;credit:0;total:number;balance:number};
+export function isDiscountedDraft(value:unknown):value is DiscountedDraft;
+export function validateDiscountedDraft(value:unknown):DiscountedDraft;
+export function newDiscountedDraft(id:string,storeName?:string):DiscountedDraft;
+export function discountedDraftTotals(value:DiscountedDraft):DiscountedDraftTotals;
+export function discountedDraftRequest(value:DiscountedDraft,id:string,confirmed:boolean):DiscountedSaleRequest;
+export function discountedDraftCustomerView(value:DiscountedDraft):DiscountedDraftTotals&{storeName:string;items:Pick<SaleLine,'description'|'quantity'|'unitMinor'>[];trades:[];taxMinor:number};

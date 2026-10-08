@@ -1,5 +1,71 @@
 # Grookai Agent Entry Point
 
+## Discount release continuation — latest
+
+Actual browser ui-1791480860087 and physical Samsung434 ui-1791480536030 pass.
+All13 browser and7 device images are reviewed and source-bound. Exact435 full
+replay,84 SQL cases, actual Auth including both forced cancellation lock orders,
+and independent shadow (raw0/normalized0,1225 security objects) pass. Retained
+upgrade/reapply and31-artifact manifest pass;38-table exact lab states are sealed.
+Normal checks and read-only release gates remain in progress; external
+CHECKPOINT.json owns active sessions. Source436 excludes only deferred delivery
+for this435 release. Do not edit qualified product/native inputs or SQL bytes.
+Use only new ProductDiscountV1/run_product_discount_checks_v1 release helpers.
+All runtime fixtures are restored. Preserve Samsung434, prior APK backups,
+every lab and earlier clean checkout. Earlier event checkout docs were physically
+compressed with all16839 file hashes, paths and write times verified unchanged;
+no content or cache was removed. Qualified deal-refresh documentation was also
+compressed with16836 file hashes/paths/write times verified unchanged. No
+production apply/deploy/activation, provider
+fetch, upload, messages or subagents. Full overhaul remains active after discounts.
+
+## Current discount continuation
+
+Source436 now adds durable v6 cancellation after the preserved qualified435
+discount migration. Fresh full/retained upgrade, actual Auth including both forced
+completion/cancellation lock orders, reapply and independent shadow all pass.
+Full436 is discount-full-436-v1-20261008 at34600/34601; upgrade34620/34621.
+Preserve every435/434/433/432 lab. New web5/native4 journals and both entry screens
+are implemented. Focused133 native regression and95 API/journal checks pass;
+ten new screen cases pass. Read external CHECKPOINT for latest source/test status.
+Actual browser/device acceptance, exact435 release package, normal hook and
+release gates are still pending. Keep436 SQL bytes unchanged. Use only the new
+discount UI fixture atfull436; its37 prior table sets and controls must be retained.
+No source changes during an active runtime fixture. No production apply/deploy,
+activation, provider fetch, upload, external messages or subagents. Full goal active.
+Only this checkout's copied docs and its new evidence were compressed; no files
+were deleted. Host free was about1.85GB before runtime; check before builds.
+
+## Discount evidence — October 8
+
+Work in C:/gv_product_discount_20261008 from qualified event commit
+072705f76bc7c11cb49c6d1108c971aaf9042989. Read docs/ops/PRODUCT_DISCOUNT_20261008.md
+and external product_discount_20261008/SCOPE.json. Preserve all prior clean trees,
+populated labs, sealed exact433/432 packages and Samsung432. No subagents.
+Run ProductDiscountBaselineV1 before product/schema edits; inherited wrappers pin
+other roots and must not run here. Extend existing Sale and split-payment authority
+with explicit discounted settlement and immutable per-line allocation. Existing
+positive-only dispositions require truthful zero-net handling. Preserve old
+writers, receipt bytes, cost snapshots and every pending/held journal version.
+Negotiated Trade discounts need their own explicit compatibility boundary; do
+not silently force discount into credit or reference values. External CHECKPOINT
+owns actual status. No production apply, deployment, activation, provider fetch,
+upload or external messaging. Full overhaul, history correction, R3/R4, physical
+iOS and measured competitor usability remain open.
+
+The pre-change baseline passes atbaseline-1791474532222 (live429/source434).
+Do not rerun that baseline against changed source435. Allocation/request/profit
+models pass180 Node/195 native checks, focused analysis and web types. Migration
+20261008160000 is implemented but unqualified. V1 replay/retained upgrade and
+actual Auth pass;84 SQL cases pass but inherited service_role grants failed ACL.
+Those grants are corrected; dedicated helpers now pin fresh full/upgrade435-v2
+namespaces on34440/34441 and34460/34461. Keep every v1 fixture, including the
+10000-customer rollback book. No entry UI or new device build exists yet.
+External CHECKPOINT.json owns active sessions and final v2 outcomes. Preserve
+the old exact433/432 seals and Samsung432. No whole-source freeze is active yet;
+do not change migration bytes while the new replay/upgrade runs.
+
+
 ## Event closeout — October 8
 
 Work in C:/gv_product_event_closeout_20261008 from qualified integrated release

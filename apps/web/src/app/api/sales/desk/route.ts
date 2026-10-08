@@ -8,6 +8,7 @@ import { resolveDisplayIdentity } from '@/lib/cards/resolveDisplayIdentity';
 import { scannedCopyId } from '@/lib/sales/salesScanner.mjs';
 import {validateNegotiatedTradeRequest, confirmedNegotiatedTrade} from '@/lib/sales/negotiatedTrade.mjs';
 import {validatePurchaseRequest} from '@/lib/sales/salesPurchase.mjs';
+import {validateDiscountedSaleRequest,confirmedDiscountedSale,confirmedDiscountedSaleCancellation} from '@/lib/sales/discountedSale.mjs';
 import {projectOfferMarketReference} from '@/lib/sales/offerPolicies.mjs';
 export const dynamic = 'force-dynamic';
 const headers = { 'Cache-Control': 'private, no-store', 'Vary': 'Cookie, Authorization' };
@@ -31,7 +32,9 @@ export async function GET(req: NextRequest) {
             const { data: purchases } = await client.rpc('vendor_sales_purchase_available_v1');
             const {data: negotiated, error: negotiatedError} = await client.rpc('vendor_sales_negotiated_trade_available_v1');
             if (negotiatedError && negotiatedError.code !== 'PGRST202') throw negotiatedError;
-            return json({ negotiatedTrades: negotiated === true, owner: user.id, purchases: purchases === true, payments: payments === true, available: available === true, trades: trades === true });
+            const {data: discounts,error: discountError} = await client.rpc('vendor_sales_discount_entry_available_v1');
+            if (discountError && discountError.code !== 'PGRST202') throw discountError;
+            return json({ discounts: discounts === true, negotiatedTrades: negotiated === true, owner: user.id, purchases: purchases === true, payments: payments === true, available: available === true, trades: trades === true });
         }
         if (action === 'book') {
             if (p.has('owner') && p.get('owner') !== user.id) return json({error:'Account changed. Reopen Reports.'},409);
@@ -168,10 +171,21 @@ export async function POST(req: NextRequest) {
         catch {
             return json({ error: 'Invalid request', rejected: true }, 400);
         }
-        if (!b || !uuid(b.id) || !['sale', 'catalog', 'purchase', 'trade', 'recover-trade'].includes(b.action))
+        if (!b || !uuid(b.id) || !['sale', 'catalog', 'purchase', 'trade', 'recover-trade','discounted-sale','recover-discounted-sale','cancel-discounted-sale'].includes(b.action))
             return json({ error: 'Invalid request', rejected: true }, 400);
         if (b.owner !== ctx.user.id)
             return json({ error: 'Your account changed. Reopen the sales desk.', rejected: false }, 409);
+        if (['discounted-sale','recover-discounted-sale','cancel-discounted-sale'].includes(b.action)) {
+            const pending={id:b.id,cart:b.cart};
+            try {validateDiscountedSaleRequest(pending);}
+            catch {return json({error:'Saved sale needs review. Preserve this request.',rejected:false},400);}
+            const rpc=b.action==='discounted-sale'?'vendor_sales_cart_complete_v6':b.action==='cancel-discounted-sale'?'vendor_sales_cart_cancel_v1':'vendor_sales_cart_read_v3';
+            const {data,error}=await ctx.client.rpc(rpc,{p_request_id:b.id,p_cart:b.cart});
+            if(error)return json({error:'Sale unconfirmed. Recover it or confirm cancellation before editing.',rejected:false},409);
+            if(data?.status==='cancelled') confirmedDiscountedSaleCancellation(data,pending);
+            else if(data!==null||b.action!=='recover-discounted-sale') confirmedDiscountedSale(data,pending);
+            return json({result:data,owner:ctx.user.id});
+        }
         if (b.action === 'trade' || b.action === 'recover-trade') {
             // Both paths carry private exact terms in a POST body, never a URL.
             // No failure authorizes discarding or replacing a pending trade.

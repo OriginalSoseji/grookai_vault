@@ -15,6 +15,8 @@ import 'sales_purchase_panel.dart';
 import 'sales_purchase_dialog.dart';
 import '../../services/sales/negotiated_draft.dart';
 import '../../services/sales/negotiated_trade.dart';
+import '../../services/sales/discounted_draft.dart';
+import '../../services/sales/discounted_sale.dart';
 import '../../services/sales/purchase_drafts.dart';
 import '../../services/sales/sales_purchase.dart';
 import '../../services/sales/sales_drafts.dart';
@@ -43,18 +45,33 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   final _phone = TextEditingController();
   final _wants = TextEditingController();
   final _tax = TextEditingController(text: '0.00');
+  final _discount = TextEditingController(text: '0.00');
   final _note = TextEditingController();
   final List<SalesCartLine> _lines = [];
   final List<SalesTradeLine> _trades = [];
   SalesDeskData? _data;
   Map<String, dynamic>? _pending, _receipt, _customer;
   Map<String, dynamic>? _purchaseDraft, _negotiatedDraft;
+  Map<String, dynamic>? _discountedDraft;
+  String? _discountInputError;
+  bool get _discounted => _discountedDraft != null;
+  bool get _discountUnavailable =>
+      _discounted && _data?.discountsAvailable != true;
+  int get _discountMinor =>
+      _discounted ? saleMoneyInput(_discount.text) ?? 0 : 0;
+  bool get _discountNeedsReview =>
+      _discounted &&
+      (saleMoneyInput(_discount.text) == null ||
+          _discountMinor >
+              _lines.fold<int>(0, (n, l) => n + l.quantity * l.unitMinor) ||
+          _balance <= 0 ||
+          _balance > 100000000);
   final List<Map<String, dynamic>> _agreedTrades = [];
   String? _negotiatedInputError;
   bool get _negotiated => _negotiatedDraft != null;
   bool get _tradeUnavailable =>
       _negotiated && _data?.negotiatedTradesAvailable != true;
-  bool get _entryLocked => _locked || _tradeUnavailable;
+  bool get _entryLocked => _locked || _tradeUnavailable || _discountUnavailable;
   int get _credit => _negotiated
       ? _agreedTrades.fold<int>(0, (n, t) => n + (t['creditMinor'] as int))
       : _trades.fold<int>(0, (n, t) => n + t.creditMinor);
@@ -75,7 +92,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         saleMoneyInput(_tax.text) ?? 0,
         (n, l) => n + l.quantity * l.unitMinor,
       ) -
-      _credit;
+      _credit -
+      _discountMinor;
   Map<String, dynamic>? _draftBook;
   Future<void> _draftWrites = Future<void>.value();
   bool _restoringDraft = true;
@@ -160,6 +178,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       _phone,
       _wants,
       _tax,
+      _discount,
       _note,
     ]) {
       controller.addListener(_queueDraft);
@@ -188,6 +207,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       _phone,
       _wants,
       _tax,
+      _discount,
       _note,
     ]) {
       c.dispose();
@@ -239,7 +259,27 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         }
         if (_store.text.isEmpty) _store.text = data.storeName;
         _pending = data.pending;
-        if (_pending != null && (_pending!['cart'] as Map)['version'] == 5) {
+        if (_pending != null && (_pending!['cart'] as Map)['version'] == 6) {
+          final request = validateDiscountedSaleRequest({
+            'id': _pending!['id'],
+            'cart': _pending!['cart'],
+          });
+          final cart = request['cart'] as Map;
+          _restoreDraft(
+            {
+              ...newDiscountedDraft(
+                _pending!['draftId'] as String? ?? _pending!['id'] as String,
+                cart['storeName'] as String,
+              ),
+              ...cart,
+              'method': salesTenderMethods.contains(cart['method'])
+                  ? cart['method']
+                  : 'Other',
+            }..remove('version'),
+          );
+          _restoringDraft = true;
+        } else if (_pending != null &&
+            (_pending!['cart'] as Map)['version'] == 5) {
           final request = validateNegotiatedTradeRequest({
             'id': _pending!['id'],
             'cart': _pending!['cart'],
@@ -278,6 +318,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           });
           _restoringDraft = true;
         } else if (_pending != null) {
+          _discountedDraft = null;
           _negotiatedDraft = null;
           _agreedTrades.clear();
           _purchaseDraft = null;
@@ -332,6 +373,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       if (data.pending != null) {
         final receipt = await _service.recover(data.pending!['id'] as String);
         if (!mounted || _accountChanged) return;
+        if (receipt?['status'] == 'cancelled' &&
+            _pending?['cart']?['version'] == 6) {
+          await _acceptDiscountOutcome(receipt!);
+          return;
+        }
         setState(() {
           _receipt = receipt != null && _purchaseDraft != null
               ? confirmedPurchaseReceipt(receipt, {
@@ -362,6 +408,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   void _restoreDraft(Map<String, dynamic> d) {
     _restoringDraft = true;
     _negotiatedInputError = null;
+    _discountInputError = null;
+    _discountedDraft = isDiscountedDraft(d) ? validateDiscountedDraft(d) : null;
+    _discount.text = _discounted
+        ? saleMoney(d['discountMinor'] as int)
+        : '0.00';
     _negotiatedDraft = isNegotiatedDraft(d) ? validateNegotiatedDraft(d) : null;
     _agreedTrades.clear();
     if (isPurchaseDraft(d)) {
@@ -374,7 +425,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
     _purchaseDraft = null;
     _store.text = d['storeName'] as String;
-    _tax.text = _negotiated
+    _tax.text = _negotiated || _discounted
         ? saleMoney(d['taxMinor'] as int)
         : d['tax'] as String;
     _note.text = d['note'] as String;
@@ -400,7 +451,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             quantity: l['quantity'] as int,
             instanceId: l['instanceId'] as String?,
             gvviId: l['gvviId'] as String?,
-            imageUrl: (_negotiated ? l['image'] : l['imageUrl']) as String?,
+            imageUrl:
+                (_negotiated || _discounted ? l['image'] : l['imageUrl'])
+                    as String?,
             fallbackImageUrl: l['fallbackImageUrl'] as String?,
           ),
         ),
@@ -408,7 +461,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     _trades
       ..clear()
       ..addAll(
-        _negotiated
+        _negotiated || _discounted
             ? <SalesTradeLine>[]
             : (d['trades'] as List).map(
                 (t) => SalesTradeLine.fromJson(t as Map),
@@ -455,6 +508,70 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }..removeWhere((key, value) => key == 'payments' && _payments == null),
   );
 
+  Map<String, dynamic> _discountedSnapshot() => validateDiscountedDraft(
+    {
+      ..._discountedDraft!,
+      'storeName': _store.text,
+      'discountMinor': saleMoneyInput(_discount.text),
+      'taxMinor': saleMoneyInput(_tax.text),
+      'note': _note.text,
+      'method': _method,
+      'customerId': _customer?['id'],
+      'customer': {
+        'name': _name.text,
+        'email': _email.text,
+        'phone': _phone.text,
+        'wants': _wants.text,
+        'notes': _customer?['notes'] ?? _discountedDraft!['customer']['notes'],
+      },
+      'items': _lines
+          .map(
+            (l) => {
+              ...l.toJson(),
+              if (l.gvviId != null) 'gvviId': l.gvviId,
+              if (l.imageUrl != null || l.fallbackImageUrl != null)
+                'image': l.imageUrl ?? l.fallbackImageUrl,
+            },
+          )
+          .toList(),
+      'trades': <dynamic>[],
+      if (_payments != null)
+        'payments': _payments!
+            .map((p) => Map<String, dynamic>.from(p))
+            .toList(),
+    }..removeWhere((k, v) => k == 'payments' && _payments == null),
+  );
+
+  Future<void> _enableDiscount() async {
+    if (_entryLocked ||
+        _negotiated ||
+        _trades.isNotEmpty ||
+        _discounted ||
+        _data?.discountsAvailable != true ||
+        _draftBook == null) {
+      return;
+    }
+    try {
+      await _flushDraft();
+      if (!mounted || _accountChanged) return;
+      final old =
+          (_draftBook!['drafts'] as List).firstWhere(
+                (d) => d['id'] == _draftBook!['active'],
+              )
+              as Map;
+      _edited(() {
+        _discountedDraft = {
+          ...newDiscountedDraft(old['id'] as String, _store.text),
+          'customer': Map<String, dynamic>.from(old['customer'] as Map),
+        };
+        _discount.text = '0.00';
+        _tradeOpen = false;
+      });
+    } catch (error) {
+      _message(error.toString());
+    }
+  }
+
   void _queueDraft() {
     if (_draftBook == null ||
         _restoringDraft ||
@@ -463,7 +580,17 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _receipt != null) {
       return;
     }
-    Map<String, dynamic>? negotiated;
+    Map<String, dynamic>? discounted, negotiated;
+    if (_discounted) {
+      try {
+        discounted = _discountedSnapshot();
+        _discountInputError = null;
+      } catch (_) {
+        _discountInputError =
+            'Check the discount and details. Keep this desk open until this edit saves.';
+        return;
+      }
+    }
     if (_negotiated) {
       try {
         negotiated = _negotiatedSnapshot();
@@ -475,6 +602,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       }
     }
     final snapshot =
+        discounted ??
         negotiated ??
         _purchaseDraft ??
         {
@@ -509,8 +637,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         };
     _draftBook = {
       ..._draftBook!,
-      if (_negotiated) 'version': 3,
-      if (_purchaseDraft != null && _draftBook!['version'] != 3) 'version': 2,
+      if (_discounted) 'version': 4,
+      if (_negotiated && (_draftBook!['version'] as int) < 3) 'version': 3,
+      if (_purchaseDraft != null && (_draftBook!['version'] as int) < 2)
+        'version': 2,
       'drafts': (_draftBook!['drafts'] as List)
           .map((d) => d['id'] == snapshot['id'] ? snapshot : d)
           .toList(),
@@ -537,6 +667,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     _queueDraft();
     await _draftWrites;
     if (_negotiatedInputError != null) throw StateError(_negotiatedInputError!);
+    if (_discountInputError != null) throw StateError(_discountInputError!);
     if (_draftError != null) throw StateError(_draftError!);
   }
 
@@ -587,7 +718,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           : blankPurchaseDraft(newSaleId(), _store.text);
       final next = {
         ..._draftBook!,
-        'version': negotiated || _draftBook!['version'] == 3 ? 3 : 2,
+        'version': _draftBook!['version'] == 4
+            ? 4
+            : negotiated || _draftBook!['version'] == 3
+            ? 3
+            : 2,
         'active': draft['id'],
         'drafts': [...drafts, draft],
       };
@@ -959,6 +1094,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   }
 
   Future<void> _trade({int? index}) async {
+    if (_discounted) return;
     if (_negotiated) {
       if (_entryLocked || (index == null && _agreedTrades.length >= 50)) return;
       setState(() => _editing = true);
@@ -1221,6 +1357,168 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
   }
 
+  Future<bool> _prepareDiscounted() async {
+    if (_discountUnavailable || !_discounted) {
+      _message(
+        'New discounted sales are unavailable. Your saved deal is kept.',
+      );
+      return false;
+    }
+    setState(() => _editing = true);
+    try {
+      if (await _service.pendingCatalogAdd() != null) {
+        throw StateError(
+          'Recover the saved catalog add before recording this sale.',
+        );
+      }
+      await _flushDraft();
+      final draft = _discountedSnapshot(),
+          request = discountedDraftRequest(draft, newSaleId(), true),
+          amounts = discountedDraftTotals(draft);
+      if (!mounted || _accountChanged) return false;
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Record discounted sale?'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text('Subtotal: USD ${saleMoney(amounts['subtotal']!)}'),
+                Text('Discount: − USD ${saleMoney(amounts['discount']!)}'),
+                Text(
+                  'Tax recorded: USD ${saleMoney(draft['taxMinor'] as int)}',
+                ),
+                Text('Receive: USD ${saleMoney(amounts['balance']!)}'),
+                ...salesPaymentLines({
+                  'payments': salesPaymentSnapshot(
+                    (request['cart']['payments'] as List)
+                        .map((p) => Map<String, dynamic>.from(p as Map))
+                        .toList(),
+                    amounts['balance']!,
+                  ),
+                  'method': request['cart']['method'],
+                  'totalMinor': amounts['total'],
+                }, (n) => 'USD ${saleMoney(n)}').map(Text.new),
+                const SizedBox(height: 16),
+                const Text(
+                  'Confirm the physical cards and payment have been exchanged. This records the sale; it does not charge a payment card.',
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Back'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Exchange completed · Record sale'),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true || !mounted || _accountChanged) return false;
+      setState(() => _pending = {...request, 'draftId': draft['id']});
+      return true;
+    } catch (error) {
+      _message(error.toString());
+      return false;
+    } finally {
+      if (mounted) setState(() => _editing = false);
+    }
+  }
+
+  Future<void> _acceptDiscountOutcome(Map<String, dynamic> outcome) async {
+    if (!mounted || _accountChanged) return;
+    if (outcome['status'] != 'cancelled') {
+      setState(() {
+        _receipt = outcome;
+        _showCart = true;
+      });
+      return;
+    }
+    final pending = _pending!;
+    confirmedDiscountedSaleCancellation(outcome, {
+      'id': pending['id'],
+      'cart': pending['cart'],
+    });
+    if (_draftBook == null || !_discounted) {
+      throw StateError(
+        'Saved drafts need review. Preserve this cancelled request until the deal can be saved.',
+      );
+    }
+    final draft = _discountedSnapshot(),
+        drafts = List<dynamic>.from(_draftBook!['drafts'] as List);
+    final index = drafts.indexWhere((d) => d['id'] == draft['id']);
+    if (index < 0) {
+      drafts.add(draft);
+    } else {
+      drafts[index] = draft;
+    }
+    final next = {
+      ..._draftBook!,
+      'version': 4,
+      'active': draft['id'],
+      'drafts': drafts,
+    };
+    await _service.saveDrafts(next);
+    _draftBook = next;
+    await _service.clearPending(pending['id'] as String);
+    if (!mounted || _accountChanged) return;
+    setState(() {
+      _pending = null;
+      _receipt = null;
+      _showCart = true;
+      _error =
+          'Recording cancelled. Review card availability and payment before recording again. External payments were not reversed.';
+    });
+    unawaited(_hydrateInventory());
+  }
+
+  Future<void> _returnDiscountToEditing() async {
+    if (_busy ||
+        _accountChanged ||
+        _receipt != null ||
+        _pending?['cart']?['version'] != 6) {
+      return;
+    }
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Return to editing?'),
+        content: const Text(
+          'Confirm cancellation of this sale recording. If it already completed, its receipt will be recovered. This does not reverse an external payment.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Keep pending'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Confirm cancellation'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted || _accountChanged) return;
+    setState(() => _busy = true);
+    try {
+      await _acceptDiscountOutcome(
+        await _service.cancelDiscounted(_pending!['id'] as String),
+      );
+    } catch (error) {
+      _message(
+        'Cancellation unconfirmed. Keep and recover this same request. $error',
+      );
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
   Future<void> _complete() async {
     if (_scanPending ||
         _busy ||
@@ -1236,6 +1534,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       return;
     }
     if (_pending == null && _negotiated && !await _prepareNegotiated()) return;
+    if (_pending == null && _discounted && !await _prepareDiscounted()) return;
     if (!mounted || _accountChanged) return;
     if (_pending == null) {
       final tax = saleMoneyInput(_tax.text);
@@ -1409,7 +1708,14 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     try {
       // Persist the exact id and payload before any request can reach the server.
       await _service.stage(_pending!);
-      final receipt = await _service.complete(_pending!);
+      final recovered = _pending?['cart']?['version'] == 6
+          ? await _service.recover(_pending!['id'] as String)
+          : null;
+      final receipt = recovered ?? await _service.complete(_pending!);
+      if (_pending?['cart']?['version'] == 6 && mounted && !_accountChanged) {
+        await _acceptDiscountOutcome(receipt);
+        return;
+      }
       if (mounted && !_accountChanged) {
         setState(() {
           _receipt = _purchaseDraft == null
@@ -1422,6 +1728,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         });
       }
     } on PostgrestException catch (error) {
+      if (_pending?['cart']?['version'] == 6) {
+        _message(
+          'Sale status is unconfirmed. Recover it or confirm cancellation before editing.',
+        );
+        return;
+      }
       if (_pending?['cart']?['version'] == 5) {
         _message(
           'Trade status is unconfirmed. Keep and recover this exact request before starting another trade.',
@@ -1494,6 +1806,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _restoringDraft = true;
         _purchaseDraft = null;
         _negotiatedDraft = null;
+        _discountedDraft = null;
+        _discountInputError = null;
+        _discount.text = '0.00';
         _agreedTrades.clear();
         _negotiatedInputError = null;
         _lines.clear();
@@ -1578,6 +1893,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         !_workspaceActive ||
         _baseLocked ||
         _tradeUnavailable ||
+        _discountUnavailable ||
         _data?.available != true ||
         _catalogOpen ||
         _tradeOpen,
@@ -1603,9 +1919,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             label: Text('Catalog'),
             icon: Icon(Icons.search),
           ),
-        if (_negotiated
-            ? _data?.negotiatedTradesAvailable == true
-            : _data?.tradesAvailable == true)
+        if (!_discounted &&
+            (_negotiated
+                ? _data?.negotiatedTradesAvailable == true
+                : _data?.tradesAvailable == true))
           const ButtonSegment(
             value: 'trade',
             label: Text('Trade-in'),
@@ -1912,6 +2229,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           const Divider(height: 32),
         ],
         if (!_negotiated &&
+            !_discounted &&
             (_data?.tradesAvailable == true || _trades.isNotEmpty)) ...[
           Row(
             children: [
@@ -1950,6 +2268,29 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             ),
           const Divider(height: 32),
         ],
+        if (_discounted) ...[
+          _field(
+            _discount,
+            'Sale discount (USD)',
+            10,
+            keyboard: const TextInputType.numberWithOptions(decimal: true),
+            onChanged: (_) => setState(() {}),
+          ),
+          if (_discountNeedsReview)
+            const Text(
+              'Review the discount and tax. Discount cannot exceed the item subtotal, and the recorded total must be positive.',
+            ),
+          if (_discountUnavailable)
+            const Text(
+              'New discounted sales are unavailable. Your saved deal and pending recovery are kept.',
+            ),
+        ] else if (!_negotiated &&
+            _trades.isEmpty &&
+            _data?.discountsAvailable == true)
+          OutlinedButton(
+            onPressed: _entryLocked ? null : _enableDiscount,
+            child: const Text('Add discount'),
+          ),
         _field(_store, 'Store name on receipt', 120),
         if (_data?.paymentsAvailable == true || _payments != null)
           SwitchListTile(
@@ -2013,11 +2354,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           onChanged: (_) => setState(() {}),
         ),
         Text('Subtotal: USD ${saleMoney(subtotal)}'),
+        if (_discounted) Text('Discount: − USD ${saleMoney(_discountMinor)}'),
         if (_negotiated || _trades.isNotEmpty)
           _tradeSummary(subtotal + (saleMoneyInput(_tax.text) ?? 0)),
         if (!_negotiated && _trades.isEmpty)
           Text(
-            'Total: USD ${saleMoney(subtotal + (saleMoneyInput(_tax.text) ?? 0))}',
+            '${_discountNeedsReview ? 'Total needs review' : 'Total'}: USD ${saleMoney(subtotal - _discountMinor + (saleMoneyInput(_tax.text) ?? 0))}',
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         const SizedBox(height: 20),
@@ -2084,6 +2426,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                   (_pending == null &&
                       (_lines.isEmpty ||
                           _data?.available != true ||
+                          _discountUnavailable ||
+                          _discountNeedsReview ||
                           (_negotiated &&
                               (_tradeUnavailable || _agreedTrades.isEmpty))))
               ? null
@@ -2107,6 +2451,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                       : 'Review & record sale'),
           ),
         ),
+        if (_pending?['cart']?['version'] == 6 && _receipt == null)
+          OutlinedButton(
+            onPressed: _busy || _accountChanged
+                ? null
+                : _returnDiscountToEditing,
+            child: const Text('Return to editing'),
+          ),
         const SizedBox(height: 12),
         Text(
           _negotiated
@@ -2118,9 +2469,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   }
 
   Future<void> _customerView() async {
-    if (_negotiated) {
+    if (_negotiated || _discounted) {
       try {
-        final view = negotiatedDraftCustomerView(_negotiatedSnapshot());
+        final view = _discounted
+            ? discountedDraftCustomerView(_discountedSnapshot())
+            : negotiatedDraftCustomerView(_negotiatedSnapshot());
         await showDialog<void>(
           context: context,
           barrierColor: Theme.of(context).colorScheme.surface,
@@ -2152,11 +2505,23 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                           '− USD ${saleMoney(line['creditMinor'] as int)}',
                         ),
                       ),
+                    if (_discounted) ...[
+                      Text(
+                        'Subtotal: USD ${saleMoney(view['subtotal'] as int)}',
+                      ),
+                      Text(
+                        'Discount: − USD ${saleMoney(view['discount'] as int)}',
+                      ),
+                    ],
                     Text(
                       'Tax recorded: USD ${saleMoney(view['taxMinor'] as int)}',
                     ),
                     Text(
-                      '${(view['balance'] as int) < 0 ? 'You receive' : 'You pay'} USD ${saleMoney((view['balance'] as int).abs())}',
+                      '${_discountNeedsReview
+                          ? 'Total needs review'
+                          : (view['balance'] as int) < 0
+                          ? 'You receive'
+                          : 'You pay'} USD ${saleMoney((view['balance'] as int).abs())}',
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     const Text('Deal preview · payment not confirmed'),
@@ -2167,7 +2532,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Back to trade desk'),
+                child: Text(
+                  _discounted ? 'Back to sales desk' : 'Back to trade desk',
+                ),
               ),
             ],
           ),

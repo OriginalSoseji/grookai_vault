@@ -46,7 +46,7 @@ void main() {
       );
     });
   }
-  test('native version3 journal preserves old sale and purchase drafts', () {
+  test('native journals preserve old sale, purchase and negotiated drafts', () {
     const owner = '11111111-1111-4111-8111-111111111111',
         id = '22222222-2222-4222-8222-222222222222',
         other = '33333333-3333-4333-8333-333333333333';
@@ -69,9 +69,14 @@ void main() {
     final read = readSalesDrafts(jsonEncode(current));
     expect((read['drafts'] as List).take(2).toList(), [sale, buy]);
     expect(read['active'], id);
+    final discountVersion = readSalesDrafts(
+      jsonEncode({...current, 'version': 4}),
+    );
+    expect(discountVersion['drafts'], read['drafts']);
+    expect(discountVersion['active'], id);
     for (final invalid in [
       {...current, 'version': 2},
-      {...current, 'version': 4},
+      {...current, 'version': 5},
       {
         ...current,
         'drafts': [

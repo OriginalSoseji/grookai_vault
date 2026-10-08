@@ -63,6 +63,7 @@ void main() {
                 '/rest/v1/rpc/vendor_sales_negotiated_trade_available_v1' =>
                   false,
                 '/rest/v1/rpc/vendor_sales_purchase_available_v1' => false,
+                '/rest/v1/rpc/vendor_sales_discount_entry_available_v1' => false,
                 '/rest/v1/rpc/vendor_sales_payments_available_v1' =>
                   paymentsAvailable,
                 '/rest/v1/rpc/vendor_receipt_book_read_v1' => {
@@ -122,6 +123,8 @@ void main() {
         final data = await service.load();
         expect(data.needsHydration, true);
         expect(data.paymentsAvailable, paymentsAvailable == true);
+        expect(data.discountsAvailable, false);
+        expect(data.withRows([]).discountsAvailable, false);
         expect(data.withRows([]).paymentsAvailable, paymentsAvailable == true);
         expect(
           data.withBook({
