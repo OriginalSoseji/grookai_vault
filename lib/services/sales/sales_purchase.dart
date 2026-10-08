@@ -93,6 +93,9 @@ Map<String, dynamic> _item(Object? value) {
   return {...row, 'description': description};
 }
 
+Map<String, dynamic> validatePurchaseItem(Object? value) =>
+    _freeze(_item(value)) as Map<String, dynamic>;
+
 ({List<Map<String, dynamic>> lines, int total}) _items(Object? values) {
   if (values is! List || values.isEmpty || values.length > 50) {
     _fail('Choose 1 to 50 purchase lines.');
@@ -290,7 +293,7 @@ Map<String, dynamic> validatePurchaseReceipt(Object? value) {
       as Map<String, dynamic>;
 }
 
-Map<String, dynamic> confirmedPurchaseReceipt(Object? value, Object? request) {
+Map<String, dynamic> validatePurchaseRequest(Object? request) {
   final pending = _keys(request, ['id', 'cart']);
   final cart = _keys(pending['cart'], [
     'version',
@@ -305,20 +308,23 @@ Map<String, dynamic> confirmedPurchaseReceipt(Object? value, Object? request) {
   if (cart['version'] != 4 || cart['kind'] != 'purchase') {
     _fail('Unexpected purchase request.');
   }
-  final normalized =
-      purchaseRequest({
-            for (final key in [
-              'storeName',
-              'items',
-              'payments',
-              'note',
-              'customerId',
-              'customer',
-            ])
-              key: cart[key],
-            'confirmed': true,
-          }, pending['id'])['cart']
-          as Map;
+  return purchaseRequest({
+    for (final key in [
+      'storeName',
+      'items',
+      'payments',
+      'note',
+      'customerId',
+      'customer',
+    ])
+      key: cart[key],
+    'confirmed': true,
+  }, pending['id']);
+}
+
+Map<String, dynamic> confirmedPurchaseReceipt(Object? value, Object? request) {
+  final pending = validatePurchaseRequest(request);
+  final normalized = pending['cart'] as Map;
   final receipt = validatePurchaseReceipt(value),
       actualItems = receipt['items'] as List;
   final expectedItems = normalized['items'] as List,

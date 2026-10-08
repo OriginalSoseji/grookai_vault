@@ -87,6 +87,19 @@ mismatched acknowledgement cannot authorize a replacement purchase.
 An offer preview contains only store name, item descriptions, quantities and
 agreed amounts. It is labelled unconfirmed until a bound receipt exists. Private
 seller contacts, notes, reference percentages and inventory copy IDs are omitted.
+Its backdrop must also fully hide the private desk; omitting fields from a
+dialog is insufficient when the underlying private reference values remain visible.
+
+Native purchase drafts use explicit kind `purchase` in version2 of the existing
+`grookai.sales-drafts.v1` owner book. Version1 sale drafts remain intact; the book
+never automatically downgrades after purchase use. Pending requests retain the
+existing `grookai.pending-sale.v1` owner key and optional local `draftId` metadata.
+Project only `{id,cart}` for strict server-request and acknowledgement validation.
+Purchase and catalog staging share an owner queue; storage acknowledgements must
+be verified by readback before contacting the writer. Pending purchases block
+draft changes until their exact receipt is confirmed. Account changes reject late
+replies and close the private UI. Purchase receipts use safe copy/share text;
+the separately deferred receipt-delivery provider is not enabled for purchases.
 
 ## Exit evidence
 

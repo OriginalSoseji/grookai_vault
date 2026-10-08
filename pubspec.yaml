@@ -68,6 +68,8 @@ dev_dependencies:
   # Real SQLite journal tests; keep these isolated from runtime dependencies.
   sqflite_common_ffi: 2.3.6
   sqlite3: 2.7.6
+  # Inject storage failures and false acknowledgements into purchase recovery tests.
+  shared_preferences_platform_interface: 2.4.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

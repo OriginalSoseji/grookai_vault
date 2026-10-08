@@ -20,8 +20,16 @@ All13 retained-table checks pass and controls are off. Retain all55 copies and
 six accounts, including failed harness fixtures. The same owner key retains old
 sales and pending requests. The external checkpoint owns the web normal-hook
 outcome. Freeze source/full432 while that hook runs; do not reset any lab.
-Native entry, reusable policies, Samsung/iOS, release qualification and activation
-remain pending. Continue native work only after the check freeze is lifted.
+The web normal hook passed at4edf35efc (7,657 contracts and1,587 native tests).
+Native Buy entry now passes128 focused tests and actual Samsung two-process
+acceptance in device-1791429725795. Two incoming copies at USD0.00/6.50 and one
+receipt recover with controls off, without another completion. Visual review
+caught readable private references behind a translucent seller dialog; native
+and web customer backdrops are now opaque, with13 native and20 browser checks.
+All13 retained-table checks pass; retain59 copies and nine accounts, controls off.
+The external checkpoint owns native normal-hook status. Freeze source/full432
+while that hook runs. Reusable policies, iOS, release qualification, activation
+and the remaining overhaul remain pending; no production deployment occurred.
 
 
 ## Web inventory cost review — October 7

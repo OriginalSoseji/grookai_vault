@@ -26,6 +26,26 @@ checks with run_product_purchase_checks_v1.mjs; freeze source and full432 until
 terminal. No production migration, message delivery or purchase activation follows
 from these local results.
 
+Native purchase proof uses product_purchase_device_fixture_v1.mjs with fresh
+device-* fixtures only. product_purchase_device_host_v1.mjs starts the real local
+resolver33451 and delegates the retained external Samsung host. Bind both
+GROOKAI_WEB_BASE_URL=http://127.0.0.1:33451 and Supabase33281 in the private defines;
+the native test refuses a hosted resolver. Preserve the primary app, backup the
+installed locked acceptance APK, install with -r, and retain process IDs for two
+distinct launches. The first phase drops a committed response; the host disables
+entry controls, restarts, verifies exact recovery and restores all controls.
+Never reset this lab or reuse an old device intent. The passed final run retains59
+copies/nine users with13 unchanged prior-table checks. Reusable policies and iOS
+remain separate. Customer-facing modal backdrops must be opaque on both platforms.
+
+If Gradle cannot validate Maven's intercepted TLS chain, use a per-run copy of
+the JBR truststore plus the already-installed Windows Norton root, verifying its
+thumbprint before import. The purchase proof used
+D3C02CD86358343C97DE6350AE21F084A515C37D. Set JAVA_TOOL_OPTIONS only for that build;
+retain certificate verification and do not change global trust. Keep build logs
+private because Gradle may print encoded fixture defines. Restore generated
+next-env.d.ts only after every local Next process has stopped.
+
 
 ## Web inventory cost review — October 7
 

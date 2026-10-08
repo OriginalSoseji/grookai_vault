@@ -69,6 +69,8 @@ for (const width of [384, 1440]) test(`buy offer holds manual override and zero 
     await page.getByText('Store & private note', {exact: true}).click(); await page.getByLabel('Private purchase note').fill('PRIVATE NOTE');
     await page.getByRole('button', {name: 'Seller view'}).click();
     const seller = page.getByRole('dialog', {name: 'Seller offer'});
+    expect(await seller.evaluate(element => getComputedStyle(element, '::backdrop').backgroundColor)).toBe('rgb(6, 18, 11)');
+    await seller.screenshot({path: info.outputPath(`seller-${width}.png`)});
     await expect(seller).toContainText('You receive $6.50'); await expect(seller).not.toContainText('PRIVATE'); await expect(seller).not.toContainText('Reference');
     await page.getByRole('button', {name: 'Close seller view', exact: true}).click();
     await page.reload(); await expect(page.getByRole('heading', {name: 'Your purchase', exact: true})).toBeVisible();

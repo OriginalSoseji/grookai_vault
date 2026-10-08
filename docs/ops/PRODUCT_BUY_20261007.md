@@ -79,7 +79,7 @@ explicitly opt into atomic intake at purchase completion. Quick lines cannot
 create inventory. Optional percentage suggestions never overwrite an agreed
 amount; private reference fields stay outside the seller preview. The payout
 review requires explicit exchange confirmation. A bound receipt is required on
-both completion and reload recovery. This UI is an uncommitted follow-on slice.
+both completion and reload recovery. The web UI is committed at4edf35efc.
 
 The final focused model/environment run passes97 cases and the refreshed,
 semantically unchanged51 vectors pass52 native tests. The only vector-fixture
@@ -114,7 +114,41 @@ modes, hosted deployment, enabled telemetry and production release. Existing cos
 guards still pass. The web normal-hook outcome belongs to the external checkpoint;
 freeze this source and full432 while it runs.
 
-Native buy entry, reusable offer policies, actual browser/Samsung/iOS acceptance, independent
-shadow/exact release gates and production activation remain incomplete. External
-product_buy_20261007/CHECKPOINT.json records actual outcomes. This is an additive
-backend, reader and in-progress web UI candidate, not a released buy workflow.
+The web normal hook passes in checks-1791427684423 at4edf35efc:7,657 contracts
+(10 skipped), web types/lint/build, analysis and1,587 native tests (three skipped).
+Its source/lab freeze is lifted. Native Buy now uses the existing owner draft and
+pending-request keys, with book version2 and explicit purchase discrimination.
+The service serializes purchase/catalog stages, verifies durable readback, rejects
+changed pending requests, dispatches v4 explicitly and binds recovered receipts.
+The native screen adds canonical/quick purchase entry, manual agreed prices and
+optional suggestions, held offers, seller view, contact selection, split payouts,
+explicit exchange confirmation and account-bound recovery. No early intake occurs.
+
+All128 focused model/service/widget/regression tests pass in native-focused-v5,
+including false storage success, competing stages, revision conflicts, malformed
+acknowledgements and late owner replies. Native analysis passes. The later privacy
+fix passes13 native cases and20 browser/workspace scenarios. Visual inspection
+found private references readable behind the seller dialog's dim backdrop; both
+native seller/customer views and web customer displays now use opaque backdrops.
+
+Actual Samsung acceptance passes in device-1791429725795 with locked build412.
+The real local web resolver33451 and Supabase33281 supply search/printing/intake.
+A held offer survives reopening and creates no inventory. Completion creates two
+distinct copies of the same printing with USD0.00 and USD6.50 costs and one receipt.
+After a dropped response and actual process restart, all entry controls are off;
+the same request recovers without another completion call. Private-safe receipt
+text, opaque seller view, continuation and sign-out pass. Database readback proves
+one purchase, two exact costs, zero sale snapshots and13 retained tables unchanged.
+Controls are restored and servers stopped. Retain all59 copies and nine accounts.
+
+Retain earlier attempts: device-1791429120418 failed before intake because its
+native web resolver was not bound locally; restored flags and13 tables pass.
+Its first build hit Maven TLS trust and the scoped truststore fixed compilation.
+Device-1791429484811 passed transaction/restart proof, then visual review found
+the translucent backdrop issue; its two copies and receipt remain retained.
+No consumed fixture is replayed or reset. The final build includes the privacy fix.
+
+External product_buy_20261007/CHECKPOINT.json owns the native normal-hook outcome;
+freeze source/full432 while that check runs. Reusable offer policies, iOS purchase
+acceptance, independent shadow/exact release gates, production activation and the
+remaining overhaul are open. These local checks are not a released buy workflow.

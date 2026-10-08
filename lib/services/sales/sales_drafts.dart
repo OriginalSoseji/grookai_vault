@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'sales_payments.dart';
+import 'purchase_drafts.dart';
 
 /// Device-local work in progress. A held deal never reserves inventory.
 Map<String, dynamic> readSalesDrafts(String? raw) {
@@ -14,7 +15,17 @@ Map<String, dynamic> readSalesDrafts(String? raw) {
   bool number(dynamic v, int min, int max) => v is int && v >= min && v <= max;
   bool optionalText(dynamic v) => v == null || text(v, 4096);
   bool valid(dynamic d) {
+    if (isPurchaseDraft(d)) {
+      if (book is! Map || book['version'] != 2) return false;
+      try {
+        validatePurchaseDraft(d);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
     if (d is! Map ||
+        d.containsKey('kind') ||
         !text(d['id'], 100) ||
         d['id'] == '' ||
         !text(d['storeName'], 120) ||
@@ -79,7 +90,7 @@ Map<String, dynamic> readSalesDrafts(String? raw) {
   }
 
   if (book is! Map ||
-      book['version'] != 1 ||
+      ![1, 2].contains(book['version']) ||
       !number(book['revision'], 0, 9007199254740990) ||
       book['drafts'] is! List) {
     throw StateError(

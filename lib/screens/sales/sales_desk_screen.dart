@@ -11,6 +11,9 @@ import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_trade.dart';
 import '../../services/sales/sales_payments.dart';
 import 'sales_payment_editor.dart';
+import 'sales_purchase_panel.dart';
+import '../../services/sales/purchase_drafts.dart';
+import '../../services/sales/sales_purchase.dart';
 import '../../services/sales/sales_drafts.dart';
 import '../../widgets/card_surface_artwork.dart';
 import 'sales_dashboard.dart';
@@ -42,6 +45,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   final List<SalesTradeLine> _trades = [];
   SalesDeskData? _data;
   Map<String, dynamic>? _pending, _receipt, _customer;
+  Map<String, dynamic>? _purchaseDraft;
   bool _loading = true, _busy = false, _showCart = false;
   int _pendingScans = 0;
   bool get _scanPending => _pendingScans > 0;
@@ -223,7 +227,26 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         }
         if (_store.text.isEmpty) _store.text = data.storeName;
         _pending = data.pending;
-        if (_pending != null) {
+        if (_pending != null && (_pending!['cart'] as Map)['version'] == 4) {
+          final request = validatePurchaseRequest({
+            'id': _pending!['id'],
+            'cart': _pending!['cart'],
+          });
+          final cart = request['cart'] as Map;
+          _restoreDraft({
+            ...blankPurchaseDraft(
+              _pending!['draftId'] as String? ?? _pending!['id'] as String,
+              cart['storeName'] as String,
+            ),
+            'items': cart['items'],
+            'payments': cart['payments'],
+            'note': cart['note'],
+            'customerId': cart['customerId'],
+            'customer': cart['customer'],
+          });
+          _restoringDraft = true;
+        } else if (_pending != null) {
+          _purchaseDraft = null;
           final cart = _pending!['cart'] as Map;
           _store.text = cart['storeName'] as String;
           _method = salesTenderMethods.contains(cart['method'])
@@ -274,14 +297,21 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       }
       if (data.pending != null) {
         final receipt = await _service.recover(data.pending!['id'] as String);
-        if (!mounted) return;
+        if (!mounted || _accountChanged) return;
         setState(() {
-          _receipt = receipt;
+          _receipt = receipt != null && _purchaseDraft != null
+              ? confirmedPurchaseReceipt(receipt, {
+                  'id': data.pending!['id'],
+                  'cart': data.pending!['cart'],
+                })
+              : receipt;
           _showCart = true;
         });
         if (receipt == null) {
           _message(
-            'A previous sale needs verification. Retry it before starting another sale.',
+            _purchaseDraft != null
+                ? 'A previous purchase needs verification. Retry the saved purchase before starting another deal.'
+                : 'A previous sale needs verification. Retry it before starting another sale.',
           );
         }
       }
@@ -297,6 +327,15 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
 
   void _restoreDraft(Map<String, dynamic> d) {
     _restoringDraft = true;
+    if (isPurchaseDraft(d)) {
+      _purchaseDraft = validatePurchaseDraft(d);
+      _store.text = d['storeName'] as String;
+      _lines.clear();
+      _trades.clear();
+      _restoringDraft = false;
+      return;
+    }
+    _purchaseDraft = null;
     _store.text = d['storeName'] as String;
     _tax.text = d['tax'] as String;
     _note.text = d['note'] as String;
@@ -343,38 +382,41 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _receipt != null) {
       return;
     }
-    final snapshot = {
-      'id': _draftBook!['active'],
-      'storeName': _store.text,
-      'tax': _tax.text,
-      'note': _note.text,
-      'method': _method,
-      if (_payments != null)
-        'payments': _payments!
-            .map((e) => Map<String, dynamic>.from(e))
-            .toList(),
-      'customerId': _customer?['id'],
-      'customer': {
-        'name': _name.text,
-        'email': _email.text,
-        'phone': _phone.text,
-        'wants': _wants.text,
-        'notes': _customer?['notes'] ?? '',
-      },
-      'items': _lines
-          .map(
-            (l) => {
-              ...l.toJson(),
-              'gvviId': l.gvviId,
-              'imageUrl': l.imageUrl,
-              'fallbackImageUrl': l.fallbackImageUrl,
-            },
-          )
-          .toList(),
-      'trades': _trades.map((t) => t.toJson()).toList(),
-    };
+    final snapshot =
+        _purchaseDraft ??
+        {
+          'id': _draftBook!['active'],
+          'storeName': _store.text,
+          'tax': _tax.text,
+          'note': _note.text,
+          'method': _method,
+          if (_payments != null)
+            'payments': _payments!
+                .map((e) => Map<String, dynamic>.from(e))
+                .toList(),
+          'customerId': _customer?['id'],
+          'customer': {
+            'name': _name.text,
+            'email': _email.text,
+            'phone': _phone.text,
+            'wants': _wants.text,
+            'notes': _customer?['notes'] ?? '',
+          },
+          'items': _lines
+              .map(
+                (l) => {
+                  ...l.toJson(),
+                  'gvviId': l.gvviId,
+                  'imageUrl': l.imageUrl,
+                  'fallbackImageUrl': l.fallbackImageUrl,
+                },
+              )
+              .toList(),
+          'trades': _trades.map((t) => t.toJson()).toList(),
+        };
     _draftBook = {
       ..._draftBook!,
+      if (_purchaseDraft != null) 'version': 2,
       'drafts': (_draftBook!['drafts'] as List)
           .map((d) => d['id'] == snapshot['id'] ? snapshot : d)
           .toList(),
@@ -408,6 +450,61 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     _queueDraft();
   }
 
+  Future<void> _updatePurchaseDraft(
+    Map<String, dynamic> Function(Map<String, dynamic>) update,
+  ) async {
+    if (_locked ||
+        _purchaseDraft == null ||
+        _data?.purchasesAvailable != true) {
+      throw StateError(
+        'This purchase is locked. Recover the saved request or reopen the desk.',
+      );
+    }
+    final next = validatePurchaseDraft(update(_purchaseDraft!));
+    setState(() => _purchaseDraft = next);
+    await _flushDraft();
+  }
+
+  Future<void> _newPurchase() async {
+    if (_locked || _draftBook == null || _data?.purchasesAvailable != true) {
+      return;
+    }
+    setState(() => _editing = true);
+    try {
+      if (await _service.pendingCatalogAdd() != null) {
+        throw StateError(
+          'Recover the saved catalog add before starting a purchase.',
+        );
+      }
+      await _flushDraft();
+      if (!mounted || _accountChanged) return;
+      final drafts = List<dynamic>.from(_draftBook!['drafts'] as List);
+      if (drafts.length >= 20) {
+        throw StateError('Resume a held deal before creating another.');
+      }
+      final draft = blankPurchaseDraft(newSaleId(), _store.text);
+      final next = {
+        ..._draftBook!,
+        'version': 2,
+        'active': draft['id'],
+        'drafts': [...drafts, draft],
+      };
+      await _service.saveDrafts(next);
+      if (!mounted || _accountChanged) return;
+      setState(() {
+        _draftBook = next;
+        _restoreDraft(draft);
+        _dashboard = false;
+        _catalogOpen = false;
+        _tradeOpen = false;
+      });
+    } catch (error) {
+      _message(error.toString());
+    } finally {
+      if (mounted) setState(() => _editing = false);
+    }
+  }
+
   Future<void> _heldDeals() async {
     if (_locked || _draftBook == null) return;
     try {
@@ -435,11 +532,15 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     ListTile(
                       title: Text(
                         (d['customer']['name'] as String).isEmpty
-                            ? 'Walk-up customer'
+                            ? isPurchaseDraft(d)
+                                  ? 'Walk-up seller'
+                                  : 'Walk-up customer'
                             : d['customer']['name'] as String,
                       ),
                       subtitle: Text(
-                        '${(d['items'] as List).length} sale lines · ${(d['trades'] as List).length} trade lines',
+                        isPurchaseDraft(d)
+                            ? 'Buy · ${(d['items'] as List).length} incoming lines · USD ${saleMoney(purchaseDraftTotal(Map<String, dynamic>.from(d as Map)))}'
+                            : '${(d['items'] as List).length} sale lines · ${(d['trades'] as List).length} trade lines',
                       ),
                       onTap: () => Navigator.pop(context, d['id'] as String),
                       trailing: IconButton(
@@ -820,6 +921,71 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     );
   }
 
+  Future<bool> _preparePurchase() async {
+    if (_data?.purchasesAvailable != true || _purchaseDraft == null) {
+      _message('New purchases are unavailable. Your held offer is kept.');
+      return false;
+    }
+    setState(() => _editing = true);
+    try {
+      if (await _service.pendingCatalogAdd() != null) {
+        throw StateError(
+          'Recover the saved catalog add before completing this purchase.',
+        );
+      }
+      await _flushDraft();
+      final draft = _purchaseDraft!;
+      // Validate before review, then retain this exact snapshot through confirmation.
+      final request = purchaseDraftRequest(draft, newSaleId(), confirmed: true);
+      if (!mounted || _accountChanged) return false;
+      final total = purchaseDraftTotal(draft);
+      final copies = (draft['items'] as List)
+          .where((dynamic line) => line['addToVault'] == true)
+          .length;
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Record this purchase?'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text('Paid to seller: USD ${saleMoney(total)}'),
+                for (final payment in request['cart']['payments'] as List)
+                  Text(
+                    '${payment['method']}: USD ${saleMoney(payment['amountMinor'] as int)}',
+                  ),
+                const SizedBox(height: 16),
+                Text(
+                  'Confirm you received the items and paid the seller. $copies incoming copies will be added to your Vault with their agreed USD cost. This records the exchange and does not move money.',
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Back'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Exchange completed · Record purchase'),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true || !mounted || _accountChanged) return false;
+      setState(() => _pending = {...request, 'draftId': draft['id']});
+      return true;
+    } catch (error) {
+      _message(error.toString());
+      return false;
+    } finally {
+      if (mounted) setState(() => _editing = false);
+    }
+  }
+
   Future<void> _complete() async {
     if (_scanPending ||
         _busy ||
@@ -829,6 +995,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _editing) {
       return;
     }
+    if (_pending == null &&
+        _purchaseDraft != null &&
+        !await _preparePurchase()) {
+      return;
+    }
+    if (!mounted || _accountChanged) return;
     if (_pending == null) {
       final tax = saleMoneyInput(_tax.text);
       if (_store.text.trim().isEmpty || _lines.isEmpty || tax == null) {
@@ -1002,9 +1174,14 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       // Persist the exact id and payload before any request can reach the server.
       await _service.stage(_pending!);
       final receipt = await _service.complete(_pending!);
-      if (mounted) {
+      if (mounted && !_accountChanged) {
         setState(() {
-          _receipt = receipt;
+          _receipt = _purchaseDraft == null
+              ? receipt
+              : confirmedPurchaseReceipt(receipt, {
+                  'id': _pending!['id'],
+                  'cart': _pending!['cart'],
+                });
           _showCart = true;
         });
       }
@@ -1025,16 +1202,22 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           /* Keep the exact pending payload when local recovery fails. */
         }
         _message(
-          'The sale was not recorded. Review availability and amounts, then try again. Your cart is still here.',
+          _purchaseDraft != null
+              ? 'The purchase was not recorded. Review availability and amounts, then try again. Your offer is still here.'
+              : 'The sale was not recorded. Review availability and amounts, then try again. Your cart is still here.',
         );
       } else {
         _message(
-          'Sale status is unconfirmed. Retry this same sale to recover its receipt without recording it twice.',
+          _purchaseDraft != null
+              ? 'Purchase status is unconfirmed. Retry this same purchase to recover its receipt without recording it twice.'
+              : 'Sale status is unconfirmed. Retry this same sale to recover its receipt without recording it twice.',
         );
       }
     } catch (_) {
       _message(
-        'Sale status is unconfirmed. Retry this same sale to recover its receipt without recording it twice.',
+        _purchaseDraft != null
+            ? 'Purchase status is unconfirmed. Retry this same purchase to recover its receipt without recording it twice.'
+            : 'Sale status is unconfirmed. Retry this same sale to recover its receipt without recording it twice.',
       );
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -1062,9 +1245,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _draftBook = next;
       }
       await _service.clearPending(_pending!['id'] as String);
-      if (!mounted) return;
+      if (!mounted || _accountChanged) return;
       setState(() {
         _restoringDraft = true;
+        _purchaseDraft = null;
         _lines.clear();
         _trades.clear();
         _payments = null;
@@ -1634,6 +1818,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     final balance = subtotal + tax - credit;
     await showDialog<void>(
       context: context,
+      barrierColor: Theme.of(context).colorScheme.surface,
       builder: (context) => AlertDialog(
         title: Text(_store.text.isEmpty ? 'Your deal' : _store.text),
         content: SizedBox(
@@ -1804,19 +1989,25 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     children: [
       const Icon(Icons.check_circle, size: 56, color: Colors.green),
       const SizedBox(height: 12),
-      Text('Sale recorded', style: Theme.of(context).textTheme.headlineMedium),
-      const Text(
-        'Your receipt is saved to your account. Selected Vault copies are marked sold.',
+      Text(
+        _purchaseDraft != null ? 'Purchase recorded' : 'Sale recorded',
+        style: Theme.of(context).textTheme.headlineMedium,
+      ),
+      Text(
+        _purchaseDraft != null
+            ? 'Your purchase receipt is saved. Selected incoming copies and their agreed USD costs are recorded.'
+            : 'Your receipt is saved to your account. Selected Vault copies are marked sold.',
       ),
       const SizedBox(height: 24),
       SelectableText(saleReceiptText(_receipt!)),
       const SizedBox(height: 24),
-      ReceiptDeliveryPanel(
-        key: ValueKey(_receipt!['id']),
-        receiptId: _receipt!['id'] as String,
-        email: _customer?['email'] as String? ?? _email.text,
-        phone: _customer?['phone'] as String? ?? _phone.text,
-      ),
+      if (_purchaseDraft == null)
+        ReceiptDeliveryPanel(
+          key: ValueKey(_receipt!['id']),
+          receiptId: _receipt!['id'] as String,
+          email: _customer?['email'] as String? ?? _email.text,
+          phone: _customer?['phone'] as String? ?? _phone.text,
+        ),
       Builder(
         builder: (context) => FilledButton.icon(
           onPressed: () async {
@@ -1864,7 +2055,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       const SizedBox(height: 12),
       FilledButton(
         onPressed: _busy ? null : _newSale,
-        child: const Text('Start next sale'),
+        child: Text(
+          _purchaseDraft != null ? 'Continue to deals' : 'Start next sale',
+        ),
       ),
     ],
   );
@@ -1883,7 +2076,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         return false;
       }
     }
-    if ((_lines.isEmpty && _trades.isEmpty) ||
+    if ((_lines.isEmpty &&
+            _trades.isEmpty &&
+            (_purchaseDraft?['items'] as List? ?? []).isEmpty) ||
         _pending != null ||
         _receipt != null) {
       return true;
@@ -1921,7 +2116,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     canPop:
         _workspaceExits != null ||
         (!_scanPending &&
-            ((_lines.isEmpty && _trades.isEmpty) ||
+            ((_lines.isEmpty &&
+                    _trades.isEmpty &&
+                    (_purchaseDraft?['items'] as List? ?? []).isEmpty) ||
                 _pending != null ||
                 _receipt != null)),
     onPopInvokedWithResult: (didPop, result) async {
@@ -1944,6 +2141,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             appBar: AppBar(
               title: const Text('Sales desk'),
               actions: [
+                if (_draftBook != null && _data?.purchasesAvailable == true)
+                  IconButton(
+                    tooltip: 'New buy',
+                    onPressed: _locked ? null : _newPurchase,
+                    icon: const Icon(Icons.add_shopping_cart),
+                  ),
                 if (_draftBook != null)
                   IconButton(
                     tooltip: 'Held deals',
@@ -1980,7 +2183,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                       ],
                     ),
                   if (_historyLoading) const LinearProgressIndicator(),
-                  if (_historyError != null)
+                  if (_historyError != null && _pending == null)
                     TextButton(
                       onPressed: _hydrateBook,
                       child: Text('$_historyError Retry history'),
@@ -1995,7 +2198,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                               child: const Text('Retry'),
                             ),
                           )
-                        : !_data!.available && _pending == null
+                        : !_data!.available &&
+                              _pending == null &&
+                              _purchaseDraft == null
                         ? const Center(
                             child: Padding(
                               padding: EdgeInsets.all(24),
@@ -2009,6 +2214,21 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                             receipts: [...?_data?.receipts, ?_receipt],
                             refresh: _load,
                           )
+                        : _purchaseDraft != null
+                        ? _receipt != null
+                              ? _receiptView()
+                              : SalesPurchasePanel(
+                                  key: ValueKey(_purchaseDraft!['id']),
+                                  draft: _purchaseDraft!,
+                                  service: _service,
+                                  edit: _updatePurchaseDraft,
+                                  onReview: _complete,
+                                  locked: _locked,
+                                  busy: _busy,
+                                  pending: _pending != null,
+                                  available: _data!.purchasesAvailable,
+                                  customers: _data!.customers,
+                                )
                         : LayoutBuilder(
                             builder: (context, constraints) {
                               if (constraints.maxWidth >= 900) {
