@@ -1,5 +1,27 @@
 # Grookai Operator Playbook V1
 
+## Governed offer reference runtime — October 8
+
+Work in C:/gv_product_offer_market_20261008 from qualified entry2dc3a1a0c.
+Read docs/ops/PRODUCT_OFFER_MARKET_20261008.md and VENDOR_OFFER_POLICIES_V1.
+Preserve the clean entry tree, Samsung420, all prior fixtures and every433 migration.
+No SQL/product change is currently proposed. Dedicated scripts pin full433 at
+33560/33561 and preserve31 prior table row sets. They use actual worker functions
+with fresh synthetic local source and an exact-printing canary, not CLI release
+qualification. Existing active publication must be absent before preparation.
+Retain all new source/qualification/publication history; remove only the owned
+temporary local pointer and restore controls after terminal runtime evidence.
+External product_offer_market_20261008/CHECKPOINT.json owns outcomes.
+Real web market-1791448539354 and Samsung428 market-1791448366303 pass.
+Nine final images inspected;31 prior row sets retained, no copies/receipts added.
+Native353 inputs match; controls/pointer restored. See domain checkpoint for
+journal revision semantics and retained failed runs. Ordinary-hook outcome lives
+in external latest-checks.json. Freeze source/lab during that hook.
+Exact release, physical iOS, measured benchmark and full overhaul remain open.
+No provider fetch, production publication, deployment or primary-app change.
+Keep the full overhaul active.
+
+
 ## Negotiated trade entry — October 8
 
 Current tree: C:/gv_product_trade_entry_20261008, from qualified backend
