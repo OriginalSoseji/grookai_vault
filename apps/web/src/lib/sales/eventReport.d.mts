@@ -1,0 +1,6 @@
+import type {EventState,VendorEvent,EventExpense} from './vendorEvents.mjs';
+import type {RecordedReceipt} from './salesReport.mjs';
+import type {CostSnapshot,ProfitReport} from './salesProfit.mjs';
+export type EventReport={version:1;currency:'USD';event:VendorEvent;eventRevision:string;bookRevision:string;rows:RecordedReceipt[];expenses:EventExpense[];receiptFilter:{query:string;method:string};receiptsFiltered:boolean;assignedReceipts:number;transactions:number;saleTransactions:number;purchaseTransactions:number;salesMinor:string;taxMinor:string;receivedMinor:string;paidMinor:string;tradeCreditMinor:string;units:string;purchasedUnits:string;inventoryPurchaseMinor:string;cashReceivedMinor:string;cashPaidMinor:string;knownCashTenderedMinor:string;knownCashChangeMinor:string;unknownCashTenderReceipts:number;payments:Record<string,string>;operatingExpenseMinor:string;voidedExpenseCount:number;profit:ProfitReport;knownCostEventSubtotalMinor:string|null};
+export function eventReport(input:{state:EventState;ownerId:string;eventId:string;bookRevision:string;receipts:RecordedReceipt[];snapshots:CostSnapshot[];query?:string;method?:string}):EventReport;
+export function eventReportCsv(report:EventReport):string;

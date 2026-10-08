@@ -4,7 +4,8 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {dealRelease,dealReleaseSources,validateDealReleaseArguments,validateDealShadow} from '../../scripts/schema/product_deal_release_scope_v1.mjs';
 const dir=new URL('../../supabase/migrations/',import.meta.url);
-const sources=Object.fromEntries(fs.readdirSync(dir).filter(n=>n.endsWith('.sql')).sort().map(n=>[n,createHash('sha256').update(fs.readFileSync(new URL(n,dir))).digest('hex')]));
+// This historical contract binds the pre-event release, not later additions.
+const sources=Object.fromEntries(fs.readdirSync(dir).filter(n=>n.endsWith('.sql')&&n.split('_')[0]<='20261008060000').sort().map(n=>[n,createHash('sha256').update(fs.readFileSync(new URL(n,dir))).digest('hex')]));
 const baseline=Object.fromEntries(Object.entries(sources).filter(([n])=>n!==dealRelease.deferred&&!Object.hasOwn(dealRelease.added,n)));
 test('combined release includes all three exact additions and excludes only deferred delivery',()=>{
  const result=dealReleaseSources(sources,baseline);assert.equal(Object.keys(result).length,432);assert.equal(result[dealRelease.deferred],undefined);

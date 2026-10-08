@@ -67,6 +67,9 @@ param(
   [switch]$ProductEconomicsBaselineV1,
   [switch]$ProductPurchaseBaselineV1,
   [switch]$ProductOfferTradeBaselineV1,
+  [switch]$ProductEventBaselineV1,
+  [switch]$ProductEventReleaseBaselineV1,
+  [switch]$ProductEventV1,
   [switch]$ProductDealRefreshBaselineV1,
   [switch]$ProductDealRefreshV1,
   [switch]$ProductDealBaselineV1,
@@ -100,6 +103,35 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductEventV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000,20261008130000'
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEventV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductEventV1 requires exactly cost, purchase, negotiated Trade and events; delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_event_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Event release gate failed.' }
+  exit 0
+}
+
+if ($ProductEventReleaseBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEventReleaseBaselineV1') }).Count -gt 0) {
+    throw 'ProductEventReleaseBaselineV1 supports only the fixed read-only source434 release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_event_release_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Event release baseline failed.' }
+  exit 0
+}
+
+if ($ProductEventBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEventBaselineV1') }).Count -gt 0) {
+    throw 'ProductEventBaselineV1 supports only the fixed read-only pre-event baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_event_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Event closeout baseline failed.' }
+  exit 0
+}
 
 if ($ProductDealRefreshV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

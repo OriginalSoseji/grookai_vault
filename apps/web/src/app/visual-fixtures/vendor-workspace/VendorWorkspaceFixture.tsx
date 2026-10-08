@@ -16,9 +16,10 @@ import { supabase } from "@/lib/supabaseClient";
 export default function VendorWorkspaceFixture() {
   const [ready, setReady] = useState(false);
   const view = useSearchParams().get("view");
+  const eventsEnabled = useSearchParams().get('eventsEnabled') !== '0';
   const costEnabled = useSearchParams().get('costEnabled') !== '0';
   const owner = "00000000-0000-4000-8000-000000000001";
-  const routePath = view === "store" ? "/account/store" : (view === "inventory" || view === "cost-review") ? "/account/store/inventory" : view === "reports" || view === 'profit' ? "/account/store/reports" : "/account/store/sales";
+  const routePath = view === "store" ? "/account/store" : (view === "inventory" || view === "cost-review") ? "/account/store/inventory" : view === "events" || view === "reports" || view === 'profit' ? "/account/store/reports" : "/account/store/sales";
   useEffect(() => {
     // Synthetic credentials are valid only against intercepted local fixture Auth.
     const token = `e30.${btoa(JSON.stringify({ exp: 4000000000, sub: owner }))}.fixture`;
@@ -30,7 +31,7 @@ export default function VendorWorkspaceFixture() {
     <Link href="/visual-fixtures/vendor-workspace">Fixture Desk</Link>{" · "}<Link href="/visual-fixtures/vendor-workspace?view=reports">Fixture Reports</Link>
     {" · "}<Link href="/visual-fixtures/vendor-workspace?view=inventory">Fixture Inventory</Link>
     <VendorWorkspaceNavigation routePath={routePath} />
-    {ready ? view === 'receipts' ? <CloudReceiptDesk /> : view === 'cost' ? <VaultCopyCostCard key={`cost-${costEnabled}`} ownerId={owner} instanceId="00000000-0000-4000-8000-000000000010" enabled={costEnabled} /> : view === 'profit' ? <SalesReports ownerId={owner} profitEnabled /> : view === "pricing" ? <PricingEditorFixture /> : view === "store" ? <StoreManager siteOrigin="https://fixture.invalid" /> : (view === "inventory" || view === "cost-review") ? <VendorInventory ownerId={owner} costReviewEnabled={view === "cost-review" && costEnabled} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
+    {ready ? view === 'receipts' ? <CloudReceiptDesk /> : view === 'cost' ? <VaultCopyCostCard key={`cost-${costEnabled}`} ownerId={owner} instanceId="00000000-0000-4000-8000-000000000010" enabled={costEnabled} /> : view === 'events' ? <SalesReports ownerId={owner} profitEnabled eventsEnabled={eventsEnabled} /> : view === 'profit' ? <SalesReports ownerId={owner} profitEnabled /> : view === "pricing" ? <PricingEditorFixture /> : view === "store" ? <StoreManager siteOrigin="https://fixture.invalid" /> : (view === "inventory" || view === "cost-review") ? <VendorInventory ownerId={owner} costReviewEnabled={view === "cost-review" && costEnabled} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
     <button onClick={() => void supabase.auth.signOut({ scope: "local" })}>Fixture sign out</button>
     <VendorWorkspaceNavigation mobile routePath={routePath} />
   </div>;

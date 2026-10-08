@@ -1,5 +1,37 @@
 # Grookai Agent Entry Point
 
+## Event closeout — October 8
+
+Work in C:/gv_product_event_closeout_20261008 from qualified integrated release
+e41e5e367eb2b04c868e75e3320d5e482733f96c. Read docs/ops/PRODUCT_EVENT_CLOSEOUT_20261008.md
+and external product_event_closeout_20261008/SCOPE.json. Preserve all prior clean
+trees, populated labs and Samsung431. Both exact432 package labs stay sealed and
+read-only. ProductEventBaselineV1 passed before changes; do not rerun that
+source433 baseline against current434. The
+new feature extends existing Reports/immutable receipts with private event
+association, audited expenses and accurate partial-cost closeout. It must not
+create a second receipt history or alter old cost snapshots. New authority needs
+strict owner/revision/retry recovery, default-off entry, fresh replay/upgrade and
+actual Auth/web/native acceptance. Existing fixed-root wrappers must not run here.
+External CHECKPOINT.json owns actual outcomes. No production apply, deployment,
+activation, provider fetch, upload or subagents. Remaining R2 discounts/history
+correction, R3/R4, physical iOS and measured competitor tasks remain open.
+Event SQL, web and physical Samsung432 acceptance now pass. Current exact Auth
+web ui-1791471961979 and device ui-1791472155460 retain36 table sets each;
+14 runtime images are reviewed. Samsung proves exact SQLite recovery across two
+processes with UI/backend entry off. Its366 native inputs match the archived APK.
+All13 responsive browser cases pass; focused242 Node and260 native plus13 screen
+cases pass. Current IndexedDB journal-browser-1791472209915 is refreshed.
+Fresh ProductEventReleaseBaselineV1 verifies live429/source434. Exact433 package
+replay/upgrade/Auth/shadow qualification passes; delivery stays deferred. Do not
+reuse the old source433 baseline. Docker recovery retained sealed432 data but
+remapped internal IPs; verify its explicit recovery attestation. Current source
+is uncommitted; ProductEventV1 and run_product_event_checks_v1 own the remaining
+staged/ordinary/PrePush/linked inspection gates. The30-artifact manifest binds the
+37-table seals in both exact433 labs. Source/labs freeze during checks. External
+CHECKPOINT.json owns exact active sessions/results. Preserve Samsung431 backup,
+Samsung432 and every failed fixture. Full overhaul remains active.
+
 ## Integrated deal release refresh — October 8
 
 Work in C:/gv_product_deal_refresh_20261008 from qualified mobile/main merge

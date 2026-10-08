@@ -6,12 +6,17 @@ import { supabase } from "@/lib/supabaseClient";
 import type { RecordedReceipt as SalesReceipt } from "@/lib/sales/salesReport.mjs";
 import {isPurchaseReceipt,validatePurchaseReceipt} from '@/lib/sales/salesPurchase.mjs';
 import SalesDashboard from "./SalesDashboard";
+import EventReports from './EventReports';
+import {EventJournalStore} from '@/lib/sales/eventJournalStore';
 import {readSaleCostSnapshots} from '@/lib/sales/readSaleCostSnapshots';
 import type {CostReportState} from './SalesProfitPanel';
 import s from "./SalesDesk.module.css";
 
 /** Receipt reads only: opening reports must not create or open an editable deal. */
-export default function SalesReports({ ownerId, profitEnabled=false }: { ownerId: string; profitEnabled?:boolean }) {
+export default function SalesReports({ ownerId, profitEnabled=false,eventsEnabled=false }: { ownerId: string; profitEnabled?:boolean;eventsEnabled?:boolean }) {
+  const [view,setView]=useState<'overview'|'events'>('overview');
+  const [eventsVisited,setEventsVisited]=useState(false);
+  const [eventRecovery,setEventRecovery]=useState(false);
   const [receipts, setReceipts] = useState<SalesReceipt[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -20,6 +25,13 @@ export default function SalesReports({ ownerId, profitEnabled=false }: { ownerId
   const accountChanged = useRef(false);
   const controller = useRef<AbortController|null>(null);
   const [costState,setCostState]=useState<CostReportState>({snapshots:null,loading:profitEnabled,error:''});
+  useEffect(()=>{
+    if(eventsEnabled)return;
+    let cancelled=false;
+    const store=new EventJournalStore(ownerId,()=>{if(cancelled||accountChanged.current)throw Error('Account changed');});
+    void store.read().then(row=>{if(!cancelled&&!accountChanged.current)setEventRecovery(!!row?.pending);}).catch(()=>{if(!cancelled&&!accountChanged.current)setEventRecovery(true);});
+    return ()=>{cancelled=true;};
+  },[ownerId,eventsEnabled]);
   const load = useCallback(async () => {
     if (accountChanged.current) return;
     const current = ++generation.current;
@@ -81,8 +93,12 @@ export default function SalesReports({ ownerId, profitEnabled=false }: { ownerId
 
   return <section className={`${s.shell} ${s.reportShell}`} aria-label="Reports">
     <header className={s.header}><h1>Reports</h1><Link href="/account/store/receipts/cloud">Receipts & customers</Link></header>
+    {(eventsEnabled||eventRecovery)&&<div className={s.tabs} role="group" aria-label="Report views"><button aria-pressed={view==='overview'} onClick={()=>setView('overview')}>Overview</button><button aria-pressed={view==='events'} onClick={()=>{setEventsVisited(true);setView('events');}}>{eventsEnabled?'Events':'Saved event edit'}</button></div>}
+    <div hidden={view!=='overview'}>
     {error && <p role="alert">{error} <button onClick={() => void load()} disabled={loading}>Try again</button></p>}
     {loading && !receipts ? <p role="status">Loading saved sales…</p> :
       <SalesDashboard receipts={receipts} loading={loading} refresh={() => void load()} costState={profitEnabled?costState:undefined} />}
+    </div>
+    {eventsVisited&&<div hidden={view!=='events'}><EventReports ownerId={ownerId} allowNewEdits={eventsEnabled}/></div>}
   </section>;
 }

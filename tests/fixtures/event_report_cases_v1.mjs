@@ -1,0 +1,41 @@
+import {createReceipt} from '../../apps/web/src/lib/receipts/receiptBook.mjs';
+import {cases as states,owner,eventId} from './vendor_event_state_cases_v1.mjs';
+import {receipt as tradeReceipt} from './negotiated_trade_cases_v1.mjs';
+export const id=n=>`${n.toString(16).padStart(8,'0')}-1111-4111-8111-111111111111`;
+export function sale(n,price='100.00') {return createReceipt({storeName:'Event store',confirmed:true,method:'Cash',customer:{name:'',email:'',phone:'',wants:'',notes:''},items:[{description:'Card '+n,quantity:'1',price}],tax:'0',note:''},id(n),'2026-10-08T05:00:00.000Z');}
+export function snapshot(receipt,minor='6000') {return {version:1,receiptId:receipt.id,soldAt:receipt.createdAt,salesCurrency:'USD',lines:[{index:0,instanceId:id(999),quantity:1,salesMinor:String(receipt.subtotalMinor),status:'known',cost:{status:'known',amount:`${BigInt(minor)/100n}.${String(BigInt(minor)%100n).padStart(2,'0')}`,minor,currency:'USD'}}]};}
+export function input(){const known=sale(1),unknown=sale(2,'50.00'),state=structuredClone(states[0].value);state.selected.assignments=[known,unknown].map(r=>({receiptId:r.id,eventId,revision:'1'}));state.selected.candidates=[];return {state,ownerId:owner,eventId,bookRevision:'1',receipts:[known,unknown],snapshots:[snapshot(known)]};}
+export const cases=[];
+const baseExpected={salesMinor:'15000',taxMinor:'0',receivedMinor:'15000',paidMinor:'0',tradeCreditMinor:'0',inventoryPurchaseMinor:'0',operatingExpenseMinor:'1000',knownCostEventSubtotalMinor:'3000',transactions:2,assignedReceipts:2,unknownCashTenderReceipts:2,profit:{knownProfitMinor:'4000',unknownSalesMinor:'5000',knownCostMinor:'6000'}};
+function add(name,edit,expected=baseExpected,valid=true){const args=input();edit(args);cases.push({name,args,expected,valid});}
+add('known contribution never gains unknown-cost sales',()=>{});
+add('identical repeated receipt counted once',a=>a.receipts.push(structuredClone(a.receipts[0])));
+add('assigned receipt outside suggested dates remains counted',a=>{a.state.events[0].startDate='2030-01-01';a.state.events[0].endDate='2030-01-02';});
+add('void expense excluded with retained count',a=>{a.state.selected.expenses[0].voided=true;a.state.selected.expenses[0].lastReason='Duplicate';},{...baseExpected,operatingExpenseMinor:'0',knownCostEventSubtotalMinor:'4000',voidedExpenseCount:1});
+add('no known cost is unavailable rather than zero',a=>a.snapshots=[],{...baseExpected,knownCostEventSubtotalMinor:null,profit:{knownProfitMinor:null,unknownSalesMinor:'15000',knownCostMinor:'0'}});
+add('known zero cost',a=>a.snapshots=[snapshot(a.receipts[0],'0')],{...baseExpected,knownCostEventSubtotalMinor:'9000',profit:{knownProfitMinor:'10000',unknownSalesMinor:'5000',knownCostMinor:'0'}});
+add('foreign cost remains uncovered',a=>{a.snapshots[0].lines[0].status='foreign_currency';a.snapshots[0].lines[0].cost.currency='CAD';},{...baseExpected,knownCostEventSubtotalMinor:null,profit:{knownProfitMinor:null,unknownSalesMinor:'15000',knownCostMinor:'0'}});
+add('discount without allocation remains uncovered',a=>{a.receipts[0].discountMinor=1000;a.receipts[0].totalMinor=9000;},{...baseExpected,salesMinor:'14000',receivedMinor:'14000',knownCostEventSubtotalMinor:null,profit:{knownProfitMinor:null,unknownSalesMinor:'14000',knownCostMinor:'0'}});
+add('receipt search retains all event expenses',a=>a.query='Card 1',{...baseExpected,salesMinor:'10000',receivedMinor:'10000',transactions:1,unknownCashTenderReceipts:1,receiptsFiltered:true,profit:{knownProfitMinor:'4000',unknownSalesMinor:'0',knownCostMinor:'6000'}});
+add('empty receipt filter preserves unavailable contribution',a=>a.query='No match',{salesMinor:'0',receivedMinor:'0',operatingExpenseMinor:'1000',knownCostEventSubtotalMinor:null,transactions:0,assignedReceipts:2,receiptsFiltered:true});
+add('trade credit, tender, and change stay separate',a=>{const r=tradeReceipt();a.receipts=[r];a.snapshots=[];a.state.selected.assignments=[{receiptId:r.id,eventId,revision:'1'}];},{salesMinor:'1000',receivedMinor:'350',paidMinor:'0',tradeCreditMinor:'650',cashReceivedMinor:'350',knownCashTenderedMinor:'500',knownCashChangeMinor:'150',unknownCashTenderReceipts:0,operatingExpenseMinor:'1000',knownCostEventSubtotalMinor:null});
+add('purchase is inventory spend, not operating expense',a=>{
+ const r={version:2,kind:'purchase',id:id(5),number:'GVB-20261008-00000005',createdAt:'2026-10-08T05:00:00.000Z',storeName:'Event store',customerName:'Seller',currency:'USD',items:[{description:'Incoming bundle',quantity:2,unitMinor:350,referenceMinor:null,rateBps:null,cardId:null,printingId:null,condition:null,addToVault:false,lineMinor:700,printingGvId:null,instanceId:null,gvviId:null}],purchaseMinor:700,method:'Cash',payments:{version:1,balanceMinor:-700,entries:[{method:'Cash',amountMinor:700,tenderedMinor:700}],changeMinor:0},note:''};
+ a.receipts.push(r);a.state.selected.assignments.push({receiptId:r.id,eventId,revision:'1'});
+},{...baseExpected,transactions:3,assignedReceipts:3,paidMinor:'700',inventoryPurchaseMinor:'700',cashPaidMinor:'700',purchaseTransactions:1,purchasedUnits:'2'});
+add('trade payout does not become negative sales',a=>{const r=tradeReceipt();r.tradeIn.items[0].creditMinor=1500;r.tradeIn.totalCreditMinor=1500;r.tradeIn.balanceMinor=-500;r.payments={version:1,entries:[{method:'Cash',amountMinor:500,tenderedMinor:500}],balanceMinor:-500,changeMinor:0};a.receipts=[r];a.snapshots=[];a.state.selected.assignments=[{receiptId:r.id,eventId,revision:'1'}];},{salesMinor:'1000',receivedMinor:'0',paidMinor:'500',tradeCreditMinor:'1500',cashPaidMinor:'500',knownCashTenderedMinor:'0',knownCashChangeMinor:'0',operatingExpenseMinor:'1000'});
+add('tax and split payment remain separate from item sales',a=>{const r=a.receipts[0];r.taxMinor=800;r.totalMinor=10800;r.method='Split payment';r.payments={version:1,balanceMinor:10800,entries:[{method:'Cash',amountMinor:800,tenderedMinor:1000},{method:'Card (external terminal)',amountMinor:10000,tenderedMinor:10000}],changeMinor:200};},{...baseExpected,taxMinor:'800',receivedMinor:'15800',cashReceivedMinor:'5800',knownCashTenderedMinor:'1000',knownCashChangeMinor:'200',unknownCashTenderReceipts:1});
+add('payment filter matches a split tender',a=>{const r=a.receipts[0];r.method='Split payment';r.payments={version:1,balanceMinor:10000,entries:[{method:'Cash',amountMinor:2000,tenderedMinor:2000},{method:'Card (external terminal)',amountMinor:8000,tenderedMinor:8000}],changeMinor:0};a.method='Card (external terminal)';},{salesMinor:'10000',receivedMinor:'10000',cashReceivedMinor:'2000',transactions:1,operatingExpenseMinor:'1000',knownCostEventSubtotalMinor:'3000',receiptsFiltered:true});
+add('empty event preserves unavailable profit and expenses',a=>a.state.selected.assignments=[],{transactions:0,assignedReceipts:0,knownCostEventSubtotalMinor:null,operatingExpenseMinor:'1000',salesMinor:'0'});
+for(const [name,edit]of [
+ ['contradictory duplicate even outside filter',a=>{a.query='No match';const r=structuredClone(a.receipts[0]);r.note='Changed';a.receipts.push(r);}],
+ ['case alias conflicts',a=>{const r=structuredClone(a.receipts[0]);r.id=r.id.toUpperCase();r.id=r.id.replace('1111-4111','AAAA-4AAA');a.receipts[0].id=r.id.toLowerCase();a.receipts.push(r);}],
+ ['mismatched book revision',a=>a.bookRevision='2'],['foreign owner',a=>a.ownerId=id(123)],
+ ['missing assigned receipt',a=>a.receipts.pop()],['line arithmetic corruption',a=>a.receipts[0].items[0].lineMinor=999],
+ ['total arithmetic corruption',a=>a.receipts[0].totalMinor=999],['malformed receipt hidden by search',a=>{a.query='No match';a.receipts[0].createdAt='invalid';}],
+ ['ambiguous assigned receipt',a=>a.state.selected.receiptIdentityConflicts=[a.receipts[0].id]],
+ ['cloud unavailable',a=>{a.state.entryEnabled=false;a.state.receiptAccess=false;a.state.selected.candidates=null;a.state.selected.bookRevision=null;}],
+ ['conflicting cost snapshots',a=>{const s=structuredClone(a.snapshots[0]);s.lines[0].cost.minor='5000';a.snapshots.push(s);}],
+ ['unselected malformed receipt still refuses totals',a=>{a.state.selected.assignments.pop();a.receipts[1].totalMinor=1;}],
+ ['payment does not reconcile',a=>a.receipts[0].payments={version:1,balanceMinor:10000,entries:[{method:'Cash',amountMinor:9900,tenderedMinor:10000}],changeMinor:100}],
+])add(name,edit,null,false);
