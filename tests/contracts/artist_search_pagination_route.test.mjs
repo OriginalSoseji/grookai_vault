@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, sets = [], catalogFail = false, nameFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -38,6 +38,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
       createServerComponentClient: async () => ({
         rpc: async (_name, args) => {
           if (_name === 'get_search_set_catalog_v1') return {data:{complete:true,sets},error:catalogFail?{message:'offline'}:null};
+          if (nameFail) return {data:[],error:{message:'name lookup offline'}};
           if (exactCardName) assert.equal(args.q, exactCardName);
           return {data: exactCardName ? [{name:exactCardName}] : partialCardNames[args.q] ? [{name:partialCardNames[args.q]}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
         },
@@ -297,4 +298,45 @@ test('plain card-name queries expose all pages and complete legacy results', asy
   const legacy=await (await get({nextUrl:new URL('https://fixture?q='+q+'&limit=32')})).json();
   assert.equal(legacy.rows.length,195);assert.equal(legacy.pagination.total_count,195);
  }
+});
+
+
+test('catalog card names win over unqualified partial artist guesses, including a lone surname',async()=>{
+ for(const q of ['Black Market','Black Market ◇','Market']) {
+  let options;const get=loadRoute({partialCardNames:{[q]:'Black Market ◇'},capture:v=>{options=v;}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(q)+'&pagination=1')});
+  assert.equal(response.status,200);const data=await response.json();
+  assert.equal(data.smart_search.artist,undefined,q);assert.equal(data.smart_search.residualQuery,q);
+  assert.equal(options.artist,undefined);assert.equal(options.textQuery,q);assert.equal(data.pagination.total_count,195);
+ }
+});
+
+test('literal name preference retains explicit set, inline set, language and finish constraints',async()=>{
+ const sets=[{id:'teu',code:'sm9',name:'Team Up'}];
+ for(const [q,params]of [['Black Market','&set=sm9'],['Black Market from Team Up',''],['Black Market reverse holo','&lang=ja']]) {
+  let options;const get=loadRoute({sets,partialCardNames:{'Black Market':'Black Market ◇'},capture:v=>{options=v;}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(q)+'&pagination=1'+params)});
+  assert.equal(response.status,200);const data=await response.json();assert.equal(data.smart_search.artist,undefined);
+  assert.equal(options.artist,undefined);assert.equal(options.textQuery,'Black Market');
+  if(q.includes('holo')){assert.deepEqual(JSON.parse(JSON.stringify(options.finishKeys)),['reverse']);assert.equal(options.languageScope,'ja');}
+  else assert.equal(options.exactSetCode,'sm9');
+ }
+});
+
+test('explicit artist prefixes, full credits and illustrator parameters remain authoritative',async()=>{
+ for(const [q,params,artist,text]of [['artist Market Black','','TOMATO MARKET','Black'],['Black illustrated by Market','','TOMATO MARKET','Black'],['TOMATO MARKET Black','','TOMATO MARKET','Black'],['Black Market','&illustrator=Ken%20Sugimori','Ken Sugimori','Black Market'],['Black Market from Team Up','&illustrator=Ken%20Sugimori','Ken Sugimori','Black Market']]) {
+  let options;const get=loadRoute({sets:[{id:'teu',code:'sm9',name:'Team Up'}],partialCardNames:{'Black Market':'Black Market ◇'},capture:v=>{options=v;}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(q)+'&pagination=1'+params)});
+  assert.equal(response.status,200);assert.equal(options.artist,artist,q);assert.equal(options.textQuery,text,q);
+ }
+});
+
+test('absent literal names retain useful surname searches while catalog failures are explicit',async()=>{
+ let options;const get=loadRoute({partialCardNames:{'Charizard Sugimori':'Charizard'},capture:v=>{options=v;}});
+ const response=await get({nextUrl:new URL('https://fixture?q=Charizard+Sugimori&pagination=1')});
+ assert.equal(response.status,200);assert.equal(options.artist,'Ken Sugimori');assert.equal(options.textQuery,'Charizard');
+ const failed=await loadRoute({catalogFail:true})({nextUrl:new URL('https://fixture?q=Black+Market&pagination=1')});
+ assert.equal(failed.status,503);assert.equal((await failed.json()).ok,false);
+ const nameFailed=await loadRoute({nameFail:true})({nextUrl:new URL('https://fixture?q=Black+Market&pagination=1')});
+ assert.equal(nameFailed.status,503);assert.equal((await nameFailed.json()).ok,false);
 });

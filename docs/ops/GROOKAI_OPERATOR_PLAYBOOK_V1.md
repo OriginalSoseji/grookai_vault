@@ -1,5 +1,27 @@
 # Grookai Operator Playbook V1
 
+## Card names versus partial artists — October 8
+
+Work in C:/gv_product_search_names_20261008 from qualified compact-offer commit
+d4c19b0523caba1d2dee665315efdb45688f782b. Read
+docs/ops/PRODUCT_SEARCH_NAMES_20261008.md and current search contracts. Preserve
+the clean offer UI tree, Samsung429, all fixtures and433 migration bytes.
+Pokemon Black Market returns0 on the public endpoint; quoted text returns2
+canonical cards. Current parser consumes Market as artist TOMATO MARKET.
+Correct ambiguity while preserving explicit/full artist requests, surname+card
+queries, quoted text, exact IDs and game/language/set/finish scope. No SQL or
+canonical rewrites. Current-route proof must use an actual local catalog fixture;
+never point a development build at production. Public GET/catalog reads are
+read-only baseline evidence. External product_search_names_20261008/CHECKPOINT.json
+owns status. Inherited offer wrappers pin the old root; adapt dedicated helpers
+before use. Focused48 checks, types/lint and actual local15-query/browser runtime
+search-1791453545036 pass. Two images inspected;32 prior row sets and controls
+retained. The dedicated run_product_search_names_checks_v1 wrapper owns ordinary
+qualification; freeze source/lab until terminal. Full overhaul and exact combined
+release stay open. No deploy,
+upload, provider fetch or activation. No subagents.
+
+
 ## Compact offer presentation — October 8
 
 Work in C:/gv_product_offer_ui_20261008 from qualified market runtime

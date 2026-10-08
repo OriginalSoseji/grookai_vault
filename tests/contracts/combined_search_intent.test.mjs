@@ -141,3 +141,28 @@ test('negative ownership does not become positive ownership', () => {
 });
 
 test('Master Ball remains a card name alongside rarity, number and set constraints', () => {for(const q of ['Master Ball common 2024', 'Master Ball Base Set 7', 'Poke Ball uncommon']){const i=parse(q);assert.equal(i.finishKeys.length,0,q);assert.match(i.residualQuery,/ball/i);}});
+
+
+test('literal artist alternatives retain card words and independent filters', () => {
+ for(const q of ['Black Market','Black Market ◇','Market']) {
+  const inferred=parse(q),literal=parse(q,{allowPartialArtists:false});
+  assert.equal(inferred.artist,'TOMATO MARKET');assert.equal(literal.artist,undefined);assert.equal(literal.residualQuery,q);
+ }
+ const literal=parse('Pokemon Black Market reverse holo Japanese',{allowPartialArtists:false});
+ assert.equal(literal.artist,undefined);assert.equal(literal.residualQuery,'Black Market');
+ assert.equal(literal.gameScope,'pokemon');assert.equal(literal.languageScope,'ja');assert.deepEqual(plain(literal.finishKeys),['reverse']);
+});
+
+test('literal alternatives preserve explicit credits, full names and correction undo', () => {
+ for(const q of ['artist Market Black','illustrator: Market Black','Black illustrated by Market']) {
+  const literal=parse(q,{allowPartialArtists:false});assert.equal(literal.artist,'TOMATO MARKET',q);assert.equal(literal.residualQuery,'Black',q);
+ }
+ for(const q of ['TOMATO MARKET Black','Yuka Morii Wurmple','Yuka Morri Wurmple']) {
+  assert.deepEqual(plain(parse(q,{allowPartialArtists:false})),plain(parse(q)),q);
+ }
+ const correction=parse('Yuka Morri Wurmple');
+ assert.equal(parse(correction.originalSpellingQuery,{allowPartialArtists:false}).artist,'Yuka Morri');
+ assert.equal(parse('Charizard Sugimori',{allowPartialArtists:false}).residualQuery,'Charizard Sugimori');
+ assert.equal(parse('Charizard Sugimori').artist,'Ken Sugimori');
+ assert.equal(parse('Black Market',{gameScope:'mtg',allowPartialArtists:false}).artist,undefined);
+});

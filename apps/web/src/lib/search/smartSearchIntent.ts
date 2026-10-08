@@ -210,7 +210,7 @@ function parseOwnedStateIntent(query: string): SmartSearchIntent["ownedState"] {
   return undefined;
 }
 
-export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: PublicGameScope; protectedPhrases?: string[] } = {}): SmartSearchIntent {
+export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: PublicGameScope; protectedPhrases?: string[]; allowPartialArtists?: boolean } = {}): SmartSearchIntent {
   const originalQuery = normalizeWhitespace(rawQuery);
   const exactGvId = normalizeExactGvId(originalQuery);
   if (exactGvId) {
@@ -261,7 +261,7 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   // Preserve offsets while keeping the retailer phrase "Game Stop" from being
   // consumed as the partial artist credit "GAME FREAK inc.".
   const artistQuery = residual.replace(/\bgame\s+stop\b/gi, (value) => " ".repeat(value.length));
-  const combinedArtist = literalArtist ?? ((gameScope ?? options.gameScope ?? "pokemon") === "pokemon" ? recognizeCombinedArtist(artistQuery) : null);
+  const combinedArtist = literalArtist ?? ((gameScope ?? options.gameScope ?? "pokemon") === "pokemon" ? recognizeCombinedArtist(artistQuery, true, options.allowPartialArtists !== false) : null);
   if (combinedArtist) {
     if (!literalArtist) residual = residual.slice(0, combinedArtist.start) + " " + residual.slice(combinedArtist.end);
     queryFilters.push({ kind: "artist", label: `Artist: ${combinedArtist.artist}`, sourceText: combinedArtist.matchedText });

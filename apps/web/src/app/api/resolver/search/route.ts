@@ -371,22 +371,29 @@ export async function GET(request: NextRequest) {
   }
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
   const selectedGameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
-  let smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });
+  const explicitIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator"));
+  let smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope, allowPartialArtists: !explicitIllustrator });
   const gameScope = smartSearchIntent.gameScope ?? selectedGameScope;
   let query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
+  const literalArtistAlternative = (intent: SmartSearchIntent, protectedPhrases: string[] = []) => {
+    if (gameScope !== "pokemon" || !intent.artist || explicitIllustrator) return null;
+    const alternative = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases, allowPartialArtists: false });
+    return !alternative.artist && supportsCompleteNameSearch(alternative.residualQuery) ? alternative : null;
+  };
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
   let literalNameSearch = false;
+  let catalogNamePreferred = false;
   let searchSets: SearchSet[] | undefined;
   let namedFirstPage: import("@/lib/search/completeNamedCardSearch").NamedCardFirstPage | undefined;
   const searchTimings: Partial<Record<"catalog" | "name_check" | "name_pages" | "parent_read", number>> = {};
-  if (!exactSetCode && query.trim() && !/^GV-/i.test(query)) {
+  if ((!exactSetCode && query.trim() && !/^GV-/i.test(query)) || literalArtistAlternative(smartSearchIntent)) {
     try {
       const catalog = await createServerComponentClient();
       const catalogStarted = performance.now();
       searchSets = await readSearchSets(catalog, gameScope);
       searchTimings.catalog = performance.now() - catalogStarted;
-      let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets);
+      let candidate = resolveCatalogSetSearchIntent(exactSetCode ? "" : rawQuery, gameScope, searchSets);
       const ignoredOpeningWords: string[] = [];
       while (candidate.openingWordMatch && candidate.matchedAlias) {
         const ignored = [...ignoredOpeningWords, candidate.matchedAlias];
@@ -400,13 +407,30 @@ export async function GET(request: NextRequest) {
       // Preserve the candidate phrase before exact-name disambiguation: words
       // such as "Team" can otherwise be consumed as an artist in a card name.
       if (candidate.matchedAlias) {
-        smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [candidate.matchedAlias] });
+        smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope, protectedPhrases: [candidate.matchedAlias], allowPartialArtists: !explicitIllustrator });
         query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
       const nameCheckStarted = performance.now();
+      let literalCardNameVerified = false;
+      const alternative = literalArtistAlternative(smartSearchIntent, candidate.matchedAlias ? [candidate.matchedAlias] : []);
+      if (alternative) {
+        const literalQuery = resolveSmartSearchQuery(rawQuery, alternative);
+        const nameQuery = candidate.matchedAlias && !candidate.requiresCardNameCheck
+          ? removeSetPhrase(literalQuery, candidate.matchedAlias) : literalQuery;
+        // A surname can also be an ordinary word in a card name. Require
+        // literal catalog evidence before dropping the inferred artist. Never
+        // turn a failed catalog read into a different search interpretation.
+        if (supportsCompleteNameSearch(nameQuery) &&
+            await isCatalogCardNameQuery(catalog, nameQuery, gameScope, (page) => { namedFirstPage = page; })) {
+          smartSearchIntent = alternative;
+          query = literalQuery;
+          catalogNamePreferred = true;
+          literalCardNameVerified = nameQuery === literalQuery;
+        }
+      }
       const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
         (!candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
-        await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; });
+        (literalCardNameVerified || await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; }));
       searchTimings.name_check = performance.now() - nameCheckStarted;
       literalNameSearch = cardNameQuery && !smartSearchIntent.artist && supportsCompleteNameSearch(query);
       inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery
@@ -416,7 +440,7 @@ export async function GET(request: NextRequest) {
         inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias);
       }
     } catch {
-      return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
+      return NextResponse.json({ ok: false, error: "Search could not verify the card name or filters. Please try again." }, { status: 503 });
     }
   }
   const languageScope = smartSearchIntent.languageScope ?? normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
@@ -441,10 +465,10 @@ export async function GET(request: NextRequest) {
     parseBooleanParam(request.nextUrl.searchParams.get("include_pricing")) ||
     valueSortRequested;
   const explicitOwnedState = parseOwnedState(request.nextUrl.searchParams.get("owned"));
-  const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator"))
+  const exactIllustrator = explicitIllustrator
     ?? (gameScope !== "pokemon" ? smartSearchIntent.artist : undefined);
   const artistSearch = gameScope === "pokemon"
-    ? exactIllustrator ?? smartSearchIntent.artist ?? (isKnownArtistQuery(rawQuery) ? rawQuery.trim() : undefined)
+    ? exactIllustrator ?? smartSearchIntent.artist ?? (!catalogNamePreferred && isKnownArtistQuery(rawQuery) ? rawQuery.trim() : undefined)
     : undefined;
   const completeCombinedSearch = !artistSearch && Boolean(
     literalNameSearch || smartSearchIntent.queryFilters?.length || explicitFinishKeys.length || explicitStampLabels.length ||

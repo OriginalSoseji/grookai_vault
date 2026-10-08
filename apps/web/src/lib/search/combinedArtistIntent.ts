@@ -3,6 +3,7 @@ import artistNames from "./pokemonArtistNames.json";
 const normalize = (value: string) => value.normalize("NFKC").toLocaleLowerCase("en");
 const ignored = new Set(["art", "artist", "illustrator", "card", "cards", "pokemon", "project", "studio"]);
 const artists = artistNames.artists.map((name) => ({ name, tokens: normalize(name).split(/\s+/) }));
+const artistPrefix = /\b(?:(?:illustrated|drawn|art)\s+by|artist|illustrator)\s*:?\s*$/i;
 
 // Correction is deliberately limited to a single edit in a full, multiword
 // credit. A partial name or a near tie must never silently choose an artist.
@@ -40,7 +41,7 @@ export function recognizeLiteralArtist(query: string): CombinedArtistIntent | nu
   return null;
 }
 
-export function recognizeCombinedArtist(query: string, allowCorrection = true): CombinedArtistIntent | null {
+export function recognizeCombinedArtist(query: string, allowCorrection = true, allowPartial = true): CombinedArtistIntent | null {
   // Unqualified quoted text is literal, never an inferred artist.
   const searchable = query.replace(/"[^"\n]*"/g, (value) => " ".repeat(value.length));
   const words = [...searchable.matchAll(/[^\s,]+/g)].map((match) => ({
@@ -72,6 +73,9 @@ export function recognizeCombinedArtist(query: string, allowCorrection = true): 
     for (let index = 0; index < words.length; index++) {
       const token = words[index].value;
       if (token.length < 3 || ignored.has(token)) continue;
+      // A literal alternative suppresses guesses, while an explicit artist
+      // prefix continues to identify the requested contributor.
+      if (!allowPartial && !artistPrefix.test(query.slice(0, words[index].start))) continue;
       const names = artists.filter((artist) => artist.tokens.length >= 2 &&
         (artist.tokens[0] === token || artist.tokens.at(-1) === token)).map((artist) => artist.name);
       if (names.length) {
@@ -84,7 +88,7 @@ export function recognizeCombinedArtist(query: string, allowCorrection = true): 
   let start = words[match.start].start;
   const end = words[match.end - 1].end;
   const original = query.slice(start, end);
-  const prefix = query.slice(0, start).match(/\b(?:(?:illustrated|drawn|art)\s+by|artist|illustrator)\s*:?\s*$/i);
+  const prefix = query.slice(0, start).match(artistPrefix);
   if (prefix) start -= prefix[0].length;
   return {
     artist: match.names.length === 1 ? match.names[0] : original,
