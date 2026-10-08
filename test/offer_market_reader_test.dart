@@ -94,6 +94,7 @@ class ReferenceHarness {
           'vendor_sales_cart_available_v1' ||
           'vendor_sales_trade_available_v1' ||
           'vendor_sales_payments_available_v1' ||
+          'vendor_sales_negotiated_trade_available_v1' => false,
           'vendor_sales_purchase_available_v1' => false,
           _ => throw StateError('Unexpected route $name'),
         };

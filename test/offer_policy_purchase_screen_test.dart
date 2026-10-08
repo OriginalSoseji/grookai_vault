@@ -96,6 +96,7 @@ Future<void> open(
   WidgetTester tester,
   PolicyDialogFixture service, {
   bool quick = true,
+  bool negotiated = false,
   Map<String, dynamic>? line,
   Size size = const Size(430, 932),
 }) async {
@@ -115,6 +116,7 @@ Future<void> open(
                 builder: (_) => SalesPurchaseDialog(
                   service: service,
                   quick: quick,
+                  negotiated: negotiated,
                   line: line,
                 ),
               );
@@ -146,8 +148,9 @@ Future<void> canonical(
   WidgetTester tester,
   PolicyDialogFixture service, {
   Size size = const Size(430, 932),
+  bool negotiated = false,
 }) async {
-  await open(tester, service, quick: false, size: size);
+  await open(tester, service, quick: false, size: size, negotiated: negotiated);
   await enter(tester, 'Find incoming card', 'Catalog');
   await tester.pump(const Duration(milliseconds: 200));
   await tester.pumpAndSettle();
@@ -192,6 +195,43 @@ void main() {
           findsOneWidget,
         );
         expect(textValue(tester, 'Agreed price per item (USD)'), '6.50');
+      }
+    },
+  );
+  testWidgets(
+    'newly saved trade policy preserves agreed credit across tier and rounding',
+    (tester) async {
+      final s = PolicyDialogFixture();
+      await canonical(tester, s, negotiated: true);
+      await enter(tester, 'Agreed credit for this whole line (USD)', '6.50');
+      await enter(tester, 'Reference value per item (USD)', '10.00');
+      await tapVisible(tester, find.text('Offer policies'));
+      await enter(tester, 'Policy name', 'Private device trade');
+      await enter(tester, 'Policy percentage', '60');
+      await choose(tester, 'Round to', 'USD 0.50');
+      await choose(tester, 'Rounding rule', 'Down');
+      await tapVisible(tester, find.text('Use a low-value tier'));
+      await enter(tester, 'Tier reference ceiling per item (USD)', '5.00');
+      await enter(tester, 'Tier percentage', '40');
+      await tapVisible(tester, find.text('Save new policy'));
+      await choose(tester, 'Default trade policy', 'Private device trade');
+      await tapVisible(tester, find.text('Use Private device trade'));
+      await tapVisible(tester, find.text('Offer policies'));
+      for (final sample in {
+        '5.00': '2.00',
+        '10.99': '6.50',
+        '10.00': '6.00',
+      }.entries) {
+        await enter(tester, 'Reference value per item (USD)', sample.key);
+        expect(textValue(tester, 'Reference value per item (USD)'), sample.key);
+        expect(
+          find.textContaining('Suggested offer: USD ${sample.value}'),
+          findsOneWidget,
+        );
+        expect(
+          textValue(tester, 'Agreed credit for this whole line (USD)'),
+          '6.50',
+        );
       }
     },
   );

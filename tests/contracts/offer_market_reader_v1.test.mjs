@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import {createRequire} from 'node:module';
 import * as policies from '../../apps/web/src/lib/sales/offerPolicies.mjs';
+import * as negotiated from '../../apps/web/src/lib/sales/negotiatedTrade.mjs';
 const require = createRequire(new URL('../../apps/web/package.json', import.meta.url));
 const ts = require('typescript');
 const source = fs.readFileSync(new URL('../../apps/web/src/app/api/sales/desk/route.ts', import.meta.url), 'utf8');
@@ -24,6 +25,7 @@ function harness() {
         '@/lib/cards/getPublicCardPrintingOptions': {getPublicCardPrintingOptions: async (received, ids) => {assert.equal(received, client); h.calls.push({name: 'printings', args: ids}); return h.options;}},
         '@/lib/canon/resolveCardImageFieldsV1': {}, '@/lib/cards/resolveDisplayIdentity': {},
         '@/lib/sales/salesScanner.mjs': {}, '@/lib/sales/salesPurchase.mjs': {}, '@/lib/sales/offerPolicies.mjs': policies,
+        '@/lib/sales/negotiatedTrade.mjs': negotiated,
     };
     vm.runInNewContext(compiled, {exports, Date, require: name => {assert.ok(name in deps, name); return deps[name];}});
     h.read = (changes = {}) => exports.GET({nextUrl: new URL('http://fixture.test/api/sales/desk?' + new URLSearchParams({action: 'offer-reference', owner, cardId: card, printingId: printing, ...changes}))});

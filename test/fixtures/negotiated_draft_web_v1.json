@@ -1,0 +1,2384 @@
+{
+  "sourceSha256": "16972ecdf3b2088f55769e0d4adfce4efe660bad54eeb115ec6db2d6fc01d7e1",
+  "cases": [
+    {
+      "name": "new empty draft",
+      "fn": "newNegotiatedDraft",
+      "args": [
+        "11111111-1111-4111-8111-111111111111",
+        ""
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "",
+          "items": [],
+          "trades": [],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      }
+    },
+    {
+      "name": "validated draft",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      }
+    },
+    {
+      "name": "whole line totals",
+      "fn": "negotiatedDraftTotals",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "subtotal": 1000,
+          "credit": 650,
+          "total": 1000,
+          "balance": 350
+        }
+      }
+    },
+    {
+      "name": "private-safe preview",
+      "fn": "negotiatedDraftCustomerView",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "storeName": "Shop",
+          "items": [
+            {
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "quantity": 3,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "subtotal": 1000,
+          "credit": 650,
+          "total": 1000,
+          "balance": 350
+        }
+      }
+    },
+    {
+      "name": "exact request",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        },
+        "11111111-1111-4111-8111-111111111111",
+        true
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Shop",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": null,
+                "rateBps": null,
+                "quantity": 3,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE",
+            "customerId": null,
+            "customer": {
+              "name": "",
+              "email": "",
+              "phone": "",
+              "wants": "",
+              "notes": ""
+            },
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 350
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "requires exchange confirmation",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        },
+        "11111111-1111-4111-8111-111111111111",
+        false
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "empty cannot complete",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [],
+          "trades": [],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        },
+        "11111111-1111-4111-8111-111111111111",
+        true
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 0",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "sale",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 1",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 2",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          },
+          "extra": true
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 3",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "bad",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 4",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": -1,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 5",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 100000001,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 6",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 7",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 2,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 8",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 0
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 9",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            },
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 10",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "extra": true
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 11",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "image": 1
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 12",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "askingMinor": -1
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 13",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": null,
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 14",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": -1
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 15",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 100000001
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 16",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": 1000,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 17",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": 6000,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 18",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": true,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 19",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": "bad",
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 20",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": "",
+            "extra": true
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 21",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          },
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 0,
+              "tenderedMinor": 0,
+              "extra": true
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 22",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          },
+          "payments": [
+            {
+              "method": "Unknown",
+              "amountMinor": 1,
+              "tenderedMinor": 1
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reject draft 23",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            },
+            {
+              "description": "Quick",
+              "quantity": 1,
+              "unitMinor": 1
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "settlement 0",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 0
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        },
+        "11111111-1111-4111-8111-111111111111",
+        true
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Shop",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": null,
+                "rateBps": null,
+                "quantity": 3,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 0
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE",
+            "customerId": null,
+            "customer": {
+              "name": "",
+              "email": "",
+              "phone": "",
+              "wants": "",
+              "notes": ""
+            },
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 1000,
+                "tenderedMinor": 1000
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "settlement 1000",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 1000
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        },
+        "11111111-1111-4111-8111-111111111111",
+        true
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Shop",
+            "method": "Other",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": null,
+                "rateBps": null,
+                "quantity": 3,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE",
+            "customerId": null,
+            "customer": {
+              "name": "",
+              "email": "",
+              "phone": "",
+              "wants": "",
+              "notes": ""
+            },
+            "payments": []
+          }
+        }
+      }
+    },
+    {
+      "name": "settlement 1500",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 1500
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        },
+        "11111111-1111-4111-8111-111111111111",
+        true
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Shop",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": null,
+                "rateBps": null,
+                "quantity": 3,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 1500
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE",
+            "customerId": null,
+            "customer": {
+              "name": "",
+              "email": "",
+              "phone": "",
+              "wants": "",
+              "notes": ""
+            },
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 500,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "incomplete edits may hold",
+      "fn": "validateNegotiatedDraft",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "incomplete",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          },
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 1,
+              "tenderedMinor": 1
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "incomplete",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          },
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 1,
+              "tenderedMinor": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "incomplete edits cannot complete",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "incomplete",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          },
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 1,
+              "tenderedMinor": 1
+            }
+          ]
+        },
+        "11111111-1111-4111-8111-111111111111",
+        true
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "reference does not reprice agreement",
+      "fn": "negotiatedDraftRequest",
+      "args": [
+        {
+          "kind": "negotiated-trade",
+          "id": "11111111-1111-4111-8111-111111111111",
+          "label": "Walk-up trader",
+          "storeName": "Shop",
+          "items": [
+            {
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "gvviId": "GVVI-PRIVATE",
+              "description": "Outgoing",
+              "quantity": 1,
+              "unitMinor": 1000
+            }
+          ],
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": 1000,
+              "rateBps": 6000,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "taxMinor": 0,
+          "method": "Cash",
+          "note": "PRIVATE",
+          "customerId": null,
+          "customer": {
+            "name": "",
+            "email": "",
+            "phone": "",
+            "wants": "",
+            "notes": ""
+          }
+        },
+        "11111111-1111-4111-8111-111111111111",
+        true
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Shop",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 3,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE",
+            "customerId": null,
+            "customer": {
+              "name": "",
+              "email": "",
+              "phone": "",
+              "wants": "",
+              "notes": ""
+            },
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 350
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,5 +1,37 @@
 # Grookai Agent Entry Point
 
+## Negotiated trade entry — October 8
+
+Current tree: C:/gv_product_trade_entry_20261008, from qualified backend
+2e465a1fba6a3167c462787a6bc20f8c05b91c84. Read
+[entry checkpoint](docs/ops/PRODUCT_TRADE_ENTRY_20261008.md) and
+VENDOR_NEGOTIATED_TRADE_V1. Preserve the clean backend and all earlier labs.
+No SQL change: retain all433 qualified migration files and exact hashes.
+
+Web and native now have distinct Trade drafts with explicit whole-line credit,
+canonical/quick incoming lines, optional policy proposals, opaque customer views
+and exact pending-request acknowledgement/recovery. Old Sale/Buy/Trade meanings
+and owner journal keys are preserved. Failed saves block navigation and sending.
+Current focused checks:100 Node/API,4 environment checks,43 browser/workspace,
+87 native screen/policy regressions plus one additional control-navigation case.
+19 trade-screen/control cases pass. Types/lint/Flutter analysis pass.
+
+Real browser Auth/RPC passes at web-runtime-1791442555662. Samsung420 passes both
+processes at device-1791443277674 with seven inspected screens: two incoming
+copies at USD0/6.50, whole-line quick credit, held/default policy retention,
+entry-off exact recovery with no second completion, and account closure.
+Native source hashes still match the APK. Primary Samsung app is unchanged.
+All14 retained-table checks pass. Full433 now retains62 copies/eight users/ten
+requests/seven cost snapshots; all eight controls are off. Keep every failed
+run and consumed fixture; never reset the populated lab or reuse its requests.
+
+External product_trade_entry_20261008/CHECKPOINT.json owns ordinary-hook status.
+Use the dedicated run_product_trade_entry_checks_v1 wrapper with reviewed staged
+source, a source/lab freeze and read-only full433 credentials. No production
+release, upload or activation is implied. Governed market publication runtime,
+iOS, exact combined release and the measured competitor benchmark remain open.
+Keep the full overhaul goal active.
+
 ## Negotiated trade continuation — October 7
 
 Read docs/ops/PRODUCT_NEGOTIATED_TRADE_20261007.md and VENDOR_NEGOTIATED_TRADE_V1.

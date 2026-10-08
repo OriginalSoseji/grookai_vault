@@ -12,6 +12,9 @@ import '../../services/sales/sales_trade.dart';
 import '../../services/sales/sales_payments.dart';
 import 'sales_payment_editor.dart';
 import 'sales_purchase_panel.dart';
+import 'sales_purchase_dialog.dart';
+import '../../services/sales/negotiated_draft.dart';
+import '../../services/sales/negotiated_trade.dart';
 import '../../services/sales/purchase_drafts.dart';
 import '../../services/sales/sales_purchase.dart';
 import '../../services/sales/sales_drafts.dart';
@@ -45,7 +48,16 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   final List<SalesTradeLine> _trades = [];
   SalesDeskData? _data;
   Map<String, dynamic>? _pending, _receipt, _customer;
-  Map<String, dynamic>? _purchaseDraft;
+  Map<String, dynamic>? _purchaseDraft, _negotiatedDraft;
+  final List<Map<String, dynamic>> _agreedTrades = [];
+  String? _negotiatedInputError;
+  bool get _negotiated => _negotiatedDraft != null;
+  bool get _tradeUnavailable =>
+      _negotiated && _data?.negotiatedTradesAvailable != true;
+  bool get _entryLocked => _locked || _tradeUnavailable;
+  int get _credit => _negotiated
+      ? _agreedTrades.fold<int>(0, (n, t) => n + (t['creditMinor'] as int))
+      : _trades.fold<int>(0, (n, t) => n + t.creditMinor);
   bool _loading = true, _busy = false, _showCart = false;
   int _pendingScans = 0;
   bool get _scanPending => _pendingScans > 0;
@@ -63,7 +75,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         saleMoneyInput(_tax.text) ?? 0,
         (n, l) => n + l.quantity * l.unitMinor,
       ) -
-      _trades.fold<int>(0, (n, t) => n + t.creditMinor);
+      _credit;
   Map<String, dynamic>? _draftBook;
   Future<void> _draftWrites = Future<void>.value();
   bool _restoringDraft = true;
@@ -227,7 +239,27 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         }
         if (_store.text.isEmpty) _store.text = data.storeName;
         _pending = data.pending;
-        if (_pending != null && (_pending!['cart'] as Map)['version'] == 4) {
+        if (_pending != null && (_pending!['cart'] as Map)['version'] == 5) {
+          final request = validateNegotiatedTradeRequest({
+            'id': _pending!['id'],
+            'cart': _pending!['cart'],
+          });
+          final cart = request['cart'] as Map;
+          _restoreDraft(
+            {
+              ...newNegotiatedDraft(
+                _pending!['draftId'] as String? ?? _pending!['id'] as String,
+                cart['storeName'] as String,
+              ),
+              ...cart,
+              'method': salesTenderMethods.contains(cart['method'])
+                  ? cart['method']
+                  : 'Other',
+            }..remove('version'),
+          );
+          _restoringDraft = true;
+        } else if (_pending != null &&
+            (_pending!['cart'] as Map)['version'] == 4) {
           final request = validatePurchaseRequest({
             'id': _pending!['id'],
             'cart': _pending!['cart'],
@@ -246,6 +278,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           });
           _restoringDraft = true;
         } else if (_pending != null) {
+          _negotiatedDraft = null;
+          _agreedTrades.clear();
           _purchaseDraft = null;
           final cart = _pending!['cart'] as Map;
           _store.text = cart['storeName'] as String;
@@ -327,6 +361,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
 
   void _restoreDraft(Map<String, dynamic> d) {
     _restoringDraft = true;
+    _negotiatedInputError = null;
+    _negotiatedDraft = isNegotiatedDraft(d) ? validateNegotiatedDraft(d) : null;
+    _agreedTrades.clear();
     if (isPurchaseDraft(d)) {
       _purchaseDraft = validatePurchaseDraft(d);
       _store.text = d['storeName'] as String;
@@ -337,7 +374,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
     _purchaseDraft = null;
     _store.text = d['storeName'] as String;
-    _tax.text = d['tax'] as String;
+    _tax.text = _negotiated
+        ? saleMoney(d['taxMinor'] as int)
+        : d['tax'] as String;
     _note.text = d['note'] as String;
     _method = d['method'] as String;
     _payments = (d['payments'] as List?)
@@ -361,7 +400,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             quantity: l['quantity'] as int,
             instanceId: l['instanceId'] as String?,
             gvviId: l['gvviId'] as String?,
-            imageUrl: l['imageUrl'] as String?,
+            imageUrl: (_negotiated ? l['image'] : l['imageUrl']) as String?,
             fallbackImageUrl: l['fallbackImageUrl'] as String?,
           ),
         ),
@@ -369,10 +408,52 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     _trades
       ..clear()
       ..addAll(
-        (d['trades'] as List).map((t) => SalesTradeLine.fromJson(t as Map)),
+        _negotiated
+            ? <SalesTradeLine>[]
+            : (d['trades'] as List).map(
+                (t) => SalesTradeLine.fromJson(t as Map),
+              ),
       );
+    if (_negotiated) {
+      _agreedTrades.addAll(
+        (d['trades'] as List).map((t) => Map<String, dynamic>.from(t as Map)),
+      );
+    }
     _restoringDraft = false;
   }
+
+  Map<String, dynamic> _negotiatedSnapshot() => validateNegotiatedDraft(
+    {
+      ..._negotiatedDraft!,
+      'storeName': _store.text,
+      'taxMinor': saleMoneyInput(_tax.text),
+      'note': _note.text,
+      'method': _method,
+      'customerId': _customer?['id'],
+      'customer': {
+        'name': _name.text,
+        'email': _email.text,
+        'phone': _phone.text,
+        'wants': _wants.text,
+        'notes': _customer?['notes'] ?? _negotiatedDraft!['customer']['notes'],
+      },
+      'items': _lines
+          .map(
+            (l) => {
+              ...l.toJson(),
+              if (l.gvviId != null) 'gvviId': l.gvviId,
+              if (l.imageUrl != null || l.fallbackImageUrl != null)
+                'image': l.imageUrl ?? l.fallbackImageUrl,
+            },
+          )
+          .toList(),
+      'trades': _agreedTrades.map((t) => Map<String, dynamic>.from(t)).toList(),
+      if (_payments != null)
+        'payments': _payments!
+            .map((p) => Map<String, dynamic>.from(p))
+            .toList(),
+    }..removeWhere((key, value) => key == 'payments' && _payments == null),
+  );
 
   void _queueDraft() {
     if (_draftBook == null ||
@@ -382,7 +463,19 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         _receipt != null) {
       return;
     }
+    Map<String, dynamic>? negotiated;
+    if (_negotiated) {
+      try {
+        negotiated = _negotiatedSnapshot();
+        _negotiatedInputError = null;
+      } catch (_) {
+        _negotiatedInputError =
+            'Check the trade amounts and details. Keep this desk open until this edit saves.';
+        return;
+      }
+    }
     final snapshot =
+        negotiated ??
         _purchaseDraft ??
         {
           'id': _draftBook!['active'],
@@ -416,7 +509,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         };
     _draftBook = {
       ..._draftBook!,
-      if (_purchaseDraft != null) 'version': 2,
+      if (_negotiated) 'version': 3,
+      if (_purchaseDraft != null && _draftBook!['version'] != 3) 'version': 2,
       'drafts': (_draftBook!['drafts'] as List)
           .map((d) => d['id'] == snapshot['id'] ? snapshot : d)
           .toList(),
@@ -442,6 +536,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Future<void> _flushDraft() async {
     _queueDraft();
     await _draftWrites;
+    if (_negotiatedInputError != null) throw StateError(_negotiatedInputError!);
     if (_draftError != null) throw StateError(_draftError!);
   }
 
@@ -465,8 +560,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     await _flushDraft();
   }
 
-  Future<void> _newPurchase() async {
-    if (_locked || _draftBook == null || _data?.purchasesAvailable != true) {
+  Future<void> _newPurchase({bool negotiated = false}) async {
+    if (_locked ||
+        _draftBook == null ||
+        (negotiated
+                ? _data?.negotiatedTradesAvailable
+                : _data?.purchasesAvailable) !=
+            true) {
       return;
     }
     setState(() => _editing = true);
@@ -482,10 +582,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       if (drafts.length >= 20) {
         throw StateError('Resume a held deal before creating another.');
       }
-      final draft = blankPurchaseDraft(newSaleId(), _store.text);
+      final draft = negotiated
+          ? newNegotiatedDraft(newSaleId(), _store.text)
+          : blankPurchaseDraft(newSaleId(), _store.text);
       final next = {
         ..._draftBook!,
-        'version': 2,
+        'version': negotiated || _draftBook!['version'] == 3 ? 3 : 2,
         'active': draft['id'],
         'drafts': [...drafts, draft],
       };
@@ -534,13 +636,15 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                         (d['customer']['name'] as String).isEmpty
                             ? isPurchaseDraft(d)
                                   ? 'Walk-up seller'
+                                  : isNegotiatedDraft(d)
+                                  ? 'Walk-up trader'
                                   : 'Walk-up customer'
                             : d['customer']['name'] as String,
                       ),
                       subtitle: Text(
                         isPurchaseDraft(d)
                             ? 'Buy · ${(d['items'] as List).length} incoming lines · USD ${saleMoney(purchaseDraftTotal(Map<String, dynamic>.from(d as Map)))}'
-                            : '${(d['items'] as List).length} sale lines · ${(d['trades'] as List).length} trade lines',
+                            : '${isNegotiatedDraft(d) ? 'Trade · ' : ''}${(d['items'] as List).length} sale lines · ${(d['trades'] as List).length} trade lines',
                       ),
                       onTap: () => Navigator.pop(context, d['id'] as String),
                       trailing: IconButton(
@@ -685,7 +789,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     int? index,
     bool scanned = false,
   }) async {
-    if (_baseLocked || (_scanPending && !scanned)) return;
+    if (_baseLocked || _tradeUnavailable || (_scanPending && !scanned)) return;
     if (index == null && _lines.length >= 50) {
       _message('A sale can contain up to 50 lines.');
       return;
@@ -716,7 +820,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   }
 
   Future<void> _catalog() async {
-    if (_locked || _lines.length >= 50) return;
+    if (_entryLocked || _negotiated || _lines.length >= 50) return;
     setState(() {
       _catalogOpen = true;
       _tradeOpen = false;
@@ -774,6 +878,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     bool scanned = false,
   }) async {
     if (_baseLocked ||
+        _tradeUnavailable ||
         (_scanPending && !scanned) ||
         _lines.length >= 50 ||
         _lines.any((line) => line.instanceId == copy.instanceId)) {
@@ -816,6 +921,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     if (!mounted ||
         !current() ||
         _baseLocked ||
+        _tradeUnavailable ||
         _accountChanged ||
         generation != _deskGeneration ||
         target != _draftBook?['active']) {
@@ -853,6 +959,41 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   }
 
   Future<void> _trade({int? index}) async {
+    if (_negotiated) {
+      if (_entryLocked || (index == null && _agreedTrades.length >= 50)) return;
+      setState(() => _editing = true);
+      try {
+        final line = await showDialog<Map<String, dynamic>>(
+          context: context,
+          builder: (_) => SalesPurchaseDialog(
+            service: _service,
+            negotiated: true,
+            line: index == null ? null : _agreedTrades[index],
+            canAdd: () =>
+                !_accountChanged &&
+                !_busy &&
+                _pending == null &&
+                !_tradeUnavailable,
+          ),
+        );
+        if (!mounted || _accountChanged || line == null) return;
+        final checked = validateNegotiatedTradeLine(line);
+        _edited(() {
+          if (index == null) {
+            _agreedTrades.add(checked);
+          } else {
+            _agreedTrades[index] = checked;
+          }
+          _error = null;
+        });
+        await _flushDraft();
+      } catch (error) {
+        _message(error.toString());
+      } finally {
+        if (mounted) setState(() => _editing = false);
+      }
+      return;
+    }
     if (_locked ||
         _data?.tradesAvailable != true ||
         (index == null && _trades.length >= 50)) {
@@ -882,6 +1023,26 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   }
 
   Widget _tradeSummary(int total) {
+    if (_negotiated) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (final trade in _agreedTrades)
+            Text(
+              '${trade['quantity']} × ${trade['description']} · USD ${saleMoney(trade['creditMinor'] as int)} agreed credit',
+            ),
+          Text('Outgoing total: USD ${saleMoney(total)}'),
+          Text('Agreed trade credit: USD ${saleMoney(_credit)}'),
+          Text(
+            '${total < _credit
+                ? 'Pay customer'
+                : total == _credit
+                ? 'Even trade'
+                : 'Receive'}: USD ${saleMoney((total - _credit).abs())}',
+          ),
+        ],
+      );
+    }
     final credit = _trades.fold<int>(0, (n, t) => n + t.creditMinor);
     final balance = total - credit;
     return Column(
@@ -986,6 +1147,80 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     }
   }
 
+  Future<bool> _prepareNegotiated() async {
+    if (_tradeUnavailable || !_negotiated) {
+      _message('New trades are unavailable. Your held agreement is kept.');
+      return false;
+    }
+    setState(() => _editing = true);
+    try {
+      if (await _service.pendingCatalogAdd() != null) {
+        throw StateError(
+          'Recover the saved catalog add before completing this trade.',
+        );
+      }
+      await _flushDraft();
+      final draft = _negotiatedSnapshot();
+      final request = negotiatedDraftRequest(draft, newSaleId(), true);
+      if (!mounted || _accountChanged) return false;
+      final balance = negotiatedDraftTotals(draft)['balance']!;
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Record this trade?'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  '${balance < 0
+                      ? 'Pay customer'
+                      : balance == 0
+                      ? 'Even trade'
+                      : 'Receive'}: USD ${saleMoney(balance.abs())}',
+                ),
+                ...salesPaymentLines({
+                  'payments': salesPaymentSnapshot(
+                    (request['cart']['payments'] as List)
+                        .map((p) => Map<String, dynamic>.from(p as Map))
+                        .toList(),
+                    balance,
+                  ),
+                  'method': request['cart']['method'],
+                  'totalMinor': negotiatedDraftTotals(draft)['total'],
+                  'tradeIn': {'balanceMinor': balance},
+                }, (n) => 'USD ${saleMoney(n)}').map(Text.new),
+                const SizedBox(height: 16),
+                Text(
+                  'Confirm the cards and money have been exchanged. ${_agreedTrades.where((t) => t['addToVault'] == true).length} incoming copies will be added with their agreed credit as USD cost; ${_lines.where((l) => l.instanceId != null).length} outgoing copies will be marked sold. Grookai records the exchange and does not move money.',
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Back'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Exchange completed · Record trade'),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true || !mounted || _accountChanged) return false;
+      setState(() => _pending = {...request, 'draftId': draft['id']});
+      return true;
+    } catch (error) {
+      _message(error.toString());
+      return false;
+    } finally {
+      if (mounted) setState(() => _editing = false);
+    }
+  }
+
   Future<void> _complete() async {
     if (_scanPending ||
         _busy ||
@@ -1000,6 +1235,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         !await _preparePurchase()) {
       return;
     }
+    if (_pending == null && _negotiated && !await _prepareNegotiated()) return;
     if (!mounted || _accountChanged) return;
     if (_pending == null) {
       final tax = saleMoneyInput(_tax.text);
@@ -1186,6 +1422,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         });
       }
     } on PostgrestException catch (error) {
+      if (_pending?['cart']?['version'] == 5) {
+        _message(
+          'Trade status is unconfirmed. Keep and recover this exact request before starting another trade.',
+        );
+        return;
+      }
       // These are authoritative transaction failures, not lost HTTP responses.
       if (const {
         '22023',
@@ -1215,7 +1457,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       }
     } catch (_) {
       _message(
-        _purchaseDraft != null
+        _negotiated
+            ? 'Trade status is unconfirmed. Retry this same trade to recover its receipt without recording it twice.'
+            : _purchaseDraft != null
             ? 'Purchase status is unconfirmed. Retry this same purchase to recover its receipt without recording it twice.'
             : 'Sale status is unconfirmed. Retry this same sale to recover its receipt without recording it twice.',
       );
@@ -1249,6 +1493,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       setState(() {
         _restoringDraft = true;
         _purchaseDraft = null;
+        _negotiatedDraft = null;
+        _agreedTrades.clear();
+        _negotiatedInputError = null;
         _lines.clear();
         _trades.clear();
         _payments = null;
@@ -1300,7 +1547,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     padding: const EdgeInsets.only(bottom: 12),
     child: TextField(
       controller: controller,
-      enabled: !_locked,
+      enabled: !_entryLocked,
       readOnly: readOnly,
       keyboardType: keyboard,
       maxLength: limit,
@@ -1330,6 +1577,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     disabled:
         !_workspaceActive ||
         _baseLocked ||
+        _tradeUnavailable ||
         _data?.available != true ||
         _catalogOpen ||
         _tradeOpen,
@@ -1349,12 +1597,15 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           label: Text('Your stock'),
           icon: Icon(Icons.style_outlined),
         ),
-        const ButtonSegment(
-          value: 'catalog',
-          label: Text('Catalog'),
-          icon: Icon(Icons.search),
-        ),
-        if (_data?.tradesAvailable == true)
+        if (!_negotiated)
+          const ButtonSegment(
+            value: 'catalog',
+            label: Text('Catalog'),
+            icon: Icon(Icons.search),
+          ),
+        if (_negotiated
+            ? _data?.negotiatedTradesAvailable == true
+            : _data?.tradesAvailable == true)
           const ButtonSegment(
             value: 'trade',
             label: Text('Trade-in'),
@@ -1368,7 +1619,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             ? 'catalog'
             : 'stock',
       },
-      onSelectionChanged: _locked
+      onSelectionChanged: _entryLocked
           ? null
           : (values) {
               switch (values.first) {
@@ -1392,7 +1643,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         service: _service,
         embedded: true,
         onClose: () => setState(() => _tradeOpen = false),
-        canAdd: () => !_locked && _trades.length < 50,
+        canAdd: () => !_entryLocked && _trades.length < 50,
         onAdded: (line) => _edited(() => _trades.add(line)),
       );
     }
@@ -1433,7 +1684,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     ),
                     const SizedBox(height: 12),
                     FilledButton.icon(
-                      onPressed: _locked ? null : () => _edit(),
+                      onPressed: _entryLocked ? null : () => _edit(),
                       icon: const Icon(Icons.add),
                       label: const Text('Quick-add unlisted item'),
                     ),
@@ -1481,7 +1732,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     final card = Card(
                       clipBehavior: Clip.antiAlias,
                       child: InkWell(
-                        onTap: _locked || selected ? null : () => _addCopy(row),
+                        onTap: _entryLocked || selected
+                            ? null
+                            : () => _addCopy(row),
                         child: Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
@@ -1526,7 +1779,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                               SizedBox(
                                 width: double.infinity,
                                 child: FilledButton.tonalIcon(
-                                  onPressed: _locked || selected
+                                  onPressed: _entryLocked || selected
                                       ? null
                                       : () => _addCopy(row),
                                   icon: Icon(
@@ -1548,7 +1801,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     return LongPressDraggable<VendorPricingWorkspaceRow>(
                       key: ValueKey('drag-${row.instanceId}'),
                       data: row,
-                      maxSimultaneousDrags: _locked || selected ? 0 : 1,
+                      maxSimultaneousDrags: _entryLocked || selected ? 0 : 1,
                       feedback: Material(
                         elevation: 12,
                         borderRadius: BorderRadius.circular(16),
@@ -1586,7 +1839,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       key: const Key('sales-cart-scroll'),
       padding: const EdgeInsets.all(20),
       children: [
-        Text('Sale cart', style: Theme.of(context).textTheme.headlineSmall),
+        Text(
+          _negotiated ? 'Your trade' : 'Sale cart',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
         OutlinedButton.icon(
           onPressed: _lines.isEmpty || _busy || _scanPending
               ? null
@@ -1596,8 +1852,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
         ),
         const SizedBox(height: 8),
         if (_pending != null) ...[
-          const Text(
-            'This sale is preserved for recovery. Retry the same request to check or finish it.',
+          Text(
+            _negotiated
+                ? 'This trade is preserved for recovery. Retry the same request to check or finish it.'
+                : 'This sale is preserved for recovery. Retry the same request to check or finish it.',
           ),
           const SizedBox(height: 12),
           Text(
@@ -1611,12 +1869,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           ),
         for (var i = 0; i < _lines.length; i++) _cartLine(i),
         OutlinedButton.icon(
-          onPressed: _locked ? null : () => _edit(),
+          onPressed: _entryLocked ? null : () => _edit(),
           icon: const Icon(Icons.add),
           label: const Text('Quick-add item'),
         ),
         const Divider(height: 32),
-        if (_data?.tradesAvailable == true || _trades.isNotEmpty) ...[
+        if (_negotiated) ...[
           Row(
             children: [
               Expanded(
@@ -1626,7 +1884,45 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                 ),
               ),
               OutlinedButton.icon(
-                onPressed: _locked || _trades.length >= 50
+                onPressed: _entryLocked || _agreedTrades.length >= 50
+                    ? null
+                    : () => _trade(),
+                icon: const Icon(Icons.swap_horiz),
+                label: const Text('Add trade-in'),
+              ),
+            ],
+          ),
+          for (var i = 0; i < _agreedTrades.length; i++)
+            Card(
+              child: ListTile(
+                title: Text(_agreedTrades[i]['description'] as String),
+                subtitle: Text(
+                  '${_agreedTrades[i]['quantity']} item(s) · USD ${saleMoney(_agreedTrades[i]['creditMinor'] as int)} agreed credit for this line${_agreedTrades[i]['addToVault'] == true ? ' · add to Vault' : ''}',
+                ),
+                onTap: _entryLocked ? null : () => _trade(index: i),
+                trailing: IconButton(
+                  tooltip: 'Remove trade ${i + 1}',
+                  icon: const Icon(Icons.close),
+                  onPressed: _entryLocked
+                      ? null
+                      : () => _edited(() => _agreedTrades.removeAt(i)),
+                ),
+              ),
+            ),
+          const Divider(height: 32),
+        ],
+        if (!_negotiated &&
+            (_data?.tradesAvailable == true || _trades.isNotEmpty)) ...[
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Customer trade-ins',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ),
+              OutlinedButton.icon(
+                onPressed: _entryLocked || _trades.length >= 50
                     ? null
                     : () => _trade(),
                 icon: const Icon(Icons.swap_horiz),
@@ -1642,11 +1938,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                   '${_trades[i].quantity} × USD ${saleMoney(_trades[i].valueMinor)} at ${tradeRate(_trades[i].rateBps)}%\n'
                   'USD ${saleMoney(_trades[i].creditMinor)} trade credit${_trades[i].addToVault ? ' · add to Vault' : ''}',
                 ),
-                onTap: _locked ? null : () => _trade(index: i),
+                onTap: _entryLocked ? null : () => _trade(index: i),
                 trailing: IconButton(
                   tooltip: 'Remove trade ${i + 1}',
                   icon: const Icon(Icons.close),
-                  onPressed: _locked
+                  onPressed: _entryLocked
                       ? null
                       : () => _edited(() => _trades.removeAt(i)),
                 ),
@@ -1660,7 +1956,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             contentPadding: EdgeInsets.zero,
             title: const Text('Split payment / cash change'),
             value: _payments != null,
-            onChanged: _locked
+            onChanged: _entryLocked
                 ? null
                 : (enabled) => _edited(
                     () => _payments = enabled
@@ -1681,7 +1977,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
             key: ValueKey(_draftBook?['active']),
             entries: _payments!,
             balance: _balance,
-            disabled: _locked,
+            disabled: _entryLocked,
             onChanged: (entries) => _edited(() => _payments = entries),
           ),
         if (_payments == null)
@@ -1704,7 +2000,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                           DropdownMenuItem(value: method, child: Text(method)),
                     )
                     .toList(),
-            onChanged: _locked
+            onChanged: _entryLocked
                 ? null
                 : (value) => _edited(() => _method = value!),
           ),
@@ -1717,9 +2013,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           onChanged: (_) => setState(() {}),
         ),
         Text('Subtotal: USD ${saleMoney(subtotal)}'),
-        if (_trades.isNotEmpty)
+        if (_negotiated || _trades.isNotEmpty)
           _tradeSummary(subtotal + (saleMoneyInput(_tax.text) ?? 0)),
-        if (_trades.isEmpty)
+        if (!_negotiated && _trades.isEmpty)
           Text(
             'Total: USD ${saleMoney(subtotal + (saleMoneyInput(_tax.text) ?? 0))}',
             style: Theme.of(context).textTheme.headlineSmall,
@@ -1735,13 +2031,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           children: [
             if (_customer == null)
               TextButton.icon(
-                onPressed: _locked ? null : _chooseCustomer,
+                onPressed: _entryLocked ? null : _chooseCustomer,
                 icon: const Icon(Icons.person_search),
                 label: const Text('Choose saved customer'),
               ),
             if (_customer != null)
               TextButton(
-                onPressed: _locked
+                onPressed: _entryLocked
                     ? null
                     : () => _edited(() {
                         _customer = null;
@@ -1773,7 +2069,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
               1000,
               readOnly: _customer != null,
             ),
-            _field(_note, 'Receipt note', _trades.isEmpty ? 500 : 350),
+            _field(
+              _note,
+              _negotiated ? 'Private trade note' : 'Receipt note',
+              !_negotiated && _trades.isEmpty ? 500 : 350,
+            ),
           ],
         ),
         const SizedBox(height: 16),
@@ -1782,7 +2082,10 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
               _scanPending ||
                   _busy ||
                   (_pending == null &&
-                      (_lines.isEmpty || _data?.available != true))
+                      (_lines.isEmpty ||
+                          _data?.available != true ||
+                          (_negotiated &&
+                              (_tradeUnavailable || _agreedTrades.isEmpty))))
               ? null
               : _complete,
           icon: _busy
@@ -1794,21 +2097,86 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
               : const Icon(Icons.receipt_long),
           label: Text(
             _busy
-                ? 'Saving sale…'
+                ? 'Saving deal…'
                 : _pending != null
-                ? 'Retry / recover this sale'
-                : 'Review & record sale',
+                ? (_negotiated
+                      ? 'Retry / recover this trade'
+                      : 'Retry / recover this sale')
+                : (_negotiated
+                      ? 'Review & record trade'
+                      : 'Review & record sale'),
           ),
         ),
         const SizedBox(height: 12),
-        const Text(
-          'Collect payment using cash or your own terminal. Recording a sale marks selected Vault copies sold and saves one account receipt.',
+        Text(
+          _negotiated
+              ? 'Exchange cards and settle the balance using cash or your own terminal. Recording the trade saves one account receipt and the selected incoming and outgoing copies.'
+              : 'Collect payment using cash or your own terminal. Recording a sale marks selected Vault copies sold and saves one account receipt.',
         ),
       ],
     );
   }
 
   Future<void> _customerView() async {
+    if (_negotiated) {
+      try {
+        final view = negotiatedDraftCustomerView(_negotiatedSnapshot());
+        await showDialog<void>(
+          context: context,
+          barrierColor: Theme.of(context).colorScheme.surface,
+          builder: (context) => AlertDialog(
+            title: Text(view['storeName'] as String),
+            content: SizedBox(
+              width: 600,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (final line in view['items'] as List)
+                      ListTile(
+                        title: Text(line['description'] as String),
+                        subtitle: Text(
+                          '${line['quantity']} × USD ${saleMoney(line['unitMinor'] as int)}',
+                        ),
+                        trailing: Text(
+                          'USD ${saleMoney((line['quantity'] as int) * (line['unitMinor'] as int))}',
+                        ),
+                      ),
+                    for (final line in view['trades'] as List)
+                      ListTile(
+                        title: Text('Trade-in · ${line['description']}'),
+                        subtitle: Text(
+                          '${line['quantity']} item(s) · Agreed credit',
+                        ),
+                        trailing: Text(
+                          '− USD ${saleMoney(line['creditMinor'] as int)}',
+                        ),
+                      ),
+                    Text(
+                      'Tax recorded: USD ${saleMoney(view['taxMinor'] as int)}',
+                    ),
+                    Text(
+                      '${(view['balance'] as int) < 0 ? 'You receive' : 'You pay'} USD ${saleMoney((view['balance'] as int).abs())}',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const Text('Deal preview · payment not confirmed'),
+                  ],
+                ),
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Back to trade desk'),
+              ),
+            ],
+          ),
+        );
+      } catch (error) {
+        _message(error.toString());
+      }
+      return;
+    }
     final subtotal = _lines.fold<int>(
       0,
       (n, line) => n + line.unitMinor * line.quantity,
@@ -1886,7 +2254,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       DragTarget<VendorPricingWorkspaceRow>(
         key: ValueKey(compact ? 'cart-drop-compact' : 'cart-drop'),
         onWillAcceptWithDetails: (details) =>
-            !_locked &&
+            !_entryLocked &&
             _lines.length < 50 &&
             !_lines.any((line) => line.instanceId == details.data.instanceId),
         onAcceptWithDetails: (details) {
@@ -1966,12 +2334,12 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
               children: [
                 IconButton(
                   tooltip: 'Edit sale line',
-                  onPressed: _locked ? null : () => _edit(index: index),
+                  onPressed: _entryLocked ? null : () => _edit(index: index),
                   icon: const Icon(Icons.edit_outlined),
                 ),
                 IconButton(
                   tooltip: 'Remove sale line',
-                  onPressed: _locked
+                  onPressed: _entryLocked
                       ? null
                       : () => _edited(() => _lines.removeAt(index)),
                   icon: const Icon(Icons.close),
@@ -1990,7 +2358,11 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       const Icon(Icons.check_circle, size: 56, color: Colors.green),
       const SizedBox(height: 12),
       Text(
-        _purchaseDraft != null ? 'Purchase recorded' : 'Sale recorded',
+        _purchaseDraft != null
+            ? 'Purchase recorded'
+            : _negotiated
+            ? 'Trade recorded'
+            : 'Sale recorded',
         style: Theme.of(context).textTheme.headlineMedium,
       ),
       Text(
@@ -2056,7 +2428,9 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       FilledButton(
         onPressed: _busy ? null : _newSale,
         child: Text(
-          _purchaseDraft != null ? 'Continue to deals' : 'Start next sale',
+          _purchaseDraft != null || _negotiated
+              ? 'Continue to deals'
+              : 'Start next sale',
         ),
       ),
     ],
@@ -2071,13 +2445,17 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
       try {
         await _flushDraft();
         return true;
-      } catch (error) {
-        _message(error.toString());
+      } catch (_) {
+        _message(
+          _negotiatedInputError ??
+              'Draft could not save. Keep this desk open and retry before leaving.',
+        );
         return false;
       }
     }
     if ((_lines.isEmpty &&
             _trades.isEmpty &&
+            _agreedTrades.isEmpty &&
             (_purchaseDraft?['items'] as List? ?? []).isEmpty) ||
         _pending != null ||
         _receipt != null) {
@@ -2116,7 +2494,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     canPop:
         _workspaceExits != null ||
         (!_scanPending &&
-            ((_lines.isEmpty &&
+            ((!_negotiated &&
+                    _lines.isEmpty &&
                     _trades.isEmpty &&
                     (_purchaseDraft?['items'] as List? ?? []).isEmpty) ||
                 _pending != null ||
@@ -2139,8 +2518,17 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
           )
         : Scaffold(
             appBar: AppBar(
-              title: const Text('Sales desk'),
+              title: Text(_negotiated ? 'Trade desk' : 'Sales desk'),
               actions: [
+                if (_draftBook != null &&
+                    _data?.negotiatedTradesAvailable == true)
+                  IconButton(
+                    tooltip: 'New trade',
+                    onPressed: _locked
+                        ? null
+                        : () => _newPurchase(negotiated: true),
+                    icon: const Icon(Icons.swap_horiz),
+                  ),
                 if (_draftBook != null && _data?.purchasesAvailable == true)
                   IconButton(
                     tooltip: 'New buy',
@@ -2182,6 +2570,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                         ),
                       ],
                     ),
+                  if (_tradeUnavailable && _pending == null)
+                    const Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Text(
+                        'New trades are unavailable. Your held trade is kept on this device.',
+                      ),
+                    ),
                   if (_historyLoading) const LinearProgressIndicator(),
                   if (_historyError != null && _pending == null)
                     TextButton(
@@ -2200,7 +2595,8 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                           )
                         : !_data!.available &&
                               _pending == null &&
-                              _purchaseDraft == null
+                              _purchaseDraft == null &&
+                              !_negotiated
                         ? const Center(
                             child: Padding(
                               padding: EdgeInsets.all(24),

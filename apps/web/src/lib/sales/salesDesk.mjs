@@ -1,3 +1,6 @@
+// Negotiated entry preserves explicit agreements and legacy journal semantics.
+import {isNegotiatedDraft,validateNegotiatedDraft,negotiatedDraftTotals,negotiatedDraftCustomerView} from './negotiatedDraft.mjs';
+import {validateNegotiatedTradeRequest, confirmedNegotiatedTrade} from './negotiatedTrade.mjs';
 import {paymentSnapshot, paymentMethod, tenderMethods} from './salesPayments.mjs';
 import {isPurchaseDraft, validatePurchaseDraft} from './purchaseDraft.mjs';
 import {validatePurchaseRequest} from './salesPurchase.mjs';
@@ -16,20 +19,28 @@ function draftValid(d) {
 }
 function validateJournal(b) {
     const validDraft = d => {
+        if (isNegotiatedDraft(d)) {
+            if (b.version !== 4) return false;
+            try {validateNegotiatedDraft(d); return true;} catch {return false;}
+        }
         if (!isPurchaseDraft(d)) return draftValid(d);
-        if (b.version !== 3) return false;
+        if (![3,4].includes(b.version)) return false;
         try {validatePurchaseDraft(d); return true;} catch {return false;}
     };
     const validPending = p => {
+        if (p?.cart?.version === 5) {
+            if (b.version !== 4 || !b.drafts.some(d => d.id === b.active && isNegotiatedDraft(d))) return false;
+            try {validateNegotiatedTradeRequest(p); return true;} catch {return false;}
+        }
         if (p?.cart?.version !== 4) return p && uuid(p.id) && p.cart && [1, 2, 3].includes(p.cart.version);
-        if (b.version !== 3 || !b.drafts.some(d => d.id === b.active && isPurchaseDraft(d))) return false;
+        if (![3,4].includes(b.version) || !b.drafts.some(d => d.id === b.active && isPurchaseDraft(d))) return false;
         try {validatePurchaseRequest(p); return true;} catch {return false;}
     };
-    if (!b || ![2, 3].includes(b.version) || !integer(b.revision, 0, Number.MAX_SAFE_INTEGER - 1) || !Array.isArray(b.drafts) || b.drafts.length > 20 ||
+    if (!b || ![2, 3, 4].includes(b.version) || !integer(b.revision, 0, Number.MAX_SAFE_INTEGER - 1) || !Array.isArray(b.drafts) || b.drafts.length > 20 ||
         !b.drafts.every(validDraft) || new Set(b.drafts.map(d => d.id)).size !== b.drafts.length ||
         (b.active !== null && !b.drafts.some(d => d.id === b.active)) ||
         (b.pending !== null && !validPending(b.pending)) ||
-        (b.catalog !== null && (!b.catalog || !uuid(b.catalog.id) || !b.drafts.some(d => d.id === b.catalog.draftId && !isPurchaseDraft(d)) || !uuid(b.catalog.card?.cardId) || !uuid(b.catalog.card?.printingId) || !conditions.includes(b.catalog.card?.condition) || b.catalog.card?.intent !== 'hold' || b.catalog.card?.priceMinor !== null || !b.catalog.line)) ||
+        (b.catalog !== null && (!b.catalog || !uuid(b.catalog.id) || !b.drafts.some(d => d.id === b.catalog.draftId && !isPurchaseDraft(d) && !isNegotiatedDraft(d)) || !uuid(b.catalog.card?.cardId) || !uuid(b.catalog.card?.printingId) || !conditions.includes(b.catalog.card?.condition) || b.catalog.card?.intent !== 'hold' || b.catalog.card?.priceMinor !== null || !b.catalog.line)) ||
         (b.pending && b.catalog))
         throw Error('Saved deals could not be read. Preserve this browser data.');
     return b;
@@ -45,6 +56,7 @@ export function minor(value) {
 export function rate(value) { const n = minor(value); return n !== null && n > 0 && n <= 10000 ? n : null; }
 export function tradeCredit(t) { return Math.floor((t.valueMinor * t.quantity * t.rateBps + 5000) / 10000); }
 export function totals(d) {
+    if (isNegotiatedDraft(d)) return negotiatedDraftTotals(d);
     const subtotal = d.items.reduce((n, l) => n + l.unitMinor * l.quantity, 0);
     const credit = d.trades.reduce((n, t) => n + tradeCredit(t), 0);
     return { subtotal, credit, total: subtotal + d.taxMinor, balance: subtotal + d.taxMinor - credit };
@@ -66,6 +78,7 @@ export function addLine(d, line) {
     return next;
 }
 export function saleRequest(d, id) {
+    if (isNegotiatedDraft(d)) throw Error('Use negotiated trade completion for this deal.');
     if (isPurchaseDraft(d)) throw Error('Use purchase completion for an incoming-only deal.');
     const amount = totals(d);
     if (!uuid(id) || !draftValid(d) || !d.storeName.trim() || !d.items.length || amount.total > 100000000 || amount.credit > 100000000 || d.trades.length && d.note.length > 350)
@@ -87,6 +100,7 @@ export function saleRequest(d, id) {
 }
 // Explicit projection: never pass customer contacts, private notes or costs.
 export function customerDeal(d) {
+    if (isNegotiatedDraft(d)) return negotiatedDraftCustomerView(d);
     return { storeName: d.storeName, items: d.items.map(l => ({ description: l.description, quantity: l.quantity, unitMinor: l.unitMinor, askingMinor: l.askingMinor ?? null, image: l.image ?? null })),
         trades: d.trades.map(t => ({ description: t.description, valueMinor: t.valueMinor, quantity: t.quantity, rateBps: t.rateBps, creditMinor: tradeCredit(t) })), taxMinor: d.taxMinor, ...totals(d) };
 }
@@ -94,6 +108,7 @@ export function draftJournal(storage, owner, lock) {
     if (!uuid(owner))
         throw Error('Sign in again.');
     const key = 'grookai.sales-desk.v2.' + owner;
+    let confirmedPending = null;
     const read = () => {
         const raw = storage.getItem(key);
         if (!raw)
@@ -103,11 +118,21 @@ export function draftJournal(storage, owner, lock) {
         const b = JSON.parse(raw);
         return validateJournal(b);
     };
-    return { key, read, update: async (expected, change) => lock(key, async () => {
+    const confirmNegotiated = (acknowledgement, expected) => {
+        const current = read();
+        if (!current.pending || JSON.stringify(current.pending) !== JSON.stringify(expected))
+            throw Error('Pending trade changed. Preserve this browser data.');
+        const receipt = confirmedNegotiatedTrade(acknowledgement, current.pending);
+        confirmedPending = JSON.stringify(current.pending);
+        return receipt;
+    };
+    return { key, read, confirmNegotiated, update: async (expected, change) => lock(key, async () => {
             const current = read();
             if (current.revision !== expected)
                 throw Error('Deals changed in another tab. Reload saved deals before editing.');
             const next = change(structuredClone(current));
+            if (current.pending?.cart?.version === 5 && next.pending === null && confirmedPending !== JSON.stringify(current.pending))
+                throw Error('Recover and verify this trade before clearing it.');
             if (next.drafts.length > 20)
                 throw Error('Resume a held deal before creating another.');
             if (current.pending && JSON.stringify(next.pending) !== JSON.stringify(current.pending) && next.pending !== null)
@@ -118,12 +143,14 @@ export function draftJournal(storage, owner, lock) {
                 throw Error('Recover the pending request before editing deals.');
             next.revision = current.revision + 1;
             // Retain the owner key and all existing work; older clients reject the new book version.
-            if (current.version === 3 || next.drafts.some(isPurchaseDraft) || next.pending?.cart?.version === 4) next.version = 3;
+            if (current.version === 4 || next.drafts.some(isNegotiatedDraft) || next.pending?.cart?.version === 5) next.version = 4;
+            else if (current.version === 3 || next.drafts.some(isPurchaseDraft) || next.pending?.cart?.version === 4) next.version = 3;
             validateJournal(next);
             const encoded = JSON.stringify(next);
             if (encoded.length > 2000000)
                 throw Error('Saved deals are too large.');
             storage.setItem(key, encoded);
+            if (next.version === 4 && storage.getItem(key) !== encoded) throw Error('Saved trade could not be verified. Preserve the pending request and reopen the desk.');
             return next;
         }) };
 }

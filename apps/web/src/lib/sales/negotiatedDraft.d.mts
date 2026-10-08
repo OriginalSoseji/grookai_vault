@@ -1,0 +1,13 @@
+import type {SaleDraft, SaleLine} from './salesDesk.mjs';
+import type {NegotiatedTradeLine, NegotiatedTradeRequest} from './negotiatedTrade.mjs';
+export type NegotiatedDraft = Omit<SaleDraft, 'kind' | 'trades'> & {kind: 'negotiated-trade'; trades: NegotiatedTradeLine[]};
+export type NegotiatedDraftView = {storeName: string; items: Pick<SaleLine, 'description' | 'quantity' | 'unitMinor'>[];
+    trades: Pick<NegotiatedTradeLine, 'description' | 'quantity' | 'creditMinor'>[];
+    taxMinor: number; subtotal: number; credit: number; total: number; balance: number};
+export function isNegotiatedDraft(value: unknown): value is NegotiatedDraft;
+export function validateNegotiatedDraft(value: unknown): NegotiatedDraft;
+export function newNegotiatedDraft(id: string, storeName?: string): NegotiatedDraft;
+export function negotiatedDraftTotals(value: NegotiatedDraft): {subtotal: number; credit: number; total: number; balance: number};
+export function addNegotiatedTrade(draft: NegotiatedDraft, line: unknown): NegotiatedDraft;
+export function negotiatedDraftRequest(draft: NegotiatedDraft, id: string, confirmed: boolean): NegotiatedTradeRequest;
+export function negotiatedDraftCustomerView(draft: NegotiatedDraft): NegotiatedDraftView;

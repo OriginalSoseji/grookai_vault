@@ -5,6 +5,7 @@ import '../../models/card_print.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_trade.dart';
 import '../../services/sales/sales_purchase.dart';
+import '../../services/sales/negotiated_trade.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../services/sales/offer_policies.dart';
 import 'sales_offer_policies.dart';
@@ -15,17 +16,25 @@ class SalesPurchaseDialog extends StatefulWidget {
     required this.service,
     this.line,
     this.quick = false,
+    this.negotiated = false,
     this.canAdd,
   });
   final SalesCartService service;
   final Map<String, dynamic>? line;
   final bool quick;
+
+  /// Explicit agreement uses whole-line credit. Purchases retain per-unit prices.
+  final bool negotiated;
   final bool Function()? canAdd;
   @override
   State<SalesPurchaseDialog> createState() => _SalesPurchaseDialogState();
 }
 
 class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
+  String get _intent => widget.negotiated ? 'trade' : 'cash';
+  String get _amountField => widget.negotiated ? 'creditMinor' : 'unitMinor';
+  String get _referenceField =>
+      widget.negotiated ? 'valueMinor' : 'referenceMinor';
   final _query = TextEditingController(),
       _description = TextEditingController();
   final _agreed = TextEditingController(),
@@ -61,10 +70,10 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
     _freshPolicy = line == null;
     if (line != null) {
       _description.text = line['description'] as String;
-      _agreed.text = saleMoney(line['unitMinor'] as int);
-      _reference.text = line['referenceMinor'] == null
+      _agreed.text = saleMoney(line[_amountField] as int);
+      _reference.text = line[_referenceField] == null
           ? ''
-          : saleMoney(line['referenceMinor'] as int);
+          : saleMoney(line[_referenceField] as int);
       _rate.text = line['rateBps'] == null
           ? ''
           : tradeRate(line['rateBps'] as int);
@@ -280,7 +289,7 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
         {
           'id': printingId,
           'name': 'Reference check',
-          'intent': 'cash',
+          'intent': _intent,
           'rateBps': 10000,
           'source': 'tcgplayer_market',
           'conditionBasis': 'unspecified',
@@ -288,7 +297,7 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
           'lowValueTier': null,
         },
         {
-          'intent': 'cash',
+          'intent': _intent,
           'quantity': 1,
           'cardId': cardId,
           'printingId': printingId,
@@ -350,7 +359,7 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
       return quoteOfferPolicy(
         policy,
         {
-          'intent': 'cash',
+          'intent': _intent,
           'quantity': _manual ? int.tryParse(_quantity.text) : 1,
           'cardId': _manual ? null : _cardId,
           'printingId': _manual ? null : _printingId,
@@ -428,17 +437,20 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
       if (!_manual && (_cardId == null || _printingId == null)) {
         throw const FormatException('Choose the exact printing first.');
       }
-      final line = validatePurchaseItem({
+      final terms = {
         'description': _description.text.trim(),
         'quantity': _manual ? quantity : 1,
-        'unitMinor': amount,
-        'referenceMinor': reference,
+        _amountField: amount,
+        _referenceField: reference,
         'rateBps': rate,
         'cardId': _manual ? null : _cardId,
         'printingId': _manual ? null : _printingId,
         'condition': _manual ? null : _condition,
         'addToVault': !_manual && _intake,
-      });
+      };
+      final line = widget.negotiated
+          ? validateNegotiatedTradeLine(terms)
+          : validatePurchaseItem(terms);
       Navigator.pop(context, line);
     } catch (error) {
       setState(
@@ -462,10 +474,25 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
     final editing = _manual || _cardId != null;
     int? suggestion;
     try {
-      suggestion = purchaseOffer(
-        saleMoneyInput(_reference.text),
-        tradeRateInput(_rate.text),
-      );
+      if (widget.negotiated) {
+        final value = saleMoneyInput(_reference.text),
+            bps = tradeRateInput(_rate.text);
+        final quantity = _manual ? int.tryParse(_quantity.text) : 1;
+        if (value != null &&
+            value > 0 &&
+            bps != null &&
+            quantity != null &&
+            quantity >= 1 &&
+            quantity <= 999 &&
+            value * quantity <= 100000000) {
+          suggestion = (value * quantity * bps + 5000) ~/ 10000;
+        }
+      } else {
+        suggestion = purchaseOffer(
+          saleMoneyInput(_reference.text),
+          tradeRateInput(_rate.text),
+        );
+      }
     } catch (_) {
       /* Optional offer may be incomplete. */
     }
@@ -482,7 +509,13 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
         _conditionReview != _reviewKey;
     return AlertDialog(
       title: Text(
-        widget.line == null ? 'Add purchase item' : 'Edit purchase item',
+        widget.negotiated
+            ? widget.line == null
+                  ? 'Add trade item'
+                  : 'Edit trade item'
+            : widget.line == null
+            ? 'Add purchase item'
+            : 'Edit purchase item',
       ),
       content: SizedBox(
         width: 620,
@@ -517,7 +550,11 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                 });
                               },
                               icon: const Icon(Icons.edit_note),
-                              label: const Text('Quick purchase'),
+                              label: Text(
+                                widget.negotiated
+                                    ? 'Quick trade'
+                                    : 'Quick purchase',
+                              ),
                             ),
                             TextField(
                               controller: _query,
@@ -626,8 +663,10 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                               controller: _description,
                               readOnly: !_manual,
                               maxLength: 200,
-                              decoration: const InputDecoration(
-                                labelText: 'Purchase item description',
+                              decoration: InputDecoration(
+                                labelText: widget.negotiated
+                                    ? 'Trade item description'
+                                    : 'Purchase item description',
                               ),
                             ),
                             if (!_manual) ...[
@@ -687,7 +726,12 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                     setState(() => _condition = value!),
                               ),
                             ],
-                            _money(_agreed, 'Agreed price per item (USD)'),
+                            _money(
+                              _agreed,
+                              widget.negotiated
+                                  ? 'Agreed credit for this whole line (USD)'
+                                  : 'Agreed price per item (USD)',
+                            ),
                             if (_manual)
                               TextField(
                                 controller: _quantity,
@@ -706,6 +750,7 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                               children: [
                                 SalesOfferPolicies(
                                   service: widget.service,
+                                  intent: _intent,
                                   disabled: _loading || _changed,
                                   applyDefault: _freshPolicy,
                                   select: _selectPolicy,
@@ -734,8 +779,10 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                         const TextInputType.numberWithOptions(
                                           decimal: true,
                                         ),
-                                    decoration: const InputDecoration(
-                                      labelText: 'Buy percentage',
+                                    decoration: InputDecoration(
+                                      labelText: widget.negotiated
+                                          ? 'Trade percentage'
+                                          : 'Buy percentage',
                                       suffixText: '%',
                                     ),
                                     onChanged: (_) => setState(() {}),
@@ -774,7 +821,7 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                 ],
                                 if (proposal?['status'] == 'available') ...[
                                   Text(
-                                    'Reference USD ${saleMoney(proposal!['referenceMinor'] as int)} × ${tradeRate(proposal['rateBps'] as int)}%${proposal['tierApplied'] == true ? ' · Low-value tier' : ''} · Calculated USD ${saleMoney(proposal['calculatedMinor'] as int)} per item · round ${proposal['rounding']['mode'] == 'down' ? 'down' : 'to nearest'} USD ${saleMoney(proposal['rounding']['incrementMinor'] as int)}',
+                                    'Reference USD ${saleMoney(proposal!['referenceMinor'] as int)} × ${tradeRate(proposal['rateBps'] as int)}%${proposal['tierApplied'] == true ? ' · Low-value tier' : ''} · Calculated USD ${saleMoney(proposal['calculatedMinor'] as int)} ${widget.negotiated ? 'for this line' : 'per item'} · round ${proposal['rounding']['mode'] == 'down' ? 'down' : 'to nearest'} USD ${saleMoney(proposal['rounding']['incrementMinor'] as int)}',
                                   ),
                                   const Text(
                                     'Calculated value is shown to the nearest cent. The offer rounds the full percentage result once.',
@@ -813,10 +860,16 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                           _loading
                                       ? null
                                       : () => _useSuggestion(suggested),
-                                  child: const Text('Use suggested offer'),
+                                  child: Text(
+                                    widget.negotiated
+                                        ? 'Use suggested credit'
+                                        : 'Use suggested offer',
+                                  ),
                                 ),
-                                const Text(
-                                  'Changing the reference or percentage keeps your agreed price.',
+                                Text(
+                                  widget.negotiated
+                                      ? 'Changing the reference, quantity or policy keeps your agreed whole-line credit.'
+                                      : 'Changing the reference or percentage keeps your agreed price.',
                                 ),
                               ],
                             ),
@@ -827,13 +880,17 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                     setState(() => _intake = value!),
                                 contentPadding: EdgeInsets.zero,
                                 title: const Text('Add this copy to my Vault'),
-                                subtitle: const Text(
-                                  'Creates one Hold copy with its agreed cost when the purchase completes.',
+                                subtitle: Text(
+                                  widget.negotiated
+                                      ? 'Creates one Hold copy with its agreed credit as cost when the trade completes.'
+                                      : 'Creates one Hold copy with its agreed cost when the purchase completes.',
                                 ),
                               ),
                             if (_manual)
-                              const Text(
-                                'Quick purchases appear on the receipt and do not create inventory.',
+                              Text(
+                                widget.negotiated
+                                    ? 'Quick trade lines appear on the receipt and do not create inventory.'
+                                    : 'Quick purchases appear on the receipt and do not create inventory.',
                               ),
                           ],
                         ],
@@ -852,7 +909,13 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
           FilledButton(
             onPressed: _loading ? null : _save,
             child: Text(
-              widget.line == null ? 'Add to purchase' : 'Save purchase item',
+              widget.negotiated
+                  ? widget.line == null
+                        ? 'Add to trade'
+                        : 'Save trade item'
+                  : widget.line == null
+                  ? 'Add to purchase'
+                  : 'Save purchase item',
             ),
           ),
       ],

@@ -6,3 +6,5 @@ export declare const vendorBatchLocalTest: boolean;
 export declare const receiptCloudLocalTest: boolean;
 export declare const salesPurchaseLocalTest: boolean;
 export declare function assertCollectorStagingTarget(url: string, fixtureLab?: boolean, hosted?: boolean): void;
+
+export declare const salesNegotiatedTradeLocalTest: boolean;
