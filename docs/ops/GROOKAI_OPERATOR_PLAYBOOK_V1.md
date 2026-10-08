@@ -1,5 +1,24 @@
 # Grookai Operator Playbook V1
 
+## Native private profit — October 7
+
+Follow [the native profit checkpoint](PRODUCT_NATIVE_PROFIT_20261007.md) in
+`C:/gv_product_native_profit_20261007`. The default-off GV_VENDOR_PROFIT_V1 panel
+uses filtered Reports receipts and existing owner-only cost-at-sale reads, with
+complete batch validation and permanent account invalidation. Its cross-platform
+vectors are pinned to the qualified web model; regenerate only after reviewing
+semantic differences. Preserve the independent combined release checks and all
+populated labs. Real device proof must use a fresh scoped fixture after the other
+normal hook finishes; never change its retained counts during checks.
+
+Native profit Samsung acceptance passes in device-1791420069764. Its producer
+creates fresh scoped receipts/copies and verifies13 unchanged business tables;
+cleanup restores14 retained table hashes and all switches. Six screenshots cover
+summary, exclusions, filters, failed/recovered reads and account closure. Keep
+the consumed manifest, original APK backup and primary app intact. The normal
+hook helper is run_product_native_profit_checks_v1.mjs; freeze its source while
+it runs. No iOS profit proof or production release is implied.
+
 ## Combined product release — October 7
 
 Follow [the combined release checkpoint](PRODUCT_RELEASE_20261007.md) in

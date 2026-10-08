@@ -1,13 +1,22 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../services/sales/sales_cart_service.dart';
+import '../../services/sales/sales_profit_service.dart';
 import 'sales_dashboard.dart';
+import 'sales_profit_panel.dart';
 import '../workspace/workspace_activation.dart';
 
 /// A read-only report entry. It never creates a second editable sales desk.
 class SalesReportsScreen extends StatefulWidget {
-  const SalesReportsScreen({super.key, this.service});
+  const SalesReportsScreen({
+    super.key,
+    this.service,
+    this.profitService,
+    this.profitEnabled = kVendorProfitEnabled,
+  });
   final SalesCartService? service;
+  final SalesProfitService? profitService;
+  final bool profitEnabled;
   @override
   State<SalesReportsScreen> createState() => _SalesReportsScreenState();
 }
@@ -22,6 +31,7 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
   String? _error;
   int _generation = 0;
   int? _activation;
+  SalesProfitService? _profits;
 
   @override
   void didChangeDependencies() {
@@ -38,6 +48,17 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
   @override
   void initState() {
     super.initState();
+    if (widget.profitEnabled) {
+      try {
+        _profits =
+            widget.profitService ??
+            SalesProfitService(
+              gateway: SupabaseSalesProfitGateway(_service.client),
+            );
+      } catch (_) {
+        // Show unavailable private history while retaining the ordinary report.
+      }
+    }
     _subscription = _service.accountChanges.listen((_) {
       if (!mounted) return;
       _generation++;
@@ -80,6 +101,7 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
   void dispose() {
     _generation++;
     unawaited(_subscription?.cancel());
+    if (widget.profitService == null) unawaited(_profits?.dispose());
     super.dispose();
   }
 
@@ -117,6 +139,11 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
               ),
             ),
           )
-        : SalesDashboard(receipts: _receipts, refresh: _load),
+        : SalesDashboard(
+            receipts: _receipts,
+            refresh: _load,
+            profitEnabled: widget.profitEnabled,
+            profitService: _profits,
+          ),
   );
 }

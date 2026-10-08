@@ -4,15 +4,21 @@ import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_report.dart';
+import '../../services/sales/sales_profit_service.dart';
+import 'sales_profit_panel.dart';
 
 class SalesDashboard extends StatefulWidget {
   const SalesDashboard({
     super.key,
     required this.receipts,
     required this.refresh,
+    this.profitEnabled = false,
+    this.profitService,
   });
   final List<Map<String, dynamic>> receipts;
   final Future<void> Function() refresh;
+  final bool profitEnabled;
+  final SalesProfitService? profitService;
   @override
   State<SalesDashboard> createState() => _SalesDashboardState();
 }
@@ -312,6 +318,10 @@ class _SalesDashboardState extends State<SalesDashboard> {
             ],
           ],
         ),
+        if (widget.profitEnabled) ...[
+          const SizedBox(height: 20),
+          SalesProfitPanel(receipts: data.rows, service: widget.profitService),
+        ],
         const SizedBox(height: 20),
         Card(
           child: Padding(

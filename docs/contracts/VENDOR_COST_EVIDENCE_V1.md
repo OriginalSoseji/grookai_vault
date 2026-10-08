@@ -74,6 +74,14 @@ The existing receipt JSON and recovery response remain byte-equivalent.
 
 ## Reporting boundary
 
+Native Reports uses the same immutable evidence and exact arithmetic as the web
+report. GV_VENDOR_PROFIT_V1 defaults off; all private cost reads remain owner-bound.
+Every bounded read batch must validate owner and requested receipt scope before a
+complete result becomes visible. Failures cannot become empty history or zero
+profit. Filter changes clear old metrics, account changes hide private values and
+invalidate late responses. Customer receipts and existing exports exclude this
+private panel. Native device/release proof remains separate from calculation tests.
+
 Revenue, taxes, external payment movements and trade credit remain distinct.
 Known-cost profit uses only evidenced lines in a compatible currency and displays
 coverage. Costs use exact decimal strings and integer arithmetic, never floats.

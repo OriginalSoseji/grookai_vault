@@ -1,0 +1,2814 @@
+{
+  "version": 1,
+  "sourceSha256": "0ed58f1d986cc5f1fe6ea41c7cb68bed01cb2ccd9e15eaec7502f9fd9a69e498",
+  "cases": [
+    {
+      "name": "known cost excludes tax",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 1,
+        "totalUnits": "1",
+        "knownUnits": "1",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "2000",
+        "unknownSalesMinor": "0",
+        "knownCostMinor": "1200",
+        "knownProfitMinor": "800",
+        "coverageBps": 10000,
+        "reasons": [],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 1,
+            "totalLines": 1,
+            "knownSalesMinor": "2000",
+            "knownCostMinor": "1200",
+            "knownProfitMinor": "800",
+            "reasons": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "empty",
+      "receipts": [],
+      "snapshots": [],
+      "expected": {
+        "currency": "USD",
+        "receipts": 0,
+        "totalLines": 0,
+        "knownLines": 0,
+        "totalUnits": "0",
+        "knownUnits": "0",
+        "itemSalesMinor": "0",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "0",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": null,
+        "reasons": [],
+        "details": []
+      }
+    },
+    {
+      "name": "missing snapshot",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "missing_snapshot",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "missing_snapshot"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "zero",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "0.00",
+                "currency": "USD",
+                "minor": "0",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 1,
+        "totalUnits": "1",
+        "knownUnits": "1",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "2000",
+        "unknownSalesMinor": "0",
+        "knownCostMinor": "0",
+        "knownProfitMinor": "2000",
+        "coverageBps": 10000,
+        "reasons": [],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 1,
+            "totalLines": 1,
+            "knownSalesMinor": "2000",
+            "knownCostMinor": "0",
+            "knownProfitMinor": "2000",
+            "reasons": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "loss",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "25.00",
+                "currency": "USD",
+                "minor": "2500",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 1,
+        "totalUnits": "1",
+        "knownUnits": "1",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "2000",
+        "unknownSalesMinor": "0",
+        "knownCostMinor": "2500",
+        "knownProfitMinor": "-500",
+        "coverageBps": 10000,
+        "reasons": [],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 1,
+            "totalLines": 1,
+            "knownSalesMinor": "2000",
+            "knownCostMinor": "2500",
+            "knownProfitMinor": "-500",
+            "reasons": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "trailing decimal zero",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.0000",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 1,
+        "totalUnits": "1",
+        "knownUnits": "1",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "2000",
+        "unknownSalesMinor": "0",
+        "knownCostMinor": "1200",
+        "knownProfitMinor": "800",
+        "coverageBps": 10000,
+        "reasons": [],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 1,
+            "totalLines": 1,
+            "knownSalesMinor": "2000",
+            "knownCostMinor": "1200",
+            "knownProfitMinor": "800",
+            "reasons": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "foreign",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "foreign_currency",
+              "cost": {
+                "amount": "12.00",
+                "currency": "CAD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "foreign_currency",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "foreign_currency"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing_amount",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "missing_amount",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": null,
+                "status": "missing_amount"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "missing_amount",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "missing_amount"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing_currency",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "missing_currency",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": null,
+                "status": "missing_currency"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "missing_currency",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "missing_currency"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "invalid_amount",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "invalid_amount",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": null,
+                "status": "invalid_amount"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "invalid_amount",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "invalid_amount"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "invalid_currency",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "invalid_currency",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": null,
+                "status": "invalid_currency"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "invalid_currency",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "invalid_currency"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "oversized_legacy_value",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "oversized_legacy_value",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": null,
+                "status": "oversized_legacy_value"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "oversized_legacy_value",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "oversized_legacy_value"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "mixed quantities and coverage",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            },
+            {
+              "quantity": 2,
+              "unitMinor": 500
+            }
+          ],
+          "subtotalMinor": 3000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 3100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            },
+            {
+              "index": 1,
+              "instanceId": null,
+              "quantity": 2,
+              "salesMinor": "1000",
+              "status": "unlinked",
+              "cost": {
+                "status": "missing_amount",
+                "amount": null,
+                "currency": null,
+                "minor": null
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 2,
+        "knownLines": 1,
+        "totalUnits": "3",
+        "knownUnits": "1",
+        "itemSalesMinor": "3000",
+        "knownSalesMinor": "2000",
+        "unknownSalesMinor": "1000",
+        "knownCostMinor": "1200",
+        "knownProfitMinor": "800",
+        "coverageBps": 5000,
+        "reasons": [
+          {
+            "reason": "unlinked",
+            "receipts": 1,
+            "lines": 1,
+            "units": "2",
+            "salesMinor": "1000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 1,
+            "totalLines": 2,
+            "knownSalesMinor": "2000",
+            "knownCostMinor": "1200",
+            "knownProfitMinor": "800",
+            "reasons": [
+              "unlinked"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "discount remains uncovered",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            },
+            {
+              "quantity": 2,
+              "unitMinor": 500
+            }
+          ],
+          "subtotalMinor": 3000,
+          "discountMinor": 100,
+          "taxMinor": 100,
+          "totalMinor": 3000
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            },
+            {
+              "index": 1,
+              "instanceId": null,
+              "quantity": 2,
+              "salesMinor": "1000",
+              "status": "unlinked",
+              "cost": {
+                "status": "missing_amount",
+                "amount": null,
+                "currency": null,
+                "minor": null
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 2,
+        "knownLines": 0,
+        "totalUnits": "3",
+        "knownUnits": "0",
+        "itemSalesMinor": "2900",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2900",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "discount_allocation_missing",
+            "receipts": 1,
+            "lines": 2,
+            "units": "3",
+            "salesMinor": "2900"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 2,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "discount_allocation_missing"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong sale time",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-08T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong sales currency",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "CAD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong version",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 2,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong line index",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 1,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong quantity",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 2,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "wrong sales",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "1999",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "fractional cents",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.001",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "cost mismatch",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "currency mismatch",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "CAD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "false unlinked",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": null,
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing cost object",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": null
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "missing lines",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": []
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "oversized amount",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 0,
+        "totalUnits": "1",
+        "knownUnits": "0",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "2000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 1,
+            "units": "1",
+            "salesMinor": "2000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "identical duplicates",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        },
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 1,
+        "totalUnits": "1",
+        "knownUnits": "1",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "2000",
+        "unknownSalesMinor": "0",
+        "knownCostMinor": "1200",
+        "knownProfitMinor": "800",
+        "coverageBps": 10000,
+        "reasons": [],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 1,
+            "totalLines": 1,
+            "knownSalesMinor": "2000",
+            "knownCostMinor": "1200",
+            "knownProfitMinor": "800",
+            "reasons": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "conflicting receipts",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 999
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "conflicting snapshots",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        },
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "99",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "invalid date",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "bad",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "subtotal mismatch",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 1,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "total mismatch",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 1
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "discount exceeds sale",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 3000,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "negative unit price",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": -1
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "zero quantity",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 0,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "unsafe integer",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 9007199254740992
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "error": true
+    },
+    {
+      "name": "aggregate exceeds safe double",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 9007199254740991
+            }
+          ],
+          "subtotalMinor": 9007199254740991,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 9007199254740991
+        },
+        {
+          "id": "second",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 9007199254740991
+            }
+          ],
+          "subtotalMinor": 9007199254740991,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 9007199254740991
+        }
+      ],
+      "snapshots": [],
+      "expected": {
+        "currency": "USD",
+        "receipts": 2,
+        "totalLines": 2,
+        "knownLines": 0,
+        "totalUnits": "2",
+        "knownUnits": "0",
+        "itemSalesMinor": "18014398509481982",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "18014398509481982",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "missing_snapshot",
+            "receipts": 2,
+            "lines": 2,
+            "units": "2",
+            "salesMinor": "18014398509481982"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "missing_snapshot"
+            ]
+          },
+          {
+            "receiptId": "second",
+            "knownLines": 0,
+            "totalLines": 1,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "missing_snapshot"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "trade and split do not change profit",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 2000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 2100,
+          "method": "Split payment",
+          "tradeIn": {
+            "totalCreditMinor": 3000,
+            "balanceMinor": -900
+          },
+          "payments": {
+            "balanceMinor": -900,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 900,
+                "tenderedMinor": 900
+              }
+            ]
+          }
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 1,
+        "knownLines": 1,
+        "totalUnits": "1",
+        "knownUnits": "1",
+        "itemSalesMinor": "2000",
+        "knownSalesMinor": "2000",
+        "unknownSalesMinor": "0",
+        "knownCostMinor": "1200",
+        "knownProfitMinor": "800",
+        "coverageBps": 10000,
+        "reasons": [],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 1,
+            "totalLines": 1,
+            "knownSalesMinor": "2000",
+            "knownCostMinor": "1200",
+            "knownProfitMinor": "800",
+            "reasons": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "same physical copy twice",
+      "receipts": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "createdAt": "2026-10-07T12:00:00Z",
+          "items": [
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            },
+            {
+              "quantity": 1,
+              "unitMinor": 2000
+            }
+          ],
+          "subtotalMinor": 4000,
+          "discountMinor": 0,
+          "taxMinor": 100,
+          "totalMinor": 4100
+        }
+      ],
+      "snapshots": [
+        {
+          "version": 1,
+          "receiptId": "11111111-1111-4111-8111-111111111111",
+          "soldAt": "2026-10-07T12:00:00Z",
+          "salesCurrency": "USD",
+          "lines": [
+            {
+              "index": 0,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            },
+            {
+              "index": 1,
+              "instanceId": "22222222-2222-4222-8222-222222222222",
+              "quantity": 1,
+              "salesMinor": "2000",
+              "status": "known",
+              "cost": {
+                "amount": "12.00",
+                "currency": "USD",
+                "minor": "1200",
+                "status": "known"
+              }
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "currency": "USD",
+        "receipts": 1,
+        "totalLines": 2,
+        "knownLines": 0,
+        "totalUnits": "2",
+        "knownUnits": "0",
+        "itemSalesMinor": "4000",
+        "knownSalesMinor": "0",
+        "unknownSalesMinor": "4000",
+        "knownCostMinor": "0",
+        "knownProfitMinor": null,
+        "coverageBps": 0,
+        "reasons": [
+          {
+            "reason": "snapshot_mismatch",
+            "receipts": 1,
+            "lines": 2,
+            "units": "2",
+            "salesMinor": "4000"
+          }
+        ],
+        "details": [
+          {
+            "receiptId": "11111111-1111-4111-8111-111111111111",
+            "knownLines": 0,
+            "totalLines": 2,
+            "knownSalesMinor": "0",
+            "knownCostMinor": "0",
+            "knownProfitMinor": null,
+            "reasons": [
+              "snapshot_mismatch"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "money": [
+    {
+      "minor": "0",
+      "formatted": "$0.00"
+    },
+    {
+      "minor": "-1",
+      "formatted": "-$0.01"
+    },
+    {
+      "minor": "2000",
+      "formatted": "$20.00"
+    },
+    {
+      "minor": "18014398509481982",
+      "formatted": "$180,143,985,094,819.82"
+    },
+    {
+      "minor": "-999999999999999999999",
+      "formatted": "-$9,999,999,999,999,999,999.99"
+    }
+  ]
+}

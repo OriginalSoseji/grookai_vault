@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Native private profit — October 7
+
+Read [the native profit checkpoint](docs/ops/PRODUCT_NATIVE_PROFIT_20261007.md).
+This isolated tree now includes passed combined releaseda46e8d9 and implements
+read-only Reports parity with web immutable cost evidence. Preserve the clean
+release tree; its read-only PrePush now passes. Models/service/UI tests pass;
+Samsung read/recovery/privacy proof now passes with all retained hashes restored.
+Normal-hook and iOS profit proof remain separate. External product_native_profit_20261007/
+CHECKPOINT.json owns outcomes. Freeze staged source throughout its normal hook.
+
 ## Combined product release — October 7
 
 Read [the combined release checkpoint](docs/ops/PRODUCT_RELEASE_20261007.md).
