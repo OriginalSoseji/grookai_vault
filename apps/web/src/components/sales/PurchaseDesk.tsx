@@ -5,6 +5,7 @@ import {Check, Eye, Plus, Search, X} from 'lucide-react';
 import SalesDialog from './SalesDialog';
 import SalesPaymentEditor from './SalesPaymentEditor';
 import OfferPolicies from './OfferPolicies';
+import OfferSummary from './OfferSummary';
 import {quoteOfferPolicy} from '@/lib/sales/offerPolicies.mjs';
 import type {OfferPolicy, OfferReference, OfferProposal, OfferCondition} from '@/lib/sales/offerPolicies.mjs';
 import {conditions, methods, minor, money, rate} from '@/lib/sales/salesDesk.mjs';
@@ -217,15 +218,12 @@ export default function PurchaseDesk({owner, currentOwner, draft, locked, busy, 
                                 {marketLoading && <p role="status">Loading market reference…</p>}{marketError && <p role="alert">{marketError}</p>}
                                 <button disabled={disabled || marketLoading || !printing} onClick={() => setMarketReload(value => value + 1)}>Refresh market reference</button>
                                 {marketReference && <small>Observed {referenceTime(marketReference.observedAt)} · published {referenceTime(marketReference.publishedAt)}</small>}</>}
-                            {proposal?.status === 'available' && <><p>Reference ${money(proposal.referenceMinor)} × {proposal.rateBps / 100}%{proposal.tierApplied ? ' · Low-value tier' : ''}
-                                {' · '}Calculated ${money(proposal.calculatedMinor)} per item · round {proposal.rounding.mode === 'down' ? 'down' : 'to nearest'} ${money(proposal.rounding.incrementMinor)}</p>
-                                <small>Calculated value is shown to the nearest cent. The offer rounds the full percentage result once.</small>
-                                {proposal.requiresConditionReview && <label className={s.check}><input type="checkbox" checked={conditionReview === reviewKey} disabled={disabled}
-                                    onChange={event => setConditionReview(event.target.checked ? reviewKey : '')}/> I reviewed the {proposal.basisCondition ?? 'unspecified'} reference condition for this {selected ? condition : 'unspecified-condition'} item.</label>}</>}
+                            {suggestion !== null && <OfferSummary suggested={suggestion} agreed={minor(agreed)} trade={false} proposal={proposal}/>}
+                            {proposal?.status === 'available' && proposal.requiresConditionReview && <label className={s.check}><input type="checkbox" checked={conditionReview === reviewKey} disabled={disabled}
+                                onChange={event => setConditionReview(event.target.checked ? reviewKey : '')}/> I reviewed the {proposal.basisCondition ?? 'unspecified'} reference condition for this {selected ? condition : 'unspecified-condition'} item.</label>}
                             {policy && proposal?.status !== 'available' && !marketLoading && <p>No policy offer yet. Check the exact printing, reference and condition basis. You may still enter an agreed price.</p>}
-                            {suggestion !== null && <p>Suggested offer ${money(suggestion)} per item{minor(agreed) !== null && minor(agreed) !== suggestion ? ' · Agreed price overridden' : ''}</p>}
                             <button disabled={disabled || suggestion === null || needsReview} onClick={useSuggestion}>Use suggested offer</button>
-                            <small>Changing the reference or percentage keeps your agreed price.</small></details>
+                            </details>
                         {selected ? <label className={s.check}><input type="checkbox" checked={intake} disabled={disabled} onChange={event => setIntake(event.target.checked)}/> Add this copy to my Vault when the purchase completes</label> : <p>A quick purchase records the item and payout. It does not add inventory.</p>}
                         <button className={s.primary} disabled={disabled} onClick={() => void add()}>Add to purchase</button>
                     </div>

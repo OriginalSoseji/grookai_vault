@@ -99,6 +99,7 @@ Future<void> open(
   bool negotiated = false,
   Map<String, dynamic>? line,
   Size size = const Size(430, 932),
+  double textScale = 1,
 }) async {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
@@ -107,6 +108,12 @@ Future<void> open(
   addTearDown(service.changes.close);
   await tester.pumpWidget(
     MaterialApp(
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(
+          context,
+        ).copyWith(textScaler: TextScaler.linear(textScale)),
+        child: child!,
+      ),
       home: Scaffold(
         body: Builder(
           builder: (context) => TextButton(
@@ -149,8 +156,16 @@ Future<void> canonical(
   PolicyDialogFixture service, {
   Size size = const Size(430, 932),
   bool negotiated = false,
+  double textScale = 1,
 }) async {
-  await open(tester, service, quick: false, size: size, negotiated: negotiated);
+  await open(
+    tester,
+    service,
+    quick: false,
+    size: size,
+    negotiated: negotiated,
+    textScale: textScale,
+  );
   await enter(tester, 'Find incoming card', 'Catalog');
   await tester.pump(const Duration(milliseconds: 200));
   await tester.pumpAndSettle();
@@ -164,6 +179,40 @@ String textValue(WidgetTester tester, String label) => tester
     .controller!
     .text;
 void main() {
+  testWidgets(
+    'large-text phone keeps reviewed apply reachable around calculation details',
+    (tester) async {
+      final s = PolicyDialogFixture()
+        ..install(policy(source: 'tcgplayer_market'));
+      await canonical(tester, s, size: const Size(360, 800), textScale: 2);
+      await enter(tester, 'Agreed price per item (USD)', '7.00');
+      final use = find.widgetWithText(TextButton, 'Use suggested offer');
+      expect(tester.widget<TextButton>(use).onPressed, isNull);
+      await tapVisible(tester, find.text('Calculation details'));
+      await tester.ensureVisible(
+        find.textContaining('Changing the reference or policy keeps'),
+      );
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(textValue(tester, 'Agreed price per item (USD)'), '7.00');
+      await tapVisible(tester, find.text('Calculation details'));
+      await tapVisible(
+        tester,
+        find.descendant(
+          of: find.widgetWithText(
+            CheckboxListTile,
+            'I reviewed the unspecified reference condition for this NM item.',
+          ),
+          matching: find.byType(Checkbox),
+        ),
+      );
+      await tapVisible(tester, use);
+      expect(textValue(tester, 'Agreed price per item (USD)'), '6.50');
+      await tapVisible(tester, find.text('Add to purchase'));
+      expect(s.result, containsPair('unitMinor', 650));
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets(
     'newly saved selected-condition tier policy rounds above ceiling',
     (tester) async {
@@ -225,7 +274,7 @@ void main() {
         await enter(tester, 'Reference value per item (USD)', sample.key);
         expect(textValue(tester, 'Reference value per item (USD)'), sample.key);
         expect(
-          find.textContaining('Suggested offer: USD ${sample.value}'),
+          find.textContaining('Suggested credit: USD ${sample.value}'),
           findsOneWidget,
         );
         expect(

@@ -243,6 +243,9 @@ test('default tier and rounding apply to new proposals without changing agreed t
     await page.getByLabel('Reference value per item (USD)').fill('5.00');
     await page.getByLabel('Quantity', {exact: true}).fill('3');
     await expect(page.getByText(/Suggested offer \$2.00 per item/)).toBeVisible();
+    await expect(page.getByText(/Low-value tier/).filter({hasText: 'Reference'})).toBeVisible();
+    await expect(page.getByText(/Low-value tier/).filter({hasText: 'Calculated'})).toBeHidden();
+    await page.getByText('Calculation details', {exact: true}).click();
     await expect(page.getByText(/Low-value tier/).filter({hasText: 'Calculated'})).toBeVisible();
     await expect(page.getByLabel('Agreed price per item (USD)')).toHaveValue('6.50');
     await page.getByLabel('Reference value per item (USD)').fill('5.01');
@@ -359,4 +362,46 @@ test('account change hides a late market reference without touching the held off
     await expect(page.getByRole('heading', {name: 'Reopen your sales desk'})).toBeVisible(); proof.release();
     await expect(page.getByText(/Suggested offer/)).toHaveCount(0);
     expect(await page.evaluate(key => localStorage.getItem(key), key)).toBe(before); expect(proof.posts).toHaveLength(0);
+});
+
+for (const width of [390, 1440]) test(`compact offer comparison and keyboard details preserve review at ${width}`, async ({page}, testInfo) => {
+    await page.setViewportSize({width, height: 900});
+    const proof = await fixture(page); await openBuy(page);
+    await seedPolicy(page, {...standardPolicy, source: 'tcgplayer_market'});
+    await page.getByLabel('Find incoming card', {exact: true}).fill('Fixture');
+    await page.getByRole('button', {name: 'Choose printing', exact: true}).click();
+    await page.getByRole('combobox', {name: 'Exact printing', exact: true}).selectOption(card.printings[0].id);
+    await page.getByLabel('Agreed price per item (USD)').fill('7.00');
+    await page.getByText('Calculate an offer · optional', {exact: true}).click();
+    const summary = page.getByRole('region', {name: 'Offer comparison'});
+    await expect(summary.getByText(/Suggested offer \$6.50 per item/)).toBeVisible();
+    await expect(summary.getByText(/Agreed price \$7.00 per item/)).toBeVisible();
+    await expect(page.getByText('TCGPlayer Market · exact printing · condition unspecified', {exact: true})).toBeVisible();
+    await expect(page.getByText(/^Observed .*published/)).toBeVisible();
+    await expect(summary.getByText(/Calculated \$/)).toBeHidden();
+    const use = page.getByRole('button', {name: 'Use suggested offer', exact: true});
+    await expect(use).toBeDisabled();
+    await summary.evaluate(node => node.scrollIntoView({block: 'center', behavior: 'instant'}));
+    if (width === 390) {
+        const comparisonBox = await summary.boundingBox(), actionBox = await page.getByRole('link', {name: /View purchase/}).boundingBox();
+        expect(comparisonBox!.y + comparisonBox!.height).toBeLessThan(actionBox!.y);
+    }
+    await page.screenshot({path: testInfo.outputPath('compact.png')});
+    const disclosure = summary.getByText('Calculation details', {exact: true});
+    await disclosure.focus(); await disclosure.press('Enter');
+    await expect(summary.getByText(/Calculated \$6.51 per item/)).toBeVisible();
+    await expect(use).toBeDisabled();
+    await expect(page.getByLabel('Agreed price per item (USD)')).toHaveValue('7.00');
+    await summary.evaluate(node => node.scrollIntoView({block: 'center', behavior: 'instant'}));
+    await page.screenshot({path: testInfo.outputPath('expanded.png')});
+    await disclosure.press('Enter');
+    await expect(summary.getByText(/Calculated \$/)).toBeHidden();
+    const checked = page.getByRole('checkbox', {name: /I reviewed the unspecified reference condition/});
+    await checked.check(); await expect(use).toBeEnabled();
+    await expect(page.getByLabel('Agreed price per item (USD)')).toHaveValue('7.00');
+    await use.click(); await expect(page.getByLabel('Agreed price per item (USD)')).toHaveValue('6.50');
+    expect(proof.posts).toHaveLength(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const accessibility = await new AxeBuilder({page}).include('[aria-label="Offer comparison"]').analyze();
+    expect(accessibility.violations).toEqual([]);
 });

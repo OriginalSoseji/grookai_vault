@@ -1,5 +1,26 @@
 # Grookai Operator Playbook V1
 
+## Compact offer presentation — October 8
+
+Work in C:/gv_product_offer_ui_20261008 from qualified market runtime
+ e147eb827825daa03fa1276b56db23157013d65b. Read
+ docs/ops/PRODUCT_OFFER_UI_20261008.md and VENDOR_OFFER_POLICIES_V1.
+Preserve the clean market tree, Samsung428, all prior fixtures and433 migration
+bytes. Presentation only: make suggested and agreed terms easy to compare; keep
+source/condition/times and explicit review/use. Never change agreed amounts on
+refresh, policy selection or account changes. Detailed arithmetic may collapse.
+External product_offer_ui_20261008/CHECKPOINT.json owns active outcomes.
+Inherited market runtime/ordinary helpers pin the OLD worktree and output base;
+do not run them here. Adapt dedicated guards and evidence destinations first.
+Actual web market-1791451615590 and Samsung429 market-1791451682546 pass.
+Fifteen runtime images inspected; agreed terms and31 prior row sets retained.
+Focused50 native,45 initial+4 final browser, types/lint/analysis pass.
+Freeze source/lab for the dedicated ordinary commit hook; external checkpoint
+owns its terminal outcome. Preserve the uppercase fixture correction and failed run.
+No production deployment, activation, upload or provider fetch. Exact combined
+release, physical iOS, measured benchmark and the full overhaul remain open.
+
+
 ## Governed offer reference runtime — October 8
 
 Work in C:/gv_product_offer_market_20261008 from qualified entry2dc3a1a0c.

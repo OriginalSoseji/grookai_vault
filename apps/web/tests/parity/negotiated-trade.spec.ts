@@ -159,6 +159,12 @@ test('trade default applies inclusive unit tier and whole-line rounding without 
     await expect(page.getByLabel('Agreed credit for this whole line (USD)')).toHaveValue('6.50');
     await page.getByLabel('Reference value per item (USD)').fill('10.01');
     await expect(page.getByText('Suggested credit $19.50 for this line', {exact: false})).toBeVisible();
+    const comparison = page.getByRole('region', {name: 'Offer comparison'});
+    await expect(comparison.getByText(/Agreed credit \$6.50 for this line/)).toBeVisible();
+    await expect(comparison.getByText(/Calculated \$/)).toBeHidden();
+    await comparison.getByText('Calculation details', {exact: true}).click();
+    await expect(comparison.getByText(/3 item\(s\) · Calculated \$19.52 for this line/)).toBeVisible();
+    await comparison.getByText('Calculation details', {exact: true}).click();
     await expect(page.getByLabel('Agreed credit for this whole line (USD)')).toHaveValue('6.50');
     await page.getByRole('button', {name: 'Add to trade', exact: true}).click();
     await page.reload(); await expect(page.getByLabel('Agreed credit for Policy bundle')).toHaveValue('6.50');

@@ -9,6 +9,7 @@ import '../../services/sales/negotiated_trade.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../services/sales/offer_policies.dart';
 import 'sales_offer_policies.dart';
+import 'sales_offer_summary.dart';
 
 class SalesPurchaseDialog extends StatefulWidget {
   const SalesPurchaseDialog({
@@ -566,6 +567,8 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                             ),
                             DropdownButton<String>(
                               value: _game,
+                              isExpanded: true,
+                              itemHeight: null,
                               items: const [
                                 DropdownMenuItem(
                                   value: 'pokemon',
@@ -711,6 +714,8 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                 ),
                               DropdownButtonFormField<String>(
                                 initialValue: _condition,
+                                isExpanded: true,
+                                itemHeight: null,
                                 decoration: const InputDecoration(
                                   labelText: 'Condition',
                                 ),
@@ -819,39 +824,35 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                       'Observed ${_referenceTime(_marketReference!['observedAt'] as String)} · published ${_referenceTime(_marketReference!['publishedAt'] as String)}',
                                     ),
                                 ],
-                                if (proposal?['status'] == 'available') ...[
-                                  Text(
-                                    'Reference USD ${saleMoney(proposal!['referenceMinor'] as int)} × ${tradeRate(proposal['rateBps'] as int)}%${proposal['tierApplied'] == true ? ' · Low-value tier' : ''} · Calculated USD ${saleMoney(proposal['calculatedMinor'] as int)} ${widget.negotiated ? 'for this line' : 'per item'} · round ${proposal['rounding']['mode'] == 'down' ? 'down' : 'to nearest'} USD ${saleMoney(proposal['rounding']['incrementMinor'] as int)}',
+                                if (suggested != null)
+                                  SalesOfferSummary(
+                                    suggested: suggested,
+                                    agreed: saleMoneyInput(_agreed.text),
+                                    negotiated: widget.negotiated,
+                                    proposal: proposal,
                                   ),
-                                  const Text(
-                                    'Calculated value is shown to the nearest cent. The offer rounds the full percentage result once.',
-                                  ),
-                                  if (proposal['requiresConditionReview'] ==
-                                      true)
-                                    CheckboxListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      value: _conditionReview == _reviewKey,
-                                      onChanged: _loading
-                                          ? null
-                                          : (value) => setState(
-                                              () => _conditionReview = value!
-                                                  ? _reviewKey
-                                                  : null,
-                                            ),
-                                      title: Text(
-                                        'I reviewed the ${proposal['basisCondition'] ?? 'unspecified'} reference condition for this ${_manual ? 'unspecified-condition' : _condition} item.',
-                                      ),
+                                if (proposal?['status'] == 'available' &&
+                                    proposal!['requiresConditionReview'] ==
+                                        true)
+                                  CheckboxListTile(
+                                    contentPadding: EdgeInsets.zero,
+                                    value: _conditionReview == _reviewKey,
+                                    onChanged: _loading
+                                        ? null
+                                        : (value) => setState(
+                                            () => _conditionReview = value!
+                                                ? _reviewKey
+                                                : null,
+                                          ),
+                                    title: Text(
+                                      'I reviewed the ${proposal['basisCondition'] ?? 'unspecified'} reference condition for this ${_manual ? 'unspecified-condition' : _condition} item.',
                                     ),
-                                ],
+                                  ),
                                 if (_policy != null &&
                                     proposal?['status'] != 'available' &&
                                     !_marketLoading)
                                   const Text(
                                     'No policy offer yet. Check the exact printing, reference and condition basis. You may still enter an agreed price.',
-                                  ),
-                                if (suggested != null)
-                                  Text(
-                                    'Suggested offer: USD ${saleMoney(suggested)}${saleMoneyInput(_agreed.text) != null && saleMoneyInput(_agreed.text) != suggested ? ' · Agreed price overridden' : ''}',
                                   ),
                                 TextButton(
                                   onPressed:
@@ -865,11 +866,6 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                         ? 'Use suggested credit'
                                         : 'Use suggested offer',
                                   ),
-                                ),
-                                Text(
-                                  widget.negotiated
-                                      ? 'Changing the reference, quantity or policy keeps your agreed whole-line credit.'
-                                      : 'Changing the reference or percentage keeps your agreed price.',
                                 ),
                               ],
                             ),

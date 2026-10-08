@@ -2,6 +2,7 @@ import {useCallback, useEffect, useRef, useState} from 'react';
 import Image from 'next/image';
 import {Plus, Search, X} from 'lucide-react';
 import OfferPolicies from './OfferPolicies';
+import OfferSummary from './OfferSummary';
 import {quoteOfferPolicy} from '@/lib/sales/offerPolicies.mjs';
 import type {OfferPolicy, OfferReference, OfferProposal, OfferCondition} from '@/lib/sales/offerPolicies.mjs';
 import {conditions, minor, money, rate} from '@/lib/sales/salesDesk.mjs';
@@ -193,15 +194,12 @@ export default function NegotiatedTradeEditor({owner, currentOwner, locked, edit
                                 {marketLoading && <p role="status">Loading market reference…</p>}{marketError && <p role="alert">{marketError}</p>}
                                 <button disabled={disabled || marketLoading || !printing} onClick={() => setMarketReload(value => value + 1)}>Refresh market reference</button>
                                 {marketReference && <small>Observed {referenceTime(marketReference.observedAt)} · published {referenceTime(marketReference.publishedAt)}</small>}</>}
-                            {proposal?.status === 'available' && <><p>Reference ${money(proposal.referenceMinor)} × {proposal.rateBps / 100}%{proposal.tierApplied ? ' · Low-value tier' : ''}
-                                {' · '}Calculated ${money(proposal.calculatedMinor)} for this whole line · round {proposal.rounding.mode === 'down' ? 'down' : 'to nearest'} ${money(proposal.rounding.incrementMinor)}</p>
-                                <small>The offer rounds the full line percentage result once.</small>
-                                {proposal.requiresConditionReview && <label className={s.check}><input type="checkbox" checked={conditionReview === reviewKey} disabled={disabled}
-                                    onChange={event => setConditionReview(event.target.checked ? reviewKey : '')}/> I reviewed the {proposal.basisCondition ?? 'unspecified'} reference condition for this {selected ? condition : 'unspecified-condition'} item.</label>}</>}
+                            {suggestion !== null && <OfferSummary suggested={suggestion} agreed={minor(agreed)} trade={true} proposal={proposal}/>}
+                            {proposal?.status === 'available' && proposal.requiresConditionReview && <label className={s.check}><input type="checkbox" checked={conditionReview === reviewKey} disabled={disabled}
+                                onChange={event => setConditionReview(event.target.checked ? reviewKey : '')}/> I reviewed the {proposal.basisCondition ?? 'unspecified'} reference condition for this {selected ? condition : 'unspecified-condition'} item.</label>}
                             {policy && proposal?.status !== 'available' && !marketLoading && <p>No policy offer yet. Check the exact printing, reference and condition basis. You may still enter agreed credit.</p>}
-                            {suggestion !== null && <p>Suggested credit ${money(suggestion)} for this line{minor(agreed) !== null && minor(agreed) !== suggestion ? ' · Agreed credit overridden' : ''}</p>}
                             <button disabled={disabled || suggestion === null || needsReview} onClick={useSuggestion}>Use suggested credit</button>
-                            <small>Changing the reference, quantity or policy keeps your agreed credit.</small></details>
+                            </details>
                         {selected ? <label className={s.check}><input type="checkbox" checked={intake} disabled={disabled} onChange={event => setIntake(event.target.checked)}/> Add this copy to my Vault when the trade completes</label> : <p>A quick trade records the incoming line and agreed credit. It does not add inventory.</p>}
                         <button className={s.primary} disabled={disabled} onClick={() => void add()}>Add to trade</button>
                     </div>
