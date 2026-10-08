@@ -1,5 +1,10 @@
 # Grookai Agent Entry Point
 
+## Exact combined cost, Buy and Trade release — October 8
+
+Work in C:/gv_product_deal_release_20261008 from qualified search commit 5c5dec758d5c59bf6a9cc7f4d768816898c2d4b2. Read docs/ops/PRODUCT_DEAL_RELEASE_20261008.md. Preserve every prior tree, populated lab, consumed fixture and Samsung429. All433 source migrations remain byte-identical; the local release package excludes only deferred receipt delivery and has432 migrations. Fresh read-only live429 baseline, exact full/upgrade replay, real Auth/RPC, independent CLI shadow and source-bound gates are required. Old fixed-root wrappers must not run here. External product_deal_release_20261008/CHECKPOINT.json owns status. No production apply, deployment, activation, provider fetch or upload. No subagents. Full overhaul stays active. Actual exact432 replay/retained upgrade, cost/Buy/Trade AuthRPC,99 SQL cases, reapplication and independent shadow-v2 now pass;24 focused checks and29-artifact manifest verification pass. Full package retains178 copies/six accounts, upgrade two copies/one account, controls off. Freeze source/labs for the dedicated ordinary wrapper after staged release audit. External checkpoint owns final gate/commit outcomes.
+
+
 ## Card names versus partial artists — October 8
 
 Work in C:/gv_product_search_names_20261008 from qualified compact-offer commit

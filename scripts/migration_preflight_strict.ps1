@@ -67,6 +67,8 @@ param(
   [switch]$ProductEconomicsBaselineV1,
   [switch]$ProductPurchaseBaselineV1,
   [switch]$ProductOfferTradeBaselineV1,
+  [switch]$ProductDealBaselineV1,
+  [switch]$ProductDealReleaseV1,
   [switch]$ProductEconomicsReleaseV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
@@ -96,6 +98,26 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductDealReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductDealReleaseV1 requires exactly cost, purchase and negotiated Trade; receipt delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_deal_release_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Product combined deal release qualification failed.' }
+  exit 0
+}
+
+if ($ProductDealBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealBaselineV1') }).Count -gt 0) {
+    throw 'ProductDealBaselineV1 supports only the fixed read-only combined release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_deal_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product combined deal baseline failed.' }
+  exit 0
+}
 
 if ($ProductOfferTradeBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductOfferTradeBaselineV1') }).Count -gt 0) {
