@@ -43,6 +43,18 @@ large-text UI, loss of a successful response followed by actual process restart,
 and recovery from empty Inventory after archival. Local fixtures must restore
 their retained table hashes and leave the primary installed application intact.
 
+## Inventory completeness review
+
+Review an explicitly included set of card copies from Inventory search/filters.
+Do not present it as all-owner coverage or sealed-product coverage. Read existing
+owner-only cost evidence in bounded batches; publish coverage only after complete
+validation. An absent or archived copy is unavailable, never a missing-cost edit.
+Known zero and known foreign currency are recorded costs; no implicit conversion
+or USD profit inference. Missing amount, missing currency and invalid evidence
+remain separate. Account changes close private review; failed refresh clears old
+metrics. Repairs reuse the existing journaled per-copy editor and reread on return.
+New entry remains behind the existing flag; pending recovery remains independent.
+
 ## Sale evidence
 
 A default-off AFTER INSERT trigger on the immutable cart receipt ledger captures

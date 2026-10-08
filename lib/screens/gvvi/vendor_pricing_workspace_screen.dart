@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import '../vault/copy_cost_screen.dart';
+import '../vault/copy_cost_review_screen.dart';
 import '../../services/vault/copy_cost_service.dart';
 import '../stores/store_management_screen.dart';
 import '../sales/sales_desk_screen.dart';
@@ -130,6 +131,38 @@ class _VendorPricingWorkspaceScreenState
         ),
       ),
     );
+  }
+
+  Future<void> _reviewCosts() async {
+    final costs = _copyCosts;
+    if (costs == null || !await _prepareWorkspaceExit() || !mounted) return;
+    try {
+      costs.checkOwner();
+      final review = widget.service.createCopyCostReviewService();
+      try {
+        if (review.ownerId != costs.ownerId) return;
+        final included = List<VendorPricingWorkspaceRow>.unmodifiable(
+          _visibleRows,
+        );
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => CopyCostReviewScreen(
+              service: review,
+              copies: included,
+              onEdit: _openCost,
+            ),
+          ),
+        );
+      } finally {
+        review.dispose();
+      }
+    } catch (_) {
+      if (mounted) {
+        _showStatus(
+          'Private cost review is unavailable. Reopen Inventory to try again.',
+        );
+      }
+    }
   }
 
   bool get _hasPriceEdits => _rows.any(
@@ -878,6 +911,16 @@ class _VendorPricingWorkspaceScreenState
                   onFilterChanged: (value) => setState(() => _filter = value),
                 ),
                 const Divider(height: 1),
+                if (widget.costEntryEnabled && _copyCosts != null)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      key: const Key('vendor_cost_review'),
+                      onPressed: visibleRows.isEmpty ? null : _reviewCosts,
+                      icon: const Icon(Icons.fact_check_outlined),
+                      label: const Text('Review costs for matching copies'),
+                    ),
+                  ),
                 Expanded(
                   child: visibleRows.isEmpty
                       ? const Center(child: Text('No matching cards.'))
@@ -1328,9 +1371,20 @@ class _WorkspaceHeader extends StatelessWidget {
           TextField(
             key: const Key('vendor_search'),
             controller: searchController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               hintText: 'Find a card, set, printing, or GVVI',
-              prefixIcon: Icon(Icons.search_rounded),
+              prefixIcon: const Icon(Icons.search_rounded),
+              suffixIcon: searchController.text.isEmpty
+                  ? null
+                  : IconButton(
+                      key: const Key('vendor_search_clear'),
+                      tooltip: 'Clear inventory search',
+                      onPressed: () {
+                        searchController.clear();
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
+                      icon: const Icon(Icons.clear),
+                    ),
               isDense: true,
             ),
           ),

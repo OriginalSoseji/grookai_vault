@@ -1,5 +1,18 @@
 # Grookai Agent Entry Point
 
+## Inventory cost review — October 7
+
+Read [the cost review checkpoint](docs/ops/PRODUCT_COST_REVIEW_20261007.md).
+This isolated tree now includes qualified native profit9dcebf64c. It adds an explicit-scope,
+owner-only native cost-completeness queue using existing reads and the existing
+recoverable editor. No SQL or bulk writer. Native profit's normal hook now passes;
+its source/lab freeze is lifted. Preserve its clean tree and all retained labs. External
+product_cost_review_20261007 evidence records actual qualification; no deployment.
+Samsung acceptance now passes with eight inspected screens, exactly one currency
+repair and all14 retained table hashes restored. Preserve consumed fixtures and
+the primary app. Run the cost-review normal wrapper serially and freeze staged
+source/lab until terminal. Web and iOS review qualification remain separate.
+
 ## Native private profit — October 7
 
 Read [the native profit checkpoint](docs/ops/PRODUCT_NATIVE_PROFIT_20261007.md).
@@ -7,8 +20,8 @@ This isolated tree now includes passed combined releaseda46e8d9 and implements
 read-only Reports parity with web immutable cost evidence. Preserve the clean
 release tree; its read-only PrePush now passes. Models/service/UI tests pass;
 Samsung read/recovery/privacy proof now passes with all retained hashes restored.
-Normal-hook and iOS profit proof remain separate. External product_native_profit_20261007/
-CHECKPOINT.json owns outcomes. Freeze staged source throughout its normal hook.
+Normal-hook commit9dcebf64c passes; iOS profit proof remains separate. External
+product_native_profit_20261007/CHECKPOINT.json owns outcomes. Keep that tree clean.
 
 ## Combined product release — October 7
 

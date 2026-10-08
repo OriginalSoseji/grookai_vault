@@ -1,5 +1,22 @@
 # Grookai Operator Playbook V1
 
+## Inventory cost completeness — October 7
+
+Follow [the native cost review checkpoint](PRODUCT_COST_REVIEW_20261007.md) in
+`C:/gv_product_cost_review_20261007`. Inventory search/filter results define the
+review scope; private reads are complete owner-bound batches. Repairs reuse the
+existing exact-copy editor and journal, then refresh the same review. Do not
+infer missing currency, rewrite historical sale costs or replay an import.
+Native profit9dcebf64c now passes its normal hook; the source/lab freeze is lifted.
+External product_cost_review_20261007 owns actual test and device outcomes.
+Samsung device-1791421920504 passes the Inventory-to-review-to-editor workflow,
+including explicit search clearing, one confirmed currency repair, failed-read
+recovery and sign-out. Eight screens inspected; cleanup restored14 table hashes.
+Use the checked-in cost-review fixture producer only with a fresh external run.
+The private host preserves the locked acceptance package and existing ADB mappings.
+Normal checks use run_product_cost_review_checks_v1.mjs; freeze source/lab until
+terminal. Preserve failed diagnostic attempts and all prior request journals.
+
 ## Native private profit — October 7
 
 Follow [the native profit checkpoint](PRODUCT_NATIVE_PROFIT_20261007.md) in
