@@ -122,8 +122,14 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/sales/
+apps/web/src/app/api/sales/*
+!apps/web/src/app/api/sales/costs/
+!apps/web/src/app/api/sales/costs/route.ts
 !apps/web/src/app/api/vault/
 apps/web/src/app/api/vault/*
+!apps/web/src/app/api/vault/cost/
+!apps/web/src/app/api/vault/cost/route.ts
 !apps/web/src/app/api/vault/import/
 !apps/web/src/app/api/vault/import/route.ts
 !apps/web/src/app/api/stores/

@@ -21,7 +21,7 @@ async function fixture(page: Page, delayedBook = false) {
     if (action === "session") return route.fulfill({ json: { owner, available: true, trades: true, payments: true } });
     if (action === "book") {
       if (delayedBook) await heldBook;
-      return route.fulfill({ json: { book: { storeName: "Sample store", customers: [], receipts: [{ receipt }] } } });
+      return route.fulfill({ json: { ownerId: owner, book: { storeName: "Sample store", customers: [], receipts: [{ receipt }] } } });
     }
     return route.fulfill({ json: { cards: [], next: null } });
   });

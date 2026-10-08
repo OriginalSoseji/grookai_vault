@@ -1,5 +1,51 @@
 # Grookai Agent Entry Point
 
+## Combined product release — October 7
+
+Read [the combined release checkpoint](docs/ops/PRODUCT_RELEASE_20261007.md).
+The candidate in `C:/gv_product_release_20261007` combines the passed native469503b
+with the economics gate. Product/backend bytes are separately bound; shadow and
+fresh combined release checks remain distinct. External product_release_20261007/
+CHECKPOINT.json owns actual outcomes. Preserve every prior worktree, lab, journal,
+consumed intent and deferred receipt migration. No production apply or upload.
+
+## Combined economics workflow — October 7
+
+The combined source is in `C:/gv_product_integrated_20261007`; read
+[the integration checkpoint](docs/ops/PRODUCT_INTEGRATED_20261007.md).
+Editor `bead8c328` and report `dc630120c` passed their separate normal hooks.
+Their combined commit `12f806945` passed the normal hook and 43 browser scenarios.
+The native cost tree now includes that committed result. Preserve
+all source worktrees, pending requests and labs. The daily-workflow iPad simulator
+acceptance now passes; physical iOS and production release remain separate.
+## Native private cost entry — October 7
+
+Read [the native cost checkpoint](docs/ops/PRODUCT_NATIVE_COST_20261007.md).
+This independent tree now begins at integrated `12f806945`. Exact native models,
+the SQLite journal and owner-bound service are implemented. All 33 model/service
+tests pass, as do ten real SQLite tests and native editor/Inventory widget checks.
+Samsung process-restart recovery and visual checks pass. The full normal hook
+remains tracked by the external native checkpoint. Continue native work here.
+Preserve all pending requests and labs. No production writes or activation.
+
+## Private cost editor — October 7
+
+Read [the cost UI checkpoint](docs/ops/PRODUCT_COST_UI_20261007.md). Work in
+`C:/gv_product_cost_ui_20261007` on backend `3f3a30e88`; the economics release gate
+is separate. Preserve pending owner/copy journals and all retained labs. New UI
+entry remains default-off; recovery survives switch-off. External product_cost_ui
+evidence owns actual validation. No production or public release is authorized.
+
+## Known-cost report — October 7
+
+Read [the report checkpoint](docs/ops/PRODUCT_PROFIT_20261007.md) and its contract.
+This independent worktree starts from cost backend `3f3a30e88`. Report arithmetic
+uses immutable cost-at-sale evidence, never current copy costs. Private API/UI are
+wired and verified against real local Auth, receipts and snapshots; normal hooks
+remain tracked by the external checkpoint. Preserve
+separate editor/release-gate work, all labs and pending
+requests. No production activation or full-overhaul completion is implied.
+
 ## Product economics — October 7
 
 Read [the economics checkpoint](docs/ops/PRODUCT_ECONOMICS_20261007.md) and

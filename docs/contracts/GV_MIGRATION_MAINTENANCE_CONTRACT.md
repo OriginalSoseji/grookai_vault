@@ -2,6 +2,17 @@
 
 ## Product economics release preparation — October 7
 
+The combined product candidate moves the fixed inspection root to
+`C:/gv_product_release_20261007` and fresh gate/package outputs to external
+product_release_20261007. The qualified backend3f3a30e8 and its original lab/RPC
+receipts remain fixed. Product469503b is separately qualified by its passed normal
+hook, integrated authenticated web journey and Samsung process recovery receipts.
+All product/dependency bytes must match; backend/schema cannot change. This does
+not authorize new migrations or waive independent shadow and fresh PrePush checks.
+The independent shadow430-v7 proof passes and is pinned by the combined gate:
+430 exact-package migrations, zero raw/normalized public SQL,1,180 matched security
+definitions and15 retained table hashes. Earlier failed attempts remain preserved.
+
 `-ProductEconomicsReleaseV1` permits only AuditLinkedSchema or PrePush and the
 exact pending cost migration20261007180000. Live baseline429, source431 and the
 cost-only release package430 are distinct; deferred receipt20261005150000 remains

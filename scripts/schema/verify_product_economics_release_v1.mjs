@@ -6,14 +6,16 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 
 export const costRelease=Object.freeze({
- root:'C:/gv_product_economics_20261007',
+ root:'C:/gv_product_release_20261007',
  evidence:'C:/grookai_vault_operator_artifacts/product_economics_20261007',
+ releaseEvidence:'C:/grookai_vault_operator_artifacts/product_release_20261007',
  target:'ycdxbpibncqcchqiihfz',
  migration:'20261007180000_vendor_cost_evidence_v1.sql',
  migrationSha256:'7a64b0ec767e06a6c163b5184a8f95ce8acf795da4d15888635eb864c8830199',
  deferred:'20261005150000_vendor_receipt_delivery_v1.sql',
  deferredSha256:'b23a47b9892a5a2ccfc65f9fb81b350496ba560baaaab0ac8cd961d6eb2da84d',
  qualifiedCommit:'3f3a30e88ba35519514af1b7e3e65efcc8010032',
+ qualifiedProductCommit:'469503b68253a0930e4238ce097478d02b290c0e',
 });
 export function validateCostReleaseArguments(args){
  assert.equal(args.length,1,'Use AuditLinkedSchema or PrePush only');
@@ -29,7 +31,7 @@ export function costReleaseSources(sources,baseline){
 }
 export async function verifyProductEconomicsRelease(phase){
  validateCostReleaseArguments([phase]);
- const {root,evidence,target,migration,qualifiedCommit}=costRelease;
+ const {root,evidence,releaseEvidence,target,migration,qualifiedCommit,qualifiedProductCommit}=costRelease;
  assert.match(qualifiedCommit,/^[a-f0-9]{40}$/,'Bind the actual passed backend commit before use');
  assert.equal(fs.realpathSync('.').replaceAll('\\','/').toLowerCase(),root.toLowerCase());
  const read=p=>JSON.parse(fs.readFileSync(p)),hash=b=>createHash('sha256').update(b).digest('hex');
@@ -39,7 +41,12 @@ export async function verifyProductEconomicsRelease(phase){
  const sources=Object.fromEntries(fs.readdirSync(root+'/supabase/migrations').filter(n=>n.endsWith('.sql')).sort().map(n=>[n,hash(fs.readFileSync(root+'/supabase/migrations/'+n))]));
  const baselineDir='C:/grookai_vault_operator_artifacts/sales_split_payments_20261006/full-429-release-v1';
  const baseline=read(baselineDir+'/freeze.json'),packageHashes=costReleaseSources(sources,baseline.sourceHashes);
- assert.equal(git('diff','--name-only',qualifiedCommit,'--','apps','backend','lib','test','supabase'),'','Backend qualification does not admit changed product source');
+ git('merge-base','--is-ancestor',qualifiedCommit,qualifiedProductCommit);
+ assert.equal(git('diff','--name-only',qualifiedProductCommit,'--','apps','backend','lib','test','supabase','pubspec.yaml','pubspec.lock'),'','Combined qualification does not admit changed product source');
+ assert.equal(git('diff','--name-only',qualifiedCommit,'--','backend','supabase'),'','Qualified backend and schema must remain unchanged');
+ const {verifyProductReleaseEvidence}=await import('./product_release_evidence_v1.mjs');
+ const productEvidence=verifyProductReleaseEvidence(packageHashes);
+ assert.equal(productEvidence.commit,qualifiedProductCommit);
  for(const p of ['scripts/receipts/prove_vendor_cost_evidence_v1.mjs','scripts/schema/product_economics_lab_v1.mjs','scripts/schema/product_economics_release_lab_v1.mjs']){
   assert.equal(hash(fs.readFileSync(root+'/'+p)),hash(execFileSync('git',['show',qualifiedCommit+':'+p],{cwd:root})),p);
  }
@@ -53,12 +60,12 @@ export async function verifyProductEconomicsRelease(phase){
  if(phase==='PrePush'){
   assert.equal(git('status','--porcelain'),'','Clean committed source required');
   const main=git('ls-remote','origin','refs/heads/main').split(/\s+/)[0];assert.match(main,/^[a-f0-9]{40}$/);git('merge-base','--is-ancestor',main,'HEAD');
-  const latest=read(evidence+'/latest-checks.json');assert.equal(latest.status,'passed');assert.equal(latest.mode,'commit');assert.equal(latest.finalHead,git('rev-parse','HEAD'));
+  const latest=read(releaseEvidence+'/latest-checks.json');assert.equal(latest.status,'passed');assert.equal(latest.mode,'commit');assert.equal(latest.finalHead,git('rev-parse','HEAD'));
   const age=Date.now()-Date.parse(latest.at);assert.ok(age>=0&&age<7200000,'Fresh ordinary hooks required');
   assert.equal(hash(fs.readFileSync(latest.out+'/checks.private.log')),latest.logSha256);
  }
  const {snapshotSql,compareSnapshots}=await import('./vendor_billing_schema_v1.mjs');
- const out=evidence+'/cost-release-gate-'+phase+'-'+Date.now();fs.mkdirSync(out);
+ const out=releaseEvidence+'/cost-release-gate-'+phase+'-'+Date.now();fs.mkdirSync(out);
  const save=(n,v)=>fs.writeFileSync(out+'/'+n,JSON.stringify(v,null,2),{flag:'wx'});
  const docker=(...a)=>execFileSync('docker',a,{encoding:'utf8',windowsHide:true,timeout:60000,maxBuffer:96*1024*1024});
  for(const packaged of [false,true])for(const mode of ['full','upgrade']){
@@ -92,8 +99,9 @@ export async function verifyProductEconomicsRelease(phase){
  const remote=(await query(snapshotSql))[0].receipt;save('remote.private.json',remote);assert.deepEqual(remote.LEDGER,Object.keys(baseline.sourceHashes).map(n=>({version:n.split('_')[0]})));
  assert.ok(remote.sanity.cards>=40000&&remote.sanity.sets>=150&&remote.sanity.traits>=5000);
  const comparison=await compareSnapshots(read(baselineDir+'/replayed.private.json'),remote,{reconcile:true,output:out+'/production'});
- const toolPaths=['scripts/schema/verify_product_economics_release_v1.mjs','scripts/migration_preflight_strict.ps1','scripts/release/prepare_product_economics_cli_v1.mjs'];
+ const toolPaths=['scripts/schema/verify_product_economics_release_v1.mjs','scripts/schema/product_release_evidence_v1.mjs','scripts/migration_preflight_strict.ps1','scripts/release/prepare_product_economics_cli_v1.mjs'];
  const result={status:'passed',at:new Date().toISOString(),phase,target,migrations:429,candidateMigrations:430,sourceMigrations:431,pending:[migration.split('_')[0]],deferred:[costRelease.deferred],sourceHashes:sources,packageHashes,sourceTree:git('write-tree'),commit:git('rev-parse','HEAD'),toolHashes:Object.fromEntries(toolPaths.map(p=>[p,hash(fs.readFileSync(root+'/'+p))])),comparison,baseline:out,baselineReceiptSha256:hash(fs.readFileSync(out+'/remote.private.json')),productionWrites:0,retainedFixtureResets:0,applyAuthority:false,out};
- save('receipt.json',result);fs.writeFileSync(evidence+'/Release-'+phase+'.json',JSON.stringify(result,null,2));console.log(JSON.stringify({status:'passed',phase,out}));return result;
+ result.productEvidence=productEvidence;
+ save('receipt.json',result);fs.writeFileSync(releaseEvidence+'/Release-'+phase+'.json',JSON.stringify(result,null,2));console.log(JSON.stringify({status:'passed',phase,out}));return result;
 }
 if(process.argv[1]&&fs.realpathSync(process.argv[1])===fs.realpathSync(fileURLToPath(import.meta.url)))await verifyProductEconomicsRelease(validateCostReleaseArguments(process.argv.slice(2)));

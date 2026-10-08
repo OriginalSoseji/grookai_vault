@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import '../vault/copy_cost_screen.dart';
+import '../../services/vault/copy_cost_service.dart';
 import '../stores/store_management_screen.dart';
 import '../sales/sales_desk_screen.dart';
 import '../workspace/workspace_activation.dart';
@@ -34,12 +37,16 @@ class VendorPricingWorkspaceScreen extends StatefulWidget {
     this.service = const VendorPricingWorkspaceService(),
     this.onOpenSalesDesk,
     this.onOpenStore,
+    this.copyCosts,
+    this.costEntryEnabled = kCopyCostEntryEnabled,
     super.key,
   });
 
   final VendorPricingWorkspaceService service;
   final VoidCallback? onOpenSalesDesk;
   final VoidCallback? onOpenStore;
+  final CopyCostService? copyCosts;
+  final bool costEntryEnabled;
 
   @override
   State<VendorPricingWorkspaceScreen> createState() =>
@@ -64,6 +71,66 @@ class _VendorPricingWorkspaceScreenState
   String? _loadError;
   int? _activation;
   WorkspaceExitCoordinator? _workspaceExits;
+  CopyCostService? _copyCosts;
+  StreamSubscription<void>? _costAccount;
+
+  void _initCopyCosts() {
+    if (_copyCosts != null) return;
+    if (widget.copyCosts == null &&
+        (kIsWeb ||
+            !{
+              TargetPlatform.android,
+              TargetPlatform.iOS,
+              TargetPlatform.macOS,
+            }.contains(defaultTargetPlatform))) {
+      return;
+    }
+    try {
+      _copyCosts = widget.copyCosts ?? widget.service.createCopyCostService();
+      final costs = _copyCosts!;
+      unawaited(_costAccount?.cancel());
+      _costAccount = _copyCosts!.accountChanges.listen((_) {
+        if (mounted) {
+          setState(() {
+            _copyCosts = null;
+          });
+        }
+        if (widget.copyCosts == null) scheduleMicrotask(costs.dispose);
+      });
+    } catch (_) {
+      // A signed-out/uninitialized workspace cannot access private costs.
+      _copyCosts = null;
+    }
+  }
+
+  Future<void> _openCost(VendorPricingWorkspaceRow row) async {
+    final costs = _copyCosts;
+    if (costs == null || !await _prepareWorkspaceExit() || !mounted) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CopyCostScreen(
+          service: costs,
+          instanceId: row.instanceId,
+          gvviId: row.gvviId,
+          title: row.displayName,
+          entryEnabled: widget.costEntryEnabled,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _recoverCosts() async {
+    final costs = _copyCosts;
+    if (costs == null || !await _prepareWorkspaceExit() || !mounted) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CopyCostRecoveryScreen(
+          service: costs,
+          entryEnabled: widget.costEntryEnabled,
+        ),
+      ),
+    );
+  }
 
   bool get _hasPriceEdits => _rows.any(
     (row) =>
@@ -120,6 +187,8 @@ class _VendorPricingWorkspaceScreenState
 
   @override
   void dispose() {
+    unawaited(_costAccount?.cancel());
+    if (widget.copyCosts == null) _copyCosts?.dispose();
     _workspaceExits?.unregister(this);
     _searchController
       ..removeListener(_refreshFilter)
@@ -140,6 +209,7 @@ class _VendorPricingWorkspaceScreenState
   }
 
   Future<void> _load() async {
+    _initCopyCosts();
     setState(() {
       _loading = true;
       _loadError = null;
@@ -741,6 +811,13 @@ class _VendorPricingWorkspaceScreenState
               )
             : null,
         actions: [
+          if (_copyCosts != null)
+            IconButton(
+              key: const Key('vendor_cost_recovery'),
+              tooltip: 'Recover private cost saves',
+              onPressed: _recoverCosts,
+              icon: const Icon(Icons.restore_rounded),
+            ),
           IconButton(
             tooltip: 'Sales desk · quick-add and cart',
             onPressed: () async {
@@ -867,6 +944,11 @@ class _VendorPricingWorkspaceScreenState
                                   onShare: () => _share(row),
                                   onPreview: () => _previewCustomerCard(row),
                                   onQr: () => _openVendorQr(row),
+                                  onCost:
+                                      widget.costEntryEnabled &&
+                                          _copyCosts != null
+                                      ? () => _openCost(row)
+                                      : null,
                                 ),
                               );
                             },
@@ -1422,6 +1504,7 @@ class _VendorInventoryRow extends StatelessWidget {
     required this.onSections,
     required this.onShare,
     required this.onPreview,
+    this.onCost,
     required this.onQr,
     this.error,
     super.key,
@@ -1445,6 +1528,7 @@ class _VendorInventoryRow extends StatelessWidget {
   final VoidCallback onSections;
   final VoidCallback onShare;
   final VoidCallback onPreview;
+  final VoidCallback? onCost;
   final VoidCallback onQr;
 
   @override
@@ -1681,6 +1765,16 @@ class _VendorInventoryRow extends StatelessWidget {
         ),
         const SizedBox(height: 7),
         _MarketPositionLabel(row: row),
+        if (onCost != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              key: Key('vendor_cost_${row.instanceId}'),
+              onPressed: busy ? null : onCost,
+              icon: const Icon(Icons.lock_outline),
+              label: const Text('Private cost'),
+            ),
+          ),
         if ((error ?? '').isNotEmpty)
           Padding(
             padding: const EdgeInsets.only(top: 5),
