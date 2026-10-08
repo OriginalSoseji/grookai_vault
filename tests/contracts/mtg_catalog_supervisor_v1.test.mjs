@@ -257,7 +257,7 @@ test("entrypoint is read-only and writes the plan before dispatch", () => {
   assert.match(ENTRYPOINT, /workflow-id is outside the frozen supervisor authority/);
   assert.match(ENTRYPOINT, /runner-ref is outside the frozen supervisor authority/);
   assert.match(ENTRYPOINT, /frozen ceiling of 35/);
-  assert.match(ENTRYPOINT, /begin transaction read only/);
+  assert.match(ENTRYPOINT, /begin isolation level repeatable read read only/);
   assert.match(ENTRYPOINT, /run_plan\.json/);
   assert.match(ENTRYPOINT, /artifact_hashes\.json/);
   assert.match(ENTRYPOINT, /dispatchRunner/);

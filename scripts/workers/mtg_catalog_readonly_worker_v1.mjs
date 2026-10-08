@@ -60,7 +60,7 @@ export async function runMtgReadonlyWorkerV1({ output = OUTPUT, root = ROOT, exe
     receipt.producer_commit_sha = sha;
     if (process.env.CATALOG_AUTOMATION_MODE !== 'shadow-only') throw new Error('Worker requires shadow-only mode');
     receipt.preflight = preflight();
-    await execute(['--shadow-only', '--public-read-only', '--repository=OriginalSoseji/grookai_vault',
+    await execute(['--shadow-only', '--public-read-only', '--released-coverage', '--repository=OriginalSoseji/grookai_vault',
       `--as-of=${started.slice(0, 10)}`, '--max-sets=25', '--max-consecutive-failures=3', `--out-dir=${runDir}`]);
     finish('completed');
     return receipt;

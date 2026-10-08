@@ -5,6 +5,7 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 import { Client } from "pg";
+import { captureMtgReleasedCoverageV1, applyMtgReleasedCoverageV1, MTG_RELEASED_COVERAGE_SHA } from '../../backend/pricing/mtg_released_coverage_v1.mjs';
 
 import {
   activeMtgCatalogRunnerRunsV1,
@@ -48,12 +49,14 @@ function parseArgs(argv) {
     runnerRef: DEFAULT_RUNNER_REF,
     shadowOnly: false,
     publicReadOnly: false,
+    releasedCoverage: false,
     workflowId: DEFAULT_RUNNER_WORKFLOW_ID,
   };
   for (const arg of argv) {
     if (arg === "--dispatch") args.dispatch = true;
     else if (arg === "--shadow-only") args.shadowOnly = true;
     else if (arg === "--public-read-only") args.publicReadOnly = true;
+    else if (arg === "--released-coverage") args.releasedCoverage = true;
     else if (arg.startsWith("--as-of=")) args.asOf = arg.slice(8);
     else if (arg.startsWith("--manifest=")) args.manifest = path.resolve(arg.slice(11));
     else if (arg.startsWith("--max-consecutive-failures=")) {
@@ -88,6 +91,9 @@ function parseArgs(argv) {
   }
   if (args.publicReadOnly && (!args.shadowOnly || args.dispatch)) {
     throw new Error("Public transport requires shadow-only and forbids dispatch");
+  }
+  if (args.releasedCoverage && (!args.publicReadOnly || !args.shadowOnly || args.dispatch)) {
+    throw new Error('Released coverage requires read-only shadow mode without dispatch');
   }
   if (!Number.isInteger(args.maxSets) || args.maxSets < 1 || args.maxSets > 35) {
     throw new Error("max-sets must be between 1 and the frozen ceiling of 35");
@@ -249,11 +255,11 @@ async function groupedCounts(client, sql, valueField) {
   );
 }
 
-async function captureCatalogReadback(args) {
+async function captureCatalogReadback(args, coverage = null) {
   const client = await createReadOnlyClient(args);
   await client.connect();
   try {
-    await client.query("begin transaction read only");
+    await client.query("begin isolation level repeatable read read only");
     const transaction = await client.query("select current_setting('transaction_read_only') as read_only");
     if (transaction.rows[0]?.read_only !== 'on') throw new Error('Supervisor transaction is not read-only');
     if (args.publicReadOnly && client.connection.stream.authorized !== true) throw new Error('Supervisor TLS was not verified');
@@ -314,6 +320,7 @@ async function captureCatalogReadback(args) {
        group by lower(card.set_code)`,
       "external_printing_mappings",
     );
+    const releasedCoverage = coverage ? await captureMtgReleasedCoverageV1(client, coverage, args.asOf) : null;
     await client.query("rollback");
 
     const byCode = {};
@@ -345,6 +352,7 @@ async function captureCatalogReadback(args) {
       release_status: release.rows.length === 1 ? release.rows[0].release_status : null,
       release_control_row_count: release.rows.length,
       by_code: byCode,
+      released_coverage: releasedCoverage,
     };
   } catch (error) {
     await client.query("rollback").catch(() => {});
@@ -432,13 +440,19 @@ export async function runMtgCatalogSupervisorV1(argv = process.argv.slice(2)) {
     if (manifestFindings.length > 0) {
       throw new Error(`Frozen manifest failed validation: ${manifestFindings.join(", ")}`);
     }
-    const executionOrder = buildMtgCatalogExecutionOrderV1(manifest);
+    let executionOrder = buildMtgCatalogExecutionOrderV1(manifest);
+    let coverage = null;
+    if (args.releasedCoverage) {
+      if (!args.publicReadOnly || !args.shadowOnly || args.dispatch) throw new Error('Released coverage requires read-only shadow mode without dispatch');
+      coverage = JSON.parse(await fs.readFile(path.join(ROOT, 'docs/truth/mtg/reality_fracture_supervisor_coverage_20261007.json'), 'utf8'));
+    }
     runnerState = await captureRunnerState(args);
     targetCommitSha = runnerState.target_commit_sha;
 
     if (activeMtgCatalogRunnerRunsV1(runnerState.runs).length === 0) {
-      readback = await captureCatalogReadback(args);
+      readback = await captureCatalogReadback(args, coverage);
       await atomicWriteJson(path.join(args.outDir, "catalog_readback.json"), readback);
+      if (coverage) executionOrder = applyMtgReleasedCoverageV1(executionOrder, coverage, readback.released_coverage, args.asOf, readback.release_status);
     }
     runPlan = buildMtgCatalogSupervisorPlanV1({
       executionOrder,
@@ -460,6 +474,10 @@ export async function runMtgCatalogSupervisorV1(argv = process.argv.slice(2)) {
       runner_ref: args.runnerRef,
       dispatch_requested: args.dispatch,
       shadow_only: args.shadowOnly,
+      released_coverage_sha256: coverage ? MTG_RELEASED_COVERAGE_SHA : null,
+      coverage_scope: coverage ? 'reviewed_released_cards_with_explicit_future_holds' : 'frozen_manifest',
+      held_future_card_count: coverage ? coverage.held_future_print_ids.length : 0,
+      held_cards_review_before: coverage?.review_before ?? null,
       boundaries: {
         database_access: readback ? "read_only" : "skipped_while_writer_active",
         database_writes: false,
@@ -515,6 +533,10 @@ export async function runMtgCatalogSupervisorV1(argv = process.argv.slice(2)) {
       consecutive_runner_failures: runPlan.consecutive_runner_failures,
       findings: [],
       boundaries: runPlan.boundaries,
+      coverage_scope: runPlan.coverage_scope,
+      released_coverage_sha256: runPlan.released_coverage_sha256,
+      held_future_card_count: runPlan.held_future_card_count,
+      held_cards_review_before: runPlan.held_cards_review_before,
     };
     await atomicWriteJson(path.join(args.outDir, "summary.json"), summary);
     await writeArtifactHashes(args.outDir);

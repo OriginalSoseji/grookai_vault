@@ -99,3 +99,18 @@ after one minute, then follows a 15-minute cadence. Deployment proof requires an
 actual timer-triggered terminal run, not just an enabled unit or manual execution.
 Evidence remains local and append-only; off-worker archival follows the separately
 authorized backup destination. No artifact cleanup is added by this repair.
+
+## Reviewed public additions — October 8, 2026
+
+The worker's `--released-coverage` extension follows
+[MTG_PUBLIC_RELEASE_V1](MTG_PUBLIC_RELEASE_V1.md). The original frozen manifest
+and writer remain unchanged. Before replacing the expected counts for `fra` and
+`frc`, a repeatable-read transaction verifies the exact reviewed identities,
+finishes and active source links against the separate pinned coverage manifest.
+All other set expectations remain identical. This mode requires public read-only
+shadow operation and cannot dispatch a writer.
+
+Reports name the released-card scope and ten explicit future holds. Seven parents
+without source price links remain unpriced. Coverage expires on October 23 and
+fails closed until those holds receive a new review. Deploy this worker only after
+the corresponding canonical admission has durable, independent readback proof.
