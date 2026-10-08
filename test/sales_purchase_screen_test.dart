@@ -10,6 +10,7 @@ import 'package:grookai_vault/services/sales/sales_drafts.dart';
 import 'package:grookai_vault/services/sales/purchase_drafts.dart';
 import 'package:grookai_vault/services/sales/sales_payments.dart';
 import 'package:grookai_vault/services/sales/sales_purchase.dart';
+import 'package:grookai_vault/services/sales/offer_policies.dart';
 import 'sales_catalog_dialog_test.dart' show CatalogService;
 import 'sales_purchase_drafts_test.dart'
     show samplePurchaseDraft, purchaseDraftId;
@@ -18,6 +19,9 @@ Map<String, dynamic> copied(Map value) =>
     Map<String, dynamic>.from(jsonDecode(jsonEncode(value)) as Map);
 
 class PurchaseDeskFixture extends CatalogService {
+  @override
+  Future<Map<String, dynamic>> loadOfferPolicies() async =>
+      readOfferPolicies(null);
   bool enabled = true, stageFails = false, draftFails = false, badReply = false;
   bool corruptDraft = false;
   Completer<Map<String, dynamic>>? delayed;

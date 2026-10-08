@@ -28,6 +28,10 @@ void main() {
   testWidgets(
     'purchase survives process restart with controls off and exact cost intake',
     (tester) async {
+      // enterText already injects editing messages. Stub the native IME so its
+      // delayed echo cannot restore the previous value during synthetic input.
+      tester.testTextInput.register();
+      addTearDown(tester.testTextInput.unregister);
       const url = String.fromEnvironment('PURCHASE_TEST_URL');
       const email = String.fromEnvironment('PURCHASE_TEST_EMAIL');
       const name = String.fromEnvironment('PURCHASE_TEST_NAME');
@@ -100,6 +104,54 @@ void main() {
         await tester.enterText(field, value);
         FocusManager.instance.primaryFocus?.unfocus();
         await tester.pumpAndSettle();
+        expect(
+          tester.widget<TextField>(field).controller!.text,
+          value,
+          reason: 'Synthetic input must reach $label before continuing',
+        );
+      }
+
+      Future<void> choose(String label, String value) async {
+        final field = find.byWidgetPredicate(
+          (widget) =>
+              widget is DropdownButtonFormField<String> &&
+              widget.decoration.labelText == label,
+        );
+        await tap(field);
+        await tap(find.text(value).last);
+      }
+
+      Future<void> expectOffer(String reference, String expected) async {
+        await fill('Reference value per item (USD)', reference);
+        final input = tester
+            .widget<TextField>(
+              find.widgetWithText(TextField, 'Reference value per item (USD)'),
+            )
+            .controller!
+            .text;
+        final offer = find.textContaining('Suggested offer: USD $expected');
+        if (input != reference || offer.evaluate().length != 1) {
+          binding.reportData = {
+            'phase': 'offer_diagnostic',
+            'enteredReference': reference,
+            'actualReference': input,
+            'expectedOffer': expected,
+            'visiblePolicyText': tester
+                .widgetList<Text>(find.byType(Text))
+                .map((w) => w.data ?? '')
+                .where(
+                  (text) =>
+                      text.startsWith('Suggested offer:') ||
+                      text.startsWith('Reference USD') ||
+                      text.startsWith('Using ') ||
+                      text.startsWith('No policy offer'),
+                )
+                .toList(),
+          };
+          await binding.takeScreenshot('purchase-offer-diagnostic');
+        }
+        expect(input, reference);
+        expect(offer, findsOneWidget);
       }
 
       await tester.pumpWidget(app('first'));
@@ -141,20 +193,21 @@ void main() {
           if (amount == '6.50') {
             await tap(find.text('Calculate an offer · optional'));
             await fill('Reference value per item (USD)', '10.00');
-            await tap(find.text('Offer presets'));
-            await fill('Preset name', 'Private device cash');
-            await fill('Preset percentage', '60');
-            await tap(find.text('Save new preset'));
+            await tap(find.text('Offer policies'));
+            await fill('Policy name', 'Private device cash');
+            await fill('Policy percentage', '60');
+            await choose('Round to', 'USD 0.50');
+            await choose('Rounding rule', 'Down');
+            await tap(find.text('Use a low-value tier'));
+            await fill('Tier reference ceiling per item (USD)', '5.00');
+            await fill('Tier percentage', '40');
+            await tap(find.text('Save new policy'));
+            await choose('Default cash policy', 'Private device cash');
             await tap(find.text('Use Private device cash'));
-            expect(
-              tester
-                  .widget<TextField>(
-                    find.widgetWithText(TextField, 'Buy percentage'),
-                  )
-                  .controller!
-                  .text,
-              '60',
-            );
+            await tap(find.text('Offer policies'));
+            await expectOffer('5.00', '2.00');
+            await expectOffer('10.99', '6.50');
+            await expectOffer('10.00', '6.00');
             expect(
               tester
                   .widget<TextField>(
@@ -167,8 +220,7 @@ void main() {
                   .text,
               '6.50',
             );
-            await binding.takeScreenshot('purchase-offer-presets');
-            await tap(find.text('Offer presets'));
+            await binding.takeScreenshot('purchase-offer-policies');
             expect(
               find.textContaining('Agreed price overridden'),
               findsWidgets,
@@ -221,8 +273,9 @@ void main() {
         });
         // Readback does not clear the screen or device journal: restart is still required.
         expect(prefs.getString(pendingKey), service.attempts.single);
-        final presetBook = await service.loadOfferPresets();
+        final presetBook = await service.loadOfferPolicies();
         expect(presetBook['presets'], hasLength(1));
+        expect(presetBook['defaults']['cash'], presetBook['presets'][0]['id']);
         await binding.takeScreenshot('purchase-unconfirmed');
         binding.reportData = {
           ...?binding.reportData,
@@ -233,6 +286,10 @@ void main() {
           'heldReload': true,
           'presetChosen': true,
           'presetId': presetBook['presets'][0]['id'],
+          'policyVersion': presetBook['version'],
+          'policyTierProved': true,
+          'policyRoundingProved': true,
+          'policyDefaultSaved': true,
         };
       } else {
         expect(initial.available, isFalse);
@@ -241,10 +298,19 @@ void main() {
         await prefs.reload();
         expect(prefs.getString(pendingKey), beforePending);
         expect(service.attempts, isEmpty);
-        final presetBook = await service.loadOfferPresets();
+        final presetBook = await service.loadOfferPolicies();
         expect(presetBook['presets'], hasLength(1));
         expect(presetBook['presets'][0]['name'], 'Private device cash');
         expect(presetBook['presets'][0]['rateBps'], 6000);
+        expect(presetBook['presets'][0]['rounding'], {
+          'incrementMinor': 50,
+          'mode': 'down',
+        });
+        expect(presetBook['presets'][0]['lowValueTier'], {
+          'ceilingMinor': 500,
+          'rateBps': 4000,
+        });
+        expect(presetBook['defaults']['cash'], presetBook['presets'][0]['id']);
         await binding.takeScreenshot('purchase-recovered');
         final receipt = await service.recover(initial.pending!['id'] as String);
         expect(receipt!['purchaseMinor'], 650);
@@ -276,6 +342,8 @@ void main() {
           'completionCalls': 0,
           'presetRetained': true,
           'presetId': presetBook['presets'][0]['id'],
+          'policyVersion': presetBook['version'],
+          'policyDefaultRetained': true,
         };
       }
     },

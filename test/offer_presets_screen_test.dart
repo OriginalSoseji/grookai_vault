@@ -2,27 +2,29 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:grookai_vault/services/sales/offer_presets.dart';
+import 'package:grookai_vault/services/sales/offer_policies.dart';
 import 'sales_purchase_screen_test.dart'
     show PurchaseDeskFixture, openPurchase, tapVisible;
 
 class PresetFixture extends PurchaseDeskFixture {
-  Map<String, dynamic> presets = readOfferPresets(null);
+  Map<String, dynamic> presets = readOfferPolicies(null);
   bool fail = false;
   Completer<Map<String, dynamic>>? gate;
   @override
-  Future<Map<String, dynamic>> loadOfferPresets() async => presets;
+  Future<Map<String, dynamic>> loadOfferPolicies() async => presets;
   @override
-  Future<Map<String, dynamic>> saveOfferPresets(
+  Future<Map<String, dynamic>> saveOfferPolicies(
     int revision,
     List<Map<String, dynamic>> values,
+    Map<String, dynamic> defaults,
   ) async {
     if (fail) throw StateError('fixture storage failure');
     if (gate != null) return gate!.future;
-    presets = validateOfferPresets({
-      'version': 1,
+    presets = validateOfferPolicies({
+      'version': 2,
       'revision': revision + 1,
       'presets': values,
+      'defaults': defaults,
     });
     return presets;
   }
@@ -31,7 +33,7 @@ class PresetFixture extends PurchaseDeskFixture {
 Future<void> expand(WidgetTester tester) async {
   await tapVisible(tester, find.text('Quick purchase'));
   await tapVisible(tester, find.text('Calculate an offer · optional'));
-  await tapVisible(tester, find.text('Offer presets'));
+  await tapVisible(tester, find.text('Offer policies'));
 }
 
 Future<void> enter(WidgetTester tester, String label, String value) async {
@@ -51,17 +53,11 @@ void main() {
       await expand(tester);
       await enter(tester, 'Agreed price per item (USD)', '6.50');
       await enter(tester, 'Reference value per item (USD)', '10.00');
-      await enter(tester, 'Preset name', 'Standard cash');
-      await enter(tester, 'Preset percentage', '60');
-      await tapVisible(tester, find.text('Save new preset'));
+      await enter(tester, 'Policy name', 'Standard cash');
+      await enter(tester, 'Policy percentage', '60');
+      await tapVisible(tester, find.text('Save new policy'));
       await tapVisible(tester, find.text('Use Standard cash'));
-      expect(
-        tester
-            .widget<TextField>(find.widgetWithText(TextField, 'Buy percentage'))
-            .controller!
-            .text,
-        '60',
-      );
+      expect(find.text('Using Standard cash'), findsOneWidget);
       expect(
         tester
             .widget<TextField>(
@@ -76,10 +72,10 @@ void main() {
       final retained = jsonEncode(s.saved);
       await expand(tester);
       await tapVisible(tester, find.text('Edit Standard cash'));
-      await enter(tester, 'Preset percentage', '70');
-      await tapVisible(tester, find.text('Save preset changes'));
+      await enter(tester, 'Policy percentage', '70');
+      await tapVisible(tester, find.text('Save policy changes'));
       await tapVisible(tester, find.text('Delete Standard cash'));
-      expect(find.text('No saved presets yet.'), findsOneWidget);
+      expect(find.text('No saved policies yet.'), findsOneWidget);
       expect(jsonEncode(s.saved), retained);
       expect(s.calls, isEmpty);
       expect(tester.takeException(), isNull);
@@ -92,11 +88,11 @@ void main() {
       s.seed();
       await openPurchase(tester, s);
       await expand(tester);
-      await enter(tester, 'Preset name', 'Unstored');
-      await enter(tester, 'Preset percentage', '60');
-      await tapVisible(tester, find.text('Save new preset'));
+      await enter(tester, 'Policy name', 'Unstored');
+      await enter(tester, 'Policy percentage', '60');
+      await tapVisible(tester, find.text('Save new policy'));
       expect(
-        find.textContaining('Offer presets could not save'),
+        find.textContaining('Offer policies could not save'),
         findsOneWidget,
       );
       expect(find.text('Use Unstored'), findsNothing);
@@ -111,16 +107,16 @@ void main() {
       s.seed();
       await openPurchase(tester, s);
       await expand(tester);
-      await enter(tester, 'Preset name', 'Private rule');
-      await enter(tester, 'Preset percentage', '60');
+      await enter(tester, 'Policy name', 'Private rule');
+      await enter(tester, 'Policy percentage', '60');
       s.gate = Completer();
-      await tester.ensureVisible(find.text('Save new preset'));
-      await tester.tap(find.text('Save new preset'));
+      await tester.ensureVisible(find.text('Save new policy'));
+      await tester.tap(find.text('Save new policy'));
       await tester.pump();
       s.changes.add(null);
       await tester.pump();
       s.gate!.complete(
-        validateOfferPresets({
+        validateOfferPolicies({
           'version': 1,
           'revision': 1,
           'presets': [

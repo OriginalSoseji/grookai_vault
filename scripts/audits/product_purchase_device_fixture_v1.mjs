@@ -6,8 +6,8 @@ import {randomUUID,createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {createClient} from '@supabase/supabase-js';
 import pg from 'pg';
-const root='C:/gv_product_buy_20261007',base='C:/grookai_vault_operator_artifacts/product_buy_20261007';
-const lab=base+'/full-432-v1',project='product-buy-full-432-v1-20261007';
+const root='C:/gv_product_offer_policy_20261007',base='C:/grookai_vault_operator_artifacts/product_offer_policy_20261007';
+const lab='C:/grookai_vault_operator_artifacts/product_buy_20261007/full-432-v1',project='product-buy-full-432-v1-20261007';
 assert.equal(process.cwd().replaceAll('\\','/'),root);
 const mode=process.argv[2];assert.ok(['prepare','disable','verify','restore'].includes(mode));
 assert.equal(process.argv.length,mode==='prepare'?3:4);
@@ -63,6 +63,7 @@ try{
    assert.equal(f.state,'disabled');const a=read(run+'/phase-1/device-response.json'),b=read(run+'/phase-2/device-response.json');
    assert.equal(a.phase,'pending_after_commit');assert.equal(b.phase,'recovered_after_process_restart');assert.equal(a.owner,f.owner);assert.equal(b.owner,f.owner);assert.equal(a.requestId,b.requestId);
    assert.ok(a.noEarlyIntake&&a.heldReload&&b.accountClosed&&b.featureOff&&b.exactPending);assert.equal(b.completionCalls,0);assert.equal(a.presetChosen,true);assert.equal(b.presetRetained,true);assert.equal(a.presetId,b.presetId);
+   assert.ok(a.policyTierProved&&a.policyRoundingProved&&a.policyDefaultSaved&&b.policyDefaultRetained);assert.equal(a.policyVersion,2);assert.equal(b.policyVersion,2);
    const rows=await q('select request_id,receipt from vendor_sales_cart_receipts where owner_id=$1',[f.owner]);assert.equal(rows.length,1);assert.equal(rows[0].request_id,a.requestId);
    const receipt=rows[0].receipt;assert.equal(receipt.kind,'purchase');assert.equal(receipt.purchaseMinor,650);assert.equal(receipt.items.length,2);
    const copies=await q('select id,card_print_id,card_printing_id,acquisition_cost::text amount,acquisition_currency currency from vault_item_instances where user_id=$1 order by acquisition_cost',[f.owner]);assert.equal(copies.length,2);

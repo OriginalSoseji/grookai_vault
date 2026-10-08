@@ -6,7 +6,7 @@ Future<void> main() async {
   final destination = Platform.environment['PURCHASE_DEVICE_OUTPUT'];
   if (destination == null ||
       !RegExp(
-        r'^C:/grookai_vault_operator_artifacts/product_buy_20261007/device-[0-9]+/phase-[12]$',
+        r'^C:/grookai_vault_operator_artifacts/product_offer_policy_20261007/device-[0-9]+/phase-[12]$',
       ).hasMatch(destination.replaceAll(r'\', '/'))) {
     throw StateError('An external purchase acceptance output is required.');
   }

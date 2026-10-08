@@ -13,6 +13,8 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| VENDOR_OFFER_POLICIES_V1 | Active implementation contract; local candidate | docs/contracts/VENDOR_OFFER_POLICIES_V1.md - Owner-local cash/trade policies, exact proposal rounding, governed references and explicit agreed amounts; full trade and release qualification remain open |
+| VENDOR_NEGOTIATED_TRADE_V1 | Planned additive implementation; no migration yet | docs/contracts/VENDOR_NEGOTIATED_TRADE_V1.md - Independent agreed trade credit, nullable reference evidence, compatible receipts and exact request recovery |
 | PRODUCT_WORKSPACES_V1 | Active implementation contract; local candidate | docs/contracts/PRODUCT_WORKSPACES_V1.md - Retained vendor navigation, compact exact-copy inventory, private reports and draft-safe workspace exits |
 | SALES_SCANNER_V1 | Active implementation contract; local candidate | docs/contracts/SALES_SCANNER_V1.md - Dedicated keyboard QR input, exact owned-copy resolution, bounded queues and cancellation across retained workspaces |
 | SALES_SPLIT_PAYMENTS_V1 | Active implementation contract; default-off local candidate | docs/contracts/SALES_SPLIT_PAYMENTS_V1.md - Atomic external split payments, cash change, receipt snapshots and tender reports |

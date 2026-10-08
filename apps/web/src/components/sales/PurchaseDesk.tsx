@@ -1,10 +1,12 @@
-import {useEffect, useRef, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {Check, Eye, Plus, Search, X} from 'lucide-react';
 import SalesDialog from './SalesDialog';
 import SalesPaymentEditor from './SalesPaymentEditor';
-import OfferPresets from './OfferPresets';
+import OfferPolicies from './OfferPolicies';
+import {quoteOfferPolicy} from '@/lib/sales/offerPolicies.mjs';
+import type {OfferPolicy, OfferReference, OfferProposal, OfferCondition} from '@/lib/sales/offerPolicies.mjs';
 import {conditions, methods, minor, money, rate} from '@/lib/sales/salesDesk.mjs';
 import type {Customer} from '@/lib/sales/salesDesk.mjs';
 import {addPurchaseItem, purchaseDraftRequest, purchaseDraftTotal, purchaseOfferView} from '@/lib/sales/purchaseDraft.mjs';
@@ -27,6 +29,9 @@ type Props = {
     complete: () => Promise<void>; next: () => Promise<void>;
 };
 const errorText = (error: unknown) => error instanceof Error ? error.message : 'Purchase could not update.';
+const referenceTime = (value: string | null) => value === null ? 'Unavailable' : new Intl.DateTimeFormat('en-US', {
+    year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'UTC',
+}).format(new Date(value)) + ' UTC';
 
 // Uses the parent's owner-bound held-deal journal and completion/recovery queue.
 export default function PurchaseDesk({owner, currentOwner, draft, locked, busy, pending, receipt, customers, edit, complete, next}: Props) {
@@ -38,10 +43,45 @@ export default function PurchaseDesk({owner, currentOwner, draft, locked, busy, 
     const [description, setDescription] = useState(''), [printing, setPrinting] = useState(''), [condition, setCondition] = useState('NM');
     const [agreed, setAgreed] = useState(''), [reference, setReference] = useState(''), [percentage, setPercentage] = useState('');
     const [quantity, setQuantity] = useState('1'), [intake, setIntake] = useState(false);
+    const [policy, setPolicy] = useState<OfferPolicy | null>(null), [marketReference, setMarketReference] = useState<OfferReference | null>(null);
+    const [marketError, setMarketError] = useState(''), [marketLoading, setMarketLoading] = useState(false), [marketReload, setMarketReload] = useState(0);
+    const [conditionReview, setConditionReview] = useState(''), [editorRevision, setEditorRevision] = useState(0);
+    const [, refreshClock] = useState(0);
+    const selectPolicy = useCallback((value: OfferPolicy | null) => {setPolicy(value); setConditionReview('');}, []);
     const [review, setReview] = useState(false), [sellerView, setSellerView] = useState(false), [adding, setAdding] = useState(false);
     const searchGeneration = useRef(0), alive = useRef(true);
     const total = purchaseDraftTotal(draft), offer = receipt ? purchaseCustomerView(receipt) : purchaseOfferView(draft), disabled = locked || adding;
     useEffect(() => { alive.current = true; return () => {alive.current = false;}; }, []);
+    const selectedCardId = selected?.id ?? null;
+    useEffect(() => {
+        const controller = new AbortController();
+        setMarketReference(null); setMarketError(''); setMarketLoading(false);
+        if (policy?.source !== 'tcgplayer_market' || !selectedCardId || !printing) return () => controller.abort();
+        setMarketLoading(true);
+        void (async () => {
+            try {
+                if (currentOwner() !== owner) throw Error('Your account changed. Reopen the sales desk.');
+                const response = await fetch('/api/sales/desk?' + new URLSearchParams({action: 'offer-reference', owner, cardId: selectedCardId, printingId: printing}),
+                    {cache: 'no-store', credentials: 'same-origin', signal: controller.signal});
+                const result = await response.json();
+                if (controller.signal.aborted || !alive.current || currentOwner() !== owner) return;
+                if (!response.ok || result.owner !== owner) throw Error('Market reference could not load. Retry or bypass the policy.');
+                if (result.status !== 'available') throw Error('No qualified market reference for this exact printing. You can enter agreed terms manually.');
+                const checked = quoteOfferPolicy({id: printing, name: 'Reference check', intent: 'cash', rateBps: 10000, source: 'tcgplayer_market',
+                    conditionBasis: 'unspecified', rounding: {incrementMinor: 1, mode: 'nearest'}, lowValueTier: null},
+                    {intent: 'cash', quantity: 1, cardId: selectedCardId, printingId: printing, condition: null}, result.reference, Date.now());
+                if (checked.status !== 'available') throw Error('Market reference needs review. Refresh it or enter agreed terms manually.');
+                setMarketReference(result.reference);
+            } catch (error) {if (!controller.signal.aborted && alive.current && currentOwner() === owner) setMarketError(errorText(error));}
+            finally {if (!controller.signal.aborted && alive.current) setMarketLoading(false);}
+        })();
+        return () => controller.abort();
+    }, [policy?.source, selectedCardId, printing, owner, currentOwner, marketReload]);
+    useEffect(() => {
+        if (policy?.source !== 'tcgplayer_market') return;
+        const timer = setInterval(() => refreshClock(value => value + 1), 30000);
+        return () => clearInterval(timer);
+    }, [policy?.source]);
     useEffect(() => {
         const generation = ++searchGeneration.current, controller = new AbortController();
         setCards([]); setCursor(null); setSearchError(''); setSelected(null); setQuick(false);
@@ -86,6 +126,7 @@ export default function PurchaseDesk({owner, currentOwner, draft, locked, busy, 
         if (disabled || searching) return;
         setSelected(card); setQuick(card === null); setDescription(card?.name ?? ''); setPrinting(''); setCondition('NM');
         setAgreed(''); setReference(''); setPercentage(''); setQuantity('1'); setIntake(false); setError('');
+        setPolicy(null); setConditionReview(''); setEditorRevision(value => value + 1);
     }
     function change(update: (value: PurchaseDraft) => PurchaseDraft) {
         if (disabled) return;
@@ -93,13 +134,39 @@ export default function PurchaseDesk({owner, currentOwner, draft, locked, busy, 
     }
     let suggestion: number | null = null;
     try {suggestion = purchaseOffer(minor(reference), rate(percentage));} catch { /* Optional offer fields may be incomplete. */ }
+    function policyProposal(): OfferProposal | null {
+        if (!policy) return null;
+        try {
+            const basis = policy.conditionBasis === 'selected' ? selected ? condition as OfferCondition : null : policy.conditionBasis === 'unspecified' ? null : policy.conditionBasis;
+            const evidence = policy.source === 'tcgplayer_market' ? marketReference : minor(reference) === null ? null : {
+                source: 'manual' as const, amountMinor: minor(reference)!, currency: 'USD', cardId: selectedCardId, printingId: selected ? printing : null,
+                condition: basis, observedAt: null, publishedAt: null, provenanceId: null,
+            };
+            return quoteOfferPolicy(policy, {intent: 'cash', quantity: selected ? 1 : Number(quantity), cardId: selectedCardId,
+                printingId: selected ? printing : null, condition: selected ? condition as OfferCondition : null}, evidence, Date.now());
+        } catch {return {status: 'unavailable', reason: 'incomplete_item'};}
+    }
+    const proposal = policyProposal();
+    if (policy) suggestion = proposal?.status === 'available' ? proposal.suggestedMinor : null;
+    const reviewKey = JSON.stringify([policy, selectedCardId, printing, condition, quantity, policy?.source === 'manual' ? reference : marketReference]);
+    const needsReview = proposal?.status === 'available' && proposal.requiresConditionReview && conditionReview !== reviewKey;
+    function useSuggestion() {
+        if (disabled || currentOwner() !== owner) return;
+        const fresh = policyProposal();
+        if (policy && (fresh?.status !== 'available' || fresh.requiresConditionReview && conditionReview !== reviewKey)) {
+            setError('Review the reference, condition and current offer before applying it.'); return;
+        }
+        const amount = fresh?.status === 'available' ? fresh.suggestedMinor : suggestion;
+        if (amount !== null) setAgreed(money(amount));
+    }
     async function add() {
         if (disabled) return;
         try {
             const amount = minor(agreed), count = /^\d{1,3}$/.test(quantity) ? Number(quantity) : null;
-            const referenceMinor = reference.trim() === '' ? null : minor(reference);
-            const rateBps = percentage.trim() === '' ? null : rate(percentage);
-            if (amount === null || count === null || reference.trim() !== '' && referenceMinor === null || percentage.trim() !== '' && rateBps === null)
+            const fresh = policyProposal();
+            const referenceMinor = policy ? fresh?.status === 'available' ? fresh.referenceMinor : null : reference.trim() === '' ? null : minor(reference);
+            const rateBps = policy ? fresh?.status === 'available' ? fresh.rateBps : null : percentage.trim() === '' ? null : rate(percentage);
+            if (amount === null || count === null || !policy && (reference.trim() !== '' && referenceMinor === null || percentage.trim() !== '' && rateBps === null))
                 throw Error('Check the agreed price, quantity and optional offer fields.');
             if (selected && !printing) throw Error('Choose the exact printing first.');
             const option = selected?.printings?.find(value => value.id === printing);
@@ -140,11 +207,24 @@ export default function PurchaseDesk({owner, currentOwner, draft, locked, busy, 
                         <label>Agreed price per item (USD)<input inputMode="decimal" value={agreed} disabled={disabled} onChange={event => setAgreed(event.target.value)}/></label>
                         {!selected && <label>Quantity<input inputMode="numeric" value={quantity} disabled={disabled} onChange={event => setQuantity(event.target.value)}/></label>}
                         <details><summary>Calculate an offer · optional</summary>
-                            <OfferPresets owner={owner} currentOwner={currentOwner} disabled={disabled} select={value => setPercentage(String(value / 100))}/><div className={s.fields}>
-                            <label>Reference value per item (USD)<input inputMode="decimal" value={reference} disabled={disabled} onChange={event => setReference(event.target.value)}/></label>
-                            <label>Buy percentage<input inputMode="decimal" value={percentage} disabled={disabled} onChange={event => setPercentage(event.target.value)}/></label></div>
+                            <OfferPolicies key={editorRevision} owner={owner} currentOwner={currentOwner} intent="cash" disabled={disabled} select={selectPolicy}/>
+                            {policy && <p>Using {policy.name} <button disabled={disabled} onClick={() => selectPolicy(null)}>Bypass policy · manual terms</button></p>}
+                            <div className={s.fields}>
+                            {policy?.source !== 'tcgplayer_market' && <label>Reference value per item (USD)<input inputMode="decimal" value={reference} disabled={disabled} onChange={event => setReference(event.target.value)}/></label>}
+                            {!policy && <label>Buy percentage<input inputMode="decimal" value={percentage} disabled={disabled} onChange={event => setPercentage(event.target.value)}/></label>}</div>
+                            {policy?.source === 'manual' && <p>Entered reference · condition basis: {policy.conditionBasis === 'selected' ? selected ? condition : 'unknown' : policy.conditionBasis}. Enter a value for this basis; Grookai does not adjust it between conditions.</p>}
+                            {policy?.source === 'tcgplayer_market' && <><p>TCGPlayer Market · exact printing · condition unspecified</p>
+                                {marketLoading && <p role="status">Loading market reference…</p>}{marketError && <p role="alert">{marketError}</p>}
+                                <button disabled={disabled || marketLoading || !printing} onClick={() => setMarketReload(value => value + 1)}>Refresh market reference</button>
+                                {marketReference && <small>Observed {referenceTime(marketReference.observedAt)} · published {referenceTime(marketReference.publishedAt)}</small>}</>}
+                            {proposal?.status === 'available' && <><p>Reference ${money(proposal.referenceMinor)} × {proposal.rateBps / 100}%{proposal.tierApplied ? ' · Low-value tier' : ''}
+                                {' · '}Calculated ${money(proposal.calculatedMinor)} per item · round {proposal.rounding.mode === 'down' ? 'down' : 'to nearest'} ${money(proposal.rounding.incrementMinor)}</p>
+                                <small>Calculated value is shown to the nearest cent. The offer rounds the full percentage result once.</small>
+                                {proposal.requiresConditionReview && <label className={s.check}><input type="checkbox" checked={conditionReview === reviewKey} disabled={disabled}
+                                    onChange={event => setConditionReview(event.target.checked ? reviewKey : '')}/> I reviewed the {proposal.basisCondition ?? 'unspecified'} reference condition for this {selected ? condition : 'unspecified-condition'} item.</label>}</>}
+                            {policy && proposal?.status !== 'available' && !marketLoading && <p>No policy offer yet. Check the exact printing, reference and condition basis. You may still enter an agreed price.</p>}
                             {suggestion !== null && <p>Suggested offer ${money(suggestion)} per item{minor(agreed) !== null && minor(agreed) !== suggestion ? ' · Agreed price overridden' : ''}</p>}
-                            <button disabled={disabled || suggestion === null} onClick={() => {if (suggestion !== null) setAgreed(money(suggestion));}}>Use suggested offer</button>
+                            <button disabled={disabled || suggestion === null || needsReview} onClick={useSuggestion}>Use suggested offer</button>
                             <small>Changing the reference or percentage keeps your agreed price.</small></details>
                         {selected ? <label className={s.check}><input type="checkbox" checked={intake} disabled={disabled} onChange={event => setIntake(event.target.checked)}/> Add this copy to my Vault when the purchase completes</label> : <p>A quick purchase records the item and payout. It does not add inventory.</p>}
                         <button className={s.primary} disabled={disabled} onClick={() => void add()}>Add to purchase</button>

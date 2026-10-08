@@ -14,6 +14,7 @@ import 'sales_search_cache.dart';
 import 'sales_drafts.dart';
 import 'purchase_drafts.dart';
 import 'offer_presets.dart';
+import 'offer_policies.dart';
 import 'sales_scanner.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
@@ -294,6 +295,61 @@ class SalesCartService {
     return readOfferPresets(preferences.getString(key));
   }
 
+  Future<Map<String, dynamic>> loadOfferPolicies() async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    return readOfferPolicies(preferences.getString(key));
+  }
+
+  Future<Map<String, dynamic>> saveOfferPolicies(
+    int expectedRevision,
+    List<Map<String, dynamic>> policies,
+    Map<String, dynamic> defaults,
+  ) async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final next = validateOfferPolicies({
+      'version': 2,
+      'revision': expectedRevision + 1,
+      'presets': policies,
+      'defaults': defaults,
+    });
+    final operation = (_presetLocks[key] ?? Future<void>.value()).then((
+      _,
+    ) async {
+      _checkOwner();
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final current = readOfferPolicies(preferences.getString(key));
+      if (current['revision'] != expectedRevision) {
+        throw StateError(
+          'Offer policies changed in another screen. Reload policies before editing.',
+        );
+      }
+      final encoded = jsonEncode(next);
+      _checkOwner();
+      if (!await preferences.setString(key, encoded)) {
+        throw StateError(
+          'Offer policies could not save. Reload before retrying.',
+        );
+      }
+      await preferences.reload();
+      if (preferences.getString(key) != encoded) {
+        throw StateError(
+          'Offer policies could not be verified. Reload before retrying.',
+        );
+      }
+      _checkOwner();
+      return next;
+    });
+    _presetLocks[key] = operation.then((_) {}, onError: (Object _) {});
+    return operation;
+  }
+
   Future<Map<String, dynamic>> saveOfferPresets(
     int expectedRevision,
     List<Map<String, dynamic>> presets,
@@ -537,6 +593,41 @@ class SalesCartService {
               (p['printing_gv_id'] as String? ?? '').isNotEmpty,
         )
         .toList();
+  }
+
+  Future<Map<String, dynamic>> offerMarketReference(
+    String cardId,
+    String printingId,
+  ) async {
+    _checkOwner();
+    // Validate input before either governed read. No storage or transaction writer.
+    projectOfferMarketReference([], cardId, printingId, 0);
+    cardId = cardId.toLowerCase();
+    printingId = printingId.toLowerCase();
+    final options = (await catalogPrintings(
+      cardId,
+    )).where((option) => option['id'] == printingId).toList();
+    _checkOwner();
+    if (options.length != 1 || options.single['finish_is_active'] != true) {
+      return Map<String, dynamic>.unmodifiable({
+        'status': 'unavailable',
+        'reason': 'printing_unavailable',
+      });
+    }
+    final rows = await client.rpc(
+      'get_market_pricing_read_model_v1',
+      params: {
+        'p_card_print_ids': null,
+        'p_card_printing_ids': [printingId],
+      },
+    );
+    _checkOwner();
+    return projectOfferMarketReference(
+      rows,
+      cardId,
+      printingId,
+      DateTime.now().millisecondsSinceEpoch,
+    );
   }
 
   String get _catalogKey => 'grookai.pending-sales-catalog.v1.${_owner!}';

@@ -66,6 +66,7 @@ param(
   [switch]$SalesSplitPaymentsReleaseV1,
   [switch]$ProductEconomicsBaselineV1,
   [switch]$ProductPurchaseBaselineV1,
+  [switch]$ProductOfferTradeBaselineV1,
   [switch]$ProductEconomicsReleaseV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
@@ -95,6 +96,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductOfferTradeBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductOfferTradeBaselineV1') }).Count -gt 0) {
+    throw 'ProductOfferTradeBaselineV1 supports only the read-only linked audit before negotiated trade SQL.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_offer_trade_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product offer/trade baseline failed.' }
+  exit 0
+}
 
 if ($ProductPurchaseBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductPurchaseBaselineV1') }).Count -gt 0) {

@@ -1,5 +1,26 @@
 # Grookai Agent Entry Point
 
+## Cash and trade offer policies — October 7
+
+Read docs/ops/PRODUCT_OFFER_POLICY_20261007.md and VENDOR_OFFER_POLICIES_V1.
+This isolated tree starts at qualifiedf5d5b69a; preserve the clean Buy candidate.
+External product_offer_policy_20261007/CHECKPOINT.json owns current outcomes.
+Full432 retains61 copies/10 users with controls off. No reset, consumed fixture
+reuse or production action is implied. Complete the full CR-07 source/condition,
+rounding/tier and cash/trade scope; the first named percentage preset is not its
+completion. New trade semantics require a fresh schema baseline and compatible
+receipt/recovery authority. Keep iOS and the full overhaul open.
+Policy models/storage and governed exact reference adapters now pass116 Node and
+147 native regression tests. Web Buy policies pass29 browser/workspace cases plus
+four final timing/presentation checks. Native rich policies now pass159 focused
+tests and full analysis, plus one exact device-sequence regression. Samsung417
+passes both process phases; external checkpoint owns retention and normal-hook
+outcomes. Preserve all consumed fixtures. Builds415/416 exposed delayed Samsung
+IME echo during synthetic input, not incorrect arithmetic.417 isolates the test
+IME and verifies each entered value. No new trade SQL exists; the fresh read-only
+429/source432 baseline passes. Read VENDOR_NEGOTIATED_TRADE_V1 before extending it.
+Freeze source and retained full432 during the ordinary hook; no deployment implied.
+
 ## Buy-only workflow — October 7
 
 Read [the purchase checkpoint](docs/ops/PRODUCT_BUY_20261007.md) and

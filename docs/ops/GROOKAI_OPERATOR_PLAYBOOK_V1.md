@@ -1,5 +1,40 @@
 # Grookai Operator Playbook V1
 
+## Cash and trade offer policy continuation — October 7
+
+Use C:/gv_product_offer_policy_20261007 on qualifiedf5d5b69a. The separate Buy
+candidate remains clean and its full normal hook/device proof passed. Read
+PRODUCT_OFFER_POLICY_20261007 and VENDOR_OFFER_POLICIES_V1. Version2 local policies
+retain the existing owner settings key and migrate old percentages without a
+write. Exact source/printing/condition evidence and explicit negotiated terms
+are separate from saved preference names. Preserve all existing request/receipt
+versions, default-off controls and61 copies/10 accounts in the retained full432
+lab. No populated lab reset or automatic pricing publication belongs here.
+External product_offer_policy_20261007 owns actual validation; ordinary hooks
+and lab mutation must remain serial with a source/lab freeze during checks.
+Web policy/browser proof uses playwright.purchase-desk.config.ts with an unused
+loopback port (33460 in retained runs); API responses are mocked. Store each
+attempt in a new external output directory. The29-case suite and four timing/
+presentation checks pass. A selector timeout and native HTTP mock metadata error
+remain recorded with their corrected passes. Models/readers use94 shared vectors,
+including SQL microsecond timestamps and exact-reference ambiguity checks. This
+is focused validation, not a schema change or release evidence. Native rich UI
+now passes159 combined tests and full analysis. The purchase device fixture/host
+in this tree target product_offer_policy_20261007 external artifacts while using
+the existing full432 lab. Build415 uses the separate lockedacceptance package,
+new account and new consumed intent; restore controls without deleting evidence.
+The normal-check wrapper also writes to this task's external directory. Prior
+qualified Buy scripts/builds remain intact in their separate worktree.
+Build417's synthetic device input explicitly registers TestTextInput and verifies
+the field after entry; native IME echo made415/416 retain the previous value.
+Retain those diagnostic failures and do not describe this harness as physical
+typing or a speed benchmark. Real Auth, storage, transaction and two-process
+recovery remain exercised. Native-source.json binds all346 compiled inputs;
+recheck hashes after the device host stops. Keep private build logs private,
+including command lines with encoded test credentials. The new trade baseline
+passes live429/source432; VENDOR_NEGOTIATED_TRADE_V1 specifies the next writer,
+but neither a migration nor activation follows from this design.
+
 ## Buy-only workflow — October 7
 
 Continue in `C:/gv_product_buy_20261007`; read PRODUCT_BUY_20261007.md and

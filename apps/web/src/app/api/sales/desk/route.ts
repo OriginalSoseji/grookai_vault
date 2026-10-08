@@ -7,6 +7,7 @@ import { resolveCardImageFieldsV1 } from '@/lib/canon/resolveCardImageFieldsV1';
 import { resolveDisplayIdentity } from '@/lib/cards/resolveDisplayIdentity';
 import { scannedCopyId } from '@/lib/sales/salesScanner.mjs';
 import {validatePurchaseRequest} from '@/lib/sales/salesPurchase.mjs';
+import {projectOfferMarketReference} from '@/lib/sales/offerPolicies.mjs';
 export const dynamic = 'force-dynamic';
 const headers = { 'Cache-Control': 'private, no-store', 'Vary': 'Cookie, Authorization' };
 const json = (data: unknown, status = 200) => NextResponse.json(data, { status, headers });
@@ -43,6 +44,21 @@ export async function GET(req: NextRequest) {
             if (error)
                 throw error;
             return json({ receipt: data });
+        }
+        if (action === 'offer-reference') {
+            if (p.get('owner') !== user.id) return json({error: 'Account changed. Reopen the sales desk.'}, 409);
+            const rawCard = p.get('cardId'), rawPrinting = p.get('printingId');
+            if (!uuid(rawCard) || !uuid(rawPrinting)) return json({error: 'Choose an exact printing.'}, 400);
+            const cardId = rawCard.toLowerCase(), printingId = rawPrinting.toLowerCase();
+            const options = (await getPublicCardPrintingOptions(client, [cardId])).filter(option =>
+                option.card_print_id === cardId && option.id === printingId);
+            if (options.length !== 1 || !options[0].printing_gv_id || options[0].finish_is_active !== true)
+                return json({owner: user.id, status: 'unavailable', reason: 'printing_unavailable'});
+            const {data, error} = await client.rpc('get_market_pricing_read_model_v1', {
+                p_card_print_ids: null, p_card_printing_ids: [printingId],
+            });
+            if (error) throw error;
+            return json({owner: user.id, ...projectOfferMarketReference(data, cardId, printingId, Date.now())});
         }
         if (action === 'scan' && (p.get('owner') !== user.id || !scannedCopyId(p.get('q')) || scannedCopyId(p.get('q')) !== p.get('q')))
             return json({error: 'Invalid scan or changed account'}, 400);

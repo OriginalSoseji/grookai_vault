@@ -1,11 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../../models/card_print.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_trade.dart';
 import '../../services/sales/sales_purchase.dart';
 import '../../widgets/card_surface_artwork.dart';
-import 'sales_offer_presets.dart';
+import '../../services/sales/offer_policies.dart';
+import 'sales_offer_policies.dart';
 
 class SalesPurchaseDialog extends StatefulWidget {
   const SalesPurchaseDialog({
@@ -31,6 +33,11 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
       _rate = TextEditingController();
   final _quantity = TextEditingController(text: '1');
   Timer? _timer;
+  Timer? _quoteTimer;
+  Map<String, dynamic>? _policy, _marketReference;
+  String? _marketError, _conditionReview;
+  bool _marketLoading = false, _freshPolicy = true;
+  int _marketGeneration = 0;
   StreamSubscription<void>? _account;
   List<CardPrint> _cards = [];
   List<Map<String, dynamic>> _printings = [];
@@ -51,6 +58,7 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
     super.initState();
     _manual = widget.quick;
     final line = widget.line;
+    _freshPolicy = line == null;
     if (line != null) {
       _description.text = line['description'] as String;
       _agreed.text = saleMoney(line['unitMinor'] as int);
@@ -73,15 +81,24 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
           _changed = true;
           _cards = [];
           _selected = null;
+          ++_marketGeneration;
+          _marketReference = null;
+          _policy = null;
         });
       }
     });
     if (_cardId != null) unawaited(_loadPrintings());
+    _quoteTimer = Timer.periodic(const Duration(seconds: 30), (_) {
+      if (mounted && !_changed && _policy?['source'] == 'tcgplayer_market') {
+        setState(() {});
+      }
+    });
   }
 
   @override
   void dispose() {
     _timer?.cancel();
+    _quoteTimer?.cancel();
     unawaited(_account?.cancel());
     for (final controller in [
       _query,
@@ -207,18 +224,193 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
       _rate.clear();
       _manual = false;
       _intake = false;
+      _resetPolicy();
     });
     await _loadPrintings();
+  }
+
+  void _resetPolicy() {
+    ++_marketGeneration;
+    _policy = null;
+    _marketReference = null;
+    _marketError = null;
+    _conditionReview = null;
+    _marketLoading = false;
+    _freshPolicy = true;
+  }
+
+  void _selectPolicy(Map<String, dynamic> policy) {
+    if (!mounted || _changed) return;
+    setState(() {
+      _policy = validateOfferPolicy(policy);
+      _conditionReview = null;
+    });
+    unawaited(_refreshReference());
+  }
+
+  Future<void> _refreshReference() async {
+    final generation = ++_marketGeneration;
+    setState(() {
+      _marketReference = null;
+      _marketError = null;
+      _marketLoading = false;
+    });
+    if (_changed ||
+        _policy?['source'] != 'tcgplayer_market' ||
+        _manual ||
+        _cardId == null ||
+        _printingId == null) {
+      return;
+    }
+    final cardId = _cardId!, printingId = _printingId!;
+    setState(() => _marketLoading = true);
+    try {
+      final result = await widget.service.offerMarketReference(
+        cardId,
+        printingId,
+      );
+      if (!mounted || _changed || generation != _marketGeneration) return;
+      if (result['status'] != 'available') {
+        throw const FormatException(
+          'No qualified market reference for this exact printing. You can enter agreed terms manually.',
+        );
+      }
+      final reference = Map<String, dynamic>.from(result['reference'] as Map);
+      final checked = quoteOfferPolicy(
+        {
+          'id': printingId,
+          'name': 'Reference check',
+          'intent': 'cash',
+          'rateBps': 10000,
+          'source': 'tcgplayer_market',
+          'conditionBasis': 'unspecified',
+          'rounding': {'incrementMinor': 1, 'mode': 'nearest'},
+          'lowValueTier': null,
+        },
+        {
+          'intent': 'cash',
+          'quantity': 1,
+          'cardId': cardId,
+          'printingId': printingId,
+          'condition': null,
+        },
+        reference,
+        DateTime.now().millisecondsSinceEpoch,
+      );
+      if (checked['status'] != 'available') {
+        throw const FormatException(
+          'Market reference needs review. Refresh it or enter agreed terms manually.',
+        );
+      }
+      setState(
+        () => _marketReference = Map<String, dynamic>.unmodifiable(reference),
+      );
+    } catch (error) {
+      if (mounted && !_changed && generation == _marketGeneration) {
+        setState(
+          () => _marketError = error is FormatException
+              ? error.message
+              : 'Market reference could not load. Retry or bypass the policy.',
+        );
+      }
+    } finally {
+      if (mounted && generation == _marketGeneration) {
+        setState(() => _marketLoading = false);
+      }
+    }
+  }
+
+  Map<String, dynamic>? _proposal() {
+    final policy = _policy;
+    if (policy == null) return null;
+    try {
+      final basis = policy['conditionBasis'] == 'selected'
+          ? _manual
+                ? null
+                : _condition
+          : policy['conditionBasis'] == 'unspecified'
+          ? null
+          : policy['conditionBasis'];
+      final amount = saleMoneyInput(_reference.text);
+      final reference = policy['source'] == 'tcgplayer_market'
+          ? _marketReference
+          : amount == null
+          ? null
+          : {
+              'source': 'manual',
+              'amountMinor': amount,
+              'currency': 'USD',
+              'cardId': _manual ? null : _cardId,
+              'printingId': _manual ? null : _printingId,
+              'condition': basis,
+              'observedAt': null,
+              'publishedAt': null,
+              'provenanceId': null,
+            };
+      return quoteOfferPolicy(
+        policy,
+        {
+          'intent': 'cash',
+          'quantity': _manual ? int.tryParse(_quantity.text) : 1,
+          'cardId': _manual ? null : _cardId,
+          'printingId': _manual ? null : _printingId,
+          'condition': _manual ? null : _condition,
+        },
+        reference,
+        DateTime.now().millisecondsSinceEpoch,
+      );
+    } catch (_) {
+      return {'status': 'unavailable', 'reason': 'incomplete_item'};
+    }
+  }
+
+  String get _reviewKey => jsonEncode([
+    _policy,
+    _cardId,
+    _printingId,
+    _condition,
+    _quantity.text,
+    _policy?['source'] == 'manual' ? _reference.text : _marketReference,
+  ]);
+  void _useSuggestion(int? suggestion) {
+    if (_changed || _loading || widget.canAdd?.call() == false) return;
+    final fresh = _proposal();
+    if (_policy != null &&
+        (fresh?['status'] != 'available' ||
+            fresh!['requiresConditionReview'] == true &&
+                _conditionReview != _reviewKey)) {
+      setState(
+        () => _error =
+            'Review the reference, condition and current offer before applying it.',
+      );
+      return;
+    }
+    final amount = fresh?['status'] == 'available'
+        ? fresh!['suggestedMinor'] as int
+        : suggestion;
+    if (amount != null) setState(() => _agreed.text = saleMoney(amount));
+  }
+
+  String _referenceTime(String value) {
+    final date = DateTime.parse(value).toUtc();
+    String pad(int value) => value.toString().padLeft(2, '0');
+    return '${date.year}-${pad(date.month)}-${pad(date.day)} ${pad(date.hour)}:${pad(date.minute)} UTC';
   }
 
   void _save() {
     if (_changed || _loading || widget.canAdd?.call() == false) return;
     try {
+      final fresh = _proposal();
+      final available = fresh?['status'] == 'available';
       final amount = saleMoneyInput(_agreed.text),
-          reference = _reference.text.trim().isEmpty
+          reference = _policy != null
+              ? (available ? fresh!['referenceMinor'] as int : null)
+              : _reference.text.trim().isEmpty
               ? null
               : saleMoneyInput(_reference.text);
-      final rate = _rate.text.trim().isEmpty
+      final rate = _policy != null
+          ? (available ? fresh!['rateBps'] as int : null)
+          : _rate.text.trim().isEmpty
           ? null
           : tradeRateInput(_rate.text);
       final quantity = RegExp(r'^\d{1,3}$').hasMatch(_quantity.text)
@@ -226,8 +418,9 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
           : null;
       if (amount == null ||
           quantity == null ||
-          _reference.text.trim().isNotEmpty && reference == null ||
-          _rate.text.trim().isNotEmpty && rate == null) {
+          _policy == null &&
+              (_reference.text.trim().isNotEmpty && reference == null ||
+                  _rate.text.trim().isNotEmpty && rate == null)) {
         throw const FormatException(
           'Check the agreed price, quantity and optional offer fields.',
         );
@@ -276,7 +469,17 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
     } catch (_) {
       /* Optional offer may be incomplete. */
     }
+    final proposal = _proposal();
+    if (_policy != null) {
+      suggestion = proposal?['status'] == 'available'
+          ? proposal!['suggestedMinor'] as int
+          : null;
+    }
     final suggested = suggestion;
+    final needsReview =
+        proposal?['status'] == 'available' &&
+        proposal!['requiresConditionReview'] == true &&
+        _conditionReview != _reviewKey;
     return AlertDialog(
       title: Text(
         widget.line == null ? 'Add purchase item' : 'Edit purchase item',
@@ -414,6 +617,7 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                   _agreed.clear();
                                   _reference.clear();
                                   _rate.clear();
+                                  _resetPolicy();
                                 });
                               },
                               child: const Text('Choose a different card'),
@@ -448,14 +652,19 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                     .toList(),
                                 onChanged: _loading
                                     ? null
-                                    : (value) => setState(() {
-                                        _printingId = value;
-                                        final printing = _printings.firstWhere(
-                                          (printing) => printing['id'] == value,
-                                        );
-                                        _description.text =
-                                            '${_selected?.name ?? widget.line!['description'].split(' · ').first} · ${printing['printing_gv_id']}';
-                                      }),
+                                    : (value) {
+                                        setState(() {
+                                          _printingId = value;
+                                          final printing = _printings
+                                              .firstWhere(
+                                                (printing) =>
+                                                    printing['id'] == value,
+                                              );
+                                          _description.text =
+                                              '${_selected?.name ?? widget.line!['description'].split(' · ').first} · ${printing['printing_gv_id']}';
+                                        });
+                                        unawaited(_refreshReference());
+                                      },
                               ),
                               if (!_loading && _printings.isEmpty)
                                 const Text(
@@ -487,48 +696,123 @@ class _SalesPurchaseDialogState extends State<SalesPurchaseDialog> {
                                 decoration: const InputDecoration(
                                   labelText: 'Quantity',
                                 ),
+                                onChanged: (_) => setState(() {}),
                               ),
                             ExpansionTile(
+                              maintainState: true,
                               title: const Text(
                                 'Calculate an offer · optional',
                               ),
                               children: [
-                                SalesOfferPresets(
+                                SalesOfferPolicies(
                                   service: widget.service,
                                   disabled: _loading || _changed,
-                                  select: (rate) => setState(
-                                    () => _rate.text = tradeRate(rate),
+                                  applyDefault: _freshPolicy,
+                                  select: _selectPolicy,
+                                ),
+                                if (_policy != null) ...[
+                                  Text('Using ${_policy!['name']}'),
+                                  TextButton(
+                                    onPressed: _loading
+                                        ? null
+                                        : () => setState(_resetPolicy),
+                                    child: const Text(
+                                      'Bypass policy · manual terms',
+                                    ),
                                   ),
-                                ),
-                                _money(
-                                  _reference,
-                                  'Reference value per item (USD)',
-                                ),
-                                TextField(
-                                  controller: _rate,
-                                  maxLength: 6,
-                                  keyboardType:
-                                      const TextInputType.numberWithOptions(
-                                        decimal: true,
+                                ],
+                                if (_policy?['source'] != 'tcgplayer_market')
+                                  _money(
+                                    _reference,
+                                    'Reference value per item (USD)',
+                                  ),
+                                if (_policy == null)
+                                  TextField(
+                                    controller: _rate,
+                                    maxLength: 6,
+                                    keyboardType:
+                                        const TextInputType.numberWithOptions(
+                                          decimal: true,
+                                        ),
+                                    decoration: const InputDecoration(
+                                      labelText: 'Buy percentage',
+                                      suffixText: '%',
+                                    ),
+                                    onChanged: (_) => setState(() {}),
+                                  ),
+                                if (_policy?['source'] == 'manual')
+                                  Text(
+                                    'Entered reference · condition basis: ${_policy!['conditionBasis'] == 'selected'
+                                        ? _manual
+                                              ? 'unknown'
+                                              : _condition
+                                        : _policy!['conditionBasis']}. Enter a value for this basis; Grookai does not adjust it between conditions.',
+                                  ),
+                                if (_policy?['source'] ==
+                                    'tcgplayer_market') ...[
+                                  const Text(
+                                    'TCGPlayer Market · exact printing · condition unspecified',
+                                  ),
+                                  if (_marketLoading)
+                                    const LinearProgressIndicator(),
+                                  if (_marketError != null) Text(_marketError!),
+                                  TextButton(
+                                    onPressed:
+                                        _loading ||
+                                            _marketLoading ||
+                                            _printingId == null
+                                        ? null
+                                        : _refreshReference,
+                                    child: const Text(
+                                      'Refresh market reference',
+                                    ),
+                                  ),
+                                  if (_marketReference != null)
+                                    Text(
+                                      'Observed ${_referenceTime(_marketReference!['observedAt'] as String)} · published ${_referenceTime(_marketReference!['publishedAt'] as String)}',
+                                    ),
+                                ],
+                                if (proposal?['status'] == 'available') ...[
+                                  Text(
+                                    'Reference USD ${saleMoney(proposal!['referenceMinor'] as int)} × ${tradeRate(proposal['rateBps'] as int)}%${proposal['tierApplied'] == true ? ' · Low-value tier' : ''} · Calculated USD ${saleMoney(proposal['calculatedMinor'] as int)} per item · round ${proposal['rounding']['mode'] == 'down' ? 'down' : 'to nearest'} USD ${saleMoney(proposal['rounding']['incrementMinor'] as int)}',
+                                  ),
+                                  const Text(
+                                    'Calculated value is shown to the nearest cent. The offer rounds the full percentage result once.',
+                                  ),
+                                  if (proposal['requiresConditionReview'] ==
+                                      true)
+                                    CheckboxListTile(
+                                      contentPadding: EdgeInsets.zero,
+                                      value: _conditionReview == _reviewKey,
+                                      onChanged: _loading
+                                          ? null
+                                          : (value) => setState(
+                                              () => _conditionReview = value!
+                                                  ? _reviewKey
+                                                  : null,
+                                            ),
+                                      title: Text(
+                                        'I reviewed the ${proposal['basisCondition'] ?? 'unspecified'} reference condition for this ${_manual ? 'unspecified-condition' : _condition} item.',
                                       ),
-                                  decoration: const InputDecoration(
-                                    labelText: 'Buy percentage',
-                                    suffixText: '%',
+                                    ),
+                                ],
+                                if (_policy != null &&
+                                    proposal?['status'] != 'available' &&
+                                    !_marketLoading)
+                                  const Text(
+                                    'No policy offer yet. Check the exact printing, reference and condition basis. You may still enter an agreed price.',
                                   ),
-                                  onChanged: (_) => setState(() {}),
-                                ),
                                 if (suggested != null)
                                   Text(
                                     'Suggested offer: USD ${saleMoney(suggested)}${saleMoneyInput(_agreed.text) != null && saleMoneyInput(_agreed.text) != suggested ? ' · Agreed price overridden' : ''}',
                                   ),
                                 TextButton(
-                                  onPressed: suggested == null
+                                  onPressed:
+                                      suggested == null ||
+                                          needsReview ||
+                                          _loading
                                       ? null
-                                      : () => setState(
-                                          () => _agreed.text = saleMoney(
-                                            suggested,
-                                          ),
-                                        ),
+                                      : () => _useSuggestion(suggested),
                                   child: const Text('Use suggested offer'),
                                 ),
                                 const Text(

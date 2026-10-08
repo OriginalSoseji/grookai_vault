@@ -14,7 +14,7 @@ const commitTitle = process.argv[3] ?? 'feat: add buy-only backend and compatibl
 assert.ok(commitTitle.length > 0 && commitTitle.length <= 120 && !/[\r\n]/.test(commitTitle));
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 assert.equal(fs.realpathSync('.'), fs.realpathSync(root));
-const base = 'C:/grookai_vault_operator_artifacts/product_buy_20261007';
+const base = 'C:/grookai_vault_operator_artifacts/product_offer_policy_20261007';
 const fixture = 'C:/grookai_vault_operator_artifacts/product_buy_20261007/full-432-v1';
 const project = 'product-buy-full-432-v1-20261007';
 const read = p => JSON.parse(fs.readFileSync(p));
