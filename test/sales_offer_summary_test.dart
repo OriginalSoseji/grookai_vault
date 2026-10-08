@@ -104,7 +104,7 @@ void main() {
             if (out == null) return;
             expect(
               RegExp(
-                r'^C:/grookai_vault_operator_artifacts/product_offer_ui_20261008/visual-v[0-9]+$',
+                r'^C:/grookai_vault_operator_artifacts/product_(?:offer_ui_20261008|mobile_trade_20261008)/visual-v[0-9]+$',
               ).hasMatch(out),
               isTrue,
             );
@@ -129,7 +129,9 @@ void main() {
           await tester.tap(find.text('Calculation details'));
           await tester.pumpAndSettle();
           expect(find.textContaining('Calculated USD'), findsOneWidget);
-          if (trade) expect(find.textContaining('3 item(s)'), findsOneWidget);
+          if (trade) {
+            expect(find.textContaining('3 items · Calculated'), findsOneWidget);
+          }
           expect(find.text(agreed), findsOneWidget);
           expect(tester.takeException(), isNull);
           await capture('expanded');

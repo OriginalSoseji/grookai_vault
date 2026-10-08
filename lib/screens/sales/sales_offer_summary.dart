@@ -22,6 +22,9 @@ class SalesOfferSummary extends StatelessWidget {
     final unit = negotiated ? 'for this line' : 'per item';
     final noun = negotiated ? 'credit' : 'price';
     final quote = proposal?['status'] == 'available' ? proposal : null;
+    final items = quote == null
+        ? ''
+        : '${quote['quantity']} ${quote['quantity'] == 1 ? 'item' : 'items'}';
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(vertical: 12),
@@ -57,7 +60,7 @@ class SalesOfferSummary extends StatelessWidget {
             if (quote != null) ...[
               const SizedBox(height: 10),
               Text(
-                'Reference USD ${saleMoney(quote['referenceMinor'] as int)} × ${tradeRate(quote['rateBps'] as int)}% per item${negotiated ? ' · ${quote['quantity']} items' : ''}${quote['tierApplied'] == true ? ' · Low-value tier' : ''}',
+                'Reference USD ${saleMoney(quote['referenceMinor'] as int)} × ${tradeRate(quote['rateBps'] as int)}% per item${negotiated ? ' · $items' : ''}${quote['tierApplied'] == true ? ' · Low-value tier' : ''}',
                 style: theme.textTheme.bodyMedium,
               ),
             ],
@@ -68,7 +71,7 @@ class SalesOfferSummary extends StatelessWidget {
               children: [
                 if (quote != null) ...[
                   Text(
-                    '${negotiated ? '${quote['quantity']} item(s) · ' : ''}Calculated USD ${saleMoney(quote['calculatedMinor'] as int)} $unit · round ${quote['rounding']['mode'] == 'down' ? 'down' : 'to nearest'} USD ${saleMoney(quote['rounding']['incrementMinor'] as int)}${quote['tierApplied'] == true ? ' · Low-value tier' : ''}',
+                    '${negotiated ? '$items · ' : ''}Calculated USD ${saleMoney(quote['calculatedMinor'] as int)} $unit · round ${quote['rounding']['mode'] == 'down' ? 'down' : 'to nearest'} USD ${saleMoney(quote['rounding']['incrementMinor'] as int)}${quote['tierApplied'] == true ? ' · Low-value tier' : ''}',
                   ),
                   const SizedBox(height: 8),
                   Text(

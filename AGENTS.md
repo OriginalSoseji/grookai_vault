@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## Mobile Trade layout and current-main integration — October 8
+
+Work in C:/gv_product_mobile_trade_20261008 from locally qualified release
+3e6928b574f072cd8cff2a13c5b5f164ea3ee191, integrating main50404ddce.
+Read docs/ops/PRODUCT_MOBILE_TRADE_20261008.md. Preserve all prior trees,
+Samsung429 and every fixture. The exact432 package labs remain sealed and
+read-only. Current-main Collectr matching and catalog refresh are preserved.
+Inherited release/runtime wrappers pin older roots; do not run them here.
+External product_mobile_trade_20261008/CHECKPOINT.json owns actual outcomes.
+No SQL changes, production apply, deployment, provider fetch or upload.
+No subagents. Physical iOS, release requalification and full overhaul stay open.
+
 ## Exact combined cost, Buy and Trade release — October 8
 
 Work in C:/gv_product_deal_release_20261008 from qualified search commit 5c5dec758d5c59bf6a9cc7f4d768816898c2d4b2. Read docs/ops/PRODUCT_DEAL_RELEASE_20261008.md. Preserve every prior tree, populated lab, consumed fixture and Samsung429. All433 source migrations remain byte-identical; the local release package excludes only deferred receipt delivery and has432 migrations. Fresh read-only live429 baseline, exact full/upgrade replay, real Auth/RPC, independent CLI shadow and source-bound gates are required. Old fixed-root wrappers must not run here. External product_deal_release_20261008/CHECKPOINT.json owns status. No production apply, deployment, activation, provider fetch or upload. No subagents. Full overhaul stays active. Actual exact432 replay/retained upgrade, cost/Buy/Trade AuthRPC,99 SQL cases, reapplication and independent shadow-v2 now pass;24 focused checks and29-artifact manifest verification pass. Full package retains178 copies/six accounts, upgrade two copies/one account, controls off. Freeze source/labs for the dedicated ordinary wrapper after staged release audit. External checkpoint owns final gate/commit outcomes.
@@ -298,6 +310,17 @@ The six-screen sample prototype and reference specification are under docs/produ
 It is not deployed. Preserve concurrent scanner changes and
 all retained import/receipt/deal requests; synthetic renders are not device or
 production-release proof. The external checkpoint records current validation.
+
+## Collectr catalog scope review — October 7
+
+PR608 recovery is complete; preserve 1,616 accounted copies and 543 held rows.
+Read docs/checkpoints/collectr_scope_review_20261007.md. Fresh review covers all
+216 set/number gap rows. The retailer candidate qualifies two source rows/four
+copies using existing stamped identity and Holo evidence. Nothing is saved by
+qualification. Private collectr_scope_review_20261007/CHECKPOINT.json owns actual
+release/save status. Japanese candidates have no public printing options; do not
+broaden aliases or revive hidden children to bypass that boundary. Keep every
+saved group, consumed receipt, retained lab and the pending graded-item choice.
 
 ## Collectr mixed receipt confirmation — October 7
 

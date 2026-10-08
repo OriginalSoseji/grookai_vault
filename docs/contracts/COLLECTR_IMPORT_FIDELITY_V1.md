@@ -1,5 +1,22 @@
 # Collectr import fidelity repair
 
+## Retailer umbrella source scope — October 7
+
+`Miscellaneous Cards & Products` is not a canonical set. Only the exact source
+name `Pikachu (Toys R Us)` and full fraction `26/83` may route that source category
+to Generations. Case, whitespace, leading zeroes and a leading number sign are
+accepted; absent/conflicting totals, other products, games and labels stay held.
+The name predicate independently requires English Pokemon identity, set code
+g1, Pikachu26, and both `toys_r_us_stamp` variant and modifier. The existing
+printing resolver must find one active public child matching the source finish.
+No stamp, finish, parent, identity or catalog evidence is created or inferred.
+
+Both runtimes share the adversarial fixture corpus. Save-time resolution rereads
+the same evidence. Source-aware clients pass the original number; legacy matching
+and requests lacking product context do not gain an umbrella-category alias.
+Original quantities, portfolios, fields and costs stay unchanged. See the
+[scope review checkpoint](../checkpoints/collectr_scope_review_20261007.md).
+
 ## Printed identity labels — October 7
 
 Source-aware preview and server validation accept `Pokemon Center Exclusive`

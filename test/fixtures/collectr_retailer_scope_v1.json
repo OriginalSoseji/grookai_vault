@@ -1,0 +1,383 @@
+[
+  {
+    "label": "exact stamped coordinate",
+    "expected": true,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "case whitespace and zero padding",
+    "expected": true,
+    "sourceName": " PIKACHU  (TOYS R US) ",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "#0026 / 0083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "missing source denominator held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "26",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "wrong source denominator held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/165",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "wrong source numerator held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "025/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "unrecognized umbrella label held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Deck Exclusives",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "unstamped source label held",
+    "expected": false,
+    "sourceName": "Pikachu",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "other retailer held",
+    "expected": false,
+    "sourceName": "Pikachu (Target)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "other card name held",
+    "expected": false,
+    "sourceName": "Charmander (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "stacked label held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us) (26)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "unstamped parent held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    }
+  },
+  {
+    "label": "missing modifier held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": null
+    }
+  },
+  {
+    "label": "conflicting modifier held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp"
+    }
+  },
+  {
+    "label": "wrong variant held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "wrong canonical set code held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "sv03.5",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "Japanese parent held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_jpn",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "Pocket parent held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "tcg_pocket_excluded",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "different game held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    },
+    "category": "Magic: The Gathering"
+  },
+  {
+    "label": "wrong catalog name held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Charmander",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "wrong catalog number held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "25",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    }
+  },
+  {
+    "label": "missing verified printing held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    },
+    "missingPrinting": true
+  },
+  {
+    "label": "inactive printing held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    },
+    "active": false
+  },
+  {
+    "label": "wrong printing finish held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    },
+    "catalogFinish": "normal"
+  },
+  {
+    "label": "duplicate printing held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    },
+    "duplicatePrinting": true
+  },
+  {
+    "label": "source reverse finish held",
+    "expected": false,
+    "sourceName": "Pikachu (Toys R Us)",
+    "sourceSet": "Miscellaneous Cards & Products",
+    "sourceNumber": "026/083",
+    "card": {
+      "name": "Pikachu",
+      "number": "26",
+      "set_code": "g1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "toys_r_us_stamp",
+      "printed_identity_modifier": "toys_r_us_stamp"
+    },
+    "variance": "Reverse Holofoil"
+  }
+]

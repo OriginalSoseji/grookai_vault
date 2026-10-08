@@ -163,7 +163,7 @@ test('trade default applies inclusive unit tier and whole-line rounding without 
     await expect(comparison.getByText(/Agreed credit \$6.50 for this line/)).toBeVisible();
     await expect(comparison.getByText(/Calculated \$/)).toBeHidden();
     await comparison.getByText('Calculation details', {exact: true}).click();
-    await expect(comparison.getByText(/3 item\(s\) · Calculated \$19.52 for this line/)).toBeVisible();
+    await expect(comparison.getByText(/3 items · Calculated \$19.52 for this line/)).toBeVisible();
     await comparison.getByText('Calculation details', {exact: true}).click();
     await expect(page.getByLabel('Agreed credit for this whole line (USD)')).toHaveValue('6.50');
     await page.getByRole('button', {name: 'Add to trade', exact: true}).click();

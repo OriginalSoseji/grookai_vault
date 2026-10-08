@@ -5,6 +5,7 @@ import { collectrPokemonNamedFinish } from "./pokemon_named_finish.ts";
 import { collectrSetTargets } from "./set_scope.ts";
 import {
   ImportValidationError,
+  field,
   jsonbByteSize,
   normalize,
   number,
@@ -206,7 +207,7 @@ export async function resolveTargets(
           game: base.game, card}) &&
         !matchesCollectrMtgIdentity({sourceName: base.name, sourceNumber: base.number, sourceFinishKey: base.finishKey,
           game: base.game, card, identities: identities.get(card.id) ?? []}))) ||
-      !collectrSetTargets(base.set, base.game, base.number).includes(setName(set.name ?? "", base.game)) ||
+      !collectrSetTargets(base.set, base.game, base.number, base.name, field(original, "card number", "number")).includes(setName(set.name ?? "", base.game)) ||
       number(card.number ?? "") !== base.number
     ) throw new ImportValidationError("import_card_identity_mismatch");
     let finishKey = base.finishKey;

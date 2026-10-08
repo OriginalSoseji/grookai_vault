@@ -27,6 +27,13 @@ bool matchesCollectrPokemonName({
     return false;
   }
   var name = text(sourceName);
+  if (name == 'pikachu (toys r us)') {
+    return text(card['name']) == 'pikachu' &&
+        text(card['set_code']) == 'g1' &&
+        number(card['number']) == '26' &&
+        text(card['variant_key']) == 'toys_r_us_stamp' &&
+        text(card['printed_identity_modifier']) == 'toys_r_us_stamp';
+  }
   final suffix = RegExp(r'\s+\(#?([a-z]*\d+[a-z]*)\)$').firstMatch(name);
   if (suffix != null) {
     if (number(suffix.group(1)) != number(sourceNumber)) return false;

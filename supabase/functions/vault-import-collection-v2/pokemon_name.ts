@@ -13,6 +13,11 @@ export function matchesCollectrPokemonName({sourceName, sourceNumber, game, card
     !["", "en"].includes(text(card.language)) || !number(sourceNumber) ||
     number(sourceNumber) !== number(card.number)) return false;
   let name = text(sourceName);
+  if (name === "pikachu (toys r us)") {
+    return text(card.name) === "pikachu" && text(card.set_code) === "g1" &&
+      number(card.number) === "26" && text(card.variant_key) === "toys_r_us_stamp" &&
+      text(card.printed_identity_modifier) === "toys_r_us_stamp";
+  }
   const suffix = /\s+\(#?([a-z]*\d+[a-z]*)\)$/.exec(name);
   if (suffix) {
     if (number(suffix[1]) !== number(sourceNumber)) return false;

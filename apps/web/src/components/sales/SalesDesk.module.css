@@ -24,3 +24,14 @@
 .scanner input {flex:1;min-width:0;padding:12px;border:1px solid #849b8b;border-radius:8px;background:transparent;color:inherit}
 .scanner input:focus {outline:3px solid #2b9a71;outline-offset:2px}
 .scanner small {display:block;margin-top:10px;opacity:.75}
+
+.incomingEditor h3 {padding-right:44px;overflow-wrap:anywhere}
+@media(max-width:1000px){
+  .inventory.incomingSearch {padding:0;border:0;border-radius:0;background:transparent;min-height:0;overflow:visible}
+  .editor.incomingEditor {padding:14px 0;border:0;border-top:1px solid var(--line);border-radius:0;background:transparent;margin-bottom:14px}
+  .incomingEditor .close {top:5px;right:0;min-width:44px;min-height:44px}
+  .incomingEditor .editFields>details>summary {padding:12px 0;min-height:44px;cursor:pointer}
+  .incomingSearch .resultBar {gap:8px;flex-wrap:wrap}
+  .incomingEditor .fields {flex-wrap:wrap;align-items:end}
+  .incomingEditor .fields>label {flex:1 1 140px}
+}

@@ -1335,7 +1335,13 @@ class CollectionImportService {
     CollectionImportNormalizedRow row,
     bool sourceAware,
   ) => sourceAware
-      ? collectrSetTargets(row.compareSet, row.gameCode, row.compareNumber)
+      ? collectrSetTargets(
+          row.compareSet,
+          row.gameCode,
+          row.compareNumber,
+          row.compareName,
+          row.sourceRecords.isEmpty ? '' : row.sourceRecords.first.rawNumber,
+        )
       : [row.compareSet];
 
   static Future<List<_CollectionImportCandidateRow>> _fetchCandidateRows({

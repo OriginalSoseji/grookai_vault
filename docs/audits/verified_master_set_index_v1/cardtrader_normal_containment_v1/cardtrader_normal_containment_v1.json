@@ -1,6 +1,6 @@
 {
   "version": "CARDTRADER_NORMAL_CONTAINMENT_V1",
-  "generated_at": "2026-10-07T10:38:23.897Z",
+  "generated_at": "2026-10-08T10:57:08.673Z",
   "audit_only": true,
   "db_writes_performed": false,
   "migrations_created": false,
@@ -658,11 +658,11 @@
     ],
     "master_printings": {
       "path": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_printings_v1.json",
-      "sha256": "73c0715fe2dabb0a9c7db4f87a56336a3b266cae9bdee7ddb0e2a468ae656e17"
+      "sha256": "7a4e7568e159569af71fc0a4baa26e383165ca6c033e52b5ae491adb7a706e1d"
     },
     "alias_normalization": {
       "path": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_set_alias_normalization_v1.json",
-      "sha256": "ee50d13a59ea91b488b7fb8c28f0448222897e1e11b858faad85f16da709d914"
+      "sha256": "f8dd2a2891d6ee56e0e697e6c55857badeabe16998260fdf10193f60017cbb7c"
     },
     "classifier": {
       "path": "scripts/audits/verified_master_set_index_v1/source_adapters/human_fixtures.mjs",

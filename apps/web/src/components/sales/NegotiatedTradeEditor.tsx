@@ -168,13 +168,13 @@ export default function NegotiatedTradeEditor({owner, currentOwner, locked, edit
     }
     return <div>
         {error && <p role="alert" className={s.error}>{error}</p>}
-            <section className={s.inventory} aria-label="Find incoming cards">
+            <section className={`${s.inventory} ${s.incomingSearch}`} aria-label="Find incoming cards">
                 <h2>Incoming trade cards</h2><p>Agree the total credit for each line. Save selected incoming copies when the exchange is complete.</p>
                 <div className={s.search}><Search size={19}/><input aria-label="Find incoming card" placeholder="Card name, set, number or Grookai ID" value={query} disabled={disabled} onChange={event => setQuery(event.target.value)}/>
                     <select aria-label="Trade game" value={game} disabled={disabled} onChange={event => setGame(event.target.value)}><option value="pokemon">Pokémon</option><option value="mtg">Magic</option><option value="one_piece">One Piece</option></select></div>
                 <div className={s.resultBar}><span role="status">{searching ? 'Updating results…' : `${cards.length} matches shown`}</span><button disabled={disabled || searching} onClick={() => choose(null)}><Plus size={15}/> Quick trade</button></div>
                 {searchError && <p role="alert" className={s.error}>{searchError}<button onClick={() => setSearchRevision(value => value + 1)}>Retry search</button></p>}
-                {(selected || quick) && <section className={s.editor} aria-label="Trade item details">
+                {(selected || quick) && <section className={`${s.editor} ${s.incomingEditor}`} aria-label="Trade item details">
                     <button className={s.close} aria-label="Close trade item" disabled={adding} onClick={() => {setSelected(null); setQuick(false);}}><X/></button>
                     {selected?.image && <Image unoptimized width={300} height={420} src={selected.image} alt={selected.name} className={s.editImage}/>}
                     <div className={s.editFields}><h3>{selected?.name ?? 'Quick trade'}</h3>
