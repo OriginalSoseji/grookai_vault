@@ -43,6 +43,24 @@ export function assertMtgParentLinksExactV1(rows, plan) {
     card_print_id:r.card_print_id,active:true,meta:metadata(r)})));
   assert.ok(rows.every(r => BigInt(r.id) > 0n));
 }
+// currval is session-local. Reading global last_value incorrectly attributes
+// concurrent sign-ins and other sessions' allocations to this transaction.
+export async function captureMtgParentLinkSessionSequencesV1(client) {
+  const rows=(await client.query("select schemaname,sequencename from pg_sequences where schemaname in ('public','auth','storage') and not(schemaname='public' and sequencename='external_mappings_id_seq') order by 1,2")).rows;
+  const quote=s=>'"'+s.replaceAll('"','""')+'"';
+  const result=[];
+  for(const row of rows){
+    await client.query('savepoint mtg_parent_link_sequence_read');
+    let value=null;
+    try { value=(await client.query('select currval($1::regclass)::text value',[quote(row.schemaname)+'.'+quote(row.sequencename)])).rows[0].value; }
+    catch(error){
+      await client.query('rollback to savepoint mtg_parent_link_sequence_read');
+      if(error.code!=='55000')throw error;
+    } finally { await client.query('release savepoint mtg_parent_link_sequence_read'); }
+    result.push({...row,session_value:value});
+  }
+  return result;
+}
 
 // Caller owns the connection, durable intent, commit and uncertain-outcome recovery.
 // This core inserts only the frozen links. It never creates cards or assignments.
@@ -59,8 +77,7 @@ export async function insertMtgParentLinksInTransactionV1(client, plan, admissio
     assert.equal(Number(r.actual_count),admission.rows[name].length,name);assert.equal(Number(r.exact_count),admission.rows[name].length,name);
   }
   const before = await captureMtgParentLinkPreservationV1(client,plan),sequenceBefore = await captureMtgMappingSequenceV1(client);
-  const otherSequences = async () => (await client.query("select schemaname,sequencename,last_value::text from pg_sequences where schemaname in ('public','auth','storage') and not(schemaname='public' and sequencename='external_mappings_id_seq') order by 1,2")).rows;
-  const sequencesBefore = await otherSequences();
+  const sequencesBefore = await captureMtgParentLinkSessionSequencesV1(client);
   const payload = plan.insert_rows.map(r => ({...r,meta:metadata(r)}));
   const inserted = await client.query(`insert into public.external_mappings(card_print_id,source,external_id,active,meta)
     select card_print_id,'tcgplayer',source_product_id,true,meta from jsonb_to_recordset($1::jsonb)
@@ -68,12 +85,13 @@ export async function insertMtgParentLinksInTransactionV1(client, plan, admissio
   assert.equal(inserted.rowCount,546);await client.query('set constraints all immediate');
   const allocated = await readMtgParentLinksV1(client,plan);assertMtgParentLinksExactV1(allocated,plan);
   const sequenceAfter = await captureMtgMappingSequenceV1(client);assertMtgMappingAllocationV1(sequenceBefore,sequenceAfter,allocated);
-  assert.deepEqual(await otherSequences(),sequencesBefore,'Another sequence advanced; never reset or retry automatically');
+  const sequencesAfter=await captureMtgParentLinkSessionSequencesV1(client);
+  assert.deepEqual(sequencesAfter,sequencesBefore,'Executor consumed an unrelated sequence; never reset or retry automatically');
   const writes = mtgTransactionWriteDeltaV1(writesBefore,await captureMtgTransactionWritesV1(client));
   assertMtgTransactionWritesV1(writes,{external_mappings:546});
   assert.deepEqual(await captureMtgParentLinkPreservationV1(client,plan),before,'Preserved data or schema changed');
   assert.deepEqual(mtgTransactionWriteDeltaV1(writesBefore,await captureMtgTransactionWritesV1(client)),writes);
-  return {planFingerprint:plan.plan_fingerprint,inserted:546,allocated,sequenceBefore,sequenceAfter,preservation:before,writes,committed:false};
+  return {planFingerprint:plan.plan_fingerprint,inserted:546,allocated,sequenceBefore,sequenceAfter,sessionSequencesBefore:sequencesBefore,sessionSequencesAfter:sequencesAfter,preservation:before,writes,committed:false};
 }
 export async function prepareMtgParentLinkProductionV1(client, plan, admission, envelope, producer, now=new Date()) {
   assertMtgParentLinkPlanV1(plan);assertMtgReleasePayloadV1(admission);

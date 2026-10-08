@@ -12,6 +12,12 @@ use the independently pinned pricing runtime for actual publication. Link repair
 does not itself publish prices. The external worker recovery checkpoint records
 the actual release state; code presence alone proves no apply or deployment.
 
+The first production rollback stopped on global authentication sequence movement;
+no links were committed. The sequence guard now compares
+session-local currval values and still rejects sequence-only trigger side effects.
+Preserve the failed attempt and its rollback gap. Do not rerun the consumed V1
+intent: qualify the revised guard and use a new merged executor and fresh intent.
+
 The main branch contains the full Grookai operator playbook. This operational
 release branch preserves the separately pinned control-plane runtime.
 
