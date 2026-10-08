@@ -1,0 +1,2768 @@
+{
+  "version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+  "repository": {
+    "commit_sha": "43596c1db2d09711945fa32f8c1333ac93375e0c",
+    "scope": "reviewed_fra_frc_555_parents_960_printings",
+    "admission_plan_sha256": "226b29133774f33c1ab3e7d540c9b482f60fe6de4c753b7f58ef6a0c02fe9c1a"
+  },
+  "authority": "exact_tcgplayer_market_printing_mappings",
+  "source_category_id": 1,
+  "source": "tcgplayer",
+  "selected_insert_count": 546,
+  "resolution_counts": {
+    "insert_candidate": 546
+  },
+  "unsafe_count": 0,
+  "blocking_unsafe_count": 0,
+  "review_only_count": 0,
+  "insert_rows_sha256": "acb733a22dddbf7a4dba64b3b59fab427686eb55bb2d358cc4a6633158ae7984",
+  "unsafe_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "review_only_rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "boundaries": {
+    "insert_only": true,
+    "allowed_table": "public.external_mappings",
+    "updates": false,
+    "deletes": false,
+    "pricing_writes": false,
+    "publication_writes": false,
+    "image_writes": false,
+    "catalog_release_writes": false,
+    "pokemon_mutation": false
+  },
+  "plan_fingerprint": "1b80df6ae83b09ebb05e6d16f4cd46d5e46b72d70916fda5375f36b923c89846",
+  "required_approval": "APPLY_MTG_TCGPLAYER_PARENT_MAPPINGS_V1:1b80df6ae83b09ebb05e6d16f4cd46d5e46b72d70916fda5375f36b923c89846:546",
+  "insert_rows": [
+    {
+      "source_product_id": "692993",
+      "card_print_id": "cb342180-4013-5388-8a7c-de0d5358ec4f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "692994",
+      "card_print_id": "f4af2a98-fada-55e6-922a-9484c13cc4b8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "692995",
+      "card_print_id": "d33793f4-468e-5899-b087-129b10e971fe",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "692996",
+      "card_print_id": "c31022c6-45b2-5e93-be55-e1808bc5a9a8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "692997",
+      "card_print_id": "4a03254e-f205-52cf-909c-aca07972d83c",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "692998",
+      "card_print_id": "6085b39c-d361-5d90-bac6-a79fdf5090bd",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "706968",
+      "card_print_id": "83c9d22e-16ed-5e82-affa-28ff682b1f4a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706969",
+      "card_print_id": "8e10060e-28d6-5012-9d10-165facf2bef4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706970",
+      "card_print_id": "dbd5abfa-2159-53e2-a0a4-546d8b8013d9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706971",
+      "card_print_id": "ce371f65-3a49-5734-abdc-35a1469a5f11",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706972",
+      "card_print_id": "d8afce01-bce4-5bf9-908d-913979f2a872",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706973",
+      "card_print_id": "c88d7f5e-b200-56bf-b9db-205d8ca6cbd3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706974",
+      "card_print_id": "a25a6b8b-1250-51b8-a166-ac948ae9e801",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706975",
+      "card_print_id": "6a8a797c-77a2-5e4f-9726-0b8128fd0b4e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706976",
+      "card_print_id": "9a30c37c-961c-53ad-b4e8-e962c6e439f4",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "706978",
+      "card_print_id": "61e063a1-04ce-5fdb-8d73-753b30f52cae",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "706979",
+      "card_print_id": "c78bf6ae-182c-5dbd-a979-23376db4e9ed",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706980",
+      "card_print_id": "313e3a15-bdb4-526c-ba49-f71a29ce2d6b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706981",
+      "card_print_id": "65dedbbf-8a38-5966-b295-0479afbb4904",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706982",
+      "card_print_id": "239b2362-a0c2-5213-8a2d-a2a5d453cc1d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706983",
+      "card_print_id": "752a4c17-66a3-51e3-8262-d21ae485175b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706984",
+      "card_print_id": "892e053d-8828-5805-9c94-b5c8b41bdb9c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706985",
+      "card_print_id": "e41cbc7a-f632-523d-93cd-ebb4427558da",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706986",
+      "card_print_id": "7112867c-2301-5d93-aad3-1ce015b5c963",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706987",
+      "card_print_id": "a3a38f98-0552-54ae-828b-024fbff22479",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706988",
+      "card_print_id": "9c10dba7-7dc4-50b1-92c4-be93b942659c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706989",
+      "card_print_id": "a7a05e99-1725-51c7-8dc0-18235a8aa3b6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706990",
+      "card_print_id": "c700099d-8470-5b5b-87e6-949dac992644",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706991",
+      "card_print_id": "e8a786cd-41e1-5e88-a2e0-8f0d594bbd2a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706992",
+      "card_print_id": "a66b0a17-4cba-5eb2-999b-e2bfc014b158",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "706993",
+      "card_print_id": "d3b50458-c1d7-5d47-a106-b325e69427a9",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "706995",
+      "card_print_id": "1d56e1f2-ac9d-5656-adcc-70f7ca833e25",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706996",
+      "card_print_id": "046b9ca8-e546-53fa-981a-76d1ec159bce",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706997",
+      "card_print_id": "3206c6ae-5166-544e-8989-1b98c799f44e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "706998",
+      "card_print_id": "97484aff-35f8-57d8-9f74-4825158d63e7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "707000",
+      "card_print_id": "945a2c33-cb37-5728-b244-d504fb85131d",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "707001",
+      "card_print_id": "066948d4-6c54-52c5-9ff6-6ac347685122",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "707002",
+      "card_print_id": "b8a033d8-ea83-5117-9919-1fe14157e0b2",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "707023",
+      "card_print_id": "fa912145-c0aa-54c2-b8bd-be613faef55b",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "707024",
+      "card_print_id": "7711b569-b01d-57b5-93a2-03ac2c0c8a28",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715859",
+      "card_print_id": "9ee308e2-398e-5a3a-8c60-035cfe2940cb",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715860",
+      "card_print_id": "cb36fb9a-e250-5a33-89aa-8e91ca05627b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715861",
+      "card_print_id": "c235e5b4-2269-533e-99cb-1cc1f4f69f17",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715862",
+      "card_print_id": "0f3dcec2-ec5b-5cb5-8634-5b82d9ff1ffd",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715863",
+      "card_print_id": "592e1405-9810-5826-9207-3623b26e679e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715864",
+      "card_print_id": "cc77967e-ab50-5147-8198-38b8ad04b84a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715865",
+      "card_print_id": "d5b7d686-71cc-5f5a-8186-657c04350b11",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715866",
+      "card_print_id": "19c74633-d431-5766-88ac-2072d0c57e9c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715867",
+      "card_print_id": "061230e1-763e-5885-a705-db32c13cbe91",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715868",
+      "card_print_id": "c809b7e6-3ce7-5412-a958-5db1bce52a79",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715869",
+      "card_print_id": "a9b69765-76c7-5f1c-8421-909592b17079",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715870",
+      "card_print_id": "38a64e32-57ea-5af8-8245-5931a43351a8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715871",
+      "card_print_id": "771380c9-8083-55be-8a29-fcc201892b96",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715872",
+      "card_print_id": "4b1abda5-cb58-5c67-bc5a-d2b4258e94b6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715873",
+      "card_print_id": "05b2df6c-372a-5833-8704-9a90b2562cf5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715874",
+      "card_print_id": "36f14f4a-d184-596c-b0e4-d551f5a90e24",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715875",
+      "card_print_id": "d0c789d8-4134-5633-9472-40752e06e800",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715876",
+      "card_print_id": "d2acc29c-f3d7-5998-b5ff-6d2ba04f6a44",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715877",
+      "card_print_id": "30268a6d-5d04-59cc-91d3-7caf663850b5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715878",
+      "card_print_id": "0b5c6d1f-b086-5398-81cc-6206c1b53eb7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715879",
+      "card_print_id": "fccf6fbb-9f11-517a-87a5-51e138adf72f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715880",
+      "card_print_id": "8cffebc3-4473-516e-8fe9-54f87b077507",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715881",
+      "card_print_id": "53e039c3-d561-5ec0-89c5-0628ee63fd9b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715882",
+      "card_print_id": "5fe9408e-f3d5-5c6b-a21d-6b934e765b2b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715883",
+      "card_print_id": "dfe71a0c-2973-51d5-ae0f-1ed6d4c1a036",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715884",
+      "card_print_id": "2cfb7a97-01b8-5fe2-bae4-a73f0c07d3ec",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715889",
+      "card_print_id": "21295bdb-16c5-5895-b9a6-3b7fe88e542e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715890",
+      "card_print_id": "961e0beb-ae9b-512f-8b89-3c2bbb3eec64",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715891",
+      "card_print_id": "1ac863c5-d0a5-553a-af81-232686fca237",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715892",
+      "card_print_id": "ee1977ea-6bf3-59bc-af35-2e1d1ee12e53",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715893",
+      "card_print_id": "0ef7bea7-02e3-5f2b-97a0-a416053d0acc",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715894",
+      "card_print_id": "b4f498f7-0831-5bda-ae43-84ed192ce456",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715895",
+      "card_print_id": "f977dff0-a523-5549-a7d9-e4a151efc9b8",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715896",
+      "card_print_id": "6272e126-1377-5f39-9df5-a1cbf7c985de",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715898",
+      "card_print_id": "c5120b6a-f9cd-5ee7-99ed-56d017e152c5",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715899",
+      "card_print_id": "a9f166ac-855d-5624-8cf2-c7a24d8812d8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715900",
+      "card_print_id": "dc268e06-d31d-5a5e-bf9c-5e76a280c85f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715901",
+      "card_print_id": "da2f79e5-3f7b-5811-a40e-eb77520c34c5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715902",
+      "card_print_id": "c8365ca2-6f9b-59a5-b9c5-3f6b0ff06994",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715903",
+      "card_print_id": "4290abef-7d2a-5856-b540-d5844603016e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715904",
+      "card_print_id": "25c3ebd7-caf1-54ef-8d4c-53a0c95afc59",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715905",
+      "card_print_id": "b4c2b441-c2e7-5736-94cc-81eeadb9a756",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715906",
+      "card_print_id": "fc9faa40-b5ed-5ffe-af8b-1500e02f65c7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715907",
+      "card_print_id": "d48a2c92-db99-50b4-aaff-7a78e78ca1da",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715908",
+      "card_print_id": "ed9dc080-b7b9-57e2-b2c2-1aa4e0cb7484",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715909",
+      "card_print_id": "a609f1d3-7c39-5aef-a2db-d03b29d4a540",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715910",
+      "card_print_id": "52f3fe48-80fa-5cf6-a18f-c96773daab55",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715911",
+      "card_print_id": "66824c67-b037-5cd6-9c3d-74aebdb7120f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715912",
+      "card_print_id": "9bb697a8-eae4-5f18-ab5d-93cfd39eecf7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715913",
+      "card_print_id": "726c741b-6541-5f3b-8608-6c1c4efdcf2b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715914",
+      "card_print_id": "5f594b90-f453-581c-a156-3cc5fad78432",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715915",
+      "card_print_id": "924390d9-45df-5afb-96d7-b031e9119f1a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715916",
+      "card_print_id": "55142ca5-4f7e-5f7b-9a2c-a75136692894",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715917",
+      "card_print_id": "4828624f-42ce-5e72-9066-319ac0c46d28",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715918",
+      "card_print_id": "be1e0778-e6b8-5871-ad20-14995543853f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715919",
+      "card_print_id": "e5f9b1cd-cb83-5a3f-997e-3debf994f4c7",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715920",
+      "card_print_id": "a192b6fd-aae0-56b6-aed6-f0a64af832a2",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715921",
+      "card_print_id": "473d507d-12dc-504c-afca-0a5c11592e9c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715922",
+      "card_print_id": "50c1c32c-f43a-5c89-9d87-5518cbd4842b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715923",
+      "card_print_id": "c0d1b2eb-ea8f-5bba-85b4-2389a61be569",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715924",
+      "card_print_id": "fb8dfb99-187b-5a78-b106-31573297f5dd",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715925",
+      "card_print_id": "261d502e-86b4-5a47-a0c6-b21ade9a28ee",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715926",
+      "card_print_id": "433a6a28-48a1-54e9-8f49-1030d4d76f62",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715927",
+      "card_print_id": "76a4525a-2549-5e20-876c-96a54e26a602",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715928",
+      "card_print_id": "e6a0cb8b-489a-5198-982f-5784319e08b2",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715929",
+      "card_print_id": "2a364798-aa88-5f86-bd78-fa665c0e290e",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715930",
+      "card_print_id": "d4822d52-faa1-594f-ba7c-2da9d06782c6",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715931",
+      "card_print_id": "ae5f3c76-a149-569e-ba63-8b6f705ddcfc",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715932",
+      "card_print_id": "c895b292-6ecb-5144-9aad-1e12cb722a36",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715933",
+      "card_print_id": "f2fdddab-587d-507e-9952-eaaec7ef1118",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715934",
+      "card_print_id": "b760328a-4980-5955-a7bd-9048c0c4e9b3",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715935",
+      "card_print_id": "f5291236-0e3d-5f2a-9c34-bef532e87c71",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "715936",
+      "card_print_id": "42dbd672-046b-5524-ab06-8a93b7665bca",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715937",
+      "card_print_id": "66270ddb-75fc-55a2-af22-7d17c4b30ac9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715938",
+      "card_print_id": "e02f5d7b-08c6-5e10-9647-d7d6005e7889",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715939",
+      "card_print_id": "eddccdf8-41e3-5b3c-893d-f58f8ce96368",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715940",
+      "card_print_id": "99eb8700-bd9c-5b82-8b1c-4772a193a003",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715941",
+      "card_print_id": "82d06030-7430-5b87-8dc9-921edaae8b73",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715942",
+      "card_print_id": "69464d4b-2ad7-5230-b791-9063c07ae53c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715943",
+      "card_print_id": "488dc37e-fc72-552a-938b-b8130e8efa6f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715944",
+      "card_print_id": "6c7bf949-5b3f-5c60-af34-8d19c587c6d3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715945",
+      "card_print_id": "2ce38077-c9a8-5e6c-a27c-43bed3d0f7b2",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715946",
+      "card_print_id": "2aed72ce-0e79-5584-a084-a6e4114f6717",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715947",
+      "card_print_id": "ba9fb68f-b8e9-5fe7-a30d-77da1f6a73f5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715948",
+      "card_print_id": "3e53e5d0-04ec-5801-8bd0-99aaf3943ee7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715949",
+      "card_print_id": "f4d5ff06-28b6-5ec3-9781-d99bcba22cdb",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715950",
+      "card_print_id": "947e777b-6ee8-5819-842f-f5069040af29",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715951",
+      "card_print_id": "cac145c2-bf4f-5b9b-927b-8e6cda188cb4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715952",
+      "card_print_id": "5622a9fb-51dc-5e8a-ab91-acbb0e9511c3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715953",
+      "card_print_id": "10907523-266b-5b68-bb72-6168825915c1",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715954",
+      "card_print_id": "5950fd73-3c98-54c5-aa8a-a247c13628b8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715955",
+      "card_print_id": "f2cfac61-147d-5ec0-844f-9f9807b879f2",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715956",
+      "card_print_id": "76af30dd-fcaf-5abd-91aa-26d0952d30ab",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715957",
+      "card_print_id": "d4246339-2d41-511c-9e52-a5df2c8a07f4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "715958",
+      "card_print_id": "816f8cf1-c2cb-54ef-9a77-5db0c51d9cf0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716002",
+      "card_print_id": "5f3d28e5-e749-56e6-8887-f618966dc6a9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716003",
+      "card_print_id": "c2c0be3f-44bf-559a-944a-073127347e8f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716004",
+      "card_print_id": "dfffcc7c-534b-5474-816c-f7da8f8ec052",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716006",
+      "card_print_id": "85b69b90-a507-5264-8920-ced8d15b7665",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716039",
+      "card_print_id": "fca4030f-25c7-5d36-a8e3-ce3c19415aad",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716212",
+      "card_print_id": "74662c0c-debb-5755-87df-8a590b32508f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716213",
+      "card_print_id": "7075051e-6c18-5c90-8a52-abd2cbdef814",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716215",
+      "card_print_id": "522c48ee-cabe-51bc-a2be-9ed43a8ca754",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716620",
+      "card_print_id": "eb807a97-a51a-5f11-acaf-5dd04f4d3a22",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716621",
+      "card_print_id": "667d7707-2454-54a1-8b84-1c72d4f6a459",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716622",
+      "card_print_id": "ab079ce3-f1c7-5bcc-b971-5f8d902a03ff",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716623",
+      "card_print_id": "e8a6d180-1d02-5c3f-bba0-43323b508fa5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716624",
+      "card_print_id": "140ff49d-4796-5738-bea1-b7de6670be8d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716625",
+      "card_print_id": "53bd6a69-d650-5847-8aee-161cc381689d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716626",
+      "card_print_id": "4c1e690b-b0c2-5774-85ba-da325d527042",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716627",
+      "card_print_id": "b0c2ed97-0581-5bdd-af94-c28478e50330",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716629",
+      "card_print_id": "6ea7d4b2-49bc-5884-b6dc-769b8071fe0b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716630",
+      "card_print_id": "04361714-d222-58f4-b9a8-a1d5665f5c77",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716633",
+      "card_print_id": "58def36a-e602-5e71-86bd-cab2c693a000",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716635",
+      "card_print_id": "f70b5fe5-9efb-557a-a2a3-0beaf93956b9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716637",
+      "card_print_id": "4aeceacf-a8aa-5248-b193-068f07f0d733",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716638",
+      "card_print_id": "afc57fe9-6ad4-575f-977c-fdcc13678e92",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716641",
+      "card_print_id": "60e3a94a-0098-5b68-b9e6-2c7220030e2c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716644",
+      "card_print_id": "652660da-0be2-575d-a205-13f11893d486",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716646",
+      "card_print_id": "4b98e291-e20c-5c03-a016-1d0459d7b5fd",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716647",
+      "card_print_id": "4b8e58f0-a398-595c-b1bf-9e28b02f0479",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716648",
+      "card_print_id": "0f2f377d-db48-56e4-a12a-59378bd0808e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716649",
+      "card_print_id": "73daa016-5eed-52f1-a4bb-7709aab9b861",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716650",
+      "card_print_id": "15e01362-b488-5251-9a0a-84601955407f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716651",
+      "card_print_id": "994ff7b5-8265-5dd7-9cc1-8c027c62e438",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716652",
+      "card_print_id": "c0661918-aa26-50e6-a967-cc80f41e3627",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716654",
+      "card_print_id": "f9a7689d-5383-595e-94c7-b42ba38e475a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716655",
+      "card_print_id": "48bbb255-d8ef-59ca-8c3c-0dfb4f93391a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716656",
+      "card_print_id": "d327c35f-ab7e-5e60-bc74-8e1be52a3436",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716657",
+      "card_print_id": "98c82d5d-0103-51ee-9d5d-e2ed53ee81d9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716658",
+      "card_print_id": "3057682b-3c13-534f-a030-def9ae6300f3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716659",
+      "card_print_id": "16159dcc-a76e-59ca-9edd-74a23dd0190d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716660",
+      "card_print_id": "e42ca578-629f-5256-a11a-76dee7fafd87",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716661",
+      "card_print_id": "a94f7a8b-3674-54a2-b1fa-1c6479b7b166",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716662",
+      "card_print_id": "182fca6f-1a29-52a4-9685-f4bb899b42bf",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716671",
+      "card_print_id": "74e694dd-fb5b-56a7-9b8f-15de40f64bc4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716672",
+      "card_print_id": "cec64260-dae6-5206-bb2f-0ee15b5c77bc",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716673",
+      "card_print_id": "4fb7cdc8-5c43-54c2-bb8c-14fd5d6c4d06",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716674",
+      "card_print_id": "ddbe7ffb-726a-5b33-ab5a-fe27e449531f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716675",
+      "card_print_id": "9358fa94-097d-5d52-9ddf-08769cb8209b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716676",
+      "card_print_id": "2bbeb241-6bea-58a9-9125-c730eb7377f9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716677",
+      "card_print_id": "2e67ab2e-afab-5797-ad0f-db0a0d7beaa3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716678",
+      "card_print_id": "3cb238a4-2eb1-5a0a-ad76-906465906768",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716679",
+      "card_print_id": "aff1a263-3943-5796-b833-8c3566281773",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716680",
+      "card_print_id": "b5364968-9f90-576e-a175-05d8b0d00dde",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716681",
+      "card_print_id": "6cd9d433-eabd-5d8b-8848-7cb61af32153",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716682",
+      "card_print_id": "f52dd74e-57d5-558a-86f7-e2d05c24f822",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716683",
+      "card_print_id": "723de0a9-42e8-5713-a672-93527a528f2b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716684",
+      "card_print_id": "7837c520-e5f8-54af-bffa-418a8ecdbe35",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716685",
+      "card_print_id": "653786cd-4269-5718-a2bd-a19e6e361e58",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716686",
+      "card_print_id": "76f45cbd-1820-5ab1-8397-b27bd50293c7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716687",
+      "card_print_id": "92fa96c1-26c9-5529-98b5-d3a3b76f4776",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716688",
+      "card_print_id": "7d32146c-430b-59f0-8296-3f4e1df6158a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716689",
+      "card_print_id": "5de91a77-6068-5454-86c0-4bc3474d69c0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716690",
+      "card_print_id": "67ab4936-4b47-5f31-9f87-065fa60c95f6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716691",
+      "card_print_id": "cc41b0d5-d479-5378-9c8d-e240f5da54f9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716692",
+      "card_print_id": "e57537e4-c643-57e8-9530-c44cb75ca8c5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716694",
+      "card_print_id": "ff8d4799-476c-5b93-b782-db33d030a387",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716695",
+      "card_print_id": "6e440222-41f6-56b3-ab13-ce86f3c7ec3c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716696",
+      "card_print_id": "cec9ddac-0e81-55d7-9551-edc687c799d4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716697",
+      "card_print_id": "a2d3294d-886c-5302-9d95-bab6c3d96f57",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716698",
+      "card_print_id": "4d4338ff-db67-5bac-940b-da8fa1c4e88f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716699",
+      "card_print_id": "6bb232e5-c43b-5318-a14a-b3231ee46523",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716700",
+      "card_print_id": "c8c443f7-f893-5a8f-810f-327e3e8248bc",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716701",
+      "card_print_id": "7233c653-8f83-56f5-9a42-dc2f6622fb96",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716702",
+      "card_print_id": "3e7a4b34-fc56-5527-b7b3-d7299ef6fd64",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716703",
+      "card_print_id": "ec3bc9a3-3e45-5950-ab86-626fcd54f1c0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716704",
+      "card_print_id": "130a6675-4728-5a7c-bc08-3760b12b04ad",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716705",
+      "card_print_id": "817e339f-0912-57ae-971f-0ffc1793fcd1",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716706",
+      "card_print_id": "73ee0976-5dd8-5807-8d85-07c593bb6feb",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716707",
+      "card_print_id": "513bf4b1-4fef-5b74-90eb-350c5ecf981c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716708",
+      "card_print_id": "3150ed6b-0e64-5e84-a0ba-6db49da5e9d4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716709",
+      "card_print_id": "b80733f2-bb74-5a19-b4cc-ccc6ba5fefde",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716710",
+      "card_print_id": "1f21d4f1-3a6a-51c0-8b83-b5ccd86b6327",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716711",
+      "card_print_id": "7bfb983a-b0f5-5b7f-bdf1-2cc748ccdf95",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716712",
+      "card_print_id": "13f3fefc-a56e-58c3-8414-25f2caef9c52",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716713",
+      "card_print_id": "a6075d57-6814-5b92-9daa-3f5f2e5e7366",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716714",
+      "card_print_id": "e364d40c-613f-52f2-9fbe-bf77f825fc32",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716715",
+      "card_print_id": "763054bd-4555-597b-bbd6-8e8040de22d5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716716",
+      "card_print_id": "7a5024ee-b420-5196-8927-b5dcd61cbd73",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "716717",
+      "card_print_id": "2d9d4c65-711b-5155-96f9-b8f865c3cecf",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "716718",
+      "card_print_id": "9cd7a9cb-3f08-524d-be12-8f8ad7387d70",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716946",
+      "card_print_id": "97f5b001-2e5d-5027-a072-9fafd76a8e32",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716949",
+      "card_print_id": "ed5a2b53-962a-5ef9-a209-7ebedd22b15b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716955",
+      "card_print_id": "ef419d64-3a2e-547b-97f9-d3b6f29eb558",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716956",
+      "card_print_id": "888e3e75-4b57-5d8f-9dc4-72be94804885",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716958",
+      "card_print_id": "a2a01df7-4601-57f0-bfbe-24d0b1f393df",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716959",
+      "card_print_id": "d32027aa-fde2-5291-ae94-411c922a075e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716961",
+      "card_print_id": "addd4008-d218-59c0-8637-5910cad7fd2c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716962",
+      "card_print_id": "1dc12f02-e0f9-50df-ba4e-129e41be91ee",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716963",
+      "card_print_id": "437c0be5-6cbb-5ee9-90a4-120ba3e505f4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716964",
+      "card_print_id": "d3b3d755-5abf-5f1a-9309-8778d7d2dc1d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716966",
+      "card_print_id": "99e85bdb-a164-5d94-ac9a-425fa76aecbf",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716970",
+      "card_print_id": "2b0db5ee-0b6b-5f09-8684-6fa8e17bfdd8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716972",
+      "card_print_id": "e610325b-e7f0-50dc-8b36-92442a8849b0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716973",
+      "card_print_id": "764e2925-088d-53ea-90af-c58d8c30378b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "716974",
+      "card_print_id": "4b2a7d9d-de26-54e4-93cb-48e20276e5ec",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717007",
+      "card_print_id": "ac6e2435-d897-5b29-8f39-8554a499ea13",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717009",
+      "card_print_id": "2a482bcc-643f-537f-b43e-1c0aa6764938",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717010",
+      "card_print_id": "d119c0a5-5385-5fe7-999a-784bdae1f7d8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717011",
+      "card_print_id": "63159d1a-41b8-5803-97f6-4ad216653792",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717012",
+      "card_print_id": "735ac69d-fcf4-520d-b4b5-bb4fc1de06a8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717013",
+      "card_print_id": "0026bd46-5be0-573c-b4a7-f3c1f8c3bac5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717014",
+      "card_print_id": "b687f2b0-27ed-53f2-87b4-4911b3399f40",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717015",
+      "card_print_id": "d6b64dd7-71ea-5199-a2b7-19057856d2ba",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717016",
+      "card_print_id": "d7b519f7-da9f-50a8-80fd-0b3df9e0d21a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717017",
+      "card_print_id": "b7507120-e89e-5db2-afd5-9a3703eb70d2",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717018",
+      "card_print_id": "83d149be-880e-56b7-86b3-54a1416b8c9c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717021",
+      "card_print_id": "5d24110f-b922-5f1a-9eb8-da15075090ae",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717022",
+      "card_print_id": "14bb4e96-a318-5086-a0f4-8b3792498497",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717023",
+      "card_print_id": "0655a3d1-9202-5194-8282-acbe447a1d34",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717024",
+      "card_print_id": "939a2a6d-4d40-5761-aff9-a6dd8187e80c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717025",
+      "card_print_id": "466bb9a7-e6f2-5e01-806c-5acf63b93cf0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717027",
+      "card_print_id": "eb2f483b-47f8-5b87-a374-0110820b48cb",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717028",
+      "card_print_id": "e90d47df-17ef-5e24-93a4-7c611bc0f954",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717029",
+      "card_print_id": "3c6c471d-e170-5e47-93aa-70e3dc569a82",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717031",
+      "card_print_id": "99459127-ecfc-5693-b708-2d7e99977d2b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717470",
+      "card_print_id": "bfdc6c0a-c1e2-5297-8e40-85c480f0c174",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717471",
+      "card_print_id": "951940a9-2cf0-576e-ab7b-c5e80224f761",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717472",
+      "card_print_id": "5c4fe062-272e-520e-9f2c-e7d05655af52",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717473",
+      "card_print_id": "f5bad548-6c0e-5311-b38b-0db7e7a374d6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717474",
+      "card_print_id": "5c3ba20d-3d62-5e01-ae33-329bb982beec",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717475",
+      "card_print_id": "e97097af-327d-5ab0-88be-13da7523306e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717476",
+      "card_print_id": "f5d4ff8e-729c-503b-9d20-cd699dd6b602",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717477",
+      "card_print_id": "243a3839-f427-50d1-b817-826c7f7dd4b4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717478",
+      "card_print_id": "bb127cd0-5731-5b87-b0e7-58829ff183ef",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717479",
+      "card_print_id": "fc680c73-7f03-5fe2-bc37-92fbf74ba8d0",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717480",
+      "card_print_id": "11f39ad3-e8b6-5081-bdc7-c5bf16018338",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717481",
+      "card_print_id": "51529aa1-2e24-5486-bdd9-9f3dea2e002e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717482",
+      "card_print_id": "2e0eb3da-9e2e-5b4c-9305-1c4fb282c409",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717483",
+      "card_print_id": "c38c93a4-5922-5652-92e9-bdc402687a69",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717484",
+      "card_print_id": "ffee91e6-460e-5d79-8fdd-13fd761d40db",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717485",
+      "card_print_id": "c6466d82-2cdf-5c7c-a5b6-46117849b12e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717487",
+      "card_print_id": "67f38c12-6341-53e8-ab08-e8594e50ec2f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717488",
+      "card_print_id": "88afef62-02a8-53b3-bcca-f47a15dde7be",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717489",
+      "card_print_id": "84bbe7bf-55e7-5cf4-8f79-48d9193ea4d9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717490",
+      "card_print_id": "c6d15e94-41c9-517a-aee8-e92b04099744",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717491",
+      "card_print_id": "f2adf562-99e8-5018-b987-860ffe04428a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717492",
+      "card_print_id": "39769abc-6903-5d2d-88c9-dd8009b68a0a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717493",
+      "card_print_id": "b470df14-1c84-544d-a52e-2681e5b12fc7",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717494",
+      "card_print_id": "74be207f-b24e-5f11-96a2-77f9e3bfeb63",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717495",
+      "card_print_id": "b8e5c84f-75a4-56f0-94c7-d3b84ad600b0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717497",
+      "card_print_id": "734c2898-e97e-506a-a37c-2d7c3577d871",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717498",
+      "card_print_id": "089475c0-2741-5ace-a67b-6d63e3ebe530",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717499",
+      "card_print_id": "f5999a64-4391-5ac2-b269-ddfe80ab49d8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717500",
+      "card_print_id": "7ff9c1ad-8e4b-5109-8d68-8e68b3993ef7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717501",
+      "card_print_id": "2b4d4501-1ba8-57b0-a3bc-fa93ed13cad7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717502",
+      "card_print_id": "0903d479-28fa-562b-9efc-af95a2dd12d2",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717503",
+      "card_print_id": "1a0e82df-3707-559f-bbb8-02639b3ea28b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717504",
+      "card_print_id": "0c955266-d3b0-53bb-9e5d-1de03bb8826d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717505",
+      "card_print_id": "481c5f4a-c723-500d-ae07-2c7079a5cfa7",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717506",
+      "card_print_id": "1baf65f9-bc13-5085-b5a0-1a68ffae222c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717507",
+      "card_print_id": "bbd2e545-7b91-53dc-b6bb-125a721e87dd",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717508",
+      "card_print_id": "ebc23a6d-cacd-5b07-8a3c-a15454abf165",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717509",
+      "card_print_id": "05e25723-e9b4-5f3a-95cd-2dcbdafbd4c9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717510",
+      "card_print_id": "814fee93-0103-5e2c-a30e-c966e830d1aa",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717511",
+      "card_print_id": "e4657cd9-469d-550d-a731-3e574f9f673c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717512",
+      "card_print_id": "f98641ce-b851-53f3-bf98-897f17cba6f4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717513",
+      "card_print_id": "55ea944c-4391-5a7d-808e-e205c82ee069",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717514",
+      "card_print_id": "bd53b642-1837-59cf-a451-598647190dcc",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717515",
+      "card_print_id": "76408e4c-547d-549a-9a1d-eb2e6b8982f8",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717516",
+      "card_print_id": "ca4efb5b-7ce2-536d-8a63-f007fe7ca29c",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717517",
+      "card_print_id": "20cbd6ea-d462-5a87-a288-b773ab17203c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717518",
+      "card_print_id": "95094c46-1fe0-5714-9e65-2f6ac9bc2639",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717520",
+      "card_print_id": "efeb1b21-a98b-5891-aef2-9b054d65ee7c",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717521",
+      "card_print_id": "a7992659-c411-57ac-a5f2-a8cc3f2a0a44",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717522",
+      "card_print_id": "34b36ea4-2a58-5e66-be28-4a2564d37668",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717523",
+      "card_print_id": "7e74c33c-25f3-513d-8c09-29318f6895c4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717524",
+      "card_print_id": "033d884d-c6f8-509c-9579-198df7c26898",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717525",
+      "card_print_id": "d4d34289-f7dc-5b48-ad21-81b5f26703c1",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717526",
+      "card_print_id": "b354cb57-6ddd-52ce-86b8-29161998cf99",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717527",
+      "card_print_id": "0031b00f-d609-5562-b6fd-a1667c56f1cf",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717528",
+      "card_print_id": "ee664bd4-71d5-5f68-88db-d7749e5229c4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717529",
+      "card_print_id": "c0233528-dd0a-53ef-8f86-6907a3d8c170",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717556",
+      "card_print_id": "e28c09ab-5fd0-5113-ab3c-f69f2aaebcf3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717557",
+      "card_print_id": "f4404ef3-7389-5d9e-8eb4-168fb74c9a33",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717558",
+      "card_print_id": "5e1bc5cf-3432-5d72-97fe-830eaeed949b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717559",
+      "card_print_id": "ce50eae4-90c3-539e-9689-2b11a67e6fec",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717560",
+      "card_print_id": "ca119b93-2a1b-5ba1-a132-9265c8c0717b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717561",
+      "card_print_id": "5c2fb180-8593-53de-8b70-ed0b39fa07e6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717562",
+      "card_print_id": "64a5914f-c3be-5e59-ac2e-7f9bc8099bf0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717563",
+      "card_print_id": "55ff20e3-355a-5bfc-aafb-6ffe5840b16e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717564",
+      "card_print_id": "27607c46-461d-5508-a410-2e11927ff9cb",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717565",
+      "card_print_id": "663dd628-396f-55ef-83bd-d0052f62ace5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717566",
+      "card_print_id": "6ce30331-1844-51b2-9207-acd04972f30a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717567",
+      "card_print_id": "9101d554-2180-5963-9d64-d5a3326995e3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717568",
+      "card_print_id": "2aa03484-b947-5ccf-a75a-aed5a563fa7d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717569",
+      "card_print_id": "0dafcbb1-a6a6-54aa-a4e8-cc124acc68be",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717570",
+      "card_print_id": "d0467779-e67c-510c-84e2-bcfc67b56555",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717571",
+      "card_print_id": "859a4e0c-4bf6-563c-9e73-b0826894e8b7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717572",
+      "card_print_id": "b422a6e5-c428-5251-9433-63e9c86ed3f7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717573",
+      "card_print_id": "2c54f301-a324-54cf-b211-7e928b913a5f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717574",
+      "card_print_id": "3dc42546-d4da-56b6-ad72-f9f48d7f53d6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717575",
+      "card_print_id": "ffa905ed-86fb-5d7a-a4d2-9e3c080a3f4a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717576",
+      "card_print_id": "3fcacfd2-a3e7-578f-a65f-10f20d22ad44",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717577",
+      "card_print_id": "99465c6d-8fec-54ee-88a9-2a35d832f4b9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717578",
+      "card_print_id": "86e50311-29f4-5264-9259-096d4c627a7d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717579",
+      "card_print_id": "a7c0aa3e-b273-5d73-a4bc-d4cf28d4e850",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717580",
+      "card_print_id": "cdc42a6c-94a9-5a6b-ba09-81e791d1a76c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717581",
+      "card_print_id": "4f32e1c0-c764-55a4-9e68-e951084aa663",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717582",
+      "card_print_id": "53231f0b-9a6c-5ba9-955d-8f9cfa6763fe",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717583",
+      "card_print_id": "e84e951c-ec44-5c01-87f8-5a114438d8a9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717584",
+      "card_print_id": "a5adf102-0fec-5508-8e29-d9ec3214922e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717585",
+      "card_print_id": "84c3cb88-d68c-55a0-b772-32d1e7465fbd",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717586",
+      "card_print_id": "28dcf37f-0727-55bd-9214-d08b14e7ff38",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717587",
+      "card_print_id": "e24cc4ab-8a51-5514-a4fb-b24bfac992d6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717588",
+      "card_print_id": "f500160f-89ad-568a-993d-2ce0ab5a9d73",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717589",
+      "card_print_id": "31417f50-057c-5d0f-a501-3fd221c2485a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717590",
+      "card_print_id": "bb6fe0f9-6da7-5c7f-b245-a05cd807840c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717591",
+      "card_print_id": "d9dddc1f-1262-50de-a848-8f65c9ffb67d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717592",
+      "card_print_id": "5f554bab-def5-55ee-ac19-477cc73a927a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717593",
+      "card_print_id": "bfa2c209-8ac6-5f96-95bc-d98d3e7d6f9c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717594",
+      "card_print_id": "dfbdd7a0-1f35-5121-b257-09bf2b0e34c0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717595",
+      "card_print_id": "77743d55-65be-59e2-b522-f74396ef35d9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717596",
+      "card_print_id": "56430942-dfec-5b5e-aa01-89c5aec47582",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717597",
+      "card_print_id": "90481588-d1f5-5490-8b63-0d3d98010e80",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717673",
+      "card_print_id": "dca8a69e-e1dc-51fb-99db-774159416a8a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717674",
+      "card_print_id": "b23c5c27-f185-5457-b9e9-2ae64751ed3d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717675",
+      "card_print_id": "06f298a5-2e33-5b8f-9449-b45d7df75a7d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717676",
+      "card_print_id": "860c7e5e-6374-578e-a0a0-e44ad0826333",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717677",
+      "card_print_id": "70d2258c-2c64-5014-9ca9-44c775a31d7c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717678",
+      "card_print_id": "5b085a5d-94ba-57f8-bb5e-9b2e5b36481b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717679",
+      "card_print_id": "910e1894-4dd1-5683-9d7f-4801edaedcc5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717680",
+      "card_print_id": "86ba4dab-33c1-5eb5-b1b0-9195baa89eb8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717681",
+      "card_print_id": "1302646b-55e4-5158-b62c-09051e8a57f0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717682",
+      "card_print_id": "ff10ea8e-a290-59ce-aa8d-26a96c7e3708",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717683",
+      "card_print_id": "e4d5d8f8-8996-5d9a-bf22-9cdb42513c71",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717684",
+      "card_print_id": "50622dde-7f5e-5183-81ea-babca6d01818",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717685",
+      "card_print_id": "e742428d-098f-55c4-8d12-a3ccab1884c3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717688",
+      "card_print_id": "95c2dfab-3daf-5f4c-a16f-559e049e9dff",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717701",
+      "card_print_id": "730b6e3f-065d-53c3-9704-a2e99fb6e989",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717702",
+      "card_print_id": "910d32b7-dc19-53a3-b9fc-776c1daebd58",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717703",
+      "card_print_id": "7b08d312-86b4-58cf-8e7b-9941164c179d",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717704",
+      "card_print_id": "d681fd76-d768-5a04-83d2-6202125f4583",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717705",
+      "card_print_id": "57046764-b873-5b5e-8d4f-87a383f8a36b",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717707",
+      "card_print_id": "9ea674de-bc70-5015-b3d5-603894c697b8",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717710",
+      "card_print_id": "e1690377-e0d0-5a0a-bd04-e5bbc6b225b6",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717711",
+      "card_print_id": "fae30764-662d-5e32-9e67-036a8b14b5f1",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717712",
+      "card_print_id": "4507be8d-e926-59e2-9b69-0a54cc305927",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717713",
+      "card_print_id": "710de8ae-2027-5b9f-956e-71c2aab033dd",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717714",
+      "card_print_id": "b2fb2f53-073a-5864-a462-8d6095967015",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717715",
+      "card_print_id": "55e87961-61b6-51a7-8a74-4407a4c1002e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717716",
+      "card_print_id": "6dd22556-0e90-5c0c-bebd-42fc43432f1d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717717",
+      "card_print_id": "b765542b-0225-52ba-b92b-b325e76ee158",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717718",
+      "card_print_id": "b4461203-7bb2-5123-8323-6bec6aa51399",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717719",
+      "card_print_id": "209003c0-27c4-5102-8ff0-6db0e28b5db0",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717720",
+      "card_print_id": "417ccf34-6197-59a2-9c7f-47811c02cbcc",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717721",
+      "card_print_id": "eb2ba2ab-4668-5b4f-b80c-f30162903370",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717722",
+      "card_print_id": "50b094b1-9e65-5573-b8df-c93ac793894b",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717725",
+      "card_print_id": "054ec865-8986-525b-8f37-fab18ccdb478",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717727",
+      "card_print_id": "2cfc4728-8900-5a5f-b29c-308641b7ce17",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717730",
+      "card_print_id": "9defe3d7-d58c-5938-8269-7b145fe69b56",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717731",
+      "card_print_id": "9718d527-5f1b-5d9d-9144-a17c85d93881",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717732",
+      "card_print_id": "ef7623f7-6f93-5887-9542-1b9f056ce07e",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717733",
+      "card_print_id": "3a2ac477-7fb4-5a44-8eb6-1fe9d50c2bee",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717734",
+      "card_print_id": "79c4fa42-4963-5aeb-bab5-7ea25b150f3f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717735",
+      "card_print_id": "8840a0af-bce9-56a6-958f-575afccbabd8",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717736",
+      "card_print_id": "c48ba116-6801-59d1-96fb-2ae43cfe8631",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717737",
+      "card_print_id": "5c9e29d7-c5db-52a9-b3a5-9b9a133ce851",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717738",
+      "card_print_id": "6a4ec1e1-9948-5213-a2e5-9705a34b6db5",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717739",
+      "card_print_id": "d41a9ebf-e047-5964-b71a-514819bfb284",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717740",
+      "card_print_id": "4abcfa0f-a191-5928-9f87-8e875ee3c709",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717741",
+      "card_print_id": "3a036965-a91c-55d1-b5ec-9b6e9b842fba",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717742",
+      "card_print_id": "a48c0ef1-f387-5b44-a119-5cf8c38f4043",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717743",
+      "card_print_id": "7d5402a9-de88-5a49-80c9-e72d23fb8536",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717744",
+      "card_print_id": "26aaecb2-7e70-509e-bdf4-02f627e25a14",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717745",
+      "card_print_id": "20021305-b647-5bd5-8827-38414708de77",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717746",
+      "card_print_id": "dc9a3e6e-623c-52c5-864f-8a99baadf7c6",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717747",
+      "card_print_id": "da08f7e5-5060-53e3-b5cf-23a61c88a7fb",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717748",
+      "card_print_id": "6cde1e3c-8f4d-532c-b4e9-5281ae44e286",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717749",
+      "card_print_id": "49fe3f9f-b0ac-5920-a913-d88b6c8290e2",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717750",
+      "card_print_id": "54a04e25-eede-5b96-bf18-2094c43cb12d",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717751",
+      "card_print_id": "d195ee94-b438-5eb7-9014-05265245925c",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717752",
+      "card_print_id": "29e60256-7627-5512-a2ca-5de89a1c9a4f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717753",
+      "card_print_id": "c797a9f6-945c-57e1-b67e-89908a825d0f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717754",
+      "card_print_id": "a45c7b14-7ffd-5674-92a6-f08681594bb7",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717755",
+      "card_print_id": "6d9e183c-54e5-5305-a895-e1ca0f11cb7a",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717756",
+      "card_print_id": "a6429325-1450-509b-9a73-d1ee14b4dfc3",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717757",
+      "card_print_id": "463d3eea-261d-5db5-9a1d-f7c4cd50833e",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717759",
+      "card_print_id": "89498e9b-8c1e-5903-9c6b-6d452a334e47",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717762",
+      "card_print_id": "5c4d6d98-0f74-59ba-886a-1578f72351dd",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717763",
+      "card_print_id": "fe20708a-f006-520c-a804-14a1dd6284d7",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717766",
+      "card_print_id": "ebc8f613-984a-5e8a-9ca6-ae898f096fdc",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717767",
+      "card_print_id": "3fd7aad5-5146-5523-929a-1722990ba24a",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717768",
+      "card_print_id": "fbe6ebc4-8957-55e9-b5f2-5318df17e8a5",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717769",
+      "card_print_id": "dd6a7670-68ac-51d5-a3d0-23ec6b1f3766",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717770",
+      "card_print_id": "6f63df30-ad4f-5173-9419-95621fd6fa13",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717771",
+      "card_print_id": "524151e3-a011-5452-aed9-97c8844f68fc",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717773",
+      "card_print_id": "561ea76c-3928-54e5-b73a-d75a082bdd29",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717774",
+      "card_print_id": "b76d0299-2bba-5bd4-ae91-e7b2ded1f159",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717775",
+      "card_print_id": "2be9ad98-8654-56e3-ae4e-9d93e7ef5827",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717776",
+      "card_print_id": "ddaf6bfa-3190-5588-9e8f-950e8edbe7de",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717777",
+      "card_print_id": "7fb45e8a-2e7a-5d5f-89b9-a44d15521f48",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717778",
+      "card_print_id": "e7f22081-d4d8-5618-b982-1f2a44b8c0fe",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717779",
+      "card_print_id": "808072e9-eb96-590c-bd0e-6d3316ab620d",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717780",
+      "card_print_id": "53166b78-6578-55b2-a184-287a220852fd",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717781",
+      "card_print_id": "a036410f-637d-56ae-97dd-9b30d559ab52",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717782",
+      "card_print_id": "3744e36c-9fa0-5ab3-a931-9fb9e6031f76",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717783",
+      "card_print_id": "9a1b2543-559f-52b0-9e7f-1e9cb03426ed",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717784",
+      "card_print_id": "cc09a77f-70a4-5f6b-9205-0ce245352dfd",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717785",
+      "card_print_id": "e4f107a2-a393-5918-965c-1ae7d2a5b903",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717786",
+      "card_print_id": "78cd964f-521c-5c1c-886d-d8696efc2894",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717787",
+      "card_print_id": "a9e2d2b2-ea47-5217-a279-74268090ebd3",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717788",
+      "card_print_id": "5f27f3cc-ba36-58d6-bc4b-31dc6ef72a4a",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717789",
+      "card_print_id": "a896004d-0eaa-59d0-a0aa-f5596b65affa",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717793",
+      "card_print_id": "2823351c-89b3-5c53-99f6-c892cf54b426",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717794",
+      "card_print_id": "fd6322c9-4b2a-579a-be78-028e79c8e8c3",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717798",
+      "card_print_id": "49e7fd90-1c2c-5955-8985-f4bb0f61fa8c",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717800",
+      "card_print_id": "451b2c67-401c-529f-8a07-2bbffff0ed60",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717801",
+      "card_print_id": "39909e3b-6a1c-5f88-8d10-af4523384984",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717802",
+      "card_print_id": "b7f612be-2af6-5310-bed1-68869d71b390",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717803",
+      "card_print_id": "5f57ed2c-69d8-58d9-a3d4-b41ddcc60c3a",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717804",
+      "card_print_id": "5d93d0c9-253e-54e2-af24-a9cdeebf03b4",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717805",
+      "card_print_id": "8e58aef3-a384-585f-a4e1-0e6345d6d727",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717806",
+      "card_print_id": "2f18882c-5b77-57b8-8c3f-6ea5fbec8132",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717807",
+      "card_print_id": "4039aa99-4aeb-54be-b9fb-96955b040527",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717808",
+      "card_print_id": "847b1fa5-ca50-5773-8e26-6727e2466efa",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717809",
+      "card_print_id": "cbe9ed90-c7e3-505d-8604-76326724dd57",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717812",
+      "card_print_id": "0ae431a5-49c4-5980-96b9-10703e177fc1",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717814",
+      "card_print_id": "9f75e664-f8e2-5dbc-a086-3691b1214922",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717818",
+      "card_print_id": "fae4e8f0-e1b9-5e33-a03c-d0bdd55161b9",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717821",
+      "card_print_id": "ebad7602-2dda-505d-9d64-15b78fbd187f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717872",
+      "card_print_id": "27518eb1-dbc3-5c02-b1b9-7703003ef2e7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717873",
+      "card_print_id": "e6946687-634a-5404-98d6-fc541edbe5d6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717874",
+      "card_print_id": "0ce9cdb6-2d6b-54d6-a690-e27164b9ced9",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717875",
+      "card_print_id": "5599cfa3-e745-5ac4-ae35-46b22e04c933",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717880",
+      "card_print_id": "b792fadc-ff97-50d0-9d63-62f1593260a5",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717881",
+      "card_print_id": "3a4c11fd-cd6e-548d-ab89-74768d364405",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717882",
+      "card_print_id": "d1202838-a9db-51dd-8518-5e8c4536f25d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717883",
+      "card_print_id": "55968850-6037-5750-a36d-5547c704db87",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717884",
+      "card_print_id": "983026ec-67af-599e-ba1a-e0e953994bf5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717885",
+      "card_print_id": "1e761920-6c9c-5f7d-989e-9c6f9641722e",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717886",
+      "card_print_id": "3473c714-c7ce-51d3-a32c-cd38370c9fe5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717887",
+      "card_print_id": "cca0e6f5-d460-5f85-b5ff-72464e46227b",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717888",
+      "card_print_id": "0f1bd49b-0264-5c14-a345-4991e36ed011",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717889",
+      "card_print_id": "e6543a41-b332-594a-af72-9b906215a1eb",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717890",
+      "card_print_id": "73c16331-73bd-543d-8d8b-4c887654fdc8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717891",
+      "card_print_id": "05ffdde4-1530-59a9-8080-bcf217f36261",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717892",
+      "card_print_id": "d9d2176f-8424-52d1-bada-c0de5dd71e88",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717893",
+      "card_print_id": "047c3d78-a375-5638-ba9a-58f21d4e2dff",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717894",
+      "card_print_id": "9eea42ae-9623-59a8-99ef-2e4a3dd74ee7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717895",
+      "card_print_id": "3cbd75b0-10a9-5c8a-bc3b-a3ccb5cacd5d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717896",
+      "card_print_id": "a0e24a87-8d0c-53e2-a6b6-6dd3f0a64169",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717897",
+      "card_print_id": "228dab1f-f282-5d4f-b337-d6daa43a5e10",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717898",
+      "card_print_id": "c9639cb4-765b-5a24-84f7-2af7193bc40d",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717899",
+      "card_print_id": "0c28839e-6399-571a-8890-6a3ae6dedb65",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717900",
+      "card_print_id": "4c81719f-b483-58c9-8e80-0d9e8bb98384",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717901",
+      "card_print_id": "3b1befd1-55ca-5eeb-8ae7-33c1a87ad950",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717902",
+      "card_print_id": "3f25c6e6-5e85-5620-b238-3772d7aae45a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717903",
+      "card_print_id": "5d71467b-845a-51d1-ad14-8ff0c14c1304",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717904",
+      "card_print_id": "d7698810-cdaa-5a21-ad5d-2059613bfa74",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717905",
+      "card_print_id": "01e6c9f8-aaa6-5b1e-9b14-2a3a853cbd84",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717906",
+      "card_print_id": "65665fa6-25ca-514f-bf56-de7000ddd5d7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717907",
+      "card_print_id": "15c6cb81-3809-5d67-91ac-b2e950dcd463",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717908",
+      "card_print_id": "21a2abf9-e3a3-57e8-9010-6e9d4ed05072",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717909",
+      "card_print_id": "b3e1147a-426f-5d8f-8438-8bc22a9b4bec",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717910",
+      "card_print_id": "a93f5903-23eb-59aa-a735-828e1d29f7f1",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717911",
+      "card_print_id": "dc007c68-2ff7-56b0-a3c6-052b908e5eb7",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717912",
+      "card_print_id": "521dd198-0a07-5782-b7c6-5d3190f355f5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717913",
+      "card_print_id": "96a4e4db-b3f6-5a88-a4bd-dcaa160011ce",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717914",
+      "card_print_id": "1172d9f3-24ac-59c8-b1db-ec44bd8f7d46",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717915",
+      "card_print_id": "dd1a56b9-18ec-5471-8291-be4c9c38ff88",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717916",
+      "card_print_id": "558f7371-78ad-51b0-8017-bccb963b7dc1",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717917",
+      "card_print_id": "2e0a15e2-1dc9-5339-a51e-325c87b281b5",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "717918",
+      "card_print_id": "6598fa8b-76b0-5620-b4d2-8e2eba8b0c65",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717919",
+      "card_print_id": "f7ef02d5-5733-5d34-9ef5-efb640e558ec",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717920",
+      "card_print_id": "02856d03-ffc0-56d4-be3e-60f44c0ba79f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717921",
+      "card_print_id": "58ac8f01-0c78-5097-8ddc-e51a796dd78f",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717922",
+      "card_print_id": "14adc27f-aa99-59dd-8ef9-5fbeee8bca24",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717923",
+      "card_print_id": "0a3a6b07-b2ba-59fa-b565-8797b266405b",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717924",
+      "card_print_id": "17193e72-e997-54bc-943b-b8eb06662fff",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717925",
+      "card_print_id": "2406cd22-1a2d-570a-980a-9e16574758ab",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717926",
+      "card_print_id": "8e814a4b-3aa1-51b1-af37-806957713599",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717927",
+      "card_print_id": "db0604e9-5102-5fda-9624-7a8d1d6c2aac",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717928",
+      "card_print_id": "f530c954-0f4b-5607-af9d-c059cbdbdba3",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717929",
+      "card_print_id": "15c24e47-98c4-5c3e-99be-35baf31368ce",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717930",
+      "card_print_id": "42315eb7-fab5-54a3-986f-2e27f0ab09ca",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717931",
+      "card_print_id": "ed2bbad4-e1ee-58fd-befb-85021645defa",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717932",
+      "card_print_id": "aaf01492-6e98-55c7-b102-abc1026187b0",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "717933",
+      "card_print_id": "101921ae-fbdb-5d7e-ae21-b53965647ffa",
+      "supporting_printing_mapping_count": 1
+    },
+    {
+      "source_product_id": "718468",
+      "card_print_id": "b50e6495-63d9-512f-8f55-9786f88c9784",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718471",
+      "card_print_id": "33210b98-4420-547e-bfab-e4be09b0316a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718472",
+      "card_print_id": "f98db99b-2ab4-5af7-8f46-7ef12bc8032f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718473",
+      "card_print_id": "1bd4393f-1bb3-59f9-b53f-2f86a5b72cc6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718474",
+      "card_print_id": "a4fc51b8-64b1-51b6-b5f2-bc1d237ea6cc",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718587",
+      "card_print_id": "a5581a84-d1ee-5c1e-92d1-857c9350f031",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718588",
+      "card_print_id": "38da8925-0270-5931-869b-e873ccf6b70a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718593",
+      "card_print_id": "034ede30-4443-5bf9-9317-7cc14fd34bc6",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718598",
+      "card_print_id": "47d75604-ac5f-5e89-bbb7-bf61a41a8fc4",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718603",
+      "card_print_id": "222d071d-072c-5b29-a35f-49c5b273b446",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718608",
+      "card_print_id": "e40ef1d1-c37c-5ce8-89b2-c5b143e85d89",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718613",
+      "card_print_id": "2ad4ea6b-a3b4-53c4-a720-efc3dd70c8e7",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718616",
+      "card_print_id": "53abf48f-ef3e-5ffc-9a22-8c4353fee17a",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718617",
+      "card_print_id": "9b1b7920-c46e-5234-9361-386ec210ec18",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718618",
+      "card_print_id": "3ea11255-fda6-5d2b-b4bd-149cda90fcaf",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718619",
+      "card_print_id": "4b3f6d1d-750c-5132-96da-7cf12e61a9fd",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718670",
+      "card_print_id": "8af66bd1-ed28-57fb-9e40-05245a22ac44",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "718671",
+      "card_print_id": "139b7648-bd94-51f9-989e-81d11a50930f",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719539",
+      "card_print_id": "aa18e3d3-bced-572f-91db-e0ce5aa2dc0c",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719540",
+      "card_print_id": "da408c30-f98f-5926-927f-cfdd620addb8",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719541",
+      "card_print_id": "0cddb5a1-6a3a-5af0-ac7f-b28d6552c526",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719542",
+      "card_print_id": "8b83c14b-b672-5b9d-a8c1-4542fb0624f3",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719543",
+      "card_print_id": "48c6a642-9c83-5f76-9abc-d24a69c51705",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719544",
+      "card_print_id": "544500a8-4ded-57ba-a1ca-84ec441efc51",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719545",
+      "card_print_id": "4e3c4ecb-54d9-5ef4-b4cc-94465daa5f5e",
+      "supporting_printing_mapping_count": 2
+    },
+    {
+      "source_product_id": "719546",
+      "card_print_id": "01fbaf4d-83d6-5fc4-9d2a-08dc08754bd3",
+      "supporting_printing_mapping_count": 2
+    }
+  ],
+  "unsafe_rows": [],
+  "review_only_rows": []
+}

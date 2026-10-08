@@ -1,5 +1,17 @@
 # Production control-plane operations
 
+## MTG parent pricing links — October 8, 2026
+
+The completed public fra/frc import needs 546 reviewed TCGPlayer parent links
+before 945 exact finishes can enter pricing. Use the bounded transaction module
+and `docs/contracts/MTG_PARENT_LINK_RELEASE_V1.md`; the historical global backfill
+CLI has insufficient scope and disables TLS verification. Preserve the completed
+catalog import, fifteen unlinked variants and ten future-card holds. Test in a
+new clone, require production rollback/preservation and durable readback, then
+use the independently pinned pricing runtime for actual publication. Link repair
+does not itself publish prices. The external worker recovery checkpoint records
+the actual release state; code presence alone proves no apply or deployment.
+
 The main branch contains the full Grookai operator playbook. This operational
 release branch preserves the separately pinned control-plane runtime.
 
