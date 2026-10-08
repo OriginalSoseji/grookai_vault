@@ -6,7 +6,7 @@ Future<void> main() async {
   final destination = Platform.environment['MARKET_DEVICE_OUTPUT'];
   if (destination == null ||
       !RegExp(
-        r'^C:/grookai_vault_operator_artifacts/product_offer_ui_20261008/market-[0-9]+/phase-[12]$',
+        r'^C:/grookai_vault_operator_artifacts/(?:product_offer_ui_20261008|product_deal_refresh_20261008)/market-[0-9]+/phase-[12]$',
       ).hasMatch(destination.replaceAll(r'\', '/'))) {
     throw StateError('An external market acceptance output is required.');
   }

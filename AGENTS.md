@@ -1,5 +1,24 @@
 # Grookai Agent Entry Point
 
+## Integrated deal release refresh — October 8
+
+Work in C:/gv_product_deal_refresh_20261008 from qualified mobile/main merge
+d0ebefeb26d1fdf46a93cfe39038638831d38b19. Read docs/ops/PRODUCT_DEAL_REFRESH_20261008.md.
+Preserve every earlier tree, APK and populated fixture. The exact full432 and
+upgrade432 package labs remain sealed and read-only. No product or SQL edits.
+Run the dedicated fresh read-only baseline before creating new synthetic runtime
+fixtures in the existing wider full433 lab. Preserve main50404ddce import/catalog
+changes. Inherited root-pinned wrappers must not run here. External
+product_deal_refresh_20261008/CHECKPOINT.json owns actual results.
+No production apply, deployment, activation, provider fetch or upload.
+No subagents. The full overhaul and physical iOS remain open.
+Fresh web and Samsung431 pass with15 inspected runtime images and31 retained
+row sets each. Preserve failed430 and its restored fixture. The sole integration
+driver edit admits the fixed refresh output namespace. The19-artifact extension
+attests the unchanged original29-artifact package. Use ProductDealRefreshV1 and
+run_product_deal_refresh_checks_v1; freeze source/labs during the normal hook.
+External CHECKPOINT.json owns staged audit, hook, PrePush and linked dry-run status.
+
 ## Mobile Trade layout and current-main integration — October 8
 
 Work in C:/gv_product_mobile_trade_20261008 from locally qualified release

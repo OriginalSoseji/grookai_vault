@@ -67,6 +67,8 @@ param(
   [switch]$ProductEconomicsBaselineV1,
   [switch]$ProductPurchaseBaselineV1,
   [switch]$ProductOfferTradeBaselineV1,
+  [switch]$ProductDealRefreshBaselineV1,
+  [switch]$ProductDealRefreshV1,
   [switch]$ProductDealBaselineV1,
   [switch]$ProductDealReleaseV1,
   [switch]$ProductEconomicsReleaseV1,
@@ -98,6 +100,26 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductDealRefreshV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealRefreshV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductDealRefreshV1 requires exactly cost, purchase and negotiated Trade; receipt delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_deal_refresh_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Integrated deal release qualification failed.' }
+  exit 0
+}
+
+if ($ProductDealRefreshBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealRefreshBaselineV1') }).Count -gt 0) {
+    throw 'ProductDealRefreshBaselineV1 supports only the fixed read-only integrated release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_deal_refresh_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Integrated deal release baseline failed.' }
+  exit 0
+}
 
 if ($ProductDealReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
