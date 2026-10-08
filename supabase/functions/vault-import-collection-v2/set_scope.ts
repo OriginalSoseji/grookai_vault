@@ -1,6 +1,12 @@
 // Mirrored by native preview; shared fixtures cover direction and subset bounds.
-export function collectrSetTargets(source: string, game: string, number: string): string[] {
+export function collectrSetTargets(source: string, game: string, number: string, sourceName = "", sourceNumber = ""): string[] {
   const key = source.trim().replace(/\s+/g, " ").toLowerCase();
+  // Collectr's umbrella category is not a set alias. Only this exact reviewed
+  // product coordinate can route to Generations; the name matcher separately
+  // requires the stamped parent and the printing resolver verifies the finish.
+  if (game === "pokemon" && key === "miscellaneous cards & products" &&
+    sourceName.trim().replace(/\s+/g, " ").toLowerCase() === "pikachu (toys r us)" &&
+    number === "26" && /^#?0*26\s*\/\s*0*83$/.test(sourceNumber.trim())) return ["generations"];
   const scopes: Record<string, Record<string, string[]>> = {
     "pokemon": {
       "30th celebration: classic collection": ["30th celebration classic collection"],

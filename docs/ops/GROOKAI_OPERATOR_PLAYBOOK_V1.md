@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Collectr catalog scope review — October 7
+
+PR608's live confirmation is verified, with all 3,223 owner copies unchanged.
+The [scope review checkpoint](../checkpoints/collectr_scope_review_20261007.md)
+covers 216 held set/number rows. Two retailer rows/four copies qualify against
+existing public stamp/finish evidence; 214 require further catalog, language or
+variant evidence. This is a bounded discovery review, not proof of catalog absence.
+The exact source label and full printed fraction route one product to Generations;
+the umbrella source category is never a general alias. Private scope-review
+receipts own actual release status. Do not replay any old import or activate
+unverified language/printing records. No schema or catalog mutation is included.
+
 ## Collectr mixed receipt confirmation — October 7
 
 PR607's seven additions are saved and independently verified: 1,616 accounted

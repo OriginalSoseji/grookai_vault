@@ -85,14 +85,14 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
   const setScopes = new Map<Normalized, SetRow[]>();
   const normalizedSets = new Map<string, { set: SetRow; name: string }[]>();
   const numbersBySet = new Map<string, Set<string>>();
-  for (const { normalized } of valid) {
+  for (const { row, normalized } of valid) {
     const base = normalized!;
     let index = normalizedSets.get(base.game);
     if (!index) {
       index = sets.filter(set => !base.game || set.game === base.game).map(set => ({ set, name: setName(set.name ?? "", base.game) }));
       normalizedSets.set(base.game, index);
     }
-    const targets = new Set(collectrSetTargets(base.set, base.game, base.number));
+    const targets = new Set(collectrSetTargets(base.set, base.game, base.number, base.name, field(row.source, "card number", "number")));
     const scope = index.filter(entry => targets.has(entry.name)).map(entry => entry.set);
     setScopes.set(base, scope);
     for (const set of scope) {
