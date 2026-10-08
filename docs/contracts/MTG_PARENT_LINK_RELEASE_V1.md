@@ -25,7 +25,12 @@ rollback with independent absence/preservation proof before same-plan commit.
 Native transaction counters permit exactly 546 inserts into external_mappings;
 deferred triggers run before checking. Every existing canonical, staging, saved
 copy and release-control row, the active publication, ledger and database
-structure/security must remain exact. Other sequences cannot change. Normal
+structure/security must remain exact. The executor cannot consume unrelated
+sequences: compare each sequence's session-local `currval` before/after, using
+savepoints for the expected "not defined in this session" result. Unrelated
+sessions may advance global sequence values; that is not this executor's write.
+Tests must prove concurrent allocation succeeds while a sequence-only trigger
+side effect fails. Normal
 mapping sequence gaps from rollback are recorded and never reset.
 
 Persist precommit proof before COMMIT. A lost commit response means unknown
