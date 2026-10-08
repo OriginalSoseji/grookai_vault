@@ -7,6 +7,8 @@ import type { RecordedReceipt as SalesReceipt } from "@/lib/sales/salesReport.mj
 import {isPurchaseReceipt,validatePurchaseReceipt} from '@/lib/sales/salesPurchase.mjs';
 import SalesDashboard from "./SalesDashboard";
 import EventReports from './EventReports';
+import CostHistoryReports from './CostHistoryReports';
+import {CostCorrectionJournalStore} from '@/lib/sales/costCorrectionJournalStore';
 import {EventJournalStore} from '@/lib/sales/eventJournalStore';
 import {readSaleCostSnapshots} from '@/lib/sales/readSaleCostSnapshots';
 import type {CostReportState} from './SalesProfitPanel';
@@ -14,7 +16,8 @@ import s from "./SalesDesk.module.css";
 
 /** Receipt reads only: opening reports must not create or open an editable deal. */
 export default function SalesReports({ ownerId, profitEnabled=false,eventsEnabled=false }: { ownerId: string; profitEnabled?:boolean;eventsEnabled?:boolean }) {
-  const [view,setView]=useState<'overview'|'events'>('overview');
+  const [view,setView]=useState<'overview'|'events'|'costs'>('overview');
+  const [costsVisited,setCostsVisited]=useState(false),[costRecovery,setCostRecovery]=useState(false);
   const [eventsVisited,setEventsVisited]=useState(false);
   const [eventRecovery,setEventRecovery]=useState(false);
   const [receipts, setReceipts] = useState<SalesReceipt[] | null>(null);
@@ -25,6 +28,13 @@ export default function SalesReports({ ownerId, profitEnabled=false,eventsEnable
   const accountChanged = useRef(false);
   const controller = useRef<AbortController|null>(null);
   const [costState,setCostState]=useState<CostReportState>({snapshots:null,loading:profitEnabled,error:''});
+  useEffect(()=>{
+    if(profitEnabled)return;
+    let cancelled=false;
+    const store=new CostCorrectionJournalStore(ownerId,()=>{if(cancelled||accountChanged.current)throw Error('Account changed');});
+    void store.read().then(row=>{if(!cancelled&&!accountChanged.current)setCostRecovery(!!row?.pending);}).catch(()=>{if(!cancelled&&!accountChanged.current)setCostRecovery(true);});
+    return ()=>{cancelled=true;};
+  },[ownerId,profitEnabled]);
   useEffect(()=>{
     if(eventsEnabled)return;
     let cancelled=false;
@@ -93,12 +103,13 @@ export default function SalesReports({ ownerId, profitEnabled=false,eventsEnable
 
   return <section className={`${s.shell} ${s.reportShell}`} aria-label="Reports">
     <header className={s.header}><h1>Reports</h1><Link href="/account/store/receipts/cloud">Receipts & customers</Link></header>
-    {(eventsEnabled||eventRecovery)&&<div className={s.tabs} role="group" aria-label="Report views"><button aria-pressed={view==='overview'} onClick={()=>setView('overview')}>Overview</button><button aria-pressed={view==='events'} onClick={()=>{setEventsVisited(true);setView('events');}}>{eventsEnabled?'Events':'Saved event edit'}</button></div>}
+    {(eventsEnabled||eventRecovery||profitEnabled||costRecovery)&&<div className={s.tabs} role="group" aria-label="Report views"><button aria-pressed={view==='overview'} onClick={()=>setView('overview')}>Overview</button>{(eventsEnabled||eventRecovery)&&<button aria-pressed={view==='events'} onClick={()=>{setEventsVisited(true);setView('events');}}>{eventsEnabled?'Events':'Saved event edit'}</button>}{(profitEnabled||costRecovery)&&<button aria-pressed={view==='costs'} onClick={()=>{setCostsVisited(true);setView('costs');}}>{profitEnabled?'Cost history':'Saved cost correction'}</button>}</div>}
     <div hidden={view!=='overview'}>
     {error && <p role="alert">{error} <button onClick={() => void load()} disabled={loading}>Try again</button></p>}
     {loading && !receipts ? <p role="status">Loading saved sales…</p> :
       <SalesDashboard receipts={receipts} loading={loading} refresh={() => void load()} costState={profitEnabled?costState:undefined} />}
     </div>
     {eventsVisited&&<div hidden={view!=='events'}><EventReports ownerId={ownerId} allowNewEdits={eventsEnabled}/></div>}
+    {costsVisited&&<div hidden={view!=='costs'}><CostHistoryReports ownerId={ownerId} receipts={receipts}/></div>}
   </section>;
 }

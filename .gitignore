@@ -126,6 +126,8 @@ apps/web/src/app/api/*
 apps/web/src/app/api/sales/*
 !apps/web/src/app/api/sales/costs/
 !apps/web/src/app/api/sales/costs/route.ts
+!apps/web/src/app/api/sales/cost-corrections/
+!apps/web/src/app/api/sales/cost-corrections/route.ts
 !apps/web/src/app/api/vault/
 apps/web/src/app/api/vault/*
 !apps/web/src/app/api/vault/cost/

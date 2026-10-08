@@ -2,6 +2,7 @@
 import {isPurchaseReceipt,validatePurchaseReceipt} from './salesPurchase.mjs';
 import {validateNegotiatedSaleReceipt} from './negotiatedTrade.mjs';
 import {validateSaleDiscountAllocation} from './saleDiscount.mjs';
+import {validateSaleCostCorrectionStates,sameCostEvidence} from './saleCostCorrections.mjs';
 const uuid = value => typeof value==='string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 const integer = (value,positive=false) => {
   if(!Number.isSafeInteger(value) || value < (positive?1:0))throw Error('Recorded sales need review before profit can be calculated.');
@@ -50,9 +51,20 @@ function alignedSnapshot(snapshot,receipt,items) {
 
 /** Inputs are the same filtered receipts displayed by Reports and private immutable snapshots. */
 export function salesProfit(receipts,snapshots) {
+  return calculateProfit(receipts,snapshots,null);
+}
+/** Later owner attestations are an explicit reporting basis, never original snapshots. */
+export function salesProfitCorrected(receipts,snapshots,states,ownerId) {
+  const rows=unique(receipts,'id','receipt');
+  const ids=[...rows.values()].filter(r=>!isPurchaseReceipt(r)).map(r=>r.id);
+  const checked=validateSaleCostCorrectionStates(states,ownerId,ids);
+  return calculateProfit(receipts,snapshots,new Map(checked.map(s=>[s.receiptId,s])));
+}
+function calculateProfit(receipts,snapshots,corrections) {
   const rows=unique(receipts,'id','receipt'),evidence=unique(snapshots,'receiptId','cost');
   let sales=0n,knownSales=0n,costs=0n,units=0n,knownUnits=0n,lines=0,knownLines=0,purchases=0;
   const reasons=new Map(),details=[];
+  let attestedLines=0,restoredLines=0;
   function excluded(reason,receiptId,count,quantity,amount){
     let entry=reasons.get(reason);if(!entry){entry={receipts:new Set(),lines:0,units:0n,sales:0n};reasons.set(reason,entry);}
     entry.receipts.add(receiptId);entry.lines+=count;entry.units+=quantity;entry.sales+=amount;
@@ -68,15 +80,23 @@ export function salesProfit(receipts,snapshots) {
     const net=subtotal-discount;
     sales+=net;units+=quantity;lines+=items.length;
     const snapshot=evidence.get(receipt.id);
-    const reason=!snapshot?'missing_snapshot':!alignedSnapshot(snapshot,receipt,items)?'snapshot_mismatch':discount>0n&&snapshot.version===1?'discount_allocation_missing':null;
+    const correction=corrections?.get(receipt.id.toLowerCase());
+    const correctionsAlign=correction?.source!==null&&sameCostEvidence(correction?.receipt,receipt)&&correction?.lines.every(o=>o.source===correction.source&&sameCostEvidence(o.request.receipt,receipt));
+    const correctedLines=new Map((correction?.lines??[]).map(o=>[o.request.lineIndex,o]));
+    const reason=corrections&&!correctionsAlign?'correction_receipt_mismatch':!snapshot?(corrections&&discount===0n?null:'missing_snapshot'):!alignedSnapshot(snapshot,receipt,items)?'snapshot_mismatch':discount>0n&&snapshot.version===1?'discount_allocation_missing':null;
     if(reason){excluded(reason,receipt.id,items.length,quantity,net);details.push({receiptId:receipt.id,knownLines:0,totalLines:items.length,knownSalesMinor:'0',knownCostMinor:'0',knownProfitMinor:null,reasons:[reason]});continue;}
     let coveredSales=0n,coveredCost=0n,coveredLines=0;const receiptReasons=new Set();
-    snapshot.lines.forEach((line,index)=>{
-      const item=items[index],netSales=snapshot.version===2?BigInt(snapshot.allocation.lines[index].netMinor):item.sales;
-      if(line.status==='known'){
-        const cost=qualifiedMinor(line.cost); // validated by alignedSnapshot
+    items.forEach((item,index)=>{
+      const line=snapshot?.lines[index],revision=correctedLines.get(index);
+      if(revision?.request.action==='set')attestedLines++;
+      else if(revision?.request.action==='restore')restoredLines++;
+      const attestation=revision?.request.action==='set'?revision.request.cost:null;
+      const status=attestation?(attestation.currency==='USD'?'known':'foreign_currency'):(line?.status??'missing_snapshot');
+      const netSales=snapshot?.version===2?BigInt(snapshot.allocation.lines[index].netMinor):item.sales;
+      if(status==='known'){
+        const cost=attestation?BigInt(attestation.minor):qualifiedMinor(line.cost); // validated by alignedSnapshot
         coveredSales+=netSales;coveredCost+=cost;coveredLines++;knownUnits+=item.units;
-      }else{excluded(line.status,receipt.id,1,item.units,netSales);receiptReasons.add(line.status);}
+      }else{excluded(status,receipt.id,1,item.units,netSales);receiptReasons.add(status);}
     });
     knownSales+=coveredSales;costs+=coveredCost;knownLines+=coveredLines;
     details.push({receiptId:receipt.id,knownLines:coveredLines,totalLines:items.length,knownSalesMinor:String(coveredSales),knownCostMinor:String(coveredCost),knownProfitMinor:coveredLines?String(coveredSales-coveredCost):null,reasons:[...receiptReasons].sort()});
@@ -84,7 +104,8 @@ export function salesProfit(receipts,snapshots) {
   return {currency:'USD',receipts:rows.size-purchases,totalLines:lines,knownLines,totalUnits:String(units),knownUnits:String(knownUnits),itemSalesMinor:String(sales),
     knownSalesMinor:String(knownSales),unknownSalesMinor:String(sales-knownSales),knownCostMinor:String(costs),knownProfitMinor:knownLines?String(knownSales-costs):null,
     coverageBps:lines?Math.floor(knownLines*10000/lines):null,
-    reasons:[...reasons].sort(([a],[b])=>a.localeCompare(b)).map(([reason,row])=>({reason,receipts:row.receipts.size,lines:row.lines,units:String(row.units),salesMinor:String(row.sales)})),details};
+    reasons:[...reasons].sort(([a],[b])=>a.localeCompare(b)).map(([reason,row])=>({reason,receipts:row.receipts.size,lines:row.lines,units:String(row.units),salesMinor:String(row.sales)})),details,
+    ...(corrections?{basis:'owner_corrected',attestedLines,restoredLines}:{})};
 }
 
 export function profitMoney(minor) {
@@ -93,4 +114,5 @@ export function profitMoney(minor) {
   return `${amount<0n?'-':''}$${String(absolute/100n).replace(/\B(?=(\d{3})+(?!\d))/g,',')}.${String(absolute%100n).padStart(2,'0')}`;
 }
 export const costGapLabel = reason => ({missing_snapshot:'No cost recorded at sale',snapshot_mismatch:'Cost evidence needs review',discount_allocation_missing:'Discount allocation not recorded',
+  correction_receipt_mismatch:'Saved receipt or cost revision needs review',
   unlinked:'Item not linked to an exact copy',missing_amount:'Cost amount missing',missing_currency:'Cost currency missing',invalid_amount:'Cost amount needs review',invalid_currency:'Cost currency needs review',oversized_legacy_value:'Legacy cost needs review',foreign_currency:'Cost recorded in another currency'}[reason]??'Cost evidence needs review');

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'sales_purchase.dart';
 import 'negotiated_trade.dart';
 import 'sale_discount.dart';
+import 'sale_cost_corrections.dart';
 
 // Private, immutable cost-at-sale evidence. Current inventory cost is not an input.
 final _uuid = RegExp(
@@ -163,12 +164,36 @@ bool _aligned(
 Map<String, Object?> salesProfit(
   List<dynamic> receipts,
   List<dynamic> snapshots,
+) => _calculateProfit(receipts, snapshots, null);
+
+Map<String, Object?> salesProfitCorrected(
+  List<dynamic> receipts,
+  List<dynamic> snapshots,
+  List<dynamic> states,
+  String ownerId,
+) {
+  final rows = _unique(receipts, 'id', 'receipt');
+  final ids = rows.values
+      .where((r) => !isPurchaseReceipt(r))
+      .map((r) => r['id'])
+      .toList();
+  final checked = validateSaleCostCorrectionStates(states, ownerId, ids);
+  return _calculateProfit(receipts, snapshots, {
+    for (final s in checked) s['receiptId'] as String: s as Map,
+  });
+}
+
+Map<String, Object?> _calculateProfit(
+  List<dynamic> receipts,
+  List<dynamic> snapshots,
+  Map<String, Map>? corrections,
 ) {
   final rows = _unique(receipts, 'id', 'receipt');
   final evidence = _unique(snapshots, 'receiptId', 'cost');
   var sales = BigInt.zero, knownSales = BigInt.zero, costs = BigInt.zero;
   var units = BigInt.zero, knownUnits = BigInt.zero;
   var lines = 0, knownLines = 0, purchases = 0;
+  var attestedLines = 0, restoredLines = 0;
   final reasons = <String, _Gap>{};
   final details = <Map<String, Object?>>[];
   void excluded(
@@ -223,8 +248,26 @@ Map<String, Object?> salesProfit(
     units += quantity;
     lines += items.length;
     final snapshot = evidence[id];
-    final reason = snapshot == null
-        ? 'missing_snapshot'
+    final correction = corrections?[id.toLowerCase()];
+    final correctionsAlign =
+        correction != null &&
+        correction['source'] != null &&
+        sameCostEvidence(correction['receipt'], receipt) &&
+        (correction['lines'] as List).every(
+          (o) =>
+              o['source'] == correction['source'] &&
+              sameCostEvidence(o['request']['receipt'], receipt),
+        );
+    final correctedLines = <int, Map>{
+      for (final o in (correction?['lines'] as List? ?? []))
+        o['request']['lineIndex'] as int: o as Map,
+    };
+    final reason = corrections != null && !correctionsAlign
+        ? 'correction_receipt_mismatch'
+        : snapshot == null
+        ? (corrections != null && discount == BigInt.zero
+              ? null
+              : 'missing_snapshot')
         : !_aligned(snapshot, receipt, items)
         ? 'snapshot_mismatch'
         : discount > BigInt.zero && snapshot['version'] == 1
@@ -246,21 +289,37 @@ Map<String, Object?> salesProfit(
     var coveredSales = BigInt.zero, coveredCost = BigInt.zero, coveredLines = 0;
     final receiptReasons = <String>{};
     for (var index = 0; index < items.length; index++) {
-      final line = (snapshot!['lines'] as List)[index] as Map;
+      final line = snapshot == null
+          ? null
+          : (snapshot['lines'] as List)[index] as Map;
+      final revision = correctedLines[index];
+      if (revision?['request']['action'] == 'set') {
+        attestedLines++;
+      } else if (revision?['request']['action'] == 'restore') {
+        restoredLines++;
+      }
+      final attestation = revision?['request']['action'] == 'set'
+          ? revision!['request']['cost'] as Map
+          : null;
+      final status = attestation != null
+          ? (attestation['currency'] == 'USD' ? 'known' : 'foreign_currency')
+          : (line?['status'] ?? 'missing_snapshot');
       final item = items[index];
-      final netSales = snapshot['version'] == 2
+      final netSales = snapshot?['version'] == 2
           ? BigInt.parse(
-              snapshot['allocation']['lines'][index]['netMinor'] as String,
+              snapshot!['allocation']['lines'][index]['netMinor'] as String,
             )
           : item.sales;
-      if (line['status'] == 'known') {
+      if (status == 'known') {
         coveredSales += netSales;
-        coveredCost += _qualifiedMinor(line['cost'])!;
+        coveredCost += attestation != null
+            ? BigInt.parse(attestation['minor'] as String)
+            : _qualifiedMinor(line!['cost'])!;
         coveredLines++;
         knownUnits += item.units;
       } else {
-        excluded(line['status'] as String, id, 1, item.units, netSales);
-        receiptReasons.add(line['status'] as String);
+        excluded(status as String, id, 1, item.units, netSales);
+        receiptReasons.add(status);
       }
     }
     knownSales += coveredSales;
@@ -303,6 +362,11 @@ Map<String, Object?> salesProfit(
         },
     ],
     'details': details,
+    if (corrections != null) ...{
+      'basis': 'owner_corrected',
+      'attestedLines': attestedLines,
+      'restoredLines': restoredLines,
+    },
   };
 }
 
@@ -328,6 +392,8 @@ String profitMoney(String minor) {
 String costGapLabel(String reason) =>
     const {
       'missing_snapshot': 'No cost recorded at sale',
+      'correction_receipt_mismatch':
+          'Saved receipt or cost revision needs review',
       'snapshot_mismatch': 'Cost evidence needs review',
       'discount_allocation_missing': 'Discount allocation not recorded',
       'unlinked': 'Item not linked to an exact copy',

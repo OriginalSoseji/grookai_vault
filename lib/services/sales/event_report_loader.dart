@@ -2,6 +2,51 @@ import 'dart:convert';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'vendor_events.dart';
 import 'event_service.dart';
+import 'sale_cost_corrections.dart';
+import 'sales_purchase.dart';
+
+Future<Map<String, dynamic>> loadEventCostCorrections({
+  required Map<String, dynamic> input,
+  required String ownerId,
+  required String eventId,
+  required Future<Object?> Function(List<String>) readCorrections,
+  required void Function() checkOwner,
+}) async {
+  checkOwner();
+  if (input['ownerId'] != ownerId || input['eventId'] != eventId) {
+    throw StateError('Event account or selection changed.');
+  }
+  final state = validateEventState(input['state'], ownerId, eventId),
+      receipts = {
+        for (final r in input['receipts'] as List)
+          (r['id'] as String).toLowerCase(): r,
+      };
+  final assigned = (state['selected']['assignments'] as List)
+      .where((a) => a['eventId'] == eventId)
+      .map((a) => a['receiptId'] as String)
+      .toList();
+  if (assigned.any((id) => !receipts.containsKey(id))) {
+    throw StateError('An assigned receipt is missing.');
+  }
+  final ids = assigned.where((id) => !isPurchaseReceipt(receipts[id])).toList(),
+      states = <dynamic>[];
+  for (var offset = 0; offset < ids.length; offset += 100) {
+    checkOwner();
+    final batch = ids.sublist(
+          offset,
+          offset + 100 < ids.length ? offset + 100 : ids.length,
+        ),
+        reply = await readCorrections(batch);
+    checkOwner();
+    states.addAll(validateSaleCostCorrectionStates(reply, ownerId, batch));
+  }
+  checkOwner();
+  return {
+    ...input,
+    'costBasis': 'owner_corrected',
+    'correctionStates': validateSaleCostCorrectionStates(states, ownerId, ids),
+  };
+}
 
 Future<Map<String, dynamic>> loadEventReportInput({
   required String ownerId,
@@ -103,10 +148,35 @@ abstract interface class EventReportSource {
   });
 }
 
-class EventReportReader implements EventReportSource {
+abstract interface class EventCostCorrectionSource {
+  Future<Map<String, dynamic>> corrected(
+    Map<String, dynamic> input, {
+    bool Function()? isCurrent,
+  });
+}
+
+class EventReportReader
+    implements EventReportSource, EventCostCorrectionSource {
   EventReportReader(this.client, this.service);
   final SupabaseClient client;
   final EventService service;
+  @override
+  Future<Map<String, dynamic>> corrected(
+    Map<String, dynamic> input, {
+    bool Function()? isCurrent,
+  }) => loadEventCostCorrections(
+    input: input,
+    ownerId: service.ownerId,
+    eventId: input['eventId'] as String,
+    readCorrections: (ids) =>
+        _read('vendor_sale_cost_correction_read_v1', {'p_receipt_ids': ids}),
+    checkOwner: () {
+      service.checkOwner();
+      if (isCurrent != null && !isCurrent()) {
+        throw StateError('Another event is now selected.');
+      }
+    },
+  );
   Future<Object?> _read(String name, Map<String, dynamic> params) async {
     service.checkOwner();
     final result = await client

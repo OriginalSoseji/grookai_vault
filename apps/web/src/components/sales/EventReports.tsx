@@ -45,6 +45,7 @@ function EventEdit({edit,change,submit,cancel,disabled,busy}:{edit:Edit;change:(
 }
 
 export default function EventReports({ownerId,allowNewEdits=true}:{ownerId:string;allowNewEdits?:boolean}){
+ const costBasisRef=useRef<'original'|'owner_corrected'>('original'),[costBasis,setCostBasis]=useState<'original'|'owner_corrected'>('original');
  const service=useRef<EventService|null>(null),reader=useRef<ReturnType<typeof eventReportReader>|null>(null),generation=useRef(0),selectedId=useRef<string|null>(null);
  const [selection,setSelection]=useState<string|null>(null);
  const invalidate=useCallback(()=>{generation.current++;},[]);
@@ -61,7 +62,7 @@ export default function EventReports({ownerId,allowNewEdits=true}:{ownerId:strin
    if(saved.status==='fulfilled')setJournal(saved.value);
    if(loaded.status==='rejected'||saved.status==='rejected')throw Error('Event state or saved request unavailable');
    const next=loaded.value,pending=saved.value;setState(next);
-   if(id&&next.receiptAccess){try{const loaded=await read.report(id,next,()=>current===generation.current);api.checkOwner();if(current===generation.current)setData(loaded);}catch{api.checkOwner();if(current===generation.current)setReportError('Receipt or private cost history could not load. Totals are unavailable until this event refreshes.');}}
+   if(id&&next.receiptAccess){try{const loaded=await read.report(id,next,()=>current===generation.current,costBasisRef.current);api.checkOwner();if(current===generation.current)setData(loaded);}catch{api.checkOwner();if(current===generation.current)setReportError('Receipt or private cost history could not load. Totals are unavailable until this event refreshes.');}}
    return {state:next,journal:pending};
   }catch{if(current===generation.current)setError('Events could not refresh. Saved receipts and event edits are retained.');return null;}
   finally{if(current===generation.current)setLoading(false);}
@@ -122,6 +123,7 @@ export default function EventReports({ownerId,allowNewEdits=true}:{ownerId:strin
    {(section==='Totals'||section==='Receipts')&&<details key={section} open={section==='Receipts'} className={c.filterPanel}><summary>{report?.receiptsFiltered?'Receipt filters · Active':'Filter receipts'}</summary><div className={c.filters}><label>Search event receipts<input type="search" value={query} onChange={e=>{setQuery(e.target.value);setReceiptLimit(200);}} placeholder="Receipt, customer or item"/></label><label>Receipt payment filter<select value={method} onChange={e=>{setMethod(e.target.value);setReceiptLimit(200);}}><option value="">All methods</option>{tenderMethods.map(m=><option key={m}>{m}</option>)}</select></label></div></details>}
    {(reportError||computed.error)&&<p role="alert" className={c.error}>{reportError||computed.error}</p>}
    {!state?.receiptAccess&&<p className={c.muted}>Receipt access is currently unavailable. Saved assignments, expenses and change history remain private and available.</p>}
+   {(section==='Totals'||section==='Receipts')&&<label>Cost basis<select aria-label="Cost basis" value={costBasis} disabled={loading||busy||!!edit} onChange={e=>{const value=e.target.value as typeof costBasis;costBasisRef.current=value;setCostBasis(value);void refresh();}}><option value="original">Original cost at sale</option><option value="owner_corrected">Later owner corrections</option></select><small>{costBasis==='original'?'Uses costs captured when sales completed.':'Uses later owner attestations and restored original evidence. Current inventory edits do not change these figures.'} The CSV uses this same basis.</small></label>}
    {section==='Totals'&&report&&<div className={c.section}>
     <div className={c.profit}><h3>Known-cost event subtotal</h3><strong>{report.knownCostEventSubtotalMinor===null?'Unavailable':profitMoney(report.knownCostEventSubtotalMinor)}</strong><span className={c.pill}>{report.profit.knownLines===report.profit.totalLines&&report.profit.totalLines>0?'All selected sale lines covered':'Partial cost coverage'}</span><p>{report.profit.knownLines} of {report.profit.totalLines} sale lines have qualified historical cost. {profitMoney(report.profit.unknownSalesMinor)} in item sales remains uncovered.</p><p>{report.profit.knownProfitMinor===null?'No qualified sales profit is available.':`${profitMoney(report.profit.knownProfitMinor)} known gross profit minus ${profitMoney(report.operatingExpenseMinor)} in all active event expenses.`}</p>{report.profit.reasons.length>0&&<details><summary>Why costs are incomplete</summary><ul>{report.profit.reasons.map(reason=><li key={reason.reason}>{costGapLabel(reason.reason)}: {profitMoney(reason.salesMinor)} ({reason.lines} sale lines)</li>)}</ul></details>}</div>
     {report.receiptsFiltered&&<p className={c.muted}>Receipt filters are active. All active event expenses remain included in the subtotal and CSV.</p>}

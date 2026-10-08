@@ -2,7 +2,7 @@ import type {SupabaseClient} from '@supabase/supabase-js';
 import {EventRpcError,EventService,type EventGateway} from './eventService.mjs';
 import {EventJournalStore} from './eventJournalStore';
 import {eventRequestParams,type EventState} from './vendorEvents.mjs';
-import {loadEventReportInput,loadEventHistory} from './eventReportLoader.mjs';
+import {loadEventReportInput,loadEventHistory,loadEventCostCorrections} from './eventReportLoader.mjs';
 
 /** Private reads go directly through the shared SDK, including large histories. */
 export function eventSupabaseGateway(client:SupabaseClient,ownerId:string):EventGateway {
@@ -36,7 +36,11 @@ export function eventReportReader(client:SupabaseClient,service:EventService){
  };
  const checkOwner=()=>service.checkOwner();
  return {
-  report:(eventId:string,state?:EventState,isCurrent?:()=>boolean)=>loadEventReportInput({ownerId:service.ownerId,eventId,checkOwner:()=>{checkOwner();if(isCurrent&&!isCurrent())throw Error('Another event is now selected.');},readState:id=>state?Promise.resolve(state):service.read(id),readBook:()=>checked('vendor_receipt_book_read_v1',{}),readCosts:ids=>checked('vendor_sale_cost_read_v1',{p_request_ids:ids})}),
+  report:async(eventId:string,state?:EventState,isCurrent?:()=>boolean,costBasis:'original'|'owner_corrected'='original')=>{
+   const guard=()=>{checkOwner();if(isCurrent&&!isCurrent())throw Error('Another event is now selected.');};
+   const input=await loadEventReportInput({ownerId:service.ownerId,eventId,checkOwner:guard,readState:id=>state?Promise.resolve(state):service.read(id),readBook:()=>checked('vendor_receipt_book_read_v1',{}),readCosts:ids=>checked('vendor_sale_cost_read_v1',{p_request_ids:ids})});
+   return costBasis==='original'?input:loadEventCostCorrections({input,ownerId:service.ownerId,eventId,checkOwner:guard,readCorrections:ids=>checked('vendor_sale_cost_correction_read_v1',{p_receipt_ids:ids})});
+  },
   history:(eventId:string,beforeRevision:string|null=null)=>loadEventHistory({ownerId:service.ownerId,eventId,beforeRevision,checkOwner,readHistory:(id,before,limit)=>checked('vendor_event_history_read_v1',{p_event_id:id,p_before_revision:before,p_limit:limit})}),
  };
 }

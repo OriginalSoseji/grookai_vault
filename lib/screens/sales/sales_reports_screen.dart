@@ -6,6 +6,8 @@ import '../../services/sales/sales_purchase.dart';
 import 'sales_dashboard.dart';
 import 'sales_profit_panel.dart';
 import 'event_reports_panel.dart';
+import 'cost_history_panel.dart';
+import '../../services/sales/cost_correction_service.dart';
 import '../../services/sales/event_service.dart';
 import '../../services/sales/event_report_loader.dart';
 import '../workspace/workspace_activation.dart';
@@ -20,6 +22,8 @@ class SalesReportsScreen extends StatefulWidget {
     this.eventsEnabled = kVendorEventsEnabled,
     this.eventService,
     this.eventReader,
+    this.costCorrectionService,
+    this.costCorrectionsEnabled = kVendorCostCorrectionsEnabled,
   });
   final SalesCartService? service;
   final SalesProfitService? profitService;
@@ -27,6 +31,8 @@ class SalesReportsScreen extends StatefulWidget {
   final bool eventsEnabled;
   final EventService? eventService;
   final EventReportSource? eventReader;
+  final CostCorrectionService? costCorrectionService;
+  final bool costCorrectionsEnabled;
   @override
   State<SalesReportsScreen> createState() => _SalesReportsScreenState();
 }
@@ -45,6 +51,46 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
   EventService? _events;
   EventReportSource? _eventReader;
   bool _eventRecovery = false, _eventsVisited = false, _showEvents = false;
+  CostCorrectionService? _costs;
+  bool _costRecovery = false, _costsVisited = false, _showCosts = false;
+
+  void _prepareCosts() {
+    _costs ??=
+        widget.costCorrectionService ??
+        CostCorrectionService.supabase(_service.client);
+    _profits ??=
+        widget.profitService ??
+        SalesProfitService(
+          gateway: SupabaseSalesProfitGateway(_service.client),
+        );
+  }
+
+  Future<void> _checkCostRecovery() async {
+    try {
+      _prepareCosts();
+      final row = await _costs!.journal();
+      if (mounted && !_accountChanged) {
+        setState(() => _costRecovery = row?['pending'] != null);
+      }
+    } catch (_) {
+      if (mounted && !_accountChanged && _costs != null) {
+        setState(() => _costRecovery = true);
+      }
+    }
+  }
+
+  void _openCosts() {
+    try {
+      _prepareCosts();
+    } catch (_) {
+      /* Keep saved recovery visible even when history is unavailable. */
+    }
+    setState(() {
+      _showCosts = true;
+      _showEvents = false;
+      _costsVisited = true;
+    });
+  }
 
   void _prepareEvents() {
     _events ??= widget.eventService ?? EventService.supabase(_service.client);
@@ -74,6 +120,7 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
     }
     setState(() {
       _showEvents = true;
+      _showCosts = false;
       _eventsVisited = true;
     });
   }
@@ -114,6 +161,7 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
     });
     unawaited(_load());
     if (!widget.eventsEnabled) unawaited(_checkEventRecovery());
+    if (!widget.profitEnabled) unawaited(_checkCostRecovery());
   }
 
   Future<void> _load() async {
@@ -154,6 +202,7 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
     unawaited(_subscription?.cancel());
     if (widget.profitService == null) unawaited(_profits?.dispose());
     if (widget.eventService == null) _events?.dispose();
+    if (widget.costCorrectionService == null) _costs?.dispose();
     super.dispose();
   }
 
@@ -174,7 +223,10 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
         ? const Center(child: Text('Your account changed. Reopen reports.'))
         : Column(
             children: [
-              if (widget.eventsEnabled || _eventRecovery)
+              if (widget.eventsEnabled ||
+                  _eventRecovery ||
+                  widget.profitEnabled ||
+                  _costRecovery)
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -185,22 +237,42 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
                     children: [
                       ChoiceChip(
                         label: const Text('Overview'),
-                        selected: !_showEvents,
-                        onSelected: (_) => setState(() => _showEvents = false),
+                        selected: !_showEvents && !_showCosts,
+                        onSelected: (_) => setState(() {
+                          _showEvents = false;
+                          _showCosts = false;
+                        }),
                       ),
-                      ChoiceChip(
-                        label: Text(
-                          widget.eventsEnabled ? 'Events' : 'Saved event edit',
+                      if (widget.eventsEnabled || _eventRecovery)
+                        ChoiceChip(
+                          label: Text(
+                            widget.eventsEnabled
+                                ? 'Events'
+                                : 'Saved event edit',
+                          ),
+                          selected: _showEvents,
+                          onSelected: (_) => _openEvents(),
                         ),
-                        selected: _showEvents,
-                        onSelected: (_) => _openEvents(),
-                      ),
+                      if (widget.profitEnabled || _costRecovery)
+                        ChoiceChip(
+                          label: Text(
+                            widget.profitEnabled
+                                ? 'Cost history'
+                                : 'Saved cost correction',
+                          ),
+                          selected: _showCosts,
+                          onSelected: (_) => _openCosts(),
+                        ),
                     ],
                   ),
                 ),
               Expanded(
                 child: IndexedStack(
-                  index: _showEvents ? 1 : 0,
+                  index: _showCosts
+                      ? 2
+                      : _showEvents
+                      ? 1
+                      : 0,
                   children: [
                     _overview(),
                     if (_eventsVisited &&
@@ -215,6 +287,19 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
                       const Center(
                         child: Text(
                           'Event reports are unavailable. Reopen Reports to try again.',
+                        ),
+                      ),
+                    if (_costsVisited && _costs != null)
+                      CostHistoryPanel(
+                        receipts: _receipts,
+                        service: _costs!,
+                        profitService: _profits,
+                        allowNewEdits: widget.costCorrectionsEnabled,
+                      )
+                    else
+                      const Center(
+                        child: Text(
+                          'Cost history is unavailable. Reopen Reports to try again.',
                         ),
                       ),
                   ],

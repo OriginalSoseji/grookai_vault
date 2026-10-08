@@ -303,7 +303,12 @@ void main() {
         300,
         scrollable: find.byType(Scrollable).first,
       );
-      await tester.tap(find.widgetWithText(ChoiceChip, 'Other'));
+      await tester.pumpAndSettle();
+      final otherPayment = find.widgetWithText(ChoiceChip, 'Other');
+      await tester.ensureVisible(otherPayment);
+      await tester.pumpAndSettle();
+      expect(otherPayment.hitTestable(), findsOneWidget);
+      await tester.tap(otherPayment.hitTestable());
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(
         find.byType(SalesProfitPanel),

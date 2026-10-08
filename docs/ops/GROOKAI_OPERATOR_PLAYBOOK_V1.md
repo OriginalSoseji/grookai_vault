@@ -1,5 +1,37 @@
 # Grookai Operator Playbook V1
 
+## Cost history runtime qualified — October 8
+
+The current cost-history browser run passes nine scenarios, payment review passes
+four scenarios at three widths, and physical Samsung436 passes two-process SQLite
+recovery with no duplicate correction. All29 images are source-bound and reviewed;
+all fixtures retain38 prior table sets with controls restored. Original receipts
+and cost-at-sale evidence remain immutable; later corrections are an explicit
+owner-attributed report basis, including event reports and private CSV.
+
+Exact436 excludes only deferred delivery. Full replay,35 SQL cases, actual Auth
+and both forced correction/cancellation lock orders, reapply and independent shadow
+pass (raw/normalized0,1237 security objects). Retained upgrade and normal/read-only
+release gates are tracked in the external CHECKPOINT. Use only this checkout's
+dedicated ProductCostHistoryV1 and run_product_cost_history_checks_v1 helpers.
+Never run inherited fixed-root mutation helpers. Physical iOS and R3/R4 remain open.
+
+## Cost history continuation and Mac storage — October 8
+
+Current implementation is C:/gv_product_cost_history_20261008; see
+docs/ops/PRODUCT_COST_HISTORY_20261008.md and external product_cost_history_20261008
+CHECKPOINT.json. Wider437 database replay/upgrade/Auth/reapply/shadow passes; SQL
+is frozen, product runtime and exact436 release remain pending. All production
+switches/apply/deployment stay outside this local qualification.
+
+User-authorized Mac cleanup removed only three finalized old iPhone18,1 symbol
+caches (26.4 and26.5), after checking current paired iPhone27.0 and no active build.
+It freed18252230656 bytes and left18371751936 free. Projects, archives, simulators,
+DerivedData and current27.0 support remain. Preserve cleanup scripts and both logs;
+v1 stopped before deletion on disk-full evidence creation, v2 streamed its intent
+and persisted the remote result after reclaim. Physical iOS may now proceed through
+the existing isolated release workflow, with a fresh free-space check before build.
+
 ## Discount evidence — October 8
 
 Work in C:/gv_product_discount_20261008 from qualified event commit

@@ -1,0 +1,71 @@
+// One-use local event UI fixture. Retain every account, receipt, copy and audit row.
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {randomUUID,createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {createClient} from '@supabase/supabase-js';
+import pg from 'pg';
+import {createReceipt,emptyBook} from '../../apps/web/src/lib/receipts/receiptBook.mjs';
+const root='C:/gv_product_cost_history_20261008',base='C:/grookai_vault_operator_artifacts/product_cost_history_20261008',lab=base+'/full-437-v1',project='costhist-full-437-v1-20261008';
+assert.equal(process.cwd().replaceAll('\\','/'),root);
+const mode=process.argv[2];assert.ok(['prepare','restore','verify'].includes(mode));assert.equal(process.argv.length,mode==='prepare'?3:4);
+const run=mode==='prepare'?base+'/ui-'+Date.now():path.resolve(process.argv[3]).replaceAll('\\','/');assert.match(run,new RegExp('^'+base+'/ui-[0-9]+$'));
+const read=p=>JSON.parse(fs.readFileSync(p)),sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const command=(name,args)=>execFileSync(name,args,{encoding:'utf8',windowsHide:true,stdio:['ignore','pipe','pipe'],timeout:30000});
+assert.equal(read(base+'/CHECKPOINT.json').sourceFrozen,false);
+const freeze=read(lab+'/freeze.json'),replay=read(lab+'/replay-result.json');assert.equal(freeze.project,project);assert.equal(replay.project,project);assert.equal(replay.status,'passed');assert.equal(replay.migrations,437);assert.ok(replay.fullReplay&&replay.noOpPush);assert.ok(!fs.existsSync(lab+'/supabase/.temp/project-ref'));assert.equal(sha(lab+'/supabase/config.toml'),freeze.configSha256);
+assert.deepEqual(fs.readdirSync(root+'/supabase/migrations').filter(n=>n.endsWith('.sql')).sort(),Object.keys(freeze.sourceHashes).sort());for(const [name,digest]of Object.entries(freeze.sourceHashes))assert.equal(sha(root+'/supabase/migrations/'+name),digest,name);
+assert.equal(read(base+'/shadow-437-v1/receipt.json').status,'passed');assert.equal(read(base+'/rpc-1791486717790/result.json').status,'passed');
+const cfg=JSON.parse(command('supabase',['status','-o','json','--workdir',lab]));assert.equal(cfg.API_URL,'http://127.0.0.1:35001');
+const container=JSON.parse(command('docker',['inspect','supabase_db_'+project]))[0];assert.equal(container.State.Running,true);assert.deepEqual(Object.keys(container.NetworkSettings.Networks),[project]);assert.equal(JSON.parse(command('docker',['network','inspect',project]))[0].Internal,true);
+const relay=JSON.parse(command('docker',['inspect',project+'-relay']))[0];for(const port of[35000,35001])assert.deepEqual(relay.NetworkSettings.Ports[port+'/tcp'],[{HostIp:'127.0.0.1',HostPort:String(port)}]);
+const db=new pg.Client({connectionString:'postgresql://postgres:postgres@127.0.0.1:35000/postgres',connectionTimeoutMillis:10000});await db.connect();
+const q=async(sql,args=[])=>(await db.query(sql,args)).rows;
+const tables=['auth.users','public.vault_owners','public.vault_items','public.vault_item_instances','public.vault_item_instance_dispositions','public.vault_copy_cost_requests','public.card_events','public.pricing_watch','public.card_prints','public.card_printings','public.card_print_identity','public.sets','public.vendor_receipt_books','public.vendor_sales_cart_receipts','public.vendor_sale_cost_snapshots','public.external_mappings','public.tcgcsv_source_categories','public.tcgcsv_source_groups','public.tcgcsv_source_sync_runs','public.tcgcsv_source_artifacts','public.tcgcsv_source_products','public.tcgcsv_source_price_daily_observations','public.market_evidence_variant_assignments','public.tcgplayer_jungle_edition_assignments_v1','public.market_price_pipeline_runs','public.market_price_pipeline_phase_attempts','public.market_price_pipeline_candidates','public.market_price_qualification_decisions','public.market_price_publication_sets','public.market_price_publication_snapshots','public.market_price_publication_events','public.vendor_event_owners','public.vendor_events','public.vendor_event_expenses','public.vendor_event_assignments','public.vendor_event_requests','public.vendor_sales_cart_cancellations','public.vendor_sale_cost_correction_requests'];
+const controls=['vendor_sale_cost_correction_control','vendor_discount_control','vendor_event_control','vendor_receipt_cloud_control','vendor_sales_cart_control','vendor_sales_payment_control','vendor_sales_trade_control','vendor_purchase_control','vendor_negotiated_trade_control'];
+const flags=async()=>{const result={};for(const name of controls)result[name]=(await q(`select enabled from public.${name}`))[0].enabled;result.cost=(await q('select edit_enabled,capture_enabled from vendor_cost_evidence_control'))[0];return result;};
+const snapshot=async()=>{const rows={};for(const name of tables)rows[name]=await q(`select to_jsonb(t) row from ${name} t`);return rows;};
+const canon=value=>JSON.stringify(value,(_k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
+const save=(name,value,exclusive=true)=>fs.writeFileSync(run+'/'+name,JSON.stringify(value,null,2)+'\n',exclusive?{flag:'wx'}:{});
+async function retain(f){const counts={};for(const name of tables){const rows=new Set((await q(`select to_jsonb(t) row from ${name} t`)).map(canon));for(const row of f.retained[name])assert.ok(rows.has(canon(row)),name+': prior row changed');counts[name]=f.retained[name].length;}return counts;}
+async function verify(f){
+ assert.equal(f.project,project);assert.ok(f.owner&&f.email.endsWith('@cost-history-ui.invalid'));
+ const counts=await retain(f);
+ assert.deepEqual(await q('select receipt from vendor_sales_cart_receipts where owner_id=$1 order by request_id',[f.owner]),f.immutable.modernReceipts);
+ assert.deepEqual(await q('select snapshot from vendor_sale_cost_snapshots where owner_id=$1 order by request_id',[f.owner]),f.immutable.costSnapshots);
+ assert.deepEqual(await q('select book from vendor_receipt_books where owner_id=$1',[f.owner]),f.immutable.book);
+ assert.deepEqual(await q('select to_jsonb(t) row from vault_item_instances t where user_id=$1 order by id',[f.owner]),f.immutable.copies);
+ assert.deepEqual(await q('select to_jsonb(t) row from vault_item_instance_dispositions t where user_id=$1 order by to_jsonb(t)::text',[f.owner]),f.immutable.dispositions);
+ assert.equal((await q('select * from market_price_current_publication')).length,0);return counts;
+}
+async function restore(f){
+ await q('rollback').catch(()=>{});await q('begin');try{for(const name of controls)await q(`update ${name} set enabled=$1`,[f.flags[name]]);await q('update vendor_cost_evidence_control set edit_enabled=$1,capture_enabled=$2',[f.flags.cost.edit_enabled,f.flags.cost.capture_enabled]);await q('commit');}catch(error){await q('rollback');throw error;}
+ assert.deepEqual(await flags(),f.flags);const counts=f.immutable?await verify(f):await retain(f);save('retention.json',{status:'passed',at:new Date().toISOString(),retainedTables:tables.length,priorRowCounts:counts,controlsRestored:true,pointerAbsent:true,allNewHistoryRetained:true,productionWrites:0});f.previousState=f.state;f.state='restored';save('fixture.private.json',f,false);
+}
+let client;
+try{
+ const state=(await q("select host(inet_server_addr()) address,current_setting('max_worker_processes') workers,(select count(*)::int from supabase_migrations.schema_migrations) migrations"))[0];assert.equal(state.address,container.NetworkSettings.Networks[project].IPAddress);assert.equal(state.workers,'0');assert.equal(state.migrations,437);
+ if(mode!=='prepare'){
+  const f=read(run+'/fixture.private.json');assert.equal(f.project,project);assert.notEqual(f.state,'restored');
+  if(mode==='restore')await restore(f);else save('verification-'+Date.now()+'.json',{status:'passed',counts:await verify(f),productionWrites:0});
+  console.log(JSON.stringify({run,mode,status:'passed'}));
+ }else{
+  const initialFlags=await flags();assert.ok(controls.every(name=>initialFlags[name]===false));assert.deepEqual(initialFlags.cost,{edit_enabled:false,capture_enabled:false});assert.equal((await q('select * from market_price_current_publication')).length,0);
+  const retained=await snapshot();fs.mkdirSync(run);const f={state:'preparing',project,at:new Date().toISOString(),consumed:true,flags:initialFlags,retained,email:randomUUID()+'@cost-history-ui.invalid',password:randomUUID()+'Aa9!',set:randomUUID(),card:randomUUID(),printing:randomUUID()};save('intent.private.json',f);save('fixture.private.json',f);
+  const files=command('git',['ls-files','-co','--exclude-standard','lib','integration_test','apps/web/src','apps/web/src/lib/collectorStaging.mjs','apps/web/src/lib/collectorRelease.mjs','apps/web/src/app/account/store/reports/page.tsx','apps/web/next.config.mjs','scripts/audits/product_cost_history_ui_fixture_v1.mjs','scripts/audits/product_cost_history_web_runtime_v1.mjs']).trim().split(/\r?\n/);save('source-binding.json',{at:new Date().toISOString(),head:command('git',['rev-parse','HEAD']).trim(),migrations:437,hashes:Object.fromEntries([...new Set(files)].filter(p=>p&&fs.existsSync(root+'/'+p)).map(p=>[p,sha(root+'/'+p)]))});
+  fs.copyFileSync(root+'/scripts/audits/product_cost_history_ui_fixture_v1.mjs',run+'/fixture-source.mjs',fs.constants.COPYFILE_EXCL);
+  try{
+   const auth={persistSession:false,autoRefreshToken:false},admin=createClient(cfg.API_URL,cfg.SECRET_KEY,{auth});client=createClient(cfg.API_URL,cfg.PUBLISHABLE_KEY,{auth});const made=await admin.auth.admin.createUser({email:f.email,password:f.password,email_confirm:true});assert.equal(made.error,null);f.owner=made.data.user.id;save('fixture.private.json',f,false);assert.equal((await client.auth.signInWithPassword({email:f.email,password:f.password})).error,null);
+   const ok=result=>{assert.equal(result.error,null,JSON.stringify(result.error));return result.data;},customer={name:'',email:'',phone:'',wants:'',notes:''};
+   await q('begin');await q("insert into sets(id,code,name,game) values($1,$2,'Event UI synthetic set','pokemon')",[f.set,f.set]);await q("insert into card_prints(id,game_id,set_id,name,number,gv_id,image_status) values($1,(select id from games where code='pokemon'),$2,'Event UI synthetic card','1',$3,'missing')",[f.card,f.set,'GV-PK-EVENT-UI-'+f.card]);await q("insert into card_printings(id,card_print_id,finish_key,printing_gv_id) values($1,$2,(select key from finish_keys where is_active order by sort_order limit 1),$3)",[f.printing,f.card,'GV-PK-EVENT-UI-'+f.card+'-STD']);await q("select public.admin_vault_instance_create_v1(p_user_id=>$1::uuid,p_card_print_id=>$2::uuid,p_condition_label=>'NM',p_card_printing_id=>$3::uuid)",[f.owner,f.card,f.printing]);const copies=await q('select id from vault_item_instances where user_id=$1',[f.owner]);assert.equal(copies.length,1);f.instance=copies[0].id;await q("update vault_item_instances set acquisition_cost=60,acquisition_currency='USD' where id=$1 and user_id=$2",[f.instance,f.owner]);for(const name of controls)await q(`update ${name} set enabled=true`);await q('update vendor_cost_evidence_control set capture_enabled=true');await q('commit');
+   const unknown=createReceipt({storeName:'Event proof store',confirmed:true,method:'Cash',customer,items:[{description:'Legacy sale with unavailable cost',quantity:'2',price:'25.00'}],tax:'0',note:''},randomUUID(),new Date().toISOString());
+   ok(await client.rpc('vendor_receipt_book_save_v1',{p_revision:0,p_request_id:randomUUID(),p_book:{...emptyBook(),receipts:[{receipt:unknown,customerId:null}]}}));
+   const sale=ok(await client.rpc('vendor_sales_cart_complete_v1',{p_request_id:randomUUID(),p_cart:{version:1,storeName:'Event proof store',method:'Cash',items:[{instanceId:f.instance,description:'Known-cost sale',quantity:1,unitMinor:10000}],taxMinor:0,note:'',customerId:null,customer}}));
+   const purchase=ok(await client.rpc('vendor_sales_cart_complete_v4',{p_request_id:randomUUID(),p_cart:{version:4,kind:'purchase',storeName:'Event proof store',items:[{description:'Recorded inventory purchase',quantity:1,unitMinor:700,referenceMinor:null,rateBps:null,cardId:null,printingId:null,condition:null,addToVault:false}],payments:[{method:'Cash',amountMinor:700,tenderedMinor:700}],note:'',customerId:null,customer}}));
+   const trade=ok(await client.rpc('vendor_sales_cart_complete_v5',{p_request_id:randomUUID(),p_cart:{version:5,storeName:'Event proof store',method:'Cash',items:[{instanceId:null,description:'Recorded trade sale',quantity:1,unitMinor:1000}],taxMinor:0,note:'',customerId:null,customer,trades:[{description:'Recorded incoming trade',quantity:1,valueMinor:null,rateBps:null,creditMinor:650,cardId:null,printingId:null,condition:null,addToVault:false}],payments:[{method:'Cash',amountMinor:350,tenderedMinor:500}]}})).receipt;
+   f.receipts={unknown,sale,purchase,trade};f.eventDate=new Date().toISOString().slice(0,10);f.immutable={modernReceipts:await q('select receipt from vendor_sales_cart_receipts where owner_id=$1 order by request_id',[f.owner]),costSnapshots:await q('select snapshot from vendor_sale_cost_snapshots where owner_id=$1 order by request_id',[f.owner]),book:await q('select book from vendor_receipt_books where owner_id=$1',[f.owner]),copies:await q('select to_jsonb(t) row from vault_item_instances t where user_id=$1 order by id',[f.owner]),dispositions:await q('select to_jsonb(t) row from vault_item_instance_dispositions t where user_id=$1 order by to_jsonb(t)::text',[f.owner])};
+   assert.equal(f.immutable.book[0].book.receipts.length,4);const known=f.immutable.costSnapshots.find(row=>row.snapshot.receiptId===sale.id);assert.equal(known.snapshot.lines[0].cost.minor,'6000');assert.equal(f.immutable.modernReceipts.length,3);await retain(f);f.state='prepared';save('fixture.private.json',f,false);save('prepared.json',{status:'passed',at:new Date().toISOString(),owner:f.owner,knownCostMinor:'6000',receiptCount:4,retainedTables:tables.length,actualAuthRpc:true,productionWrites:0});console.log(JSON.stringify({run,state:f.state}));
+  }catch(error){save('prepare-failure.json',{name:error.name,message:error.message,stack:error.stack});await restore(f);throw error;}
+ }
+}finally{if(client)await client.auth.signOut({scope:'local'}).catch(()=>{});await db.end();}

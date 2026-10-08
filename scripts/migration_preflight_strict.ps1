@@ -67,6 +67,9 @@ param(
   [switch]$ProductEconomicsBaselineV1,
   [switch]$ProductPurchaseBaselineV1,
   [switch]$ProductOfferTradeBaselineV1,
+  [switch]$ProductCostHistoryBaselineV1,
+  [switch]$ProductCostHistoryV1,
+  [switch]$ProductCostHistoryReleaseBaselineV1,
   [switch]$ProductDiscountBaselineV1,
   [switch]$ProductDiscountReleaseBaselineV1,
   [switch]$ProductDiscountV1,
@@ -106,6 +109,35 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductCostHistoryReleaseBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductCostHistoryReleaseBaselineV1') }).Count -gt 0) {
+    throw 'ProductCostHistoryReleaseBaselineV1 supports only the fixed read-only source437 release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_cost_history_release_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Historical cost release baseline failed.' }
+  exit 0
+}
+
+if ($ProductCostHistoryV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000,20261008130000,20261008160000,20261008170000,20261008190000'
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductCostHistoryV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductCostHistoryV1 requires exactly the seven qualified cost, purchase, Trade, event, discount, cancellation and correction migrations; delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_cost_history_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Cost history release gate failed.' }
+  exit 0
+}
+
+if ($ProductCostHistoryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductCostHistoryBaselineV1') }).Count -gt 0) {
+    throw 'ProductCostHistoryBaselineV1 supports only the fixed read-only pre-change source436 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_cost_history_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Historical cost baseline failed.' }
+  exit 0
+}
 
 if ($ProductDiscountV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

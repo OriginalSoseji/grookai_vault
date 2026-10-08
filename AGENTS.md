@@ -1,5 +1,60 @@
 # Grookai Agent Entry Point
 
+## Cost history runtime — current continuation
+
+Browser cost history passes nine scenarios; payment review passes four scenarios
+at phone/tablet/desktop widths. Physical Samsung436 passes a real SQLite recovery
+across two processes, with four exact corrections and no duplicate apply. All29
+images are reviewed and bound to current source. Original receipts/snapshots and
+38-table fixture retention pass. Every runtime control is restored.
+
+Exact436 full replay,35 SQL cases, actual Auth including both forced cancellation
+lock orders, reapply and independent shadow pass. Shadow raw/normalized drift0,
+1237 security objects. Populated upgrade and ordinary release gates are still in
+progress; external CHECKPOINT owns terminal results. SQL bytes stay frozen.
+Use only the dedicated ProductCostHistoryV1 and run_product_cost_history_checks_v1
+helpers here. No production apply/deploy/activation, provider fetch, upload,
+messages or subagents. Physical iOS, R3/R4 and measured competitive tasks remain.
+
+## Current continuation — storage resolved
+
+The user explicitly authorized freeing Mac space. Retained external
+mac-symbol-cleanup-v2.private.log proves removal only of three obsolete finalized
+iPhone18,1 iOS26.4/26.5 symbol caches; connected device runs27.0. Free space is now
+18371751936 bytes. Archives, projects, simulators, DerivedData and current27.0
+symbols remain. The earlier storage question and no-build blocker are resolved.
+Wider437 shadow/reapply/Auth qualification passes; SQL bytes stay frozen. Corrected
+event/CSV and native regressions pass100 tests; cost widgets pass7; focused lint
+and analysis pass. Actual browser/Samsung, exact436 release, physical iOS and the
+full R3/R4/competitive work remain open. External CHECKPOINT owns current facts.
+
+## Historical cost correction — current work
+
+Work in C:/gv_product_cost_history_20261008 from locally qualified discount commit
+070e87baafccc7ad81a3a90c7ee07c0cb4ae549a. Read docs/ops/PRODUCT_COST_HISTORY_20261008.md
+and C:/grookai_vault_operator_artifacts/product_cost_history_20261008/SCOPE.json.
+The full goal remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md.
+Run the dedicated ProductCostHistoryBaselineV1 before product/schema edits. Source
+starts at436; preserve every existing migration byte. Parent exact435/433/432 labs,
+all older populated fixtures, prior trees, Samsung434 and primary app remain intact.
+Do not run inherited fixed-root mutation or release wrappers in this checkout.
+
+Add explicit owner-attributed historical cost corrections with reasons and audited
+revisions; preserve original receipts, dispositions and immutable snapshots. Keep
+original and corrected report bases distinguishable. Review legacy receipt content
+and identity before extending correction authority. Missing historical discount
+allocation cannot become invented evidence. Reuse current Reports and private
+recovery patterns. New authority requires default-off entry, exact idempotency,
+owner isolation, stale-edit handling and durable recovery plus full local proof.
+No production apply/deploy/activation, provider fetch, upload, external messages or
+subagents. No Mac build/cleanup while storage is unavailable. Latest read-only Mac
+probe:110312KiB free, iPhone17Pro paired/available, no external disk. A user storage
+question is pending; continue independent overhaul work. External CHECKPOINT owns
+current sessions and facts. The failed first checkout log and all prior failed
+proofs remain preserved. This new checkout's docs compression preserves all16842
+file contents, paths and write times. Qualified mobile Trade docs were also verified
+unchanged after physical compression; no caches or labs were removed.
+
 ## Discount release continuation — latest
 
 Actual browser ui-1791480860087 and physical Samsung434 ui-1791480536030 pass.

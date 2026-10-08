@@ -33,6 +33,7 @@ class _EventReportsPanelState extends State<EventReportsPanel> {
   EventEditDraft? _edit;
   String? _selectedId;
   String _section = 'Totals',
+      _costBasis = 'original',
       _query = '',
       _method = '',
       _scope = 'suggested',
@@ -127,11 +128,21 @@ class _EventReportsPanelState extends State<EventReportsPanel> {
       setState(() => _state = state);
       if (id != null && state['receiptAccess'] == true) {
         try {
-          final data = await widget.reader.report(
+          var data = await widget.reader.report(
             id,
             state: state,
             isCurrent: () => _current(generation),
           );
+          if (_costBasis == 'owner_corrected') {
+            final reader = widget.reader;
+            if (reader is! EventCostCorrectionSource) {
+              throw StateError('Corrected cost history is unavailable.');
+            }
+            data = await (reader as EventCostCorrectionSource).corrected(
+              data,
+              isCurrent: () => _current(generation),
+            );
+          }
           widget.service.checkOwner();
           if (!_current(generation)) return false;
           setState(() {
@@ -179,6 +190,8 @@ class _EventReportsPanelState extends State<EventReportsPanel> {
         bookRevision: data['bookRevision'] as String,
         receipts: data['receipts'] as List,
         snapshots: data['snapshots'] as List,
+        costBasis: data['costBasis'] as String? ?? 'original',
+        correctionStates: data['correctionStates'] as List?,
         query: _query,
         method: _method,
       );
@@ -876,6 +889,12 @@ class _EventReportsPanelState extends State<EventReportsPanel> {
         _notice('No event expenses recorded.'),
     ],
   );
+  String _historyTime(String timestamp) {
+    final local = DateTime.parse(timestamp).toLocal();
+    final labels = MaterialLocalizations.of(context);
+    return '${labels.formatMediumDate(local)} · ${labels.formatTimeOfDay(TimeOfDay.fromDateTime(local), alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(context))} (${local.timeZoneName}, device time)';
+  }
+
   Widget _changes() => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
@@ -898,14 +917,20 @@ class _EventReportsPanelState extends State<EventReportsPanel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      eventOperationLabels[op['type']] ?? 'Event changed',
+                      const {
+                            'event_create': 'Event created',
+                            'event_update': 'Event details updated',
+                            'event_close': 'Event closed',
+                            'event_reopen': 'Event reopened',
+                            'expense_create': 'Expense added',
+                            'expense_update': 'Expense amended',
+                            'expense_void': 'Expense voided',
+                            'receipts_assign': 'Receipt assignments changed',
+                          }[op['type']] ??
+                          'Event changed',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
-                    Text(
-                      DateTime.parse(
-                        row['createdAt'] as String,
-                      ).toLocal().toString(),
-                    ),
+                    Text(_historyTime(row['createdAt'] as String)),
                     if (op['name'] != null)
                       Text(
                         '${op['name']} · ${op['startDate']} – ${op['endDate']} · ${op['timeZone']}',
@@ -1116,7 +1141,35 @@ class _EventReportsPanelState extends State<EventReportsPanel> {
                 )
                 .toList(),
           ),
-          if (_section == 'Totals' || _section == 'Receipts') _filters(),
+          if (_section == 'Totals' || _section == 'Receipts') ...[
+            _filters(),
+            DropdownButtonFormField<String>(
+              initialValue: _costBasis,
+              isExpanded: true,
+              itemHeight: null,
+              decoration: const InputDecoration(labelText: 'Cost basis'),
+              items: const [
+                DropdownMenuItem(
+                  value: 'original',
+                  child: Text('Original recorded costs'),
+                ),
+                DropdownMenuItem(
+                  value: 'owner_corrected',
+                  child: Text('With owner corrections'),
+                ),
+              ],
+              onChanged: _loading || _busy || _edit != null
+                  ? null
+                  : (value) {
+                      if (value == null || value == _costBasis) return;
+                      setState(() => _costBasis = value);
+                      unawaited(_load());
+                    },
+            ),
+            _notice(
+              'Totals and CSV use the selected cost basis. Owner corrections are later attestations; original receipts stay unchanged.',
+            ),
+          ],
           if (_reportError.isNotEmpty) _notice(_reportError, error: true),
           if (_state?['receiptAccess'] != true)
             _notice(

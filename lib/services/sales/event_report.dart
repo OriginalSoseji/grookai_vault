@@ -4,6 +4,7 @@ import 'sales_purchase.dart';
 import 'negotiated_trade.dart';
 import 'sales_payments.dart';
 import 'sales_profit.dart';
+import 'sale_cost_corrections.dart';
 
 String _amount(dynamic value) {
   if (value == null) return '';
@@ -102,6 +103,14 @@ String eventReportCsv(Map report) {
       report['receiptFilter']['query'],
       report['receiptFilter']['method'],
     ]);
+  }
+  rows.first.add('Cost basis');
+  for (final row in rows.skip(1)) {
+    row.add(
+      report['costBasis'] == 'owner_corrected'
+          ? 'Later owner corrections'
+          : 'Original cost at sale',
+    );
   }
   return rows.map((r) => r.map(_csvCell).join(',')).join('\r\n');
 }
@@ -308,7 +317,10 @@ Map<String, dynamic> eventReport({
   required List<dynamic> snapshots,
   String query = '',
   String method = '',
+  String costBasis = 'original',
+  List<dynamic>? correctionStates,
 }) {
+  _check(['original', 'owner_corrected'].contains(costBasis));
   final loaded = validateEventState(state, ownerId, eventId),
       selected = loaded['selected'] as Map;
   _check(
@@ -448,6 +460,17 @@ Map<String, dynamic> eventReport({
     ).compareTo(DateTime.parse(a['createdAt'] as String));
     return time != 0 ? time : (a['id'] as String).compareTo(b['id'] as String);
   });
+  final checkedCorrections = costBasis == 'owner_corrected'
+      ? validateSaleCostCorrectionStates(
+          correctionStates,
+          ownerId,
+          assigned.where((id) => !isPurchaseReceipt(unique[id])).toList(),
+        )
+      : null;
+  final visibleIds = rows
+      .where((r) => !isPurchaseReceipt(r))
+      .map((r) => (r['id'] as String).toLowerCase())
+      .toSet();
   final expenses = (selected['expenses'] as List)
           .where((e) => e['voided'] == false)
           .toList(),
@@ -455,7 +478,16 @@ Map<String, dynamic> eventReport({
         BigInt.zero,
         (n, e) => n + BigInt.parse(e['amountMinor'] as String),
       ),
-      profit = salesProfit(rows, snapshots),
+      profit = checkedCorrections == null
+          ? salesProfit(rows, snapshots)
+          : salesProfitCorrected(
+              rows,
+              snapshots,
+              checkedCorrections
+                  .where((s) => visibleIds.contains(s['receiptId']))
+                  .toList(),
+              ownerId,
+            ),
       paymentKeys = payments.keys.toList()..sort();
   return {
     'version': 1,
@@ -491,6 +523,7 @@ Map<String, dynamic> eventReport({
     'voidedExpenseCount':
         (selected['expenses'] as List).length - expenses.length,
     'profit': profit,
+    if (checkedCorrections != null) 'costBasis': 'owner_corrected',
     'knownCostEventSubtotalMinor': profit['knownProfitMinor'] == null
         ? null
         : '${BigInt.parse(profit['knownProfitMinor'] as String) - operating}',
