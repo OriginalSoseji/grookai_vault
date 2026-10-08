@@ -1,6 +1,7 @@
 import 'sales_trade.dart';
 import 'sales_payments.dart';
 import 'sales_purchase.dart';
+import 'negotiated_trade.dart';
 
 /// A receipt is a transaction, regardless of how many physical copies it holds.
 /// These are vendor-recorded receipts, not a Stripe settlement or profit ledger.
@@ -23,6 +24,11 @@ class SalesReport {
       final purchase = isPurchaseReceipt(receipt);
       if (purchase) {
         validatePurchaseReceipt(receipt);
+      }
+      if (receipt['tradeIn'] is Map &&
+          receipt['tradeIn']['version'] != null &&
+          receipt['tradeIn']['version'] != 1) {
+        validateNegotiatedSaleReceipt(receipt);
       }
       final tenders = receiptTenders(receipt);
       if (method != null &&

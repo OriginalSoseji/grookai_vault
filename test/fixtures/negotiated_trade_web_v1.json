@@ -1,0 +1,6581 @@
+{
+  "sourceSha256": "d49b4b81b3eb78cdce59f8f5d971da449cee665ebae237954e0fc444b8d7d2b9",
+  "cases": [
+    {
+      "name": "explicit credit 0",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 0
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 0
+        }
+      }
+    },
+    {
+      "name": "explicit credit 1",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 1
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 1
+        }
+      }
+    },
+    {
+      "name": "explicit credit 599",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 599
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 599
+        }
+      }
+    },
+    {
+      "name": "explicit credit 600",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 600
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 600
+        }
+      }
+    },
+    {
+      "name": "explicit credit 650",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      }
+    },
+    {
+      "name": "explicit credit 2000",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 2000
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 2000
+        }
+      }
+    },
+    {
+      "name": "explicit credit 100000000",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 100000000
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 100000000
+        }
+      }
+    },
+    {
+      "name": "no reference",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": null,
+          "rateBps": null,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "description": "Incoming bundle",
+          "valueMinor": null,
+          "rateBps": null,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      }
+    },
+    {
+      "name": "whole-line quantity",
+      "fn": "negotiatedTradeTotals",
+      "args": [
+        [
+          {
+            "description": "Incoming bundle",
+            "valueMinor": 1000,
+            "rateBps": 6000,
+            "quantity": 3,
+            "cardId": null,
+            "printingId": null,
+            "condition": null,
+            "addToVault": false,
+            "creditMinor": 650
+          }
+        ]
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "items": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": 1000,
+              "rateBps": 6000,
+              "quantity": 3,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "totalValueMinor": 3000,
+          "totalCreditMinor": 650
+        }
+      }
+    },
+    {
+      "name": "unknown mixed reference total",
+      "fn": "negotiatedTradeTotals",
+      "args": [
+        [
+          {
+            "description": "Incoming bundle",
+            "valueMinor": 1000,
+            "rateBps": 6000,
+            "quantity": 1,
+            "cardId": null,
+            "printingId": null,
+            "condition": null,
+            "addToVault": false,
+            "creditMinor": 650
+          },
+          {
+            "description": "Incoming bundle",
+            "valueMinor": null,
+            "rateBps": null,
+            "quantity": 1,
+            "cardId": null,
+            "printingId": null,
+            "condition": null,
+            "addToVault": false,
+            "creditMinor": 650
+          }
+        ]
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "items": [
+            {
+              "description": "Incoming bundle",
+              "valueMinor": 1000,
+              "rateBps": 6000,
+              "quantity": 1,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            },
+            {
+              "description": "Incoming bundle",
+              "valueMinor": null,
+              "rateBps": null,
+              "quantity": 1,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false,
+              "creditMinor": 650
+            }
+          ],
+          "totalValueMinor": null,
+          "totalCreditMinor": 1300
+        }
+      }
+    },
+    {
+      "name": "invalid line 0",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": null,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 1",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": null,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 2",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 0,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 3",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 0,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 4",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 10001,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 5",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 0,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 6",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1000,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 7",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1.5,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 8",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": -1
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 9",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 0.5
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 10",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": "650"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 11",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 100000001
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 12",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 100000000,
+          "rateBps": 6000,
+          "quantity": 2,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 13",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": true,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 14",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": "11111111-1111-4111-8111-111111111111",
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 15",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": "NM",
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 16",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": " ",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 17",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "bad\ntext",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid line 18",
+      "fn": "validateNegotiatedTradeLine",
+      "args": [
+        {
+          "description": "Incoming bundle",
+          "valueMinor": 1000,
+          "rateBps": 6000,
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "addToVault": false,
+          "creditMinor": 650,
+          "unexpected": true
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "request",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid request 0",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 3,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 1",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "kind": "sale"
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 2",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 3",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 4",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 5",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              },
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 6",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 0
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 7",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "bad",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 8",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 2,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 9",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": -1,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 10",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 100000000,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 11",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE",
+              "extra": true
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 12",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "bad\nname",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 13",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 14",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": "bad",
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 15",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 349,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 16",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Other",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 17",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 300
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 18",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid request 19",
+      "fn": "validateNegotiatedTradeRequest",
+      "args": [
+        {
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "balanceMinor": 350,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "changeMinor": 150
+          }
+        }
+      }
+    },
+    {
+      "name": "invalid receipt 0",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 2,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 1",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "wrong",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 2",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-02-30T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 3",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 4",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 1,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 5",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 600,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 6",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": null,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 7",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 999
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 8",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 1,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 9",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 0,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 10",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 999,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 11",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000,
+              "instanceId": "22222222-2222-4222-8222-222222222222"
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 12",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 0
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 13",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Other",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "invalid receipt 14",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "bad",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "confirmed",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "balanceMinor": 350,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "changeMinor": 150
+          }
+        }
+      }
+    },
+    {
+      "name": "echo object keys may reorder",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "notes": "PRIVATE CONTACT NOTE",
+                "wants": "PRIVATE WANTS",
+                "phone": "",
+                "email": "private@example.invalid",
+                "name": "Private buyer"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "balanceMinor": 350,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "changeMinor": 150
+          }
+        }
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 0",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 2,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 1",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          },
+          "extra": true
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 2",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "11111111-1111-4111-8111-111111111111",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 3",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "changed",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 4",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "changed"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 5",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "22222222-2222-4222-8222-222222222222",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 6",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "22222222-2222-4222-8222-222222222222",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 7",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "changed",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 8",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "changed",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 9",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "changed",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 10",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": null,
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 11",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 5000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 12",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "changed",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mismatched acknowledgement 13",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 2000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 2000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "confirmed balance 0",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Other",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 1000
+                }
+              ],
+              "payments": []
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Other",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 1000,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 1000,
+              "balanceMinor": 0
+            },
+            "payments": {
+              "version": 1,
+              "entries": [],
+              "balanceMinor": 0,
+              "changeMinor": 0
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Other",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 1000
+              }
+            ],
+            "payments": []
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Other",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 1000,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 1000,
+            "balanceMinor": 0
+          },
+          "payments": {
+            "version": 1,
+            "balanceMinor": 0,
+            "entries": [],
+            "changeMinor": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "confirmed balance -500",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "11111111-1111-4111-8111-111111111111",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 1500
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 500,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 1500,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 1500,
+              "balanceMinor": -500
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 500,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": -500,
+              "changeMinor": 0
+            }
+          }
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111111",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 1500
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 500,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 1500,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 1500,
+            "balanceMinor": -500
+          },
+          "payments": {
+            "version": 1,
+            "balanceMinor": -500,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 500,
+                "tenderedMinor": 500
+              }
+            ],
+            "changeMinor": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "customer projection",
+      "fn": "negotiatedTradeCustomerView",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "number": "GV-20261008-11111111",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "trades": [
+            {
+              "description": "Incoming bundle",
+              "quantity": 1,
+              "creditMinor": 650
+            }
+          ],
+          "totalCreditMinor": 650,
+          "balanceMinor": 350,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": 350,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "changeMinor": 150
+          }
+        }
+      }
+    },
+    {
+      "name": "unsupported year 0000-10-08T05:00:00.000Z",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-00001008-11111111",
+          "createdAt": "0000-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "unsupported year +010000-10-08T05:00:00.000Z",
+      "fn": "validateNegotiatedSaleReceipt",
+      "args": [
+        {
+          "version": 1,
+          "id": "11111111-1111-4111-8111-111111111111",
+          "number": "GV-+01000010-11111111",
+          "createdAt": "+010000-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "balanceMinor": 350,
+            "changeMinor": 150
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "RPC UUID casing preserves identity with exact cart echo",
+      "fn": "confirmedNegotiatedTrade",
+      "args": [
+        {
+          "version": 1,
+          "request": {
+            "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "cart": {
+              "version": 5,
+              "storeName": "Trade store",
+              "method": "Cash",
+              "items": [
+                {
+                  "instanceId": "22222222-2222-4222-8222-222222222222",
+                  "description": "Outgoing card",
+                  "quantity": 1,
+                  "unitMinor": 1000
+                }
+              ],
+              "taxMinor": 0,
+              "note": "PRIVATE NOTE",
+              "customer": {
+                "name": "Private buyer",
+                "email": "private@example.invalid",
+                "phone": "",
+                "wants": "PRIVATE WANTS",
+                "notes": "PRIVATE CONTACT NOTE"
+              },
+              "customerId": null,
+              "trades": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650
+                }
+              ],
+              "payments": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ]
+            }
+          },
+          "receipt": {
+            "version": 1,
+            "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "number": "GV-20261008-AAAAAAAA",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        },
+        {
+          "id": "AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA",
+          "cart": {
+            "version": 5,
+            "storeName": "Trade store",
+            "method": "Cash",
+            "items": [
+              {
+                "instanceId": "22222222-2222-4222-8222-222222222222",
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000
+              }
+            ],
+            "taxMinor": 0,
+            "note": "PRIVATE NOTE",
+            "customer": {
+              "name": "Private buyer",
+              "email": "private@example.invalid",
+              "phone": "",
+              "wants": "PRIVATE WANTS",
+              "notes": "PRIVATE CONTACT NOTE"
+            },
+            "customerId": null,
+            "trades": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ]
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 1,
+          "id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "number": "GV-20261008-AAAAAAAA",
+          "createdAt": "2026-10-08T05:00:00.000Z",
+          "storeName": "Trade store",
+          "customerName": "Private buyer",
+          "method": "Cash",
+          "items": [
+            {
+              "description": "Outgoing card",
+              "quantity": 1,
+              "unitMinor": 1000,
+              "lineMinor": 1000
+            }
+          ],
+          "subtotalMinor": 1000,
+          "discountMinor": 0,
+          "taxMinor": 0,
+          "totalMinor": 1000,
+          "note": "PRIVATE NOTE",
+          "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+          "tradeIn": {
+            "version": 2,
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "valueMinor": 1000,
+                "rateBps": 6000,
+                "quantity": 1,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "creditMinor": 650,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "totalValueMinor": 1000,
+            "totalCreditMinor": 650,
+            "balanceMinor": 350
+          },
+          "payments": {
+            "version": 1,
+            "balanceMinor": 350,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 350,
+                "tenderedMinor": 500
+              }
+            ],
+            "changeMinor": 150
+          }
+        }
+      }
+    }
+  ]
+}

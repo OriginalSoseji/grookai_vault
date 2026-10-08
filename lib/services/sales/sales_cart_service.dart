@@ -8,6 +8,7 @@ import '../gvvi/vendor_pricing_workspace_service.dart';
 import '../../models/card_print.dart';
 import '../public/public_card_printing_options_service.dart';
 import 'sales_trade.dart';
+import 'negotiated_trade.dart';
 import 'sales_purchase.dart';
 import 'sales_payments.dart';
 import 'sales_search_cache.dart';
@@ -123,7 +124,13 @@ class SalesDeskData {
         .map((c) => Map<String, dynamic>.from(c as Map))
         .toList(),
     receipts: (book['receipts'] as List)
-        .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
+        .map(
+          (r) =>
+              r['receipt']['tradeIn'] is Map &&
+                  r['receipt']['tradeIn']['version'] != 1
+              ? validateNegotiatedSaleReceipt(r['receipt'])
+              : Map<String, dynamic>.from(r['receipt'] as Map),
+        )
         .toList(),
     tradesAvailable: tradesAvailable,
     paymentsAvailable: paymentsAvailable,
@@ -813,6 +820,9 @@ class SalesCartService {
 }
 
 String saleReceiptText(Map<String, dynamic> receipt) {
+  if (receipt['tradeIn'] is Map && receipt['tradeIn']['version'] != 1) {
+    return negotiatedTradeReceiptText(receipt, (n) => 'USD ${saleMoney(n)}');
+  }
   if (isPurchaseReceipt(receipt)) {
     return purchaseReceiptText(receipt, (n) => 'USD ${saleMoney(n)}');
   }

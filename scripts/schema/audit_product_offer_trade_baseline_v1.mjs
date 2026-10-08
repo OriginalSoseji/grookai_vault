@@ -8,7 +8,7 @@ import {snapshotSql,compareSnapshots} from './vendor_billing_schema_v1.mjs';
 import {query,ref,dbUrl} from '../release/storefront_production_live_common_v1.mjs';
 assert.equal(process.argv.length,2);
 const root=fileURLToPath(new URL('../../',import.meta.url));
-assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_product_offer_policy_20261007');
+assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_product_negotiated_trade_20261007');
 assert.equal(fs.realpathSync('.'),fs.realpathSync(root));
 assert.equal(ref,'ycdxbpibncqcchqiihfz');
 assert.equal(new URL(dbUrl).hostname,ref+'.supabase.co');
@@ -47,7 +47,7 @@ assert.equal(JSON.parse(docker(['network','inspect',project]))[0].Internal,true)
 const local=JSON.parse(docker(['exec','-i',container,'psql','-U','postgres','-d','postgres','-X','-qAt','-v','ON_ERROR_STOP=1'],snapshotSql));
 assert.equal(local.read_only,'on');
 assert.deepEqual(local.LEDGER,read(prior+'/replayed.private.json').LEDGER);
-const base='C:/grookai_vault_operator_artifacts/product_offer_policy_20261007',out=base+'/baseline-'+Date.now();
+const base='C:/grookai_vault_operator_artifacts/product_negotiated_trade_20261007',out=base+'/baseline-'+Date.now();
 fs.mkdirSync(out,{recursive:true});
 fs.writeFileSync(out+'/local.private.json',JSON.stringify(local),{flag:'wx'});
 const retainedComparison=await compareSnapshots(read(prior+'/replayed.private.json'),local,{reconcile:true,output:out+'/retained-comparison'});

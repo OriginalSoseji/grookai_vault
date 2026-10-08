@@ -1,6 +1,7 @@
 import {validatePayments, paymentLines} from '../sales/salesPayments.mjs';
 import { validateTradeReceipt, tradeReceiptLines } from './tradeReceipt.mjs';
 import {isPurchaseReceipt,validatePurchaseReceipt,purchaseReceiptText} from '../sales/salesPurchase.mjs';
+import {isNegotiatedTradeReceipt,validateNegotiatedSaleReceipt,negotiatedTradeReceiptText} from '../sales/negotiatedTrade.mjs';
 export const BOOK_VERSION = 1;
 const METHODS = ['Cash', 'Card (external terminal)', 'Bank / payment app', 'Other'];
 export const paymentMethods = METHODS;
@@ -52,6 +53,7 @@ export function saveSale(book,receipt,customer,id) {
 }
 export function receiptText(r) {
   if(isPurchaseReceipt(r))return purchaseReceiptText(r,money);
+  if(isNegotiatedTradeReceipt(r))return negotiatedTradeReceiptText(r,money);
   return [r.storeName,'SALES RECEIPT',r.number,new Date(r.createdAt).toLocaleString(),r.customerName?`Customer: ${r.customerName}`:'',
     ...r.items.map(i=>`${i.quantity} × ${i.description} @ ${money(i.unitMinor)} — ${money(i.lineMinor)}`),
     `Subtotal: ${money(r.subtotalMinor)}`,`Discount: ${money(r.discountMinor)}`,`Tax recorded: ${money(r.taxMinor)}`,`TOTAL: ${money(r.totalMinor)}`,
@@ -78,6 +80,10 @@ export function parseBackup(raw) {
     check(!r.sourceDispositionId||!sources.has(r.sourceDispositionId),'Duplicate source sale.');if(r.sourceDispositionId)sources.add(r.sourceDispositionId);
     if(isPurchaseReceipt(r)){
       const restored=validatePurchaseReceipt(r);
+      check(row.customerId===null||customerIds.has(row.customerId),'Missing customer record.');return {receipt:restored,customerId:row.customerId};
+    }
+    if(isNegotiatedTradeReceipt(r)){
+      const restored=validateNegotiatedSaleReceipt(r);
       check(row.customerId===null||customerIds.has(row.customerId),'Missing customer record.');return {receipt:restored,customerId:row.customerId};
     }
     check(r.version===1,'Unsupported receipt version. Preserve the original backup.');

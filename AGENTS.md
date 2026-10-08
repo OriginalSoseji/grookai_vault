@@ -1,5 +1,33 @@
 # Grookai Agent Entry Point
 
+## Negotiated trade continuation — October 7
+
+Read docs/ops/PRODUCT_NEGOTIATED_TRADE_20261007.md and VENDOR_NEGOTIATED_TRADE_V1.
+Work in C:/gv_product_negotiated_trade_20261007 from qualifiedf649c12aa. Preserve
+the clean policy candidate, Samsung417 evidence and all older worktrees/labs.
+Its normal hook passed7,796 contracts and1,771 native tests plus web checks and
+analysis. Full432 retains63 copies/14 users with controls off. The external
+product_negotiated_trade_20261007/CHECKPOINT.json owns current results. Rerun the
+fixed read-only ProductOfferTradeBaselineV1 here before new SQL; no production
+apply or populated-lab reset. Introduce explicit credit through additive v5
+authority and compatible readers, never falsified reference prices. Keep the
+full overhaul active and preserve pending/held requests across all versions.
+
+The fresh baseline passes at baseline-1791436404656. New strict request/receipt
+models and compatible readers pass202 focused Node and106 native tests with88
+shared vectors. Migration20261008060000 is now implemented, default off; backend
+qualification is in progress. Full433 failed attempts1–3 are preserved; attempt4
+uses product-trade-full-433-v4-20261007 and33560/33561. The external checkpoint
+owns actual outcomes. Do not rerun the pre-SQL432 baseline against source433 or
+use inherited purchase qualification scripts. No new entry UI exists yet.
+Full433 replay, retained432 upgrade,79 SQL parity cases, real Auth/RPC recovery
+and exact reapplication now pass. Retain58 copies/two users with all eight controls
+off. Run the dedicated negotiated-trade normal wrapper; freeze source/full433
+until terminal. External CHECKPOINT.json owns the ordinary-hook result.
+The first full hook exposed a legacy checkout mock missing its actual server v1
+trade discriminator. That fixture is corrected and106 focused native tests pass.
+Readers and qualified SQL are unchanged; preserve failed ordinary attempt1.
+
 ## Cash and trade offer policies — October 7
 
 Read docs/ops/PRODUCT_OFFER_POLICY_20261007.md and VENDOR_OFFER_POLICIES_V1.

@@ -1,5 +1,33 @@
 # Grookai Operator Playbook V1
 
+## Negotiated trade continuation — October 7
+
+The fresh baseline-1791436404656 passes. Explicit-credit web/native models and
+compatible receipt/report/share readers now pass202 Node and106 native checks.
+Source433 adds default-off v5 completion and bound v2 recovery through the same
+owner journal; old writers are unchanged. Qualification uses the dedicated
+product_negotiated_trade_lab_v1, product_negotiated_trade_sql_v1 and
+product_negotiated_trade_rpc_v1 scripts. Keep all failed attempts1–3. Attempt4's
+short project names avoid CLI truncation; relay DB target is5432, loopback full
+ports33560/33561 and upgrade33580/33581, internal networks10.246.77/78. Exact git
+blob comparison now batches reads. External CHECKPOINT.json owns terminal
+results; do not infer qualification or enable entry from source implementation.
+Full433 replay and retained432 upgrade now pass, as do79 SQL parity cases, actual
+Auth/RPC failure/recovery cases and exact migration reapplication. Full433 retains
+58 copies/two users/eight requests/seven cost snapshots, controls off. The dedicated
+run_product_negotiated_trade_checks_v1 wrapper pins this lab, uses read-only
+credentials and checks14 retained table fingerprints. Freeze source/full433 during
+its ordinary hook; the external checkpoint owns the outcome. Entry remains pending.
+
+Use C:/gv_product_negotiated_trade_20261007 from qualified policyf649c12aa. Read
+PRODUCT_NEGOTIATED_TRADE_20261007 and VENDOR_NEGOTIATED_TRADE_V1. The policy tree
+remains clean with full checks and Samsung417 proof. Preserve63 copies/14 users
+in full432 with controls off. The fixed read-only ProductOfferTradeBaselineV1
+now writes to product_negotiated_trade_20261007 before any new SQL exists. Do not
+run inherited device/normal scripts as new trade proof: they target old policy
+evidence and432 authority. New433 replay, retained432 upgrade and exact v5
+Auth/recovery fixtures must have fresh identities and isolated fixed paths.
+
 ## Cash and trade offer policy continuation — October 7
 
 Use C:/gv_product_offer_policy_20261007 on qualifiedf5d5b69a. The separate Buy

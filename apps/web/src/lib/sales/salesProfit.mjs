@@ -1,5 +1,6 @@
 // Private cost-at-sale evidence only. Current inventory cost is never an input.
 import {isPurchaseReceipt,validatePurchaseReceipt} from './salesPurchase.mjs';
+import {validateNegotiatedSaleReceipt} from './negotiatedTrade.mjs';
 const uuid = value => typeof value==='string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 const integer = (value,positive=false) => {
   if(!Number.isSafeInteger(value) || value < (positive?1:0))throw Error('Recorded sales need review before profit can be calculated.');
@@ -54,6 +55,7 @@ export function salesProfit(receipts,snapshots) {
   }
   for(const receipt of rows.values()){
     if(isPurchaseReceipt(receipt)){validatePurchaseReceipt(receipt);purchases++;continue;}
+    if(receipt.tradeIn?.version!=null && receipt.tradeIn.version!==1)validateNegotiatedSaleReceipt(receipt);
     if(typeof receipt.createdAt!=='string' || !Number.isFinite(Date.parse(receipt.createdAt)) || !Array.isArray(receipt.items) || !receipt.items.length || receipt.items.length>1000)throw Error('Recorded sales need review before profit can be calculated.');
     const items=receipt.items.map(item=>({units:integer(item.quantity,true),sales:integer(item.quantity,true)*integer(item.unitMinor)}));
     const subtotal=items.reduce((n,item)=>n+item.sales,0n),quantity=items.reduce((n,item)=>n+item.units,0n);

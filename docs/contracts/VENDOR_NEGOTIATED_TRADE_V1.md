@@ -83,6 +83,16 @@ Bind every returned or recovered receipt to that full request, including agreed
 credit and external settlement. Failed storage, changed account, uncertain
 outcome or mismatched reply cannot authorize a replacement request.
 
+The private v5 completion acknowledgement has exactly version1, request and
+receipt. request is the stored `{id,cart}`; compare it structurally with the
+exact pending request before accepting the receipt. The existing sale receipt
+does not identify every outgoing physical copy, so receipt totals alone cannot
+prove this binding. A new owner-only vendor_sales_cart_read_v2(request_id,cart)
+reads the same existing journal, rejects a changed payload and returns the same
+acknowledgement before any entry-control check. It does not create another
+ledger or mutate requests. Old read/writer outputs remain unchanged. The new
+writer does not append private outgoing GVVI identifiers to display descriptions.
+
 ## Required evidence
 
 Shared JS/Dart/SQL fixtures cover explicit credit above/below its suggestion,

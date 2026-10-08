@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'sales_purchase.dart';
+import 'negotiated_trade.dart';
 
 // Private, immutable cost-at-sale evidence. Current inventory cost is not an input.
 final _uuid = RegExp(
@@ -177,6 +178,11 @@ Map<String, Object?> salesProfit(
       validatePurchaseReceipt(receipt);
       purchases++;
       continue;
+    }
+    if (receipt['tradeIn'] is Map &&
+        receipt['tradeIn']['version'] != null &&
+        receipt['tradeIn']['version'] != 1) {
+      validateNegotiatedSaleReceipt(receipt);
     }
     if (_date(receipt['createdAt']) == null ||
         receipt['items'] is! List ||

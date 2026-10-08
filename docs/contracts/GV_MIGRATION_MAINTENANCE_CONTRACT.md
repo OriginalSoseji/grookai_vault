@@ -3,12 +3,13 @@
 ## Negotiated offer/trade baseline — October 7, 2026
 
 `-Phase AuditLinkedSchema -ProductOfferTradeBaselineV1` is read-only, fixed to
-`C:/gv_product_offer_policy_20261007`, before any negotiated-trade SQL exists.
+`C:/gv_product_negotiated_trade_20261007`, before any negotiated-trade SQL exists.
+The original policy candidate's passed audit remains preserved in its own tree.
 It pins all432 source migrations to qualified full432 and compares live429 to
 the retained qualified429 schema/security/ledger. Exactly three source files
 are pending: unchanged receipt delivery, cost evidence and purchase. Other
 phases, combined switches, migration sets, credentials and output overrides
-reject before inspection. External product_offer_policy_20261007/BASELINE_429.json
+reject before inspection. External product_negotiated_trade_20261007/BASELINE_429.json
 records actual results. No apply, reset, write activation or release authority
 is granted. New SQL still needs fresh full replay, retained upgrade, Auth/RPC,
 receipt compatibility, shadow and exact-package release qualification.
