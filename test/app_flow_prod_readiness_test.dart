@@ -359,7 +359,7 @@ void main() {
     expect(vault, contains('estimatedValue += visiblePrice'));
     expect(vault, isNot(contains('visiblePrice * ownedCount')));
     expect(vault, contains('valued copies'));
-    expect(vault, contains('30d trend pending'));
+    expect(vault, isNot(contains('30d trend pending')));
   });
 
   test('bottom dock collapse pauses while modal routes are active', () {

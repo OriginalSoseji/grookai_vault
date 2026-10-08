@@ -49,6 +49,14 @@ if (
 val lockedAcceptanceRequested =
     lockedAcceptanceFromProperty || lockedAcceptanceFromEnvironment
 
+val portfolioHistoryProofRequested = explicitBooleanFlag(
+    "GROOKAI_PORTFOLIO_HISTORY_PROOF",
+    providers.environmentVariable("GROOKAI_PORTFOLIO_HISTORY_PROOF").orNull,
+)
+if (portfolioHistoryProofRequested && (releaseSigningRequested || lockedAcceptanceRequested)) {
+    throw GradleException("Portfolio history proof requires its separate debug app.")
+}
+
 fun signingValue(name: String): String? {
     val fromProperty = keystoreProperties.getProperty(name)?.trim()
     if (!fromProperty.isNullOrEmpty()) return fromProperty
@@ -109,6 +117,11 @@ android {
     buildTypes {
         debug {
             manifestPlaceholders["usesCleartextTraffic"] = "true"
+            if (portfolioHistoryProofRequested) {
+                applicationIdSuffix = ".portfoliohistoryproof"
+                versionNameSuffix = "-portfolio-history-proof"
+                resValue("string", "app_name", "Grookai Portfolio History Proof")
+            }
             if (lockedAcceptanceRequested) {
                 applicationIdSuffix = ".lockedacceptance"
                 versionNameSuffix = "-locked-acceptance"

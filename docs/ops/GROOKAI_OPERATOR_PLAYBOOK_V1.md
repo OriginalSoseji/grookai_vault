@@ -1,5 +1,34 @@
 # Grookai Operator Playbook V1
 
+## Portfolio continuation and Mac Git storage — October 8
+
+Current work is C:/gv_product_portfolio_history_20261008 from qualified cost-history
+f19d39f20f35e030fffc9379d0d2eb1d854d6966. Read PRODUCT_PORTFOLIO_HISTORY_20261008.md
+and external product_portfolio_history_20261008/CHECKPOINT.json. Its dedicated
+pre-change baseline passed live429/source437. Portfolio capture, private history,
+comparison and durable recovery now exist on web/native. Nine actual browser cases
+and physical Samsung438 recovery across two processes pass, with15 source-bound
+images reviewed. Runtime fixtures are restored and protected phone apps unchanged.
+Wider438 SQL/Auth/reapply/shadow passes. Exact437 excludes deferred delivery;
+fresh live429/source438 baseline, replay, retained upgrade, SQL/Auth/reapply/shadow
+pass. Normal checks and read-only release gates remain in progress.
+No production release is qualified or deployed.
+
+Mac disk regression was traced to automatic Git maintenance started by our fetch,
+which left an abandoned17.8GB temporary pack. Guarded cleanup removed only that
+unopened file after stopping only our verified maintenance process group. Final
+free space29,912,305,664 bytes; other packs/refs, source, archives, simulators and
+current device symbols retained. Future Mac fetch/transfer commands use per-command
+-c maintenance.auto=false -c gc.auto=0. Do not enable global policy changes.
+
+Physical iOS remains blocked by local keychain interaction and macOS security
+policy stopping the signature-verified Dart executable before startup. Both user
+questions remain pending; do not bypass security or solicit passwords. No proof
+app installed, primary build347 unchanged, and the synthetic fixture is restored.
+Preserve the final source/overlay hashes and all failed receipts. The complete
+R3/R4 overhaul and physical iOS proof remain open; production writes are not allowed.
+
+
 ## Cost history runtime qualified — October 8
 
 The current cost-history browser run passes nine scenarios, payment review passes

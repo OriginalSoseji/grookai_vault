@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| PORTFOLIO_HISTORY_V1 | Active local capture/recovery contract; release gates pending | docs/contracts/PORTFOLIO_HISTORY_V1.md - Exact owner-private reference change decomposition, complete coverage and explicit storage/release gates |
 | VENDOR_OFFER_POLICIES_V1 | Active implementation contract; local candidate | docs/contracts/VENDOR_OFFER_POLICIES_V1.md - Owner-local cash/trade policies, exact proposal rounding, governed references and explicit agreed amounts; full trade and release qualification remain open |
 | VENDOR_NEGOTIATED_TRADE_V1 | Planned additive implementation; no migration yet | docs/contracts/VENDOR_NEGOTIATED_TRADE_V1.md - Independent agreed trade credit, nullable reference evidence, compatible receipts and exact request recovery |
 | PRODUCT_WORKSPACES_V1 | Active implementation contract; local candidate | docs/contracts/PRODUCT_WORKSPACES_V1.md - Retained vendor navigation, compact exact-copy inventory, private reports and draft-safe workspace exits |

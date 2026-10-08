@@ -50,6 +50,8 @@ import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/collection_projects_screen.dart';
+import 'screens/vault/portfolio_history_panel.dart';
+import 'services/vault/portfolio_history_service.dart';
 import 'screens/binders/binder_collaboration_screens.dart';
 import 'screens/binders/binder_discovery_screens.dart';
 import 'screens/binders/binder_library_screen.dart';

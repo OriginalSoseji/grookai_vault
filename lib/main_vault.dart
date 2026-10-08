@@ -2788,6 +2788,12 @@ class VaultPageState extends State<VaultPage> {
                     ),
                     const SizedBox(height: 12),
                   ],
+                  if (kPortfolioHistoryConfigured && _uid != null)
+                    PortfolioHistoryPanel(
+                      key: ValueKey('portfolio-history-$_uid'),
+                      ownerId: _uid!,
+                      compact: true,
+                    ),
                   Text(
                     'YOUR COLLECTION',
                     style: theme.textTheme.labelSmall?.copyWith(
@@ -2828,7 +2834,7 @@ class VaultPageState extends State<VaultPage> {
                   Text(
                     derivedData.estimatedValue == null
                         ? '$totalCards cards • ${_items.length} unique • $setCount sets • Value pending'
-                        : '$totalCards cards • ${_items.length} unique • ${derivedData.pricedCopyCount} valued copies • 30d trend pending',
+                        : '$totalCards cards • ${_items.length} unique • ${derivedData.pricedCopyCount} valued copies',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(
                         alpha: 0.66,

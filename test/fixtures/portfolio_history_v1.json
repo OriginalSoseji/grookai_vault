@@ -1,0 +1,5014 @@
+{
+  "version": 1,
+  "inputSha256": "02769f0421f1a179e81d79b62ad43cd66259cc84dc8516b56c8c47b55f35ad94",
+  "cases": [
+    {
+      "name": "all_six_components",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 5,
+          "priced": 4,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 5,
+              "priced": 4,
+              "unpriced": 1
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 1
+          },
+          "byCurrency": {
+            "USD": 4
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "33",
+            "display": "33.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 5,
+          "priced": 4,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 5,
+              "priced": 4,
+              "unpriced": 1
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 1
+          },
+          "byCurrency": {
+            "USD": 4
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "33",
+            "display": "33.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 5,
+            "priced": 4,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 5,
+                "priced": 4,
+                "unpriced": 1
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 1
+            },
+            "byCurrency": {
+              "USD": 4
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "33",
+              "display": "33.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 5,
+            "priced": 4,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 5,
+                "priced": 4,
+                "unpriced": 1
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 1
+            },
+            "byCurrency": {
+              "USD": 4
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "33",
+              "display": "33.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 1,
+          "removedCopies": 1,
+          "basisChangedCopies": 1,
+          "newlyPricedCopies": 1,
+          "lostPricedCopies": 1,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "33",
+            "after": "33",
+            "difference": "0",
+            "components": {
+              "marketMovement": "2",
+              "addedCopies": "5",
+              "removedCopies": "-8",
+              "newPriceCoverage": "7",
+              "lostPriceCoverage": "-11",
+              "basisChanges": "5"
+            },
+            "display": {
+              "scale": 2,
+              "before": "33.00",
+              "after": "33.00",
+              "difference": "0.00",
+              "components": {
+                "marketMovement": "2.00",
+                "addedCopies": "5.00",
+                "removedCopies": "-8.00",
+                "newPriceCoverage": "7.00",
+                "lostPriceCoverage": "-11.00",
+                "basisChanges": "5.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "subcent_aggregate",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 3,
+          "priced": 3,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 3,
+              "priced": 3,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 3
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "0.042",
+            "display": "0.04"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 3,
+          "priced": 3,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 3,
+              "priced": 3,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 3
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "0.048",
+            "display": "0.05"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 3,
+            "priced": 3,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 3,
+                "priced": 3,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 3
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "0.042",
+              "display": "0.04"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 3,
+            "priced": 3,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 3,
+                "priced": 3,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 3
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "0.048",
+              "display": "0.05"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 3,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "0.042",
+            "after": "0.048",
+            "difference": "0.006",
+            "components": {
+              "marketMovement": "0.006",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "0.04",
+              "after": "0.05",
+              "difference": "0.01",
+              "components": {
+                "marketMovement": "0.01",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "rounding_adjustment",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 2,
+          "priced": 1,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 2,
+              "priced": 1,
+              "unpriced": 1
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 1
+          },
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1",
+            "display": "1.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 2,
+          "priced": 2,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 2,
+              "priced": 2,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 2
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1.008",
+            "display": "1.01"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 2,
+            "priced": 1,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 2,
+                "priced": 1,
+                "unpriced": 1
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 1
+            },
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1",
+              "display": "1.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 2,
+            "priced": 2,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 2,
+                "priced": 2,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 2
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1.008",
+              "display": "1.01"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 1,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "1",
+            "after": "1.008",
+            "difference": "0.008",
+            "components": {
+              "marketMovement": "0.004",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0.004",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "1.00",
+              "after": "1.01",
+              "difference": "0.01",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.01"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "negative_half",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1.005",
+            "display": "1.01"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1",
+            "display": "1.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1.005",
+              "display": "1.01"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1",
+              "display": "1.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "1.005",
+            "after": "1",
+            "difference": "-0.005",
+            "components": {
+              "marketMovement": "-0.005",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "1.01",
+              "after": "1.00",
+              "difference": "-0.01",
+              "components": {
+                "marketMovement": "-0.01",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "large_exact",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "9007199254740993.000000000000000000000001",
+            "display": "9007199254740993.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "9007199254740993.000000000000000000000003",
+            "display": "9007199254740993.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "9007199254740993.000000000000000000000001",
+              "display": "9007199254740993.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "9007199254740993.000000000000000000000003",
+              "display": "9007199254740993.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "9007199254740993.000000000000000000000001",
+            "after": "9007199254740993.000000000000000000000003",
+            "difference": "0.000000000000000000000002",
+            "components": {
+              "marketMovement": "0.000000000000000000000002",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "9007199254740993.00",
+              "after": "9007199254740993.00",
+              "difference": "0.00",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "empty",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "empty",
+        "coverage": {
+          "owned": 0,
+          "priced": 0,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "empty",
+        "coverage": {
+          "owned": 0,
+          "priced": 0,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "empty",
+          "coverage": {
+            "owned": 0,
+            "priced": 0,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "empty",
+          "coverage": {
+            "owned": 0,
+            "priced": 0,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {},
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "all_unpriced",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "unpriced",
+        "coverage": {
+          "owned": 1,
+          "priced": 0,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 0,
+              "unpriced": 1
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 1
+          },
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "unpriced",
+        "coverage": {
+          "owned": 2,
+          "priced": 0,
+          "unpriced": 2,
+          "byKind": {
+            "raw": {
+              "owned": 2,
+              "priced": 0,
+              "unpriced": 2
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 2
+          },
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "unpriced",
+          "coverage": {
+            "owned": 1,
+            "priced": 0,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 0,
+                "unpriced": 1
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 1
+            },
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "unpriced",
+          "coverage": {
+            "owned": 2,
+            "priced": 0,
+            "unpriced": 2,
+            "byKind": {
+              "raw": {
+                "owned": 2,
+                "priced": 0,
+                "unpriced": 2
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 2
+            },
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "counts": {
+          "addedCopies": 1,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 1
+        },
+        "currencies": {},
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "remove_all",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "5",
+            "display": "5.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "empty",
+        "coverage": {
+          "owned": 0,
+          "priced": 0,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "5",
+              "display": "5.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "empty",
+          "coverage": {
+            "owned": 0,
+            "priced": 0,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 1,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "5",
+            "after": "0",
+            "difference": "-5",
+            "components": {
+              "marketMovement": "0",
+              "addedCopies": "0",
+              "removedCopies": "-5",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "5.00",
+              "after": "0.00",
+              "difference": "-5.00",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "0.00",
+                "removedCopies": "-5.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "first_add",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "empty",
+        "coverage": {
+          "owned": 0,
+          "priced": 0,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "5",
+            "display": "5.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "empty",
+          "coverage": {
+            "owned": 0,
+            "priced": 0,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "5",
+              "display": "5.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 1,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "0",
+            "after": "5",
+            "difference": "5",
+            "components": {
+              "marketMovement": "0",
+              "addedCopies": "5",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "0.00",
+              "after": "5.00",
+              "difference": "5.00",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "5.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "currency_changed",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "EUR": 1
+          }
+        },
+        "totals": {
+          "EUR": {
+            "exact": "10",
+            "display": "10.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "12",
+            "display": "12.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "EUR": 1
+            }
+          },
+          "totals": {
+            "EUR": {
+              "exact": "10",
+              "display": "10.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "12",
+              "display": "12.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 1,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "EUR": {
+            "before": "10",
+            "after": "0",
+            "difference": "-10",
+            "components": {
+              "marketMovement": "0",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "-10"
+            },
+            "display": {
+              "scale": 2,
+              "before": "10.00",
+              "after": "0.00",
+              "difference": "-10.00",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "-10.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          },
+          "USD": {
+            "before": "0",
+            "after": "12",
+            "difference": "12",
+            "components": {
+              "marketMovement": "0",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "12"
+            },
+            "display": {
+              "scale": 2,
+              "before": "0.00",
+              "after": "12.00",
+              "difference": "12.00",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "12.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "multiple_currencies",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 2,
+          "priced": 2,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 2,
+              "priced": 2,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "EUR": 1,
+            "USD": 1
+          }
+        },
+        "totals": {
+          "EUR": {
+            "exact": "4",
+            "display": "4.00"
+          },
+          "USD": {
+            "exact": "5",
+            "display": "5.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 2,
+          "priced": 2,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 2,
+              "priced": 2,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "EUR": 1,
+            "USD": 1
+          }
+        },
+        "totals": {
+          "EUR": {
+            "exact": "6",
+            "display": "6.00"
+          },
+          "USD": {
+            "exact": "3",
+            "display": "3.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 2,
+            "priced": 2,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 2,
+                "priced": 2,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "EUR": 1,
+              "USD": 1
+            }
+          },
+          "totals": {
+            "EUR": {
+              "exact": "4",
+              "display": "4.00"
+            },
+            "USD": {
+              "exact": "5",
+              "display": "5.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 2,
+            "priced": 2,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 2,
+                "priced": 2,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "EUR": 1,
+              "USD": 1
+            }
+          },
+          "totals": {
+            "EUR": {
+              "exact": "6",
+              "display": "6.00"
+            },
+            "USD": {
+              "exact": "3",
+              "display": "3.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 2,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "EUR": {
+            "before": "4",
+            "after": "6",
+            "difference": "2",
+            "components": {
+              "marketMovement": "2",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "4.00",
+              "after": "6.00",
+              "difference": "2.00",
+              "components": {
+                "marketMovement": "2.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          },
+          "USD": {
+            "before": "5",
+            "after": "3",
+            "difference": "-2",
+            "components": {
+              "marketMovement": "-2",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "5.00",
+              "after": "3.00",
+              "difference": "-2.00",
+              "components": {
+                "marketMovement": "-2.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "slabs_retained",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 2,
+          "priced": 1,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 1,
+              "priced": 0,
+              "unpriced": 1
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "unsupported_slab": 1
+          },
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "2",
+            "display": "2.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 2,
+          "priced": 1,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 1,
+              "priced": 0,
+              "unpriced": 1
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "unsupported_slab": 1
+          },
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "3",
+            "display": "3.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 2,
+            "priced": 1,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 1,
+                "priced": 0,
+                "unpriced": 1
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "unsupported_slab": 1
+            },
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "2",
+              "display": "2.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 2,
+            "priced": 1,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 1,
+                "priced": 0,
+                "unpriced": 1
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "unsupported_slab": 1
+            },
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "3",
+              "display": "3.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 1
+        },
+        "currencies": {
+          "USD": {
+            "before": "2",
+            "after": "3",
+            "difference": "1",
+            "components": {
+              "marketMovement": "1",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "2.00",
+              "after": "3.00",
+              "difference": "1.00",
+              "components": {
+                "marketMovement": "1.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "sealed_opened",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "25",
+            "display": "25.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "unpriced",
+        "coverage": {
+          "owned": 1,
+          "priced": 0,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 1,
+              "priced": 0,
+              "unpriced": 1
+            }
+          },
+          "byReason": {
+            "ineligible_seal_state": 1
+          },
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "25",
+              "display": "25.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "unpriced",
+          "coverage": {
+            "owned": 1,
+            "priced": 0,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 1,
+                "priced": 0,
+                "unpriced": 1
+              }
+            },
+            "byReason": {
+              "ineligible_seal_state": 1
+            },
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 1,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "25",
+            "after": "0",
+            "difference": "-25",
+            "components": {
+              "marketMovement": "0",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "-25"
+            },
+            "display": {
+              "scale": 2,
+              "before": "25.00",
+              "after": "0.00",
+              "difference": "-25.00",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "-25.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "basis_changed_unpriced",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "unpriced",
+        "coverage": {
+          "owned": 1,
+          "priced": 0,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 0,
+              "unpriced": 1
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 1
+          },
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "unpriced",
+        "coverage": {
+          "owned": 1,
+          "priced": 0,
+          "unpriced": 1,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 0,
+              "unpriced": 1
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 1
+          },
+          "byCurrency": {}
+        },
+        "totals": {}
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "unpriced",
+          "coverage": {
+            "owned": 1,
+            "priced": 0,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 0,
+                "unpriced": 1
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 1
+            },
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "unpriced",
+          "coverage": {
+            "owned": 1,
+            "priced": 0,
+            "unpriced": 1,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 0,
+                "unpriced": 1
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 1
+            },
+            "byCurrency": {}
+          },
+          "totals": {}
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 1,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {},
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "normalized_decimal",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1",
+            "display": "1.00"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "priced",
+        "coverage": {
+          "owned": 1,
+          "priced": 1,
+          "unpriced": 0,
+          "byKind": {
+            "raw": {
+              "owned": 1,
+              "priced": 1,
+              "unpriced": 0
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {},
+          "byCurrency": {
+            "USD": 1
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "2",
+            "display": "2.00"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1",
+              "display": "1.00"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "priced",
+          "coverage": {
+            "owned": 1,
+            "priced": 1,
+            "unpriced": 0,
+            "byKind": {
+              "raw": {
+                "owned": 1,
+                "priced": 1,
+                "unpriced": 0
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {},
+            "byCurrency": {
+              "USD": 1
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "2",
+              "display": "2.00"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 0,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 0,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "1",
+            "after": "2",
+            "difference": "1",
+            "components": {
+              "marketMovement": "1",
+              "addedCopies": "0",
+              "removedCopies": "0",
+              "newPriceCoverage": "0",
+              "lostPriceCoverage": "0",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "1.00",
+              "after": "2.00",
+              "difference": "1.00",
+              "components": {
+                "marketMovement": "1.00",
+                "addedCopies": "0.00",
+                "removedCopies": "0.00",
+                "newPriceCoverage": "0.00",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_0",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 26,
+          "priced": 18,
+          "unpriced": 8,
+          "byKind": {
+            "raw": {
+              "owned": 26,
+              "priced": 18,
+              "unpriced": 8
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 8
+          },
+          "byCurrency": {
+            "USD": 18
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1170.665",
+            "display": "1170.67"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 17,
+          "priced": 12,
+          "unpriced": 5,
+          "byKind": {
+            "raw": {
+              "owned": 17,
+              "priced": 12,
+              "unpriced": 5
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 5
+          },
+          "byCurrency": {
+            "USD": 12
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "555.348",
+            "display": "555.35"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 26,
+            "priced": 18,
+            "unpriced": 8,
+            "byKind": {
+              "raw": {
+                "owned": 26,
+                "priced": 18,
+                "unpriced": 8
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 8
+            },
+            "byCurrency": {
+              "USD": 18
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1170.665",
+              "display": "1170.67"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 17,
+            "priced": 12,
+            "unpriced": 5,
+            "byKind": {
+              "raw": {
+                "owned": 17,
+                "priced": 12,
+                "unpriced": 5
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 5
+            },
+            "byCurrency": {
+              "USD": 12
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "555.348",
+              "display": "555.35"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 4,
+          "removedCopies": 13,
+          "basisChangedCopies": 5,
+          "newlyPricedCopies": 3,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 4,
+          "unchangedUnpricedCopies": 1
+        },
+        "currencies": {
+          "USD": {
+            "before": "1170.665",
+            "after": "555.348",
+            "difference": "-615.317",
+            "components": {
+              "marketMovement": "-61.804",
+              "addedCopies": "123.36",
+              "removedCopies": "-703.446",
+              "newPriceCoverage": "100.24",
+              "lostPriceCoverage": "0",
+              "basisChanges": "-73.667"
+            },
+            "display": {
+              "scale": 2,
+              "before": "1170.67",
+              "after": "555.35",
+              "difference": "-615.32",
+              "components": {
+                "marketMovement": "-61.80",
+                "addedCopies": "123.36",
+                "removedCopies": "-703.45",
+                "newPriceCoverage": "100.24",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "-73.67"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_20",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 28,
+          "priced": 20,
+          "unpriced": 8,
+          "byKind": {
+            "raw": {
+              "owned": 28,
+              "priced": 20,
+              "unpriced": 8
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 8
+          },
+          "byCurrency": {
+            "USD": 20
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1100.286",
+            "display": "1100.29"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 17,
+          "priced": 12,
+          "unpriced": 5,
+          "byKind": {
+            "raw": {
+              "owned": 17,
+              "priced": 12,
+              "unpriced": 5
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 5
+          },
+          "byCurrency": {
+            "USD": 12
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "825.648",
+            "display": "825.65"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 28,
+            "priced": 20,
+            "unpriced": 8,
+            "byKind": {
+              "raw": {
+                "owned": 28,
+                "priced": 20,
+                "unpriced": 8
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 8
+            },
+            "byCurrency": {
+              "USD": 20
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1100.286",
+              "display": "1100.29"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 17,
+            "priced": 12,
+            "unpriced": 5,
+            "byKind": {
+              "raw": {
+                "owned": 17,
+                "priced": 12,
+                "unpriced": 5
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 5
+            },
+            "byCurrency": {
+              "USD": 12
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "825.648",
+              "display": "825.65"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 2,
+          "removedCopies": 13,
+          "basisChangedCopies": 4,
+          "newlyPricedCopies": 5,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 4,
+          "unchangedUnpricedCopies": 2
+        },
+        "currencies": {
+          "USD": {
+            "before": "1100.286",
+            "after": "825.648",
+            "difference": "-274.638",
+            "components": {
+              "marketMovement": "-71.504",
+              "addedCopies": "70.994",
+              "removedCopies": "-633.686",
+              "newPriceCoverage": "398.022",
+              "lostPriceCoverage": "0",
+              "basisChanges": "-38.464"
+            },
+            "display": {
+              "scale": 2,
+              "before": "1100.29",
+              "after": "825.65",
+              "difference": "-274.64",
+              "components": {
+                "marketMovement": "-71.50",
+                "addedCopies": "70.99",
+                "removedCopies": "-633.69",
+                "newPriceCoverage": "398.02",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "-38.46"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_40",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 24,
+          "priced": 18,
+          "unpriced": 6,
+          "byKind": {
+            "raw": {
+              "owned": 24,
+              "priced": 18,
+              "unpriced": 6
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 6
+          },
+          "byCurrency": {
+            "USD": 18
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "818.977",
+            "display": "818.98"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 13,
+          "priced": 4,
+          "unpriced": 9,
+          "byKind": {
+            "raw": {
+              "owned": 13,
+              "priced": 4,
+              "unpriced": 9
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 9
+          },
+          "byCurrency": {
+            "USD": 4
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "257.676",
+            "display": "257.68"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 24,
+            "priced": 18,
+            "unpriced": 6,
+            "byKind": {
+              "raw": {
+                "owned": 24,
+                "priced": 18,
+                "unpriced": 6
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 6
+            },
+            "byCurrency": {
+              "USD": 18
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "818.977",
+              "display": "818.98"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 13,
+            "priced": 4,
+            "unpriced": 9,
+            "byKind": {
+              "raw": {
+                "owned": 13,
+                "priced": 4,
+                "unpriced": 9
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 9
+            },
+            "byCurrency": {
+              "USD": 4
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "257.676",
+              "display": "257.68"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 6,
+          "removedCopies": 17,
+          "basisChangedCopies": 3,
+          "newlyPricedCopies": 1,
+          "lostPricedCopies": 2,
+          "comparablePricedCopies": 0,
+          "unchangedUnpricedCopies": 1
+        },
+        "currencies": {
+          "USD": {
+            "before": "818.977",
+            "after": "257.676",
+            "difference": "-561.301",
+            "components": {
+              "marketMovement": "0",
+              "addedCopies": "62.76",
+              "removedCopies": "-672.16",
+              "newPriceCoverage": "96.56",
+              "lostPriceCoverage": "-146.817",
+              "basisChanges": "98.356"
+            },
+            "display": {
+              "scale": 2,
+              "before": "818.98",
+              "after": "257.68",
+              "difference": "-561.30",
+              "components": {
+                "marketMovement": "0.00",
+                "addedCopies": "62.76",
+                "removedCopies": "-672.16",
+                "newPriceCoverage": "96.56",
+                "lostPriceCoverage": "-146.82",
+                "basisChanges": "98.36"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_60",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 29,
+          "priced": 20,
+          "unpriced": 9,
+          "byKind": {
+            "raw": {
+              "owned": 29,
+              "priced": 20,
+              "unpriced": 9
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 9
+          },
+          "byCurrency": {
+            "USD": 20
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1059.633",
+            "display": "1059.63"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 12,
+          "priced": 7,
+          "unpriced": 5,
+          "byKind": {
+            "raw": {
+              "owned": 12,
+              "priced": 7,
+              "unpriced": 5
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 5
+          },
+          "byCurrency": {
+            "USD": 7
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "407.89",
+            "display": "407.89"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 29,
+            "priced": 20,
+            "unpriced": 9,
+            "byKind": {
+              "raw": {
+                "owned": 29,
+                "priced": 20,
+                "unpriced": 9
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 9
+            },
+            "byCurrency": {
+              "USD": 20
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1059.633",
+              "display": "1059.63"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 12,
+            "priced": 7,
+            "unpriced": 5,
+            "byKind": {
+              "raw": {
+                "owned": 12,
+                "priced": 7,
+                "unpriced": 5
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 5
+            },
+            "byCurrency": {
+              "USD": 7
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "407.89",
+              "display": "407.89"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 1,
+          "removedCopies": 18,
+          "basisChangedCopies": 5,
+          "newlyPricedCopies": 2,
+          "lostPricedCopies": 0,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 3
+        },
+        "currencies": {
+          "USD": {
+            "before": "1059.633",
+            "after": "407.89",
+            "difference": "-651.743",
+            "components": {
+              "marketMovement": "-2.231",
+              "addedCopies": "39.906",
+              "removedCopies": "-887.018",
+              "newPriceCoverage": "110.318",
+              "lostPriceCoverage": "0",
+              "basisChanges": "87.282"
+            },
+            "display": {
+              "scale": 2,
+              "before": "1059.63",
+              "after": "407.89",
+              "difference": "-651.74",
+              "components": {
+                "marketMovement": "-2.23",
+                "addedCopies": "39.91",
+                "removedCopies": "-887.02",
+                "newPriceCoverage": "110.32",
+                "lostPriceCoverage": "0.00",
+                "basisChanges": "87.28"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_80",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 27,
+          "priced": 20,
+          "unpriced": 7,
+          "byKind": {
+            "raw": {
+              "owned": 27,
+              "priced": 20,
+              "unpriced": 7
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 7
+          },
+          "byCurrency": {
+            "USD": 20
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "915.983",
+            "display": "915.98"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 18,
+          "priced": 13,
+          "unpriced": 5,
+          "byKind": {
+            "raw": {
+              "owned": 18,
+              "priced": 13,
+              "unpriced": 5
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 5
+          },
+          "byCurrency": {
+            "USD": 13
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "645.434",
+            "display": "645.43"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 27,
+            "priced": 20,
+            "unpriced": 7,
+            "byKind": {
+              "raw": {
+                "owned": 27,
+                "priced": 20,
+                "unpriced": 7
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 7
+            },
+            "byCurrency": {
+              "USD": 20
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "915.983",
+              "display": "915.98"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 18,
+            "priced": 13,
+            "unpriced": 5,
+            "byKind": {
+              "raw": {
+                "owned": 18,
+                "priced": 13,
+                "unpriced": 5
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 5
+            },
+            "byCurrency": {
+              "USD": 13
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "645.434",
+              "display": "645.43"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 3,
+          "removedCopies": 12,
+          "basisChangedCopies": 3,
+          "newlyPricedCopies": 3,
+          "lostPricedCopies": 1,
+          "comparablePricedCopies": 6,
+          "unchangedUnpricedCopies": 2
+        },
+        "currencies": {
+          "USD": {
+            "before": "915.983",
+            "after": "645.434",
+            "difference": "-270.549",
+            "components": {
+              "marketMovement": "-27.85",
+              "addedCopies": "163.948",
+              "removedCopies": "-574.846",
+              "newPriceCoverage": "130.336",
+              "lostPriceCoverage": "-60.677",
+              "basisChanges": "98.54"
+            },
+            "display": {
+              "scale": 2,
+              "before": "915.98",
+              "after": "645.43",
+              "difference": "-270.55",
+              "components": {
+                "marketMovement": "-27.85",
+                "addedCopies": "163.95",
+                "removedCopies": "-574.85",
+                "newPriceCoverage": "130.34",
+                "lostPriceCoverage": "-60.68",
+                "basisChanges": "98.54"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_100",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 29,
+          "priced": 20,
+          "unpriced": 9,
+          "byKind": {
+            "raw": {
+              "owned": 29,
+              "priced": 20,
+              "unpriced": 9
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 9
+          },
+          "byCurrency": {
+            "USD": 20
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "926.521",
+            "display": "926.52"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 16,
+          "priced": 11,
+          "unpriced": 5,
+          "byKind": {
+            "raw": {
+              "owned": 16,
+              "priced": 11,
+              "unpriced": 5
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 5
+          },
+          "byCurrency": {
+            "USD": 11
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "515.394",
+            "display": "515.39"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 29,
+            "priced": 20,
+            "unpriced": 9,
+            "byKind": {
+              "raw": {
+                "owned": 29,
+                "priced": 20,
+                "unpriced": 9
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 9
+            },
+            "byCurrency": {
+              "USD": 20
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "926.521",
+              "display": "926.52"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 16,
+            "priced": 11,
+            "unpriced": 5,
+            "byKind": {
+              "raw": {
+                "owned": 16,
+                "priced": 11,
+                "unpriced": 5
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 5
+            },
+            "byCurrency": {
+              "USD": 11
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "515.394",
+              "display": "515.39"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 1,
+          "removedCopies": 14,
+          "basisChangedCopies": 5,
+          "newlyPricedCopies": 3,
+          "lostPricedCopies": 2,
+          "comparablePricedCopies": 4,
+          "unchangedUnpricedCopies": 1
+        },
+        "currencies": {
+          "USD": {
+            "before": "926.521",
+            "after": "515.394",
+            "difference": "-411.127",
+            "components": {
+              "marketMovement": "54.94",
+              "addedCopies": "25.85",
+              "removedCopies": "-695.886",
+              "newPriceCoverage": "167.364",
+              "lostPriceCoverage": "-53.508",
+              "basisChanges": "90.113"
+            },
+            "display": {
+              "scale": 2,
+              "before": "926.52",
+              "after": "515.39",
+              "difference": "-411.13",
+              "components": {
+                "marketMovement": "54.94",
+                "addedCopies": "25.85",
+                "removedCopies": "-695.89",
+                "newPriceCoverage": "167.36",
+                "lostPriceCoverage": "-53.51",
+                "basisChanges": "90.11"
+              },
+              "roundingAdjustment": "0.01"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_120",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 27,
+          "priced": 16,
+          "unpriced": 11,
+          "byKind": {
+            "raw": {
+              "owned": 27,
+              "priced": 16,
+              "unpriced": 11
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 11
+          },
+          "byCurrency": {
+            "USD": 16
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "513.924",
+            "display": "513.92"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 17,
+          "priced": 12,
+          "unpriced": 5,
+          "byKind": {
+            "raw": {
+              "owned": 17,
+              "priced": 12,
+              "unpriced": 5
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 5
+          },
+          "byCurrency": {
+            "USD": 12
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "553.508",
+            "display": "553.51"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 27,
+            "priced": 16,
+            "unpriced": 11,
+            "byKind": {
+              "raw": {
+                "owned": 27,
+                "priced": 16,
+                "unpriced": 11
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 11
+            },
+            "byCurrency": {
+              "USD": 16
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "513.924",
+              "display": "513.92"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 17,
+            "priced": 12,
+            "unpriced": 5,
+            "byKind": {
+              "raw": {
+                "owned": 17,
+                "priced": 12,
+                "unpriced": 5
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 5
+            },
+            "byCurrency": {
+              "USD": 12
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "553.508",
+              "display": "553.51"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 3,
+          "removedCopies": 13,
+          "basisChangedCopies": 0,
+          "newlyPricedCopies": 7,
+          "lostPricedCopies": 2,
+          "comparablePricedCopies": 3,
+          "unchangedUnpricedCopies": 2
+        },
+        "currencies": {
+          "USD": {
+            "before": "513.924",
+            "after": "553.508",
+            "difference": "39.584",
+            "components": {
+              "marketMovement": "-10.621",
+              "addedCopies": "121.76",
+              "removedCopies": "-332.358",
+              "newPriceCoverage": "286.596",
+              "lostPriceCoverage": "-25.793",
+              "basisChanges": "0"
+            },
+            "display": {
+              "scale": 2,
+              "before": "513.92",
+              "after": "553.51",
+              "difference": "39.59",
+              "components": {
+                "marketMovement": "-10.62",
+                "addedCopies": "121.76",
+                "removedCopies": "-332.36",
+                "newPriceCoverage": "286.60",
+                "lostPriceCoverage": "-25.79",
+                "basisChanges": "0.00"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_140",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 28,
+          "priced": 21,
+          "unpriced": 7,
+          "byKind": {
+            "raw": {
+              "owned": 28,
+              "priced": 21,
+              "unpriced": 7
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 7
+          },
+          "byCurrency": {
+            "USD": 21
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "939.93",
+            "display": "939.93"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 15,
+          "priced": 9,
+          "unpriced": 6,
+          "byKind": {
+            "raw": {
+              "owned": 15,
+              "priced": 9,
+              "unpriced": 6
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 6
+          },
+          "byCurrency": {
+            "USD": 9
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "413.299",
+            "display": "413.30"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 28,
+            "priced": 21,
+            "unpriced": 7,
+            "byKind": {
+              "raw": {
+                "owned": 28,
+                "priced": 21,
+                "unpriced": 7
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 7
+            },
+            "byCurrency": {
+              "USD": 21
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "939.93",
+              "display": "939.93"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 15,
+            "priced": 9,
+            "unpriced": 6,
+            "byKind": {
+              "raw": {
+                "owned": 15,
+                "priced": 9,
+                "unpriced": 6
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 6
+            },
+            "byCurrency": {
+              "USD": 9
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "413.299",
+              "display": "413.30"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 2,
+          "removedCopies": 15,
+          "basisChangedCopies": 4,
+          "newlyPricedCopies": 4,
+          "lostPricedCopies": 1,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 3
+        },
+        "currencies": {
+          "USD": {
+            "before": "939.93",
+            "after": "413.299",
+            "difference": "-526.631",
+            "components": {
+              "marketMovement": "-13.879",
+              "addedCopies": "126.58",
+              "removedCopies": "-558.918",
+              "newPriceCoverage": "205.87",
+              "lostPriceCoverage": "-52.577",
+              "basisChanges": "-233.707"
+            },
+            "display": {
+              "scale": 2,
+              "before": "939.93",
+              "after": "413.30",
+              "difference": "-526.63",
+              "components": {
+                "marketMovement": "-13.88",
+                "addedCopies": "126.58",
+                "removedCopies": "-558.92",
+                "newPriceCoverage": "205.87",
+                "lostPriceCoverage": "-52.58",
+                "basisChanges": "-233.71"
+              },
+              "roundingAdjustment": "0.01"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_160",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 29,
+          "priced": 21,
+          "unpriced": 8,
+          "byKind": {
+            "raw": {
+              "owned": 29,
+              "priced": 21,
+              "unpriced": 8
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 8
+          },
+          "byCurrency": {
+            "USD": 21
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "1136.445",
+            "display": "1136.45"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 12,
+          "priced": 10,
+          "unpriced": 2,
+          "byKind": {
+            "raw": {
+              "owned": 12,
+              "priced": 10,
+              "unpriced": 2
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 2
+          },
+          "byCurrency": {
+            "USD": 10
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "490.839",
+            "display": "490.84"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 29,
+            "priced": 21,
+            "unpriced": 8,
+            "byKind": {
+              "raw": {
+                "owned": 29,
+                "priced": 21,
+                "unpriced": 8
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 8
+            },
+            "byCurrency": {
+              "USD": 21
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "1136.445",
+              "display": "1136.45"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 12,
+            "priced": 10,
+            "unpriced": 2,
+            "byKind": {
+              "raw": {
+                "owned": 12,
+                "priced": 10,
+                "unpriced": 2
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 2
+            },
+            "byCurrency": {
+              "USD": 10
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "490.839",
+              "display": "490.84"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 1,
+          "removedCopies": 18,
+          "basisChangedCopies": 7,
+          "newlyPricedCopies": 1,
+          "lostPricedCopies": 1,
+          "comparablePricedCopies": 2,
+          "unchangedUnpricedCopies": 0
+        },
+        "currencies": {
+          "USD": {
+            "before": "1136.445",
+            "after": "490.839",
+            "difference": "-645.606",
+            "components": {
+              "marketMovement": "54.874",
+              "addedCopies": "28.014",
+              "removedCopies": "-980.628",
+              "newPriceCoverage": "57.584",
+              "lostPriceCoverage": "-40.068",
+              "basisChanges": "234.618"
+            },
+            "display": {
+              "scale": 2,
+              "before": "1136.45",
+              "after": "490.84",
+              "difference": "-645.61",
+              "components": {
+                "marketMovement": "54.87",
+                "addedCopies": "28.01",
+                "removedCopies": "-980.63",
+                "newPriceCoverage": "57.58",
+                "lostPriceCoverage": "-40.07",
+                "basisChanges": "234.62"
+              },
+              "roundingAdjustment": "0.01"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    },
+    {
+      "name": "generated_180",
+      "before": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+        "sequence": "1",
+        "capturedAt": "2026-10-08T11:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 30,
+          "priced": 19,
+          "unpriced": 11,
+          "byKind": {
+            "raw": {
+              "owned": 30,
+              "priced": 19,
+              "unpriced": 11
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 11
+          },
+          "byCurrency": {
+            "USD": 19
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "945.059",
+            "display": "945.06"
+          }
+        }
+      },
+      "after": {
+        "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+        "sequence": "2",
+        "capturedAt": "2026-10-08T12:00:00.000Z",
+        "state": "partially_priced",
+        "coverage": {
+          "owned": 13,
+          "priced": 9,
+          "unpriced": 4,
+          "byKind": {
+            "raw": {
+              "owned": 13,
+              "priced": 9,
+              "unpriced": 4
+            },
+            "slab": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            },
+            "sealed": {
+              "owned": 0,
+              "priced": 0,
+              "unpriced": 0
+            }
+          },
+          "byReason": {
+            "no_qualified_price": 4
+          },
+          "byCurrency": {
+            "USD": 9
+          }
+        },
+        "totals": {
+          "USD": {
+            "exact": "470.491",
+            "display": "470.49"
+          }
+        }
+      },
+      "comparison": {
+        "version": 1,
+        "scope": "all_active_owned_copies",
+        "before": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003e9",
+          "sequence": "1",
+          "capturedAt": "2026-10-08T11:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 30,
+            "priced": 19,
+            "unpriced": 11,
+            "byKind": {
+              "raw": {
+                "owned": 30,
+                "priced": 19,
+                "unpriced": 11
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 11
+            },
+            "byCurrency": {
+              "USD": 19
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "945.059",
+              "display": "945.06"
+            }
+          }
+        },
+        "after": {
+          "snapshotId": "00000000-0000-4000-8000-0000000003ea",
+          "sequence": "2",
+          "capturedAt": "2026-10-08T12:00:00.000Z",
+          "state": "partially_priced",
+          "coverage": {
+            "owned": 13,
+            "priced": 9,
+            "unpriced": 4,
+            "byKind": {
+              "raw": {
+                "owned": 13,
+                "priced": 9,
+                "unpriced": 4
+              },
+              "slab": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              },
+              "sealed": {
+                "owned": 0,
+                "priced": 0,
+                "unpriced": 0
+              }
+            },
+            "byReason": {
+              "no_qualified_price": 4
+            },
+            "byCurrency": {
+              "USD": 9
+            }
+          },
+          "totals": {
+            "USD": {
+              "exact": "470.491",
+              "display": "470.49"
+            }
+          }
+        },
+        "counts": {
+          "addedCopies": 0,
+          "removedCopies": 17,
+          "basisChangedCopies": 4,
+          "newlyPricedCopies": 4,
+          "lostPricedCopies": 2,
+          "comparablePricedCopies": 1,
+          "unchangedUnpricedCopies": 2
+        },
+        "currencies": {
+          "USD": {
+            "before": "945.059",
+            "after": "470.491",
+            "difference": "-474.568",
+            "components": {
+              "marketMovement": "-45.927",
+              "addedCopies": "0",
+              "removedCopies": "-745.406",
+              "newPriceCoverage": "224.594",
+              "lostPriceCoverage": "-125.504",
+              "basisChanges": "217.675"
+            },
+            "display": {
+              "scale": 2,
+              "before": "945.06",
+              "after": "470.49",
+              "difference": "-474.57",
+              "components": {
+                "marketMovement": "-45.93",
+                "addedCopies": "0.00",
+                "removedCopies": "-745.41",
+                "newPriceCoverage": "224.59",
+                "lostPriceCoverage": "-125.50",
+                "basisChanges": "217.68"
+              },
+              "roundingAdjustment": "0.00"
+            }
+          }
+        },
+        "meaning": "reference_value_change",
+        "isProfit": false,
+        "isCashFlow": false
+      }
+    }
+  ]
+}

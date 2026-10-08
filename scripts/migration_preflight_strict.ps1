@@ -69,6 +69,7 @@ param(
   [switch]$ProductOfferTradeBaselineV1,
   [switch]$ProductCostHistoryBaselineV1,
   [switch]$ProductCostHistoryV1,
+  [switch]$ProductPortfolioHistoryV1,
   [switch]$ProductCostHistoryReleaseBaselineV1,
   [switch]$ProductDiscountBaselineV1,
   [switch]$ProductDiscountReleaseBaselineV1,
@@ -116,6 +117,17 @@ if ($ProductCostHistoryReleaseBaselineV1) {
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_cost_history_release_baseline_v1.mjs')
   if ($LASTEXITCODE -ne 0) { throw 'Historical cost release baseline failed.' }
+  exit 0
+}
+
+if ($ProductPortfolioHistoryV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000,20261008130000,20261008160000,20261008170000,20261008190000,20261008220000'
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductPortfolioHistoryV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductPortfolioHistoryV1 requires exactly the eight qualified cost, purchase, Trade, event, discount, cancellation, correction and portfolio migrations; delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_portfolio_history_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Portfolio history release gate failed.' }
   exit 0
 }
 

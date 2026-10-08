@@ -1,5 +1,35 @@
 # Grookai Agent Entry Point
 
+## Portfolio history runtime and exact release — current continuation
+
+Work only in C:/gv_product_portfolio_history_20261008 from qualified parent
+f19d39f20f35e030fffc9379d0d2eb1d854d6966. Read
+ docs/ops/PRODUCT_PORTFOLIO_HISTORY_20261008.md and external
+ C:/grookai_vault_operator_artifacts/product_portfolio_history_20261008/SCOPE.json.
+This entry supersedes older worktree-specific entries below. Current scope is
+baseline-passed portfolio capture, recovery and web/native history implementation.
+The pre-change baseline is complete; do not rerun it against438. Use the dedicated
+portfolio release helpers and ProductPortfolioHistoryV1 gates for exact437. Do not invoke inherited fixed-root mutation or release wrappers.
+Preserve all437 migration bytes, every earlier checkout, populated/sealed lab,
+Samsung436, prior APKs and both primary phone apps. No subagents, production
+apply/deploy/activation, provider fetch, upload or external messages.
+
+Cost-history normal checks, PrePush and linked dry-run passed; the clean parent
+and exact436 database seals remain preserved. Physical iOS is unverified due to
+Mac-local keychain and Dart startup permission blockers; both user questions are
+pending. Its fixture is restored. Independent local implementation and isolated synthetic proofs continue.
+Mac has29,912,305,664 bytes free after authorized guarded cleanup. Future Mac Git
+fetch/transfer commands must use -c maintenance.auto=false -c gc.auto=0 to prevent
+automatic repacking from filling disk again. Do not bypass macOS security.
+External CHECKPOINT.json owns current results. Browser nine cases and physical
+Samsung438 two-process recovery pass;15 images reviewed/source-bound and all
+fixtures restored. The new proof package preserves primary and locked436 apps.
+Wider438 and exact437 replay/upgrade/SQL/Auth/reapply/shadow pass. Exact437 has
+raw/normalized drift0 and1256 security objects. Final seal and ordinary release
+gates remain in progress. Keep
+new SQL bytes frozen and reviewed product/native source unchanged for final gates.
+The full overhaul remains open after this slice.
+
 ## Cost history runtime — current continuation
 
 Browser cost history passes nine scenarios; payment review passes four scenarios
