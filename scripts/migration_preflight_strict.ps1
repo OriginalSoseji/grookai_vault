@@ -64,6 +64,7 @@ param(
   [switch]$ReceiptDeliveryBaselineV1,
   [switch]$ReceiptDeliveryReleaseV1,
   [switch]$SalesSplitPaymentsReleaseV1,
+  [switch]$CollectrCostBaselineV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
@@ -92,6 +93,14 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($CollectrCostBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CollectrCostBaselineV1') }).Count -gt 0) {
+    throw 'Collectr cost baseline permits read-only AuditLinkedSchema only, without combined scopes or overrides.'
+  }
+  & node --use-system-ca --dns-result-order=ipv4first (Join-Path $PSScriptRoot 'schema/audit_collectr_cost_baseline_v1.mjs') $Phase
+  exit $LASTEXITCODE
+}
 
 if ($SalesSplitPaymentsReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

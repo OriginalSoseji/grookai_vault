@@ -1,5 +1,23 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Collectr acquisition-cost baseline — October 8
+
+`-CollectrCostBaselineV1` permits only read-only AuditLinkedSchema against the
+fixed production project at 429. It checks all 429 applied source hashes against
+the qualified split-payment full replay and compares fresh production schema,
+ledger and security. Only the unchanged deferred receipt migration and optional
+cost migration 20261008100000 may be pending. Combined modes, overrides and
+PrePush reject. The existing column-order reconciliation remains unchanged.
+This baseline does not qualify candidate SQL or authorize a push.
+
+The full430 replay/reset and populated429-to430 upgrade now pass on3370x/3372x,
+internal10.245.201/202 networks. Both no-op pushes and exact schema/security parity
+pass. Three saved copies, a receipt book, import document/group and old V3 receipt
+survive unchanged; prior import recovery adds nothing. The atomic cost suite also
+passes on430. Startup/fixture recovery is narrowly guarded and never resets a
+populated lab. Preserve all labs. Release PrePush/dry-run remains separate; omit
+deferred receipt delivery only from its bounded package, retaining source history.
+
 ## Split external payments release qualification — October 6
 
 `-SalesSplitPaymentsReleaseV1` admits only AuditLinkedSchema or PrePush for
