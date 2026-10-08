@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../services/sales/sales_profit.dart';
 import '../../services/sales/sales_profit_service.dart';
+import '../../services/sales/sales_purchase.dart';
 
 const kVendorProfitEnabled = bool.fromEnvironment('GV_VENDOR_PROFIT_V1');
 
@@ -72,7 +73,11 @@ class _SalesProfitPanelState extends State<SalesProfitPanel> {
       final receipts = (jsonDecode(jsonEncode(widget.receipts)) as List)
           .map((row) => Map<String, dynamic>.from(row as Map))
           .toList();
-      final ids = receipts.map((row) => row['id'] as String).toSet().toList();
+      final ids = receipts
+          .where((row) => !isPurchaseReceipt(row))
+          .map((row) => row['id'] as String)
+          .toSet()
+          .toList();
       final snapshots = await service.read(
         ids,
         isCurrent: () => mounted && generation == _generation && !_closed,

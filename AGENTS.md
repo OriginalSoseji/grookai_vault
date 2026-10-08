@@ -1,5 +1,20 @@
 # Grookai Agent Entry Point
 
+## Buy-only workflow — October 7
+
+Read [the purchase checkpoint](docs/ops/PRODUCT_BUY_20261007.md) and
+VENDOR_PURCHASE_V1. This isolated tree extends existing Sales Desk/receipt authority
+to purchase-only deals without dummy sale lines. All prior journals remain intact.
+Web cost-review2dfc193bd passes its normal hook and is integrated with this work;
+its source/lab freeze is lifted. Purchase models and compatible receipt readers
+pass focused Node/native and five browser scenarios. The read-only purchase
+baseline passes against live429/source431. The new default-off purchase backend
+passes full432 replay, SQL receipt parity and authenticated retry/rollback tests.
+Upgrade and ordinary-hook outcomes belong to the external checkpoint. Buy entry,
+durable client recovery, device acceptance and production activation remain pending.
+Freeze this source and the full432 lab while the purchase normal hook runs.
+
+
 ## Web inventory cost review — October 7
 
 Read [the web cost-review checkpoint](docs/ops/PRODUCT_COST_REVIEW_WEB_20261007.md).

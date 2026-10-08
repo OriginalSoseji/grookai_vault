@@ -8,6 +8,7 @@ import 'package:grookai_vault/screens/sales/sales_profit_panel.dart';
 import 'package:grookai_vault/screens/sales/sales_reports_screen.dart';
 import 'package:grookai_vault/services/sales/sales_cart_service.dart';
 import 'package:grookai_vault/services/sales/sales_profit_service.dart';
+import 'purchase_receipt_compatibility_test.dart' as purchase_fixture;
 
 const _owner = '11111111-1111-4111-8111-111111111111';
 
@@ -78,6 +79,28 @@ void main() {
           ),
         ),
       );
+  testWidgets(
+    'purchase receipts never request sale cost evidence or change coverage',
+    (tester) async {
+      final fixture = jsonDecode(
+        File('test/fixtures/sales_purchase_web_v1.json').readAsStringSync(),
+      );
+      final purchase = Map<String, dynamic>.from(
+        (fixture['cases'] as List).firstWhere(
+              (row) => row['name'] == 'exact receipt',
+            )['args'][0]
+            as Map,
+      );
+      gateway.response = (ids) async {
+        expect(ids, receipts.map((row) => row['id']).toList());
+        return {'ownerId': _owner, 'snapshots': snapshots};
+      };
+      await tester.pumpWidget(panel(rows: [...receipts, purchase]));
+      await tester.pumpAndSettle();
+      expect(find.text('USD \$8.00'), findsOneWidget);
+      expect(find.textContaining('1 of 1 sale line has'), findsOneWidget);
+    },
+  );
   testWidgets(
     'shows known profit with coverage and explicit excluded economics',
     (tester) async {
@@ -189,6 +212,62 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Known-cost profit'), findsNothing);
     expect(gateway.calls, 0);
+  });
+  testWidgets(
+    'purchase dashboard exposes payout and opens a private-safe receipt',
+    (tester) async {
+      final purchase = purchase_fixture.purchase();
+      final stamp = DateTime.fromMillisecondsSinceEpoch(
+        DateTime.now().millisecondsSinceEpoch,
+        isUtc: true,
+      ).toIso8601String();
+      purchase['createdAt'] = stamp;
+      purchase['number'] =
+          'GVB-${stamp.substring(0, 10).replaceAll('-', '')}-${(purchase['id'] as String).substring(0, 8).toUpperCase()}';
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SalesDashboard(receipts: [purchase], refresh: () async {}),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+        find.text('Paid out'),
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      expect(find.text('Paid out'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.textContaining(purchase['number'] as String),
+        300,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(find.textContaining(purchase['number'] as String));
+      await tester.pumpAndSettle();
+      expect(find.textContaining('PURCHASE RECEIPT'), findsOneWidget);
+      expect(
+        find.textContaining('Total paid to seller: USD 6.50'),
+        findsOneWidget,
+      );
+      expect(find.textContaining(purchase['note'] as String), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+  );
+  testWidgets('malformed purchase remains a recoverable Reports read error', (
+    tester,
+  ) async {
+    final purchase = purchase_fixture.purchase();
+    purchase['purchaseMinor'] = 651;
+    await tester.pumpWidget(
+      MaterialApp(home: SalesReportsScreen(service: _Reports([purchase]))),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      find.text('Reports could not load. Your receipts have not changed.'),
+      findsOneWidget,
+    );
+    expect(tester.takeException(), isNull);
   });
   testWidgets(
     'Reports sends its visible payment-filtered receipts to private profit',

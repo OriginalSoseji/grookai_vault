@@ -8,7 +8,7 @@ import SalesPaymentEditor from './SalesPaymentEditor';
 import {paymentLines, paymentSnapshot} from '@/lib/sales/salesPayments.mjs';
 import SalesDashboard from './SalesDashboard';
 import { useSalesNavigationGuard } from './useSalesNavigationGuard';
-import type {SalesReceipt} from '@/lib/sales/salesReport.mjs';
+import type {RecordedReceipt as SalesReceipt} from '@/lib/sales/salesReport.mjs';
 import { ArrowLeft, Search, ShoppingBag, Plus, Pause, Users, Eye, X, ArrowRightLeft, Check, LoaderCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { addLine, conditions, customerDeal, draftJournal, methods, minor, money, newDraft, rate, saleRequest, totals, tradeCredit } from '@/lib/sales/salesDesk.mjs';

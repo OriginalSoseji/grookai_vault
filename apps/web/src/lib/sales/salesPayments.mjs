@@ -23,13 +23,14 @@ export function validatePayments(value, balanceMinor, method) {
 export const paymentMethod = entries => entries.length > 1 ? 'Split payment' : entries[0]?.method ?? 'Other';
 export function paymentLines(receipt, money) {
   if (!receipt.payments) return [];
-  const p = validatePayments(receipt.payments, receipt.tradeIn?.balanceMinor ?? receipt.totalMinor, receipt.method);
-  return [p.balanceMinor < 0 ? 'Paid to customer:' : p.balanceMinor === 0 ? 'Even trade — no money exchanged.' : 'Payment received:',
+  const purchase=receipt.version===2&&receipt.kind==='purchase';
+  const p = validatePayments(receipt.payments, purchase?-receipt.purchaseMinor:receipt.tradeIn?.balanceMinor ?? receipt.totalMinor, receipt.method);
+  return [p.balanceMinor < 0 ? purchase?'Paid to seller:':'Paid to customer:' : p.balanceMinor === 0 ? 'Even trade — no money exchanged.' : 'Payment received:',
     ...p.entries.map(e => `${e.method}: ${money(e.amountMinor)}`),
     ...(p.changeMinor > 0 ? [`Cash tendered: ${money(p.entries.find(e => e.method === 'Cash').tenderedMinor)}`, `Cash change: ${money(p.changeMinor)}`] : [])];
 }
 export function receiptTenders(r) {
-  const balance = r.tradeIn?.balanceMinor ?? r.totalMinor;
+  const balance = r.version===2&&r.kind==='purchase'?-r.purchaseMinor:r.tradeIn?.balanceMinor ?? r.totalMinor;
   if (!r.payments) return [{method: r.method, amountMinor: Math.abs(balance), tenderedMinor: Math.abs(balance)}];
   return validatePayments(r.payments, balance, r.method).entries;
 }

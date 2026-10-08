@@ -8,6 +8,7 @@ import '../gvvi/vendor_pricing_workspace_service.dart';
 import '../../models/card_print.dart';
 import '../public/public_card_printing_options_service.dart';
 import 'sales_trade.dart';
+import 'sales_purchase.dart';
 import 'sales_payments.dart';
 import 'sales_search_cache.dart';
 import 'sales_drafts.dart';
@@ -513,6 +514,9 @@ class SalesCartService {
 }
 
 String saleReceiptText(Map<String, dynamic> receipt) {
+  if (isPurchaseReceipt(receipt)) {
+    return purchaseReceiptText(receipt, (n) => 'USD ${saleMoney(n)}');
+  }
   final items = (receipt['items'] as List).cast<Map>();
   final trade = receipt['tradeIn'] as Map?;
   final balance = receiptBalance(receipt);

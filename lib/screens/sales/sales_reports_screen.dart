@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_profit_service.dart';
+import '../../services/sales/sales_purchase.dart';
 import 'sales_dashboard.dart';
 import 'sales_profit_panel.dart';
 import '../workspace/workspace_activation.dart';
@@ -83,6 +84,11 @@ class _SalesReportsScreenState extends State<SalesReportsScreen> {
       final receipts = (book['receipts'] as List)
           .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
           .toList();
+      for (final receipt in receipts) {
+        if (isPurchaseReceipt(receipt)) {
+          validatePurchaseReceipt(receipt);
+        }
+      }
       setState(() {
         _receipts = receipts;
         _loaded = true;

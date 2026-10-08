@@ -1,5 +1,16 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Purchase workflow baseline — October 7, 2026
+
+`-Phase AuditLinkedSchema -ProductPurchaseBaselineV1` is read-only and fixed to
+`C:/gv_product_buy_20261007`. It runs before purchase SQL exists, pins all431 source
+migrations to the qualified full431 replay, and compares live429 to the retained
+qualified429 schema/security/ledger. The only pending source files are unchanged
+receipt delivery and cost evidence. Other phases, switches and target overrides
+reject. External product_buy_20261007/BASELINE_429.json records actual results.
+It grants no apply authority and does not qualify a purchase migration; fresh
+replay, retained upgrade, authenticated runtime and release gates remain required.
+
 ## Product economics release preparation — October 7
 
 The combined product candidate moves the fixed inspection root to

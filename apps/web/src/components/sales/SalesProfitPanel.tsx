@@ -1,6 +1,6 @@
 "use client";
 import {salesProfit,profitMoney,costGapLabel,type CostSnapshot} from '@/lib/sales/salesProfit.mjs';
-import type {SalesReceipt} from '@/lib/sales/salesReport.mjs';
+import type {RecordedReceipt as SalesReceipt} from '@/lib/sales/salesReport.mjs';
 import s from './SalesDesk.module.css';
 export type CostReportState={snapshots:CostSnapshot[]|null;loading:boolean;error:string};
 export default function SalesProfitPanel({receipts,state}:{receipts:SalesReceipt[];state:CostReportState}){

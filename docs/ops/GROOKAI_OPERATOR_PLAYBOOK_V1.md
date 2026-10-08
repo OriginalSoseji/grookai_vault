@@ -1,5 +1,32 @@
 # Grookai Operator Playbook V1
 
+## Buy-only workflow — October 7
+
+Continue in `C:/gv_product_buy_20261007`; read PRODUCT_BUY_20261007.md and
+VENDOR_PURCHASE_V1. Existing sale/trade writers require outgoing items. The new
+purchase route must reuse the existing book lock, governed copy creator and
+request journal while preserving explicit purchase versus sale reporting.
+External product_buy_20261007 owns qualification outcomes. This is local work;
+existing receipt delivery and other production activation remain separate.
+
+Compatible purchase receipt readers now have focused model/widget/browser proof.
+Use playwright.purchase-readers.config.ts with an unused local loopback port;
+all fixture Auth/book/cost requests are intercepted, and no purchase is written.
+Retain browser attempts externally before rerunning. The new strict-preflight
+ProductPurchaseBaselineV1 route is read-only and fixed to this tree, before new
+SQL exists. It pins source431 and compares live429 with retained429. Its passed
+baseline-1791425138053 permits development, not apply or switch activation.
+
+Purchase backend fixtures use fresh full432 and retained431 upgrade under external
+product_buy_20261007, DB33280/33300 and Auth33281/33301 on internal10.246.69/70.
+The full lab now retains53 synthetic incoming copies and its purchase/sale journal
+after authenticated proof; never reset it. Its controls are off. Read-only SQL
+parity and local candidate reapplication have separate receipts. Run ordinary
+checks with run_product_purchase_checks_v1.mjs; freeze source and full432 until
+terminal. No production migration, message delivery or purchase activation follows
+from these local results.
+
+
 ## Web inventory cost review — October 7
 
 Follow [the web review checkpoint](PRODUCT_COST_REVIEW_WEB_20261007.md) in

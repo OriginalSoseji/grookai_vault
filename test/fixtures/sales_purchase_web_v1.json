@@ -1,0 +1,2830 @@
+{
+  "model": "apps/web/src/lib/sales/salesPurchase.mjs",
+  "sha256": "6ef9d0a94ff2d0de1cc66cc49864b78f742c297a908af7d24f4d4fe58ba1a10f",
+  "cases": [
+    {
+      "name": "offer 1/4999",
+      "action": "offer",
+      "args": [
+        1,
+        4999
+      ],
+      "expected": {
+        "ok": true,
+        "value": 0
+      }
+    },
+    {
+      "name": "offer 1/5000",
+      "action": "offer",
+      "args": [
+        1,
+        5000
+      ],
+      "expected": {
+        "ok": true,
+        "value": 1
+      }
+    },
+    {
+      "name": "offer 999/6500",
+      "action": "offer",
+      "args": [
+        999,
+        6500
+      ],
+      "expected": {
+        "ok": true,
+        "value": 649
+      }
+    },
+    {
+      "name": "offer 100000000/10000",
+      "action": "offer",
+      "args": [
+        100000000,
+        10000
+      ],
+      "expected": {
+        "ok": true,
+        "value": 100000000
+      }
+    },
+    {
+      "name": "offer 0/1",
+      "action": "offer",
+      "args": [
+        0,
+        1
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "offer 1/0",
+      "action": "offer",
+      "args": [
+        1,
+        0
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "offer 1/10001",
+      "action": "offer",
+      "args": [
+        1,
+        10001
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "offer 1.5/6500",
+      "action": "offer",
+      "args": [
+        1.5,
+        6500
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "offer 1/5000",
+      "action": "offer",
+      "args": [
+        "1",
+        5000
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "canonical request",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "manual price override",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 700,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 700,
+              "tenderedMinor": 700
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 700,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 700,
+                "tenderedMinor": 700
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "zero plus paid item",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 0,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            },
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 0,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              },
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "unconfirmed",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": false
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "unknown field",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true,
+          "ownerId": "11111111-1111-4111-8111-000000000008"
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "no incoming items",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "all free intake",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 0,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "negative",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": -1,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "fraction",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 1.5,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "quantity",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 2,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "missingRate",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": null,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "badPrinting",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "invented",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "badCondition",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "Mint",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "quickCreates",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "quick",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": null,
+              "printingId": null,
+              "condition": null,
+              "addToVault": false
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "canonicalOptOut",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": false
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": false
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "payout Cash",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "payout Card (external terminal)",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Card (external terminal)",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Card (external terminal)",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "payout Bank / payment app",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Bank / payment app",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Bank / payment app",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "payout Other",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Other",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Other",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "payout Store credit",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Store credit",
+              "amountMinor": 650,
+              "tenderedMinor": 650
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "payout cash change",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 650,
+              "tenderedMinor": 700
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "split payout",
+      "action": "request",
+      "args": [
+        {
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true
+            }
+          ],
+          "payments": [
+            {
+              "method": "Cash",
+              "amountMinor": 250,
+              "tenderedMinor": 250
+            },
+            {
+              "method": "Other",
+              "amountMinor": 400,
+              "tenderedMinor": 400
+            }
+          ],
+          "note": "Private note",
+          "customerId": null,
+          "customer": {
+            "name": "Sample seller",
+            "email": "seller@example.test",
+            "phone": "",
+            "wants": "",
+            "notes": "Private contact"
+          },
+          "confirmed": true
+        },
+        "11111111-1111-4111-8111-000000000009"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 250,
+                "tenderedMinor": 250
+              },
+              {
+                "method": "Other",
+                "amountMinor": 400,
+                "tenderedMinor": 400
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "exact receipt",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      }
+    },
+    {
+      "name": "receipt sub-millisecond timestamp",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000123Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "mixed-case acknowledgement",
+      "action": "confirm",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "abcdef12-abcd-4abc-8abc-abcdef123456",
+          "number": "GVB-20261007-ABCDEF12",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        },
+        {
+          "id": "ABCDEF12-ABCD-4ABC-8ABC-ABCDEF123456",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 2,
+          "kind": "purchase",
+          "id": "abcdef12-abcd-4abc-8abc-abcdef123456",
+          "number": "GVB-20261007-ABCDEF12",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      }
+    },
+    {
+      "name": "private projection",
+      "action": "public",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "kind": "purchase",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "lineMinor": 650
+            }
+          ],
+          "currency": "USD",
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "receipt oldVersion",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 1,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt saleKind",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "sale",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt currency",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "CAD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt date",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-02-30T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt total",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 651,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt line",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 651,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt payout",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": 650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt change",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 1
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt copy",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": null,
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "receipt unexpected",
+      "action": "receipt",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note",
+          "totalMinor": 650
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "acknowledgement printing",
+      "action": "confirm",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000003",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        },
+        {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "acknowledgement rate",
+      "action": "confirm",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 7000,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        },
+        {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "acknowledgement note",
+      "action": "confirm",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Different note"
+        },
+        {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "acknowledgement seller",
+      "action": "confirm",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Different seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Sample card",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        },
+        {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "acknowledgement canonicalName",
+      "action": "confirm",
+      "args": [
+        {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Current governed name",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        },
+        {
+          "id": "11111111-1111-4111-8111-000000000009",
+          "cart": {
+            "version": 4,
+            "kind": "purchase",
+            "storeName": "Sample shop",
+            "items": [
+              {
+                "description": "Sample card",
+                "quantity": 1,
+                "unitMinor": 650,
+                "referenceMinor": 1000,
+                "rateBps": 6500,
+                "cardId": "11111111-1111-4111-8111-000000000001",
+                "printingId": "11111111-1111-4111-8111-000000000002",
+                "condition": "NM",
+                "addToVault": true
+              }
+            ],
+            "payments": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "note": "Private note",
+            "customerId": null,
+            "customer": {
+              "name": "Sample seller",
+              "email": "seller@example.test",
+              "phone": "",
+              "wants": "",
+              "notes": "Private contact"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 2,
+          "kind": "purchase",
+          "id": "11111111-1111-4111-8111-000000000009",
+          "number": "GVB-20261007-11111111",
+          "createdAt": "2026-10-07T12:00:00.000Z",
+          "storeName": "Sample shop",
+          "customerName": "Sample seller",
+          "currency": "USD",
+          "items": [
+            {
+              "description": "Current governed name",
+              "quantity": 1,
+              "unitMinor": 650,
+              "referenceMinor": 1000,
+              "rateBps": 6500,
+              "cardId": "11111111-1111-4111-8111-000000000001",
+              "printingId": "11111111-1111-4111-8111-000000000002",
+              "condition": "NM",
+              "addToVault": true,
+              "lineMinor": 650,
+              "printingGvId": "governed_printing:001",
+              "instanceId": "11111111-1111-4111-8111-000000000100",
+              "gvviId": "GVVI-PURCHASE-1"
+            }
+          ],
+          "purchaseMinor": 650,
+          "method": "Cash",
+          "payments": {
+            "version": 1,
+            "balanceMinor": -650,
+            "entries": [
+              {
+                "method": "Cash",
+                "amountMinor": 650,
+                "tenderedMinor": 650
+              }
+            ],
+            "changeMinor": 0
+          },
+          "note": "Private note"
+        }
+      }
+    }
+  ]
+}

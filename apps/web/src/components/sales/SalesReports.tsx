@@ -3,7 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
-import type { SalesReceipt } from "@/lib/sales/salesReport.mjs";
+import type { RecordedReceipt as SalesReceipt } from "@/lib/sales/salesReport.mjs";
+import {isPurchaseReceipt,validatePurchaseReceipt} from '@/lib/sales/salesPurchase.mjs';
 import SalesDashboard from "./SalesDashboard";
 import {readSaleCostSnapshots} from '@/lib/sales/readSaleCostSnapshots';
 import type {CostReportState} from './SalesProfitPanel';
@@ -34,10 +35,11 @@ export default function SalesReports({ ownerId, profitEnabled=false }: { ownerId
       if(data.ownerId!==ownerId)throw Error('Report account changed');
       const rows = data.book.receipts.map(entry => entry.receipt);
       if (rows.some(row => !row || typeof row.id !== "string" || !Array.isArray(row.items))) throw new Error("Invalid receipt read");
+      for(const row of rows)if(isPurchaseReceipt(row))validatePurchaseReceipt(row);
       setReceipts(rows);
       if(profitEnabled){
         try {
-          const snapshots=await readSaleCostSnapshots(ownerId,rows,abort.signal);
+          const snapshots=await readSaleCostSnapshots(ownerId,rows.filter(row=>!isPurchaseReceipt(row)),abort.signal);
           if(current===generation.current && !accountChanged.current)setCostState({snapshots,loading:false,error:''});
         }catch{
           if(current===generation.current && !accountChanged.current)setCostState({snapshots:null,loading:false,error:'Private cost history could not load. Profit is unavailable until it can refresh.'});

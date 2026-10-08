@@ -5,6 +5,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_report.dart';
 import '../../services/sales/sales_profit_service.dart';
+import '../../services/sales/sales_purchase.dart';
 import 'sales_profit_panel.dart';
 
 class SalesDashboard extends StatefulWidget {
@@ -284,6 +285,26 @@ class _SalesDashboardState extends State<SalesDashboard> {
               Icons.bar_chart,
               width: metricWidth,
             ),
+            if (data.purchases > 0) ...[
+              _stat(
+                'Purchases',
+                '${data.purchases}',
+                Icons.shopping_bag_outlined,
+                width: metricWidth,
+              ),
+              _stat(
+                'Items purchased',
+                '${data.purchasedUnits}',
+                Icons.style_outlined,
+                width: metricWidth,
+              ),
+              _stat(
+                'Inventory purchases',
+                'USD ${saleMoney(data.purchaseMinor)}',
+                Icons.payments_outlined,
+                width: metricWidth,
+              ),
+            ],
             _stat(
               'Tax collected',
               'USD ${saleMoney(data.taxMinor)}',
@@ -296,7 +317,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
               Icons.payments_outlined,
               width: metricWidth,
             ),
-            if (data.tradeCreditMinor > 0 || data.paidToCustomerMinor > 0) ...[
+            if (data.tradeCreditMinor > 0 || data.paidOutMinor > 0) ...[
               _stat(
                 'Trade credit accepted',
                 'USD ${saleMoney(data.tradeCreditMinor)}',
@@ -304,14 +325,14 @@ class _SalesDashboardState extends State<SalesDashboard> {
                 width: metricWidth,
               ),
               _stat(
-                'Paid to customers',
-                'USD ${saleMoney(data.paidToCustomerMinor)}',
+                data.purchases > 0 ? 'Paid out' : 'Paid to customers',
+                'USD ${saleMoney(data.paidOutMinor)}',
                 Icons.payments,
                 width: metricWidth,
               ),
               _stat(
                 'Net money received',
-                'USD ${saleMoney(data.totalMinor - data.paidToCustomerMinor)}',
+                'USD ${saleMoney(data.totalMinor - data.paidOutMinor)}',
                 Icons.account_balance_wallet,
                 width: metricWidth,
               ),
@@ -460,7 +481,7 @@ class _SalesDashboardState extends State<SalesDashboard> {
                 ),
               ),
               title: Text(
-                '${receipt['customerName'] == '' ? 'Walk-up sale' : receipt['customerName']} · USD ${saleMoney(receipt['totalMinor'] as int)}',
+                '${isPurchaseReceipt(receipt) ? 'Purchase · ' : ''}${receipt['customerName'] == '' ? 'Walk-up' : receipt['customerName']} · USD ${saleMoney((isPurchaseReceipt(receipt) ? receipt['purchaseMinor'] : receipt['totalMinor']) as int)}',
               ),
               subtitle: Text(
                 '${receipt['number']}\n${DateTime.parse(receipt['createdAt'] as String).toLocal().toString().substring(0, 16)} · ${receipt['method']}',

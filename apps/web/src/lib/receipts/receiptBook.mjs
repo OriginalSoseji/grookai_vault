@@ -1,5 +1,6 @@
 import {validatePayments, paymentLines} from '../sales/salesPayments.mjs';
 import { validateTradeReceipt, tradeReceiptLines } from './tradeReceipt.mjs';
+import {isPurchaseReceipt,validatePurchaseReceipt,purchaseReceiptText} from '../sales/salesPurchase.mjs';
 export const BOOK_VERSION = 1;
 const METHODS = ['Cash', 'Card (external terminal)', 'Bank / payment app', 'Other'];
 export const paymentMethods = METHODS;
@@ -50,6 +51,7 @@ export function saveSale(book,receipt,customer,id) {
   return {...book,storeName:receipt.storeName,customers,receipts:[{receipt,customerId:hasCustomer?id:null},...book.receipts]};
 }
 export function receiptText(r) {
+  if(isPurchaseReceipt(r))return purchaseReceiptText(r,money);
   return [r.storeName,'SALES RECEIPT',r.number,new Date(r.createdAt).toLocaleString(),r.customerName?`Customer: ${r.customerName}`:'',
     ...r.items.map(i=>`${i.quantity} × ${i.description} @ ${money(i.unitMinor)} — ${money(i.lineMinor)}`),
     `Subtotal: ${money(r.subtotalMinor)}`,`Discount: ${money(r.discountMinor)}`,`Tax recorded: ${money(r.taxMinor)}`,`TOTAL: ${money(r.totalMinor)}`,
@@ -74,6 +76,11 @@ export function parseBackup(raw) {
     const ids=new Set();const sources=new Set();const receipts=b.receipts.map(row=>{
     const r=row.receipt;check(r&&idPattern.test(r.id)&&!ids.has(r.id),'Duplicate or invalid receipt.');ids.add(r.id);
     check(!r.sourceDispositionId||!sources.has(r.sourceDispositionId),'Duplicate source sale.');if(r.sourceDispositionId)sources.add(r.sourceDispositionId);
+    if(isPurchaseReceipt(r)){
+      const restored=validatePurchaseReceipt(r);
+      check(row.customerId===null||customerIds.has(row.customerId),'Missing customer record.');return {receipt:restored,customerId:row.customerId};
+    }
+    check(r.version===1,'Unsupported receipt version. Preserve the original backup.');
     const restored=createReceipt({storeName:r.storeName,customer:{name:r.customerName,email:'',phone:'',wants:'',notes:''},confirmed:true,method:r.payments && r.method === 'Split payment' ? 'Other' : r.method,items:r.items.map(i=>({description:i.description,quantity:String(i.quantity),price:(i.unitMinor/100).toFixed(2)})),discount:(r.discountMinor/100).toFixed(2),tax:(r.taxMinor/100).toFixed(2),note:r.note,sourceDispositionId:r.sourceDispositionId},r.id,r.createdAt);
     check(restored.number===r.number&&restored.totalMinor===r.totalMinor&&restored.subtotalMinor===r.subtotalMinor,'Receipt totals do not match.');
     if(Object.hasOwn(r,'tradeIn'))restored.tradeIn=validateTradeReceipt(r.tradeIn,r.totalMinor);

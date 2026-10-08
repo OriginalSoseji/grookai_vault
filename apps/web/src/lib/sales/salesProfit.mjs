@@ -1,4 +1,5 @@
 // Private cost-at-sale evidence only. Current inventory cost is never an input.
+import {isPurchaseReceipt,validatePurchaseReceipt} from './salesPurchase.mjs';
 const uuid = value => typeof value==='string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 const integer = (value,positive=false) => {
   if(!Number.isSafeInteger(value) || value < (positive?1:0))throw Error('Recorded sales need review before profit can be calculated.');
@@ -45,13 +46,14 @@ function alignedSnapshot(snapshot,receipt,items) {
 /** Inputs are the same filtered receipts displayed by Reports and private immutable snapshots. */
 export function salesProfit(receipts,snapshots) {
   const rows=unique(receipts,'id','receipt'),evidence=unique(snapshots,'receiptId','cost');
-  let sales=0n,knownSales=0n,costs=0n,units=0n,knownUnits=0n,lines=0,knownLines=0;
+  let sales=0n,knownSales=0n,costs=0n,units=0n,knownUnits=0n,lines=0,knownLines=0,purchases=0;
   const reasons=new Map(),details=[];
   function excluded(reason,receiptId,count,quantity,amount){
     let entry=reasons.get(reason);if(!entry){entry={receipts:new Set(),lines:0,units:0n,sales:0n};reasons.set(reason,entry);}
     entry.receipts.add(receiptId);entry.lines+=count;entry.units+=quantity;entry.sales+=amount;
   }
   for(const receipt of rows.values()){
+    if(isPurchaseReceipt(receipt)){validatePurchaseReceipt(receipt);purchases++;continue;}
     if(typeof receipt.createdAt!=='string' || !Number.isFinite(Date.parse(receipt.createdAt)) || !Array.isArray(receipt.items) || !receipt.items.length || receipt.items.length>1000)throw Error('Recorded sales need review before profit can be calculated.');
     const items=receipt.items.map(item=>({units:integer(item.quantity,true),sales:integer(item.quantity,true)*integer(item.unitMinor)}));
     const subtotal=items.reduce((n,item)=>n+item.sales,0n),quantity=items.reduce((n,item)=>n+item.units,0n);
@@ -73,7 +75,7 @@ export function salesProfit(receipts,snapshots) {
     knownSales+=coveredSales;costs+=coveredCost;knownLines+=coveredLines;
     details.push({receiptId:receipt.id,knownLines:coveredLines,totalLines:items.length,knownSalesMinor:String(coveredSales),knownCostMinor:String(coveredCost),knownProfitMinor:coveredLines?String(coveredSales-coveredCost):null,reasons:[...receiptReasons].sort()});
   }
-  return {currency:'USD',receipts:rows.size,totalLines:lines,knownLines,totalUnits:String(units),knownUnits:String(knownUnits),itemSalesMinor:String(sales),
+  return {currency:'USD',receipts:rows.size-purchases,totalLines:lines,knownLines,totalUnits:String(units),knownUnits:String(knownUnits),itemSalesMinor:String(sales),
     knownSalesMinor:String(knownSales),unknownSalesMinor:String(sales-knownSales),knownCostMinor:String(costs),knownProfitMinor:knownLines?String(knownSales-costs):null,
     coverageBps:lines?Math.floor(knownLines*10000/lines):null,
     reasons:[...reasons].sort(([a],[b])=>a.localeCompare(b)).map(([reason,row])=>({reason,receipts:row.receipts.size,lines:row.lines,units:String(row.units),salesMinor:String(row.sales)})),details};

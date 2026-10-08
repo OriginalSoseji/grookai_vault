@@ -49,6 +49,9 @@ int? tradeRateInput(String value) {
 String tradeRate(int bps) =>
     (bps / 100).toStringAsFixed(bps % 100 == 0 ? 0 : 2);
 
-int receiptBalance(Map receipt) => receipt['tradeIn'] is Map
+int receiptBalance(Map receipt) =>
+    receipt['version'] == 2 && receipt['kind'] == 'purchase'
+    ? -(receipt['purchaseMinor'] as int)
+    : receipt['tradeIn'] is Map
     ? receipt['tradeIn']['balanceMinor'] as int
     : receipt['totalMinor'] as int;

@@ -65,6 +65,7 @@ param(
   [switch]$ReceiptDeliveryReleaseV1,
   [switch]$SalesSplitPaymentsReleaseV1,
   [switch]$ProductEconomicsBaselineV1,
+  [switch]$ProductPurchaseBaselineV1,
   [switch]$ProductEconomicsReleaseV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
@@ -94,6 +95,15 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductPurchaseBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductPurchaseBaselineV1') }).Count -gt 0) {
+    throw 'ProductPurchaseBaselineV1 supports only the read-only linked audit before purchase SQL.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_purchase_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product purchase baseline failed.' }
+  exit 0
+}
 
 if ($ProductEconomicsReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | Sort-Object)

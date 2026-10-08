@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'sales_purchase.dart';
 
 // Private, immutable cost-at-sale evidence. Current inventory cost is not an input.
 final _uuid = RegExp(
@@ -154,7 +155,7 @@ Map<String, Object?> salesProfit(
   final evidence = _unique(snapshots, 'receiptId', 'cost');
   var sales = BigInt.zero, knownSales = BigInt.zero, costs = BigInt.zero;
   var units = BigInt.zero, knownUnits = BigInt.zero;
-  var lines = 0, knownLines = 0;
+  var lines = 0, knownLines = 0, purchases = 0;
   final reasons = <String, _Gap>{};
   final details = <Map<String, Object?>>[];
   void excluded(
@@ -172,6 +173,11 @@ Map<String, Object?> salesProfit(
   }
 
   for (final receipt in rows.values) {
+    if (isPurchaseReceipt(receipt)) {
+      validatePurchaseReceipt(receipt);
+      purchases++;
+      continue;
+    }
     if (_date(receipt['createdAt']) == null ||
         receipt['items'] is! List ||
         (receipt['items'] as List).isEmpty ||
@@ -252,7 +258,7 @@ Map<String, Object?> salesProfit(
   final reasonKeys = reasons.keys.toList()..sort();
   return {
     'currency': 'USD',
-    'receipts': rows.length,
+    'receipts': rows.length - purchases,
     'totalLines': lines,
     'knownLines': knownLines,
     'totalUnits': '$units',
