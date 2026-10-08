@@ -10,11 +10,13 @@ export const salesDeskProLocalTest = process.env.NEXT_PUBLIC_SALES_DESK_PRO_LOCA
 export const salesCartLocalTest = process.env.NEXT_PUBLIC_SALES_CART_LOCAL_TEST === "true";
 export const salesTradeLocalTest = process.env.NEXT_PUBLIC_SALES_TRADE_LOCAL_TEST === "true";
 export const copyCostLocalTest = process.env.NEXT_PUBLIC_COPY_COST_LOCAL_TEST === "true";
+export const salesPurchaseLocalTest = process.env.NEXT_PUBLIC_SALES_PURCHASE_LOCAL_TEST === "true";
 export const salesPaymentsLocalTest = process.env.NEXT_PUBLIC_SALES_PAYMENTS_LOCAL_TEST === "true";
 export const receiptDeliveryLocalTest = process.env.NEXT_PUBLIC_RECEIPT_DELIVERY_LOCAL_TEST === "true";
 
 export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureLab, hosted = collectorHostedStaging) {
   const target = new URL(url);
+  if (salesPurchaseLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || copyCostLocalTest)) throw new Error("Purchase proof requires its own local database.");
   if (copyCostLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest)) throw new Error("Private cost proof requires its own local database.");
   if (salesPaymentsLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest)) throw new Error("Split payment proof requires its own local database.");
   if (receiptDeliveryLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest)) throw new Error("Receipt delivery proof requires its own local database.");
@@ -29,7 +31,7 @@ export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureL
   if (fixtureLab && hosted) throw new Error("Fixture and hosted staging are mutually exclusive.");
   const expected = vendorBatchLocalTest ? (["http://127.0.0.1:27621", "http://127.0.0.1:29021", "http://127.0.0.1:29421", "http://127.0.0.1:30221", "http://127.0.0.1:31021"].includes(target.origin) ? target.origin : "http://127.0.0.1:26421") : vendorPilot ? VENDOR_PILOT_DATABASE : storefrontLocalTest ? "http://127.0.0.1:15439" : hosted ? "https://hcdpcbpnnvtbaezefjkd.supabase.co"
     : fixtureLab ? "http://127.0.0.1:54361" : "http://127.0.0.1:54321";
-  const allowed = copyCostLocalTest ? "http://127.0.0.1:33061" : salesPaymentsLocalTest ? "http://127.0.0.1:32841" : receiptDeliveryLocalTest ? "http://127.0.0.1:32701" : salesTradeLocalTest ? "http://127.0.0.1:65301" : salesDeskProLocalTest ? "http://127.0.0.1:65001" : salesCartLocalTest ? "http://127.0.0.1:64801" : receiptCloudLocalTest ? "http://127.0.0.1:64701" : collectrImportLocalTest ? (["http://127.0.0.1:58681", "http://127.0.0.1:58721"].includes(target.origin) ? target.origin : "http://127.0.0.1:58541") : expected;
+  const allowed = salesPurchaseLocalTest ? "http://127.0.0.1:33281" : copyCostLocalTest ? "http://127.0.0.1:33061" : salesPaymentsLocalTest ? "http://127.0.0.1:32841" : receiptDeliveryLocalTest ? "http://127.0.0.1:32701" : salesTradeLocalTest ? "http://127.0.0.1:65301" : salesDeskProLocalTest ? "http://127.0.0.1:65001" : salesCartLocalTest ? "http://127.0.0.1:64801" : receiptCloudLocalTest ? "http://127.0.0.1:64701" : collectrImportLocalTest ? (["http://127.0.0.1:58681", "http://127.0.0.1:58721"].includes(target.origin) ? target.origin : "http://127.0.0.1:58541") : expected;
   if (target.origin !== allowed || target.username || target.password || target.search || target.hash) {
     throw new Error("Authenticated collector staging requires its exact verified database.");
   }

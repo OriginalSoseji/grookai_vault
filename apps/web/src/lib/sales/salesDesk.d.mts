@@ -1,4 +1,6 @@
 import type {Tender} from './salesPayments.mjs';
+import type {PurchaseDraft} from './purchaseDraft.mjs';
+import type {PurchaseRequest} from './salesPurchase.mjs';
 export type SaleLine = {
     instanceId?: string | null;
     gvviId?: string;
@@ -26,6 +28,7 @@ export type Customer = {
     notes: string;
 };
 export type SaleDraft = {
+    kind?: undefined;
     id: string;
     label: string;
     storeName: string;
@@ -41,7 +44,7 @@ export type SaleDraft = {
 export type SaleRequest = {
     id: string;
     cart: {
-        version: number;
+        version: 1 | 2 | 3;
         storeName: string;
         items: SaleLine[];
         trades?: TradeLine[];
@@ -68,9 +71,9 @@ export type CatalogAttempt = {
 export type Journal = {
     version: number;
     revision: number;
-    drafts: SaleDraft[];
+    drafts: (SaleDraft | PurchaseDraft)[];
     active: string | null;
-    pending: SaleRequest | null;
+    pending: SaleRequest | PurchaseRequest | null;
     catalog: CatalogAttempt | null;
 };
 export const conditions: string[];

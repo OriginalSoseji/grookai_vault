@@ -10,9 +10,18 @@ its source/lab freeze is lifted. Purchase models and compatible receipt readers
 pass focused Node/native and five browser scenarios. The read-only purchase
 baseline passes against live429/source431. The new default-off purchase backend
 passes full432 replay, SQL receipt parity and authenticated retry/rollback tests.
-Upgrade and ordinary-hook outcomes belong to the external checkpoint. Buy entry,
-durable client recovery, device acceptance and production activation remain pending.
-Freeze this source and the full432 lab while the purchase normal hook runs.
+The retained431 upgrade and ordinary hook pass; backend/readers commit2dff3ad719
+is qualified locally (7,640 contracts, web checks and1,587 native tests). Its
+backend freeze is lifted. Web Buy entry and the version3 held-deal journal now
+pass97 focused contracts,52 native parity cases and20 browser/workspace scenarios.
+Actual browser-to-API proof passes in web-runtime-1791427528551: one USD6.50 copy,
+lost-response/feature-off recovery, private-safe seller view and account closure.
+All13 retained-table checks pass and controls are off. Retain all55 copies and
+six accounts, including failed harness fixtures. The same owner key retains old
+sales and pending requests. The external checkpoint owns the web normal-hook
+outcome. Freeze source/full432 while that hook runs; do not reset any lab.
+Native entry, reusable policies, Samsung/iOS, release qualification and activation
+remain pending. Continue native work only after the check freeze is lifted.
 
 
 ## Web inventory cost review — October 7

@@ -68,6 +68,26 @@ The sale-cost capture trigger must explicitly skip purchase requests. Existing
 sale snapshots remain unchanged. No owner IDs from clients, base-table grants,
 customer messages, public cost exposure or automatic listings are introduced.
 
+## Held offers and client recovery
+
+Web purchase drafts use explicit kind `purchase` with incoming items and no tax or
+trade-sale fields. The existing owner journal key and20-deal limit are retained.
+Its book version upgrades from2 to3 when a purchase is introduced and never
+downgrades automatically. Older clients therefore reject the book instead of
+mistaking incoming items for outgoing sales. Existing sale drafts and pending
+v1/v2/v3 requests retain their payloads. Purchase requests remain mutually exclusive
+with pending catalog intake; a catalog add cannot target a purchase draft.
+
+The stable v4 request is saved before contacting the writer. Reload, retry and
+feature-off recovery use that request identity and payload. A purchase receipt
+must match the pending request, including agreed prices and payout amounts,
+before it is displayed as confirmed. Storage failure, an account change or a
+mismatched acknowledgement cannot authorize a replacement purchase.
+
+An offer preview contains only store name, item descriptions, quantities and
+agreed amounts. It is labelled unconfirmed until a bound receipt exists. Private
+seller contacts, notes, reference percentages and inventory copy IDs are omitted.
+
 ## Exit evidence
 
 Prove1–50 incoming copies without any outgoing sale; mixed canonical/quick items;

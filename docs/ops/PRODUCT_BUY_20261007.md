@@ -62,13 +62,59 @@ off. These fixture rows and journals are retained; never reset this populated la
 Idempotency-1791425831569 passes with zero schema diff,1,196 security objects and
 all captured rows unchanged after reapplying the same candidate locally.
 
-The fresh retained431 upgrade and ordinary-hook candidate have separate external
-receipts. The wrapper run_product_purchase_checks_v1.mjs uses full432 read-only.
-Freeze source and that lab until its terminal receipt. Preserve failed preflight
+The fresh retained431 upgrade passes with the retained copies/book unchanged,
+zero schema difference and1,196 matching security definitions. Backend/readers
+commit `2dff3ad7197c876fb30cfd34eb81d8f494381d3d` passes the normal hook in
+checks-1791425963854:7,640 contracts (10 skipped), web types/lint/build, native
+analysis and1,587 native tests (three skipped). Read-only full432 checks retain
+all53 copies and two users. The source/lab check freeze is lifted. Preserve failed preflight
 attempts and all prior labs. An occupied subnet rejected before fixture creation;
 the subsequent fresh preparation uses10.246.69/70, DB33280/33300, Auth33281/33301.
 
-Web/native buy entry, durable client recovery, Samsung/iOS acceptance, independent
+Web Buy entry now extends SalesDesk with the same owner journal, held-deal queue
+and v4 completion/recovery route. Purchase drafts upgrade that book to version3,
+retaining prior sale drafts and pending requests; older clients reject the new
+version. Catalog incoming items require an exact printing and condition and
+explicitly opt into atomic intake at purchase completion. Quick lines cannot
+create inventory. Optional percentage suggestions never overwrite an agreed
+amount; private reference fields stay outside the seller preview. The payout
+review requires explicit exchange confirmation. A bound receipt is required on
+both completion and reload recovery. This UI is an uncommitted follow-on slice.
+
+The final focused model/environment run passes97 cases and the refreshed,
+semantically unchanged51 vectors pass52 native tests. The only vector-fixture
+change is the web model hash after exposing existing validators. Web lint/types
+pass. All20 browser/workspace scenarios pass in ui-browser-v4, including manual
+override, zero cost, printing/intake choice, all payout methods, split balance,
+held-sale preservation, failed local stage, exact retry, feature-off recovery and
+late-response/account isolation. Two phone/desktop renders were inspected, with
+no serious/critical accessibility findings. Initial browser failures were selector
+ambiguity, the fixture sign-out button behind the mobile dock (keyboard activation
+is used), and a checkbox assertion before its durable write had settled.
+
+Actual browser-to-API proof passes in web-runtime-1791427528551. It uses real local
+Auth and the actual account page, catalog search, printing options and purchase
+writer. A held offer creates no inventory. Completion creates one USD6.50 copy
+and one immutable receipt. The response is deliberately dropped after real commit;
+reload with purchase/cart/cloud controls off recovers it. An identical POST returns
+the same receipt; changed payload and wrong-owner requests reject. Sign-out clears
+private content and invalidates authenticated reads. All13 prior-table snapshots
+are preserved and all controls restored off. Four final runtime screens inspected.
+
+Failed runtime fixtures are retained: the first hit the staging target guard;
+the second harness closed the browser before the response handler settled and
+requires its explicit rescue.json (zero purchases, flags restored,13 tables kept);
+the third completed the purchase/recovery proof but expected one particular closed
+heading while Next dev reloaded to the valid sign-in-required state. The final run
+checks content removal,401 reads and closed/sign-in states. Full432 now retains55
+copies and six synthetic accounts. No consumed intent was replayed or reset.
+
+The new purchase-only local-test flag admits only127.0.0.1:33281 and rejects mixed
+modes, hosted deployment, enabled telemetry and production release. Existing cost
+guards still pass. The web normal-hook outcome belongs to the external checkpoint;
+freeze this source and full432 while it runs.
+
+Native buy entry, reusable offer policies, actual browser/Samsung/iOS acceptance, independent
 shadow/exact release gates and production activation remain incomplete. External
 product_buy_20261007/CHECKPOINT.json records actual outcomes. This is an additive
-backend and reader candidate, not a finished user-facing buy workflow.
+backend, reader and in-progress web UI candidate, not a released buy workflow.

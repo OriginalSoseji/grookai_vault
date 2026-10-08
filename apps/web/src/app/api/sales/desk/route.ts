@@ -6,6 +6,7 @@ import { getPublicCardPrintingOptions } from '@/lib/cards/getPublicCardPrintingO
 import { resolveCardImageFieldsV1 } from '@/lib/canon/resolveCardImageFieldsV1';
 import { resolveDisplayIdentity } from '@/lib/cards/resolveDisplayIdentity';
 import { scannedCopyId } from '@/lib/sales/salesScanner.mjs';
+import {validatePurchaseRequest} from '@/lib/sales/salesPurchase.mjs';
 export const dynamic = 'force-dynamic';
 const headers = { 'Cache-Control': 'private, no-store', 'Vary': 'Cookie, Authorization' };
 const json = (data: unknown, status = 200) => NextResponse.json(data, { status, headers });
@@ -25,7 +26,8 @@ export async function GET(req: NextRequest) {
                 throw error;
             const { data: trades } = await client.rpc('vendor_sales_trade_available_v1');
             const { data: payments } = await client.rpc('vendor_sales_payments_available_v1');
-            return json({ owner: user.id, payments: payments === true, available: available === true, trades: trades === true });
+            const { data: purchases } = await client.rpc('vendor_sales_purchase_available_v1');
+            return json({ owner: user.id, purchases: purchases === true, payments: payments === true, available: available === true, trades: trades === true });
         }
         if (action === 'book') {
             if (p.has('owner') && p.get('owner') !== user.id) return json({error:'Account changed. Reopen Reports.'},409);
@@ -147,11 +149,17 @@ export async function POST(req: NextRequest) {
         catch {
             return json({ error: 'Invalid request', rejected: true }, 400);
         }
-        if (!b || !uuid(b.id) || !['sale', 'catalog'].includes(b.action))
+        if (!b || !uuid(b.id) || !['sale', 'catalog', 'purchase'].includes(b.action))
             return json({ error: 'Invalid request', rejected: true }, 400);
         if (b.owner !== ctx.user.id)
             return json({ error: 'Your account changed. Reopen the sales desk.', rejected: false }, 409);
-        const { data, error } = b.action === 'catalog' ? await ctx.client.rpc('vendor_sales_catalog_add_v1', { p_request_id: b.id, p_card: b.card }) : await ctx.client.rpc(b.cart?.version === 3 ? 'vendor_sales_cart_complete_v3' : b.cart?.version === 2 ? 'vendor_sales_cart_complete_v2' : 'vendor_sales_cart_complete_v1', { p_request_id: b.id, p_cart: b.cart });
+        if (b.action === 'purchase') {
+            try { validatePurchaseRequest({id: b.id, cart: b.cart}); }
+            catch { return json({error: 'Purchase details need review.', rejected: true}, 400); }
+        } else if (b.action === 'sale' && ![1, 2, 3].includes(b.cart?.version)) {
+            return json({error: 'Unsupported sale request.', rejected: true}, 400);
+        }
+        const { data, error } = b.action === 'catalog' ? await ctx.client.rpc('vendor_sales_catalog_add_v1', { p_request_id: b.id, p_card: b.card }) : await ctx.client.rpc(b.action === 'purchase' ? 'vendor_sales_cart_complete_v4' : b.cart.version === 3 ? 'vendor_sales_cart_complete_v3' : b.cart.version === 2 ? 'vendor_sales_cart_complete_v2' : 'vendor_sales_cart_complete_v1', { p_request_id: b.id, p_cart: b.cart });
         if (error) {
             const rejected = ['22023', 'PT409', '23514', '23505', '42501', '22P02'].includes(error.code);
             return json({ error: rejected ? 'Request rejected. Review availability and details.' : 'Result unconfirmed. Recover this same request.', rejected }, rejected ? 409 : 503);

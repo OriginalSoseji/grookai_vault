@@ -25,6 +25,7 @@ function item(value){
  }else if(!uuid(value.cardId)||!uuid(value.printingId)||!['NM','LP','MP','HP','DMG'].includes(value.condition)||value.quantity!==1)fail('Choose one exact printing and condition per copy.');
  return {...value,description};
 }
+export const validatePurchaseItem=value=>frozen(item(value));
 function items(values){
  if(!Array.isArray(values)||values.length<1||values.length>50)fail('Choose 1 to 50 purchase lines.');
  const lines=values.map(item),total=lines.reduce((sum,line)=>sum+line.unitMinor*line.quantity,0);
@@ -75,12 +76,15 @@ export function validatePurchaseReceipt(value){
 }
 
 /** An acknowledgement may settle only the exact pending purchase. */
-export function confirmedPurchaseReceipt(value,request){
+export function validatePurchaseRequest(request){
  keys(request,['id','cart']);
  keys(request.cart,['version','kind','storeName','items','payments','note','customerId','customer']);
  if(request.cart.version!==4||request.cart.kind!=='purchase')fail('Unexpected purchase request.');
  const cart=request.cart;
- const normalized=purchaseRequest({storeName:cart.storeName,items:cart.items,payments:cart.payments,note:cart.note,customerId:cart.customerId,customer:cart.customer,confirmed:true},request.id).cart;
+ return purchaseRequest({storeName:cart.storeName,items:cart.items,payments:cart.payments,note:cart.note,customerId:cart.customerId,customer:cart.customer,confirmed:true},request.id);
+}
+export function confirmedPurchaseReceipt(value,request){
+ const normalized=validatePurchaseRequest(request).cart;
  const receipt=validatePurchaseReceipt(value);
  const samePayments=receipt.payments.entries.length===normalized.payments.length&&receipt.payments.entries.every((entry,i)=>
   ['method','amountMinor','tenderedMinor'].every(key=>entry[key]===normalized.payments[i][key]));

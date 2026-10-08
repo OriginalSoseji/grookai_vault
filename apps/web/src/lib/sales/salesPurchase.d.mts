@@ -13,6 +13,8 @@ export type PurchaseReceipt=Readonly<{
  purchaseMinor:number;method:string;payments:Payments;note:string;
 }>;
 export function purchaseOffer(referenceMinor:unknown,rateBps:unknown):number;
+export function validatePurchaseItem(value:unknown):PurchaseItem;
+export function validatePurchaseRequest(value:unknown):PurchaseRequest;
 export function purchaseRequest(input:unknown,id:string):PurchaseRequest;
 export function validatePurchaseReceipt(value:unknown):PurchaseReceipt;
 export function isPurchaseReceipt(value:unknown):value is PurchaseReceipt;

@@ -5,6 +5,10 @@ import Image from 'next/image';
 import SalesDialog from './SalesDialog';
 import SalesScanner from './SalesScanner';
 import SalesPaymentEditor from './SalesPaymentEditor';
+import PurchaseDesk from './PurchaseDesk';
+import {isPurchaseDraft, newPurchaseDraft, purchaseDraftTotal, purchaseDraftRequest} from '@/lib/sales/purchaseDraft.mjs';
+import type {PurchaseDraft} from '@/lib/sales/purchaseDraft.mjs';
+import {confirmedPurchaseReceipt, isPurchaseReceipt} from '@/lib/sales/salesPurchase.mjs';
 import {paymentLines, paymentSnapshot} from '@/lib/sales/salesPayments.mjs';
 import SalesDashboard from './SalesDashboard';
 import { useSalesNavigationGuard } from './useSalesNavigationGuard';
@@ -43,6 +47,7 @@ type Session = {
     available: boolean;
     trades: boolean;
     payments: boolean;
+    purchases?: boolean;
 };
 type Book = {
     book: {
@@ -73,6 +78,10 @@ async function waitForAcceptedWrites(owner: string) {
 }
 const emptyJournal: Journal = { version: 2, revision: 0, drafts: [], active: null, pending: null, catalog: null };
 function paymentsValid(d:SaleDraft) {try {if(d.payments)paymentSnapshot(d.payments,totals(d).balance);return true;}catch{return false;}}
+function requireSaleDraft(value: SaleDraft | PurchaseDraft): SaleDraft {
+    if (isPurchaseDraft(value)) throw Error('This is a purchase. Reopen the intended sale.');
+    return value;
+}
 export default function SalesDesk() {
     const [scanPending, setScanPending] = useState(false);
     const [dashboard,setDashboard]=useState(false),[historyBusy,setHistoryBusy]=useState(false);
@@ -93,7 +102,10 @@ export default function SalesDesk() {
         return !writeFailed.current;
     }, []);
     useSalesNavigationGuard(hasPendingWrites, flushForNavigation);
-    const draft = journal.drafts.find(d => d.id === journal.active) ?? null, baseLocked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true, locked = baseLocked || scanPending;
+    const activeDraft = journal.drafts.find(d => d.id === journal.active) ?? null;
+    const purchase = isPurchaseDraft(activeDraft) ? activeDraft : null, draft = activeDraft && !isPurchaseDraft(activeDraft) ? activeDraft : null;
+    const journalLocked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || scanPending;
+    const baseLocked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true, locked = baseLocked || scanPending;
     const balance = draft ? totals(draft) : null;
     const searchKey = JSON.stringify([query, game, scope, intent, revision]), stale = resultKey !== searchKey;
     const mutate = useCallback((change: (j: Journal) => Journal) => {
@@ -119,7 +131,15 @@ export default function SalesDesk() {
     }, []);
     const edit = useCallback((change: (d: SaleDraft) => SaleDraft) => { if (locked)
         return; void mutate(j => { if (j.pending || j.catalog)
-        throw Error('Recover the pending request first.'); return { ...j, drafts: j.drafts.map(d => d.id === j.active ? change(d) : d) }; }).catch(e => setError(e.message)); }, [locked, mutate]);
+        throw Error('Recover the pending request first.'); return { ...j, drafts: j.drafts.map(d => d.id === j.active && !isPurchaseDraft(d) ? change(d) : d) }; }).catch(e => setError(e.message)); }, [locked, mutate]);
+    const editPurchase = useCallback(async (change: (value: PurchaseDraft) => PurchaseDraft) => {
+        if (journalLocked || !session?.purchases) throw Error('New purchases are unavailable. Keep this offer saved.');
+        const target = state.current.active;
+        return mutate(j => {
+            if (j.pending || j.catalog || j.active !== target) throw Error('Recover the pending request first.');
+            return {...j, drafts: j.drafts.map(d => d.id === target && isPurchaseDraft(d) ? change(d) : d)};
+        });
+    }, [journalLocked, session?.purchases, mutate]);
     useEffect(() => {
         let alive = true;
         disabled.current = false;
@@ -150,13 +170,16 @@ export default function SalesDesk() {
                 void request<Book>({ action: 'book' }).then(data => { if (!alive || disabled.current)
                     return; setBook(data.book); if (state.current.pending || state.current.catalog)
                     return; void mutate(j => j.pending || j.catalog ? j : ({ ...j, drafts: j.drafts.map(d => d.storeName ? d : { ...d, storeName: data.book.storeName }) })).catch(e => setError(e.message)); }).catch(() => { if (alive && !disabled.current)
-                    setError('Customer history could not load. You can still enter this sale’s details.'); });
+                    if (!state.current.pending) setError('Contact history could not load. Your saved deals are kept.'); });
                 if (saved.pending) {
                     const found = await request<{
                         receipt: Receipt | null;
                     }>({ action: 'recover', id: saved.pending.id });
-                    if (alive && !disabled.current && found.receipt)
-                        setReceipt(found.receipt);
+                    if (alive && !disabled.current && found.receipt) {
+                        const result = saved.pending.cart.version === 4 ? confirmedPurchaseReceipt(found.receipt, saved.pending) : found.receipt;
+                        if (saved.pending.cart.version !== 4 && result.id !== saved.pending.id) throw Error('Receipt does not match the pending deal. Keep it saved for recovery.');
+                        setReceipt(result);
+                    }
                 }
             }
             catch (e) {
@@ -214,8 +237,8 @@ export default function SalesDesk() {
                 setSearching(false);
         }
     }, [query, game, scope, intent, searchKey]);
-    useEffect(() => { if (!session || changed)
-        return; const controller = new AbortController(); const timer = setTimeout(() => void search(null, controller.signal), 180); return () => { clearTimeout(timer); controller.abort(); invalidateSearch(); }; }, [search, session, changed, revision, invalidateSearch]);
+    useEffect(() => { if (!session || changed || purchase)
+        return; const controller = new AbortController(); const timer = setTimeout(() => void search(null, controller.signal), 180); return () => { clearTimeout(timer); controller.abort(); invalidateSearch(); }; }, [search, session, changed, revision, invalidateSearch, purchase]);
     function choose(card: Card | null) { if (locked || card && (stale || searching))
         return; setSelected(card); setQuick(!card); setPrinting(''); setDescription(card?.name ?? ''); setPrice(card?.askingMinor ? money(card.askingMinor) : ''); setQuantity('1'); setIntake(false); setError(''); }
     function addOwned(card: Card) {
@@ -226,7 +249,7 @@ export default function SalesDesk() {
             return;
         }
         void mutate(j => { if (j.pending || j.catalog)
-            throw Error('Recover the pending request first.'); return { ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(d, { instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, image: card.image }) : d) }; }).then(() => { setNotice(card.name + ' added'); searchRef.current?.focus(); }).catch(e => setError(e.message));
+            throw Error('Recover the pending request first.'); return { ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(requireSaleDraft(d), { instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, image: card.image }) : d) }; }).then(() => { setNotice(card.name + ' added'); searchRef.current?.focus(); }).catch(e => setError(e.message));
     }
     async function addScan(id: string, current: () => boolean) {
         const target = state.current.active, expectedOwner = owner.current;
@@ -236,7 +259,9 @@ export default function SalesDesk() {
         if (found.owner !== expectedOwner) throw Error('Your account changed. Reopen the sales desk.');
         const card = found.cards.length === 1 ? found.cards[0] : null;
         if (!card?.instanceId || card.gvviId !== id) throw Error('This copy is not in your active inventory. Check its QR label.');
-        if (state.current.drafts.find(d => d.id === target)?.items.some(l => l.instanceId === card.instanceId))
+        const targetDraft = state.current.drafts.find(d => d.id === target);
+        if (!targetDraft || isPurchaseDraft(targetDraft)) throw Error('Reopen the intended sale before scanning owned copies.');
+        if (targetDraft.items.some(l => l.instanceId === card.instanceId))
             return `${card.name} is already in this cart.`;
         if (!Number.isSafeInteger(card.askingMinor) || card.askingMinor! <= 0 || card.askingMinor! > 100000000) {
             setIntent('sell'); setScope('stock'); setSelected(card); setQuick(false); setDescription(card.name); setPrice(''); setQuantity('1');
@@ -244,7 +269,7 @@ export default function SalesDesk() {
         }
         await mutate(j => {
             if (!current() || j.active !== target || j.pending || j.catalog) throw Error('The deal changed. Scan again.');
-            return {...j, drafts: j.drafts.map(d => d.id === target ? addLine(d, {instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, image: card.image}) : d)};
+            return {...j, drafts: j.drafts.map(d => d.id === target ? addLine(requireSaleDraft(d), {instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, image: card.image}) : d)};
         });
         return `${card.name} added · $${money(card.askingMinor!)} · Draft saved`;
     }
@@ -263,7 +288,7 @@ export default function SalesDesk() {
         if (result.requestId !== saved.id || result.cardId !== saved.card.cardId || result.printingId !== saved.card.printingId)
             throw Error('Card result unconfirmed. Recover the same add.');
         await mutate(j => { if (j.catalog?.id !== saved.id || !j.drafts.some(d => d.id === saved.draftId))
-            throw Error('Saved add changed. Reload before recovery.'); return { ...j, catalog: null, drafts: j.drafts.map(d => d.id !== saved.draftId || d.items.some(l => l.instanceId === result.instanceId) ? d : addLine(d, { ...saved.line, instanceId: result.instanceId, gvviId: result.gvviId })) }; });
+            throw Error('Saved add changed. Reload before recovery.'); return { ...j, catalog: null, drafts: j.drafts.map(d => d.id !== saved.draftId || isPurchaseDraft(d) || d.items.some(l => l.instanceId === result.instanceId) ? d : addLine(requireSaleDraft(d), { ...saved.line, instanceId: result.instanceId, gvviId: result.gvviId })) }; });
     }
     async function addSelection() {
         if (!draft || locked)
@@ -279,18 +304,18 @@ export default function SalesDesk() {
             if (intent === 'trade') {
                 const t: TradeLine = { description: description.trim(), quantity: selected ? 1 : qty, valueMinor: value, rateBps: bps!, cardId: selected?.id ?? null, printingId: selected ? printing : null, condition: selected ? condition : null, addToVault: !!selected && intake };
                 await mutate(j => ({ ...j, drafts: j.drafts.map(d => { if (d.id !== j.active)
-                        return d; if (d.trades.length >= 50)
+                        return d; if (isPurchaseDraft(d)) throw Error('Reopen the intended sale.'); if (d.trades.length >= 50)
                         throw Error('This deal has 50 trade lines.'); return { ...d, trades: [...d.trades, t] }; }) }));
             }
             else if (selected && !selected.instanceId) {
                 const saved: CatalogAttempt = { id: crypto.randomUUID(), draftId: draft.id, card: { cardId: selected.id, printingId: printing, condition, intent: 'hold', priceMinor: null }, line: { description: description.trim(), quantity: 1, unitMinor: value, image: selected.image } };
                 await mutate(j => { if (j.pending || j.catalog)
                     throw Error('Recover the pending request first.'); const target = j.drafts.find(d => d.id === saved.draftId); if (!target)
-                    throw Error('Reopen the saved deal.'); addLine(target, saved.line); return { ...j, catalog: saved }; });
+                    throw Error('Reopen the saved deal.'); addLine(requireSaleDraft(target), saved.line); return { ...j, catalog: saved }; });
                 await catalogAttempt(saved);
             }
             else
-                await mutate(j => ({ ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(d, { description: description.trim(), quantity: selected ? 1 : qty, unitMinor: value, instanceId: selected?.instanceId, gvviId: selected?.gvviId, askingMinor: selected?.askingMinor, image: selected?.image }) : d) }));
+                await mutate(j => ({ ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(requireSaleDraft(d), { description: description.trim(), quantity: selected ? 1 : qty, unitMinor: value, instanceId: selected?.instanceId, gvviId: selected?.gvviId, askingMinor: selected?.askingMinor, image: selected?.image }) : d) }));
             setSelected(null);
             setQuick(false);
             setNotice(intent === 'trade' ? 'Trade added to the deal' : 'Card added to the deal');
@@ -320,7 +345,7 @@ export default function SalesDesk() {
         setBusy(false);
     } }
     async function complete() {
-        if (!draft || busy || changed || disabled.current)
+        if (!activeDraft || busy || changed || disabled.current)
             return;
         setBusy(true);
         setError('');
@@ -330,19 +355,24 @@ export default function SalesDesk() {
             if (!pending) {
                 const staged = await mutate(j => { if (j.catalog)
                     throw Error('Recover the catalog add first.'); const current = j.drafts.find(d => d.id === j.active); if (!current)
-                    throw Error('Reopen the saved deal.'); if(current.payments !== undefined && !session?.payments) throw Error('Split payments are unavailable. Keep this deal saved and retry later.'); return { ...j, pending: saleRequest(current, crypto.randomUUID()) }; });
+                    throw Error('Reopen the saved deal.');
+                    if (isPurchaseDraft(current)) {
+                        if (!session?.purchases) throw Error('New purchases are unavailable. Keep this offer saved.');
+                        return {...j, pending: purchaseDraftRequest(current, crypto.randomUUID(), true)};
+                    }
+                    if(current.payments !== undefined && !session?.payments) throw Error('Split payments are unavailable. Keep this deal saved and retry later.'); return { ...j, pending: saleRequest(current, crypto.randomUUID()) }; });
                 pending = staged.pending!;
             }
             if (disabled.current)
                 throw Error('Reopen the sales desk.');
             const { result } = await request<{
                 result: Receipt;
-            }>({}, { action: 'sale', owner: owner.current, ...pending });
-            if (result.id !== pending.id)
+            }>({}, { action: pending.cart.version === 4 ? 'purchase' : 'sale', owner: owner.current, ...pending });
+            if (pending.cart.version !== 4 && result.id !== pending.id)
                 throw Error('Sale response unconfirmed. Recover this same sale.');
             if (disabled.current)
                 return;
-            setReceipt(result);
+            setReceipt(pending.cart.version === 4 ? confirmedPurchaseReceipt(result, pending) : result);
             setReview(false);
         }
         catch (e) {
@@ -357,10 +387,11 @@ export default function SalesDesk() {
             setBusy(false);
         }
     }
-    async function fresh() { if (busy || changed || journal.catalog || journal.pending && !receipt)
-        return; await mutate(j => { const d = newDraft(crypto.randomUUID(), draft?.storeName ?? book?.storeName ?? ''); return { ...j, pending: null, active: d.id, drafts: [...j.drafts.filter(x => !receipt || x.id !== j.active), d] }; }); setReceipt(null); setShowHeld(false); setReview(false); setRevision(v => v + 1); }
+    async function fresh(kind: 'sale' | 'purchase' = 'sale') { if (busy || changed || journal.catalog || journal.pending && !receipt)
+        return; if (kind === 'purchase' && !session?.purchases) throw Error('New purchases are unavailable.');
+        await mutate(j => { const d = kind === 'purchase' ? newPurchaseDraft(crypto.randomUUID(), activeDraft?.storeName ?? book?.storeName ?? '') : newDraft(crypto.randomUUID(), activeDraft?.storeName ?? book?.storeName ?? ''); return { ...j, pending: null, active: d.id, drafts: [...j.drafts.filter(x => !receipt || x.id !== j.active), d] }; }); setReceipt(null); setShowHeld(false); setReview(false); setSelected(null); setQuick(false); setNotice(''); setRevision(v => v + 1); }
     async function discard(id:string) {
-        if(locked||!window.confirm('Discard this saved deal? Inventory and recorded sales are unchanged.'))return;
+        if(journalLocked||!window.confirm('Discard this saved deal? Inventory and recorded sales are unchanged.'))return;
         await mutate(j=>{if(j.pending||j.catalog)throw Error('Recover the pending request first.');let drafts=j.drafts.filter(d=>d.id!==id);if(!drafts.length)drafts=[newDraft(crypto.randomUUID(),draft?.storeName??'')];return {...j,drafts,active:j.active===id?drafts[0].id:j.active};});
     }
     async function refreshHistory(){if(historyBusy||disabled.current)return;setHistoryBusy(true);try{const data=await request<Book>({action:'book'});if(!disabled.current)setBook(data.book);}catch{setError('History could not refresh. Saved sales remain unchanged.');}finally{setHistoryBusy(false);}}
@@ -369,14 +400,15 @@ export default function SalesDesk() {
         return <main className={s.shell}><h1>Reopen your sales desk</h1><p>{error || 'Your account changed. Saved deals remain with their original owner.'}</p><button onClick={() => location.reload()}>Reload saved deals</button></main>;
     return <main className={s.shell}>
   <header className={s.header}><div><Link href="/account/store"><ArrowLeft size={15}/> Store workspace</Link><h1>Sales desk <span>Ready for your next deal.</span></h1></div><div className={s.actions}>
-   <button disabled={!session || scanPending} onClick={()=>setDashboard(!dashboard)}>{dashboard?'Back to selling':'Dashboard'}</button><Link href="/account/store/receipts/cloud">Receipts & customers</Link><button disabled={locked} onClick={() => setShowHeld(!showHeld)}><Pause size={16}/> Held deals ({journal.drafts.length})</button><button disabled={scanPending || busy || changed || !!journal.catalog || !!journal.pending && !receipt} onClick={() => void fresh().catch(e => setError(e.message))}><Plus size={16}/> {receipt ? 'Next customer' : 'New deal'}</button></div></header>
+   <button disabled={!session || scanPending} onClick={()=>setDashboard(!dashboard)}>{dashboard?'Back to desk':'Dashboard'}</button><Link href="/account/store/receipts/cloud">Receipts & customers</Link><button disabled={journalLocked} onClick={() => setShowHeld(!showHeld)}><Pause size={16}/> Held deals ({journal.drafts.length})</button><button disabled={scanPending || busy || changed || !!journal.catalog || !!journal.pending && !receipt} onClick={() => void fresh().catch(e => setError(e.message))}><Plus size={16}/> {receipt ? 'Next customer' : 'New deal'}</button><button disabled={!session?.purchases || scanPending || busy || changed || !!journal.catalog || !!journal.pending && !receipt} onClick={() => void fresh('purchase').then(() => setDashboard(false)).catch(e => setError(e.message))}><Plus size={16}/> New buy</button></div></header>
   {error && <div role="alert" className={s.error}>{error}<button aria-label="Dismiss error" onClick={() => setError('')}><X size={15}/></button></div>}
   {notice && <p role="status" className={s.notice}>{notice} · Draft saved on this browser</p>}
   {!session && <p role="status">{error?<button onClick={()=>location.reload()}>Retry opening sales desk</button>:'Opening your sales desk…'}</p>}
-  {session && !session.available && <p className={s.error}>New sales are currently unavailable. Existing saved deals and recovery remain available.</p>}
+  {session && !session.available && !purchase && <p className={s.error}>New sales are currently unavailable. Existing saved deals and recovery remain available.</p>}
+  {purchase && session && !session.purchases && <p className={s.error}>New purchases are currently unavailable. Your held offer is kept and pending purchases can still be recovered.</p>}
   {journal.catalog && <div className={s.error}>A catalog add needs verification. <button disabled={busy} onClick={() => void recoverCatalog()}>Recover saved add</button></div>}
-  {showHeld && <section className={s.held} aria-label="Held deals">{journal.drafts.map(d => <div key={d.id}><button disabled={locked} onClick={() => void mutate(j => ({ ...j, active: d.id })).then(() => setShowHeld(false)).catch(e => setError(e.message))}><strong>{d.customer.name || d.label}</strong><small>{d.items.length} items · ${money(totals(d).balance)}</small></button><button disabled={locked} aria-label={`Discard ${d.customer.name||d.label}`} onClick={()=>void discard(d.id).catch(e=>setError(e.message))}>Discard draft</button></div>)}<p>Holding a deal saves your work. Availability is checked again when recording the sale; it does not reserve online inventory.</p></section>}
-  {dashboard?<SalesDashboard receipts={book?[...book.receipts.map(r=>r.receipt),...(receipt?[receipt]:[])]:null} loading={historyBusy} refresh={()=>void refreshHistory()}/>:<div className={s.workspace}><section className={s.inventory} aria-label="Find cards">
+  {showHeld && <section className={s.held} aria-label="Held deals">{journal.drafts.map(d => <div key={d.id}><button disabled={journalLocked} onClick={() => void mutate(j => ({ ...j, active: d.id })).then(() => {setShowHeld(false); setSelected(null); setQuick(false);}).catch(e => setError(e.message))}><strong>{d.customer.name || d.label}</strong><small>{isPurchaseDraft(d) ? 'Buy' : 'Sale'} · {d.items.length} items · ${money(isPurchaseDraft(d) ? purchaseDraftTotal(d) : totals(d).balance)}</small></button><button disabled={journalLocked} aria-label={`Discard ${d.customer.name||d.label}`} onClick={()=>void discard(d.id).catch(e=>setError(e.message))}>Discard draft</button></div>)}<p>Holding a deal saves your work. Availability is checked again when recording it; holding does not reserve inventory.</p></section>}
+  {dashboard?<SalesDashboard receipts={book?[...book.receipts.map(r=>r.receipt),...(receipt?[receipt]:[])]:null} loading={historyBusy} refresh={()=>void refreshHistory()}/>:purchase?<PurchaseDesk key={purchase.id} draft={purchase} locked={journalLocked || !session?.purchases} busy={busy} pending={!!journal.pending} receipt={receipt && isPurchaseReceipt(receipt) ? receipt : null} customers={book?.customers ?? []} edit={editPurchase} complete={complete} next={() => fresh('purchase')}/>:<div className={s.workspace}><section className={s.inventory} aria-label="Find cards">
    <SalesScanner disabled={baseLocked || intent === 'trade' || !!selected || quick || showHeld || showCustomer || showDeal || review} context={`${session?.owner}:${draft?.id}`} add={addScan} pending={setScanPending}/>
    <div className={s.toolbar}><div className={s.tabs}><button aria-pressed={intent === 'sell'} disabled={locked} onClick={() => { setIntent('sell'); setSelected(null); setQuick(false); }}>Sell</button><button aria-pressed={intent === 'trade'} disabled={locked || !session?.trades} onClick={() => { setIntent('trade'); setSelected(null); setQuick(false); }}><ArrowRightLeft size={16}/> Trade-in</button></div>
    {intent === 'sell' && <div className={s.tabs}><button aria-pressed={scope === 'stock'} onClick={() => { setScope('stock'); setSelected(null); }}>Your stock</button><button aria-pressed={scope === 'catalog'} onClick={() => { setScope('catalog'); setSelected(null); }}>Catalog</button></div>}</div>

@@ -1,6 +1,6 @@
 {
   "model": "apps/web/src/lib/sales/salesPurchase.mjs",
-  "sha256": "6ef9d0a94ff2d0de1cc66cc49864b78f742c297a908af7d24f4d4fe58ba1a10f",
+  "sha256": "517a6d9459967fec801556c97257cb68e7e6794b669b89b27dab712e4d1dc680",
   "cases": [
     {
       "name": "offer 1/4999",
