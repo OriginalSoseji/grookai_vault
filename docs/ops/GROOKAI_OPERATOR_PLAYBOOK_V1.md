@@ -1,5 +1,30 @@
 # Grookai Operator Playbook V1
 
+## Collectr average-cost candidate — October 8
+
+The local product-scope and four-decimal cost candidate qualifies 20 copies;
+nothing new is live or saved. Read docs/checkpoints/collectr_cost_precision_20261008.md
+and its private checkpoint. Preserve PR609's consumed receipt and 1620/541 state.
+Full430 replay, retained429-to430 upgrade, no-op pushes, schema parity and website
+build pass. Before release: ordinary hooks, bounded PrePush/dry-run and deployment
+qualification. Apply the compatible
+writer before enabling the new parser on live web. Deferred receipt delivery
+is outside this release. Snapshot compression preserved all hashes and recovered
+about0.9GB after cache deletion was policy-blocked. Never reclaim populated labs.
+
+## Collectr sealed gap batch — October 7
+
+PR609 is live and its consumed receipt brings the export to 1,620 accounted
+copies and 541 held rows. Follow the [sealed gap checkpoint](../checkpoints/collectr_sealed_gap_review_20261007.md)
+for the next local candidate. A complete 5,828-variant snapshot covers the
+remaining 51 sealed rows/101 copies. Three exact product rules repair labels
+and category differences, with four additional copies qualified locally.
+Six Mew copies remain held for fractional-cent costs, alongside ten Zapdos
+copies. Storage accepts numeric precision, but the V3 writer rejects fractions
+of a cent. Prepare that guarded writer change separately; no rounding or cost
+allocation is authorized by this review. Private evidence retains every row,
+candidate, dependency and unresolved owner choice. No release or save is implied.
+
 ## Collectr catalog scope review — October 7
 
 PR608's live confirmation is verified, with all 3,223 owner copies unchanged.

@@ -8,19 +8,28 @@ import {randomUUID,createHash} from 'node:crypto';
 import pg from 'pg';
 import {validateSealedCatalogEvidence} from '../../supabase/functions/vault-import-collection-v2/sealed_identity.ts';
 const hash=s=>createHash('sha256').update(typeof s==='string'?s:JSON.stringify(s)).digest('hex');
-test('mixed import database transaction, reuse, recovery, privacy, and rollback', {skip:process.env.GV_COLLECTR_SEALED_SQL_PROOF!=='1'},async()=>{
- const root=path.resolve(import.meta.dirname,'../..'),out='C:/grookai_vault_operator_artifacts/collectr_sealed_save_20261005';
+test('mixed import database transaction, reuse, recovery, privacy, and rollback', {skip:process.env.GV_COLLECTR_SEALED_SQL_PROOF!=='1'&&process.env.GV_COLLECTR_COST_SQL_PROOF!=='1'},async()=>{
+ const precision=process.env.GV_COLLECTR_COST_SQL_PROOF==='1';
+ assert.ok(!precision||process.env.GV_COLLECTR_SEALED_SQL_PROOF!=='1','Choose one isolated proof');
+ const root=path.resolve(import.meta.dirname,'../..'),out='C:/grookai_vault_operator_artifacts/'+(precision?'collectr_cost_precision_20261008':'collectr_sealed_save_20261005');
  assert.equal(root.replaceAll('\\','/').toLowerCase(),'c:/gv_collectr_adventure_20261001');
- const project='collectr-sealed-full-428-v3-20261005',container='supabase_db_'+project;
+ const project=precision?'collectr-cost-full-430-v1-20261008':'collectr-sealed-full-428-v3-20261005',container='supabase_db_'+project;
  const inspect=JSON.parse(execFileSync('docker',['inspect',container],{encoding:'utf8',windowsHide:true}))[0];
  assert.equal(inspect.State.Running,true);assert.deepEqual(Object.keys(inspect.NetworkSettings.Networks),[project]);
  const network=JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8',windowsHide:true}))[0];assert.equal(network.Internal,true);
- const replay=JSON.parse(fs.readFileSync(out+'/full-428-v3/replay-result.json'));assert.equal(replay.status,'passed');
- const db=new pg.Client({host:'127.0.0.1',port:58720,user:'postgres',password:'postgres',database:'postgres',statement_timeout:30000});
+ assert.equal(inspect.Config.Image,'public.ecr.aws/supabase/postgres:17.6.1.113');
+ if(precision)assert.equal(network.IPAM.Config[0].Subnet,'10.245.201.0/24');
+ const replay=JSON.parse(fs.readFileSync(precision?out+'/full-430-v1/replay-result.json':out+'/full-428-v3/replay-result.json'));assert.equal(replay.status,'passed');
+ const db=new pg.Client({host:'127.0.0.1',port:precision?33700:58720,user:'postgres',password:'postgres',database:'postgres',statement_timeout:30000});
  const checks=[];await db.connect();
  const q=async(sql,args=[])=>(await db.query(sql,args)).rows;
  const scalar=async(sql,args=[])=>(await q(sql,args))[0]?.value;
  const check=async(name,fn)=>{await fn();checks.push(name);};
+ const retained=()=>scalar(`select jsonb_build_object('copies',(select md5(coalesce(jsonb_agg(to_jsonb(t) order by id)::text,'')) from vault_item_instances t),
+  'groups',(select md5(coalesce(jsonb_agg(to_jsonb(t) order by user_id,source_sha256,group_key)::text,'')) from vault_collection_import_groups_v2 t),
+  'receipts',(select md5(coalesce(jsonb_agg(to_jsonb(t) order by user_id,request_id)::text,'')) from vault_collection_import_receipts_v3 t),
+  'writer',pg_get_functiondef('public.admin_import_vault_collection_v3(uuid,uuid,text,text,jsonb,jsonb,jsonb)'::regprocedure)) value`);
+ const retainedBefore=await retained();
  const user=randomUUID(),visitor=randomUUID(),family=randomUUID(),variant=randomUUID(),candidate=randomUUID(),review=randomUUID(),mapping=randomUUID(),release=randomUUID(),card=randomUUID(),printing=randomUUID(),set=randomUUID(),request=randomUUID();
  const source=[{'Product Name':'Synthetic card',Set:'Example','Card Number':'1',Quantity:'1',Grade:'Ungraded'},
  {'Product Name':'Example Booster Box',Set:'Example','Card Number':'',Quantity:'2',Grade:'Ungraded','Card Condition':'Near Mint','Average Cost Paid':'0','Portfolio Name':'Private'},
@@ -36,11 +45,11 @@ test('mixed import database transaction, reuse, recovery, privacy, and rollback'
   'owner',(select to_jsonb(o) from vault_owners o where user_id=$1)) value`,[user]);
  try{
   assert.equal(await scalar("select current_setting('max_worker_processes') value"),'0');
-  assert.equal(await scalar('select count(*)::int value from supabase_migrations.schema_migrations'),428);
+  assert.equal(await scalar('select count(*)::int value from supabase_migrations.schema_migrations'),precision?430:428);
   await q('begin');
   // Candidate functions may evolve after the first replay. Changes remain within
   // this transaction and rollback; a fresh final replay remains a separate gate.
-  const migration=fs.readFileSync(path.join(root,'supabase/migrations/20261005080000_collectr_sealed_import_v3.sql'),'utf8');
+  const migration=fs.readFileSync(path.join(root,'supabase/migrations/'+(precision?'20261008100000_collectr_sealed_cost_precision_v1.sql':'20261005080000_collectr_sealed_import_v3.sql')),'utf8');
   await q(migration.replace(/\bbegin;\s*/,'').replace(/commit;\s*$/,''));
   await q("insert into auth.users(id,email) values($1::uuid,$1::text||'@sealed-fixture.invalid'),($2::uuid,$2::text||'@sealed-fixture.invalid')",[user,visitor]);
   await q('select ensure_vault_owner_v1($1)',[user]);
@@ -152,8 +161,34 @@ test('mixed import database transaction, reuse, recovery, privacy, and rollback'
   await check('existing card copy unchanged across sealed tests',async()=>{
    const copy=stable.copies.find(c=>c.card_print_id===card);assert.deepEqual(await scalar('select to_jsonb(i) value from vault_item_instances i where id=$1',[copy.id]),copy);
   });
+  if(precision){
+   for(const [raw,cost] of [['9.9950',9.995],['4.9980',4.998],['0.0001',0.0001],['1.2345',1.2345],['9999999999.9899',9999999999.9899],['9999999999.9900',9999999999.99]]){
+    await check('exact fractional cost save, owner readback and idempotency: '+raw,async()=>{
+     const rows=fresh();rows[1]['Average Cost Paid']=raw;
+     const target={...sealedTarget,acquisitionCost:cost},req=randomUUID(),before=(await state()).copies;
+     const result=await call(req,rows,[],[target]);assert.equal(result.success,true);assert.equal(result.importedSealed,2);
+     const ids=result.sealedTargets[0].instanceIds;
+     const stored=await q('select acquisition_cost::text cost, acquisition_cost=$2::numeric exact, acquisition_currency currency from vault_item_instances where id=any($1::uuid[])',[ids,raw]);
+     assert.equal(stored.length,2);assert.ok(stored.every(c=>c.exact&&c.currency==='USD'));
+     assert.equal(await scalar('select sum(acquisition_cost)=2*$2::numeric value from vault_item_instances where id=any($1::uuid[])',[ids,raw]),true);
+     await q("select set_config('request.jwt.claim.sub',$1,true)",[user]);await q('set local role authenticated');
+     const readback=await q('select acquisition_cost::text cost from get_collection_import_sealed_copies_v3($1,$2)',[hash(rows),ids]);
+     assert.deepEqual(readback.map(r=>r.cost),stored.map(r=>r.cost));await q('reset role');
+     assert.deepEqual(await call(req,rows,[],[target]),result);
+     const retry=await call(randomUUID(),rows,[],[target]);assert.equal(retry.importedSealed,0);assert.deepEqual(retry.sealedTargets,result.sealedTargets);
+     assert.deepEqual((await state()).copies.filter(c=>!ids.includes(c.id)),before);
+     assert.deepEqual(await scalar('select source_rows value from vault_collection_import_documents_v2 where user_id=$1 and source_sha256=$2',[user,hash(rows)]),rows);
+     const group=await scalar('select target value from vault_collection_import_groups_v2 where user_id=$1 and source_sha256=$2',[user,hash(rows)]);assert.deepEqual(group,target);
+    });
+   }
+   for(const cost of [-1,0.00001,1.23451,9999999999.9901,10000000000,'NaN','Infinity','-Infinity','malformed']){
+    await failure('invalid cost rolls back complete mixed save: '+cost,()=>[fresh(),[{...cardTarget,notes:'rollback precision '+cost}],[{...sealedTarget,acquisitionCost:cost}]]);
+   }
+   await failure('fractional cost cannot lose its currency',()=>[fresh(),[cardTarget],[{...sealedTarget,acquisitionCost:9.995,acquisitionCurrency:null}]]);
+  }
   await q('rollback');assert.equal(await scalar('select count(*)::int value from auth.users where id=any($1::uuid[])',[[user,visitor]]),0);
-  const receipt={status:'passed',at:new Date().toISOString(),checks,migrationSha256:hash(migration),productionWrites:0,allFixturesRolledBack:true,kind:'rollback-only; final replay separate',project,migrations:428};
+  assert.deepEqual(await retained(),retainedBefore,'Retained lab data and schema must survive rollback unchanged');
+  const receipt={status:'passed',at:new Date().toISOString(),checks,migrationSha256:hash(migration),productionWrites:0,allFixturesRolledBack:true,retainedLabUnchanged:true,kind:'rollback-only on qualified replay',project,migrations:precision?430:428};
   fs.writeFileSync(out+'/atomic-'+Date.now()+'.json',JSON.stringify(receipt,null,2),{flag:'wx'});console.log(JSON.stringify(receipt));
  }finally{await db.query('rollback').catch(()=>{});await db.end();}
 });

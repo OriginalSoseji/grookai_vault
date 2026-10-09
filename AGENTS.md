@@ -1,5 +1,34 @@
 # Grookai Agent Entry Point
 
+## Collectr exact average costs — October 8
+
+Read docs/checkpoints/collectr_cost_precision_20261008.md. The combined local
+candidate qualifies 20 additional copies across 9 rows, projecting 1640 accounted
+copies and 532 review rows. Live remains PR609 at 1620/541. Parser and additive
+20261008100000 writer preserve four-decimal costs; 971 importer contracts,16
+staging contracts and38 DB scenarios pass. The full430 replay, populated429-to430
+upgrade, no-op pushes and exact schema parity pass; all3 retained copies and old
+receipts survive. Website strict build, TypeScript and lint pass. Normal hooks
+and release qualification remain open. No production writes or import occurred.
+Cache deletion was policy-blocked; compressing30 generated snapshots recovered
+about0.9GB with every hash preserved. Keep all old and new labs; never reset the
+populated upgrade lab. Startup/fixture recovery receipts preserve failed attempts.
+Private collectr_cost_precision_20261008/CHECKPOINT.json owns actual status.
+Keep deferred receipt delivery and the pending graded-item choice separate.
+
+## Collectr sealed gap batch — October 7
+
+PR609 and its four-card save are complete: 1,620 accounted copies, 541 review
+rows, 1,331 source groups and 3,227 owner copies. Never replay its receipt.
+Read docs/checkpoints/collectr_sealed_gap_review_20261007.md. The next local
+candidate reviews 51 sealed rows/101 copies and repairs three exact product
+labels/scopes. Four copies qualify; three Mew rows/six copies now correctly
+reach cost review. Together with Zapdos, 16 copies require exact fractional-cent
+cost support. Do not round, split costs, or bypass the SQL writer guard.
+Private collectr_sealed_gap_review_20261007/CHECKPOINT.json owns current status.
+No deployment, schema/catalog change or new save occurred in this batch.
+The graded-item preference remains pending; preserve all retained labs.
+
 ## Collectr catalog scope review — October 7
 
 PR608 recovery is complete; preserve 1,616 accounted copies and 543 held rows.

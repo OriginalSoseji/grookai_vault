@@ -1,5 +1,38 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Collectr cost release qualification — October 9
+
+`-CollectrCostReleaseV1` accepts AuditLinkedSchema and PrePush for the exact
+20261008100000 migration against production429. It pins every historical SQL
+file, the unchanged deferred receipt migration, the qualified cost migration,
+and the previously tested product bytes. Both retained430 labs are reread for
+schema, security and saved-data equality. Production must still match429.
+PrePush also requires clean current-main source and fresh ordinary push hooks.
+
+The inspection CLI package contains430 files, omitting only deferred receipt
+delivery while retaining all431 in source. `prepare_collectr_cost_cli_v1.mjs`
+supports prepare/dry-run only, with read-only defaults and before/after production
+snapshots. Neither qualifier applies SQL or imports inventory. Release the writer
+before the compatible website; preserve all old receipts and populated labs.
+
+## Collectr acquisition-cost baseline — October 8
+
+`-CollectrCostBaselineV1` permits only read-only AuditLinkedSchema against the
+fixed production project at 429. It checks all 429 applied source hashes against
+the qualified split-payment full replay and compares fresh production schema,
+ledger and security. Only the unchanged deferred receipt migration and optional
+cost migration 20261008100000 may be pending. Combined modes, overrides and
+PrePush reject. The existing column-order reconciliation remains unchanged.
+This baseline does not qualify candidate SQL or authorize a push.
+
+The full430 replay/reset and populated429-to430 upgrade now pass on3370x/3372x,
+internal10.245.201/202 networks. Both no-op pushes and exact schema/security parity
+pass. Three saved copies, a receipt book, import document/group and old V3 receipt
+survive unchanged; prior import recovery adds nothing. The atomic cost suite also
+passes on430. Startup/fixture recovery is narrowly guarded and never resets a
+populated lab. Preserve all labs. Release PrePush/dry-run remains separate; omit
+deferred receipt delivery only from its bounded package, retaining source history.
+
 ## Split external payments release qualification — October 6
 
 `-SalesSplitPaymentsReleaseV1` admits only AuditLinkedSchema or PrePush for
