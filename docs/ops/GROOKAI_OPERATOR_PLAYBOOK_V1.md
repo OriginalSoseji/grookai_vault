@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Saved-import portability — October 8
+
+Continue in C:/gv_product_portability_20261008 from qualified notification47e3d7898.
+The fresh baseline passed; PRODUCT_PORTABILITY_20261008.md and its external
+CHECKPOINT.json own current runtime status. Web `/vault/import/history` and the
+native Saved imports entry read the existing owner-only documents/groups. Counts
+describe historical reconciliation, not current ownership. Saved-source JSON is
+distinct from the still-pending full collection export. Existing atomic import
+writers and uncertain-request recovery remain unchanged.
+
+Use dedicated portability fixture/browser helpers against the retained wider438
+loopback lab. Both SDKs must request ascending cursor order and continue through
+an empty page. Preserve original rows, sealed labs, prior apps/APKs and failed
+proof attempts. No production activation or repeated Mac permission request.
+
 ## Notification continuation and Docker recovery — October 8
 
 Work in C:/gv_product_notifications_20261008 from qualified usability5bafd6f3.

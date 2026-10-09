@@ -65,6 +65,13 @@ val notificationsProofRequested = explicitBooleanFlag(
     "GROOKAI_NOTIFICATIONS_PROOF",
     providers.environmentVariable("GROOKAI_NOTIFICATIONS_PROOF").orNull,
 )
+val portabilityProofRequested = explicitBooleanFlag(
+    "GROOKAI_PORTABILITY_PROOF",
+    providers.environmentVariable("GROOKAI_PORTABILITY_PROOF").orNull,
+)
+if (portabilityProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested || notificationsProofRequested)) {
+    throw GradleException("Portability proof requires its separate debug app.")
+}
 if (notificationsProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested)) {
     throw GradleException("Notification proof requires its separate debug app.")
 }
@@ -138,6 +145,11 @@ android {
     buildTypes {
         debug {
             manifestPlaceholders["usesCleartextTraffic"] = "true"
+            if (portabilityProofRequested) {
+                applicationIdSuffix = ".portabilityproof"
+                versionNameSuffix = "-portability-proof"
+                resValue("string", "app_name", "Grookai Portability Proof")
+            }
             if (notificationsProofRequested) {
                 applicationIdSuffix = ".notificationsproof"
                 versionNameSuffix = "-notifications-proof"

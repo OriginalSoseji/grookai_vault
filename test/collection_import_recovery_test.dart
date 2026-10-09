@@ -14,6 +14,7 @@ const cardB = '22222222-2222-4222-8222-222222222222';
 
 class Fixture {
   http.Response? Function(http.Request)? intercept;
+  Future<void> Function(http.Request)? beforeResponse;
   final requests = <http.Request>[];
   final saved = <String, int>{};
   String owner = 'owner';
@@ -90,6 +91,7 @@ class Fixture {
         };
       } else {
         requests.add(request);
+        await beforeResponse?.call(request);
         final intercepted = intercept?.call(request);
         if (intercepted != null) return intercepted;
         if (request.url.path.endsWith('/vault-import-targets-v1')) {

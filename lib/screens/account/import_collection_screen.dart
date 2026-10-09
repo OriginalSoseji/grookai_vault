@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -26,6 +27,43 @@ class ImportCollectionScreen extends StatefulWidget {
 
 class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
   late final SupabaseClient _client = widget.client ?? Supabase.instance.client;
+  late final String? _owner = _client.auth.currentUser?.id;
+  StreamSubscription<AuthState>? _ownerSubscription;
+  bool _closed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final owner = _owner;
+    _ownerSubscription = _client.auth.onAuthStateChange.listen((state) {
+      if (state.session?.user.id != owner) _close();
+    });
+  }
+
+  bool _valid() =>
+      mounted &&
+      !_closed &&
+      _owner != null &&
+      _client.auth.currentUser?.id == _owner;
+
+  void _close() {
+    if (!mounted || _closed) return;
+    setState(() {
+      _closed = true;
+      _fileName = null;
+      _preview = null;
+      _sourceSession = null;
+      _result = null;
+      _matching = _importing = _retryImport = false;
+      _error = null;
+    });
+  }
+
+  @override
+  void dispose() {
+    unawaited(_ownerSubscription?.cancel());
+    super.dispose();
+  }
 
   String? _fileName;
   bool _matching = false;
@@ -39,6 +77,10 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
   int _displayLimit = 50;
 
   Future<void> _pickCsv() async {
+    if (!_valid()) {
+      _close();
+      return;
+    }
     if (_importing || _matching) return;
     setState(() {
       _matching = true;
@@ -53,7 +95,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
       );
 
       if (picked == null || picked.files.isEmpty) {
-        if (!mounted) {
+        if (!_valid()) {
+          _close();
           return;
         }
         setState(() {
@@ -62,6 +105,10 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
         return;
       }
 
+      if (!_valid()) {
+        _close();
+        return;
+      }
       final file = picked.files.first;
       final bytes =
           file.bytes ??
@@ -71,6 +118,10 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
         throw Exception('The selected file could not be read.');
       }
 
+      if (!_valid()) {
+        _close();
+        return;
+      }
       final csvText = CollectionImportService.decodeCsvBytes(bytes);
       final sourceSession = widget.sourceAwareImport
           ? await CollectionImportSourceSession.prepare(
@@ -85,7 +136,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
             csvText: csvText,
           );
 
-      if (!mounted) {
+      if (!_valid()) {
+        _close();
         return;
       }
 
@@ -100,7 +152,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
         _matching = false;
       });
     } catch (error) {
-      if (!mounted) {
+      if (!_valid()) {
+        _close();
         return;
       }
       setState(() {
@@ -111,6 +164,10 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
   }
 
   Future<void> _import() async {
+    if (!_valid()) {
+      _close();
+      return;
+    }
     final preview = _preview;
     if (preview == null || _importing || _matching) {
       return;
@@ -129,7 +186,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
               client: _client,
               preview: preview,
             );
-      if (!mounted) {
+      if (!_valid()) {
+        _close();
         return;
       }
 
@@ -139,7 +197,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
         _retryImport = false;
       });
     } catch (error) {
-      if (!mounted) {
+      if (!_valid()) {
+        _close();
         return;
       }
       setState(() {
@@ -168,6 +227,17 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_closed) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Import Collection')),
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Text('Your account changed. Reopen Import Collection.'),
+          ),
+        ),
+      );
+    }
     final preview = _preview;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -360,6 +430,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                               Text(
                                 _result != null && _sourceSession != null
                                     ? 'Import saved'
+                                    : _retryImport
+                                    ? 'Import not confirmed'
                                     : 'Ready to import',
                                 style: theme.textTheme.titleSmall?.copyWith(
                                   fontWeight: FontWeight.w700,
@@ -369,6 +441,8 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                               Text(
                                 _result != null && _sourceSession != null
                                     ? 'Imported ${_result!.importedCards} cards. ${_result!.needsManualMatch} original rows need review in Saved imports.'
+                                    : _retryImport
+                                    ? 'Retry this saved attempt to confirm the result.'
                                     : matchedCount > 0
                                     ? '$matchedCount matched ${matchedCount == 1 ? 'row is' : 'rows are'} ready for import.'
                                     : 'No matched rows are ready to import yet.',
@@ -406,6 +480,28 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
                 ),
               ),
             ],
+            if (_result != null && _sourceSession != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: OutlinedButton.icon(
+                  icon: const Icon(Icons.fact_check_outlined),
+                  label: const Text('Review saved import'),
+                  onPressed: () {
+                    if (!_valid()) {
+                      _close();
+                      return;
+                    }
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ImportCollectionHistoryScreen(
+                          client: _client,
+                          sourceSha256: _sourceSession!.sourceSha256,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             if (_result != null && _sourceSession == null) ...[
               const SizedBox(height: 12),
               _StatusSurface(

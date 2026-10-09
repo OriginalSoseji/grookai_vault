@@ -1,0 +1,1366 @@
+{
+  "ownerId": "10000000-0000-0000-0000-000000000001",
+  "sourceSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "cases": [
+    {
+      "name": "mixed historical mappings",
+      "valid": true,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "all review",
+      "valid": true,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": []
+    },
+    {
+      "name": "foreign document",
+      "valid": false,
+      "document": {
+        "user_id": "20000000-0000-0000-0000-000000000099",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "foreign group",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "20000000-0000-0000-0000-000000000099",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "wrong source",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "duplicate copy",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "duplicate key",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "target quantity",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 99,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "added count",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 3,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "empty copy IDs",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "unknown kind",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0,
+            "objectKind": "other"
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "sealed identity",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "invalid",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "lossy field",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": 0,
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "empty source",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": []
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "bad timestamp",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "invalid",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "target indices",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "negative",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            -1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              -1
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "fractional",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0.5
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0.5
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "out of range",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            3
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              3
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    },
+    {
+      "name": "repeated source",
+      "valid": false,
+      "document": {
+        "user_id": "10000000-0000-0000-0000-000000000001",
+        "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "created_at": "2026-10-08T01:00:00.000Z",
+        "source_rows": [
+          {
+            "Product Name": "Card, \"A\"",
+            "Cost": "0",
+            "Unknown field": "  newline\n=literal  "
+          },
+          {
+            "Product Name": "Box",
+            "Cost": "12.30",
+            "Unknown field": "CAD"
+          },
+          {
+            "Product Name": "Slab",
+            "Cost": "99",
+            "Unknown field": "unverified grade"
+          }
+        ]
+      },
+      "mappings": [
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "1111111111111111111111111111111111111111111111111111111111111111",
+          "source_indices": [
+            0,
+            0
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000001",
+            "20000000-0000-0000-0000-000000000002"
+          ],
+          "added_count": 1,
+          "target": {
+            "cardId": "20000000-0000-0000-0000-000000000003",
+            "cardPrintingId": "20000000-0000-0000-0000-000000000004",
+            "sourceIndices": [
+              0,
+              0
+            ],
+            "desiredQuantity": 2,
+            "acquisitionCost": 0
+          }
+        },
+        {
+          "user_id": "10000000-0000-0000-0000-000000000001",
+          "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "group_key": "2222222222222222222222222222222222222222222222222222222222222222",
+          "source_indices": [
+            1
+          ],
+          "instance_ids": [
+            "20000000-0000-0000-0000-000000000005"
+          ],
+          "added_count": 1,
+          "target": {
+            "objectKind": "sealed",
+            "sealedVariantId": "20000000-0000-0000-0000-000000000006",
+            "sourceIndices": [
+              1
+            ],
+            "desiredQuantity": 1,
+            "acquisitionCurrency": "CAD"
+          }
+        }
+      ]
+    }
+  ]
+}
