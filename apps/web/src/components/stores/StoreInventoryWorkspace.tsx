@@ -1,9 +1,10 @@
 "use client";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 /* eslint-disable @next/next/no-img-element -- Catalog thumbnails use the existing qualified image resolver. */
 import { useRef, useState } from "react";
 import { COPY_CONDITIONS, inventorySettings, type CatalogChoice, type CopyDetails } from "@/lib/stores/storeInventoryInput";
 import type { StoreItem } from "@/lib/stores/storefrontTypes";
-import { ownerChange, storeRequest, type OwnerModel } from "./storeManagerClient";
+import { type OwnerModel } from "./storeManagerClient";
 import type { StoreTask } from "./StoreManager";
 import StoreCopyImage from "./StoreCopyImage";
 import StoreBatchIntake from "./StoreBatchIntake";
@@ -13,6 +14,7 @@ import s from "./StoreManager.module.css";
 const endpoint = "/api/stores/owner/inventory";
 type Draft = { id: string | null; title: string; gvvi: string; graded: boolean; card: CatalogChoice | null; printing: string; condition: string; intent: string; mode: string; amount: string; currency: string; selected: boolean; sections: string[] };
 export default function StoreInventoryWorkspace({ initialQuery, owner, canEdit, busy, task, load, refresh, setDirty, onIntakePending }: { initialQuery: string; owner: OwnerModel; canEdit: boolean; busy: boolean; task: StoreTask; load: (q: string) => Promise<void>; refresh: () => Promise<void>; setDirty: (v: boolean) => void; onIntakePending: (v: boolean) => void }) {
+  const { ownerChange, storeRequest } = useStoreOwnerApi();
   const initial = new URLSearchParams(initialQuery);
   const [q, setQ] = useState(initial.get("q") ?? ""), [condition, setCondition] = useState(initial.get("condition") ?? ""), [kind, setKind] = useState(initial.get("kind") ?? "catalog");
   const [adding, setAdding] = useState(false), [catalogQuery, setCatalogQuery] = useState("");

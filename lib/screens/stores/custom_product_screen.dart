@@ -1,3 +1,4 @@
+import 'store_owner_guard.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../services/stores/storefront_service.dart';
@@ -17,42 +18,53 @@ class CustomProductScreen extends StatefulWidget {
   State<CustomProductScreen> createState() => _CustomProductScreenState();
 }
 
-class _CustomProductScreenState extends State<CustomProductScreen> {
+class _CustomProductScreenState extends State<CustomProductScreen>
+    with StoreOwnerGuard<CustomProductScreen> {
   late final _service = widget.service ?? StorefrontService();
   Map<String, dynamic>? _data;
   String? _error;
   @override
   void initState() {
     super.initState();
+    if (widget.preview || _service.hasSession) watchStoreOwner(_service);
     _load();
   }
 
   @override
   void dispose() {
+    stopWatchingStoreOwner();
     if (widget.service == null) _service.dispose();
     super.dispose();
   }
 
+  @override
+  void clearStoreDraft() {
+    _data = null;
+    _error = null;
+  }
+
   Future<void> _load() async {
+    if (!mounted || storeOwnerClosed) return;
     try {
       final data = await _service.product(
         widget.slug,
         widget.productId,
         preview: widget.preview,
       );
-      if (mounted) {
+      if (mounted && !storeOwnerClosed) {
         setState(() {
           _data = data;
           _error = null;
         });
       }
     } catch (e) {
-      if (mounted) setState(() => _error = e.toString());
+      if (mounted && !storeOwnerClosed) setState(() => _error = e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (storeOwnerClosed) return closedStore();
     final p = _data?['product'] as Map?;
     return Scaffold(
       appBar: AppBar(

@@ -1,15 +1,17 @@
 "use client";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 import { useCallback, useEffect, useState } from "react";
 import { preorderCents, type StorePreorder } from "@/lib/stores/storePreorderInput";
-import { storeRequest } from "./storeManagerClient";
+
 import type { StoreTask } from "./StoreManager";
 import s from "./StoreManager.module.css";
 const endpoint="/api/stores/owner/preorders";
 type Page={items:StorePreorder[];total:number};
 export default function StorePreorders({canEdit,busy,task,setDirty}:{canEdit:boolean;busy:boolean;task:StoreTask;setDirty:(v:boolean)=>void}) {
+  const { storeRequest } = useStoreOwnerApi();
  const [page,setPage]=useState<Page|null>(null),[offset,setOffset]=useState(0),[editing,setEditing]=useState<StorePreorder|null>(null),[creating,setCreating]=useState(false),[loadError,setLoadError]=useState("");
- const load=useCallback(async()=>{setPage(await storeRequest<Page>(endpoint+"?offset="+offset));setLoadError("");},[offset]);
- useEffect(()=>{let active=true;storeRequest<Page>(endpoint+"?offset="+offset).then(v=>{if(active){setPage(v);setLoadError("");}}).catch(e=>{if(active)setLoadError(e.message);});return()=>{active=false;};},[offset]);
+ const load=useCallback(async()=>{setPage(await storeRequest<Page>(endpoint+"?offset="+offset));setLoadError("");},[offset,storeRequest]);
+ useEffect(()=>{let active=true;storeRequest<Page>(endpoint+"?offset="+offset).then(v=>{if(active){setPage(v);setLoadError("");}}).catch(e=>{if(active)setLoadError(e.message);});return()=>{active=false;};},[offset,storeRequest]);
  if(creating || editing) return <PreorderForm key={editing?.id||"new"} item={editing} busy={busy} canEdit={canEdit} task={task} setDirty={setDirty} saved={async()=>{setCreating(false);setEditing(null);setDirty(false);await load();}} cancel={()=>{setCreating(false);setEditing(null);setDirty(false);}} />;
  return <section className={s.panel}><div className={s.row}><div><h2>Preorders</h2><p className={s.muted}>Plan upcoming releases and choose payment terms for each one.</p></div><button className={s.primary} disabled={busy||!canEdit} onClick={()=>setCreating(true)}>Create preorder</button></div>
  <p className={s.notice}>Preorders save as private drafts. Customer reservations and payment collection are not enabled yet.</p>
@@ -17,6 +19,7 @@ export default function StorePreorders({canEdit,busy,task,setDirty}:{canEdit:boo
  </section>;
 }
 function PreorderForm({item,busy,canEdit,task,setDirty,saved,cancel}:{item:StorePreorder|null;busy:boolean;canEdit:boolean;task:StoreTask;setDirty:(v:boolean)=>void;saved:()=>Promise<void>;cancel:()=>void}) {
+  const { storeRequest } = useStoreOwnerApi();
  const [id]=useState(()=>item?.id??crypto.randomUUID());
  const [title,setTitle]=useState(item?.title??""),[description,setDescription]=useState(item?.description??""),[date,setDate]=useState(item?.expected_date??"");
  const [price,setPrice]=useState(item?String(item.price_cents/100):""),[limit,setLimit]=useState(String(item?.allocation_limit??1));

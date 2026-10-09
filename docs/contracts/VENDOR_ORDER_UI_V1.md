@@ -1,5 +1,18 @@
 # Private buyer and seller order pages V1
 
+## Account-change boundary — October 9, 2026
+
+Current pages mount inside `OrderOwnerScope`, keyed by the server-authenticated
+viewer. Buyer history, seller history, order detail, purchase review and operator
+resolution content close permanently when that viewer changes. Interactive order
+actions use the scope's original bearer, omit cookies, retain their command bytes
+and reject delayed responses after account changes. All six interactive HTTP
+routes require a bearer; existing Auth and domain checks still verify it. No
+provider or rollout is activated. See
+[current implementation and proof](../ops/PRODUCT_ORDER_OWNER_20261009.md).
+
+The original candidate baseline below is retained as history.
+
 Local candidate based on `9a0d7828bc9f304e5770e339272e80632e71ea8c`.
 No schema changes: all 403 migration files remain exact. This extends the retained
 participant projection in VENDOR_ORDERS_V1 and the return destination specified in

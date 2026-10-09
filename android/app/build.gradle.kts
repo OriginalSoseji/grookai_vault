@@ -69,6 +69,13 @@ val portabilityProofRequested = explicitBooleanFlag(
     "GROOKAI_PORTABILITY_PROOF",
     providers.environmentVariable("GROOKAI_PORTABILITY_PROOF").orNull,
 )
+val inventoryExportProofRequested = explicitBooleanFlag(
+    "GROOKAI_INVENTORY_EXPORT_PROOF",
+    providers.environmentVariable("GROOKAI_INVENTORY_EXPORT_PROOF").orNull,
+)
+if (inventoryExportProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested || notificationsProofRequested || portabilityProofRequested)) {
+    throw GradleException("Inventory export proof requires its separate debug app.")
+}
 if (portabilityProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested || notificationsProofRequested)) {
     throw GradleException("Portability proof requires its separate debug app.")
 }
@@ -145,6 +152,11 @@ android {
     buildTypes {
         debug {
             manifestPlaceholders["usesCleartextTraffic"] = "true"
+            if (inventoryExportProofRequested) {
+                applicationIdSuffix = ".inventoryexportproof"
+                versionNameSuffix = "-inventory-export-proof"
+                resValue("string", "app_name", "Grookai Export Proof")
+            }
             if (portabilityProofRequested) {
                 applicationIdSuffix = ".portabilityproof"
                 versionNameSuffix = "-portability-proof"

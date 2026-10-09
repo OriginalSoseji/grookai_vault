@@ -1,3 +1,4 @@
+import 'price_alerts_screen.dart';
 import 'notification_settings_screen.dart';
 import 'dart:async';
 
@@ -17,6 +18,7 @@ import '../founder/founder_operations_screen.dart';
 import '../founder/founder_metrics_screen.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
+import 'inventory_export_screen.dart';
 import 'submit_missing_card_screen.dart';
 import '../stores/store_management_screen.dart';
 
@@ -578,6 +580,19 @@ class _AccountScreenState extends State<AccountScreen> {
               if (_client.auth.currentUser != null)
                 _AccountSurface(
                   child: _AccountLinkTile(
+                    icon: Icons.price_change_outlined,
+                    title: 'Price alerts',
+                    subtitle: 'Set exact-printing targets and manage alerts',
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const PriceAlertsScreen(),
+                      ),
+                    ),
+                  ),
+                ),
+              if (_client.auth.currentUser != null)
+                _AccountSurface(
+                  child: _AccountLinkTile(
                     icon: Icons.storefront_outlined,
                     title: 'Manage store',
                     subtitle: 'Open your store, inventory and listings',
@@ -905,6 +920,16 @@ class _AccountScreenState extends State<AccountScreen> {
               title: 'Import Collection',
               subtitle: 'Import a Collectr CSV into your vault',
               onTap: _openImportCollection,
+            ),
+            _AccountLinkTile(
+              icon: Icons.download_outlined,
+              title: 'Export Inventory',
+              subtitle: 'Save current cards, slabs and sealed copies',
+              onTap: () => Navigator.of(context).push<void>(
+                MaterialPageRoute<void>(
+                  builder: (_) => const InventoryExportScreen(),
+                ),
+              ),
             ),
             _AccountLinkTile(
               icon: Icons.outbox_outlined,

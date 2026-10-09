@@ -1,3 +1,4 @@
+import 'screens/account/price_alerts_screen.dart';
 // lib/main.dart
 import 'dart:async';
 import 'dart:convert';
@@ -3360,6 +3361,7 @@ class _MyAppState extends State<MyApp> {
                 case GrookaiCanonicalRouteKind.feed:
                 case GrookaiCanonicalRouteKind.binderLibrary:
                 case GrookaiCanonicalRouteKind.binderInvitation:
+                case GrookaiCanonicalRouteKind.priceAlerts:
                 case GrookaiCanonicalRouteKind.founderNotifications:
                 case GrookaiCanonicalRouteKind.founderOperations:
                   break;

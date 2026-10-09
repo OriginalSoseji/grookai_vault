@@ -8,8 +8,8 @@ import { supabase } from "@/lib/supabaseClient";
 type OwnerBoundaryProps = {
   ownerId: string;
   children: ReactNode;
-  surface?: "Vault" | "Binders" | "Saved cards" | "Notifications" | "Imports" | "Saved imports";
-  reopenHref?: "/vault" | "/binders" | "/saved" | "/account/notifications" | "/vault/import" | "/vault/import/history";
+  surface?: "Vault" | "Binders" | "Saved cards" | "Notifications" | "Imports" | "Saved imports" | "Inventory export" | "Store" | "Price alerts";
+  reopenHref?: "/vault" | "/binders" | "/saved" | "/account/notifications" | "/vault/import" | "/vault/import/history" | "/vault/export" | "/account/store" | "/account/store/team" | "/account/store/managed" | "/account/price-alerts";
 };
 
 export function CollectorOwnerBoundary(props: OwnerBoundaryProps) {
@@ -38,7 +38,7 @@ function OwnerSession({ ownerId, children, surface = "Vault", reopenHref = "/vau
   }, [ownerId]);
   if (state === "checking") return <p role="status" className="py-6">Loading your {surface}…</p>;
   if (state === "closed") return <div role="status" className="space-y-3 py-6">
-    <p>Your account changed. Reopen {surface} to {(surface === "Notifications" || surface === "Imports" || surface === "Saved imports") ? "continue" : "view your collection"}.</p>
+    <p>Your account changed. Reopen {surface} to {(surface === "Notifications" || surface === "Imports" || surface === "Saved imports" || surface === "Inventory export" || surface === "Store" || surface === "Price alerts") ? "continue" : "view your collection"}.</p>
     <Link href={reopenHref} className="gv-primary-button" onClick={(event) => { event.preventDefault(); window.location.assign(reopenHref); }}>Reopen {surface}</Link>
   </div>;
   return children;

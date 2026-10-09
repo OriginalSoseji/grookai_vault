@@ -1,3 +1,4 @@
+import { OrderOwnerScope } from "@/components/orders/OrderOwnerScope";
 import Link from "next/link";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { createServerAdminClient } from "@/lib/supabase/admin";
@@ -10,7 +11,7 @@ export default async function ResolutionQueuePage({ searchParams }: { searchPara
   const { supabase, user } = await requireServerUser("/account/store/resolutions");
   let queue: Awaited<ReturnType<typeof readResolutionQueue>> = null, failed = false;
   try { queue = await readResolutionQueue(supabase, user.id, createServerAdminClient, before); } catch { failed = true; }
-  return <main className="mx-auto max-w-4xl space-y-6 px-4 py-8"><Link href="/founder" className="text-sm underline">Founder tools</Link>
+  return <OrderOwnerScope ownerId={user.id} reopenHref={"/account/store/resolutions"}><main className="mx-auto max-w-4xl space-y-6 px-4 py-8"><Link href="/founder" className="text-sm underline">Founder tools</Link>
     <h1 className="text-3xl font-bold">Resolution reviews</h1>
     {!queue ? <p>{failed ? "Reviews could not be loaded. Reload this page to try again." : "Resolution reviews are unavailable for the signed-in account."}</p> : <>
       <p className="text-sm text-slate-600">Review buyer agreements and retained decisions. Acceptance records the review; final financial clearance remains separate.</p>
@@ -21,5 +22,5 @@ export default async function ResolutionQueuePage({ searchParams }: { searchPara
       </li>)}</ul>
       {queue.next && <Link className="inline-block underline" href={`/account/store/resolutions?before=${queue.next}`}>Older requests</Link>}
     </>}
-  </main>;
+  </main></OrderOwnerScope>;
 }

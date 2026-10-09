@@ -1,3 +1,4 @@
+import '../account/price_alerts_screen.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -1688,12 +1689,23 @@ class _PulseItemRow extends StatelessWidget {
         );
         return true;
       case GrookaiCanonicalRouteKind.storeProduct:
-        await navigator.push(MaterialPageRoute<void>(builder:(_)=>CustomProductScreen(slug:route.value,productId:route.productId!,preview:route.preview)));
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => CustomProductScreen(
+              slug: route.value,
+              productId: route.productId!,
+              preview: route.preview,
+            ),
+          ),
+        );
         return true;
       case GrookaiCanonicalRouteKind.store:
-        await navigator.push(MaterialPageRoute<void>(
-          builder: (_) => StorefrontScreen(slug: route.value, preview: route.preview),
-        ));
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) =>
+                StorefrontScreen(slug: route.value, preview: route.preview),
+          ),
+        );
         return true;
       case GrookaiCanonicalRouteKind.dex:
         await navigator.push(
@@ -1770,6 +1782,15 @@ class _PulseItemRow extends StatelessWidget {
             builder: (_) => BinderTemplatesScreen(
               initialTemplateId: route.value,
               featureFlags: BinderFeatureFlags.production,
+            ),
+          ),
+        );
+        return true;
+      case GrookaiCanonicalRouteKind.priceAlerts:
+        await navigator.push(
+          MaterialPageRoute<void>(
+            builder: (_) => PriceAlertsScreen(
+              initialTargetId: route.value.isEmpty ? null : route.value,
             ),
           ),
         );

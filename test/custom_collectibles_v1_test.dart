@@ -58,6 +58,7 @@ StorefrontService service(Future<http.Response> Function(http.Request) fn) =>
       client: MockClient(fn),
       baseUrl: 'http://127.0.0.1:15440',
       accessToken: 'local-fixture-token',
+      ownerId: 'fixture-owner',
     );
 Future<void> scroll(WidgetTester tester, Finder finder, double delta) =>
     tester.scrollUntilVisible(

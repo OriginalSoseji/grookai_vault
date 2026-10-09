@@ -1,4 +1,5 @@
 "use client";
+import { useOrderOwnerApi } from "./OrderOwnerScope";
 import { useEffect, useRef, useState } from "react";
 import { availableResolutionActions, resolutionCommand, type ResolutionCommand, type ResolutionStatus } from "@/lib/orders/orderResolutions.shared";
 const labels = { request: "Request buyer agreement", agree: "Agree to continue order", decline: "Decline request",
@@ -6,6 +7,7 @@ const labels = { request: "Request buyer agreement", agree: "Agree to continue o
 const states = { requested: "Awaiting buyer response", agreed: "Awaiting Grookai review", declined: "Buyer declined",
   withdrawn: "Withdrawn", accepted: "Reviewed — final payment check required", rejected: "Further review required" };
 export default function OrderResolutions({ value, enabled }: { value: ResolutionStatus | null; enabled: boolean }) {
+  const api = useOrderOwnerApi();
   const [pending, setPending] = useState<ResolutionCommand | null>(null), [confirmed, setConfirmed] = useState(false);
   const [busy, setBusy] = useState(false), [error, setError] = useState("");
   const [attempted, setAttempted] = useState(false), [changed, setChanged] = useState(false);
@@ -29,9 +31,7 @@ export default function OrderResolutions({ value, enabled }: { value: Resolution
     try {
       sessionStorage.setItem(key, JSON.stringify(pending));
       setAttempted(true);
-      const response = await fetch("/api/vendor-orders/resolutions", { method: "POST", credentials: "same-origin", cache: "no-store",
-        headers: { "Content-Type": "application/json" }, body: JSON.stringify(pending) });
-      const data = await response.json(), expected = pending.action === "request" ? pending.requestId : pending.caseId;
+      const { response, data } = await api.send("/api/vendor-orders/resolutions", pending), expected = pending.action === "request" ? pending.requestId : pending.caseId;
       if (response.status === 400 || response.status === 409) {
         // These responses definitively reject this command; an uncertain network
         // outcome or server failure must retain its original retry identity.
@@ -39,7 +39,7 @@ export default function OrderResolutions({ value, enabled }: { value: Resolution
         setError("The order or response changed. Reload its saved status before choosing another action."); return;
       }
       if (!response.ok || data.caseId !== expected) throw new Error();
-      sessionStorage.removeItem(key); window.location.reload();
+      sessionStorage.removeItem(key); api.assertCurrent(); window.location.reload();
     } catch { setError("The action could not be confirmed. Reload the order to check its saved status, or retry this same action."); }
     finally { active.current = false; setBusy(false); }
   }

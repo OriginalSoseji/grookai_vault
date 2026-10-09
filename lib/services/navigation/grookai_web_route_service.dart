@@ -20,6 +20,7 @@ enum GrookaiCanonicalRouteKind {
   binderInvitation,
   binderExplore,
   binderTemplate,
+  priceAlerts,
   founderNotifications,
   founderOperations,
 }
@@ -202,6 +203,16 @@ class GrookaiCanonicalRoute {
     );
   }
 
+  factory GrookaiCanonicalRoute.priceAlerts({
+    String targetId = '',
+  }) => GrookaiCanonicalRoute._(
+    kind: GrookaiCanonicalRouteKind.priceAlerts,
+    path: targetId.isEmpty
+        ? '/account/price-alerts'
+        : '/account/price-alerts?target=${Uri.encodeQueryComponent(targetId)}',
+    value: targetId,
+  );
+
   factory GrookaiCanonicalRoute.founderNotifications({
     String notificationId = '',
   }) {
@@ -318,6 +329,20 @@ class GrookaiWebRouteService {
       return null;
     }
     final head = segments.first.toLowerCase();
+    if (head == 'account' &&
+        segments.length == 2 &&
+        segments[1].toLowerCase() == 'price-alerts') {
+      final target = uri.queryParameters['target'] ?? '';
+      if (target.isNotEmpty &&
+          !RegExp(
+            r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+            caseSensitive: false,
+          ).hasMatch(target)) {
+        return null;
+      }
+      return GrookaiCanonicalRoute.priceAlerts(targetId: target);
+    }
+
     if (head == 'explore' || head == 'search') {
       return GrookaiCanonicalRoute.search(uri);
     }
@@ -431,6 +456,11 @@ class GrookaiWebRouteService {
         .where((segment) => segment.isNotEmpty)
         .toList(growable: false);
 
+    if (host == 'price-alerts' && segments.isEmpty) {
+      return parseCanonicalUri(
+        Uri(path: '/account/price-alerts', query: uri.query),
+      );
+    }
     if (host == 'card' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.card(segments.first);
     }

@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -72,37 +73,104 @@ class StoreOwnerData {
       rollout['web_enabled'] == true;
 }
 
-class StorefrontService {
+class StorefrontService extends ChangeNotifier {
   StorefrontService({
     http.Client? client,
     SupabaseClient? supabase,
     String? baseUrl,
     String? accessToken,
+    String? ownerId,
+    ({String? ownerId, String? token}) Function()? sessionReader,
+    Stream<String?>? ownerChanges,
   }) : _http = client ?? http.Client(),
        _supabase = supabase,
        baseUrl = (baseUrl ?? grookaiWebBaseUrl).replaceFirst(
          RegExp(r'/+$'),
          '',
        ),
-       _tokenOverride = accessToken;
+       _tokenOverride = accessToken,
+       _ownerOverride = ownerId,
+       _sessionReader = sessionReader,
+       _ownerChanges = ownerChanges;
   final http.Client _http;
   final SupabaseClient? _supabase;
-  final String? _tokenOverride;
-  final String baseUrl;
-  SupabaseClient get _client => _supabase ?? Supabase.instance.client;
-  String? get _token {
-    if (_tokenOverride != null) return _tokenOverride;
+  final String? _tokenOverride, _ownerOverride;
+  final ({String? ownerId, String? token}) Function()? _sessionReader;
+  final Stream<String?>? _ownerChanges;
+  StreamSubscription<String?>? _ownerSubscription;
+  String? _boundOwner;
+  bool _bound = false, _closed = false, _disposed = false;
+  bool get ownerClosed => _closed || _disposed;
+  bool get hasSession => _session.token != null;
+  ({String? ownerId, String? token}) get _session {
+    if (_sessionReader != null) return _sessionReader();
+    if (_tokenOverride != null) {
+      return (ownerId: _ownerOverride, token: _tokenOverride);
+    }
     try {
-      return _client.auth.currentSession?.accessToken;
+      final session = _client.auth.currentSession;
+      return (ownerId: session?.user.id, token: session?.accessToken);
     } catch (_) {
-      return null;
+      return (ownerId: null, token: null);
     }
   }
 
-  Map<String, String> get headers => {
-    'accept': 'application/json',
-    if (_token != null) 'authorization': 'Bearer $_token',
-  };
+  void _closeOwner() {
+    if (ownerClosed) return;
+    _closed = true;
+    notifyListeners();
+  }
+
+  /// Bind once for this workspace, including all pushed editors and previews.
+  /// Returning to the same account does not revive a closed workspace.
+  void bindOwner() {
+    if (_bound || ownerClosed) return;
+    _bound = true;
+    _boundOwner = _session.ownerId;
+    if (_boundOwner == null || _session.token == null) {
+      _closeOwner();
+      return;
+    }
+    Stream<String?>? changes = _ownerChanges;
+    if (changes == null && _sessionReader == null && _tokenOverride == null) {
+      changes = _client.auth.onAuthStateChange.map((e) => e.session?.user.id);
+    }
+    _ownerSubscription = changes?.listen((id) {
+      if (id != _boundOwner) _closeOwner();
+    }, onError: (Object _) => _closeOwner());
+  }
+
+  void assertOwner() {
+    bindOwner();
+    final session = _session;
+    if (ownerClosed ||
+        session.ownerId != _boundOwner ||
+        session.token == null) {
+      _closeOwner();
+      throw const StorefrontException(
+        'Your account changed. Reopen Store to continue.',
+      );
+    }
+  }
+
+  Map<String, String> _privateHeaders() {
+    assertOwner();
+    // One synchronous capture, before any request or SDK await.
+    return {
+      'accept': 'application/json',
+      'authorization': 'Bearer ${_session.token}',
+    };
+  }
+
+  final String baseUrl;
+  SupabaseClient get _client => _supabase ?? Supabase.instance.client;
+  String? get _token => _session.token;
+  Map<String, String> get headers => _bound
+      ? _privateHeaders()
+      : {
+          'accept': 'application/json',
+          if (_token != null) 'authorization': 'Bearer $_token',
+        };
   Uri uri(String path, [Map<String, String> query = const {}]) => Uri.parse(
     '$baseUrl$path',
   ).replace(queryParameters: query.isEmpty ? null : query);
@@ -111,10 +179,17 @@ class StorefrontService {
     String path,
     Map<String, String> query,
   ) async {
+    final private =
+        path.startsWith('/api/stores/owner') ||
+        path.contains('/preview') ||
+        path.contains('/app');
+    final requestHeaders = private ? _privateHeaders() : headers;
     final response = await _http
-        .get(uri(path, query), headers: headers)
+        .get(uri(path, query), headers: requestHeaders)
         .timeout(const Duration(seconds: 20));
+    if (private) assertOwner();
     if (response.statusCode == 401) {
+      if (private) _closeOwner();
       throw const StorefrontException('Sign in to manage or visit this store.');
     }
     if (response.statusCode == 404) {
@@ -134,15 +209,21 @@ class StorefrontService {
     String condition = '',
     String section = '',
     int offset = 0,
-  }) async => StoreOwnerData.fromJson(
-    await _get('/api/stores/owner', {
+  }) async {
+    final data = await _get('/api/stores/owner', {
       'q': query,
       'kind': kind,
       'condition': condition,
       'section': section,
       'offset': '$offset',
-    }),
-  );
+    });
+    assertOwner();
+    if (data['actorId'] != _boundOwner) {
+      _closeOwner();
+      throw const StorefrontException('Store account could not be verified.');
+    }
+    return StoreOwnerData.fromJson(data);
+  }
 
   Future<StorefrontData> read(
     String slug, {
@@ -173,10 +254,12 @@ class StorefrontService {
     final response = await _http
         .post(
           uri('/api/stores/owner'),
-          headers: {...headers, 'content-type': 'application/json'},
+          headers: {..._privateHeaders(), 'content-type': 'application/json'},
           body: jsonEncode(action),
         )
         .timeout(const Duration(seconds: 20));
+    assertOwner();
+    if (response.statusCode == 401) _closeOwner();
     if (response.statusCode == 403) {
       throw const StorefrontException(
         'Your package does not allow this store action.',
@@ -200,7 +283,7 @@ class StorefrontService {
     final response = await _http
         .post(
           uri('/api/stores/owner/products'),
-          headers: {...headers, 'content-type': 'application/json'},
+          headers: {..._privateHeaders(), 'content-type': 'application/json'},
           body: jsonEncode({
             'id': product?['id'],
             'version': product?['version'],
@@ -209,6 +292,8 @@ class StorefrontService {
           }),
         )
         .timeout(const Duration(seconds: 20));
+    assertOwner();
+    if (response.statusCode == 401) _closeOwner();
     if (response.statusCode == 409) {
       throw const StorefrontException(
         'Product changed elsewhere. Reload before saving; your unsaved text is still here.',
@@ -282,6 +367,7 @@ class StorefrontService {
     if (!png && !jpg && !webp) {
       throw const StorefrontException('Choose a JPEG, PNG, or WebP image.');
     }
+    final capturedHeaders = _privateHeaders();
     // Storage grants validate both the store owner and immutable object path.
     final random = Random.secure();
     final idBytes = List<int>.generate(16, (_) => random.nextInt(256));
@@ -301,7 +387,9 @@ class StorefrontService {
         .uploadBinary(
           path,
           bytes,
+          retryAttempts: 0,
           fileOptions: FileOptions(
+            headers: {'Authorization': capturedHeaders['authorization']!},
             contentType: png
                 ? 'image/png'
                 : jpg
@@ -309,6 +397,7 @@ class StorefrontService {
                 : 'image/webp',
           ),
         );
+    assertOwner();
     return path;
   }
 
@@ -319,5 +408,13 @@ class StorefrontService {
         ? '/app'
         : ''}/media/$kind',
   ).toString();
-  void dispose() => _http.close();
+  @override
+  void dispose() {
+    if (_disposed) return;
+    _closeOwner();
+    _disposed = true;
+    _ownerSubscription?.cancel();
+    _http.close();
+    super.dispose();
+  }
 }

@@ -141,6 +141,7 @@ export default async function AccountPage(props: AccountPageProps) {
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Quick Links</h2>
           <div className="mt-4 flex flex-col gap-3">
             <Link href="/account/notifications" className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700">Notifications</Link>
+            <Link href="/account/price-alerts" className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700">Price alerts</Link>
             <Link href="/account/orders" className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700">Your purchases</Link>
             <Link href="/account/store/orders" className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700">Store orders</Link>
             <Link href="/account/store" className="rounded-full bg-emerald-800 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-900">Manage store</Link>

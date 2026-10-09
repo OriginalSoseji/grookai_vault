@@ -1,8 +1,9 @@
 "use client";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 /* eslint-disable @next/next/no-img-element -- Private draft images must go directly through the authenticated no-store endpoint. */
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { productChange, storeRequest, uploadStoreImage, type OwnerModel, type OwnerProduct, type ProductList } from "./storeManagerClient";
+import { type OwnerModel, type OwnerProduct, type ProductList } from "./storeManagerClient";
 import type { StoreTask } from "./StoreManager";
 import s from "./StoreManager.module.css";
 
@@ -18,11 +19,12 @@ function draftFor(p: OwnerProduct | null): Draft {
 }
 
 export default function StoreProductManager(props: Props) {
+  const { storeRequest } = useStoreOwnerApi();
   const [list, setList] = useState<ProductList | null>(null);
   const [selected, setSelected] = useState<OwnerProduct | null | undefined>(undefined);
   const [error, setError] = useState("");
   const load = async (offset = list?.offset ?? 0) => { setList(await storeRequest<ProductList>(`/api/stores/owner/products?offset=${offset}`)); setError(""); };
-  useEffect(() => { let active = true; storeRequest<ProductList>(props.initialProductId ? `/api/stores/owner/products?id=${props.initialProductId}` : "/api/stores/owner/products").then(data => { if (!active) return; if (props.initialProductId) { if (data.products[0]?.id !== props.initialProductId) throw new Error("Product unavailable"); setSelected(data.products[0]); } else setList(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [props.initialProductId]);
+  useEffect(() => { let active = true; storeRequest<ProductList>(props.initialProductId ? `/api/stores/owner/products?id=${props.initialProductId}` : "/api/stores/owner/products").then(data => { if (!active) return; if (props.initialProductId) { if (data.products[0]?.id !== props.initialProductId) throw new Error("Product unavailable"); setSelected(data.products[0]); } else setList(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [props.initialProductId, storeRequest]);
   if (selected !== undefined) return <ProductEditor key={selected?.id ?? "new"} {...props} initial={selected} close={async () => { setSelected(undefined); props.setDirty(false); await load(); }} />;
   return <section className={s.panel}><div className={s.row}><div><h2>Custom collectibles</h2><p className={s.muted}>Your own listings, prices and vendor-reported quantities. Drafts stay private.</p></div><button className={s.primary} disabled={props.busy || !props.canEdit} onClick={() => setSelected(null)}>Add collectible</button></div>
     {!props.canEdit && <p className={s.muted}>New custom listings are currently unavailable. Retained listings can still be inspected, unpublished or archived.</p>}
@@ -34,6 +36,7 @@ export default function StoreProductManager(props: Props) {
 }
 
 function ProductEditor({ initial, close, owner, canEdit, busy, task, setDirty }: Props & { initial: OwnerProduct | null; close: () => Promise<void> }) {
+  const { productChange, storeRequest, uploadStoreImage } = useStoreOwnerApi();
   const [product, setProduct] = useState(initial), [draft, setDraft] = useState(() => draftFor(initial));
   const [dirty, markDirty] = useState(false);
   const dirtyState = (value: boolean) => { markDirty(value); setDirty(value); };

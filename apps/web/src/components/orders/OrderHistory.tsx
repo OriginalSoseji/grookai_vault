@@ -1,3 +1,4 @@
+import { OrderOwnerScope } from "@/components/orders/OrderOwnerScope";
 import Link from "next/link";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { createServerAdminClient } from "@/lib/supabase/admin";
@@ -6,10 +7,10 @@ import { EMPTY_ORDER_FILTERS, orderFilters, orderMoney, orderPresentation, order
 export default async function OrderHistory({ role, searchParams }: { role: OrderRole; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   let filters = EMPTY_ORDER_FILTERS, failure: string | null = null;
   try { filters = orderFilters(await searchParams); } catch (e) { failure = (e as Error).message; }
-  const { supabase } = await requireServerUser(ordersHref(role, filters));
+  const { supabase, user } = await requireServerUser(ordersHref(role, filters));
   let result: Awaited<ReturnType<typeof readOrderHistory>> | null = null;
   if (!failure) try { result = await readOrderHistory(supabase, createServerAdminClient, role, filters); } catch { failure = "Orders could not be loaded. Try again."; }
-  return <main className="mx-auto max-w-6xl space-y-6 px-4 py-8">
+  return <OrderOwnerScope ownerId={user.id} reopenHref={ordersHref(role, filters)}><main className="mx-auto max-w-6xl space-y-6 px-4 py-8">
     <header className="flex flex-wrap items-start justify-between gap-4"><div className="max-w-2xl space-y-2"><p className="text-sm font-semibold text-emerald-800">{role === "seller" ? "Vendor workspace" : "Your account"}</p><h1 className="text-3xl font-bold text-slate-950">{role === "seller" ? "Store orders" : "Your purchases"}</h1><p className="text-sm text-slate-600">Private online order records. Your history stays available when a store is unpublished or a subscription changes.</p></div>
       <nav aria-label="Order navigation" className="flex flex-wrap gap-3 text-sm font-semibold"><Link href={ordersHref(role === "seller" ? "buyer" : "seller")}>{role === "seller" ? "Your purchases" : "Store orders"}</Link><Link href="/account/store">Store workspace</Link><Link href="/account">Account</Link>{role === "seller" && <Link href="/vault/transactions">Offline sales & trades</Link>}</nav>
     </header>
@@ -19,5 +20,5 @@ export default async function OrderHistory({ role, searchParams }: { role: Order
       <ol aria-label="Orders" className="grid gap-3">{result.items.map(o => { const status = orderPresentation(o); return <li key={o.id} className="rounded-xl border border-slate-200 bg-white p-5"><div className="flex flex-wrap items-start justify-between gap-4"><div className="min-w-0 space-y-2"><p className={`text-sm font-semibold ${status.tone === "review" ? "text-amber-800" : "text-slate-600"}`}>{status.label}</p><h2 className="break-words font-semibold"><Link href={`/account/orders/${o.id}`} prefetch={false} className="text-emerald-800 underline">{o.title}</Link></h2><p className="text-sm text-slate-600">Quantity {o.quantity} · {o.fulfillment === "pickup" ? "Pickup" : "Shipping"}</p><time className="text-xs text-slate-500" dateTime={o.createdAt}>{new Date(o.createdAt).toLocaleString("en-US", { timeZone: "UTC" })} UTC</time><p className="break-all text-xs text-slate-500">Order {o.id}</p></div><p className="font-semibold">{orderMoney(o.totalAmountMinor)} USD</p></div></li>; })}</ol>
       <nav aria-label="Order pages" className="flex justify-between gap-4 text-sm font-semibold">{filters.after ? <Link href={ordersHref(role, { ...filters, after: "" })}>Newest matching orders</Link> : <span />}{result.next && <Link href={ordersHref(role, { ...filters, after: result.next })}>Older orders</Link>}</nav>
     </> : <section className="rounded-xl border border-slate-200 p-6"><h2 className="font-semibold">No matching orders</h2><p className="mt-2 text-sm text-slate-600">{filters.status !== "all" ? "Try another payment filter." : role === "seller" ? "Online orders for your store will appear here. Manual sales and trades are in your offline transaction history." : "Your online orders will appear here."}</p></section>}
-  </main>;
+  </main></OrderOwnerScope>;
 }

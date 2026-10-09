@@ -5,13 +5,14 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
 import { DispositionError, recordOwnerDisposition, type DispositionReceipt } from "@/lib/vault/vaultDisposition";
 
-export async function recordVaultDispositionAction(input: unknown): Promise<
+export async function recordVaultDispositionAction(input: unknown, expectedOwnerId?: string): Promise<
   { ok: true; receipt: DispositionReceipt } | { ok: false; message: string }
 > {
   try {
     const client = await createServerComponentClient();
     const { data: { user } } = await client.auth.getUser();
     if (!user) return { ok: false, message: "Sign in required." };
+    if (expectedOwnerId !== undefined && expectedOwnerId !== user.id) return { ok: false, message: "Your account changed. Reopen Store to continue." };
     const receipt = await executeOwnerWriteV1({
       execution_name: "record_exact_copy_disposition",
       actor_id: user.id,

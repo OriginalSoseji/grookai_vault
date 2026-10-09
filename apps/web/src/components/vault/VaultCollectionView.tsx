@@ -649,6 +649,7 @@ export function VaultCollectionView({
               >
                 Import
               </Link>
+              <Link href="/vault/export" className="gv-secondary-button">Export</Link>
             </div>
           }
         />

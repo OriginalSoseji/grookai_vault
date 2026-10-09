@@ -1,4 +1,5 @@
 "use client";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 /* eslint-disable @next/next/no-img-element -- Reuse the owner's authorized copy thumbnail. */
 import { useEffect, useId, useRef, useState } from "react";
 import { recordVaultDispositionAction } from "@/lib/vault/recordVaultDispositionAction";
@@ -9,6 +10,7 @@ import s from "./StoreManager.module.css";
 export default function StoreCopySale({ item, close, recorded, setDirty }: {
   item: StoreItem; close: () => void; recorded: () => Promise<void>; setDirty: (value: boolean) => void;
 }) {
+  const { ownerId, ready, assertCurrent, current } = useStoreOwnerApi();
   const dialog = useRef<HTMLDialogElement>(null), lock = useRef(false);
   const heading = useId();
   const [price, setPrice] = useState(""), [buyer, setBuyer] = useState("");
@@ -32,7 +34,9 @@ export default function StoreCopySale({ item, close, recorded, setDirty }: {
     if (lock.current || !review || receipt) return;
     lock.current = true; setBusy(true); setAttempted(true); setError("");
     try {
-      const result = await recordVaultDispositionAction(review);
+      await ready();
+      const result = await recordVaultDispositionAction(review, ownerId);
+      assertCurrent();
       if (!result.ok) { setError(result.message); return; }
       setReceipt(result.receipt); setDirty(false);
       // The sale is final: a stalled read must not trap the owner in this dialog.
@@ -40,6 +44,7 @@ export default function StoreCopySale({ item, close, recorded, setDirty }: {
       // A failed inventory refresh must never turn a confirmed sale into a retry.
       try { await recorded(); } catch { setRefreshFailed(true); }
     } catch {
+      if (!current()) return;
       setError("The sale could not be confirmed. Check transaction history or retry confirmation with these same details.");
     } finally { lock.current = false; setBusy(false); }
   }

@@ -1,11 +1,13 @@
 "use client";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 import Link from "next/link";
 import { useState } from "react";
-import { ownerChange, type OwnerModel } from "./storeManagerClient";
+import { type OwnerModel } from "./storeManagerClient";
 import type { StoreTask } from "./StoreManager";
 import s from "./StoreManager.module.css";
 
 export default function StoreVisibility({ owner, canEdit, busy, task, refresh, setDirty, pilot }: { owner: OwnerModel; canEdit: boolean; busy: boolean; task: StoreTask; refresh: () => Promise<void>; setDirty: (value: boolean) => void; pilot: boolean }) {
+  const { ownerChange } = useStoreOwnerApi();
   const profile = owner.profile, store = owner.store;
   const [name, setName] = useState(profile?.display_name || store?.display_name || "");
   const [slug, setSlug] = useState(profile?.slug || store?.slug || "");

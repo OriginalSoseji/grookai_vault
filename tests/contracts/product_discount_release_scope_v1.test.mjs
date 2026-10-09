@@ -6,7 +6,9 @@ import {discountRelease,discountReleaseSources} from '../../scripts/schema/produ
 import {eventRelease} from '../../scripts/schema/product_event_release_scope_v1.mjs';
 import {dealRelease} from '../../scripts/schema/product_deal_release_scope_v1.mjs';
 const dir=new URL('../../supabase/migrations/',import.meta.url);
-const sources=Object.fromEntries(fs.readdirSync(dir).filter(n=>n.endsWith('.sql')&&n.split('_')[0]<='20261008170000').sort().map(n=>[n,createHash('sha256').update(fs.readFileSync(new URL(n,dir))).digest('hex')]));
+// This historical package predates the separately deployed precision migration.
+const laterPrecision='20261008100000_collectr_sealed_cost_precision_v1.sql';
+const sources=Object.fromEntries(fs.readdirSync(dir).filter(n=>n.endsWith('.sql')&&n!==laterPrecision&&n.split('_')[0]<='20261008170000').sort().map(n=>[n,createHash('sha256').update(fs.readFileSync(new URL(n,dir))).digest('hex')]));
 const baseline=Object.fromEntries(Object.entries(sources).filter(([n])=>!Object.hasOwn(discountRelease.migrations,n)&&n!==eventRelease.migration&&n!==dealRelease.deferred&&!Object.hasOwn(dealRelease.added,n)));
 test('discount release retains429 plus exact six additions and defers delivery',()=>{
  const result=discountReleaseSources(sources,baseline);assert.equal(Object.keys(result).length,435);assert.equal(result[discountRelease.deferred],undefined);
@@ -22,4 +24,8 @@ test('unexpected or duplicate version cannot replace qualified history',()=>{
  for(const name of ['20991008170000_unexpected.sql','20261008170000_duplicate.sql']){
   const changed={...sources};delete changed[Object.keys(baseline)[0]];changed[name]='0'.repeat(64);assert.throws(()=>discountReleaseSources(changed,baseline));
  }
+});
+test('historical discount package rejects the later precision addition',()=>{
+ const digest=createHash('sha256').update(fs.readFileSync(new URL(laterPrecision,dir))).digest('hex');
+ assert.throws(()=>discountReleaseSources({...sources,[laterPrecision]:digest},baseline));
 });

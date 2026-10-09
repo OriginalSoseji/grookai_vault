@@ -482,6 +482,30 @@ function formatNotification(
   }
   if (!cleanString(card.gv_id)) throw new Error("missing_card_gv_id");
 
+  if (outbox.event_type === "price_target_reached") {
+    const target = outbox.payload.targetAmount;
+    const reference = outbox.payload.reference as Json | null;
+    const amount = reference?.amount;
+    const id = outbox.payload.alertId;
+    const direction = outbox.payload.direction;
+    const decimal = (value: unknown): value is string =>
+      typeof value === "string" && value.length <= 1024 &&
+      /^(0|[1-9][0-9]*)(\.[0-9]+)?$/.test(value) && /[1-9]/.test(value);
+    if (!decimal(target) || !decimal(amount) || reference?.currency !== "USD" ||
+        typeof id !== "string" || !/^[0-9a-f-]{36}$/.test(id) ||
+        !["at_or_below", "at_or_above"].includes(String(direction))) {
+      throw new Error("invalid_price_target_notification");
+    }
+    const relation = direction === "at_or_below" ? "at or below" : "at or above";
+    return {
+      notificationId,
+      title: `${card.name} · Price target reached`,
+      body: `TCGPlayer Market for your selected printing is USD ${amount}, ${relation} your USD ${target} target. This is a raw-card reference, not a guaranteed sale price.`,
+      deepLink: `grookai://price-alerts?target=${encodeURIComponent(id)}`,
+      webUrl: `https://grookaivault.com/account/price-alerts?target=${encodeURIComponent(id)}`,
+    };
+  }
+
   const actor = actorName || "A collector";
   let title: string;
   let body: string;
@@ -608,6 +632,12 @@ async function dispatchOne(
   if (!isOperationsAlert && !row.card_print_id) {
     await markSkipped(sb, row, null, "missing_card_anchor", rowSignal);
     return { id: row.id, status: "skipped", reason: "missing_card_anchor" };
+  }
+
+  if (row.event_type === "price_target_reached" &&
+      await rpc(sb, "price_target_delivery_allowed_v1", {p_outbox: row.id}, rowSignal) !== true) {
+    await markSkipped(sb, row, null, "price_target_inactive", rowSignal);
+    return {id: row.id, status: "skipped", reason: "price_target_inactive"};
   }
 
   const cardQuery = isOperationsAlert
@@ -911,6 +941,19 @@ async function releaseUnstartedRow(
   }
 }
 
+async function evaluatePriceTargetsIfEnabled(sb: any, requestBody: DispatchRequest, signal: AbortSignal) {
+  if (Deno.env.get("PRICE_TARGET_EVALUATION_ENABLED") !== "true" ||
+      cleanString(requestBody.operations_notification_id)) return null;
+  try {
+    // Bounded and default-off at both the worker and database. Existing scheduling
+    // is unchanged; an explicit activation is needed to evaluate saved targets.
+    return await rpc(sb, "price_targets_evaluate_v1", {p_limit: 100}, signal);
+  } catch {
+    // A price-reference outage must not stop unrelated messages from dispatching.
+    return {enabled: true, status: "unavailable"};
+  }
+}
+
 serve(async (req) => {
   try {
     if (req.method === "OPTIONS") {
@@ -932,6 +975,7 @@ serve(async (req) => {
     const operationsNotificationId = cleanString(
       requestBody.operations_notification_id,
     );
+    const priceTargetsEvaluation = await evaluatePriceTargetsIfEnabled(sb, requestBody, deadlineSignal(Math.min(workDeadlineAtMs, Date.now() + 8000)));
     const rows = operationsNotificationId
       ? await rpc(sb, "notification_dispatcher_claim_operations_alert_v1", {
         p_notification_id: operationsNotificationId,
@@ -988,6 +1032,7 @@ serve(async (req) => {
     return corsJson(200, {
       ok: true,
       claimed: rows.length,
+      price_targets_evaluation: priceTargetsEvaluation,
       results,
       fcm_mode: shouldUseMockFcm(requestBody) ? "mock" : "real",
     });

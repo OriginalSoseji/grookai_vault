@@ -5,7 +5,9 @@ import {createHash} from 'node:crypto';
 import {eventRelease,eventReleaseSources} from '../../scripts/schema/product_event_release_scope_v1.mjs';
 import {dealRelease} from '../../scripts/schema/product_deal_release_scope_v1.mjs';
 const dir=new URL('../../supabase/migrations/',import.meta.url);
-const sources=Object.fromEntries(fs.readdirSync(dir).filter(n=>n.endsWith('.sql')&&n.split('_')[0]<='20261008130000').sort().map(n=>[n,createHash('sha256').update(fs.readFileSync(new URL(n,dir))).digest('hex')]));
+// This historical package predates the separately deployed precision migration.
+const laterPrecision='20261008100000_collectr_sealed_cost_precision_v1.sql';
+const sources=Object.fromEntries(fs.readdirSync(dir).filter(n=>n.endsWith('.sql')&&n!==laterPrecision&&n.split('_')[0]<='20261008130000').sort().map(n=>[n,createHash('sha256').update(fs.readFileSync(new URL(n,dir))).digest('hex')]));
 const baseline=Object.fromEntries(Object.entries(sources).filter(([n])=>n!==eventRelease.migration&&n!==dealRelease.deferred&&!Object.hasOwn(dealRelease.added,n)));
 test('event package preserves429 baseline and four exact additions while deferring delivery',()=>{
  const result=eventReleaseSources(sources,baseline);assert.equal(Object.keys(result).length,433);assert.equal(result[eventRelease.deferred],undefined);assert.equal(result[eventRelease.migration],eventRelease.sha256);
@@ -21,4 +23,8 @@ test('unexpected additions and duplicate versions cannot replace qualified histo
  for(const name of ['20991008130000_unexpected.sql','20261008130000_duplicate.sql']){
   const changed={...sources};delete changed[Object.keys(baseline)[0]];changed[name]='0'.repeat(64);assert.throws(()=>eventReleaseSources(changed,baseline));
  }
+});
+test('historical event package rejects the later precision addition',()=>{
+ const digest=createHash('sha256').update(fs.readFileSync(new URL(laterPrecision,dir))).digest('hex');
+ assert.throws(()=>eventReleaseSources({...sources,[laterPrecision]:digest},baseline));
 });

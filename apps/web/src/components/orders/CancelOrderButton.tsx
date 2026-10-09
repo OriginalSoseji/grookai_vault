@@ -1,14 +1,15 @@
 "use client";
+import { useOrderOwnerApi } from "./OrderOwnerScope";
 import { useState } from "react";
 export default function CancelOrderButton({ orderId }: { orderId: string }) {
+  const api = useOrderOwnerApi();
   const [review, setReview] = useState(false), [busy, setBusy] = useState(false), [error, setError] = useState("");
   async function cancel() {
     if (busy) return;setBusy(true);setError("");
     try {
-      const response = await fetch("/api/vendor-orders/cancel", { method: "POST", credentials: "same-origin", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ orderId }) });
-      const data = await response.json();if (!response.ok) throw new Error(data.error || "Cancellation could not be confirmed. Reload this order or retry.");
+      const { response, data } = await api.send("/api/vendor-orders/cancel", { orderId });if (!response.ok) throw new Error(data.error || "Cancellation could not be confirmed. Reload this order or retry.");
       if (data.orderId !== orderId || data.state !== "canceled") throw new Error("Cancellation could not be confirmed. Reload this order or retry.");
-      window.location.reload();
+      api.assertCurrent(); window.location.reload();
     } catch (e) { setError(e instanceof Error ? e.message : "Cancellation could not be confirmed. Reload this order or retry."); }
     finally { setBusy(false); }
   }

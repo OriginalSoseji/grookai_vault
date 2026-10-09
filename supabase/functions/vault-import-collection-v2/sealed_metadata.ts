@@ -29,10 +29,11 @@ export function sealedMetadata(row: SourceRow, purchaseCurrency?: string | null)
   }
   if (supplied && recorded && supplied !== recorded) throw new ImportValidationError("conflicting_import_currency");
   const raw = text(uniqueField(row, "average cost paid", "average cost", "cost"));
-  // Collectr pads average costs (45.0000). Extra zeroes preserve the exact
-  // cent amount; any nonzero sub-cent digit still needs review. Never round.
+  // Collectr exports per-copy average costs with up to four decimal places.
+  // Preserve that amount exactly; extra trailing zeroes are formatting only.
+  // Never round or allocate a source average across different copies.
   // Dollar signs are an amount marker, not evidence of USD.
-  if (raw && !/^\$?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2}0*)?$/.test(raw)) {
+  if (raw && !/^\$?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,4}0*)?$/.test(raw)) {
     throw new ImportValidationError("invalid_import_cost");
   }
   const acquisitionCost = raw ? Number(raw.replace(/[$,]/g, "")) : null;

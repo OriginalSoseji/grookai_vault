@@ -1,4 +1,130 @@
+# Current continuation — price release proofs pass, order privacy repaired
+
+Use C:/gv_product_inventory_export_20261008 and the external CHECKPOINT.json.
+Price targets are implemented on web/native with qualified exact-printing
+references, owner-bound retries, atomic events and durable evaluation audit.
+All controls OFF. Idempotent SQL v2 passes two direct reapplications with exact
+row/schema retention; core audit wrapper survives. Exact442 fresh replay,
+populated production430 upgrade (339 prior tables/three exact-cost copies) and
+independent shadow pass with zero raw/normalized drift and1,268 security objects.
+Wider source443 includes the still-deferred receipt delivery migration.
+
+Order buyer/seller history and detail leaked private titles after confirmed
+sign-out. The repair passes23 new/904 affected tests, types/lint and7 actual
+Auth/browser cases, including original-token401 with conflicting valid cookies.
+Read docs/ops/PRODUCT_ORDER_OWNER_20261009.md and PRODUCT_PRICE_TARGETS_20261009.md.
+Current combined browser: export8, owner13, team7, manager13, price8 all pass.
+Final combined Node passes9,004/10 skips at
+price-alert-draft-v1/checks-node-1791572895230. Full native analysis/tests2,786
+pass; native bytes remain unchanged. Product/native/SQL remain frozen for the
+normal managed commit qualification. Its terminal outcome belongs to the external
+CHECKPOINT.json; no commit or release success is asserted in advance.
+
+Newest Android443 APK is ui-1791523581076/device-1791572600164,415 native inputs,
+SHA2560bd8cf81285b69fa3a12ef8e3a76748096ad2139dd52148b01cc29ac6422ef0a.
+It is built, not installed/accepted; fresh Samsung probe still deviceLocked=1.
+Preserve all old APKs/apps, worktrees, fixtures and databases. No production
+writes/deploy/activation, provider fetching/upload, messages or subagents.
+Do not re-ask or bypass pending Samsung/Mac actions. Full overhaul, supported
+commerce lifecycle, physical acceptance and measured user comparisons remain open.
+
+# Current continuation — manager accepted, price alerts in progress
+
+Docker recovered without deleting or resetting prior labs. Fresh retained/current
+lab attestations pass. Production is now430 and matches the separately deployed
+sealed-cost precision release (zero normalized schema drift). Its selected five
+compatibility files are integrated here;86 import contracts pass. Historical429,
+438/439 and earlier source-bound receipts remain historical, not rewritten.
+
+Permission-enabled manager workflows pass13 actual Auth/browser cases.1700 store
+contracts,24 focused tests, types and lint passed the first manager UX revision.
+Visual review found inventory search below the320px fold and a floating stale
+success banner. Compact header/notice refinement is applied; new web build/proof
+running. Source is no longer frozen to STORE_CURRENT_EVIDENCE_V1.json.
+
+External price-alert-draft-v1 has owner RPC8 and governed-price crossing6 runtime
+checks passed, plus53 pure logic cases. Crossing evaluation is transactionally
+rolled back; prior365 tables are retained. Initial441 replay is historical after
+one save-function correction; a fresh441-v2 replay is running. Delivery-boundary
+migration remains an external draft. Price feature is NOT integrated/released.
+
+Continue in this root and read external CHECKPOINT.json. Preserve old databases,
+fixtures, APKs and apps. No production writes/deploy/activation, provider fetching,
+external messages or subagents. Pending Samsung/Mac actions remain unasked and
+unbypassed. Full overhaul is open, not complete or deployed.
+
 # Grookai Operator Playbook V1
+
+
+## Store protection and journey: current verified state — October 9
+
+The current source passes28 production-browser scenarios: export8, owner/store
+journey13 and team7. All28 browser images are reviewed/hash-bound. The team fix
+extends account-bound transport through team settings, managed workspaces,
+invitation acceptance and manager product/intake/section requests. The original
+private-team-email-after-logout defect is reproduced and repaired. Actual browser
+cancellation remains with its original bearer across account replacement. No
+invitation was sent. Permission-enabled manager editing is not claimed from these
+disabled-rollout fixtures and remains a separate runtime acceptance item.
+
+The full preceding Node suite passed8900/10 existing skips; the final team change
+passes1698 affected store/vendor contracts,22 focused owner/team cases, types,
+lint and production build. Full native analysis/tests pass2758 with3 existing
+skips and1 dedicated local-only proof skip. Five actual local SDK/native-service
+Auth cases separately pass. The current443 APK builds successfully from412 native
+inputs at ui-1791523581076/device-1791529569580, SHA256
+f59bc236309171256c9c8f2fb782794404b14d9aabb7077b23121f21d5c1c96b.
+All old APKs/apps remain. Samsung still shows locked; current APK was not installed.
+Physical OS saving, current native store device acceptance and iOS remain open.
+
+STORE_CURRENT_EVIDENCE_V1.json binds the candidate and receipts. SQL bytes remain
+unchanged; exact438/wider439 proofs are preserved. No production apply/deploy,
+provider call or activation occurred. This is not full release qualification.
+
+Read-only alert inspection confirms that interest Watches and notification
+preferences do not define or evaluate price targets. Next work needs explicit
+owner targets, qualified exact-printing/currency references, durable crossing and
+deduplication state, and separate delivery integration. Do not relabel existing
+interest signals as price alerts. The goal runner still reports usageLimited; the
+complete overhaul, measured competitor/uncoached tasks and delivery remain open.
+
+
+## Native store ownership and shorter store entry — October 9
+
+Current web export8 and store journey/account-handoff13 pass on the production
+build. All23 images are reviewed/source-bound. The primary inventory/pricing
+action fits the first viewport at320/390/768/1440; six business/history routes
+remain accessible. Effective publication labels no longer treat a retained flag
+as a live audience.13 availability cases pass.
+
+Native store19 new ownership tests and13 existing cases pass; five actual local
+SDK Auth/service cases confirm closure, independent reopening and mutation
+handoff. Full current Node/native suites are running. The first current native
+analysis caught one missing-brace lint in the new proof harness; it is corrected
+and the failed run retained. Native product inputs are unchanged by that correction.
+Physical Samsung/iOS acceptance remains held; third443 is historical export source.
+
+A separate team-page reproduction shows a synthetic private invitation email
+after confirmed logout. It is not covered by the store-owner fix. A12-file team
+repair draft is external and passes22 tests; product source stays frozen until
+current checks finish. Prior local rows and controls remain retained; no message
+was sent and no production action occurred. Continue the full overhaul.
+
+## Inventory export and store account closure — October 9
+
+Continue in C:/gv_product_inventory_export_20261008. See
+PRODUCT_INVENTORY_EXPORT_20261008.md and its external CHECKPOINT.json. Wider439
+and exact438 export schema/Auth/reapply/shadow proofs pass. Production web export
+and actual downloads pass8 checks; a reproduced delayed store-owner response after
+sign-out is fixed by the existing permanent-close owner boundary and passes5
+browser checks. Store mutation handoff and the complete selling journey remain.
+
+Use only the dedicated inventory-export test helpers and current recovery reader.
+Exact438 is sealed separately; no old seals are rewritten. Source is frozen for
+ordinary read-only checks. Physical Samsung OS saving remains held after Android
+DocumentsUI crashed and the device locked; third443 APK is retained for the pending
+unlock. Physical iOS still awaits the earlier Mac-local actions. No production
+apply, deployment, provider delivery or activation is authorized. Full goal open.
 
 ## Saved-import portability — October 8
 

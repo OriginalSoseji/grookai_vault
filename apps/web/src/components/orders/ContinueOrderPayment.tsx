@@ -1,17 +1,18 @@
 "use client";
+import { useOrderOwnerApi } from "./OrderOwnerScope";
 import { useState } from "react";
 export default function ContinueOrderPayment({ orderId }: { orderId: string }) {
+  const api = useOrderOwnerApi();
   const [busy, setBusy] = useState(false), [error, setError] = useState("");
   async function continuePayment() {
     if (busy) return;setBusy(true);setError("");
     try {
-      const response = await fetch("/api/vendor-orders/checkout", { method: "POST", credentials: "same-origin", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ orderId }) });
-      const result = await response.json();if (!response.ok) throw new Error(result.error || "Payment could not be opened. Check this order before trying again.");
+      const { response, data: result } = await api.send("/api/vendor-orders/checkout", { orderId });if (!response.ok) throw new Error(result.error || "Payment could not be opened. Check this order before trying again.");
       if (result.orderId !== orderId) throw new Error("Payment could not be opened.");
-      if (result.state === "reconciled") { window.location.reload();return; }
+      if (result.state === "reconciled") { api.assertCurrent(); window.location.reload();return; }
       const url = new URL(result.url);
       if (result.state !== "open" || url.protocol !== "https:" || url.hostname !== "checkout.stripe.com" || url.port || url.username || url.password || url.search || !/^\/c\/pay\/cs_(test|live)_[A-Za-z0-9]+$/.test(url.pathname)) throw new Error("Unexpected payment destination.");
-      window.location.assign(result.url);
+      api.assertCurrent(); window.location.assign(result.url);
     } catch (e) { setError(e instanceof Error ? e.message : "Payment could not be opened."); }
     finally { setBusy(false); }
   }

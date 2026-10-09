@@ -1,10 +1,12 @@
 "use client";
+import { useOrderOwnerApi } from "./OrderOwnerScope";
 import { useRef, useState } from "react";
 import { refundAction, refundAmountInput, refundLabels, type RefundAction, type RefundStatus } from "@/lib/orders/orderRefunds.shared";
 import { refundReview, refundReviewIssues, type RefundReview } from "@/lib/orders/orderRefundReview.shared";
 type Command = Extract<RefundAction, { action: "create" }>;
 const money = (n: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(n / 100);
 export default function OrderRefunds({ value, controls }: { value: RefundStatus | null; controls: { create: boolean; refresh: boolean } }) {
+  const api = useOrderOwnerApi();
   const [amount, setAmount] = useState(""), [reason, setReason] = useState<Command["reason"]>("requested_by_customer");
   const [available, setAvailable] = useState<number | null>(null), [pending, setPending] = useState<Command | null>(null);
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [confirm, setConfirm] = useState(false);
@@ -15,8 +17,7 @@ export default function OrderRefunds({ value, controls }: { value: RefundStatus 
   const remaining = status.totalAmountMinor - status.succeededMinor - status.pendingMinor;
   const entered = refundAmountInput(amount), validAmount = entered !== null && available !== null && entered <= available;
   async function post(action: RefundAction) {
-    const response = await fetch("/api/vendor-orders/refunds", { method: "POST", credentials: "same-origin", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(action) });
-    const data = await response.json();
+    const { response, data } = await api.send("/api/vendor-orders/refunds", action);
     if (!response.ok || data.orderId !== status.orderId) throw new Error("The refund outcome could not be confirmed. Check its status before retrying the same request.");
     return data;
   }
@@ -30,7 +31,7 @@ export default function OrderRefunds({ value, controls }: { value: RefundStatus 
     const cached = sessionStorage.getItem(storageKey);
     const saved = cached ? refundAction(JSON.parse(cached)) : null;
     if (data.status !== "unbound" && saved?.action === "create" && saved.requestId === id) sessionStorage.removeItem(storageKey);
-    window.location.reload();
+    api.assertCurrent(); window.location.reload();
   }
   async function prepare() {
     await run(async () => {

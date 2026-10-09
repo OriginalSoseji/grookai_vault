@@ -9,6 +9,9 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@pgkit/client@0.6.1",
+        "npm:@pgkit/migra@0.6.1",
+        "npm:@pgkit/schemainspect@0.6.1",
         "npm:@playwright/test@^1.61.1",
         "npm:@supabase/supabase-js@^2.81.1",
         "npm:dotenv@^17.2.3",

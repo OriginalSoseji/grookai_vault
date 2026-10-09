@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
     const profile = await client.from("public_profiles").select("slug,display_name,public_profile_enabled,vault_sharing_enabled").eq("user_id", user.id).maybeSingle();
     if (profile.error) throw profile.error;
     return NextResponse.json(
-      { ...owner, inventory, profile: profile.data, preorders_enabled: process.env.GROOKAI_PREORDER_DRAFTS_ENABLED === "true" },
+      { ...owner, actorId: user.id, inventory, profile: profile.data, preorders_enabled: process.env.GROOKAI_PREORDER_DRAFTS_ENABLED === "true" },
       { headers: STORE_NO_STORE },
     );
   } catch {

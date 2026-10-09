@@ -19,7 +19,7 @@ test('blank cost is not market price; exact timestamp and notes are retained',()
  assert.equal(r.acquisitionCost,null);assert.equal(r.acquisitionCurrency,null);assert.equal(r.createdAt,'2026-09-30T12:14:16.123456-06:00');assert.equal(r.createdAtDateOnly,false);
 });
 for(const [name,extra,code]of [
- ['conflicting currency',{Currency:'CAD'},'conflicting_import_currency'],['fractional cent',{'Average Cost Paid':'2.345'},'invalid_import_cost'],
+ ['conflicting currency',{Currency:'CAD'},'conflicting_import_currency'],['excess cost precision',{'Average Cost Paid':'2.34567'},'invalid_import_cost'],
  ['negative',{'Average Cost Paid':'-1'},'invalid_import_cost'],['malformed commas',{'Average Cost Paid':'1,2'},'invalid_import_cost'],
  ['too large',{'Average Cost Paid':'10000000000'},'invalid_import_cost'],['conflicting cost',{Cost:'3'},'conflicting_sealed_metadata'],
  ['invalid day',{'Date Added':'2026-02-30'},'invalid_import_date'],['naive time',{'Date Added':'2026-09-30T01:02:03'},'invalid_import_date'],
@@ -31,14 +31,15 @@ for(const [name,extra,code]of [
 ])test(name,()=>assert.throws(()=>sealedMetadata(row(extra),'USD'),new RegExp(code)));
 test('recorded currency and decimal money preserved without rounding',()=>{const r=sealedMetadata(row({Currency:'CAD','Average Cost Paid':'$1,234.50'}));assert.equal(r.acquisitionCost,1234.5);assert.equal(r.acquisitionCurrency,'CAD');});
 
-for(const [raw,expected] of [['45.0000',45],['34.9900',34.99],['$1,234.5000',1234.5],['0.0000',0],['9999999999.9900',9999999999.99]])test('padded cents preserve the amount and original source: '+raw,async()=>{
+for(const [raw,expected] of [['45.0000',45],['34.9900',34.99],['$1,234.5000',1234.5],['0.0000',0],['9999999999.9900',9999999999.99],['9.9950',9.995],['4.9980',4.998],['0.0001',0.0001],['1.234000',1.234],['1.0001',1.0001],['9999999999.9899',9999999999.9899]])test('exact average cost and original source survive save serialization: '+raw,async()=>{
  const original=row({'Average Cost Paid':raw}),before=structuredClone(original);
  assert.equal(sealedMetadata(original,'USD').acquisitionCost,expected);assert.deepEqual(original,before);
  const h=harness(),p=input();p.csvText=csv([original]);
  assert.equal((await h.handler(request(p))).status,200);
  assert.equal(h.saved.p_sealed_targets[0].acquisitionCost,expected);assert.deepEqual(h.saved.p_source_rows,[original]);
+ assert.equal(JSON.parse(JSON.stringify(h.saved)).p_sealed_targets[0].acquisitionCost,expected);
 });
-for(const raw of ['4.9980','0.0001','1.23001','1.234000','9999999999.9901','1.0001','1.00e0'])test('sub-cent values and exponent notation remain held: '+raw,async()=>{
+for(const raw of ['0.00001','1.23001','1.234001','9999999999.9901','1.00e0','NaN','Infinity','-Infinity'])test('unsupported precision, bounds and malformed costs remain held: '+raw,async()=>{
  assert.throws(()=>sealedMetadata(row({'Average Cost Paid':raw}),'USD'),/invalid_import_cost/);
  const h=harness(),p=input();p.csvText=csv([row({'Average Cost Paid':raw})]);
  assert.equal((await h.handler(request(p))).status,400);assert.equal(h.saved,undefined);

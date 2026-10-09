@@ -77,12 +77,29 @@ const productLabels = [
   { game: "mtg", set: "final fantasy", source: "universes beyond: final fantasy - gift bundle", target: "final fantasy - gift bundle", form: "bundle" },
   { game: "mtg", set: "final fantasy", source: "universes beyond: final fantasy - starter kit", target: "final fantasy - starter kit", form: "kit" },
   { game: "pokemon", set: "prismatic evolutions", source: "prismatic evolutions super premium collection", target: "prismatic evolutions super-premium collection", form: "collection" },
+  { game: "pokemon", set: "temporal forces", source: "temporal forces elite trainer box [iron leaves]", target: "temporal forces elite trainer box [iron leaves ex]", form: "kit" },
 ] as const;
 
 function matchesProductLabel(name: string, set: string, scope: string, variant: SealedVariantEvidence): boolean {
   return productLabels.some(alias => alias.game === scope && alias.set === set && alias.source === name &&
     variant.packageForm === alias.form &&
     (key(variant.name) === alias.target || (variant.memberMappingId !== null && key(variant.sourceName!) === alias.target)));
+}
+
+// Collectr groups these complete products differently from the reviewed source
+// catalog. Bind each exception to the whole name, both groups and package form;
+// never make an umbrella category or an expansion a general alias for another.
+const productGroups = [
+  { name: "blooming waters premium collection", sourceSet: "miscellaneous cards & products", targetSet: "151", form: "collection" },
+  { name: "league battle deck [mew vmax]", sourceSet: "silver tempest", targetSet: "fusion strike", form: "deck" },
+] as const;
+
+function matchesProductGroup(name: string, set: string, scope: string, variant: SealedVariantEvidence): boolean {
+  const targetSet = sealedSourceSetKey(variant.sourceSet!, scope);
+  if (targetSet === set) return true;
+  return scope === "pokemon" && productGroups.some(alias => alias.name === name && alias.sourceSet === set &&
+    alias.targetSet === targetSet && alias.form === variant.packageForm &&
+    (key(variant.name) === alias.name || key(variant.sourceName!) === alias.name));
 }
 
 // The planner consumes a complete, single-snapshot catalog. A short/truncated
@@ -159,7 +176,7 @@ export function planCollectrSealedIdentities(csv: string, catalog: SealedCatalog
     if (!named.length) return result("missing_identity", [], quantity);
     const released = named.filter(v => v.memberMappingId !== null);
     if (!released.length) return result("unreleased_identity", named, quantity);
-    const scoped = released.filter(v => sealedSourceSetKey(v.sourceSet!, scope) === set);
+    const scoped = released.filter(v => matchesProductGroup(name, set, scope, v));
     if (!scoped.length) return result("set_review", released, quantity);
     const language = sourceLanguage(name);
     const localized = scoped.filter(v => language !== null && v.language === language);

@@ -409,6 +409,15 @@ class _AppShellState extends State<AppShell> {
           ),
         );
         break;
+      case GrookaiCanonicalRouteKind.priceAlerts:
+        unawaited(
+          _pushPage<void>(
+            PriceAlertsScreen(
+              initialTargetId: route.value.isEmpty ? null : route.value,
+            ),
+          ),
+        );
+        break;
       case GrookaiCanonicalRouteKind.founderNotifications:
         unawaited(
           _pushPage<void>(

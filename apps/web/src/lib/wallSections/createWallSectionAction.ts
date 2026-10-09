@@ -16,6 +16,7 @@ import {
 
 type CreateWallSectionInput = {
   name: string;
+  expectedOwnerId?: string;
 };
 
 export async function createWallSectionAction(input: CreateWallSectionInput): Promise<WallSectionActionResult> {
@@ -33,6 +34,10 @@ export async function createWallSectionAction(input: CreateWallSectionInput): Pr
       message: "Sign in required.",
       fieldErrors: { form: "Sign in required." },
     };
+  }
+
+  if (input.expectedOwnerId !== undefined && input.expectedOwnerId !== user.id) {
+    return { ok: false, message: "Your account changed. Reopen Store to continue.", fieldErrors: { form: "Account changed." } };
   }
 
   if (nameError) {

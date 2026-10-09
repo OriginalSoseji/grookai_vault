@@ -1,13 +1,15 @@
 "use client";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 /* eslint-disable @next/next/no-img-element -- Private copy photos require uncached cookie-authorized delivery. */
 import { useRef, useState } from "react";
 import { Pencil } from "lucide-react";
 import { COPY_PHOTO_ACCEPT, COPY_PHOTO_MAX_BYTES } from "@/lib/stores/storeCopyPhoto";
-import { storeRequest } from "./storeManagerClient";
+
 import type { StoreTask } from "./StoreManager";
 import s from "./StoreManager.module.css";
 
 export default function StoreCopyImage({ id, name, image, catalogImage, userPhoto = false, busy, canEdit, task, refresh }: { id?: string; name: string; image: string | null; catalogImage?: string | null; userPhoto?: boolean; busy: boolean; canEdit: boolean; task: StoreTask; refresh: () => Promise<void> }) {
+  const { storeRequest } = useStoreOwnerApi();
   const input = useRef<HTMLInputElement>(null);
   const [failed, setFailed] = useState(false), [fallbackFailed, setFallbackFailed] = useState(false);
   const source = !failed ? image : !fallbackFailed ? catalogImage : null;

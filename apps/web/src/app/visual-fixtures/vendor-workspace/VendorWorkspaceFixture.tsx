@@ -8,6 +8,7 @@ import SalesDesk from "@/components/sales/SalesDesk";
 import SalesReports from "@/components/sales/SalesReports";
 import CloudReceiptDesk from "@/components/receipts/CloudReceiptDesk";
 import VendorInventory from "@/components/workspace/VendorInventory";
+import { StoreOwnerScope } from "@/components/stores/StoreOwnerScope";
 import StoreManager from "@/components/stores/StoreManager";
 import PricingEditorFixture from "./PricingEditorFixture";
 import VaultCopyCostCard from '@/components/vault/VaultCopyCostCard';
@@ -31,7 +32,7 @@ export default function VendorWorkspaceFixture() {
     <Link href="/visual-fixtures/vendor-workspace">Fixture Desk</Link>{" · "}<Link href="/visual-fixtures/vendor-workspace?view=reports">Fixture Reports</Link>
     {" · "}<Link href="/visual-fixtures/vendor-workspace?view=inventory">Fixture Inventory</Link>
     <VendorWorkspaceNavigation routePath={routePath} />
-    {ready ? view === 'receipts' ? <CloudReceiptDesk /> : view === 'cost' ? <VaultCopyCostCard key={`cost-${costEnabled}`} ownerId={owner} instanceId="00000000-0000-4000-8000-000000000010" enabled={costEnabled} /> : view === 'events' ? <SalesReports ownerId={owner} profitEnabled eventsEnabled={eventsEnabled} /> : view === 'profit' ? <SalesReports ownerId={owner} profitEnabled /> : view === "pricing" ? <PricingEditorFixture /> : view === "store" ? <StoreManager siteOrigin="https://fixture.invalid" /> : (view === "inventory" || view === "cost-review") ? <VendorInventory ownerId={owner} costReviewEnabled={view === "cost-review" && costEnabled} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
+    {ready ? view === 'receipts' ? <CloudReceiptDesk /> : view === 'cost' ? <VaultCopyCostCard key={`cost-${costEnabled}`} ownerId={owner} instanceId="00000000-0000-4000-8000-000000000010" enabled={costEnabled} /> : view === 'events' ? <SalesReports ownerId={owner} profitEnabled eventsEnabled={eventsEnabled} /> : view === 'profit' ? <SalesReports ownerId={owner} profitEnabled /> : view === "pricing" ? <PricingEditorFixture /> : view === "store" ? <StoreOwnerScope ownerId={owner}><StoreManager siteOrigin="https://fixture.invalid" /></StoreOwnerScope> : (view === "inventory" || view === "cost-review") ? <VendorInventory ownerId={owner} costReviewEnabled={view === "cost-review" && costEnabled} /> : view === "reports" ? <SalesReports ownerId={owner} /> : <SalesDesk /> : <p>Preparing sample workspace…</p>}
     <button onClick={() => void supabase.auth.signOut({ scope: "local" })}>Fixture sign out</button>
     <VendorWorkspaceNavigation mobile routePath={routePath} />
   </div>;

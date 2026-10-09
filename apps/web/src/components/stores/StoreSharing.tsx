@@ -2,15 +2,14 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { OwnerModel } from "./storeManagerClient";
+import { storeAvailability } from "./storeAvailability";
 import s from "./StoreManager.module.css";
 
 export default function StoreSharing({ owner, siteOrigin, onVisibility }: { owner: OwnerModel; siteOrigin: string; onVisibility: () => void }) {
   const [message, setMessage] = useState("");
   const store = owner.store;
   if (!store) return null;
-  const available = store.web_published && owner.capabilities.store_app && owner.capabilities.store_web
-    && owner.rollout.app_enabled && owner.rollout.web_enabled
-    && owner.profile?.public_profile_enabled && owner.profile?.vault_sharing_enabled;
+  const available = storeAvailability(owner).web;
   const url = `${siteOrigin}/store/${encodeURIComponent(store.slug)}`;
   return <section className={`${s.panel} ${s.sharePanel}`} aria-label="Share your store">
     <h2>Share your store</h2>

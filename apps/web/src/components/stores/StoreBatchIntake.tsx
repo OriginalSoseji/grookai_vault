@@ -1,4 +1,5 @@
 "use client";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 /* eslint-disable @next/next/no-img-element -- Draft scans are private browser Blob URLs. */
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, CheckCircle2, Circle, CloudUpload, ImagePlus, Layers3, Pencil, RotateCw, ShieldCheck, SlidersHorizontal, X } from "lucide-react";
@@ -7,7 +8,7 @@ import { clearIntakeBatch, intakePreset, loadIntakeBatch, saveIntakeBatch, resto
 import { exportBatchBackup, importBatchBackup } from "@/lib/stores/batchBackup";
 import { BATCH_IMAGE_ACCEPT, decodeIntakeImage, intakeAsset } from "@/lib/stores/batchIntakeImages";
 import { COPY_CONDITIONS, type CatalogChoice } from "@/lib/stores/storeInventoryInput";
-import { storeRequest, type OwnerModel } from "./storeManagerClient";
+import { type OwnerModel } from "./storeManagerClient";
 import s from "./StoreManager.module.css";
 import { useScanSuggestions } from "./useScanSuggestions";
 import { assertSubmittedItemsRetained, freezeBatchSubmission, reconcileBatchCancellation, retryCancelledItem, type BatchCancellation } from "@/lib/stores/batchSubmission";
@@ -33,6 +34,7 @@ function Settings({ value, change, owner, prefix }: { value: BatchSettings; chan
 }
 
 export default function StoreBatchIntake({ owner, close, refresh, onPendingChange }: { owner: OwnerModel; close: () => void; refresh: () => Promise<void>; onPendingChange?: (pending: boolean) => void }) {
+  const { storeRequest, ownerFetch } = useStoreOwnerApi();
   const storeId = owner.store!.id;
   const [batch, setBatch] = useState<IntakeBatch | null>(null), current = useRef<IntakeBatch | null>(null);
   const revision = useRef(0), queue = useRef<Promise<void>>(Promise.resolve()), failed = useRef(false);
@@ -60,7 +62,7 @@ export default function StoreBatchIntake({ owner, close, refresh, onPendingChang
     }).catch(e => { if (mounted) { setError(e.message); setStorageFailed(true); failed.current = true; } });
     storeRequest<{ commit: boolean; recognition: boolean; cancellation: boolean }>("/api/stores/owner/intake").then(value => { if (mounted) setCapabilities(value); }).catch(() => undefined);
     return () => { mounted = false; };
-  }, [storeId]);
+  }, [storeId, storeRequest]);
   useEffect(() => {
     const warn = (event: BeforeUnloadEvent) => { if (saving || busy) event.preventDefault(); };
     window.addEventListener("beforeunload", warn); return () => window.removeEventListener("beforeunload", warn);
@@ -159,7 +161,7 @@ export default function StoreBatchIntake({ owner, close, refresh, onPendingChang
         if (!prepared.completed) {
           for (const side of ["front", "back"] as const) {
             const bytes = submission[side]; if (!bytes) continue;
-            const response = await fetch(`/api/stores/owner/intake/media?${new URLSearchParams({ batch: value.id, item: item.id, side })}`, {
+            const response = await ownerFetch(`/api/stores/owner/intake/media?${new URLSearchParams({ batch: value.id, item: item.id, side })}`, {
               method: "POST", credentials: "same-origin", cache: "no-store", headers: { "content-type": bytes.type || "image/jpeg" }, body: bytes,
             });
             if (!response.ok) { const result = await response.json().catch(() => null); throw new Error(result?.error || "Photo upload interrupted. Resume this copy."); }
