@@ -1,5 +1,20 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Collectr cost release qualification — October 9
+
+`-CollectrCostReleaseV1` accepts AuditLinkedSchema and PrePush for the exact
+20261008100000 migration against production429. It pins every historical SQL
+file, the unchanged deferred receipt migration, the qualified cost migration,
+and the previously tested product bytes. Both retained430 labs are reread for
+schema, security and saved-data equality. Production must still match429.
+PrePush also requires clean current-main source and fresh ordinary push hooks.
+
+The inspection CLI package contains430 files, omitting only deferred receipt
+delivery while retaining all431 in source. `prepare_collectr_cost_cli_v1.mjs`
+supports prepare/dry-run only, with read-only defaults and before/after production
+snapshots. Neither qualifier applies SQL or imports inventory. Release the writer
+before the compatible website; preserve all old receipts and populated labs.
+
 ## Collectr acquisition-cost baseline — October 8
 
 `-CollectrCostBaselineV1` permits only read-only AuditLinkedSchema against the
