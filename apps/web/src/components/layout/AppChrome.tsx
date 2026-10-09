@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
+import { CommunityNavigation } from "@/components/layout/CommunityNavigation";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import type { DesktopWallAvailability } from "@/lib/desktopShellManifest";
 import { supabase } from "@/lib/supabaseClient";
@@ -34,6 +35,7 @@ export function AppChrome({
   useEffect(() => {
     let cancelled = false;
     let requestVersion = 0;
+    let currentOwner: string | null = null;
 
     async function loadAuthenticatedShell() {
       const currentRequestVersion = ++requestVersion;
@@ -49,6 +51,7 @@ export function AppChrome({
         setAuthState(DEFAULT_SHELL_AUTH_STATE);
         return;
       }
+      currentOwner = session.user.id;
 
       try {
         // LOCK: Public routes must not depend on global auth/session reads in the root chrome.
@@ -91,6 +94,12 @@ export function AppChrome({
     void loadAuthenticatedShell();
 
     const { data: subscription } = supabase.auth.onAuthStateChange((_, session) => {
+      const nextOwner = session?.user.id ?? null;
+      if (nextOwner !== currentOwner) {
+        requestVersion += 1;
+        setAuthState(DEFAULT_SHELL_AUTH_STATE);
+        currentOwner = nextOwner;
+      }
       if (!session?.user) {
         requestVersion += 1;
         setAuthState(DEFAULT_SHELL_AUTH_STATE);
@@ -120,6 +129,7 @@ export function AppChrome({
         wallHref={authState.wallHref}
         pulseUnreadCount={authState.networkUnreadCount}
       />
+      <CommunityNavigation wallHref={authState.wallHref} />
     </>
   );
 }

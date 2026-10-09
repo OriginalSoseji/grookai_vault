@@ -1,5 +1,28 @@
 # Grookai Operator Playbook V1
 
+## Collector home continuation — October 8
+
+Current work is C:/gv_product_collector_home_20261008 from qualified portfolio
+b26ea0f8863060fadf924c013f3d792b9ce4dd5d. See PRODUCT_COLLECTOR_HOME_20261008.md
+and external product_collector_home_20261008/CHECKPOINT.json. Collector navigation,
+private no-profile entry and bounded Binder continuation now have actual browser
+and Samsung proof; all15 images reviewed,360 prior table sets retained and local
+flags restored. No schema bytes changed. Existing primary and older proof apps
+remain intact. The full overhaul continues after ordinary qualification.
+
+Use the dedicated collector-home evidence/check/gate helpers. Parent UI evidence
+is verified from its original clean checkout; current UI has its own source-bound
+manifest. Retain failed wrappers and explicit correction receipts. On Windows,
+normalize guarded fixture paths before passing them from PowerShell to Node.
+Flutter integration screenshots are stored in reportData; preserve that map when
+adding a final report. The proof package is separate com.grookai.vault.collectorhomeproof.
+
+Completed current build outputs were physically compressed with LZX, with hashes,
+paths and write times verified unchanged. Force recompression is needed when
+switching from existing NTFS compression. No files were deleted. Check free space
+before builds, and never compress outputs while a build writes them. Physical iOS
+and the already-pending Mac permissions remain unchanged; no production release.
+
 ## Portfolio continuation and Mac Git storage — October 8
 
 Current work is C:/gv_product_portfolio_history_20261008 from qualified cost-history

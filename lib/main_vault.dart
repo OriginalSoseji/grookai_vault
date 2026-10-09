@@ -610,7 +610,16 @@ class _VaultSelectionBar extends StatelessWidget {
 
 /// ---------------------- VAULT PAGE (uses view + catalog picker) ----------------------
 class VaultPage extends StatefulWidget {
-  const VaultPage({this.onOpenScanner, this.onOpenVaultSpecies, super.key});
+  const VaultPage({
+    this.onOpenScanner,
+    this.onOpenVaultSpecies,
+    this.onOpenExplore,
+    this.onOpenBinders,
+    super.key,
+  });
+
+  final Future<void> Function()? onOpenExplore;
+  final Future<void> Function()? onOpenBinders;
 
   final Future<void> Function()? onOpenScanner;
   final Future<void> Function({
@@ -627,6 +636,9 @@ class VaultPageState extends State<VaultPage> {
   final SupabaseClient supabase = Supabase.instance.client;
   late final TextEditingController _searchController;
   bool _loading = false;
+  bool _hasLoadedInventory = false;
+  String? _inventoryError;
+  final GlobalKey<BinderContinuationPanelState> _continuationKey = GlobalKey();
   int _reloadRequestVersion = 0;
   String? _uid;
   List<Map<String, dynamic>> _items = const [];
@@ -653,7 +665,6 @@ class VaultPageState extends State<VaultPage> {
   final Set<String> _selectedCardPrintIds = <String>{};
   bool _selectionMode = false;
   bool _bulkArchiveBusy = false;
-  bool _showBinderWhatsNew = false;
 
   @override
   void initState() {
@@ -664,9 +675,6 @@ class VaultPageState extends State<VaultPage> {
     _sealedValue = OwnedSealedTotalsController(
       OwnedSealedService.supabase(supabase),
     )..addListener(_sealedValueChanged);
-    if (BinderFeatureFlags.production.personalAvailable) {
-      unawaited(_loadBinderWhatsNewState());
-    }
     reload();
   }
 
@@ -682,13 +690,24 @@ class VaultPageState extends State<VaultPage> {
     if (mounted) setState(() {});
   }
 
+  Future<void> refreshCollectorHome() async {
+    if (!mounted || _bulkArchiveBusy) return;
+    await reload();
+  }
+
   Future<void> reload() async {
+    if (!mounted) return;
+    if (_uid != supabase.auth.currentUser?.id) _uid = null;
+    unawaited(_continuationKey.currentState?.reload());
     final requestVersion = ++_reloadRequestVersion;
     _selectedSealedCopies = [];
     _sealedSelectionEpoch++;
     if (kSealedOwnershipEnabled) unawaited(_sealedValue.refresh());
     if (_uid == null) {
       setState(() {
+        _hasLoadedInventory = false;
+        _inventoryError = null;
+        _loading = false;
         _items = const [];
         _pricingByCardPrintId = const <String, CardSurfacePricingData>{};
         _pricingSummaryByCardPrintId =
@@ -700,17 +719,24 @@ class VaultPageState extends State<VaultPage> {
       return;
     }
 
-    setState(() => _loading = true);
+    setState(() {
+      _loading = true;
+      _inventoryError = null;
+    });
     try {
       final rows = await VaultCardService.getCanonicalCollectorRows(
         client: supabase,
       );
-      if (!mounted || requestVersion != _reloadRequestVersion) {
+      if (!mounted ||
+          requestVersion != _reloadRequestVersion ||
+          _uid != supabase.auth.currentUser?.id) {
         return;
       }
 
       setState(() {
         _items = rows;
+        _hasLoadedInventory = true;
+        _inventoryError = null;
         _selectedCardPrintIds.removeWhere(
           (id) => rows.every((row) => (row['card_id'] ?? '').toString() != id),
         );
@@ -725,6 +751,9 @@ class VaultPageState extends State<VaultPage> {
       );
     } catch (error) {
       debugPrint('vault.reload.failed: $error');
+      if (mounted && requestVersion == _reloadRequestVersion) {
+        setState(() => _inventoryError = 'Unable to load your collection.');
+      }
     } finally {
       if (mounted && requestVersion == _reloadRequestVersion && _loading) {
         setState(() => _loading = false);
@@ -1570,6 +1599,73 @@ class VaultPageState extends State<VaultPage> {
     }
   }
 
+  Future<void> _openFindCard() async {
+    if (widget.onOpenExplore != null) {
+      await widget.onOpenExplore!();
+      return;
+    }
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => Scaffold(
+          appBar: AppBar(title: const Text('Explore')),
+          body: HomePage(),
+        ),
+      ),
+    );
+    if (mounted) await reload();
+  }
+
+  Future<void> _openCollectionImport() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const ImportCollectionScreen()),
+    );
+    if (mounted) await reload();
+  }
+
+  Widget _buildCollectorActions() => Wrap(
+    spacing: 8,
+    runSpacing: 8,
+    children: [
+      FilledButton.icon(
+        onPressed: _openFindCard,
+        icon: const Icon(Icons.search_rounded),
+        label: const Text('Find a card'),
+      ),
+      if (widget.onOpenScanner != null)
+        OutlinedButton.icon(
+          onPressed: widget.onOpenScanner,
+          icon: const Icon(Icons.center_focus_strong_rounded),
+          label: const Text('Scan'),
+        ),
+      OutlinedButton.icon(
+        onPressed: _openCollectionImport,
+        icon: const Icon(Icons.upload_file_outlined),
+        label: const Text('Import'),
+      ),
+      if (!BinderFeatureFlags.production.personalAvailable)
+        TextButton(
+          onPressed: _openCollectionProjects,
+          child: const Text('Collection goals'),
+        ),
+    ],
+  );
+
+  Widget _buildBinderContinuation() => BinderContinuationPanel(
+    key: _continuationKey,
+    ownerId: _uid!,
+    onOpenLibrary: _openCollectionProjects,
+    onOpenBinder: (publicId) async {
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => BinderCanonicalRouteScreen(
+            publicId: publicId,
+            featureFlags: BinderFeatureFlags.production,
+          ),
+        ),
+      );
+    },
+  );
+
   Future<void> _openMemoriesHome() async {
     await Navigator.of(
       context,
@@ -1578,6 +1674,10 @@ class VaultPageState extends State<VaultPage> {
 
   Future<void> _openCollectionProjects() async {
     if (BinderFeatureFlags.production.personalAvailable) {
+      if (widget.onOpenBinders != null) {
+        await widget.onOpenBinders!();
+        return;
+      }
       await Navigator.of(context).push(
         MaterialPageRoute<void>(
           builder: (_) => const BinderLibraryScreen(
@@ -1617,29 +1717,6 @@ class VaultPageState extends State<VaultPage> {
         ),
       ),
     );
-  }
-
-  Future<void> _loadBinderWhatsNewState() async {
-    try {
-      final preferences = await SharedPreferences.getInstance();
-      final dismissed =
-          preferences.getBool('binders_whats_new_dismissed_v1') ?? false;
-      if (mounted && !dismissed) {
-        setState(() => _showBinderWhatsNew = true);
-      }
-    } catch (_) {
-      // A missing preference store should not block the Vault.
-    }
-  }
-
-  Future<void> _dismissBinderWhatsNew() async {
-    setState(() => _showBinderWhatsNew = false);
-    try {
-      final preferences = await SharedPreferences.getInstance();
-      await preferences.setBool('binders_whats_new_dismissed_v1', true);
-    } catch (_) {
-      // Dismissal still applies for this session.
-    }
   }
 
   String get _vaultSellerHandle {
@@ -2424,6 +2501,41 @@ class VaultPageState extends State<VaultPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    if (!_hasLoadedInventory) {
+      return RefreshIndicator(
+        onRefresh: reload,
+        child: ListView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: EdgeInsets.fromLTRB(
+            14,
+            12,
+            14,
+            shellContentBottomPadding(context),
+          ),
+          children: [
+            _buildCollectorActions(),
+            const SizedBox(height: 24),
+            if (_inventoryError != null)
+              _buildVaultMessage(
+                'Collection unavailable',
+                'Your cards could not be loaded. This does not mean your collection is empty.',
+                actionLabel: 'Try again',
+                onAction: reload,
+              )
+            else if (_uid == null)
+              _buildVaultMessage(
+                'Sign in to view your Vault',
+                'Your private collection belongs to your account.',
+              )
+            else ...[
+              const Center(child: CircularProgressIndicator.adaptive()),
+              const SizedBox(height: 12),
+              const Center(child: Text('Loading your collection…')),
+            ],
+          ],
+        ),
+      );
+    }
     final derivedData = _derivedData;
     final searchedRows = derivedData.searchedRows;
     final onWallRows = derivedData.onWallRows;
@@ -2710,84 +2822,15 @@ class VaultPageState extends State<VaultPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (BinderFeatureFlags.production.personalAvailable) ...[
-                    if (_showBinderWhatsNew)
-                      Card(
-                        margin: const EdgeInsets.only(bottom: 8),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.auto_awesome_rounded),
-                              const SizedBox(width: 10),
-                              const Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'What’s new: Binders',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    ),
-                                    SizedBox(height: 3),
-                                    Text(
-                                      'Build collection goals powered by '
-                                      'exact copies in your Vault.',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              IconButton(
-                                tooltip: 'Dismiss Binder introduction',
-                                onPressed: _dismissBinderWhatsNew,
-                                icon: const Icon(Icons.close_rounded),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    GvSurface(
-                      key: const ValueKey<String>('vault-binders-entry'),
-                      variant: GvSurfaceVariant.grouped,
-                      padding: EdgeInsets.zero,
-                      child: ListTile(
-                        dense: true,
-                        visualDensity: VisualDensity.compact,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 2,
-                        ),
-                        leading: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.tertiary.withValues(
-                              alpha: 0.14,
-                            ),
-                            borderRadius: BorderRadius.circular(
-                              GvRadii.control,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(9),
-                            child: Icon(
-                              Icons.collections_bookmark_outlined,
-                              size: 20,
-                              color: theme.colorScheme.tertiary,
-                            ),
-                          ),
-                        ),
-                        title: const Text(
-                          'Binders',
-                          style: TextStyle(fontWeight: FontWeight.w700),
-                        ),
-                        subtitle: const Text('What you’re building'),
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                        onTap: _openCollectionProjects,
-                      ),
+                  _buildCollectorActions(),
+                  const SizedBox(height: 12),
+                  if (_inventoryError != null)
+                    _buildVaultMessage(
+                      'Collection refresh failed',
+                      'Showing your last loaded collection. Try again to check for changes.',
+                      actionLabel: 'Try again',
+                      onAction: reload,
                     ),
-                    const SizedBox(height: 12),
-                  ],
                   if (kPortfolioHistoryConfigured && _uid != null)
                     PortfolioHistoryPanel(
                       key: ValueKey('portfolio-history-$_uid'),
@@ -2864,6 +2907,12 @@ class VaultPageState extends State<VaultPage> {
                           'Sealed ${entry.key} ${(entry.value as num).toStringAsFixed(2)} (separate from USD total)',
                           style: theme.textTheme.bodySmall,
                         ),
+                  if (BinderFeatureFlags.production.personalAvailable &&
+                      _uid != null) ...[
+                    const SizedBox(height: 12),
+                    _buildBinderContinuation(),
+                    const SizedBox(height: 12),
+                  ],
                   Row(
                     children: [
                       Expanded(

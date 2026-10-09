@@ -4,393 +4,6 @@ void revealAppShellRoot(BuildContext context) {
   Navigator.of(context).popUntil((route) => route.isFirst);
 }
 
-class RequiredProfileSetupGate extends StatefulWidget {
-  const RequiredProfileSetupGate({super.key, required this.child});
-
-  final Widget child;
-
-  @override
-  State<RequiredProfileSetupGate> createState() =>
-      _RequiredProfileSetupGateState();
-}
-
-class _RequiredProfileSetupGateState extends State<RequiredProfileSetupGate> {
-  bool _loading = true;
-  bool _needsSetup = false;
-  String? _error;
-  AccountProfileData? _profile;
-
-  @override
-  void initState() {
-    super.initState();
-    unawaited(_load());
-  }
-
-  Future<void> _load() async {
-    setState(() {
-      _loading = true;
-      _error = null;
-    });
-    try {
-      final profile = await AccountProfileService.loadCurrentProfile(
-        client: Supabase.instance.client,
-      );
-      if (!mounted) return;
-      final needsSetup =
-          profile.slug.trim().isEmpty || profile.displayName.trim().isEmpty;
-      setState(() {
-        _profile = profile;
-        _needsSetup = needsSetup;
-        _loading = false;
-      });
-    } catch (error) {
-      if (!mounted) return;
-      setState(() {
-        _loading = false;
-        _error = 'Unable to load profile setup.';
-      });
-    }
-  }
-
-  void _handleProfileCreated(AccountProfileData profile) {
-    setState(() {
-      _profile = profile;
-      _needsSetup = false;
-      _loading = false;
-      _error = null;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Widget? gate;
-    if (_loading) {
-      // APP_STARTUP_COVERED_PRELOAD_V1
-      // Keep the app shell mounted while the required profile check runs. Its
-      // first surface can fetch and render beneath this opaque, blocking cover.
-      gate = const _GrookaiBootWarmupScreen();
-    } else if (_error != null) {
-      gate = Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    _error!,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 12),
-                  FilledButton.icon(
-                    onPressed: _load,
-                    icon: const Icon(Icons.refresh_rounded),
-                    label: const Text('Try again'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    } else if (_needsSetup && _profile != null) {
-      gate = _RequiredProfileSetupScreen(
-        profile: _profile!,
-        onCreated: _handleProfileCreated,
-      );
-    }
-
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        widget.child,
-        if (gate != null)
-          Positioned.fill(child: _loading ? AbsorbPointer(child: gate) : gate),
-      ],
-    );
-  }
-}
-
-class _RequiredProfileSetupScreen extends StatefulWidget {
-  const _RequiredProfileSetupScreen({
-    required this.profile,
-    required this.onCreated,
-  });
-
-  final AccountProfileData profile;
-  final ValueChanged<AccountProfileData> onCreated;
-
-  @override
-  State<_RequiredProfileSetupScreen> createState() =>
-      _RequiredProfileSetupScreenState();
-}
-
-class _RequiredProfileSetupScreenState
-    extends State<_RequiredProfileSetupScreen> {
-  late final TextEditingController _displayNameController;
-  late final TextEditingController _slugController;
-  bool _saving = false;
-  Map<String, String> _fieldErrors = const {};
-  String? _statusMessage;
-
-  @override
-  void initState() {
-    super.initState();
-    final user = Supabase.instance.client.auth.currentUser;
-    final displayName = _profileDisplayNameSuggestion(user, widget.profile);
-    _displayNameController = TextEditingController(text: displayName);
-    _slugController = TextEditingController(
-      text: _profileSlugSuggestion(user, widget.profile, displayName),
-    );
-  }
-
-  @override
-  void dispose() {
-    _displayNameController.dispose();
-    _slugController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _save() async {
-    if (_saving) return;
-    final draft = widget.profile.copyWith(
-      displayName: _displayNameController.text,
-      slug: _slugController.text,
-      publicProfileEnabled: true,
-      vaultSharingEnabled: true,
-    );
-    final errors = AccountProfileService.validate(draft);
-    if (errors.isNotEmpty) {
-      setState(() {
-        _fieldErrors = errors;
-        _statusMessage = 'Fix the highlighted fields before continuing.';
-      });
-      return;
-    }
-
-    setState(() {
-      _saving = true;
-      _fieldErrors = const {};
-      _statusMessage = null;
-    });
-    try {
-      final saved = await AccountProfileService.save(
-        client: Supabase.instance.client,
-        data: draft,
-      );
-      if (!mounted) return;
-      widget.onCreated(saved);
-    } on PostgrestException catch (error) {
-      if (!mounted) return;
-      setState(() {
-        _saving = false;
-        _fieldErrors = error.code == '23505'
-            ? const {'slug': 'That profile URL is already taken.'}
-            : const {};
-        _statusMessage = error.code == '23505'
-            ? 'That profile URL is already taken.'
-            : 'Could not create your public profile.';
-      });
-    } catch (_) {
-      if (!mounted) return;
-      setState(() {
-        _saving = false;
-        _statusMessage = 'Could not create your public profile.';
-      });
-    }
-  }
-
-  static String _profileDisplayNameSuggestion(
-    User? user,
-    AccountProfileData profile,
-  ) {
-    if (profile.displayName.trim().isNotEmpty) {
-      return profile.displayName.trim();
-    }
-    final metadata = user?.userMetadata ?? const <String, dynamic>{};
-    for (final key in const ['display_name', 'full_name', 'name', 'username']) {
-      final value = (metadata[key] ?? '').toString().trim();
-      if (value.isNotEmpty) return value;
-    }
-    final emailPrefix = (profile.email.split('@').first).trim();
-    if (emailPrefix.isNotEmpty && profile.email.contains('@')) {
-      return emailPrefix
-          .split(RegExp(r'[._-]+'))
-          .where((part) => part.isNotEmpty)
-          .map((part) => '${part[0].toUpperCase()}${part.substring(1)}')
-          .join(' ');
-    }
-    return 'Collector';
-  }
-
-  static String _profileSlugSuggestion(
-    User? user,
-    AccountProfileData profile,
-    String displayName,
-  ) {
-    final existing = AccountProfileService.normalizeSlug(profile.slug);
-    if (existing.isNotEmpty) return existing;
-    final metadata = user?.userMetadata ?? const <String, dynamic>{};
-    for (final key in const ['preferred_username', 'username', 'name']) {
-      final value = AccountProfileService.normalizeSlug(
-        (metadata[key] ?? '').toString(),
-      );
-      if (value.isNotEmpty) return value;
-    }
-    final fromDisplay = AccountProfileService.normalizeSlug(displayName);
-    if (fromDisplay.isNotEmpty) return fromDisplay;
-    final emailPrefix = profile.email.contains('@')
-        ? profile.email.split('@').first
-        : '';
-    final fromEmail = AccountProfileService.normalizeSlug(emailPrefix);
-    if (fromEmail.isNotEmpty) return fromEmail;
-    final id = profile.userId.replaceAll('-', '');
-    return 'collector-${id.length >= 6 ? id.substring(0, 6) : id}';
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final normalizedSlug = AccountProfileService.normalizeSlug(
-      _slugController.text,
-    );
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 520),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Icon(
-                    Icons.public_rounded,
-                    size: 42,
-                    color: colorScheme.primary,
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    'Claim your collector link',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Your profile is public by default so you can share your Wall as soon as cards are added.',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.66),
-                      height: 1.35,
-                    ),
-                  ),
-                  const SizedBox(height: 22),
-                  TextField(
-                    controller: _displayNameController,
-                    textInputAction: TextInputAction.next,
-                    decoration: InputDecoration(
-                      labelText: 'Display name',
-                      prefixIcon: const Icon(Icons.badge_outlined),
-                      errorText: _fieldErrors['displayName'],
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  TextField(
-                    controller: _slugController,
-                    textInputAction: TextInputAction.done,
-                    onChanged: (_) => setState(() {}),
-                    onSubmitted: (_) => _save(),
-                    decoration: InputDecoration(
-                      labelText: 'Collector URL',
-                      prefixText: '/u/',
-                      prefixIcon: const Icon(Icons.link_rounded),
-                      errorText: _fieldErrors['slug'],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: colorScheme.primaryContainer.withValues(
-                        alpha: 0.44,
-                      ),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 12,
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.ios_share_rounded,
-                            color: colorScheme.onPrimaryContainer,
-                            size: 19,
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              normalizedSlug.isEmpty
-                                  ? 'grookaivault.com/u/your-name'
-                                  : 'grookaivault.com/u/$normalizedSlug',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.labelLarge?.copyWith(
-                                color: colorScheme.onPrimaryContainer,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  if (_statusMessage != null) ...[
-                    const SizedBox(height: 10),
-                    Text(
-                      _statusMessage!,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: colorScheme.error,
-                      ),
-                    ),
-                  ],
-                  const SizedBox(height: 18),
-                  FilledButton.icon(
-                    onPressed: _saving ? null : _save,
-                    icon: _saving
-                        ? const SizedBox.square(
-                            dimension: 18,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : const Icon(Icons.arrow_forward_rounded),
-                    label: Text(
-                      _saving ? 'Creating profile...' : 'Create public profile',
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'You can turn public profile or Vault sharing off later in Account.',
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.56),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 /// ---------------------- APP SHELL (Home + Vault) ----------------------
 class AppShell extends StatefulWidget {
   const AppShell({
@@ -420,10 +33,11 @@ enum _ShellDestination {
   // PULSE_WALL_VAULT_SHELL_V1
   // MOBILE_WEB_NATIVE_VISUAL_PARITY_CONTRACT_V1
   // Scan is the center global action. It is not a retained destination.
-  feed(navIndex: 0, stackIndex: 0, title: 'Pulse'),
-  wall(navIndex: 1, stackIndex: 1, title: 'Wall'),
-  vault(navIndex: 3, stackIndex: 2, title: 'Vault'),
-  search(navIndex: 4, stackIndex: 3, title: 'Search');
+  vault(navIndex: 0, stackIndex: 0, title: 'Vault'),
+  search(navIndex: 1, stackIndex: 1, title: 'Explore'),
+  binders(navIndex: 3, stackIndex: 2, title: 'Binders'),
+  feed(navIndex: 4, stackIndex: 3, title: 'Community'),
+  wall(navIndex: 4, stackIndex: 4, title: 'Community');
 
   const _ShellDestination({
     required this.navIndex,
@@ -446,10 +60,10 @@ class _AppShellState extends State<AppShell> {
   final GlobalKey<_MyWallTabState> _wallKey = GlobalKey();
   final GlobalKey<NetworkScreenState> _networkKey = GlobalKey();
   final GlobalKey<VaultPageState> _vaultKey = GlobalKey();
-  late final OnboardingLadderService _onboardingService;
+  final GlobalKey<BinderLibraryScreenState> _binderKey = GlobalKey();
 
   late final List<Widget?> _shellPages;
-  _ShellDestination _destination = _ShellDestination.feed;
+  _ShellDestination _destination = _ShellDestination.vault;
   int? _lastHandledCanonicalLinkId;
   int? _lastHandledDebugActionId;
   bool _handlingCanonicalLink = false;
@@ -459,15 +73,11 @@ class _AppShellState extends State<AppShell> {
   bool _bottomNavCollapsed = false;
   bool _relationshipRouteLoading = false;
   int _pulseUnreadCount = 0;
-  bool _onboardingProbeInFlight = false;
-  bool _onboardingDismissedThisSession = false;
-  OnboardingLadderState? _onboardingOverlayState;
 
   @override
   void initState() {
     super.initState();
     AppBootTiming.mark('app_shell_init_state_start');
-    _onboardingService = OnboardingLadderService(client: _supabase);
     // PERFORMANCE_P1_SHELL_LAZY_TABS
     // Defers heavy tab construction until first visit while preserving tab
     // retention after a surface has been opened once.
@@ -485,17 +95,8 @@ class _AppShellState extends State<AppShell> {
       // APP_STARTUP_NO_CAMERA_CONTENTION_V1
       // Camera startup competes with the first network surface for CPU, memory,
       // and platform-channel time. Scan initializes on demand when tapped.
-      unawaited(_startDeferredOnboardingProbe());
     });
     AppBootTiming.mark('app_shell_init_state_complete');
-  }
-
-  Future<void> _startDeferredOnboardingProbe() async {
-    await Future<void>.delayed(_kDeferredStartupServiceDelay);
-    if (!mounted) {
-      return;
-    }
-    await _maybeShowOnboardingForLanding();
   }
 
   @override
@@ -537,9 +138,19 @@ class _AppShellState extends State<AppShell> {
           onOpenBySlug: _openPublicCollectorPrompt,
           onOpenAccount: _openAccountHub,
         );
+      case _ShellDestination.binders:
+        return BinderLibraryScreen(
+          key: _binderKey,
+          featureFlags: BinderFeatureFlags.production,
+          onOpenVendor: () => unawaited(_openSalesDesk()),
+          onOpenMenu: () => _scaffoldKey.currentState?.openEndDrawer(),
+        );
       case _ShellDestination.vault:
         return VaultPage(
           key: _vaultKey,
+          onOpenExplore: () async =>
+              _selectDestination(_ShellDestination.search),
+          onOpenBinders: _openBinderLibrary,
           onOpenScanner: _startScanFlow,
           onOpenVaultSpecies: _openVaultForSpecies,
         );
@@ -740,13 +351,7 @@ class _AppShellState extends State<AppShell> {
         });
         break;
       case GrookaiCanonicalRouteKind.binderLibrary:
-        unawaited(
-          _pushPage<void>(
-            const BinderLibraryScreen(
-              featureFlags: BinderFeatureFlags.production,
-            ),
-          ),
-        );
+        _selectDestination(_ShellDestination.binders);
         break;
       case GrookaiCanonicalRouteKind.binder:
         unawaited(
@@ -952,18 +557,17 @@ class _AppShellState extends State<AppShell> {
       }
       return;
     }
+    final alreadyBuilt = _shellPages[destination.stackIndex] != null;
     _ensureShellPageBuilt(destination);
     setState(() {
       _destination = destination;
       _bottomNavCollapsed = false;
     });
-    if (destination == _ShellDestination.feed ||
-        destination == _ShellDestination.search) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          unawaited(_maybeShowOnboardingForLanding());
-        }
-      });
+    if (alreadyBuilt && destination == _ShellDestination.vault) {
+      unawaited(_vaultKey.currentState?.refreshCollectorHome());
+    }
+    if (alreadyBuilt && destination == _ShellDestination.binders) {
+      unawaited(_binderKey.currentState?.reload());
     }
     if (destination == _ShellDestination.wall) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -1055,21 +659,24 @@ class _AppShellState extends State<AppShell> {
   Future<void> _openVendorWorkspace(VendorDestination destination) async {
     final owner = _supabase.auth.currentUser?.id;
     if (owner == null) return;
-    await _pushPage<void>(VendorWorkspaceScreen(
-      initialDestination: destination,
-      accountChanges: _supabase.auth.onAuthStateChange
-          .where((event) => event.session?.user.id != owner).map((_) {}),
-      onScan: _startScanFlow,
-      pageBuilder: (context, destination, select) => switch (destination) {
-        VendorDestination.desk => const SalesDeskScreen(),
-        VendorDestination.inventory => VendorPricingWorkspaceScreen(
-          onOpenSalesDesk: () => select(VendorDestination.desk),
-          onOpenStore: () => select(VendorDestination.store),
-        ),
-        VendorDestination.reports => const SalesReportsScreen(),
-        VendorDestination.store => const StoreManagementScreen(),
-      },
-    ));
+    await _pushPage<void>(
+      VendorWorkspaceScreen(
+        initialDestination: destination,
+        accountChanges: _supabase.auth.onAuthStateChange
+            .where((event) => event.session?.user.id != owner)
+            .map((_) {}),
+        onScan: _startScanFlow,
+        pageBuilder: (context, destination, select) => switch (destination) {
+          VendorDestination.desk => const SalesDeskScreen(),
+          VendorDestination.inventory => VendorPricingWorkspaceScreen(
+            onOpenSalesDesk: () => select(VendorDestination.desk),
+            onOpenStore: () => select(VendorDestination.store),
+          ),
+          VendorDestination.reports => const SalesReportsScreen(),
+          VendorDestination.store => const StoreManagementScreen(),
+        },
+      ),
+    );
     if (!mounted) {
       return;
     }
@@ -1086,9 +693,7 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _openBinderLibrary() async {
-    await _pushPage<void>(
-      const BinderLibraryScreen(featureFlags: BinderFeatureFlags.production),
-    );
+    _selectDestination(_ShellDestination.binders);
   }
 
   Future<void> _openMessages() async {
@@ -1227,6 +832,9 @@ class _AppShellState extends State<AppShell> {
       case _ShellDestination.wall:
         _wallKey.currentState?.reload();
         break;
+      case _ShellDestination.binders:
+        unawaited(_binderKey.currentState?.reload());
+        break;
       case _ShellDestination.vault:
         _vaultKey.currentState?.reload();
         break;
@@ -1362,73 +970,6 @@ class _AppShellState extends State<AppShell> {
     }
 
     return decision.proceed;
-  }
-
-  Future<void> _maybeShowOnboardingForLanding() async {
-    if (!kOnboardingLadderEnabled ||
-        _onboardingProbeInFlight ||
-        _onboardingDismissedThisSession ||
-        _onboardingOverlayState != null ||
-        _supabase.auth.currentUser == null ||
-        _handlingCanonicalLink ||
-        widget.pendingCanonicalLink != null ||
-        ModalRoute.of(context)?.isCurrent == false ||
-        (_destination != _ShellDestination.feed &&
-            _destination != _ShellDestination.search)) {
-      return;
-    }
-
-    _onboardingProbeInFlight = true;
-    try {
-      final state = await _onboardingService.loadState().timeout(
-        const Duration(seconds: 8),
-      );
-      if (!mounted ||
-          _onboardingDismissedThisSession ||
-          _onboardingOverlayState != null ||
-          _destination != _ShellDestination.feed &&
-              _destination != _ShellDestination.search) {
-        return;
-      }
-
-      final shouldShow =
-          !state.isComplete &&
-          !state.isDismissed &&
-          (state.needsOwned ||
-              state.needsWanted ||
-              state.shouldShowLoopPromise ||
-              state.shouldShowCollectorSuggestions);
-      if (shouldShow) {
-        setState(() => _onboardingOverlayState = state);
-      }
-    } catch (_) {
-      // Onboarding is never allowed to block the shell.
-    } finally {
-      _onboardingProbeInFlight = false;
-    }
-  }
-
-  void _dismissOnboardingOverlay() {
-    if (!mounted) {
-      return;
-    }
-    setState(() {
-      _onboardingDismissedThisSession = true;
-      _onboardingOverlayState = null;
-    });
-  }
-
-  Future<void> _openOnboardingScanner() async {
-    await _startScanFlow();
-    if (!mounted) {
-      return;
-    }
-    await _maybeShowOnboardingForLanding();
-  }
-
-  void _openSearchFromOnboarding() {
-    _dismissOnboardingOverlay();
-    _selectDestination(_ShellDestination.search);
   }
 
   IconButton _appBarActionButton({
@@ -1571,9 +1112,47 @@ class _AppShellState extends State<AppShell> {
       ),
       growable: false,
     );
-    final shellBody = IndexedStack(
+    final retainedPages = IndexedStack(
       index: _destination.stackIndex,
       children: shellChildren,
+    );
+    final shellBody = Column(
+      children: [
+        if (_destination == _ShellDestination.feed ||
+            _destination == _ShellDestination.wall)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 4),
+            child: Wrap(
+              spacing: 8,
+              children: [
+                TextButton(
+                  onPressed: () => _selectDestination(_ShellDestination.feed),
+                  child: Text(
+                    'Pulse',
+                    style: TextStyle(
+                      fontWeight: _destination == _ShellDestination.feed
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => _selectDestination(_ShellDestination.wall),
+                  child: Text(
+                    'My Wall',
+                    style: TextStyle(
+                      fontWeight: _destination == _ShellDestination.wall
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                    ),
+                  ),
+                ),
+                TextButton(onPressed: _openNearby, child: const Text('Nearby')),
+              ],
+            ),
+          ),
+        Expanded(child: retainedPages),
+      ],
     );
     final mobileShellBody = NotificationListener<UserScrollNotification>(
       onNotification: _handleShellScroll,
@@ -1587,7 +1166,6 @@ class _AppShellState extends State<AppShell> {
                 onOpenSearch: () =>
                     _selectDestination(_ShellDestination.search),
                 onOpenFeed: () => _selectDestination(_ShellDestination.feed),
-                onOpenWall: () => _selectDestination(_ShellDestination.wall),
                 onOpenVault: () => _selectDestination(_ShellDestination.vault),
                 onOpenScan: _startScanFlow,
                 onOpenDex: () => unawaited(_openDex()),
@@ -1609,23 +1187,9 @@ class _AppShellState extends State<AppShell> {
             ],
           )
         : mobileShellBody;
-    final bodyWithOnboarding = Stack(
-      children: [
-        activeBody,
-        if (_onboardingOverlayState != null)
-          OnboardingLadderOverlay(
-            service: _onboardingService,
-            initialState: _onboardingOverlayState!,
-            onDismissed: _dismissOnboardingOverlay,
-            onOpenScanner: _openOnboardingScanner,
-            onOpenSearch: _openSearchFromOnboarding,
-          ),
-      ],
-    );
-
     return Scaffold(
       key: _scaffoldKey,
-      extendBody: !isDesktopShell,
+      extendBody: !isDesktopShell && _destination != _ShellDestination.binders,
       resizeToAvoidBottomInset: false,
       endDrawer: _GrookaiAppDrawer(
         signedIn: _supabase.auth.currentUser != null,
@@ -1637,7 +1201,6 @@ class _AppShellState extends State<AppShell> {
         onOpenVendorMode: _openVendorMode,
         onOpenSalesDesk: _openSalesDesk,
         onOpenManageStore: _openManageStore,
-        onOpenBinders: _openBinderLibrary,
         onOpenNearby: _openNearby,
         onOpenNearbyMap: _openNearbyMap,
         onOpenAccount: _openAccountHub,
@@ -1649,21 +1212,24 @@ class _AppShellState extends State<AppShell> {
         themeMode: widget.themeMode,
         onThemeModeChanged: widget.onThemeModeChanged,
       ),
-      appBar: AppBar(
-        toolbarHeight: kShellAppBarHeight,
-        actionsPadding: const EdgeInsets.only(right: 6),
-        title: _ShellPageTitle(
-          title: _destination.title,
-          accent: switch (_destination) {
-            _ShellDestination.feed => colorScheme.secondary,
-            _ShellDestination.wall => colorScheme.tertiary,
-            _ShellDestination.vault => colorScheme.tertiary,
-            _ShellDestination.search => colorScheme.primary,
-          },
-        ),
-        actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
-      ),
-      body: bodyWithOnboarding,
+      appBar: _destination == _ShellDestination.binders
+          ? null
+          : AppBar(
+              toolbarHeight: kShellAppBarHeight,
+              actionsPadding: const EdgeInsets.only(right: 6),
+              title: _ShellPageTitle(
+                title: _destination.title,
+                accent: switch (_destination) {
+                  _ShellDestination.feed => colorScheme.secondary,
+                  _ShellDestination.wall => colorScheme.tertiary,
+                  _ShellDestination.vault => colorScheme.tertiary,
+                  _ShellDestination.binders => colorScheme.tertiary,
+                  _ShellDestination.search => colorScheme.primary,
+                },
+              ),
+              actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
+            ),
+      body: activeBody,
       bottomNavigationBar: isDesktopShell
           ? null
           : _buildMobileBottomDock(
@@ -1692,7 +1258,7 @@ class _AppShellState extends State<AppShell> {
         opacity: keyboardVisible ? 0 : 1,
         child: SafeArea(
           top: false,
-          minimum: EdgeInsets.fromLTRB(12, 4, 12, bottomSafeInset > 0 ? 4 : 12),
+          minimum: EdgeInsets.fromLTRB(6, 4, 6, bottomSafeInset > 0 ? 4 : 12),
           child: Align(
             alignment: Alignment.bottomCenter,
             // Scaffold uses this height as the extended body's bottom inset.
@@ -1721,23 +1287,24 @@ class _AppShellState extends State<AppShell> {
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 0,
-                        label: 'Pulse',
-                        icon: Icons.dynamic_feed_rounded,
+                        label: 'Vault',
+                        icon: Icons.inventory_2_rounded,
                         collapsed: collapsed,
-                        badgeCount: _pulseUnreadCount,
+
                         onPressed: () =>
-                            _selectDestination(_ShellDestination.feed),
+                            _selectDestination(_ShellDestination.vault),
                       ),
                     ),
                     Expanded(
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 1,
-                        label: 'Wall',
-                        icon: Icons.collections_bookmark_rounded,
+                        label: 'Explore',
+                        icon: Icons.search_rounded,
                         collapsed: collapsed,
+
                         onPressed: () =>
-                            _selectDestination(_ShellDestination.wall),
+                            _selectDestination(_ShellDestination.search),
                       ),
                     ),
                     Expanded(
@@ -1755,22 +1322,24 @@ class _AppShellState extends State<AppShell> {
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 3,
-                        label: 'Vault',
-                        icon: Icons.inventory_2_rounded,
+                        label: 'Binders',
+                        icon: Icons.bookmarks_rounded,
                         collapsed: collapsed,
+
                         onPressed: () =>
-                            _selectDestination(_ShellDestination.vault),
+                            _selectDestination(_ShellDestination.binders),
                       ),
                     ),
                     Expanded(
                       child: _buildDockButton(
                         colorScheme: colorScheme,
                         navIndex: 4,
-                        label: 'Search',
-                        icon: Icons.search_rounded,
+                        label: 'Community',
+                        icon: Icons.people_outline_rounded,
                         collapsed: collapsed,
+                        badgeCount: _pulseUnreadCount,
                         onPressed: () =>
-                            _selectDestination(_ShellDestination.search),
+                            _selectDestination(_ShellDestination.feed),
                       ),
                     ),
                   ],
@@ -1815,7 +1384,7 @@ class _AppShellState extends State<AppShell> {
             // visual target height while allowing the one-line label to claim
             // its measured height instead of overflowing a fixed box.
             constraints: BoxConstraints(minHeight: collapsed ? 50 : 54),
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 4),
             decoration: BoxDecoration(
               color: background,
               borderRadius: BorderRadius.circular(14),
@@ -1876,7 +1445,8 @@ class _AppShellState extends State<AppShell> {
                 const SizedBox(height: 2),
                 Text(
                   label,
-                  maxLines: 1,
+                  maxLines: 3,
+                  textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: foreground,
@@ -1969,7 +1539,6 @@ class _GrookaiDesktopRail extends StatelessWidget {
     required this.currentDestination,
     required this.onOpenSearch,
     required this.onOpenFeed,
-    required this.onOpenWall,
     required this.onOpenVault,
     required this.onOpenScan,
     required this.onOpenDex,
@@ -1986,7 +1555,6 @@ class _GrookaiDesktopRail extends StatelessWidget {
   final _ShellDestination currentDestination;
   final VoidCallback onOpenSearch;
   final VoidCallback onOpenFeed;
-  final VoidCallback onOpenWall;
   final VoidCallback onOpenVault;
   final VoidCallback onOpenScan;
   final VoidCallback onOpenDex;
@@ -2037,33 +1605,36 @@ class _GrookaiDesktopRail extends StatelessWidget {
               ),
             ),
             _GrookaiRailTile(
-              icon: Icons.dynamic_feed_rounded,
-              label: 'Pulse',
-              selected: currentDestination == _ShellDestination.feed,
-              onTap: onOpenFeed,
-            ),
-            _GrookaiRailTile(
-              icon: Icons.collections_bookmark_rounded,
-              label: 'Wall',
-              selected: currentDestination == _ShellDestination.wall,
-              onTap: onOpenWall,
-            ),
-            _GrookaiRailTile(
               icon: Icons.inventory_2_rounded,
               label: 'Vault',
               selected: currentDestination == _ShellDestination.vault,
               onTap: onOpenVault,
             ),
             _GrookaiRailTile(
+              icon: Icons.search_rounded,
+              label: 'Explore',
+              selected: currentDestination == _ShellDestination.search,
+              onTap: onOpenSearch,
+            ),
+            _GrookaiRailTile(
               icon: Icons.center_focus_strong_rounded,
               label: 'Scan',
+
               onTap: onOpenScan,
             ),
             _GrookaiRailTile(
-              icon: Icons.search_rounded,
-              label: 'Search',
-              selected: currentDestination == _ShellDestination.search,
-              onTap: onOpenSearch,
+              icon: Icons.bookmarks_rounded,
+              label: 'Binders',
+              selected: currentDestination == _ShellDestination.binders,
+              onTap: onOpenBinders,
+            ),
+            _GrookaiRailTile(
+              icon: Icons.people_outline_rounded,
+              label: 'Community',
+              selected:
+                  currentDestination == _ShellDestination.feed ||
+                  currentDestination == _ShellDestination.wall,
+              onTap: onOpenFeed,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
@@ -2089,12 +1660,6 @@ class _GrookaiDesktopRail extends StatelessWidget {
               label: 'Objects',
               onTap: onOpenGrookaiObjects,
             ),
-            if (BinderFeatureFlags.production.personalAvailable)
-              _GrookaiRailTile(
-                icon: Icons.bookmarks_rounded,
-                label: 'Binders',
-                onTap: onOpenBinders,
-              ),
             const Spacer(),
             _GrookaiRailTile(
               icon: Icons.mail_rounded,
@@ -2191,7 +1756,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenVendorMode,
     required this.onOpenSalesDesk,
     required this.onOpenManageStore,
-    required this.onOpenBinders,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
     required this.onOpenAccount,
@@ -2211,7 +1775,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenVendorMode;
   final Future<void> Function() onOpenSalesDesk;
   final Future<void> Function() onOpenManageStore;
-  final Future<void> Function() onOpenBinders;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
@@ -2302,12 +1865,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
             icon: Icons.storefront_outlined,
             label: 'Manage store',
             onTap: () => _closeThenAsync(context, onOpenManageStore),
-          ),
-        if (signedIn && BinderFeatureFlags.production.personalAvailable)
-          _GrookaiDrawerTile(
-            icon: Icons.bookmarks_rounded,
-            label: 'Binders',
-            onTap: () => _closeThenAsync(context, onOpenBinders),
           ),
         if (signedIn)
           _GrookaiDrawerTile(

@@ -7,9 +7,26 @@ import '../../services/binders/binder_repository.dart';
 enum BinderLoadStatus { initial, loading, ready, failed }
 
 class BinderLibraryController extends ChangeNotifier {
-  BinderLibraryController({required this.repository});
+  BinderLibraryController({required this.repository})
+    : _ownerId = repository.currentUserId;
 
   final BinderRepository repository;
+  final String? _ownerId;
+  int _generation = 0;
+  bool _disposed = false;
+
+  bool _current(int generation) =>
+      !_disposed &&
+      generation == _generation &&
+      repository.currentUserId == _ownerId;
+
+  @override
+  void dispose() {
+    _disposed = true;
+    _generation++;
+    page = const BinderLibraryPage(binders: <BinderSummary>[]);
+    super.dispose();
+  }
 
   BinderLoadStatus status = BinderLoadStatus.initial;
   BinderLibraryPage page = const BinderLibraryPage(binders: <BinderSummary>[]);
@@ -22,7 +39,12 @@ class BinderLibraryController extends ChangeNotifier {
   bool get hasSafeContent => page.binders.isNotEmpty;
 
   Future<void> load({bool refresh = false}) async {
-    final userId = repository.currentUserId;
+    if (_disposed || repository.currentUserId != _ownerId) return;
+    final generation = ++_generation;
+    loadingMore = false;
+    loadingMoreInvitations = false;
+    loadingMoreSuspended = false;
+    final userId = _ownerId;
     if (userId == null) {
       status = BinderLoadStatus.failed;
       error = const BinderException(
@@ -34,7 +56,11 @@ class BinderLibraryController extends ChangeNotifier {
     }
 
     if (!refresh && status == BinderLoadStatus.initial) {
-      final cached = await BinderPrivateCache.readLibrary(userId);
+      final cached = await BinderPrivateCache.readLibrary(
+        userId,
+        isCurrent: () => _current(generation),
+      );
+      if (!_current(generation)) return;
       if (cached != null) {
         page = cached;
         isStale = true;
@@ -71,6 +97,7 @@ class BinderLibraryController extends ChangeNotifier {
         invitationPageSafe(),
         suspendedPageSafe(),
       ]);
+      if (!_current(generation)) return;
       final dashboard = results[0] as BinderLibraryPage;
       final invitationPage = results[1] as BinderPage<BinderInvitation>?;
       final suspendedPage = results[2] as BinderPage<BinderSuspendedAccess>?;
@@ -90,11 +117,17 @@ class BinderLibraryController extends ChangeNotifier {
       status = BinderLoadStatus.ready;
       isStale = false;
       error = null;
-      await BinderPrivateCache.writeLibrary(userId, page);
+      await BinderPrivateCache.writeLibrary(
+        userId,
+        page,
+        isCurrent: () => _current(generation),
+      );
     } on BinderException catch (failure) {
+      if (!_current(generation)) return;
       error = failure;
       if (failure.kind == BinderFailureKind.noAccess) {
         await BinderPrivateCache.purgeUser(userId);
+        if (!_current(generation)) return;
         page = const BinderLibraryPage(binders: <BinderSummary>[]);
       }
       isStale = hasSafeContent;
@@ -102,17 +135,20 @@ class BinderLibraryController extends ChangeNotifier {
           ? BinderLoadStatus.ready
           : BinderLoadStatus.failed;
     } finally {
-      notifyListeners();
+      if (_current(generation)) notifyListeners();
     }
   }
 
   Future<void> loadMore() async {
+    final generation = _generation;
+    if (!_current(generation) || status != BinderLoadStatus.ready) return;
     final cursor = page.nextCursor;
     if (cursor == null || loadingMore) return;
     loadingMore = true;
     notifyListeners();
     try {
       final next = await repository.loadLibrary(cursor: cursor);
+      if (!_current(generation)) return;
       final byId = <String, BinderSummary>{
         for (final binder in page.binders) binder.id: binder,
         for (final binder in next.binders) binder.id: binder,
@@ -137,20 +173,26 @@ class BinderLibraryController extends ChangeNotifier {
       );
       error = null;
     } on BinderException catch (failure) {
+      if (!_current(generation)) return;
       error = failure;
     } finally {
-      loadingMore = false;
-      notifyListeners();
+      if (_current(generation)) {
+        loadingMore = false;
+        notifyListeners();
+      }
     }
   }
 
   Future<void> loadMoreInvitations() async {
+    final generation = _generation;
+    if (!_current(generation) || status != BinderLoadStatus.ready) return;
     final cursor = page.invitationNextCursor;
     if (cursor == null || loadingMoreInvitations) return;
     loadingMoreInvitations = true;
     notifyListeners();
     try {
       final next = await repository.loadInvitationInbox(cursor: cursor);
+      if (!_current(generation)) return;
       final byId = <String, BinderInvitation>{
         for (final item in page.invitations) item.id: item,
         for (final item in next.items) item.id: item,
@@ -170,20 +212,26 @@ class BinderLibraryController extends ChangeNotifier {
       );
       error = null;
     } on BinderException catch (failure) {
+      if (!_current(generation)) return;
       error = failure;
     } finally {
-      loadingMoreInvitations = false;
-      notifyListeners();
+      if (_current(generation)) {
+        loadingMoreInvitations = false;
+        notifyListeners();
+      }
     }
   }
 
   Future<void> loadMoreSuspended() async {
+    final generation = _generation;
+    if (!_current(generation) || status != BinderLoadStatus.ready) return;
     final cursor = page.suspendedNextCursor;
     if (cursor == null || loadingMoreSuspended) return;
     loadingMoreSuspended = true;
     notifyListeners();
     try {
       final next = await repository.loadSuspendedBinders(cursor: cursor);
+      if (!_current(generation)) return;
       final byId = <String, BinderSuspendedAccess>{
         for (final item in page.suspendedBinders) item.publicId: item,
         for (final item in next.items) item.publicId: item,
@@ -203,10 +251,13 @@ class BinderLibraryController extends ChangeNotifier {
       );
       error = null;
     } on BinderException catch (failure) {
+      if (!_current(generation)) return;
       error = failure;
     } finally {
-      loadingMoreSuspended = false;
-      notifyListeners();
+      if (_current(generation)) {
+        loadingMoreSuspended = false;
+        notifyListeners();
+      }
     }
   }
 }

@@ -1,16 +1,15 @@
 export const DESKTOP_PRIMARY_NAV = [
-  { key: "pulse", label: "Pulse", href: "/network" },
-  { key: "wall", label: "Wall", href: "/wall" },
-  { key: "scan", label: "Scan", href: "/scan" },
   { key: "vault", label: "Vault", href: "/vault" },
-  { key: "search", label: "Search", href: "/explore" },
+  { key: "search", label: "Explore", href: "/explore" },
+  { key: "scan", label: "Scan", href: "/scan" },
+  { key: "binders", label: "Binders", href: "/binders" },
+  { key: "pulse", label: "Community", href: "/network" },
 ] as const;
 
 export const DESKTOP_SECONDARY_NAV = [
   { key: "sets", label: "Sets", href: "/sets" },
   { key: "dex", label: "Dex", href: "/dex" },
   { key: "compare", label: "Compare", href: "/compare" },
-  { key: "binders", label: "Binders", href: "/binders" },
   { key: "messages", label: "Messages", href: "/network/inbox" },
 ] as const;
 
@@ -58,16 +57,16 @@ export function getDesktopRouteState(rawPathname: string): DesktopRouteState {
 
   let activeSecondary: DesktopSecondaryNavKey | null = null;
   if (matchesRoute(pathname, "/network/inbox")) activeSecondary = "messages";
-  else if (matchesRoute(pathname, "/binders") || matchesRoute(pathname, "/binder-templates")) activeSecondary = "binders";
   else if (matchesRoute(pathname, "/sets") || matchesRoute(pathname, "/set")) activeSecondary = "sets";
   else if (matchesRoute(pathname, "/dex")) activeSecondary = "dex";
   else if (matchesRoute(pathname, "/compare")) activeSecondary = "compare";
 
   let activePrimary: DesktopPrimaryNavKey | null = null;
   if (matchesRoute(pathname, "/network")) activePrimary = "pulse";
-  else if (matchesRoute(pathname, "/wall") || matchesRoute(pathname, "/u")) activePrimary = "wall";
+  else if (matchesRoute(pathname, "/wall") || matchesRoute(pathname, "/u")) activePrimary = "pulse";
   else if (matchesRoute(pathname, "/scan") || matchesRoute(pathname, "/vault/import")) activePrimary = "scan";
-  else if (matchesRoute(pathname, "/vault") || matchesRoute(pathname, "/binders") || matchesRoute(pathname, "/binder-templates")) activePrimary = "vault";
+  else if (matchesRoute(pathname, "/binders") || matchesRoute(pathname, "/binder-templates")) activePrimary = "binders";
+  else if (matchesRoute(pathname, "/vault")) activePrimary = "vault";
   else if (
     matchesRoute(pathname, "/explore") ||
     matchesRoute(pathname, "/search") ||
@@ -84,7 +83,7 @@ export function getDesktopRouteState(rawPathname: string): DesktopRouteState {
     childContext(pathname, "/sets", "Sets", "/sets", "Set detail") ??
     childContext(pathname, "/set", "Sets", "/sets", "Set detail") ??
     childContext(pathname, "/dex", "Dex", "/dex", "Pokémon detail") ??
-    childContext(pathname, "/card", "Search", "/explore", "Card detail") ??
+    childContext(pathname, "/card", "Explore", "/explore", "Card detail") ??
     childContext(pathname, "/vault/card", "Vault", "/vault", "Card copies") ??
     childContext(pathname, "/vault/gvvi", "Vault", "/vault", "Exact copy") ??
     childContext(pathname, "/gvvi", "Vault", "/vault", "Exact copy") ??

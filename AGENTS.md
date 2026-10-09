@@ -1,3 +1,11 @@
+# Collector home overhaul — current continuation
+
+Work in C:/gv_product_collector_home_20261008, from locally qualified portfolio parent b26ea0f8863060fadf924c013f3d792b9ce4dd5d. This entry supersedes older worktree-specific entries below. Read external C:/grookai_vault_operator_artifacts/product_collector_home_20261008/SCOPE.json and CHECKPOINT.json for current status. The full objective remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md.
+
+Run scripts/schema/audit_product_collector_home_baseline_v1.mjs before product changes. Verify private add without a social profile through scripts/audits/product_collector_private_add_v1.mjs before removing the global native gate. Use the existing Vault, Binder, social and transaction authorities; no new schema is planned. Preserve all438 migration bytes, every prior worktree, populated fixture, exact release seal, primary app and acceptance APK. No inherited fixed-root mutation/release wrappers, subagents, production apply/deploy/activation, provider fetch/upload or external messages.
+
+Implement the accepted Vault, Explore, Scan, Binders, Community navigation; preserve old links and account isolation. Keep private collecting independent of public-profile setup and avoid implicit sharing. Show bounded existing Binder continuation with honest partial/unavailable/empty states. Source changes require appropriate regression and actual browser/Samsung proof. Physical iOS remains unverified pending the two already-requested Mac-local permissions; do not re-ask, retry or bypass security. No automatic Git maintenance on the Mac. Continue the full overhaul after this slice.
+
 # Grookai Agent Entry Point
 
 ## Portfolio history runtime and exact release — current continuation

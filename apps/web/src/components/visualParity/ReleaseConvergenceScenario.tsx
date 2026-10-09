@@ -170,7 +170,7 @@ function SocialFixtureShell({
   children,
 }: {
   title: string;
-  activeKey: "pulse" | "wall";
+  activeKey: "pulse";
   children: ReactNode;
 }) {
   return (
@@ -210,7 +210,7 @@ function WallCollectionFixture({
   return (
     <SocialFixtureShell
       title={withProfile ? "Collector" : "Wall"}
-      activeKey="wall"
+      activeKey="pulse"
     >
       <div className="space-y-6">
         {withProfile ? (
@@ -294,7 +294,7 @@ function SocialState({
   return (
     <SocialFixtureShell
       title={isPulse ? "Pulse" : kind === "wall-private" ? "Wall" : "Collector"}
-      activeKey={isPulse ? "pulse" : "wall"}
+      activeKey="pulse"
     >
       <ProductState {...model} />
       {kind === "pulse-partial" ? (

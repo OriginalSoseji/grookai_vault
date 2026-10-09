@@ -16,16 +16,17 @@ void main() {
     expect(source, contains('Check your email'));
   });
 
-  test('new authenticated users must create public slug before shell', () {
+  test('private collecting opens without publishing a social profile', () {
     final main = File('lib/main.dart').readAsStringSync();
     final shell = File('lib/main_shell.dart').readAsStringSync();
-
-    expect(main, contains('RequiredProfileSetupGate'));
-    expect(shell, contains('Claim your collector link'));
-    expect(shell, contains('AccountProfileService.loadCurrentProfile'));
-    expect(shell, contains('AccountProfileService.save'));
-    expect(shell, contains('publicProfileEnabled: true'));
-    expect(shell, contains('vaultSharingEnabled: true'));
-    expect(shell, contains('That profile URL is already taken.'));
+    final account = File(
+      'lib/screens/account/account_screen.dart',
+    ).readAsStringSync();
+    expect(main, isNot(contains('RequiredProfileSetupGate')));
+    expect(main, contains('collector-shell-'));
+    expect(shell, contains('_ShellDestination.vault;'));
+    expect(account, contains('bool _publicProfileEnabled = false'));
+    expect(account, contains('bool _vaultSharingEnabled = false'));
+    expect(account, contains('AccountProfileService.save'));
   });
 }

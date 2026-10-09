@@ -5,7 +5,7 @@ import { Menu } from "lucide-react";
 import { useClientReady } from "@/components/layout/useClientReady";
 import { DESKTOP_SECONDARY_NAV, getDesktopRouteState } from "@/lib/desktopShellManifest";
 
-export function CollectorMobileTools({ pathname, isAuthenticated, dexEnabled, bindersEnabled, compareHref, compareCount }: {
+export function CollectorMobileTools({ pathname, isAuthenticated, dexEnabled, compareHref, compareCount }: {
   pathname: string;
   isAuthenticated: boolean;
   dexEnabled: boolean;
@@ -28,7 +28,6 @@ export function CollectorMobileTools({ pathname, isAuthenticated, dexEnabled, bi
       }}>
       {DESKTOP_SECONDARY_NAV.filter((item) => {
         if (item.key === "dex") return dexEnabled;
-        if (item.key === "binders") return isAuthenticated && bindersEnabled;
         if (item.key === "messages") return isAuthenticated;
         return true;
       }).map((item) => (

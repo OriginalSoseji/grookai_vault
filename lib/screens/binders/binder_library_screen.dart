@@ -16,21 +16,31 @@ class BinderLibraryScreen extends StatefulWidget {
     this.repository,
     this.featureFlags = BinderFeatureFlags.production,
     this.initialPublicId,
+    this.onOpenVendor,
+    this.onOpenMenu,
     super.key,
   });
 
   final BinderRepository? repository;
   final BinderFeatureFlags featureFlags;
   final String? initialPublicId;
+  final VoidCallback? onOpenVendor;
+  final VoidCallback? onOpenMenu;
 
   @override
-  State<BinderLibraryScreen> createState() => _BinderLibraryScreenState();
+  State<BinderLibraryScreen> createState() => BinderLibraryScreenState();
 }
 
-class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
+class BinderLibraryScreenState extends State<BinderLibraryScreen> {
   late final BinderRepository _repository;
   late final BinderLibraryController _controller;
   bool _openedInitial = false;
+
+  Future<void> reload() async {
+    if (widget.featureFlags.personalAvailable) {
+      await _controller.load(refresh: true);
+    }
+  }
 
   @override
   void initState() {
@@ -159,6 +169,12 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
           'Nothing in your Vault will be changed.',
         ),
         actions: [
+          if (widget.onOpenVendor != null)
+            IconButton(
+              tooltip: 'Open vendor workspace',
+              onPressed: widget.onOpenVendor,
+              icon: const Icon(Icons.storefront_outlined),
+            ),
           TextButton(
             onPressed: () => Navigator.pop(context, false),
             child: const Text('Cancel'),
@@ -228,6 +244,12 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
                 ),
               ),
               icon: const Icon(Icons.public_rounded),
+            ),
+          if (widget.onOpenMenu != null)
+            IconButton(
+              tooltip: 'Menu',
+              onPressed: widget.onOpenMenu,
+              icon: const Icon(Icons.menu_rounded),
             ),
           PopupMenuButton<String>(
             tooltip: 'Binder options',

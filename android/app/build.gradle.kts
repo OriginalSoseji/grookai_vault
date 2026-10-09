@@ -53,6 +53,13 @@ val portfolioHistoryProofRequested = explicitBooleanFlag(
     "GROOKAI_PORTFOLIO_HISTORY_PROOF",
     providers.environmentVariable("GROOKAI_PORTFOLIO_HISTORY_PROOF").orNull,
 )
+val collectorHomeProofRequested = explicitBooleanFlag(
+    "GROOKAI_COLLECTOR_HOME_PROOF",
+    providers.environmentVariable("GROOKAI_COLLECTOR_HOME_PROOF").orNull,
+)
+if (collectorHomeProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested)) {
+    throw GradleException("Collector home proof requires its separate debug app.")
+}
 if (portfolioHistoryProofRequested && (releaseSigningRequested || lockedAcceptanceRequested)) {
     throw GradleException("Portfolio history proof requires its separate debug app.")
 }
@@ -117,6 +124,11 @@ android {
     buildTypes {
         debug {
             manifestPlaceholders["usesCleartextTraffic"] = "true"
+            if (collectorHomeProofRequested) {
+                applicationIdSuffix = ".collectorhomeproof"
+                versionNameSuffix = "-collector-home-proof"
+                resValue("string", "app_name", "Grookai Collector Home Proof")
+            }
             if (portfolioHistoryProofRequested) {
                 applicationIdSuffix = ".portfoliohistoryproof"
                 versionNameSuffix = "-portfolio-history-proof"

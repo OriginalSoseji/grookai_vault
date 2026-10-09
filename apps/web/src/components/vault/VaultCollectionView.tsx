@@ -123,12 +123,12 @@ function formatLastAdded(value: string | null) {
 
 function formatPricingFreshness(value: string | null) {
   if (!value) {
-    return "Updated recently";
+    return "No pricing date available";
   }
 
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
-    return "Updated recently";
+    return "No pricing date available";
   }
 
   const diffMs = Date.now() - date.getTime();
@@ -223,6 +223,8 @@ function renderVaultGrid(
 }
 
 type VaultCollectionViewProps = {
+  continuation?: ReactNode;
+  portfolioHistory?: ReactNode;
   bindersEnabled: boolean;
   initialItems: VaultCardData[];
   recent: RecentCardData[];
@@ -235,6 +237,8 @@ type VaultCollectionViewProps = {
 };
 
 export function VaultCollectionView({
+  continuation,
+  portfolioHistory,
   bindersEnabled,
   initialItems,
   recent,
@@ -637,19 +641,26 @@ export function VaultCollectionView({
           size="compact"
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
-              <Link href="/saved" className="gv-secondary-button">Saved cards</Link>
-              <Link href="/vault/transactions" className="gv-secondary-button">Transaction history</Link>
-              {bindersEnabled ? <Link href="/binders" className="gv-secondary-button">Binders</Link> : null}
+              <Link href="/explore" className="gv-primary-button">Find a card</Link>
+              <Link href="/scan" className="gv-secondary-button">Scan</Link>
               <Link
                 href="/vault/import"
-                className="inline-flex rounded-full border border-slate-200 bg-white/95 px-4 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-300 hover:bg-white md:px-5"
+                className="gv-secondary-button"
               >
-                Import Collection
+                Import
               </Link>
             </div>
           }
         />
-        {/* Binder navigation lives with the collection actions, not in a second promotional panel. */}
+        <details className="text-sm">
+          <summary className="w-fit cursor-pointer py-2">Collection tools</summary>
+          <div className="flex flex-wrap gap-2 pt-2">
+            <Link href="/saved" className="gv-secondary-button">Saved cards</Link>
+            <Link href="/vault/transactions" className="gv-secondary-button">Transaction history</Link>
+            {bindersEnabled ? <Link href="/binders" className="gv-secondary-button">Binders</Link> : null}
+          </div>
+        </details>
+        {portfolioHistory}
         {valueSummary.totalGroupedCount > 0 || (sealedTotals?.active_copy_count ?? 0) > 0 ? (
           <div className="gv-command-surface mt-6 px-5 py-5 md:px-6 md:py-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -698,7 +709,7 @@ export function VaultCollectionView({
             </div>
           </div>
         ) : null}
-        <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        {!itemsError && <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-slate-500">
           <span className="rounded-full border border-slate-200/75 bg-white/80 px-4 py-2 font-medium text-slate-700 shadow-[0_14px_26px_-24px_rgba(15,23,42,0.22)]">
             {summary.cards} {summary.cards === 1 ? "card" : "cards"}
           </span>
@@ -711,7 +722,7 @@ export function VaultCollectionView({
           <span className="rounded-full border border-slate-200/70 bg-white/60 px-4 py-2 text-slate-400">
             Last added {summary.lastAdded}
           </span>
-        </div>
+        </div>}
       </section>
 
       {itemsError ? (
@@ -723,7 +734,9 @@ export function VaultCollectionView({
           action={<button type="button" className="gv-primary-button" onClick={() => window.location.reload()}>Try again</button>}
           secondaryAction={<Link href="/explore" className="gv-secondary-button">Search cards</Link>}
         />
-      ) : items.length === 0 ? (sealedTotals?.active_copy_count ? null :
+      ) : null}
+      {continuation}
+      {itemsError ? null : items.length === 0 ? (sealedTotals?.active_copy_count ? null :
         <ProductState
           eyebrow="No cards yet"
           title="Your Vault is ready"

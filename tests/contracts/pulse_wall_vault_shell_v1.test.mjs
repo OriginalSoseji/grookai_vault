@@ -6,7 +6,7 @@ function readSource(relativePath) {
   return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
 }
 
-const expectedOrder = ["Pulse", "Wall", "Scan", "Vault", "Search"];
+const expectedOrder = ["Vault", "Explore", "Scan", "Binders", "Community"];
 
 function assertOrdered(source, labels) {
   let cursor = -1;
@@ -19,13 +19,13 @@ function assertOrdered(source, labels) {
   }
 }
 
-test("Flutter mobile dock keeps Scan central and Vault in position four", () => {
+test("Flutter mobile dock keeps Scan central and Vault first", () => {
   const shell = readSource("lib/main_shell.dart");
   const dock = shell.match(/Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton/)?.[0];
   assert.ok(dock, "mobile dock source must be present");
   assertOrdered(dock, expectedOrder);
   assert.doesNotMatch(dock, /label: 'Dex'/);
-  assert.match(shell, /vault\(navIndex: 3,/);
+  assert.match(shell, /vault\(navIndex: 0,/);
   assert.doesNotMatch(shell, /scan\(navIndex:/i);
   assert.match(
     dock,
@@ -145,11 +145,10 @@ test("app startup preloads the first route beneath a blocking branded cover", ()
     /children: \[[\s\S]*root,[\s\S]*if \(_bootWarmupVisible\)[\s\S]*AbsorbPointer\(child: _GrookaiBootWarmupScreen\(\)\)/,
   );
   assert.doesNotMatch(main, /if \(!_bootWarmupVisible\) \{\s*return root;/);
-  assert.match(
-    shell,
-    /children: \[[\s\S]*widget\.child,[\s\S]*child: _loading \? AbsorbPointer\(child: gate\) : gate/,
-  );
-  assert.match(shell, /_startDeferredOnboardingProbe/);
+  assert.doesNotMatch(main, /RequiredProfileSetupGate/);
+  assert.match(main, /collector-shell-/);
+  assert.doesNotMatch(shell, /_startDeferredOnboardingProbe/);
+  assert.match(shell, /_openGettingStarted/);
   assert.match(main, /_startDeferredPushNotifications/);
 });
 

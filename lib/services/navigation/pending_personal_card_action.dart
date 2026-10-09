@@ -106,4 +106,11 @@ class PendingPersonalCardActionCoordinator {
     _active = null;
     _nextId = 0;
   }
+
+  /// Account replacement ends the previous account's in-memory intent.
+  /// Keep IDs monotonic so a late completion cannot consume a newer request.
+  static void clearForAccountChange() {
+    _pending = null;
+    _active = null;
+  }
 }

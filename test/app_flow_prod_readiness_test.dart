@@ -138,11 +138,11 @@ void main() {
       r'Widget _buildMobileBottomDock\([\s\S]*?\n\s*Widget _buildDockButton',
     ).firstMatch(shell)!.group(0)!;
 
-    expect(bottomNavBlock, contains("label: 'Search'"));
-    expect(bottomNavBlock, contains("label: 'Pulse'"));
+    expect(bottomNavBlock, contains("label: 'Explore'"));
+    expect(bottomNavBlock, contains("label: 'Community'"));
     expect(bottomNavBlock, contains("label: 'Scan'"));
-    expect(bottomNavBlock, contains("label: 'Wall'"));
-    expect(bottomNavBlock, contains('Icons.collections_bookmark_rounded'));
+    expect(bottomNavBlock, contains("label: 'Binders'"));
+    expect(bottomNavBlock, contains('Icons.bookmarks_rounded'));
     expect(bottomNavBlock, contains("label: 'Vault'"));
     expect(bottomNavBlock, isNot(contains("label: 'Dex'")));
     expect(bottomNavBlock, isNot(contains('_openDex()')));
@@ -174,7 +174,7 @@ void main() {
       r'class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile',
     ).firstMatch(shell)!.group(0)!;
 
-    for (final label in ['Search', 'Pulse', 'Wall', 'Vault']) {
+    for (final label in ['Explore', 'Community', 'Binders', 'Vault']) {
       expect(bottomNavBlock, contains("label: '$label'"));
       expect(drawerBlock, isNot(contains("label: '$label'")));
     }
@@ -201,7 +201,7 @@ void main() {
     expect(shell, contains('PublicCollectorRelationshipMode.following'));
     expect(shell, contains('PublicCollectorService.resolveOwnEntry'));
     expect(shell, contains('PublicCollectorService.loadPublicProfileBySlug'));
-    expect(shell, contains('Icons.collections_bookmark_rounded'));
+    expect(shell, contains('Icons.bookmarks_rounded'));
     expect(
       shell,
       contains(

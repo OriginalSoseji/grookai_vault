@@ -114,7 +114,7 @@ function PulseEmpty() {
 
 function WallPopulated() {
   return (
-    <RootFrame title="Wall" activeKey="wall">
+    <RootFrame title="Wall" activeKey="pulse">
       <section className={styles.profile} aria-label="Collector profile">
         <div className={styles.avatar} aria-hidden="true">GV</div>
         <div>

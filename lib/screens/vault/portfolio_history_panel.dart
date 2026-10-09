@@ -549,7 +549,7 @@ class _PortfolioHistoryPanelState extends State<PortfolioHistoryPanel> {
                 ),
                 if (point['coverage']['unpriced'] > 0)
                   Text(
-                    '${point['coverage']['unpriced']} unpriced copies are included in ownership, not valued as zero.',
+                    '${point['coverage']['unpriced']} unpriced ${point['coverage']['unpriced'] == 1 ? 'copy is' : 'copies are'} included in ownership, not valued as zero.',
                   ),
                 _button(
                   'Export details',

@@ -53,7 +53,6 @@ export function DesktopApplicationShell({
   const routeState = getDesktopRouteState(pathname);
   const secondaryItems = DESKTOP_SECONDARY_NAV.filter((item) => {
     if (item.key === "dex") return dexEnabled;
-    if (item.key === "binders") return isAuthenticated && bindersEnabled;
     if (item.key === "messages") return isAuthenticated;
     return true;
   });
@@ -61,7 +60,7 @@ export function DesktopApplicationShell({
   return (
     <div className="gv-desktop-site-header" data-desktop-application-shell>
       <div className="gv-desktop-shell-top">
-        <Link href="/" className="flex min-w-0 items-center gap-3 text-lg font-semibold text-slate-950 dark:text-white">
+        <Link href={isAuthenticated ? "/vault" : "/"} className="flex min-w-0 items-center gap-3 text-lg font-semibold text-slate-950 dark:text-white">
           <Image
             src="/grookai-logo-64.png"
             alt="Grookai Vault logo"
@@ -115,6 +114,7 @@ export function DesktopApplicationShell({
                 key={item.key}
                 href={href}
                 aria-current={active ? "page" : undefined}
+                title={item.key === "binders" && !bindersEnabled ? "Binders are not available in this version" : undefined}
                 className={`gv-desktop-primary-link ${active ? "gv-desktop-primary-link-active" : ""}`}
               >
                 <Icon size={16} aria-hidden="true" />

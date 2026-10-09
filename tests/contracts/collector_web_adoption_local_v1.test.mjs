@@ -14,7 +14,8 @@ test('collector adoption retains every original top-level destination', () => {
 test('new mobile tools retain compare state and private-tool gates', () => {
   const source = read('apps/web/src/components/layout/CollectorMobileTools.tsx');
   assert.match(source, /DESKTOP_SECONDARY_NAV/);
-  assert.match(source, /isAuthenticated && bindersEnabled/);
+  assert.doesNotMatch(source, /item.key === "binders"/);
+  assert.match(read("apps/web/src/lib/desktopShellManifest.ts"), /key: "binders", label: "Binders", href: "\/binders"/);
   assert.match(source, /item.key === "messages"\) return isAuthenticated/);
   assert.match(source, /item.key === "compare" \? compareHref : item.href/);
   assert.match(source, /isAuthenticated \? <Link href="\/account"/);

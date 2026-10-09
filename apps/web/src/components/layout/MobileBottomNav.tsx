@@ -16,6 +16,8 @@ type MobileBottomNavProps = {
 
 function isSearchPath(pathname: string) {
   return (
+    pathname === "/dex" || pathname.startsWith("/dex/") ||
+    pathname === "/set" || pathname.startsWith("/set/") ||
     pathname === "/explore" ||
     pathname.startsWith("/explore/") ||
     pathname === "/sets" ||
@@ -41,8 +43,10 @@ function getActiveMobileNavKey(
   }
 
   if (pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")) {
-    return "wall";
+    return "pulse";
   }
+
+  if (pathname === "/binders" || pathname.startsWith("/binders/")) return "binders";
 
   if (pathname === "/vault" || pathname.startsWith("/vault/")) {
     return "vault";
