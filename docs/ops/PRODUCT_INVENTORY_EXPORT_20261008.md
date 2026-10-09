@@ -1,3 +1,9 @@
+> Current status: the export/store/price/order implementation was saved in
+> `a956887c2` after normal managed checks passed. The source is now integrating
+> current main. Use [the combined qualification manifest](../audits/product_overhaul_20261009/CURRENT_QUALIFICATION.json)
+> and external `CHECKPOINT.json` for current results. Sections below retain their
+> dated implementation history; older “current” headings are historical.
+
 # Inventory export and store privacy continuation
 
 Worktree: C:/gv_product_inventory_export_20261008. Parent: saved-import

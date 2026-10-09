@@ -1,32 +1,35 @@
-# Current continuation — price release proofs pass, order privacy repaired
+# Current continuation — saved overhaul checkpoint, main integration in progress
 
 Use C:/gv_product_inventory_export_20261008 and the external CHECKPOINT.json.
-Price targets are implemented on web/native with qualified exact-printing
-references, owner-bound retries, atomic events and durable evaluation audit.
-All controls OFF. Idempotent SQL v2 passes two direct reapplications with exact
-row/schema retention; core audit wrapper survives. Exact442 fresh replay,
-populated production430 upgrade (339 prior tables/three exact-cost copies) and
-independent shadow pass with zero raw/normalized drift and1,268 security objects.
-Wider source443 includes the still-deferred receipt delivery migration.
+The152-file overhaul checkpoint a956887c2cc053dae0398fff29ea086cbbd0e697
+passed the normal managed commit hook:9,004 Node tests,2,786 native tests,
+web types/lint/strict build and native analysis. Exact442 replay, populated430
+upgrade and independent schema comparison pass; all rollout controls stay OFF.
+The current merge incorporates the latest main catalog/dashboard and precision
+release work. Both release workflows are preserved;42 focused merge checks pass.
+Current-main browser checks pass62 scenarios (export8,owner13,team7,manager13,
+price8,order privacy7,fulfillment6). The normal merge commit is pending.
+Read CURRENT_QUALIFICATION.json under docs/audits/product_overhaul_20261009.
 
-Order buyer/seller history and detail leaked private titles after confirmed
-sign-out. The repair passes23 new/904 affected tests, types/lint and7 actual
-Auth/browser cases, including original-token401 with conflicting valid cookies.
-Read docs/ops/PRODUCT_ORDER_OWNER_20261009.md and PRODUCT_PRICE_TARGETS_20261009.md.
-Current combined browser: export8, owner13, team7, manager13, price8 all pass.
-Final combined Node passes9,004/10 skips at
-price-alert-draft-v1/checks-node-1791572895230. Full native analysis/tests2,786
-pass; native bytes remain unchanged. Product/native/SQL remain frozen for the
-normal managed commit qualification. Its terminal outcome belongs to the external
-CHECKPOINT.json; no commit or release success is asserted in advance.
+Current local fulfillment proof passes6 cases: actual authenticated shipment,
+exact lost-response retry without duplicate events, tracking correction, delivery,
+pickup and paused/review rejection. Fixtures are synthetic paid-order projections,
+not provider settlement. All5 screenshots are directly inspected. Order history
+now removes duplicate headings/padding and keeps the first order above the mobile
+dock at320/390px. Evidence: order-lifecycle-v1/fulfillment-1791574616655.
+The failed older fixture is retained, its control restored OFF and every prior
+row preserved. Its missing attempt binding was corrected in the proof fixture.
 
-Newest Android443 APK is ui-1791523581076/device-1791572600164,415 native inputs,
-SHA2560bd8cf81285b69fa3a12ef8e3a76748096ad2139dd52148b01cc29ac6422ef0a.
-It is built, not installed/accepted; fresh Samsung probe still deviceLocked=1.
+Native415-input Android443 APK SHA256
+0bd8cf81285b69fa3a12ef8e3a76748096ad2139dd52148b01cc29ac6422ef0a remains
+archived. Samsung is still locked. Emulator install timed out; package readback
+found the separate proof app, but hash verification timed out and it was never
+started. No OS-save or physical acceptance is claimed from that attempt.
+
 Preserve all old APKs/apps, worktrees, fixtures and databases. No production
 writes/deploy/activation, provider fetching/upload, messages or subagents.
-Do not re-ask or bypass pending Samsung/Mac actions. Full overhaul, supported
-commerce lifecycle, physical acceptance and measured user comparisons remain open.
+Do not re-ask or bypass pending Samsung/Mac actions. Full overhaul, provider
+lifecycle, physical acceptance and measured user comparisons remain open.
 
 # Current continuation — manager accepted, price alerts in progress
 
@@ -715,6 +718,34 @@ The six-screen sample prototype and reference specification are under docs/produ
 It is not deployed. Preserve concurrent scanner changes and
 all retained import/receipt/deal requests; synthetic renders are not device or
 production-release proof. The external checkpoint records current validation.
+## Collectr exact average costs — October 8
+
+Read docs/checkpoints/collectr_cost_precision_20261008.md. The combined local
+candidate qualifies 20 additional copies across 9 rows, projecting 1640 accounted
+copies and 532 review rows. Live remains PR609 at 1620/541. Parser and additive
+20261008100000 writer preserve four-decimal costs; 971 importer contracts,16
+staging contracts and38 DB scenarios pass. The full430 replay, populated429-to430
+upgrade, no-op pushes and exact schema parity pass; all3 retained copies and old
+receipts survive. Website strict build, TypeScript and lint pass. Normal hooks
+and release qualification remain open. No production writes or import occurred.
+Cache deletion was policy-blocked; compressing30 generated snapshots recovered
+about0.9GB with every hash preserved. Keep all old and new labs; never reset the
+populated upgrade lab. Startup/fixture recovery receipts preserve failed attempts.
+Private collectr_cost_precision_20261008/CHECKPOINT.json owns actual status.
+Keep deferred receipt delivery and the pending graded-item choice separate.
+
+## Collectr sealed gap batch — October 7
+
+PR609 and its four-card save are complete: 1,620 accounted copies, 541 review
+rows, 1,331 source groups and 3,227 owner copies. Never replay its receipt.
+Read docs/checkpoints/collectr_sealed_gap_review_20261007.md. The next local
+candidate reviews 51 sealed rows/101 copies and repairs three exact product
+labels/scopes. Four copies qualify; three Mew rows/six copies now correctly
+reach cost review. Together with Zapdos, 16 copies require exact fractional-cent
+cost support. Do not round, split costs, or bypass the SQL writer guard.
+Private collectr_sealed_gap_review_20261007/CHECKPOINT.json owns current status.
+No deployment, schema/catalog change or new save occurred in this batch.
+The graded-item preference remains pending; preserve all retained labs.
 
 ## Collectr catalog scope review — October 7
 

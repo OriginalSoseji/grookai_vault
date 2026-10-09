@@ -42,3 +42,25 @@ after this repair. Their immutable receipts are indexed in
 
 Continue the supported buyer/seller lifecycle proof after this repair. Actual
 provider delivery/settlement and physical device acceptance remain separate.
+
+## Current-main fulfillment acceptance and compact history
+
+The current integration passes six actual Auth/browser/SQL cases at external
+`order-lifecycle-v1/fulfillment-1791574616655/result.json`. Shipment submission
+survives a lost successful response and identical retry without appending twice.
+Tracking correction, seller-recorded delivery and ready/collected pickup are
+visible to the buyer. Unpaid/review orders and a page opened before disablement
+cannot bypass the database. The synthetic attempt bindings are fixtures, not
+proof of Stripe charging or settlement. Controls return off, all prior rows are
+retained, and no provider request occurs.
+
+The first adapted fixture used an older schema's synthetic setup and omitted the
+attempt binding now required by the notification/fulfillment lock. Its request
+correctly rejected. The failed evidence and all fixtures remain preserved; its
+control was restored and every prior row verified before the corrected proof.
+
+History removes its repeated workspace label and nested horizontal padding,
+shortens introductory copy and keeps the filter together on small screens. All
+five new screenshots are inspected; 320px and390px have no horizontal overflow
+and the first order title appears above the fixed bottom navigation. This is a
+local layout/behavior proof, not an uncoached-user benchmark.

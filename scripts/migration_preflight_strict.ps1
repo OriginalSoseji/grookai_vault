@@ -82,6 +82,8 @@ param(
   [switch]$ProductDealBaselineV1,
   [switch]$ProductDealReleaseV1,
   [switch]$ProductEconomicsReleaseV1,
+  [switch]$CollectrCostBaselineV1,
+  [switch]$CollectrCostReleaseV1,
   [switch]$SalesTradeReleaseV1,
   [switch]$SalesDeskProReleaseV1,
   [switch]$SalesCartReleaseV1,
@@ -284,6 +286,23 @@ if ($ProductEconomicsBaselineV1) {
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_economics_baseline_v1.mjs')
   if ($LASTEXITCODE -ne 0) { throw 'Product economics baseline failed.' }
   exit 0
+}
+
+if ($CollectrCostReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CollectrCostReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261008100000') -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261008100000')) {
+    throw 'Collectr cost release permits only 20261008100000, without combined scopes or overrides.'
+  }
+  & node --use-system-ca --dns-result-order=ipv4first (Join-Path $PSScriptRoot 'schema/verify_collectr_cost_release_v1.mjs') $Phase
+  exit $LASTEXITCODE
+}
+
+if ($CollectrCostBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CollectrCostBaselineV1') }).Count -gt 0) {
+    throw 'Collectr cost baseline permits read-only AuditLinkedSchema only, without combined scopes or overrides.'
+  }
+  & node --use-system-ca --dns-result-order=ipv4first (Join-Path $PSScriptRoot 'schema/audit_collectr_cost_baseline_v1.mjs') $Phase
+  exit $LASTEXITCODE
 }
 
 if ($SalesSplitPaymentsReleaseV1) {

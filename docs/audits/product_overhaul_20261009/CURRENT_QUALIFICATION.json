@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "at": "2026-10-09T19:17:00.193333+00:00",
-  "status": "local_checks_passed_managed_commit_pending",
+  "at": "2026-10-09T19:42:24.538170+00:00",
+  "status": "current_main_browser_passed_managed_merge_pending",
   "worktree": "C:\\gv_product_inventory_export_20261008",
   "baseCommit": "19adf542a89238969606dc5d900d7a92ee0b29ed",
   "externalEvidenceRoot": "C:\\grookai_vault_operator_artifacts\\product_inventory_export_20261008",
@@ -60,6 +60,94 @@
       "status": "passed"
     },
     "exportBrowser": {
+      "relativeExternalPath": "ui-1791523581076/web-1791574696691/result.json",
+      "sha256": "c96d5fd836c6643d3a9ef074e8c1d8bcaa9055754abd3dcb8866a8ab6b26a342",
+      "status": "passed"
+    },
+    "ownerBrowser": {
+      "relativeExternalPath": "store-handoff-verification-1791574790085/observation.json",
+      "sha256": "7bd1681f57927f8a1fad9fdb5d5d40f30c482812df29a32b1acabe7a805dd3fb",
+      "status": "passed"
+    },
+    "teamBrowser": {
+      "relativeExternalPath": "store-team-verification-1791574764386/observation.json",
+      "sha256": "5b262ec6873aaaa03ea03ecbe9947c9f58e5a59a4d7cdb637858fe9de5562c9c",
+      "status": "passed"
+    },
+    "managerBrowser": {
+      "relativeExternalPath": "manager-runtime-1791574815315/result.json",
+      "sha256": "984842e8d2db2e4870d6923e281b35cb96ef838a1a71ce09e773c2eddb813320",
+      "status": "passed"
+    },
+    "priceBrowser": {
+      "relativeExternalPath": "price-alert-draft-v1/browser-1791574858563/result.json",
+      "sha256": "59e53074c5bb904faccb427d6c299a952dead5d9c7a7bb26c4145cc6bffb9164",
+      "status": "passed"
+    },
+    "orderOwnerBrowser": {
+      "relativeExternalPath": "order-owner-verification-1791574845537/result.json",
+      "sha256": "bcb860427b1d1400090930015f305c758c168a4c42cc5201be2859c8852b5db2",
+      "status": "passed"
+    },
+    "orderAffectedChecks": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-orders-1791572219485/result.json",
+      "sha256": "9e1856a64e1983533e447a7add39638f8d313263e568d7355f3a52be1b853fad",
+      "status": "passed"
+    },
+    "nativeFull": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-native-1791570874338/result.json",
+      "sha256": "ba1e527820216112022aa69abee89fe19ad8c86e6615d427883b26bc64662891",
+      "status": "passed"
+    },
+    "nativeAuth": {
+      "relativeExternalPath": "price-alert-draft-v1/native-auth-1791570720461/result.json",
+      "sha256": "d8b5affb1bca06c3a7a276dc19e1ad30ec33dc9468d2d1feefb140cfac3a65b2",
+      "status": "passed"
+    },
+    "nativeBuild": {
+      "relativeExternalPath": "ui-1791523581076/device-1791572600164/build-result.json",
+      "sha256": "d5b47ca063832462b39377ddca8909a51dcfad6b2c47963ebbaadeeb4229ff71",
+      "status": "passed"
+    },
+    "finalNode": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-node-1791572895230/result.json",
+      "sha256": "52f7f47f52c823f8953648bbdd639b73cf91acd1c783d95d3f50fc6e11c6e580",
+      "status": "passed",
+      "passed": 9004,
+      "skipped": 10,
+      "scope": "saved checkpoint a956887c2; integrated current-main full suite pending"
+    },
+    "fulfillmentBrowser": {
+      "relativeExternalPath": "order-lifecycle-v1/fulfillment-1791574616655/result.json",
+      "sha256": "6ad39f023542144f97b079b809e68d344cc84b377932bc287e6c1e8d4bcf669b",
+      "status": "passed"
+    },
+    "mergeFocused": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-merge-focused-1791574446433/result.json",
+      "sha256": "0309dad11e6763bb662cfe61fbcad43793e30f8da2a4321bbfb5ee36ccaee783",
+      "status": "passed"
+    },
+    "savedCheckpointChecks": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-managed-commit-1791573451485/result.json",
+      "sha256": "e282d59afe23e2777070d682e91ff653fc7f708ac75a24545e1d860c88cc4079",
+      "status": "passed"
+    }
+  },
+  "productionWrites": 0,
+  "providerCalls": 0,
+  "rolloutEnabled": false,
+  "physicalAcceptance": false,
+  "fullOverhaulComplete": false,
+  "remaining": [
+    "Complete normal managed commit/release-source qualification",
+    "Physical Samsung OS-save and current application acceptance; device remains locked",
+    "Physical iOS pending earlier Mac-local actions",
+    "Supported buyer/seller provider lifecycle and truthful activation boundaries",
+    "Measured DeckTradr and uncoached-user tasks",
+    "External deployment and activation require the release authorization boundary"
+  ],
+  "priorBrowserArtifacts": {
+    "exportBrowser": {
       "relativeExternalPath": "ui-1791523581076/web-1791572628720/result.json",
       "sha256": "0a52ee2a6b5f6a234f4eb363d6dc69a7fe3033529b1b3d73da86a8246e18b8a1",
       "status": "passed"
@@ -88,46 +176,10 @@
       "relativeExternalPath": "order-owner-verification-1791572475547/result.json",
       "sha256": "6f0e0b75f865ba557fe6d97b98dfe0ef7291986c556ff11b501347e0bb93435a",
       "status": "passed"
-    },
-    "orderAffectedChecks": {
-      "relativeExternalPath": "price-alert-draft-v1/checks-orders-1791572219485/result.json",
-      "sha256": "9e1856a64e1983533e447a7add39638f8d313263e568d7355f3a52be1b853fad",
-      "status": "passed"
-    },
-    "nativeFull": {
-      "relativeExternalPath": "price-alert-draft-v1/checks-native-1791570874338/result.json",
-      "sha256": "ba1e527820216112022aa69abee89fe19ad8c86e6615d427883b26bc64662891",
-      "status": "passed"
-    },
-    "nativeAuth": {
-      "relativeExternalPath": "price-alert-draft-v1/native-auth-1791570720461/result.json",
-      "sha256": "d8b5affb1bca06c3a7a276dc19e1ad30ec33dc9468d2d1feefb140cfac3a65b2",
-      "status": "passed"
-    },
-    "nativeBuild": {
-      "relativeExternalPath": "ui-1791523581076/device-1791572600164/build-result.json",
-      "sha256": "d5b47ca063832462b39377ddca8909a51dcfad6b2c47963ebbaadeeb4229ff71",
-      "status": "passed"
-    },
-    "finalNode": {
-      "relativeExternalPath": "price-alert-draft-v1/checks-node-1791572895230/result.json",
-      "sha256": "52f7f47f52c823f8953648bbdd639b73cf91acd1c783d95d3f50fc6e11c6e580",
-      "status": "passed",
-      "passed": 9004,
-      "skipped": 10
     }
   },
-  "productionWrites": 0,
-  "providerCalls": 0,
-  "rolloutEnabled": false,
-  "physicalAcceptance": false,
-  "fullOverhaulComplete": false,
-  "remaining": [
-    "Complete normal managed commit/release-source qualification",
-    "Physical Samsung OS-save and current application acceptance; device remains locked",
-    "Physical iOS pending earlier Mac-local actions",
-    "Supported buyer/seller provider lifecycle and truthful activation boundaries",
-    "Measured DeckTradr and uncoached-user tasks",
-    "External deployment and activation require the release authorization boundary"
-  ]
+  "savedCheckpointCommit": "a956887c2cc053dae0398fff29ea086cbbd0e697",
+  "integrationTarget": "ba1723036785c488bfcc382afa8e57b222a455ec",
+  "currentBrowserScenarios": 62,
+  "currentMainManagedCommitPending": true
 }

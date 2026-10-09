@@ -37,6 +37,11 @@ test('Collectr browser proof can only use its retained local lab', () => {
   for (const url of ['http://localhost:58721','http://127.0.0.1:58721/rest','http://user@127.0.0.1:58721','http://127.0.0.1:58722']) assert.throws(() => mode(url));
   assert.throws(() => mode('http://127.0.0.1:58721',true));
   assert.throws(() => mode('http://127.0.0.1:58721',false,true));
+  assert.doesNotThrow(() => mode('http://127.0.0.1:33701'));
+  assert.throws(() => assertCollectorStagingTarget('http://127.0.0.1:33701'));
+  for (const url of ['http://localhost:33701','http://127.0.0.1:33701/rest','http://user@127.0.0.1:33701','http://127.0.0.1:33702','http://127.0.0.1:33701?other=1','http://127.0.0.1:33701#other']) assert.throws(() => mode(url));
+  assert.throws(() => mode('http://127.0.0.1:33701',true));
+  assert.throws(() => mode('http://127.0.0.1:33701',false,true));
 });
 const module = { exports: {} };
 vm.runInNewContext(ts.transpileModule(fs.readFileSync(new URL('../../apps/web/src/lib/vault/cardAddOptions.ts', import.meta.url), 'utf8'),

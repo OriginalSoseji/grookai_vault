@@ -1,5 +1,29 @@
 # Collectr sealed import
 
+## Current local candidate: exact product scopes and average costs
+
+PR609's completed live import has 1,620 accounted copies and 541 review rows.
+The local sealed-gap candidate adds a full-label alias for the standard Temporal
+Forces Iron Leaves ETB and two product-specific group exceptions: Blooming Waters
+from Collectr's umbrella category to 151, and the Mew VMAX League Battle Deck from
+Silver Tempest to Fusion Strike. Each rule retains the complete product name,
+game, package form and catalog group. It does not alias entire expansions or
+strip Pokemon Center, language, case or artwork qualifiers.
+
+These rules require the existing frozen release and reviewed mapping. Duplicate
+eligible identities remain ambiguous. No catalog record, package dimension or
+ownership permission changes. The shared website preview and save validator
+use identical rules; native V2 sealed support remains outside this candidate.
+
+The combined candidate preserves per-copy average costs through four decimal
+places. Additive migration 20261008100000 changes only the V3 writer's precision
+guard; the metadata parser accepts the same precision without rounding.
+Fresh whole-file qualification adds 20 eligible copies across 9 rows: four from
+the label fixes and 16 from exact fractional-cent costs. All 1,331 saved selections
+remain unchanged. The cost-precision checkpoint records actual evidence;
+full replay, retained upgrade and website build pass. Normal hooks and release
+gates remain open. This is not live.
+
 Status: the V3 website importer is live, with 1,590 source-accounted copies and
 562 retained review rows independently verified after PR601. Native clients
 remain V2. The next product-label candidate is local only; its actual evidence
@@ -52,13 +76,16 @@ owner's durable request receipt before consulting the current catalog, so a lost
 successful response can recover even after a release or rollout change. The
 existing V2 handler behavior is unchanged; only its validation helpers are exported.
 
-Trailing decimal zeroes such as `45.0000` are formatting and may normalize to the
-same exact cent amount. Any nonzero sub-cent digit still requires review; no
-rounding is allowed. The original cost string remains in the saved source.
+Trailing decimal zeroes such as `45.0000` are formatting. The current local
+candidate accepts up to four nonzero decimal places, including 9.9950 and 4.9980;
+additional trailing zeroes do not change value. More precise values remain held.
+The upper bound stays 9999999999.99; neither source values nor totals are rounded.
+The original cost string remains in the saved source. Production still uses the
+two-decimal guard until the additive migration and compatible app are released.
 
 `sealed_metadata.ts` preserves purchase cost, explicit currency, timestamp precision
 and notes. Zero is a real cost and needs currency. A dollar symbol is not evidence
-of USD. A conflicting currency, fractional cents, conflicting aliases or unknown
+of USD. A conflicting currency, unsupported precision, conflicting aliases or unknown
 meaningful columns remain review cases. The original portfolio and condition stay
 in the private source document; neither creates a binder or establishes a seal.
 
