@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SOURCE_AVAILABILITY_V1",
-  "generated_at": "2026-10-08T10:52:59.625Z",
+  "generated_at": "2026-10-09T10:51:58.451Z",
   "audit_only": true,
   "db_writes": false,
   "source_availability": [
@@ -3070,9 +3070,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "np",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 79,
-      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Anp&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
+      "error": null
     },
     {
       "set_key": "np",
@@ -3120,8 +3120,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "unavailable",
-      "evidence_rows": 0,
+      "runtime_status": "collected",
+      "evidence_rows": 26,
       "error": null
     },
     {
@@ -3190,7 +3190,7 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex4",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 282,
       "error": null
     },
@@ -3239,8 +3239,8 @@
       "set_name": "Team Magma vs Team Aqua",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
       "evidence_rows": 185,
       "error": null
     },
@@ -3670,9 +3670,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex9",
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 325,
-      "error": null
+      "runtime_status": "cached_snapshot",
+      "evidence_rows": 305,
+      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Aex9&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
     },
     {
       "set_key": "ex9",
@@ -3720,8 +3720,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
-      "evidence_rows": 199,
+      "runtime_status": "cached_snapshot",
+      "evidence_rows": 110,
       "error": null
     },
     {
@@ -3790,9 +3790,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex10",
       "configured_status": "available",
-      "runtime_status": "collected",
-      "evidence_rows": 390,
-      "error": null
+      "runtime_status": "cached_snapshot",
+      "evidence_rows": 389,
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aex10&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "ex10",
@@ -3839,9 +3839,9 @@
       "set_name": "Unseen Forces",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 217,
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
+      "evidence_rows": 114,
       "error": null
     },
     {
@@ -4150,9 +4150,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "ex13",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 320,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aex13&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "ex13",
@@ -4199,9 +4199,9 @@
       "set_name": "Holon Phantoms",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 107,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 110,
       "error": null
     },
     {
@@ -4451,7 +4451,7 @@
       "source_alias": "pop5",
       "configured_status": "available",
       "runtime_status": "collected",
-      "evidence_rows": 41,
+      "evidence_rows": 40,
       "error": null
     },
     {
@@ -5230,9 +5230,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "pop9",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 39,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Apop9&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "pop9",
@@ -5279,9 +5279,9 @@
       "set_name": "POP Series 9",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 18,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 22,
       "error": null
     },
     {
@@ -6010,9 +6010,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "mcd11",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 24,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Amcd11&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "2011bw",
@@ -6059,8 +6059,8 @@
       "set_name": "McDonald's Collection 2011",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 12,
       "error": null
     },
@@ -6670,9 +6670,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "bw10",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 295,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Abw10&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "bw10",
@@ -6719,9 +6719,9 @@
       "set_name": "Plasma Blast",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "available",
-      "runtime_status": "cached_snapshot",
-      "evidence_rows": 74,
+      "configured_status": "unavailable",
+      "runtime_status": "collected",
+      "evidence_rows": 78,
       "error": null
     },
     {
@@ -7030,9 +7030,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "mcd14",
       "configured_status": "available",
-      "runtime_status": "cached_snapshot",
+      "runtime_status": "collected",
       "evidence_rows": 12,
-      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Amcd14&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
+      "error": null
     },
     {
       "set_key": "2014xy",
@@ -8590,9 +8590,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "mcd18",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 12,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Amcd18&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "2018sm",
@@ -9550,9 +9550,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "swsh4",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 548,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aswsh4&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "swsh4",
@@ -9600,7 +9600,7 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "available",
-      "runtime_status": "collected_plus_cached_snapshot",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 345,
       "error": null
     },
@@ -10330,9 +10330,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "swsh10tg",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 60,
-      "error": null
+      "error": "Fetch failed 500 Internal Server Error: https://api.pokemontcg.io/v2/cards?q=set.id%3Aswsh10tg&page=1&pageSize=250&orderBy=number :: {\"status\":500,\"error\":\"Internal Server Error\"}"
     },
     {
       "set_key": "swsh10tg",
@@ -10380,8 +10380,8 @@
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
       "configured_status": "unavailable",
-      "runtime_status": "collected",
-      "evidence_rows": 30,
+      "runtime_status": "unavailable",
+      "evidence_rows": 0,
       "error": null
     },
     {
@@ -11290,9 +11290,9 @@
       "source_key": "pokemontcg_api",
       "source_alias": "sv4pt5",
       "configured_status": "available",
-      "runtime_status": "collected",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 570,
-      "error": null
+      "error": "Fetch failed 502 Bad Gateway: https://api.pokemontcg.io/v2/cards?q=set.id%3Asv4pt5&page=1&pageSize=250&orderBy=number :: {\"type\":\"https://developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-502/\",\"title\":\"Error 502: Bad gateway\",\"status\":502,\"detail\":\"The origin web server returned an invalid or incomplete response to Cloudfl"
     },
     {
       "set_key": "sv04.5",
@@ -11339,8 +11339,8 @@
       "set_name": "Paldean Fates",
       "source_key": "tcgplayer_price_guide",
       "source_alias": null,
-      "configured_status": "unavailable",
-      "runtime_status": "collected",
+      "configured_status": "available",
+      "runtime_status": "cached_snapshot",
       "evidence_rows": 325,
       "error": null
     },
