@@ -8,8 +8,8 @@ import { supabase } from "@/lib/supabaseClient";
 type OwnerBoundaryProps = {
   ownerId: string;
   children: ReactNode;
-  surface?: "Vault" | "Binders" | "Saved cards";
-  reopenHref?: "/vault" | "/binders" | "/saved";
+  surface?: "Vault" | "Binders" | "Saved cards" | "Notifications";
+  reopenHref?: "/vault" | "/binders" | "/saved" | "/account/notifications";
 };
 
 export function CollectorOwnerBoundary(props: OwnerBoundaryProps) {
@@ -38,7 +38,7 @@ function OwnerSession({ ownerId, children, surface = "Vault", reopenHref = "/vau
   }, [ownerId]);
   if (state === "checking") return <p role="status" className="py-6">Loading your {surface}…</p>;
   if (state === "closed") return <div role="status" className="space-y-3 py-6">
-    <p>Your account changed. Reopen {surface} to view your collection.</p>
+    <p>Your account changed. Reopen {surface} to {surface === "Notifications" ? "continue" : "view your collection"}.</p>
     <Link href={reopenHref} className="gv-primary-button" onClick={(event) => { event.preventDefault(); window.location.assign(reopenHref); }}>Reopen {surface}</Link>
   </div>;
   return children;

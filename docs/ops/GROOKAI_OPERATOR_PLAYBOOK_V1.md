@@ -1,5 +1,23 @@
 # Grookai Operator Playbook V1
 
+## Notification continuation and Docker recovery — October 8
+
+Work in C:/gv_product_notifications_20261008 from qualified usability5bafd6f3.
+See PRODUCT_NOTIFICATIONS_20261008.md and its external CHECKPOINT.json. Explicit
+web/native notification settings reuse owner-only preferences and token RPCs;
+quiet hours handle daylight-saving transitions. Real local Auth and browser tests,
+plus the separate Samsung441 notificationsproof app, retain existing accounts,
+copies, global controls and five earlier phone apps. Provider messaging is fake;
+the OS notification cleanup test uses a synthetic notification in that app only.
+Do not interpret it as live FCM/APNs delivery or physical iOS qualification.
+
+Docker backend recovery preserved all ten sealed exact-package databases.
+Use the new notifications parent reader to validate the separately recorded IP
+changes; never rewrite old seals or run inherited fixed-root mutation wrappers.
+The fresh pre-change baseline is already complete. Preserve all438 migration
+bytes and failed attempts. Continue the full overhaul after notification gates;
+no production apply/deploy/activation or new Mac permission retry is authorized.
+
 ## Collector home continuation — October 8
 
 Current work is C:/gv_product_collector_home_20261008 from qualified portfolio

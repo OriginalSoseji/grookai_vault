@@ -39,6 +39,7 @@ class MainActivity : FlutterActivity() {
         QuadDetectorV1Bridge.register(flutterEngine)
         ScannerCameraPhase0Bridge.register(this, flutterEngine)
         ScannerConditionCameraBridge.register(this, flutterEngine)
+        NotificationDeviceBridge.register(this, flutterEngine)
         debugIntentBridge.register(flutterEngine, intent)
     }
 

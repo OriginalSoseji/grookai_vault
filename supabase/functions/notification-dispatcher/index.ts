@@ -1,3 +1,4 @@
+import { isInsideQuietHours, nextQuietEnd } from "../_shared/notification_quiet_hours_v1.ts";
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createServiceRoleClient } from "../_shared/auth.ts";
 import { corsHeaders, corsJson } from "../_shared/cors.ts";
@@ -409,48 +410,6 @@ function dateInTimezone(date: Date, timezone: string | null): string {
   } catch {
     return date.toISOString().slice(0, 10);
   }
-}
-
-function localMinutes(date: Date, timezone: string | null): number {
-  const tz = timezone || "UTC";
-  try {
-    const parts = new Intl.DateTimeFormat("en-US", {
-      timeZone: tz,
-      hour12: false,
-      hour: "2-digit",
-      minute: "2-digit",
-    }).formatToParts(date);
-    const values = Object.fromEntries(parts.map((p) => [p.type, p.value]));
-    return Number(values.hour) * 60 + Number(values.minute);
-  } catch {
-    return date.getUTCHours() * 60 + date.getUTCMinutes();
-  }
-}
-
-function parseTimeMinutes(value: string | null): number | null {
-  if (!value) return null;
-  const match = value.match(/^(\d{1,2}):(\d{2})/);
-  if (!match) return null;
-  return Number(match[1]) * 60 + Number(match[2]);
-}
-
-function isInsideQuietHours(now: Date, prefs: Prefs): boolean {
-  const start = parseTimeMinutes(prefs.quiet_hours_start);
-  const end = parseTimeMinutes(prefs.quiet_hours_end);
-  if (start === null || end === null || start === end) return false;
-  const minutes = localMinutes(now, prefs.timezone);
-  return start < end
-    ? minutes >= start && minutes < end
-    : minutes >= start || minutes < end;
-}
-
-function nextQuietEnd(now: Date, prefs: Prefs): Date {
-  const end = parseTimeMinutes(prefs.quiet_hours_end);
-  if (end === null) return new Date(now.getTime() + 60 * 60 * 1000);
-  const current = localMinutes(now, prefs.timezone);
-  let deltaMinutes = end - current;
-  if (deltaMinutes <= 0) deltaMinutes += 24 * 60;
-  return new Date(now.getTime() + deltaMinutes * 60 * 1000);
 }
 
 function backoffAfterAttempt(attempts: number): Date {

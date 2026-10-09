@@ -61,6 +61,13 @@ val collectorUsabilityProofRequested = explicitBooleanFlag(
     "GROOKAI_COLLECTOR_USABILITY_PROOF",
     providers.environmentVariable("GROOKAI_COLLECTOR_USABILITY_PROOF").orNull,
 )
+val notificationsProofRequested = explicitBooleanFlag(
+    "GROOKAI_NOTIFICATIONS_PROOF",
+    providers.environmentVariable("GROOKAI_NOTIFICATIONS_PROOF").orNull,
+)
+if (notificationsProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested)) {
+    throw GradleException("Notification proof requires its separate debug app.")
+}
 if (collectorUsabilityProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested)) {
     throw GradleException("Collector usability proof requires its separate debug app.")
 }
@@ -131,6 +138,11 @@ android {
     buildTypes {
         debug {
             manifestPlaceholders["usesCleartextTraffic"] = "true"
+            if (notificationsProofRequested) {
+                applicationIdSuffix = ".notificationsproof"
+                versionNameSuffix = "-notifications-proof"
+                resValue("string", "app_name", "Grookai Notifications Proof")
+            }
             if (collectorUsabilityProofRequested) {
                 applicationIdSuffix = ".collectorusabilityproof"
                 versionNameSuffix = "-collector-usability-proof"

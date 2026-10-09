@@ -158,13 +158,17 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _signOut() async {
+    final owner = _supabase.auth.currentUser?.id;
+    if (owner == null) return;
     await GrookaiPushNotificationService.instance
         .disableCurrentTokenBeforeSignOut();
+    if (_supabase.auth.currentUser?.id != owner) return;
     try {
       await BinderPrivateCache.purgeCurrent();
     } catch (_) {
       // Sign-out must continue even if platform preferences are unavailable.
     }
+    if (_supabase.auth.currentUser?.id != owner) return;
     await _supabase.auth.signOut();
   }
 

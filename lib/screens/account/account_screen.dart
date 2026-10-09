@@ -1,3 +1,4 @@
+import 'notification_settings_screen.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -560,6 +561,20 @@ class _AccountScreenState extends State<AccountScreen> {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(14, 10, 14, 18),
             children: [
+              if (_client.auth.currentUser != null)
+                _AccountSurface(
+                  child: _AccountLinkTile(
+                    icon: Icons.notifications_outlined,
+                    title: 'Notifications',
+                    subtitle:
+                        'Choose updates, quiet hours and device permission',
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const NotificationSettingsScreen(),
+                      ),
+                    ),
+                  ),
+                ),
               if (_client.auth.currentUser != null)
                 _AccountSurface(
                   child: _AccountLinkTile(
