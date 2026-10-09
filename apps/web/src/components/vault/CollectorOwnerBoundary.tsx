@@ -5,7 +5,19 @@ import { useEffect, useState, type ReactNode } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 /** Unmount private collection content as soon as its authenticated owner changes. */
-export function CollectorOwnerBoundary({ ownerId, children }: { ownerId: string; children: ReactNode }) {
+type OwnerBoundaryProps = {
+  ownerId: string;
+  children: ReactNode;
+  surface?: "Vault" | "Binders" | "Saved cards";
+  reopenHref?: "/vault" | "/binders" | "/saved";
+};
+
+export function CollectorOwnerBoundary(props: OwnerBoundaryProps) {
+  // New server content for a different owner must start in the checking state.
+  return <OwnerSession key={props.ownerId} {...props} />;
+}
+
+function OwnerSession({ ownerId, children, surface = "Vault", reopenHref = "/vault" }: OwnerBoundaryProps) {
   const [state, setState] = useState<"checking" | "ready" | "closed">("checking");
   useEffect(() => {
     let active = true, closed = false, version = 0;
@@ -24,10 +36,10 @@ export function CollectorOwnerBoundary({ ownerId, children }: { ownerId: string;
     }).catch(() => { if (request === version) apply(null); });
     return () => { active = false; data.subscription.unsubscribe(); };
   }, [ownerId]);
-  if (state === "checking") return <p role="status" className="py-6">Loading your Vault…</p>;
+  if (state === "checking") return <p role="status" className="py-6">Loading your {surface}…</p>;
   if (state === "closed") return <div role="status" className="space-y-3 py-6">
-    <p>Your account changed. Reopen Vault to view your collection.</p>
-    <Link href="/vault" className="gv-primary-button" onClick={(event) => { event.preventDefault(); window.location.assign("/vault"); }}>Reopen Vault</Link>
+    <p>Your account changed. Reopen {surface} to view your collection.</p>
+    <Link href={reopenHref} className="gv-primary-button" onClick={(event) => { event.preventDefault(); window.location.assign(reopenHref); }}>Reopen {surface}</Link>
   </div>;
   return children;
 }

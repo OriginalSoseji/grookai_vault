@@ -32,6 +32,7 @@ class BinderContinuationPanel extends StatefulWidget {
 class BinderContinuationPanelState extends State<BinderContinuationPanel> {
   late BinderContinuationController _controller;
   StreamSubscription<void>? _ownerSubscription;
+  bool _expanded = false;
 
   @override
   void initState() {
@@ -40,6 +41,7 @@ class BinderContinuationPanelState extends State<BinderContinuationPanel> {
   }
 
   void _start() {
+    _expanded = false;
     _controller = BinderContinuationController(
       ownerId: widget.ownerId,
       repository: widget.repository ?? SupabaseBinderRepository(),
@@ -98,7 +100,7 @@ class BinderContinuationPanelState extends State<BinderContinuationPanel> {
     }
     final theme = Theme.of(context);
     return GvSurface(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -139,7 +141,26 @@ class BinderContinuationPanelState extends State<BinderContinuationPanel> {
             BinderContinuationStatus.ready => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final binder in _controller.visible) _goal(binder),
+                for (final binder
+                    in _expanded
+                        ? _controller.visible
+                        : _controller.visible.take(1))
+                  _goal(binder),
+                if (_controller.visible.length > 1)
+                  Semantics(
+                    expanded: _expanded,
+                    child: TextButton.icon(
+                      onPressed: () => setState(() => _expanded = !_expanded),
+                      icon: Icon(
+                        _expanded ? Icons.expand_less : Icons.expand_more,
+                      ),
+                      label: Text(
+                        _expanded
+                            ? 'Show fewer goals'
+                            : 'Show ${_controller.visible.length - 1} more ${_controller.visible.length == 2 ? 'goal' : 'goals'}',
+                      ),
+                    ),
+                  ),
                 if (_controller.visible.isEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
@@ -164,7 +185,7 @@ class BinderContinuationPanelState extends State<BinderContinuationPanel> {
   }
 
   Widget _goal(BinderSummary binder) => Padding(
-    padding: const EdgeInsets.only(top: 8),
+    padding: EdgeInsets.zero,
     child: Material(
       type: MaterialType.transparency,
       child: ListTile(

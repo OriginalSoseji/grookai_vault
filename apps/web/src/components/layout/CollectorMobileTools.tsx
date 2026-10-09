@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { useClientReady } from "@/components/layout/useClientReady";
 import { DESKTOP_SECONDARY_NAV, getDesktopRouteState } from "@/lib/desktopShellManifest";
+import { isVendorWorkspacePath } from "@/lib/vendorWorkspace";
 
 export function CollectorMobileTools({ pathname, isAuthenticated, dexEnabled, compareHref, compareCount }: {
   pathname: string;
@@ -26,6 +27,7 @@ export function CollectorMobileTools({ pathname, isAuthenticated, dexEnabled, co
       <nav className="gv-collector-mobile-tools" aria-label="Collection and account tools" onClick={(event) => {
         if ((event.target as HTMLElement).closest("a")) event.currentTarget.closest("details")?.removeAttribute("open");
       }}>
+      {isAuthenticated && !isVendorWorkspacePath(pathname) && <Link href="/account/store/sales">Vendor workspace</Link>}
       {DESKTOP_SECONDARY_NAV.filter((item) => {
         if (item.key === "dex") return dexEnabled;
         if (item.key === "messages") return isAuthenticated;

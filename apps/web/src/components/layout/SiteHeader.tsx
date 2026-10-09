@@ -35,7 +35,7 @@ function Header({ pathname, compareCards, ...props }: SiteHeaderProps & { pathna
             </Link>
             <div className="flex shrink-0 items-center gap-2">
               {props.isAuthenticated && !isVendorWorkspacePath(pathname) && <Link
-                href="/account/store/sales" className="gv-secondary-button px-2 py-2 text-xs"
+                href="/account/store/sales" className="gv-mobile-workspace-shortcut gv-secondary-button px-2 py-2 text-xs"
                 aria-label="Open vendor workspace">Vendor</Link>}
               <ThemeToggle />
               <CollectorMobileTools pathname={pathname} isAuthenticated={props.isAuthenticated} dexEnabled={props.dexEnabled} bindersEnabled={props.bindersEnabled} compareHref={compareHref} compareCount={compareCards.length} />

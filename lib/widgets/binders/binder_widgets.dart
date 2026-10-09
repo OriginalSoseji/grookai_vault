@@ -53,7 +53,17 @@ class BinderProgressBar extends StatelessWidget {
     final safeCompleted = completed.clamp(0, safeTotal);
     final value = safeTotal == 0 ? 0.0 : safeCompleted / safeTotal;
     final percent = (value * 100).round();
-    final displayUnit = unit.trim().replaceAll('_', ' ');
+    final pluralUnit = unit.trim().replaceAll('_', ' ');
+    final displayUnit = safeTotal == 1
+        ? switch (pluralUnit) {
+            'card prints' => 'card print',
+            'finish options' => 'finish option',
+            'custom slots' => 'custom slot',
+            'slots' => 'slot',
+            'cards' => 'card',
+            _ => pluralUnit,
+          }
+        : pluralUnit;
     final theme = Theme.of(context);
     return Semantics(
       label:

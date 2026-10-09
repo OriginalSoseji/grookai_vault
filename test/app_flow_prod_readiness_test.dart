@@ -358,7 +358,12 @@ void main() {
     expect(vault, contains('summarizeVaultExactPricing'));
     expect(vault, contains('estimatedValue += visiblePrice'));
     expect(vault, isNot(contains('visiblePrice * ownedCount')));
-    expect(vault, contains('valued copies'));
+    expect(
+      vault,
+      contains(
+        r"${derivedData.pricedCopyCount} valued ${derivedData.pricedCopyCount == 1 ? 'copy' : 'copies'}",
+      ),
+    );
     expect(vault, isNot(contains('30d trend pending')));
   });
 
@@ -462,7 +467,12 @@ void main() {
     expect(vault, isNot(contains('Search Pokemon')));
     expect(vault, isNot(contains('Widget _buildVaultViewChip(')));
     expect(vault, isNot(contains('_activeSearchValueForView')));
-    expect(vault, contains('if (_view == _VaultStructuralView.all) ...['));
+    expect(
+      vault,
+      contains(
+        'if (_view == _VaultStructuralView.all && _items.isNotEmpty) ...[',
+      ),
+    );
     expect(vault, contains("'Recently Added'"));
   });
 

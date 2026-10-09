@@ -2863,7 +2863,7 @@ class VaultPageState extends State<VaultPage> {
                         : _formatVaultValue(combinedValue),
                     child: Text(
                       combinedValue == null
-                          ? 'TCGPlayer Market'
+                          ? 'No estimate yet'
                           : _formatVaultValue(combinedValue),
                       style: theme.textTheme.headlineSmall?.copyWith(
                         color: theme.colorScheme.onSurface,
@@ -2876,8 +2876,8 @@ class VaultPageState extends State<VaultPage> {
                   const SizedBox(height: 4),
                   Text(
                     derivedData.estimatedValue == null
-                        ? '$totalCards cards • ${_items.length} unique • $setCount sets • Value pending'
-                        : '$totalCards cards • ${_items.length} unique • ${derivedData.pricedCopyCount} valued copies',
+                        ? '$totalCards ${totalCards == 1 ? 'card' : 'cards'} • ${_items.length} unique • $setCount ${setCount == 1 ? 'set' : 'sets'} • Value pending'
+                        : '$totalCards ${totalCards == 1 ? 'card' : 'cards'} • ${_items.length} unique • ${derivedData.pricedCopyCount} valued ${derivedData.pricedCopyCount == 1 ? 'copy' : 'copies'}',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(
                         alpha: 0.66,
@@ -3052,7 +3052,7 @@ class VaultPageState extends State<VaultPage> {
               ),
             ),
           ...vaultContentSlivers,
-          if (_view == _VaultStructuralView.all) ...[
+          if (_view == _VaultStructuralView.all && _items.isNotEmpty) ...[
             const SliverToBoxAdapter(child: SizedBox(height: 18)),
             SliverToBoxAdapter(
               child: Padding(

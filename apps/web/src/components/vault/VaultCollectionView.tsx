@@ -170,7 +170,7 @@ function SmartViewButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+      className={`min-h-11 shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition ${
         selected
           ? "border border-slate-200 bg-white text-slate-950 shadow-[0_12px_24px_-20px_rgba(15,23,42,0.35)] dark:border-slate-700 dark:bg-slate-100 dark:text-slate-950"
           : "border border-transparent text-slate-500 hover:bg-white/80 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.06] dark:hover:text-slate-100"
@@ -634,8 +634,8 @@ export function VaultCollectionView({
   }
 
   return (
-    <div className="space-y-10 py-7 md:space-y-12 md:py-9">
-      <section className="space-y-5">
+    <div className="space-y-3 py-0 md:space-y-6 md:py-6">
+      <section className="space-y-3">
         <PageIntro
           title="Your Vault"
           size="compact"
@@ -652,25 +652,17 @@ export function VaultCollectionView({
             </div>
           }
         />
-        <details className="text-sm">
-          <summary className="w-fit cursor-pointer py-2">Collection tools</summary>
-          <div className="flex flex-wrap gap-2 pt-2">
-            <Link href="/saved" className="gv-secondary-button">Saved cards</Link>
-            <Link href="/vault/transactions" className="gv-secondary-button">Transaction history</Link>
-            {bindersEnabled ? <Link href="/binders" className="gv-secondary-button">Binders</Link> : null}
-          </div>
-        </details>
         {portfolioHistory}
         {valueSummary.totalGroupedCount > 0 || (sealedTotals?.active_copy_count ?? 0) > 0 ? (
-          <div className="gv-command-surface mt-6 px-5 py-5 md:px-6 md:py-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div className="min-w-0 space-y-2.5">
+          <div className="gv-command-surface px-4 py-3">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div className="min-w-0 space-y-1">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
                   {sealedOwnershipEnabled && !sealedTotals ? 'Card subtotal' : 'Estimated Vault Value'}
                 </p>
                 <div className="space-y-1">
                   <p
-                    className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
+                    className="text-2xl font-semibold text-slate-950 sm:text-3xl"
                     data-pricing-proof="vault-exact-total"
                     data-pricing-scope="vault_total"
                     data-vault-market-value-usd={
@@ -696,7 +688,7 @@ export function VaultCollectionView({
                     {Object.entries(sealedTotals.totals_by_currency).filter(([currency]) => currency !== 'USD').map(([currency, value]) =>
                       <p key={currency} className="text-sm">Sealed {currency} {value.toFixed(2)} (separate from USD total)</p>)}
                   </>}
-                  <p className="text-xs text-slate-400">TCGPlayer Market for eligible exact printings and sealed products.</p>
+                  <p className="text-xs text-slate-500">TCGPlayer Market · eligible exact versions</p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 md:justify-end">
@@ -709,18 +701,15 @@ export function VaultCollectionView({
             </div>
           </div>
         ) : null}
-        {!itemsError && <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-slate-500">
-          <span className="rounded-full border border-slate-200/75 bg-white/80 px-4 py-2 font-medium text-slate-700 shadow-[0_14px_26px_-24px_rgba(15,23,42,0.22)]">
+        {!itemsError && <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500">
+          <span className="font-medium text-slate-700">
             {summary.cards} {summary.cards === 1 ? "card" : "cards"}
           </span>
-          <span className="rounded-full border border-slate-200/75 bg-white/70 px-4 py-2">
+          <span className="tabular-nums">
             {summary.uniqueCards} unique
           </span>
-          <span className="rounded-full border border-slate-200/75 bg-white/70 px-4 py-2">
+          <span className="tabular-nums">
             {summary.sets} {summary.sets === 1 ? "set" : "sets"}
-          </span>
-          <span className="rounded-full border border-slate-200/70 bg-white/60 px-4 py-2 text-slate-400">
-            Last added {summary.lastAdded}
           </span>
         </div>}
       </section>
@@ -738,6 +727,7 @@ export function VaultCollectionView({
       {continuation}
       {itemsError ? null : items.length === 0 ? (sealedTotals?.active_copy_count ? null :
         <ProductState
+          compact
           eyebrow="No cards yet"
           title="Your Vault is ready"
           description="Add an exact card version from Search, or import an existing collection."
@@ -745,7 +735,7 @@ export function VaultCollectionView({
           secondaryAction={<Link href="/vault/import" className="gv-secondary-button">Import collection</Link>}
         />
       ) : (
-        <PageSection spacing="default" className="space-y-6">
+        <PageSection spacing="compact" className="space-y-3">
           {collectorPageActivationVariant ? (
             <CollectorPageActivationCard
               variant={collectorPageActivationVariant}
@@ -755,7 +745,6 @@ export function VaultCollectionView({
 
           <SectionHeader
             title="Vault Cards"
-            description="Cards currently in your collection."
           />
 
           <div className="gv-command-surface hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:p-3.5">
@@ -813,7 +802,17 @@ export function VaultCollectionView({
       )}
 
       <OwnedSealedPanel onTotals={setSealedTotals} />
-      <PageSection spacing="compact">
+        <details className="text-sm">
+          <summary className="w-fit cursor-pointer py-2">Collection tools</summary>
+          {!itemsError && <p className="pb-2 text-slate-500">Last added {summary.lastAdded}</p>}
+          <div className="flex flex-wrap gap-2 pt-2">
+            <Link href="/saved" className="gv-secondary-button">Saved cards</Link>
+            <Link href="/vault/transactions" className="gv-secondary-button">Transaction history</Link>
+            {bindersEnabled ? <Link href="/binders" className="gv-secondary-button">Binders</Link> : null}
+          </div>
+        </details>
+
+      {(recentError || recent.length > 0) && <PageSection spacing="compact">
         <SectionHeader
           title="Recently Added"
           description="Recently added cards."
@@ -864,7 +863,7 @@ export function VaultCollectionView({
             ))}
           </div>
         )}
-      </PageSection>
+      </PageSection>}
     </div>
   );
 }

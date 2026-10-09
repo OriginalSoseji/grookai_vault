@@ -212,6 +212,34 @@ void main() {
     expect(find.text('2 of 10 card prints'), findsOneWidget);
   });
 
+  testWidgets('one goal stays visible and expansion preserves exact targets', (
+    tester,
+  ) async {
+    repository.page = BinderLibraryPage(
+      binders: [goal('first'), goal('second'), goal('third')],
+    );
+    String? selected;
+    await show(
+      tester,
+      open: (id) async {
+        selected = id;
+      },
+    );
+    expect(find.text('Collect first'), findsOneWidget);
+    expect(find.text('Collect second'), findsNothing);
+    expect(find.text('Collect third'), findsNothing);
+    await tester.tap(find.text('Show 2 more goals'));
+    await tester.pumpAndSettle();
+    expect(find.text('Collect second'), findsOneWidget);
+    await tester.tap(find.text('Collect third'));
+    await tester.pumpAndSettle();
+    expect(selected, 'third');
+    await tester.tap(find.text('Show fewer goals'));
+    await tester.pumpAndSettle();
+    expect(find.text('Collect second'), findsNothing);
+    expect(find.text('All Binders'), findsOneWidget);
+  });
+
   testWidgets('auth change immediately removes rendered private goals', (
     tester,
   ) async {
