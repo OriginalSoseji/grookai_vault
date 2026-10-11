@@ -4,7 +4,13 @@ import { useState } from "react";
 import { LogOut } from "lucide-react";
 import { supabase } from "@/lib/supabaseClient";
 
-export default function SignOutButton() {
+export default function SignOutButton({
+  className = "gv-secondary-button inline-flex items-center gap-2",
+  showIcon = true,
+}: {
+  className?: string;
+  showIcon?: boolean;
+}) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(false);
   async function signOut() {
@@ -18,8 +24,8 @@ export default function SignOutButton() {
     } catch { setError(true); setBusy(false); }
   }
   return <div>
-    <button type="button" className="gv-secondary-button inline-flex items-center gap-2" disabled={busy} onClick={signOut}>
-      <LogOut size={16} />{busy ? "Signing out..." : "Sign out"}
+    <button type="button" className={className} disabled={busy} onClick={signOut}>
+      {showIcon ? <LogOut size={16} /> : null}{busy ? "Signing out..." : "Sign out"}
     </button>
     {error ? <p role="alert">Sign-out could not be confirmed. Please try again.</p> : null}
   </div>;
