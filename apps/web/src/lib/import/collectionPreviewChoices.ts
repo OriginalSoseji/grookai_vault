@@ -1,4 +1,5 @@
 import type { CollectionPreviewV2 } from "./collectionPreviewV2";
+import { catalogConflictMessage, collectionCatalogConflictIds } from "./collectionCatalogConflicts.ts";
 
 // Choices come from the authenticated preview, never from free-text card IDs.
 // Saving independently rechecks every original source field and exact printing.
@@ -7,6 +8,9 @@ export function chooseCollectionReviewCandidate<T extends CollectionPreviewV2>(p
   const row = preview.rows.find(row => JSON.stringify(row.sourceIndices) === key);
   if (!row?.review) throw new Error("This row has no catalog choices. Refresh its preview.");
   const candidate = cardId === null ? null : row.review.candidates.find(candidate => candidate.cardId === cardId);
+  if (candidate && collectionCatalogConflictIds(row.review.candidates).has(candidate.cardId)) {
+    throw new Error(catalogConflictMessage);
+  }
   if (cardId !== null && (!candidate?.selection || JSON.stringify(candidate.selection.sourceIndices) !== key)) {
     throw new Error("This printing cannot be confirmed. Keep the row for review.");
   }

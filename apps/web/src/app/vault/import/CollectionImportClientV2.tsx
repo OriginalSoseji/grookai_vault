@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ImportClient } from "./ImportClient";
 import { sourceLabel } from "@/lib/import/collectionPreviewV2";
 import { chooseCollectionReviewCandidate } from "@/lib/import/collectionPreviewChoices";
+import { catalogConflictMessage, collectionCatalogConflictIds } from "@/lib/import/collectionCatalogConflicts";
 import { collectionReviewCounts, collectionReviewCsv, filterCollectionRows, reviewGroups, type ReviewGroup } from "@/lib/import/collectionReviewWorkspace";
 import { getCardPrintingFinishLabel, getPrintedIdentityModifierDisplayLabel, getVariantDisplayLabel } from "@/lib/cards/displayDiscriminator";
 import { isV3Preview, importReady, mixedImportCounts, type CollectionAttempt, type CollectionReceipt, type CollectionPreview } from "@/lib/import/collectionPreviewV3";
@@ -212,6 +213,7 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
         <p className="mt-2 text-sm">{row.reason ?? (row.sealedSelection ? `${row.matchedName} · Seal unknown · Package condition unknown` : `${row.matchedName} · ${row.finish}`)}</p>
         {row.review && <details className="mt-3 rounded-lg border border-slate-200 p-3 dark:border-white/15">
           <summary className="cursor-pointer font-medium">Review matching cards ({row.review.candidates.length})</summary>
+          {collectionCatalogConflictIds(row.review.candidates).size > 0 && <p className="mt-3 text-sm text-amber-700">Some records need catalog repair and cannot be selected. You can still inspect them. Only confirm a distinct variant if it matches your physical card.</p>}
           <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">Compare the card, variant and finish with your copy. Choose only a match you can confirm; otherwise keep this row for review. Card links open in a new tab.</p>
           <fieldset disabled={busy || !!pending} className="mt-3 space-y-3">
             <legend className="sr-only">Card choice for source rows {row.sourceIndices.map(i => i + 2).join(", ")}</legend>
@@ -220,6 +222,7 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
               <span>Keep in review</span>
             </label>
             {row.review.candidates.map(candidate => {
+              const catalogConflict = collectionCatalogConflictIds(row.review!.candidates).has(candidate.cardId);
               const variant = candidate.variantKey?.startsWith("scryfall:") ? null : getVariantDisplayLabel(candidate.variantKey);
               const modifier = getPrintedIdentityModifierDisplayLabel(candidate.printedIdentityModifier);
               const details = [...new Set([variant, modifier].filter(Boolean))].join(" · ");
@@ -227,14 +230,14 @@ export function CollectionImportClientV2({ ownerId }: { ownerId: string }) {
               const href = `/card/${encodeURIComponent(candidate.gvId)}${candidate.selection?.cardPrintingId ? `?printing=${encodeURIComponent(candidate.selection.cardPrintingId)}` : ""}`;
               return <div key={candidate.cardId} className="rounded-lg border p-3">
                 <label className="flex min-h-11 cursor-pointer items-start gap-3">
-                  <input type="radio" className="mt-1" name={`choice-${row.sourceIndices.join("-")}`} checked={row.review!.selectedCardId === candidate.cardId} disabled={!candidate.selection} onChange={() => chooseCandidate(row.sourceIndices, candidate.cardId)} />
+                  <input type="radio" className="mt-1" name={`choice-${row.sourceIndices.join("-")}`} checked={row.review!.selectedCardId === candidate.cardId} disabled={catalogConflict || !candidate.selection} onChange={() => chooseCandidate(row.sourceIndices, candidate.cardId)} />
                   <span className="min-w-0 break-words"><span className="block font-medium">{candidate.name} · #{candidate.number}</span>
                     <span className="block text-sm">{candidate.setName}{candidate.setCode ? ` (${candidate.setCode})` : ""}</span>
                     <span className="block text-sm">{details || "Variant not specified in catalog"}{finish ? ` · ${finish}` : ""}</span>
                     <span className="block text-xs text-slate-500">Catalog reference: {candidate.gvId}</span>
                   </span>
                 </label>
-                {candidate.unavailableReason && <p className="mt-2 text-sm text-amber-700">{candidate.unavailableReason}</p>}
+                {(catalogConflict || candidate.unavailableReason) && <p className="mt-2 text-sm text-amber-700">{catalogConflict ? catalogConflictMessage : candidate.unavailableReason}</p>}
                 <Link href={href} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block py-2 text-sm underline" aria-label={`View ${candidate.name}, ${candidate.gvId}, card and printing`}>View card and printing</Link>
               </div>;
             })}

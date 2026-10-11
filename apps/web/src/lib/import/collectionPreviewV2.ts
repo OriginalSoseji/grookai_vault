@@ -5,6 +5,7 @@ import { collectrSetTargets } from "../../../../../supabase/functions/vault-impo
 import { matchesCollectrPokemonName } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_name.ts";
 import { matchesCollectrMtgIdentity } from "../../../../../supabase/functions/vault-import-collection-v2/mtg_identity.ts";
 import { collectrPokemonNamedFinish } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_named_finish.ts";
+import { catalogConflictMessage, collectionCatalogConflictIds } from "./collectionCatalogConflicts.ts";
 
 export type CollectionSelection = { sourceIndices: number[]; cardId: string; gvId: string; cardPrintingId: string | null };
 export type CollectionReviewCandidate = {
@@ -215,6 +216,15 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
           };
         }),
       };
+      if (row.review) {
+        const conflicts = collectionCatalogConflictIds(row.review.candidates);
+        if (conflicts.size) {
+          row.reason = row.review.reason = "Some matching records need catalog repair. Those options are held; any distinct variant still requires your confirmation.";
+          row.review.candidates = row.review.candidates.map(candidate => conflicts.has(candidate.cardId)
+            ? { ...candidate, selection: null, unavailableReason: catalogConflictMessage }
+            : candidate);
+        }
+      }
       continue;
     }
     const card = candidates[0];

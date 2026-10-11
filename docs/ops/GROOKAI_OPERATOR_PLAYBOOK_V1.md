@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Collectr catalog review — October 9
+
+PR614's exact-cost release/save is complete; preserve 1640 accounted copies,
+532 held rows and its consumed receipt. Read
+[the catalog review checkpoint](../checkpoints/collectr_catalog_review_20261009.md).
+The local website guard separates catalog conflicts from owner-confirmable
+variants, preserving every prior target and original source row. It qualifies
+no additional copies. Six competing set families still need evidence-based,
+reference-preserving adjudication; historical PAF family rules and classification
+notes conflict and are not automatic merge authority. Slab support is deferred
+by the user. Private collectr_catalog_review_20261009/CHECKPOINT.json owns actual
+checks and deployment status. Keep production reads read-only and retain all labs.
+
 ## Collectr average-cost candidate — October 8
 
 The local product-scope and four-decimal cost candidate qualifies 20 copies;
