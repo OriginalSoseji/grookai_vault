@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Activity, PanelsTopLeft, ScanLine, Archive, Search, Library, Grid2X2, ArrowLeftRight, BookOpen, MessageCircle } from "lucide-react";
+import SignOutButton from "@/components/account/SignOutButton";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
   DESKTOP_PRIMARY_NAV,
@@ -91,6 +92,12 @@ export function DesktopApplicationShell({
                 <Link href="/account" className="gv-desktop-menu-link">Account settings</Link>
                 <Link href="/account/store" className="gv-desktop-menu-link">Manage store</Link>
                 <Link href="/support" className="gv-desktop-menu-link">Support</Link>
+                <div className="mt-1 border-t border-slate-200 pt-1 dark:border-slate-700">
+                  <SignOutButton
+                    className="gv-desktop-menu-link w-full text-left text-rose-700 disabled:cursor-not-allowed disabled:opacity-60 dark:text-rose-300"
+                    showIcon={false}
+                  />
+                </div>
               </div>
             </details>
           ) : (
