@@ -718,6 +718,19 @@ The six-screen sample prototype and reference specification are under docs/produ
 It is not deployed. Preserve concurrent scanner changes and
 all retained import/receipt/deal requests; synthetic renders are not device or
 production-release proof. The external checkpoint records current validation.
+
+## Collectr catalog review — October 9
+
+Read docs/checkpoints/collectr_catalog_review_20261009.md. PR614 and its exact-cost
+save are complete: 1640 accounted copies and 532 held rows. The local website
+candidate separates 62 catalog-conflict rows/76 copies from 57 owner-choice rows;
+it does not resolve their identities or qualify additional imports. Fresh preview
+preserves all 1340 saved groups and 3250 owner copies. Private
+collectr_catalog_review_20261009/CHECKPOINT.json owns current qualification.
+Slab support is DEFERRED by the user, not awaiting another question. Preserve
+all consumed receipts and labs. No catalog merge, schema change or deployment
+belongs to this local review guard; six identity families still need adjudication.
+
 ## Collectr exact average costs — October 8
 
 Read docs/checkpoints/collectr_cost_precision_20261008.md. The combined local
