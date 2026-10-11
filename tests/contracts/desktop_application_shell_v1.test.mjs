@@ -8,7 +8,7 @@ function read(relativePath) {
 
 test("desktop shell freezes the five primary pillars in native order", () => {
   const manifest = read("apps/web/src/lib/desktopShellManifest.ts");
-  const expected = ["Pulse", "Wall", "Scan", "Vault", "Search"];
+  const expected = ["Vault", "Explore", "Scan", "Binders", "Community"];
   let cursor = -1;
 
   for (const label of expected) {
@@ -17,14 +17,14 @@ test("desktop shell freezes the five primary pillars in native order", () => {
     cursor = next;
   }
 
-  assert.match(manifest, /DESKTOP_SECONDARY_NAV[\s\S]*?"Sets"[\s\S]*?"Dex"[\s\S]*?"Compare"[\s\S]*?"Binders"[\s\S]*?"Messages"/);
+  assert.match(manifest, /DESKTOP_SECONDARY_NAV[\s\S]*?"Sets"[\s\S]*?"Dex"[\s\S]*?"Compare"[\s\S]*?"Messages"/);
 });
 
 test("desktop route state maps secondary tools back to one primary pillar", () => {
   const manifest = read("apps/web/src/lib/desktopShellManifest.ts");
 
   assert.match(manifest, /matchesRoute\(pathname, "\/network\/inbox"\)[\s\S]*?activeSecondary = "messages"/);
-  assert.match(manifest, /matchesRoute\(pathname, "\/binders"\)[\s\S]*?activePrimary = "vault"/);
+  assert.match(manifest, /matchesRoute\(pathname, "\/binders"\)[\s\S]*?activePrimary = "binders"/);
   assert.match(manifest, /matchesRoute\(pathname, "\/sets"\)[\s\S]*?activePrimary = "search"/);
   assert.match(manifest, /childContext\(pathname, "\/binders", "Binders", "\/binders", "Binder workspace"\)/);
 });
@@ -35,7 +35,7 @@ test("desktop pushed routes link back to real parent destinations", () => {
   const expectedParents = [
     ['"/binder-templates"', '"Binders"', '"/binders"'],
     ['"/set"', '"Sets"', '"/sets"'],
-    ['"/card"', '"Search"', '"/explore"'],
+    ['"/card"', '"Explore"', '"/explore"'],
     ['"/vault/card"', '"Vault"', '"/vault"'],
     ['"/vault/gvvi"', '"Vault"', '"/vault"'],
     ['"/gvvi"', '"Vault"', '"/vault"'],
@@ -88,7 +88,10 @@ test("desktop and mobile shells hand off at the same 900px boundary", () => {
 test("private desktop tools remain conditional and account actions stay grouped", () => {
   const shell = read("apps/web/src/components/layout/DesktopApplicationShell.tsx");
 
-  assert.match(shell, /item\.key === "binders"[\s\S]*?isAuthenticated && bindersEnabled/);
+  assert.match(shell, /item\.key === "binders" && !bindersEnabled/);
+  const page = read("apps/web/src/app/binders/page.tsx");
+  assert.match(page, /requireServerUser\("\/binders"\)/);
+  assert.match(page, /Binders are not available in this version/);
   assert.match(shell, /item\.key === "messages"[\s\S]*?isAuthenticated/);
   assert.match(shell, /<details className="gv-desktop-account-menu/);
   assert.match(shell, />Public profile<\/Link>/);

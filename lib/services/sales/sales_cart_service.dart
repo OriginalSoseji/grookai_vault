@@ -8,9 +8,18 @@ import '../gvvi/vendor_pricing_workspace_service.dart';
 import '../../models/card_print.dart';
 import '../public/public_card_printing_options_service.dart';
 import 'sales_trade.dart';
+import 'negotiated_trade.dart';
+import 'negotiated_draft.dart';
+import 'discounted_draft.dart';
+import 'discounted_sale.dart';
+import 'sales_purchase.dart';
 import 'sales_payments.dart';
 import 'sales_search_cache.dart';
 import 'sales_drafts.dart';
+import 'purchase_drafts.dart';
+import 'offer_presets.dart';
+import 'offer_policies.dart';
+import 'sales_scanner.dart';
 
 /// Display/input amounts only. The server validates and computes sale totals.
 int? saleMoneyInput(String value) {
@@ -78,6 +87,9 @@ class SalesDeskData {
     this.receipts = const [],
     this.tradesAvailable = false,
     this.paymentsAvailable = false,
+    this.purchasesAvailable = false,
+    this.negotiatedTradesAvailable = false,
+    this.discountsAvailable = false,
     this.pending,
     this.needsHydration = false,
     this.localDrafts,
@@ -85,6 +97,9 @@ class SalesDeskData {
   final bool available;
   final bool tradesAvailable;
   final bool paymentsAvailable;
+  final bool purchasesAvailable;
+  final bool negotiatedTradesAvailable;
+  final bool discountsAvailable;
   final List<VendorPricingWorkspaceRow> rows;
   final String storeName;
   final List<Map<String, dynamic>> customers;
@@ -102,6 +117,9 @@ class SalesDeskData {
         receipts: receipts,
         tradesAvailable: tradesAvailable,
         paymentsAvailable: paymentsAvailable,
+        purchasesAvailable: purchasesAvailable,
+        negotiatedTradesAvailable: negotiatedTradesAvailable,
+        discountsAvailable: discountsAvailable,
         pending: pending,
         needsHydration: needsHydration,
         localDrafts: localDrafts,
@@ -115,10 +133,19 @@ class SalesDeskData {
         .map((c) => Map<String, dynamic>.from(c as Map))
         .toList(),
     receipts: (book['receipts'] as List)
-        .map((r) => Map<String, dynamic>.from(r['receipt'] as Map))
+        .map(
+          (r) =>
+              r['receipt']['tradeIn'] is Map &&
+                  r['receipt']['tradeIn']['version'] != 1
+              ? validateNegotiatedSaleReceipt(r['receipt'])
+              : Map<String, dynamic>.from(r['receipt'] as Map),
+        )
         .toList(),
     tradesAvailable: tradesAvailable,
     paymentsAvailable: paymentsAvailable,
+    purchasesAvailable: purchasesAvailable,
+    negotiatedTradesAvailable: negotiatedTradesAvailable,
+    discountsAvailable: discountsAvailable,
     pending: pending,
     needsHydration: needsHydration,
     localDrafts: localDrafts,
@@ -137,6 +164,11 @@ class SalesCartService {
   String? _owner;
   int _draftRevision = 0;
   static final _draftLocks = <String, Future<void>>{};
+  static final _requestLocks = <String, Future<void>>{};
+  static final _presetLocks = <String, Future<void>>{};
+  final _confirmedPurchaseIds = <String>{};
+  final _confirmedNegotiatedRequests = <String, String>{};
+  final _confirmedDiscountedRequests = <String, String>{};
   final _searchCache = SalesSearchCache<SalesCatalogPage>();
   SupabaseClient get client => _client ?? Supabase.instance.client;
   Stream<void> get accountChanges => client.auth.onAuthStateChange
@@ -191,11 +223,17 @@ class SalesCartService {
     }
     final tradesAvailable = await _tradesAvailable();
     final paymentsAvailable = await _paymentsAvailable();
+    final purchasesAvailable = await _purchasesAvailable();
+    final negotiatedTradesAvailable = await _negotiatedTradesAvailable();
+    final discountsAvailable = paymentsAvailable && await _discountsAvailable();
     _checkOwner();
     return SalesDeskData(
       available: true,
       tradesAvailable: tradesAvailable,
       paymentsAvailable: paymentsAvailable,
+      purchasesAvailable: purchasesAvailable,
+      negotiatedTradesAvailable: negotiatedTradesAvailable,
+      discountsAvailable: discountsAvailable,
       rows: const [],
       storeName: '',
       customers: const [],
@@ -208,30 +246,87 @@ class SalesCartService {
   Future<void> saveDrafts(Map<String, dynamic> book) {
     _checkOwner();
     final key = 'grookai.sales-drafts.v1.$_owner';
-    final snapshot = readSalesDrafts(jsonEncode(book));
-    final operation = (_draftLocks[key] ?? Future<void>.value()).then((
-      _,
-    ) async {
-      _checkOwner();
-      final preferences = await SharedPreferences.getInstance();
-      await preferences.reload();
-      _checkOwner();
-      final current = readSalesDrafts(preferences.getString(key));
-      if (current['revision'] != _draftRevision) {
-        throw StateError(
-          'Saved deals changed in another screen. Reopen the sales desk.',
-        );
-      }
-      final encoded = jsonEncode({...snapshot, 'revision': _draftRevision + 1});
-      if (encoded.length > 2000000 ||
-          !await preferences.setString(key, encoded)) {
-        throw StateError(
-          'Could not save this draft. Keep the desk open and retry.',
-        );
-      }
-      _draftRevision++;
-      _checkOwner();
-    });
+    final candidate = Map<String, dynamic>.from(book);
+    if (candidate['version'] == 1 &&
+        candidate['drafts'] is List &&
+        (candidate['drafts'] as List).any(isPurchaseDraft)) {
+      candidate['version'] = 2;
+    }
+    if (candidate['drafts'] is List &&
+        (candidate['drafts'] as List).any(isNegotiatedDraft) &&
+        [1, 2].contains(candidate['version'])) {
+      candidate['version'] = 3;
+    }
+    if (candidate['drafts'] is List &&
+        (candidate['drafts'] as List).any(isDiscountedDraft) &&
+        [1, 2, 3].contains(candidate['version'])) {
+      candidate['version'] = 4;
+    }
+    final snapshot = readSalesDrafts(jsonEncode(candidate));
+    final operation = (_draftLocks[key] ?? Future<void>.value()).then(
+      (_) => _serializeRequest(() async {
+        _checkOwner();
+        final preferences = await SharedPreferences.getInstance();
+        await preferences.reload();
+        _checkOwner();
+        final current = readSalesDrafts(preferences.getString(key));
+        final pendingRaw = preferences.getString(_key);
+        if (pendingRaw != null) {
+          final pending = jsonDecode(pendingRaw) as Map;
+          if (pending['cart'] is Map &&
+              pending['cart']['version'] == 6 &&
+              _confirmedDiscountedRequests[(pending['id'] as String)
+                      .toLowerCase()] !=
+                  pendingRaw) {
+            throw StateError(
+              'Recover or confirm cancellation of the pending sale before editing held deals.',
+            );
+          }
+          if (pending['cart'] is Map &&
+              pending['cart']['version'] == 5 &&
+              _confirmedNegotiatedRequests[(pending['id'] as String)
+                      .toLowerCase()] !=
+                  pendingRaw) {
+            throw StateError(
+              'Recover the pending trade before editing held deals.',
+            );
+          }
+          if (pending['cart'] is Map &&
+              pending['cart']['version'] == 4 &&
+              !_confirmedPurchaseIds.contains(
+                (pending['id'] as String).toLowerCase(),
+              )) {
+            throw StateError(
+              'Recover the pending purchase before editing held deals.',
+            );
+          }
+        }
+        if (current['revision'] != _draftRevision) {
+          throw StateError(
+            'Saved deals changed in another screen. Reopen the sales desk.',
+          );
+        }
+        final encoded = jsonEncode({
+          ...snapshot,
+          'version': max(current['version'] as int, snapshot['version'] as int),
+          'revision': _draftRevision + 1,
+        });
+        if (encoded.length > 2000000 ||
+            !await preferences.setString(key, encoded)) {
+          throw StateError(
+            'Could not save this draft. Keep the desk open and retry.',
+          );
+        }
+        await preferences.reload();
+        if (preferences.getString(key) != encoded) {
+          throw StateError(
+            'Saved draft could not be verified. Keep this desk open.',
+          );
+        }
+        _draftRevision++;
+        _checkOwner();
+      }),
+    );
     _draftLocks[key] = operation.then((_) {}, onError: (Object _) {});
     return operation;
   }
@@ -243,6 +338,114 @@ class SalesCartService {
     return data.rows;
   }
 
+  Future<Map<String, dynamic>> loadOfferPresets() async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    return readOfferPresets(preferences.getString(key));
+  }
+
+  Future<Map<String, dynamic>> loadOfferPolicies() async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    return readOfferPolicies(preferences.getString(key));
+  }
+
+  Future<Map<String, dynamic>> saveOfferPolicies(
+    int expectedRevision,
+    List<Map<String, dynamic>> policies,
+    Map<String, dynamic> defaults,
+  ) async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final next = validateOfferPolicies({
+      'version': 2,
+      'revision': expectedRevision + 1,
+      'presets': policies,
+      'defaults': defaults,
+    });
+    final operation = (_presetLocks[key] ?? Future<void>.value()).then((
+      _,
+    ) async {
+      _checkOwner();
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final current = readOfferPolicies(preferences.getString(key));
+      if (current['revision'] != expectedRevision) {
+        throw StateError(
+          'Offer policies changed in another screen. Reload policies before editing.',
+        );
+      }
+      final encoded = jsonEncode(next);
+      _checkOwner();
+      if (!await preferences.setString(key, encoded)) {
+        throw StateError(
+          'Offer policies could not save. Reload before retrying.',
+        );
+      }
+      await preferences.reload();
+      if (preferences.getString(key) != encoded) {
+        throw StateError(
+          'Offer policies could not be verified. Reload before retrying.',
+        );
+      }
+      _checkOwner();
+      return next;
+    });
+    _presetLocks[key] = operation.then((_) {}, onError: (Object _) {});
+    return operation;
+  }
+
+  Future<Map<String, dynamic>> saveOfferPresets(
+    int expectedRevision,
+    List<Map<String, dynamic>> presets,
+  ) async {
+    _checkOwner();
+    final key = 'grookai.offer-presets.v1.${_owner!.toLowerCase()}';
+    final next = validateOfferPresets({
+      'version': 1,
+      'revision': expectedRevision + 1,
+      'presets': presets,
+    });
+    final operation = (_presetLocks[key] ?? Future<void>.value()).then((
+      _,
+    ) async {
+      _checkOwner();
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final current = readOfferPresets(preferences.getString(key));
+      if (current['revision'] != expectedRevision) {
+        throw StateError(
+          'Offer presets changed in another screen. Reload presets before editing.',
+        );
+      }
+      final encoded = jsonEncode(next);
+      _checkOwner();
+      if (!await preferences.setString(key, encoded)) {
+        throw StateError(
+          'Offer presets could not save. Reload before retrying.',
+        );
+      }
+      await preferences.reload();
+      if (preferences.getString(key) != encoded) {
+        throw StateError(
+          'Offer presets could not be verified. Reload before retrying.',
+        );
+      }
+      _checkOwner();
+      return next;
+    });
+    _presetLocks[key] = operation.then((_) {}, onError: (Object _) {});
+    return operation;
+  }
+
   Future<Map<String, dynamic>> loadBook() async {
     _checkOwner();
     final result = await client.rpc('vendor_receipt_book_read_v1');
@@ -250,9 +453,47 @@ class SalesCartService {
     return Map<String, dynamic>.from(result['book'] as Map);
   }
 
+  /// Report access does not depend on opening or decoding an editable deal.
+  Future<Map<String, dynamic>> loadReportBook() async {
+    final owner = client.auth.currentUser?.id;
+    if (owner == null) throw StateError('Sign in to view reports.');
+    _owner ??= owner;
+    _checkOwner();
+    return loadBook();
+  }
+
   Future<bool> _paymentsAvailable() async {
     try {
       return await client.rpc('vendor_sales_payments_available_v1') == true;
+    } on PostgrestException catch (error) {
+      if (error.code != 'PGRST202') rethrow;
+    }
+    return false;
+  }
+
+  Future<bool> _negotiatedTradesAvailable() async {
+    try {
+      return await client.rpc('vendor_sales_negotiated_trade_available_v1') ==
+          true;
+    } on PostgrestException catch (error) {
+      if (error.code != 'PGRST202') rethrow;
+    }
+    return false;
+  }
+
+  Future<bool> _discountsAvailable() async {
+    try {
+      return await client.rpc('vendor_sales_discount_entry_available_v1') ==
+          true;
+    } on PostgrestException catch (error) {
+      if (error.code != 'PGRST202') rethrow;
+    }
+    return false;
+  }
+
+  Future<bool> _purchasesAvailable() async {
+    try {
+      return await client.rpc('vendor_sales_purchase_available_v1') == true;
     } on PostgrestException catch (error) {
       if (error.code != 'PGRST202') rethrow;
     }
@@ -284,20 +525,82 @@ class SalesCartService {
     return data.rows;
   }
 
+  Future<VendorPricingWorkspaceRow?> loadScannedCopy(String gvviId) async {
+    _checkOwner();
+    if (scannedCopyId(gvviId) != gvviId) {
+      throw ArgumentError('Invalid copy label');
+    }
+    final copy = await client
+        .from('vault_item_instances')
+        .select('id')
+        .eq('user_id', _owner!)
+        .eq('gv_vi_id', gvviId)
+        .isFilter('archived_at', null)
+        .maybeSingle();
+    _checkOwner();
+    if (copy == null) return null;
+    final rows = await loadAddedCopy(copy['id'] as String);
+    return rows.length == 1 && rows.single.gvviId == gvviId
+        ? rows.single
+        : null;
+  }
+
+  Future<void> _serializeRequest(Future<void> Function() change) {
+    _checkOwner();
+    final key = _key;
+    final operation = (_requestLocks[key] ?? Future<void>.value()).then((
+      _,
+    ) async {
+      _checkOwner();
+      await change();
+      _checkOwner();
+    });
+    _requestLocks[key] = operation.then((_) {}, onError: (Object _) {});
+    return operation;
+  }
+
   Future<void> stage(Map<String, dynamic> request) async {
     _checkOwner();
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.reload();
-    _checkOwner();
-    final existing = preferences.getString(_key);
     final encoded = jsonEncode(request);
-    if (existing != null && existing != encoded) {
-      throw StateError('Recover the pending sale before starting another.');
+    if (request['cart'] is Map && request['cart']['version'] == 6) {
+      validateDiscountedSaleRequest({
+        'id': request['id'],
+        'cart': request['cart'],
+      });
     }
-    if (!await preferences.setString(_key, encoded)) {
-      throw StateError('Could not preserve this sale for recovery.');
+    if (request['cart'] is Map && request['cart']['version'] == 5) {
+      validateNegotiatedTradeRequest({
+        'id': request['id'],
+        'cart': request['cart'],
+      });
     }
-    _checkOwner();
+    if (request['cart'] is Map && request['cart']['version'] == 4) {
+      validatePurchaseRequest({'id': request['id'], 'cart': request['cart']});
+    }
+    await _serializeRequest(() async {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final existing = preferences.getString(_key);
+      if (existing != null) {
+        if (existing != encoded) {
+          throw StateError('Recover the pending deal before starting another.');
+        }
+        return;
+      }
+      if (preferences.getString(_catalogKey) != null) {
+        throw StateError('Recover the pending catalog add first.');
+      }
+      if (!await preferences.setString(_key, encoded)) {
+        throw StateError('Could not preserve this deal for recovery.');
+      }
+      await preferences.reload();
+      if (preferences.getString(_key) != encoded) {
+        throw StateError(
+          'Pending deal could not be verified. Do not start another.',
+        );
+      }
+    });
   }
 
   Future<List<CardPrint>> searchCatalog(String query, String game) async {
@@ -376,6 +679,41 @@ class SalesCartService {
         .toList();
   }
 
+  Future<Map<String, dynamic>> offerMarketReference(
+    String cardId,
+    String printingId,
+  ) async {
+    _checkOwner();
+    // Validate input before either governed read. No storage or transaction writer.
+    projectOfferMarketReference([], cardId, printingId, 0);
+    cardId = cardId.toLowerCase();
+    printingId = printingId.toLowerCase();
+    final options = (await catalogPrintings(
+      cardId,
+    )).where((option) => option['id'] == printingId).toList();
+    _checkOwner();
+    if (options.length != 1 || options.single['finish_is_active'] != true) {
+      return Map<String, dynamic>.unmodifiable({
+        'status': 'unavailable',
+        'reason': 'printing_unavailable',
+      });
+    }
+    final rows = await client.rpc(
+      'get_market_pricing_read_model_v1',
+      params: {
+        'p_card_print_ids': null,
+        'p_card_printing_ids': [printingId],
+      },
+    );
+    _checkOwner();
+    return projectOfferMarketReference(
+      rows,
+      cardId,
+      printingId,
+      DateTime.now().millisecondsSinceEpoch,
+    );
+  }
+
   String get _catalogKey => 'grookai.pending-sales-catalog.v1.${_owner!}';
   Future<Map<String, dynamic>?> pendingCatalogAdd() async {
     _checkOwner();
@@ -390,18 +728,29 @@ class SalesCartService {
 
   Future<void> stageCatalogAdd(Map<String, dynamic> request) async {
     _checkOwner();
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.reload();
-    _checkOwner();
-    final raw = preferences.getString(_catalogKey),
-        encoded = jsonEncode(request);
-    if (raw != null && raw != encoded) {
-      throw StateError('Recover the previous catalog add first.');
-    }
-    if (!await preferences.setString(_catalogKey, encoded)) {
-      throw StateError('Could not preserve the card request.');
-    }
-    _checkOwner();
+    final encoded = jsonEncode(request);
+    await _serializeRequest(() async {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final raw = preferences.getString(_catalogKey);
+      if (raw != null) {
+        if (raw != encoded) {
+          throw StateError('Recover the previous catalog add first.');
+        }
+        return;
+      }
+      if (preferences.getString(_key) != null) {
+        throw StateError('Recover the pending deal first.');
+      }
+      if (!await preferences.setString(_catalogKey, encoded)) {
+        throw StateError('Could not preserve the card request.');
+      }
+      await preferences.reload();
+      if (preferences.getString(_catalogKey) != encoded) {
+        throw StateError('Pending card request could not be verified.');
+      }
+    });
   }
 
   Future<Map<String, dynamic>> completeCatalogAdd(
@@ -428,61 +777,274 @@ class SalesCartService {
 
   Future<void> clearCatalogAdd(String requestId) async {
     _checkOwner();
-    final preferences = await SharedPreferences.getInstance();
-    await preferences.reload();
-    _checkOwner();
-    final raw = preferences.getString(_catalogKey);
-    if (raw != null &&
-        (jsonDecode(raw) as Map)['id'] == requestId &&
-        !await preferences.remove(_catalogKey)) {
-      throw StateError('Could not clear the recovered card request.');
-    }
-    _checkOwner();
+    await _serializeRequest(() async {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final raw = preferences.getString(_catalogKey);
+      if (raw != null && (jsonDecode(raw) as Map)['id'] == requestId) {
+        if (!await preferences.remove(_catalogKey)) {
+          throw StateError('Could not clear the recovered card request.');
+        }
+        await preferences.reload();
+        if (preferences.getString(_catalogKey) != null) {
+          throw StateError('Could not verify the cleared card request.');
+        }
+      }
+    });
   }
 
   Future<Map<String, dynamic>?> recover(String requestId) async {
-    _checkOwner();
-    final receipt = await client.rpc(
-      'vendor_sales_cart_read_v1',
-      params: {'p_request_id': requestId},
-    );
-    _checkOwner();
-    return receipt == null ? null : Map<String, dynamic>.from(receipt as Map);
-  }
-
-  Future<Map<String, dynamic>> complete(Map<String, dynamic> request) async {
-    _checkOwner();
-    final receipt = await client.rpc(
-      request['cart']['version'] == 3
-          ? 'vendor_sales_cart_complete_v3'
-          : request['cart']['version'] == 2
-          ? 'vendor_sales_cart_complete_v2'
-          : 'vendor_sales_cart_complete_v1',
-      params: {'p_request_id': request['id'], 'p_cart': request['cart']},
-    );
-    _checkOwner();
-    final result = Map<String, dynamic>.from(receipt as Map);
-    if (result['id'] != request['id']) {
-      throw StateError('Sale response could not be verified. Retry this sale.');
-    }
-    return result;
-  }
-
-  Future<void> clearPending(String requestId) async {
     _checkOwner();
     final preferences = await SharedPreferences.getInstance();
     await preferences.reload();
     _checkOwner();
     final raw = preferences.getString(_key);
-    if (raw != null && (jsonDecode(raw) as Map)['id'] == requestId) {
-      if (!await preferences.remove(_key)) {
-        throw StateError('Could not clear the recovered draft.');
+    final pending = raw == null ? null : jsonDecode(raw) as Map;
+    final negotiated = pending?['cart']?['version'] == 5;
+    final discounted = pending?['cart']?['version'] == 6;
+    if (discounted || negotiated) {
+      if ((pending!['id'] as String).toLowerCase() != requestId.toLowerCase()) {
+        throw StateError('Pending trade changed. Reopen the sales desk.');
+      }
+      (discounted
+          ? validateDiscountedSaleRequest
+          : validateNegotiatedTradeRequest)({
+        'id': pending['id'],
+        'cart': pending['cart'],
+      });
+    }
+    final receipt = await client.rpc(
+      discounted
+          ? 'vendor_sales_cart_read_v3'
+          : negotiated
+          ? 'vendor_sales_cart_read_v2'
+          : 'vendor_sales_cart_read_v1',
+      params: {
+        'p_request_id': requestId,
+        if (discounted || negotiated) 'p_cart': pending!['cart'],
+      },
+    );
+    _checkOwner();
+    if (discounted || negotiated) {
+      await preferences.reload();
+      _checkOwner();
+      if (preferences.getString(_key) != raw) {
+        throw StateError('Pending trade changed. Preserve this device data.');
       }
     }
+    if (receipt == null) return null;
+    final result = Map<String, dynamic>.from(receipt as Map);
+    if (discounted) {
+      final request = {'id': pending!['id'], 'cart': pending['cart']};
+      final confirmed = result['status'] == 'cancelled'
+          ? confirmedDiscountedSaleCancellation(result, request)
+          : confirmedDiscountedSale(result, request);
+      _confirmedDiscountedRequests[requestId.toLowerCase()] = raw!;
+      return confirmed;
+    }
+    if (negotiated) {
+      final confirmed = confirmedNegotiatedTrade(result, {
+        'id': pending!['id'],
+        'cart': pending['cart'],
+      });
+      _confirmedNegotiatedRequests[requestId.toLowerCase()] = raw!;
+      return confirmed;
+    }
+    if (isPurchaseReceipt(result) || pending?['cart']?['version'] == 4) {
+      if (raw == null) {
+        throw StateError(
+          'Pending purchase is missing. Preserve this device data.',
+        );
+      }
+      if (pending!['id'] != requestId) {
+        throw StateError('Pending purchase changed. Reopen the sales desk.');
+      }
+      final confirmed = confirmedPurchaseReceipt(result, {
+        'id': pending['id'],
+        'cart': pending['cart'],
+      });
+      _confirmedPurchaseIds.add(requestId.toLowerCase());
+      return confirmed;
+    }
+    // A v5 receipt alone does not bind outgoing copy IDs or the saved request.
+    if (isNegotiatedTradeReceipt(result)) {
+      throw StateError('Pending trade is missing. Preserve this device data.');
+    }
+    return result;
+  }
+
+  Future<Map<String, dynamic>> complete(Map<String, dynamic> request) async {
+    _checkOwner();
+    final sent = Map<String, dynamic>.from(
+      jsonDecode(jsonEncode(request)) as Map,
+    );
+    final version = sent['cart'] is Map ? sent['cart']['version'] : null;
+    if (![1, 2, 3, 4, 5, 6].contains(version)) {
+      throw StateError(
+        'Unsupported deal request. Preserve the pending request.',
+      );
+    }
+    if (version == 4 || version == 5 || version == 6) {
+      if (version == 6) {
+        validateDiscountedSaleRequest({'id': sent['id'], 'cart': sent['cart']});
+      } else if (version == 5) {
+        validateNegotiatedTradeRequest({
+          'id': sent['id'],
+          'cart': sent['cart'],
+        });
+      } else {
+        validatePurchaseRequest({'id': sent['id'], 'cart': sent['cart']});
+      }
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      if (preferences.getString(_key) != jsonEncode(sent)) {
+        throw StateError(
+          'Preserve the exact pending deal before recording it.',
+        );
+      }
+    }
+    final receipt = await client.rpc(
+      version == 6
+          ? 'vendor_sales_cart_complete_v6'
+          : version == 5
+          ? 'vendor_sales_cart_complete_v5'
+          : version == 4
+          ? 'vendor_sales_cart_complete_v4'
+          : version == 3
+          ? 'vendor_sales_cart_complete_v3'
+          : version == 2
+          ? 'vendor_sales_cart_complete_v2'
+          : 'vendor_sales_cart_complete_v1',
+      params: {'p_request_id': sent['id'], 'p_cart': sent['cart']},
+    );
+    _checkOwner();
+    final result = Map<String, dynamic>.from(receipt as Map);
+    if (version == 6) {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final encoded = jsonEncode(sent);
+      if (preferences.getString(_key) != encoded) {
+        throw StateError('Pending sale changed. Preserve this device data.');
+      }
+      final confirmed = confirmedDiscountedSale(result, {
+        'id': sent['id'],
+        'cart': sent['cart'],
+      });
+      _confirmedDiscountedRequests[(sent['id'] as String).toLowerCase()] =
+          encoded;
+      return confirmed;
+    }
+    if (version == 5) {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final encoded = jsonEncode(sent);
+      if (preferences.getString(_key) != encoded) {
+        throw StateError('Pending trade changed. Preserve this device data.');
+      }
+      final confirmed = confirmedNegotiatedTrade(result, {
+        'id': sent['id'],
+        'cart': sent['cart'],
+      });
+      _confirmedNegotiatedRequests[(sent['id'] as String).toLowerCase()] =
+          encoded;
+      return confirmed;
+    }
+    if (version == 4) {
+      final confirmed = confirmedPurchaseReceipt(result, {
+        'id': sent['id'],
+        'cart': sent['cart'],
+      });
+      _confirmedPurchaseIds.add((sent['id'] as String).toLowerCase());
+      return confirmed;
+    }
+    if (result['id'] != sent['id']) {
+      throw StateError('Sale response could not be verified. Retry this sale.');
+    }
+    return result;
+  }
+
+  Future<Map<String, dynamic>> cancelDiscounted(String requestId) async {
+    _checkOwner();
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    _checkOwner();
+    final raw = preferences.getString(_key);
+    if (raw == null) {
+      throw StateError('Pending sale is missing. Preserve this device data.');
+    }
+    final saved = jsonDecode(raw) as Map;
+    final request = validateDiscountedSaleRequest({
+      'id': saved['id'],
+      'cart': saved['cart'],
+    });
+    if ((request['id'] as String).toLowerCase() != requestId.toLowerCase()) {
+      throw StateError('Pending sale changed. Reopen the sales desk.');
+    }
+    final response = await client.rpc(
+      'vendor_sales_cart_cancel_v1',
+      params: {'p_request_id': request['id'], 'p_cart': request['cart']},
+    );
+    _checkOwner();
+    await preferences.reload();
+    _checkOwner();
+    if (preferences.getString(_key) != raw) {
+      throw StateError('Pending sale changed. Preserve this device data.');
+    }
+    final value = Map<String, dynamic>.from(response as Map);
+    final confirmed = value['status'] == 'cancelled'
+        ? confirmedDiscountedSaleCancellation(value, request)
+        : confirmedDiscountedSale(value, request);
+    _confirmedDiscountedRequests[requestId.toLowerCase()] = raw;
+    return confirmed;
+  }
+
+  Future<void> clearPending(String requestId) async {
+    _checkOwner();
+    await _serializeRequest(() async {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.reload();
+      _checkOwner();
+      final raw = preferences.getString(_key);
+      if (raw != null && (jsonDecode(raw) as Map)['id'] == requestId) {
+        final pending = jsonDecode(raw) as Map;
+        if (pending['cart'] is Map &&
+            pending['cart']['version'] == 6 &&
+            _confirmedDiscountedRequests[requestId.toLowerCase()] != raw) {
+          throw StateError(
+            'Recover or confirm cancellation of this sale before clearing it.',
+          );
+        }
+        if (pending['cart'] is Map &&
+            pending['cart']['version'] == 5 &&
+            _confirmedNegotiatedRequests[requestId.toLowerCase()] != raw) {
+          throw StateError('Recover and verify this trade before clearing it.');
+        }
+        if (!await preferences.remove(_key)) {
+          throw StateError('Could not clear the recovered draft.');
+        }
+        await preferences.reload();
+        if (preferences.getString(_key) != null) {
+          throw StateError('Could not verify the cleared deal request.');
+        }
+        _confirmedPurchaseIds.remove(requestId.toLowerCase());
+        _confirmedNegotiatedRequests.remove(requestId.toLowerCase());
+        _confirmedDiscountedRequests.remove(requestId.toLowerCase());
+      }
+    });
   }
 }
 
 String saleReceiptText(Map<String, dynamic> receipt) {
+  if (receipt['tradeIn'] is Map && receipt['tradeIn']['version'] != 1) {
+    return negotiatedTradeReceiptText(receipt, (n) => 'USD ${saleMoney(n)}');
+  }
+  if (isPurchaseReceipt(receipt)) {
+    return purchaseReceiptText(receipt, (n) => 'USD ${saleMoney(n)}');
+  }
   final items = (receipt['items'] as List).cast<Map>();
   final trade = receipt['tradeIn'] as Map?;
   final balance = receiptBalance(receipt);

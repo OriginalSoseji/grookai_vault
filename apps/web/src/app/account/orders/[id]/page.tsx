@@ -1,3 +1,4 @@
+import { OrderOwnerScope } from "@/components/orders/OrderOwnerScope";
 import Link from "next/link";
 import ContinueOrderPayment from "@/components/orders/ContinueOrderPayment";
 import CancelOrderButton from "@/components/orders/CancelOrderButton";
@@ -36,7 +37,7 @@ export default async function OrderPage({ params, searchParams }: { params: Prom
     else if (refunds.pendingMinor > 0) status = { label: "Refund pending", tone: "review", message: "A refund has been requested and is still being processed. Its recorded status is shown below." };
     else if (refunds.succeededMinor > 0) status = { label: "Partially refunded", tone: "closed", message: "A partial refund was sent to the original payment method. Its recorded amount is shown below." };
   }
-  return <main className="mx-auto max-w-4xl space-y-6 px-4 py-8">
+  return <OrderOwnerScope ownerId={user.id} reopenHref={href}><main className="mx-auto max-w-4xl space-y-6 px-4 py-8">
     <nav aria-label="Order navigation" className="flex flex-wrap gap-4 text-sm font-semibold"><Link href="/account/orders">Your purchases</Link><Link href="/account/store/orders">Store orders</Link><Link href="/account">Account</Link></nav>
     <h1 className="text-3xl font-bold text-slate-950">Order details</h1>
     {!order || !status ? <section role={failure ? "alert" : undefined} className="space-y-3 rounded-xl border border-slate-200 p-6"><h2 className="font-semibold">{failure ? "Order could not be loaded" : "Order unavailable"}</h2><p className="text-sm text-slate-600">{failure ? "Try loading this page again." : "This order is unavailable for the signed-in account."}</p>{failure && <a href={href} className="text-sm underline">Reload order</a>}</section> : <>
@@ -52,5 +53,5 @@ export default async function OrderPage({ params, searchParams }: { params: Prom
       {order.paid && <OrderResolutions value={resolutions} enabled={canOfferResolution()} />}
       <footer className="space-y-2 text-xs text-slate-500"><p className="break-all">Order {order.id}</p><p>Created <time dateTime={order.createdAt}>{new Date(order.createdAt).toLocaleString("en-US", { timeZone: "UTC" })} UTC</time></p><p>Order access remains available after a subscription or store publication changes.</p></footer>
     </>}
-  </main>;
+  </main></OrderOwnerScope>;
 }

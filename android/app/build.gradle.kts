@@ -49,6 +49,49 @@ if (
 val lockedAcceptanceRequested =
     lockedAcceptanceFromProperty || lockedAcceptanceFromEnvironment
 
+val portfolioHistoryProofRequested = explicitBooleanFlag(
+    "GROOKAI_PORTFOLIO_HISTORY_PROOF",
+    providers.environmentVariable("GROOKAI_PORTFOLIO_HISTORY_PROOF").orNull,
+)
+val collectorHomeProofRequested = explicitBooleanFlag(
+    "GROOKAI_COLLECTOR_HOME_PROOF",
+    providers.environmentVariable("GROOKAI_COLLECTOR_HOME_PROOF").orNull,
+)
+val collectorUsabilityProofRequested = explicitBooleanFlag(
+    "GROOKAI_COLLECTOR_USABILITY_PROOF",
+    providers.environmentVariable("GROOKAI_COLLECTOR_USABILITY_PROOF").orNull,
+)
+val notificationsProofRequested = explicitBooleanFlag(
+    "GROOKAI_NOTIFICATIONS_PROOF",
+    providers.environmentVariable("GROOKAI_NOTIFICATIONS_PROOF").orNull,
+)
+val portabilityProofRequested = explicitBooleanFlag(
+    "GROOKAI_PORTABILITY_PROOF",
+    providers.environmentVariable("GROOKAI_PORTABILITY_PROOF").orNull,
+)
+val inventoryExportProofRequested = explicitBooleanFlag(
+    "GROOKAI_INVENTORY_EXPORT_PROOF",
+    providers.environmentVariable("GROOKAI_INVENTORY_EXPORT_PROOF").orNull,
+)
+if (inventoryExportProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested || notificationsProofRequested || portabilityProofRequested)) {
+    throw GradleException("Inventory export proof requires its separate debug app.")
+}
+if (portabilityProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested || notificationsProofRequested)) {
+    throw GradleException("Portability proof requires its separate debug app.")
+}
+if (notificationsProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested || collectorUsabilityProofRequested)) {
+    throw GradleException("Notification proof requires its separate debug app.")
+}
+if (collectorUsabilityProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested || collectorHomeProofRequested)) {
+    throw GradleException("Collector usability proof requires its separate debug app.")
+}
+if (collectorHomeProofRequested && (releaseSigningRequested || lockedAcceptanceRequested || portfolioHistoryProofRequested)) {
+    throw GradleException("Collector home proof requires its separate debug app.")
+}
+if (portfolioHistoryProofRequested && (releaseSigningRequested || lockedAcceptanceRequested)) {
+    throw GradleException("Portfolio history proof requires its separate debug app.")
+}
+
 fun signingValue(name: String): String? {
     val fromProperty = keystoreProperties.getProperty(name)?.trim()
     if (!fromProperty.isNullOrEmpty()) return fromProperty
@@ -109,6 +152,36 @@ android {
     buildTypes {
         debug {
             manifestPlaceholders["usesCleartextTraffic"] = "true"
+            if (inventoryExportProofRequested) {
+                applicationIdSuffix = ".inventoryexportproof"
+                versionNameSuffix = "-inventory-export-proof"
+                resValue("string", "app_name", "Grookai Export Proof")
+            }
+            if (portabilityProofRequested) {
+                applicationIdSuffix = ".portabilityproof"
+                versionNameSuffix = "-portability-proof"
+                resValue("string", "app_name", "Grookai Portability Proof")
+            }
+            if (notificationsProofRequested) {
+                applicationIdSuffix = ".notificationsproof"
+                versionNameSuffix = "-notifications-proof"
+                resValue("string", "app_name", "Grookai Notifications Proof")
+            }
+            if (collectorUsabilityProofRequested) {
+                applicationIdSuffix = ".collectorusabilityproof"
+                versionNameSuffix = "-collector-usability-proof"
+                resValue("string", "app_name", "Grookai Collector Usability Proof")
+            }
+            if (collectorHomeProofRequested) {
+                applicationIdSuffix = ".collectorhomeproof"
+                versionNameSuffix = "-collector-home-proof"
+                resValue("string", "app_name", "Grookai Collector Home Proof")
+            }
+            if (portfolioHistoryProofRequested) {
+                applicationIdSuffix = ".portfoliohistoryproof"
+                versionNameSuffix = "-portfolio-history-proof"
+                resValue("string", "app_name", "Grookai Portfolio History Proof")
+            }
             if (lockedAcceptanceRequested) {
                 applicationIdSuffix = ".lockedacceptance"
                 versionNameSuffix = "-locked-acceptance"

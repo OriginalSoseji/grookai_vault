@@ -2,8 +2,12 @@
 
 import { useEffect } from "react";
 
-/** Protect an unsaved store form from document exits and shared navigation links. */
-export function useStoreDraftGuard(dirty: boolean) {
+/** Protect an unsaved form from document exits and shared navigation links. */
+export function useStoreDraftGuard(
+  dirty: boolean,
+  message = "Discard your unsaved changes and leave the store editor?",
+  pending = false,
+) {
   useEffect(() => {
     if (!dirty) return;
 
@@ -29,7 +33,8 @@ export function useStoreDraftGuard(dirty: boolean) {
       // Capture before Next's shared-header Link handler changes the route.
       event.preventDefault();
       event.stopImmediatePropagation();
-      if (!window.confirm("Discard your unsaved changes and leave the store editor?")) return;
+      if (pending) { window.alert("Wait for your changes to finish saving."); return; }
+      if (!window.confirm(message)) return;
 
       // A confirmed document navigation avoids both a second unload prompt and
       // a client transition unmounting the editor before the choice is made.
@@ -43,5 +48,5 @@ export function useStoreDraftGuard(dirty: boolean) {
       window.removeEventListener("beforeunload", beforeUnload);
       document.removeEventListener("click", followLink, true);
     };
-  }, [dirty]);
+  }, [dirty, message, pending]);
 }

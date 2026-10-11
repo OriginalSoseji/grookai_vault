@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import PageSection from "@/components/layout/PageSection";
+import { CollectorOwnerBoundary } from "@/components/vault/CollectorOwnerBoundary";
 import { BinderConnectivityBoundary } from "@/components/binders/BinderOfflineBanner";
 import { BinderPublicView } from "@/components/binders/BinderViews";
 import { BinderWorkspace, type BinderTab } from "@/components/binders/BinderWorkspace";
@@ -127,6 +128,7 @@ export default async function BinderDetailPage(
         includeCustomEditor: showCustomEditor,
       });
       return (
+        <CollectorOwnerBoundary ownerId={user.id} surface="Binders" reopenHref="/binders">
         <div className="space-y-6 py-6">
           <BinderConnectivityBoundary loadedAt={binder.loadedAt}>
             <BinderIdempotencyScope seed={crypto.randomUUID()}>
@@ -142,6 +144,7 @@ export default async function BinderDetailPage(
             </BinderIdempotencyScope>
           </BinderConnectivityBoundary>
         </div>
+        </CollectorOwnerBoundary>
       );
     } catch (error) {
       if (!(error instanceof BinderRpcError)) {

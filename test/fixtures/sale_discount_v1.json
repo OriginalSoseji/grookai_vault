@@ -1,0 +1,868 @@
+[
+  {
+    "name": "zero discount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 100
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 200
+      }
+    ],
+    "discountMinor": 0,
+    "expected": [
+      "0",
+      "0"
+    ]
+  },
+  {
+    "name": "one cent stable tie",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 1,
+    "expected": [
+      "1",
+      "0",
+      "0"
+    ]
+  },
+  {
+    "name": "two cents stable tie",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 2,
+    "expected": [
+      "1",
+      "1",
+      "0"
+    ]
+  },
+  {
+    "name": "uneven weights",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 100
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 200
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 300
+      }
+    ],
+    "discountMinor": 7,
+    "expected": [
+      "1",
+      "2",
+      "4"
+    ]
+  },
+  {
+    "name": "quantity weights",
+    "items": [
+      {
+        "quantity": 3,
+        "unitMinor": 101
+      },
+      {
+        "quantity": 2,
+        "unitMinor": 99
+      }
+    ],
+    "discountMinor": 7,
+    "expected": [
+      "4",
+      "3"
+    ]
+  },
+  {
+    "name": "zero net small line",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 100
+      }
+    ],
+    "discountMinor": 100,
+    "expected": [
+      "1",
+      "99"
+    ]
+  },
+  {
+    "name": "full subtotal allocation",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 13
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 7
+      }
+    ],
+    "discountMinor": 20,
+    "expected": [
+      "13",
+      "7"
+    ]
+  },
+  {
+    "name": "exact multiplication above float precision",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 99999999
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 99999999,
+    "expected": [
+      "99999998",
+      "1"
+    ]
+  },
+  {
+    "name": "large close weights",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 50000001
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 49999999
+      }
+    ],
+    "discountMinor": 99999999,
+    "expected": [
+      "50000000",
+      "49999999"
+    ]
+  },
+  {
+    "name": "maximum single amount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 100000000
+      }
+    ],
+    "discountMinor": 100000000,
+    "expected": [
+      "100000000"
+    ]
+  },
+  {
+    "name": "maximum quantity",
+    "items": [
+      {
+        "quantity": 999,
+        "unitMinor": 100
+      }
+    ],
+    "discountMinor": 1,
+    "expected": [
+      "1"
+    ]
+  },
+  {
+    "name": "fifty lines stable allocation",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 2000000
+      }
+    ],
+    "discountMinor": 49,
+    "expected": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "0"
+    ]
+  },
+  {
+    "name": "reject over subtotal",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 2
+      }
+    ],
+    "discountMinor": 3
+  },
+  {
+    "name": "reject negative discount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 2
+      }
+    ],
+    "discountMinor": -1
+  },
+  {
+    "name": "reject fractional discount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 2
+      }
+    ],
+    "discountMinor": 0.1
+  },
+  {
+    "name": "reject text discount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 2
+      }
+    ],
+    "discountMinor": "1"
+  },
+  {
+    "name": "reject null discount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 2
+      }
+    ],
+    "discountMinor": null
+  },
+  {
+    "name": "reject boolean discount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 2
+      }
+    ],
+    "discountMinor": true
+  },
+  {
+    "name": "reject over-limit discount",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 100000000
+      }
+    ],
+    "discountMinor": 100000001
+  },
+  {
+    "name": "reject over-limit subtotal",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 100000000
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 1
+  },
+  {
+    "name": "reject zero quantity",
+    "items": [
+      {
+        "quantity": 0,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject excessive quantity",
+    "items": [
+      {
+        "quantity": 1000,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject fractional quantity",
+    "items": [
+      {
+        "quantity": 1.5,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject zero unit",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 0
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject negative unit",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": -1
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject fractional unit",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 1.1
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject text unit",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": "1"
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject over-limit unit",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 100000001
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject empty items",
+    "items": [],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject object items",
+    "items": {},
+    "discountMinor": 0
+  },
+  {
+    "name": "reject null items",
+    "items": null,
+    "discountMinor": 0
+  },
+  {
+    "name": "reject null line",
+    "items": [
+      null
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject missing quantity",
+    "items": [
+      {
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 0
+  },
+  {
+    "name": "reject fifty-one lines",
+    "items": [
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      },
+      {
+        "quantity": 1,
+        "unitMinor": 1
+      }
+    ],
+    "discountMinor": 0
+  }
+]

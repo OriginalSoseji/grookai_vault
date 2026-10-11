@@ -154,17 +154,13 @@ test("Xcode Cloud injects required release configuration before archive", () => 
   assert.match(releaseConfig, /#include\? "ReleaseSecrets\.xcconfig"/);
 });
 
-test("enabled personal Binders have a visible signed-in navigation entry", () => {
+test("Binders stays visible while its library enforces feature availability", () => {
   assert.match(mainShell, /Future<void> _openBinderLibrary\(\)/);
   assert.match(mainShell, /label: 'Binders'/);
-  assert.match(
-    mainShell,
-    /BinderFeatureFlags\.production\.personalAvailable/,
-  );
-  assert.match(
-    mainShell,
-    /BinderLibraryScreen\(featureFlags: BinderFeatureFlags\.production\)/,
-  );
+  assert.match(mainShell, /case _ShellDestination\.binders:[\s\S]*?BinderLibraryScreen\([\s\S]*?featureFlags: BinderFeatureFlags\.production/);
+  const library = readFileSync("lib/screens/binders/binder_library_screen.dart", "utf8");
+  assert.match(library, /if \(widget.featureFlags.personalAvailable\)/);
+  assert.match(library, /body: !flags.personalAvailable/);
 });
 
 test("startup configuration failure renders an explicit app state", () => {

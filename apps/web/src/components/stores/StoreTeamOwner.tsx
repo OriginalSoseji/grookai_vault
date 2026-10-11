@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { TEAM_PERMISSIONS, TEAM_WORKFLOW_PERMISSIONS, TEAM_PERMISSION_LABELS, type StoreTeam, type TeamPermission } from "@/lib/stores/storeTeam";
-import { storeRequest } from "./storeManagerClient";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
 import s from "./StoreTeam.module.css";
 
 export function PermissionChoices({ value, onChange, disabled = false, workflows = false }: { value: TeamPermission[]; onChange: (value: TeamPermission[]) => void; disabled?: boolean; workflows?: boolean }) {
@@ -13,10 +13,11 @@ function Member({ member, busy, enabled, workflows, change }: { member: StoreTea
   return <section className={s.panel}><h2>{member.email}</h2>{member.revoked_at ? <p>Access removed</p> : <><PermissionChoices value={permissions} onChange={setPermissions} workflows={workflows} disabled={busy || !enabled} /><div className={s.actions}><button disabled={busy || !enabled || !permissions.length} onClick={() => void change({ action: "permissions", subject: member.user_id, permissions })}>Save permissions</button><button disabled={busy} onClick={() => void change({ action: "revoke", subject: member.user_id })}>Remove access</button></div></>}</section>;
 }
 export default function StoreTeamOwner() {
+  const { storeRequest } = useStoreOwnerApi();
   const [team, setTeam] = useState<StoreTeam | null>(null);
   const [email, setEmail] = useState(""); const [permissions, setPermissions] = useState<TeamPermission[]>([]);
   const [busy, setBusy] = useState(false); const [error, setError] = useState(""); const [notice, setNotice] = useState(""); const [invite, setInvite] = useState("");
-  useEffect(() => { let active = true; storeRequest<StoreTeam>("/api/stores/team").then(data => { if (active) setTeam(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, []);
+  useEffect(() => { let active = true; storeRequest<StoreTeam>("/api/stores/team").then(data => { if (active) setTeam(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [storeRequest]);
   async function change(body: Record<string, unknown>) {
     setBusy(true); setError(""); setNotice("");
     try { const result = await storeRequest<{ url?: string }>("/api/stores/team", body);

@@ -64,6 +64,24 @@ param(
   [switch]$ReceiptDeliveryBaselineV1,
   [switch]$ReceiptDeliveryReleaseV1,
   [switch]$SalesSplitPaymentsReleaseV1,
+  [switch]$ProductEconomicsBaselineV1,
+  [switch]$ProductPurchaseBaselineV1,
+  [switch]$ProductOfferTradeBaselineV1,
+  [switch]$ProductCostHistoryBaselineV1,
+  [switch]$ProductCostHistoryV1,
+  [switch]$ProductPortfolioHistoryV1,
+  [switch]$ProductCostHistoryReleaseBaselineV1,
+  [switch]$ProductDiscountBaselineV1,
+  [switch]$ProductDiscountReleaseBaselineV1,
+  [switch]$ProductDiscountV1,
+  [switch]$ProductEventBaselineV1,
+  [switch]$ProductEventReleaseBaselineV1,
+  [switch]$ProductEventV1,
+  [switch]$ProductDealRefreshBaselineV1,
+  [switch]$ProductDealRefreshV1,
+  [switch]$ProductDealBaselineV1,
+  [switch]$ProductDealReleaseV1,
+  [switch]$ProductEconomicsReleaseV1,
   [switch]$CollectrCostBaselineV1,
   [switch]$CollectrCostReleaseV1,
   [switch]$SalesTradeReleaseV1,
@@ -94,6 +112,181 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ProductCostHistoryReleaseBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductCostHistoryReleaseBaselineV1') }).Count -gt 0) {
+    throw 'ProductCostHistoryReleaseBaselineV1 supports only the fixed read-only source437 release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_cost_history_release_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Historical cost release baseline failed.' }
+  exit 0
+}
+
+if ($ProductPortfolioHistoryV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000,20261008130000,20261008160000,20261008170000,20261008190000,20261008220000'
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductPortfolioHistoryV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductPortfolioHistoryV1 requires exactly the eight qualified cost, purchase, Trade, event, discount, cancellation, correction and portfolio migrations; delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_portfolio_history_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Portfolio history release gate failed.' }
+  exit 0
+}
+
+if ($ProductCostHistoryV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000,20261008130000,20261008160000,20261008170000,20261008190000'
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductCostHistoryV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductCostHistoryV1 requires exactly the seven qualified cost, purchase, Trade, event, discount, cancellation and correction migrations; delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_cost_history_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Cost history release gate failed.' }
+  exit 0
+}
+
+if ($ProductCostHistoryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductCostHistoryBaselineV1') }).Count -gt 0) {
+    throw 'ProductCostHistoryBaselineV1 supports only the fixed read-only pre-change source436 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_cost_history_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Historical cost baseline failed.' }
+  exit 0
+}
+
+if ($ProductDiscountV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000,20261008130000,20261008160000,20261008170000'
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDiscountV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductDiscountV1 requires exactly cost, purchase, negotiated Trade, events, discounts and cancellation; delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_discount_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Discount release gate failed.' }
+  exit 0
+}
+
+if ($ProductDiscountReleaseBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDiscountReleaseBaselineV1') }).Count -gt 0) {
+    throw 'ProductDiscountReleaseBaselineV1 supports only the fixed read-only source436 release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_discount_release_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Discount release baseline failed.' }
+  exit 0
+}
+
+if ($ProductDiscountBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDiscountBaselineV1') }).Count -gt 0) {
+    throw 'ProductDiscountBaselineV1 supports only the fixed read-only pre-discount source434 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_discount_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Discount baseline failed.' }
+  exit 0
+}
+
+if ($ProductEventV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000,20261008130000'
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEventV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductEventV1 requires exactly cost, purchase, negotiated Trade and events; delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_event_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Event release gate failed.' }
+  exit 0
+}
+
+if ($ProductEventReleaseBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEventReleaseBaselineV1') }).Count -gt 0) {
+    throw 'ProductEventReleaseBaselineV1 supports only the fixed read-only source434 release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_event_release_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Event release baseline failed.' }
+  exit 0
+}
+
+if ($ProductEventBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEventBaselineV1') }).Count -gt 0) {
+    throw 'ProductEventBaselineV1 supports only the fixed read-only pre-event baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_event_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Event closeout baseline failed.' }
+  exit 0
+}
+
+if ($ProductDealRefreshV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealRefreshV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductDealRefreshV1 requires exactly cost, purchase and negotiated Trade; receipt delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_deal_refresh_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Integrated deal release qualification failed.' }
+  exit 0
+}
+
+if ($ProductDealRefreshBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealRefreshBaselineV1') }).Count -gt 0) {
+    throw 'ProductDealRefreshBaselineV1 supports only the fixed read-only integrated release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_deal_refresh_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Integrated deal release baseline failed.' }
+  exit 0
+}
+
+if ($ProductDealReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261007180000,20261008021000,20261008060000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact)) {
+    throw 'ProductDealReleaseV1 requires exactly cost, purchase and negotiated Trade; receipt delivery stays deferred.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_deal_release_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Product combined deal release qualification failed.' }
+  exit 0
+}
+
+if ($ProductDealBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductDealBaselineV1') }).Count -gt 0) {
+    throw 'ProductDealBaselineV1 supports only the fixed read-only combined release baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_deal_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product combined deal baseline failed.' }
+  exit 0
+}
+
+if ($ProductOfferTradeBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductOfferTradeBaselineV1') }).Count -gt 0) {
+    throw 'ProductOfferTradeBaselineV1 supports only the read-only linked audit before negotiated trade SQL.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_offer_trade_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product offer/trade baseline failed.' }
+  exit 0
+}
+
+if ($ProductPurchaseBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductPurchaseBaselineV1') }).Count -gt 0) {
+    throw 'ProductPurchaseBaselineV1 supports only the read-only linked audit before purchase SQL.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_purchase_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product purchase baseline failed.' }
+  exit 0
+}
+
+if ($ProductEconomicsReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEconomicsReleaseV1','ExpectedLocalOnlyIds') }).Count -gt 0 -or ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261007180000') -or ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261007180000')) {
+    throw 'ProductEconomicsReleaseV1 requires the exact cost-only scope 20261007180000.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_product_economics_release_v1.mjs') $Phase
+  if ($LASTEXITCODE -ne 0) { throw 'Product economics release qualification failed.' }
+  exit 0
+}
+
+if ($ProductEconomicsBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductEconomicsBaselineV1') }).Count -gt 0) {
+    throw 'ProductEconomicsBaselineV1 supports only the read-only linked audit.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_product_economics_baseline_v1.mjs')
+  if ($LASTEXITCODE -ne 0) { throw 'Product economics baseline failed.' }
+  exit 0
+}
 
 if ($CollectrCostReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

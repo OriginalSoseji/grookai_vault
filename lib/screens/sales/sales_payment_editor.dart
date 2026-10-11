@@ -9,10 +9,12 @@ class SalesPaymentEditor extends StatelessWidget {
     required this.balance,
     required this.disabled,
     required this.onChanged,
+    this.payoutRecipient = 'customer',
   });
   final List<Map<String, dynamic>> entries;
   final int balance;
   final bool disabled;
+  final String payoutRecipient;
   final ValueChanged<List<Map<String, dynamic>>> onChanged;
 
   @override
@@ -37,7 +39,7 @@ class SalesPaymentEditor extends StatelessWidget {
       children: [
         Text(
           balance < 0
-              ? 'Record how you paid the customer.'
+              ? 'Record how you paid the $payoutRecipient.'
               : balance == 0
               ? 'Even trade — no money exchanged.'
               : 'Record amounts collected outside Grookai.',

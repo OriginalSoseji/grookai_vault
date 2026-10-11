@@ -1,3 +1,4 @@
+import 'screens/account/price_alerts_screen.dart';
 // lib/main.dart
 import 'dart:async';
 import 'dart:convert';
@@ -22,6 +23,8 @@ import 'models/provisional_card.dart';
 import 'models/grookai_sale_listing.dart';
 import 'secrets.dart';
 import 'screens/account/account_screen.dart';
+import 'screens/account/import_collection_screen.dart';
+import 'screens/vault/binder_continuation_panel.dart';
 import 'screens/auth/sign_in_continuation_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/dex/grookai_dex_screen.dart';
@@ -37,6 +40,8 @@ import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/gvvi/vendor_pricing_workspace_screen.dart';
 import 'screens/sales/sales_desk_screen.dart';
+import 'screens/sales/sales_reports_screen.dart';
+import 'screens/workspace/vendor_workspace_screen.dart';
 import 'screens/stores/storefront_screen.dart';
 import 'screens/stores/store_management_screen.dart';
 import 'screens/stores/custom_product_screen.dart';
@@ -48,6 +53,8 @@ import 'screens/sets/public_set_detail_screen.dart';
 import 'screens/sets/public_sets_screen.dart';
 import 'screens/vault/vault_manage_card_screen.dart';
 import 'screens/vault/collection_projects_screen.dart';
+import 'screens/vault/portfolio_history_panel.dart';
+import 'services/vault/portfolio_history_service.dart';
 import 'screens/binders/binder_collaboration_screens.dart';
 import 'screens/binders/binder_discovery_screens.dart';
 import 'screens/binders/binder_library_screen.dart';
@@ -60,8 +67,6 @@ import 'widgets/scanner/scanner_state_notice_dialog.dart';
 import 'services/network/card_engagement_service.dart';
 import 'services/network/local_community_feed_service.dart';
 import 'services/network/smart_feed_service.dart';
-import 'services/account/account_profile_service.dart';
-import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';
 import 'services/diagnostics/grookai_crash_reporting_service.dart';
 import 'services/grookai_dex/grookai_dex_service.dart';
@@ -74,6 +79,7 @@ import 'services/scanner/scanner_native_camera_guardrail.dart';
 import 'services/scanner/native_condition_camera_bridge.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/navigation/pending_personal_card_action.dart';
+import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_exact_pricing.dart';
 import 'services/sealed/owned_sealed_service_v1.dart';
@@ -101,7 +107,6 @@ import 'widgets/card_surface_price.dart';
 import 'widgets/card_view_mode.dart';
 import 'widgets/gv_chip.dart';
 import 'widgets/app_shell_metrics.dart';
-import 'widgets/onboarding/onboarding_ladder_sheet.dart';
 import 'widgets/provisional/provisional_card_section.dart';
 import 'models/search_interpretation.dart';
 import 'widgets/search_interpretation_chips.dart';
@@ -2811,6 +2816,12 @@ class _MyAppState extends State<MyApp> {
           return;
         }
         final nextSession = Supabase.instance.client.auth.currentSession;
+        final previousOwner = _authSession?.user.id;
+        final ownerChanged =
+            previousOwner != null && previousOwner != nextSession?.user.id;
+        if (ownerChanged) {
+          PendingPersonalCardActionCoordinator.clearForAccountChange();
+        }
         final pendingPersonalAction =
             PendingPersonalCardActionCoordinator.pending;
         final authenticated = nextSession != null && !nextSession.isExpired;
@@ -2819,20 +2830,22 @@ class _MyAppState extends State<MyApp> {
           _authRecoveryPending =
               event.event == AuthChangeEvent.initialSession &&
               (nextSession?.isExpired ?? false);
-          if (!authenticated) {
+          if (!authenticated || ownerChanged) {
             _pendingPersonalActionAuthHandoffId = null;
           }
-          if (event.event == AuthChangeEvent.signedOut && !authenticated) {
+          if (ownerChanged ||
+              (event.event == AuthChangeEvent.signedOut && !authenticated)) {
             _pendingCanonicalLink = null;
             _pendingDebugAction = null;
           }
         });
-        if (event.event == AuthChangeEvent.signedOut && !authenticated) {
+        if (ownerChanged ||
+            (event.event == AuthChangeEvent.signedOut && !authenticated)) {
           // Replacing the home widget does not remove pushed detail/search
           // routes. Drop their cached signed-in state when the session ends.
+          final nextOwner = nextSession?.user.id;
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (!mounted ||
-                (_authSession != null && !_authSession!.isExpired)) {
+            if (!mounted || _authSession?.user.id != nextOwner) {
               return;
             }
             _navigatorKey.currentState?.popUntil((route) => route.isFirst);
@@ -3263,16 +3276,14 @@ class _MyAppState extends State<MyApp> {
             );
           } else if (shellReady) {
             AppBootTiming.markOnce('first_route_shell');
-            root = RequiredProfileSetupGate(
-              key: ValueKey('profile-gate-${session.user.id}'),
-              child: AppShell(
-                pendingCanonicalLink: _pendingCanonicalLink,
-                onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
-                pendingDebugAction: _pendingDebugAction,
-                onDebugActionHandled: _handleDebugActionConsumed,
-                themeMode: _themeMode,
-                onThemeModeChanged: _setThemeMode,
-              ),
+            root = AppShell(
+              key: ValueKey('collector-shell-${session.user.id}'),
+              pendingCanonicalLink: _pendingCanonicalLink,
+              onCanonicalLinkHandled: _handleCanonicalLinkConsumed,
+              pendingDebugAction: _pendingDebugAction,
+              onDebugActionHandled: _handleDebugActionConsumed,
+              themeMode: _themeMode,
+              onThemeModeChanged: _setThemeMode,
             );
           } else {
             final pendingRoute = _pendingCanonicalLink?.route;
@@ -3350,6 +3361,7 @@ class _MyAppState extends State<MyApp> {
                 case GrookaiCanonicalRouteKind.feed:
                 case GrookaiCanonicalRouteKind.binderLibrary:
                 case GrookaiCanonicalRouteKind.binderInvitation:
+                case GrookaiCanonicalRouteKind.priceAlerts:
                 case GrookaiCanonicalRouteKind.founderNotifications:
                 case GrookaiCanonicalRouteKind.founderOperations:
                   break;

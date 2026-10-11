@@ -1,0 +1,26 @@
+// Copy qualified CLI dependencies into a new one-use volume with no network.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+const root='C:/gv_product_cost_history_20261008',base='C:/grookai_vault_operator_artifacts/product_cost_history_20261008';
+assert.equal(process.argv.length,2);assert.equal(process.cwd().replaceAll('\\','/'),root);
+const out=base+'/release-shadow-cache-v1',project='costhist-rel-shadow-436-v1-20261008',target='supabase_edge_runtime_'+project,helper='costhist-rel-cache-copy-v1-20261008';
+const previous='C:/grookai_vault_operator_artifacts/product_deal_release_20261008/shadow-cache-v2';
+const read=p=>JSON.parse(fs.readFileSync(p)),sha=p=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const prior=read(previous+'/intent.json'),proof=read(previous+'/proof.json');
+assert.equal(prior.source,'supabase_edge_runtime_cost-shadow-430-v7-20261007');assert.equal(proof.status,'passed');assert.equal(proof.sourceUnchanged,true);assert.equal(proof.exactCopy,true);
+assert.equal(sha(previous+'/copy.mjs'),prior.producerSha256);assert.equal(sha(prior.sourceQualifiedReceipt),prior.sourceQualifiedReceiptSha256);assert.equal(read(prior.sourceQualifiedReceipt).status,'passed');
+const docker=(...args)=>execFileSync('docker',args,{encoding:'utf8',windowsHide:true,timeout:90000,maxBuffer:4*1024*1024}).trim();
+assert.ok(!fs.existsSync(out));assert.equal(docker('volume','ls','--filter','name=^'+target+'$','--format','{{.Name}}'),'');assert.equal(docker('ps','-a','--filter','name=^/'+helper+'$','--format','{{.Names}}'),'');
+const source=JSON.parse(docker('volume','inspect',prior.source))[0];assert.equal(source.Name,prior.source);assert.equal(docker('ps','--filter','volume='+prior.source,'--format','{{.Names}}'),'');
+fs.mkdirSync(out);fs.copyFileSync(previous+'/copy.mjs',out+'/copy.mjs',fs.constants.COPYFILE_EXCL);
+fs.writeFileSync(out+'/intent.json',JSON.stringify({...prior,at:new Date().toISOString(),target,project,helper,sourceReadOnly:true,consumed:true},null,2),{flag:'wx'});
+docker('volume','create','--label','com.supabase.cli.project='+project,target);
+docker('create','--name',helper,'--network','none','--mount','type=volume,source='+prior.source+',target=/qualified,readonly','--mount','type=volume,source='+target+',target=/candidate','node:22-bookworm-slim','node','/copy.mjs');
+docker('cp',out+'/copy.mjs',helper+':/copy.mjs');
+const inspect=JSON.parse(docker('inspect',helper))[0];assert.equal(inspect.HostConfig.NetworkMode,'none');assert.equal(inspect.Mounts.find(m=>m.Destination==='/qualified').RW,false);assert.equal(inspect.Mounts.find(m=>m.Destination==='/candidate').Name,target);
+docker('start','-a',helper);assert.equal(JSON.parse(docker('inspect',helper))[0].State.ExitCode,0);
+for(const name of ['proof.json','before.json','after.json'])docker('cp',helper+':/'+name,out+'/'+name);
+const result=read(out+'/proof.json');assert.equal(result.status,'passed');assert.equal(result.manifestSha256,proof.manifestSha256);assert.equal(sha(out+'/before.json'),proof.manifestSha256);assert.equal(sha(out+'/after.json'),proof.manifestSha256);
+console.log(JSON.stringify({status:'passed',out,entries:result.entries,bytes:result.bytes,network:'none'}));

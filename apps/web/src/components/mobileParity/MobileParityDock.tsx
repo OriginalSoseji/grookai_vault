@@ -17,12 +17,11 @@ function DockIcon({ name }: { name: MobilePrimaryDockKey }) {
           <circle cx="18" cy="17.25" r="2" />
         </svg>
       );
-    case "wall":
+    case "binders":
       return (
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={iconClass} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="4" y="4.5" width="16" height="15" rx="3" />
-          <path d="M7.5 15.5c1.5-2 2.6-3 3.5-3 .85 0 1.5.55 2.25 1.2.7.62 1.15.92 1.75.92.8 0 1.55-.54 2.5-1.72" />
-          <circle cx="9.25" cy="9.25" r="1.25" />
+          <path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1Z" />
+          <path d="M12 5v15" />
         </svg>
       );
     case "scan":
@@ -51,7 +50,6 @@ function DockIcon({ name }: { name: MobilePrimaryDockKey }) {
 export function MobileParityDock({
   activeKey,
   pulseUnreadCount = 0,
-  wallHref,
 }: {
   activeKey: Exclude<MobilePrimaryDockKey, "scan"> | null;
   pulseUnreadCount?: number;
@@ -67,9 +65,7 @@ export function MobileParityDock({
         {MOBILE_PRIMARY_DOCK.map((item) => {
           const selected = item.kind === "root" && item.key === activeKey;
           const isScan = item.key === "scan";
-          const href = item.key === "wall" && wallHref !== undefined
-            ? wallHref
-            : item.href;
+          const href = item.href;
           const content = (
             <>
               {isScan ? (
@@ -89,19 +85,6 @@ export function MobileParityDock({
               <span>{item.label}</span>
             </>
           );
-
-          if (!href) {
-            return (
-              <span
-                key={item.key}
-                aria-disabled="true"
-                className={`${styles.item} ${styles.disabled}`}
-                data-dock-label={item.label}
-              >
-                {content}
-              </span>
-            );
-          }
 
           return (
             <Link

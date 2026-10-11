@@ -1,0 +1,4341 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "known contribution never gains unknown-cost sales",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "3000",
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": "4000",
+          "unknownSalesMinor": "5000",
+          "knownCostMinor": "6000"
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "identical repeated receipt counted once",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "3000",
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": "4000",
+          "unknownSalesMinor": "5000",
+          "knownCostMinor": "6000"
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "assigned receipt outside suggested dates remains counted",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2030-01-01",
+              "endDate": "2030-01-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "3000",
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": "4000",
+          "unknownSalesMinor": "5000",
+          "knownCostMinor": "6000"
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "void expense excluded with retained count",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": true,
+                "lastReason": "Duplicate",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "0",
+        "knownCostEventSubtotalMinor": "4000",
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": "4000",
+          "unknownSalesMinor": "5000",
+          "knownCostMinor": "6000"
+        },
+        "voidedExpenseCount": 1
+      },
+      "valid": true
+    },
+    {
+      "name": "no known cost is unavailable rather than zero",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": []
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": null,
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": null,
+          "unknownSalesMinor": "15000",
+          "knownCostMinor": "0"
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "known zero cost",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "0.00",
+                  "minor": "0",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "9000",
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": "10000",
+          "unknownSalesMinor": "5000",
+          "knownCostMinor": "0"
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "foreign cost remains uncovered",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "foreign_currency",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "CAD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": null,
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": null,
+          "unknownSalesMinor": "15000",
+          "knownCostMinor": "0"
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "discount without allocation remains uncovered",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 1000,
+            "taxMinor": 0,
+            "totalMinor": 9000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "14000",
+        "taxMinor": "0",
+        "receivedMinor": "14000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": null,
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": null,
+          "unknownSalesMinor": "14000",
+          "knownCostMinor": "0"
+        }
+      },
+      "valid": true
+    },
+    {
+      "name": "receipt search retains all event expenses",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ],
+        "query": "Card 1"
+      },
+      "expected": {
+        "salesMinor": "10000",
+        "taxMinor": "0",
+        "receivedMinor": "10000",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "3000",
+        "transactions": 1,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 1,
+        "profit": {
+          "knownProfitMinor": "4000",
+          "unknownSalesMinor": "0",
+          "knownCostMinor": "6000"
+        },
+        "receiptsFiltered": true
+      },
+      "valid": true
+    },
+    {
+      "name": "empty receipt filter preserves unavailable contribution",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ],
+        "query": "No match"
+      },
+      "expected": {
+        "salesMinor": "0",
+        "receivedMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": null,
+        "transactions": 0,
+        "assignedReceipts": 2,
+        "receiptsFiltered": true
+      },
+      "valid": true
+    },
+    {
+      "name": "trade credit, tender, and change stay separate",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "11111111-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 650,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 650,
+              "balanceMinor": 350
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 350,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": 350,
+              "changeMinor": 150
+            }
+          }
+        ],
+        "snapshots": []
+      },
+      "expected": {
+        "salesMinor": "1000",
+        "receivedMinor": "350",
+        "paidMinor": "0",
+        "tradeCreditMinor": "650",
+        "cashReceivedMinor": "350",
+        "knownCashTenderedMinor": "500",
+        "knownCashChangeMinor": "150",
+        "unknownCashTenderReceipts": 0,
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": null
+      },
+      "valid": true
+    },
+    {
+      "name": "purchase is inventory spend, not operating expense",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000005-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 2,
+            "kind": "purchase",
+            "id": "00000005-1111-4111-8111-111111111111",
+            "number": "GVB-20261008-00000005",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "Seller",
+            "currency": "USD",
+            "items": [
+              {
+                "description": "Incoming bundle",
+                "quantity": 2,
+                "unitMinor": 350,
+                "referenceMinor": null,
+                "rateBps": null,
+                "cardId": null,
+                "printingId": null,
+                "condition": null,
+                "addToVault": false,
+                "lineMinor": 700,
+                "printingGvId": null,
+                "instanceId": null,
+                "gvviId": null
+              }
+            ],
+            "purchaseMinor": 700,
+            "method": "Cash",
+            "payments": {
+              "version": 1,
+              "balanceMinor": -700,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 700,
+                  "tenderedMinor": 700
+                }
+              ],
+              "changeMinor": 0
+            },
+            "note": ""
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "0",
+        "receivedMinor": "15000",
+        "paidMinor": "700",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "700",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "3000",
+        "transactions": 3,
+        "assignedReceipts": 3,
+        "unknownCashTenderReceipts": 2,
+        "profit": {
+          "knownProfitMinor": "4000",
+          "unknownSalesMinor": "5000",
+          "knownCostMinor": "6000"
+        },
+        "cashPaidMinor": "700",
+        "purchaseTransactions": 1,
+        "purchasedUnits": "2"
+      },
+      "valid": true
+    },
+    {
+      "name": "trade payout does not become negative sales",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "11111111-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "11111111-1111-4111-8111-111111111111",
+            "number": "GV-20261008-11111111",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Trade store",
+            "customerName": "Private buyer",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Outgoing card",
+                "quantity": 1,
+                "unitMinor": 1000,
+                "lineMinor": 1000
+              }
+            ],
+            "subtotalMinor": 1000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1000,
+            "note": "PRIVATE NOTE",
+            "sourceDispositionId": "33333333-3333-4333-8333-333333333333",
+            "tradeIn": {
+              "version": 2,
+              "items": [
+                {
+                  "description": "Incoming bundle",
+                  "valueMinor": 1000,
+                  "rateBps": 6000,
+                  "quantity": 1,
+                  "cardId": null,
+                  "printingId": null,
+                  "condition": null,
+                  "addToVault": false,
+                  "creditMinor": 1500,
+                  "printingGvId": null,
+                  "instanceId": null,
+                  "gvviId": null
+                }
+              ],
+              "totalValueMinor": 1000,
+              "totalCreditMinor": 1500,
+              "balanceMinor": -500
+            },
+            "payments": {
+              "version": 1,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 500,
+                  "tenderedMinor": 500
+                }
+              ],
+              "balanceMinor": -500,
+              "changeMinor": 0
+            }
+          }
+        ],
+        "snapshots": []
+      },
+      "expected": {
+        "salesMinor": "1000",
+        "receivedMinor": "0",
+        "paidMinor": "500",
+        "tradeCreditMinor": "1500",
+        "cashPaidMinor": "500",
+        "knownCashTenderedMinor": "0",
+        "knownCashChangeMinor": "0",
+        "operatingExpenseMinor": "1000"
+      },
+      "valid": true
+    },
+    {
+      "name": "tax and split payment remain separate from item sales",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Split payment",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 800,
+            "totalMinor": 10800,
+            "note": "",
+            "sourceDispositionId": null,
+            "payments": {
+              "version": 1,
+              "balanceMinor": 10800,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 800,
+                  "tenderedMinor": 1000
+                },
+                {
+                  "method": "Card (external terminal)",
+                  "amountMinor": 10000,
+                  "tenderedMinor": 10000
+                }
+              ],
+              "changeMinor": 200
+            }
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "salesMinor": "15000",
+        "taxMinor": "800",
+        "receivedMinor": "15800",
+        "paidMinor": "0",
+        "tradeCreditMinor": "0",
+        "inventoryPurchaseMinor": "0",
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "3000",
+        "transactions": 2,
+        "assignedReceipts": 2,
+        "unknownCashTenderReceipts": 1,
+        "profit": {
+          "knownProfitMinor": "4000",
+          "unknownSalesMinor": "5000",
+          "knownCostMinor": "6000"
+        },
+        "cashReceivedMinor": "5800",
+        "knownCashTenderedMinor": "1000",
+        "knownCashChangeMinor": "200"
+      },
+      "valid": true
+    },
+    {
+      "name": "payment filter matches a split tender",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Split payment",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null,
+            "payments": {
+              "version": 1,
+              "balanceMinor": 10000,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 2000,
+                  "tenderedMinor": 2000
+                },
+                {
+                  "method": "Card (external terminal)",
+                  "amountMinor": 8000,
+                  "tenderedMinor": 8000
+                }
+              ],
+              "changeMinor": 0
+            }
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ],
+        "method": "Card (external terminal)"
+      },
+      "expected": {
+        "salesMinor": "10000",
+        "receivedMinor": "10000",
+        "cashReceivedMinor": "2000",
+        "transactions": 1,
+        "operatingExpenseMinor": "1000",
+        "knownCostEventSubtotalMinor": "3000",
+        "receiptsFiltered": true
+      },
+      "valid": true
+    },
+    {
+      "name": "empty event preserves unavailable profit and expenses",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": {
+        "transactions": 0,
+        "assignedReceipts": 0,
+        "knownCostEventSubtotalMinor": null,
+        "operatingExpenseMinor": "1000",
+        "salesMinor": "0"
+      },
+      "valid": true
+    },
+    {
+      "name": "contradictory duplicate even outside filter",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "Changed",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ],
+        "query": "No match"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "case alias conflicts",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-aaaa-4aaa-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000001-AAAA-4AAA-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "mismatched book revision",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "2",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "foreign owner",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "0000007b-1111-4111-8111-111111111111",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "missing assigned receipt",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "line arithmetic corruption",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 999
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "total arithmetic corruption",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 999,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "malformed receipt hidden by search",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "invalid",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ],
+        "query": "No match"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "ambiguous assigned receipt",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [
+              "00000001-1111-4111-8111-111111111111"
+            ],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "cloud unavailable",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": false,
+          "receiptAccess": false,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": null,
+            "receiptIdentityConflicts": [],
+            "bookRevision": null
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "conflicting cost snapshots",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          },
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "5000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "unselected malformed receipt still refuses totals",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 1,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "payment does not reconcile",
+      "args": {
+        "state": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "revision": "9007199254740993",
+          "entryEnabled": true,
+          "receiptAccess": true,
+          "events": [
+            {
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Card show",
+              "startDate": "2026-11-01",
+              "endDate": "2026-11-02",
+              "timeZone": "America/Havana",
+              "currency": "USD",
+              "notes": "",
+              "status": "open",
+              "stateReason": "",
+              "revision": "9007199254740992",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "selected": {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "expenses": [
+              {
+                "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "category": "booth",
+                "description": "Booth fee",
+                "amountMinor": "1000",
+                "currency": "USD",
+                "incurredOn": "2026-11-01",
+                "voided": false,
+                "lastReason": "",
+                "revision": "9007199254740993",
+                "createdAt": "2026-10-08T13:00:00.123456+00:00",
+                "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+              }
+            ],
+            "assignments": [
+              {
+                "receiptId": "00000001-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              },
+              {
+                "receiptId": "00000002-1111-4111-8111-111111111111",
+                "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": "1"
+              }
+            ],
+            "candidates": [],
+            "receiptIdentityConflicts": [],
+            "bookRevision": "1"
+          }
+        },
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "bookRevision": "1",
+        "receipts": [
+          {
+            "version": 1,
+            "id": "00000001-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000001",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 1",
+                "quantity": 1,
+                "unitMinor": 10000,
+                "lineMinor": 10000
+              }
+            ],
+            "subtotalMinor": 10000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 10000,
+            "note": "",
+            "sourceDispositionId": null,
+            "payments": {
+              "version": 1,
+              "balanceMinor": 10000,
+              "entries": [
+                {
+                  "method": "Cash",
+                  "amountMinor": 9900,
+                  "tenderedMinor": 10000
+                }
+              ],
+              "changeMinor": 100
+            }
+          },
+          {
+            "version": 1,
+            "id": "00000002-1111-4111-8111-111111111111",
+            "number": "GV-20261008-00000002",
+            "createdAt": "2026-10-08T05:00:00.000Z",
+            "storeName": "Event store",
+            "customerName": "",
+            "method": "Cash",
+            "items": [
+              {
+                "description": "Card 2",
+                "quantity": 1,
+                "unitMinor": 5000,
+                "lineMinor": 5000
+              }
+            ],
+            "subtotalMinor": 5000,
+            "discountMinor": 0,
+            "taxMinor": 0,
+            "totalMinor": 5000,
+            "note": "",
+            "sourceDispositionId": null
+          }
+        ],
+        "snapshots": [
+          {
+            "version": 1,
+            "receiptId": "00000001-1111-4111-8111-111111111111",
+            "soldAt": "2026-10-08T05:00:00.000Z",
+            "salesCurrency": "USD",
+            "lines": [
+              {
+                "index": 0,
+                "instanceId": "000003e7-1111-4111-8111-111111111111",
+                "quantity": 1,
+                "salesMinor": "10000",
+                "status": "known",
+                "cost": {
+                  "status": "known",
+                  "amount": "60.00",
+                  "minor": "6000",
+                  "currency": "USD"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "expected": null,
+      "valid": false
+    }
+  ]
+}

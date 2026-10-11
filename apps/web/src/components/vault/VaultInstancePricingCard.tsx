@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { useStoreDraftGuard } from "@/components/stores/useStoreDraftGuard";
 import { saveVaultItemInstancePricingAction } from "@/lib/vault/saveVaultItemInstancePricingAction";
 import {
   formatVaultInstancePrice,
@@ -72,6 +73,13 @@ export default function VaultInstancePricingCard({
   const [askingPriceNote, setAskingPriceNote] = useState(initialAskingPriceNote ?? "");
   const [statusMessage, setStatusMessage] = useState<{ tone: "success" | "error"; body: string } | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [saved, setSaved] = useState({ mode: initialPricingMode, amount: initialAskingPriceAmount,
+    currency: initialAskingPriceCurrency, note: initialAskingPriceNote });
+
+  useEffect(() => {
+    setSaved({ mode: initialPricingMode, amount: initialAskingPriceAmount,
+      currency: initialAskingPriceCurrency, note: initialAskingPriceNote });
+  }, [initialPricingMode, initialAskingPriceAmount, initialAskingPriceCurrency, initialAskingPriceNote]);
 
   useEffect(() => {
     setPricingMode(initialPricingMode);
@@ -91,24 +99,26 @@ export default function VaultInstancePricingCard({
 
   const hasChanges = useMemo(() => {
     return (
-      pricingMode !== initialPricingMode ||
-      askingPriceAmount !== (initialAskingPriceAmount !== null ? initialAskingPriceAmount.toFixed(2) : "") ||
-      askingPriceCurrency !== (initialAskingPriceCurrency ?? "USD") ||
-      askingPriceNote !== (initialAskingPriceNote ?? "")
+      pricingMode !== saved.mode ||
+      askingPriceAmount !== (saved.amount !== null ? saved.amount.toFixed(2) : "") ||
+      askingPriceCurrency !== (saved.currency ?? "USD") ||
+      askingPriceNote !== (saved.note ?? "")
     );
   }, [
     askingPriceAmount,
     askingPriceCurrency,
     askingPriceNote,
-    initialAskingPriceAmount,
-    initialAskingPriceCurrency,
-    initialAskingPriceNote,
-    initialPricingMode,
+    saved,
     pricingMode,
   ]);
 
-  const marketReferenceAvailable = !isGraded && typeof marketReferencePrice === "number";
-  const marketReferenceDate = formatPricingTimestamp(marketReferenceUpdatedAt);
+  useStoreDraftGuard(isActive && (hasChanges || isPending),
+    "Discard your unsaved pricing changes and leave this copy?", isPending);
+  const observedDate = formatPricingTimestamp(marketReferenceObservedAt);
+  const publishedDate = formatPricingTimestamp(marketReferencePublishedAt ?? marketReferenceUpdatedAt);
+  const marketReferenceAvailable = !isGraded && typeof marketReferencePrice === "number" &&
+    Number.isFinite(marketReferencePrice) && marketReferencePrice > 0 &&
+    marketReferenceSource === "tcgplayer" && Boolean(cardPrintingId && marketReferenceProvenanceId && observedDate && publishedDate);
 
   function handleSave() {
     if (!isActive || isPending || !hasChanges) {
@@ -124,7 +134,8 @@ export default function VaultInstancePricingCard({
         askingPriceAmount: pricingMode === "asking" ? askingPriceAmount : null,
         askingPriceCurrency: pricingMode === "asking" ? askingPriceCurrency : null,
         askingPriceNote: pricingMode === "asking" ? askingPriceNote : null,
-      });
+      }).catch(() => ({ ok: false as const, instanceId,
+        message: "Pricing could not be confirmed. Your edits are still here. Refresh this copy to check its saved price." }));
 
       if (!result.ok) {
         setStatusMessage({ tone: "error", body: result.message });
@@ -135,6 +146,8 @@ export default function VaultInstancePricingCard({
       setAskingPriceAmount(result.askingPriceAmount !== null ? result.askingPriceAmount.toFixed(2) : "");
       setAskingPriceCurrency(result.askingPriceCurrency ?? "USD");
       setAskingPriceNote(result.askingPriceNote ?? "");
+      setSaved({ mode: result.pricingMode, amount: result.askingPriceAmount,
+        currency: result.askingPriceCurrency, note: result.askingPriceNote });
       setStatusMessage({ tone: "success", body: "Pricing saved." });
       router.refresh();
     });
@@ -155,15 +168,14 @@ export default function VaultInstancePricingCard({
           value={pricingMode}
           disabled={!isActive || isPending}
           onChange={(event) => setPricingMode(event.target.value as VaultInstancePricingMode)}
-          className="w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <option value="market">Market reference</option>
           <option value="asking">Set asking price</option>
         </select>
       </label>
 
-      {pricingMode === "market" ? (
-        <div className="space-y-2 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
+        <section className="space-y-2 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3" aria-label="Market reference">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Reference pricing</p>
           {marketReferenceAvailable ? (
             <>
@@ -189,16 +201,18 @@ export default function VaultInstancePricingCard({
               </p>
               <p className="text-sm text-slate-600">
                 {getVaultInstancePricingSourceLabel(marketReferenceSource)}
-                {marketReferenceDate ? ` • Updated ${marketReferenceDate}` : ""}
+                {" · USD"}
               </p>
+              <p className="text-xs text-slate-600">Observed {observedDate} · Published {publishedDate}</p>
+              <p className="text-xs text-slate-600">Reference for this printing. Your copy’s condition may affect its value.</p>
             </>
           ) : (
             <p className="text-sm text-slate-600">
               {isGraded ? "No market reference available for this slab yet." : "No market reference available."}
             </p>
           )}
-        </div>
-      ) : (
+        </section>
+      {pricingMode === "asking" && (
         <div className="space-y-4 rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-4">
           <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_120px]">
             <label className="space-y-2">
@@ -211,7 +225,7 @@ export default function VaultInstancePricingCard({
                 value={askingPriceAmount}
                 disabled={!isActive || isPending}
                 onChange={(event) => setAskingPriceAmount(event.target.value)}
-                className="w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
               />
             </label>
             <label className="space-y-2">
@@ -222,7 +236,7 @@ export default function VaultInstancePricingCard({
                 value={askingPriceCurrency}
                 disabled={!isActive || isPending}
                 onChange={(event) => setAskingPriceCurrency(event.target.value.toUpperCase())}
-                className="w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm uppercase text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm uppercase text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
               />
             </label>
           </div>
@@ -236,7 +250,7 @@ export default function VaultInstancePricingCard({
               disabled={!isActive || isPending}
               onChange={(event) => setAskingPriceNote(event.target.value)}
               placeholder="Firm, negotiable, or trades considered."
-              className="w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
             />
           </label>
         </div>
@@ -256,7 +270,7 @@ export default function VaultInstancePricingCard({
         type="button"
         disabled={!isActive || isPending || !hasChanges}
         onClick={handleSave}
-        className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+        className="inline-flex min-h-11 items-center rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
       >
         {isPending ? "Saving..." : "Save pricing"}
       </button>

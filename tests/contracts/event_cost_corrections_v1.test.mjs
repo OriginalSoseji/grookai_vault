@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {eventReport,eventReportCsv} from '../../apps/web/src/lib/sales/eventReport.mjs';
+import {loadEventCostCorrections} from '../../apps/web/src/lib/sales/eventReportLoader.mjs';
+import {cases,correctedEventInput} from '../fixtures/event_cost_correction_cases_v1.mjs';
+function partial(actual,expected){for(const[k,v]of Object.entries(expected)){if(v&&typeof v==='object')partial(actual[k],v);else assert.deepEqual(actual[k],v,k);}}
+test('shared native corrected event vectors',()=>assert.deepEqual(JSON.parse(fs.readFileSync(new URL('../../test/fixtures/event_cost_corrections_v1.json',import.meta.url))).cases,cases));
+for(const c of cases)test(c.name,()=>{const before=JSON.stringify(c.args);if(!c.valid)assert.throws(()=>eventReport(c.args));else partial(eventReport(c.args),c.expected);assert.equal(JSON.stringify(c.args),before);});
+test('CSV identifies selected basis on receipts and expenses',()=>{const a=correctedEventInput();a.query='Card 2';const rows=eventReportCsv(eventReport(a)).split('\r\n');assert.equal(rows.length,3);assert.ok(rows[0].endsWith('"Cost basis"'));assert.ok(rows.slice(1).every(r=>r.endsWith('"Later owner corrections"')));assert.ok(rows[1].includes('"20.00","30.00"'));a.costBasis='original';assert.ok(eventReportCsv(eventReport(a)).includes('"Original cost at sale"'));});
+test('loader validates exact state scope and leaves original input untouched',async()=>{const a=correctedEventInput(),before=JSON.stringify(a);let reads=0;const out=await loadEventCostCorrections({input:a,ownerId:a.ownerId,eventId:a.eventId,checkOwner(){},readCorrections:async ids=>{reads++;assert.deepEqual(ids,a.receipts.map(r=>r.id));return a.correctionStates;}});assert.equal(reads,1);partial(eventReport(out),cases[0].expected);assert.equal(JSON.stringify(a),before);});
+test('loader rejects partial reads, unavailable transport and account changes',async()=>{for(const mode of ['partial','failure','owner']){const a=correctedEventInput();let current=true;await assert.rejects(()=>loadEventCostCorrections({input:a,ownerId:a.ownerId,eventId:a.eventId,checkOwner(){if(!current)throw Error('Account changed');},readCorrections:async()=>{if(mode==='failure')throw Error('Unavailable');if(mode==='owner')current=false;return mode==='partial'?a.correctionStates.slice(0,1):a.correctionStates;}}));}});

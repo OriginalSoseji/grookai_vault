@@ -52,9 +52,10 @@ String salesPaymentMethod(List<Map<String, dynamic>> entries) =>
     : entries.single['method'] as String;
 
 List<Map<String, dynamic>> receiptTenders(Map<String, dynamic> receipt) {
-  final balance =
-      (receipt['tradeIn'] as Map?)?['balanceMinor'] as int? ??
-      receipt['totalMinor'] as int;
+  final balance = receipt['version'] == 2 && receipt['kind'] == 'purchase'
+      ? -(receipt['purchaseMinor'] as int)
+      : (receipt['tradeIn'] as Map?)?['balanceMinor'] as int? ??
+            receipt['totalMinor'] as int;
   final p = receipt['payments'];
   if (p == null) {
     return [
@@ -92,7 +93,9 @@ List<String> salesPaymentLines(
   final balance = p['balanceMinor'] as int, change = p['changeMinor'] as int;
   return [
     balance < 0
-        ? 'Paid to customer:'
+        ? receipt['version'] == 2 && receipt['kind'] == 'purchase'
+              ? 'Paid to seller:'
+              : 'Paid to customer:'
         : balance == 0
         ? 'Even trade — no money exchanged.'
         : 'Payment received:',

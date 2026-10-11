@@ -183,12 +183,16 @@ function normalizeVaultItems(
 }
 
 async function getOwnerPublicProfileHrefs(userId: string) {
+  try {
   const supabase = await createServerComponentClient();
   const { data: profileData, error: profileError } = await supabase
     .from("public_profiles")
     .select("slug,public_profile_enabled,vault_sharing_enabled")
     .eq("user_id", userId)
+    .abortSignal(AbortSignal.timeout(3_000))
     .maybeSingle();
+
+  if (profileError) return { publicProfileHref: null, publicCollectionHref: null };
 
   const profile = (profileData ?? null) as PublicProfileRow | null;
   const publicProfileHref =
@@ -199,8 +203,10 @@ async function getOwnerPublicProfileHrefs(userId: string) {
   return {
     publicProfileHref,
     publicCollectionHref,
-    profileError: profileError?.message ?? null,
   };
+  } catch {
+    return { publicProfileHref: null, publicCollectionHref: null };
+  }
 }
 
 type OwnerVaultItemsOptions = {
@@ -260,7 +266,7 @@ export async function getOwnerVaultItems(
   return {
     items,
     canonicalRows,
-    itemsError: itemsError ?? profileHrefs.profileError,
+    itemsError,
     publicProfileHref: profileHrefs.publicProfileHref,
     publicCollectionHref: profileHrefs.publicCollectionHref,
   };
@@ -313,7 +319,7 @@ export async function getOwnerVaultItem(userId: string, cardPrintId: string): Pr
   return {
     item: items[0] ?? null,
     canonicalRow: canonicalRows[0] ?? null,
-    itemsError: itemsError ?? profileHrefs.profileError,
+    itemsError,
     publicProfileHref: profileHrefs.publicProfileHref,
     publicCollectionHref: profileHrefs.publicCollectionHref,
   };

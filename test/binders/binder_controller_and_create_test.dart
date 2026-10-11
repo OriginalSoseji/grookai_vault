@@ -333,6 +333,7 @@ void main() {
         ),
       );
       final controller = BinderLibraryController(repository: repository)
+        ..status = BinderLoadStatus.ready
         ..page = BinderLibraryPage(
           binders: <BinderSummary>[_summary()],
           invitations: const <BinderInvitation>[loadedInvitation],

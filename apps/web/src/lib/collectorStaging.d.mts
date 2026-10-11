@@ -4,4 +4,11 @@ export declare const collectorFixtureLab: boolean;
 export declare const storefrontLocalTest: boolean;
 export declare const vendorBatchLocalTest: boolean;
 export declare const receiptCloudLocalTest: boolean;
+export declare const salesPurchaseLocalTest: boolean;
 export declare function assertCollectorStagingTarget(url: string, fixtureLab?: boolean, hosted?: boolean): void;
+
+export declare const salesNegotiatedTradeLocalTest: boolean;
+export declare const vendorEventsLocalTest: boolean;
+export declare const salesDiscountLocalTest: boolean;
+export declare const costHistoryLocalTest: boolean;
+export declare const portfolioHistoryLocalTest: boolean;

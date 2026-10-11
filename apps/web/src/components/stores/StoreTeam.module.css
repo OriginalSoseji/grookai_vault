@@ -21,3 +21,16 @@
 .art img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 10px; }
 .muted { color: var(--muted); font-size: .9rem; overflow-wrap: anywhere; }
 .brandImage { max-height: 160px; max-width: 100%; object-fit: contain; }
+
+.workflowNav { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+.workflowNav .link { padding: 10px 12px; }
+.panel[id] { scroll-margin-top: 96px; }
+.workspaceStatus { position: sticky; top: 76px; z-index: 5; box-shadow: 0 2px 8px #0002; }
+@media (max-width: 600px) {
+  .page { padding: 20px 16px 88px; }
+  .panel { padding: 18px; }
+  .page h1 { font-size: 1.5rem; line-height: 1.25; margin: 12px 0; overflow-wrap: anywhere; }
+  .page > p { font-size: .875rem; line-height: 1.4; margin: 8px 0; }
+  .workflowNav { gap: 6px; margin: 12px 0; }
+  .workflowNav .link { font-size: .875rem; min-height: 44px; padding: 10px; }
+}

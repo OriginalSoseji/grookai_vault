@@ -6,6 +6,8 @@ import '../identity/catalog_artwork_resolution.dart';
 import '../identity/display_identity.dart';
 import '../public/card_surface_pricing_service.dart';
 import '../vault/vault_gvvi_service.dart';
+import '../vault/copy_cost_service.dart';
+import '../vault/copy_cost_review_service.dart';
 
 enum VendorMarketPosition { below, above, atMarket, unpriced, noExactMarket }
 
@@ -843,6 +845,13 @@ class VendorPricingWorkspaceService {
   }
 
   SupabaseClient _requiredClient() => _client ?? Supabase.instance.client;
+
+  /// Reuse this workspace's authenticated client, including isolated test labs.
+  CopyCostService createCopyCostService() =>
+      CopyCostService.supabase(_requiredClient());
+
+  CopyCostReviewService createCopyCostReviewService() =>
+      CopyCostReviewService.supabase(_requiredClient());
 }
 
 int compareVendorWorkspaceRows(

@@ -11,18 +11,18 @@ function isVaultMobileViewMode(value: string | null): value is VaultMobileViewMo
 }
 
 export function useVaultMobileViewMode() {
-  const [mode, setMode] = useState<VaultMobileViewMode>("grid");
+  const [mode, setMode] = useState<VaultMobileViewMode>("compact");
 
   useEffect(() => {
-    const savedMode = localStorage.getItem(STORAGE_KEY);
-    if (isVaultMobileViewMode(savedMode)) {
-      setMode(savedMode);
-    }
+    try {
+      const savedMode = localStorage.getItem(STORAGE_KEY);
+      if (isVaultMobileViewMode(savedMode)) setMode(savedMode);
+    } catch { /* Browsing remains available when device storage is disabled. */ }
   }, []);
 
   const updateMode = (value: VaultMobileViewMode) => {
     setMode(value);
-    localStorage.setItem(STORAGE_KEY, value);
+    try { localStorage.setItem(STORAGE_KEY, value); } catch { /* Keep this session's choice. */ }
   };
 
   return { mode, setMode: updateMode };

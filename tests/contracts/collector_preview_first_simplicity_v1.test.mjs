@@ -11,7 +11,14 @@ test('shared chrome has no duplicate task search or mobile section heading', () 
 
 test('mobile tools remain gated and accessible through a keyboard-closeable disclosure', () => {
   const tools = read('components/layout/CollectorMobileTools.tsx');
-  for (const contract of ['<details', 'More navigation', 'Escape', 'summary', 'DESKTOP_SECONDARY_NAV', 'isAuthenticated && bindersEnabled', 'return dexEnabled', 'compareHref', 'href="/account"', 'href="/login"']) assert.ok(tools.includes(contract), contract);
+  for (const contract of ['<details', 'More navigation', 'Escape', 'summary', 'DESKTOP_SECONDARY_NAV', 'item.key === "messages") return isAuthenticated', 'return dexEnabled', 'compareHref', 'href="/account"', 'href="/login"']) assert.ok(tools.includes(contract), contract);
+});
+
+test('Binders has a primary destination and disabled entry does not read private data', () => {
+  assert.match(read('lib/desktopShellManifest.ts'), /key: "binders", label: "Binders", href: "\/binders"/);
+  const page = read('app/binders/page.tsx');
+  assert.ok(page.indexOf('if (!isBinderLibraryEnabled())') < page.indexOf('await requireServerUser'));
+  assert.match(page, /Binders are not available in this version/);
 });
 
 test('search keeps one real form, real filters and visible filter failure warnings', () => {

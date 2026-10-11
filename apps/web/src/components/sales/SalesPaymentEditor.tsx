@@ -8,13 +8,13 @@ function Amount({label,value,disabled,onChange}:{label:string;value:number;disab
   const [text,setText]=useState(money(value));
   return <label>{label}<input maxLength={10} inputMode="decimal" disabled={disabled} value={text} onChange={e=>{setText(e.target.value);onChange(minor(e.target.value)??0);}}/></label>;
 }
-export default function SalesPaymentEditor({entries,balance,disabled,onChange}:{entries:Tender[];balance:number;disabled:boolean;onChange:(update:(entries:Tender[])=>Tender[])=>void}) {
+export default function SalesPaymentEditor({entries,balance,disabled,onChange,payoutRecipient='customer'}:{entries:Tender[];balance:number;disabled:boolean;onChange:(update:(entries:Tender[])=>Tender[])=>void;payoutRecipient?:'customer'|'seller'}) {
   const applied=entries.reduce((n,e)=>n+e.amountMinor,0),remaining=Math.abs(balance)-applied;
   let error='',change=0;
   try {change=paymentSnapshot(entries,balance).changeMinor;} catch(e) {error=e instanceof Error?e.message:'Check payments.';}
   const update=(i:number,patch:Partial<Tender>|((e:Tender)=>Partial<Tender>))=>onChange(current=>current.map((e,n)=>n===i?{...e,...(typeof patch==='function'?patch(e):patch)}:e));
   return <section className={s.paymentEditor} aria-label="Payment breakdown">
-    <p>{balance<0?'Record how you paid the customer.':balance===0?'Even trade — no money exchanged.':'Record the amounts collected outside Grookai.'}</p>
+    <p>{balance<0?`Record how you paid the ${payoutRecipient}.`:balance===0?'Even trade — no money exchanged.':'Record the amounts collected outside Grookai.'}</p>
     <p role="status">{remaining>0?`Still to allocate: $${money(remaining)}`:remaining<0?`Overallocated: $${money(-remaining)}`:'Balance covered'}{change>0&&` · Give $${money(change)} cash change`}</p>
     {error&&<p className={s.error}>{error}</p>}
     {entries.map((e,i)=><fieldset key={e.method} disabled={disabled}><legend>Payment {i+1}</legend>

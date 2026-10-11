@@ -237,3 +237,32 @@
 .saleCopy { display:flex; gap:18px; align-items:center; }
 .saleCopy img { width:100px; max-height:145px; object-fit:contain; border-radius:8px; }
 .saleCopy > div { min-width:0; }
+
+/* Keep the first inventory action above secondary settings on phones. */
+.publicationSummary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; padding:4px 0; }
+.publicationSummary p { margin:0; display:grid; gap:4px; font-size:13px; }
+.publicationSummary span { color:var(--muted); }
+.publicationSummary strong { font-size:14px; }
+.journey ol { margin:8px 0 0; padding:0; list-style:none; counter-reset:store-step; }
+.journey li { counter-increment:store-step; display:grid; grid-template-columns:28px minmax(0,1fr); gap:8px 12px; padding:16px 0; border-top:1px solid var(--line); }
+.journey li::before { content:counter(store-step); grid-column:1; grid-row:1 / span 2; width:26px; height:26px; border-radius:50%; background:var(--accent-soft); color:var(--accent); display:grid; place-items:center; font-size:12px; font-weight:700; }
+.journey li > * { grid-column:2; justify-self:start; }
+.journey li h3 { margin:0 0 4px; font-size:15px; }
+.journey li p { margin:0; color:var(--muted); font-size:13px; }
+.journey .actions { margin:0; gap:8px; }
+.workspace .textAction { min-height:0; padding:0; border:0; background:transparent; color:var(--accent); text-decoration:underline; }
+.businessTools { margin-top:24px; padding:18px 0; border-top:1px solid var(--line); }
+.businessTools summary { cursor:pointer; font-weight:600; padding:8px 0; }
+@media(max-width:900px) {
+  .workspace .sidebar { flex-wrap:nowrap; overflow-x:auto; gap:4px; padding-bottom:6px; }
+  .sidebar .navEntry { flex-shrink:0; }
+  .sidebar button { white-space:nowrap; }
+  .shell { gap:16px; margin-top:18px; }
+}
+@media(max-width:600px) {
+  .workspace .header { gap:12px; padding-bottom:18px; }
+  .workspace .header h1 { font-size:26px; }
+  .header .actions { gap:8px; }
+  .workspace .journey { padding:16px; }
+  .publicationSummary strong { font-size:13px; }
+}

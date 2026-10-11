@@ -30,9 +30,15 @@ class CheckoutTradeService extends CatalogService {
     return {
       ...r,
       'tradeIn': {
+        // The existing v2/v3 writer tags its derived-credit snapshot as v1.
+        'version': 1,
         'items': trades
             .map((t) => {...t.toJson(), 'creditMinor': t.creditMinor})
             .toList(),
+        'totalValueMinor': trades.fold<int>(
+          0,
+          (total, trade) => total + trade.valueMinor * trade.quantity,
+        ),
         'totalCreditMinor': credit,
         'balanceMinor': (r['totalMinor'] as int) - credit,
       },

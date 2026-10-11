@@ -39,10 +39,13 @@ visibility, or section membership.
 
 ## Navigation
 
-Vendor Mode is an authenticated collector tool in the right-side application
-drawer, immediately below `Grookai Objects`. It is not presented as content on
-the owner Wall or any public collector surface. Returning from Vendor Mode
-refreshes the signed-in owner's Wall and Vault read models.
+Vendor Mode remains an authenticated owner tool. Product Workspaces V1 adds a
+direct signed-in header entry and retained Desk, Inventory, Scan, Reports and Store
+navigation. The existing drawer entry opens Inventory in that workspace. Compact
+rows expand into the existing exact-copy controls; they do not change authority.
+It is not presented as content on a public collector surface. Returning to the
+collector application refreshes the owner's Wall and Vault read models. See
+`PRODUCT_WORKSPACES_V1.md` for lifecycle, autosave and account-change behavior.
 
 ## Remove From Vault
 

@@ -1,4 +1,5 @@
 "use client";
+import { useOrderOwnerApi } from "./OrderOwnerScope";
 import { useRef, useState } from "react";
 import { CARRIERS, fulfillmentActions, fulfillmentCommand, fulfillmentEvent, type Carrier, type FulfillmentAction, type FulfillmentCommand, type FulfillmentStatus } from "@/lib/orders/orderFulfillment.shared";
 
@@ -6,6 +7,7 @@ const labels = { unfulfilled: "Not yet fulfilled", ready_pickup: "Ready for pick
 const actionLabels: Record<FulfillmentAction, string> = { ready_pickup: "Mark ready for pickup", collect: "Record pickup completion", ship: "Record shipment", update_tracking: "Correct tracking", deliver: "Record delivery" };
 const eventLabels: Record<FulfillmentAction, string> = { ready_pickup: "Marked ready for pickup", collect: "Recorded pickup completion", ship: "Recorded shipment", update_tracking: "Corrected tracking", deliver: "Recorded delivery" };
 export default function OrderFulfillment({ value, updatesEnabled }: { value: FulfillmentStatus | null; updatesEnabled: boolean }) {
+  const api = useOrderOwnerApi();
   const [selected, setSelected] = useState<FulfillmentAction | null>(null), [carrier, setCarrier] = useState<Carrier>(value?.carrier ?? "usps"), [tracking, setTracking] = useState(value?.tracking ?? "");
   const [busy, setBusy] = useState(false), [error, setError] = useState("");
   const [pending, setPending] = useState<FulfillmentCommand | null>(null);
@@ -20,12 +22,11 @@ export default function OrderFulfillment({ value, updatesEnabled }: { value: Ful
       const command = pending ?? fulfillmentCommand({ orderId: status.orderId, requestId: crypto.randomUUID(), expectedSequence: status.sequence, action: selected,
         carrier: needsTracking ? carrier : null, tracking: needsTracking ? tracking.trim() : null });
       setPending(command);
-      const response = await fetch("/api/vendor-orders/fulfillment", { method: "POST", credentials: "same-origin", cache: "no-store", headers: { "Content-Type": "application/json" }, body: JSON.stringify(command) });
-      const data = await response.json();
+      const { response, data } = await api.send("/api/vendor-orders/fulfillment", command);
       if (!response.ok) throw new Error(response.status === 409 ? "This order changed. Reload its progress before recording another update." : "The update could not be confirmed. Retry this update or reload the order.");
       const receipt = fulfillmentEvent(data);
       if (data.orderId !== status.orderId || receipt.requestId !== command.requestId || receipt.sequence !== command.expectedSequence + 1 || receipt.action !== command.action) throw new Error("The update could not be confirmed. Reload the order.");
-      window.location.reload();
+      api.assertCurrent(); window.location.reload();
     } catch (e) { setError(e instanceof Error && e.message.startsWith("This order changed.") ? e.message : "The update could not be confirmed. Retry the same update or reload this order."); }
     finally { saving.current = false; setBusy(false); }
   }

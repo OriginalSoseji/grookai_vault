@@ -1,5 +1,9 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { Suspense } from "react";
+import { BinderContinuation } from "@/components/vault/BinderContinuation";
+import { CollectorOwnerBoundary } from "@/components/vault/CollectorOwnerBoundary";
 import Link from "next/link";
+import { PortfolioHistory } from '@/components/vault/PortfolioHistory';
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { getRecentOwnedCards } from "@/lib/vault/getRecentOwnedCards";
@@ -191,7 +195,7 @@ export default async function VaultPage(
   const valueSummary = buildVaultValueSummary(canonicalRows);
 
   return (
-    <>
+    <CollectorOwnerBoundary key={user.id} ownerId={user.id}>
       <TrackPageEvent eventName="vault_opened" path="/vault" />
       {requestedSpeciesSlug ? (
         <section className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sky-950 dark:border-sky-400/20 dark:bg-sky-400/10 dark:text-sky-100">
@@ -224,6 +228,11 @@ export default async function VaultPage(
         </section>
       ) : null}
       <VaultCollectionView
+        key={user.id}
+        portfolioHistory={['0','1'].includes(process.env.GV_PORTFOLIO_HISTORY_V1??'') ? <PortfolioHistory ownerId={user.id} compact /> : null}
+        continuation={bindersEnabled ? <Suspense fallback={<p role="status">Loading collection goals…</p>}>
+          <BinderContinuation ownerId={user.id} supabase={supabase} />
+        </Suspense> : null}
         bindersEnabled={bindersEnabled}
         initialItems={items}
         recent={visibleRecent}
@@ -234,6 +243,6 @@ export default async function VaultPage(
         publicCollectionHref={publicCollectionHref}
         setLogoPathByCode={setLogoPathByCode}
       />
-    </>
+    </CollectorOwnerBoundary>
   );
 }

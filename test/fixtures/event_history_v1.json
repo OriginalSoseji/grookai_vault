@@ -1,0 +1,1411 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "display projection keeps exact outer revision and omits raw numeric row revisions",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            }
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            }
+          }
+        ],
+        "nextRevision": "1"
+      }
+    },
+    {
+      "name": "last history page",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": null
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            }
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            }
+          }
+        ],
+        "nextRevision": null
+      }
+    },
+    {
+      "name": "empty history page",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [],
+        "nextRevision": null
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [],
+        "nextRevision": null
+      }
+    },
+    {
+      "name": "reassignment appears in the previous event history",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "receipts_assign",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "receipts": [
+                {
+                  "receiptId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                  "previousEventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+                }
+              ]
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "receipts_assign",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "receipts": [
+                {
+                  "receiptId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+                  "previousEventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+                }
+              ]
+            }
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            }
+          }
+        ],
+        "nextRevision": "1"
+      }
+    },
+    {
+      "name": "bounded earlier page",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": "9223372036854775807",
+      "limit": 2,
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            }
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            }
+          }
+        ],
+        "nextRevision": "1"
+      }
+    },
+    {
+      "name": "wrong account",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "wrong event",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "unknown field",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1",
+        "extra": true
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "duplicate request IDs",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "duplicate revisions",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "ascending revisions",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          },
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "numeric revision",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": 2,
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "zero revision",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "0",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "invalid date",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "yesterday",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "unrelated operation",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "unknown operation",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "delete_event",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "foreign audit state",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "malformed audit state",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              null
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "oversized change array",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {},
+              {}
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "wrong next cursor",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "2"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "next cursor on short page",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "noncanonical cursor",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": "01",
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "page includes cursor revision",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": "9007199254740993",
+      "limit": 2,
+      "expected": null
+    },
+    {
+      "name": "unsupported page size",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+        "rows": [
+          {
+            "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+            "revision": "9007199254740993",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "operation": {
+              "type": "event_create",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "name": "Autumn card show",
+              "startDate": "2026-10-31",
+              "endDate": "2026-11-01",
+              "timeZone": "America/Denver",
+              "currency": "USD",
+              "notes": ""
+            },
+            "before": [],
+            "after": [
+              {
+                "owner_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+                "revision": 9007199254740992
+              }
+            ]
+          },
+          {
+            "requestId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "revision": "1",
+            "createdAt": "2026-10-08T12:00:00Z",
+            "operation": {
+              "type": "event_close",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "reason": "Closed"
+            },
+            "before": [],
+            "after": []
+          }
+        ],
+        "nextRevision": "1"
+      },
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+      "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+      "beforeRevision": null,
+      "limit": 0,
+      "expected": null
+    }
+  ]
+}

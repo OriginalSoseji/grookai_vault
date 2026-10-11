@@ -1,20 +1,21 @@
 "use client";
+import { useOrderOwnerApi } from "./OrderOwnerScope";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import { purchaseHref } from "@/lib/orders/orderAcquisitionTypes";
 import type { PurchaseSelection, PurchaseQuote, OrderCreated } from "@/lib/orders/orderAcquisitionTypes";
 const money = (minor: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(minor / 100);
 export default function PurchaseReview({ selection, initialRequestId }: { selection: PurchaseSelection; initialRequestId?: string }) {
+  const api = useOrderOwnerApi();
   const requestId = useRef(initialRequestId), [quote, setQuote] = useState<PurchaseQuote | null>(null), [busy, setBusy] = useState(false), [error, setError] = useState(""), [confirmed, setConfirmed] = useState(false), [expired, setExpired] = useState(false);
   useEffect(() => { if (!quote) return;const timer = setInterval(() => setExpired(Date.now() >= quote.expiresAt), 1000);return () => clearInterval(timer); }, [quote]);
   async function send(body: unknown) {
-    const response = await fetch("/api/vendor-orders/acquire", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), cache: "no-store" });
-    const data = await response.json();if (!response.ok) throw new Error(data.error || "The request could not be completed. Retry it before starting again.");
+    const { response, data } = await api.send("/api/vendor-orders/acquire", body);if (!response.ok) throw new Error(data.error || "The request could not be completed. Retry it before starting again.");
     return data as PurchaseQuote | OrderCreated | { state: "released" };
   }
   function openOrder(result: OrderCreated) {
     if (!/^[a-f0-9-]{36}$/.test(result.orderId)) throw new Error("Order could not be opened.");
-    window.location.assign(`/account/orders/${result.orderId}`);
+    api.assertCurrent(); window.location.assign(`/account/orders/${result.orderId}`);
   }
   async function run(action: "quote" | "confirm" | "cancel") {
     if (busy) return;setBusy(true);setError("");

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Activity, PanelsTopLeft, ScanLine, Archive, Search, Library, Grid2X2, ArrowLeftRight, BookOpen, MessageCircle } from "lucide-react";
 import SignOutButton from "@/components/account/SignOutButton";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { isVendorWorkspacePath } from "@/lib/vendorWorkspace";
 import {
   DESKTOP_PRIMARY_NAV,
   DESKTOP_SECONDARY_NAV,
@@ -53,7 +54,6 @@ export function DesktopApplicationShell({
   const routeState = getDesktopRouteState(pathname);
   const secondaryItems = DESKTOP_SECONDARY_NAV.filter((item) => {
     if (item.key === "dex") return dexEnabled;
-    if (item.key === "binders") return isAuthenticated && bindersEnabled;
     if (item.key === "messages") return isAuthenticated;
     return true;
   });
@@ -61,7 +61,7 @@ export function DesktopApplicationShell({
   return (
     <div className="gv-desktop-site-header" data-desktop-application-shell>
       <div className="gv-desktop-shell-top">
-        <Link href="/" className="flex min-w-0 items-center gap-3 text-lg font-semibold text-slate-950 dark:text-white">
+        <Link href={isAuthenticated ? "/vault" : "/"} className="flex min-w-0 items-center gap-3 text-lg font-semibold text-slate-950 dark:text-white">
           <Image
             src="/grookai-logo-64.png"
             alt="Grookai Vault logo"
@@ -82,6 +82,10 @@ export function DesktopApplicationShell({
             </span>
           ) : null}
           <ThemeToggle />
+          {isAuthenticated && <Link href={isVendorWorkspacePath(pathname) ? "/vault" : "/account/store/sales"}
+            className="gv-secondary-button min-h-9 px-3 py-2 text-sm">
+            {isVendorWorkspacePath(pathname) ? "Collector workspace" : "Vendor workspace"}
+          </Link>}
           {isAuthenticated ? (
             <details className="gv-desktop-account-menu relative">
               <summary className="gv-secondary-button min-h-9 cursor-pointer list-none px-3 py-2 text-sm">
@@ -106,7 +110,7 @@ export function DesktopApplicationShell({
         </div>
       </div>
 
-      <div className="gv-desktop-shell-nav-frame">
+      {!isVendorWorkspacePath(pathname) && <div className="gv-desktop-shell-nav-frame">
         <nav className="gv-desktop-primary-nav" aria-label="Primary navigation" data-desktop-primary-navigation>
           {DESKTOP_PRIMARY_NAV.map((item) => {
             const href = item.key === "search" ? searchHref : item.href;
@@ -117,6 +121,7 @@ export function DesktopApplicationShell({
                 key={item.key}
                 href={href}
                 aria-current={active ? "page" : undefined}
+                title={item.key === "binders" && !bindersEnabled ? "Binders are not available in this version" : undefined}
                 className={`gv-desktop-primary-link ${active ? "gv-desktop-primary-link-active" : ""}`}
               >
                 <Icon size={16} aria-hidden="true" />
@@ -149,9 +154,8 @@ export function DesktopApplicationShell({
             );
           })}
         </nav>
-      </div>
-
-      {routeState.context ? (
+      </div>}
+      {routeState.context && !isVendorWorkspacePath(pathname) ? (
         <div className="gv-desktop-route-context" data-desktop-route-context>
           <Link href={routeState.context.parentHref}>Back to {routeState.context.parentLabel}</Link>
           <span aria-hidden="true">/</span>

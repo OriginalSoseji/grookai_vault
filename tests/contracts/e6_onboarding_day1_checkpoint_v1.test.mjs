@@ -9,7 +9,7 @@ function readSource(relativePath) {
   return fs.readFileSync(path.join(root, relativePath), "utf8");
 }
 
-test("E6 day-1 checkpoint matches current mobile onboarding wiring", () => {
+test("historical E6 checkpoint is retained while collector help becomes explicit", () => {
   const checkpoint = readSource("docs/checkpoints/e6_onboarding_day1_checkpoint_20260713.md");
   const launch = readSource("docs/checkpoints/launch_readiness_gap_closure_20260713.md");
   const shell = readSource("lib/main_shell.dart");
@@ -24,10 +24,10 @@ test("E6 day-1 checkpoint matches current mobile onboarding wiring", () => {
   assert.match(checkpoint, /onboarding_collector_suggestions_v1/);
   assert.match(checkpoint, /skip scanner work/i);
 
-  assert.match(shell, /OnboardingLadderService/);
-  assert.match(shell, /OnboardingLadderOverlay\(/);
-  assert.match(shell, /_destination != _ShellDestination\.feed[\s\S]*_destination != _ShellDestination\.search/);
-  assert.match(shell, /Onboarding is never allowed to block the shell/);
+  assert.match(shell, /_openGettingStarted/);
+  assert.match(shell, /const GettingStartedScreen\(\)/);
+  assert.doesNotMatch(shell, /OnboardingLadderOverlay\(|_scheduleOnboardingProbe/);
+  assert.match(readSource("lib/main.dart"), /recordOwnedBestEffort/);
 
   assert.match(sheet, /Add a card to your vault/);
   assert.match(sheet, /Search instead/);

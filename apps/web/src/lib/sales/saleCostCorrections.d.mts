@@ -1,0 +1,10 @@
+import type {SalesReceipt} from './salesReport.mjs';
+export type SaleCostCorrectionRequest={version:1;requestId:string;receipt:SalesReceipt&{version:1};lineIndex:number;expectedRevision:string;action:'set'|'restore';cost:{minor:string;currency:string}|null;reason:string};
+export type SaleCostCorrectionOutcome={version:1;ownerId:string;request:SaleCostCorrectionRequest;recordedAt:string}&({status:'applied';revision:string;source:'canonical'|'legacy'}|{status:'cancelled';revision:null;source:null});
+export type SaleCostCorrectionState={version:1;ownerId:string;receiptId:string;receipt:SalesReceipt|null;source:'canonical'|'legacy'|null;lines:SaleCostCorrectionOutcome[]};
+export function sameCostEvidence(a:unknown,b:unknown):boolean;
+export function validateSaleCostCorrectionRequest(value:unknown):SaleCostCorrectionRequest;
+export function validateSaleCostCorrectionOutcome(value:unknown,ownerId:string):SaleCostCorrectionOutcome;
+export function confirmedSaleCostCorrection(request:unknown,outcome:unknown,ownerId:string):SaleCostCorrectionOutcome;
+export function validateSaleCostCorrectionStates(value:unknown,ownerId:string,receiptIds:string[]):SaleCostCorrectionState[];
+export function validateSaleCostCorrectionHistory(value:unknown,ownerId:string,receiptId:string,lineIndex:number,beforeRevision?:string|null):SaleCostCorrectionOutcome[];

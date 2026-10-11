@@ -37,6 +37,7 @@ Map<String, dynamic> inventory() => {
   'preview': true,
 };
 Map<String, dynamic> owner({bool draft = false, bool web = true}) => {
+  'actorId': 'fixture-owner',
   'store': draft
       ? null
       : {
@@ -120,6 +121,7 @@ void main() {
         client: client,
         baseUrl: 'http://127.0.0.1:15440',
         accessToken: 'local-token',
+        ownerId: 'fixture-owner',
       );
       await signed.read(
         'test-store',
@@ -186,6 +188,7 @@ void main() {
       final service = StorefrontService(
         baseUrl: 'http://127.0.0.1:15440',
         accessToken: 'local-token',
+        ownerId: 'fixture-owner',
         client: MockClient((r) async {
           if (r.method == 'POST') {
             actions.add(jsonDecode(r.body));
@@ -229,6 +232,7 @@ void main() {
       final service = StorefrontService(
         baseUrl: 'http://127.0.0.1:15440',
         accessToken: 'local-token',
+        ownerId: 'fixture-owner',
         client: MockClient((r) async {
           if (r.method == 'POST') {
             actions.add(jsonDecode(r.body));

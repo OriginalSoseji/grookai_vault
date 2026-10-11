@@ -9,6 +9,7 @@ import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
 import { getVendorQrDestinationUrl, renderVendorQrSvg, svgToDataUrl } from "@/lib/gvvi/vendorQr";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
+import VaultCopyCostCard from "@/components/vault/VaultCopyCostCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSectionMembershipCard from "@/components/vault/VaultInstanceSectionMembershipCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
@@ -76,10 +77,33 @@ function formatMessageSummary(activeCount: number, unreadCount: number) {
 export default async function VaultInstancePage(
   props: {
     params: Promise<{ gvvi_id: string }>;
+    searchParams?: Promise<{ workspace?: string | string[]; inventoryQuery?: string | string[]; inventoryGame?: string | string[]; inventoryPrice?: string | string[]; inventoryCostReview?: string | string[] }>;
   }
 ) {
   const params = await props.params;
-  const { user, supabase } = await requireServerUser(`/vault/gvvi/${params.gvvi_id}`);
+  const context = await props.searchParams ?? {};
+  const vendor = context.workspace === "vendor";
+  const inventoryQuery = new URLSearchParams();
+  const returnContext = new URLSearchParams();
+  if (vendor) {
+    returnContext.set("workspace", "vendor");
+    if (context.inventoryCostReview === '1') {
+      inventoryQuery.set('review', 'cost');
+      returnContext.set('inventoryCostReview', '1');
+    }
+    if (typeof context.inventoryQuery === "string") {
+      inventoryQuery.set("q", context.inventoryQuery.slice(0, 120));
+      returnContext.set("inventoryQuery", context.inventoryQuery.slice(0, 120));
+    }
+    if (typeof context.inventoryGame === "string" && ["pokemon", "mtg", "one_piece"].includes(context.inventoryGame)) {
+      inventoryQuery.set("game", context.inventoryGame); returnContext.set("inventoryGame", context.inventoryGame);
+    }
+    if (typeof context.inventoryPrice === "string" && ["all", "priced", "unpriced"].includes(context.inventoryPrice)) {
+      inventoryQuery.set("price", context.inventoryPrice); returnContext.set("inventoryPrice", context.inventoryPrice);
+    }
+  }
+  const ownerPath = `/vault/gvvi/${encodeURIComponent(params.gvvi_id)}`;
+  const { user, supabase } = await requireServerUser(`${ownerPath}${vendor ? `?${returnContext}` : ""}`);
 
   const detail = await getVaultInstanceByGvvi(user.id, params.gvvi_id, { includeArchived: true });
   if (!detail) {
@@ -139,6 +163,7 @@ export default async function VaultInstancePage(
   return (
     <div className="space-y-6 py-6 md:space-y-8 md:py-7">
       <VaultExactCopyHero
+        compact={vendor}
         eyebrow="Your exact copy"
         cardName={detail.cardName}
         setName={detail.setName}
@@ -160,8 +185,8 @@ export default async function VaultInstancePage(
         contextLabel={isActive ? "This copy is in your Vault." : "This copy remains available as preserved history."}
         actions={
           <>
-            <Link href="/vault" prefetch={false} className="gv-secondary-button">
-              Back to Vault
+            <Link href={vendor ? `/account/store/inventory?${inventoryQuery}` : "/vault"} prefetch={false} className="gv-secondary-button">
+              {vendor ? "Back to Inventory" : "Back to Vault"}
             </Link>
             {detail.gvId ? (
               <Link href={`/card/${detail.gvId}`} prefetch={false} className="gv-primary-button">
@@ -179,11 +204,11 @@ export default async function VaultInstancePage(
       />
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
-        <div className="space-y-6">
+        <div className={vendor ? "order-2 space-y-6 xl:order-1" : "space-y-6"}>
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
             <SectionHeader
-              title="Notes / Media"
-              description="Per-copy notes and exact-copy media live here instead of inside the grouped vault card."
+              title="Notes & photos"
+              description="Private notes and photos for this copy."
             />
 
             <VaultInstanceNotesMediaCard
@@ -200,8 +225,8 @@ export default async function VaultInstancePage(
 
           <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
             <SectionHeader
-              title="Execution / History"
-              description="Exact transfer history and execution outcomes for this owned copy."
+              title="Copy history"
+              description="Recorded sales and trades involving this copy."
             />
 
             {detail.outcomes.length > 0 ? (
@@ -224,14 +249,16 @@ export default async function VaultInstancePage(
               </div>
             ) : (
               <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-4 text-sm text-slate-600">
-                No execution outcome has been recorded for this copy yet.
+                No sale or trade has been recorded for this copy yet.
               </div>
             )}
           </PageSection>
         </div>
 
-        <div className="space-y-6">
+        <div className={vendor ? "order-1 space-y-6 xl:order-2" : "space-y-6"}>
+          <div id="private-cost" style={{ scrollMarginTop: 80 }}><VaultCopyCostCard key={`cost-${user.id}-${detail.instanceId}`} ownerId={user.id} instanceId={detail.instanceId} enabled={process.env.GV_COPY_COST_V1 === '1'} /></div>
           <VaultInstancePricingCard
+            key={`pricing-${detail.instanceId}`}
             instanceId={detail.instanceId}
             isActive={isActive}
             isGraded={detail.isGraded}
@@ -254,7 +281,7 @@ export default async function VaultInstancePage(
             <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
               <SectionHeader
                 title="Messages"
-                description="Demand for this card stays card-anchored, even when you are managing one exact copy."
+                description="Conversations about this card."
               />
               <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
                 <p

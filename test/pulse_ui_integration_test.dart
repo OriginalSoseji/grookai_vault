@@ -75,8 +75,8 @@ void main() {
       'lib/screens/network/network_screen.dart',
     ).readAsStringSync();
 
-    expect(mainShell, contains("title: 'Pulse'"));
-    expect(mainShell, contains("label: 'Pulse'"));
+    expect(mainShell, contains("title: 'Community'"));
+    expect(mainShell, contains("'Pulse',"));
     expect(
       mainShell,
       contains('Use one Grookai identity across your vault, wall, and Pulse.'),

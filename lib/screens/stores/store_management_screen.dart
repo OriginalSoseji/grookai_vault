@@ -1,3 +1,4 @@
+import 'store_owner_guard.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,7 +14,8 @@ class StoreManagementScreen extends StatefulWidget {
   State<StoreManagementScreen> createState() => _StoreManagementScreenState();
 }
 
-class _StoreManagementScreenState extends State<StoreManagementScreen> {
+class _StoreManagementScreenState extends State<StoreManagementScreen>
+    with StoreOwnerGuard<StoreManagementScreen> {
   late final StorefrontService _service = widget.service ?? StorefrontService();
   final _name = TextEditingController(),
       _slug = TextEditingController(),
@@ -27,11 +29,13 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
   @override
   void initState() {
     super.initState();
+    watchStoreOwner(_service);
     _load();
   }
 
   @override
   void dispose() {
+    stopWatchingStoreOwner();
     for (final c in [_name, _slug, _description, _search]) {
       c.dispose();
     }
@@ -39,8 +43,18 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
     super.dispose();
   }
 
+  @override
+  void clearStoreDraft() {
+    _owner = null;
+    _error = null;
+    for (final controller in [_name, _slug, _description, _search]) {
+      controller.clear();
+    }
+  }
+
   Future<void> _load() async {
-    if (mounted) {
+    if (!mounted || storeOwnerClosed) return;
+    if (mounted && !storeOwnerClosed) {
       setState(() {
         _loading = true;
         _error = null;
@@ -53,7 +67,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
         condition: _condition,
         offset: _offset,
       );
-      if (!mounted) return;
+      if (!mounted || storeOwnerClosed) return;
       if (!_initialized) {
         _name.text = owner.store?['display_name']?.toString() ?? '';
         _slug.text = owner.store?['slug']?.toString() ?? '';
@@ -62,22 +76,23 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
       }
       setState(() => _owner = owner);
     } catch (e) {
-      if (mounted) setState(() => _error = e.toString());
+      if (mounted && !storeOwnerClosed) setState(() => _error = e.toString());
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (mounted && !storeOwnerClosed) setState(() => _loading = false);
     }
   }
 
   Future<void> _change(Map<String, dynamic> action) async {
+    if (!mounted || storeOwnerClosed) return;
     setState(() => _saving = true);
     try {
       await _service.change(action);
       await _load();
-      if (mounted) _notice('Saved.');
+      if (mounted && !storeOwnerClosed) _notice('Saved.');
     } catch (e) {
-      if (mounted) _notice(e.toString());
+      if (mounted && !storeOwnerClosed) _notice(e.toString());
     } finally {
-      if (mounted) setState(() => _saving = false);
+      if (mounted && !storeOwnerClosed) setState(() => _saving = false);
     }
   }
 
@@ -89,7 +104,8 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
         ? 'the public website'
         : 'the Grookai app';
     if (publish) {
-      final confirmed = await showDialog<bool>(
+      final confirmed = await showStoreOwnerDialog(
+        service: _service,
         context: context,
         builder: (context) => AlertDialog(
           title: Text('Publish to $destination?'),
@@ -108,7 +124,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
           ],
         ),
       );
-      if (confirmed != true || !mounted) return;
+      if (confirmed != true || !mounted || storeOwnerClosed) return;
     }
     await _change({
       'action': 'publish',
@@ -121,7 +137,8 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
     if (selected &&
         (_owner?.store?['app_published'] == true ||
             _owner?.store?['web_published'] == true)) {
-      final confirmed = await showDialog<bool>(
+      final confirmed = await showStoreOwnerDialog(
+        service: _service,
         context: context,
         builder: (context) => AlertDialog(
           title: const Text('Add this copy to your published store?'),
@@ -138,7 +155,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
           ],
         ),
       );
-      if (confirmed != true || !mounted) return;
+      if (confirmed != true || !mounted || storeOwnerClosed) return;
     }
     await _change({
       'action': 'item',
@@ -149,24 +166,23 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
 
   Future<void> _upload(String kind) async {
     final file = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (file == null || !mounted) return;
+    if (file == null || !mounted || storeOwnerClosed) return;
     setState(() => _saving = true);
     try {
-      await _service.uploadMedia(
-        _owner!.store!['id'].toString(),
-        kind,
-        await file.readAsBytes(),
-      );
+      final bytes = await file.readAsBytes();
+      if (!mounted || storeOwnerClosed) return;
+      await _service.uploadMedia(_owner!.store!['id'].toString(), kind, bytes);
       await _load();
     } catch (e) {
-      if (mounted) _notice(e.toString());
+      if (mounted && !storeOwnerClosed) _notice(e.toString());
     } finally {
-      if (mounted) setState(() => _saving = false);
+      if (mounted && !storeOwnerClosed) setState(() => _saving = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (storeOwnerClosed) return closedStore();
     final owner = _owner;
     final store = owner?.store;
     final canEdit = owner?.canEdit == true && !_saving;

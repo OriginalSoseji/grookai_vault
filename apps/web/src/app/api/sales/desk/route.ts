@@ -5,6 +5,11 @@ import { GET as resolveSearch } from '@/app/api/resolver/search/route';
 import { getPublicCardPrintingOptions } from '@/lib/cards/getPublicCardPrintingOptions';
 import { resolveCardImageFieldsV1 } from '@/lib/canon/resolveCardImageFieldsV1';
 import { resolveDisplayIdentity } from '@/lib/cards/resolveDisplayIdentity';
+import { scannedCopyId } from '@/lib/sales/salesScanner.mjs';
+import {validateNegotiatedTradeRequest, confirmedNegotiatedTrade} from '@/lib/sales/negotiatedTrade.mjs';
+import {validatePurchaseRequest} from '@/lib/sales/salesPurchase.mjs';
+import {validateDiscountedSaleRequest,confirmedDiscountedSale,confirmedDiscountedSaleCancellation} from '@/lib/sales/discountedSale.mjs';
+import {projectOfferMarketReference} from '@/lib/sales/offerPolicies.mjs';
 export const dynamic = 'force-dynamic';
 const headers = { 'Cache-Control': 'private, no-store', 'Vary': 'Cookie, Authorization' };
 const json = (data: unknown, status = 200) => NextResponse.json(data, { status, headers });
@@ -24,13 +29,19 @@ export async function GET(req: NextRequest) {
                 throw error;
             const { data: trades } = await client.rpc('vendor_sales_trade_available_v1');
             const { data: payments } = await client.rpc('vendor_sales_payments_available_v1');
-            return json({ owner: user.id, payments: payments === true, available: available === true, trades: trades === true });
+            const { data: purchases } = await client.rpc('vendor_sales_purchase_available_v1');
+            const {data: negotiated, error: negotiatedError} = await client.rpc('vendor_sales_negotiated_trade_available_v1');
+            if (negotiatedError && negotiatedError.code !== 'PGRST202') throw negotiatedError;
+            const {data: discounts,error: discountError} = await client.rpc('vendor_sales_discount_entry_available_v1');
+            if (discountError && discountError.code !== 'PGRST202') throw discountError;
+            return json({ discounts: discounts === true, negotiatedTrades: negotiated === true, owner: user.id, purchases: purchases === true, payments: payments === true, available: available === true, trades: trades === true });
         }
         if (action === 'book') {
+            if (p.has('owner') && p.get('owner') !== user.id) return json({error:'Account changed. Reopen Reports.'},409);
             const { data, error } = await client.rpc('vendor_receipt_book_read_v1');
             if (error)
                 throw error;
-            return json(data);
+            return json({ ...data, ownerId: user.id });
         }
         if (action === 'recover') {
             if (!uuid(p.get('id')))
@@ -40,10 +51,29 @@ export async function GET(req: NextRequest) {
                 throw error;
             return json({ receipt: data });
         }
-        if (!['stock', 'catalog'].includes(action))
+        if (action === 'offer-reference') {
+            if (p.get('owner') !== user.id) return json({error: 'Account changed. Reopen the sales desk.'}, 409);
+            const rawCard = p.get('cardId'), rawPrinting = p.get('printingId');
+            if (!uuid(rawCard) || !uuid(rawPrinting)) return json({error: 'Choose an exact printing.'}, 400);
+            const cardId = rawCard.toLowerCase(), printingId = rawPrinting.toLowerCase();
+            const options = (await getPublicCardPrintingOptions(client, [cardId])).filter(option =>
+                option.card_print_id === cardId && option.id === printingId);
+            if (options.length !== 1 || !options[0].printing_gv_id || options[0].finish_is_active !== true)
+                return json({owner: user.id, status: 'unavailable', reason: 'printing_unavailable'});
+            const {data, error} = await client.rpc('get_market_pricing_read_model_v1', {
+                p_card_print_ids: null, p_card_printing_ids: [printingId],
+            });
+            if (error) throw error;
+            return json({owner: user.id, ...projectOfferMarketReference(data, cardId, printingId, Date.now())});
+        }
+        if (action === 'scan' && (p.get('owner') !== user.id || !scannedCopyId(p.get('q')) || scannedCopyId(p.get('q')) !== p.get('q')))
+            return json({error: 'Invalid scan or changed account'}, 400);
+        if (!['stock', 'catalog', 'scan'].includes(action))
             return json({ error: 'Unknown read' }, 400);
-        const q = (p.get('q') ?? '').trim(), game = p.get('game') ?? 'pokemon', offset = Number(p.get('offset') ?? 0), copyOffset = Number(p.get('copyOffset') ?? 0);
-        if (q.length > 120 || !['pokemon', 'mtg', 'one_piece'].includes(game) || ![offset, copyOffset].every(n => Number.isInteger(n) && n >= 0 && n <= 10000))
+        const q = (p.get('q') ?? '').trim(), game = p.get('game') ?? 'pokemon', offset = Number(p.get('offset') ?? 0), copyOffset = action === 'scan' ? 0 : Number(p.get('copyOffset') ?? 0);
+        const inventory = action === 'stock' && p.get('view') === 'inventory';
+        const price = inventory ? p.get('price') ?? 'all' : 'all';
+        if (q.length > 120 || !['all', 'priced', 'unpriced'].includes(price) || !['pokemon', 'mtg', 'one_piece'].includes(game) || ![offset, copyOffset].every(n => Number.isInteger(n) && n >= 0 && n <= 10000))
             return json({ error: 'Invalid search' }, 400);
         type CardRow = {
             id: string;
@@ -82,13 +112,18 @@ export async function GET(req: NextRequest) {
                 return json({ cards: cards.map(c => ({ ...c, image: c.image_url ?? null, printings: options.filter(o => o.card_print_id === c.id && o.printing_gv_id && (!c.search_card_printing_id || c.search_card_printing_id === o.id)) })), next: pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: pagination?.total_count ?? null });
             }
             if (!cards.length)
-                return json({ cards: [], next: null, total: 0 });
+                return json({ owner: user.id, cards: [], next: null, total: 0 });
         }
         else if (action === 'catalog')
             return json({ cards: [], next: null, total: null });
         // An empty slab embed filters slab-only copies without loading the owner's
         // entire inventory. Keep the unfiltered relation for its canonical parent.
-        let query = client.from('vault_item_instances').select('id,gv_vi_id,card_print_id,card_printing_id,condition_label,asking_price_amount,asking_price_currency,slab_cert_id,slab:slab_certs(card_print_id,grader,grade),match_slab:slab_certs()').eq('user_id', user.id).is('archived_at', null);
+        let query = client.from('vault_item_instances').select('id,gv_vi_id,card_print_id,card_printing_id,condition_label,intent,asking_price_amount,asking_price_currency,slab_cert_id,slab:slab_certs(card_print_id,grader,grade),match_slab:slab_certs()').eq('user_id', user.id).is('archived_at', null);
+        // Card inventory uses the same owner read; sealed copies retain their
+        // existing dedicated read/edit surface and rollout settings.
+        if (inventory) query = query.is('sealed_product_variant_id', null);
+        if (price === 'priced') query = query.not('asking_price_amount', 'is', null);
+        if (price === 'unpriced') query = query.is('asking_price_amount', null);
         if (exactCopy)
             query = query.eq('gv_vi_id', q.toUpperCase());
         else if (q.length >= 2) {
@@ -106,13 +141,13 @@ export async function GET(req: NextRequest) {
             grade: string;
         } | null; return { ...c, slab, card_print_id: c.card_print_id ?? slab?.card_print_id }; }), ids = [...new Set(copies.map(c => c.card_print_id).filter(Boolean))];
         if (!copies.length)
-            return json({ cards: [], next: pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
+            return json({ owner: user.id, cards: [], next: pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
         const { data: parents, error: parentError } = await client.from('card_prints').select('id,gv_id,name,number,set_code,variant_key,printed_identity_modifier,set_identity_model,tcgplayer_id,image_source,image_path,image_url,image_alt_url,image_status,image_note').in('id', ids);
         if (parentError)
             throw parentError;
         const options = await getPublicCardPrintingOptions(client, ids);
-        const rows = await Promise.all(copies.map(async (copy) => { const c = parents?.find(c => c.id === copy.card_print_id); const printing = options.find(o => o.id === copy.card_printing_id); return { instanceId: copy.id, gvviId: copy.gv_vi_id, id: copy.card_print_id, gv_id: c?.gv_id, name: c ? resolveDisplayIdentity(c).display_name : 'Unresolved card', number: c?.number, set_code: c?.set_code, condition: copy.slab ? [copy.slab.grader, copy.slab.grade].filter(Boolean).join(' ') : copy.condition_label, printing: printing?.finish_label ?? (copy.slab_cert_id ? 'Slab' : 'Printing unassigned'), image: c ? (await resolveCardImageFieldsV1(c)).display_image_url : null, askingMinor: copy.asking_price_currency === 'USD' && copy.asking_price_amount != null ? Math.round(Number(copy.asking_price_amount) * 100) : null, tcgplayer_id: c?.tcgplayer_id }; }));
-        return json({ cards: rows.filter(row => !cards.length || cards.some(c => c.id === row.id && (!c.search_card_printing_id || copies.find(i => i.id === row.instanceId)?.card_printing_id === c.search_card_printing_id))), next: (raw?.length ?? 0) > 48 ? { offset, copyOffset: copyOffset + 48 } : pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
+        const rows = await Promise.all(copies.map(async (copy) => { const c = parents?.find(c => c.id === copy.card_print_id); const printing = options.find(o => o.id === copy.card_printing_id); return { instanceId: copy.id, gvviId: copy.gv_vi_id, id: copy.card_print_id, gv_id: c?.gv_id, name: c ? resolveDisplayIdentity(c).display_name : 'Unresolved card', number: c?.number, set_code: c?.set_code, condition: copy.slab ? [copy.slab.grader, copy.slab.grade].filter(Boolean).join(' ') : copy.condition_label, printing: printing?.finish_label ?? (copy.slab_cert_id ? 'Slab' : 'Printing unassigned'), image: c ? (await resolveCardImageFieldsV1(c)).display_image_url : null, intent: copy.intent, askingAmount: copy.asking_price_amount == null ? null : Number(copy.asking_price_amount), askingCurrency: copy.asking_price_currency, askingMinor: copy.asking_price_currency === 'USD' && copy.asking_price_amount != null ? Math.round(Number(copy.asking_price_amount) * 100) : null, tcgplayer_id: c?.tcgplayer_id }; }));
+        return json({ owner: user.id, cards: rows.filter(row => !cards.length || cards.some(c => c.id === row.id && (!c.search_card_printing_id || copies.find(i => i.id === row.instanceId)?.card_printing_id === c.search_card_printing_id))), next: (raw?.length ?? 0) > 48 ? { offset, copyOffset: copyOffset + 48 } : pagination?.next_offset != null ? { offset: pagination.next_offset, copyOffset: 0 } : null, total: null });
     }
     catch {
         return json({ error: 'The sales desk could not load this request. Retry; your saved deals are unchanged.' }, 503);
@@ -136,11 +171,40 @@ export async function POST(req: NextRequest) {
         catch {
             return json({ error: 'Invalid request', rejected: true }, 400);
         }
-        if (!b || !uuid(b.id) || !['sale', 'catalog'].includes(b.action))
+        if (!b || !uuid(b.id) || !['sale', 'catalog', 'purchase', 'trade', 'recover-trade','discounted-sale','recover-discounted-sale','cancel-discounted-sale'].includes(b.action))
             return json({ error: 'Invalid request', rejected: true }, 400);
         if (b.owner !== ctx.user.id)
             return json({ error: 'Your account changed. Reopen the sales desk.', rejected: false }, 409);
-        const { data, error } = b.action === 'catalog' ? await ctx.client.rpc('vendor_sales_catalog_add_v1', { p_request_id: b.id, p_card: b.card }) : await ctx.client.rpc(b.cart?.version === 3 ? 'vendor_sales_cart_complete_v3' : b.cart?.version === 2 ? 'vendor_sales_cart_complete_v2' : 'vendor_sales_cart_complete_v1', { p_request_id: b.id, p_cart: b.cart });
+        if (['discounted-sale','recover-discounted-sale','cancel-discounted-sale'].includes(b.action)) {
+            const pending={id:b.id,cart:b.cart};
+            try {validateDiscountedSaleRequest(pending);}
+            catch {return json({error:'Saved sale needs review. Preserve this request.',rejected:false},400);}
+            const rpc=b.action==='discounted-sale'?'vendor_sales_cart_complete_v6':b.action==='cancel-discounted-sale'?'vendor_sales_cart_cancel_v1':'vendor_sales_cart_read_v3';
+            const {data,error}=await ctx.client.rpc(rpc,{p_request_id:b.id,p_cart:b.cart});
+            if(error)return json({error:'Sale unconfirmed. Recover it or confirm cancellation before editing.',rejected:false},409);
+            if(data?.status==='cancelled') confirmedDiscountedSaleCancellation(data,pending);
+            else if(data!==null||b.action!=='recover-discounted-sale') confirmedDiscountedSale(data,pending);
+            return json({result:data,owner:ctx.user.id});
+        }
+        if (b.action === 'trade' || b.action === 'recover-trade') {
+            // Both paths carry private exact terms in a POST body, never a URL.
+            // No failure authorizes discarding or replacing a pending trade.
+            const pending = {id: b.id, cart: b.cart};
+            try { validateNegotiatedTradeRequest(pending); }
+            catch { return json({error: 'Saved trade needs review. Preserve this request.', rejected: false}, 400); }
+            const {data, error} = await ctx.client.rpc(b.action === 'trade' ? 'vendor_sales_cart_complete_v5' : 'vendor_sales_cart_read_v2',
+                {p_request_id: b.id, p_cart: b.cart});
+            if (error) return json({error: 'Trade unconfirmed. Keep and recover this same request.', rejected: false}, 409);
+            if (data !== null || b.action === 'trade') confirmedNegotiatedTrade(data, pending);
+            return json({result: data, owner: ctx.user.id});
+        }
+        if (b.action === 'purchase') {
+            try { validatePurchaseRequest({id: b.id, cart: b.cart}); }
+            catch { return json({error: 'Purchase details need review.', rejected: true}, 400); }
+        } else if (b.action === 'sale' && ![1, 2, 3].includes(b.cart?.version)) {
+            return json({error: 'Unsupported sale request.', rejected: true}, 400);
+        }
+        const { data, error } = b.action === 'catalog' ? await ctx.client.rpc('vendor_sales_catalog_add_v1', { p_request_id: b.id, p_card: b.card }) : await ctx.client.rpc(b.action === 'purchase' ? 'vendor_sales_cart_complete_v4' : b.cart.version === 3 ? 'vendor_sales_cart_complete_v3' : b.cart.version === 2 ? 'vendor_sales_cart_complete_v2' : 'vendor_sales_cart_complete_v1', { p_request_id: b.id, p_cart: b.cart });
         if (error) {
             const rejected = ['22023', 'PT409', '23514', '23505', '42501', '22P02'].includes(error.code);
             return json({ error: rejected ? 'Request rejected. Review availability and details.' : 'Result unconfirmed. Recover this same request.', rejected }, rejected ? 409 : 503);

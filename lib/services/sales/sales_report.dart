@@ -1,5 +1,7 @@
 import 'sales_trade.dart';
 import 'sales_payments.dart';
+import 'sales_purchase.dart';
+import 'negotiated_trade.dart';
 
 /// A receipt is a transaction, regardless of how many physical copies it holds.
 /// These are vendor-recorded receipts, not a Stripe settlement or profit ledger.
@@ -19,6 +21,15 @@ class SalesReport {
       if (!seen.add(id)) continue;
       final date = DateTime.parse(receipt['createdAt'] as String);
       if (date.isBefore(start) || !date.isBefore(end)) continue;
+      final purchase = isPurchaseReceipt(receipt);
+      if (purchase) {
+        validatePurchaseReceipt(receipt);
+      }
+      if (receipt['tradeIn'] is Map &&
+          receipt['tradeIn']['version'] != null &&
+          receipt['tradeIn']['version'] != 1) {
+        validateNegotiatedSaleReceipt(receipt);
+      }
       final tenders = receiptTenders(receipt);
       if (method != null &&
           receipt['method'] != method &&
@@ -31,12 +42,28 @@ class SalesReport {
           '${((receipt['tradeIn'] as Map?)?['items'] as List? ?? []).map((i) => i['description']).join(' ')}';
       if (!search.toLowerCase().contains(query.trim().toLowerCase())) continue;
       rows.add(receipt);
+      final balance = receiptBalance(receipt);
+      if (purchase) {
+        purchases++;
+        purchaseMinor += receipt['purchaseMinor'] as int;
+        purchasedUnits += (receipt['items'] as List).fold<int>(
+          0,
+          (n, line) => n + (line['quantity'] as int),
+        );
+        paidToSellerMinor += -balance;
+        for (final entry in tenders) {
+          final method = entry['method'] as String;
+          payments[method] =
+              (payments[method] ?? 0) - (entry['amountMinor'] as int);
+        }
+        continue;
+      }
+      saleTransactions++;
       final net =
           (receipt['subtotalMinor'] as int) -
           (receipt['discountMinor'] as int? ?? 0);
       salesMinor += net;
       taxMinor += receipt['taxMinor'] as int;
-      final balance = receiptBalance(receipt);
       totalMinor += balance > 0 ? balance : 0;
       paidToCustomerMinor += balance < 0 ? -balance : 0;
       tradeCreditMinor +=
@@ -75,9 +102,15 @@ class SalesReport {
       paidToCustomerMinor = 0,
       units = 0,
       discountMinor = 0;
+  int purchases = 0,
+      paidToSellerMinor = 0,
+      purchasedUnits = 0,
+      purchaseMinor = 0,
+      saleTransactions = 0;
   int get transactions => rows.length;
+  int get paidOutMinor => paidToCustomerMinor + paidToSellerMinor;
   int get averageMinor =>
-      transactions == 0 ? 0 : (salesMinor / transactions).round();
+      saleTransactions == 0 ? 0 : (salesMinor / saleTransactions).round();
 
   String csv() {
     // Prevent spreadsheet formulas from customer-controlled text on export.
@@ -89,30 +122,39 @@ class SalesReport {
 
     String amount(int n) => (n / 100).toStringAsFixed(2);
     return [
-      'Receipt,Recorded at,Customer,Payment method,Units,Sales USD,Discount USD,Tax USD,Purchase total USD,Trade credit USD,Received USD,Paid to customer USD,Payment breakdown USD,Cash tendered USD,Cash change USD',
+      'Receipt,Recorded at,Customer,Payment method,Units,Sales USD,Discount USD,Tax USD,Purchase total USD,Trade credit USD,Received USD,Paid to customer USD,Payment breakdown USD,Cash tendered USD,Cash change USD,Transaction kind,Units purchased,Inventory purchases USD,Paid to seller USD',
       ...rows.map(
         (r) => [
           r['number'],
           r['createdAt'],
           r['customerName'],
           r['method'],
-          (r['items'] as List).fold<int>(
-            0,
-            (n, i) => n + (i['quantity'] as int),
-          ),
+          isPurchaseReceipt(r)
+              ? 0
+              : (r['items'] as List).fold<int>(
+                  0,
+                  (n, i) => n + (i['quantity'] as int),
+                ),
           amount(
-            (r['subtotalMinor'] as int) - (r['discountMinor'] as int? ?? 0),
+            isPurchaseReceipt(r)
+                ? 0
+                : (r['subtotalMinor'] as int) -
+                      (r['discountMinor'] as int? ?? 0),
           ),
           amount(r['discountMinor'] as int? ?? 0),
-          amount(r['taxMinor'] as int),
-          amount(r['totalMinor'] as int),
+          amount(isPurchaseReceipt(r) ? 0 : r['taxMinor'] as int),
+          amount(isPurchaseReceipt(r) ? 0 : r['totalMinor'] as int),
           amount((r['tradeIn'] as Map?)?['totalCreditMinor'] as int? ?? 0),
           amount(receiptBalance(r) > 0 ? receiptBalance(r) : 0),
-          amount(receiptBalance(r) < 0 ? -receiptBalance(r) : 0),
+          amount(
+            !isPurchaseReceipt(r) && receiptBalance(r) < 0
+                ? -receiptBalance(r)
+                : 0,
+          ),
           receiptTenders(r)
               .map((e) => '${e['method']}: ${amount(e['amountMinor'] as int)}')
               .join('; '),
-          r['payments'] == null
+          r['payments'] == null || isPurchaseReceipt(r)
               ? ''
               : amount(
                   receiptTenders(r)
@@ -122,6 +164,15 @@ class SalesReport {
           r['payments'] == null
               ? ''
               : amount(r['payments']['changeMinor'] as int),
+          isPurchaseReceipt(r) ? 'Purchase' : 'Sale',
+          isPurchaseReceipt(r)
+              ? (r['items'] as List).fold<int>(
+                  0,
+                  (n, i) => n + (i['quantity'] as int),
+                )
+              : 0,
+          isPurchaseReceipt(r) ? amount(r['purchaseMinor'] as int) : '0.00',
+          isPurchaseReceipt(r) ? amount(r['purchaseMinor'] as int) : '0.00',
         ].map(cell).join(','),
       ),
     ].join('\r\n');

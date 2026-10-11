@@ -1,36 +1,11 @@
 export const MOBILE_PARITY_BREAKPOINT_PX = 900;
 
 export const MOBILE_PRIMARY_DOCK = [
-  {
-    key: "pulse",
-    label: "Pulse",
-    href: "/network",
-    kind: "root",
-  },
-  {
-    key: "wall",
-    label: "Wall",
-    href: "/wall",
-    kind: "root",
-  },
-  {
-    key: "scan",
-    label: "Scan",
-    href: "/scan",
-    kind: "action",
-  },
-  {
-    key: "vault",
-    label: "Vault",
-    href: "/vault",
-    kind: "root",
-  },
-  {
-    key: "search",
-    label: "Search",
-    href: "/explore",
-    kind: "root",
-  },
+  { key: "vault", label: "Vault", href: "/vault", kind: "root" },
+  { key: "search", label: "Explore", href: "/explore", kind: "root" },
+  { key: "scan", label: "Scan", href: "/scan", kind: "action" },
+  { key: "binders", label: "Binders", href: "/binders", kind: "root" },
+  { key: "pulse", label: "Community", href: "/network", kind: "root" },
 ] as const;
 
 export type MobilePrimaryDockItem = (typeof MOBILE_PRIMARY_DOCK)[number];
@@ -72,6 +47,7 @@ export function getMobileRouteChromeMode(
   pathname: string,
 ): MobileRouteChromeMode {
   const normalizedPathname = normalizePathname(pathname);
+  if (normalizedPathname === "/binders") return "root";
 
   if (
     (MOBILE_FULLSCREEN_ROUTES as readonly string[]).includes(

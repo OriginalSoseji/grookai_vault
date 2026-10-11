@@ -1,8 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { MobileParityDock } from "@/components/mobileParity/MobileParityDock";
+import { useKeyboardVisible } from "@/components/mobileParity/useKeyboardVisible";
+import { isVendorWorkspacePath } from "@/lib/vendorWorkspace";
 import {
   shouldSuppressMobileChrome,
   type MobilePrimaryDockKey,
@@ -15,6 +16,8 @@ type MobileBottomNavProps = {
 
 function isSearchPath(pathname: string) {
   return (
+    pathname === "/dex" || pathname.startsWith("/dex/") ||
+    pathname === "/set" || pathname.startsWith("/set/") ||
     pathname === "/explore" ||
     pathname.startsWith("/explore/") ||
     pathname === "/sets" ||
@@ -40,35 +43,16 @@ function getActiveMobileNavKey(
   }
 
   if (pathname === "/wall" || pathname.startsWith("/wall/") || pathname.startsWith("/u/")) {
-    return "wall";
+    return "pulse";
   }
+
+  if (pathname === "/binders" || pathname.startsWith("/binders/")) return "binders";
 
   if (pathname === "/vault" || pathname.startsWith("/vault/")) {
     return "vault";
   }
 
   return null;
-}
-
-function useKeyboardVisible() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const viewport = window.visualViewport;
-    if (!viewport) {
-      return;
-    }
-
-    const update = () => {
-      setVisible(window.innerHeight - viewport.height > 150);
-    };
-
-    update();
-    viewport.addEventListener("resize", update);
-    return () => viewport.removeEventListener("resize", update);
-  }, []);
-
-  return visible;
 }
 
 export function MobileBottomNav({ wallHref, pulseUnreadCount = 0 }: MobileBottomNavProps) {
@@ -86,6 +70,9 @@ export function MobileBottomNav({ wallHref, pulseUnreadCount = 0 }: MobileBottom
       ? pathname
       : wallHref;
 
+  // Vendor routes own their dock, including when collector chrome is suppressed.
+  if (isVendorWorkspacePath(pathname)) return null;
+
   return (
     <MobileParityDock
       wallHref={currentWallHref}
@@ -102,6 +89,8 @@ export function MobileBottomNavFallback() {
   if (shouldSuppressMobileChrome(pathname) || keyboardVisible) {
     return null;
   }
+
+  if (isVendorWorkspacePath(pathname)) return null;
 
   return (
     <MobileParityDock

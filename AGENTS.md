@@ -1,5 +1,723 @@
+# Current continuation — saved overhaul checkpoint, main integration in progress
+
+Use C:/gv_product_inventory_export_20261008 and the external CHECKPOINT.json.
+The152-file overhaul checkpoint a956887c2cc053dae0398fff29ea086cbbd0e697
+passed the normal managed commit hook:9,004 Node tests,2,786 native tests,
+web types/lint/strict build and native analysis. Exact442 replay, populated430
+upgrade and independent schema comparison pass; all rollout controls stay OFF.
+The current merge incorporates the latest main catalog/dashboard and precision
+release work. Both release workflows are preserved;42 focused merge checks pass.
+Current-main browser checks pass62 scenarios (export8,owner13,team7,manager13,
+price8,order privacy7,fulfillment6). The normal merge commit is pending.
+Read CURRENT_QUALIFICATION.json under docs/audits/product_overhaul_20261009.
+
+Current local fulfillment proof passes6 cases: actual authenticated shipment,
+exact lost-response retry without duplicate events, tracking correction, delivery,
+pickup and paused/review rejection. Fixtures are synthetic paid-order projections,
+not provider settlement. All5 screenshots are directly inspected. Order history
+now removes duplicate headings/padding and keeps the first order above the mobile
+dock at320/390px. Evidence: order-lifecycle-v1/fulfillment-1791574616655.
+The failed older fixture is retained, its control restored OFF and every prior
+row preserved. Its missing attempt binding was corrected in the proof fixture.
+
+Native415-input Android443 APK SHA256
+0bd8cf81285b69fa3a12ef8e3a76748096ad2139dd52148b01cc29ac6422ef0a remains
+archived. Samsung is still locked. Emulator install timed out; package readback
+found the separate proof app, but hash verification timed out and it was never
+started. No OS-save or physical acceptance is claimed from that attempt.
+
+Preserve all old APKs/apps, worktrees, fixtures and databases. No production
+writes/deploy/activation, provider fetching/upload, messages or subagents.
+Do not re-ask or bypass pending Samsung/Mac actions. Full overhaul, provider
+lifecycle, physical acceptance and measured user comparisons remain open.
+
+# Current continuation — manager accepted, price alerts in progress
+
+Docker recovered without deleting or resetting prior labs. Fresh retained/current
+lab attestations pass. Production is now430 and matches the separately deployed
+sealed-cost precision release (zero normalized schema drift). Its selected five
+compatibility files are integrated here;86 import contracts pass. Historical429,
+438/439 and earlier source-bound receipts remain historical, not rewritten.
+
+Permission-enabled manager workflows pass13 actual Auth/browser cases.1700 store
+contracts,24 focused tests, types and lint passed the first manager UX revision.
+Visual review found inventory search below the320px fold and a floating stale
+success banner. Compact header/notice refinement is applied; new web build/proof
+running. Source is no longer frozen to STORE_CURRENT_EVIDENCE_V1.json.
+
+External price-alert-draft-v1 has owner RPC8 and governed-price crossing6 runtime
+checks passed, plus53 pure logic cases. Crossing evaluation is transactionally
+rolled back; prior365 tables are retained. Initial441 replay is historical after
+one save-function correction; a fresh441-v2 replay is running. Delivery-boundary
+migration remains an external draft. Price feature is NOT integrated/released.
+
+Continue in this root and read external CHECKPOINT.json. Preserve old databases,
+fixtures, APKs and apps. No production writes/deploy/activation, provider fetching,
+external messages or subagents. Pending Samsung/Mac actions remain unasked and
+unbypassed. Full overhaul is open, not complete or deployed.
+
+# Manager runtime continuation — October 9
+
+Current product/native/schema bytes remain unchanged: all3038 source-manifest
+entries pass CONTINUATION_SOURCE_CHECK_V1.json. The external CHECKPOINT.json now
+records manager runtime blocked BEFORE database access because Docker's Linux API
+was unavailable. Normal restarts and a targeted docker-desktop WSL restart were
+attempted without reset, deletion or pruning. Do not claim retained databases are
+re-attested after this recovery until the existing read-only checks actually pass.
+
+External verify-manager-runtime-v1.mjs is syntax-checked but NOT runtime-qualified.
+It creates only fresh synthetic owners/managers/catalog/store rows in full-439-v2,
+retains all prior rows, enables local team/workflow controls for its proof and
+restores them in finally. No fixture/control writes occurred in the failed preflight.
+Inspect and re-attest engine/lab state before retrying. The planned proof covers
+real acceptance, intake and product lost-response retries, editing, listing,
+sections, permission removal and original-actor handoff. Preserve all old labs.
+
+External price-alert-draft-v1 is an executable design draft,53 cases passed. It is
+NOT integrated into source/SQL/UI/delivery. RESULT_V1.json records finite next
+requirements. Preserve current candidate evidence and require a fresh schema
+baseline before persistence work. Samsung remains deviceLocked=1; earlier Mac
+holds remain pending. No re-asking, security bypass, production/provider actions,
+subagents or claims that the full overhaul is complete.
+
+# Current verified store/export candidate; full overhaul remains open
+
+Work in this same root. External CHECKPOINT.json and STORE_CURRENT_EVIDENCE_V1.json
+own current facts. Web-1791529325794 passes export8; store journey13 at
+store-handoff-verification-1791529505831; team7 at
+store-team-verification-1791529447345. All28 images reviewed. Team repair is APPLIED
+(13 files); prior draft instructions below are historical.1698 affected contracts,
+22 focused cases, types/lint/build pass. Pre-team full Node8900 passed. Current
+native analysis/tests2758 pass; actual local Auth5 passes. Current443 APK is built
+at ui-1791523581076/device-1791529569580 (412 inputs), but not installed/tested on
+the locked Samsung. Preserve it and every prior APK/app/fixture/lab.
+
+Product inputs are frozen for current evidence. Price-alert read-only recon shows
+interest Watches/preferences do not evaluate price targets; see external
+PRICE_ALERT_READ_ONLY_RECON_V1.json. Remaining work includes separately gated
+manager runtime proof, price alerts, supported buyer/seller lifecycle, physical
+Samsung/iOS and measured competitor/uncoached tasks. No production/provider
+actions, new schema edits without a fresh baseline, or subagents. Do not re-ask
+the pending Samsung unlock or earlier Mac-local actions. Goal runner is still
+usageLimited; never mark the full goal complete from these component results.
+
+# Current store qualification and team repair draft
+
+Current web source is bound to web-1791528524668: export8 and store journey13
+pass,23 images reviewed. Native ownership19 focused/13 existing/5 actual local
+Auth cases pass. Full suites are running: native store-checks-1791528665287,
+Node store-checks-1791528732944. Product inputs are frozen until terminal receipts.
+
+Separate actual team privacy defect reproduced in store-team-repro-1791529043127.
+The12-file external store-team-owner-draft-v1 passes22 focused tests and retains
+preimages. Do not apply it before running checks finish; then rebind and verify
+the team scope, existing owner/export flows and original-actor handoff. Preserve
+all old labs, APKs, source snapshots and expired synthetic invitation fixtures.
+No messages were sent. No production/provider actions, schema changes or subagents.
+Physical Samsung remains locked, iOS earlier Mac-local actions pending. Full goal open.
+
+# Native store account protection — current continuation
+
+Web store request ownership passes9 actual Auth/browser cases,14 focused owner
+tests and89 related contracts; types/lint/build and export8 pass. See external
+store-handoff-verification-1791527539342 and current web-1791527055440 proofs.
+All18 images are reviewed/hash-bound. Prior ordinary components predate handoff.
+
+Continue native service/editor/private preview ownership in this same root;
+preimages and intent are retained in external native-store-owner-v1. No schema
+changes. Native source will change, so preserve third443 export APK as historical
+evidence and do not claim it covers new native source. Phone unlock and earlier
+Mac-local actions remain pending; do not re-ask or bypass. Full overhaul remains
+open. No production/provider actions, old-data resets or subagents.
+
+# Private store request ownership — current continuation
+
+Export and the first store-page privacy fix pass ordinary components:8873 Node,
+2739 native, web types/lint/strict build and native analysis. The initial full
+pipeline caught a verification-script relative import; the corrected native
+completion and serializer parity pass. Physical export save acceptance remains
+held for the locked Samsung. Preserve its ready third443 APK and all prior apps.
+
+Current same-root work extends private store account protection through request
+handoff, product/media/intake/preorder children and expected-owner server actions.
+The16-file preimage, draft and baseline are retained externally in store-handoff-draft-v1.
+New web source requires fresh focused and actual Auth/browser proof; earlier web
+bindings are historical. Export SQL and native product source remain unchanged.
+Do not claim team/native store routes or the selling journey complete. No schema,
+production/provider actions, old-lab reset, subagents or repeated Mac permission
+requests. Continue the complete overhaul in the canonical plan.
+
+# Store privacy continuation alongside export qualification
+
+The unchanged production build reproduced a delayed private store response rendering
+after confirmed second-tab sign-out. The current same-root scope now also binds the
+store page to its server-authenticated owner with the existing permanent-close
+CollectorOwnerBoundary. Record and retest this specific privacy fix. Do not claim
+mutation handoff, all store routes, native store protection or selling journey is
+complete. Rebuild and requalify browser export after the shared web source changes;
+retain prior proofs as historical. Export SQL and native source remain unchanged.
+Continue the full overhaul; no production actions or subagents.
+
+# Current-inventory export continuation
+
+Work only in C:/gv_product_inventory_export_20261008, from qualified saved-import parent 19adf542a89238969606dc5d900d7a92ee0b29ed. This entry supersedes older roots below. Read external C:/grookai_vault_operator_artifacts/product_inventory_export_20261008/SCOPE.json and CHECKPOINT.json. Full goal remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md. No subagents.
+
+Run the dedicated inventory-export baseline before product/schema edits. Add an owner-authenticated single-statement read of active vault_item_instances; never derive ownership from legacy buckets. Preserve all438 parent migration bytes. Keep each card/slab/sealed copy, exact decimal strings, nullable currency and original notes distinct. JSON is a current record export, not a supported restore format; CSV discloses spreadsheet text escaping. No partial downloads or stale owner data.
+
+Preserve prior worktrees, ten sealed databases, restored synthetic fixtures, APKs and installed apps. New migrations require new isolated replay/upgrade/shadow proof; never reset a populated lab. Use dedicated helpers, not inherited fixed-root wrappers. No production apply/deploy/activation, provider fetch/upload or external messages. Physical iOS pending two prior Mac-local permissions: do not re-ask/retry/bypass. Continue the complete overhaul after this scope.
+
+# Saved-import portability — current continuation
+
+Runtime qualification passes13 browser scenarios and Samsung442 including actual MyApp navigation, committed-response loss/retry with unchanged copy IDs/costs, source preservation and owner isolation. All24 browser/device images are reviewed. Fixture restoration retains all361 prior table sets with no profile rows or changed global controls. Reviewed product/native/web inputs are frozen for ordinary checks and read-only release qualification. Docker recovery separately re-attests all ten unchanged sealed databases at docker-recovery-1791519027378; use the portability parent reader, not stale-address inherited readers. Read docs/ops/PRODUCT_PORTABILITY_20261008.md and the13-artifact evidence manifest. Full current-inventory export remains separate and next; continue the full overhaul after qualification.
+
+Work in C:/gv_product_portability_20261008 from qualified notifications parent 47e3d789805dcae41ec883c1b4d487dff06dc5a4. This entry supersedes earlier worktree entries. Read external C:/grookai_vault_operator_artifacts/product_portability_20261008/SCOPE.json and CHECKPOINT.json. The full objective remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md.
+
+Run scripts/schema/audit_product_portability_baseline_v1.mjs before product changes. Reuse existing import documents/groups, RLS and writer/retry authorities. Add durable saved-import review/navigation and historical reconciliation, preserving every source field. A saved-source archive is not a current-collection export; full inventory portability remains next. Close private import/history content on account changes and reject delayed/disposed responses. No schema changes are planned; preserve all438 migration bytes.
+
+Actual synthetic Auth/browser/Samsung evidence and normal checks are required. Preserve all prior clean trees, restored fixtures, sealed databases, archived APKs and installed apps. Docker recovery attests ten sealed databases separately; use the current portability parent reader, never rewrite old seals or invoke inherited fixed-root wrappers. No subagents, production apply/deploy/activation, provider fetch/upload or external messages. Physical iOS remains pending two already-requested Mac-local actions; do not re-ask/retry/bypass. Continue the full overhaul after this slice.
+
+# Notification controls — current continuation
+
+Runtime qualification now passes14 actual Auth/RLS cases,12 browser scenarios and Samsung441 including actual MyApp Account entry and OS-delivered-notification cleanup. All17 images are reviewed; the fixture is restored with all361 prior table sets retained. Product/native/web/dispatcher inputs are frozen for ordinary qualification. See docs/ops/PRODUCT_NOTIFICATIONS_20261008.md and the15-artifact evidence manifest. Complete only the dedicated notification check/gate/CLI inspection helpers, then continue R4 and measured competitive tasks. Docker recovery separately attests all ten original sealed databases; do not rewrite old seals or use their stale-address parent wrappers. Original failures, archived APKs and all phone apps stay retained. Physical iOS and live provider delivery remain unverified; no production activation is authorized.
+
+Work in C:/gv_product_notifications_20261008 from qualified usability parent 5bafd6f3f34e959bafea0afe562face0543580e6. This entry supersedes earlier worktree entries. Read external C:/grookai_vault_operator_artifacts/product_notifications_20261008/SCOPE.json and CHECKPOINT.json. The complete objective remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md.
+
+Run scripts/schema/audit_product_notifications_baseline_v1.mjs before product edits. Reuse existing owner-only notification_prefs and token RPCs; preserve all438 migration bytes. Add explicit settings, permission requests and owner-safe asynchronous token handling. Existing Saved, Want and Watch authorities remain separate. Use synthetic Auth and fake providers for tests; actual web/Samsung proof is required.
+
+Preserve all prior clean trees, sealed labs, restored fixtures, archived APKs and installed primary/proof apps. No inherited fixed-root mutation/release wrappers, subagents, production apply/deploy/activation, provider fetch/upload or external messages. Physical iOS remains pending two already-requested Mac-local permissions; do not re-ask, retry or bypass them. Continue R4 and measured competitor tasks after this scope.
+
+# Collector usability continuation — current work
+
+Baseline passed; implementation, 112 Binder tests, 15 main browser checks, 3 public/library checks, authenticated contribution ownership and Samsung440 pass. All26 images are reviewed, fixture controls are restored and all360 prior table sets remain. Product/native/web source is frozen for ordinary checks and release inspection; see docs/ops/PRODUCT_COLLECTOR_USABILITY_20261008.md and the16-artifact manifest. Earlier failed builds/runtime proofs remain retained. Complete the dedicated usability gates, then continue the full overhaul. Production apply/deploy/activation remains unauthorized.
+
+Work in C:/gv_product_collector_usability_20261008 from qualified collector-home parent ee9bc75573516c5216a1ba7b7d54764206f56eae. This entry supersedes older worktree-specific entries below. Read external C:/grookai_vault_operator_artifacts/product_collector_usability_20261008/SCOPE.json and CHECKPOINT.json. The complete objective remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md.
+
+Run the dedicated collector-usability read-only baseline before product changes. Reuse current Vault/Binder/Saved ownership and pricing authorities; no schema change is planned. Compact collector overview and empty states while preserving coverage/history semantics and all goal routes. Guard delayed native Binder detail requests after disposal/account replacement and immediately clear private web Binder/Saved content on account changes. Public Binder projections stay independently readable. Verify existing contribution ownership with synthetic local accounts.
+
+Preserve all438 migration bytes, previous clean checkouts, archived APKs, phone apps and retained/sealed lab data. No inherited fixed-root mutation/release wrappers, subagents, production apply/deploy/activation, provider fetch/upload or external messages. Actual browser/Samsung and appropriate regressions are required. Existing main and locked436/portfolio438/collector439 Samsung packages remain intact; use a separate proof package. Physical iOS remains unverified pending the two already-requested Mac-local permissions; do not re-ask, retry or bypass them. Mac transfers disable automatic Git maintenance. Continue remaining R3/R4 and measured competitor tasks after this slice.
+
+# Collector home overhaul — current continuation
+
+Work in C:/gv_product_collector_home_20261008, from locally qualified portfolio parent b26ea0f8863060fadf924c013f3d792b9ce4dd5d. This entry supersedes older worktree-specific entries below. Read external C:/grookai_vault_operator_artifacts/product_collector_home_20261008/SCOPE.json and CHECKPOINT.json for current status. The full objective remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md.
+
+Run scripts/schema/audit_product_collector_home_baseline_v1.mjs before product changes. Verify private add without a social profile through scripts/audits/product_collector_private_add_v1.mjs before removing the global native gate. Use the existing Vault, Binder, social and transaction authorities; no new schema is planned. Preserve all438 migration bytes, every prior worktree, populated fixture, exact release seal, primary app and acceptance APK. No inherited fixed-root mutation/release wrappers, subagents, production apply/deploy/activation, provider fetch/upload or external messages.
+
+Implement the accepted Vault, Explore, Scan, Binders, Community navigation; preserve old links and account isolation. Keep private collecting independent of public-profile setup and avoid implicit sharing. Show bounded existing Binder continuation with honest partial/unavailable/empty states. Source changes require appropriate regression and actual browser/Samsung proof. Physical iOS remains unverified pending the two already-requested Mac-local permissions; do not re-ask, retry or bypass security. No automatic Git maintenance on the Mac. Continue the full overhaul after this slice.
+
 # Grookai Agent Entry Point
 
+## Portfolio history runtime and exact release — current continuation
+
+Work only in C:/gv_product_portfolio_history_20261008 from qualified parent
+f19d39f20f35e030fffc9379d0d2eb1d854d6966. Read
+ docs/ops/PRODUCT_PORTFOLIO_HISTORY_20261008.md and external
+ C:/grookai_vault_operator_artifacts/product_portfolio_history_20261008/SCOPE.json.
+This entry supersedes older worktree-specific entries below. Current scope is
+baseline-passed portfolio capture, recovery and web/native history implementation.
+The pre-change baseline is complete; do not rerun it against438. Use the dedicated
+portfolio release helpers and ProductPortfolioHistoryV1 gates for exact437. Do not invoke inherited fixed-root mutation or release wrappers.
+Preserve all437 migration bytes, every earlier checkout, populated/sealed lab,
+Samsung436, prior APKs and both primary phone apps. No subagents, production
+apply/deploy/activation, provider fetch, upload or external messages.
+
+Cost-history normal checks, PrePush and linked dry-run passed; the clean parent
+and exact436 database seals remain preserved. Physical iOS is unverified due to
+Mac-local keychain and Dart startup permission blockers; both user questions are
+pending. Its fixture is restored. Independent local implementation and isolated synthetic proofs continue.
+Mac has29,912,305,664 bytes free after authorized guarded cleanup. Future Mac Git
+fetch/transfer commands must use -c maintenance.auto=false -c gc.auto=0 to prevent
+automatic repacking from filling disk again. Do not bypass macOS security.
+External CHECKPOINT.json owns current results. Browser nine cases and physical
+Samsung438 two-process recovery pass;15 images reviewed/source-bound and all
+fixtures restored. The new proof package preserves primary and locked436 apps.
+Wider438 and exact437 replay/upgrade/SQL/Auth/reapply/shadow pass. Exact437 has
+raw/normalized drift0 and1256 security objects. Final seal and ordinary release
+gates remain in progress. Keep
+new SQL bytes frozen and reviewed product/native source unchanged for final gates.
+The full overhaul remains open after this slice.
+
+## Cost history runtime — current continuation
+
+Browser cost history passes nine scenarios; payment review passes four scenarios
+at phone/tablet/desktop widths. Physical Samsung436 passes a real SQLite recovery
+across two processes, with four exact corrections and no duplicate apply. All29
+images are reviewed and bound to current source. Original receipts/snapshots and
+38-table fixture retention pass. Every runtime control is restored.
+
+Exact436 full replay,35 SQL cases, actual Auth including both forced cancellation
+lock orders, reapply and independent shadow pass. Shadow raw/normalized drift0,
+1237 security objects. Populated upgrade and ordinary release gates are still in
+progress; external CHECKPOINT owns terminal results. SQL bytes stay frozen.
+Use only the dedicated ProductCostHistoryV1 and run_product_cost_history_checks_v1
+helpers here. No production apply/deploy/activation, provider fetch, upload,
+messages or subagents. Physical iOS, R3/R4 and measured competitive tasks remain.
+
+## Current continuation — storage resolved
+
+The user explicitly authorized freeing Mac space. Retained external
+mac-symbol-cleanup-v2.private.log proves removal only of three obsolete finalized
+iPhone18,1 iOS26.4/26.5 symbol caches; connected device runs27.0. Free space is now
+18371751936 bytes. Archives, projects, simulators, DerivedData and current27.0
+symbols remain. The earlier storage question and no-build blocker are resolved.
+Wider437 shadow/reapply/Auth qualification passes; SQL bytes stay frozen. Corrected
+event/CSV and native regressions pass100 tests; cost widgets pass7; focused lint
+and analysis pass. Actual browser/Samsung, exact436 release, physical iOS and the
+full R3/R4/competitive work remain open. External CHECKPOINT owns current facts.
+
+## Historical cost correction — current work
+
+Work in C:/gv_product_cost_history_20261008 from locally qualified discount commit
+070e87baafccc7ad81a3a90c7ee07c0cb4ae549a. Read docs/ops/PRODUCT_COST_HISTORY_20261008.md
+and C:/grookai_vault_operator_artifacts/product_cost_history_20261008/SCOPE.json.
+The full goal remains C:/grookai_vault/docs/audits/decktradr_competitive_review_20261007/OVERHAUL_PLAN.md.
+Run the dedicated ProductCostHistoryBaselineV1 before product/schema edits. Source
+starts at436; preserve every existing migration byte. Parent exact435/433/432 labs,
+all older populated fixtures, prior trees, Samsung434 and primary app remain intact.
+Do not run inherited fixed-root mutation or release wrappers in this checkout.
+
+Add explicit owner-attributed historical cost corrections with reasons and audited
+revisions; preserve original receipts, dispositions and immutable snapshots. Keep
+original and corrected report bases distinguishable. Review legacy receipt content
+and identity before extending correction authority. Missing historical discount
+allocation cannot become invented evidence. Reuse current Reports and private
+recovery patterns. New authority requires default-off entry, exact idempotency,
+owner isolation, stale-edit handling and durable recovery plus full local proof.
+No production apply/deploy/activation, provider fetch, upload, external messages or
+subagents. No Mac build/cleanup while storage is unavailable. Latest read-only Mac
+probe:110312KiB free, iPhone17Pro paired/available, no external disk. A user storage
+question is pending; continue independent overhaul work. External CHECKPOINT owns
+current sessions and facts. The failed first checkout log and all prior failed
+proofs remain preserved. This new checkout's docs compression preserves all16842
+file contents, paths and write times. Qualified mobile Trade docs were also verified
+unchanged after physical compression; no caches or labs were removed.
+
+## Discount release continuation — latest
+
+Actual browser ui-1791480860087 and physical Samsung434 ui-1791480536030 pass.
+All13 browser and7 device images are reviewed and source-bound. Exact435 full
+replay,84 SQL cases, actual Auth including both forced cancellation lock orders,
+and independent shadow (raw0/normalized0,1225 security objects) pass. Retained
+upgrade/reapply and31-artifact manifest pass;38-table exact lab states are sealed.
+Normal checks and read-only release gates remain in progress; external
+CHECKPOINT.json owns active sessions. Source436 excludes only deferred delivery
+for this435 release. Do not edit qualified product/native inputs or SQL bytes.
+Use only new ProductDiscountV1/run_product_discount_checks_v1 release helpers.
+All runtime fixtures are restored. Preserve Samsung434, prior APK backups,
+every lab and earlier clean checkout. Earlier event checkout docs were physically
+compressed with all16839 file hashes, paths and write times verified unchanged;
+no content or cache was removed. Qualified deal-refresh documentation was also
+compressed with16836 file hashes/paths/write times verified unchanged. No
+production apply/deploy/activation, provider
+fetch, upload, messages or subagents. Full overhaul remains active after discounts.
+
+## Current discount continuation
+
+Source436 now adds durable v6 cancellation after the preserved qualified435
+discount migration. Fresh full/retained upgrade, actual Auth including both forced
+completion/cancellation lock orders, reapply and independent shadow all pass.
+Full436 is discount-full-436-v1-20261008 at34600/34601; upgrade34620/34621.
+Preserve every435/434/433/432 lab. New web5/native4 journals and both entry screens
+are implemented. Focused133 native regression and95 API/journal checks pass;
+ten new screen cases pass. Read external CHECKPOINT for latest source/test status.
+Actual browser/device acceptance, exact435 release package, normal hook and
+release gates are still pending. Keep436 SQL bytes unchanged. Use only the new
+discount UI fixture atfull436; its37 prior table sets and controls must be retained.
+No source changes during an active runtime fixture. No production apply/deploy,
+activation, provider fetch, upload, external messages or subagents. Full goal active.
+Only this checkout's copied docs and its new evidence were compressed; no files
+were deleted. Host free was about1.85GB before runtime; check before builds.
+
+## Discount evidence — October 8
+
+Work in C:/gv_product_discount_20261008 from qualified event commit
+072705f76bc7c11cb49c6d1108c971aaf9042989. Read docs/ops/PRODUCT_DISCOUNT_20261008.md
+and external product_discount_20261008/SCOPE.json. Preserve all prior clean trees,
+populated labs, sealed exact433/432 packages and Samsung432. No subagents.
+Run ProductDiscountBaselineV1 before product/schema edits; inherited wrappers pin
+other roots and must not run here. Extend existing Sale and split-payment authority
+with explicit discounted settlement and immutable per-line allocation. Existing
+positive-only dispositions require truthful zero-net handling. Preserve old
+writers, receipt bytes, cost snapshots and every pending/held journal version.
+Negotiated Trade discounts need their own explicit compatibility boundary; do
+not silently force discount into credit or reference values. External CHECKPOINT
+owns actual status. No production apply, deployment, activation, provider fetch,
+upload or external messaging. Full overhaul, history correction, R3/R4, physical
+iOS and measured competitor usability remain open.
+
+The pre-change baseline passes atbaseline-1791474532222 (live429/source434).
+Do not rerun that baseline against changed source435. Allocation/request/profit
+models pass180 Node/195 native checks, focused analysis and web types. Migration
+20261008160000 is implemented but unqualified. V1 replay/retained upgrade and
+actual Auth pass;84 SQL cases pass but inherited service_role grants failed ACL.
+Those grants are corrected; dedicated helpers now pin fresh full/upgrade435-v2
+namespaces on34440/34441 and34460/34461. Keep every v1 fixture, including the
+10000-customer rollback book. No entry UI or new device build exists yet.
+External CHECKPOINT.json owns active sessions and final v2 outcomes. Preserve
+the old exact433/432 seals and Samsung432. No whole-source freeze is active yet;
+do not change migration bytes while the new replay/upgrade runs.
+
+
+## Event closeout — October 8
+
+Work in C:/gv_product_event_closeout_20261008 from qualified integrated release
+e41e5e367eb2b04c868e75e3320d5e482733f96c. Read docs/ops/PRODUCT_EVENT_CLOSEOUT_20261008.md
+and external product_event_closeout_20261008/SCOPE.json. Preserve all prior clean
+trees, populated labs and Samsung431. Both exact432 package labs stay sealed and
+read-only. ProductEventBaselineV1 passed before changes; do not rerun that
+source433 baseline against current434. The
+new feature extends existing Reports/immutable receipts with private event
+association, audited expenses and accurate partial-cost closeout. It must not
+create a second receipt history or alter old cost snapshots. New authority needs
+strict owner/revision/retry recovery, default-off entry, fresh replay/upgrade and
+actual Auth/web/native acceptance. Existing fixed-root wrappers must not run here.
+External CHECKPOINT.json owns actual outcomes. No production apply, deployment,
+activation, provider fetch, upload or subagents. Remaining R2 discounts/history
+correction, R3/R4, physical iOS and measured competitor tasks remain open.
+Event SQL, web and physical Samsung432 acceptance now pass. Current exact Auth
+web ui-1791471961979 and device ui-1791472155460 retain36 table sets each;
+14 runtime images are reviewed. Samsung proves exact SQLite recovery across two
+processes with UI/backend entry off. Its366 native inputs match the archived APK.
+All13 responsive browser cases pass; focused242 Node and260 native plus13 screen
+cases pass. Current IndexedDB journal-browser-1791472209915 is refreshed.
+Fresh ProductEventReleaseBaselineV1 verifies live429/source434. Exact433 package
+replay/upgrade/Auth/shadow qualification passes; delivery stays deferred. Do not
+reuse the old source433 baseline. Docker recovery retained sealed432 data but
+remapped internal IPs; verify its explicit recovery attestation. Current source
+is uncommitted; ProductEventV1 and run_product_event_checks_v1 own the remaining
+staged/ordinary/PrePush/linked inspection gates. The30-artifact manifest binds the
+37-table seals in both exact433 labs. Source/labs freeze during checks. External
+CHECKPOINT.json owns exact active sessions/results. Preserve Samsung431 backup,
+Samsung432 and every failed fixture. Full overhaul remains active.
+
+## Integrated deal release refresh — October 8
+
+Work in C:/gv_product_deal_refresh_20261008 from qualified mobile/main merge
+d0ebefeb26d1fdf46a93cfe39038638831d38b19. Read docs/ops/PRODUCT_DEAL_REFRESH_20261008.md.
+Preserve every earlier tree, APK and populated fixture. The exact full432 and
+upgrade432 package labs remain sealed and read-only. No product or SQL edits.
+Run the dedicated fresh read-only baseline before creating new synthetic runtime
+fixtures in the existing wider full433 lab. Preserve main50404ddce import/catalog
+changes. Inherited root-pinned wrappers must not run here. External
+product_deal_refresh_20261008/CHECKPOINT.json owns actual results.
+No production apply, deployment, activation, provider fetch or upload.
+No subagents. The full overhaul and physical iOS remain open.
+Fresh web and Samsung431 pass with15 inspected runtime images and31 retained
+row sets each. Preserve failed430 and its restored fixture. The sole integration
+driver edit admits the fixed refresh output namespace. The19-artifact extension
+attests the unchanged original29-artifact package. Use ProductDealRefreshV1 and
+run_product_deal_refresh_checks_v1; freeze source/labs during the normal hook.
+External CHECKPOINT.json owns staged audit, hook, PrePush and linked dry-run status.
+
+## Mobile Trade layout and current-main integration — October 8
+
+Work in C:/gv_product_mobile_trade_20261008 from locally qualified release
+3e6928b574f072cd8cff2a13c5b5f164ea3ee191, integrating main50404ddce.
+Read docs/ops/PRODUCT_MOBILE_TRADE_20261008.md. Preserve all prior trees,
+Samsung429 and every fixture. The exact432 package labs remain sealed and
+read-only. Current-main Collectr matching and catalog refresh are preserved.
+Inherited release/runtime wrappers pin older roots; do not run them here.
+External product_mobile_trade_20261008/CHECKPOINT.json owns actual outcomes.
+No SQL changes, production apply, deployment, provider fetch or upload.
+No subagents. Physical iOS, release requalification and full overhaul stay open.
+
+## Exact combined cost, Buy and Trade release — October 8
+
+Work in C:/gv_product_deal_release_20261008 from qualified search commit 5c5dec758d5c59bf6a9cc7f4d768816898c2d4b2. Read docs/ops/PRODUCT_DEAL_RELEASE_20261008.md. Preserve every prior tree, populated lab, consumed fixture and Samsung429. All433 source migrations remain byte-identical; the local release package excludes only deferred receipt delivery and has432 migrations. Fresh read-only live429 baseline, exact full/upgrade replay, real Auth/RPC, independent CLI shadow and source-bound gates are required. Old fixed-root wrappers must not run here. External product_deal_release_20261008/CHECKPOINT.json owns status. No production apply, deployment, activation, provider fetch or upload. No subagents. Full overhaul stays active. Actual exact432 replay/retained upgrade, cost/Buy/Trade AuthRPC,99 SQL cases, reapplication and independent shadow-v2 now pass;24 focused checks and29-artifact manifest verification pass. Full package retains178 copies/six accounts, upgrade two copies/one account, controls off. Freeze source/labs for the dedicated ordinary wrapper after staged release audit. External checkpoint owns final gate/commit outcomes.
+
+
+## Card names versus partial artists — October 8
+
+Work in C:/gv_product_search_names_20261008 from qualified compact-offer commit
+d4c19b0523caba1d2dee665315efdb45688f782b. Read
+docs/ops/PRODUCT_SEARCH_NAMES_20261008.md and current search contracts. Preserve
+the clean offer UI tree, Samsung429, all fixtures and433 migration bytes.
+Pokemon Black Market returns0 on the public endpoint; quoted text returns2
+canonical cards. Current parser consumes Market as artist TOMATO MARKET.
+Correct ambiguity while preserving explicit/full artist requests, surname+card
+queries, quoted text, exact IDs and game/language/set/finish scope. No SQL or
+canonical rewrites. Current-route proof must use an actual local catalog fixture;
+never point a development build at production. Public GET/catalog reads are
+read-only baseline evidence. External product_search_names_20261008/CHECKPOINT.json
+owns status. Inherited offer wrappers pin the old root; adapt dedicated helpers
+before use. Focused48 checks, types/lint and actual local15-query/browser runtime
+search-1791453545036 pass. Two images inspected;32 prior row sets and controls
+retained. The dedicated run_product_search_names_checks_v1 wrapper owns ordinary
+qualification; freeze source/lab until terminal. Full overhaul and exact combined
+release stay open. No deploy,
+upload, provider fetch or activation. No subagents.
+
+
+## Compact offer presentation — October 8
+
+Work in C:/gv_product_offer_ui_20261008 from qualified market runtime
+ e147eb827825daa03fa1276b56db23157013d65b. Read
+ docs/ops/PRODUCT_OFFER_UI_20261008.md and VENDOR_OFFER_POLICIES_V1.
+Preserve the clean market tree, Samsung428, all prior fixtures and433 migration
+bytes. Presentation only: make suggested and agreed terms easy to compare; keep
+source/condition/times and explicit review/use. Never change agreed amounts on
+refresh, policy selection or account changes. Detailed arithmetic may collapse.
+External product_offer_ui_20261008/CHECKPOINT.json owns active outcomes.
+Inherited market runtime/ordinary helpers pin the OLD worktree and output base;
+do not run them here. Adapt dedicated guards and evidence destinations first.
+Actual web market-1791451615590 and Samsung429 market-1791451682546 pass.
+Fifteen runtime images inspected; agreed terms and31 prior row sets retained.
+Focused50 native,45 initial+4 final browser, types/lint/analysis pass.
+Freeze source/lab for the dedicated ordinary commit hook; external checkpoint
+owns its terminal outcome. Preserve the uppercase fixture correction and failed run.
+No production deployment, activation, upload or provider fetch. Exact combined
+release, physical iOS, measured benchmark and the full overhaul remain open.
+
+
+## Governed offer reference runtime — October 8
+
+Work in C:/gv_product_offer_market_20261008 from qualified entry2dc3a1a0c.
+Read docs/ops/PRODUCT_OFFER_MARKET_20261008.md and VENDOR_OFFER_POLICIES_V1.
+Preserve the clean entry tree, Samsung420, all prior fixtures and every433 migration.
+No SQL/product change is currently proposed. Dedicated scripts pin full433 at
+33560/33561 and preserve31 prior table row sets. They use actual worker functions
+with fresh synthetic local source and an exact-printing canary, not CLI release
+qualification. Existing active publication must be absent before preparation.
+Retain all new source/qualification/publication history; remove only the owned
+temporary local pointer and restore controls after terminal runtime evidence.
+External product_offer_market_20261008/CHECKPOINT.json owns outcomes.
+Real web market-1791448539354 and Samsung428 market-1791448366303 pass.
+Nine final images inspected;31 prior row sets retained, no copies/receipts added.
+Native353 inputs match; controls/pointer restored. See domain checkpoint for
+journal revision semantics and retained failed runs. Ordinary-hook outcome lives
+in external latest-checks.json. Freeze source/lab during that hook.
+Exact release, physical iOS, measured benchmark and full overhaul remain open.
+No provider fetch, production publication, deployment or primary-app change.
+Keep the full overhaul active.
+
+
+## Negotiated trade entry — October 8
+
+Current tree: C:/gv_product_trade_entry_20261008, from qualified backend
+2e465a1fba6a3167c462787a6bc20f8c05b91c84. Read
+[entry checkpoint](docs/ops/PRODUCT_TRADE_ENTRY_20261008.md) and
+VENDOR_NEGOTIATED_TRADE_V1. Preserve the clean backend and all earlier labs.
+No SQL change: retain all433 qualified migration files and exact hashes.
+
+Web and native now have distinct Trade drafts with explicit whole-line credit,
+canonical/quick incoming lines, optional policy proposals, opaque customer views
+and exact pending-request acknowledgement/recovery. Old Sale/Buy/Trade meanings
+and owner journal keys are preserved. Failed saves block navigation and sending.
+Current focused checks:100 Node/API,4 environment checks,43 browser/workspace,
+87 native screen/policy regressions plus one additional control-navigation case.
+19 trade-screen/control cases pass. Types/lint/Flutter analysis pass.
+
+Real browser Auth/RPC passes at web-runtime-1791442555662. Samsung420 passes both
+processes at device-1791443277674 with seven inspected screens: two incoming
+copies at USD0/6.50, whole-line quick credit, held/default policy retention,
+entry-off exact recovery with no second completion, and account closure.
+Native source hashes still match the APK. Primary Samsung app is unchanged.
+All14 retained-table checks pass. Full433 now retains62 copies/eight users/ten
+requests/seven cost snapshots; all eight controls are off. Keep every failed
+run and consumed fixture; never reset the populated lab or reuse its requests.
+
+External product_trade_entry_20261008/CHECKPOINT.json owns ordinary-hook status.
+Use the dedicated run_product_trade_entry_checks_v1 wrapper with reviewed staged
+source, a source/lab freeze and read-only full433 credentials. No production
+release, upload or activation is implied. Governed market publication runtime,
+iOS, exact combined release and the measured competitor benchmark remain open.
+Keep the full overhaul goal active.
+
+## Negotiated trade continuation — October 7
+
+Read docs/ops/PRODUCT_NEGOTIATED_TRADE_20261007.md and VENDOR_NEGOTIATED_TRADE_V1.
+Work in C:/gv_product_negotiated_trade_20261007 from qualifiedf649c12aa. Preserve
+the clean policy candidate, Samsung417 evidence and all older worktrees/labs.
+Its normal hook passed7,796 contracts and1,771 native tests plus web checks and
+analysis. Full432 retains63 copies/14 users with controls off. The external
+product_negotiated_trade_20261007/CHECKPOINT.json owns current results. Rerun the
+fixed read-only ProductOfferTradeBaselineV1 here before new SQL; no production
+apply or populated-lab reset. Introduce explicit credit through additive v5
+authority and compatible readers, never falsified reference prices. Keep the
+full overhaul active and preserve pending/held requests across all versions.
+
+The fresh baseline passes at baseline-1791436404656. New strict request/receipt
+models and compatible readers pass202 focused Node and106 native tests with88
+shared vectors. Migration20261008060000 is now implemented, default off; backend
+qualification is in progress. Full433 failed attempts1–3 are preserved; attempt4
+uses product-trade-full-433-v4-20261007 and33560/33561. The external checkpoint
+owns actual outcomes. Do not rerun the pre-SQL432 baseline against source433 or
+use inherited purchase qualification scripts. No new entry UI exists yet.
+Full433 replay, retained432 upgrade,79 SQL parity cases, real Auth/RPC recovery
+and exact reapplication now pass. Retain58 copies/two users with all eight controls
+off. Run the dedicated negotiated-trade normal wrapper; freeze source/full433
+until terminal. External CHECKPOINT.json owns the ordinary-hook result.
+The first full hook exposed a legacy checkout mock missing its actual server v1
+trade discriminator. That fixture is corrected and106 focused native tests pass.
+Readers and qualified SQL are unchanged; preserve failed ordinary attempt1.
+
+## Cash and trade offer policies — October 7
+
+Read docs/ops/PRODUCT_OFFER_POLICY_20261007.md and VENDOR_OFFER_POLICIES_V1.
+This isolated tree starts at qualifiedf5d5b69a; preserve the clean Buy candidate.
+External product_offer_policy_20261007/CHECKPOINT.json owns current outcomes.
+Full432 retains61 copies/10 users with controls off. No reset, consumed fixture
+reuse or production action is implied. Complete the full CR-07 source/condition,
+rounding/tier and cash/trade scope; the first named percentage preset is not its
+completion. New trade semantics require a fresh schema baseline and compatible
+receipt/recovery authority. Keep iOS and the full overhaul open.
+Policy models/storage and governed exact reference adapters now pass116 Node and
+147 native regression tests. Web Buy policies pass29 browser/workspace cases plus
+four final timing/presentation checks. Native rich policies now pass159 focused
+tests and full analysis, plus one exact device-sequence regression. Samsung417
+passes both process phases; external checkpoint owns retention and normal-hook
+outcomes. Preserve all consumed fixtures. Builds415/416 exposed delayed Samsung
+IME echo during synthetic input, not incorrect arithmetic.417 isolates the test
+IME and verifies each entered value. No new trade SQL exists; the fresh read-only
+429/source432 baseline passes. Read VENDOR_NEGOTIATED_TRADE_V1 before extending it.
+Freeze source and retained full432 during the ordinary hook; no deployment implied.
+
+## Buy-only workflow — October 7
+
+Read [the purchase checkpoint](docs/ops/PRODUCT_BUY_20261007.md) and
+VENDOR_PURCHASE_V1. This isolated tree extends existing Sales Desk/receipt authority
+to purchase-only deals without dummy sale lines. All prior journals remain intact.
+Web cost-review2dfc193bd passes its normal hook and is integrated with this work;
+its source/lab freeze is lifted. Purchase models and compatible receipt readers
+pass focused Node/native and five browser scenarios. The read-only purchase
+baseline passes against live429/source431. The new default-off purchase backend
+passes full432 replay, SQL receipt parity and authenticated retry/rollback tests.
+The retained431 upgrade and ordinary hook pass; backend/readers commit2dff3ad719
+is qualified locally (7,640 contracts, web checks and1,587 native tests). Its
+backend freeze is lifted. Web Buy entry and the version3 held-deal journal now
+pass97 focused contracts,52 native parity cases and20 browser/workspace scenarios.
+Actual browser-to-API proof passes in web-runtime-1791427528551: one USD6.50 copy,
+lost-response/feature-off recovery, private-safe seller view and account closure.
+All13 retained-table checks pass and controls are off. Retain all55 copies and
+six accounts, including failed harness fixtures. The same owner key retains old
+sales and pending requests. The external checkpoint owns the web normal-hook
+outcome. Freeze source/full432 while that hook runs; do not reset any lab.
+The web normal hook passed at4edf35efc (7,657 contracts and1,587 native tests).
+Native Buy entry now passes128 focused tests and actual Samsung two-process
+acceptance in device-1791429725795. Two incoming copies at USD0.00/6.50 and one
+receipt recover with controls off, without another completion. Visual review
+caught readable private references behind a translucent seller dialog; native
+and web customer backdrops are now opaque, with13 native and20 browser checks.
+All13 retained-table checks pass; retain59 copies and nine accounts, controls off.
+The external checkpoint owns native normal-hook status. Freeze source/full432
+while that hook runs. Reusable policies, iOS, release qualification, activation
+and the remaining overhaul remain pending; no production deployment occurred.
+Native Buy normal commit8f68ac2e now passes7,657 contracts and1,620 native tests;
+all59 copies/nine users are retained. The next named percentage preset slice is
+in progress. It preserves held/pending amounts and uses separate owner-local
+preferences. External CHECKPOINT.json tracks build413/device proof and ordinary
+checks. Keep the broader CR-07 policies and the full overhaul open.
+Build413 now passes actual Samsung preset/restart/recovery proof, four inspected
+screens and13 retained-table checks. Retain61 copies/10 users with controls off.
+The external checkpoint owns the next normal hook; freeze source/full432 while
+it runs. No production release or physical iOS acceptance is implied.
+
+
+## Web inventory cost review — October 7
+
+Read [the web cost-review checkpoint](docs/ops/PRODUCT_COST_REVIEW_WEB_20261007.md).
+This tree now includes qualified native review611231081. Its Samsung proof and
+full normal hook pass. Web review uses existing owner-bound reads and the existing
+recoverable editor, with explicit loaded-copy scope and preserved return context.
+The external product_cost_review_web_20261007 checkpoint owns runtime and normal
+hook outcomes. Preserve all consumed fixtures and prior worktrees; no deployment.
+Run full hooks serially and freeze source/lab while they run.
+
+## Inventory cost review — October 7
+
+Read [the cost review checkpoint](docs/ops/PRODUCT_COST_REVIEW_20261007.md).
+This isolated tree now includes qualified native profit9dcebf64c. It adds an explicit-scope,
+owner-only native cost-completeness queue using existing reads and the existing
+recoverable editor. No SQL or bulk writer. Native profit's normal hook now passes;
+its source/lab freeze is lifted. Preserve its clean tree and all retained labs. External
+product_cost_review_20261007 evidence records actual qualification; no deployment.
+Samsung acceptance now passes with eight inspected screens, exactly one currency
+repair and all14 retained table hashes restored. Preserve consumed fixtures and
+the primary app. Run the cost-review normal wrapper serially and freeze staged
+source/lab until terminal. Web and iOS review qualification remain separate.
+
+## Native private profit — October 7
+
+Read [the native profit checkpoint](docs/ops/PRODUCT_NATIVE_PROFIT_20261007.md).
+This isolated tree now includes passed combined releaseda46e8d9 and implements
+read-only Reports parity with web immutable cost evidence. Preserve the clean
+release tree; its read-only PrePush now passes. Models/service/UI tests pass;
+Samsung read/recovery/privacy proof now passes with all retained hashes restored.
+Normal-hook commit9dcebf64c passes; iOS profit proof remains separate. External
+product_native_profit_20261007/CHECKPOINT.json owns outcomes. Keep that tree clean.
+
+## Combined product release — October 7
+
+Read [the combined release checkpoint](docs/ops/PRODUCT_RELEASE_20261007.md).
+The candidate in `C:/gv_product_release_20261007` combines the passed native469503b
+with the economics gate. Product/backend bytes are separately bound; shadow and
+fresh combined release checks remain distinct. External product_release_20261007/
+CHECKPOINT.json owns actual outcomes. Preserve every prior worktree, lab, journal,
+consumed intent and deferred receipt migration. No production apply or upload.
+
+## Combined economics workflow — October 7
+
+The combined source is in `C:/gv_product_integrated_20261007`; read
+[the integration checkpoint](docs/ops/PRODUCT_INTEGRATED_20261007.md).
+Editor `bead8c328` and report `dc630120c` passed their separate normal hooks.
+Their combined commit `12f806945` passed the normal hook and 43 browser scenarios.
+The native cost tree now includes that committed result. Preserve
+all source worktrees, pending requests and labs. The daily-workflow iPad simulator
+acceptance now passes; physical iOS and production release remain separate.
+## Native private cost entry — October 7
+
+Read [the native cost checkpoint](docs/ops/PRODUCT_NATIVE_COST_20261007.md).
+This independent tree now begins at integrated `12f806945`. Exact native models,
+the SQLite journal and owner-bound service are implemented. All 33 model/service
+tests pass, as do ten real SQLite tests and native editor/Inventory widget checks.
+Samsung process-restart recovery and visual checks pass. The full normal hook
+remains tracked by the external native checkpoint. Continue native work here.
+Preserve all pending requests and labs. No production writes or activation.
+
+## Private cost editor — October 7
+
+Read [the cost UI checkpoint](docs/ops/PRODUCT_COST_UI_20261007.md). Work in
+`C:/gv_product_cost_ui_20261007` on backend `3f3a30e88`; the economics release gate
+is separate. Preserve pending owner/copy journals and all retained labs. New UI
+entry remains default-off; recovery survives switch-off. External product_cost_ui
+evidence owns actual validation. No production or public release is authorized.
+
+## Known-cost report — October 7
+
+Read [the report checkpoint](docs/ops/PRODUCT_PROFIT_20261007.md) and its contract.
+This independent worktree starts from cost backend `3f3a30e88`. Report arithmetic
+uses immutable cost-at-sale evidence, never current copy costs. Private API/UI are
+wired and verified against real local Auth, receipts and snapshots; normal hooks
+remain tracked by the external checkpoint. Preserve
+separate editor/release-gate work, all labs and pending
+requests. No production activation or full-overhaul completion is implied.
+
+## Product economics — October 7
+
+Read [the economics checkpoint](docs/ops/PRODUCT_ECONOMICS_20261007.md) and
+Vendor Cost Evidence V1 before schema or cost work. The daily-workflow candidate
+is verified through `2c7bd7242`; economics is isolated in
+`C:/gv_product_economics_20261007`. Live429 and source430 differ by deferred
+receipt delivery. The new default-off cost migration is local candidate431 only.
+Private product_economics_20261007/CHECKPOINT.json owns qualification state.
+Preserve all existing labs, archives, inventory and pending requests. No production
+application, activation, public push or native upload is implied by this work.
+
+## Product overhaul — October 7
+
+Read [the product overhaul checkpoint](docs/ops/PRODUCT_OVERHAUL_20261007.md)
+and Product Workspaces V1 before continuing the DeckTradr-driven overhaul.
+The isolated candidate adds vendor navigation and compact inventory around the
+existing Sales Desk. Scanner integration, SPA draft persistence and a physical
+Samsung local-backend sale/recovery flow are verified in the same candidate;
+the corrected combined normal hook passed at `5d24fa1f`. Owner-only web Inventory
+is committed and fully checked at `811680d3c`, using existing reads/editors without
+requiring a storefront. The next pricing-evidence/edit-protection slice is local;
+its runtime and final-check outcomes are tracked externally. The original
+scanner worktree is intact. iOS and production release remain unproved.
+The six-screen sample prototype and reference specification are under docs/product.
+It is not deployed. Preserve concurrent scanner changes and
+all retained import/receipt/deal requests; synthetic renders are not device or
+production-release proof. The external checkpoint records current validation.
 ## Collectr exact average costs — October 8
 
 Read docs/checkpoints/collectr_cost_precision_20261008.md. The combined local

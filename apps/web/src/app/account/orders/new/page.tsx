@@ -1,3 +1,4 @@
+import { OrderOwnerScope } from "@/components/orders/OrderOwnerScope";
 import Link from "next/link";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { acquisitionAvailable } from "@/lib/orders/orderAcquisitionRuntime";
@@ -14,7 +15,7 @@ export default async function NewOrderPage({ searchParams }: { searchParams: Pro
     if (raw.request !== undefined && (typeof raw.request !== "string" || !acquisitionUuid.test(raw.request))) throw new Error();
     requestId = raw.request as string | undefined;
   } catch { selection = undefined; }
-  await requireServerUser(selection ? purchaseHref(selection, requestId) : "/account/orders");
+  const { user } = await requireServerUser(selection ? purchaseHref(selection, requestId) : "/account/orders");
   if (!selection || !acquisitionAvailable()) return <main className="mx-auto max-w-3xl space-y-4 px-4 py-8"><h1 className="text-3xl font-semibold">Ordering unavailable</h1><p>This selection cannot be ordered right now.</p><Link href="/account/orders" className="underline">Your purchases</Link></main>;
-  return <PurchaseReview key={purchaseHref(selection)} selection={selection} initialRequestId={requestId} />;
+  return <OrderOwnerScope ownerId={user.id} reopenHref={purchaseHref(selection, requestId)}><PurchaseReview key={purchaseHref(selection)} selection={selection} initialRequestId={requestId} /></OrderOwnerScope>;
 }

@@ -14,3 +14,7 @@ docs/audits/catalog_discovery/collectible_wave1_set_foundations_v1/production_ap
 apps/web/src/lib/stores/scanMatchV11.mjs -text
 apps/web/src/lib/stores/scanMatchV12.mjs -text
 docs/audits/storefront_production_package_v1/historical_migrations/*.sql -text
+
+# Preserve source bytes bound to the portfolio shadow replay receipts.
+scripts/release/product_portfolio_history_shadow_v1.mjs -text whitespace=cr-at-eol
+scripts/release/product_portfolio_history_release_shadow_v1.mjs -text whitespace=cr-at-eol

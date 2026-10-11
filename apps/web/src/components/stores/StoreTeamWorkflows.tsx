@@ -2,12 +2,13 @@
 /* eslint-disable @next/next/no-img-element -- Governed catalog thumbnails. */
 import { useEffect, useRef, useState } from "react";
 import type { TeamCatalog, TeamWorkflows, TeamWorkspace } from "@/lib/stores/storeTeam";
-import { storeRequest } from "./storeManagerClient";
-import { definitiveRejection, teamWrite } from "./storeTeamWorkflowClient";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
+import { definitiveRejection } from "./storeTeamWorkflowClient";
 import StoreTeamProducts from "./StoreTeamProducts";
 import s from "./StoreTeam.module.css";
 
 function CardIntake({ endpoint, model, context, refresh }: { endpoint: string; model: TeamWorkspace; context: TeamWorkflows; refresh: () => Promise<void> }) {
+  const { storeRequest, teamWrite } = useStoreOwnerApi();
   const [query, setQuery] = useState(""), [catalog, setCatalog] = useState<TeamCatalog | null>(null), [offset, setOffset] = useState(0);
   const [selected, setSelected] = useState<TeamCatalog["cards"][number] | null>(null), [printing, setPrinting] = useState("");
   const [condition, setCondition] = useState("NM"), [price, setPrice] = useState(""), [currency, setCurrency] = useState("USD");
@@ -35,7 +36,7 @@ function CardIntake({ endpoint, model, context, refresh }: { endpoint: string; m
       setRetry(attempt.current !== null);
     } finally { setBusy(false); }
   }
-  return <section className={s.panel}><h2>Add catalog cards</h2><p>Choose the exact printing, then add one physical copy with its listing details.</p>
+  return <section id="manager-intake" className={s.panel}><h2>Add catalog cards</h2><p>Choose the exact printing, then add one physical copy with its listing details.</p>
     {error && <p className={s.error} role="alert">{error}</p>}
     {receipt ? <div className={s.notice} role="status"><p>Copy added: {receipt}</p><button onClick={() => { setReceipt(""); setSelected(null); setPrinting(""); setPrice(""); setListed(false); setSections([]); }}>Add another copy</button></div> : <>
       <form onSubmit={e => { e.preventDefault(); void search(); }}><label>Search catalog<input required minLength={2} maxLength={120} value={query} disabled={busy || retry} onChange={e => setQuery(e.target.value)} /></label><button disabled={busy || retry}>Find cards</button></form>
@@ -50,6 +51,7 @@ function CardIntake({ endpoint, model, context, refresh }: { endpoint: string; m
 }
 
 function SectionEditor({ endpoint, context, model, refresh }: { endpoint: string; context: TeamWorkflows; model: TeamWorkspace; refresh: () => Promise<void> }) {
+  const { teamWrite } = useStoreOwnerApi();
   const [name, setName] = useState(""), [drafts, setDrafts] = useState<Record<string,string>>({}), [busy, setBusy] = useState(false), [error, setError] = useState("");
   const [retry, setRetry] = useState(false), attempt = useRef<Record<string,unknown> | null>(null);
   async function change(body: Record<string,unknown>, create = false) {
@@ -59,7 +61,7 @@ function SectionEditor({ endpoint, context, model, refresh }: { endpoint: string
     catch (e) { setError((e as Error).message); if (create) { if (definitiveRejection(e)) attempt.current = null; setRetry(!!attempt.current); } }
     finally { setBusy(false); }
   }
-  return <section className={s.panel}><h2>Store sections</h2><p>These sections are shared with this store. Renaming also updates their name on the owner’s Wall.</p>{error && <p className={s.error} role="alert">{error}</p>}
+  return <section id="manager-sections" className={s.panel}><h2>Store sections</h2><p>These sections are shared with this store. Renaming also updates their name on the owner’s Wall.</p>{error && <p className={s.error} role="alert">{error}</p>}
     <form onSubmit={e => { e.preventDefault(); void change({ action: "create", data: { name } }, true); }}><label>New section name<input required maxLength={80} disabled={busy || retry} value={name} onChange={e => setName(e.target.value)} /></label><button disabled={busy}>{retry ? "Retry section creation" : "Create store section"}</button></form>
     {context.sections.map(section => <form key={section.id} onSubmit={e => { e.preventDefault(); void change({ action: "rename", section: section.id, expected: section.updated_at, data: { name: drafts[section.id] ?? section.name } }); }}><label>Section name<input required maxLength={80} disabled={busy || retry} value={drafts[section.id] ?? section.name} onChange={e => setDrafts({ ...drafts, [section.id]: e.target.value })} /></label><button disabled={busy || retry || !drafts[section.id] || drafts[section.id] === section.name}>Rename section</button></form>)}
     {!!context.sections.length && <><h3>Assign inventory from this page</h3><p className={s.muted}>Use the inventory search below to find other copies. Assigning a section does not list a copy for sale.</p>{model.items.map(copy => <fieldset className={s.permissions} key={copy.id} disabled={busy || retry}><legend>{copy.name} · {copy.gv_vi_id}</legend>{context.sections.map(section => <label key={section.id}><input type="checkbox" checked={copy.section_ids?.includes(section.id) ?? false} onChange={e => void change({ action: "assign", section: section.id, expected: copy.updated_at, data: { instance_id: copy.id, included: e.target.checked } })} />{section.name}</label>)}</fieldset>)}</>}
@@ -67,9 +69,10 @@ function SectionEditor({ endpoint, context, model, refresh }: { endpoint: string
 }
 
 export default function StoreTeamWorkflows({ model, refresh }: { model: TeamWorkspace; refresh: () => Promise<void> }) {
+  const { storeRequest } = useStoreOwnerApi();
   const endpoint = `/api/stores/team/${model.store.id}`;
   const [context, setContext] = useState<TeamWorkflows | null>(null), [error, setError] = useState("");
-  useEffect(() => { let active = true; storeRequest<TeamWorkflows>(`${endpoint}/workflows`).then(data => { if (active) setContext(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [endpoint]);
+  useEffect(() => { let active = true; storeRequest<TeamWorkflows>(`${endpoint}/workflows`).then(data => { if (active) setContext(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [endpoint, storeRequest]);
   async function reload() { setContext(await storeRequest<TeamWorkflows>(`${endpoint}/workflows`)); await refresh(); }
   if (error) return <p className={s.error} role="alert">{error}</p>;
   if (!context?.enabled) return null;

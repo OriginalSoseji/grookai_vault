@@ -25,7 +25,7 @@ void main() {
     ).firstMatch(shell)!.group(0)!;
 
     var cursor = -1;
-    for (final label in ['Pulse', 'Wall', 'Scan', 'Vault', 'Search']) {
+    for (final label in ['Vault', 'Explore', 'Scan', 'Binders', 'Community']) {
       final next = dock.indexOf("label: '$label'", cursor + 1);
       expect(next, greaterThan(cursor));
       cursor = next;
@@ -54,7 +54,8 @@ void main() {
       contains('mainAxisExtent: GvGridConstants.catalogTileMainAxisExtent'),
     );
     expect(vault, contains("'YOUR COLLECTION'"));
-    expect(vault, contains('variant: GvSurfaceVariant.grouped'));
+    expect(vault, contains('_buildCollectorActions()'));
+    expect(vault, contains('_buildBinderContinuation()'));
     expect(vault, contains('resolveVaultPrintingIdentityPresentation(row)'));
     expect(vault, contains('artwork.primaryImageUrl'));
     expect(vault, contains('artwork.fallbackImageUrl'));

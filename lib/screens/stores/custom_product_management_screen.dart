@@ -1,3 +1,4 @@
+import 'store_owner_guard.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,31 +19,41 @@ class CustomProductManagementScreen extends StatefulWidget {
 }
 
 class _CustomProductManagementScreenState
-    extends State<CustomProductManagementScreen> {
+    extends State<CustomProductManagementScreen>
+    with StoreOwnerGuard<CustomProductManagementScreen> {
   Map<String, dynamic>? _data;
   String? _error;
   int _offset = 0;
   @override
   void initState() {
     super.initState();
+    watchStoreOwner(widget.service);
     _load();
   }
 
+  @override
+  void clearStoreDraft() {
+    _data = null;
+    _error = null;
+  }
+
   Future<void> _load() async {
+    if (!mounted || storeOwnerClosed) return;
     try {
       final data = await widget.service.customProducts(offset: _offset);
-      if (mounted) {
+      if (mounted && !storeOwnerClosed) {
         setState(() {
           _data = data;
           _error = null;
         });
       }
     } catch (e) {
-      if (mounted) setState(() => _error = e.toString());
+      if (mounted && !storeOwnerClosed) setState(() => _error = e.toString());
     }
   }
 
   Future<void> _edit([Map<String, dynamic>? product]) async {
+    if (!mounted || storeOwnerClosed) return;
     await Navigator.push(
       context,
       MaterialPageRoute<void>(
@@ -57,75 +68,78 @@ class _CustomProductManagementScreenState
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Custom collectibles')),
-    body: ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        const Text(
-          'Describe collectibles in your own words and photos. Quantity is vendor-managed availability.',
-        ),
-        const SizedBox(height: 12),
-        FilledButton.icon(
-          onPressed:
-              widget.owner.canEdit &&
-                  widget.owner.rollout['custom_enabled'] == true
-              ? () => _edit()
-              : null,
-          icon: const Icon(Icons.add),
-          label: const Text('Add custom collectible'),
-        ),
-        if (_error != null) Text(_error!),
-        if (_data == null && _error == null)
-          const Center(child: CircularProgressIndicator()),
-        for (final row in (_data?['products'] as List? ?? []))
-          Card(
-            child: ListTile(
-              title: Text(
-                row['title'].toString().isEmpty
-                    ? 'Untitled collectible'
-                    : row['title'].toString(),
+  Widget build(BuildContext context) => storeOwnerClosed
+      ? closedStore()
+      : Scaffold(
+          appBar: AppBar(title: const Text('Custom collectibles')),
+          body: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              const Text(
+                'Describe collectibles in your own words and photos. Quantity is vendor-managed availability.',
               ),
-              subtitle: Text(
-                row['archived_at'] != null
-                    ? 'Archived'
-                    : row['ineligible_reason']?.toString() ??
-                          row['suspension_reason']?.toString() ??
-                          (row['published'] == true
-                              ? 'Published in enabled store destinations'
-                              : 'Draft · Not published'),
+              const SizedBox(height: 12),
+              FilledButton.icon(
+                onPressed:
+                    widget.owner.canEdit &&
+                        widget.owner.rollout['custom_enabled'] == true
+                    ? () => _edit()
+                    : null,
+                icon: const Icon(Icons.add),
+                label: const Text('Add custom collectible'),
               ),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => _edit(Map<String, dynamic>.from(row as Map)),
-            ),
+              if (_error != null) Text(_error!),
+              if (_data == null && _error == null)
+                const Center(child: CircularProgressIndicator()),
+              for (final row in (_data?['products'] as List? ?? []))
+                Card(
+                  child: ListTile(
+                    title: Text(
+                      row['title'].toString().isEmpty
+                          ? 'Untitled collectible'
+                          : row['title'].toString(),
+                    ),
+                    subtitle: Text(
+                      row['archived_at'] != null
+                          ? 'Archived'
+                          : row['ineligible_reason']?.toString() ??
+                                row['suspension_reason']?.toString() ??
+                                (row['published'] == true
+                                    ? 'Published in enabled store destinations'
+                                    : 'Draft · Not published'),
+                    ),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => _edit(Map<String, dynamic>.from(row as Map)),
+                  ),
+                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: _offset == 0
+                        ? null
+                        : () {
+                            _offset = (_offset - 40).clamp(0, 100000);
+                            _load();
+                          },
+                    child: const Text('Previous'),
+                  ),
+                  TextButton(
+                    onPressed:
+                        _data == null ||
+                            _offset + 40 >= (_data!['total'] as int)
+                        ? null
+                        : () {
+                            _offset += 40;
+                            _load();
+                          },
+                    child: const Text('Next'),
+                  ),
+                ],
+              ),
+            ],
           ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton(
-              onPressed: _offset == 0
-                  ? null
-                  : () {
-                      _offset = (_offset - 40).clamp(0, 100000);
-                      _load();
-                    },
-              child: const Text('Previous'),
-            ),
-            TextButton(
-              onPressed:
-                  _data == null || _offset + 40 >= (_data!['total'] as int)
-                  ? null
-                  : () {
-                      _offset += 40;
-                      _load();
-                    },
-              child: const Text('Next'),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
+        );
 }
 
 class CustomProductEditorScreen extends StatefulWidget {
@@ -143,7 +157,8 @@ class CustomProductEditorScreen extends StatefulWidget {
       _CustomProductEditorScreenState();
 }
 
-class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
+class _CustomProductEditorScreenState extends State<CustomProductEditorScreen>
+    with StoreOwnerGuard<CustomProductEditorScreen> {
   static const _fields = {
     'title': ('Title', 120),
     'description': ('Description', 4000),
@@ -170,11 +185,22 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
   @override
   void initState() {
     super.initState();
+    watchStoreOwner(widget.service);
     _product = widget.product;
     _fill();
   }
 
+  @override
+  void clearStoreDraft() {
+    _product = null;
+    _error = null;
+    for (final controller in _text.values) {
+      controller.clear();
+    }
+  }
+
   void _fill() {
+    if (!mounted || storeOwnerClosed) return;
     for (final e in _text.entries) {
       e.value.text =
           _product?[e.key]?.toString() ??
@@ -184,6 +210,7 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
 
   @override
   void dispose() {
+    stopWatchingStoreOwner();
     for (final c in _text.values) {
       c.dispose();
     }
@@ -191,7 +218,7 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
   }
 
   Future<void> _run(Future<void> Function() task) async {
-    if (_busy) return;
+    if (_busy || !mounted || storeOwnerClosed) return;
     setState(() {
       _busy = true;
       _error = null;
@@ -199,9 +226,9 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
     try {
       await task();
     } catch (e) {
-      if (mounted) setState(() => _error = e.toString());
+      if (mounted && !storeOwnerClosed) setState(() => _error = e.toString());
     } finally {
-      if (mounted) setState(() => _busy = false);
+      if (mounted && !storeOwnerClosed) setState(() => _busy = false);
     }
   }
 
@@ -209,8 +236,9 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
     String action, [
     Map<String, dynamic> data = const {},
   ]) async {
+    if (!mounted || storeOwnerClosed) return;
     final p = await widget.service.changeProduct(_product, action, data);
-    if (mounted) setState(() => _product = p);
+    if (mounted && !storeOwnerClosed) setState(() => _product = p);
   }
 
   Future<void> _save() async {
@@ -241,7 +269,8 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
   }
 
   Future<void> _reload() async {
-    final yes = await showDialog<bool>(
+    final yes = await showStoreOwnerDialog(
+      service: widget.service,
       context: context,
       builder: (c) => AlertDialog(
         title: const Text('Reload saved product?'),
@@ -260,12 +289,12 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
         ],
       ),
     );
-    if (yes != true) return;
+    if (yes != true || !mounted || storeOwnerClosed) return;
     await _run(() async {
       final data = await widget.service.customProducts(
         id: _product!['id'].toString(),
       );
-      if (mounted) {
+      if (mounted && !storeOwnerClosed) {
         _product = Map<String, dynamic>.from(
           (data['products'] as List).first as Map,
         );
@@ -276,12 +305,14 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
 
   Future<void> _photo() async {
     final file = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (file == null) return;
+    if (file == null || !mounted || storeOwnerClosed) return;
     await _run(() async {
+      final bytes = await file.readAsBytes();
+      if (!mounted || storeOwnerClosed) return;
       final path = await widget.service.uploadProductPhoto(
         widget.owner.store!['id'].toString(),
         _product!['id'].toString(),
-        await file.readAsBytes(),
+        bytes,
       );
       await _change('photos', {
         'paths': [...(_product!['photo_paths'] as List), path],
@@ -290,7 +321,8 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
   }
 
   Future<void> _confirmAction(String action) async {
-    final yes = await showDialog<bool>(
+    final yes = await showStoreOwnerDialog(
+      service: widget.service,
       context: context,
       builder: (c) => AlertDialog(
         title: Text(
@@ -320,6 +352,7 @@ class _CustomProductEditorScreenState extends State<CustomProductEditorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (storeOwnerClosed) return closedStore();
     final p = _product,
         photos = List<String>.from(p?['photo_paths'] as List? ?? []);
     return Scaffold(

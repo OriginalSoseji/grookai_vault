@@ -1,3 +1,4 @@
+import 'store_owner_guard.dart';
 import 'package:flutter/material.dart';
 import 'custom_product_screen.dart';
 import 'package:share_plus/share_plus.dart';
@@ -20,7 +21,8 @@ class StorefrontScreen extends StatefulWidget {
   State<StorefrontScreen> createState() => _StorefrontScreenState();
 }
 
-class _StorefrontScreenState extends State<StorefrontScreen> {
+class _StorefrontScreenState extends State<StorefrontScreen>
+    with StoreOwnerGuard<StorefrontScreen> {
   late final StorefrontService _service = widget.service ?? StorefrontService();
   final _search = TextEditingController();
   StorefrontData? _data;
@@ -31,17 +33,27 @@ class _StorefrontScreenState extends State<StorefrontScreen> {
   @override
   void initState() {
     super.initState();
+    if (widget.preview || _service.hasSession) watchStoreOwner(_service);
     _load();
   }
 
   @override
   void dispose() {
+    stopWatchingStoreOwner();
     _search.dispose();
     if (widget.service == null) _service.dispose();
     super.dispose();
   }
 
+  @override
+  void clearStoreDraft() {
+    _data = null;
+    _error = null;
+    _search.clear();
+  }
+
   Future<void> _load() async {
+    if (!mounted || storeOwnerClosed) return;
     setState(() {
       _loading = true;
       _error = null;
@@ -56,11 +68,11 @@ class _StorefrontScreenState extends State<StorefrontScreen> {
         section: _section,
         offset: _offset,
       );
-      if (mounted) setState(() => _data = data);
+      if (mounted && !storeOwnerClosed) setState(() => _data = data);
     } catch (e) {
-      if (mounted) setState(() => _error = e.toString());
+      if (mounted && !storeOwnerClosed) setState(() => _error = e.toString());
     } finally {
-      if (mounted) setState(() => _loading = false);
+      if (mounted && !storeOwnerClosed) setState(() => _loading = false);
     }
   }
 
@@ -72,6 +84,7 @@ class _StorefrontScreenState extends State<StorefrontScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (storeOwnerClosed) return closedStore();
     final data = _data;
     return Scaffold(
       appBar: AppBar(

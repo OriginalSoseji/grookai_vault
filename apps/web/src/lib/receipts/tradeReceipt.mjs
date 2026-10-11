@@ -1,3 +1,4 @@
+import {validateNegotiatedTradeReceipt} from '../sales/negotiatedTrade.mjs';
 const fields=['description','quantity','valueMinor','rateBps','creditMinor','cardId','printingId','condition','addToVault','printingGvId','instanceId','gvviId'];
 const id=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const check=(ok)=>{if(!ok)throw Error('Invalid trade-in receipt. Preserve the original backup.');};
@@ -8,6 +9,7 @@ export const tradePercentage=n=>(n/100).toFixed(n%100===0?0:2);
 export const receiptBalance=r=>r.tradeIn?.balanceMinor??r.totalMinor;
 
 export function validateTradeReceipt(trade,saleTotal){
+  if(trade?.version===2)return validateNegotiatedTradeReceipt(trade,saleTotal);
   check(object(trade)&&Object.keys(trade).length===5&&trade.version===1&&Array.isArray(trade.items)&&trade.items.length>0&&trade.items.length<=50);
   let value=0,credit=0;
   const items=trade.items.map(t=>{
@@ -28,6 +30,9 @@ export function validateTradeReceipt(trade,saleTotal){
 export function tradeReceiptLines(r,money){
   if(!r.tradeIn)return [];
   const t=validateTradeReceipt(r.tradeIn,r.totalMinor);
+  if(t.version===2)return ['TRADE-INS',...t.items.map(i=>`${i.quantity} × ${i.description} — ${money(i.creditMinor)} agreed credit`),
+    `Total trade credit: ${money(t.totalCreditMinor)}`,
+    t.balanceMinor<0?`Paid to customer: ${money(-t.balanceMinor)}`:t.balanceMinor===0?'Even trade · no money due':`Payment received: ${money(t.balanceMinor)}`];
   return ['TRADE-INS',...t.items.flatMap(i=>[i.description,`${i.quantity} × ${money(i.valueMinor)} × ${tradePercentage(i.rateBps)}% = ${money(i.creditMinor)} credit`]),
     `Total trade credit: ${money(t.totalCreditMinor)}`,
     t.balanceMinor<0?`Paid to customer: ${money(-t.balanceMinor)}`:t.balanceMinor===0?'Even trade · no money due':`Payment received: ${money(t.balanceMinor)}`];

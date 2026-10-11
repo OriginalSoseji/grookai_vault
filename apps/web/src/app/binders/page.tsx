@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import PageIntro from "@/components/layout/PageIntro";
 import ProductState from "@/components/layout/ProductState";
+import { CollectorOwnerBoundary } from "@/components/vault/CollectorOwnerBoundary";
 import { BinderDashboardView } from "@/components/binders/BinderViews";
 import { BinderConnectivityBoundary } from "@/components/binders/BinderOfflineBanner";
 import { BinderIdempotencyScope } from "@/components/binders/BinderIdempotencyScope";
@@ -38,10 +38,17 @@ export default async function BindersPage(
 ) {
   const searchParams = await props.searchParams;
   if (!isBinderLibraryEnabled()) {
-    notFound();
+    return (
+      <div className="space-y-8 py-6">
+        <PageIntro eyebrow="Collection goals" title="Binders" />
+        <ProductState title="Binders are not available in this version"
+          description="You can keep collecting in your Vault."
+          action={<Link href="/vault" className="gv-primary-button">Open Vault</Link>} />
+      </div>
+    );
   }
   const flags = getBinderFeatureFlags();
-  const { supabase } = await requireServerUser("/binders");
+  const { supabase, user } = await requireServerUser("/binders");
 
   let dashboard;
   try {
@@ -105,6 +112,7 @@ export default async function BindersPage(
   };
 
   return (
+    <CollectorOwnerBoundary ownerId={user.id} surface="Binders" reopenHref="/binders">
     <div className="space-y-10 py-6">
       <PageIntro
         eyebrow="Binders"
@@ -170,5 +178,6 @@ export default async function BindersPage(
       ) : null}
       </BinderConnectivityBoundary>
     </div>
+    </CollectorOwnerBoundary>
   );
 }

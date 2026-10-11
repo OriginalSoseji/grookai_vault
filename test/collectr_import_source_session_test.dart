@@ -25,6 +25,7 @@ class SourceFixture {
   final copies = <Map<String, dynamic>>[];
   final groups = <Map<String, dynamic>>[];
   List<Map<String, String>> source = [];
+  String? documentOwner, sourceHash;
   final attempts = <String>[];
   bool loseResponse = false, badReadback = false, missingEndpoint = false;
   bool failPrintingPage = false, ambiguousPrinting = false;
@@ -32,6 +33,7 @@ class SourceFixture {
   bool wrongTimestamp = false;
   int terminalFailures = 0;
   SourceFixture() {
+    f.owner = '10000000-0000-4000-8000-000000000001';
     f.catalogSets = [
       {'id': 'fixture-set', 'name': 'Set', 'game': 'pokemon'},
     ];
@@ -84,6 +86,10 @@ class SourceFixture {
               body['csvText'] as String,
             );
             source = parsed.map((r) => r.sourceFields).toList();
+            documentOwner = body['ownerUserId'] as String;
+            sourceHash = sha256
+                .convert(utf8.encode(body['csvText'] as String))
+                .toString();
             final returned = <Map<String, dynamic>>[];
             var added = 0, entries = 0;
             for (final selection in body['targets'] as List) {
@@ -125,10 +131,16 @@ class SourceFixture {
                 }
                 entries++;
                 groups.add({
+                  'user_id': documentOwner,
+                  'source_sha256': sourceHash,
+                  'added_count': quantity,
                   'group_key': groups.length.toString().padLeft(64, '0'),
                   'source_indices': indices,
                   'instance_ids': ids,
-                  'target': selection,
+                  'target': {
+                    ...Map<String, dynamic>.from(selection as Map),
+                    'desiredQuantity': quantity,
+                  },
                 });
               }
               returned.add({
@@ -163,14 +175,31 @@ class SourceFixture {
       } else if (request.url.path.endsWith(
         '/vault_collection_import_documents_v2',
       )) {
-        result = request.url.queryParameters['select']!.contains('source_rows')
-            ? {'source_rows': source}
-            : [
-                {
-                  'source_sha256': '0' * 64,
-                  'created_at': '2026-09-30T00:00:00Z',
-                },
-              ];
+        final fields = {
+          'user_id': documentOwner,
+          'source_sha256': sourceHash,
+          'created_at': '2026-09-30T00:00:00Z',
+          'source_rows': source,
+        };
+        final sameOwner =
+            request.url.queryParameters['user_id'] == 'eq.$documentOwner';
+        final exactHash = request.url.queryParameters['source_sha256'];
+        if (request.url.queryParameters['select']!.contains('source_rows')) {
+          if (!sameOwner || exactHash != 'eq.$sourceHash') {
+            status = 406;
+            result = {'message': 'No document'};
+          } else {
+            result = fields;
+          }
+        } else {
+          final after = exactHash?.replaceFirst('gt.', '');
+          result =
+              sameOwner &&
+                  sourceHash != null &&
+                  (after == null || sourceHash!.compareTo(after) > 0)
+              ? [fields]
+              : [];
+        }
       } else if (request.url.path.endsWith(
         '/vault_collection_import_groups_v2',
       )) {
@@ -474,7 +503,16 @@ void main() {
       await settle('Imported 2026-09-30');
       await tester.tap(find.text('Imported 2026-09-30'));
       await settle('Needs review (1)');
-      expect(find.textContaining('Needs review; not owned'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.text('Fixture'),
+        200,
+        scrollable: find.byType(Scrollable).last,
+      );
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('Needs review; not added from this row'),
+        findsOneWidget,
+      );
       await tester.tap(find.text('Fixture'));
       await tester.pumpAndSettle();
       expect(find.text('PSA 10'), findsOneWidget);

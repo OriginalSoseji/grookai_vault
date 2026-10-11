@@ -88,7 +88,8 @@ test("runtime shell manifest is the exact five-item owner-approved order", () =>
   );
   let cursor = -1;
 
-  for (const label of expectedDock) {
+  // Historical manifests above remain pinned to their captured APK.
+  for (const label of ["Vault", "Explore", "Scan", "Binders", "Community"]) {
     const next = manifest.indexOf(`label: "${label}"`, cursor + 1);
     assert.ok(next > cursor, `${label} must follow the prior dock item`);
     cursor = next;

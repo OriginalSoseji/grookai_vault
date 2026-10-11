@@ -141,6 +141,12 @@ void main() {
       await tester.tap(find.text('Customer view'));
       await tester.pumpAndSettle();
       expect(find.text('You pay USD 12.34'), findsOneWidget);
+      expect(
+        ModalRoute.of(
+          tester.element(find.byType(AlertDialog)),
+        )!.barrierColor!.a,
+        1.0,
+      );
       expect(service.calls, isEmpty);
       expect(tester.takeException(), isNull);
     },

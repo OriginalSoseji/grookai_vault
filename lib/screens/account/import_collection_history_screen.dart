@@ -1,11 +1,22 @@
+import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../services/import/collection_import_archive.dart';
 
-/// Private source evidence is readable by its owner only. These rows are not
-/// inventory and must not contribute to portfolio quantities or valuation.
+/// Owner-only source history, separate from current inventory and valuation.
 class ImportCollectionHistoryScreen extends StatefulWidget {
-  const ImportCollectionHistoryScreen({super.key, required this.client});
+  const ImportCollectionHistoryScreen({
+    super.key,
+    required this.client,
+    this.sourceSha256,
+    this.shareSource,
+  });
   final SupabaseClient client;
+  final String? sourceSha256;
+  final Future<void> Function(String contents, String filename, Rect? origin)?
+  shareSource;
   @override
   State<ImportCollectionHistoryScreen> createState() =>
       _ImportCollectionHistoryScreenState();
@@ -15,249 +26,410 @@ class _ImportCollectionHistoryScreenState
     extends State<ImportCollectionHistoryScreen> {
   final _documents = <Map<String, dynamic>>[];
   late final String? _owner = widget.client.auth.currentUser?.id;
-  bool _loading = false, _more = true;
-  String? _error;
+  StreamSubscription<AuthState>? _subscription;
+  CollectionImportArchive? _archive;
+  bool _loading = false, _more = true, _closed = false, _sharing = false;
+  int _revision = 0, _limit = 50;
+  String? _error, _after;
+  String _filter = 'review', _search = '';
+  static final _hash = RegExp(r'^[a-f0-9]{64}$');
+
   @override
   void initState() {
     super.initState();
-    _load();
+    _subscription = widget.client.auth.onAuthStateChange.listen((state) {
+      if (state.session?.user.id != _owner) _close();
+    });
+    unawaited(_load());
   }
 
-  Future<void> _load() async {
-    if (_loading || !_more) return;
+  bool _valid() =>
+      mounted &&
+      !_closed &&
+      _owner != null &&
+      widget.client.auth.currentUser?.id == _owner;
+  bool _current(int revision) => _valid() && revision == _revision;
+  void _close() {
+    if (!mounted || _closed) return;
+    setState(() {
+      _closed = true;
+      _revision++;
+      _documents.clear();
+      _archive = null;
+      _after = null;
+      _search = '';
+      _loading = _sharing = false;
+      _error = null;
+    });
+  }
+
+  @override
+  void dispose() {
+    _revision++;
+    unawaited(_subscription?.cancel());
+    super.dispose();
+  }
+
+  Future<void> _load({bool append = false}) async {
+    if (!_valid()) {
+      _close();
+      return;
+    }
+    if (_loading) return;
+    final revision = ++_revision, source = widget.sourceSha256;
     setState(() {
       _loading = true;
       _error = null;
+      if (!append) {
+        _documents.clear();
+        _archive = null;
+        _after = null;
+        _more = true;
+      }
     });
     try {
-      if (_owner == null || widget.client.auth.currentUser?.id != _owner) {
-        throw StateError('account changed');
-      }
-      final rows = await widget.client
-          .from('vault_collection_import_documents_v2')
-          .select('source_sha256,created_at')
-          .eq('user_id', _owner)
-          .order('created_at', ascending: false)
-          .order('source_sha256', ascending: true)
-          .range(_documents.length, _documents.length + 19);
-      if (!mounted) return;
-      if (widget.client.auth.currentUser?.id != _owner) {
-        throw StateError('account changed');
-      }
-      setState(() {
-        _documents.addAll(rows);
-        _more = rows.isNotEmpty;
-        _loading = false;
-      });
-    } catch (_) {
-      if (mounted) {
+      if (source != null) {
+        final archive = await CollectionImportArchive.read(
+          ownerId: _owner!,
+          sourceSha256: source,
+          isCurrentOwner: () => _current(revision),
+          readDocument: () async => await widget.client
+              .from('vault_collection_import_documents_v2')
+              .select('user_id,source_sha256,created_at,source_rows')
+              .eq('user_id', _owner)
+              .eq('source_sha256', source)
+              .single(),
+          readGroupPage: (after) async {
+            var query = widget.client
+                .from('vault_collection_import_groups_v2')
+                .select(
+                  'user_id,source_sha256,group_key,source_indices,instance_ids,added_count,target',
+                )
+                .eq('user_id', _owner)
+                .eq('source_sha256', source);
+            if (after != null) query = query.gt('group_key', after);
+            return await query.order('group_key', ascending: true).limit(500);
+          },
+        );
+        if (!_current(revision)) return;
         setState(() {
-          _error =
-              'Saved imports could not be loaded. Check your account and retry.';
-          _loading = false;
+          _archive = archive;
+          _filter = archive.reviewIndices.isEmpty ? 'all' : 'review';
+          _limit = 50;
         });
+      } else {
+        var query = widget.client
+            .from('vault_collection_import_documents_v2')
+            .select('user_id,source_sha256,created_at')
+            .eq('user_id', _owner!);
+        if (_after != null) query = query.gt('source_sha256', _after!);
+        final page = await query
+            .order('source_sha256', ascending: true)
+            .limit(20);
+        var after = _after;
+        for (final doc in page) {
+          final hash = doc['source_sha256'], created = doc['created_at'];
+          if (doc['user_id'] != _owner ||
+              hash is! String ||
+              !_hash.hasMatch(hash) ||
+              (after != null && hash.compareTo(after) <= 0) ||
+              created is! String ||
+              DateTime.tryParse(created) == null) {
+            throw const FormatException('Invalid saved import page');
+          }
+          after = hash;
+        }
+        if (!_current(revision)) return;
+        setState(() {
+          _documents.addAll(page);
+          _after = after;
+          _more = page.isNotEmpty;
+        });
+      }
+    } catch (_) {
+      if (_current(revision)) {
+        setState(
+          () => _error =
+              'Saved import details could not be loaded. Retry to confirm the complete result.',
+        );
+      }
+    } finally {
+      if (_current(revision)) {
+        setState(() => _loading = false);
+      } else if (mounted && !_valid()) {
+        _close();
       }
     }
   }
 
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Saved imports')),
-    body: ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        const Text(
-          'Your original CSV details are private. Review rows are not counted as owned cards. To retry matching, choose the original CSV from Import Collection.',
-        ),
-        const SizedBox(height: 16),
-        if (_documents.isEmpty && !_loading && _error == null)
-          const Text('No saved imports yet.'),
-        for (final document in _documents)
-          ListTile(
-            leading: const Icon(Icons.description_outlined),
-            title: Text(
-              'Imported ${(document['created_at'] as String).split('T').first}',
-            ),
-            subtitle: const Text('View original rows and review status'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => _SavedImportDetails(
-                  client: widget.client,
-                  owner: _owner!,
-                  sourceHash: document['source_sha256'] as String,
-                ),
-              ),
-            ),
-          ),
-        if (_error != null) Text(_error!),
-        if (_loading)
-          const Center(child: CircularProgressIndicator())
-        else if (_more)
-          TextButton(
-            onPressed: _load,
-            child: Text(_error == null ? 'Show more' : 'Retry'),
-          ),
-      ],
-    ),
-  );
-}
-
-class _SavedImportDetails extends StatefulWidget {
-  const _SavedImportDetails({
-    required this.client,
-    required this.owner,
-    required this.sourceHash,
-  });
-  final SupabaseClient client;
-  final String owner, sourceHash;
-  @override
-  State<_SavedImportDetails> createState() => _SavedImportDetailsState();
-}
-
-class _SavedImportDetailsState extends State<_SavedImportDetails> {
-  List<Map<String, dynamic>>? _rows;
-  final _savedIndices = <int>{};
-  String? _error;
-  bool _reviewOnly = true;
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    setState(() {
-      _error = null;
-      _rows = null;
-    });
+  Future<void> _share(BuildContext anchor) async {
+    final archive = _archive;
+    if (!_valid()) {
+      _close();
+      return;
+    }
+    if (archive == null || _sharing || _loading) return;
+    final revision = _revision;
+    setState(() => _sharing = true);
     try {
-      if (widget.client.auth.currentUser?.id != widget.owner) {
-        throw StateError('account changed');
+      final contents = archive.toSourceJson();
+      final filename =
+          'grookai-saved-import-${archive.sourceSha256.substring(0, 12)}.json';
+      final box = anchor.findRenderObject() as RenderBox?;
+      final origin = box == null
+          ? null
+          : box.localToGlobal(Offset.zero) & box.size;
+      if (!_current(revision)) return;
+      if (widget.shareSource != null) {
+        await widget.shareSource!(contents, filename, origin);
+      } else {
+        await SharePlus.instance.share(
+          ShareParams(
+            files: [
+              XFile.fromData(
+                utf8.encode(contents),
+                mimeType: 'application/json',
+              ),
+            ],
+            fileNameOverrides: [filename],
+            sharePositionOrigin: origin,
+          ),
+        );
       }
-      final document = await widget.client
-          .from('vault_collection_import_documents_v2')
-          .select('source_rows')
-          .eq('user_id', widget.owner)
-          .eq('source_sha256', widget.sourceHash)
-          .single();
-      final rows = (document['source_rows'] as List)
-          .map((r) => Map<String, dynamic>.from(r as Map))
-          .toList();
-      final saved = <int>{};
-      String? after;
-      while (true) {
-        var query = widget.client
-            .from('vault_collection_import_groups_v2')
-            .select('group_key,source_indices')
-            .eq('user_id', widget.owner)
-            .eq('source_sha256', widget.sourceHash);
-        if (after != null) query = query.gt('group_key', after);
-        final page = await query.order('group_key', ascending: true).limit(500);
-        if (page.isEmpty) break;
-        for (final group in page) {
-          final key = group['group_key'] as String;
-          if (after != null && key.compareTo(after) <= 0) {
-            throw StateError('pagination failed');
-          }
-          after = key;
-          saved.addAll((group['source_indices'] as List).cast<int>());
-        }
-      }
-      if (!mounted) return;
-      if (widget.client.auth.currentUser?.id != widget.owner) {
-        throw StateError('account changed');
-      }
-      setState(() {
-        _rows = rows;
-        _savedIndices
-          ..clear()
-          ..addAll(saved);
-      });
     } catch (_) {
-      if (mounted) {
-        setState(() {
-          _error = 'This saved import could not be loaded. Please retry.';
-        });
+      if (_current(revision)) {
+        setState(
+          () => _error = 'The source file could not be prepared. Please retry.',
+        );
       }
+    } finally {
+      if (_current(revision)) setState(() => _sharing = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final rows = _rows;
-    final indices = rows == null
+    final archive = _archive, source = widget.sourceSha256;
+    final review = archive?.reviewIndices.toSet() ?? <int>{};
+    final terms = _search
+        .trim()
+        .toLowerCase()
+        .split(RegExp(r'\s+'))
+        .where((v) => v.isNotEmpty);
+    final indices = archive == null
         ? <int>[]
         : [
-            for (var i = 0; i < rows.length; i++)
-              if (!_reviewOnly || !_savedIndices.contains(i)) i,
+            for (var i = 0; i < archive.rows.length; i++)
+              if ((_filter == 'all' ||
+                      (_filter == 'review'
+                          ? review.contains(i)
+                          : !review.contains(i))) &&
+                  terms.every(
+                    (term) => archive.rows[i].values
+                        .join(' ')
+                        .toLowerCase()
+                        .contains(term),
+                  ))
+                i,
           ];
     return Scaffold(
-      appBar: AppBar(title: const Text('Original CSV details')),
-      body: _error != null
-          ? Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(_error!),
-                  TextButton(onPressed: _load, child: const Text('Retry')),
-                ],
+      appBar: AppBar(
+        title: Text(source == null ? 'Saved imports' : 'Saved import details'),
+      ),
+      body: _closed
+          ? const Center(
+              child: Padding(
+                padding: EdgeInsets.all(24),
+                child: Text('Your account changed. Reopen saved imports.'),
               ),
             )
-          : rows == null
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
-              children: [
-                SwitchListTile(
-                  title: Text(
-                    'Needs review (${rows.length - _savedIndices.length})',
+          : SafeArea(
+              child: ListView(
+                padding: const EdgeInsets.all(16),
+                children: [
+                  const Text(
+                    'Your saved source rows and unresolved items. Review rows are not inventory.',
                   ),
-                  value: _reviewOnly,
-                  onChanged: (value) => setState(() => _reviewOnly = value),
-                ),
-                if (indices.isEmpty)
-                  const Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Text('No rows in this view.'),
-                  ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: indices.length,
-                    itemBuilder: (context, position) {
-                      final index = indices[position], row = rows[index];
-                      final name =
-                          row.entries
-                              .where(
-                                (e) =>
-                                    e.key.trim().toLowerCase() ==
-                                    'product name',
-                              )
-                              .firstOrNull
-                              ?.value ??
-                          'Original row';
-                      return ExpansionTile(
-                        key: ValueKey(index),
-                        title: Text('$name'),
-                        subtitle: Text(
-                          'CSV row ${index + 2} · ${_savedIndices.contains(index) ? 'Reconciled to owned copies' : 'Needs review; not owned'}',
+                  const SizedBox(height: 16),
+                  if (_error != null) ...[
+                    Text(_error!),
+                    TextButton(
+                      onPressed: _loading
+                          ? null
+                          : () => _load(
+                              append: source == null && _documents.isNotEmpty,
+                            ),
+                      child: const Text('Retry loading'),
+                    ),
+                  ],
+                  if (_loading)
+                    const Center(child: CircularProgressIndicator()),
+                  if (source == null) ...[
+                    if (_documents.isEmpty && !_loading && _error == null)
+                      const Text('No saved imports yet.'),
+                    for (final document in _documents)
+                      ListTile(
+                        leading: const Icon(Icons.description_outlined),
+                        title: Text(
+                          'Imported ${(document['created_at'] as String).split('T').first}',
                         ),
-                        children: [
-                          for (final entry in row.entries)
-                            ListTile(
-                              title: Text(entry.key),
-                              subtitle: SelectableText(
-                                entry.value.toString().isEmpty
-                                    ? '—'
-                                    : entry.value.toString(),
+                        subtitle: const Text(
+                          'View original rows and review status',
+                        ),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () {
+                          if (!_valid()) {
+                            _close();
+                            return;
+                          }
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => ImportCollectionHistoryScreen(
+                                client: widget.client,
+                                sourceSha256:
+                                    document['source_sha256'] as String,
+                                shareSource: widget.shareSource,
                               ),
                             ),
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ],
+                          );
+                        },
+                      ),
+                    if (_documents.isNotEmpty && _more && _error == null)
+                      TextButton(
+                        onPressed: _loading ? null : () => _load(append: true),
+                        child: const Text('Show more imports'),
+                      ),
+                  ],
+                  if (archive != null) ...[
+                    Text(
+                      'Source reconciliation',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '${archive.rows.length} source rows · ${archive.reconciledRows} previously reconciled · ${archive.reviewIndices.length} need review',
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Historical mappings: ${archive.cardCopies} card copies · ${archive.sealedCopies} sealed copies',
+                    ),
+                    ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      title: const Text('Download source and retry options'),
+                      children: [
+                        Text(
+                          '${archive.addedCopies} copies were added by this source; ${archive.reusedCopies} were already accounted for. Mapped copies may since have been sold, archived or edited.',
+                        ),
+                        Builder(
+                          builder: (anchor) => OutlinedButton.icon(
+                            onPressed: _sharing || _loading
+                                ? null
+                                : () => _share(anchor),
+                            icon: const Icon(Icons.download_outlined),
+                            label: const Text('Save source JSON'),
+                          ),
+                        ),
+                        const Text(
+                          'Includes all stored source fields and historical mappings, regardless of these filters. This is not the original CSV or a current collection export.',
+                        ),
+                        const SizedBox(height: 8),
+                        const Text(
+                          'To try matching again, choose the unchanged original CSV in Import Collection. A downloaded subset is a different import and cannot recover an uncertain save.',
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        for (final value in ['review', 'reconciled', 'all'])
+                          ChoiceChip(
+                            label: Text(
+                              value == 'review'
+                                  ? 'Needs review (${archive.reviewIndices.length})'
+                                  : value == 'reconciled'
+                                  ? 'Reconciled (${archive.reconciledRows})'
+                                  : 'All rows (${archive.rows.length})',
+                            ),
+                            selected: _filter == value,
+                            onSelected: (_) => setState(() {
+                              _filter = value;
+                              _limit = 50;
+                            }),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      decoration: const InputDecoration(
+                        labelText: 'Search saved source fields',
+                      ),
+                      onChanged: (value) => setState(() {
+                        _search = value;
+                        _limit = 50;
+                      }),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      'Showing ${indices.take(_limit).length} of ${indices.length} matching source rows',
+                    ),
+                    if (indices.isEmpty)
+                      const Text(
+                        'No rows match this view. Change the filter or clear the search.',
+                      ),
+                    for (final index in indices.take(_limit))
+                      _SourceRow(
+                        row: archive.rows[index],
+                        index: index,
+                        review: review.contains(index),
+                      ),
+                    if (indices.length > _limit)
+                      TextButton(
+                        onPressed: () => setState(() => _limit += 50),
+                        child: const Text('Show more rows'),
+                      ),
+                  ],
+                ],
+              ),
             ),
+    );
+  }
+}
+
+class _SourceRow extends StatelessWidget {
+  const _SourceRow({
+    required this.row,
+    required this.index,
+    required this.review,
+  });
+  final Map<String, String> row;
+  final int index;
+  final bool review;
+  @override
+  Widget build(BuildContext context) {
+    final title = row.entries
+        .where(
+          (e) => [
+            'product name',
+            'card name',
+          ].contains(e.key.trim().toLowerCase()),
+        )
+        .firstOrNull
+        ?.value;
+    return ExpansionTile(
+      key: ValueKey(index),
+      title: Text(title == null || title.isEmpty ? 'Source row' : title),
+      subtitle: Text(
+        'Source row ${index + 2} · ${review ? 'Needs review; not added from this row' : 'Previously reconciled'}',
+      ),
+      children: [
+        for (final entry in row.entries)
+          ListTile(
+            title: Text(entry.key),
+            subtitle: SelectableText(entry.value.isEmpty ? '—' : entry.value),
+          ),
+      ],
     );
   }
 }

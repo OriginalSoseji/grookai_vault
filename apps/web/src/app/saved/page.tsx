@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import SaveCardButton from "@/components/cards/SaveCardButton";
 import ProductState from "@/components/layout/ProductState";
+import { CollectorOwnerBoundary } from "@/components/vault/CollectorOwnerBoundary";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveCardImageFieldsV1, type CardImageLike } from "@/lib/canon/resolveCardImageFieldsV1";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
@@ -33,7 +34,7 @@ export default async function SavedPage({ searchParams }: {
     ...row,
     image: row.card_prints ? await resolveCardImageFieldsV1(row.card_prints) : null,
   })));
-  return <div className="space-y-8 py-8">
+  return <CollectorOwnerBoundary ownerId={user.id} surface="Saved cards" reopenHref="/saved"><div className="space-y-8 py-8">
     <header className="flex flex-wrap items-end justify-between gap-4">
       <h1 className="gv-display-title">Saved cards</h1>
       <Link href="/vault" className="gv-secondary-button">Your Vault</Link>
@@ -63,5 +64,5 @@ export default async function SavedPage({ searchParams }: {
       <span className="text-sm">Page {page}</span>
       {rows.length > PAGE_SIZE ? <Link href={`/saved?page=${page + 1}`} className="gv-secondary-button" aria-label="Next page"><ChevronRight size={18} /></Link> : null}
     </nav> : null}
-  </div>;
+  </div></CollectorOwnerBoundary>;
 }

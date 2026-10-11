@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 
 import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,40 +13,62 @@ import '../../models/binders/binder_models.dart';
 class BinderPrivateCache {
   BinderPrivateCache._();
 
+  static Future<void>? _queue;
+  static Future<T> _serialize<T>(Future<T> Function() action) async {
+    final previous = _queue;
+    final gate = Completer<void>();
+    _queue = gate.future;
+    try {
+      if (previous != null) await previous;
+      return await action();
+    } finally {
+      if (identical(_queue, gate.future)) _queue = null;
+      gate.complete();
+    }
+  }
+
   static const _activeAccountKey = 'binder_cache_active_account_v1';
   static const _libraryPrefix = 'binder_cache_library_v1_';
 
-  static Future<BinderLibraryPage?> readLibrary(String userId) async {
+  static Future<BinderLibraryPage?> readLibrary(
+    String userId, {
+    bool Function()? isCurrent,
+  }) => _serialize(() async {
     final scope = _scope(userId);
     if (scope == null) return null;
     final prefs = await SharedPreferences.getInstance();
+    if (isCurrent != null && !isCurrent()) return null;
     await _synchronizeScope(prefs, scope);
+    if (isCurrent != null && !isCurrent()) return null;
     final raw = prefs.getString('$_libraryPrefix$scope');
     if (raw == null || raw.isEmpty) return null;
     return BinderLibraryPage.decodeCache(raw);
-  }
+  });
 
   static Future<void> writeLibrary(
     String userId,
-    BinderLibraryPage page,
-  ) async {
+    BinderLibraryPage page, {
+    bool Function()? isCurrent,
+  }) => _serialize(() async {
     final scope = _scope(userId);
     if (scope == null) return;
     final prefs = await SharedPreferences.getInstance();
+    if (isCurrent != null && !isCurrent()) return;
     await _synchronizeScope(prefs, scope);
+    if (isCurrent != null && !isCurrent()) return;
     await prefs.setString('$_libraryPrefix$scope', page.encodeForCache());
-  }
+  });
 
-  static Future<void> purgeCurrent() async {
+  static Future<void> purgeCurrent() => _serialize(() async {
     final prefs = await SharedPreferences.getInstance();
     final active = prefs.getString(_activeAccountKey);
     if (active != null && active.isNotEmpty) {
       await prefs.remove('$_libraryPrefix$active');
     }
     await prefs.remove(_activeAccountKey);
-  }
+  });
 
-  static Future<void> purgeUser(String userId) async {
+  static Future<void> purgeUser(String userId) => _serialize(() async {
     final scope = _scope(userId);
     if (scope == null) return;
     final prefs = await SharedPreferences.getInstance();
@@ -53,7 +76,7 @@ class BinderPrivateCache {
     if (prefs.getString(_activeAccountKey) == scope) {
       await prefs.remove(_activeAccountKey);
     }
-  }
+  });
 
   static Future<void> _synchronizeScope(
     SharedPreferences prefs,

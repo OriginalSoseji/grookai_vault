@@ -1,4 +1,5 @@
 import "server-only";
+import { selectBinderContinuation } from "./continuation";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { collectorStaging } from "@/lib/collectorStaging.mjs";
@@ -961,8 +962,10 @@ async function rpc(
   supabase: SupabaseClient,
   name: BinderReadRpcName,
   args: Record<string, unknown> = {},
+  signal?: AbortSignal,
 ) {
-  const { data, error } = await supabase.rpc(name, args);
+  const request = supabase.rpc(name, args);
+  const { data, error } = await (signal ? request.abortSignal(signal) : request);
   if (error) {
     const normalized = `${error.code ?? ""} ${error.message ?? ""}`.toLowerCase();
     const code = normalized.includes("not found")
@@ -996,6 +999,14 @@ function decodeCursor<T extends JsonRecord>(cursor?: string | null): Partial<T> 
   } catch {
     return {};
   }
+}
+
+export async function getBinderContinuation(supabase: SupabaseClient) {
+  const value = record(await rpc(supabase, BINDER_READ_RPC.dashboard, {
+    p_limit: 20, p_before_updated_at: null, p_before_id: null,
+  }, AbortSignal.timeout(12_000)));
+  return selectBinderContinuation(list(value.items).map(parseSummary),
+    value.has_more === true || Object.keys(record(value.next_cursor)).length > 0);
 }
 
 export async function getBinderDashboard(

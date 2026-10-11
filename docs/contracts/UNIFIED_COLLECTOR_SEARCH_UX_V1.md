@@ -34,6 +34,15 @@ spellchecking so card names, artist names and set codes stay as typed. Native
 search also disables keyboard suggestions. Web browser autocomplete is off;
 the app's explicit catalog suggestion list remains available.
 
+An unqualified partial artist name may also be a word in a card name. Search
+checks the literal card-name interpretation against the available catalog before
+choosing that artist filter. For example, Black Market must remain card text when
+the catalog supports it. Full artist credits, explicit artist/illustrator phrases
+and the illustrator filter retain their authority. If the literal card name is
+unsupported, useful surname-plus-card searches continue to work. Game, language,
+set, finish and exact identity constraints remain independent. A failed catalog
+check shows an error; it must not silently choose another interpretation.
+
 ## Live Suggestions
 
 After at least two non-whitespace characters, web search returns a bounded

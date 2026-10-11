@@ -1,0 +1,3972 @@
+{
+  "sourceSha256": "b126952839ee591ac44e3d73142682715108876285d9185847efae95af7f497f",
+  "cases": [
+    {
+      "name": "governed exact reference keeps cents and original evidence",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "reference": {
+            "source": "tcgplayer_market",
+            "amountMinor": 1001,
+            "currency": "USD",
+            "cardId": "b2222222-2222-4222-8222-222222222222",
+            "printingId": "c3333333-3333-4333-8333-333333333333",
+            "condition": null,
+            "observedAt": "2026-10-08T10:00:00.123456+00:00",
+            "publishedAt": "2026-10-08T10:01:00.123456+00:00",
+            "provenanceId": "e5555555-5555-4555-8555-555555555555"
+          }
+        }
+      }
+    },
+    {
+      "name": "decimal conversion avoids binary multiplication error",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 0.29,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "reference": {
+            "source": "tcgplayer_market",
+            "amountMinor": 29,
+            "currency": "USD",
+            "cardId": "b2222222-2222-4222-8222-222222222222",
+            "printingId": "c3333333-3333-4333-8333-333333333333",
+            "condition": null,
+            "observedAt": "2026-10-08T10:00:00.123456+00:00",
+            "publishedAt": "2026-10-08T10:01:00.123456+00:00",
+            "provenanceId": "e5555555-5555-4555-8555-555555555555"
+          }
+        }
+      }
+    },
+    {
+      "name": "reference projection accepts maximum exact cents",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 1000000,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "reference": {
+            "source": "tcgplayer_market",
+            "amountMinor": 100000000,
+            "currency": "USD",
+            "cardId": "b2222222-2222-4222-8222-222222222222",
+            "printingId": "c3333333-3333-4333-8333-333333333333",
+            "condition": null,
+            "observedAt": "2026-10-08T10:00:00.123456+00:00",
+            "publishedAt": "2026-10-08T10:01:00.123456+00:00",
+            "provenanceId": "e5555555-5555-4555-8555-555555555555"
+          }
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects empty result",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_missing_or_ambiguous"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects malformed result",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        {},
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_missing_or_ambiguous"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects null row",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          null
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_missing_or_ambiguous"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects duplicate exact result",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          },
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_missing_or_ambiguous"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects conflicting unavailable duplicate",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          },
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "unavailable",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_missing_or_ambiguous"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects parent and exact are ambiguous",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          },
+          {
+            "pricing_scope": "parent",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_missing_or_ambiguous"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects parent estimate",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "parent",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects from estimate",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": true,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects unknown from flag",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": null,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects unavailable status",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "unavailable",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects conflicting unavailable reason",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": "stale",
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects stale status",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "stale",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects other provider",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "justtcg",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects asking price label",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "Lowest active ask",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects foreign currency",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "EUR",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects invalid decimal 0",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 0,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_amount_invalid"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects invalid decimal -1",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": -1,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_amount_invalid"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects invalid decimal 0.001",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 0.001,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_amount_invalid"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects invalid decimal 1000000.01",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 1000000.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_amount_invalid"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects invalid decimal \"10.01\"",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": "10.01",
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_amount_invalid"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects invalid decimal null",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": null,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_amount_invalid"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects wrong printing",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "d4444444-4444-4444-8444-444444444444",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "printing_mismatch"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects wrong parent",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "d4444444-4444-4444-8444-444444444444",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "printing_mismatch"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects missing provenance",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": null
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects expired observation",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-06T23:59:59.999999+00:00",
+            "published_at": "2026-10-08T10:01:00.123456+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_stale"
+        }
+      }
+    },
+    {
+      "name": "reference projection rejects future publication evidence",
+      "fn": "projectOfferMarketReference",
+      "args": [
+        [
+          {
+            "pricing_scope": "card_printing",
+            "card_print_id": "b2222222-2222-4222-8222-222222222222",
+            "card_printing_id": "c3333333-3333-4333-8333-333333333333",
+            "status": "available",
+            "currency": "USD",
+            "market_close": 10.01,
+            "source_name": "tcgplayer",
+            "source_label": "TCGPlayer Market",
+            "freshness": "fresh",
+            "is_from_price": false,
+            "unavailable_reason": null,
+            "observed_at": "2026-10-08T10:00:00.123456+00:00",
+            "published_at": "2026-10-08T12:00:00.000001+00:00",
+            "provenance_id": "e5555555-5555-4555-8555-555555555555"
+          }
+        ],
+        "b2222222-2222-4222-8222-222222222222",
+        "c3333333-3333-4333-8333-333333333333",
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "legacy migration retains percentage and has no defaults",
+      "fn": "validateOfferPolicies",
+      "args": [
+        {
+          "version": 1,
+          "revision": 8,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Old cash",
+              "rateBps": 6000
+            }
+          ]
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 2,
+          "revision": 8,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Old cash",
+              "intent": "cash",
+              "rateBps": 6000,
+              "source": "manual",
+              "conditionBasis": "unspecified",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": null,
+            "trade": null
+          }
+        }
+      }
+    },
+    {
+      "name": "empty settings do not invent a default",
+      "fn": "readOfferPolicies",
+      "args": [
+        null
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 2,
+          "revision": 0,
+          "presets": [],
+          "defaults": {
+            "cash": null,
+            "trade": null
+          }
+        }
+      }
+    },
+    {
+      "name": "remove selected policy clears only its default",
+      "fn": "removeOfferPolicy",
+      "args": [
+        {
+          "version": 2,
+          "revision": 3,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": "a1111111-1111-4111-8111-111111111111",
+            "trade": null
+          }
+        },
+        "a1111111-1111-4111-8111-111111111111"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 2,
+          "revision": 3,
+          "presets": [],
+          "defaults": {
+            "cash": null,
+            "trade": null
+          }
+        }
+      }
+    },
+    {
+      "name": "remove absent policy preserves current selection",
+      "fn": "removeOfferPolicy",
+      "args": [
+        {
+          "version": 2,
+          "revision": 3,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": "a1111111-1111-4111-8111-111111111111",
+            "trade": null
+          }
+        },
+        "d4444444-4444-4444-8444-444444444444"
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "version": 2,
+          "revision": 3,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": "a1111111-1111-4111-8111-111111111111",
+            "trade": null
+          }
+        }
+      }
+    },
+    {
+      "name": "normalized policy identity and name",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "A1111111-1111-4111-8111-111111111111",
+          "name": " Standard cash ",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        }
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        }
+      }
+    },
+    {
+      "name": "cash reference percentage calculation",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 1000,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "cash rounds each unit before extension",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 5000,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 3,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 1,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 5000,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 3,
+          "calculatedMinor": 1,
+          "suggestedMinor": 1,
+          "lineMinor": 3,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "trade rounds the extended line once",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "trade",
+          "rateBps": 5000,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "trade",
+          "quantity": 3,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "trade",
+          "source": "manual",
+          "referenceMinor": 1,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 5000,
+          "tierApplied": false,
+          "scope": "line",
+          "quantity": 3,
+          "calculatedMinor": 2,
+          "suggestedMinor": 2,
+          "lineMinor": 2,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "increment uses exact rational without double rounding",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 5000,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 10,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 9,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 9,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 5000,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 5,
+          "suggestedMinor": 0,
+          "lineMinor": 0,
+          "rounding": {
+            "incrementMinor": 10,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "exact half increment rounds up",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 5000,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 10,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 10,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 10,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 5000,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 5,
+          "suggestedMinor": 10,
+          "lineMinor": 10,
+          "rounding": {
+            "incrementMinor": 10,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "down increment never first rounds up a cent",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 5000,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 5,
+            "mode": "down"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 9,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 9,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 5000,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 5,
+          "suggestedMinor": 0,
+          "lineMinor": 0,
+          "rounding": {
+            "incrementMinor": 5,
+            "mode": "down"
+          }
+        }
+      }
+    },
+    {
+      "name": "tier includes its per-unit boundary",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": {
+            "ceilingMinor": 500,
+            "rateBps": 4000
+          }
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 500,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 500,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 4000,
+          "tierApplied": true,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 200,
+          "suggestedMinor": 200,
+          "lineMinor": 200,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "above tier uses normal percentage",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": {
+            "ceilingMinor": 500,
+            "rateBps": 4000
+          }
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 501,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 501,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 326,
+          "suggestedMinor": 326,
+          "lineMinor": 326,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "quantity does not move the per-unit tier",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "trade",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": {
+            "ceilingMinor": 500,
+            "rateBps": 4000
+          }
+        },
+        {
+          "intent": "trade",
+          "quantity": 3,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 500,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "trade",
+          "source": "manual",
+          "referenceMinor": 500,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 4000,
+          "tierApplied": true,
+          "scope": "line",
+          "quantity": 3,
+          "calculatedMinor": 600,
+          "suggestedMinor": 600,
+          "lineMinor": 600,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "explicit different condition requires review",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "LP",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "LP",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 1000,
+          "basisCondition": "LP",
+          "requiresConditionReview": true,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "manual quick reference can be explicitly unspecified",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": null,
+          "printingId": null,
+          "condition": null
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": null,
+          "printingId": null,
+          "condition": null,
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 1000,
+          "basisCondition": null,
+          "requiresConditionReview": false,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "qualified exact market is condition unspecified",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00.000Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "tcgplayer_market",
+          "referenceMinor": 1000,
+          "basisCondition": null,
+          "requiresConditionReview": true,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "exact36hour observation is accepted",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-07T00:00:00.000Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "tcgplayer_market",
+          "referenceMinor": 1000,
+          "basisCondition": null,
+          "requiresConditionReview": true,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "PostgreSQL microseconds and UTC offset are accepted",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00.123456+00:00",
+          "publishedAt": "2026-10-08T10:01:00.654321+00:00",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "tcgplayer_market",
+          "referenceMinor": 1000,
+          "basisCondition": null,
+          "requiresConditionReview": true,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "timezone equivalents retain the same freshness boundary",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-06T18:00:00.000000-06:00",
+          "publishedAt": "2026-10-08T15:31:00+05:30",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "tcgplayer_market",
+          "referenceMinor": 1000,
+          "basisCondition": null,
+          "requiresConditionReview": true,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "microsecond inside freshness boundary is accepted",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-07T00:00:00.000001Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "tcgplayer_market",
+          "referenceMinor": 1000,
+          "basisCondition": null,
+          "requiresConditionReview": true,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "case equivalent printing identifiers match",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "B2222222-2222-4222-8222-222222222222",
+          "printingId": "C3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 1000,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 6500,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 650,
+          "suggestedMinor": 650,
+          "lineMinor": 650,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "maximum cash amount stays exact",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 10000,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 100000000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "available",
+          "policyId": "a1111111-1111-4111-8111-111111111111",
+          "intent": "cash",
+          "source": "manual",
+          "referenceMinor": 100000000,
+          "basisCondition": "NM",
+          "requiresConditionReview": false,
+          "rateBps": 10000,
+          "tierApplied": false,
+          "scope": "unit",
+          "quantity": 1,
+          "calculatedMinor": 100000000,
+          "suggestedMinor": 100000000,
+          "lineMinor": 100000000,
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          }
+        }
+      }
+    },
+    {
+      "name": "missing reference",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        null,
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_missing"
+        }
+      }
+    },
+    {
+      "name": "wrong intent",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "trade",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "wrong_intent"
+        }
+      }
+    },
+    {
+      "name": "zero reference is not missing data or a known quote",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 0,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_invalid"
+        }
+      }
+    },
+    {
+      "name": "fractional reference",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1.5,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_invalid"
+        }
+      }
+    },
+    {
+      "name": "unknown source",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "unknown",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_invalid"
+        }
+      }
+    },
+    {
+      "name": "currency mismatch",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "EUR",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "currency_unsupported"
+        }
+      }
+    },
+    {
+      "name": "manual fallback is explicit",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "source_mismatch"
+        }
+      }
+    },
+    {
+      "name": "other printing cannot price selected copy",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "d4444444-4444-4444-8444-444444444444",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "printing_mismatch"
+        }
+      }
+    },
+    {
+      "name": "other parent cannot price selected copy",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "d4444444-4444-4444-8444-444444444444",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "printing_mismatch"
+        }
+      }
+    },
+    {
+      "name": "selected condition mismatch",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "LP",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "condition_mismatch"
+        }
+      }
+    },
+    {
+      "name": "selected condition unknown",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "condition_unknown"
+        }
+      }
+    },
+    {
+      "name": "market is not an NM quote",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "NM",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00.000Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "condition_mismatch"
+        }
+      }
+    },
+    {
+      "name": "manual cannot claim verified provenance",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "manual_provenance_invalid"
+        }
+      }
+    },
+    {
+      "name": "stale market reference",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-06T23:59:59.999Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_stale"
+        }
+      }
+    },
+    {
+      "name": "market missing provenance",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00.000Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "market falsely claims a condition",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": "2026-10-08T10:00:00.000Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_unqualified"
+        }
+      }
+    },
+    {
+      "name": "future publication",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00.000Z",
+          "publishedAt": "2026-10-08T12:00:00.001Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "observation after publication",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T11:00:00.000Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "invalid calendar date",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-02-30T10:00:00.000Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "excess date precision",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00.0000001Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "microsecond future publication",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00.000Z",
+          "publishedAt": "2026-10-08T12:00:00.000001+00:00",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "microsecond observation after publication",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:01:00.000001Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "microsecond beyond freshness boundary",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-06T23:59:59.999999+00:00",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "reference_stale"
+        }
+      }
+    },
+    {
+      "name": "invalid offset hour",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00+24:00",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "invalid offset minute",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-08T10:00:00+00:60",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "invalid calendar with offset",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-02-30T10:00:00-06:00",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "midnight rollover is not a valid wall hour",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "tcgplayer_market",
+          "conditionBasis": "unspecified",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 1,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "tcgplayer_market",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": null,
+          "observedAt": "2026-10-07T24:00:00Z",
+          "publishedAt": "2026-10-08T10:01:00.000Z",
+          "provenanceId": "e5555555-5555-4555-8555-555555555555"
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "timestamp_invalid"
+        }
+      }
+    },
+    {
+      "name": "extended trade value limit",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "trade",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "trade",
+          "quantity": 2,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 100000000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "amount_limit"
+        }
+      }
+    },
+    {
+      "name": "extended cash offer limit",
+      "fn": "quoteOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 10000,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        },
+        {
+          "intent": "cash",
+          "quantity": 2,
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM"
+        },
+        {
+          "source": "manual",
+          "amountMinor": 100000000,
+          "currency": "USD",
+          "cardId": "b2222222-2222-4222-8222-222222222222",
+          "printingId": "c3333333-3333-4333-8333-333333333333",
+          "condition": "NM",
+          "observedAt": null,
+          "publishedAt": null,
+          "provenanceId": null
+        },
+        1791460800000
+      ],
+      "expected": {
+        "ok": true,
+        "value": {
+          "status": "unavailable",
+          "reason": "amount_limit"
+        }
+      }
+    },
+    {
+      "name": "zero rate",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 0,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "over100percent",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 10001,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "unsupported rounding",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 3,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "unknown rounding mode",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "up"
+          },
+          "lowValueTier": null
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "incomplete tier",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": {
+            "ceilingMinor": 500
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "empty tier ceiling",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": {
+            "ceilingMinor": 0,
+            "rateBps": 1000
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "control character in name",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Unsafe\nPolicy",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "extra policy authority",
+      "fn": "validateOfferPolicy",
+      "args": [
+        {
+          "id": "a1111111-1111-4111-8111-111111111111",
+          "name": "Standard cash",
+          "intent": "cash",
+          "rateBps": 6500,
+          "source": "manual",
+          "conditionBasis": "selected",
+          "rounding": {
+            "incrementMinor": 1,
+            "mode": "nearest"
+          },
+          "lowValueTier": null,
+          "storedBalance": 10
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "future settings version",
+      "fn": "validateOfferPolicies",
+      "args": [
+        {
+          "version": 3,
+          "revision": 3,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": "a1111111-1111-4111-8111-111111111111",
+            "trade": null
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "dangling default",
+      "fn": "validateOfferPolicies",
+      "args": [
+        {
+          "version": 2,
+          "revision": 3,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": "d4444444-4444-4444-8444-444444444444",
+            "trade": null
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "default points to wrong intent",
+      "fn": "validateOfferPolicies",
+      "args": [
+        {
+          "version": 2,
+          "revision": 3,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": null,
+            "trade": "a1111111-1111-4111-8111-111111111111"
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "duplicate policy identities",
+      "fn": "validateOfferPolicies",
+      "args": [
+        {
+          "version": 2,
+          "revision": 3,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            },
+            {
+              "id": "A1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": "a1111111-1111-4111-8111-111111111111",
+            "trade": null
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    },
+    {
+      "name": "negative revision",
+      "fn": "validateOfferPolicies",
+      "args": [
+        {
+          "version": 2,
+          "revision": -1,
+          "presets": [
+            {
+              "id": "a1111111-1111-4111-8111-111111111111",
+              "name": "Standard cash",
+              "intent": "cash",
+              "rateBps": 6500,
+              "source": "manual",
+              "conditionBasis": "selected",
+              "rounding": {
+                "incrementMinor": 1,
+                "mode": "nearest"
+              },
+              "lowValueTier": null
+            }
+          ],
+          "defaults": {
+            "cash": "a1111111-1111-4111-8111-111111111111",
+            "trade": null
+          }
+        }
+      ],
+      "expected": {
+        "ok": false
+      }
+    }
+  ]
+}

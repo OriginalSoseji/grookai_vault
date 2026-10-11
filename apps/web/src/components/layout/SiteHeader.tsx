@@ -10,6 +10,7 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import type { DesktopWallAvailability } from "@/lib/desktopShellManifest";
 import { buildCompareHref, buildPathWithCompareCards, normalizeCompareCardsParam } from "@/lib/compareCards";
 import { shouldSuppressMobileChrome } from "@/lib/mobileParity/shellManifest";
+import { isVendorWorkspacePath } from "@/lib/vendorWorkspace";
 
 type SiteHeaderProps = {
   isAuthenticated: boolean;
@@ -28,11 +29,14 @@ function Header({ pathname, compareCards, ...props }: SiteHeaderProps & { pathna
       <PageContainer>
         <div className="gv-mobile-site-header">
           <div className="flex min-h-[56px] items-center justify-between gap-3">
-            <Link href="/" className="flex min-w-0 items-center gap-2 text-[15px] font-semibold">
+            <Link href={props.isAuthenticated ? "/vault" : "/"} className="flex min-w-0 items-center gap-2 text-[15px] font-semibold">
               <Image src="/grookai-logo-64.png" alt="Grookai Vault logo" width={28} height={28} className="gv-brand-mark" />
               <span className="gv-approved-brand-name">Grookai<span>VAULT</span></span>
             </Link>
             <div className="flex shrink-0 items-center gap-2">
+              {props.isAuthenticated && !isVendorWorkspacePath(pathname) && <Link
+                href="/account/store/sales" className="gv-mobile-workspace-shortcut gv-secondary-button px-2 py-2 text-xs"
+                aria-label="Open vendor workspace">Vendor</Link>}
               <ThemeToggle />
               <CollectorMobileTools pathname={pathname} isAuthenticated={props.isAuthenticated} dexEnabled={props.dexEnabled} bindersEnabled={props.bindersEnabled} compareHref={compareHref} compareCount={compareCards.length} />
             </div>

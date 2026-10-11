@@ -1,5 +1,13 @@
 # DISCOVERY FIRST EXPERIENCE V1
 
+## Collector navigation supersession — October 8, 2026
+
+The current collector shell uses Vault, Explore, Scan, Binders and Community.
+Community contains Pulse, My Wall and Nearby; Explore retains search, Sets and Dex.
+Earlier navigation lists below document the original version. Identity, discovery
+and card hierarchy requirements remain in force. See PRODUCT_COLLECTOR_HOME_20261008.md
+in docs/ops for source-bound implementation and qualification status.
+
 ## Objective
 
 Make Grookai feel like a collector intelligence system, not a card database.

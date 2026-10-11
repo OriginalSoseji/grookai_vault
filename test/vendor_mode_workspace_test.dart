@@ -1,9 +1,232 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/screens/gvvi/vendor_pricing_workspace_screen.dart';
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
+import 'package:grookai_vault/screens/workspace/vendor_workspace_screen.dart';
+import 'package:grookai_vault/theme/gv_tokens.dart';
+import 'package:grookai_vault/services/vault/copy_cost_service.dart';
+import 'support/copy_cost_fakes.dart' as cost;
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  testWidgets('private cost opens from exact inventory row', (tester) async {
+    final gateway = cost.FakeCostGateway([]);
+    final costs = CopyCostService(
+      gateway: gateway,
+      store: cost.MemoryCostStore([]),
+    );
+    addTearDown(() async {
+      costs.dispose();
+      await gateway.changes.close();
+    });
+    await tester.pumpWidget(
+      MaterialApp(
+        home: VendorPricingWorkspaceScreen(
+          service: _FakeVendorService(
+            VendorPricingWorkspaceData(
+              rows: [_row(instanceId: cost.instance)],
+              sections: [],
+            ),
+          ),
+          copyCosts: costs,
+          costEntryEnabled: true,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('vendor_edit_${cost.instance}')));
+    await tester.pumpAndSettle();
+    final entry = find.byKey(const Key('vendor_cost_${cost.instance}'));
+    await tester.ensureVisible(entry);
+    await tester.tap(entry);
+    await tester.pumpAndSettle();
+    expect(find.text('Private cost'), findsOneWidget);
+    expect(find.text('Cost unknown'), findsOneWidget);
+    expect(find.byKey(const Key('copy_cost_amount')), findsOneWidget);
+  });
+  testWidgets(
+    'empty inventory keeps recovery reachable with new entry disabled',
+    (tester) async {
+      final gateway = cost.FakeCostGateway([]);
+      final costs = CopyCostService(
+        gateway: gateway,
+        store: cost.MemoryCostStore([]),
+      );
+      addTearDown(() async {
+        costs.dispose();
+        await gateway.changes.close();
+      });
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(
+            service: _FakeVendorService(
+              VendorPricingWorkspaceData(rows: [], sections: []),
+            ),
+            copyCosts: costs,
+            costEntryEnabled: false,
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('No vendor inventory yet'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('vendor_cost_recovery')));
+      await tester.pumpAndSettle();
+      expect(find.text('No pending cost saves.'), findsOneWidget);
+      expect(find.byKey(const Key('copy_cost_save')), findsNothing);
+    },
+  );
+  setUpAll(() async {
+    if (const bool.fromEnvironment('OVERHAUL_VISUALS')) {
+      await (FontLoader(
+        'MaterialIcons',
+      )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
+      await (FontLoader('WorkspaceTest')..addFont(
+            Future.value(
+              ByteData.sublistView(
+                File('C:/Windows/Fonts/segoeui.ttf').readAsBytesSync(),
+              ),
+            ),
+          ))
+          .load();
+    }
+  });
+  for (final width in [384.0, 768.0, 1440.0]) {
+    testWidgets(
+      'compact workspace fits ${width.toInt()}px and retains an edit while collapsed',
+      (tester) async {
+        tester.view.physicalSize = Size(width, 900);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        final service = _FakeVendorService(
+          VendorPricingWorkspaceData(
+            rows: [
+              _row(
+                instanceId: 'sample-1',
+                name: 'Pikachu',
+                askingPrice: 24,
+                marketPrice: 28,
+                intent: 'sell',
+              ),
+              _row(
+                instanceId: 'sample-2',
+                name: 'Charizard ex',
+                marketPrice: 125,
+              ),
+              _row(instanceId: 'sample-3', name: 'Gengar', askingPrice: 18),
+            ],
+            sections: [],
+          ),
+        );
+        await tester.pumpWidget(
+          MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: GvPalette.scheme(Brightness.dark),
+              fontFamily: const bool.fromEnvironment('OVERHAUL_VISUALS')
+                  ? 'WorkspaceTest'
+                  : null,
+            ),
+            home: VendorWorkspaceScreen(
+              initialDestination: VendorDestination.inventory,
+              accountChanges: const Stream.empty(),
+              onScan: () async {},
+              pageBuilder: (_, destination, select) =>
+                  VendorPricingWorkspaceScreen(
+                    service: service,
+                    onOpenSalesDesk: () => select(VendorDestination.desk),
+                    onOpenStore: () => select(VendorDestination.store),
+                  ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        expect(
+          tester.getSize(find.byKey(const Key('vendor_edit_sample-1'))).height,
+          lessThan(200),
+        );
+        if (const bool.fromEnvironment('OVERHAUL_VISUALS')) {
+          await expectLater(
+            find.byType(MaterialApp),
+            matchesGoldenFile(
+              '../.local/product-overhaul/inventory-${width.toInt()}.png',
+            ),
+          );
+        }
+        await tester.tap(find.byKey(const Key('vendor_edit_sample-1')));
+        await tester.pumpAndSettle();
+        await tester.ensureVisible(
+          find.byKey(const Key('vendor_price_sample-1')),
+        );
+        await tester.enterText(
+          find.byKey(const Key('vendor_price_sample-1')),
+          '22.00',
+        );
+        await tester.ensureVisible(
+          find.byKey(const Key('vendor_collapse_sample-1')),
+        );
+        await tester.pump();
+        await tester.tap(find.byKey(const Key('vendor_collapse_sample-1')));
+        await tester.pump(const Duration(milliseconds: 950));
+        await tester.pumpAndSettle();
+        expect(service.priceSaves, [('sample-1', 22.0)]);
+        expect(find.byKey(const Key('vendor_price_sample-1')), findsNothing);
+        expect(find.textContaining('22.00'), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+  testWidgets(
+    'workspace exit rejects invalid prices and flushes a valid pending price',
+    (tester) async {
+      final navigator = GlobalKey<NavigatorState>();
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [_row(instanceId: 'exit-copy', askingPrice: 20)],
+          sections: [],
+        ),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          navigatorKey: navigator,
+          home: const Scaffold(body: Text('Collector home')),
+        ),
+      );
+      navigator.currentState!.push(
+        MaterialPageRoute<void>(
+          builder: (_) => VendorWorkspaceScreen(
+            initialDestination: VendorDestination.inventory,
+            accountChanges: const Stream.empty(),
+            onScan: () async {},
+            pageBuilder: (_, destination, select) =>
+                VendorPricingWorkspaceScreen(
+                  service: service,
+                  onOpenSalesDesk: () => select(VendorDestination.desk),
+                ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('vendor_edit_exit-copy')));
+      await tester.pumpAndSettle();
+      final price = find.byKey(const Key('vendor_price_exit-copy'));
+      await tester.ensureVisible(price);
+      await tester.enterText(price, 'invalid');
+      await tester.tap(find.text('Collector'));
+      await tester.pumpAndSettle();
+      expect(find.text('Vendor workspace'), findsOneWidget);
+      expect(service.priceSaves, isEmpty);
+      await tester.enterText(price, '21.00');
+      await tester.tap(find.text('Collector'));
+      await tester.pumpAndSettle();
+      expect(find.text('Collector home'), findsOneWidget);
+      expect(service.priceSaves, [('exit-copy', 21.0)]);
+      expect(tester.takeException(), isNull);
+    },
+  );
   test('market comparison is exact, deterministic, and triage ordered', () {
     final below = _row(instanceId: 'below', askingPrice: 15, marketPrice: 20);
     final above = _row(instanceId: 'above', askingPrice: 24, marketPrice: 20);
@@ -64,11 +287,12 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Vendor Mode'), findsOneWidget);
+    expect(find.text('Inventory'), findsOneWidget);
     expect(find.text('2 exact copies'), findsOneWidget);
     expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
     expect(find.byKey(const Key('vendor_row_copy-2')), findsOneWidget);
-    expect(find.textContaining('25% below market'), findsOneWidget);
+    expect(find.byKey(const Key('vendor_price_copy-1')), findsNothing);
+    expect(find.textContaining('Asking'), findsNWidgets(2));
 
     await tester.tap(find.byKey(const Key('vendor_filter_priced')));
     await tester.pumpAndSettle();
@@ -77,6 +301,8 @@ void main() {
 
     final printingField = find.byKey(const Key('vendor_printing_copy-2')).last;
     await tester.tap(find.byKey(const Key('vendor_filter_all')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('vendor_edit_copy-2')));
     await tester.pumpAndSettle();
     await tester.ensureVisible(printingField);
     await tester.tap(printingField);

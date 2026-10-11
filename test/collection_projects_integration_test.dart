@@ -106,7 +106,8 @@ void main() {
         'lib/screens/dex/grookai_dex_species_screen.dart',
       ).readAsStringSync();
 
-      expect(vault, contains('exact copies in your Vault.'));
+      expect(vault, contains('BinderContinuationPanel('));
+      expect(vault, contains('BinderCanonicalRouteScreen('));
       expect(species, contains('exact copies from your Vault.'));
       expect(vault, isNot(contains('with people you invite')));
       expect(species, isNot(contains('with people you invite')));

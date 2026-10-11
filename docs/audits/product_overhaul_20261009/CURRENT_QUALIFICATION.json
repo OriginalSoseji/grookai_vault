@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "at": "2026-10-09T19:42:24.538170+00:00",
+  "status": "current_main_browser_passed_managed_merge_pending",
+  "worktree": "C:\\gv_product_inventory_export_20261008",
+  "baseCommit": "19adf542a89238969606dc5d900d7a92ee0b29ed",
+  "externalEvidenceRoot": "C:\\grookai_vault_operator_artifacts\\product_inventory_export_20261008",
+  "productionMigrations": 430,
+  "sourceMigrations": 443,
+  "exactReleaseMigrations": 442,
+  "deferredMigration": "20261005150000_vendor_receipt_delivery_v1.sql",
+  "pendingExactMigrations": {
+    "20261007180000_vendor_cost_evidence_v1.sql": "7a64b0ec767e06a6c163b5184a8f95ce8acf795da4d15888635eb864c8830199",
+    "20261008021000_vendor_purchase_v1.sql": "f5aed7be276c0dca27a2778ee23954a8412fbe678d42f8508b63e91c646f62b0",
+    "20261008060000_vendor_negotiated_trade_v1.sql": "420d4dfaf98823e52ca0360d86ef91ce5420c0bb000edfce4a244354787912eb",
+    "20261008130000_vendor_events_v1.sql": "7cb18bbeecd9af2b32d9adb77ae92877d74da40a989a7d9d7e373d003f635ff4",
+    "20261008160000_vendor_discounts_v1.sql": "a447b9e71eed6ba58fa6e7341c2acdc3b71e9f09c41961b5b033fec556f79ebe",
+    "20261008170000_vendor_discount_cancellation_v1.sql": "e7803a8dff1415628c8d25813914ab3e68f2c8846f9af0f7ec036d7cff45f578",
+    "20261008190000_vendor_sale_cost_corrections_v1.sql": "1bf69a916c66ef5beb704b37cbc5a4f1a2fb7721cf56e0034dbf4833be6ae4f8",
+    "20261008220000_portfolio_history_v1.sql": "172d6e47342a77827d0af11c3bece71e3c111b74f261e3713199427f28e19e52",
+    "20261009010000_inventory_export_v1.sql": "6928c25a7878e3e3daad7f5c55ad70bc210c86afc8539e77b13575019a15d36c",
+    "20261009180000_price_targets_v1.sql": "668cbacfec71a27d5478465af69ad5e336a7bd86795469d2691c82361221b71e",
+    "20261009181000_price_target_delivery_boundary_v1.sql": "1cc4ea6564c5ecc1d1f076cf3fd6b03585e86474632c3723f27d5d94b06cca12",
+    "20261009190000_price_target_evaluation_audit_v1.sql": "149deb57b5033390d812133a9c752573be2202e277f6372c81b147a0b064ad0e"
+  },
+  "artifacts": {
+    "productionBaseline": {
+      "relativeExternalPath": "schema-reconciliation-1791572950909/result.json",
+      "sha256": "feecc854bca50369a810b4bab38276bf004c14b61af6f0eee91f254eced2e145",
+      "status": "matched_deployed_cost_precision_schema"
+    },
+    "fullReplay": {
+      "relativeExternalPath": "price-alert-draft-v1/release-full-442-v2/replay-result.json",
+      "sha256": "5f4e990f86e4d08d503bb6dfa76812d934027419d7ca1696bc6b4c586bd27cdf",
+      "status": "passed"
+    },
+    "populatedUpgrade": {
+      "relativeExternalPath": "price-alert-draft-v1/release-upgrade-442-v2/upgrade-result.json",
+      "sha256": "4c236d54f774e70c73846d197a1e6e1c0f4a751311b5bf05a58c18d859fa528b",
+      "status": "passed"
+    },
+    "exactCosts": {
+      "relativeExternalPath": "price-alert-draft-v1/release-upgrade-442-v2/exact-costs.json",
+      "sha256": "45f3e19b2b1b5f6c3163c74ec5341934ee71b5a4dc9543a0534b86549e14f77d",
+      "status": "passed"
+    },
+    "shadow": {
+      "relativeExternalPath": "price-alert-draft-v1/release-shadow-442-v2/receipt.json",
+      "sha256": "674c5b90534aa42893db14dfd1af92e9bfa92be26922dff93a6c35cf1abc6c32",
+      "status": "passed"
+    },
+    "sqlReapply": {
+      "relativeExternalPath": "price-alert-draft-v1/idempotency-v2/reapply-1791571797276/result.json",
+      "sha256": "d28e117bc1400eff259e7994dd2d99792503861ef01e5a1f701bcc763ff14dce",
+      "status": "passed"
+    },
+    "evaluationFailureRetry": {
+      "relativeExternalPath": "price-alert-draft-v1/evaluation-audit-runtime-1791571852356/result.json",
+      "sha256": "4f68d6ca1f351cc54558f7fe3660f49002d70b965c03889c0fd965238137c105",
+      "status": "passed"
+    },
+    "exportBrowser": {
+      "relativeExternalPath": "ui-1791523581076/web-1791574696691/result.json",
+      "sha256": "c96d5fd836c6643d3a9ef074e8c1d8bcaa9055754abd3dcb8866a8ab6b26a342",
+      "status": "passed"
+    },
+    "ownerBrowser": {
+      "relativeExternalPath": "store-handoff-verification-1791574790085/observation.json",
+      "sha256": "7bd1681f57927f8a1fad9fdb5d5d40f30c482812df29a32b1acabe7a805dd3fb",
+      "status": "passed"
+    },
+    "teamBrowser": {
+      "relativeExternalPath": "store-team-verification-1791574764386/observation.json",
+      "sha256": "5b262ec6873aaaa03ea03ecbe9947c9f58e5a59a4d7cdb637858fe9de5562c9c",
+      "status": "passed"
+    },
+    "managerBrowser": {
+      "relativeExternalPath": "manager-runtime-1791574815315/result.json",
+      "sha256": "984842e8d2db2e4870d6923e281b35cb96ef838a1a71ce09e773c2eddb813320",
+      "status": "passed"
+    },
+    "priceBrowser": {
+      "relativeExternalPath": "price-alert-draft-v1/browser-1791574858563/result.json",
+      "sha256": "59e53074c5bb904faccb427d6c299a952dead5d9c7a7bb26c4145cc6bffb9164",
+      "status": "passed"
+    },
+    "orderOwnerBrowser": {
+      "relativeExternalPath": "order-owner-verification-1791574845537/result.json",
+      "sha256": "bcb860427b1d1400090930015f305c758c168a4c42cc5201be2859c8852b5db2",
+      "status": "passed"
+    },
+    "orderAffectedChecks": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-orders-1791572219485/result.json",
+      "sha256": "9e1856a64e1983533e447a7add39638f8d313263e568d7355f3a52be1b853fad",
+      "status": "passed"
+    },
+    "nativeFull": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-native-1791570874338/result.json",
+      "sha256": "ba1e527820216112022aa69abee89fe19ad8c86e6615d427883b26bc64662891",
+      "status": "passed"
+    },
+    "nativeAuth": {
+      "relativeExternalPath": "price-alert-draft-v1/native-auth-1791570720461/result.json",
+      "sha256": "d8b5affb1bca06c3a7a276dc19e1ad30ec33dc9468d2d1feefb140cfac3a65b2",
+      "status": "passed"
+    },
+    "nativeBuild": {
+      "relativeExternalPath": "ui-1791523581076/device-1791572600164/build-result.json",
+      "sha256": "d5b47ca063832462b39377ddca8909a51dcfad6b2c47963ebbaadeeb4229ff71",
+      "status": "passed"
+    },
+    "finalNode": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-node-1791572895230/result.json",
+      "sha256": "52f7f47f52c823f8953648bbdd639b73cf91acd1c783d95d3f50fc6e11c6e580",
+      "status": "passed",
+      "passed": 9004,
+      "skipped": 10,
+      "scope": "saved checkpoint a956887c2; integrated current-main full suite pending"
+    },
+    "fulfillmentBrowser": {
+      "relativeExternalPath": "order-lifecycle-v1/fulfillment-1791574616655/result.json",
+      "sha256": "6ad39f023542144f97b079b809e68d344cc84b377932bc287e6c1e8d4bcf669b",
+      "status": "passed"
+    },
+    "mergeFocused": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-merge-focused-1791574446433/result.json",
+      "sha256": "0309dad11e6763bb662cfe61fbcad43793e30f8da2a4321bbfb5ee36ccaee783",
+      "status": "passed"
+    },
+    "savedCheckpointChecks": {
+      "relativeExternalPath": "price-alert-draft-v1/checks-managed-commit-1791573451485/result.json",
+      "sha256": "e282d59afe23e2777070d682e91ff653fc7f708ac75a24545e1d860c88cc4079",
+      "status": "passed"
+    }
+  },
+  "productionWrites": 0,
+  "providerCalls": 0,
+  "rolloutEnabled": false,
+  "physicalAcceptance": false,
+  "fullOverhaulComplete": false,
+  "remaining": [
+    "Complete normal managed commit/release-source qualification",
+    "Physical Samsung OS-save and current application acceptance; device remains locked",
+    "Physical iOS pending earlier Mac-local actions",
+    "Supported buyer/seller provider lifecycle and truthful activation boundaries",
+    "Measured DeckTradr and uncoached-user tasks",
+    "External deployment and activation require the release authorization boundary"
+  ],
+  "priorBrowserArtifacts": {
+    "exportBrowser": {
+      "relativeExternalPath": "ui-1791523581076/web-1791572628720/result.json",
+      "sha256": "0a52ee2a6b5f6a234f4eb363d6dc69a7fe3033529b1b3d73da86a8246e18b8a1",
+      "status": "passed"
+    },
+    "ownerBrowser": {
+      "relativeExternalPath": "store-handoff-verification-1791572780582/observation.json",
+      "sha256": "88c2dff6c72802053d840a5c5b85193e0e48660f2aa14f08a8019eabfc7efef0",
+      "status": "passed"
+    },
+    "teamBrowser": {
+      "relativeExternalPath": "store-team-verification-1791572763257/observation.json",
+      "sha256": "69ab802d5d9ac92dabdf00d313dd76eb1f474abfdfbbc2aed1de62c662b3b3c9",
+      "status": "passed"
+    },
+    "managerBrowser": {
+      "relativeExternalPath": "manager-runtime-1791572816405/result.json",
+      "sha256": "d4b384259918ee2c01901eed7f4df7de5bbd9cc701c4614a4699142766107431",
+      "status": "passed"
+    },
+    "priceBrowser": {
+      "relativeExternalPath": "price-alert-draft-v1/browser-1791572884401/result.json",
+      "sha256": "9301fb5a01aa960383b71b5f9fdbaccae0e36ec3cff0ac60c3f567b90947581b",
+      "status": "passed"
+    },
+    "orderOwnerBrowser": {
+      "relativeExternalPath": "order-owner-verification-1791572475547/result.json",
+      "sha256": "6f0e0b75f865ba557fe6d97b98dfe0ef7291986c556ff11b501347e0bb93435a",
+      "status": "passed"
+    }
+  },
+  "savedCheckpointCommit": "a956887c2cc053dae0398fff29ea086cbbd0e697",
+  "integrationTarget": "ba1723036785c488bfcc382afa8e57b222a455ec",
+  "currentBrowserScenarios": 62,
+  "currentMainManagedCommitPending": true
+}

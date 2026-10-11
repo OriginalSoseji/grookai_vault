@@ -1,10 +1,14 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+import 'notification_device_registration.dart';
+import 'notification_device_platform.dart';
 import '../../firebase_options.dart';
 import '../navigation/grookai_web_route_service.dart';
 
@@ -29,132 +33,178 @@ Future<void> grookaiFirebaseMessagingBackgroundHandler(
 
 class GrookaiPushNotificationService {
   GrookaiPushNotificationService._();
-
   static final GrookaiPushNotificationService instance =
       GrookaiPushNotificationService._();
-
   static const String _logPrefix = '[NOTIFICATIONS_E2]';
-
   final SupabaseClient _client = Supabase.instance.client;
-
   FirebaseMessaging? _messaging;
   StreamSubscription<String>? _tokenRefreshSubscription;
   StreamSubscription<RemoteMessage>? _foregroundSubscription;
   StreamSubscription<RemoteMessage>? _openedSubscription;
+  StreamSubscription<AuthState>? _authSubscription;
   GrookaiNotificationRouteHandler? _onRoute;
+  NotificationMessagingPort? _testMessaging;
+  SupabaseNotificationDevicePort? _devicePort;
+  NotificationDeviceRegistration? _registration;
+  Future<void>? _starting;
   bool _firebaseReady = false;
   bool _started = false;
-  String? _lastRegisteredToken;
+  int _generation = 0;
+
+  @visibleForTesting
+  void installMessagingForTest(NotificationMessagingPort messaging) {
+    if (!kDebugMode || _started) {
+      throw StateError('Test messaging requires an unstarted debug service.');
+    }
+    _testMessaging = messaging;
+  }
 
   Future<void> start({required GrookaiNotificationRouteHandler onRoute}) async {
     _onRoute = onRoute;
+    if (_starting != null) {
+      await _starting;
+      return;
+    }
     if (_started) {
       await registerForCurrentUser(reason: 'route_handler_refresh');
       return;
     }
-
     _started = true;
-    _firebaseReady = await _initializeFirebase();
-    if (!_firebaseReady) {
+    final generation = ++_generation;
+    final future = _start(generation);
+    _starting = future;
+    try {
+      await future;
+    } finally {
+      if (generation == _generation) _starting = null;
+    }
+  }
+
+  Future<void> _start(int generation) async {
+    _devicePort = SupabaseNotificationDevicePort(
+      client: _client,
+      messaging:
+          _testMessaging ??
+          FirebaseNotificationMessagingPort(() => _firebaseMessaging),
+      platform: defaultTargetPlatform == TargetPlatform.iOS ? 'ios' : 'android',
+    );
+    _registration = NotificationDeviceRegistration(_devicePort!);
+    _authSubscription = _client.auth.onAuthStateChange.listen((_) {
+      if (_started && generation == _generation && _firebaseReady) {
+        unawaited(registerForCurrentUser(reason: 'session_changed'));
+      }
+    });
+    final ready = _testMessaging != null || await _initializeFirebase();
+    if (!_started || generation != _generation) return;
+    _firebaseReady = ready;
+    if (!ready) {
       _debug('firebase_not_ready');
       return;
     }
-
-    FirebaseMessaging.onBackgroundMessage(
-      grookaiFirebaseMessagingBackgroundHandler,
-    );
-
-    _foregroundSubscription = FirebaseMessaging.onMessage.listen((message) {
-      _debug('foreground_message id=${message.messageId ?? 'unknown'}');
-      // Foreground notifications are intentionally non-navigating. The app can
-      // add an in-app affordance later without surprising active collectors.
-    });
-
-    _openedSubscription = FirebaseMessaging.onMessageOpenedApp.listen(
-      (message) => unawaited(_handleOpenedMessage(message, source: 'opened')),
-    );
-
-    try {
-      final initialMessage = await _firebaseMessaging.getInitialMessage();
-      if (initialMessage != null) {
-        unawaited(
-          _handleOpenedMessage(initialMessage, source: 'initial_message'),
-        );
+    if (_testMessaging == null) {
+      FirebaseMessaging.onBackgroundMessage(
+        grookaiFirebaseMessagingBackgroundHandler,
+      );
+      _foregroundSubscription = FirebaseMessaging.onMessage.listen((message) {
+        // Foreground notifications are intentionally non-navigating.
+        if (_started && generation == _generation) _debug('foreground_message');
+      });
+      _openedSubscription = FirebaseMessaging.onMessageOpenedApp.listen((
+        message,
+      ) {
+        if (_started && generation == _generation) {
+          unawaited(_handleOpenedMessage(message, source: 'opened'));
+        }
+      });
+      _tokenRefreshSubscription = _firebaseMessaging.onTokenRefresh.listen((_) {
+        if (_started && generation == _generation) {
+          unawaited(registerForCurrentUser(reason: 'token_refresh'));
+        }
+      });
+      try {
+        final initialMessage = await _firebaseMessaging.getInitialMessage();
+        if (_started && generation == _generation && initialMessage != null) {
+          unawaited(
+            _handleOpenedMessage(initialMessage, source: 'initial_message'),
+          );
+        }
+      } catch (_) {
+        _debug('initial_message_unavailable');
       }
-    } catch (error) {
-      _debug('initial_message_error=$error');
     }
-
-    _tokenRefreshSubscription = _firebaseMessaging.onTokenRefresh.listen((
-      token,
-    ) {
-      unawaited(_registerTokenSafely(token, reason: 'token_refresh'));
-    });
-
-    await registerForCurrentUser(reason: 'start');
+    if (_started && generation == _generation) {
+      await registerForCurrentUser(reason: 'start');
+    }
   }
 
   Future<void> dispose() async {
-    await _tokenRefreshSubscription?.cancel();
-    await _foregroundSubscription?.cancel();
-    await _openedSubscription?.cancel();
+    _started = false;
+    _firebaseReady = false;
+    _generation++;
+    _starting = null;
+    _registration?.dispose();
+    _registration = null;
+    _devicePort = null;
+    _onRoute = null;
+    final cancellations = <Future<void>>[
+      if (_authSubscription != null) _authSubscription!.cancel(),
+      if (_tokenRefreshSubscription != null)
+        _tokenRefreshSubscription!.cancel(),
+      if (_foregroundSubscription != null) _foregroundSubscription!.cancel(),
+      if (_openedSubscription != null) _openedSubscription!.cancel(),
+    ];
+    _authSubscription = null;
     _tokenRefreshSubscription = null;
     _foregroundSubscription = null;
     _openedSubscription = null;
-    _onRoute = null;
-    _started = false;
+    await Future.wait(cancellations);
   }
 
   Future<void> registerForCurrentUser({required String reason}) async {
-    if (!_started || !_firebaseReady || kIsWeb) {
-      return;
-    }
-    if (_client.auth.currentUser == null) {
-      return;
-    }
+    if (!_started || !_firebaseReady || kIsWeb) return;
+    final result = await _registration?.synchronize();
+    _debug('registration_${result?.name ?? 'unavailable'} reason=$reason');
+  }
 
+  Future<void> _ensureStarted() async {
+    if (!_started) await start(onRoute: _onRoute ?? (_) {});
+    if (_starting != null) await _starting;
+  }
+
+  Future<NotificationPermission?> readDevicePermission() async {
     try {
-      final settings = await _firebaseMessaging.requestPermission(
-        alert: true,
-        announcement: false,
-        badge: true,
-        carPlay: false,
-        criticalAlert: false,
-        provisional: false,
-        sound: true,
-      );
-      if (settings.authorizationStatus == AuthorizationStatus.denied) {
-        _debug('permission_denied reason=$reason');
-        return;
-      }
-
-      final token = await _firebaseMessaging.getToken();
-      if (token == null || token.trim().isEmpty) {
-        _debug('empty_token reason=$reason');
-        return;
-      }
-
-      await _registerToken(token, reason: reason);
-    } catch (error) {
-      _debug('register_failed reason=$reason error=$error');
+      await _ensureStarted();
+      if (!_started || !_firebaseReady || kIsWeb) return null;
+      return await _devicePort?.readPermission();
+    } catch (_) {
+      return null;
     }
   }
 
-  Future<void> disableCurrentTokenBeforeSignOut() async {
-    final token = _lastRegisteredToken ?? await _safeCurrentToken();
-    if (token == null || token.trim().isEmpty) {
-      return;
+  Future<NotificationDeviceOutcome> enableForCurrentUser() async {
+    final owner = _client.auth.currentUser?.id;
+    if (owner == null) return NotificationDeviceOutcome.signedOut;
+    await _ensureStarted();
+    if (_client.auth.currentUser?.id != owner) {
+      return NotificationDeviceOutcome.stale;
     }
+    if (!_started || !_firebaseReady || kIsWeb) {
+      return NotificationDeviceOutcome.failed;
+    }
+    return await _registration?.synchronize(requestPermission: true) ??
+        NotificationDeviceOutcome.failed;
+  }
 
-    try {
-      await _client.rpc(
-        'notification_disable_device_token_v1',
-        params: <String, dynamic>{'p_token': token},
-      );
-      _debug('token_disabled_before_sign_out');
-    } catch (error) {
-      _debug('token_disable_failed error=$error');
+  Future<NotificationDeviceOutcome> disableCurrentTokenBeforeSignOut() async {
+    final owner = _client.auth.currentUser?.id;
+    if (owner == null) return NotificationDeviceOutcome.signedOut;
+    await _ensureStarted();
+    if (_client.auth.currentUser?.id != owner) {
+      return NotificationDeviceOutcome.stale;
     }
+    // Even when Firebase is unavailable, attempt the owner-only backend disable.
+    return await _registration?.disableBeforeSignOut() ??
+        NotificationDeviceOutcome.failed;
   }
 
   Future<bool> _initializeFirebase() async {
@@ -178,53 +228,11 @@ class GrookaiPushNotificationService {
     return _messaging ??= FirebaseMessaging.instance;
   }
 
-  Future<String?> _safeCurrentToken() async {
-    if (!_firebaseReady || kIsWeb) {
-      return null;
-    }
-    try {
-      return await _firebaseMessaging.getToken();
-    } catch (_) {
-      return null;
-    }
-  }
-
-  Future<void> _registerToken(String token, {required String reason}) async {
-    if (_client.auth.currentUser == null) {
-      return;
-    }
-
-    final platform = defaultTargetPlatform == TargetPlatform.iOS
-        ? 'ios'
-        : 'android';
-    await _client.rpc(
-      'notification_register_device_token_v1',
-      params: <String, dynamic>{
-        'p_token': token,
-        'p_platform': platform,
-        'p_app_build': null,
-        'p_device_label': null,
-      },
-    );
-    _lastRegisteredToken = token;
-    _debug('token_registered platform=$platform reason=$reason');
-  }
-
-  Future<void> _registerTokenSafely(
-    String token, {
-    required String reason,
-  }) async {
-    try {
-      await _registerToken(token, reason: reason);
-    } catch (error) {
-      _debug('token_register_failed reason=$reason error=$error');
-    }
-  }
-
   Future<void> _handleOpenedMessage(
     RemoteMessage message, {
     required String source,
   }) async {
+    if (!_started) return;
     final route = _routeFromMessage(message);
     final notificationId = _notificationIdFromMessage(message);
     if (notificationId != null) {
@@ -278,6 +286,145 @@ class GrookaiPushNotificationService {
   void _debug(String message) {
     if (kDebugMode) {
       debugPrint('$_logPrefix $message');
+    }
+  }
+}
+
+abstract interface class NotificationMessagingPort {
+  Future<NotificationPermission> readPermission();
+  Future<NotificationPermission> requestPermission();
+  Future<String?> getToken();
+  Future<void> deleteToken();
+}
+
+class FirebaseNotificationMessagingPort implements NotificationMessagingPort {
+  FirebaseNotificationMessagingPort(this.messaging);
+  final FirebaseMessaging Function() messaging;
+  NotificationPermission _permission(NotificationSettings settings) =>
+      switch (settings.authorizationStatus) {
+        AuthorizationStatus.authorized ||
+        AuthorizationStatus.provisional => NotificationPermission.granted,
+        AuthorizationStatus.denied => NotificationPermission.denied,
+        AuthorizationStatus.notDetermined =>
+          NotificationPermission.undetermined,
+      };
+  @override
+  Future<NotificationPermission> readPermission() async =>
+      _permission(await messaging().getNotificationSettings());
+  @override
+  Future<NotificationPermission> requestPermission() async => _permission(
+    await messaging().requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+      announcement: false,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+    ),
+  );
+  @override
+  Future<String?> getToken() => messaging().getToken();
+  @override
+  Future<void> deleteToken() => messaging().deleteToken();
+}
+
+class SupabaseNotificationDevicePort implements NotificationDevicePort {
+  SupabaseNotificationDevicePort({
+    required this.client,
+    required this.messaging,
+    required this.platform,
+  });
+  final SupabaseClient client;
+  final NotificationMessagingPort messaging;
+  final String platform;
+  static const bindingKey = 'grookai.notification.device.binding.v1';
+  @override
+  String? get ownerId => client.auth.currentUser?.id;
+  @override
+  Future<NotificationDeviceBinding?> readBinding() async {
+    final prefs = await SharedPreferences.getInstance();
+    final stored = prefs.getString(bindingKey);
+    if (stored == null) return null;
+    final value = jsonDecode(stored);
+    if (value is! Map ||
+        value['ownerId'] is! String ||
+        value['token'] is! String ||
+        (value['ownerId'] as String).isEmpty ||
+        (value['token'] as String).isEmpty) {
+      throw const FormatException(
+        'Device notification ownership is unreadable.',
+      );
+    }
+    return NotificationDeviceBinding(
+      value['ownerId'] as String,
+      value['token'] as String,
+    );
+  }
+
+  @override
+  Future<void> writeBinding(NotificationDeviceBinding? binding) async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = binding == null
+        ? await prefs.remove(bindingKey)
+        : await prefs.setString(
+            bindingKey,
+            jsonEncode({'ownerId': binding.ownerId, 'token': binding.token}),
+          );
+    if (!saved) {
+      throw StateError('Device notification ownership could not be saved.');
+    }
+  }
+
+  String _accessToken(String owner) {
+    final session = client.auth.currentSession;
+    if (session == null || session.user.id != owner || session.isExpired) {
+      throw const AuthException('The notification owner session changed.');
+    }
+    return session.accessToken;
+  }
+
+  @override
+  Future<void> registerToken(String owner, String token) async {
+    final accessToken = _accessToken(owner);
+    await client
+        .rpc(
+          'notification_register_device_token_v1',
+          params: <String, dynamic>{
+            'p_token': token,
+            'p_platform': platform,
+            'p_app_build': null,
+            'p_device_label': null,
+          },
+        )
+        .setHeader('Authorization', 'Bearer $accessToken');
+  }
+
+  @override
+  Future<void> disableToken(String owner, String token) async {
+    final accessToken = _accessToken(owner);
+    await client
+        .rpc(
+          'notification_disable_device_token_v1',
+          params: <String, dynamic>{'p_token': token},
+        )
+        .setHeader('Authorization', 'Bearer $accessToken');
+  }
+
+  @override
+  Future<NotificationPermission> readPermission() => messaging.readPermission();
+  @override
+  Future<NotificationPermission> requestPermission() =>
+      messaging.requestPermission();
+  @override
+  Future<String?> getToken() => messaging.getToken();
+  @override
+  Future<void> deleteToken() async {
+    try {
+      await messaging.deleteToken();
+    } finally {
+      // Also remove already-delivered notices belonging to the retired account.
+      await NotificationDevicePlatform.clearDelivered();
     }
   }
 }

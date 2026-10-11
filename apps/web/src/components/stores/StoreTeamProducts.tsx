@@ -2,11 +2,13 @@
 /* eslint-disable @next/next/no-img-element -- Authenticated, private product media. */
 import { useEffect, useRef, useState } from "react";
 import type { TeamWorkflows, TeamWorkspace } from "@/lib/stores/storeTeam";
-import { storeRequest, type OwnerProduct, type ProductList } from "./storeManagerClient";
-import { definitiveRejection, teamWrite } from "./storeTeamWorkflowClient";
+import { type OwnerProduct, type ProductList } from "./storeManagerClient";
+import { useStoreOwnerApi } from "./StoreOwnerScope";
+import { definitiveRejection } from "./storeTeamWorkflowClient";
 import s from "./StoreTeam.module.css";
 
 function Editor({ initial, endpoint, model, context, close }: { initial: OwnerProduct | null; endpoint: string; model: TeamWorkspace; context: TeamWorkflows; close: () => Promise<void> }) {
+  const { storeRequest, teamWrite } = useStoreOwnerApi();
   const [product, setProduct] = useState(initial), [title, setTitle] = useState(initial?.title ?? ""), [description, setDescription] = useState(initial?.description ?? "");
   const [price, setPrice] = useState(String(initial?.asking_price_amount ?? "")), [quantity, setQuantity] = useState(String(initial?.available_quantity ?? 0));
   const [busy, setBusy] = useState(false), [error, setError] = useState(""), [notice, setNotice] = useState(""), [retry, setRetry] = useState(false);
@@ -40,7 +42,7 @@ function Editor({ initial, endpoint, model, context, close }: { initial: OwnerPr
       update((await storeRequest<ProductList>(`${endpoint}/products/media?product=${product.id}&version=${product.version}`, data)).products[0]);
     } catch (e) { setError(`${(e as Error).message} Reload the product before retrying an upload.`); } finally { setBusy(false); }
   }
-  return <section className={s.panel}><div className={s.actions}><h2>{product ? "Edit custom product" : "New custom product"}</h2><button disabled={busy || retry} onClick={() => { if (!dirty || window.confirm("Discard unsaved product changes?")) void close(); }}>All products</button></div>
+  return <section id="manager-products" className={s.panel}><div className={s.actions}><h2>{product ? "Edit custom product" : "New custom product"}</h2><button disabled={busy || retry} onClick={() => { if (!dirty || window.confirm("Discard unsaved product changes?")) void close(); }}>All products</button></div>
     <p>Saving keeps drafts private. Editing a published product updates its public details.</p>{error && <p className={s.error} role="alert">{error}</p>}{notice && <p className={s.notice} role="status">{notice}</p>}
     <form onSubmit={e => { e.preventDefault(); void mutate("save", { title, description, available_quantity: Number(quantity), ...(canPrice ? { asking_price_amount: price === "" ? null : Number(price) } : {}) }); }}>
       <fieldset disabled={locked}><label>Title<input maxLength={120} value={title} onChange={e => setTitle(e.target.value)} /></label><label>Description<textarea maxLength={4000} value={description} onChange={e => setDescription(e.target.value)} /></label><div className={s.grid}><label>Asking price ({context.currency ?? "USD"})<input disabled={!canPrice} type="number" min={0} max={99999999.99} step="0.01" value={price} onChange={e => setPrice(e.target.value)} /></label><label>Available quantity<input required type="number" min={0} max={1000000} step={1} value={quantity} onChange={e => setQuantity(e.target.value)} /></label></div></fieldset>
@@ -56,12 +58,13 @@ function Editor({ initial, endpoint, model, context, close }: { initial: OwnerPr
 }
 
 export default function StoreTeamProducts({ endpoint, model, context }: { endpoint: string; model: TeamWorkspace; context: TeamWorkflows }) {
+  const { storeRequest } = useStoreOwnerApi();
   const [list, setList] = useState<ProductList | null>(null), [selected, setSelected] = useState<OwnerProduct | null | undefined>(undefined), [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  useEffect(() => { let active = true; storeRequest<ProductList>(`${endpoint}/products`).then(data => { if (active) setList(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [endpoint]);
+  useEffect(() => { let active = true; storeRequest<ProductList>(`${endpoint}/products`).then(data => { if (active) setList(data); }).catch(e => { if (active) setError(e.message); }); return () => { active = false; }; }, [endpoint, storeRequest]);
   async function load(offset = 0) { setBusy(true); setError(""); try { setList(await storeRequest<ProductList>(`${endpoint}/products?offset=${offset}`)); } catch (e) { setError((e as Error).message); } finally { setBusy(false); } }
   if (selected !== undefined) return <Editor key={selected?.id ?? "new"} initial={selected} endpoint={endpoint} model={model} context={context} close={async () => { setSelected(undefined); await load(list?.offset ?? 0); }} />;
-  return <section className={s.panel}><div className={s.actions}><h2>Custom products</h2><button onClick={() => setSelected(null)}>Add custom product</button><button disabled={busy} onClick={() => void load(list?.offset ?? 0)}>Refresh products</button></div>{error && <p className={s.error} role="alert">{error}</p>}{!list && !error && <p>Loading products…</p>}{list?.total === 0 && <p>No custom products yet.</p>}
+  return <section id="manager-products" className={s.panel}><div className={s.actions}><h2>Custom products</h2><button onClick={() => setSelected(null)}>Add custom product</button><button disabled={busy} onClick={() => void load(list?.offset ?? 0)}>Refresh products</button></div>{error && <p className={s.error} role="alert">{error}</p>}{!list && !error && <p>Loading products…</p>}{list?.total === 0 && <p>No custom products yet.</p>}
     <div className={s.grid}>{list?.products.map(product => <article className={s.card} key={product.id}>{product.photo_paths[0] && <div className={s.art}><img alt={product.title || "Product"} src={`${endpoint}/products/media?product=${product.id}&photo=${encodeURIComponent(product.photo_paths[0].split("/").pop()!)}`} /></div>}<h3>{product.title || "Untitled draft"}</h3><p>{product.asking_price_amount === null ? "Price not set" : `${product.asking_price_currency} ${Number(product.asking_price_amount).toFixed(2)}`} · {product.available_quantity} available</p><p>{product.archived_at ? "Archived" : product.published ? "Published" : "Draft"}</p><button onClick={() => setSelected(product)}>Edit product</button></article>)}</div>
     <div className={s.actions}><button disabled={busy || !list || list.offset === 0} onClick={() => void load(Math.max(0,(list?.offset ?? 0)-40))}>Previous products</button><button disabled={busy || !list || list.offset+40 >= list.total} onClick={() => void load((list?.offset ?? 0)+40)}>Next products</button></div>
   </section>;

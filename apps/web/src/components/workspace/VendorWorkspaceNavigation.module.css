@@ -1,0 +1,11 @@
+.header { padding: 16px 0 0; color: var(--gv-text-primary, #183a2e); }
+.title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; font-weight: 700; }
+.title a { padding: 10px 12px; border: 1px solid var(--gv-border-soft, #bacbc3); border-radius: 10px; font-size: 13px; }
+.tabs { display: flex; gap: 6px; padding: 12px 0; border-bottom: 1px solid var(--gv-border-soft, #bacbc3); }
+.tabs a, .dock a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 18px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+.tabs a[aria-current], .dock a[aria-current] { background: #184b38; color: #fff; }
+.tabs a:focus-visible, .dock a:focus-visible, .title a:focus-visible { outline: 3px solid #2b9473; outline-offset: 2px; }
+.dock { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); pointer-events: auto; background: var(--gv-surface-base, #fff); color: var(--gv-text-primary, #183a2e); padding: 6px 4px; border-radius: 14px; border: 1px solid var(--gv-border-soft, #bacbc3); }
+.dock a { flex-direction: column; gap: 5px; padding: 8px 2px; font-size: 11px; }
+@media (max-width: 899px) { .tabs { display: none; } .header { padding-top: 8px; padding-bottom: 8px; } }
+@media print { .header, .dock { display: none; } }

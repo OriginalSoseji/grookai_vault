@@ -6,7 +6,7 @@ function readSource(relativePath) {
   return readFileSync(new URL(`../../${relativePath}`, import.meta.url), "utf8");
 }
 
-test("web shell uses Pulse as the visible network surface label", () => {
+test("web shell groups Pulse and Wall under Community", () => {
   const siteHeader = readSource("apps/web/src/components/layout/SiteHeader.tsx");
   const desktopShell = readSource("apps/web/src/components/layout/DesktopApplicationShell.tsx");
   const desktopManifest = readSource("apps/web/src/lib/desktopShellManifest.ts");
@@ -18,12 +18,16 @@ test("web shell uses Pulse as the visible network surface label", () => {
   // The compact header delegates primary destinations to the shared manifests.
   assert.match(siteHeader, /<DesktopApplicationShell/);
   assert.doesNotMatch(siteHeader, /mobileSectionLabel|NetworkLabel/);
-  assert.match(desktopManifest, /key: "pulse", label: "Pulse", href: "\/network"/);
+  assert.match(desktopManifest, /key: "pulse", label: "Community", href: "\/network"/);
   assert.match(desktopShell, /DESKTOP_PRIMARY_NAV\.map/);
   assert.match(
     shellManifest,
-    /key: "pulse",\s+label: "Pulse",\s+href: "\/network",\s+kind: "root"/,
+    /key: "pulse",\s+label: "Community",\s+href: "\/network",\s+kind: "root"/,
   );
+  const community = readSource("apps/web/src/components/layout/CommunityNavigation.tsx");
+  assert.match(community, /label: "Pulse"/);
+  assert.match(community, /label: "My Wall"/);
+  assert.match(community, /label: "Nearby"/);
   assert.match(mobileBottomNav, /MobileParityDock/);
   assert.match(mobileDockPresentation, /MOBILE_PRIMARY_DOCK/);
   assert.match(mobileDockPresentation, /MOBILE_PRIMARY_DOCK\.map/);

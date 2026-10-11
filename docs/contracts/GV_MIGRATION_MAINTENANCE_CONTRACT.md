@@ -1,5 +1,66 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Negotiated offer/trade baseline — October 7, 2026
+
+`-Phase AuditLinkedSchema -ProductOfferTradeBaselineV1` is read-only, fixed to
+`C:/gv_product_negotiated_trade_20261007`, before any negotiated-trade SQL exists.
+The original policy candidate's passed audit remains preserved in its own tree.
+It pins all432 source migrations to qualified full432 and compares live429 to
+the retained qualified429 schema/security/ledger. Exactly three source files
+are pending: unchanged receipt delivery, cost evidence and purchase. Other
+phases, combined switches, migration sets, credentials and output overrides
+reject before inspection. External product_negotiated_trade_20261007/BASELINE_429.json
+records actual results. No apply, reset, write activation or release authority
+is granted. New SQL still needs fresh full replay, retained upgrade, Auth/RPC,
+receipt compatibility, shadow and exact-package release qualification.
+
+## Purchase workflow baseline — October 7, 2026
+
+`-Phase AuditLinkedSchema -ProductPurchaseBaselineV1` is read-only and fixed to
+`C:/gv_product_buy_20261007`. It runs before purchase SQL exists, pins all431 source
+migrations to the qualified full431 replay, and compares live429 to the retained
+qualified429 schema/security/ledger. The only pending source files are unchanged
+receipt delivery and cost evidence. Other phases, switches and target overrides
+reject. External product_buy_20261007/BASELINE_429.json records actual results.
+It grants no apply authority and does not qualify a purchase migration; fresh
+replay, retained upgrade, authenticated runtime and release gates remain required.
+
+## Product economics release preparation — October 7
+
+The combined product candidate moves the fixed inspection root to
+`C:/gv_product_release_20261007` and fresh gate/package outputs to external
+product_release_20261007. The qualified backend3f3a30e8 and its original lab/RPC
+receipts remain fixed. Product469503b is separately qualified by its passed normal
+hook, integrated authenticated web journey and Samsung process recovery receipts.
+All product/dependency bytes must match; backend/schema cannot change. This does
+not authorize new migrations or waive independent shadow and fresh PrePush checks.
+The independent shadow430-v7 proof passes and is pinned by the combined gate:
+430 exact-package migrations, zero raw/normalized public SQL,1,180 matched security
+definitions and15 retained table hashes. Earlier failed attempts remain preserved.
+
+`-ProductEconomicsReleaseV1` permits only AuditLinkedSchema or PrePush and the
+exact pending cost migration20261007180000. Live baseline429, source431 and the
+cost-only release package430 are distinct; deferred receipt20261005150000 remains
+excluded from the package. Source and qualified backend bytes must match.
+The gate rereads full431/retained430 upgrade and full430/retained429 package labs,
+verifies private Auth/RPC and idempotency receipts, unchanged retained inventory
+and receipts, disabled controls, schema/security and the actual production ledger.
+PrePush requires clean committed current-main ancestry and fresh ordinary hooks.
+It grants no apply authority. The fixed CLI package allows prepare/dry-run only,
+with production connections read-only and before/after schema/ledger verification.
+Shadow inspection remains a separate required proof before schema completion.
+
+## Product economics baseline — October 7, 2026
+
+`-Phase AuditLinkedSchema -ProductEconomicsBaselineV1` is a read-only baseline
+route for `C:/gv_product_economics_20261007`. It permits no PrePush phase or other
+switches. The gate checks live429, the retained qualified429 replay, unchanged
+source hashes and exact permitted pending files: deferred receipt delivery and
+the candidate cost-evidence migration. It executes only a repeatable-read,
+read-only schema/security/ledger snapshot and never generated diff SQL.
+System-CA verification remains enabled. External product_economics_20261007/
+BASELINE_429.json records results. This baseline route grants no apply authority;
+full replay, retained upgrade and future exact release/shadow gates still apply.
 ## Collectr cost release qualification — October 9
 
 `-CollectrCostReleaseV1` accepts AuditLinkedSchema and PrePush for the exact
