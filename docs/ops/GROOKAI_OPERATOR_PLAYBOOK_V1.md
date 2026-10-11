@@ -13,6 +13,98 @@ notes conflict and are not automatic merge authority. Slab support is deferred
 by the user. Private collectr_catalog_review_20261009/CHECKPOINT.json owns actual
 checks and deployment status. Keep production reads read-only and retain all labs.
 
+## Jungle pricing integration — October 11
+
+Read `docs/contracts/JUNGLE_BATCHED_PRICING_RELEASE_V1.md`. The current release
+candidate at `C:/gv_jungle_pricing_release_20261011` is rebuilt from current
+`origin/main` and combines the reviewed Jungle edition path with the bounded
+snapshot writer and V71 binding executor. Preserve the qualified source worktree
+at `C:/gv_jungle_pricing_20261011`. Do not deploy the old Jungle V1_10 worker,
+replay catalog staging, use an older migration inventory for schema push, or
+change a currently running pricing job. Bindings, retained-data qualification,
+release checks and publication remain separate gates. Current evidence is under
+`jungle_binding_review_20261011` and the shared external worker recovery
+checkpoint; neither source nor tests imply prices are live.
+
+V70 evidence is under `jungle_binding_current430_20261011`. The separate database
+`jungle_binding_430_20261011` clones the preserved MTG429 fixture and applies only
+the already-deployed430 migration locally. All372 retained table snapshots stayed
+unchanged during preparation except the added migration ledger entry; the source
+database remained unchanged. Do not recreate or reset this populated clone.
+The V1_12 worker passes all nine rollback checks against430, preserving all372
+public/Auth/Storage/ledger table scopes, five saved test copies and retained MTG
+catalog/source records. Fixture imports must reject overlap with existing source
+keys, use explicit column names and analyze their local tables.
+
+The production comparison matches693 functions,117 views,5944 named columns,
+477 relation/security records,435 policies,1010 indexes and20 enum labels.
+Keep the explicit representation review:22 column positions, nine associative
+boolean-parenthesis pairs and generated RI-trigger OID suffixes differ. Do not
+claim byte-identical schema or rewrite historical migration names to match.
+The first broad-lock attempt failed before mutation on a protected migration
+table; the corrected rehearsal locks public tables within existing privileges
+and reads Auth/Storage/ledger for preservation without role escalation.
+
+V71 evidence is under `jungle_binding_executor_v71_20261011`. The bounded
+executor sealed the exact128-row draft and passed16 checks on the disposable
+`jungle_binding_executor_430_20261011` clone. The local durable result has128
+active valid bindings and128 active links. Assignment and publication rows stay
+at zero; five saved copies and every other one of the372 retained table scopes
+are unchanged. The source database `jungle_binding_430_20261011` was not changed.
+The rehearsal also rejected a rehashed source-row change, an injected extra-table
+trigger write, every phase failure and a replay. A simulated lost commit response
+was resolved by an independent readback. This local proof is not production
+authority and does not make Jungle prices live.
+
+The next release gate is the normal immutable candidate check and worker
+deployment/readback. Only after that may a fresh production capture seal a new
+plan for governed production rollback and commit, followed by assignment,
+shadow/publication and independent price verification. The55010 transport is
+consumed. V71 uses a separately attested55011 temporary transport; stop it after
+evidence packaging and do not reuse its receipt.
+
+V69 evidence is under `jungle_docker_recovery_20261011`. The actual V1_12
+worker passed all nine rollback-only checks against the retained schema427 lab:
+128 exact edition prices, five unchanged other candidates, and independent
+preservation of all336 public tables, five saved test copies and the427 ledger.
+Four critical Jungle SQL definitions matched the fresh production430 capture.
+This is not full430 qualification, a durable publication or a production apply.
+
+Freshly imported rehearsal fixtures need current planner statistics. The bound
+query timed out at15s and120s with empty-table statistics; after ANALYZE of the
+nine fixture tables, the unchanged133-row worker query took857ms. Preserve both
+failures, analyze only the local fixture tables, and refresh their statistics
+again after rollback. Do not infer a production timeout or change production
+planner settings from an unanalyzed test fixture.
+
+The Windows Docker proxy was unresponsive while its Linux engine and retained
+databases were running. Only the existing, source-verified427 relay was started;
+the database was not restarted. A temporary loopback54810 transport through that
+relay retained the image/network/source/server-address/schema checks and was
+closed after independent readback. Its one-use receipts are consumed. Do not
+reset Docker, prune labs, reuse that expired transport receipt, or replace
+attestation with a TCP connectivity check. C: remains low; only dependencies in
+identified pricing worktrees were compressed, with content hashes unchanged.
+
+## Bounded publication snapshots — October 6
+
+The October 6 deployed V1_9 worker timed out three times while inserting all
+164,677 eligible snapshots in one statement. V1_11 pages the already-qualified
+decision ledger using its run/publish/UUID index, then inserts at most the
+configured batch size (default 500, maximum 2,000). Snapshot columns, source
+values, conflict identity and activation guards are unchanged. Each completed
+page is durable only in the staging publication; interruption does not activate
+partial prices. Retry starts from the first decision and fills gaps through the
+existing conflict rule, preserving the original phase lineage of prior inserts.
+Exact frozen counts and normal full reconciliation still gate activation.
+
+Use a new immutable producer and new frozen run keys. Never resume the failed
+V1_9 run under V1_11 or deploy the divergent control-plane worktree as a pricing
+runtime. Preserve the old publication, failed evidence, and rollback runtime.
+Deployment, shadow/reconciliation and production readback are separate proofs.
+Current receipts are under the external `pricing_snapshot_batches_20261006`
+operator-artifact directory and the shared worker recovery checkpoint.
+
 ## Collectr average-cost candidate — October 8
 
 The local product-scope and four-decimal cost candidate qualifies 20 copies;
