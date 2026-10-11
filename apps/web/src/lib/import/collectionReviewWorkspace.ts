@@ -1,8 +1,10 @@
 import { field, parseCsv } from "../../../../../supabase/functions/vault-import-collection-v2/source.ts";
 import type { CollectionPreviewRow, CollectionPreviewV2 } from "./collectionPreviewV2";
+import { collectionCatalogConflictIds } from "./collectionCatalogConflicts.ts";
 
 export const reviewGroups = [
   { id: "choices", label: "Choose a match" },
+  { id: "catalog", label: "Catalog conflicts" },
   { id: "graded", label: "Graded cards" },
   { id: "sealed", label: "Sealed product details" },
   { id: "number", label: "Missing card number" },
@@ -16,7 +18,7 @@ export type ReviewGroup = typeof reviewGroups[number]["id"];
 // A row may have further issues; its original reason and fields stay visible.
 export function collectionReviewGroup(row: CollectionPreviewRow): ReviewGroup | null {
   if (row.selection || row.sealedSelection) return null;
-  if (row.review) return "choices";
+  if (row.review) return collectionCatalogConflictIds(row.review.candidates).size ? "catalog" : "choices";
   const grade = field(row.source, "grade").trim().toLowerCase();
   if (grade && grade !== "ungraded") return "graded";
   if (row.sealedStatus) return "sealed";
@@ -27,7 +29,7 @@ export function collectionReviewGroup(row: CollectionPreviewRow): ReviewGroup | 
 }
 
 export function collectionReviewCounts(preview: CollectionPreviewV2) {
-  const counts: Record<ReviewGroup, number> = { choices: 0, graded: 0, sealed: 0, number: 0, edition: 0, finish: 0, other: 0 };
+  const counts: Record<ReviewGroup, number> = { choices: 0, catalog: 0, graded: 0, sealed: 0, number: 0, edition: 0, finish: 0, other: 0 };
   for (const row of preview.rows) {
     const group = collectionReviewGroup(row);
     if (group) counts[group] += row.sourceIndices.length;
