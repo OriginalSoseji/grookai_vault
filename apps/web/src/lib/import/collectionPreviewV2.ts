@@ -192,7 +192,17 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
       row.reason = editionReason;
       continue;
     }
-    if (candidates.length > 1 && base!.finishKey !== null) {
+    // Detect duplicate catalog identities across set coordinates before finish
+    // compatibility can hide one of them and silently choose the other.
+    const catalogConflictIds = collectionCatalogConflictIds(candidates.map(card => ({
+      cardId: card.id,
+      name: card.name,
+      number: card.number,
+      setCode: sets.find(set => set.id === card.set_id)?.code || card.set_code || "",
+      variantKey: card.variant_key,
+      printedIdentityModifier: card.printed_identity_modifier,
+    })));
+    if (candidates.length > 1 && catalogConflictIds.size === 0 && base!.finishKey !== null) {
       const compatible = candidates.filter(card => !(printings.get(card.id)?.length) || printings.get(card.id)!.some(p => p.finish_key === base!.finishKey));
       if (compatible.length) candidates = compatible;
     }
@@ -217,10 +227,9 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
         }),
       };
       if (row.review) {
-        const conflicts = collectionCatalogConflictIds(row.review.candidates);
-        if (conflicts.size) {
+        if (catalogConflictIds.size) {
           row.reason = row.review.reason = "Some matching records need catalog repair. Those options are held; any distinct variant still requires your confirmation.";
-          row.review.candidates = row.review.candidates.map(candidate => conflicts.has(candidate.cardId)
+          row.review.candidates = row.review.candidates.map(candidate => catalogConflictIds.has(candidate.cardId)
             ? { ...candidate, selection: null, unavailableReason: catalogConflictMessage }
             : candidate);
         }

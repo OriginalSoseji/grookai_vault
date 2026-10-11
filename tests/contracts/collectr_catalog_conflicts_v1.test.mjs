@@ -48,3 +48,20 @@ test('fresh preview keeps conflicting matches held and preserves exact source wi
   for(const c of p.rows[0].review.candidates){assert.equal(c.selection,null);assert.match(c.unavailableReason,/catalog records disagree/);}
   assert.equal(collectionReviewCounts(p).catalog,1);assert.ok(tables.every(t=>['sets','card_prints'].includes(t)));
 });
+test('finish narrowing cannot hide a cross-set catalog conflict',async()=>{
+  const sets=[{id:'s1',name:'Example',code:'one',game:'pokemon'},{id:'s2',name:'Example',code:'two',game:'pokemon'}];
+  const cards=sets.map((s,i)=>({id:`c${i}`,gv_id:`GV-${i}`,name:'Pikachu',number:'018',set_id:s.id,set_code:s.code,variant_key:null,printed_identity_modifier:null,identity_domain:'pokemon_eng_standard'}));
+  const options=[
+    {id:'p-normal',card_print_id:'c0',finish_key:'normal',finish_is_active:true},
+    {id:'p-holo',card_print_id:'c1',finish_key:'holo',finish_is_active:true},
+  ];
+  const client={from(table){let after=null,scope=null;const q={select:()=>q,order:()=>q,limit:()=>q,gt:(_,v)=>{after=v;return q;},in:(key,values)=>{scope=[key,values];return q;},then(resolve){resolve({data:(table==='sets'?sets:cards).filter(r=>(!after||r.id>after)&&(!scope||scope[1].includes(r[scope[0]]))),error:null});}};return q;},async rpc(name,args){assert.equal(name,'get_public_card_printing_options_v1');return {data:args.p_offset?[]:options,error:null};}};
+  const p=await buildCollectionPreviewV2(client,'synthetic',csv);
+  assert.equal(p.readyRows,0);assert.equal(p.reviewRows,1);
+  assert.match(p.rows[0].reason,/catalog repair/);
+  assert.deepEqual(p.rows[0].review.candidates.map(c=>[c.cardId,c.finish,c.selection]),[
+    ['c0','normal',null],
+    ['c1',null,null],
+  ]);
+  for(const c of p.rows[0].review.candidates)assert.match(c.unavailableReason,/catalog records disagree/);
+});
