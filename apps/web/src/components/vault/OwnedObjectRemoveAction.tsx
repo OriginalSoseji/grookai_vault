@@ -1,8 +1,8 @@
 "use client";
 
-import { type FormEvent, useEffect, useRef } from "react";
+import { type FormEvent, useActionState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import {
   archiveVaultItemInstanceAction,
   type ArchiveVaultItemInstanceActionResult,
@@ -43,7 +43,7 @@ export default function OwnedObjectRemoveAction({
 }) {
   const router = useRouter();
   const handledSubmissionKeyRef = useRef<number | null>(null);
-  const [state, formAction] = useFormState<ArchiveVaultItemInstanceActionResult | null, FormData>(
+  const [state, formAction] = useActionState<ArchiveVaultItemInstanceActionResult | null, FormData>(
     archiveVaultItemInstanceAction,
     null,
   );

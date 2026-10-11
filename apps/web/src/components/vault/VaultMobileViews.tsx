@@ -4,6 +4,7 @@ import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PublicCardImage from "@/components/PublicCardImage";
+import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
@@ -386,6 +387,11 @@ function MobileDetailRow({
                             ) : (
                               <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
                             )}
+                            <OwnedObjectRemoveAction
+                              instanceId={copy.instance_id}
+                              label={copy.is_graded ? "Remove slab" : "Remove copy"}
+                              buttonClassName="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
+                            />
                           </div>
                         </div>
                       </div>

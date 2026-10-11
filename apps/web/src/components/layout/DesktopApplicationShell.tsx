@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SignOutButton from "@/components/auth/SignOutButton";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
   DESKTOP_PRIMARY_NAV,
@@ -87,6 +88,11 @@ export function DesktopApplicationShell({
                 {profileHref ? <Link href={profileHref} className="gv-desktop-menu-link">Public profile</Link> : null}
                 <Link href="/account" className="gv-desktop-menu-link">Account settings</Link>
                 <Link href="/support" className="gv-desktop-menu-link">Support</Link>
+                <div className="mt-1 border-t border-slate-200 pt-1 dark:border-slate-700">
+                  <SignOutButton
+                    className="gv-desktop-menu-link w-full text-left text-rose-700 disabled:cursor-not-allowed disabled:opacity-60 dark:text-rose-300"
+                  />
+                </div>
               </div>
             </details>
           ) : (

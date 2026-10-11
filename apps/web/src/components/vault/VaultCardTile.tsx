@@ -4,6 +4,7 @@ import Link from "next/link";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VariantBadge from "@/components/cards/VariantBadge";
+import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
   resolveDisplayIdentity,
@@ -294,17 +295,24 @@ export function VaultCardTile({
                       </span>
                     </div>
                   </div>
-                  {copyHref ? (
-                    <Link
-                      href={copyHref}
-                      prefetch={false}
-                      className="text-xs font-semibold text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
-                    >
-                      Open copy
-                    </Link>
-                  ) : (
-                    <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
-                  )}
+                  <div className="flex flex-wrap items-center justify-end gap-2">
+                    {copyHref ? (
+                      <Link
+                        href={copyHref}
+                        prefetch={false}
+                        className="text-xs font-semibold text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
+                      >
+                        Open copy
+                      </Link>
+                    ) : (
+                      <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
+                    )}
+                    <OwnedObjectRemoveAction
+                      instanceId={copy.instance_id}
+                      label={copy.is_graded ? "Remove slab" : "Remove copy"}
+                      buttonClassName="text-xs font-semibold text-rose-700 underline-offset-4 transition hover:text-rose-900 hover:underline disabled:cursor-not-allowed disabled:opacity-60"
+                    />
+                  </div>
                 </div>
                 <VaultEvidenceDisclosure label="Copy evidence">
                   <p>{copy.gv_vi_id ? `Exact copy ID: ${copy.gv_vi_id}` : "Exact copy ID pending"}</p>

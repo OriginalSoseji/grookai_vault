@@ -184,14 +184,12 @@ export function SiteHeader({
               >
                 {compareCount > 0 ? `Compare (${compareCount})` : "Compare"}
               </Link>
-              {!isAuthenticated ? (
-                <Link
-                  href={accountHref}
-                  className="shrink-0 rounded-full bg-white/68 px-2.5 py-1 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200/60 transition hover:bg-white"
-                >
-                  {accountLabel}
-                </Link>
-              ) : null}
+              <Link
+                href={accountHref}
+                className="shrink-0 rounded-full bg-white/68 px-2.5 py-1 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200/60 transition hover:bg-white"
+              >
+                {accountLabel}
+              </Link>
               {isAuthenticated && bindersEnabled ? (
                 <Link
                   href="/binders"

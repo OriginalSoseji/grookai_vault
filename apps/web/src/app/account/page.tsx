@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignOutButton from "@/components/auth/SignOutButton";
 import { PublicProfileSettingsForm } from "@/components/account/PublicProfileSettingsForm";
 import { WallSectionsSettingsCard } from "@/components/account/WallSectionsSettingsCard";
 import FounderMarketSignalsSection from "@/components/founder/FounderMarketSignalsSection";
@@ -133,6 +134,9 @@ export default async function AccountPage(props: AccountPageProps) {
           <h2 className="text-xl font-semibold tracking-tight text-slate-950">Signed in</h2>
           <p className="mt-3 text-sm text-slate-600">Email</p>
           <p className="mt-1 text-base font-medium text-slate-900">{user.email ?? "Email unavailable"}</p>
+          <SignOutButton
+            className="mt-5 inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-5 py-2.5 text-sm font-medium text-rose-700 transition hover:border-rose-300 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-60"
+          />
         </div>
 
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
