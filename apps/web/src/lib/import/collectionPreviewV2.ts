@@ -165,9 +165,10 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
     matches.set(row, preferCanonicalCardCandidates(candidates, aliases));
   }
   const editionReview = new Map<string, string>();
-  // Exact edition children are fully identified by the source edition and the
-  // catalog modifier. The resolver still governs ambiguous Jungle parents.
-  for (const card of cards.filter(card => card.set_code === "base2" && !/^edition:(?:first_edition|unlimited)$/.test(text(card.printed_identity_modifier ?? "").toLowerCase()))) {
+  // Jungle edition children remain governed by the publication resolver even
+  // when their catalog modifier matches the source. Staged identities cannot
+  // become owned copies until their complete edition pair is released.
+  for (const card of cards.filter(card => card.set_code === "base2")) {
     try {
       const edition = await getJungleEditionResolution(client, card.id);
       if (edition.status !== "not_applicable") editionReview.set(card.id, edition.status === "unavailable"
