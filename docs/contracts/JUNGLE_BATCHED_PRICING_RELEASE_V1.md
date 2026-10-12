@@ -1,7 +1,7 @@
 # Jungle edition pricing with bounded snapshots
 
 This release candidate starts from current `origin/main`
-`310ebcc5600bc122a3f0e3864506802926a8817f`. It preserves the exact V1_12 worker
+`ce1c7a0b4`. It preserves the exact V1_12 worker
 bytes qualified in the source worktree at producer
 `43596c1db2d09711945fa32f8c1333ac93375e0c`: the reviewed Jungle edition lane,
 V1_11 snapshot batching, qualification policy V1_3, reconciliation and
@@ -18,21 +18,33 @@ worker candidate neither creates those links nor grants authority to bind or
 activate them. The old catalog staging intents are consumed and must not replay.
 Production bindings and assignments remain absent at the October 11 readback.
 
-The separately versioned binding executor now admits only a sealed 128-row plan,
-checks the exact source run, product and observation hashes at execution time,
-and holds a transaction advisory lock. Its only allowed writes are 128 binding
+The separately versioned binding executor now admits only a sealed 128-row plan
+plus its separately supplied reviewed fingerprint. Validation, preflight,
+rollback, apply and readback cannot default to the fingerprint embedded in the
+plan. Before release reads or writes, the executor derives the connection target,
+database/cluster identity, migration count/head, full public-schema fingerprint
+and full public security fingerprint from the connected PostgreSQL client and
+requires exact equality with the target sealed into the reviewed plan. A local
+rehearsal target cannot impersonate production. The executor also checks the
+exact source run, product and observation hashes and holds a transaction advisory
+lock. Its only allowed writes are 128 binding
 inserts, 128 link activations and 128 binding activations. Replay, partial state,
 changed source evidence and any additional table write fail closed. An uncertain
 commit is resolved through the readback-only mode instead of retrying the write.
 
-V71 local qualification against a disposable clone of production schema 430
-passed 16 checks. It proved rollback, every injected failure boundary, source
-tamper rejection, unplanned trigger-side-effect rejection, a durable commit,
-lost-commit-acknowledgement recovery, replay rejection and preservation of all
-372 public/Auth/Storage/ledger scopes other than the two planned tables. Five
-saved copies, assignment rows and publication remained unchanged. This proves
-the executor locally; it did not connect to production and did not make prices
-live.
+V72 local qualification against the fresh disposable
+`jungle_binding_executor_v72_430_20261011` clone passed 19 checks. In addition to
+rollback, every injected failure boundary, source tamper rejection, unplanned
+trigger-side-effect rejection, durable commit, lost-commit-acknowledgement
+recovery and replay rejection, it proves that a missing external fingerprint, a
+different retained database and a stale schema capture are rejected. All 372
+public/Auth/Storage/ledger scopes other than the two planned tables remain
+unchanged. Five saved copies, assignment rows and publication remain unchanged.
+The reviewed local plan fingerprint is
+`edf299fce5e6530f2b35f9316d355e9df7c9e4732021b157a8666fda3ca13bf8`.
+This proves the executor locally; it did not connect to production and did not
+make prices live. V71 is retained as historical evidence for the earlier executor
+and is not release authority for the V72 source.
 
 Release still requires normal release checks and an immutable producer, worker
 deployment/readback before binding activation, then refreshed production

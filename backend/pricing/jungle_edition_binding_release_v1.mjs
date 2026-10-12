@@ -18,6 +18,30 @@ const EXPECTED_BOUNDARIES = Object.freeze({
   schema_changes: false,
 });
 const LOCK_KEY = 'grookai:jungle-edition-binding-release:v1';
+const TARGET_IDENTITY_SQL = `select current_database()::text database_name,current_user::text database_user,
+  host(inet_server_addr())::text server_address,current_setting('server_version_num')::int server_version_num,
+  (select oid::int from pg_database where datname=current_database()) database_oid,
+  (select system_identifier::text from pg_control_system()) system_identifier,
+  (select count(*)::int from supabase_migrations.schema_migrations) migration_count,
+  (select max(version)::text from supabase_migrations.schema_migrations) migration_head`;
+const SCHEMA_STATE_QUERIES = Object.freeze({
+  columns: "select table_schema,table_name,column_name,ordinal_position,data_type,udt_schema,udt_name,is_nullable,column_default,is_identity,identity_generation,is_generated,generation_expression,numeric_precision,numeric_scale from information_schema.columns where table_schema='public' order by table_name,ordinal_position",
+  functions: "select p.proname,pg_get_function_identity_arguments(p.oid) args,p.proowner::regrole::text owner,p.proacl::text,p.proconfig,p.prosecdef,pg_get_functiondef(p.oid) definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.prokind in ('f','p') order by 1,2",
+  views: "select c.relname,pg_get_viewdef(c.oid,true) definition from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relkind in ('v','m') order by 1",
+  constraints: "select c.relname,k.conname,pg_get_constraintdef(k.oid) definition from pg_constraint k join pg_class c on c.oid=k.conrelid join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' order by 1,2",
+  triggers: "select c.relname,t.tgname,t.tgenabled,pg_get_triggerdef(t.oid) definition from pg_trigger t join pg_class c on c.oid=t.tgrelid join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' order by 1,2",
+});
+const SECURITY_STATE_QUERIES = Object.freeze({
+  relations: `select c.relname,c.relkind,c.relowner::regrole::text owner,c.relrowsecurity,c.relforcerowsecurity,c.reloptions,
+    (select jsonb_agg(jsonb_build_object('grantor',a.grantor::regrole::text,'grantee',case when a.grantee=0 then 'PUBLIC' else a.grantee::regrole::text end,'privilege',a.privilege_type,'grantable',a.is_grantable)
+      order by a.grantor::regrole::text,a.grantee::regrole::text,a.privilege_type,a.is_grantable)
+      from aclexplode(coalesce(c.relacl,acldefault(case when c.relkind='S' then 'S'::"char" else 'r'::"char" end,c.relowner))) a) acl
+    from pg_class c join pg_namespace n on n.oid=c.relnamespace
+    where n.nspname='public' and c.relkind in ('r','p','v','m','S') order by 1`,
+  policies: "select * from pg_policies where schemaname='public' order by tablename,policyname",
+  indexes: "select tablename,indexname,indexdef from pg_indexes where schemaname='public' order by tablename,indexname",
+  enums: "select t.typname,e.enumlabel,e.enumsortorder from pg_type t join pg_namespace n on n.oid=t.typnamespace join pg_enum e on e.enumtypid=t.oid where n.nspname='public' order by t.typname,e.enumsortorder",
+});
 
 function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);
@@ -41,6 +65,7 @@ function releaseBody(plan) {
     source_review_sha256: plan.source_review_sha256,
     schema_capture_sha256: plan.schema_capture_sha256,
     schema_security_sha256: plan.schema_security_sha256,
+    target: plan.target,
     source_sync_run_id: plan.source_sync_run_id,
     source_finished_at: plan.source_finished_at,
     snapshot_at: plan.snapshot_at,
@@ -73,15 +98,16 @@ export function sealJungleBindingReleaseV1(draft, { at = new Date().toISOString(
     status: 'sealed_execution_plan',
     executable: true,
   };
-  assertJungleBindingReleaseV1(plan, { allowExpiredSource: true });
+  assertJungleBindingReleaseV1(plan, { expectedFingerprint: plan_fingerprint, allowExpiredSource: true });
   return plan;
 }
 
 export function assertJungleBindingReleaseV1(plan, {
-  expectedFingerprint = plan?.plan_fingerprint,
+  expectedFingerprint,
   now = Date.now(),
   allowExpiredSource = false,
 } = {}) {
+  assert.match(String(expectedFingerprint ?? ''), HEX64, 'expected_plan_fingerprint_required');
   assert.equal(plan?.version, JUNGLE_BINDING_RELEASE_V1, 'release_version_mismatch');
   assert.equal(plan.project_ref, JUNGLE_BINDING_PROJECT_REF_V1, 'project_ref_mismatch');
   assert.equal(plan.status, 'sealed_execution_plan', 'plan_not_sealed');
@@ -92,6 +118,28 @@ export function assertJungleBindingReleaseV1(plan, {
   assertTimestamp(plan.snapshot_at, 'snapshot_at');
   for (const key of ['physical_manifest_fingerprint', 'physical_manifest_file_sha256', 'source_review_sha256', 'schema_capture_sha256', 'schema_security_sha256']) {
     assert.match(String(plan[key] ?? ''), HEX64, `${key}_invalid`);
+  }
+  assert.ok(plan.target && typeof plan.target === 'object' && !Array.isArray(plan.target), 'target_attestation_required');
+  assert.ok(['production', 'local_rehearsal'].includes(plan.target.environment), 'target_environment_invalid');
+  assert.equal(plan.target.project_ref, plan.target.environment === 'production' ? JUNGLE_BINDING_PROJECT_REF_V1 : null, 'target_project_ref_mismatch');
+  for (const key of ['connection_host', 'connection_database', 'connection_user', 'database_name', 'database_user', 'server_address', 'system_identifier', 'migration_head']) {
+    assert.equal(typeof plan.target[key], 'string', `target_${key}_required`);
+    assert.ok(plan.target[key].length > 0, `target_${key}_required`);
+  }
+  for (const key of ['connection_port', 'server_version_num', 'database_oid', 'migration_count']) {
+    assert.ok(Number.isSafeInteger(plan.target[key]) && plan.target[key] > 0, `target_${key}_invalid`);
+  }
+  for (const key of ['schema_state_fingerprint', 'security_state_fingerprint']) {
+    assert.match(String(plan.target[key] ?? ''), HEX64, `target_${key}_invalid`);
+  }
+  if (plan.target.environment === 'production') {
+    assert.equal(plan.target.connection_host, 'aws-1-us-east-2.pooler.supabase.com', 'production_connection_host_mismatch');
+    assert.equal(plan.target.connection_user, `postgres.${JUNGLE_BINDING_PROJECT_REF_V1}`, 'production_connection_user_mismatch');
+    assert.equal(plan.target.connection_database, 'postgres', 'production_connection_database_mismatch');
+    assert.ok([5432, 6543].includes(plan.target.connection_port), 'production_connection_port_mismatch');
+  } else {
+    assert.ok(['127.0.0.1', 'localhost'].includes(plan.target.connection_host), 'rehearsal_connection_host_mismatch');
+    assert.equal(plan.target.connection_user, 'postgres', 'rehearsal_connection_user_mismatch');
   }
   assert.match(String(plan.source_sync_run_id ?? ''), UUID, 'source_sync_run_id_invalid');
   assert.equal(Array.isArray(plan.rows) ? plan.rows.length : -1, JUNGLE_BINDING_ROW_COUNT_V1, 'binding_row_count_mismatch');
@@ -127,6 +175,60 @@ export function assertJungleBindingReleaseV1(plan, {
     assert.ok(Date.parse(plan.snapshot_at) <= now + 6 * 60 * 1000, 'snapshot_from_future');
   }
   return plan;
+}
+
+function connectionTarget(client) {
+  const parameters = client?.connectionParameters ?? {};
+  const connection_user = String(parameters.user ?? '');
+  const projectMatch = /^postgres\.([a-z0-9]+)$/.exec(connection_user);
+  const connection_host = String(parameters.host ?? '');
+  const environment = projectMatch?.[1] === JUNGLE_BINDING_PROJECT_REF_V1
+    && connection_host === 'aws-1-us-east-2.pooler.supabase.com'
+    ? 'production'
+    : (['127.0.0.1', 'localhost'].includes(connection_host) && connection_user === 'postgres'
+        ? 'local_rehearsal'
+        : 'unrecognized');
+  return {
+    environment,
+    project_ref: environment === 'production' ? projectMatch[1] : null,
+    connection_host,
+    connection_port: Number(parameters.port),
+    connection_database: String(parameters.database ?? ''),
+    connection_user,
+  };
+}
+
+async function captureRows(client, queries) {
+  const result = {};
+  for (const [name, sql] of Object.entries(queries)) result[name] = (await client.query(sql)).rows;
+  return result;
+}
+
+export async function captureJungleBindingTargetV1(client) {
+  const identity = (await client.query(TARGET_IDENTITY_SQL)).rows[0];
+  assert.ok(identity, 'target_identity_unavailable');
+  const schemaState = await captureRows(client, SCHEMA_STATE_QUERIES);
+  const securityState = await captureRows(client, SECURITY_STATE_QUERIES);
+  const actual = {
+    ...connectionTarget(client),
+    database_name: String(identity.database_name ?? ''),
+    database_user: String(identity.database_user ?? ''),
+    server_address: String(identity.server_address ?? ''),
+    server_version_num: Number(identity.server_version_num),
+    database_oid: Number(identity.database_oid),
+    system_identifier: String(identity.system_identifier ?? ''),
+    migration_count: Number(identity.migration_count),
+    migration_head: String(identity.migration_head ?? ''),
+    schema_state_fingerprint: jungleBindingFingerprintV1(schemaState),
+    security_state_fingerprint: jungleBindingFingerprintV1(securityState),
+  };
+  return actual;
+}
+
+export async function attestJungleBindingTargetV1(client, plan) {
+  const actual = await captureJungleBindingTargetV1(client);
+  assert.deepEqual(actual, plan.target, 'connected_database_attestation_mismatch');
+  return actual;
 }
 
 function jsonRows(plan) {
@@ -285,7 +387,9 @@ async function begin(client, readOnly = false) {
   await client.query("set local timezone='UTC'; set local statement_timeout='45s'; set local lock_timeout='3s'");
 }
 
-export async function readJungleBindingReleaseV1(client, plan) {
+export async function readJungleBindingReleaseV1(client, plan, { expectedFingerprint } = {}) {
+  assertJungleBindingReleaseV1(plan, { expectedFingerprint, allowExpiredSource: true });
+  await attestJungleBindingTargetV1(client, plan);
   const selected = await readSelected(client, plan);
   return { state: classifySelected(plan, selected), selected };
 }
@@ -306,6 +410,7 @@ export async function executeJungleBindingReleaseV1({
   try {
     await begin(client, readOnly);
     transactionOpen = true;
+    await attestJungleBindingTargetV1(client, plan);
     await client.query('select pg_advisory_xact_lock(hashtextextended($1,0))', [LOCK_KEY]);
     const before = await readSelected(client, plan);
     const beforeState = classifySelected(plan, before);
@@ -353,14 +458,14 @@ export async function executeJungleBindingReleaseV1({
     if (mode === 'rollback') {
       await client.query('rollback');
       transactionOpen = false;
-      const independent = await readJungleBindingReleaseV1(client, plan);
+      const independent = await readJungleBindingReleaseV1(client, plan, { expectedFingerprint });
       assert.equal(independent.state, 'before', 'rollback_independent_readback_failed');
       return { mode, before: beforeState, after: 'exact', writes, committed: false, rollbackProven: true, postTransactionReadback: true };
     }
     commitStarted = true;
     await client.query('commit');
     transactionOpen = false;
-    const independent = await readJungleBindingReleaseV1(client, plan);
+    const independent = await readJungleBindingReleaseV1(client, plan, { expectedFingerprint });
     assert.equal(independent.state, 'exact', 'commit_independent_readback_failed');
     return { mode, before: beforeState, after: 'exact', writes, committed: true, postTransactionReadback: true };
   } catch (error) {

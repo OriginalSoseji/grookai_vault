@@ -45,11 +45,18 @@ The first broad-lock attempt failed before mutation on a protected migration
 table; the corrected rehearsal locks public tables within existing privileges
 and reads Auth/Storage/ledger for preservation without role escalation.
 
-V71 evidence is under `jungle_binding_executor_v71_20261011`. The bounded
-executor sealed the exact128-row draft and passed16 checks on the disposable
-`jungle_binding_executor_430_20261011` clone. The local durable result has128
-active valid bindings and128 active links. Assignment and publication rows stay
-at zero; five saved copies and every other one of the372 retained table scopes
+V71 evidence under `jungle_binding_executor_v71_20261011` is historical and does
+not authorize the reviewed V72 executor. V72 evidence is under
+`jungle_binding_executor_v72_20261011`. Its separately frozen plan fingerprint is
+required by every validation and execution mode. Before release reads or writes,
+the executor derives and matches the connected database/cluster identity,
+migration head, complete public schema and security fingerprints sealed in the
+plan. The exact 128-row plan passed 19 checks on the fresh disposable
+`jungle_binding_executor_v72_430_20261011` clone, including rejection of a missing
+external fingerprint, another retained database and a stale schema capture. The
+local durable result has 128
+active valid bindings and 128 active links. Assignment and publication rows stay
+at zero; five saved copies and every other one of the 372 retained table scopes
 are unchanged. The source database `jungle_binding_430_20261011` was not changed.
 The rehearsal also rejected a rehashed source-row change, an injected extra-table
 trigger write, every phase failure and a replay. A simulated lost commit response
