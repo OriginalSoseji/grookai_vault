@@ -1,0 +1,164 @@
+{
+  "version": "POKEMON_TCGPLAYER_VARIANT_REPAIR_PLAN_V1",
+  "status": "reviewed_plan_only",
+  "reviewed_at": "2026-10-12T15:00:00.000Z",
+  "execution_authorized": false,
+  "database_writes": 0,
+  "pricing_publication_writes": 0,
+  "evidence": [
+    {
+      "path": "docs/audits/pricing/pokemon_tcgplayer_identity_repair_20261012/batch_01/authority/gym2/manifest.json",
+      "sha256": "417e0991d1c7fb83ad78cec665f69a300d26cfb04b3dfd8f9c75592853a02b33"
+    },
+    {
+      "path": "docs/audits/english_master_index_publishable_v1/sets/gym2/printings.json",
+      "sha256": "9c6b3a79441525fd748f2719cec0840720e126d8d7b6c938fca8abf645bb7393"
+    },
+    {
+      "path": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg10bb_first_edition_parent_identity_bulk_real_apply_v1.json",
+      "sha256": "f645b7912cc6e50ffd63ceda64b0f672911091696c3b403e51dbdea28bd06af6",
+      "use": "historical lineage only; it is not authority to resurrect deleted rows"
+    },
+    {
+      "path": "docs/audits/pricing/pokemon_tcgplayer_identity_repair_20261012/batch_01/authority/mep/manifest.json",
+      "sha256": "878092b02bd1db4db702d918228cc6ca5007ca664f5058c7a55888fede9d6d40"
+    },
+    {
+      "path": "docs/audits/english_master_index_publishable_v1/sets/mep/printings.json",
+      "sha256": "4154a8907928b41850b3f74bfa2eb12acb7607fc1217f432dd2c1851ab65e31b"
+    },
+    {
+      "path": "artifacts/pokemon_tcgplayer_identity_repair_20261012/batch_01/next_variant_structure_readonly.json",
+      "sha256": "a6bb2ca0b31aa805a7cb31b6188c2545ea03f2b194b1b15c9282e9c5eb1c607b",
+      "use": "verified-TLS production read-only snapshot; intentionally untracked operator evidence"
+    }
+  ],
+  "plan_fingerprint": "005cdc2b8266c05cd52d3d0bc3ee0d10f826e1200d2cc57f1c15eb7658cf6735",
+  "plan": {
+    "gym_challenge_edition_identity": {
+      "operation": "create_exact_edition_identities_then_bind_current_observations",
+      "set_code": "gym2",
+      "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+      "source_group_id": 1440,
+      "write_scope": {
+        "card_prints": 4,
+        "card_print_identities": 4,
+        "card_printings": 4,
+        "source_binding_templates": 4,
+        "price_publications": 0
+      },
+      "rows": [
+        {
+          "source_product_id": 85720,
+          "source_subtype_name": "1st Edition",
+          "card_number": "75",
+          "card_name": "Giovanni's Nidoran ♀",
+          "edition": "first_edition",
+          "printed_identity_modifier": "edition:first_edition",
+          "finish_key": "normal",
+          "gv_id": "GV-PK-G2-75-FIRST-EDITION",
+          "printing_gv_id": "GV-PK-G2-75-FIRST-EDITION-NORMAL",
+          "card_print_id": null,
+          "card_printing_id": null,
+          "allocation_required": true
+        },
+        {
+          "source_product_id": 85720,
+          "source_subtype_name": "Unlimited",
+          "card_number": "75",
+          "card_name": "Giovanni's Nidoran ♀",
+          "edition": "unlimited",
+          "printed_identity_modifier": "edition:unlimited",
+          "finish_key": "normal",
+          "gv_id": "GV-PK-G2-75-UNLIMITED",
+          "printing_gv_id": "GV-PK-G2-75-UNLIMITED-NORMAL",
+          "card_print_id": null,
+          "card_printing_id": null,
+          "allocation_required": true
+        },
+        {
+          "source_product_id": 85721,
+          "source_subtype_name": "1st Edition",
+          "card_number": "76",
+          "card_name": "Giovanni's Nidoran ♂",
+          "edition": "first_edition",
+          "printed_identity_modifier": "edition:first_edition",
+          "finish_key": "normal",
+          "gv_id": "GV-PK-G2-76-FIRST-EDITION",
+          "printing_gv_id": "GV-PK-G2-76-FIRST-EDITION-NORMAL",
+          "card_print_id": null,
+          "card_printing_id": null,
+          "allocation_required": true
+        },
+        {
+          "source_product_id": 85721,
+          "source_subtype_name": "Unlimited",
+          "card_number": "76",
+          "card_name": "Giovanni's Nidoran ♂",
+          "edition": "unlimited",
+          "printed_identity_modifier": "edition:unlimited",
+          "finish_key": "normal",
+          "gv_id": "GV-PK-G2-76-UNLIMITED",
+          "printing_gv_id": "GV-PK-G2-76-UNLIMITED-NORMAL",
+          "card_print_id": null,
+          "card_printing_id": null,
+          "allocation_required": true
+        }
+      ]
+    },
+    "mega_evolution_promo_finish_override": {
+      "operation": "append_exact_reviewed_finish_override_assignments",
+      "set_code": "mep",
+      "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+      "source_group_id": 24451,
+      "write_scope": {
+        "append_only_variant_assignments_per_current_run": 2,
+        "catalog_rows": 0,
+        "mapping_rows": 0,
+        "price_publications": 0
+      },
+      "rows": [
+        {
+          "source_product_id": 654596,
+          "source_subtype_name": "Normal",
+          "source_normalized_finish_key": "normal",
+          "assigned_finish_key": "holo",
+          "card_number": "002",
+          "card_name": "Inteleon",
+          "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+          "gv_id": "GV-PK-MEP-002",
+          "card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+          "printing_gv_id": "GV-PK-MEP-002-HOLO",
+          "create_normal_child": false
+        },
+        {
+          "source_product_id": 654598,
+          "source_subtype_name": "Normal",
+          "source_normalized_finish_key": "normal",
+          "assigned_finish_key": "holo",
+          "card_number": "004",
+          "card_name": "Lunatone",
+          "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+          "gv_id": "GV-PK-MEP-004",
+          "card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+          "printing_gv_id": "GV-PK-MEP-004-HOLO",
+          "create_normal_child": false
+        }
+      ]
+    },
+    "sequence": [
+      "gym_catalog_identity_dry_run",
+      "gym_runtime_binding_dry_run",
+      "mep_finish_override_schema_rehearsal",
+      "combined_read_only_pricing_evaluation",
+      "separate_explicit_approval_before_any_production_write"
+    ],
+    "boundaries": {
+      "invent_normal_mep_children": false,
+      "reuse_deleted_gym_rows_without_review": false,
+      "infer_edition_from_generic_mapping": false,
+      "publish_prices": false,
+      "mutate_customer_state": false
+    }
+  }
+}

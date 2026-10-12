@@ -186,7 +186,27 @@ holo-only. TCGPlayer nevertheless labels their market rows `Normal`. Do not
 create false Normal children. Prepare a bounded exact finish-override contract
 that binds each product, source payload, parent, Holo child, and reviewed evidence.
 
-No prices from this batch are live. The next work is two separate plan-only
-packages: Gym Challenge edition authority for four observations and Mega
-Evolution Promo exact finish authority for two observations. Duraludon can enter
-a later governed shadow run, but price publication still needs its own approval.
+No prices from this batch are live. Batch 02 now freezes the remaining six rows
+under
+`docs/audits/pricing/pokemon_tcgplayer_variant_repair_20261012/batch_02` with plan
+fingerprint
+`005cdc2b8266c05cd52d3d0bc3ee0d10f826e1200d2cc57f1c15eb7658cf6735`.
+
+A verified-TLS production readback found that only the ordinary Gym parents and
+their Normal children remain live. The June PKG-10BB receipt proves that
+first-edition parents once existed for these coordinates, but those rows are no
+longer present. Batch 02 preserves that receipt as lineage and explicitly refuses
+to reuse or resurrect the deleted identifiers without review. Its Gym lane calls
+for four newly allocated edition parents, four identities, four Normal children,
+and four exact binding templates: First Edition and Unlimited for each of cards
+75 and 76.
+
+The MEP lane requires no catalog or mapping row. It plans two append-only exact
+finish overrides from the source label `Normal` to the existing Holo children.
+The implementation must make reviewed override assignments take precedence in
+the qualification read model without changing the raw source label. A retained
+schema rehearsal and full read-only pricing evaluation must pass before any
+production request is prepared.
+
+Batch 02 authorizes no database or price write. Duraludon can enter a later
+governed shadow run, but price publication still needs its own approval.

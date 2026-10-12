@@ -14,9 +14,14 @@ No price publication occurred. Full post-mapping pricing dry-run over 208,451
 observations made Duraludon 214239 publish-ready, while four Gym Challenge prices
 remain held for exact First Edition/Unlimited authority and two Mega Evolution
 Promo prices remain held for an exact reviewed Normal-to-holo source override.
-Treat those as separate bounded repairs; never invent Normal printings or extend
-the Jungle-only edition authority by implication. Pricing reconciliation and
-publication remain separate guarded work.
+Batch 02 now freezes those six rows into two plan-only lanes under
+`docs/audits/pricing/pokemon_tcgplayer_variant_repair_20261012/batch_02`.
+Verified-TLS live readback found only the ordinary Gym parents; the historical
+June first-edition rows are no longer live and must not be silently resurrected.
+The plan therefore requires four fresh explicit edition identities before runtime
+bindings. The MEP lane binds the two existing Holo children and forbids invented
+Normal printings. Pricing reconciliation and publication remain separate guarded
+work; batch 02 authorizes no database or price write.
 
 ## Collectr catalog review — October 9
 
