@@ -18,6 +18,13 @@ export function matchesCollectrPokemonName({sourceName, sourceNumber, game, card
       number(card.number) === "26" && text(card.variant_key) === "toys_r_us_stamp" &&
       text(card.printed_identity_modifier) === "toys_r_us_stamp";
   }
+  const cheeks = /^pikachu\s+\((red|yellow) cheeks\)$/.exec(name);
+  if (cheeks) {
+    const color = `${cheeks[1]}_cheeks`;
+    const variant = text(card.variant_key), modifier = text(card.printed_identity_modifier);
+    if (!variant.includes(color) || !modifier.includes(`color:${color}`)) return false;
+    name = "pikachu";
+  }
   const suffix = /\s+\(#?([a-z]*\d+[a-z]*)\)$/.exec(name);
   if (suffix) {
     if (number(suffix[1]) !== number(sourceNumber)) return false;

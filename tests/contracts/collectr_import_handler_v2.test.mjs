@@ -83,6 +83,32 @@ test('one authenticated atomic save derives metadata from original CSV',async()=
  assert.equal(args.p_targets[0].desiredQuantity,2);assert.equal(args.p_targets[0].condition,'LP');assert.equal(args.p_targets[0].finishKey,'reverse');assert.equal(args.p_targets[0].acquisitionCost,4.25);assert.deepEqual(args.p_source_rows,[row]);
  assert.equal(f.reads.filter(r=>'after'in r).length,2);assert.deepEqual(f.reads.filter(r=>r.args).map(r=>r.args.p_offset),[0,1]);
 });
+test('server accepts only the exact governed Pokemon edition identity',async()=>{
+ const baseSource={...row,'Product Name':'Pikachu',Set:'Base Set (Unlimited)','Card Number':'58',Variance:'Normal'};
+ const baseCard={name:'Pikachu',number:'58',set_code:'base1',variant_key:'',printed_identity_modifier:null,identity_domain:'pokemon_eng_standard',sets:{name:'Base Set',game:'pokemon'}};
+ const base=fixture({card:baseCard,printing:{finish_key:'normal'}});
+ assert.equal((await base.send({csvText:toCsv([baseSource])})).status,200);
+ const stamped=fixture({card:{...baseCard,variant_key:'e3_stamp',printed_identity_modifier:'e3_stamp'},printing:{finish_key:'normal'}});
+ assert.equal((await stamped.send({csvText:toCsv([baseSource])})).status,400);assert.equal(stamped.writes.length,0);
+
+ const cheekSource={...row,'Product Name':'Pikachu (Yellow Cheeks)',Set:'Base Set (1st Edition & Shadowless)','Card Number':'58',Variance:'1st Edition'};
+ const cheekCard={name:'Pikachu',number:'58',set_code:'base1',variant_key:'first_edition_yellow_cheeks',printed_identity_modifier:'edition:first_edition;print_run:shadowless;color:yellow_cheeks',identity_domain:'pokemon_eng_standard',sets:{name:'Base Set',game:'pokemon'}};
+ const cheek=fixture({card:cheekCard,printing:{finish_key:'normal'}});
+ assert.equal((await cheek.send({csvText:toCsv([cheekSource])})).status,200);
+ const shadowless=fixture({card:{...cheekCard,variant_key:'shadowless_yellow_cheeks',printed_identity_modifier:'print_run:shadowless;color:yellow_cheeks'},printing:{finish_key:'normal'}});
+ assert.equal((await shadowless.send({csvText:toCsv([cheekSource])})).status,400);assert.equal(shadowless.writes.length,0);
+
+ const jungleSource={...row,'Product Name':'Wigglytuff',Set:'Jungle','Card Number':'32',Variance:'1st Edition'};
+ const jungleCard={name:'Wigglytuff',number:'32',set_code:'base2',variant_key:'',printed_identity_modifier:'edition:first_edition',identity_domain:'pokemon_eng_standard',sets:{name:'Jungle',game:'pokemon'}};
+ const jungle=fixture({card:jungleCard,printing:{finish_key:'normal'}});
+ assert.equal((await jungle.send({csvText:toCsv([jungleSource])})).status,200);
+ const wrongEdition=fixture({card:{...jungleCard,printed_identity_modifier:'edition:unlimited'},printing:{finish_key:'normal'}});
+ assert.equal((await wrongEdition.send({csvText:toCsv([jungleSource])})).status,400);assert.equal(wrongEdition.writes.length,0);
+
+ const fossil=fixture({card:{name:'Aerodactyl',number:'16',set_code:'base3',variant_key:'',printed_identity_modifier:null,identity_domain:'pokemon_eng_standard',sets:{name:'Fossil',game:'pokemon'}},printing:{finish_key:'normal'}});
+ const fossilSource={...row,'Product Name':'Aerodactyl (16)',Set:'Fossil','Card Number':'16',Variance:'1st Edition'};
+ assert.equal((await fossil.send({csvText:toCsv([fossilSource])})).status,400);assert.equal(fossil.writes.length,0);
+});
 for(const [name,override] of Object.entries({owner:{ownerUserId:randomUUID()},request:{requestId:'invalid'},duplicate:{targets:[selection,selection]},outOfRange:{targets:[{...selection,sourceIndices:[1]}]},fraction:{targets:[{...selection,sourceIndices:[0.5]}]},grade:{csvText:toCsv([{...row,Grade:'PSA 10'}])},mismatchedName:{csvText:toCsv([{...row,'Product Name':'Different'}])}}))test(`rejects ${name} before writer`,async()=>{const f=fixture();assert.ok((await f.send(override)).status>=400);assert.equal(f.writes.length,0);});
 for(const options of [{authError:'invalid_jwt'},{authError:'server_misconfigured'},{catalogError:{}},{printingError:{}},{printing:{finish_key:'holo'}},{card:{sets:{name:'151',game:'mtg'}}},{extraPrintings:[{id:randomUUID(),card_print_id:cardId,finish_key:'reverse',finish_is_active:true}]}])test('unavailable or ambiguous identity fails closed',async()=>{const f=fixture(options);assert.ok((await f.send()).status>=400);assert.equal(f.writes.length,0);});
 test('unresolved rows can be retained without creating inventory',async()=>{const f=fixture();const r=await f.send({targets:[],csvText:toCsv([{...row,Grade:'PSA 10'}])});assert.equal(r.status,200);assert.equal((await r.json()).reviewRows,1);assert.equal(f.writes[0].args.p_targets.length,0);});

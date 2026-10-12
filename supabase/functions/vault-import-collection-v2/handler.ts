@@ -2,6 +2,7 @@ import { corsHeaders, corsJson } from "../_shared/cors.ts";
 import { matchesCollectrMtgIdentity } from "./mtg_identity.ts";
 import { matchesCollectrPokemonName } from "./pokemon_name.ts";
 import { collectrPokemonNamedFinish } from "./pokemon_named_finish.ts";
+import { matchesCollectrPokemonEdition } from "./pokemon_edition.ts";
 import { collectrSetTargets } from "./set_scope.ts";
 import {
   ImportValidationError,
@@ -201,6 +202,7 @@ export async function resolveTargets(
     if (
       !card || card.gv_id !== selectedRow.gvId || !object(set) ||
       (base.game && set.game !== base.game) ||
+      (base.game === "pokemon" && !matchesCollectrPokemonEdition({ editionKey: base.editionKey, card })) ||
       (namedFinish ? !matchesCollectrPokemonName({sourceName: namedFinish.name,
         sourceNumber: base.number, game: base.game, card}) : (text(card.name ?? "").toLowerCase() !== base.name &&
         !matchesCollectrPokemonName({sourceName: base.name, sourceNumber: base.number,

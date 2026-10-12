@@ -5,6 +5,7 @@ import { collectrSetTargets } from "../../../../../supabase/functions/vault-impo
 import { matchesCollectrPokemonName } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_name.ts";
 import { matchesCollectrMtgIdentity } from "../../../../../supabase/functions/vault-import-collection-v2/mtg_identity.ts";
 import { collectrPokemonNamedFinish } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_named_finish.ts";
+import { matchesCollectrPokemonEdition } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_edition.ts";
 import { catalogConflictMessage, collectionCatalogConflictIds } from "./collectionCatalogConflicts.ts";
 import { getPublicCardPrintIdentityAliases, preferCanonicalCardCandidates } from "../cards/getPublicCardPrintIdentityAliases.ts";
 
@@ -150,7 +151,8 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
   for (const group of valid) {
     const base = group.normalized!, setIds = new Set(setsFor(base).map(set => set.id));
     const namedFinish = base.game === "pokemon" ? collectrPokemonNamedFinish(base.name) : null;
-    matches.set(group.row, cards.filter(card => setIds.has(card.set_id) && number(card.number ?? "") === base.number && !!card.gv_id && (
+    matches.set(group.row, cards.filter(card => setIds.has(card.set_id) && number(card.number ?? "") === base.number && !!card.gv_id &&
+      matchesCollectrPokemonEdition({ editionKey: base.editionKey, card }) && (
       namedFinish ? matchesCollectrPokemonName({ sourceName: namedFinish.name, sourceNumber: base.number, game: base.game, card }) : (
       text(card.name ?? "").toLowerCase() === base.name ||
       matchesCollectrPokemonName({ sourceName: base.name, sourceNumber: base.number, game: base.game, card }) ||
@@ -163,7 +165,9 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
     matches.set(row, preferCanonicalCardCandidates(candidates, aliases));
   }
   const editionReview = new Map<string, string>();
-  for (const card of cards.filter(card => card.set_code === "base2")) {
+  // Exact edition children are fully identified by the source edition and the
+  // catalog modifier. The resolver still governs ambiguous Jungle parents.
+  for (const card of cards.filter(card => card.set_code === "base2" && !/^edition:(?:first_edition|unlimited)$/.test(text(card.printed_identity_modifier ?? "").toLowerCase()))) {
     try {
       const edition = await getJungleEditionResolution(client, card.id);
       if (edition.status !== "not_applicable") editionReview.set(card.id, edition.status === "unavailable"
