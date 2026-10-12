@@ -1,7 +1,9 @@
 # Pokémon TCGPlayer Identity Repair — October 12, 2026
 
-Status: batch 01 is source-reviewed and production dry-run verified. No database
-or pricing publication write has occurred.
+Status: batch 01 is source-reviewed. The original insert-only production apply
+rolled back with zero writes after finding an inactive legacy Duraludon mapping.
+The exact four-insert/one-repair replacement passed production dry-run. No
+database or pricing publication write has occurred.
 
 ## Why pricing is incomplete
 
@@ -86,13 +88,46 @@ The full dry-run receipt remains under the ignored operator artifact tree:
 
 ## Next gate
 
-Commit and review the immutable batch. A production apply must use the exact
-committed source, hashes above, a five-row limit, the governing maintenance
-launcher, and a new explicit founder approval for this exact batch. The apply is
-insert-only and must be followed by independent mapping readback.
+Commit and review the immutable batch and inactive-repair authority. A production
+apply must use the exact committed source, hashes above, a five-row limit, the
+governing maintenance launcher, and a new explicit founder approval for the
+revised write set. It must be followed by independent mapping readback.
 
 Mapping does not itself publish prices. After a successful mapping apply, run a
 fresh pricing backlog audit, resolve any remaining finish or price-policy holds,
 then use the separate governed shadow/reconciliation/publication path. Never
 claim these seven observations are priced solely because their parent mappings
 exist.
+
+## Inactive legacy collision found during apply
+
+Founder approval was received for the original five insert-only rows. Apply run
+`0ce1286b-3f0d-49a6-b3e9-1c0028f7e6dd` reached the serializable production
+transaction, then PostgreSQL rejected the insert set on
+`external_mappings_source_external_id_key`. The transaction acknowledged its
+rollback before any commit attempt; database writes were zero.
+
+Readback found one inactive legacy row only: mapping `132914` for TCGPlayer
+product `214239`. It points to `GV-PK-SWSHP-028-GAMESTOP-STAMP` and already
+contains the reviewed invalidation reason
+`PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT`. The reviewed batch target is the
+ordinary `GV-PK-PR-SW-SWSH028` parent. The uniqueness rule permits only one row
+per source/external ID, so another insert cannot represent the corrected mapping.
+
+The revised bounded path inserts products 85720, 85721, 654596, and 654598, then
+updates only mapping `132914` when its source, product, inactive state, prior
+parent, timestamp, and metadata fingerprint all still match the frozen repair
+authority. The old invalidation is moved into `inactive_mapping_repair` audit
+metadata so it cannot suppress the corrected active mapping. Deletes,
+publication writes, and customer-state writes remain forbidden. Rollback data
+restores the exact inactive row and deactivates the four inserted rows.
+
+Production read-only repair rehearsal
+`3be7f5de-ad69-4929-b830-41aca9601b29` passed with verified TLS, zero active
+publication overlap, an acknowledged rollback, and zero writes. The repair
+authority SHA-256 is
+`d55cbfe508f49b1d64ac42e22eb7ae59d5bfdaa81cd73ca89514cb737bf8c33e`;
+its fingerprint is
+`92ff3d731958be2a2c3db2d8d46f3045e29c3f7c84c473a60f3473a9a7b706c3`.
+A production apply now requires explicit founder approval for this changed
+four-insert/one-update operation and a clean committed source.

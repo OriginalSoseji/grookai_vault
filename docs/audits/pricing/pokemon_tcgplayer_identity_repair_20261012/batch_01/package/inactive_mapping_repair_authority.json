@@ -1,0 +1,29 @@
+{
+  "version": "TCGPLAYER_INACTIVE_MAPPING_REPAIR_POLICY_V1",
+  "status": "reviewed_repair_evidence",
+  "execution_authorized": false,
+  "source_product_id": 214239,
+  "candidate_fingerprint": "fe3b211c6a11c7f3c173d6c36f17abea1824645d30bb8752cbab5ca2310834c9",
+  "mapping_id": "132914",
+  "expected_current": {
+    "card_print_id": "04e792f4-4de2-4026-994f-087e230c7bae",
+    "gv_id": "GV-PK-SWSHP-028-GAMESTOP-STAMP",
+    "variant_key": "gamestop_stamp",
+    "active": false,
+    "synced_at": "2026-06-19T14:21:30.287Z",
+    "meta_fingerprint": "1edc0a36516690e5ea3045e7ce734048b970a17974d69218080f7c586d32b55a",
+    "reviewed_invalidation_reason_code": "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT"
+  },
+  "target_card_print_id": "b64f4545-b536-490e-8fe3-53dbc228418f",
+  "target_gv_id": "GV-PK-PR-SW-SWSH028",
+  "target_variant_key": "",
+  "reason_code": "REPLACE_REVIEWED_INVALID_STAMPED_PARENT_WITH_EXACT_BASE_PARENT",
+  "operation": {
+    "insert_new_mapping_count": 4,
+    "repair_inactive_mapping_count": 1,
+    "mapping_deletes": 0,
+    "publication_writes": 0,
+    "customer_state_writes": 0
+  },
+  "fingerprint": "92ff3d731958be2a2c3db2d8d46f3045e29c3f7c84c473a60f3473a9a7b706c3"
+}

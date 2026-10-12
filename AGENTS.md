@@ -5,10 +5,13 @@
 Read `docs/ops/POKEMON_TCGPLAYER_IDENTITY_REPAIR_20261012.md`. PR622 merged the
 six outcome lanes and zero-backlog completion rules. Batch 01 now contains five
 reviewed existing-parent mappings covering seven missing-price observations;
-its verified production dry-run passed with zero writes and a proven rollback.
-No mapping or price publication is live. Preserve the exact plan, authority and
-batch hashes. Production insertion requires explicit founder approval for the
-exact five-row batch and a clean committed source. After mapping, treat fresh
+its first production apply rolled back with zero writes after finding inactive
+legacy Duraludon mapping 132914 on the wrong GameStop-stamped parent. The revised
+four-insert/one-exact-update path passed production dry-run
+3be7f5de-ad69-4929-b830-41aca9601b29. No mapping or price publication is live.
+Preserve the exact plan, mapping authority and inactive-repair hashes. Production
+apply requires fresh explicit founder approval for the changed write set and a
+clean committed source. After mapping, treat fresh
 pricing reconciliation and publication as separate guarded work.
 
 ## Collectr catalog review — October 9

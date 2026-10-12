@@ -1810,6 +1810,16 @@ target. Label differences require source adjudication, not automatic remapping.
 These safeguards do not adjudicate Pokemon GO aliases or close legacy bridge
 writers. Deployment and all-active-writer verification remain separate work.
 
+Before an exact mapping insert, read all mapping history for each source product,
+including inactive rows. The `(source, external_id)` uniqueness rule covers
+inactive history. A reviewed wrong-parent row must not be reactivated unchanged,
+deleted to make room, or allowed to fail at the insert statement. Freeze its ID,
+old parent, inactive state, timestamp, metadata fingerprint, invalidation reason,
+and exact replacement target. Use the optional inactive-repair authority path to
+perform one exact guarded retarget while preserving the prior invalidation inside
+repair audit metadata. This changes an insert-only plan and therefore requires a
+fresh explicit approval and dry-run. Publication remains a separate operation.
+
 ## Warehouse Printing Evidence Handoff
 
 Read `WAREHOUSE_PRINTING_AUTHORITY_CHECKPOINT_20260917.md` and

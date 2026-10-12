@@ -38,6 +38,11 @@ import {
   normalizeTcgplayerMappingNumberV1,
 } from "../pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 import {
+  assertTcgplayerInactiveMappingRepairAuthorityV1,
+  buildTcgplayerInactiveMappingRepairMetaV1,
+  TCGPLAYER_INACTIVE_MAPPING_REPAIR_CONFIRMATION_V1,
+} from "../pricing/tcgplayer_inactive_mapping_repair_policy_v1.mjs";
+import {
   classifyTcgplayerMarketProductScopeV1_2,
 } from "../pricing/tcgplayer_market_product_scope_v1.mjs";
 import { matchesTrainerKitPilotLiveMappingV1, trainerKitPilotCardV1 } from "../pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
@@ -57,6 +62,10 @@ const EXPECTED_PLAN_COMMIT_ENV =
 const OUTPUT_ROOT_ENV = "TCGPLAYER_EXACT_MAPPING_OUTPUT_ROOT";
 const MASTER_AUTHORITY_PATH_ENV = "TCGPLAYER_EXACT_MAPPING_MASTER_AUTHORITY_PATH";
 const MASTER_AUTHORITY_SHA_ENV = "TCGPLAYER_EXACT_MAPPING_MASTER_AUTHORITY_SHA256";
+const INACTIVE_REPAIR_AUTHORITY_PATH_ENV =
+  "TCGPLAYER_EXACT_MAPPING_INACTIVE_REPAIR_AUTHORITY_PATH";
+const INACTIVE_REPAIR_AUTHORITY_SHA_ENV =
+  "TCGPLAYER_EXACT_MAPPING_INACTIVE_REPAIR_AUTHORITY_SHA256";
 
 if (process.env[CANON_MAINTENANCE_ENABLE_ENV_V1] !== "true") {
   throw new Error(
@@ -251,10 +260,12 @@ async function loadFrozenPlan(mode) {
       );
     }
     if (trackedStatus) throw new Error("TRACKED_WORKTREE_NOT_CLEAN");
-    if (
-      text(process.env[CONFIRMATION_ENV]) !==
-      TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1
-    ) {
+    const expectedConfirmation = text(
+      process.env[INACTIVE_REPAIR_AUTHORITY_PATH_ENV],
+    )
+      ? TCGPLAYER_INACTIVE_MAPPING_REPAIR_CONFIRMATION_V1
+      : TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1;
+    if (text(process.env[CONFIRMATION_ENV]) !== expectedConfirmation) {
       throw new Error(`${CONFIRMATION_ENV}_MISMATCH`);
     }
   }
@@ -271,6 +282,42 @@ async function loadFrozenPlan(mode) {
     commitSha,
     branch,
     trackedWorktreeClean: !trackedStatus,
+  };
+}
+
+async function loadInactiveRepairAuthority(selection) {
+  const configuredPath = text(process.env[INACTIVE_REPAIR_AUTHORITY_PATH_ENV]);
+  if (!configuredPath) return null;
+  const authorityPath = resolveRepoPath(
+    configuredPath,
+    INACTIVE_REPAIR_AUTHORITY_PATH_ENV,
+  );
+  const expectedSha = text(
+    process.env[INACTIVE_REPAIR_AUTHORITY_SHA_ENV],
+  ).toLowerCase();
+  if (!/^[a-f0-9]{64}$/.test(expectedSha)) {
+    throw new Error(`${INACTIVE_REPAIR_AUTHORITY_SHA_ENV}_INVALID`);
+  }
+  const bytes = await fs.readFile(authorityPath);
+  if (sha256(bytes) !== expectedSha) {
+    throw new Error("INACTIVE_REPAIR_AUTHORITY_FILE_HASH_MISMATCH");
+  }
+  const authority = JSON.parse(bytes);
+  const candidate = selection.selected.find(
+    (row) =>
+      Number(row.source_product_id) === Number(authority.source_product_id),
+  );
+  if (!candidate) throw new Error("INACTIVE_REPAIR_CANDIDATE_NOT_SELECTED");
+  assertTcgplayerInactiveMappingRepairAuthorityV1(authority, { candidate });
+  return {
+    authority,
+    authorityBytes: bytes,
+    authorityPath,
+    authorityPathRelative: path
+      .relative(REPO_ROOT, authorityPath)
+      .replace(/\\/g, "/"),
+    authoritySha256: expectedSha,
+    candidate,
   };
 }
 
@@ -335,6 +382,17 @@ async function loadLiveState(client, selected, sourceSyncRunId) {
       [sourceIds],
     )
   ).rows;
+  const sourceMappings = (
+    await client.query(
+      `select id::text, card_print_id::text, source, external_id, meta,
+              synced_at, active
+         from public.external_mappings
+        where source = 'tcgplayer'
+          and external_id = any($1::text[])
+        order by external_id::integer, id`,
+      [sourceIds.map(String)],
+    )
+  ).rows;
   const targets = (
     await client.query(
       `select
@@ -396,13 +454,14 @@ async function loadLiveState(client, selected, sourceSyncRunId) {
   return {
     sourceRun,
     sources,
+    sourceMappings,
     targets,
     observations,
     activePublicationOverlap,
   };
 }
 
-function validateLiveState(selected, sourceSyncRunId, live) {
+function validateLiveState(selected, sourceSyncRunId, live, inactiveRepair) {
   const failures = [];
   if (
     !live.sourceRun ||
@@ -443,9 +502,17 @@ function validateLiveState(selected, sourceSyncRunId, live) {
   const observations = new Map(
     live.observations.map((row) => [row.id, row]),
   );
+  const mappingsBySource = new Map();
+  for (const mapping of live.sourceMappings) {
+    const rows = mappingsBySource.get(mapping.external_id) ?? [];
+    rows.push(mapping);
+    mappingsBySource.set(mapping.external_id, rows);
+  }
   for (const candidate of selected) {
     const source = sources.get(Number(candidate.source_product_id));
     const target = targets.get(candidate.target.card_print_id);
+    const sourceMappings =
+      mappingsBySource.get(String(candidate.source_product_id)) ?? [];
     const rowFailures = [];
     if (!source) {
       rowFailures.push("source_product_missing");
@@ -482,6 +549,34 @@ function validateLiveState(selected, sourceSyncRunId, live) {
       ) {
         rowFailures.push("source_number_changed");
       }
+    }
+    if (sourceMappings.some((mapping) => mapping.active === true)) {
+      rowFailures.push("source_mapping_now_exists");
+    }
+    const inactiveMappings = sourceMappings.filter(
+      (mapping) => mapping.active !== true,
+    );
+    const isRepairCandidate =
+      inactiveRepair &&
+      Number(inactiveRepair.authority.source_product_id) ===
+        Number(candidate.source_product_id);
+    if (inactiveMappings.length > 0) {
+      if (!isRepairCandidate || inactiveMappings.length !== 1) {
+        rowFailures.push("source_inactive_mapping_conflict");
+      } else {
+        try {
+          assertTcgplayerInactiveMappingRepairAuthorityV1(
+            inactiveRepair.authority,
+            { candidate, liveMapping: inactiveMappings[0] },
+          );
+        } catch (error) {
+          rowFailures.push(
+            error instanceof Error ? error.message : "inactive_repair_invalid",
+          );
+        }
+      }
+    } else if (isRepairCandidate) {
+      rowFailures.push("inactive_repair_live_mapping_missing");
     }
     rowFailures.push(...validateTcgplayerExactMappingLiveTargetV1(candidate, target));
     for (const observationId of candidate.supporting_gap_observation_ids) {
@@ -520,9 +615,9 @@ async function readAppliedMappings(client, ids) {
   ).rows;
 }
 
-function validateAppliedReadback(selected, inserted, readback, context) {
+function validateAppliedReadback(selected, written, readback, context) {
   const failures = [];
-  if (inserted.length !== selected.length || readback.length !== selected.length) {
+  if (written.length !== selected.length || readback.length !== selected.length) {
     failures.push("applied_row_count_mismatch");
   }
   const selectedBySource = new Map(
@@ -548,6 +643,15 @@ function validateAppliedReadback(selected, inserted, readback, context) {
     ) {
       failures.push(`mapping_provenance_mismatch:${row.external_id}`);
     }
+    if (
+      Number(row.external_id) ===
+        Number(context.inactive_mapping_repair_source_product_id) &&
+      (row.meta?.inactive_mapping_repair?.authority_fingerprint !==
+        context.inactive_mapping_repair_authority_fingerprint ||
+        row.meta?.reviewed_invalidation !== undefined)
+    ) {
+      failures.push(`inactive_mapping_repair_readback_mismatch:${row.external_id}`);
+    }
     const binding = context.master_authority_bindings.find(item => item.candidate_fingerprint === candidate.candidate_fingerprint);
     if (!binding || row.meta?.master_authority_fingerprint !== context.master_authority_fingerprint ||
         tcgplayerExactMappingApplyFingerprintV1(row.meta?.master_authority_binding ?? null) !== tcgplayerExactMappingApplyFingerprintV1(binding)) {
@@ -562,16 +666,29 @@ function buildRollbackManifest(rows, context) {
     schema_version: "TCGPLAYER_MARKET_EXACT_MAPPING_ROLLBACK_MANIFEST_V1",
     maintenance_run_id: context.maintenance_run_id,
     batch_fingerprint: context.batch_fingerprint,
-    operation: "deactivate_exact_inserted_mapping_ids",
-    mapping_rows: rows.map((row) => ({
-      mapping_id: row.id,
-      source: row.source,
-      external_id: row.external_id,
-      card_print_id: row.card_print_id,
-      expected_candidate_fingerprint:
-        row.meta?.candidate_fingerprint ?? null,
-      expected_active_state: true,
-    })),
+    operation: context.inactive_mapping_repair_rollback
+      ? "deactivate_inserted_and_restore_one_inactive_mapping"
+      : "deactivate_exact_inserted_mapping_ids",
+    mapping_rows: rows.map((row) => {
+      const repair =
+        String(row.external_id) ===
+        String(context.inactive_mapping_repair_source_product_id);
+      return {
+        mapping_id: row.id,
+        source: row.source,
+        external_id: row.external_id,
+        card_print_id: row.card_print_id,
+        expected_candidate_fingerprint:
+          row.meta?.candidate_fingerprint ?? null,
+        expected_active_state: true,
+        rollback_action: repair
+          ? "restore_inactive_mapping"
+          : "deactivate_inserted_mapping",
+        ...(repair
+          ? { restore: context.inactive_mapping_repair_rollback }
+          : {}),
+      };
+    }),
   };
 }
 
@@ -605,6 +722,7 @@ async function main() {
       excludedTargetCardPrintIds: canary.target_card_print_ids,
     },
   );
+  const inactiveRepair = await loadInactiveRepairAuthority(selection);
   const masterAuthorityPath = resolveRepoPath(process.env[MASTER_AUTHORITY_PATH_ENV], MASTER_AUTHORITY_PATH_ENV);
   const masterAuthoritySha = text(process.env[MASTER_AUTHORITY_SHA_ENV]);
   if (!/^[a-f0-9]{64}$/.test(masterAuthoritySha)) throw new Error(`${MASTER_AUTHORITY_SHA_ENV}_INVALID`);
@@ -628,6 +746,10 @@ async function main() {
     producing_commit_sha: frozen.commitSha,
     master_authority_fingerprint: authorityProof.fingerprint,
     master_authority_bindings: authorityProof.bindings,
+    inactive_mapping_repair_authority_fingerprint:
+      inactiveRepair?.authority.fingerprint ?? null,
+    inactive_mapping_repair_source_product_id:
+      inactiveRepair?.authority.source_product_id ?? null,
   };
   const runPlan = {
     script_version: SCRIPT_VERSION,
@@ -646,10 +768,18 @@ async function main() {
     canary_id: canary.canary_id,
     candidate_count: selection.candidate_count,
     selected_count: selection.selected_count,
+    planned_insert_count: selection.selected_count - (inactiveRepair ? 1 : 0),
+    planned_inactive_repair_count: inactiveRepair ? 1 : 0,
     canary_excluded_count: selection.excluded_count,
     batch_fingerprint: selection.batch_fingerprint,
     master_authority_fingerprint: authorityProof.fingerprint,
     master_authority_sha256: masterAuthoritySha,
+    inactive_mapping_repair_authority_path:
+      inactiveRepair?.authorityPathRelative ?? null,
+    inactive_mapping_repair_authority_sha256:
+      inactiveRepair?.authoritySha256 ?? null,
+    inactive_mapping_repair_authority_fingerprint:
+      inactiveRepair?.authority.fingerprint ?? null,
     selected_source_product_ids: selection.selected.map((row) =>
       Number(row.source_product_id),
     ),
@@ -659,8 +789,9 @@ async function main() {
     boundaries: {
       dry_run_default: true,
       database_writes: mode === "apply",
-      insert_only: true,
-      existing_mapping_updates: false,
+      insert_only: !inactiveRepair,
+      inactive_mapping_retarget_updates: inactiveRepair ? 1 : 0,
+      existing_mapping_updates: Boolean(inactiveRepair),
       existing_mapping_deletes: false,
       publication_writes: false,
       customer_state_writes: false,
@@ -672,12 +803,21 @@ async function main() {
     runPlanContents,
   );
   await fs.writeFile(path.join(outDir, "master_authority.json"), masterAuthorityBytes, { flag: "wx" });
+  if (inactiveRepair) {
+    await fs.writeFile(
+      path.join(outDir, "inactive_mapping_repair_authority.json"),
+      inactiveRepair.authorityBytes,
+      { flag: "wx" },
+    );
+  }
 
   const url = connectionString();
   if (!url) throw new Error("database connection string is required");
   const databaseConfig = mappingDatabaseConfig(url, { mode });
   const client = new Client(databaseConfig);
   let inserted = [];
+  let repaired = [];
+  let written = [];
   let readback = [];
   const transaction = mappingTransactionState();
   let live;
@@ -704,16 +844,48 @@ async function main() {
       selection.selected,
       frozen.sourcePlan.source_sync_run_id,
       live,
+      inactiveRepair,
     );
     if (liveFailures.length > 0) {
       throw new Error(`LIVE_PRECONDITION_FAILED:${JSON.stringify(liveFailures)}`);
     }
+    const repairLiveMapping = inactiveRepair
+      ? live.sourceMappings.find(
+          (row) =>
+            row.external_id === String(inactiveRepair.authority.source_product_id),
+        )
+      : null;
+    if (inactiveRepair) {
+      assertTcgplayerInactiveMappingRepairAuthorityV1(inactiveRepair.authority, {
+        candidate: inactiveRepair.candidate,
+        liveMapping: repairLiveMapping,
+      });
+      context.inactive_mapping_repair_rollback = {
+        card_print_id: repairLiveMapping.card_print_id,
+        active: false,
+        synced_at: new Date(repairLiveMapping.synced_at).toISOString(),
+        meta: repairLiveMapping.meta,
+      };
+    }
     assertMasterMappingBatchAuthority(selection.selected, masterAuthority, { liveTargets: live.targets });
     if (sha256(await fs.readFile(masterAuthorityPath)) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_CHANGED_DURING_PREFLIGHT");
+    if (
+      inactiveRepair &&
+      sha256(await fs.readFile(inactiveRepair.authorityPath)) !==
+        inactiveRepair.authoritySha256
+    ) {
+      throw new Error("INACTIVE_REPAIR_AUTHORITY_CHANGED_DURING_PREFLIGHT");
+    }
 
     if (mode === "apply") {
       assertCanonMaintenanceWriteAllowed();
-      const insertPayload = selection.selected.map((candidate) => ({
+      const insertCandidates = selection.selected.filter(
+        (candidate) =>
+          !inactiveRepair ||
+          Number(candidate.source_product_id) !==
+            Number(inactiveRepair.authority.source_product_id),
+      );
+      const insertPayload = insertCandidates.map((candidate) => ({
         card_print_id: candidate.target.card_print_id,
         external_id: String(candidate.source_product_id),
         meta: buildTcgplayerExactMappingMetaV1(candidate, context),
@@ -746,28 +918,87 @@ async function main() {
           [JSON.stringify(insertPayload)],
         )
       ).rows;
-      if (inserted.length !== selection.selected.length) {
+      if (inserted.length !== insertCandidates.length) {
         throw new Error(
-          `INSERT_RECONCILIATION_FAILED:${inserted.length}/${selection.selected.length}`,
+          `INSERT_RECONCILIATION_FAILED:${inserted.length}/${insertCandidates.length}`,
+        );
+      }
+      if (inactiveRepair) {
+        const exactMappingMeta = buildTcgplayerExactMappingMetaV1(
+          inactiveRepair.candidate,
+          context,
+        );
+        const repairedMeta = buildTcgplayerInactiveMappingRepairMetaV1({
+          authority: inactiveRepair.authority,
+          liveMapping: repairLiveMapping,
+          exactMappingMeta,
+        });
+        repaired = (
+          await client.query(
+            `update public.external_mappings
+                set card_print_id = $1::uuid,
+                    meta = $2::jsonb,
+                    active = true,
+                    synced_at = now()
+              where id = $3::bigint
+                and source = 'tcgplayer'
+                and external_id = $4::text
+                and card_print_id = $5::uuid
+                and active = false
+                and meta = $6::jsonb
+              returning id::text, card_print_id::text, source, external_id,
+                        meta, synced_at, active`,
+            [
+              inactiveRepair.candidate.target.card_print_id,
+              repairedMeta,
+              inactiveRepair.authority.mapping_id,
+              String(inactiveRepair.authority.source_product_id),
+              inactiveRepair.authority.expected_current.card_print_id,
+              repairLiveMapping.meta,
+            ],
+          )
+        ).rows;
+        if (repaired.length !== 1) {
+          throw new Error(`INACTIVE_REPAIR_RECONCILIATION_FAILED:${repaired.length}/1`);
+        }
+      }
+      written = [...inserted, ...repaired];
+      if (written.length !== selection.selected.length) {
+        throw new Error(
+          `WRITE_RECONCILIATION_FAILED:${written.length}/${selection.selected.length}`,
         );
       }
       assertMasterMappingBatchAuthority(selection.selected, masterAuthority, {
         liveTargets: (await loadLiveState(client, selection.selected, frozen.sourcePlan.source_sync_run_id)).targets,
       });
       if (sha256(await fs.readFile(masterAuthorityPath)) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_CHANGED_BEFORE_COMMIT");
-      const precommitReadback = await readAppliedMappings(client, inserted.map(row => row.id));
-      const precommitFailures = validateAppliedReadback(selection.selected, inserted, precommitReadback, context);
+      if (
+        inactiveRepair &&
+        sha256(await fs.readFile(inactiveRepair.authorityPath)) !==
+          inactiveRepair.authoritySha256
+      ) {
+        throw new Error("INACTIVE_REPAIR_AUTHORITY_CHANGED_BEFORE_COMMIT");
+      }
+      const precommitReadback = await readAppliedMappings(client, written.map(row => row.id));
+      const precommitFailures = validateAppliedReadback(selection.selected, written, precommitReadback, context);
       if (precommitFailures.length) throw new Error(`PRE_COMMIT_READBACK_FAILED:${JSON.stringify(precommitFailures)}`);
       await fs.writeFile(path.join(outDir, "precommit_readback.json"), `${JSON.stringify({ context, mappings: precommitReadback }, null, 2)}\n`, { flag: "wx" });
       if (sha256(await fs.readFile(masterAuthorityPath)) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_CHANGED_BEFORE_COMMIT");
+      if (
+        inactiveRepair &&
+        sha256(await fs.readFile(inactiveRepair.authorityPath)) !==
+          inactiveRepair.authoritySha256
+      ) {
+        throw new Error("INACTIVE_REPAIR_AUTHORITY_CHANGED_BEFORE_COMMIT");
+      }
       await commitMappingTransaction(client, transaction);
       readback = await readAppliedMappings(
         client,
-        inserted.map((row) => row.id),
+        written.map((row) => row.id),
       );
       const readbackFailures = validateAppliedReadback(
         selection.selected,
-        inserted,
+        written,
         readback,
         context,
       );
@@ -781,8 +1012,11 @@ async function main() {
     }
   } catch (error) {
     if (!transaction.rollback_attempted) await rollbackMappingTransaction(client, transaction).catch(() => {});
+    const attemptedRows = readback.length > 0
+      ? readback
+      : [...inserted, ...repaired];
     const rollbackManifest = buildRollbackManifest(
-      readback.length > 0 ? readback : inserted,
+      attemptedRows,
       context,
     );
     const failure = {
@@ -797,6 +1031,12 @@ async function main() {
     };
     await writeArtifacts(outDir, {
       "master_authority.json": masterAuthorityBytes,
+      ...(inactiveRepair
+        ? {
+            "inactive_mapping_repair_authority.json":
+              inactiveRepair.authorityBytes,
+          }
+        : {}),
       "run_plan.json": runPlanContents,
       "summary.json": `${JSON.stringify(failure, null, 2)}\n`,
       "selected_candidates.jsonl": jsonl(selection.selected),
@@ -804,6 +1044,7 @@ async function main() {
         ? `${JSON.stringify(live, null, 2)}\n`
         : "",
       "inserted_mappings.jsonl": jsonl(inserted),
+      "repaired_mappings.jsonl": jsonl(repaired),
       "mapping_readback.jsonl": jsonl(readback),
       "rollback_manifest.json": `${JSON.stringify(rollbackManifest, null, 2)}\n`,
     });
@@ -820,7 +1061,10 @@ async function main() {
     ...transaction,
     candidate_count: selection.candidate_count,
     selected_count: selection.selected_count,
+    planned_insert_count: selection.selected_count - (inactiveRepair ? 1 : 0),
+    planned_inactive_repair_count: inactiveRepair ? 1 : 0,
     inserted_count: inserted.length,
+    repaired_count: repaired.length,
     readback_count: readback.length,
     canary_excluded_count: selection.excluded_count,
     active_publication_overlap_count:
@@ -828,18 +1072,25 @@ async function main() {
     batch_fingerprint: selection.batch_fingerprint,
     source_sync_run_id: frozen.sourcePlan.source_sync_run_id,
     candidate_artifact_sha256: frozen.candidateArtifactSha256,
-    database_writes: mode === "apply" ? inserted.length : 0,
+    database_writes: mode === "apply" ? inserted.length + repaired.length : 0,
     publication_writes: 0,
     customer_state_writes: 0,
   };
   const rollbackManifest = buildRollbackManifest(readback, context);
   await writeArtifacts(outDir, {
     "master_authority.json": masterAuthorityBytes,
+    ...(inactiveRepair
+      ? {
+          "inactive_mapping_repair_authority.json":
+            inactiveRepair.authorityBytes,
+        }
+      : {}),
     "run_plan.json": runPlanContents,
     "summary.json": `${JSON.stringify(summary, null, 2)}\n`,
     "selected_candidates.jsonl": jsonl(selection.selected),
     "live_precondition_readback.json": `${JSON.stringify(live, null, 2)}\n`,
     "inserted_mappings.jsonl": jsonl(inserted),
+    "repaired_mappings.jsonl": jsonl(repaired),
     "mapping_readback.jsonl": jsonl(readback),
     "rollback_manifest.json": `${JSON.stringify(rollbackManifest, null, 2)}\n`,
   });
