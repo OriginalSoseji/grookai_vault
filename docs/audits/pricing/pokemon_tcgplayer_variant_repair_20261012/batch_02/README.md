@@ -14,7 +14,9 @@ The two Mega Evolution Promo observations require no new catalog printing.
 TCGPlayer calls each price row `Normal`, while the frozen TCGdex and English Master
 Index evidence classify Inteleon 002 and Lunatone 004 as holo-only. The plan binds
 those two source rows to the existing holo children and explicitly forbids creating
-invented Normal children.
+invented Normal children. Each assignment is pinned to its reviewed TCGCSV product
+hash, candidate fingerprint, pricing observation, sync run, artifact, and source-row
+hash. The plan fingerprint also covers the complete evidence manifest.
 
 Before any production mutation, the implementation must pass a Gym catalog
 identity rollback rehearsal, a Gym runtime binding rollback rehearsal, a retained

@@ -24,6 +24,10 @@
       "sha256": "878092b02bd1db4db702d918228cc6ca5007ca664f5058c7a55888fede9d6d40"
     },
     {
+      "path": "docs/audits/pricing/pokemon_tcgplayer_variant_repair_20261012/batch_02/reviewed_mep_source_rows.json",
+      "sha256": "d8dc9e34c3a40b5c36d631069b95b28ef6830c14287fd57de675a34f05703b68"
+    },
+    {
       "path": "docs/audits/english_master_index_publishable_v1/sets/mep/printings.json",
       "sha256": "4154a8907928b41850b3f74bfa2eb12acb7607fc1217f432dd2c1851ab65e31b"
     },
@@ -33,7 +37,7 @@
       "use": "verified-TLS production read-only snapshot; intentionally untracked operator evidence"
     }
   ],
-  "plan_fingerprint": "005cdc2b8266c05cd52d3d0bc3ee0d10f826e1200d2cc57f1c15eb7658cf6735",
+  "plan_fingerprint": "ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
   "plan": {
     "gym_challenge_edition_identity": {
       "operation": "create_exact_edition_identities_then_bind_current_observations",
@@ -122,6 +126,17 @@
           "source_product_id": 654596,
           "source_subtype_name": "Normal",
           "source_normalized_finish_key": "normal",
+          "reviewed_source_products_payload_sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957",
+          "reviewed_source_product_sha256": "65988cf3a595e676cc5ac8417d261f93330742ac1a612c4f155e3eec1d42457d",
+          "source_candidate_fingerprint": "d1509f19057ae377d983ea6640fd02e47487deea1732278179aadcf248a54b59",
+          "mapping_gap_observation_id": "9360612f-a90c-4236-a5b9-29de21a8b875",
+          "source_observation_id": "2664dc1d-4e03-43cb-8346-0ca5f10c4b19",
+          "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+          "source_artifact_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+          "source_artifact_hash": "368ce87a576166ae265ddecaa1289ed4f0bd233523c3a717ae2a626721a62697",
+          "source_price_row_identity": "tcgplayer:654596:normal",
+          "source_row_hash": "805ec6c5626b16379810d29c22f426f994c90f580e8b9f63997c9d15aa8140a0",
+          "source_observed_on": "2026-10-12T06:00:00.000Z",
           "assigned_finish_key": "holo",
           "card_number": "002",
           "card_name": "Inteleon",
@@ -135,6 +150,17 @@
           "source_product_id": 654598,
           "source_subtype_name": "Normal",
           "source_normalized_finish_key": "normal",
+          "reviewed_source_products_payload_sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957",
+          "reviewed_source_product_sha256": "da3644e729758eb2cb8e978b83bd8e4b315823ed4791725a0d5ba772ac814f73",
+          "source_candidate_fingerprint": "790628b1719919a066b06fca06b9d7e5b90f015843f1fca05914663ba535f2ce",
+          "mapping_gap_observation_id": "47ff952e-ee35-445e-98bd-adb69949c42a",
+          "source_observation_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
+          "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+          "source_artifact_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+          "source_artifact_hash": "368ce87a576166ae265ddecaa1289ed4f0bd233523c3a717ae2a626721a62697",
+          "source_price_row_identity": "tcgplayer:654598:normal",
+          "source_row_hash": "7e71d9924a5d2fe4ad97f84430070b723270e487deb64af2861442ee72c98207",
+          "source_observed_on": "2026-10-12T06:00:00.000Z",
           "assigned_finish_key": "holo",
           "card_number": "004",
           "card_name": "Lunatone",

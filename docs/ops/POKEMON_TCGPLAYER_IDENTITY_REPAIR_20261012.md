@@ -190,7 +190,7 @@ No prices from this batch are live. Batch 02 now freezes the remaining six rows
 under
 `docs/audits/pricing/pokemon_tcgplayer_variant_repair_20261012/batch_02` with plan
 fingerprint
-`005cdc2b8266c05cd52d3d0bc3ee0d10f826e1200d2cc57f1c15eb7658cf6735`.
+`ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495`.
 
 A verified-TLS production readback found that only the ordinary Gym parents and
 their Normal children remain live. The June PKG-10BB receipt proves that
