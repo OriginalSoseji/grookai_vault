@@ -10,6 +10,7 @@ import {
 } from "../../backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs";
 import {
   buildTcgplayerIdentityMappingWorklistV1,
+  escapeTcgplayerWorklistMarkdownCellV1,
 } from "../../backend/pricing/tcgplayer_identity_mapping_worklist_v1.mjs";
 
 const { Client } = pg;
@@ -82,17 +83,17 @@ function markdown(report) {
     "| Source category | Completion owner | Rows | Products | Groups |",
     "|---|---|---:|---:|---:|",
     ...report.identity_mapping_worklist.categories.map((row) =>
-      `| ${row.source_category_name.replace(/\|/g, "\\|")} | ${row.agent_key} | ${row.backlog_rows} | ${row.source_products} | ${row.source_groups} |`),
+      `| ${escapeTcgplayerWorklistMarkdownCellV1(row.source_category_name)} | ${row.agent_key} | ${row.backlog_rows} | ${row.source_products} | ${row.source_groups} |`),
     "",
     "| Routed scope | Completion owner | Rows | Products | Groups |",
     "|---|---|---:|---:|---:|",
     ...report.identity_mapping_worklist.routes.map((row) =>
-      `| ${row.source_category_name.replace(/\|/g, "\\|")} / ${row.product_scope_result} | ${row.agent_key} | ${row.backlog_rows} | ${row.source_products} | ${row.source_groups} |`),
+      `| ${escapeTcgplayerWorklistMarkdownCellV1(row.source_category_name)} / ${row.product_scope_result} | ${row.agent_key} | ${row.backlog_rows} | ${row.source_products} | ${row.source_groups} |`),
     "",
     "| Source group | Rows | Products |",
     "|---|---:|---:|",
     ...report.identity_mapping_worklist.top_groups.map((row) =>
-      `| ${row.source_group_name.replace(/\|/g, "\\|")} | ${row.backlog_rows} | ${row.source_products} |`),
+      `| ${escapeTcgplayerWorklistMarkdownCellV1(row.source_group_name)} | ${row.backlog_rows} | ${row.source_products} |`),
     "",
     ...(report.findings.length
       ? ["## Findings", "", ...report.findings.map((finding) => `- ${finding}`), ""]

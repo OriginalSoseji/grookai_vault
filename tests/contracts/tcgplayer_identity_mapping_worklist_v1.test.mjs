@@ -3,8 +3,16 @@ import test from "node:test";
 
 import {
   buildTcgplayerIdentityMappingWorklistV1,
+  escapeTcgplayerWorklistMarkdownCellV1,
   TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
 } from "../../backend/pricing/tcgplayer_identity_mapping_worklist_v1.mjs";
+
+test("worklist Markdown cells escape backslashes, pipes, and line breaks", () => {
+  assert.equal(
+    escapeTcgplayerWorklistMarkdownCellV1("A\\B | C\nD"),
+    "A\\\\B \\| C D",
+  );
+});
 
 const rows = [
   {

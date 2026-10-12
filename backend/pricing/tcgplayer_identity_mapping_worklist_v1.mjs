@@ -18,6 +18,13 @@ function integer(value) {
   return Number.isFinite(parsed) ? Math.trunc(parsed) : null;
 }
 
+export function escapeTcgplayerWorklistMarkdownCellV1(value) {
+  return text(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/\|/g, "\\|")
+    .replace(/\r?\n/g, " ");
+}
+
 export function buildTcgplayerIdentityMappingWorklistV1(
   rows,
   { expectedRowCount = null } = {},
