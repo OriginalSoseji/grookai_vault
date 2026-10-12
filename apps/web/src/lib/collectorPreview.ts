@@ -3,6 +3,7 @@ export const collectorPreview = process.env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_O
 
 export const PREVIEW_READ_RPCS = new Set([
   "get_public_catalog_sets_v2", "get_public_card_printing_options_v1",
+  "get_public_card_print_identity_aliases_v1",
   "card_print_public_traits_v1", "get_card_print_image_faces_v1",
   "card_journey_public_counts_v1", "search_card_prints_v1",
   "search_print_identity_v1", "search_game_card_prints_v4",

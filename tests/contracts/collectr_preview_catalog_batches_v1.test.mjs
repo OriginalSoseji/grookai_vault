@@ -27,7 +27,7 @@ function fixture({failure=null}={}) {
    }
    return resolve({data:rows,error:null});
   }};return q;
- },rpc:async(name,args)=>({data:prints.filter(p=>args.p_card_print_ids.includes(p.card_print_id)).slice(args.p_offset,args.p_offset+7),error:null})};
+ },rpc:async(name,args)=>name==='get_public_card_print_identity_aliases_v1'?{data:[],error:null}:{data:prints.filter(p=>args.p_card_print_ids.includes(p.card_print_id)).slice(args.p_offset,args.p_offset+7),error:null}};
  return{client,state,cards};
 }
 

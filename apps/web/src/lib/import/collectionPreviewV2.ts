@@ -6,6 +6,7 @@ import { matchesCollectrPokemonName } from "../../../../../supabase/functions/va
 import { matchesCollectrMtgIdentity } from "../../../../../supabase/functions/vault-import-collection-v2/mtg_identity.ts";
 import { collectrPokemonNamedFinish } from "../../../../../supabase/functions/vault-import-collection-v2/pokemon_named_finish.ts";
 import { catalogConflictMessage, collectionCatalogConflictIds } from "./collectionCatalogConflicts.ts";
+import { getPublicCardPrintIdentityAliases, preferCanonicalCardCandidates } from "../cards/getPublicCardPrintIdentityAliases.ts";
 
 export type CollectionSelection = { sourceIndices: number[]; cardId: string; gvId: string; cardPrintingId: string | null };
 export type CollectionReviewCandidate = {
@@ -155,6 +156,11 @@ export async function buildCollectionPreviewV2(client: SupabaseClient, ownerId: 
       matchesCollectrPokemonName({ sourceName: base.name, sourceNumber: base.number, game: base.game, card }) ||
       matchesCollectrMtgIdentity({ sourceName: base.name, sourceNumber: base.number, sourceFinishKey: base.finishKey, game: base.game, card, identities: identities.get(card.id) ?? [] })
     ))));
+  }
+  const matchedCardIds = [...new Set([...matches.values()].flat().map(card => card.id))].sort();
+  const aliases = await getPublicCardPrintIdentityAliases(client, matchedCardIds);
+  for (const [row, candidates] of matches) {
+    matches.set(row, preferCanonicalCardCandidates(candidates, aliases));
   }
   const editionReview = new Map<string, string>();
   for (const card of cards.filter(card => card.set_code === "base2")) {
