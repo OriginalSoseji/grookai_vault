@@ -1,0 +1,44 @@
+{
+  "version": "POKEMON_TCGPLAYER_MEP_REVIEWED_SOURCE_ROWS_V1",
+  "source_products": {
+    "path": "docs/audits/pricing/pokemon_tcgplayer_identity_repair_20261012/batch_01/authority/mep/sources/24451-products.json",
+    "sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957",
+    "product_hash_algorithm": "sha256(JSON.stringify(parsed_product))"
+  },
+  "pricing_decisions": {
+    "path": "artifacts/pokemon_tcgplayer_identity_repair_20261012/batch_01/post_mapping_pricing_dry_run/tcgplayer-market-post-mapping-dry-run-2026-10-12/qualification_decisions.jsonl",
+    "sha256": "7d9d71120485ef5daab34eab77fb680b997308a38ede9259360fbf5446a23254",
+    "byte_size": 764155698,
+    "use": "retained operator evidence; the two exact rows below are the tracked review extract"
+  },
+  "rows": [
+    {
+      "source_product_id": 654596,
+      "reviewed_source_product_sha256": "65988cf3a595e676cc5ac8417d261f93330742ac1a612c4f155e3eec1d42457d",
+      "source_candidate_fingerprint": "d1509f19057ae377d983ea6640fd02e47487deea1732278179aadcf248a54b59",
+      "mapping_gap_observation_id": "9360612f-a90c-4236-a5b9-29de21a8b875",
+      "source_observation_id": "2664dc1d-4e03-43cb-8346-0ca5f10c4b19",
+      "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+      "source_artifact_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+      "source_artifact_hash": "368ce87a576166ae265ddecaa1289ed4f0bd233523c3a717ae2a626721a62697",
+      "source_price_row_identity": "tcgplayer:654596:normal",
+      "source_row_hash": "805ec6c5626b16379810d29c22f426f994c90f580e8b9f63997c9d15aa8140a0",
+      "source_observed_on": "2026-10-12T06:00:00.000Z",
+      "market_price_usd": "12.21"
+    },
+    {
+      "source_product_id": 654598,
+      "reviewed_source_product_sha256": "da3644e729758eb2cb8e978b83bd8e4b315823ed4791725a0d5ba772ac814f73",
+      "source_candidate_fingerprint": "790628b1719919a066b06fca06b9d7e5b90f015843f1fca05914663ba535f2ce",
+      "mapping_gap_observation_id": "47ff952e-ee35-445e-98bd-adb69949c42a",
+      "source_observation_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
+      "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+      "source_artifact_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+      "source_artifact_hash": "368ce87a576166ae265ddecaa1289ed4f0bd233523c3a717ae2a626721a62697",
+      "source_price_row_identity": "tcgplayer:654598:normal",
+      "source_row_hash": "7e71d9924a5d2fe4ad97f84430070b723270e487deb64af2861442ee72c98207",
+      "source_observed_on": "2026-10-12T06:00:00.000Z",
+      "market_price_usd": "18.2"
+    }
+  ]
+}
