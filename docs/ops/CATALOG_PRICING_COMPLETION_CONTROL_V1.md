@@ -30,3 +30,14 @@ node scripts/audits/tcgplayer_pricing_backlog_v1.mjs --out-root=<artifact-direct
 ```
 
 It also preserves all reason occurrences for diagnosis because a row can fail several checks. The mutually exclusive primary-reason counts must equal the full non-published count or the audit is invalid.
+
+The same command emits `identity_mapping_gaps.jsonl` and
+`identity_mapping_groups.json`. These files are the bounded planner input and
+source-group priority queue for the existing exact-mapping repair. They come
+from the latest verified production run without scanning the complete historical
+coverage view.
+
+The identity worklist is split by TCG category. Pokémon rows route to the
+Pokémon exact-mapping planner, while Magic rows route to the MTG identity repair
+lane. A combined mapping owner is not allowed to pass Pokémon assumptions into
+MTG canonical identity.

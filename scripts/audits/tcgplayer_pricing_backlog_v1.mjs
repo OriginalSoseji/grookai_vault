@@ -8,6 +8,9 @@ import "../../backend/env.mjs";
 import {
   evaluateTcgplayerPricingBacklogV1,
 } from "../../backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs";
+import {
+  buildTcgplayerIdentityMappingWorklistV1,
+} from "../../backend/pricing/tcgplayer_identity_mapping_worklist_v1.mjs";
 
 const { Client } = pg;
 
@@ -43,6 +46,12 @@ function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+function jsonl(rows) {
+  return rows.length
+    ? `${rows.map((row) => JSON.stringify(row)).join("\n")}\n`
+    : "";
+}
+
 function markdown(report) {
   return [
     "# TCGPlayer Pricing Completion Backlog",
@@ -62,6 +71,28 @@ function markdown(report) {
     "|---|---|---:|---|",
     ...report.primary_reasons.map((row) =>
       `| ${row.decision} | ${row.primary_reason} | ${row.count} | ${row.lane_id} |`),
+    "",
+    "## Identity Mapping Worklist",
+    "",
+    `- Status: \`${report.identity_mapping_worklist.status}\``,
+    `- Backlog rows: \`${report.identity_mapping_worklist.counts.backlog_rows}\``,
+    `- Source products: \`${report.identity_mapping_worklist.counts.source_products}\``,
+    `- Source groups: \`${report.identity_mapping_worklist.counts.source_groups}\``,
+    "",
+    "| Source category | Completion owner | Rows | Products | Groups |",
+    "|---|---|---:|---:|---:|",
+    ...report.identity_mapping_worklist.categories.map((row) =>
+      `| ${row.source_category_name.replace(/\|/g, "\\|")} | ${row.agent_key} | ${row.backlog_rows} | ${row.source_products} | ${row.source_groups} |`),
+    "",
+    "| Routed scope | Completion owner | Rows | Products | Groups |",
+    "|---|---|---:|---:|---:|",
+    ...report.identity_mapping_worklist.routes.map((row) =>
+      `| ${row.source_category_name.replace(/\|/g, "\\|")} / ${row.product_scope_result} | ${row.agent_key} | ${row.backlog_rows} | ${row.source_products} | ${row.source_groups} |`),
+    "",
+    "| Source group | Rows | Products |",
+    "|---|---:|---:|",
+    ...report.identity_mapping_worklist.top_groups.map((row) =>
+      `| ${row.source_group_name.replace(/\|/g, "\\|")} | ${row.backlog_rows} | ${row.source_products} |`),
     "",
     ...(report.findings.length
       ? ["## Findings", "", ...report.findings.map((finding) => `- ${finding}`), ""]
@@ -86,7 +117,7 @@ async function main() {
     await client.query("begin isolation level repeatable read read only");
     await client.query("set local lock_timeout = '3s'");
     const run = (await client.query(
-      `select id, run_key, selected_count, eligible_count, snapshot_count,
+      `select id, run_key, source_sync_run_id, selected_count, eligible_count, snapshot_count,
               excluded_count, quarantined_count, delayed_count,
               suppressed_count, completed_at
          from public.market_price_pipeline_runs
@@ -119,27 +150,105 @@ async function main() {
         order by count(*) desc, decision, reason.reason`,
       [run.id],
     )).rows;
+    const identityRows = (await client.query(
+      `select
+              decision.decision,
+              decision.reason_codes[1] as primary_reason,
+              decision.source_observation_id::text,
+              decision.source_product_id,
+              decision.source_subtype_name,
+              product.name as source_product_name,
+              product.category_id as source_category_id,
+              coalesce(category.display_name, category.name)
+                as source_category_name,
+              product.group_id as source_group_id,
+              source_group.name as source_group_name,
+              decision.evidence ->> 'product_scope_result'
+                as product_scope_result,
+              decision.evidence ->> 'product_scope_rule_id'
+                as product_scope_rule_id
+         from public.market_price_qualification_decisions decision
+         join public.tcgcsv_source_products product
+           on product.product_id = decision.source_product_id
+         join public.tcgcsv_source_groups source_group
+           on source_group.group_id = product.group_id
+         join public.tcgcsv_source_categories category
+           on category.category_id = product.category_id
+        where decision.run_id = $1::uuid
+          and decision.decision <> 'publish'
+          and decision.reason_codes[1] = any($2::text[])
+        order by product.group_id, decision.source_product_id,
+                 decision.source_subtype_name, decision.source_observation_id`,
+      [run.id, ["missing_active_source_mapping", "missing_mapping_method"]],
+    )).rows;
     await client.query("rollback");
 
+    const evaluated = evaluateTcgplayerPricingBacklogV1({
+      run,
+      primaryReasons,
+      reasonOccurrences,
+    });
+    const expectedIdentityRows = evaluated.lanes.find((lane) =>
+      lane.lane_id === "identity_mapping")?.backlog_count ?? 0;
+    const identityWorklist = buildTcgplayerIdentityMappingWorklistV1(identityRows, {
+      expectedRowCount: expectedIdentityRows,
+    });
     const report = {
-      ...evaluateTcgplayerPricingBacklogV1({ run, primaryReasons, reasonOccurrences }),
+      ...evaluated,
+      identity_mapping_worklist: {
+        policy_version: identityWorklist.policy_version,
+        status: identityWorklist.status,
+        counts: identityWorklist.counts,
+        findings: identityWorklist.findings,
+        routes: identityWorklist.routes,
+        categories: identityWorklist.categories,
+        top_groups: identityWorklist.groups.slice(0, 30),
+      },
       generated_at: new Date().toISOString(),
       read_only: true,
     };
+    if (identityWorklist.status !== "ready") {
+      report.status = "invalid";
+      report.findings = [
+        ...report.findings,
+        ...identityWorklist.findings.map((finding) =>
+          `identity_mapping_worklist:${finding}`),
+      ];
+    }
     const runDir = path.join(args.outRoot, stamp());
     await fs.mkdir(runDir, { recursive: true });
     const summary = `${JSON.stringify(report, null, 2)}\n`;
     const reportMarkdown = markdown(report);
+    const identityGaps = jsonl(identityWorklist.gaps);
+    const pokemonIdentityGaps = jsonl(identityWorklist.gaps.filter((row) =>
+      row.source_category_id === 3
+      && row.product_scope_result === "in_scope"));
+    const mtgIdentityGaps = jsonl(identityWorklist.gaps.filter((row) =>
+      row.source_category_id === 1
+      && row.product_scope_result === "in_scope"));
+    const identityGroups = `${JSON.stringify(identityWorklist.groups, null, 2)}\n`;
     const hashes = {
       "summary.json": sha256(summary),
       "REPORT.md": sha256(reportMarkdown),
+      "identity_mapping_gaps.jsonl": sha256(identityGaps),
+      "pokemon_identity_mapping_gaps.jsonl": sha256(pokemonIdentityGaps),
+      "mtg_identity_mapping_gaps.jsonl": sha256(mtgIdentityGaps),
+      "identity_mapping_groups.json": sha256(identityGroups),
     };
     await Promise.all([
       fs.writeFile(path.join(runDir, "summary.json"), summary),
       fs.writeFile(path.join(runDir, "REPORT.md"), reportMarkdown),
+      fs.writeFile(path.join(runDir, "identity_mapping_gaps.jsonl"), identityGaps),
+      fs.writeFile(path.join(runDir, "pokemon_identity_mapping_gaps.jsonl"), pokemonIdentityGaps),
+      fs.writeFile(path.join(runDir, "mtg_identity_mapping_gaps.jsonl"), mtgIdentityGaps),
+      fs.writeFile(path.join(runDir, "identity_mapping_groups.json"), identityGroups),
       fs.writeFile(path.join(runDir, "artifact_hashes.json"), `${JSON.stringify(hashes, null, 2)}\n`),
       fs.writeFile(path.join(args.outRoot, "latest.json"), summary),
       fs.writeFile(path.join(args.outRoot, "LATEST.md"), reportMarkdown),
+      fs.writeFile(path.join(args.outRoot, "latest_identity_mapping_gaps.jsonl"), identityGaps),
+      fs.writeFile(path.join(args.outRoot, "latest_pokemon_identity_mapping_gaps.jsonl"), pokemonIdentityGaps),
+      fs.writeFile(path.join(args.outRoot, "latest_mtg_identity_mapping_gaps.jsonl"), mtgIdentityGaps),
+      fs.writeFile(path.join(args.outRoot, "latest_identity_mapping_groups.json"), identityGroups),
     ]);
     process.stdout.write(`${JSON.stringify({
       status: report.status,

@@ -125,6 +125,7 @@ export function evaluateTcgplayerPricingBacklogV1({
     run: {
       id: run?.id ?? null,
       run_key: run?.run_key ?? null,
+      source_sync_run_id: run?.source_sync_run_id ?? null,
       completed_at: run?.completed_at ?? null,
     },
     counts: {
