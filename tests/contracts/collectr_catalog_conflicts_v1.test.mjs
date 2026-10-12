@@ -41,7 +41,7 @@ test('fresh preview keeps conflicting matches held and preserves exact source wi
   const cards=sets.map((s,i)=>({id:`c${i}`,gv_id:`GV-${i}`,name:'Pikachu',number:i?'18':'018',set_id:s.id,set_code:s.code,variant_key:null,printed_identity_modifier:null,identity_domain:'pokemon_eng_standard'}));
   const options=cards.map(c=>({id:`p-${c.id}`,card_print_id:c.id,finish_key:'normal',finish_is_active:true}));
   const tables=[];
-  const client={from(table){tables.push(table);let after=null,scope=null;const q={select:()=>q,order:()=>q,limit:()=>q,gt:(_,v)=>{after=v;return q;},in:(key,values)=>{scope=[key,values];return q;},then(resolve){assert.ok(['sets','card_prints'].includes(table));resolve({data:(table==='sets'?sets:cards).filter(r=>(!after||r.id>after)&&(!scope||scope[1].includes(r[scope[0]]))),error:null});}};return q;},async rpc(name,args){assert.equal(name,'get_public_card_printing_options_v1');return {data:args.p_offset?[]:options,error:null};}};
+  const client={from(table){tables.push(table);let after=null,scope=null;const q={select:()=>q,order:()=>q,limit:()=>q,gt:(_,v)=>{after=v;return q;},in:(key,values)=>{scope=[key,values];return q;},then(resolve){assert.ok(['sets','card_prints'].includes(table));resolve({data:(table==='sets'?sets:cards).filter(r=>(!after||r.id>after)&&(!scope||scope[1].includes(r[scope[0]]))),error:null});}};return q;},async rpc(name,args){if(name==='get_public_card_print_identity_aliases_v1')return {data:[],error:null};assert.equal(name,'get_public_card_printing_options_v1');return {data:args.p_offset?[]:options,error:null};}};
   const p=await buildCollectionPreviewV2(client,'synthetic',csv);
   assert.equal(p.readyRows,0);assert.equal(p.reviewRows,1);assert.equal(p.rows[0].quantity,2);
   assert.match(p.rows[0].reason,/catalog repair/);assert.deepEqual(p.rows[0].source,source);
@@ -55,7 +55,7 @@ test('finish narrowing cannot hide a cross-set catalog conflict',async()=>{
     {id:'p-normal',card_print_id:'c0',finish_key:'normal',finish_is_active:true},
     {id:'p-holo',card_print_id:'c1',finish_key:'holo',finish_is_active:true},
   ];
-  const client={from(table){let after=null,scope=null;const q={select:()=>q,order:()=>q,limit:()=>q,gt:(_,v)=>{after=v;return q;},in:(key,values)=>{scope=[key,values];return q;},then(resolve){resolve({data:(table==='sets'?sets:cards).filter(r=>(!after||r.id>after)&&(!scope||scope[1].includes(r[scope[0]]))),error:null});}};return q;},async rpc(name,args){assert.equal(name,'get_public_card_printing_options_v1');return {data:args.p_offset?[]:options,error:null};}};
+  const client={from(table){let after=null,scope=null;const q={select:()=>q,order:()=>q,limit:()=>q,gt:(_,v)=>{after=v;return q;},in:(key,values)=>{scope=[key,values];return q;},then(resolve){resolve({data:(table==='sets'?sets:cards).filter(r=>(!after||r.id>after)&&(!scope||scope[1].includes(r[scope[0]]))),error:null});}};return q;},async rpc(name,args){if(name==='get_public_card_print_identity_aliases_v1')return {data:[],error:null};assert.equal(name,'get_public_card_printing_options_v1');return {data:args.p_offset?[]:options,error:null};}};
   const p=await buildCollectionPreviewV2(client,'synthetic',csv);
   assert.equal(p.readyRows,0);assert.equal(p.reviewRows,1);
   assert.match(p.rows[0].reason,/catalog repair/);
@@ -64,4 +64,15 @@ test('finish narrowing cannot hide a cross-set catalog conflict',async()=>{
     ['c1',null,null],
   ]);
   for(const c of p.rows[0].review.candidates)assert.match(c.unavailableReason,/catalog records disagree/);
+});
+test('an adjudicated alias selects the canonical parent and its exact finish',async()=>{
+  const sets=[{id:'s1',name:'Example',code:'legacy',game:'pokemon'},{id:'s2',name:'Example',code:'canonical',game:'pokemon'}];
+  const cards=sets.map((s,i)=>({id:`c${i}`,gv_id:`GV-${i}`,name:'Pikachu',number:'018',set_id:s.id,set_code:s.code,variant_key:null,printed_identity_modifier:null,identity_domain:'pokemon_eng_standard'}));
+  const options=[{id:'p-legacy',card_print_id:'c0',finish_key:'normal',finish_is_active:true},{id:'p-canonical',card_print_id:'c1',finish_key:'normal',finish_is_active:true}];
+  const client={from(table){let after=null,scope=null;const q={select:()=>q,order:()=>q,limit:()=>q,gt:(_,v)=>{after=v;return q;},in:(key,values)=>{scope=[key,values];return q;},then(resolve){resolve({data:(table==='sets'?sets:cards).filter(r=>(!after||r.id>after)&&(!scope||scope[1].includes(r[scope[0]]))),error:null});}};return q;},async rpc(name,args){if(name==='get_public_card_print_identity_aliases_v1')return {data:[{legacy_card_print_id:'c0',canonical_card_print_id:'c1',legacy_set_code:'legacy',canonical_set_code:'canonical'}],error:null};return {data:args.p_offset?[]:options.filter(option=>args.p_card_print_ids.includes(option.card_print_id)),error:null};}};
+  const p=await buildCollectionPreviewV2(client,'synthetic',csv);
+  assert.equal(p.readyRows,1);assert.equal(p.reviewRows,0);assert.equal(p.rows[0].selection.cardId,'c1');assert.equal(p.rows[0].selection.cardPrintingId,'p-canonical');
+  options[1].finish_key='holo';
+  const held=await buildCollectionPreviewV2(client,'synthetic',csv);
+  assert.equal(held.readyRows,0);assert.equal(held.rows[0].selection,null);assert.match(held.rows[0].reason,/No verified catalog printing/);
 });

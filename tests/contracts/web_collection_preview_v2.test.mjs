@@ -53,7 +53,7 @@ function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=
   reads.push([table,after]);let rows=table==='sets'?sets:table==='card_prints'?cards:[];
   if(failLate&&table==='card_prints'&&after)return resolve({data:null,error:{message:'offline'}});
   rows=rows.filter(r=>(!after||repeated||r.id>after)&&(!filter||filter[1].includes(r[filter[0]]))).slice(0,1);
-  return resolve({data:rows,error:null});}};return q;},rpc:async(name,a)=>{reads.push([name,a]);if(name==='get_jungle_edition_resolution_v1')return jungle;return {data:printings.filter(p=>a.p_card_print_ids.includes(p.card_print_id)).slice(a.p_offset,a.p_offset+1).map(p=>wrongPrinting?{...p,card_print_id:'foreign'}:p),error:null};}};
+  return resolve({data:rows,error:null});}};return q;},rpc:async(name,a)=>{reads.push([name,a]);if(name==='get_jungle_edition_resolution_v1')return jungle;if(name==='get_public_card_print_identity_aliases_v1')return {data:[],error:null};return {data:printings.filter(p=>a.p_card_print_ids.includes(p.card_print_id)).slice(a.p_offset,a.p_offset+1).map(p=>wrongPrinting?{...p,card_print_id:'foreign'}:p),error:null};}};
  return{client,reads};
 }
 test('complete capped pages, normalized number and explicit finish preserve exact selection',async()=>{

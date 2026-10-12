@@ -36,7 +36,7 @@ test('all writes, auth, Storage, unknown RPCs, off-origin reads fail without net
 });
 test('bounded catalog RPCs work via POST, without broad RPC access', async () => {
   const read = createPreviewReadFetch('https://catalog.supabase.co', 'public-key', async () => Response.json([]));
-  for (const rpc of ['get_public_card_printing_options_v1', 'get_search_set_catalog_v1', 'resolve_visible_set_references_v1']) {
+  for (const rpc of ['get_public_card_printing_options_v1', 'get_public_card_print_identity_aliases_v1', 'get_search_set_catalog_v1', 'resolve_visible_set_references_v1']) {
     assert.equal((await read(`https://catalog.supabase.co/rest/v1/rpc/${rpc}`, { method: 'POST' })).status, 200);
     assert.equal((await read(`https://catalog.supabase.co/rest/v1/rpc/${rpc}`, { method: 'DELETE' })).status, 403);
   }
