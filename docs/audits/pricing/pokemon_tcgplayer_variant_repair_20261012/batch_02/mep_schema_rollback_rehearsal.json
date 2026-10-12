@@ -1,7 +1,7 @@
 {
   "version": "POKEMON_TCGPLAYER_REVIEWED_FINISH_OVERRIDE_SCHEMA_REHEARSAL_V1",
   "status": "passed_rolled_back",
-  "migration_sha256": "6d5e143a50d1af6228caadbb51d09c1e8991e2ef4f78372a1e8976ffb534dbbf",
+  "migration_sha256": "124775b790b651be42cec06670a671b050f775d28030294b85149927bdb98f96",
   "target": {
     "host": "127.0.0.1",
     "port": 5432,
@@ -29,6 +29,11 @@
   ],
   "drift_test": {
     "changed_field": "assignment_payload.source_row_hash",
+    "override_rejected": true,
+    "fallback_status": "no_matching_child_finish"
+  },
+  "truth_quarantine_test": {
+    "public_visibility": "hidden_pending_review",
     "override_rejected": true,
     "fallback_status": "no_matching_child_finish"
   },

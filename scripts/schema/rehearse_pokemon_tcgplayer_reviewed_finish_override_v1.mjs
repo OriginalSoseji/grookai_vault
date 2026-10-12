@@ -39,6 +39,8 @@ create table public.external_mappings(id bigint primary key,source text,external
 create table public.card_prints(id uuid primary key,gv_id text);
 create table public.card_print_identity(card_print_id uuid,identity_domain text,is_active boolean);
 create table public.card_printings(id uuid primary key,card_print_id uuid,finish_key text,printing_gv_id text);
+create table public.card_printing_truth_reviews(
+  id uuid primary key,card_printing_id uuid,active boolean,public_visibility text);
 create table public.market_evidence_variant_assignments(
   id uuid primary key,contract_version text,source_family text,source_table text,source_row_id uuid,
   observation_id uuid,raw_snapshot_id uuid,card_print_id uuid,gv_id text,card_printing_id uuid,
@@ -193,6 +195,16 @@ try {
   assert.equal(drifted.card_printing_id, null);
   assert.equal(drifted.derived_variant_assignment_status, 'no_matching_child_finish');
 
+  await client.query(`insert into public.card_printing_truth_reviews
+    values('00000000-0000-5000-b000-000000654598',$1,true,'hidden_pending_review')`,
+  [rows[1].printing]);
+  const quarantined = (await client.query(
+    'select * from public.v_tcgplayer_market_qualification_candidates_v3 where source_product_id=$1',
+  [rows[1].product])).rows[0];
+  assert.equal(quarantined.normalized_finish_key, 'normal');
+  assert.equal(quarantined.card_printing_id, null);
+  assert.equal(quarantined.derived_variant_assignment_status, 'no_matching_child_finish');
+
   const receipt = {
     version: 'POKEMON_TCGPLAYER_REVIEWED_FINISH_OVERRIDE_SCHEMA_REHEARSAL_V1',
     status: 'passed_rolled_back',
@@ -211,6 +223,11 @@ try {
       changed_field: 'assignment_payload.source_row_hash',
       override_rejected: true,
       fallback_status: drifted.derived_variant_assignment_status,
+    },
+    truth_quarantine_test: {
+      public_visibility: 'hidden_pending_review',
+      override_rejected: true,
+      fallback_status: quarantined.derived_variant_assignment_status,
     },
     database_writes_committed: 0,
     price_publication_writes: 0,

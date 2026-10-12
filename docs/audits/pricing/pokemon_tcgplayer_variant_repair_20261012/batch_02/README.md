@@ -39,7 +39,9 @@ to reproduce it while the retained snapshot is available locally.
 candidate projection that accepts only the two fully reviewed MEP overrides,
 keeps the raw TCGPlayer subtype `Normal`, and presents the governed canonical
 finish as `holo`. A local PostgreSQL transaction proved both rows eligible,
-rejected a changed source-row hash, rolled back, and verified that the new view
-and validation function were absent afterward. No database or price write was
-committed. Gym edition runtime binding remains held for its separate assignment
-ledger and rollback rehearsal.
+rejected a changed source-row hash, and rejected an active hidden printing-truth
+review. The V3 projection keeps source-run and product selectors directly
+pushable for bounded worker paging. The transaction rolled back and verified
+that the new view and validation function were absent afterward. No database or
+price write was committed. Gym edition runtime binding remains held for its
+separate assignment ledger and rollback rehearsal.

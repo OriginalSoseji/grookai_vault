@@ -216,7 +216,7 @@ subtype remained `Normal`. A changed source-row hash rejected the override and
 returned the row to `no_matching_child_finish`. The migration, validation
 function, and V3 candidate view were then rolled back and proven absent. The
 receipt under batch 02 is bound to migration SHA-256
-`6d5e143a50d1af6228caadbb51d09c1e8991e2ef4f78372a1e8976ffb534dbbf`.
+`124775b790b651be42cec06670a671b050f775d28030294b85149927bdb98f96`.
 Committed database, publication, and customer-state writes were all zero. The
 four Gym observations remain held pending their separate assignment ledger and
 rollback rehearsal.

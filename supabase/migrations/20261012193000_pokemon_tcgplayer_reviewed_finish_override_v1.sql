@@ -55,6 +55,16 @@ as $$
       and assignment.publishable = false
       and assignment.app_visible = false
       and assignment.market_truth = false
+      and not exists (
+        select 1
+        from public.card_printing_truth_reviews truth_review
+        where truth_review.card_printing_id = printing.id
+          and truth_review.active = true
+          and truth_review.public_visibility in (
+            'hidden_pending_review',
+            'hidden_unsupported'
+          )
+      )
       and observation.category_id = 3
       and observation.group_id = 24451
       and observation.subtype_name_normalized = 'normal'
@@ -127,7 +137,94 @@ grant execute on function public.pokemon_tcgplayer_reviewed_finish_override_vali
 
 create or replace view public.v_tcgplayer_market_qualification_candidates_v3
 with (security_invoker = true) as
-select adapted.*
+-- Keep immutable source selectors as direct Vars so worker run/product paging
+-- remains pushable into the indexed V2/base-observation path.
+select candidate.source_observation_id,
+  candidate.source_sync_run_id,
+  candidate.source_artifact_id,
+  candidate.source_artifact_date,
+  candidate.source_artifact_hash,
+  candidate.source_artifact_byte_size,
+  candidate.source_artifact_http_status,
+  candidate.source_price_row_identity,
+  candidate.source_row_hash,
+  candidate.source_product_id,
+  candidate.category_id,
+  candidate.group_id,
+  candidate.source_subtype_name,
+  candidate.subtype_name_normalized,
+  candidate.source_observed_on,
+  candidate.source_last_observed_at,
+  candidate.duplicate_product_row_count,
+  candidate.currency,
+  candidate.low_price,
+  candidate.mid_price,
+  candidate.high_price,
+  candidate.market_price,
+  candidate.direct_low_price,
+  candidate.source_product_name,
+  candidate.source_product_active,
+  candidate.source_product_catalog_status,
+  candidate.source_product_extended_data,
+  candidate.source_sync_mode,
+  candidate.source_sync_status,
+  candidate.source_sync_finished_at,
+  candidate.source_sync_failed_count,
+  candidate.source_run_artifact_hash,
+  case when reviewed_override.id is not null
+    then reviewed_override.assigned_finish_key
+    else candidate.normalized_finish_key end as normalized_finish_key,
+  candidate.source_mapping_count,
+  candidate.card_print_mapping_count,
+  case when reviewed_override.id is not null
+    then 1 else candidate.card_printing_mapping_count end as card_printing_mapping_count,
+  candidate.identity_domain_count,
+  candidate.source_mapping_id,
+  candidate.source_mapping_meta,
+  candidate.card_print_id,
+  candidate.gv_id,
+  candidate.card_rarity,
+  candidate.identity_domain,
+  case when reviewed_override.id is not null
+    then reviewed_override.card_printing_id
+    else candidate.card_printing_id end as card_printing_id,
+  case when reviewed_override.id is not null
+    then reviewed_override.printing_gv_id
+    else candidate.printing_gv_id end as printing_gv_id,
+  case when reviewed_override.id is not null
+    then reviewed_override.assigned_finish_key
+    else candidate.finish_key end as finish_key,
+  case when reviewed_override.id is not null
+    then reviewed_override.id
+    else candidate.variant_assignment_id end as variant_assignment_id,
+  case when reviewed_override.id is not null
+    then reviewed_override.variant_assignment_status
+    else candidate.variant_assignment_status end as variant_assignment_status,
+  case when reviewed_override.id is not null
+    then reviewed_override.variant_assignment_version
+    else candidate.variant_assignment_version end as variant_assignment_version,
+  case when reviewed_override.id is not null
+    then reviewed_override.variant_assignment_confidence
+    else candidate.variant_assignment_confidence end as variant_assignment_confidence,
+  candidate.has_printed_number_evidence,
+  case when reviewed_override.id is not null
+    then 'reviewed_finish_override_v1'
+    else candidate.mapping_method end as mapping_method,
+  candidate.mapping_confidence,
+  case when reviewed_override.id is not null
+    then 'exact_child_finish'
+    else candidate.derived_variant_assignment_status end as derived_variant_assignment_status,
+  case when reviewed_override.id is not null
+    then false else candidate.cosmos_finish_authority end as cosmos_finish_authority,
+  candidate.edition_assignment_id,
+  candidate.edition_binding_id,
+  candidate.edition_assignment_sha256,
+  candidate.edition_assignment_version,
+  candidate.edition_assignment_payload,
+  candidate.edition_assignment_required,
+  candidate.edition_assignment_current,
+  candidate.edition_source_sync_finished_at,
+  candidate.printed_identity_modifier
 from public.v_tcgplayer_market_qualification_candidates_v2 candidate
 left join lateral (
   select assignment.*
@@ -141,24 +238,7 @@ left join lateral (
       assignment.id, candidate.source_observation_id)
   order by assignment.created_at desc, assignment.id desc
   limit 1
-) reviewed_override on true
-cross join lateral jsonb_populate_record(
-  null::public.v_tcgplayer_market_qualification_candidates_v2,
-  to_jsonb(candidate) || case when reviewed_override.id is not null then jsonb_build_object(
-    'normalized_finish_key', reviewed_override.assigned_finish_key,
-    'card_printing_mapping_count', 1,
-    'card_printing_id', reviewed_override.card_printing_id,
-    'printing_gv_id', reviewed_override.printing_gv_id,
-    'finish_key', reviewed_override.assigned_finish_key,
-    'variant_assignment_id', reviewed_override.id,
-    'variant_assignment_status', reviewed_override.variant_assignment_status,
-    'variant_assignment_version', reviewed_override.variant_assignment_version,
-    'variant_assignment_confidence', reviewed_override.variant_assignment_confidence,
-    'derived_variant_assignment_status', 'exact_child_finish',
-    'mapping_method', 'reviewed_finish_override_v1',
-    'cosmos_finish_authority', false
-  ) else '{}'::jsonb end
-) adapted;
+) reviewed_override on true;
 
 revoke all on public.v_tcgplayer_market_qualification_candidates_v3
   from public, anon, authenticated;

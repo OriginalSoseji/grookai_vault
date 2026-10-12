@@ -30,8 +30,15 @@ test('reviewed MEP override is exact, private, and takes candidate precedence', 
   assert.match(migration, /publishable = false/);
   assert.match(migration, /app_visible = false/);
   assert.match(migration, /market_truth = false/);
+  assert.match(migration, /from public\.card_printing_truth_reviews truth_review/);
+  assert.match(migration, /'hidden_pending_review'/);
+  assert.match(migration, /'hidden_unsupported'/);
   assert.match(migration, /create or replace view public\.v_tcgplayer_market_qualification_candidates_v3/);
-  assert.match(migration, /'normalized_finish_key', reviewed_override\.assigned_finish_key/);
+  assert.match(migration, /select candidate\.source_observation_id,/);
+  assert.match(migration, /candidate\.source_sync_run_id,/);
+  assert.match(migration, /candidate\.source_product_id,/);
+  assert.doesNotMatch(migration, /jsonb_populate_record/);
+  assert.match(migration, /then reviewed_override\.assigned_finish_key/);
   assert.match(worker, /from public\.v_tcgplayer_market_qualification_candidates_v3 candidate/g);
   assert.doesNotMatch(worker, /from public\.v_tcgplayer_market_qualification_candidates_v2 candidate/);
 });
@@ -49,6 +56,11 @@ test('local MEP schema rehearsal passed and rolled every write back', () => {
     row.assigned_finish_key === 'holo' && row.local_policy_eligible === true));
   assert.deepEqual(receipt.drift_test, {
     changed_field: 'assignment_payload.source_row_hash',
+    override_rejected: true,
+    fallback_status: 'no_matching_child_finish',
+  });
+  assert.deepEqual(receipt.truth_quarantine_test, {
+    public_visibility: 'hidden_pending_review',
     override_rejected: true,
     fallback_status: 'no_matching_child_finish',
   });
