@@ -2,15 +2,17 @@
 
 ## Collectr catalog review — October 9
 
-Read docs/checkpoints/collectr_catalog_review_20261009.md. PR614 and its exact-cost
-save are complete: 1640 accounted copies and 532 held rows. The local website
-candidate separates 62 catalog-conflict rows/76 copies from 57 owner-choice rows;
-it does not resolve their identities or qualify additional imports. Fresh preview
-preserves all 1340 saved groups and 3250 owner copies. Private
-collectr_catalog_review_20261009/CHECKPOINT.json owns current qualification.
-Slab support is DEFERRED by the user, not awaiting another question. Preserve
-all consumed receipts and labs. No catalog merge, schema change or deployment
-belongs to this local review guard; six identity families still need adjudication.
+Read docs/checkpoints/collectr_catalog_review_20261009.md. PR620's review guard is
+live. A later source-authority audit adjudicated six duplicate provider set
+families and 647 exact parent pairs: PokemonTCG coordinates are canonical while
+the matching TCGdex parents and every downstream reference remain as reversible
+provider lineage. Production migration 20261012010000 installed the additive
+alias table/RPC; PR621 adds the web consumer and explicit authority evidence.
+Fresh read-only preview resolves all 62 former catalog-conflict rows/76 copies:
+56 rows/68 copies are ready and 6 rows/8 copies remain owner choices. Nothing
+was imported. Preserve all 1340 saved groups, consumed receipts, private labs and
+legacy references. Canonical finish evidence stays strict. Slab support remains
+DEFERRED by the user and is not awaiting another question.
 
 ## Collectr exact average costs — October 8
 
