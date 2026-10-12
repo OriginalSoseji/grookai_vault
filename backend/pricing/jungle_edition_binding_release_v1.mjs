@@ -398,11 +398,22 @@ async function begin(client, readOnly = false) {
 
 export async function readJungleBindingReleaseV1(client, plan, { expectedFingerprint } = {}) {
   assertJungleBindingReleaseV1(plan, { expectedFingerprint, allowExpiredSource: true });
-  await attestJungleBindingTargetV1(client, plan);
-  const selected = await readSelected(client, plan);
-  const state = classifySelected(plan, selected);
-  if (state === 'exact') await assertActiveRelease(client, plan);
-  return { state, selected };
+  let transactionOpen = false;
+  try {
+    await begin(client, true);
+    transactionOpen = true;
+    await attestJungleBindingTargetV1(client, plan);
+    await client.query('select pg_advisory_xact_lock(hashtextextended($1,0))', [LOCK_KEY]);
+    const selected = await readSelected(client, plan);
+    const state = classifySelected(plan, selected);
+    if (state === 'exact') await assertActiveRelease(client, plan);
+    await client.query('commit');
+    transactionOpen = false;
+    return { state, selected };
+  } catch (error) {
+    if (transactionOpen) await client.query('rollback').catch(() => {});
+    throw error;
+  }
 }
 
 export async function executeJungleBindingReleaseV1({

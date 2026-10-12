@@ -6,6 +6,7 @@ import {
   assertJungleBindingReleaseV1,
   executeJungleBindingReleaseV1,
   jungleBindingFingerprintV1,
+  readJungleBindingReleaseV1,
   sealJungleBindingReleaseV1,
 } from '../../backend/pricing/jungle_edition_binding_release_v1.mjs';
 
@@ -198,9 +199,12 @@ test('attests the connected database and both sealed schema captures', async () 
 
 function exactReadbackClient(plan, { productHash = null, activeBindingCount = 128 } = {}) {
   const attestation = targetClient();
+  const queries = [];
   return {
     ...attestation,
+    queries,
     async query(sql, parameters) {
+      queries.push(sql);
       if (/^begin isolation level serializable read only$/i.test(sql)) return { rows: [] };
       if (sql.startsWith('set local ') || sql.includes('pg_advisory_xact_lock')) return { rows: [] };
       if (sql === 'commit' || sql === 'rollback') return { rows: [] };
@@ -262,4 +266,27 @@ test('readback revalidates current source evidence and all active bindings', asy
   const result = await executeJungleBindingReleaseV1({ ...options, client: exactReadbackClient(plan) });
   assert.equal(result.after, 'exact');
   assert.equal(result.independentReadback, true);
+});
+
+test('independent readback holds one serializable snapshot and release lock', async () => {
+  const plan = sealJungleBindingReleaseV1(draft(), { at: '2026-10-11T20:30:00.000Z' });
+  const expectedFingerprint = plan.plan_fingerprint;
+  const client = exactReadbackClient(plan);
+  const result = await readJungleBindingReleaseV1(client, plan, { expectedFingerprint });
+  assert.equal(result.state, 'exact');
+  assert.match(client.queries[0], /^begin isolation level serializable read only$/i);
+  const attestationIndex = client.queries.findIndex((sql) => sql.includes('pg_control_system()'));
+  const lockIndex = client.queries.findIndex((sql) => sql.includes('pg_advisory_xact_lock'));
+  const stateIndex = client.queries.findIndex((sql) => sql.includes('select l.id::text identity_link_id'));
+  assert.ok(attestationIndex > 0);
+  assert.ok(lockIndex > attestationIndex);
+  assert.ok(stateIndex > lockIndex);
+  assert.equal(client.queries.at(-1), 'commit');
+
+  const drifted = exactReadbackClient(plan, { productHash: hex('9') });
+  await assert.rejects(
+    readJungleBindingReleaseV1(drifted, plan, { expectedFingerprint }),
+    /source_product_hash_drift/,
+  );
+  assert.equal(drifted.queries.at(-1), 'rollback');
 });
