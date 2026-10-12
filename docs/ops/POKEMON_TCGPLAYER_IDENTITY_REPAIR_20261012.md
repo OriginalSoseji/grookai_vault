@@ -208,5 +208,18 @@ the qualification read model without changing the raw source label. A retained
 schema rehearsal and full read-only pricing evaluation must pass before any
 production request is prepared.
 
+The retained MEP schema rollback rehearsal passed locally against PostgreSQL.
+It accepted only products `654596` and `654598` with their exact reviewed source
+run, artifact, observation, source-row hash, canonical parent, and existing Holo
+child. Both rows passed the unchanged pricing policy while their raw source
+subtype remained `Normal`. A changed source-row hash rejected the override and
+returned the row to `no_matching_child_finish`. The migration, validation
+function, and V3 candidate view were then rolled back and proven absent. The
+receipt under batch 02 is bound to migration SHA-256
+`6d5e143a50d1af6228caadbb51d09c1e8991e2ef4f78372a1e8976ffb534dbbf`.
+Committed database, publication, and customer-state writes were all zero. The
+four Gym observations remain held pending their separate assignment ledger and
+rollback rehearsal.
+
 Batch 02 authorizes no database or price write. Duraludon can enter a later
 governed shadow run, but price publication still needs its own approval.
