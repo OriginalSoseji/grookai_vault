@@ -1,5 +1,23 @@
 # Grookai Agent Entry Point
 
+## Pokémon TCGPlayer identity repair — October 12
+
+Read `docs/ops/POKEMON_TCGPLAYER_IDENTITY_REPAIR_20261012.md`. PR622 merged the
+six outcome lanes and zero-backlog completion rules. Batch 01 now contains five
+reviewed existing-parent mappings covering seven missing-price observations;
+its first production apply rolled back with zero writes after finding inactive
+legacy Duraludon mapping 132914 on the wrong GameStop-stamped parent. Founder
+approved the revised four-insert/one-exact-update path, and production run
+5e3762f0-be04-4a18-b08e-489b53f6189f committed all five rows from clean commit
+c5f5c0fd82bbe0a2045342451223676818ac2050. Independent read-only readback passed.
+No price publication occurred. Full post-mapping pricing dry-run over 208,451
+observations made Duraludon 214239 publish-ready, while four Gym Challenge prices
+remain held for exact First Edition/Unlimited authority and two Mega Evolution
+Promo prices remain held for an exact reviewed Normal-to-holo source override.
+Treat those as separate bounded repairs; never invent Normal printings or extend
+the Jungle-only edition authority by implication. Pricing reconciliation and
+publication remain separate guarded work.
+
 ## Collectr catalog review — October 9
 
 Read docs/checkpoints/collectr_catalog_review_20261009.md. PR620's review guard is

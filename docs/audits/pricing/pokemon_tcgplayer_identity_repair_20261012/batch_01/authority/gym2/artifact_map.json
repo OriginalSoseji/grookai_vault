@@ -1,0 +1,22 @@
+[
+  {
+    "ref": "master:gym2:pokemon-tcgplayer-repair-20261012-batch-01",
+    "path": "master.json"
+  },
+  {
+    "ref": "review:gym2:pokemon-tcgplayer-repair-20261012-batch-01",
+    "path": "review.json"
+  },
+  {
+    "ref": "tcgcsv-group-1440",
+    "path": "sources/1440-products.json"
+  },
+  {
+    "ref": "tcgdex-gym2-75",
+    "path": "sources/gym2-75.json"
+  },
+  {
+    "ref": "tcgdex-gym2-76",
+    "path": "sources/gym2-76.json"
+  }
+]

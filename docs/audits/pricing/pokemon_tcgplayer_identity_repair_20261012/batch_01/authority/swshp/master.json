@@ -1,0 +1,66 @@
+{
+  "version": "POKEMON_TCGPLAYER_IDENTITY_REPAIR_MASTER_V1",
+  "set_code": "swshp",
+  "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+  "selected_cards": [
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH028",
+      "card_name": "Duraludon",
+      "language": "en",
+      "source_count": 3,
+      "sources": [
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "master_admission_basis": "source_agreement",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swshp-SWSH028",
+        "https://api.tcgdex.net/v2/en/cards/swshp-SWSH028",
+        "https://www.thepricedex.com/set/swshp/swsh-black-star-promos/price-list"
+      ]
+    }
+  ],
+  "selected_printings": [
+    {
+      "set_key": "swshp",
+      "set_name": "SWSH Black Star Promos",
+      "card_number": "SWSH028",
+      "card_name": "Duraludon",
+      "finish_key": "holo",
+      "language": "en",
+      "source_count": 5,
+      "sources": [
+        "pokemontcg_api",
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "tcgplayer_price_guide",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "collector_reference",
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/swshp-SWSH028",
+        "https://api.tcgdex.net/v2/en/cards/swshp-SWSH028",
+        "https://prices.pokemontcg.io/tcgplayer/swshp-SWSH028",
+        "https://reverseholo.app/sets/swshp",
+        "https://www.thepricedex.com/set/swshp/swsh-black-star-promos/price-list"
+      ]
+    }
+  ],
+  "candidate_fingerprints": [
+    "fe3b211c6a11c7f3c173d6c36f17abea1824645d30bb8752cbab5ca2310834c9"
+  ],
+  "source_plan_commit_sha": "9f552167e25059857b28ea1b0ca6c4a2c1747d0c"
+}

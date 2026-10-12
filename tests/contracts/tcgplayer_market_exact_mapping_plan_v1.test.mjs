@@ -18,6 +18,11 @@ import {
   validateTcgplayerExactMappingCandidateForApplyV1,
   validateTcgplayerExactMappingLiveTargetV1,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_apply_policy_v1.mjs";
+import {
+  assertTcgplayerInactiveMappingRepairAuthorityV1,
+  buildTcgplayerInactiveMappingRepairMetaV1,
+  tcgplayerInactiveMappingRepairFingerprintV1,
+} from "../../backend/pricing/tcgplayer_inactive_mapping_repair_policy_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -380,7 +385,74 @@ test("mapping metadata preserves exact candidate and run provenance", () => {
   assert.equal(meta.canonical_gv_id, candidate.target.gv_id);
 });
 
-test("mapping apply is launcher-only, dry-run-default, bounded, and insert-only", () => {
+test("inactive mapping repair is exact, drift-bound, and preserves invalidation history", () => {
+  const candidate = planTcgplayerExactMappingCandidateV1({
+    source: source({ source_product_id: 1001 }),
+    directTargets: [target({ embedded_external_id: "tcgcsv:24688:1001" })],
+  });
+  const liveMapping = {
+    id: "77",
+    source: "tcgplayer",
+    external_id: "1001",
+    card_print_id: "old-stamped-parent",
+    active: false,
+    synced_at: "2026-01-02T03:04:05.000Z",
+    meta: {
+      source_url: "https://example.test/product/1001",
+      reviewed_invalidation: {
+        reason_code: "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT",
+      },
+    },
+  };
+  const body = {
+    version: "TCGPLAYER_INACTIVE_MAPPING_REPAIR_POLICY_V1",
+    status: "reviewed_repair_evidence",
+    execution_authorized: false,
+    source_product_id: 1001,
+    candidate_fingerprint: candidate.candidate_fingerprint,
+    mapping_id: "77",
+    expected_current: {
+      card_print_id: "old-stamped-parent",
+      active: false,
+      synced_at: "2026-01-02T03:04:05.000Z",
+      meta_fingerprint: tcgplayerInactiveMappingRepairFingerprintV1(liveMapping.meta),
+      reviewed_invalidation_reason_code:
+        "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT",
+    },
+    target_card_print_id: candidate.target.card_print_id,
+    reason_code: "REPLACE_REVIEWED_INVALID_STAMPED_PARENT_WITH_EXACT_BASE_PARENT",
+  };
+  const authority = {
+    ...body,
+    fingerprint: tcgplayerInactiveMappingRepairFingerprintV1(body),
+  };
+  assert.doesNotThrow(() =>
+    assertTcgplayerInactiveMappingRepairAuthorityV1(authority, {
+      candidate,
+      liveMapping,
+    }),
+  );
+  const meta = buildTcgplayerInactiveMappingRepairMetaV1({
+    authority,
+    liveMapping,
+    exactMappingMeta: { candidate_fingerprint: candidate.candidate_fingerprint },
+  });
+  assert.equal(meta.reviewed_invalidation, undefined);
+  assert.equal(
+    meta.inactive_mapping_repair.prior_reviewed_invalidation.reason_code,
+    "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT",
+  );
+  assert.throws(
+    () =>
+      assertTcgplayerInactiveMappingRepairAuthorityV1(authority, {
+        candidate,
+        liveMapping: { ...liveMapping, card_print_id: "drifted" },
+      }),
+    /INACTIVE_REPAIR_LIVE_MAPPING_DRIFT/,
+  );
+});
+
+test("mapping apply is launcher-only, dry-run-default, bounded, and exact-write-only", () => {
   assert.match(
     MAINTENANCE_RUNNER,
     /backend\/maintenance\/tcgplayer_market_exact_mapping_apply_v1\.mjs/,
@@ -396,6 +468,10 @@ test("mapping apply is launcher-only, dry-run-default, bounded, and insert-only"
   );
   assert.match(APPLY_SCRIPT, /pg_advisory_xact_lock/);
   assert.match(APPLY_SCRIPT, /insert into public\.external_mappings/);
+  assert.match(APPLY_SCRIPT, /update public\.external_mappings/);
+  assert.match(APPLY_SCRIPT, /and external_id = \$4::text/);
+  assert.match(APPLY_SCRIPT, /and card_print_id = \$5::uuid/);
+  assert.match(APPLY_SCRIPT, /and active = false/);
   assert.match(APPLY_SCRIPT, /active_publication_overlap/);
   assert.match(APPLY_SCRIPT, /rowFailures\.push\(\.\.\.validateTcgplayerExactMappingLiveTargetV1\(candidate, target\)\)/);
   assert.match(APPLY_SCRIPT, /SOURCE_PLAN_TRACKED_WORKTREE_NOT_CLEAN/);
@@ -411,7 +487,7 @@ test("mapping apply is launcher-only, dry-run-default, bounded, and insert-only"
   );
   assert.doesNotMatch(
     APPLY_SCRIPT,
-    /\b(update|delete\s+from)\s+public\.external_mappings/i,
+    /\bdelete\s+from\s+public\.external_mappings/i,
   );
   assert.doesNotMatch(
     APPLY_SCRIPT,

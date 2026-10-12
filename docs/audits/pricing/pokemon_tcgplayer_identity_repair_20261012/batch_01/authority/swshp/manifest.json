@@ -1,0 +1,92 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swshp",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "master:swshp:pokemon-tcgplayer-repair-20261012-batch-01",
+  "master_index_sha256": "6f7aee65e9d5f27b3e290630170b97b5d805011af5b6d90c6b65d5a5303f63f9",
+  "parents": [
+    {
+      "id": "b64f4545-b536-490e-8fe3-53dbc228418f",
+      "name": "Duraludon",
+      "gv_id": "GV-PK-PR-SW-SWSH028",
+      "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "SWSH028",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "b64f4545-b536-490e-8fe3-53dbc228418f",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-PR-SW-SWSH028-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "tcgdex-swshp-SWSH028",
+          "sha256": "6d808d3939211266961774dede6bda3a9388adf5589133a8aa0ab3c41837fbe9",
+          "card_print_id": "b64f4545-b536-490e-8fe3-53dbc228418f",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "214239",
+      "card_print_id": "b64f4545-b536-490e-8fe3-53dbc228418f",
+      "candidate_fingerprint": "fe3b211c6a11c7f3c173d6c36f17abea1824645d30bb8752cbab5ca2310834c9",
+      "source_ref": "tcgcsv-group-2545",
+      "source_sha256": "9396036e5137496d25d90926cd1bc437a6f93370a9277da8ad3738ca7bd712cf"
+    }
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+    "source_artifacts": [
+      {
+        "ref": "tcgcsv-group-2545",
+        "sha256": "9396036e5137496d25d90926cd1bc437a6f93370a9277da8ad3738ca7bd712cf",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2545/products",
+        "retrieved_at": "2026-10-12T07:03:16.000Z"
+      },
+      {
+        "ref": "tcgdex-swshp-SWSH028",
+        "sha256": "6d808d3939211266961774dede6bda3a9388adf5589133a8aa0ab3c41837fbe9",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://api.tcgdex.net/v2/en/cards/swshp-SWSH028",
+        "retrieved_at": "2026-10-12T07:03:51.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "b64f4545-b536-490e-8fe3-53dbc228418f",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:swshp:pokemon-tcgplayer-repair-20261012-batch-01",
+      "sha256": "a2d6d9d96784066a2b0068a344e6f4706ad1eef18e532c31ef3c0acd104c1e23"
+    }
+  },
+  "fingerprint": "933e3a17924214f3fb26f2a16ae9a83b664e43e7be98d42561ee27257072b40d"
+}

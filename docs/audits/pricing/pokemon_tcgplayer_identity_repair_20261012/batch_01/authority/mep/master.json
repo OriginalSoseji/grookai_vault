@@ -1,0 +1,108 @@
+{
+  "version": "POKEMON_TCGPLAYER_IDENTITY_REPAIR_MASTER_V1",
+  "set_code": "mep",
+  "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+  "selected_cards": [
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "002",
+      "card_name": "Inteleon",
+      "language": "en",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "master_admission_basis": "source_agreement",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mep-002",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ]
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "004",
+      "card_name": "Lunatone",
+      "language": "en",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "master_admission_basis": "source_agreement",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mep-004",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ]
+    }
+  ],
+  "selected_printings": [
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "002",
+      "card_name": "Inteleon",
+      "finish_key": "holo",
+      "language": "en",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "collector_reference",
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mep-002",
+        "https://reverseholo.app/sets/mep",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ]
+    },
+    {
+      "set_key": "mep",
+      "set_name": "MEP Black Star Promos",
+      "card_number": "004",
+      "card_name": "Lunatone",
+      "finish_key": "holo",
+      "language": "en",
+      "source_count": 3,
+      "sources": [
+        "reverseholo_set_checklist",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "collector_reference",
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/mep-004",
+        "https://reverseholo.app/sets/mep",
+        "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ]
+    }
+  ],
+  "candidate_fingerprints": [
+    "790628b1719919a066b06fca06b9d7e5b90f015843f1fca05914663ba535f2ce",
+    "d1509f19057ae377d983ea6640fd02e47487deea1732278179aadcf248a54b59"
+  ],
+  "source_plan_commit_sha": "9f552167e25059857b28ea1b0ca6c4a2c1747d0c"
+}

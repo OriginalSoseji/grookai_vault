@@ -1,0 +1,23 @@
+{
+  "version": "POKEMON_TCGPLAYER_IDENTITY_REPAIR_BATCH_BUILDER_V1",
+  "status": "passed",
+  "counts": {
+    "candidates": 5,
+    "supporting_gap_rows": 7,
+    "source_groups": 3,
+    "target_sets": 3
+  },
+  "source_plan": {
+    "commit_sha": "9f552167e25059857b28ea1b0ca6c4a2c1747d0c",
+    "run_plan_sha256": "ca5ed2c6be67a2528747b5965c91fcc34bc0e8cc25516afafbe5a933b864f4a3",
+    "summary_sha256": "654c60c02b6970af99c61baa2153875bc32d1b2cf4f96a3fd493271b05227816",
+    "candidates_sha256": "d00c04b40e9b708eee6801dc81664b0962ff52ccad5dc9eae9ec797aa740dbd0"
+  },
+  "boundaries": {
+    "reviewed_selection_only": true,
+    "database_writes": 0,
+    "pricing_writes": 0,
+    "customer_state_writes": 0,
+    "execution_authorized": false
+  }
+}

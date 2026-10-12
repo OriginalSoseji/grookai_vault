@@ -1,0 +1,136 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "gym2",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "master:gym2:pokemon-tcgplayer-repair-20261012-batch-01",
+  "master_index_sha256": "9be6f53a106a5ae0008e340c533f772bbd49527e67dc4f9f3a6084318752758d",
+  "parents": [
+    {
+      "id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+      "name": "Giovanni's Nidoran ♀",
+      "gv_id": "GV-PK-G2-75",
+      "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "75",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+      "name": "Giovanni's Nidoran ♂",
+      "gv_id": "GV-PK-G2-76",
+      "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "76",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-G2-75-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "tcgdex-gym2-75",
+          "sha256": "2bc368fb52c6c89b1daf1d79d691d7083f1f37a1b479e52a4bdc246a268de248",
+          "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-G2-76-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "tcgdex-gym2-76",
+          "sha256": "6bda8ad74b32cfaeb475c4bca97ff93141287419b42056e58bc2f6f969485c01",
+          "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "normal": 2
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "85720",
+      "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+      "candidate_fingerprint": "72d7262e40b116fc6fd8729940fb956a8d48c97b73b299399903f75b925da71d",
+      "source_ref": "tcgcsv-group-1440",
+      "source_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "85721",
+      "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+      "candidate_fingerprint": "e801b6797dde12f14c4cc140148c8bb30645e7d509cbc48d0b5ae0dc70d3c8f7",
+      "source_ref": "tcgcsv-group-1440",
+      "source_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59"
+    }
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+    "source_artifacts": [
+      {
+        "ref": "tcgcsv-group-1440",
+        "sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1440/products",
+        "retrieved_at": "2026-10-12T07:03:15.000Z"
+      },
+      {
+        "ref": "tcgdex-gym2-75",
+        "sha256": "2bc368fb52c6c89b1daf1d79d691d7083f1f37a1b479e52a4bdc246a268de248",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://api.tcgdex.net/v2/en/cards/gym2-75",
+        "retrieved_at": "2026-10-12T07:03:50.000Z"
+      },
+      {
+        "ref": "tcgdex-gym2-76",
+        "sha256": "6bda8ad74b32cfaeb475c4bca97ff93141287419b42056e58bc2f6f969485c01",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://api.tcgdex.net/v2/en/cards/gym2-76",
+        "retrieved_at": "2026-10-12T07:03:50.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:gym2:pokemon-tcgplayer-repair-20261012-batch-01",
+      "sha256": "0e049c6c18aff6c2f563e3a24592207de8d87cd93b53350bc3a117f4fb50f62e"
+    }
+  },
+  "fingerprint": "81c53f75c96cc2f2c3b87eeaf4317b900a6c156d1df640c9957fd8d3c5c426a4"
+}

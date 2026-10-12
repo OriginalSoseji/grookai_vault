@@ -1,0 +1,112 @@
+{
+  "version": "POKEMON_TCGPLAYER_IDENTITY_REPAIR_MASTER_V1",
+  "set_code": "gym2",
+  "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+  "selected_cards": [
+    {
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "card_number": "75",
+      "card_name": "Giovanni's Nidoran ♀",
+      "language": "en",
+      "source_count": 4,
+      "sources": [
+        "bulbapedia_set_list",
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "human_readable_checklist",
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "master_admission_basis": "source_agreement",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/gym2-75",
+        "https://api.tcgdex.net/v2/en/cards/gym2-75",
+        "https://bulbapedia.bulbagarden.net/wiki/Gym_Challenge_(TCG)#Set_lists",
+        "https://www.thepricedex.com/set/gym2/gym-challenge/price-list"
+      ]
+    },
+    {
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "card_number": "76",
+      "card_name": "Giovanni's Nidoran ♂",
+      "language": "en",
+      "source_count": 4,
+      "sources": [
+        "bulbapedia_set_list",
+        "pokemontcg_api",
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "human_readable_checklist",
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "master_admission_basis": "source_agreement",
+      "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/gym2-76",
+        "https://api.tcgdex.net/v2/en/cards/gym2-76",
+        "https://bulbapedia.bulbagarden.net/wiki/Gym_Challenge_(TCG)#Set_lists",
+        "https://www.thepricedex.com/set/gym2/gym-challenge/price-list"
+      ]
+    }
+  ],
+  "selected_printings": [
+    {
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "card_number": "75",
+      "card_name": "Giovanni's Nidoran♀",
+      "finish_key": "normal",
+      "language": "en",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/gym2-75",
+        "https://www.thepricedex.com/set/gym2/gym-challenge/price-list"
+      ]
+    },
+    {
+      "set_key": "gym2",
+      "set_name": "Gym Challenge",
+      "card_number": "76",
+      "card_name": "Giovanni's Nidoran♂",
+      "finish_key": "normal",
+      "language": "en",
+      "source_count": 2,
+      "sources": [
+        "tcgdex",
+        "thepricedex_price_list"
+      ],
+      "source_kinds": [
+        "marketplace_checklist",
+        "structured_api"
+      ],
+      "status": "master_verified",
+      "evidence_urls": [
+        "https://api.tcgdex.net/v2/en/cards/gym2-76",
+        "https://www.thepricedex.com/set/gym2/gym-challenge/price-list"
+      ]
+    }
+  ],
+  "candidate_fingerprints": [
+    "72d7262e40b116fc6fd8729940fb956a8d48c97b73b299399903f75b925da71d",
+    "e801b6797dde12f14c4cc140148c8bb30645e7d509cbc48d0b5ae0dc70d3c8f7"
+  ],
+  "source_plan_commit_sha": "9f552167e25059857b28ea1b0ca6c4a2c1747d0c"
+}
