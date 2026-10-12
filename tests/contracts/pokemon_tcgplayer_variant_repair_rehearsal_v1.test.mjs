@@ -61,6 +61,9 @@ test('Pokemon variant repair rehearsal is reproducible, bounded, and non-publish
     row.source_binding_template.market_truth === false));
   assert.ok(rehearsal.mep_assignment_rows.every(row =>
     row.source_finish_hint === 'Normal' && row.assigned_finish_key === 'holo'));
+  assert.ok(rehearsal.combined_read_only_price_evaluation.every(row =>
+    row.current_runtime_publish_ready === false &&
+    row.current_runtime_status.startsWith('held_')));
 });
 
 test('Pokemon variant repair rehearsal rejects source and canonical drift', async () => {

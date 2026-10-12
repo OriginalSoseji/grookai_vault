@@ -27,7 +27,9 @@ evaluation. Price publication remains a later, separately approved operation.
 the hash-bound production read-only snapshot. It allocates four fresh Gym
 Challenge edition parent, identity, and printing rows with four staged binding
 templates, plus two append-only Mega Evolution Promo finish overrides. Its
-combined evaluation covers all six held observations while keeping production
-database writes, price publications, and customer-state writes at zero. Run
+combined evaluation keeps all six observations explicitly held by the current
+runtime and records the result expected only after the next local schema
+rehearsal. Production database writes, price publications, and customer-state
+writes remain at zero. Run
 `node scripts/pricing/build_pokemon_tcgplayer_variant_repair_rehearsal_v1.mjs`
 to reproduce it while the retained snapshot is available locally.

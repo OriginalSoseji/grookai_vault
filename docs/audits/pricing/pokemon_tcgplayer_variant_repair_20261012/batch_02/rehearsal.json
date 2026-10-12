@@ -665,8 +665,10 @@
       "market_price_usd": "12.21",
       "target_card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
       "target_printing_gv_id": "GV-PK-MEP-002-HOLO",
-      "resolution": "reviewed_finish_override_rehearsed",
-      "publish_ready_after_schema_rehearsal": true
+      "planned_resolution": "reviewed_finish_override",
+      "current_runtime_status": "held_override_version_not_in_qualification_view",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
     },
     {
       "source_observation_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
@@ -675,8 +677,10 @@
       "market_price_usd": "18.2",
       "target_card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
       "target_printing_gv_id": "GV-PK-MEP-004-HOLO",
-      "resolution": "reviewed_finish_override_rehearsed",
-      "publish_ready_after_schema_rehearsal": true
+      "planned_resolution": "reviewed_finish_override",
+      "current_runtime_status": "held_override_version_not_in_qualification_view",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
     },
     {
       "source_observation_id": "d24b4d1e-a73f-4a44-984d-cc94e1f05f28",
@@ -685,8 +689,10 @@
       "market_price_usd": "2.73",
       "target_card_printing_id": "9b1358e1-5ad1-56de-a224-8fcd2131bf87",
       "target_printing_gv_id": "GV-PK-G2-75-FIRST-EDITION-NORMAL",
-      "resolution": "exact_edition_binding_rehearsed",
-      "publish_ready_after_schema_rehearsal": true
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
     },
     {
       "source_observation_id": "b208701e-5378-4a72-915f-403db492e011",
@@ -695,8 +701,10 @@
       "market_price_usd": "1.16",
       "target_card_printing_id": "28040606-5e98-50dd-969f-3273a6345b9f",
       "target_printing_gv_id": "GV-PK-G2-75-UNLIMITED-NORMAL",
-      "resolution": "exact_edition_binding_rehearsed",
-      "publish_ready_after_schema_rehearsal": true
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
     },
     {
       "source_observation_id": "ce7b33ab-299d-4ee3-914b-161100ab1aa6",
@@ -705,8 +713,10 @@
       "market_price_usd": "3.98",
       "target_card_printing_id": "47e6ad7c-a0b5-579e-86d6-fd16245e46c1",
       "target_printing_gv_id": "GV-PK-G2-76-FIRST-EDITION-NORMAL",
-      "resolution": "exact_edition_binding_rehearsed",
-      "publish_ready_after_schema_rehearsal": true
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
     },
     {
       "source_observation_id": "6febacee-1bcd-4592-aedf-f478a7a94d97",
@@ -715,10 +725,12 @@
       "market_price_usd": "1.36",
       "target_card_printing_id": "3d71caeb-2742-52f2-8e28-406ddb2a8a26",
       "target_printing_gv_id": "GV-PK-G2-76-UNLIMITED-NORMAL",
-      "resolution": "exact_edition_binding_rehearsed",
-      "publish_ready_after_schema_rehearsal": true
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
     }
   ],
   "remaining_gate": "local_schema_rollback_rehearsal",
-  "rehearsal_fingerprint": "6351439cb7ead7c93d5d7f29cba791a9a18c7a20b9e11aacda33617bbbf64ff3"
+  "rehearsal_fingerprint": "b2f59922db404bf17d909da840a4a19970bc1d55d18b35a79a64b92fccff1f57"
 }

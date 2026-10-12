@@ -302,8 +302,10 @@ export function buildPokemonTcgplayerVariantRepairRehearsalV1({
       market_price_usd: row.source_observation.market_price,
       target_card_printing_id: row.card_printing.id,
       target_printing_gv_id: row.card_printing.printing_gv_id,
-      resolution: 'exact_edition_binding_rehearsed',
-      publish_ready_after_schema_rehearsal: true,
+      planned_resolution: 'exact_edition_binding',
+      current_runtime_status: 'held_missing_gym_edition_schema',
+      current_runtime_publish_ready: false,
+      expected_after_local_schema_rehearsal: true,
     })),
     ...authority.plan.mega_evolution_promo_finish_override.rows.map(row => ({
       source_observation_id: row.source_observation_id,
@@ -312,8 +314,10 @@ export function buildPokemonTcgplayerVariantRepairRehearsalV1({
       market_price_usd: row.source_product_id === 654596 ? '12.21' : '18.2',
       target_card_printing_id: row.card_printing_id,
       target_printing_gv_id: row.printing_gv_id,
-      resolution: 'reviewed_finish_override_rehearsed',
-      publish_ready_after_schema_rehearsal: true,
+      planned_resolution: 'reviewed_finish_override',
+      current_runtime_status: 'held_override_version_not_in_qualification_view',
+      current_runtime_publish_ready: false,
+      expected_after_local_schema_rehearsal: true,
     })),
   ];
 
@@ -376,7 +380,8 @@ export function assertPokemonTcgplayerVariantRepairRehearsalV1(result) {
   assert.equal(result.mep_assignment_rows.length, 2);
   assert.equal(result.combined_read_only_price_evaluation.length, 6);
   assert.ok(result.combined_read_only_price_evaluation.every(row =>
-    row.publish_ready_after_schema_rehearsal === true));
+    row.current_runtime_publish_ready === false &&
+    row.expected_after_local_schema_rehearsal === true));
   assert.ok(result.mep_assignment_rows.every(row =>
     row.variant_assignment_version === MEP_REVIEWED_FINISH_OVERRIDE_V1 &&
     row.source_finish_hint === 'Normal' && row.normalized_finish_key === 'normal' &&
