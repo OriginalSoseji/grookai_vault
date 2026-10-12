@@ -10,6 +10,10 @@ function integer(value) {
   return Number.isFinite(parsed) ? Math.max(0, Math.trunc(parsed)) : 0;
 }
 
+function measuredInteger(value) {
+  return typeof value === "number" && Number.isInteger(value) && value >= 0;
+}
+
 function percent(numerator, denominator) {
   if (denominator <= 0) return null;
   return Number(((numerator / denominator) * 100).toFixed(3));
@@ -91,7 +95,14 @@ function catalogLane({
 }
 
 function pricingLane(component) {
-  if (!component?.evidence) {
+  const evidence = component?.evidence;
+  const requiredCounters = [
+    "selected_count",
+    "mapped_count",
+    "eligible_count",
+    "snapshot_count",
+  ];
+  if (!evidence || requiredCounters.some((key) => !measuredInteger(evidence[key]))) {
     return {
       lane_id: "tcgplayer-pricing-completion",
       status: UNMEASURED,
@@ -104,18 +115,21 @@ function pricingLane(component) {
     };
   }
 
-  const selected = integer(component.evidence.selected_count);
-  const mapped = integer(component.evidence.mapped_count);
-  const eligible = integer(component.evidence.eligible_count);
-  const snapshots = integer(component.evidence.snapshot_count);
+  const selected = evidence.selected_count;
+  const mapped = evidence.mapped_count;
+  const eligible = evidence.eligible_count;
+  const snapshots = evidence.snapshot_count;
   const unmapped = Math.max(0, selected - mapped);
   const mappedIneligible = Math.max(0, mapped - eligible);
   const eligibleUnpublished = Math.max(0, eligible - snapshots);
   const withoutSnapshot = Math.max(0, selected - snapshots);
+  const counterIntegrity = selected >= mapped
+    && mapped >= eligible
+    && eligible >= snapshots;
   const isComplete = selected > 0
-    && unmapped === 0
-    && mappedIneligible === 0
-    && eligibleUnpublished === 0;
+    && selected === mapped
+    && mapped === eligible
+    && eligible === snapshots;
 
   return {
     lane_id: "tcgplayer-pricing-completion",
@@ -136,17 +150,23 @@ function pricingLane(component) {
       without_published_snapshot: withoutSnapshot,
     },
     coverage: {
-      mapped_percent: percent(mapped, selected),
-      published_snapshot_percent: percent(snapshots, selected),
+      mapped_percent: counterIntegrity ? percent(mapped, selected) : null,
+      published_snapshot_percent: counterIntegrity ? percent(snapshots, selected) : null,
+      counter_integrity: counterIntegrity,
     },
     next_action: isComplete
       ? null
-      : "Resolve unmapped products first, classify every ineligible row, then publish all newly eligible snapshots.",
+      : counterIntegrity
+        ? "Resolve unmapped products first, classify every ineligible row, then publish all newly eligible snapshots."
+        : "Repair inconsistent pricing counters before completion can be evaluated.",
   };
 }
 
 function newSetLane(component) {
-  if (!component?.evidence?.counts) {
+  const counts = component?.evidence?.counts;
+  if (!counts
+    || !measuredInteger(counts.candidate_backlog)
+    || !measuredInteger(counts.review_required)) {
     return {
       lane_id: "new-set-admission",
       status: UNMEASURED,
@@ -158,8 +178,8 @@ function newSetLane(component) {
       next_action: "Restore current new-set discovery evidence.",
     };
   }
-  const candidateBacklog = integer(component.evidence.counts.candidate_backlog);
-  const reviewRequired = integer(component.evidence.counts.review_required);
+  const candidateBacklog = counts.candidate_backlog;
+  const reviewRequired = counts.review_required;
   const isComplete = candidateBacklog === 0 && reviewRequired === 0;
   return {
     lane_id: "new-set-admission",
@@ -173,7 +193,7 @@ function newSetLane(component) {
       candidate_backlog: candidateBacklog,
       review_required: reviewRequired,
       newly_observed_review_required: integer(
-        component.evidence.counts.newly_observed_review_required,
+        counts.newly_observed_review_required,
       ),
     },
     next_action: isComplete

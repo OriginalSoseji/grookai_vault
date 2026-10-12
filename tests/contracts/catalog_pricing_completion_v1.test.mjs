@@ -117,3 +117,32 @@ test("missing source evidence is unmeasured rather than falsely healthy", () => 
   assert.equal(result.status, "unmeasured");
   assert.ok(result.lanes.every((lane) => lane.status === "unmeasured"));
 });
+
+test("inconsistent pricing counters cannot satisfy the equality gate", () => {
+  const input = fixture();
+  input.components.find((row) => row.component_id === "tcgplayer-market-pipeline").evidence = {
+    selected_count: 100,
+    mapped_count: 100,
+    eligible_count: 101,
+    snapshot_count: 101,
+  };
+  const result = evaluateCatalogPricingCompletionV1(input);
+  const pricing = result.lanes.find((lane) => lane.lane_id === "tcgplayer-pricing-completion");
+  assert.equal(pricing.status, "incomplete");
+  assert.equal(pricing.coverage.counter_integrity, false);
+  assert.equal(pricing.coverage.published_snapshot_percent, null);
+  assert.equal(result.completion_allowed, false);
+});
+
+test("missing completion-critical new-set counters are unmeasured", () => {
+  const input = fixture();
+  input.components.find((row) => row.component_id === "new-set-discovery").evidence = {
+    counts: { candidate_backlog: 0 },
+  };
+  const result = evaluateCatalogPricingCompletionV1(input);
+  const newSets = result.lanes.find((lane) => lane.lane_id === "new-set-admission");
+  assert.equal(newSets.status, "unmeasured");
+  assert.equal(newSets.backlog, null);
+  assert.equal(result.status, "unmeasured");
+  assert.equal(result.completion_allowed, false);
+});
