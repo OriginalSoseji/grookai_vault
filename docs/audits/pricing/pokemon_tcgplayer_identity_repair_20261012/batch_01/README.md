@@ -16,4 +16,14 @@ parent and carries the reviewed invalidation
 approved ordinary SWSH028 target. The revised operation is four inserts plus one
 exact inactive-row retarget/reactivation. It preserves the prior target,
 timestamp, metadata fingerprint, and reviewed invalidation inside repair audit
-metadata. It remains non-executing and requires a new explicit founder approval.
+metadata. The authority file remains non-self-authorizing; the founder supplied
+the separate explicit execution approval recorded below.
+
+Production run `5e3762f0-be04-4a18-b08e-489b53f6189f` applied the approved four
+inserts and one exact inactive-row repair from commit
+`c5f5c0fd82bbe0a2045342451223676818ac2050`. Independent read-only readback
+verified all five active targets and zero publication overlap. No prices were
+published. A full post-mapping pricing dry-run made product `214239` publish-ready;
+the remaining four Gym Challenge observations require exact edition authority,
+and the two Mega Evolution Promo observations require reviewed holo-only finish
+authority.

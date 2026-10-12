@@ -1,9 +1,10 @@
 # Pokémon TCGPlayer Identity Repair — October 12, 2026
 
-Status: batch 01 is source-reviewed. The original insert-only production apply
-rolled back with zero writes after finding an inactive legacy Duraludon mapping.
-The exact four-insert/one-repair replacement passed production dry-run. No
-database or pricing publication write has occurred.
+Status: batch 01 mapping repair is live. The original insert-only production
+apply rolled back with zero writes after finding an inactive legacy Duraludon
+mapping. Founder approved the exact four-insert/one-repair replacement, production
+run `5e3762f0-be04-4a18-b08e-489b53f6189f` committed it, and independent read-only
+readback passed. No pricing publication write has occurred.
 
 ## Why pricing is incomplete
 
@@ -129,5 +130,63 @@ authority SHA-256 is
 `d55cbfe508f49b1d64ac42e22eb7ae59d5bfdaa81cd73ca89514cb737bf8c33e`;
 its fingerprint is
 `92ff3d731958be2a2c3db2d8d46f3045e29c3f7c84c473a60f3473a9a7b706c3`.
-A production apply now requires explicit founder approval for this changed
-four-insert/one-update operation and a clean committed source.
+A production apply required explicit founder approval for this changed
+four-insert/one-update operation and a clean committed source. That approval was
+received and the apply completed as recorded below.
+
+## Production apply and independent readback
+
+Production maintenance run `5e3762f0-be04-4a18-b08e-489b53f6189f` applied clean
+commit `c5f5c0fd82bbe0a2045342451223676818ac2050` over verified TLS. It inserted
+products `85720`, `85721`, `654596`, and `654598`, then retargeted and reactivated
+mapping `132914` for product `214239`. The transaction committed five database
+writes, with zero publication writes and zero customer-state writes.
+
+A separate read-only connection verified all five exact active parent targets.
+Mapping `132914` has no top-level invalidation that could suppress its corrected
+target; its former GameStop-stamped target and
+`PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT` evidence remain preserved under
+`inactive_mapping_repair`. Active publication overlap remained zero.
+
+## Post-mapping pricing result
+
+The fresh backlog report against the latest verified production run records
+208,451 selected observations, 165,594 published snapshots, and 42,857 remaining
+unpublished observations. That production run completed before the mapping apply,
+so its stored decisions still classify all seven batch observations under their
+prior mapping state.
+
+A full current-state read-only pricing dry-run then evaluated all 208,451
+observations from source sync `e429784c-55f2-4922-94dc-0cc560acda8d`. It
+reconciled with zero mismatches and projected 165,595 eligible observations,
+31,180 quarantined observations, and 11,676 excluded observations. It performed
+no database, publication, canonical identity, or vault writes.
+
+Exact batch outcomes:
+
+| Product | Subtype | Market price | Current outcome | Next owner |
+|---:|---|---:|---|---|
+| 214239 | Holofoil | $0.46 | Publish-ready | Separate shadow/reconciliation and publication gate |
+| 85720 | 1st Edition | $2.73 | Held | Exact Gym Challenge edition authority |
+| 85720 | Unlimited | $1.16 | Held | Exact Gym Challenge edition authority |
+| 85721 | 1st Edition | $3.98 | Held | Exact Gym Challenge edition authority |
+| 85721 | Unlimited | $1.36 | Held | Exact Gym Challenge edition authority |
+| 654596 | Normal | $12.21 | Held | Reviewed TCGPlayer Normal-to-holo finish authority |
+| 654598 | Normal | $18.20 | Held | Reviewed TCGPlayer Normal-to-holo finish authority |
+
+The Gym Challenge parents each have one verified Normal child, but the four
+source observations distinguish First Edition from Unlimited. The installed
+edition assignment subsystem is intentionally restricted to Jungle group `635`;
+it cannot be reused for Gym Challenge without a separately reviewed expansion.
+
+The two Mega Evolution Promo parents each have a verified Holo child and no
+Normal child. TCGdex identifies products `654596` and `654598` as the exact holo
+variants, and the reviewed English Master Index independently classifies both as
+holo-only. TCGPlayer nevertheless labels their market rows `Normal`. Do not
+create false Normal children. Prepare a bounded exact finish-override contract
+that binds each product, source payload, parent, Holo child, and reviewed evidence.
+
+No prices from this batch are live. The next work is two separate plan-only
+packages: Gym Challenge edition authority for four observations and Mega
+Evolution Promo exact finish authority for two observations. Duraludon can enter
+a later governed shadow run, but price publication still needs its own approval.
