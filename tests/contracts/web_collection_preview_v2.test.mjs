@@ -150,12 +150,14 @@ test('Base Set cheek and Jungle edition evidence select exact governed identitie
  const junglePreview=await buildCollectionPreviewV2(fixture({setName:'Jungle',setCode:'base2',primaryFinish:'normal',primaryCard:{name:'Wigglytuff',number:'32',printed_identity_modifier:'edition:first_edition'},jungle:jungleResolution}).client,'owner',csv([jungle]));
  assert.equal(junglePreview.readyRows,1);assert.equal(junglePreview.rows[0].selection.cardId,'c1');
 });
-test('exact Jungle edition child does not depend on ambiguous parent resolution',async()=>{
+test('staged exact Jungle edition child remains review until its pair is published',async()=>{
  const source='Wigglytuff,Pokemon,Jungle,032,1st Edition,Ungraded,1,Private';
- const f=fixture({setName:'Jungle',setCode:'base2',primaryFinish:'normal',primaryCard:{name:'Wigglytuff',number:'32',printed_identity_modifier:'edition:first_edition'},jungle:{data:{version:1,status:'unavailable',options:[]},error:null}});
+ const data={...JSON.parse(fs.readFileSync('tests/fixtures/jungle_edition_resolution_v1.json')),status:'unavailable',options:[]};
+ const f=fixture({setName:'Jungle',setCode:'base2',primaryFinish:'normal',primaryCard:{name:'Wigglytuff',number:'32',printed_identity_modifier:'edition:first_edition'},jungle:{data,error:null}});
  const preview=await buildCollectionPreviewV2(f.client,'owner',csv([source]));
- assert.equal(preview.rows[0].selection.cardId,'c1');
- assert.equal(f.reads.some(([name])=>name==='get_jungle_edition_resolution_v1'),false);
+ assert.equal(preview.readyRows,0);assert.equal(preview.rows[0].selection,null);
+ assert.match(preview.rows[0].reason,/being reviewed/);
+ assert.equal(f.reads.some(([name])=>name==='get_jungle_edition_resolution_v1'),true);
 });
 for(const status of ['selection_required','ready','unavailable'])test('named finish cannot bypass Jungle '+status+' hold',async()=>{
  const data={...JSON.parse(fs.readFileSync('tests/fixtures/jungle_edition_resolution_v1.json')),status};
