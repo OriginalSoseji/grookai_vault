@@ -22,3 +22,14 @@ Before any production mutation, the implementation must pass a Gym catalog
 identity rollback rehearsal, a Gym runtime binding rollback rehearsal, a retained
 schema rehearsal for the exact finish override, and a combined read-only pricing
 evaluation. Price publication remains a later, separately approved operation.
+
+`rehearsal.json` is the deterministic, no-write expansion of this plan against
+the hash-bound production read-only snapshot. It allocates four fresh Gym
+Challenge edition parent, identity, and printing rows with four staged binding
+templates, plus two append-only Mega Evolution Promo finish overrides. Its
+combined evaluation keeps all six observations explicitly held by the current
+runtime and records the result expected only after the next local schema
+rehearsal. Production database writes, price publications, and customer-state
+writes remain at zero. Run
+`node scripts/pricing/build_pokemon_tcgplayer_variant_repair_rehearsal_v1.mjs`
+to reproduce it while the retained snapshot is available locally.

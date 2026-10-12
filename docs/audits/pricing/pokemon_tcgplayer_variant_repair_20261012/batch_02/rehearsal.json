@@ -1,0 +1,736 @@
+{
+  "version": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1",
+  "status": "local_rehearsal_plan_ready",
+  "execution_authorized": false,
+  "production_database_writes": 0,
+  "pricing_publication_writes": 0,
+  "authority_plan_fingerprint": "ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
+  "evidence": {
+    "production_snapshot_sha256": "a6bb2ca0b31aa805a7cb31b6188c2545ea03f2b194b1b15c9282e9c5eb1c607b",
+    "gym_source_products_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+    "historical_gym_ids_forbidden": [
+      "03208d73-8206-4780-aa45-c3735677cf99",
+      "47425cf5-146f-41e0-a770-e37c761ce1ef",
+      "895970ba-ed4c-4d00-91ce-db650563e126",
+      "a8c17fda-b5a7-46ab-a7c9-32284dfec54f"
+    ]
+  },
+  "snapshot_extract": {
+    "version": "POKEMON_TCGPLAYER_VARIANT_STRUCTURE_READONLY_V1",
+    "read_only": true,
+    "gym_parents_and_children": [
+      {
+        "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+        "gv_id": "GV-PK-G2-75",
+        "set_code": "gym2",
+        "number": "75",
+        "name": "Giovanni's Nidoran ♀",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "card_printing_id": "8dfce1ff-1003-45d9-9f50-1906c8d4975a",
+        "printing_gv_id": "GV-PK-G2-75-STD",
+        "finish_key": "normal",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "gym2-75",
+        "created_by": "printing_ingestion_v2"
+      },
+      {
+        "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+        "gv_id": "GV-PK-G2-76",
+        "set_code": "gym2",
+        "number": "76",
+        "name": "Giovanni's Nidoran ♂",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "card_printing_id": "8c1d881c-adcc-4295-b2e0-864e9ed9dab3",
+        "printing_gv_id": "GV-PK-G2-76-STD",
+        "finish_key": "normal",
+        "provenance_source": "tcgdex",
+        "provenance_ref": "gym2-76",
+        "created_by": "printing_ingestion_v2"
+      }
+    ],
+    "gym_active_identities": [
+      {
+        "identity_id": "292eec08-7068-4d11-a221-70b10543863b",
+        "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176",
+        "identity_domain": "pokemon_eng_standard",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "33b911916ad9241a7b8cbb5ca7862646bc3ed82030809939bd0037cadc2bb759",
+        "identity_payload": {
+          "printed_total": 132,
+          "printed_set_abbrev": "G2",
+          "variant_key_current": "base"
+        },
+        "is_active": true,
+        "gv_id": "GV-PK-G2-75",
+        "number": "75",
+        "printed_identity_modifier": null
+      },
+      {
+        "identity_id": "a53bda0c-a894-42a6-a0be-4564e06244fa",
+        "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1",
+        "identity_domain": "pokemon_eng_standard",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "a6f195f22314c23f1014a5a549ce71a9965d04a18cb9f0954000f78e333a9242",
+        "identity_payload": {
+          "printed_total": 132,
+          "printed_set_abbrev": "G2",
+          "variant_key_current": "base"
+        },
+        "is_active": true,
+        "gv_id": "GV-PK-G2-76",
+        "number": "76",
+        "printed_identity_modifier": null
+      }
+    ],
+    "gym_existing_links": [],
+    "gym_mappings": [
+      {
+        "mapping": {
+          "id": 351661,
+          "meta": {
+            "confidence": 0.99,
+            "evidence_lane": "unique_group_set_consensus",
+            "mapping_method": "exact_group_set_number_name_consensus_v1",
+            "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+            "canonical_gv_id": "GV-PK-G2-75",
+            "source_group_id": 1440,
+            "batch_fingerprint": "f3a7a859cc4ab87df189a2b694ca69844214159a505031a5c21597aec090e4bd",
+            "source_group_name": "Gym Challenge",
+            "maintenance_run_id": "5e3762f0-be04-4a18-b08e-489b53f6189f",
+            "source_sync_run_id": "1427b69f-2748-456f-a33a-a0ed3989a3ec",
+            "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+            "producing_commit_sha": "c5f5c0fd82bbe0a2045342451223676818ac2050",
+            "candidate_fingerprint": "72d7262e40b116fc6fd8729940fb956a8d48c97b73b299399903f75b925da71d",
+            "candidate_artifact_path": "docs/audits/pricing/pokemon_tcgplayer_identity_repair_20261012/batch_01/plan/candidates.jsonl",
+            "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2",
+            "master_authority_binding": {
+              "review_sha256": "0e049c6c18aff6c2f563e3a24592207de8d87cd93b53350bc3a117f4fb50f62e",
+              "master_index_sha256": "9be6f53a106a5ae0008e340c533f772bbd49527e67dc4f9f3a6084318752758d",
+              "candidate_fingerprint": "72d7262e40b116fc6fd8729940fb956a8d48c97b73b299399903f75b925da71d",
+              "mapping_source_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+              "master_manifest_fingerprint": "81c53f75c96cc2f2c3b87eeaf4317b900a6c156d1df640c9957fd8d3c5c426a4"
+            },
+            "candidate_artifact_sha256": "2c6854328b6533c2c792a0f49f9d1806fa27a68a2e9195502433e1abd308cb76",
+            "candidate_plan_commit_sha": "9f552167e25059857b28ea1b0ca6c4a2c1747d0c",
+            "master_authority_fingerprint": "ebbf7848ee4f37e51380779f541b1678e1e3ea52b222064b9e3726898226156b",
+            "supporting_gap_observation_ids": [
+              "151a54f4-47d7-4eb4-8d03-722409834ad1",
+              "38ed5542-e56b-4432-bb61-e4f63c40f068"
+            ]
+          },
+          "active": true,
+          "source": "tcgplayer",
+          "synced_at": "2026-10-12T14:12:36.621169+00:00",
+          "external_id": "85720",
+          "card_print_id": "b12ba460-4fc9-4c73-892e-11ea0cf27176"
+        }
+      },
+      {
+        "mapping": {
+          "id": 351662,
+          "meta": {
+            "confidence": 0.99,
+            "evidence_lane": "unique_group_set_consensus",
+            "mapping_method": "exact_group_set_number_name_consensus_v1",
+            "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+            "canonical_gv_id": "GV-PK-G2-76",
+            "source_group_id": 1440,
+            "batch_fingerprint": "f3a7a859cc4ab87df189a2b694ca69844214159a505031a5c21597aec090e4bd",
+            "source_group_name": "Gym Challenge",
+            "maintenance_run_id": "5e3762f0-be04-4a18-b08e-489b53f6189f",
+            "source_sync_run_id": "1427b69f-2748-456f-a33a-a0ed3989a3ec",
+            "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+            "producing_commit_sha": "c5f5c0fd82bbe0a2045342451223676818ac2050",
+            "candidate_fingerprint": "e801b6797dde12f14c4cc140148c8bb30645e7d509cbc48d0b5ae0dc70d3c8f7",
+            "candidate_artifact_path": "docs/audits/pricing/pokemon_tcgplayer_identity_repair_20261012/batch_01/plan/candidates.jsonl",
+            "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2",
+            "master_authority_binding": {
+              "review_sha256": "0e049c6c18aff6c2f563e3a24592207de8d87cd93b53350bc3a117f4fb50f62e",
+              "master_index_sha256": "9be6f53a106a5ae0008e340c533f772bbd49527e67dc4f9f3a6084318752758d",
+              "candidate_fingerprint": "e801b6797dde12f14c4cc140148c8bb30645e7d509cbc48d0b5ae0dc70d3c8f7",
+              "mapping_source_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+              "master_manifest_fingerprint": "81c53f75c96cc2f2c3b87eeaf4317b900a6c156d1df640c9957fd8d3c5c426a4"
+            },
+            "candidate_artifact_sha256": "2c6854328b6533c2c792a0f49f9d1806fa27a68a2e9195502433e1abd308cb76",
+            "candidate_plan_commit_sha": "9f552167e25059857b28ea1b0ca6c4a2c1747d0c",
+            "master_authority_fingerprint": "ebbf7848ee4f37e51380779f541b1678e1e3ea52b222064b9e3726898226156b",
+            "supporting_gap_observation_ids": [
+              "b30623fe-5885-4cbc-86dd-44e2e31be6d1",
+              "cd8a766a-71ca-4ae1-b669-3bc888572002"
+            ]
+          },
+          "active": true,
+          "source": "tcgplayer",
+          "synced_at": "2026-10-12T14:12:36.621169+00:00",
+          "external_id": "85721",
+          "card_print_id": "c864fcfa-fe67-4ec2-8932-a81b7a02c7e1"
+        }
+      }
+    ],
+    "mep_targets": [
+      {
+        "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "gv_id": "GV-PK-MEP-002",
+        "number": "002",
+        "name": "Inteleon",
+        "card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+        "printing_gv_id": "GV-PK-MEP-002-HOLO",
+        "finish_key": "holo",
+        "provenance_source": null,
+        "provenance_ref": null,
+        "active_reviews": []
+      },
+      {
+        "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+        "gv_id": "GV-PK-MEP-004",
+        "number": "004",
+        "name": "Lunatone",
+        "card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+        "printing_gv_id": "GV-PK-MEP-004-HOLO",
+        "finish_key": "holo",
+        "provenance_source": null,
+        "provenance_ref": null,
+        "active_reviews": []
+      }
+    ],
+    "current_observations": [
+      {
+        "source_observation_id": "2664dc1d-4e03-43cb-8346-0ca5f10c4b19",
+        "product_id": 654596,
+        "group_id": 24451,
+        "subtype_name": "Normal",
+        "market_price": "12.21",
+        "payload_hash": "805ec6c5626b16379810d29c22f426f994c90f580e8b9f63997c9d15aa8140a0",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      {
+        "source_observation_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
+        "product_id": 654598,
+        "group_id": 24451,
+        "subtype_name": "Normal",
+        "market_price": "18.2",
+        "payload_hash": "7e71d9924a5d2fe4ad97f84430070b723270e487deb64af2861442ee72c98207",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      {
+        "source_observation_id": "d24b4d1e-a73f-4a44-984d-cc94e1f05f28",
+        "product_id": 85720,
+        "group_id": 1440,
+        "subtype_name": "1st Edition",
+        "market_price": "2.73",
+        "payload_hash": "54428d2fa2aeb3f0140d3297bd2a6ad1f2347b9b81e305c96c26f117a2b5fa71",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      {
+        "source_observation_id": "b208701e-5378-4a72-915f-403db492e011",
+        "product_id": 85720,
+        "group_id": 1440,
+        "subtype_name": "Unlimited",
+        "market_price": "1.16",
+        "payload_hash": "39c210469441c8222090c823b30749d0ac79574788b79fe477e8c46e33d1defe",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      {
+        "source_observation_id": "ce7b33ab-299d-4ee3-914b-161100ab1aa6",
+        "product_id": 85721,
+        "group_id": 1440,
+        "subtype_name": "1st Edition",
+        "market_price": "3.98",
+        "payload_hash": "b0831080d3cb31ea7a271f731edd102b2236f2eb8848b638e45144e7a59a6598",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      {
+        "source_observation_id": "6febacee-1bcd-4592-aedf-f478a7a94d97",
+        "product_id": 85721,
+        "group_id": 1440,
+        "subtype_name": "Unlimited",
+        "market_price": "1.36",
+        "payload_hash": "f62a49c7d5a69efd1bb4c634438779ecaa92a0a82e6c95b689f56fe33361f80a",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      }
+    ]
+  },
+  "local_rollback_write_scope": {
+    "card_prints": 4,
+    "card_print_identity": 4,
+    "card_printings": 4,
+    "gym_source_binding_templates": 4,
+    "market_evidence_variant_assignments": 2,
+    "price_publications": 0,
+    "customer_state_writes": 0
+  },
+  "gym_rows": [
+    {
+      "key": "85720:1st Edition",
+      "source_observation": {
+        "source_observation_id": "d24b4d1e-a73f-4a44-984d-cc94e1f05f28",
+        "product_id": 85720,
+        "group_id": 1440,
+        "subtype_name": "1st Edition",
+        "market_price": "2.73",
+        "payload_hash": "54428d2fa2aeb3f0140d3297bd2a6ad1f2347b9b81e305c96c26f117a2b5fa71",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      "card_print": {
+        "id": "c75ade4f-0abf-5380-822a-5b3d3014bb96",
+        "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+        "set_code": "gym2",
+        "name": "Giovanni's Nidoran ♀",
+        "number": "75",
+        "number_plain": "75",
+        "gv_id": "GV-PK-G2-75-FIRST-EDITION",
+        "variant_key": "",
+        "printed_identity_modifier": "edition:first_edition",
+        "identity_domain": "pokemon_eng_standard",
+        "set_identity_model": "standard",
+        "external_ids": {},
+        "image_status": "missing"
+      },
+      "card_print_identity": {
+        "id": "f1ff1e70-afc2-5c66-8fe0-bd5c049d935a",
+        "card_print_id": "c75ade4f-0abf-5380-822a-5b3d3014bb96",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "gym2",
+        "printed_number": "75",
+        "normalized_printed_name": "giovanni's nidoran ♀",
+        "source_name_raw": "Giovanni's Nidoran ♀",
+        "identity_payload": {
+          "printed_total": 132,
+          "printed_set_abbrev": "G2",
+          "variant_key_current": "edition:first_edition"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": null,
+        "identity_hash_function": "public.card_print_identity_hash_v1",
+        "is_active": true
+      },
+      "card_printing": {
+        "id": "9b1358e1-5ad1-56de-a224-8fcd2131bf87",
+        "card_print_id": "c75ade4f-0abf-5380-822a-5b3d3014bb96",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-G2-75-FIRST-EDITION-NORMAL",
+        "is_provisional": false,
+        "provenance_source": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1",
+        "provenance_ref": "plan:ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
+        "created_by": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1"
+      },
+      "source_binding_template": {
+        "id": "ad302eb2-07b7-58e8-b233-a28acc52c40e",
+        "contract_version": "TCGPLAYER_EXACT_EDITION_BINDING_TEMPLATE_V1",
+        "state": "staged",
+        "source": "tcgplayer",
+        "category_id": 3,
+        "group_id": 1440,
+        "product_id": 85720,
+        "source_subtype": "1st Edition",
+        "source_product_payload_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+        "source_product_sha256": "f9a6fefadabb32a1ba9cb5b357fa73603f58ce2444fb074d6878fa63df2f8589",
+        "source_observation_id": "d24b4d1e-a73f-4a44-984d-cc94e1f05f28",
+        "source_price_row_hash": "54428d2fa2aeb3f0140d3297bd2a6ad1f2347b9b81e305c96c26f117a2b5fa71",
+        "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+        "card_print_id": "c75ade4f-0abf-5380-822a-5b3d3014bb96",
+        "card_printing_id": "9b1358e1-5ad1-56de-a224-8fcd2131bf87",
+        "assigned_edition": "first_edition",
+        "assigned_finish_key": "normal",
+        "publishable": false,
+        "app_visible": false,
+        "market_truth": false
+      }
+    },
+    {
+      "key": "85720:Unlimited",
+      "source_observation": {
+        "source_observation_id": "b208701e-5378-4a72-915f-403db492e011",
+        "product_id": 85720,
+        "group_id": 1440,
+        "subtype_name": "Unlimited",
+        "market_price": "1.16",
+        "payload_hash": "39c210469441c8222090c823b30749d0ac79574788b79fe477e8c46e33d1defe",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      "card_print": {
+        "id": "8c1fe8e6-b3a6-5727-971b-fa1629d5d635",
+        "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+        "set_code": "gym2",
+        "name": "Giovanni's Nidoran ♀",
+        "number": "75",
+        "number_plain": "75",
+        "gv_id": "GV-PK-G2-75-UNLIMITED",
+        "variant_key": "",
+        "printed_identity_modifier": "edition:unlimited",
+        "identity_domain": "pokemon_eng_standard",
+        "set_identity_model": "standard",
+        "external_ids": {},
+        "image_status": "missing"
+      },
+      "card_print_identity": {
+        "id": "d52dfc22-3f1c-55fc-bd17-a276c499cc2c",
+        "card_print_id": "8c1fe8e6-b3a6-5727-971b-fa1629d5d635",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "gym2",
+        "printed_number": "75",
+        "normalized_printed_name": "giovanni's nidoran ♀",
+        "source_name_raw": "Giovanni's Nidoran ♀",
+        "identity_payload": {
+          "printed_total": 132,
+          "printed_set_abbrev": "G2",
+          "variant_key_current": "edition:unlimited"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": null,
+        "identity_hash_function": "public.card_print_identity_hash_v1",
+        "is_active": true
+      },
+      "card_printing": {
+        "id": "28040606-5e98-50dd-969f-3273a6345b9f",
+        "card_print_id": "8c1fe8e6-b3a6-5727-971b-fa1629d5d635",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-G2-75-UNLIMITED-NORMAL",
+        "is_provisional": false,
+        "provenance_source": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1",
+        "provenance_ref": "plan:ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
+        "created_by": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1"
+      },
+      "source_binding_template": {
+        "id": "22a34a09-3524-51e6-80e6-c603ddd6e172",
+        "contract_version": "TCGPLAYER_EXACT_EDITION_BINDING_TEMPLATE_V1",
+        "state": "staged",
+        "source": "tcgplayer",
+        "category_id": 3,
+        "group_id": 1440,
+        "product_id": 85720,
+        "source_subtype": "Unlimited",
+        "source_product_payload_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+        "source_product_sha256": "f9a6fefadabb32a1ba9cb5b357fa73603f58ce2444fb074d6878fa63df2f8589",
+        "source_observation_id": "b208701e-5378-4a72-915f-403db492e011",
+        "source_price_row_hash": "39c210469441c8222090c823b30749d0ac79574788b79fe477e8c46e33d1defe",
+        "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+        "card_print_id": "8c1fe8e6-b3a6-5727-971b-fa1629d5d635",
+        "card_printing_id": "28040606-5e98-50dd-969f-3273a6345b9f",
+        "assigned_edition": "unlimited",
+        "assigned_finish_key": "normal",
+        "publishable": false,
+        "app_visible": false,
+        "market_truth": false
+      }
+    },
+    {
+      "key": "85721:1st Edition",
+      "source_observation": {
+        "source_observation_id": "ce7b33ab-299d-4ee3-914b-161100ab1aa6",
+        "product_id": 85721,
+        "group_id": 1440,
+        "subtype_name": "1st Edition",
+        "market_price": "3.98",
+        "payload_hash": "b0831080d3cb31ea7a271f731edd102b2236f2eb8848b638e45144e7a59a6598",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      "card_print": {
+        "id": "bd623537-374a-5526-bb24-fcc14022c6e9",
+        "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+        "set_code": "gym2",
+        "name": "Giovanni's Nidoran ♂",
+        "number": "76",
+        "number_plain": "76",
+        "gv_id": "GV-PK-G2-76-FIRST-EDITION",
+        "variant_key": "",
+        "printed_identity_modifier": "edition:first_edition",
+        "identity_domain": "pokemon_eng_standard",
+        "set_identity_model": "standard",
+        "external_ids": {},
+        "image_status": "missing"
+      },
+      "card_print_identity": {
+        "id": "e8fd78aa-a4c5-5407-9ee6-c17f580e5e05",
+        "card_print_id": "bd623537-374a-5526-bb24-fcc14022c6e9",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "gym2",
+        "printed_number": "76",
+        "normalized_printed_name": "giovanni's nidoran ♂",
+        "source_name_raw": "Giovanni's Nidoran ♂",
+        "identity_payload": {
+          "printed_total": 132,
+          "printed_set_abbrev": "G2",
+          "variant_key_current": "edition:first_edition"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": null,
+        "identity_hash_function": "public.card_print_identity_hash_v1",
+        "is_active": true
+      },
+      "card_printing": {
+        "id": "47e6ad7c-a0b5-579e-86d6-fd16245e46c1",
+        "card_print_id": "bd623537-374a-5526-bb24-fcc14022c6e9",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-G2-76-FIRST-EDITION-NORMAL",
+        "is_provisional": false,
+        "provenance_source": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1",
+        "provenance_ref": "plan:ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
+        "created_by": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1"
+      },
+      "source_binding_template": {
+        "id": "cc81880a-553f-5d25-89e9-4332731e2573",
+        "contract_version": "TCGPLAYER_EXACT_EDITION_BINDING_TEMPLATE_V1",
+        "state": "staged",
+        "source": "tcgplayer",
+        "category_id": 3,
+        "group_id": 1440,
+        "product_id": 85721,
+        "source_subtype": "1st Edition",
+        "source_product_payload_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+        "source_product_sha256": "f4ce84f6a2a327a11c1bcd223601e5681770d154aa2e51574ec47c67cfdf7511",
+        "source_observation_id": "ce7b33ab-299d-4ee3-914b-161100ab1aa6",
+        "source_price_row_hash": "b0831080d3cb31ea7a271f731edd102b2236f2eb8848b638e45144e7a59a6598",
+        "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+        "card_print_id": "bd623537-374a-5526-bb24-fcc14022c6e9",
+        "card_printing_id": "47e6ad7c-a0b5-579e-86d6-fd16245e46c1",
+        "assigned_edition": "first_edition",
+        "assigned_finish_key": "normal",
+        "publishable": false,
+        "app_visible": false,
+        "market_truth": false
+      }
+    },
+    {
+      "key": "85721:Unlimited",
+      "source_observation": {
+        "source_observation_id": "6febacee-1bcd-4592-aedf-f478a7a94d97",
+        "product_id": 85721,
+        "group_id": 1440,
+        "subtype_name": "Unlimited",
+        "market_price": "1.36",
+        "payload_hash": "f62a49c7d5a69efd1bb4c634438779ecaa92a0a82e6c95b689f56fe33361f80a",
+        "last_seen_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d"
+      },
+      "card_print": {
+        "id": "a5923fb0-b9b1-50d7-9494-3c229e20f7a4",
+        "set_id": "bb258610-a859-4f71-b54a-21a8591a5fad",
+        "set_code": "gym2",
+        "name": "Giovanni's Nidoran ♂",
+        "number": "76",
+        "number_plain": "76",
+        "gv_id": "GV-PK-G2-76-UNLIMITED",
+        "variant_key": "",
+        "printed_identity_modifier": "edition:unlimited",
+        "identity_domain": "pokemon_eng_standard",
+        "set_identity_model": "standard",
+        "external_ids": {},
+        "image_status": "missing"
+      },
+      "card_print_identity": {
+        "id": "2c977a65-1b07-512a-8a16-3c7ac7a03de3",
+        "card_print_id": "a5923fb0-b9b1-50d7-9494-3c229e20f7a4",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "gym2",
+        "printed_number": "76",
+        "normalized_printed_name": "giovanni's nidoran ♂",
+        "source_name_raw": "Giovanni's Nidoran ♂",
+        "identity_payload": {
+          "printed_total": 132,
+          "printed_set_abbrev": "G2",
+          "variant_key_current": "edition:unlimited"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": null,
+        "identity_hash_function": "public.card_print_identity_hash_v1",
+        "is_active": true
+      },
+      "card_printing": {
+        "id": "3d71caeb-2742-52f2-8e28-406ddb2a8a26",
+        "card_print_id": "a5923fb0-b9b1-50d7-9494-3c229e20f7a4",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-G2-76-UNLIMITED-NORMAL",
+        "is_provisional": false,
+        "provenance_source": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1",
+        "provenance_ref": "plan:ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
+        "created_by": "POKEMON_TCGPLAYER_VARIANT_REPAIR_REHEARSAL_V1"
+      },
+      "source_binding_template": {
+        "id": "3e4b3de0-0dcc-5f56-80de-f4be60d18024",
+        "contract_version": "TCGPLAYER_EXACT_EDITION_BINDING_TEMPLATE_V1",
+        "state": "staged",
+        "source": "tcgplayer",
+        "category_id": 3,
+        "group_id": 1440,
+        "product_id": 85721,
+        "source_subtype": "Unlimited",
+        "source_product_payload_sha256": "f2a97bb05a14091116a78d469b9282abbc58aa024a537d47391983312e3cdc59",
+        "source_product_sha256": "f4ce84f6a2a327a11c1bcd223601e5681770d154aa2e51574ec47c67cfdf7511",
+        "source_observation_id": "6febacee-1bcd-4592-aedf-f478a7a94d97",
+        "source_price_row_hash": "f62a49c7d5a69efd1bb4c634438779ecaa92a0a82e6c95b689f56fe33361f80a",
+        "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+        "card_print_id": "a5923fb0-b9b1-50d7-9494-3c229e20f7a4",
+        "card_printing_id": "3d71caeb-2742-52f2-8e28-406ddb2a8a26",
+        "assigned_edition": "unlimited",
+        "assigned_finish_key": "normal",
+        "publishable": false,
+        "app_visible": false,
+        "market_truth": false
+      }
+    }
+  ],
+  "mep_assignment_rows": [
+    {
+      "id": "d270963b-d83a-521e-aa66-7af885130712",
+      "contract_version": "MARKET_EVIDENCE_VARIANT_ASSIGNMENT_V1",
+      "source_family": "tcgcsv_market_close",
+      "source_table": "tcgcsv_source_price_daily_observations",
+      "source_row_id": "2664dc1d-4e03-43cb-8346-0ca5f10c4b19",
+      "observation_id": "2664dc1d-4e03-43cb-8346-0ca5f10c4b19",
+      "raw_snapshot_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+      "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+      "gv_id": "GV-PK-MEP-002",
+      "card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+      "printing_gv_id": "GV-PK-MEP-002-HOLO",
+      "source_finish_hint": "Normal",
+      "normalized_finish_key": "normal",
+      "assigned_finish_key": "holo",
+      "variant_assignment_status": "exact_child_finish",
+      "variant_assignment_confidence": "1.0000",
+      "variant_assignment_version": "MEE_TCGPLAYER_REVIEWED_FINISH_OVERRIDE_V1",
+      "variant_assignment_reason": "exact reviewed TCGPlayer product and price lineage assigns source Normal to the existing canonical holo child",
+      "variant_assignment_flags": [
+        "reviewed_source_finish_override"
+      ],
+      "assignment_payload": {
+        "source_product_id": 654596,
+        "source_subtype_name": "Normal",
+        "source_product_sha256": "65988cf3a595e676cc5ac8417d261f93330742ac1a612c4f155e3eec1d42457d",
+        "reviewed_source_products_payload_sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957",
+        "source_candidate_fingerprint": "d1509f19057ae377d983ea6640fd02e47487deea1732278179aadcf248a54b59",
+        "mapping_gap_observation_id": "9360612f-a90c-4236-a5b9-29de21a8b875",
+        "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+        "source_artifact_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+        "source_artifact_hash": "368ce87a576166ae265ddecaa1289ed4f0bd233523c3a717ae2a626721a62697",
+        "source_price_row_identity": "tcgplayer:654596:normal",
+        "source_row_hash": "805ec6c5626b16379810d29c22f426f994c90f580e8b9f63997c9d15aa8140a0",
+        "source_observed_on": "2026-10-12T06:00:00.000Z",
+        "authority_plan_fingerprint": "ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495"
+      },
+      "needs_review": false,
+      "publishable": false,
+      "app_visible": false,
+      "market_truth": false
+    },
+    {
+      "id": "ce3db5fe-3d2f-5c5a-ba41-64834fb2a7a2",
+      "contract_version": "MARKET_EVIDENCE_VARIANT_ASSIGNMENT_V1",
+      "source_family": "tcgcsv_market_close",
+      "source_table": "tcgcsv_source_price_daily_observations",
+      "source_row_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
+      "observation_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
+      "raw_snapshot_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+      "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+      "gv_id": "GV-PK-MEP-004",
+      "card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+      "printing_gv_id": "GV-PK-MEP-004-HOLO",
+      "source_finish_hint": "Normal",
+      "normalized_finish_key": "normal",
+      "assigned_finish_key": "holo",
+      "variant_assignment_status": "exact_child_finish",
+      "variant_assignment_confidence": "1.0000",
+      "variant_assignment_version": "MEE_TCGPLAYER_REVIEWED_FINISH_OVERRIDE_V1",
+      "variant_assignment_reason": "exact reviewed TCGPlayer product and price lineage assigns source Normal to the existing canonical holo child",
+      "variant_assignment_flags": [
+        "reviewed_source_finish_override"
+      ],
+      "assignment_payload": {
+        "source_product_id": 654598,
+        "source_subtype_name": "Normal",
+        "source_product_sha256": "da3644e729758eb2cb8e978b83bd8e4b315823ed4791725a0d5ba772ac814f73",
+        "reviewed_source_products_payload_sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957",
+        "source_candidate_fingerprint": "790628b1719919a066b06fca06b9d7e5b90f015843f1fca05914663ba535f2ce",
+        "mapping_gap_observation_id": "47ff952e-ee35-445e-98bd-adb69949c42a",
+        "source_sync_run_id": "e429784c-55f2-4922-94dc-0cc560acda8d",
+        "source_artifact_id": "2d2e6471-7b21-4748-b843-f6a70821039c",
+        "source_artifact_hash": "368ce87a576166ae265ddecaa1289ed4f0bd233523c3a717ae2a626721a62697",
+        "source_price_row_identity": "tcgplayer:654598:normal",
+        "source_row_hash": "7e71d9924a5d2fe4ad97f84430070b723270e487deb64af2861442ee72c98207",
+        "source_observed_on": "2026-10-12T06:00:00.000Z",
+        "authority_plan_fingerprint": "ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495"
+      },
+      "needs_review": false,
+      "publishable": false,
+      "app_visible": false,
+      "market_truth": false
+    }
+  ],
+  "combined_read_only_price_evaluation": [
+    {
+      "source_observation_id": "2664dc1d-4e03-43cb-8346-0ca5f10c4b19",
+      "source_product_id": 654596,
+      "source_subtype_name": "Normal",
+      "market_price_usd": "12.21",
+      "target_card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+      "target_printing_gv_id": "GV-PK-MEP-002-HOLO",
+      "planned_resolution": "reviewed_finish_override",
+      "current_runtime_status": "held_override_version_not_in_qualification_view",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
+    },
+    {
+      "source_observation_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
+      "source_product_id": 654598,
+      "source_subtype_name": "Normal",
+      "market_price_usd": "18.2",
+      "target_card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+      "target_printing_gv_id": "GV-PK-MEP-004-HOLO",
+      "planned_resolution": "reviewed_finish_override",
+      "current_runtime_status": "held_override_version_not_in_qualification_view",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
+    },
+    {
+      "source_observation_id": "d24b4d1e-a73f-4a44-984d-cc94e1f05f28",
+      "source_product_id": 85720,
+      "source_subtype_name": "1st Edition",
+      "market_price_usd": "2.73",
+      "target_card_printing_id": "9b1358e1-5ad1-56de-a224-8fcd2131bf87",
+      "target_printing_gv_id": "GV-PK-G2-75-FIRST-EDITION-NORMAL",
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
+    },
+    {
+      "source_observation_id": "b208701e-5378-4a72-915f-403db492e011",
+      "source_product_id": 85720,
+      "source_subtype_name": "Unlimited",
+      "market_price_usd": "1.16",
+      "target_card_printing_id": "28040606-5e98-50dd-969f-3273a6345b9f",
+      "target_printing_gv_id": "GV-PK-G2-75-UNLIMITED-NORMAL",
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
+    },
+    {
+      "source_observation_id": "ce7b33ab-299d-4ee3-914b-161100ab1aa6",
+      "source_product_id": 85721,
+      "source_subtype_name": "1st Edition",
+      "market_price_usd": "3.98",
+      "target_card_printing_id": "47e6ad7c-a0b5-579e-86d6-fd16245e46c1",
+      "target_printing_gv_id": "GV-PK-G2-76-FIRST-EDITION-NORMAL",
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
+    },
+    {
+      "source_observation_id": "6febacee-1bcd-4592-aedf-f478a7a94d97",
+      "source_product_id": 85721,
+      "source_subtype_name": "Unlimited",
+      "market_price_usd": "1.36",
+      "target_card_printing_id": "3d71caeb-2742-52f2-8e28-406ddb2a8a26",
+      "target_printing_gv_id": "GV-PK-G2-76-UNLIMITED-NORMAL",
+      "planned_resolution": "exact_edition_binding",
+      "current_runtime_status": "held_missing_gym_edition_schema",
+      "current_runtime_publish_ready": false,
+      "expected_after_local_schema_rehearsal": true
+    }
+  ],
+  "remaining_gate": "local_schema_rollback_rehearsal",
+  "rehearsal_fingerprint": "b2f59922db404bf17d909da840a4a19970bc1d55d18b35a79a64b92fccff1f57"
+}
