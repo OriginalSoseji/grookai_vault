@@ -1,0 +1,14 @@
+[
+  {
+    "manifest": "authority/gym2/manifest.json",
+    "artifact_map": "authority/gym2/artifact_map.json"
+  },
+  {
+    "manifest": "authority/swshp/manifest.json",
+    "artifact_map": "authority/swshp/artifact_map.json"
+  },
+  {
+    "manifest": "authority/mep/manifest.json",
+    "artifact_map": "authority/mep/artifact_map.json"
+  }
+]

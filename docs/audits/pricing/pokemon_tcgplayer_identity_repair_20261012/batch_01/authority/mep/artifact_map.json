@@ -1,0 +1,22 @@
+[
+  {
+    "ref": "master:mep:pokemon-tcgplayer-repair-20261012-batch-01",
+    "path": "master.json"
+  },
+  {
+    "ref": "review:mep:pokemon-tcgplayer-repair-20261012-batch-01",
+    "path": "review.json"
+  },
+  {
+    "ref": "tcgcsv-group-24451",
+    "path": "sources/24451-products.json"
+  },
+  {
+    "ref": "tcgdex-mep-002",
+    "path": "sources/mep-002.json"
+  },
+  {
+    "ref": "tcgdex-mep-004",
+    "path": "sources/mep-004.json"
+  }
+]

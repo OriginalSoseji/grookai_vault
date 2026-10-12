@@ -1,0 +1,18 @@
+[
+  {
+    "ref": "master:swshp:pokemon-tcgplayer-repair-20261012-batch-01",
+    "path": "master.json"
+  },
+  {
+    "ref": "review:swshp:pokemon-tcgplayer-repair-20261012-batch-01",
+    "path": "review.json"
+  },
+  {
+    "ref": "tcgcsv-group-2545",
+    "path": "sources/2545-products.json"
+  },
+  {
+    "ref": "tcgdex-swshp-SWSH028",
+    "path": "sources/swshp-SWSH028.json"
+  }
+]

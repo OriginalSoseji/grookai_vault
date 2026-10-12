@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Pokémon TCGPlayer identity repair — October 12
+
+PR622 installed outcome-based completion control: six catalog/pricing lanes now
+require explicit owners and zero backlogs. Runtime health alone is not catalog or
+pricing completeness. Read
+`docs/ops/POKEMON_TCGPLAYER_IDENTITY_REPAIR_20261012.md` before continuing.
+Batch 01 binds five existing English Pokémon parents to five exact TCGPlayer
+products covering seven missing-price observations. The production dry-run
+passed over verified TLS with zero writes and an acknowledged rollback. No
+mapping or price is live from this work. Preserve the exact plan and authority
+hashes. A real five-row insert requires separate explicit founder approval and
+exact committed-source binding; pricing publication remains a later governed
+operation. The Supabase Root 2021 CA is retained in the external operator
+artifact path recorded by the checkpoint. Never disable TLS verification.
+
 ## Collectr catalog review — October 9
 
 PR614's exact-cost release/save is complete; preserve 1640 accounted copies,

@@ -1,0 +1,136 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "mep",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "master:mep:pokemon-tcgplayer-repair-20261012-batch-01",
+  "master_index_sha256": "c952ca204c7e0dc8f4b2fdfcd768dc3a1c940adbc47c8365b14edb31c1617514",
+  "parents": [
+    {
+      "id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+      "name": "Inteleon",
+      "gv_id": "GV-PK-MEP-002",
+      "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "002",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+      "name": "Lunatone",
+      "gv_id": "GV-PK-MEP-004",
+      "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "004",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MEP-002-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "tcgdex-mep-002",
+          "sha256": "663a1bae4f643f4e7671ce04301eeff1cc911605f8551b3d00b1eda17812e4a9",
+          "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-MEP-004-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "tcgdex-mep-004",
+          "sha256": "00f88eddf951e50813b4ab0e1af828aef5a04848c13502f1171c82c7b02f8a8d",
+          "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "holo": 2
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "654596",
+      "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+      "candidate_fingerprint": "d1509f19057ae377d983ea6640fd02e47487deea1732278179aadcf248a54b59",
+      "source_ref": "tcgcsv-group-24451",
+      "source_sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "654598",
+      "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+      "candidate_fingerprint": "790628b1719919a066b06fca06b9d7e5b90f015843f1fca05914663ba535f2ce",
+      "source_ref": "tcgcsv-group-24451",
+      "source_sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957"
+    }
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+    "source_artifacts": [
+      {
+        "ref": "tcgcsv-group-24451",
+        "sha256": "0d15963655e06bddfba508af38ac21f64a0bfd0cec20011cb09e72d3d8ffb957",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/24451/products",
+        "retrieved_at": "2026-10-12T07:03:16.000Z"
+      },
+      {
+        "ref": "tcgdex-mep-002",
+        "sha256": "663a1bae4f643f4e7671ce04301eeff1cc911605f8551b3d00b1eda17812e4a9",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://api.tcgdex.net/v2/en/cards/mep-002",
+        "retrieved_at": "2026-10-12T07:03:51.000Z"
+      },
+      {
+        "ref": "tcgdex-mep-004",
+        "sha256": "00f88eddf951e50813b4ab0e1af828aef5a04848c13502f1171c82c7b02f8a8d",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://api.tcgdex.net/v2/en/cards/mep-004",
+        "retrieved_at": "2026-10-12T07:03:51.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "95dca2c2-c3e7-43b4-bc02-227fddc4910d",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "cddc521f-ebbe-4460-85d5-d78278672f95",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:mep:pokemon-tcgplayer-repair-20261012-batch-01",
+      "sha256": "ce178336912a8d83d001c9986bf5f376eefd9a919d4120ad0b672198996f51ba"
+    }
+  },
+  "fingerprint": "cb35f31a85d6d232f3798010972993687bdcbab6f35cd375586bfc56ef10793f"
+}

@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Pokémon TCGPlayer identity repair — October 12
+
+Read `docs/ops/POKEMON_TCGPLAYER_IDENTITY_REPAIR_20261012.md`. PR622 merged the
+six outcome lanes and zero-backlog completion rules. Batch 01 now contains five
+reviewed existing-parent mappings covering seven missing-price observations;
+its verified production dry-run passed with zero writes and a proven rollback.
+No mapping or price publication is live. Preserve the exact plan, authority and
+batch hashes. Production insertion requires explicit founder approval for the
+exact five-row batch and a clean committed source. After mapping, treat fresh
+pricing reconciliation and publication as separate guarded work.
+
 ## Collectr catalog review — October 9
 
 Read docs/checkpoints/collectr_catalog_review_20261009.md. PR620's review guard is

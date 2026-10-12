@@ -1,0 +1,17 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "6f7aee65e9d5f27b3e290630170b97b5d805011af5b6d90c6b65d5a5303f63f9",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swshp",
+  "scope": "verified_parent_families",
+  "reviewer": "Codex source adjudication; not founder mutation approval",
+  "reviewed_at": "2026-10-12T07:15:00.000Z",
+  "projection_sha256": "c711113072a516d6af8f6f05317113c128e57361ba4388d3cde0f6b41019d1e4",
+  "reasoning": [
+    "The bounded planner target, canonical set, printed coordinate and normalized name were checked against the captured TCGCSV group payload.",
+    "The captured TCGdex card payload independently matches the canonical parent and the one protected printing finish used by this scope.",
+    "The scope covers only the selected existing parents and does not claim complete-set coverage or authorize a database mutation."
+  ],
+  "mutation_authority": false
+}
