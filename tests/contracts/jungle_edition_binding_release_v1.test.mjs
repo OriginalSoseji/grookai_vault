@@ -4,6 +4,7 @@ import {
   JUNGLE_BINDING_RELEASE_V1,
   attestJungleBindingTargetV1,
   assertJungleBindingReleaseV1,
+  executeJungleBindingReleaseV1,
   jungleBindingFingerprintV1,
   sealJungleBindingReleaseV1,
 } from '../../backend/pricing/jungle_edition_binding_release_v1.mjs';
@@ -193,4 +194,72 @@ test('attests the connected database and both sealed schema captures', async () 
     attestJungleBindingTargetV1(targetClient({}, { database: 'retained_clone_with_same_rows' }), plan),
     /connected_database_attestation_mismatch/,
   );
+});
+
+function exactReadbackClient(plan, { productHash = null, activeBindingCount = 128 } = {}) {
+  const attestation = targetClient();
+  return {
+    ...attestation,
+    async query(sql, parameters) {
+      if (/^begin isolation level serializable read only$/i.test(sql)) return { rows: [] };
+      if (sql.startsWith('set local ') || sql.includes('pg_advisory_xact_lock')) return { rows: [] };
+      if (sql === 'commit' || sql === 'rollback') return { rows: [] };
+      if (sql.includes('select l.id::text identity_link_id')) return { rows: plan.rows.map((row) => ({
+        identity_link_id: row.identity_link_id,
+        card_print_id: row.card_print_id,
+        card_printing_id: row.card_printing_id,
+        gv_id: row.gv_id,
+        edition: row.edition,
+        finish_key: row.finish_key,
+        state: 'active',
+      })).sort((a, b) => a.identity_link_id.localeCompare(b.identity_link_id)) };
+      if (sql.includes('select b.id::text,b.identity_link_id::text')) return { rows: plan.rows.map((row) => ({
+        id: row.id,
+        identity_link_id: row.identity_link_id,
+        product_id: row.product_id,
+        source_subtype: row.source_subtype,
+        source_product_payload_hash: row.source_product_payload_hash,
+        manifest_sha256: row.manifest_sha256,
+        review_ref: plan.review_ref,
+        state: 'active',
+      })).sort((a, b) => a.id.localeCompare(b.id)) };
+      if (sql.includes('select count(*)::int n from public.tcgplayer_jungle_edition_bindings_v1 b')) return { rows: [{ n: 128 }] };
+      if (sql.includes('from public.tcgplayer_jungle_edition_assignments_v1')) return { rows: [{ n: 0 }] };
+      if (sql.includes('product.payload_hash product_hash')) return { rows: plan.rows.map((row, index) => ({
+        ...row,
+        link_state: 'active',
+        link_valid: true,
+        product_hash: index === 0 && productHash ? productHash : row.source_product_payload_hash,
+        source_active: true,
+        catalog_metadata_status: 'current',
+        observation_hash: row.source_row_hash,
+        source_sync_run_id: plan.source_sync_run_id,
+        observation_artifact_id: row.source_artifact_id,
+        source_run_status: 'completed',
+        failed_count: 0,
+        finished_at: plan.source_finished_at,
+        artifact_hash: hex('f'),
+        http_status: 200,
+        byte_size: 1,
+      })) };
+      if (sql.includes('tcgplayer_jungle_binding_valid_v1(id,true)')) return { rows: [{ n: activeBindingCount }] };
+      return attestation.query(sql, parameters);
+    },
+  };
+}
+
+test('readback revalidates current source evidence and all active bindings', async () => {
+  const plan = sealJungleBindingReleaseV1(draft(), { at: '2026-10-11T20:30:00.000Z' });
+  const options = { plan, expectedFingerprint: plan.plan_fingerprint, mode: 'readback' };
+  await assert.rejects(
+    executeJungleBindingReleaseV1({ ...options, client: exactReadbackClient(plan, { productHash: hex('9') }) }),
+    /source_product_hash_drift/,
+  );
+  await assert.rejects(
+    executeJungleBindingReleaseV1({ ...options, client: exactReadbackClient(plan, { activeBindingCount: 127 }) }),
+    /active_binding_validation_failed/,
+  );
+  const result = await executeJungleBindingReleaseV1({ ...options, client: exactReadbackClient(plan) });
+  assert.equal(result.after, 'exact');
+  assert.equal(result.independentReadback, true);
 });

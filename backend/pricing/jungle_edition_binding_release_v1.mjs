@@ -352,6 +352,15 @@ async function assertRuntimeSource(client, plan) {
   return rows;
 }
 
+async function assertActiveRelease(client, plan) {
+  await assertRuntimeSource(client, plan);
+  const activeBindings = (await client.query(`select count(*)::int n
+    from public.tcgplayer_jungle_edition_bindings_v1
+    where id=any($1::uuid[]) and public.tcgplayer_jungle_binding_valid_v1(id,true)`,
+    [plan.rows.map((row) => row.id)])).rows[0].n;
+  assert.equal(activeBindings, JUNGLE_BINDING_ROW_COUNT_V1, 'active_binding_validation_failed');
+}
+
 async function writeStats(client) {
   return (await client.query(`select schemaname,relname,n_tup_ins::int,n_tup_upd::int,n_tup_del::int
     from pg_stat_xact_all_tables
@@ -391,7 +400,9 @@ export async function readJungleBindingReleaseV1(client, plan, { expectedFingerp
   assertJungleBindingReleaseV1(plan, { expectedFingerprint, allowExpiredSource: true });
   await attestJungleBindingTargetV1(client, plan);
   const selected = await readSelected(client, plan);
-  return { state: classifySelected(plan, selected), selected };
+  const state = classifySelected(plan, selected);
+  if (state === 'exact') await assertActiveRelease(client, plan);
+  return { state, selected };
 }
 
 export async function executeJungleBindingReleaseV1({
@@ -416,6 +427,7 @@ export async function executeJungleBindingReleaseV1({
     const beforeState = classifySelected(plan, before);
     if (mode === 'readback') {
       assert.equal(beforeState, 'exact', 'release_not_exact');
+      await assertActiveRelease(client, plan);
       await client.query('commit');
       transactionOpen = false;
       return { mode, before: beforeState, after: beforeState, writes: [], committed: false, independentReadback: true };
