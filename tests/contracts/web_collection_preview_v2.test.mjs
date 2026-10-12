@@ -40,9 +40,9 @@ for(const c of artLabels)test('web art labels require catalog evidence: '+c.labe
  assert.equal(p.rows[0].selection.cardPrintingId,'p1');assert.equal(p.readyCopies,2);
  for(const change of [{primaryActive:false},{primaryFinish:'normal'},{primaryDomain:'pokemon_jpn_standard'},{primaryCard:{...options.primaryCard,rarity:null}}])assert.equal((await buildCollectionPreviewV2(fixture({...options,...change}).client,'owner',csv([source]))).readyRows,0);
 });
-function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=false,wrongPrinting=false,sameFinish=false,duplicatePrinting=false,inactive=false,primaryFinish='reverse',primaryActive=true,primaryDomain='pokemon_eng_standard',primaryCard={},jungle=null}={}){
- const sets=[{id:'s1',name:'Test',code:'test',game:'pokemon'}];
- const cards=[{id:'c1',set_id:'s1',gv_id:'GV-1',name:'Synthetic',number:'7/100',identity_domain:primaryDomain,variant_key:'',...primaryCard}];
+function fixture({extraCard=false,missingPrinting=false,failLate=false,repeated=false,wrongPrinting=false,sameFinish=false,duplicatePrinting=false,inactive=false,primaryFinish='reverse',primaryActive=true,primaryDomain='pokemon_eng_standard',primaryCard={},jungle=null,setName='Test',setCode='test'}={}){
+ const sets=[{id:'s1',name:setName,code:setCode,game:'pokemon'}];
+ const cards=[{id:'c1',set_id:'s1',set_code:setCode,gv_id:'GV-1',name:'Synthetic',number:'7/100',identity_domain:primaryDomain,variant_key:'',...primaryCard}];
  if(extraCard)cards.push({...cards[0],id:'c2',gv_id:'GV-2',variant_key:'play_pokemon_stamp',printed_identity_modifier:'prize_pack_stamp'});
  if(jungle)cards.forEach(card=>{card.set_code='base2';});
  const printings=[{id:'p1',card_print_id:'c1',finish_key:primaryFinish,finish_is_active:primaryActive}];
@@ -133,6 +133,29 @@ for(const jungle of [{error:{code:'57014',message:'timeout'}},{data:{version:1,s
 test('non-governed Jungle special keeps exact finish matching',async()=>{
  const p=await buildCollectionPreviewV2(fixture({extraCard:true,jungle:{data:{version:1,status:'not_applicable',options:[]},error:null}}).client,'owner',csv([basic]));
  assert.equal(p.readyRows,1);assert.equal(p.rows[0].selection.cardId,'c1');assert.equal(p.rows[0].selection.cardPrintingId,'p1');
+});
+test('explicit Base Set Unlimited imports only the ordinary identity',async()=>{
+ const source='Pikachu,Pokemon,Base Set (Unlimited),058,Normal,Ungraded,2,Private';
+ const p=await buildCollectionPreviewV2(fixture({setName:'Base Set',setCode:'base1',primaryFinish:'normal',primaryCard:{name:'Pikachu',number:'58',variant_key:'',printed_identity_modifier:null}}).client,'owner',csv([source]));
+ assert.equal(p.readyRows,1);assert.equal(p.readyCopies,2);assert.equal(p.rows[0].selection.cardId,'c1');
+ const held=await buildCollectionPreviewV2(fixture({setName:'Base Set',setCode:'base1',primaryFinish:'normal',primaryCard:{name:'Pikachu',number:'58',variant_key:'e3_stamp',printed_identity_modifier:'e3_stamp'}}).client,'owner',csv([source]));
+ assert.equal(held.readyRows,0);
+});
+test('Base Set cheek and Jungle edition evidence select exact governed identities',async()=>{
+ const cheek='Pikachu (Yellow Cheeks),Pokemon,Base Set (1st Edition & Shadowless),058,1st Edition,Ungraded,1,Private';
+ const first=await buildCollectionPreviewV2(fixture({setName:'Base Set',setCode:'base1',primaryFinish:'normal',primaryCard:{name:'Pikachu',number:'58',variant_key:'first_edition_yellow_cheeks',printed_identity_modifier:'edition:first_edition;print_run:shadowless;color:yellow_cheeks'}}).client,'owner',csv([cheek]));
+ assert.equal(first.readyRows,1);assert.equal(first.rows[0].selection.cardId,'c1');
+ const jungleResolution={data:{version:1,status:'not_applicable',options:[]},error:null};
+ const jungle='Wigglytuff,Pokemon,Jungle,032,1st Edition,Ungraded,1,Private';
+ const junglePreview=await buildCollectionPreviewV2(fixture({setName:'Jungle',setCode:'base2',primaryFinish:'normal',primaryCard:{name:'Wigglytuff',number:'32',printed_identity_modifier:'edition:first_edition'},jungle:jungleResolution}).client,'owner',csv([jungle]));
+ assert.equal(junglePreview.readyRows,1);assert.equal(junglePreview.rows[0].selection.cardId,'c1');
+});
+test('exact Jungle edition child does not depend on ambiguous parent resolution',async()=>{
+ const source='Wigglytuff,Pokemon,Jungle,032,1st Edition,Ungraded,1,Private';
+ const f=fixture({setName:'Jungle',setCode:'base2',primaryFinish:'normal',primaryCard:{name:'Wigglytuff',number:'32',printed_identity_modifier:'edition:first_edition'},jungle:{data:{version:1,status:'unavailable',options:[]},error:null}});
+ const preview=await buildCollectionPreviewV2(f.client,'owner',csv([source]));
+ assert.equal(preview.rows[0].selection.cardId,'c1');
+ assert.equal(f.reads.some(([name])=>name==='get_jungle_edition_resolution_v1'),false);
 });
 for(const status of ['selection_required','ready','unavailable'])test('named finish cannot bypass Jungle '+status+' hold',async()=>{
  const data={...JSON.parse(fs.readFileSync('tests/fixtures/jungle_edition_resolution_v1.json')),status};

@@ -23,9 +23,20 @@ test('quoted multiline CSV retains every original field and original record',()=
  assert.deepEqual(parseCsv('\ufeff'+csv(rows)),rows);
 });
 test('source normalization binds game, collector number, finish and purchase values',()=>{
- assert.deepEqual(normalize(record()),{name:'synthetic card',set:'151',number:'65',game:'pokemon',finishKey:'reverse',quantity:2,condition:'LP',acquisitionCost:4.25,createdAt:'2026-01-02T00:00:00.000Z',createdAtDateOnly:true,notes:'Keep\nall details'});
+ assert.deepEqual(normalize(record()),{name:'synthetic card',set:'151',number:'65',game:'pokemon',finishKey:'reverse',editionKey:null,quantity:2,condition:'LP',acquisitionCost:4.25,createdAt:'2026-01-02T00:00:00.000Z',createdAtDateOnly:true,notes:'Keep\nall details'});
  assert.equal(number('swsh0001'),'SWSH1');assert.equal(number('TG01/TG30'),'TG1');
  assert.equal(field({'card name':'wrong','Product Name':'correct'},'product name','card name'),'correct');
+});
+test('source normalization preserves governed Pokemon edition identity',()=>{
+ assert.deepEqual(
+  {finishKey:normalize(record({Set:'Jungle',Variance:'Unlimited Holofoil'})).finishKey,editionKey:normalize(record({Set:'Jungle',Variance:'Unlimited Holofoil'})).editionKey},
+  {finishKey:'holo',editionKey:'unlimited'},
+ );
+ assert.deepEqual(
+  {finishKey:normalize(record({Set:'Base Set (Unlimited)',Variance:'Holofoil'})).finishKey,editionKey:normalize(record({Set:'Base Set (Unlimited)',Variance:'Holofoil'})).editionKey},
+  {finishKey:'holo',editionKey:'unlimited'},
+ );
+ assert.throws(()=>normalize(record({Set:'Base Set (1st Edition & Shadowless)',Variance:'Holofoil'})));
 });
 for(const [label,overrides] of Object.entries({
  grade:{Grade:'PSA 10'},watchlist:{Watchlist:'true'},quantity:{Quantity:'-1'},fraction:{Quantity:'1.5'},

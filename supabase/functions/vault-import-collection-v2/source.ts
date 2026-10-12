@@ -1,5 +1,6 @@
 // Source interpretation for the source-aware importer. No catalog/ownership writes.
 import { collectrPokemonNamedFinish, collectrNamedFinishVarianceAgrees } from "./pokemon_named_finish.ts";
+import { collectrPokemonEdition, type CollectrPokemonEdition } from "./pokemon_edition.ts";
 export type SourceRow = Record<string, string>;
 export class ImportValidationError extends Error {}
 export const text = (value: string) => value.trim().replace(/\s+/g, " ");
@@ -233,6 +234,7 @@ export type Normalized = {
   number: string;
   game: string;
   finishKey: string | null;
+  editionKey: CollectrPokemonEdition | null;
   quantity: number;
   condition: string;
   acquisitionCost: number | null;
@@ -253,16 +255,20 @@ export function normalize(row: SourceRow): Normalized {
     !["", "ungraded"].includes(grade) || !["", "false"].includes(watchlist)
   ) throw new ImportValidationError("import_target_requires_review");
   const rawFinish = lower(field(row, "variance", "finish"));
+  const edition = scope === "pokemon" ? collectrPokemonEdition({
+    set: field(row, "set", "series"),
+    variance: rawFinish,
+  }) : { editionKey: null, finishKey: null, recognizedVariance: false };
   const namedFinish = scope === "pokemon" ? collectrPokemonNamedFinish(name) : null;
   if (namedFinish && !collectrNamedFinishVarianceAgrees(rawFinish)) {
     throw new ImportValidationError("import_finish_requires_review");
   }
-  const finishKey = namedFinish?.finishKey ?? finishes[rawFinish] ?? null;
-  if (rawFinish && !finishKey) {
+  const finishKey = namedFinish?.finishKey ?? edition.finishKey ?? finishes[rawFinish] ?? null;
+  if (rawFinish && !finishKey && !edition.recognizedVariance) {
     throw new ImportValidationError("import_finish_requires_review");
   }
   // A finish does not resolve edition identity (e.g. both editions can be holo).
-  if (/1st edition|shadowless|unlimited/i.test(field(row, "set", "series"))) {
+  if (/1st edition|shadowless/i.test(field(row, "set", "series")) && edition.editionKey === null) {
     throw new ImportValidationError("import_edition_requires_review");
   }
   for (const [key, value] of Object.entries(row)) {
@@ -309,6 +315,7 @@ export function normalize(row: SourceRow): Normalized {
     number: collector,
     game: scope,
     finishKey,
+    editionKey: edition.editionKey,
     quantity,
     condition,
     acquisitionCost,
