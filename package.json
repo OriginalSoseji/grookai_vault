@@ -197,7 +197,11 @@
     "catalog:shadow:parse-wave1": "node scripts/workers/collectible_shadow_parser_wave1_v1.mjs",
     "catalog:shadow:reconcile-wave1": "node scripts/workers/collectible_wave1_canonical_reconciliation_v1.mjs",
     "catalog:promotion:supervise": "node scripts/workers/catalog_incremental_supervisor_v1.mjs",
-    "catalog:sets:publication-gate": "node scripts/workers/cross_tcg_set_publication_gate_v1.mjs"
+    "catalog:sets:publication-gate": "node scripts/workers/cross_tcg_set_publication_gate_v1.mjs",
+    "catalog:pricing:completion": "node scripts/audits/catalog_pricing_completion_v1.mjs",
+    "catalog:pricing:completion:require": "node scripts/audits/catalog_pricing_completion_v1.mjs --require-complete",
+    "pricing:market:backlog": "node scripts/audits/tcgplayer_pricing_backlog_v1.mjs",
+    "pricing:market:backlog:require": "node scripts/audits/tcgplayer_pricing_backlog_v1.mjs --require-complete"
   },
   "devDependencies": {
     "@pgkit/client": "0.6.1",
