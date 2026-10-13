@@ -43,5 +43,23 @@ rejected a changed source-row hash, and rejected an active hidden printing-truth
 review. The V3 projection keeps source-run and product selectors directly
 pushable for bounded worker paging. The transaction rolled back and verified
 that the new view and validation function were absent afterward. No database or
-price write was committed. Gym edition runtime binding remains held for its
+price write was committed. Gym edition runtime binding was then handled by its
 separate assignment ledger and rollback rehearsal.
+
+`gym_edition_assignment_rollback_rehearsal.json` records that separate Gym gate.
+Migration `20261013123000_pokemon_tcgplayer_gym_challenge_edition_assignment_v1.sql`
+keeps the Jungle ledger unchanged and adds Gym-specific binding, assignment, and
+pipeline foreign-key columns. The V4 candidate projection accepts only the four
+reviewed product/subtype identities, resolves them to the four freshly allocated
+edition parents and Normal children, and preserves the V3 MEP override behavior.
+The local PostgreSQL transaction proved all four rows policy-eligible, rejected a
+changed source-row hash, rejected an active hidden printing-truth review, accepted
+the Gym FK while rejecting the same UUID as a Jungle FK, and rolled back every
+schema and data write. The historical June identifiers were not reused. The
+receipt is bound to migration SHA-256
+`8166cd477de08e59e5c0103d4702d9e14faf2ad559b26e6fb0d0dec1705a1d9a`.
+Production database, price-publication, and customer-state writes remain zero.
+
+The next gate is a retained full-schema rollback rehearsal followed by a combined
+read-only evaluation of all six batch rows. Catalog identity creation, binding
+activation, schema deployment, and price publication remain separately guarded.

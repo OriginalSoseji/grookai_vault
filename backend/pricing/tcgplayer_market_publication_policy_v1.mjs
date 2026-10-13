@@ -1,5 +1,5 @@
 import { applyCosmosFinishPublicationScopeV1, cosmosFinishQualificationReasonsV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
-import { TCGPLAYER_EDITION_IDENTITY_V1, tcgplayerEditionQualificationReasonsV1, isTcgplayerJungleEditionAssignmentProjectionV1 } from "./tcgplayer_edition_identity_v1.mjs";
+import { TCGPLAYER_EDITION_IDENTITY_V1, tcgplayerEditionQualificationReasonsV1, isTcgplayerEditionAssignmentProjectionV1 } from "./tcgplayer_edition_identity_v1.mjs";
 import {
   classifyTcgplayerMarketProductScopeV1_3,
 } from "./tcgplayer_market_product_scope_v1.mjs";
@@ -61,7 +61,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   } = {},
 ) {
   const editionReasons = tcgplayerEditionQualificationReasonsV1(row);
-  const exactEditionAssignment = isTcgplayerJungleEditionAssignmentProjectionV1(row);
+  const exactEditionAssignment = isTcgplayerEditionAssignmentProjectionV1(row);
   const reasons = [
     ...cosmosFinishQualificationReasonsV1(row),
     ...editionReasons,
@@ -297,7 +297,9 @@ export function evaluateTcgplayerMarketQualificationV1(
     evidence: {
       ...(editionReasons.length || exactEditionAssignment ? { edition_policy_version: TCGPLAYER_EDITION_IDENTITY_V1 } : {}),
       ...(exactEditionAssignment ? {
-        edition_assignment_id: row.edition_assignment_id,
+        edition_assignment_id: row.edition_assignment_id ?? row.gym_edition_assignment_id,
+        edition_assignment_lane: row.gym_edition_assignment_id
+          ? 'gym_challenge_reviewed_v1' : 'jungle_v1',
         edition_binding_id: row.edition_binding_id,
         edition_assignment_sha256: row.edition_assignment_sha256,
         edition_assignment_version: row.edition_assignment_version,

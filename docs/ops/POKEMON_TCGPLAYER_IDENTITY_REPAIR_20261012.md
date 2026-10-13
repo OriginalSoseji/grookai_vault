@@ -218,8 +218,23 @@ function, and V3 candidate view were then rolled back and proven absent. The
 receipt under batch 02 is bound to migration SHA-256
 `124775b790b651be42cec06670a671b050f775d28030294b85149927bdb98f96`.
 Committed database, publication, and customer-state writes were all zero. The
-four Gym observations remain held pending their separate assignment ledger and
-rollback rehearsal.
+The four Gym observations were still held pending their separate assignment
+ledger and rollback rehearsal at that gate.
+
+The Gym assignment rollback rehearsal now passes locally. The candidate adds a
+Gym Challenge-specific binding and append-only assignment ledger plus a separate
+`gym_edition_assignment_id` foreign-key lane across candidates, decisions, and
+snapshots. It does not widen or seed the Jungle tables. V4 composes the existing
+V3 MEP override with four exact Gym rows, preserves directly pushable run/product
+selectors, and the worker prepares both edition ledgers independently. The
+transaction proved all four Gym rows eligible, proved idempotent preparation,
+rejected source-row drift and an active hidden truth review, rejected a Gym UUID
+through the Jungle FK, and rolled back all schema and data changes. No historical
+June identifier was reused. Migration SHA-256 is
+`8166cd477de08e59e5c0103d4702d9e14faf2ad559b26e6fb0d0dec1705a1d9a`.
+No production database or price write occurred. A retained full-schema rollback
+rehearsal and combined six-row read-only evaluation remain before a production
+request can be prepared.
 
 Batch 02 authorizes no database or price write. Duraludon can enter a later
 governed shadow run, but price publication still needs its own approval.
