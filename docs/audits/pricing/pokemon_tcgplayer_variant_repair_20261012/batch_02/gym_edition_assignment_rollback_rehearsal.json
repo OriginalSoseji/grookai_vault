@@ -1,7 +1,7 @@
 {
   "version": "POKEMON_TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_SCHEMA_REHEARSAL_V1",
   "status": "passed_rolled_back",
-  "migration_sha256": "10d867f21b32dee6f8c7706fde9b711daca1f6fa2a57644d7dbe0a3632c8aa4e",
+  "migration_sha256": "871209fb2c42862f51d0a09cd736e23a5d8aa87937904eddc22d63e25007b183",
   "authority_plan_fingerprint": "ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
   "target": {
     "host": "127.0.0.1",

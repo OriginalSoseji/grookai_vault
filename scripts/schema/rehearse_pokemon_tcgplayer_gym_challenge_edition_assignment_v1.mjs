@@ -16,7 +16,8 @@ const receiptPath = path.join(root, 'docs', 'audits', 'pricing',
   'pokemon_tcgplayer_variant_repair_20261012', 'batch_02',
   'gym_edition_assignment_rollback_rehearsal.json');
 const migrationBytes = await fs.readFile(migrationPath);
-const migration = migrationBytes.toString('utf8')
+const migrationSource = migrationBytes.toString('utf8').replace(/\r\n?/g, '\n');
+const migration = migrationSource
   .replace(/^begin;\s*/i, '').replace(/commit;\s*$/i, '');
 const plan = JSON.parse(await fs.readFile(planPath, 'utf8'));
 const rows = plan.gym_rows;
@@ -389,7 +390,7 @@ try {
   const receipt = {
     version: 'POKEMON_TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_SCHEMA_REHEARSAL_V1',
     status: 'passed_rolled_back',
-    migration_sha256: sha256(migrationBytes),
+    migration_sha256: sha256(migrationSource),
     authority_plan_fingerprint: plan.authority_plan_fingerprint,
     target: { host: '127.0.0.1', port: 5432, database: 'postgres' },
     exact_binding_rows: projected.map(row => ({

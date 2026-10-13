@@ -6,7 +6,9 @@ import test from 'node:test';
 const migration = fs.readFileSync(new URL(
   '../../supabase/migrations/20261013123000_pokemon_tcgplayer_gym_challenge_edition_assignment_v1.sql',
   import.meta.url), 'utf8');
-const migrationSha = createHash('sha256').update(migration).digest('hex');
+const canonicalTextSha256 = value => createHash('sha256')
+  .update(value.replace(/\r\n?/g, '\n')).digest('hex');
+const migrationSha = canonicalTextSha256(migration);
 const receipt = JSON.parse(fs.readFileSync(new URL(
   '../../docs/audits/pricing/pokemon_tcgplayer_variant_repair_20261012/batch_02/gym_edition_assignment_rollback_rehearsal.json',
   import.meta.url), 'utf8'));
@@ -53,6 +55,8 @@ test('the four reviewed identities are fresh and historical deleted IDs are forb
 });
 
 test('local Gym schema rehearsal passed with zero committed writes', () => {
+  const crlfMigration = migration.replace(/\r\n?/g, '\n').replace(/\n/g, '\r\n');
+  assert.equal(canonicalTextSha256(crlfMigration), migrationSha);
   assert.equal(receipt.status, 'passed_rolled_back');
   assert.equal(receipt.migration_sha256, migrationSha);
   assert.equal(receipt.exact_binding_rows.length, 4);
