@@ -66,7 +66,8 @@ create table public.tcgcsv_source_price_daily_observations(
   market_price numeric,low_price numeric,mid_price numeric,high_price numeric,
   direct_low_price numeric,currency text,raw_payload jsonb);
 create table public.external_mappings(
-  id bigint primary key,source text,external_id text,active boolean,card_print_id uuid);
+  id bigint primary key,source text,external_id text,active boolean,card_print_id uuid,
+  meta jsonb default '{}'::jsonb);
 create table public.tcgplayer_jungle_edition_assignments_v1(id uuid primary key);
 create table public.v_tcgplayer_jungle_edition_current_assignments_v1(
   id uuid,assignment_payload jsonb);
@@ -81,17 +82,38 @@ create table public.market_price_qualification_decisions(
   id uuid primary key default gen_random_uuid(),run_id uuid,pipeline_candidate_id uuid,
   source_observation_id uuid,source_mapping_id bigint,variant_assignment_id uuid,
   edition_assignment_id uuid references public.tcgplayer_jungle_edition_assignments_v1(id),
-  card_print_id uuid,eligible boolean,decision text,publication_lane text,policy_version text);
+  card_print_id uuid,card_printing_id uuid,eligible boolean,decision text,
+  publication_lane text,policy_version text,reason_codes text[],freshness_result text,
+  evaluated_at timestamptz);
 create table public.market_price_publication_snapshots(
   id uuid primary key default gen_random_uuid(),publication_set_id uuid,run_id uuid,
-  qualification_decision_id uuid,source_observation_id uuid,source_mapping_id bigint not null,
-  variant_assignment_id uuid not null,
+  qualification_decision_id uuid,source_observation_id uuid,source_mapping_id bigint,
+  variant_assignment_id uuid,
   edition_assignment_id uuid references public.tcgplayer_jungle_edition_assignments_v1(id),
-  card_print_id uuid,policy_version text);
+  card_print_id uuid,card_printing_id uuid,gv_id text,printing_gv_id text,finish_key text,
+  currency text,market_price numeric,low_price numeric,mid_price numeric,high_price numeric,
+  direct_low_price numeric,source_name text,source_label text,source_observed_on date,
+  source_sync_finished_at timestamptz,published_at timestamptz,provenance_id uuid,
+  policy_version text,publication_state text,freshness_state text,
+  source_sync_run_id uuid,source_artifact_id uuid,source_artifact_date date,
+  source_artifact_hash text,source_product_id integer,source_subtype_name text,
+  source_row_hash text,source_price_row_identity text,variant_assignment_version text,
+  variant_assignment_status text,mapping_method text,language_result text,
+  finish_result text,source_integrity_result text,duplicate_product_result text,
+  freshness_result text,edition_assignment_payload jsonb);
 alter table public.market_price_publication_snapshots
   add constraint market_price_snapshot_assignment_lane_v1 check (
     (edition_assignment_id is null and source_mapping_id is not null and variant_assignment_id is not null)
     or (edition_assignment_id is not null and source_mapping_id is null and variant_assignment_id is null));
+create table public.market_price_pipeline_runs(
+  id uuid primary key,reconciliation_state text,state text,run_mode text);
+create table public.market_price_publication_sets(
+  id uuid primary key,run_id uuid,publication_state text);
+create table public.market_price_current_publication(
+  singleton boolean,publication_set_id uuid,run_id uuid);
+create table public.mv_market_listing_active_ask_current_v1(
+  card_printing_id uuid,lowest_active_ask numeric,listing_count integer,
+  observed_at timestamptz);
 create table public.v_tcgplayer_market_qualification_candidates_v3(
   source_observation_id uuid,source_sync_run_id uuid,source_artifact_id uuid,
   source_artifact_date date,source_artifact_hash text,source_artifact_byte_size bigint,
@@ -286,6 +308,84 @@ try {
       where source_observation_id=$1`, [rows[1].source_observation.source_observation_id])).rows[0];
   assert.equal(quarantined.gym_edition_assignment_id, null);
 
+  const readerTarget = projected[2];
+  const readerRunId = '20000000-0000-4000-8000-000000000001';
+  const publicationSetId = '20000000-0000-4000-8000-000000000002';
+  const provenanceId = '20000000-0000-4000-8000-000000000003';
+  await client.query(`insert into public.market_price_pipeline_runs values(
+    $1,'reconciled','published','production')`, [readerRunId]);
+  await client.query(`insert into public.market_price_publication_sets values(
+    $1,$2,'published')`, [publicationSetId, readerRunId]);
+  await client.query(`insert into public.market_price_current_publication values(
+    true,$1,$2)`, [publicationSetId, readerRunId]);
+  const readerCandidateId = (await client.query(`insert into public.market_price_pipeline_candidates(
+    run_id,source_observation_id,source_mapping_id,variant_assignment_id,
+    edition_assignment_id,gym_edition_assignment_id,card_print_id,candidate_payload)
+    values($1,$2,null,null,null,$3,$4,$5) returning id`,
+  [readerRunId, readerTarget.source_observation_id, readerTarget.gym_edition_assignment_id,
+    readerTarget.card_print_id, readerTarget])).rows[0].id;
+  const readerDecisionId = (await client.query(`insert into public.market_price_qualification_decisions(
+    run_id,pipeline_candidate_id,source_observation_id,source_mapping_id,variant_assignment_id,
+    edition_assignment_id,gym_edition_assignment_id,card_print_id,card_printing_id,
+    eligible,decision,publication_lane,policy_version,reason_codes,freshness_result,evaluated_at)
+    values($1,$2,$3,null,null,null,$4,$5,$6,true,'publish','current',
+      'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3','{}','fresh','2026-10-13T18:00:00Z')
+    returning id`, [readerRunId, readerCandidateId, readerTarget.source_observation_id,
+      readerTarget.gym_edition_assignment_id, readerTarget.card_print_id,
+      readerTarget.card_printing_id])).rows[0].id;
+  await client.query(`insert into public.market_price_publication_snapshots(
+    publication_set_id,run_id,qualification_decision_id,source_observation_id,
+    source_mapping_id,variant_assignment_id,edition_assignment_id,gym_edition_assignment_id,
+    card_print_id,card_printing_id,gv_id,printing_gv_id,finish_key,currency,
+    market_price,low_price,mid_price,high_price,direct_low_price,source_name,source_label,
+    source_observed_on,source_sync_finished_at,published_at,provenance_id,policy_version,
+    publication_state,freshness_state,source_sync_run_id,source_artifact_id,
+    source_artifact_date,source_artifact_hash,source_product_id,source_subtype_name,
+    source_row_hash,source_price_row_identity,variant_assignment_version,
+    variant_assignment_status,mapping_method,language_result,finish_result,
+    source_integrity_result,duplicate_product_result,freshness_result,
+    edition_assignment_payload)
+    values($1,$2,$3,$4,null,null,null,$5,$6,$7,$8,$9,$10,$11,
+      $12,$13,$14,$15,$16,'tcgplayer','TCGPlayer Market',$17,$18,
+      '2026-10-13T18:00:00Z',$19,'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3',
+      'published','fresh',$20,$21,$22,$23,$24,$25,$26,$27,
+      'TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_V1','exact_child_finish',
+      'gym_challenge_edition_binding_v1','english','exact_child_finish','passed',
+      'unique','fresh',$28)`,
+  [publicationSetId, readerRunId, readerDecisionId, readerTarget.source_observation_id,
+    readerTarget.gym_edition_assignment_id, readerTarget.card_print_id,
+    readerTarget.card_printing_id, readerTarget.gv_id, readerTarget.printing_gv_id,
+    readerTarget.finish_key, readerTarget.currency, readerTarget.market_price,
+    readerTarget.low_price, readerTarget.mid_price, readerTarget.high_price,
+    readerTarget.direct_low_price, readerTarget.source_observed_on,
+    readerTarget.source_sync_finished_at, provenanceId, readerTarget.source_sync_run_id,
+    readerTarget.source_artifact_id, readerTarget.source_artifact_date,
+    readerTarget.source_artifact_hash, readerTarget.source_product_id,
+    readerTarget.source_subtype_name, readerTarget.source_row_hash,
+    readerTarget.source_price_row_identity, readerTarget.edition_assignment_payload]);
+
+  const visibleBeforeRetirement = (await client.query(
+    `select count(*)::int n from public.v_market_price_current_v1
+      where card_printing_id=$1`, [readerTarget.card_printing_id])).rows[0].n;
+  const rpcBeforeRetirement = (await client.query(
+    `select count(*) filter(where status='available')::int n
+      from public.get_market_pricing_read_model_v1(array[$1::uuid],array[$2::uuid])`,
+    [readerTarget.card_print_id, readerTarget.card_printing_id])).rows[0].n;
+  assert.equal(visibleBeforeRetirement, 1);
+  assert.equal(rpcBeforeRetirement, 2);
+
+  await client.query(`update public.tcgplayer_gym_challenge_edition_bindings_v1
+    set state='retired' where id=$1`, [readerTarget.edition_binding_id]);
+  const visibleAfterRetirement = (await client.query(
+    `select count(*)::int n from public.v_market_price_current_v1
+      where card_printing_id=$1`, [readerTarget.card_printing_id])).rows[0].n;
+  const rpcAfterRetirement = (await client.query(
+    `select count(*) filter(where status='available')::int n
+      from public.get_market_pricing_read_model_v1(array[$1::uuid],array[$2::uuid])`,
+    [readerTarget.card_print_id, readerTarget.card_printing_id])).rows[0].n;
+  assert.equal(visibleAfterRetirement, 0);
+  assert.equal(rpcAfterRetirement, 0);
+
   const receipt = {
     version: 'POKEMON_TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_SCHEMA_REHEARSAL_V1',
     status: 'passed_rolled_back',
@@ -305,6 +405,12 @@ try {
     drift_test: { changed_field: 'source_observation.payload_hash', assignment_rejected: true },
     truth_quarantine_test: {
       public_visibility: 'hidden_pending_review', assignment_rejected: true,
+    },
+    current_price_reader_retirement_guard: {
+      view_visible_before_retirement: visibleBeforeRetirement,
+      rpc_available_before_retirement: rpcBeforeRetirement,
+      view_visible_after_retirement: visibleAfterRetirement,
+      rpc_available_after_retirement: rpcAfterRetirement,
     },
     historical_deleted_identifiers_reused: false,
     database_writes_committed: 0,

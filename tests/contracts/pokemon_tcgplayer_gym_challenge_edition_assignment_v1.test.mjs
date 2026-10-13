@@ -28,6 +28,14 @@ test('Gym Challenge uses an exact separate binding, assignment, and FK lane', ()
   assert.match(worker, /v_tcgplayer_market_qualification_candidates_v4/);
 });
 
+test('all installed current-price readers validate the Gym assignment lane', () => {
+  const guardedReaderPredicate =
+    /snapshot\.gym_edition_assignment_id is not null\s+or snapshot\.edition_assignment_id is not null or exists/g;
+  assert.equal([...migration.matchAll(guardedReaderPredicate)].length, 3);
+  assert.match(migration, /create or replace view public\.v_market_price_current_v1/);
+  assert.match(migration, /create or replace function public\.get_market_pricing_read_model_v1/);
+});
+
 test('the four reviewed identities are fresh and historical deleted IDs are forbidden', () => {
   for (const value of [85720, 85721,
     'c75ade4f-0abf-5380-822a-5b3d3014bb96',
@@ -55,6 +63,12 @@ test('local Gym schema rehearsal passed with zero committed writes', () => {
     { first_inserted: 4, second_inserted: 0 });
   assert.equal(receipt.drift_test.assignment_rejected, true);
   assert.equal(receipt.truth_quarantine_test.assignment_rejected, true);
+  assert.deepEqual(receipt.current_price_reader_retirement_guard, {
+    view_visible_before_retirement: 1,
+    rpc_available_before_retirement: 2,
+    view_visible_after_retirement: 0,
+    rpc_available_after_retirement: 0,
+  });
   assert.equal(receipt.historical_deleted_identifiers_reused, false);
   assert.equal(receipt.database_writes_committed, 0);
   assert.equal(receipt.price_publication_writes, 0);

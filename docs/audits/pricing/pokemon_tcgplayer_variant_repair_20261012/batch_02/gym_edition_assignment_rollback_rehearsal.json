@@ -1,7 +1,7 @@
 {
   "version": "POKEMON_TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_SCHEMA_REHEARSAL_V1",
   "status": "passed_rolled_back",
-  "migration_sha256": "8166cd477de08e59e5c0103d4702d9e14faf2ad559b26e6fb0d0dec1705a1d9a",
+  "migration_sha256": "10d867f21b32dee6f8c7706fde9b711daca1f6fa2a57644d7dbe0a3632c8aa4e",
   "authority_plan_fingerprint": "ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
   "target": {
     "host": "127.0.0.1",
@@ -57,6 +57,12 @@
   "truth_quarantine_test": {
     "public_visibility": "hidden_pending_review",
     "assignment_rejected": true
+  },
+  "current_price_reader_retirement_guard": {
+    "view_visible_before_retirement": 1,
+    "rpc_available_before_retirement": 2,
+    "view_visible_after_retirement": 0,
+    "rpc_available_after_retirement": 0
   },
   "historical_deleted_identifiers_reused": false,
   "database_writes_committed": 0,
