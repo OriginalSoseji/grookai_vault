@@ -603,7 +603,7 @@ test("worker enriches candidates with source-group evidence before qualification
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
   assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_12/);
-  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v2/);
+  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v3/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
 });
 

@@ -403,7 +403,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${TRAINER_KIT_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v2 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v3 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${TRAINER_KIT_CANDIDATE_JOINS_V1}
@@ -490,7 +490,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${TRAINER_KIT_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v2 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v3 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${TRAINER_KIT_CANDIDATE_JOINS_V1}

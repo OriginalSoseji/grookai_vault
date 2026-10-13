@@ -1,0 +1,44 @@
+{
+  "version": "POKEMON_TCGPLAYER_REVIEWED_FINISH_OVERRIDE_SCHEMA_REHEARSAL_V1",
+  "status": "passed_rolled_back",
+  "migration_sha256": "124775b790b651be42cec06670a671b050f775d28030294b85149927bdb98f96",
+  "target": {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "database": "postgres"
+  },
+  "exact_override_rows": [
+    {
+      "source_product_id": 654596,
+      "source_observation_id": "2664dc1d-4e03-43cb-8346-0ca5f10c4b19",
+      "raw_source_subtype_name": "Normal",
+      "assigned_finish_key": "holo",
+      "card_printing_id": "42918a6d-7aeb-42fe-9163-9489ea3070c5",
+      "variant_assignment_version": "MEE_TCGPLAYER_REVIEWED_FINISH_OVERRIDE_V1",
+      "local_policy_eligible": true
+    },
+    {
+      "source_product_id": 654598,
+      "source_observation_id": "e626cae7-60cf-4f41-a30f-531ccb3f3432",
+      "raw_source_subtype_name": "Normal",
+      "assigned_finish_key": "holo",
+      "card_printing_id": "6f650737-4528-4b75-9b85-3037ce800dc2",
+      "variant_assignment_version": "MEE_TCGPLAYER_REVIEWED_FINISH_OVERRIDE_V1",
+      "local_policy_eligible": true
+    }
+  ],
+  "drift_test": {
+    "changed_field": "assignment_payload.source_row_hash",
+    "override_rejected": true,
+    "fallback_status": "no_matching_child_finish"
+  },
+  "truth_quarantine_test": {
+    "public_visibility": "hidden_pending_review",
+    "override_rejected": true,
+    "fallback_status": "no_matching_child_finish"
+  },
+  "database_writes_committed": 0,
+  "price_publication_writes": 0,
+  "customer_state_writes": 0,
+  "rollback_proof_equal": true
+}
