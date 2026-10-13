@@ -22,6 +22,12 @@ The plan therefore requires four fresh explicit edition identities before runtim
 bindings. The MEP lane binds the two existing Holo children and forbids invented
 Normal printings. Pricing reconciliation and publication remain separate guarded
 work; batch 02 authorizes no database or price write.
+PR632 merged the MEP V3 override rehearsal as main `7719e3c09`. The next local
+candidate adds a separate Gym Challenge binding, assignment, and FK lane without
+widening Jungle, composes it through V4, and has a passing rollback-only four-row
+schema rehearsal. The retained full-schema rollback rehearsal and combined
+six-row read-only pricing evaluation remain. No Gym catalog, binding, schema, or
+price write has occurred in production.
 
 ## Collectr catalog review — October 9
 

@@ -1,5 +1,7 @@
 export const TCGPLAYER_EDITION_IDENTITY_V1 = 'TCGPLAYER_EDITION_IDENTITY_V1';
 export const TCGPLAYER_JUNGLE_EDITION_ASSIGNMENT_V1 = 'TCGPLAYER_JUNGLE_EDITION_ASSIGNMENT_V1';
+export const TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_V1 =
+  'TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_V1';
 
 const SUBTYPES = new Map([
   ['unlimited', { edition: 'unlimited', finish_key: 'normal' }],
@@ -23,36 +25,48 @@ export function parseTcgplayerEditionSubtypeV1(value) {
 // Preserve PostgreSQL's full timestamp precision for the immutable assignment
 // comparison. The driver's default Date conversion drops microseconds.
 export function hydrateTcgplayerEditionCandidateV1(row) {
-  return row.edition_assignment_id && typeof row.edition_source_sync_finished_at === 'string'
+  return (row.edition_assignment_id || row.gym_edition_assignment_id) &&
+    typeof row.edition_source_sync_finished_at === 'string'
     ? { ...row, source_sync_finished_at: row.edition_source_sync_finished_at } : row;
 }
 
 // Validate the complete database projection, not a boolean authority flag.
 // SQL independently revalidates the actual ledger at qualification, snapshot,
 // activation and current read time. This pure check is not write authority.
-export function isTcgplayerJungleEditionAssignmentProjectionV1(row = {}) {
+export function isTcgplayerEditionAssignmentProjectionV1(row = {}) {
   const payload = row.edition_assignment_payload;
   const parsed = parseTcgplayerEditionSubtypeV1(row.source_subtype_name);
   const uuid = value => typeof value === 'string' && /^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i.test(value);
   const sha = value => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value);
+  const assignmentId = row.edition_assignment_id ?? row.gym_edition_assignment_id;
+  const jungle = row.edition_assignment_version === TCGPLAYER_JUNGLE_EDITION_ASSIGNMENT_V1;
+  const gym = row.edition_assignment_version ===
+    TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_V1;
+  const expectedGroup = jungle ? 635 : gym ? 1440 : null;
+  const expectedMethod = jungle
+    ? 'jungle_edition_binding_v1'
+    : gym ? 'gym_challenge_edition_binding_v1' : null;
   if (row.edition_assignment_required !== true || row.edition_assignment_current !== true ||
-      !uuid(row.edition_assignment_id) || !uuid(row.edition_binding_id) ||
+      !uuid(assignmentId) || !uuid(row.edition_binding_id) ||
       !sha(row.edition_assignment_sha256) ||
-      row.edition_assignment_version !== TCGPLAYER_JUNGLE_EDITION_ASSIGNMENT_V1 ||
-      payload?.version !== TCGPLAYER_JUNGLE_EDITION_ASSIGNMENT_V1 || !parsed ||
-      Number(row.category_id) !== 3 || Number(row.group_id) !== 635 ||
+      (!jungle && !gym) || payload?.version !== row.edition_assignment_version || !parsed ||
+      Number(row.category_id) !== 3 || Number(row.group_id) !== expectedGroup ||
       row.source_mapping_id != null || row.variant_assignment_id != null ||
-      row.mapping_method !== 'jungle_edition_binding_v1') return false;
+      row.mapping_method !== expectedMethod ||
+      (jungle && (!row.edition_assignment_id || row.gym_edition_assignment_id)) ||
+      (gym && (!row.gym_edition_assignment_id || row.edition_assignment_id))) return false;
   const source = payload.source ?? {}, canonical = payload.canonical ?? {}, binding = payload.binding ?? {};
-  if (Number(source.category_id) !== 3 || Number(source.group_id) !== 635 ||
-      !sha(source.product_hash) || !sha(binding.manifest_sha256) ||
-      !uuid(binding.identity_link_id) || binding.id !== row.edition_binding_id ||
+  if (Number(source.category_id) !== 3 || Number(source.group_id) !== expectedGroup ||
+      !sha(source.product_hash) || binding.id !== row.edition_binding_id ||
       canonical.edition !== parsed.edition || canonical.finish_key !== parsed.finish_key ||
       row.finish_key !== parsed.finish_key || row.normalized_finish_key !== parsed.finish_key ||
       canonical.printed_identity_modifier !== `edition:${parsed.edition}` ||
       row.printed_identity_modifier !== canonical.printed_identity_modifier ||
       !uuid(canonical.card_print_id) || !uuid(canonical.card_printing_id) ||
       canonical.card_print_id === canonical.legacy_card_print_id) return false;
+  if (jungle && (!sha(binding.manifest_sha256) || !uuid(binding.identity_link_id))) return false;
+  if (gym && (!sha(binding.authority_plan_fingerprint) ||
+      !sha(binding.source_products_payload_sha256))) return false;
   for (const [key, expected] of Object.entries({
     source_observation_id: source.observation_id, source_sync_run_id: source.sync_run_id,
     source_artifact_id: source.artifact_id, source_artifact_hash: source.artifact_hash,
@@ -68,16 +82,23 @@ export function isTcgplayerJungleEditionAssignmentProjectionV1(row = {}) {
     Number.isFinite(observed) && Math.abs(observed - Number(source.sync_finished_at_epoch) * 1000) < 1;
 }
 
+export function isTcgplayerJungleEditionAssignmentProjectionV1(row = {}) {
+  return row.edition_assignment_version === TCGPLAYER_JUNGLE_EDITION_ASSIGNMENT_V1 &&
+    isTcgplayerEditionAssignmentProjectionV1(row);
+}
+
 // An upstream normalized finish, image or generic assignment cannot bypass this
 // gate. Only the complete exact-edition projection reaches SQL admission checks.
 export function tcgplayerEditionQualificationReasonsV1(row = {}) {
-  if (Number(row.category_id) !== 3 && !row.edition_assignment_id) return [];
+  if (Number(row.category_id) !== 3 && !row.edition_assignment_id &&
+      !row.gym_edition_assignment_id) return [];
   const subtype = String(row.source_subtype_name ?? '');
   const modifier = String(row.printed_identity_modifier ?? '');
-  if (row.edition_assignment_required === true || row.edition_assignment_id || parseTcgplayerEditionSubtypeV1(subtype) ||
+  if (row.edition_assignment_required === true || row.edition_assignment_id ||
+      row.gym_edition_assignment_id || parseTcgplayerEditionSubtypeV1(subtype) ||
       /\b(?:edition|unlimited)\b/i.test(subtype) ||
       /^edition:/i.test(modifier)) {
-    return isTcgplayerJungleEditionAssignmentProjectionV1(row) ? [] : ['edition_bound_pricing_authority_required'];
+    return isTcgplayerEditionAssignmentProjectionV1(row) ? [] : ['edition_bound_pricing_authority_required'];
   }
   return [];
 }

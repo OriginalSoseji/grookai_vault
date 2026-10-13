@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { parseTcgplayerEditionSubtypeV1 as parse, previewTcgplayerEditionIdentityV1 as preview,
   tcgplayerEditionQualificationReasonsV1 as reasons, hydrateTcgplayerEditionCandidateV1 as hydrate,
-  isTcgplayerJungleEditionAssignmentProjectionV1 as exact } from '../../backend/pricing/tcgplayer_edition_identity_v1.mjs';
+  isTcgplayerJungleEditionAssignmentProjectionV1 as exact,
+  isTcgplayerEditionAssignmentProjectionV1 as exactEdition } from '../../backend/pricing/tcgplayer_edition_identity_v1.mjs';
 import { evaluateTcgplayerMarketQualificationV1 as qualify } from '../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs';
 
 const parent = { id: 'parent', gv_id: 'GV-PK-JU-1-FIRST-EDITION', set_id: 'jungle',
@@ -141,6 +142,34 @@ function editionRow() {
   return row;
 }
 
+function gymEditionRow() {
+  const row = { ...valid, group_id: 1440, source_group_name: 'Gym Challenge',
+    source_product_id: 85720, source_subtype_name: '1st Edition',
+    normalized_finish_key: 'normal', finish_key: 'normal', market_price: 2.73,
+    source_mapping_id: null, variant_assignment_id: null,
+    mapping_method: 'gym_challenge_edition_binding_v1', edition_assignment_id: null,
+    gym_edition_assignment_id: id(11), edition_binding_id: id(12),
+    edition_assignment_sha256: 'd'.repeat(64),
+    edition_assignment_version: 'TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_V1',
+    edition_assignment_required: true, edition_assignment_current: true,
+    printed_identity_modifier: 'edition:first_edition', card_print_id: id(13),
+    card_printing_id: id(14), gv_id: 'GV-PK-G2-75-FIRST-EDITION',
+    printing_gv_id: 'GV-PK-G2-75-FIRST-EDITION-NORMAL' };
+  row.edition_assignment_payload = { version: row.edition_assignment_version,
+    source: { observation_id: row.source_observation_id, sync_run_id: row.source_sync_run_id,
+      artifact_id: row.source_artifact_id, artifact_hash: row.source_artifact_hash,
+      product_id: row.source_product_id, subtype: row.source_subtype_name,
+      row_hash: row.source_row_hash, price_row_identity: row.source_price_row_identity,
+      currency: 'USD', market_price: row.market_price, category_id: 3, group_id: 1440,
+      product_hash: 'e'.repeat(64), sync_finished_at_epoch: Date.parse(row.source_sync_finished_at) / 1000 },
+    binding: { id: id(12), authority_plan_fingerprint: 'f'.repeat(64),
+      source_products_payload_sha256: '1'.repeat(64) },
+    canonical: { legacy_card_print_id: id(16), card_print_id: id(13), card_printing_id: id(14),
+      gv_id: row.gv_id, printing_gv_id: row.printing_gv_id, edition: 'first_edition', finish_key: 'normal',
+      printed_identity_modifier: row.printed_identity_modifier } };
+  return row;
+}
+
 test('complete exact edition projection qualifies through separate assignment lane with unchanged V1_3 policy', () => {
   const row = editionRow(); assert.equal(exact(row), true);
   const result = qualify(row, { now });
@@ -148,6 +177,20 @@ test('complete exact edition projection qualifies through separate assignment la
   assert.equal(result.policy_version, 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3');
   assert.equal(result.evidence.edition_assignment_id, row.edition_assignment_id);
   assert.equal(result.evidence.source_mapping_id, null);
+});
+
+test('reviewed Gym Challenge projection qualifies only through its own FK lane', () => {
+  const row = gymEditionRow();
+  assert.equal(exactEdition(row), true);
+  assert.equal(exact(row), false);
+  const result = qualify(row, { now });
+  assert.equal(result.eligible, true);
+  assert.equal(result.evidence.edition_assignment_id, row.gym_edition_assignment_id);
+  assert.equal(result.evidence.edition_assignment_lane, 'gym_challenge_reviewed_v1');
+  for (const patch of [
+    { group_id: 635 }, { gym_edition_assignment_id: null },
+    { edition_assignment_id: id(17) }, { mapping_method: 'jungle_edition_binding_v1' },
+  ]) assert.equal(qualify({ ...row, ...patch }, { now }).eligible, false, JSON.stringify(patch));
 });
 
 test('changed edition, source, identity, amount, scope or partial projection stays held', () => {

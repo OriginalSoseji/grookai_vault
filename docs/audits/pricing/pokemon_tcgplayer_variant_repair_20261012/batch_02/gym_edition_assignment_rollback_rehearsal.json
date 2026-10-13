@@ -1,0 +1,66 @@
+{
+  "version": "POKEMON_TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_SCHEMA_REHEARSAL_V1",
+  "status": "passed_rolled_back",
+  "migration_sha256": "8166cd477de08e59e5c0103d4702d9e14faf2ad559b26e6fb0d0dec1705a1d9a",
+  "authority_plan_fingerprint": "ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495",
+  "target": {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "database": "postgres"
+  },
+  "exact_binding_rows": [
+    {
+      "source_product_id": 85720,
+      "source_observation_id": "d24b4d1e-a73f-4a44-984d-cc94e1f05f28",
+      "source_subtype_name": "1st Edition",
+      "card_print_id": "c75ade4f-0abf-5380-822a-5b3d3014bb96",
+      "card_printing_id": "9b1358e1-5ad1-56de-a224-8fcd2131bf87",
+      "local_policy_eligible": true
+    },
+    {
+      "source_product_id": 85720,
+      "source_observation_id": "b208701e-5378-4a72-915f-403db492e011",
+      "source_subtype_name": "Unlimited",
+      "card_print_id": "8c1fe8e6-b3a6-5727-971b-fa1629d5d635",
+      "card_printing_id": "28040606-5e98-50dd-969f-3273a6345b9f",
+      "local_policy_eligible": true
+    },
+    {
+      "source_product_id": 85721,
+      "source_observation_id": "ce7b33ab-299d-4ee3-914b-161100ab1aa6",
+      "source_subtype_name": "1st Edition",
+      "card_print_id": "bd623537-374a-5526-bb24-fcc14022c6e9",
+      "card_printing_id": "47e6ad7c-a0b5-579e-86d6-fd16245e46c1",
+      "local_policy_eligible": true
+    },
+    {
+      "source_product_id": 85721,
+      "source_observation_id": "6febacee-1bcd-4592-aedf-f478a7a94d97",
+      "source_subtype_name": "Unlimited",
+      "card_print_id": "a5923fb0-b9b1-50d7-9494-3c229e20f7a4",
+      "card_printing_id": "3d71caeb-2742-52f2-8e28-406ddb2a8a26",
+      "local_policy_eligible": true
+    }
+  ],
+  "separate_fk_lane": {
+    "accepted_gym_fk": true,
+    "rejected_as_jungle_fk": true
+  },
+  "idempotent_prepare": {
+    "first_inserted": 4,
+    "second_inserted": 0
+  },
+  "drift_test": {
+    "changed_field": "source_observation.payload_hash",
+    "assignment_rejected": true
+  },
+  "truth_quarantine_test": {
+    "public_visibility": "hidden_pending_review",
+    "assignment_rejected": true
+  },
+  "historical_deleted_identifiers_reused": false,
+  "database_writes_committed": 0,
+  "price_publication_writes": 0,
+  "customer_state_writes": 0,
+  "rollback_proof_equal": true
+}
