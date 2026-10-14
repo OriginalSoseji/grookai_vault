@@ -59,6 +59,19 @@ const REVIEWED_SET_AUTHORITIES = Object.freeze([
         "TCGdex canonical set is the established TCGPlayer target when a PokemonAPI duplicate set exists",
     },
   },
+  {
+    source_group_id: 24837,
+    source_group_name: "ME: 30th Celebration Classic Collection",
+    target_set_code: "30c-classic",
+    evidence_lane: "reviewed_group_set_authority",
+    mapping_method: "exact_reviewed_set_number_name_authority_v1",
+    mapping_confidence: 0.99,
+    authority_evidence: {
+      authority_version: "TCGPLAYER_MARKET_REVIEWED_SET_AUTHORITY_V1",
+      rationale:
+        "TCGPlayer's 30-card Classic Collection group is the reviewed 30c-classic anthology; only exact normalized name and printed-coordinate matches may enter the base mapping lane",
+    },
+  },
 ]);
 
 function parseArgs(argv) {

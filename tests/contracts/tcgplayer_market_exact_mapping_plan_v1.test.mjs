@@ -45,6 +45,15 @@ const APPLY_SCRIPT = readFileSync(
   ),
   "utf8",
 );
+const CLASSIC_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_30c_classic_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
 const MAINTENANCE_RUNNER = readFileSync(
   path.join(
     ROOT,
@@ -512,6 +521,25 @@ test("planner is database-read-only and rejects apply mode", () => {
   );
   assert.doesNotMatch(
     SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+});
+
+test("planner carries reviewed 30th Celebration Classic Collection authority", () => {
+  assert.match(SCRIPT, /source_group_id:\s*24837/);
+  assert.match(SCRIPT, /source_group_name:\s*"ME: 30th Celebration Classic Collection"/);
+  assert.match(SCRIPT, /target_set_code:\s*"30c-classic"/);
+  assert.match(SCRIPT, /only exact normalized name and printed-coordinate matches/);
+});
+
+test("Classic Collection authority is read-only, evidence-bound, and keeps aliases out", () => {
+  assert.match(CLASSIC_AUTHORITY_SCRIPT, /begin transaction isolation level repeatable read read only/);
+  assert.match(CLASSIC_AUTHORITY_SCRIPT, /const GROUP_ID = 24837/);
+  assert.match(CLASSIC_AUTHORITY_SCRIPT, /const EXACT_CANDIDATE_COUNT = 28/);
+  assert.match(CLASSIC_AUTHORITY_SCRIPT, /Genesect EX \(Team Plasma\) and Gengar \(Prime\) remain outside/);
+  assert.match(CLASSIC_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    CLASSIC_AUTHORITY_SCRIPT,
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
 });

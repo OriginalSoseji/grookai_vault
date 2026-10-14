@@ -1789,6 +1789,16 @@ A lost commit response requires
 independent readback, never automatic retry. Do not substitute this writer for
 the separately frozen printing repair executor.
 
+For 30th Celebration Classic Collection group `24837`, use
+`scripts/audits/tcgplayer_30c_classic_mapping_authority_v1.mjs` with a fresh
+planner directory and the retained September `30c-classic` printing-authority
+directory. The builder accepts only the 28 exact name-and-coordinate candidates,
+revalidates one verified live Holo child per target, binds the current TCGCSV
+group bytes, and emits batches of 25 and 3. Regenerate from a clean merged commit
+before execution. Keep `Genesect EX (Team Plasma)` and `Gengar (Prime)` outside
+this package until separate alias evidence is reviewed; do not relax global name
+normalization for those two labels.
+
 ## Legacy TCGdex Mapping Discovery
 
 Read `TCGDEX_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Do not run the historical
