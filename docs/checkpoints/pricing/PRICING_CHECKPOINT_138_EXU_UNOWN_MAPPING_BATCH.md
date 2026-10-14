@@ -2,7 +2,7 @@
 
 ## Status
 
-`28 EXACT MAPPINGS PREPARED; PRODUCTION APPLY PENDING CLEAN MERGE`
+`28 EXACT MAPPINGS APPLIED AND INDEPENDENTLY VERIFIED; FULL PRICING SHADOW QUEUED`
 
 ## Scope
 
@@ -49,12 +49,36 @@ Trial artifacts are retained under
 `C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/exu-unown-plan-trial-v1`
 and `exu-unown-authority-trial-v1`.
 
+## Production Release
+
+PR `#658` merged the reviewed identity registry and guarded planning/apply
+support at exact commit `82d6397c05509e4e8b14642ab1d3af128f36d5db`.
+The clean post-merge plan and authority freeze reproduced all 28 candidates
+with a clean tracked worktree and the same candidate SHA-256. The clean batch
+authority fingerprints are
+`62d4ae2cbcc0560ae2b8865a38324f686016cd128845d69d86aa7726d4f3e15d`
+and
+`5b5ae0441e4e8c9b58c3094047ee2625bfc2cde7d3a3e4e2a81f85088fc5a4e2`.
+
+Both bounded dry runs passed and proved rollback before production apply.
+The canonical maintenance launcher then committed 25 insert-only mappings in
+run `7f7140cf-19db-4dd7-9d23-e1ed64e3e92a` and 3 insert-only mappings in run
+`19f0620e-98cc-4ca5-9919-8bac82a0851e`. The executor read back every mapping;
+there were no mapping updates, deletes, publication writes, or customer-state
+writes.
+
+A separate verified-TLS, repeatable-read transaction then confirmed 28 current
+source products, 28 active mappings on the exact reviewed parents, 28 unique
+active standard identities, and 28 governed public Holo printings. It matched
+each mapping to its expected maintenance run and performed zero writes.
+
+Full-scope pricing shadow run `38610995648` was dispatched at the exact mapping
+release commit. Mapping availability is live; customer price publication
+remains governed by the shadow and same-commit publication gates.
+
 ## Next Gate
 
-Merge the registry, policies, authority builder, and contracts. Regenerate the
-plan and authority package from that exact clean commit, prove rollback for both
-bounded batches, apply both under the canonical maintenance launcher, and perform
-an independent repeatable-read verification of all 28 mappings. Mapping alone
-does not publish customer prices. Queue a fresh combined pricing shadow after
-the mappings commit, then require same-commit production publication and
-independent price readback.
+Wait for full-scope shadow run `38610995648`, inspect its immutable evidence,
+and require same-commit production publication and independent price readback.
+In parallel, remeasure the remaining mapping backlog and prepare the next exact,
+evidence-backed batch without weakening identity or collision safeguards.
