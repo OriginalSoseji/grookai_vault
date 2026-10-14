@@ -3,14 +3,16 @@
 ## BW11 Radiant Collection truth review and mapping — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_142_BW11_RADIANT_COLLECTION_TRUTH_REVIEW_AND_MAPPING.md`.
-The active batch contains exactly nine Legendary Treasures: Radiant Collection
-Holo products. Their source products, canonical parents, and existing Holo
-children are exact, but the children first need explicit verified visible truth
-reviews. The production-connected rollback-only rehearsal passed for all nine
-and left zero rows. Merge the bounded review and authority code, then regenerate
-from the exact clean commit, apply the nine reviews, build and apply the nine
-exact mappings, perform independent readback, and continue into pricing shadow
-and publication. Do not bypass the review, mapping, or publication boundaries.
+The completed batch contains exactly nine Legendary Treasures: Radiant Collection
+Holo products. PR667 merged the bounded authority at
+`4764223949c38006f7b34c279dd353c380a31f13`. Truth-review run
+`01cc9291-b391-4389-add8-344b55f02c9a` inserted and read back all nine verified,
+visible reviews. Mapping run `77362035-d234-436b-ab4d-09288fba3ccf` then inserted
+and read back all nine exact mappings. Independent repeatable-read verification
+passed for both writes. Full-scope shadow run `38631343122` is queued from the
+exact merge commit and supersedes stale run `38624164995`. Inspect the shadow,
+keep customer publication behind its existing gate, and continue the next
+evidence-safe backlog batch.
 
 ## TCGPlayer reviewed alias wave 2 — October 14
 
