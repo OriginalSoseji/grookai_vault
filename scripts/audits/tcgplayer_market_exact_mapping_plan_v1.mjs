@@ -24,6 +24,9 @@ import {
 import {
   TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1,
 } from "../../backend/pricing/tcgplayer_g1_rc_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1,
+} from "../../backend/pricing/tcgplayer_30c_classic_alias_product_identity_authority_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -34,6 +37,7 @@ const PLANNER_VERSION = "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_3";
 const REVIEWED_PRODUCT_IDENTITIES = Object.freeze([
   ...TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1,
+  ...TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1,
 ]);
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,

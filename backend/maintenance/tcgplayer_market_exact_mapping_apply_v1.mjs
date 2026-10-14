@@ -27,6 +27,7 @@ import {
 } from "./canon_maintenance_boundary_v1.mjs";
 import {
   buildTcgplayerExactMappingMetaV1,
+  matchesTcgplayerExactMappingLiveSourceNumberV1,
   tcgplayerExactMappingApplyFingerprintV1,
   selectTcgplayerExactMappingApplyBatchV1,
   validateTcgplayerExactMappingLiveTargetV1,
@@ -34,9 +35,6 @@ import {
   TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1,
   TCGPLAYER_MARKET_EXACT_MAPPING_MAX_BATCH_SIZE_V1,
 } from "../pricing/tcgplayer_market_exact_mapping_apply_policy_v1.mjs";
-import {
-  normalizeTcgplayerMappingNumberV1,
-} from "../pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 import {
   assertTcgplayerInactiveMappingRepairAuthorityV1,
   buildTcgplayerInactiveMappingRepairMetaV1,
@@ -544,8 +542,10 @@ function validateLiveState(selected, sourceSyncRunId, live, inactiveRepair) {
         rowFailures.push("source_group_name_changed");
       }
       if (
-        normalizeTcgplayerMappingNumberV1(numberField(source.extended_data)) !==
-        candidate.normalized_source_number
+        !matchesTcgplayerExactMappingLiveSourceNumberV1(
+          candidate,
+          numberField(source.extended_data),
+        )
       ) {
         rowFailures.push("source_number_changed");
       }
