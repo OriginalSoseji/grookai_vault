@@ -22,6 +22,7 @@ import {
   matchesPublicLanguageScope,
   normalizePublicLanguageScope,
 } from "@/lib/publicLanguageScope";
+import { normalizeQuery } from "@/lib/resolver/normalizeQuery";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import {
@@ -30,6 +31,7 @@ import {
 } from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
+import { buildStructuredCollectorSearchMeta } from "@/lib/search/structuredCollectorSearchMeta";
 import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { catalogSearchAccess } from "@/lib/catalogSearchAccess";
 import { classifySmartVariantResolverState } from "@/lib/search/smartVariantSearchPolicy";
@@ -374,6 +376,7 @@ export async function GET(request: NextRequest) {
   let smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });
   const gameScope = smartSearchIntent.gameScope ?? selectedGameScope;
   let query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
+  let resolverQuery = normalizeQuery(query);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
   let literalNameSearch = false;
@@ -419,6 +422,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
     }
   }
+  resolverQuery = normalizeQuery(query);
   const languageScope = smartSearchIntent.languageScope ?? normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
   const inlineExactSetCode =
     !exactSetCode && inlineSetIntent.setCodes.length === 1
@@ -531,10 +535,18 @@ export async function GET(request: NextRequest) {
     !query &&
     hasCatalogDiscoveryScope &&
     effectiveSmartSearchIntent.ownedState !== "owned";
+  const canUseFastStructuredCollectorSearch =
+    resolverQuery.collectorExpectations.length > 0 &&
+    resolverQuery.expectedSetCodes.length === 0 &&
+    resolverQuery.rarityIntent.length === 0 &&
+    resolverQuery.traitIntent.length === 0 &&
+    resolverQuery.variantTokens.length === 0;
   const shouldUseFastTextSearch =
     Boolean(query) &&
     !hasCatalogDiscoveryScope &&
-    !hasSmartOwnershipIntent;
+    !hasSmartOwnershipIntent &&
+    (!resolverQuery.hasStrongDisambiguator ||
+      canUseFastStructuredCollectorSearch);
 
   if (!query && !completeSearch && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
@@ -714,7 +726,9 @@ export async function GET(request: NextRequest) {
             includePricingDuringResolution,
           ).then((rows) => ({
             rows,
-            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+            meta: canUseFastStructuredCollectorSearch
+              ? buildStructuredCollectorSearchMeta(rows, resolverQuery)
+              : buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
             smartSearchIntent: effectiveSmartSearchIntent,
             degraded: false,
           }))
