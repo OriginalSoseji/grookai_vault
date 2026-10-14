@@ -4,6 +4,7 @@ import {
   classifyTcgplayerMarketProductScopeV1_3,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 import { applyTrainerKitPilotPublicationScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
+import { applyWcdTeamRushdownPublicationScopeV1 } from "./tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
 
 export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V1 =
   "TCGPLAYER_MARKET_PUBLICATION_POLICY_V1";
@@ -89,9 +90,13 @@ export function evaluateTcgplayerMarketQualificationV1(
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
   const categoryId = Number(row.category_id);
   const expectedIdentityDomain = SUPPORTED_IDENTITY_DOMAINS.get(categoryId) ?? null;
-  const scope = applyCosmosFinishPublicationScopeV1(applyTrainerKitPilotPublicationScopeV1(
-    classifyTcgplayerMarketProductScopeV1_3(row), row,
-  ), row);
+  const scope = applyCosmosFinishPublicationScopeV1(
+    applyWcdTeamRushdownPublicationScopeV1(
+      applyTrainerKitPilotPublicationScopeV1(
+        classifyTcgplayerMarketProductScopeV1_3(row), row,
+      ), row,
+    ), row,
+  );
   const variantAssignmentStatus = clean(
     row.variant_assignment_status ?? row.derived_variant_assignment_status,
   );

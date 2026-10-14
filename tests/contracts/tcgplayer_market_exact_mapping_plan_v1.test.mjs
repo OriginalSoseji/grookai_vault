@@ -56,6 +56,10 @@ import {
   TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1,
   TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_bw11_radiant_collection_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1,
+  TCGPLAYER_WCD_TEAM_RUSHDOWN_PILOT_V1,
+} from "../../backend/pricing/tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -157,6 +161,10 @@ const BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT = readFileSync(
     "audits",
     "tcgplayer_bw11_radiant_collection_mapping_authority_v1.mjs",
   ),
+  "utf8",
+);
+const WCD_TEAM_RUSHDOWN_AUTHORITY_SCRIPT = readFileSync(
+  path.join(ROOT, "scripts", "audits", "tcgplayer_wcd_team_rushdown_mapping_authority_v1.mjs"),
   "utf8",
 );
 const MAINTENANCE_RUNNER = readFileSync(
@@ -1125,6 +1133,23 @@ test("BW11 Radiant Collection mapping authority is read-only and evidence-bound"
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
   assert.match(SCRIPT, /TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1/);
+});
+
+test("Team Rushdown registry and mapping authority are bounded and read-only", () => {
+  assert.equal(TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1.length, 24);
+  assert.ok(TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1.every((row) =>
+    row.authority_version === TCGPLAYER_WCD_TEAM_RUSHDOWN_PILOT_V1 &&
+    row.target.set_code === "wcd2004-team-rushdown" &&
+    row.target.variant_key === "world_championship_deck_replica" &&
+    row.printing.finish_key === "normal"));
+  assert.match(WCD_TEAM_RUSHDOWN_AUTHORITY_SCRIPT,
+    /begin transaction isolation level repeatable read read only/);
+  assert.match(WCD_TEAM_RUSHDOWN_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 24/);
+  assert.match(WCD_TEAM_RUSHDOWN_AUTHORITY_SCRIPT, /mapping_authority_tls_not_authorized/);
+  assert.match(WCD_TEAM_RUSHDOWN_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(WCD_TEAM_RUSHDOWN_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i);
+  assert.match(SCRIPT, /TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1/);
 });
 
 test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {
