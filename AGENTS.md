@@ -3,13 +3,15 @@
 ## TCGPlayer reviewed alias wave 2 — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_141_REVIEWED_ALIAS_WAVE_2_MAPPING_BATCH.md`.
-The next bounded batch is exactly five verified Holofoil products: Pokémon
-Breeder Full Art, Poké Kid Full Art, and the three 30th Celebration RGB Mew
-cards. Each has one unique unmapped canonical parent and one active verified
-visible Holo child. Four Nintendo promo products remain held because multiple
-TCGPlayer editions compete for the same canonical parent. The read-only
-rehearsal passed for all five candidates; merge and regenerate from the exact
-clean commit before dry run or production apply.
+Five verified Holofoil aliases are now mapped in production: Pokémon Breeder
+Full Art, Poké Kid Full Art, and the three 30th Celebration RGB Mew cards.
+Canonical maintenance run `538a75b4-1f92-43cf-ac01-0ac78c37fcbd` inserted and
+read back all five, and an independent repeatable-read verified the source,
+mapping, parent, and printing identities. Combined full-scope shadow run
+`38624164995` is queued from exact merge commit
+`1da51a6dba0ab60820848e72e6b9bafb7a21ae74`. Four Nintendo promo products
+remain held because multiple TCGPlayer editions compete for the same canonical
+parent.
 
 ## TCGPlayer Prism Star alias wave — October 14
 
