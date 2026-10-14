@@ -9,6 +9,8 @@
 Grookai now has a dedicated operations agent for the full TCGPlayer pricing
 backlog: `tcgplayer-pricing-completion-v1`.
 
+Implementation PR: `#646`.
+
 The agent turns pricing completion into a persistent outcome instead of a series
 of disconnected manual investigations. Every six hours it:
 
