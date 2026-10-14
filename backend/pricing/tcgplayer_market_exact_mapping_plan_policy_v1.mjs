@@ -10,6 +10,12 @@ import {
 import {
   classifyTcgplayerMarketProductScopeV1_2,
 } from "./tcgplayer_market_product_scope_v1.mjs";
+import {
+  matchesReviewedTcgplayerProductTargetV1,
+  reviewedTcgplayerProductIdentityByIdV1,
+  reviewedTcgplayerProductIdentityV1,
+  TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "./tcgplayer_reviewed_product_identity_authority_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1";
@@ -17,6 +23,8 @@ export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_1";
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2";
+export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3 =
+  "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3";
 
 function text(value) {
   return String(value ?? "").trim();
@@ -172,9 +180,14 @@ function targetFailures(source, target) {
 }
 
 function baseResult(source) {
+  const reviewedIdentity = reviewedTcgplayerProductIdentityV1(source);
   return {
     ...(trainerKitPilotCardV1(source) ? { pilot_policy_version: TCGPLAYER_TRAINER_KIT_PILOT_V1 } : {}),
-    policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
+    ...(reviewedIdentity ? {
+      reviewed_product_identity_authority_version:
+        TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+    } : {}),
+    policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
     source_product_id: Number(source.source_product_id),
     source_product_name: text(source.source_product_name),
     source_group_id: Number(source.source_group_id),
@@ -212,10 +225,21 @@ export function planTcgplayerExactMappingCandidateV1({
 }) {
   const base = baseResult(source);
   const scope = classifyTcgplayerMarketProductScopeV1_2(source);
+  const reservedReviewedIdentity =
+    reviewedTcgplayerProductIdentityByIdV1(source?.source_product_id);
+  const reviewedIdentity = reviewedTcgplayerProductIdentityV1(source);
+
+  if (reservedReviewedIdentity && !reviewedIdentity) {
+    return blocked(source, "reviewed_product_source_drift", {
+      evidence_lane: "reviewed_product_identity_authority",
+    });
+  }
 
   const pilotSource = matchesTrainerKitPilotSourceV1(source);
   if ((trainerKitPilotCardV1(source) && !pilotSource) ||
-      (!scope.in_scope && !(scope.rule_id === "deck_exclusive_special_variant" && pilotSource))) {
+      (!scope.in_scope &&
+        !(scope.rule_id === "deck_exclusive_special_variant" && pilotSource) &&
+        !reviewedIdentity)) {
     return blocked(source, "source_outside_product_v1_scope", {
       product_scope: scope,
     });
@@ -225,6 +249,65 @@ export function planTcgplayerExactMappingCandidateV1({
   }
   if (Number(source.active_source_mapping_count ?? 0) !== 0) {
     return blocked(source, "source_product_already_mapped");
+  }
+
+  if (reviewedIdentity) {
+    const possibleTargets = [...directTargets, ...setTargets].filter(
+      (target, index, all) =>
+        all.findIndex((candidate) =>
+          candidate.card_print_id === target.card_print_id,
+        ) === index,
+    );
+    const target = possibleTargets.find((candidate) =>
+      matchesReviewedTcgplayerProductTargetV1(source, candidate),
+    );
+    if (!target) {
+      return blocked(source, "reviewed_product_target_missing_or_drifted", {
+        evidence_lane: "reviewed_product_identity_authority",
+        candidate_targets: possibleTargets.map(targetEvidence),
+      });
+    }
+    const failures = [];
+    if (Number(target.active_standard_identity_count) !== 1) {
+      failures.push("target_missing_unique_active_standard_identity");
+    }
+    if (Number(target.active_tcgplayer_mapping_count) !== 0) {
+      failures.push("target_already_has_active_tcgplayer_mapping");
+    }
+    if (failures.length > 0) {
+      return blocked(source, failures[0], {
+        all_failures: failures,
+        evidence_lane: "reviewed_product_identity_authority",
+        candidate_targets: [targetEvidence(target)],
+      });
+    }
+    const candidate = {
+      ...base,
+      disposition: "candidate",
+      evidence_lane: "reviewed_product_identity_authority",
+      mapping_method: "exact_reviewed_product_identity_authority_v1",
+      mapping_confidence: 1,
+      target: targetEvidence(target),
+      evidence: {
+        authority_version: TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+        exact_source_product: true,
+        exact_target_parent: true,
+        exact_variant: true,
+        verified_printing_gv_id: reviewedIdentity.printing.printing_gv_id,
+        verified_printing_finish: reviewedIdentity.printing.finish_key,
+        verified_printing_provenance_source:
+          reviewedIdentity.printing.provenance_source,
+        verified_printing_provenance_ref:
+          reviewedIdentity.printing.provenance_ref,
+        unique_active_standard_identity: true,
+        target_unmapped: true,
+      },
+    };
+    return {
+      ...candidate,
+      candidate_fingerprint:
+        tcgplayerExactMappingCandidateFingerprintV1(candidate),
+    };
   }
 
   if (directTargets.length > 0) {
