@@ -6,17 +6,17 @@ import { mountReceiptDesk, type ReceiptDeskOptions } from "@/lib/receipts/receip
 import "@/lib/receipts/receiptDesk.css";
 import { receiptDeliveryTransport } from "@/lib/receipts/receiptDelivery.mjs";
 
-export default function CloudReceiptDesk({ prefill = null }: { prefill?: ReceiptDeskOptions["prefill"] }) {
+export default function CloudReceiptDesk({ prefill = null, initialReceiptId = null }: { prefill?: ReceiptDeskOptions["prefill"]; initialReceiptId?: string|null }) {
   const ref = useRef<HTMLDivElement>(null);
   const [error,setError] = useState("");
   const [attempt,setAttempt] = useState(0);
   useEffect(() => {
     let disposed = false; let cleanup: (() => void) | undefined;
     openCloudReceiptBook(receiptRpcTransport(supabase)).then(remote => {
-      if (!disposed && ref.current) cleanup = mountReceiptDesk(ref.current, {cloud:remote, prefill, delivery:receiptDeliveryTransport(supabase)});
+      if (!disposed && ref.current) cleanup = mountReceiptDesk(ref.current, {cloud:remote, prefill, initialReceiptId, onReceiptChange(receiptId){const params=new URLSearchParams(window.location.search);if(receiptId)params.set("receipt",receiptId);else params.delete("receipt");window.history.replaceState(window.history.state,"",window.location.pathname+(params.size?"?"+params:"")+window.location.hash);}, delivery:receiptDeliveryTransport(supabase)});
     }).catch(() => { if (!disposed) setError("Your account receipt book could not be loaded. Existing device records are unchanged."); });
     return () => { disposed = true; cleanup?.(); };
-  },[attempt, prefill]);
+  },[attempt, prefill, initialReceiptId]);
   return <>
     {error && <div role="alert" className="mx-auto max-w-6xl p-6"><p>{error}</p><button onClick={() => {setError("");setAttempt(attempt+1);}}>Try again</button></div>}
     <div ref={ref}><p className="p-6">Loading your account receipt book…</p></div>
