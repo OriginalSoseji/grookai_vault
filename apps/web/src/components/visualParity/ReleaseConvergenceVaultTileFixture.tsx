@@ -17,6 +17,7 @@ export default function ReleaseConvergenceVaultTileFixture({
       item={item}
       density="compact"
       isExpanded={expanded}
+      returnPath="/vault"
       onExpansionToggle={() => setExpanded((value) => !value)}
     />
   );

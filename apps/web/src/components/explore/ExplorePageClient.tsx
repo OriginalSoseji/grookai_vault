@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import PublicSearchForm from "@/components/PublicSearchForm";
-import { SlidersHorizontal } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   buildIdentityFilterCounts,
@@ -884,6 +883,22 @@ export default function ExplorePageClient({
     router.replace(nextUrl, { scroll: false });
   };
 
+  const commitGameScope = (nextScope: PublicGameScope) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (nextScope === "pokemon") {
+      params.delete("game");
+    } else {
+      params.set("game", nextScope);
+    }
+    const nextUrl = params.toString()
+      ? `${pathname}?${params.toString()}`
+      : pathname;
+    router.replace(nextUrl, { scroll: false });
+  };
+
+  const currentPath = searchParams.toString()
+    ? `${pathname}?${searchParams.toString()}`
+    : pathname;
   const buildCardHref = (row: Pick<ExploreRow, "gv_id" | "selected_printing_gv_id" | "printing_gv_id" | "route_query">) => {
     const selectedPrintingGvId = row.selected_printing_gv_id ?? row.printing_gv_id;
     const params = new URLSearchParams();
@@ -896,12 +911,10 @@ export default function ExplorePageClient({
         params.set("printing", printing);
       }
     }
+    params.set("from", currentPath);
 
     return buildPathWithCompareCards(`/card/${row.gv_id}`, params.toString(), compareCards);
   };
-  const currentPath = searchParams.toString()
-    ? `${pathname}?${searchParams.toString()}`
-    : pathname;
   const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const displayRows =
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
@@ -1559,10 +1572,62 @@ export default function ExplorePageClient({
       className={`space-y-3 md:space-y-4 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
       {isDiscoveryMode ? (
-        <div className="gv-collector-discovery-heading flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/70 pb-5 dark:border-slate-800/70">
-          <div className="min-w-0 flex-1 space-y-2">
-            <h1 className="gv-collector-discovery-title text-3xl font-semibold text-slate-950 dark:text-slate-50">A good find starts here.</h1>
-            <p className="gv-collector-discovery-description text-sm text-slate-600 dark:text-slate-400">Old favorites. New obsessions. The next piece of your collection.</p>
+        <div className="gv-command-surface px-4 py-4 sm:px-5">
+          <div className="space-y-1 md:hidden">
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">
+              Discover
+            </p>
+            <h1 className="text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
+              Search the catalog
+            </h1>
+            <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
+              Search by card, finish, stamp, year, artist, ownership, and image availability.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-1">
+              <Link
+                href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
+                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              >
+                Browse Sets
+              </Link>
+              <Link
+                href={buildScopedExploreHref("q=Pikachu")}
+                className="inline-flex rounded-full border border-slate-300 bg-white px-3 py-1.5 text-[13px] font-medium text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-950"
+              >
+                Browse Pokémon
+              </Link>
+            </div>
+          </div>
+
+          <div className="hidden items-center justify-between gap-5 md:flex">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                Grookai Search
+              </p>
+              <h1 className="mt-1 text-3xl font-semibold leading-tight tracking-normal text-slate-950 dark:text-slate-50">
+              Search the catalog
+              </h1>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
+                Search by card, finish, stamp, year, artist, ownership, or visible artwork details.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <div className="flex flex-col items-end gap-2">
+                {gameScopeControl}
+                {languageScopeControl}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-5 hidden border-t border-slate-200/70 pt-4 dark:border-slate-800/70 md:block">
+            <PublicSearchForm variant="command" />
+          </div>
+
+          <div className="mt-4 border-t border-slate-200/70 pt-3 dark:border-slate-800/70 md:hidden">
+            <div className="space-y-3">
+              {gameScopeControl}
+              {languageScopeControl}
+            </div>
           </div>
           <Link
             href={buildPathWithCompareCards("/sets", languageScope === "all" ? "" : `lang=${languageScope}`, compareCards)}
@@ -1600,6 +1665,9 @@ export default function ExplorePageClient({
                   </p>
                 </div>
                 {resultControls}
+              </div>
+              <div className="mt-4 hidden md:block">
+                <PublicSearchForm variant="command" />
               </div>
             </div>
           </div>
@@ -1756,7 +1824,7 @@ export default function ExplorePageClient({
                       disabled={assistantPreviewLoading}
                       className="rounded-full border border-violet-300 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-violet-800 shadow-sm transition hover:border-violet-400 hover:text-violet-950 disabled:cursor-wait disabled:opacity-60 dark:border-violet-300/30 dark:bg-slate-950/60 dark:text-violet-100 dark:hover:text-white"
                     >
-                      {assistantPreviewLoading ? "Checking..." : "Check access"}
+                      {assistantPreviewLoading ? "Checking…" : "Check access"}
                     </button>
                   </div>
                   {assistantPreview ? (

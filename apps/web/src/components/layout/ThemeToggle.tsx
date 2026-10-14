@@ -13,14 +13,7 @@ function getStoredTheme(): ThemeMode | null {
 }
 
 function getPreferredTheme(): ThemeMode {
-  if (
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-color-scheme: dark)").matches
-  ) {
-    return "dark";
-  }
-
-  return "light";
+  return "dark";
 }
 
 function applyTheme(theme: ThemeMode) {
@@ -30,7 +23,7 @@ function applyTheme(theme: ThemeMode) {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<ThemeMode>("light");
+  const [theme, setTheme] = useState<ThemeMode>("dark");
 
   useEffect(() => {
     const initialTheme = getStoredTheme() ?? getPreferredTheme();
@@ -53,7 +46,7 @@ export function ThemeToggle() {
       aria-label={isDark ? "Use light mode" : "Use dark mode"}
       aria-pressed={isDark}
       onClick={toggleTheme}
-      className="gv-theme-toggle inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-all duration-100 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
+      className="gv-theme-toggle inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-[background-color,border-color,color,box-shadow] duration-100 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-950"
     >
       {isDark ? (
         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

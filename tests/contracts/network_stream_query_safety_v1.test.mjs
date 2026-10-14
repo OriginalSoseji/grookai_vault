@@ -22,6 +22,7 @@ test("Network copy drilldown is scoped to visible owners and cards", () => {
 });
 
 test("Network first paint has a bounded card payload", () => {
-  assert.match(page, /NETWORK_STREAM_PAGE_LIMIT\s*=\s*24/);
-  assert.match(page, /limit:\s*NETWORK_STREAM_PAGE_LIMIT/);
+  assert.match(page, /NETWORK_STREAM_PAGE_SIZE\s*=\s*8/);
+  assert.match(page, /limit:\s*NETWORK_STREAM_PAGE_SIZE\s*\+\s*1/);
+  assert.match(page, /rows\s*=\s*pageRows\.slice\(0,\s*NETWORK_STREAM_PAGE_SIZE\)/);
 });

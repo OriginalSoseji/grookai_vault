@@ -23,27 +23,117 @@ const FEATURED_151_IDS = [199, 200, 198, 173, 166, 168, 170, 183, 6, 205]
   .map(number => `GV-PK-MEW-${String(number).padStart(3, "0")}`);
 const CONSTRAINT_FIELDS = ["q", "set", "year", "illustrator", "year_min", "year_max", "finish", "stamp", "owned", "image_state"];
 
-export default async function ExplorePage({ searchParams }: { searchParams?: Promise<Record<string, string | undefined>> }) {
-  const params = await searchParams ?? {};
+function normalizeFreeTextQuery(value?: string | null) {
+  return (value ?? "").trim().replace(/\s+/g, " ");
+}
+
+function normalizeSetCode(value?: string | null) {
+  return (value ?? "").trim().toLowerCase();
+}
+
+function parseReleaseYear(value?: string | null) {
+  const normalized = (value ?? "").trim();
+  return /^\d{4}$/.test(normalized) ? normalized : "";
+}
+
+function buildExploreReturnPath(searchParams?: Record<string, string | undefined>) {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(searchParams ?? {})) {
+    if (value) query.set(key, value);
+  }
+  const suffix = query.toString();
+  return suffix ? `/explore?${suffix}` : "/explore";
+}
+
+function getNotableExploreSets(sets: PublicSetSummary[]) {
+  const selected = new Set<string>();
+  const byCode = new Map(sets.map((setInfo) => [setInfo.code, setInfo]));
+  const notableSets: PublicSetSummary[] = [];
+
+  for (const code of NOTABLE_SET_CODES) {
+    const match = byCode.get(code);
+    if (!match || selected.has(match.code)) {
+      continue;
+    }
+
+    selected.add(match.code);
+    notableSets.push(match);
+  }
+
+  for (const setInfo of sets) {
+    if (notableSets.length >= 8) {
+      break;
+    }
+
+    if (selected.has(setInfo.code)) {
+      continue;
+    }
+
+    selected.add(setInfo.code);
+    notableSets.push(setInfo);
+  }
+
+  return notableSets.slice(0, 8);
+}
+
+export default async function ExplorePage(
+  props: {
+    searchParams?: Promise<{ q?: string; set?: string; year?: string; illustrator?: string; cards?: string; view?: string; lang?: string; game?: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const supabase = await createServerComponentClient();
   const { data: { user } } = await hasSupabaseServerAuthCookie() ? await supabase.auth.getUser() : { data: { user: null } };
   const canViewPricing = Boolean(user);
-  const discovery = normalizePublicGameScope(params.game) === "pokemon" &&
-    !CONSTRAINT_FIELDS.some(field => params[field]?.trim()) &&
-    (!params.identity || params.identity === "all") && !params.sort && !params.view && !params.image;
+  const compareCards = normalizeCompareCardsParam(searchParams?.cards);
+  const languageScope = normalizePublicLanguageScope(searchParams?.lang);
+  const gameScope = normalizePublicGameScope(searchParams?.game);
+  const exploreReturnPath = buildExploreReturnPath(searchParams);
+  const isDiscoveryMode =
+    gameScope === "pokemon" &&
+    !normalizeFreeTextQuery(searchParams?.q) &&
+    !normalizeSetCode(searchParams?.set) &&
+    !parseReleaseYear(searchParams?.year) &&
+    !(searchParams?.illustrator ?? "").trim();
 
-  if (discovery) {
-    // Reuse the public identity/image/pricing reader within its four-ID limit.
-    const chunks = [];
-    for (let offset = 0; offset < FEATURED_151_IDS.length; offset += MAX_COMPARE_CARDS) {
-      chunks.push(getPublicCardsByGvIds(FEATURED_151_IDS.slice(offset, offset + MAX_COMPARE_CARDS), {
-        includePricing: canViewPricing, pricingClient: supabase,
-      }));
-    }
-    const [groups, sets] = await Promise.all([Promise.all(chunks).catch(() => []), getPublicSets().catch(() => [])]);
-    const cards = groups.flat().filter(card => matchesPublicLanguageScope(card, normalizePublicLanguageScope(params.lang)));
-    return <Suspense fallback={<LoadingCardGridSkeleton />}><CollectorCatalogView cards={cards} canViewPricing={canViewPricing}
-      printedTotal={sets.find(set => set.game_code === "pokemon" && set.code === "sv03.5")?.printed_total} /></Suspense>;
+  let discoveryContent = null;
+
+  if (isDiscoveryMode) {
+    const [featuredCardRows, allSets, recentlyConfirmedCards, provisionalCards] = await Promise.all([
+      getFeaturedExploreCards().catch(() => []),
+      getPublicSets()
+        .then((sets) => sets.filter((setInfo) => setInfo.game_code === "pokemon"))
+        .catch(() => []),
+      getRecentlyConfirmedCanonicalCards().catch(() => []),
+      getDiscoveryProvisionalCards().catch(() => []),
+    ]);
+    const featuredPricing = canViewPricing
+      ? await getPublicPricingByCardIds(
+          supabase,
+          featuredCardRows.map((card) => card.id),
+        )
+      : new Map();
+    const featuredCards = featuredCardRows.map((card) => ({
+      ...card,
+      ...(featuredPricing.get(card.id) ?? {}),
+    }));
+
+    discoveryContent = (
+      <ExploreDiscoverySections
+        compareCards={compareCards}
+        featuredCards={featuredCards.filter((card) =>
+          matchesPublicLanguageScope(card, languageScope),
+        )}
+        notableSets={getNotableExploreSets(allSets)}
+        recentlyConfirmedCards={recentlyConfirmedCards.filter((card) =>
+          matchesPublicLanguageScope(card, languageScope),
+        )}
+        provisionalCards={languageScope === "ja" ? [] : provisionalCards}
+        currentView={searchParams?.view ? normalizeExploreViewMode(searchParams.view) : undefined}
+        canViewPricing={canViewPricing}
+        returnPath={exploreReturnPath}
+      />
+    );
   }
   return <Suspense fallback={<LoadingCardGridSkeleton />}><ExplorePageClient canViewPricing={canViewPricing} /></Suspense>;
 }

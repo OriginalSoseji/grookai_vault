@@ -61,7 +61,7 @@ export function DesktopApplicationShell({
   return (
     <div className="gv-desktop-site-header" data-desktop-application-shell>
       <div className="gv-desktop-shell-top">
-        <Link href="/" className="flex min-w-0 items-center gap-3 text-lg font-semibold text-slate-950 dark:text-white">
+        <Link href="/" className="gv-desktop-brand flex min-w-0 items-center gap-3 text-lg font-semibold text-slate-950 dark:text-white">
           <Image
             src="/grookai-logo-64.png"
             alt="Grookai Vault logo"
@@ -72,7 +72,25 @@ export function DesktopApplicationShell({
           <span className="gv-approved-brand-name">Grookai<span>VAULT</span></span>
         </Link>
 
-        <div className="gv-collector-header-actions flex min-w-0 items-center justify-end gap-2">
+        <nav className="gv-desktop-primary-nav" aria-label="Primary navigation" data-desktop-primary-navigation>
+          {DESKTOP_PRIMARY_NAV.map((item) => {
+            const href = item.key === "search" ? searchHref : item.href;
+            const active = routeState.activePrimary === item.key;
+            return (
+              <Link
+                key={item.key}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className={`gv-desktop-primary-link ${active ? "gv-desktop-primary-link-active" : ""}`}
+              >
+                <span>{item.label}</span>
+                {item.key === "pulse" ? <UnreadBadge count={networkUnreadCount} /> : null}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="flex min-w-0 items-center justify-end gap-2">
           {wallAvailability === "unavailable" ? (
             <span
               data-wall-availability="unavailable"
@@ -107,26 +125,6 @@ export function DesktopApplicationShell({
       </div>
 
       <div className="gv-desktop-shell-nav-frame">
-        <nav className="gv-desktop-primary-nav" aria-label="Primary navigation" data-desktop-primary-navigation>
-          {DESKTOP_PRIMARY_NAV.map((item) => {
-            const href = item.key === "search" ? searchHref : item.href;
-            const active = routeState.activePrimary === item.key;
-            const Icon = navIcons[item.key];
-            return (
-              <Link
-                key={item.key}
-                href={href}
-                aria-current={active ? "page" : undefined}
-                className={`gv-desktop-primary-link ${active ? "gv-desktop-primary-link-active" : ""}`}
-              >
-                <Icon size={16} aria-hidden="true" />
-                <span>{item.label}</span>
-                {item.key === "pulse" ? <UnreadBadge count={networkUnreadCount} /> : null}
-              </Link>
-            );
-          })}
-        </nav>
-
         <nav className="gv-desktop-secondary-nav" aria-label="Collection and account tools" data-desktop-secondary-navigation>
           {secondaryItems.map((item) => {
             const href = item.key === "compare" ? compareHref : item.href;
