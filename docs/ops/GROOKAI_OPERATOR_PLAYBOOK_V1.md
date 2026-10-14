@@ -1859,6 +1859,19 @@ mapping reassignment or production authority is granted by a discovery report.
 
 ## Exact Mapping Plan Identity
 
+For the Unseen Forces Unown Collection batch, use the exact 28-row registry and
+`scripts/audits/tcgplayer_exu_unown_mapping_authority_v1.mjs`. It covers only
+TCGPlayer group 1398 products 90166 through 90193 and the canonical `exu`
+symbol variants `!`, `?`, and `A` through `Z`. Preserve the full source printed
+coordinates, including `!/28` and `?/28`; punctuation-only coordinates are
+admitted only through an exact reviewed registry tuple. The authority builder
+binds the English Master Index card/printing exports and special-variant coverage
+artifact, and splits execution into packages of at most 25 mappings. These older
+children have no active truth-review override, so the builder must assert that
+state and derive verified scope from the frozen checked-in evidence. Regenerate
+from a clean merged commit, dry-run every package, and read back all 28 mappings
+before starting a new combined pricing shadow.
+
 Read `EXACT_MAPPING_IDENTITY_CHECKPOINT_20260917.md` before preparing another
 TCGPlayer exact-mapping batch. Plan policy V1.3 preserves trailing source labels,
 adds only the exact reviewed-product registry lane described above, and rejects

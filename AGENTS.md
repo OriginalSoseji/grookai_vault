@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer Unseen Forces Unown batch — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_138_EXU_UNOWN_MAPPING_BATCH.md`.
+The active bounded batch is exactly TCGPlayer products 90166 through 90193 from
+group 1398: Unown `!`, `?`, and `A` through `Z`. Only the exact reviewed registry
+may map them to the 28 canonical `exu` symbol-variant parents. The live read-only
+authority rehearsal passed for all products, unique parents, Holo children, and
+frozen Master Index evidence; apply packages are bounded to 25 and 3. Regenerate
+from a clean merged commit before dry run or apply. Mapping and price publication
+remain separate gates.
+
 ## TCGPlayer Classic Collection alias batch — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_137_30C_CLASSIC_ALIAS_MAPPING_BATCH.md`.
