@@ -83,6 +83,11 @@ jobs:
         run: npm --prefix apps/web exec -- playwright install chromium
 
       - name: Typecheck fixture and parity harness
+        env:
+          NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY: "true"
+          NEXT_PUBLIC_COLLECTOR_STAGING: "false"
+          SUPABASE_URL: "http://127.0.0.1:54321"
+          SUPABASE_PUBLISHABLE_KEY: "sb_publishable_typecheck_only"
         run: npm --prefix apps/web run typecheck
 
       - name: Run native parity contract guards
