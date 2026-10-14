@@ -2,6 +2,16 @@ export const SALES_REPORT_PAGE_SIZE = 50;
 
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 
+function toParams(input) {
+  if (input instanceof URLSearchParams || typeof input === 'string') return new URLSearchParams(input);
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(input ?? {})) {
+    const candidate = Array.isArray(value) ? value[0] : value;
+    if (typeof candidate === 'string') params.set(key, candidate);
+  }
+  return params;
+}
+
 function validDate(value) {
   if (!datePattern.test(value ?? '')) return '';
   const date = new Date(value + 'T00:00:00');
@@ -10,7 +20,7 @@ function validDate(value) {
 }
 
 export function readSalesDashboardParams(input, today, allowedMethods = []) {
-  const params = input instanceof URLSearchParams ? input : new URLSearchParams(input);
+  const params = toParams(input);
   const rawPage = Number(params.get('sales_page'));
   const method = params.get('sales_method') ?? '';
   return {
@@ -23,7 +33,7 @@ export function readSalesDashboardParams(input, today, allowedMethods = []) {
 }
 
 export function writeSalesDashboardParams(input, state) {
-  const params = input instanceof URLSearchParams ? new URLSearchParams(input) : new URLSearchParams(input);
+  const params = new URLSearchParams(toParams(input));
   const values = {
     sales_from: state.from,
     sales_to: state.to,
@@ -35,6 +45,23 @@ export function writeSalesDashboardParams(input, state) {
     if (value) params.set(key, value); else params.delete(key);
   }
   return params;
+}
+
+export function salesDashboardDestination(input, allowedMethods = []) {
+  const source = toParams(input);
+  if (source.get('view') !== 'dashboard') return '/account/store/sales';
+  const params = new URLSearchParams({ view: 'dashboard' });
+  const from = validDate(source.get('sales_from'));
+  const to = validDate(source.get('sales_to'));
+  const query = (source.get('sales_q') ?? '').slice(0, 200);
+  const method = source.get('sales_method') ?? '';
+  const page = Number(source.get('sales_page'));
+  if (from) params.set('sales_from', from);
+  if (to) params.set('sales_to', to);
+  if (query) params.set('sales_q', query);
+  if (allowedMethods.includes(method)) params.set('sales_method', method);
+  if (Number.isSafeInteger(page) && page > 1) params.set('sales_page', String(page));
+  return `/account/store/sales?${params}`;
 }
 
 export function paginateSalesRows(rows, requestedPage, pageSize = SALES_REPORT_PAGE_SIZE) {
