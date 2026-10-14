@@ -1,5 +1,18 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer reviewed alias wave — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_139_REVIEWED_ALIAS_WAVE_MAPPING_BATCH.md`.
+The active bounded batch is exactly 21 reviewed products across TCGPlayer groups
+1494, 2328, and 24451: five Phantom Forces display-name aliases, eleven Lost
+Thunder Prism Star/Fairy Charm aliases, and five MEP Pokemon Center stamped
+promos. Each tuple freezes the raw source title and full printed coordinate to
+one unique active standard parent and one selected governed child. The
+read-only rehearsal produced 21 candidates covering 28 missing-price
+observations and froze three Master Index scopes. Regenerate from a clean merged
+commit before dry run or apply. Rows with target collisions, missing canonical
+cards, or ambiguous numbers remain blocked.
+
 ## TCGPlayer Unseen Forces Unown batch — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_138_EXU_UNOWN_MAPPING_BATCH.md`.
