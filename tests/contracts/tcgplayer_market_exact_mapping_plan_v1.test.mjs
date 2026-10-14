@@ -534,6 +534,8 @@ test("planner carries reviewed 30th Celebration Classic Collection authority", (
 
 test("Classic Collection authority is read-only, evidence-bound, and keeps aliases out", () => {
   assert.match(CLASSIC_AUTHORITY_SCRIPT, /begin transaction isolation level repeatable read read only/);
+  assert.match(CLASSIC_AUTHORITY_SCRIPT, /SUPABASE_DB_CA_CERT/);
+  assert.match(CLASSIC_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
   assert.match(CLASSIC_AUTHORITY_SCRIPT, /const GROUP_ID = 24837/);
   assert.match(CLASSIC_AUTHORITY_SCRIPT, /const EXACT_CANDIDATE_COUNT = 28/);
   assert.match(CLASSIC_AUTHORITY_SCRIPT, /Genesect EX \(Team Plasma\) and Gengar \(Prime\) remain outside/);
