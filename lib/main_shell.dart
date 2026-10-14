@@ -1048,15 +1048,6 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const GrookaiObjectsHubScreen());
   }
 
-  Future<void> _openVendorMode() async {
-    await _pushPage<void>(const VendorPricingWorkspaceScreen());
-    if (!mounted) {
-      return;
-    }
-    unawaited(_wallKey.currentState?.reload());
-    unawaited(_vaultKey.currentState?.reload());
-  }
-
   Future<void> _openSalesDesk() async {
     await _pushPage<void>(const SalesDeskScreen());
     if (!mounted) return;
@@ -1648,6 +1639,8 @@ class _AppShellState extends State<AppShell> {
                 onOpenGrookaiObjects: _openGrookaiObjectsHub,
                 onOpenBinders: _openBinderLibrary,
                 onOpenVendorMode: _openVendorPricingWorkspace,
+                onOpenSalesDesk: _openSalesDesk,
+                onOpenManageStore: _openManageStore,
                 onOpenNearby: _openNearby,
                 onOpenNearbyMap: _openNearbyMap,
                 onOpenAccount: _openAccountHub,
@@ -2215,7 +2208,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
     required this.onOpenSalesDesk,
     required this.onOpenManageStore,
     required this.onOpenBinders,
-    required this.onOpenVendorMode,
     required this.onOpenNearby,
     required this.onOpenNearbyMap,
     required this.onOpenAccount,
@@ -2236,7 +2228,6 @@ class _GrookaiAppDrawer extends StatelessWidget {
   final Future<void> Function() onOpenSalesDesk;
   final Future<void> Function() onOpenManageStore;
   final Future<void> Function() onOpenBinders;
-  final Future<void> Function() onOpenVendorMode;
   final Future<void> Function() onOpenNearby;
   final Future<void> Function() onOpenNearbyMap;
   final Future<void> Function() onOpenAccount;
@@ -2315,6 +2306,18 @@ class _GrookaiAppDrawer extends StatelessWidget {
             icon: Icons.storefront_outlined,
             label: 'Vendor Mode',
             onTap: () => _closeThenAsync(context, onOpenVendorMode),
+          ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.point_of_sale,
+            label: 'Sales desk',
+            onTap: () => _closeThenAsync(context, onOpenSalesDesk),
+          ),
+        if (signedIn)
+          _GrookaiDrawerTile(
+            icon: Icons.storefront_outlined,
+            label: 'Manage store',
+            onTap: () => _closeThenAsync(context, onOpenManageStore),
           ),
         if (signedIn && BinderFeatureFlags.production.personalAvailable)
           _GrookaiDrawerTile(

@@ -124,6 +124,24 @@ class _CardDetailPrintingOption {
 
 enum _CardDetailTab { overview, collection, activity }
 
+class _CardImageFace {
+  const _CardImageFace({
+    required this.index,
+    required this.role,
+    required this.imageUrl,
+  });
+
+  final int index;
+  final String role;
+  final String imageUrl;
+
+  String get label {
+    if (role == 'front') return 'Front';
+    if (role == 'back') return 'Back';
+    return 'Face ${index + 1}';
+  }
+}
+
 class _CardDetailScreenState extends State<CardDetailScreen> {
   static const double _sectionSpacing = 10;
   final supabase = Supabase.instance.client;

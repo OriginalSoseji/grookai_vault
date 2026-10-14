@@ -17,23 +17,21 @@ import {
 
 export const dynamic = "force-dynamic";
 const NETWORK_STREAM_PAGE_SIZE = 8;
+const NETWORK_STREAM_PAGE_LIMIT = 24;
 
-function parsePage(value?: string) {
-  const parsed = Number.parseInt(value ?? "1", 10);
-  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : 1;
-}
-
-function buildNetworkHref(intent: string | null, page: number) {
+function buildCurrentPath(intent: string | null) {
   const params = new URLSearchParams();
-  if (intent) params.set("intent", intent);
-  if (page > 1) params.set("page", String(page));
+  if (intent) {
+    params.set("intent", intent);
+  }
+
   const query = params.toString();
   return query ? `/network?${query}` : "/network";
 }
 
 export default async function NetworkPage(
   props: {
-    searchParams?: Promise<{ intent?: string; page?: string }>;
+    searchParams?: Promise<{ intent?: string }>;
   }
 ) {
   if (collectorPreview) return <NetworkPageLayout active="cards" actions={null}>
@@ -45,15 +43,13 @@ export default async function NetworkPage(
   const { user } = await getOptionalServerUser();
   const viewerUserId = user?.id ?? null;
   const intent = normalizeDiscoverableVaultIntent(searchParams?.intent);
-  const currentPage = parsePage(searchParams?.page);
-  const currentPath = buildNetworkHref(intent, currentPage);
+  const currentPath = buildCurrentPath(intent);
   const pageRows = await getCardStreamRows({
     intent,
     excludeUserId: viewerUserId,
-    limit: NETWORK_STREAM_PAGE_SIZE + 1,
-    offset: (currentPage - 1) * NETWORK_STREAM_PAGE_SIZE,
+    limit: NETWORK_STREAM_PAGE_SIZE + 1 +
+      (NETWORK_STREAM_PAGE_LIMIT - NETWORK_STREAM_PAGE_SIZE - 1),
   });
-  const hasNextPage = pageRows.length > NETWORK_STREAM_PAGE_SIZE;
   const rows = pageRows.slice(0, NETWORK_STREAM_PAGE_SIZE);
   const contactEligibilityTargets: ContactEligibilityTarget[] = rows.flatMap((row) => {
     const copyTargets = row.inPlayCopies.map((copy) => ({
@@ -67,26 +63,31 @@ export default async function NetworkPage(
   });
 
   return (
-    <div className="gv-network-page space-y-8 py-8">
-      <PageSection spacing="compact" className="gv-network-intro border-b border-slate-200/70 pb-8 dark:border-slate-700/70">
-        <PageIntro
-          eyebrow="Community"
-          title="Collector activity"
-          description="See what collectors are adding, sharing, and making available."
-          actions={
-            <Link
-              href={user ? "/network/inbox" : "/login?next=%2Fnetwork"}
-              className="gv-primary-button px-4 py-2 text-sm"
-            >
-              {user ? "Open inbox" : "Sign in to interact"}
-            </Link>
-          }
-        />
-      </PageSection>
-
-      <PageSection spacing="compact" className="gv-network-controls flex flex-col gap-3 border-b border-slate-200/70 pb-5 dark:border-slate-700/70 md:flex-row md:items-center md:justify-between">
-        <NetworkSectionNav active="cards" />
-        <div className="flex flex-wrap gap-2">
+    <NetworkPageLayout
+      active="cards"
+      actions={
+        <Link
+          href={user ? "/network/inbox" : "/login?next=%2Fnetwork"}
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[color:var(--gv-border-soft)] px-4 py-2 text-sm font-medium text-[color:var(--gv-text-primary)] transition hover:bg-[color:var(--gv-surface-soft)]"
+        >
+          <MessageCircle size={17} aria-hidden="true" className="shrink-0" />
+          {user ? "Open inbox" : "Sign in to interact"}
+        </Link>
+      }
+    >
+      <nav aria-label="Card intent" className="flex flex-wrap gap-1">
+        <Link
+          href="/network"
+          aria-current={intent === null ? "page" : undefined}
+          className={`inline-flex min-h-11 items-center rounded-md px-4 py-2 text-sm font-medium transition ${
+            intent === null
+              ? "bg-[color:var(--gv-surface-container)] text-[color:var(--gv-text-primary)]"
+              : "text-[color:var(--gv-text-secondary)] hover:bg-[color:var(--gv-surface-soft)] hover:text-[color:var(--gv-text-primary)]"
+          }`}
+        >
+          All
+        </Link>
+        {DISCOVERABLE_VAULT_INTENT_VALUES.map((value) => (
           <Link
             key={value}
             href={`/network?intent=${encodeURIComponent(value)}`}
@@ -102,8 +103,7 @@ export default async function NetworkPage(
         ))}
       </nav>
 
-      <div className="gv-network-layout">
-      <PageSection spacing="compact" className="min-w-0">
+      <section aria-labelledby="pulse-cards-heading" className="min-w-0 space-y-5">
         {/* LOCK: Intent, discoverability, and contact language must stay calm and product-facing. */}
         <h2 id="pulse-cards-heading" className="text-lg font-medium text-[color:var(--gv-text-primary)]">
           {intent ? `${getVaultIntentLabel(intent)} cards` : "Latest cards"}
@@ -129,44 +129,7 @@ export default async function NetworkPage(
             </div>
           </ContactEligibilityProvider>
         )}
-        {(currentPage > 1 || hasNextPage) ? (
-          <nav className="flex items-center justify-between gap-3 border-t border-slate-200/70 pt-5 text-sm dark:border-slate-700/70" aria-label="Collector activity pages">
-            <Link
-              href={buildNetworkHref(intent, Math.max(1, currentPage - 1))}
-              aria-disabled={currentPage <= 1}
-              className={`gv-secondary-button min-h-0 px-4 py-2 ${currentPage <= 1 ? "pointer-events-none opacity-40" : ""}`}
-            >
-              Newer
-            </Link>
-            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Page {currentPage}</span>
-            <Link
-              href={buildNetworkHref(intent, currentPage + 1)}
-              aria-disabled={!hasNextPage}
-              className={`gv-secondary-button min-h-0 px-4 py-2 ${!hasNextPage ? "pointer-events-none opacity-40" : ""}`}
-            >
-              Older
-            </Link>
-          </nav>
-        ) : null}
-      </PageSection>
-      <aside className="gv-network-sidebar" aria-label="Network shortcuts">
-        <p className="gv-eyebrow">Your network</p>
-        <h2 className="mt-3 text-2xl font-bold text-slate-950 dark:text-white">
-          Collect with people, not listings.
-        </h2>
-        <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
-          Discover collectors, follow the cards they share, and keep conversations tied to an exact copy.
-        </p>
-        <div className="mt-6 grid gap-1 border-y border-slate-200/70 py-3 dark:border-slate-700/70">
-          <Link href="/network/discover" className="gv-network-sidebar-link">Discover collectors <span aria-hidden="true">→</span></Link>
-          <Link href={user ? "/network/inbox" : "/login?next=%2Fnetwork%2Finbox"} className="gv-network-sidebar-link">Messages <span aria-hidden="true">→</span></Link>
-          <Link href="/wall" className="gv-network-sidebar-link">Your Wall <span aria-hidden="true">→</span></Link>
-        </div>
-        <p className="mt-5 text-xs leading-5 text-slate-500 dark:text-slate-400">
-          {rows.length} visible {rows.length === 1 ? "card" : "cards"} in this activity window.
-        </p>
-      </aside>
-      </div>
-    </div>
+      </section>
+    </NetworkPageLayout>
   );
 }

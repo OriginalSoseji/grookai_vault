@@ -91,7 +91,7 @@ export default async function VaultInstancePage(
     `/vault/gvvi/${encodeURIComponent(params.gvvi_id)}`,
     returnContext.href,
   );
-  const { user } = await requireServerUser(requestedManagementPath);
+  const { user, supabase } = await requireServerUser(requestedManagementPath);
 
   const detail = await getVaultInstanceByGvvi(user.id, params.gvvi_id, { includeArchived: true });
   if (!detail) {

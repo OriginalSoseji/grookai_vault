@@ -20,6 +20,8 @@ import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
+import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
+import { combineUsdTotal, sealedOwnershipEnabled, type SealedTotals } from "@/lib/sealed/ownedSealedV1";
 import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 export type RecentCardData = {
@@ -325,6 +327,7 @@ export function VaultCollectionView({
   const [pokemonQuery, setPokemonQuery] = useState(() => searchParams.get("pokemon") ?? "");
   const [activeView, setActiveView] = useState<SmartViewKey>(() => parseVaultView(searchParams.get("view")));
   const [currentPage, setCurrentPage] = useState(() => parseVaultPage(searchParams.get("page")));
+  const [sealedTotals, setSealedTotals] = useState<SealedTotals | null>(null);
 
   useEffect(() => {
     setItems(initialItems);

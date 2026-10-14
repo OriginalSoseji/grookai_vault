@@ -264,22 +264,18 @@ function buildStructuredCollectorSearchMeta(
   const nameTokens = uniqueValues(
     packet.expandedNameTokens.filter((token) => !collectorTokens.has(token)),
   );
-  const resolverState =
-    rows.length === 0
-      ? "NO_MATCH"
-      : rows.length === 1
-        ? "DIRECT_MATCH"
-        : "AMBIGUOUS_MATCH";
+  const resolverState = rows.length === 0
+    ? "NO_MATCH"
+    : rows.length === 1
+      ? "DIRECT_MATCH"
+      : "AMBIGUOUS_MATCH";
 
   return {
     resolverState,
     topScore: null,
     candidateCount: rows.length,
     autoResolved: false,
-    intentSummary: {
-      expectedSetCodes: packet.expectedSetCodes,
-      nameTokens,
-    },
+    intentSummary: { expectedSetCodes: packet.expectedSetCodes, nameTokens },
     structuredEvidenceFlags: {
       text: nameTokens.length > 0,
       textRequired: false,
@@ -413,11 +409,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400 });
   }
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
-  const languageScope = normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
-  const gameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
-  const smartSearchIntent = buildSmartSearchIntent(rawQuery);
-  const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
-  const resolverQuery = normalizeQuery(query);
+  const selectedGameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
+  let smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });
+  const gameScope = smartSearchIntent.gameScope ?? selectedGameScope;
+  let query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
   let literalNameSearch = false;
@@ -463,6 +458,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
     }
   }
+  const resolverQuery = normalizeQuery(query);
   const languageScope = smartSearchIntent.languageScope ?? normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
   const inlineExactSetCode =
     !exactSetCode && inlineSetIntent.setCodes.length === 1
@@ -584,9 +580,7 @@ export async function GET(request: NextRequest) {
   const shouldUseFastTextSearch =
     Boolean(query) &&
     !hasCatalogDiscoveryScope &&
-    !hasSmartOwnershipIntent &&
-    (!resolverQuery.hasStrongDisambiguator ||
-      canUseFastStructuredCollectorSearch);
+    !hasSmartOwnershipIntent;
 
   if (!query && !completeSearch && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(

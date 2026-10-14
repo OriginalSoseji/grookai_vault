@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../../widgets/vault/owned_sealed_panel.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -22,6 +21,7 @@ import '../../widgets/app_shell_metrics.dart';
 import '../../widgets/card_view_mode.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/gv_surface.dart';
+import '../../widgets/vault/owned_sealed_panel.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../network/network_inbox_screen.dart';
@@ -621,7 +621,6 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
               followActionBusy: _followActionBusy,
               onFollowPressed: _handleFollowAction,
               onOpenSettings: widget.onOpenSettings,
-              onOpenVendorPricing: null,
             ),
             const SizedBox(height: 12),
             if (widget.embeddedInShell && isOwner)
@@ -895,6 +894,7 @@ class _PublicCollectorSegmentedContentState
         : widget.selectedSectionId.trim();
     final loadingSelectedSection = widget.loadingSectionId == selectedSectionId;
     final cards = _activeCards;
+    final includesSealed = kSealedOwnershipEnabled && _viewerUserId.isNotEmpty;
 
     return CustomScrollView(
       physics: const BouncingScrollPhysics(
@@ -914,13 +914,22 @@ class _PublicCollectorSegmentedContentState
                 followActionBusy: widget.followActionBusy,
                 onFollowPressed: widget.onFollowPressed,
                 onOpenSettings: widget.onOpenSettings,
-                onOpenVendorPricing: widget.isOwner
-                    ? () => unawaited(_openVendorPricing())
-                    : null,
               ),
               const SizedBox(height: 8),
+              if (_viewerUserId.isNotEmpty)
+                OwnedSealedPanel(
+                  ownerId: widget.profile.userId,
+                  wallOnly: true,
+                  sectionId: selectedSectionId == _wallSectionId
+                      ? null
+                      : selectedSectionId,
+                  onInventoryChanged: widget.onWallChanged,
+                ),
+              if (_viewerUserId.isNotEmpty) const SizedBox(height: 8),
               _CollectorWallSectionRail(
-                wallCount: widget.wallView.wallCards.length,
+                wallCount: includesSealed
+                    ? null
+                    : widget.wallView.wallCards.length,
                 sections: widget.wallView.sections,
                 selectedSectionId: selectedSectionId,
                 loadingSectionId: widget.loadingSectionId,
@@ -934,10 +943,13 @@ class _PublicCollectorSegmentedContentState
                 _WallSectionCard(emptyMessage: widget.sectionError)
               else if (loadingSelectedSection)
                 const _WallLoadingCard()
-              else if (cards.isEmpty)
-                const _WallSectionCard(
-                  emptyMessage: 'Nothing to show right now.',
-                ),
+              else if (_activeCards.isNotEmpty || !includesSealed)
+                if (cards.isEmpty)
+                  const _WallSectionCard(
+                    emptyMessage: 'Nothing to show right now.',
+                  )
+                else
+                  const SizedBox.shrink(),
             ]),
           ),
         ),
@@ -1197,7 +1209,7 @@ class _SectionRailChip extends StatelessWidget {
     return Semantics(
       button: true,
       selected: selected,
-      label: '$label, $count cards',
+      label: count == null ? label : '$label, $count cards',
       child: InkWell(
         onTap: loading ? null : onTap,
         child: ConstrainedBox(
@@ -1234,7 +1246,7 @@ class _SectionRailChip extends StatelessWidget {
                     dimension: 13,
                     child: CircularProgressIndicator(strokeWidth: 1.8),
                   )
-                else
+                else if (count != null)
                   Text(
                     '$count',
                     style: theme.textTheme.labelSmall?.copyWith(
@@ -1261,7 +1273,6 @@ class _PublicCollectorHeader extends StatelessWidget {
     required this.followActionBusy,
     required this.onFollowPressed,
     required this.onOpenSettings,
-    required this.onOpenVendorPricing,
   });
 
   final PublicCollectorProfile profile;
@@ -1272,7 +1283,6 @@ class _PublicCollectorHeader extends StatelessWidget {
   final bool followActionBusy;
   final Future<void> Function() onFollowPressed;
   final VoidCallback? onOpenSettings;
-  final VoidCallback? onOpenVendorPricing;
 
   @override
   Widget build(BuildContext context) {
@@ -1369,9 +1379,7 @@ class _PublicCollectorHeader extends StatelessWidget {
               ],
             ),
           ),
-          if (shareUri != null ||
-              onOpenSettings != null ||
-              onOpenVendorPricing != null)
+          if (shareUri != null || onOpenSettings != null)
             PopupMenuButton<String>(
               tooltip: 'Profile actions',
               onSelected: (action) {
@@ -1397,9 +1405,6 @@ class _PublicCollectorHeader extends StatelessWidget {
                   case 'settings':
                     onOpenSettings?.call();
                     break;
-                  case 'vendor':
-                    onOpenVendorPricing?.call();
-                    break;
                 }
               },
               itemBuilder: (context) => [
@@ -1419,15 +1424,6 @@ class _PublicCollectorHeader extends StatelessWidget {
                       contentPadding: EdgeInsets.zero,
                       leading: Icon(Icons.settings_outlined),
                       title: Text('Account settings'),
-                    ),
-                  ),
-                if (isOwner && onOpenVendorPricing != null)
-                  const PopupMenuItem(
-                    value: 'vendor',
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.storefront_outlined),
-                      title: Text('Vendor Mode'),
                     ),
                   ),
               ],

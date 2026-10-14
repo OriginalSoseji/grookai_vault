@@ -153,21 +153,28 @@ void main() {
     expect(collectorScreen, contains('The card is still in your Vault.'));
   });
 
-  test('owner Wall exposes one-screen exact-copy Vendor Mode workspace', () {
-    expect(collectorScreen, contains('VendorPricingWorkspaceScreen'));
-    expect(collectorScreen, contains("title: Text('Vendor Mode')"));
-    expect(collectorScreen, contains("title: Text('Account settings')"));
-    expect(collectorScreen, contains("tooltip: 'Profile actions'"));
-    expect(collectorScreen, contains('onOpenVendorPricing: widget.isOwner'));
-    expect(vendorPricingScreen, contains("label: 'TCGPlayer Market'"));
-    expect(vendorPricingScreen, contains("label: 'My price'"));
-    expect(vendorPricingScreen, contains("Text('Wall'"));
-    expect(vendorPricingScreen, contains('Assign sections'));
-    expect(vendorPricingScreen, contains('buildPersistentGvviQrUri'));
-    expect(vendorPricingService, contains("from('vault_item_instances')"));
-    expect(vendorPricingService, contains('fetchByCardPrintingIds'));
-    expect(vendorPricingService, contains('saveSingleCardListing'));
-  });
+  test(
+    'signed-in shell exposes one-screen exact-copy Vendor Mode workspace',
+    () {
+      expect(mainShell, contains('VendorPricingWorkspaceScreen'));
+      expect(mainShell, contains("label: 'Vendor Mode'"));
+      expect(
+        mainShell,
+        contains('onOpenVendorMode: _openVendorPricingWorkspace'),
+      );
+      expect(collectorScreen, isNot(contains('VendorPricingWorkspaceScreen')));
+      expect(collectorScreen, contains("title: Text('Account settings')"));
+      expect(collectorScreen, contains("tooltip: 'Profile actions'"));
+      expect(vendorPricingScreen, contains("label: 'TCGPlayer Market'"));
+      expect(vendorPricingScreen, contains("label: 'My price'"));
+      expect(vendorPricingScreen, contains("Text('Wall'"));
+      expect(vendorPricingScreen, contains('Assign sections'));
+      expect(vendorPricingScreen, contains('buildPersistentGvviQrUri'));
+      expect(vendorPricingService, contains("from('vault_item_instances')"));
+      expect(vendorPricingService, contains('fetchByCardPrintingIds'));
+      expect(vendorPricingService, contains('saveSingleCardListing'));
+    },
+  );
 
   test('collector section deep links select the requested section', () {
     expect(

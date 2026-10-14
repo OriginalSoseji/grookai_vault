@@ -3,5 +3,8 @@ String? pokemonSpriteUrl(int nationalDexNumber) {
     return null;
   }
 
-  return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$nationalDexNumber.png';
+  return Uri.https(
+    'grookaivault.com',
+    '/dex/sprites/v1/$nationalDexNumber.png',
+  ).toString();
 }

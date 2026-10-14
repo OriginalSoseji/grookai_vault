@@ -9,6 +9,7 @@ import CardRouteLoading from "./CardRouteLoading";
 import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapshotSection";
 import CompareTray from "@/components/compare/CompareTray";
 import CardPageMarketVaultPanels from "@/components/cards/CardPageMarketVaultPanels";
+import CardFaceGallery from "@/components/cards/CardFaceGallery";
 import MobilePushedRouteHeader from "@/components/layout/MobilePushedRouteHeader";
 import VariantExplanationContextPreview from "@/components/cards/VariantExplanationContextPreview";
 import PricingDisclosure from "@/components/common/PricingDisclosure";

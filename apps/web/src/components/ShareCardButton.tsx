@@ -7,10 +7,13 @@ import { useClientReady } from "@/components/layout/useClientReady";
 
 type ShareCardButtonProps = {
   gvId: string;
+  printingReference?: string | null;
+  cardName?: string;
   variant?: "default" | "menu";
 };
 
-export default function ShareCardButton({ gvId, variant = "default" }: ShareCardButtonProps) {
+export default function ShareCardButton({ gvId, printingReference, cardName, variant = "default" }: ShareCardButtonProps) {
+  const ready = useClientReady();
   const [copied, setCopied] = useState(false);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
@@ -54,6 +57,7 @@ export default function ShareCardButton({ gvId, variant = "default" }: ShareCard
     <button
       type="button"
       onClick={handleShare}
+      disabled={!ready || busy}
       className={
         variant === "menu"
           ? "flex min-h-12 w-full items-center gap-3 px-3 py-3 text-left text-sm font-medium text-slate-800 transition active:scale-[0.99] hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-white/[0.04]"

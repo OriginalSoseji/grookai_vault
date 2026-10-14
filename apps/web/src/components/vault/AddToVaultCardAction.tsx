@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useId, useRef, useState } from "react";
+import { useFormStatus } from "react-dom";
+import { CARD_CONDITIONS } from "@/lib/vault/cardAddOptions";
 import PrintingSelector from "@/components/cards/PrintingSelector";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
@@ -46,6 +48,7 @@ type AddToVaultCardActionProps = {
   initialPrintingId?: string | null;
   selectedPrintingId?: string | null;
   onSelectedPrintingChange?: (printing: CardPrinting) => void;
+  compactPresentation?: boolean;
   telemetryEnabled?: boolean;
 };
 
@@ -167,6 +170,7 @@ export default function AddToVaultCardAction({
   initialPrintingId,
   selectedPrintingId,
   onSelectedPrintingChange,
+  compactPresentation = false,
   telemetryEnabled = true,
 }: AddToVaultCardActionProps) {
   const finishSelectId = useId();
@@ -259,9 +263,7 @@ export default function AddToVaultCardAction({
     return () => window.clearTimeout(timeoutId);
   }, [router, state]);
 
-  return (
-    <div className="space-y-5" data-add-to-vault-flow>
-      {printings.length > 0 ? (
+  const printingControls = printings.length > 0 ? (
         <PrintingSelector
           printings={printings}
           selectedPrintingId={effectiveSelectedPrinting?.id}
@@ -289,7 +291,7 @@ export default function AddToVaultCardAction({
     : selectedImage?.detailNote ?? selectedImage?.detailBadgeLabel;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5" data-add-to-vault-flow>
       {compactPresentation && printings.length > 0 ? (
         <div className="gv-detail-finish-field">
           <label htmlFor={finishSelectId}>Variant / Finish</label>
@@ -333,8 +335,10 @@ export default function AddToVaultCardAction({
               }}
             >
               {selectedChildPrintingId ? <input type="hidden" name="card_printing_id" value={selectedChildPrintingId} /> : null}
+              {compactPresentation ? <CopyOptions /> : null}
               <VaultSubmitButton
                 label="Add to Vault"
+                disabled={state?.ok === false && state.addedCount !== undefined}
                 successActive={successPulse !== null}
                 successLabel={successPulse === "incremented" ? "Updated" : "Added"}
               />
@@ -362,7 +366,8 @@ export default function AddToVaultCardAction({
               View exact copy
             </Link>
           ) : null}
-          {state?.status === "login-required" || !effectiveIsAuthenticated ? (
+          {state?.ok === false && state.addedCount !== undefined ? <Link href="/vault" className="underline">Check Vault</Link> : null}
+          {(state?.status === "login-required" || !effectiveIsAuthenticated) ? (
             <div className="mt-3 flex flex-wrap gap-3">
               <Link href={loginHref} className="text-sm font-medium underline underline-offset-4">
                 Sign in

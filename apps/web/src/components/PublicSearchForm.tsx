@@ -235,101 +235,64 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     router.push(url);
   };
 
-  if (variant === "hero") {
-    return (
-      <form action="/search" method="get" onSubmit={handleSubmit} className="w-full max-w-2xl">
-        {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
-        {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
-        {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
-        {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-        <SearchToolbar surface="pill" className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <SearchToolbarInput
-            tone="bare"
-            type="search"
-            name="q"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cards, sets, or Grookai IDs…"
-            autoComplete="off"
-            shellClassName="min-w-0 flex-1"
-            inputClassName="px-3 text-base"
-            aria-label="Search cards"
-          />
-          <SearchToolbarButton type="submit" tone="primary" size="hero" className="w-full sm:w-auto">
-            Search
-          </SearchToolbarButton>
-        </SearchToolbar>
-      </form>
-    );
-  }
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    runSearch();
+  };
 
-  if (variant === "mobile-compact") {
-    return (
-      <form action="/search" method="get" onSubmit={handleSubmit} className="w-full">
-        {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
-        {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
-        {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
-        {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-        <SearchToolbar surface="soft-pill">
-          <SearchToolbarInput
-            tone="bare"
-            icon={(
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 20 20"
-                className="h-3.5 w-3.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="8.5" cy="8.5" r="4.75" />
-                <path d="m12 12 4.25 4.25" />
-              </svg>
-            )}
-            type="search"
-            name="q"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cards, sets, numbers, or Grookai ID…"
-            autoComplete="off"
-            enterKeyHint="search"
-            shellClassName="gap-2"
-            inputClassName="text-sm"
-            aria-label="Search cards, sets, numbers, or Grookai ID"
-          />
-        </SearchToolbar>
-      </form>
-    );
-  }
+  const openSuggestion = (card: SearchSuggestion) => {
+    dismissSuggestions();
+    router.push(suggestionCardHref(card, compareCards));
+  };
 
-  if (variant === "command") {
-    return (
-      <form action="/search" method="get" onSubmit={handleSubmit} className="w-full">
-        {compareCardsParam ? <input type="hidden" name="cards" value={compareCardsParam} /> : null}
-        {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
-        {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
-        {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-        <SearchToolbar surface="none" className="flex w-full items-center gap-2">
-          <SearchToolbarInput
-            type="search"
-            name="q"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cards, sets, numbers, or Grookai ID…"
-            autoComplete="off"
-            tone="soft"
-            shellClassName="min-w-0 flex-1"
-            aria-label="Search cards"
-          />
-          <SearchToolbarButton type="submit" tone="primary" className="shrink-0 px-4 sm:px-5">
-            Search
-          </SearchToolbarButton>
-        </SearchToolbar>
-      </form>
-    );
-  }
+  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape" || event.key === "Tab") {
+      if (event.key === "Escape") event.preventDefault();
+      dismissSuggestions();
+      return;
+    }
+    if (suggestions.length === 0) {
+      return;
+    }
+
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      suggestionsDismissed.current = false;
+      setSuggestionsOpen(true);
+      setActiveSuggestionIndex((current) =>
+        current >= suggestions.length - 1 ? 0 : current + 1,
+      );
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      suggestionsDismissed.current = false;
+      setSuggestionsOpen(true);
+      setActiveSuggestionIndex((current) =>
+        current <= 0 ? suggestions.length - 1 : current - 1,
+      );
+    } else if (event.key === "Enter" && listboxOpen && activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length) {
+      event.preventDefault();
+      openSuggestion(suggestions[activeSuggestionIndex]);
+    }
+  };
+
+  const isMobileCompact = variant === "mobile-compact";
+  const isHero = variant === "hero";
+  const isCommand = variant === "command";
+  const isCollector = variant === "collector";
+  const formClassName = isCollector ? "gv-approved-search w-full" : isHero ? "w-full max-w-3xl" : "w-full";
+  const toolbarSurface = isHero ? "pill" : isMobileCompact ? "soft-pill" : "none";
+  const toolbarClassName = isHero
+    ? "flex flex-col gap-2 sm:flex-row sm:items-center"
+    : "flex w-full items-center gap-2";
+  const inputTone = isHero || isMobileCompact ? "bare" : "soft";
+  const inputShellClassName = isHero
+    ? "h-11 min-w-0 flex-1"
+    : isMobileCompact
+      ? "h-9 min-w-0 gap-2"
+      : "min-w-0 flex-1";
+  const gameSelectClassName = isMobileCompact
+    ? "h-9 max-w-[7.25rem] shrink-0 rounded-[12px] border border-slate-200/80 bg-white/70 px-2 text-xs font-semibold text-slate-700 outline-none dark:border-slate-700 dark:bg-slate-900/80 dark:text-slate-100"
+    : "h-11 max-w-[12rem] shrink-0 rounded-[14px] border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 outline-none focus:ring-2 focus:ring-sky-200 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100";
 
   return (
     <form
@@ -348,21 +311,172 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
       {currentLanguageScope !== "all" ? <input type="hidden" name="lang" value={currentLanguageScope} /> : null}
       {normalizedCurrentView ? <input type="hidden" name="view" value={normalizedCurrentView} /> : null}
       {pathname === "/explore" && currentSort ? <input type="hidden" name="sort" value={currentSort} /> : null}
-      <SearchToolbar surface="none" className="flex w-full flex-col gap-3 sm:flex-row sm:items-center">
-        <SearchToolbarInput
-          type="search"
-          name="q"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search cards, sets, numbers, or Grookai ID…"
-          autoComplete="off"
-          tone="soft"
-          shellClassName="w-full sm:max-w-[420px]"
-          aria-label="Search cards"
-        />
-        <SearchToolbarButton type="submit" tone="primary">
-          Search
-        </SearchToolbarButton>
+
+      <SearchToolbar surface={toolbarSurface} className={toolbarClassName}>
+        <div className="relative min-w-0 flex-1">
+          <SearchToolbarInput
+            tone={inputTone}
+            icon={<SearchIcon />}
+            type="search"
+            role="combobox"
+            name="q"
+            value={query}
+            onChange={(event) => {
+              suggestionsDismissed.current = false;
+              setQuery(event.target.value);
+              setSuggestions([]);
+              setSuggestionsLoading(event.target.value.trim().length >= SEARCH_SUGGESTION_MIN_QUERY_LENGTH);
+              setSuggestionsOpen(true);
+              setActiveSuggestionIndex(-1);
+            }}
+            onFocus={() => {
+              suggestionsDismissed.current = false;
+              if (suggestions.length > 0 || suggestionsLoading) setSuggestionsOpen(true);
+            }}
+            onKeyDown={handleSearchKeyDown}
+            placeholder="Search cards, sets, numbers, or Grookai ID"
+            enterKeyHint="search"
+            shellClassName={inputShellClassName}
+            inputClassName={isHero ? "text-base" : "text-sm"}
+            aria-label="Search cards, sets, numbers, or Grookai ID"
+            aria-autocomplete="list"
+            aria-controls={listboxOpen ? listboxId : undefined}
+            aria-expanded={listboxOpen}
+            aria-busy={suggestionsLoading}
+            aria-activedescendant={
+              listboxOpen && activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length
+                ? `${listboxId}-${activeSuggestionIndex}`
+                : undefined
+            }
+          />
+
+          {suggestionsOpen && (suggestionsLoading || suggestions.length > 0) ? (
+            <div
+              className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-[80] max-h-[min(70vh,32rem)] overflow-y-auto rounded-[8px] border border-slate-200 bg-white p-1.5 shadow-2xl dark:border-slate-700 dark:bg-slate-950"
+            >
+              {suggestionsLoading && suggestions.length === 0 ? (
+                <div className="flex min-h-16 items-center gap-3 px-3 py-2 text-sm text-slate-500 dark:text-slate-400">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-slate-300 border-t-slate-700 dark:border-slate-700 dark:border-t-slate-200" />
+                  Searching {getPublicGameScopeLabel(gameScope)}
+                </div>
+              ) : null}
+
+              {suggestions.length > 0 ? <div id={listboxId} role="listbox" aria-label="Card suggestions">{suggestions.map((card, index) => {
+                const presentation = getSearchSuggestionPresentation(card);
+                const selected = activeSuggestionIndex === index;
+                return (
+                  <button
+                    key={getSearchSuggestionKey(card)}
+                    id={`${listboxId}-${index}`}
+                    type="button"
+                    role="option"
+                    tabIndex={-1}
+                    aria-selected={selected}
+                    onMouseDown={(event) => event.preventDefault()}
+                    onMouseEnter={() => setActiveSuggestionIndex(-1)}
+                    onClick={() => openSuggestion(card)}
+                    className={`flex w-full items-center gap-3 rounded-[6px] px-2 py-2 text-left transition ${
+                      selected
+                        ? "bg-slate-100 dark:bg-slate-800"
+                        : "hover:bg-slate-50 dark:hover:bg-slate-900"
+                    }`}
+                  >
+                    <div className="h-[58px] w-[42px] shrink-0 overflow-hidden rounded-[4px] bg-slate-100 dark:bg-slate-900">
+                      <PublicCardImage
+                        src={card.display_image_url ?? card.image_url}
+                        fallbackSrc={card.display_image_fallback_url}
+                        fallbackSources={[card.external_image_fallback_url]}
+                        alt={getCardImageAltText(presentation.title, card)}
+                        imageClassName="h-full w-full object-contain"
+                        fallbackClassName="flex h-full w-full items-center justify-center px-1 text-center text-[9px] text-slate-400"
+                        fallbackLabel="No image"
+                        loading="lazy"
+                        sizes="42px"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-semibold text-slate-950 dark:text-slate-50">
+                        {presentation.title}
+                      </p>
+                      {presentation.printedName ? (
+                        <p className="truncate text-[11px] text-slate-500 dark:text-slate-400">
+                          {presentation.printedName}
+                        </p>
+                      ) : null}
+                      <p className="truncate text-xs text-slate-600 dark:text-slate-300">
+                        {presentation.metadata || getPublicGameScopeLabel(gameScope)}
+                      </p>
+                    </div>
+                    {presentation.discriminator ? (
+                      <span className="max-w-28 shrink-0 truncate rounded-[4px] border border-slate-200 bg-slate-50 px-1.5 py-1 text-[10px] font-semibold text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">
+                        {presentation.discriminator}
+                      </span>
+                    ) : null}
+                  </button>
+                );
+              })}</div> : null}
+
+              {suggestions.length > 0 ? (
+                <button
+                  type="submit"
+                  tabIndex={-1}
+                  className="mt-1 flex min-h-10 w-full items-center justify-between rounded-[6px] border-t border-slate-200 px-3 pt-2 text-left text-xs font-semibold text-slate-700 hover:text-slate-950 dark:border-slate-800 dark:text-slate-300 dark:hover:text-white"
+                >
+                  <span className="truncate">View all results for &quot;{query.trim()}&quot;</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              ) : null}
+            </div>
+          ) : null}
+          <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+            {suggestionsOpen ? suggestionsLoading
+              ? "Searching for suggestions"
+              : suggestions.length > 0 ? `${suggestions.length} suggestions available. Use the up and down arrow keys to choose.` : ""
+              : ""}
+          </span>
+        </div>
+
+        {isCollector ? <input type="hidden" name="game" value={gameScope} /> : <select
+          aria-label="Trading card game"
+          value={gameScope}
+          onChange={(event) => {
+            const nextGameScope = event.target.value as PublicGameScope;
+            setGameScope(nextGameScope);
+            setSuggestionsOpen(true);
+            setActiveSuggestionIndex(-1);
+
+            if (pathname === "/explore") {
+              const params = new URLSearchParams(searchParams.toString());
+              if (nextGameScope === "pokemon") {
+                params.delete("game");
+              } else {
+                params.set("game", nextGameScope);
+              }
+              router.replace(
+                params.toString() ? `/explore?${params.toString()}` : "/explore",
+                { scroll: false },
+              );
+            }
+          }}
+          className={gameSelectClassName}
+        >
+          {PUBLIC_GAME_SCOPE_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {isMobileCompact && option.value === "mtg" ? "MTG" : option.label}
+            </option>
+          ))}
+        </select>}
+
+        {!isMobileCompact && !isCollector ? (
+          <SearchToolbarButton
+            type="submit"
+            tone="primary"
+            size={isHero ? "hero" : "default"}
+            className={isHero ? "w-full sm:w-auto" : isCommand ? "shrink-0 px-4 sm:px-5" : "shrink-0"}
+          >
+            Search
+          </SearchToolbarButton>
+        ) : null}
       </SearchToolbar>
       </fieldset>
     </form>

@@ -36,6 +36,10 @@ import 'screens/public_collector/public_collector_relationship_screen.dart';
 import 'screens/public_collector/public_collector_screen.dart';
 import 'screens/gvvi/public_gvvi_screen.dart';
 import 'screens/gvvi/vendor_pricing_workspace_screen.dart';
+import 'screens/sales/sales_desk_screen.dart';
+import 'screens/stores/storefront_screen.dart';
+import 'screens/stores/store_management_screen.dart';
+import 'screens/stores/custom_product_screen.dart';
 import 'screens/grookai_objects/collector_memories_screen.dart';
 import 'screens/grookai_objects/collector_memory_route_screen.dart';
 import 'screens/grookai_objects/grookai_objects_hub_screen.dart';
@@ -137,6 +141,30 @@ const Duration _kDrawerCloseDuration = Duration(milliseconds: 180);
 const int _kSearchInitialBatchSize = 24;
 const int _kSearchFollowupBatchSize = 24;
 const int _kSearchResolverLimit = 32;
+List<String> _sentenceSearchExamplesForGame(String gameScope) {
+  return switch (gameScope) {
+    'mtg' => const <String>[
+      'Lightning Bolt 1993-2024 foil',
+      'Sol Ring foil',
+      'Black Lotus from Alpha',
+      'Liliana 2015-2024 foil',
+    ],
+    'one_piece' => const <String>[
+      'Monkey D. Luffy from OP05',
+      'Nami from OP01',
+      'Shanks from OP09',
+      'Roronoa Zoro from OP01',
+    ],
+    _ => const <String>[
+      'Gengar 2000-2024 reverse holo',
+      'Charizard from 151',
+      'artist Ken Sugimori',
+      'Exeggutor Poké Ball',
+      'Pikachu 2014-2024 reverse holo',
+    ],
+  };
+}
+
 const List<MapEntry<String, String>> _kSearchLanguageScopeOptions =
     <MapEntry<String, String>>[
       MapEntry<String, String>('all', 'All'),
@@ -585,15 +613,15 @@ class _CatalogSearchField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
   final ValueChanged<String>? onSubmitted;
-  final VoidCallback? onFilterPressed;
   final int activeFilterCount;
+  final VoidCallback? onFilterPressed;
 
   const _CatalogSearchField({
     required this.controller,
     required this.onChanged,
-    this.onFilterPressed,
-    this.activeFilterCount = 0,
     this.onSubmitted,
+    this.activeFilterCount = 0,
+    this.onFilterPressed,
   });
 
   @override
@@ -616,7 +644,6 @@ class _CatalogSearchField extends StatelessWidget {
             Icons.search_rounded,
             color: colorScheme.onSurfaceVariant,
           ),
-          hintText: 'Search in a sentence',
           suffixIcon: onFilterPressed == null
               ? null
               : IconButton(
@@ -630,6 +657,7 @@ class _CatalogSearchField extends StatelessWidget {
                     child: const Icon(Icons.tune_rounded),
                   ),
                 ),
+          hintText: 'Search in a sentence',
           filled: true,
           fillColor: colorScheme.surfaceContainerLow,
           border: OutlineInputBorder(
@@ -749,58 +777,43 @@ class _SearchBrowseSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+
     Widget row({
       required IconData icon,
       required String title,
       required String subtitle,
       required VoidCallback onTap,
     }) {
-      return DecoratedBox(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: colorScheme.outlineVariant.withValues(alpha: 0.34),
-            ),
-          ),
-        ),
-        child: InkWell(
-          onTap: onTap,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minHeight: 72),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 44,
-                  child: Icon(
-                    icon,
-                    color: colorScheme.onSurface.withValues(alpha: 0.68),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+      return InkWell(
+        onTap: onTap,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 64),
+          child: Row(
+            children: [
+              SizedBox(width: 44, child: Icon(icon)),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        subtitle,
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurface.withValues(alpha: 0.58),
-                        ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const Icon(Icons.chevron_right_rounded),
-              ],
-            ),
+              ),
+              const Icon(Icons.chevron_right_rounded),
+            ],
           ),
         ),
       );
@@ -825,7 +838,7 @@ class _SearchBrowseSection extends StatelessWidget {
         row(
           icon: Icons.catching_pokemon_outlined,
           title: 'Dex',
-          subtitle: 'Browse progress by Pokemon species',
+          subtitle: 'Browse progress by Pokémon species',
           onTap: onBrowseDex,
         ),
         row(
@@ -833,6 +846,56 @@ class _SearchBrowseSection extends StatelessWidget {
           title: 'Special versions',
           subtitle: 'Browse alternate art, stamps, foils, and more',
           onTap: onBrowseSpecialVersions,
+        ),
+      ],
+    );
+  }
+}
+
+class _SentenceSearchExamples extends StatelessWidget {
+  const _SentenceSearchExamples({
+    required this.gameScope,
+    required this.onSelected,
+  });
+
+  final String gameScope;
+  final ValueChanged<String> onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Search like a sentence',
+          style: theme.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w800,
+            color: colorScheme.onSurface.withValues(alpha: 0.74),
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Name, artist, set, rarity, language, number, and variant words all help.',
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.58),
+            height: 1.25,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final example in _sentenceSearchExamplesForGame(gameScope))
+              ActionChip(
+                avatar: const Icon(Icons.search_rounded, size: 17),
+                label: Text(example),
+                onPressed: () => onSelected(example),
+                visualDensity: VisualDensity.compact,
+              ),
+          ],
         ),
       ],
     );
@@ -3787,6 +3850,9 @@ class HomePageState extends State<HomePage> {
   }
 
   bool _shouldShowCuratedLanding([String? query]) {
+    if (widget.signedOutBrowse) {
+      return false;
+    }
     final trimmed = (query ?? _searchCtrl.text).trim();
     return trimmed.isEmpty &&
         _searchParameters.isEmpty &&
@@ -3917,7 +3983,15 @@ class HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     unawaited(_loadRecentSearches());
-    _loadTrending();
+    _searchParameters.addAll(widget.initialSearchParameters);
+    if (widget.initialQuery.trim().isNotEmpty || _searchParameters.isNotEmpty) {
+      _searchCtrl.text = widget.initialQuery;
+      unawaited(_runSearch(widget.initialQuery));
+    } else if (widget.signedOutBrowse) {
+      unawaited(_runSearch(''));
+    } else {
+      _loadTrending();
+    }
   }
 
   Future<void> _loadRecentSearches() async {
@@ -3926,11 +4000,9 @@ class HomePageState extends State<HomePage> {
       final searches = normalizeLocalRecentSearches(
         preferences.getStringList(_recentSearchesKey),
       );
-      if (mounted) {
-        setState(() => _recentSearches = searches);
-      }
+      if (mounted) setState(() => _recentSearches = searches);
     } catch (_) {
-      // Search remains fully usable when local history is unavailable.
+      // Local search history is optional and never blocks catalog search.
     }
   }
 
@@ -3939,7 +4011,7 @@ class HomePageState extends State<HomePage> {
       final preferences = await SharedPreferences.getInstance();
       await preferences.setStringList(_recentSearchesKey, searches);
     } catch (_) {
-      // Search history is a convenience and must never block results.
+      // Local search history is optional and never blocks catalog search.
     }
   }
 
@@ -4100,7 +4172,7 @@ class HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Refine by game, language, identity, and rarity.',
+                      'Filtered by game, language, identity, and rarity.',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onSurface.withValues(alpha: 0.64),
                       ),
@@ -4290,9 +4362,7 @@ class HomePageState extends State<HomePage> {
       _resetCuratedLandingState();
       return;
     }
-    if (record) {
-      _recordRecentSearch(trimmed);
-    }
+    if (record) _recordRecentSearch(trimmed);
 
     final searchKey = jsonEncode([
       trimmed,
@@ -4450,7 +4520,7 @@ class HomePageState extends State<HomePage> {
 
   void _submitSearch(String value) {
     _debounce?.cancel();
-    unawaited(_runSearch(value.trim()));
+    unawaited(_runSearch(value.trim(), record: true));
   }
 
   void _handleRarityFilterChanged(_RarityFilter filter) {
@@ -5288,7 +5358,6 @@ class HomePageState extends State<HomePage> {
 
   Widget _buildCatalogCardWithContext(
     CardPrint card, {
-    required AppCardViewMode viewMode,
     bool enableFeedImpressionTracking = false,
     int? feedPosition,
     SmartFeedCandidateDebug? feedDebug,
@@ -5309,7 +5378,7 @@ class HomePageState extends State<HomePage> {
             position: feedPosition,
           )
         : null;
-    if (viewMode == AppCardViewMode.grid) {
+    if (_viewMode == AppCardViewMode.grid) {
       return _CatalogCardGridTile(
         card: card,
         pricing: pricing,
@@ -5332,7 +5401,7 @@ class HomePageState extends State<HomePage> {
       card: card,
       pricing: pricing,
       ownershipState: ownershipState,
-      viewMode: viewMode,
+      viewMode: _viewMode,
       onTap: () => widget.signedOutBrowse
           ? _openCardDetail(card)
           : _openSearchCardActionHub(card),
@@ -5348,20 +5417,18 @@ class HomePageState extends State<HomePage> {
   }
 
   Widget _buildCatalogResultsSliver(
-    BuildContext context,
     List<CardPrint> cards,
     List<_CatalogRow> rows, {
     bool trackFeedImpressions = false,
     bool showFeedDebugOverlay = false,
   }) {
-    final viewMode = _resolvedSearchViewMode(context);
     final feedPositionByCardId = trackFeedImpressions
         ? <String, int>{
             for (var index = 0; index < cards.length; index++)
               cards[index].id.trim(): index,
           }
         : const <String, int>{};
-    if (viewMode != AppCardViewMode.grid) {
+    if (_viewMode != AppCardViewMode.grid) {
       return SliverList.separated(
         itemCount: rows.length,
         separatorBuilder: (context, index) => const SizedBox(height: 2),
@@ -5370,12 +5437,11 @@ class HomePageState extends State<HomePage> {
           if (row is _CatalogHeaderRow) {
             return _CatalogSectionHeader(
               row.title,
-              compact: viewMode == AppCardViewMode.compactList,
+              compact: _viewMode == AppCardViewMode.compactList,
             );
           } else if (row is _CatalogCardRow) {
             return _buildCatalogCardWithContext(
               row.card,
-              viewMode: viewMode,
               enableFeedImpressionTracking: trackFeedImpressions,
               feedPosition: feedPositionByCardId[row.card.id.trim()],
               feedDebug: _trendingDebugByCardId[row.card.id.trim()],
@@ -5408,7 +5474,6 @@ class HomePageState extends State<HomePage> {
             delegate: SliverChildBuilderDelegate(
               (context, index) => _buildCatalogCardWithContext(
                 cards[index],
-                viewMode: viewMode,
                 enableFeedImpressionTracking: trackFeedImpressions,
                 feedPosition: index,
                 feedDebug: _trendingDebugByCardId[cards[index].id.trim()],
@@ -5429,11 +5494,6 @@ class HomePageState extends State<HomePage> {
         );
       },
     );
-  }
-
-  AppCardViewMode _resolvedSearchViewMode(BuildContext context) {
-    final textScale = MediaQuery.textScalerOf(context).scale(14) / 14;
-    return resolveCardViewModeForTextScale(_viewMode, textScale);
   }
 
   void _pruneFeedImpressionGates(DateTime now) {
@@ -5561,17 +5621,7 @@ class HomePageState extends State<HomePage> {
         : trimmed.isNotEmpty
         ? 'Search results'
         : 'Cards';
-    final identityFilterLabel = kIdentityFilterOptions
-        .firstWhere(
-          (option) => option.key == _identityFilter,
-          orElse: () => kIdentityFilterOptions.first,
-        )
-        .label;
-    final subtitle = trimmed.isNotEmpty
-        ? '"$trimmed"'
-        : isIdentityFilterActive(_identityFilter)
-        ? 'Filtered by $identityFilterLabel'
-        : null;
+    final subtitle = trimmed.isNotEmpty ? '"$trimmed"' : null;
     final progressLabel =
         !showingCuratedLanding && visibleCount > 0 && visibleCount < resultCount
         ? 'Showing $visibleCount of $resultCount'
@@ -5658,7 +5708,8 @@ class HomePageState extends State<HomePage> {
                   style: IconButton.styleFrom(
                     visualDensity: VisualDensity.compact,
                     padding: const EdgeInsets.all(8),
-                    minimumSize: const Size(44, 44),
+                    minimumSize: const Size(34, 34),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     backgroundColor: showFeedDebugOverlay
                         ? colorScheme.primary.withValues(alpha: 0.18)
                         : colorScheme.surfaceContainerHighest.withValues(
@@ -5704,8 +5755,7 @@ class HomePageState extends State<HomePage> {
     final visibleIdentityFilters = _visibleIdentityFilterOptions(
       identityFilterCounts,
     );
-    final resolvedViewMode = _resolvedSearchViewMode(context);
-    final rows = resolvedViewMode == AppCardViewMode.grid
+    final rows = _viewMode == AppCardViewMode.grid
         ? const <_CatalogRow>[]
         : _buildRows(cards);
 
@@ -5718,8 +5768,7 @@ class HomePageState extends State<HomePage> {
               _CatalogSearchField(
                 controller: _searchCtrl,
                 onChanged: _onQueryChanged,
-                onSubmitted: (query) =>
-                    unawaited(_runSearch(query, record: true)),
+                onSubmitted: _submitSearch,
                 activeFilterCount: _activeSearchFilterCount,
                 onFilterPressed: () => _openSearchFiltersSheet(
                   identityFilterCounts: identityFilterCounts,
@@ -5765,33 +5814,39 @@ class HomePageState extends State<HomePage> {
                 query: trimmed,
                 padding: const EdgeInsets.only(top: 6, bottom: 0),
               ),
-              if (!showingCuratedLanding) ...[
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: SharedCardViewModeButton(
-                    value: resolvedViewMode,
-                    onChanged: (mode) {
-                      final resolvedMode = resolveCardViewModeForTextScale(
-                        mode,
-                        MediaQuery.textScalerOf(context).scale(14) / 14,
-                      );
-                      setState(() {
-                        _viewMode = resolvedMode;
-                      });
-                      if (resolvedMode != mode) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Grid needs smaller text. Comfortable list is shown instead.',
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ],
+              const SizedBox(height: 8),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final utilityControls = Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SharedCardViewModeButton(
+                        value: _viewMode,
+                        onChanged: (mode) {
+                          setState(() {
+                            _viewMode = mode;
+                          });
+                        },
+                      ),
+                    ],
+                  );
+
+                  if (constraints.maxWidth < 430) {
+                    return Align(
+                      alignment: Alignment.centerLeft,
+                      child: utilityControls,
+                    );
+                  }
+
+                  return Row(
+                    children: [
+                      const Spacer(),
+                      const SizedBox(width: 8),
+                      utilityControls,
+                    ],
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -5835,13 +5890,23 @@ class HomePageState extends State<HomePage> {
                               resultCount: totalResultCount,
                               visibleCount: visibleResultCount,
                               trimmed: trimmed,
-                              showFeedDebugToggle: false,
+                              showFeedDebugToggle:
+                                  showingCuratedLanding &&
+                                  kDebugMode &&
+                                  kFeedDebugOverlay,
                               showFeedDebugOverlay:
                                   showingCuratedLanding &&
                                   kDebugMode &&
                                   kFeedDebugOverlay &&
                                   _showFeedDebugOverlay,
                             ),
+                            if (trimmed.isEmpty && !widget.signedOutBrowse) ...[
+                              const SizedBox(height: 12),
+                              _SentenceSearchExamples(
+                                gameScope: _gameScope,
+                                onSelected: _runSentenceSearchExample,
+                              ),
+                            ],
                           ],
                         ),
                       ),
@@ -5859,9 +5924,7 @@ class HomePageState extends State<HomePage> {
                           16,
                           10,
                           16,
-                          showingCuratedLanding
-                              ? 8
-                              : shellContentBottomPadding(context, extra: 8),
+                          shellContentBottomPadding(context, extra: 8),
                         ),
                         sliver: SliverToBoxAdapter(
                           child: _ProductEmptyState(
@@ -5880,7 +5943,6 @@ class HomePageState extends State<HomePage> {
                       )
                     else
                       _buildCatalogResultsSliver(
-                        context,
                         cards,
                         rows,
                         trackFeedImpressions: showingCuratedLanding,

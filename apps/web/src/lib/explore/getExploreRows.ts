@@ -3926,9 +3926,7 @@ async function fetchCollectorScopedTextRows(
     }
   }
   const collectorTokens = [...collectorCandidates];
-  if (collectorTokens.length === 0) {
-    return [] as CardPrintLookupRow[];
-  }
+  if (collectorTokens.length === 0) return [] as CardPrintLookupRow[];
 
   const nameTokens = (
     query.significantTextTokens.length > 0
@@ -3942,7 +3940,6 @@ async function fetchCollectorScopedTextRows(
   const selectClause =
     "id,gv_id,name,number,number_plain,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rowsById = new Map<string, CardPrintLookupRow>();
-
   const requests = ["number", "number_plain"].flatMap((field) =>
     collectorTokens.map(async (collectorToken) => {
       let request = applyLanguageScopeQuery(
@@ -3952,23 +3949,150 @@ async function fetchCollectorScopedTextRows(
       for (const nameToken of nameTokens) {
         request = request.ilike("name", `%${nameToken}%`);
       }
-
       const { data, error } = await request.limit(SEARCH_LIMIT);
-      if (error) {
-        throw new Error(error.message);
-      }
+      if (error) throw new Error(error.message);
       return (data ?? []) as CardPrintLookupRow[];
     }),
   );
   for (const candidateRows of await Promise.all(requests)) {
     for (const row of candidateRows) {
-      if (rowMatchesScopedTextTokens(row, query)) {
-        rowsById.set(row.id, row);
-      }
+      if (rowMatchesScopedTextTokens(row, query)) rowsById.set(row.id, row);
     }
   }
+  return applyLanguageScopeRows([...rowsById.values()], languageScope);
+}
 
-  return [...rowsById.values()];
+export async function getExploreRowsForArtistSearch(
+  artist: string,
+  options: SmartFilterDiscoveryOptions & { exactArtist: boolean; artistNames?: string[] },
+): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
+  const supabase = await createServerComponentClient();
+  const parentRows = await fetchPokemonArtistRows(
+    supabase,
+    "id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
+    artist,
+    { exact: options.exactArtist, names: options.artistNames, languageScope: options.languageScope, complete: true },
+  ) as unknown as CardPrintLookupRow[];
+  return enrichCompleteSearchParents(parentRows, options, supabase);
+}
+
+export async function getExploreRowsForCombinedSearch(
+  options: SmartFilterDiscoveryOptions & { gameScope?: PublicGameScope },
+): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
+  const supabase = await createServerComponentClient();
+  const gameScope = options.gameScope ?? "pokemon";
+  const namePagesStarted = Date.now();
+  const namedRows = await fetchCompleteNamedCardRows(supabase, { ...options, gameScope });
+  if (options.searchTimings) options.searchTimings.name_pages = Date.now() - namePagesStarted;
+  if (namedRows !== null) {
+    // V4 enforces the same visibility predicates as card_prints SELECT and
+    // already returns these parent fields. It omits printed_total, so fraction
+    // searches still hydrate the exact card denominator (including anthologies).
+    const fields = ["id", "gv_id", "name", "number", "rarity", "artist", "image_url", "image_alt_url",
+      "image_source", "image_path", "representative_image_url", "image_status", "image_note", "set_code",
+      "printed_set_abbrev", "external_ids", "variant_key", "printed_identity_modifier", "variants"];
+    const completeParents = namedRows.every((row): row is CardPrintLookupRow =>
+      fields.every((field) => Object.hasOwn(row, field)));
+    const parentReadStarted = Date.now();
+    const parents = completeParents && !/\b\d+\/\d+\b/.test(options.textQuery ?? "")
+      ? namedRows
+      : await fetchCardRowsByIds(namedRows.map((row) => row.id));
+    if (options.searchTimings) options.searchTimings.parent_read = Date.now() - parentReadStarted;
+    return enrichCompleteSearchParents(parents, options, supabase);
+  }
+  const parents: CardPrintLookupRow[] = [];
+  const tokens = getSmartDiscoveryTextTokens(options.textQuery);
+  const firstToken = tokens.find((token) => !/^\d+$/.test(token));
+  const stampCandidateFilter = !firstToken ? gameStopCandidateFilter(options.stampLabels) : null;
+  // Set names are part of the searchable text too. If the narrowing token
+  // occurs in a set name, keep its parents eligible regardless of card name.
+  const matchingSets: string[] = [];
+  if (firstToken) {
+    for (let offset = 0; ; offset += 500) {
+      const { data, error } = await supabase.from("sets").select("code")
+        .eq("game", gameScope).ilike("name", `%${firstToken.replace(/[\\%_]/g, "\\$&")}%`)
+        .order("id").range(offset, offset + 499);
+      if (error) throw new Error(error.message);
+      matchingSets.push(...(data ?? []).map((set) => set.code));
+      if ((data ?? []).length < 500) break;
+    }
+  }
+  let afterId: string | undefined;
+  for (;;) {
+    let request = supabase.from("v_card_prints_discovery_v1")
+      .select("id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants")
+      .like("gv_id", gameScope === "pokemon" ? "GV-PK-%" : gameScope === "mtg" ? "GV-MTG-%" : "GV-OP-%")
+      .order("id", { ascending: true }).limit(500);
+    if (afterId) request = request.gt("id", afterId);
+    if (options.exactSetCode) request = request.eq("set_code", options.exactSetCode);
+    else if (options.exactSetCodes?.length) request = request.in("set_code", options.exactSetCodes);
+    if (options.languageScope === "ja") request = request.like("gv_id", "GV-PK-JPN-%");
+    if (options.languageScope === "en") request = request.not("gv_id", "like", "GV-PK-JPN-%");
+    if (stampCandidateFilter) request = request.or(stampCandidateFilter);
+    if (firstToken && matchingSets.length <= 80) {
+      // Candidate narrowing only. AND semantics, exact numbers and finishes are
+      // applied below to the complete candidate set, before response paging.
+      const literal = firstToken.replace(/[\\%_]/g, "\\$&").replace(/["(),.]/g, "");
+      const alternatives = ["name", "rarity", "set_code", "artist", "variant_key", "printed_identity_modifier", "gv_id", "number", "printed_set_abbrev"]
+        .map((field) => `${field}.ilike.%${literal}%`);
+      if (matchingSets.length) alternatives.push(`set_code.in.(${matchingSets.map((code) => `"${code.replace(/["\\]/g, "\\$&")}"`).join(",")})`);
+      request = request.or(alternatives.join(","));
+    }
+    const { data, error } = await request;
+    if (error) throw new Error(error.message);
+    const page = (data ?? []) as unknown as CardPrintLookupRow[];
+    parents.push(...page);
+    if (page.length < 500) break;
+    const nextId = page.at(-1)?.id;
+    if (!nextId || nextId === afterId) throw new Error("Combined search could not advance to the next catalog page");
+    afterId = nextId;
+  }
+  return enrichCompleteSearchParents(parents, options, supabase);
+}
+
+async function enrichCompleteSearchParents(
+  parentRows: CardPrintLookupRow[],
+  options: SmartFilterDiscoveryOptions,
+  supabase: Awaited<ReturnType<typeof createServerComponentClient>>,
+): Promise<ExploreRow[]> {
+  if (parentRows.length === 0) return [];
+  const metadata = await fetchPublicSetMetadata(uniqueValues(
+    parentRows.map((row) => row.set_code ?? "").filter(Boolean),
+  ), options.searchSets);
+  const parentsWithSetMetadata = parentRows.map((row) => {
+    const set = metadata.get(row.set_code ?? "");
+    return { ...row, set_name: set?.set_name,
+      printed_total: row.printed_total ?? (set?.identity_model === "reprint_anthology" ? undefined : set?.printed_total) };
+  });
+  const scopedParents = await filterSmartDiscoveryRowsByScope(
+    applySmartStampParentFilter(parentsWithSetMetadata.filter((row) => {
+      const year = Number(metadata.get(row.set_code ?? "")?.release_date?.slice(0, 4));
+      const min = options.exactReleaseYear ?? options.releaseYearMin;
+      const max = options.exactReleaseYear ?? options.releaseYearMax;
+      return (min === undefined || year >= min) && (max === undefined || year <= max);
+    }), options.stampLabels),
+    { ...options, exactReleaseYear: undefined, releaseYearMin: undefined, releaseYearMax: undefined },
+  );
+  if (scopedParents.length === 0) return [];
+  const requireChildren = normalizeFinishKeys(options.finishKeys).length > 0 ||
+    Boolean(options.imageState && options.imageState !== "any");
+  const candidates = requireChildren
+    ? await fetchSmartDiscoveryChildRows(options, scopedParents, true)
+    : scopedParents;
+  const query = await buildResolverQuery(normalizeQuery(options.textQuery ?? ""));
+  const valueSort = options.sortMode === "value_high" || options.sortMode === "value_low";
+  // Value sorts retain their existing completeness guard. Ordinary artist
+  // browsing must never be trimmed to the relevance candidate budget.
+  if (valueSort) limitRowsBeforeEnrichment(candidates, query, options.sortMode);
+  const pricing = options.includePricing
+    ? await getPublicPricingByCardIds(supabase, candidates.map((row) => row.id), { requireComplete: valueSort })
+    : new Map<string, PublicPricingRecord>();
+  const rows = await buildExploreRows(candidates, new Map(), metadata, pricing, {
+    skipChildDisplayImageFallbacks: candidates.length > 24 && !valueSort,
+  });
+  return sortRows(rows, query, options.sortMode);
 }
 
 export async function getExploreRowsForLanguageScopedTextSearch(
@@ -3977,15 +4101,10 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   sortMode: SortMode,
   includePricing = false,
 ): Promise<ExploreRow[]> {
-  assertValueSortPricingEnabled(sortMode, includePricing);
-  const query = await buildResolverQuery(normalizeQuery(rawQuery));
-  const exactRows =
-    query.numberTokens.length > 0 || query.fractionTokens.length > 0
-    ? await fetchCollectorScopedTextRows(query, languageScope)
-    : await fetchLanguageScopedTextRows(query, languageScope);
-  const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
-  const setMetadataByCode = await fetchPublicSetMetadata(
-    uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
+  const packet = normalizeQuery(rawQuery);
+  const query = await buildResolverQuery(packet);
+  const originalQueryTokens = new Set(
+    packet.normalizedTokens.map((token) => normalizeTextForMatch(token)),
   );
   const canonicalNicknameTokens = query.textTokens.filter(
     (token) => !originalQueryTokens.has(normalizeTextForMatch(token)),
@@ -4021,8 +4140,11 @@ export async function getExploreRowsForLanguageScopedTextSearch(
     ? [...boundedTextTokens, ...boundedNumberTokens].join(" ").trim()
     : rawQuery;
   const artistQuery = isKnownArtistQuery(rawQuery);
+  const collectorScopedSearch =
+    query.numberTokens.length > 0 || query.fractionTokens.length > 0;
   const useCompletePokemonPath =
     artistQuery ||
+    collectorScopedSearch ||
     Boolean(query.directGvId) ||
     (query.expectedSetCodes.length > 0 && !canUseBoundedSetSearch) ||
     sortMode === "value_high" ||
@@ -4036,7 +4158,9 @@ export async function getExploreRowsForLanguageScopedTextSearch(
           rawQuery,
           { languageScope },
         ) as unknown as CardPrintLookupRow[]
-      : await fetchLanguageScopedTextRows(query, languageScope);
+      : collectorScopedSearch
+        ? await fetchCollectorScopedTextRows(query, languageScope)
+        : await fetchLanguageScopedTextRows(query, languageScope);
     const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
     const setMetadataByCode = await fetchPublicSetMetadata(
       uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
@@ -4061,7 +4185,13 @@ export async function getExploreRowsForLanguageScopedTextSearch(
       },
     );
 
-    return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
+    const collectorScopedRows = query.fractionTokens.length > 0
+      ? rows.filter((row) => getFractionMatchStrength(row, query) >= 1)
+      : query.numberTokens.length > 0
+        ? rows.filter((row) => getNumberMatchStrength(row, query) >= 1)
+        : rows;
+
+    return sortRows(collectorScopedRows, query, sortMode).slice(0, SEARCH_LIMIT);
   }
 
   return getExploreRowsForGameScopedTextSearch(
@@ -4074,13 +4204,6 @@ export async function getExploreRowsForLanguageScopedTextSearch(
       exactSetCode: boundedSetCode || undefined,
     },
   );
-  const collectorScopedRows = query.fractionTokens.length > 0
-    ? rows.filter((row) => getFractionMatchStrength(row, query) >= 1)
-    : query.numberTokens.length > 0
-      ? rows.filter((row) => getNumberMatchStrength(row, query) >= 1)
-      : rows;
-
-  return sortRows(collectorScopedRows, query, sortMode).slice(0, SEARCH_LIMIT);
 }
 
 export async function getExploreRowsForGameScopedTextSearch(

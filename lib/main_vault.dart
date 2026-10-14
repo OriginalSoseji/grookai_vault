@@ -376,7 +376,7 @@ class _VaultGridTile extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
-        onTap: selectionMode ? onSelectionTap : onTap,
+        onTap: selectionMode ? onLongPress : onTap,
         onLongPress: onLongPress,
         child: Padding(
           padding: const EdgeInsets.only(bottom: 6),
@@ -606,7 +606,9 @@ class VaultPageState extends State<VaultPage> {
   _VaultPricingFilter _pricingFilter = _VaultPricingFilter.all;
   AppCardViewMode _cardViewMode = AppCardViewMode.grid;
   _VaultDerivedData _derivedData = const _VaultDerivedData.empty();
-  final Set<String> _selectedLotCardPrintIds = <String>{};
+  final Set<String> _selectedCardPrintIds = <String>{};
+  bool _selectionMode = false;
+  bool _bulkArchiveBusy = false;
 
   @override
   void initState() {
@@ -614,6 +616,9 @@ class VaultPageState extends State<VaultPage> {
     _searchController = TextEditingController();
     _searchController.addListener(_handleSearchChanged);
     _uid = supabase.auth.currentUser?.id;
+    _sealedValue = OwnedSealedTotalsController(
+      OwnedSealedService.supabase(supabase),
+    )..addListener(_sealedValueChanged);
     reload();
   }
 
@@ -1756,6 +1761,9 @@ class VaultPageState extends State<VaultPage> {
     return _VaultItemTile(
       row: row,
       pricing: _pricingByCardPrintId[cardPrintId],
+      selectionMode: _selectionMode,
+      selected: selected,
+      onSelectionTap: () => _toggleSelection(row),
       compact:
           resolveCardViewModeForTextScale(
             _cardViewMode,
@@ -1957,11 +1965,6 @@ class VaultPageState extends State<VaultPage> {
 
             void selectView(_VaultStructuralView view) {
               _setView(view);
-              setSheetState(() {});
-            }
-
-            void selectPricing(_VaultPricingFilter filter) {
-              _setPricingFilter(filter);
               setSheetState(() {});
             }
 
@@ -2271,6 +2274,17 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
+  List<Map<String, dynamic>> _visibleRowsForSelection(_VaultDerivedData data) {
+    return switch (_view) {
+      _VaultStructuralView.all => data.searchedRows,
+      _VaultStructuralView.onWall => data.onWallRows,
+      _VaultStructuralView.duplicates => data.duplicateRows,
+      _VaultStructuralView.recent => data.recentRows,
+      _VaultStructuralView.bySet => data.searchedRows,
+      _VaultStructuralView.pokemon => data.pokemonRows,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -2280,6 +2294,14 @@ class VaultPageState extends State<VaultPage> {
     final pokemonRows = derivedData.pokemonRows;
     final pokemonSuggestions = derivedData.pokemonSuggestions;
     final totalCards = derivedData.totalCards;
+    final selectionRows = _visibleRowsForSelection(derivedData);
+    final visibleSelectionIds = selectionRows
+        .map((row) => (row['card_id'] ?? '').toString().trim())
+        .where((id) => id.isNotEmpty)
+        .toSet();
+    final allVisibleSelected =
+        visibleSelectionIds.isNotEmpty &&
+        visibleSelectionIds.every(_selectedCardPrintIds.contains);
     final viewportWidth = MediaQuery.sizeOf(context).width;
     final resolvedViewMode = resolveCardViewModeForTextScale(
       _cardViewMode,
@@ -2639,6 +2661,15 @@ class VaultPageState extends State<VaultPage> {
                           icon: Icons.swap_vert_rounded,
                           label: 'Sort',
                         ),
+                      ),
+                      OutlinedButton.icon(
+                        onPressed: _toggleSelectionMode,
+                        icon: Icon(
+                          _selectionMode
+                              ? Icons.close_rounded
+                              : Icons.checklist_rounded,
+                        ),
+                        label: Text(_selectionMode ? 'Done' : 'Select'),
                       ),
                       const Spacer(),
                       SharedCardViewModeButton(
