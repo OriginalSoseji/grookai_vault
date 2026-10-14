@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Pokémon Generations Radiant Collection mapping — October 14
+
+Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_136_G1_RADIANT_COLLECTION_MAPPING_BATCH.md`.
+TCGPlayer group 1729 requires the exact 32-row reviewed-product registry because
+its `(Full Art)`, accent, and `EX` labels do not safely enter the general name
+lane and every canonical target is the `g1` `rc` variant. Preserve the global
+matcher. The read-only authority builder cross-checks the special-variant audit,
+English Master Index, live source payloads, exact parents, and one governed
+child per parent. The writer limit requires packages of 25 and 7. Regenerate
+both packages from a clean merged commit, dry-run each, and read back both
+batches independently. Mapping alone does not publish prices.
+
 ## Pokémon TCGPlayer identity repair — October 12
 
 PR622 installed outcome-based completion control: six catalog/pricing lanes now

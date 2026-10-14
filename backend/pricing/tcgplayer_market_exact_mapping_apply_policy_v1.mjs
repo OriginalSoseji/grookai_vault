@@ -9,8 +9,12 @@ import {
   matchesReviewedTcgplayerProductTargetV1,
   reviewedTcgplayerProductIdentityByIdV1,
   reviewedTcgplayerProductIdentityV1,
-  TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "./tcgplayer_reviewed_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerG1RcProductTargetV1,
+  reviewedTcgplayerG1RcProductIdentityByIdV1,
+  reviewedTcgplayerG1RcProductIdentityV1,
+} from "./tcgplayer_g1_rc_product_identity_authority_v1.mjs";
 
 import {
   tcgplayerExactMappingCandidateFingerprintV1,
@@ -30,6 +34,21 @@ export const TCGPLAYER_MARKET_EXACT_MAPPING_MAX_BATCH_SIZE_V1 = 25;
 
 function text(value) {
   return String(value ?? "").trim();
+}
+
+function reviewedProductIdentityById(sourceProductId) {
+  return reviewedTcgplayerProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerG1RcProductIdentityByIdV1(sourceProductId);
+}
+
+function reviewedProductIdentity(source) {
+  return reviewedTcgplayerProductIdentityV1(source) ??
+    reviewedTcgplayerG1RcProductIdentityV1(source);
+}
+
+function matchesReviewedProductTarget(source, target) {
+  return matchesReviewedTcgplayerProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerG1RcProductTargetV1(source, target);
 }
 
 function stableJson(value) {
@@ -56,10 +75,10 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
   });
   const pilot = trainerKitPilotCardV1(candidate);
   const reservedReviewedIdentity =
-    reviewedTcgplayerProductIdentityByIdV1(candidate?.source_product_id);
-  const reviewedIdentity = reviewedTcgplayerProductIdentityV1(candidate);
+    reviewedProductIdentityById(candidate?.source_product_id);
+  const reviewedIdentity = reviewedProductIdentity(candidate);
   const reviewedMapping = reviewedIdentity &&
-    matchesReviewedTcgplayerProductTargetV1(candidate, {
+    matchesReviewedProductTarget(candidate, {
       card_print_id: candidate?.target?.card_print_id,
       gv_id: candidate?.target?.gv_id,
       set_id: candidate?.target?.set_id,
@@ -121,7 +140,7 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
   }
   if (reviewedIdentity &&
       candidate?.reviewed_product_identity_authority_version !==
-        TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1) {
+        reviewedIdentity.authority_version) {
     failures.push("reviewed_product_identity_authority_version_mismatch");
   }
   if (reviewedIdentity && !reviewedMapping) {
@@ -163,10 +182,11 @@ export function validateTcgplayerExactMappingLiveTargetV1(candidate, target) {
   if (!target) return ["target_missing"];
   const failures = [];
   const frozen = candidate.target;
-  const reviewedMapping =
+  const reviewedIdentity = reviewedProductIdentity(candidate);
+  const reviewedMapping = reviewedIdentity &&
     candidate?.reviewed_product_identity_authority_version ===
-      TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1 &&
-    matchesReviewedTcgplayerProductTargetV1(candidate, target);
+      reviewedIdentity.authority_version &&
+    matchesReviewedProductTarget(candidate, target);
   if (trainerKitPilotCardV1(candidate) && !matchesTrainerKitPilotMappingV1(candidate, target)) {
     failures.push("trainer_kit_pilot_identity_mismatch");
   }
