@@ -20,6 +20,7 @@ import type { RecentlyConfirmedCanonicalCard } from "@/lib/provisional/getRecent
 import type { PublicSetSummary } from "@/lib/publicSets.shared";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { VARIANT_FAMILY_DISCOVERY_COPY } from "@/lib/cards/variantFamilyDiscoveryCopy";
+import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 const POPULAR_POKEMON = [
   "Pikachu",
@@ -49,6 +50,7 @@ type ExploreDiscoverySectionsProps = {
   recentlyConfirmedCards: RecentlyConfirmedCanonicalCard[];
   currentView?: ExploreViewMode;
   canViewPricing: boolean;
+  returnPath: string;
 };
 
 function FeaturedPrice({
@@ -85,8 +87,11 @@ function buildExploreQueryHref(query: string, compareCards: string[], currentVie
   return buildPathWithCompareCards("/explore", params.toString(), compareCards);
 }
 
-function buildCardHref(gvId: string, compareCards: string[]) {
-  return buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+function buildCardHref(gvId: string, compareCards: string[], returnPath: string) {
+  return addCardReturnPath(
+    buildPathWithCompareCards(`/card/${gvId}`, "", compareCards),
+    returnPath,
+  );
 }
 
 function buildCardMetaLine(card: FeaturedExploreCard) {
@@ -126,6 +131,7 @@ export default function ExploreDiscoverySections({
   recentlyConfirmedCards,
   currentView,
   canViewPricing,
+  returnPath,
 }: ExploreDiscoverySectionsProps) {
   const getDisplayName = (card: FeaturedExploreCard) =>
     resolveDisplayIdentity({
@@ -154,7 +160,7 @@ export default function ExploreDiscoverySections({
                 <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-400">Spotlight</p>
                 <h2 className="text-[1.35rem] font-semibold tracking-tight text-slate-950">One standout card</h2>
               </div>
-              <Link href={buildCardHref(spotlightCard.gv_id, compareCards)} className="block space-y-2.5">
+              <Link href={buildCardHref(spotlightCard.gv_id, compareCards, returnPath)} className="block space-y-2.5">
                 <div className="overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white/90 shadow-sm">
                   {(() => {
                     const imagePresentation = resolveCardImagePresentation(spotlightCard);
@@ -211,7 +217,7 @@ export default function ExploreDiscoverySections({
                     key={card.gv_id}
                     className="w-[166px] shrink-0 overflow-hidden rounded-[1.2rem] border border-slate-200 bg-white shadow-sm transition-transform duration-150 active:scale-[0.99]"
                   >
-                    <Link href={buildCardHref(card.gv_id, compareCards)} className="block space-y-1.5 p-2.5">
+                    <Link href={buildCardHref(card.gv_id, compareCards, returnPath)} className="block space-y-1.5 p-2.5">
                       <div className="rounded-[0.9rem] border border-slate-100 bg-[linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)] p-2.5">
                         {(() => {
                           const imagePresentation = resolveCardImagePresentation(card);
@@ -266,7 +272,7 @@ export default function ExploreDiscoverySections({
                   imageFallbackSrc={card.display_image_fallback_url}
                   imageFallbackSources={[card.external_image_fallback_url]}
                   imageAlt={getCardImageAltText(card.display_name, card)}
-                  imageHref={buildCardHref(card.gv_id, compareCards)}
+                  imageHref={buildCardHref(card.gv_id, compareCards, returnPath)}
                   imageOverlay={
                     imagePresentation.compactBadgeLabel ? (
                       <CardImageTruthBadge
@@ -277,7 +283,7 @@ export default function ExploreDiscoverySections({
                   }
                   title={
                     <Link
-                      href={buildCardHref(card.gv_id, compareCards)}
+                      href={buildCardHref(card.gv_id, compareCards, returnPath)}
                       className="line-clamp-2 block transition hover:text-slate-700"
                     >
                       {card.display_name}
@@ -414,7 +420,7 @@ export default function ExploreDiscoverySections({
                   imageFallbackSrc={card.display_image_fallback_url}
                   imageFallbackSources={[card.external_image_fallback_url]}
                   imageAlt={getCardImageAltText(getDisplayName(card), card)}
-                  imageHref={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
+                  imageHref={buildCardHref(card.gv_id, compareCards, returnPath)}
                   imageOverlay={
                     imagePresentation.compactBadgeLabel ? (
                       <CardImageTruthBadge
@@ -425,7 +431,7 @@ export default function ExploreDiscoverySections({
                   }
                   title={
                     <Link
-                      href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
+                      href={buildCardHref(card.gv_id, compareCards, returnPath)}
                       className="block truncate transition hover:text-slate-700"
                     >
                       {getDisplayName(card)}
@@ -492,7 +498,7 @@ export default function ExploreDiscoverySections({
                 <Link
                   key={family.family_key}
                   href={buildExploreQueryHref(family.family_label, compareCards, currentView)}
-                  className="group rounded-[22px] border border-slate-200 bg-white px-5 py-5 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                  className="group rounded-[22px] border border-slate-200 bg-white px-5 py-5 shadow-sm transition-[transform,border-color,box-shadow] duration-150 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-3">
@@ -531,7 +537,7 @@ export default function ExploreDiscoverySections({
                 <Link
                   key={setInfo.code}
                   href={buildPathWithCompareCards(`/sets/${setInfo.code}`, "", compareCards)}
-                  className="group rounded-[22px] border border-slate-200 bg-white px-5 py-5 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+                  className="group rounded-[22px] border border-slate-200 bg-white px-5 py-5 shadow-sm transition-[transform,border-color,box-shadow] duration-150 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
                 >
                   <div className="space-y-3">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{setInfo.code}</p>
@@ -557,7 +563,11 @@ export default function ExploreDiscoverySections({
 
       {/* LOCK: Canonical, recently confirmed, and unconfirmed Pulse surfaces must remain visually and structurally separated. */}
       {/* LOCK: Do not blend trust states into a single undifferentiated Pulse. */}
-      <RecentlyConfirmedDiscoverySection cards={recentlyConfirmedCards} compareCards={compareCards} />
+      <RecentlyConfirmedDiscoverySection
+        cards={recentlyConfirmedCards}
+        compareCards={compareCards}
+        returnPath={returnPath}
+      />
       <PublicProvisionalDiscoverySection cards={provisionalCards} />
     </div>
   );

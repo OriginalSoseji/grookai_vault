@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { useFormState } from "react-dom";
+import { useActionState, useEffect, useRef, useState } from "react";
 import PrintingSelector from "@/components/cards/PrintingSelector";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
@@ -40,6 +39,7 @@ type AddToVaultCardActionProps = {
   initialPrintingId?: string | null;
   selectedPrintingId?: string | null;
   onSelectedPrintingChange?: (printing: CardPrinting) => void;
+  telemetryEnabled?: boolean;
 };
 
 function getDefaultPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
@@ -148,10 +148,11 @@ export default function AddToVaultCardAction({
   initialPrintingId,
   selectedPrintingId,
   onSelectedPrintingChange,
+  telemetryEnabled = true,
 }: AddToVaultCardActionProps) {
   const router = useRouter();
   const viewer = useClientViewer(null);
-  const [state, formAction] = useFormState(action, null);
+  const [state, formAction] = useActionState(action, null);
   const refreshedSubmissionKeyRef = useRef<number | null>(null);
   const [successPulse, setSuccessPulse] = useState<"added" | "incremented" | null>(null);
   const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(() =>
@@ -161,6 +162,13 @@ export default function AddToVaultCardAction({
   const effectiveSelectedPrinting = externallySelectedPrinting ?? selectedPrinting;
   const selectedChildPrintingId = effectiveSelectedPrinting?.is_display_fallback ? null : effectiveSelectedPrinting?.id ?? null;
   const onlyFallbackPrinting = printings.length === 1 && printings[0]?.is_display_fallback === true;
+  const versionOptionCount = new Set(
+    printings
+      .filter((printing) => printing.id && printing.finish_name?.trim())
+      .map((printing) => printing.finish_name?.trim()),
+  ).size;
+  const showsVersionStep = versionOptionCount > 1 || onlyFallbackPrinting;
+  const selectedVersionLabel = effectiveSelectedPrinting?.finish_name?.trim() || "Selected version";
   const statusMessage = getStatusMessage(state);
   const toneClasses =
     statusMessage?.tone === "success"
@@ -231,14 +239,14 @@ export default function AddToVaultCardAction({
   }, [router, state]);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5" data-add-to-vault-flow>
       {printings.length > 0 ? (
         <PrintingSelector
           printings={printings}
           selectedPrintingId={effectiveSelectedPrinting?.id}
           onSelectedPrintingChange={handleSelectedPrintingChange}
-          title="Variant / Finish"
-          description="Choose the exact version before adding it to your vault."
+          title="1. Choose version"
+          description="Select the finish printed on the copy you own."
           compact
           showImageFallbackNotice
           getImageSuggestionHref={getImageSuggestionHref}
@@ -255,40 +263,62 @@ export default function AddToVaultCardAction({
         />
       ) : null}
 
-      <div className="flex flex-wrap items-center gap-3">
-        {effectiveIsAuthenticated ? (
-          <form
-            action={formAction}
-            onSubmit={() => {
-              sendTelemetryEvent({
-                eventName: "vault_add_click",
-                path: currentPath,
-                gvId,
-              });
-            }}
-          >
-            {selectedChildPrintingId ? <input type="hidden" name="card_printing_id" value={selectedChildPrintingId} /> : null}
-            <VaultSubmitButton
-              label="Add to Vault"
-              successActive={successPulse !== null}
-              successLabel={successPulse === "incremented" ? "Updated" : "Added"}
-            />
-          </form>
-        ) : (
-          <Link
-            href={loginHref}
-            className="inline-flex rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
-            Sign in to add
-          </Link>
-        )}
+      <div className="space-y-3 border-t border-slate-200/80 pt-4 dark:border-slate-700/80">
+        <div className="space-y-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+            {showsVersionStep ? "2. Add copy" : "Add copy"}
+          </p>
+          <p className="text-sm leading-6 text-slate-600 dark:text-slate-300">
+            {selectedVersionLabel} will be added as a new exact copy. Condition, intent, notes, and photos can be updated afterward.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          {effectiveIsAuthenticated ? (
+            <form
+              action={formAction}
+              className="w-full sm:w-auto"
+              onSubmit={() => {
+                if (telemetryEnabled) {
+                  sendTelemetryEvent({
+                    eventName: "vault_add_click",
+                    path: currentPath,
+                    gvId,
+                  });
+                }
+              }}
+            >
+              {selectedChildPrintingId ? <input type="hidden" name="card_printing_id" value={selectedChildPrintingId} /> : null}
+              <VaultSubmitButton
+                label="Add to Vault"
+                successActive={successPulse !== null}
+                successLabel={successPulse === "incremented" ? "Updated" : "Added"}
+              />
+            </form>
+          ) : (
+            <Link
+              href={loginHref}
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition active:scale-[0.98] hover:bg-slate-800 sm:w-auto"
+            >
+              Sign in to add
+            </Link>
+          )}
+        </div>
       </div>
 
       {statusMessage ? (
-        <div className={`rounded-[12px] border px-4 py-3 ${toneClasses}`}>
+        <div className={`rounded-[12px] border px-4 py-3 ${toneClasses}`} role="status" aria-live="polite">
           <p className="text-sm font-semibold">{statusMessage.title}</p>
           <p className="mt-1 text-sm">{statusMessage.body}</p>
-          {(state?.status === "login-required" || !effectiveIsAuthenticated) ? (
+          {state?.ok && state.gvvi_id ? (
+            <Link
+              href={`/vault/gvvi/${encodeURIComponent(state.gvvi_id)}`}
+              className="mt-3 inline-flex min-h-11 items-center rounded-full border border-current px-4 py-2 text-sm font-medium transition active:scale-[0.98]"
+            >
+              View exact copy
+            </Link>
+          ) : null}
+          {state?.status === "login-required" || !effectiveIsAuthenticated ? (
             <div className="mt-3 flex flex-wrap gap-3">
               <Link href={loginHref} className="text-sm font-medium underline underline-offset-4">
                 Sign in

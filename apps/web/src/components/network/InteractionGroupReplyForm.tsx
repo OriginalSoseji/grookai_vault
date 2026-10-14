@@ -44,7 +44,7 @@ function SubmitReplyButton({ isSubmitting }: { isSubmitting: boolean }) {
       aria-disabled={isDisabled}
       className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {isDisabled ? "Sending..." : "Send"}
+      {isDisabled ? "Sending…" : "Send"}
     </button>
   );
 }

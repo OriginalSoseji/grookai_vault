@@ -29,6 +29,10 @@ import {
 } from "@/components/vault/VaultCardPrimitives";
 import type { ViewDensity } from "@/hooks/useViewDensity";
 import { getVaultIntentLabel, type VaultIntent } from "@/lib/network/intent";
+import {
+  addCardReturnPath,
+  addCollectionReturnPath,
+} from "@/lib/navigation/cardDetailNavigation";
 
 type VaultCardSlabItemData = {
   instance_id: string;
@@ -107,6 +111,7 @@ type VaultCardTileProps = {
   item: VaultCardData;
   density?: ViewDensity;
   isExpanded: boolean;
+  returnPath: string;
   logoPath?: string;
   onExpansionToggle: (item: VaultCardData) => void;
 };
@@ -143,19 +148,22 @@ function formatIntentMixSummary(item: Pick<VaultCardData, "sell_count" | "trade_
   return parts.join(" • ");
 }
 
-function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
+function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">, returnPath: string) {
   if (item.copy_items.length !== 1) {
     return null;
   }
 
   const gvviId = item.copy_items[0]?.gv_vi_id;
-  return gvviId ? `/vault/gvvi/${encodeURIComponent(gvviId)}` : null;
+  return gvviId
+    ? addCollectionReturnPath(`/vault/gvvi/${encodeURIComponent(gvviId)}`, returnPath)
+    : null;
 }
 
 export function VaultCardTile({
   item,
   density = "default",
   isExpanded,
+  returnPath,
   onExpansionToggle,
 }: VaultCardTileProps) {
   const displayIdentity = resolveDisplayIdentity(item);
@@ -170,14 +178,18 @@ export function VaultCardTile({
   const tileDensity = density === "compact" ? "compact" : density === "large" ? "large" : "default";
   const secondaryContext = formatVaultSecondaryContext(item);
   const intentMixSummary = formatIntentMixSummary(item);
-  const manageCardHref = `/vault/card/${encodeURIComponent(item.card_id)}`;
+  const manageCardHref = addCollectionReturnPath(
+    `/vault/card/${encodeURIComponent(item.card_id)}`,
+    returnPath,
+  );
+  const cardHref = addCardReturnPath(`/card/${item.gv_id}`, returnPath);
   const cardValue = formatVaultCardValue(item.effective_price);
   const messageSignal = getVaultMessageSignalLabel({
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
   });
   const primaryActionHref =
-    (item.active_message_count > 0 ? item.messages_href : null) ?? getSingleCopyHref(item) ?? manageCardHref;
+    (item.active_message_count > 0 ? item.messages_href : null) ?? getSingleCopyHref(item, returnPath) ?? manageCardHref;
   const primaryActionLabel = getVaultPrimaryActionLabel({
     inPlayCount: item.in_play_count,
     activeMessageCount: item.active_message_count,
@@ -278,7 +290,9 @@ export function VaultCardTile({
 
         <div className="divide-y divide-slate-200/70 border-y border-slate-200/70">
           {previewCopies.map((copy) => {
-            const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
+            const copyHref = copy.gv_vi_id
+              ? addCollectionReturnPath(`/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}`, returnPath)
+              : null;
             const createdAt = formatVaultCopyDate(copy.created_at);
 
             return (
@@ -345,7 +359,7 @@ export function VaultCardTile({
       imageSrc={item.image_url}
       imageFallbackSrc={item.canonical_image_url}
       imageAlt={displayIdentity.display_name}
-      imageHref={`/card/${item.gv_id}`}
+      imageHref={cardHref}
       imagePrefetch={false}
       imageFallbackLabel={displayIdentity.display_name}
       imageOverlay={
@@ -364,7 +378,7 @@ export function VaultCardTile({
         .filter(Boolean)
         .join(" ")}
       title={
-        <Link href={`/card/${item.gv_id}`} prefetch={false} className="block transition hover:text-slate-700">
+        <Link href={cardHref} prefetch={false} className="block transition hover:text-slate-700">
           <span className="gv-hi-card-identity block line-clamp-2">{displayIdentity.base_name}</span>
           {identitySubtitle ? (
             <span className="gv-hi-metadata block truncate text-xs font-medium">{identitySubtitle}</span>

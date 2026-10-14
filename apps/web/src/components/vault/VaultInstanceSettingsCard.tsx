@@ -163,12 +163,19 @@ export default function VaultInstanceSettingsCard({
   }
 
   return (
-    <div className="space-y-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm">
+    <section
+      className="space-y-5 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+      aria-labelledby="vault-copy-details-title"
+      data-vault-copy-settings
+    >
       <div className="space-y-1">
         {/* LOCK: Wall/section product language must reflect exact-copy curation only. */}
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Organize This Copy</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Required details</p>
+        <h2 id="vault-copy-details-title" className="text-lg font-semibold tracking-tight text-slate-950">
+          Copy details
+        </h2>
         <p className="text-sm text-slate-600">
-          Intent controls Wall visibility. Condition and image display only change this exact copy.
+          Intent controls Wall visibility. Condition describes this exact copy. Changes save automatically.
         </p>
       </div>
 
@@ -179,7 +186,7 @@ export default function VaultInstanceSettingsCard({
             value={intent}
             disabled={!isActive || pendingField !== null}
             onChange={(event) => handleIntentChange(event.target.value as VaultIntent)}
-            className="w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+            className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {INTENT_OPTIONS.map((option) => (
               <option key={option} value={option}>
@@ -201,7 +208,7 @@ export default function VaultInstanceSettingsCard({
               value={conditionLabel}
               disabled={!isActive || pendingField !== null}
               onChange={(event) => handleConditionChange(event.target.value)}
-              className="w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {CONDITION_OPTIONS.map((option) => (
                 <option key={option} value={option}>
@@ -212,13 +219,34 @@ export default function VaultInstanceSettingsCard({
           )}
         </label>
 
-        <label className="space-y-2 md:col-span-2">
-          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Image Display</span>
+      </div>
+
+      <details className="group border-t border-slate-200 pt-2">
+        <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-2 text-sm font-medium text-slate-800 marker:content-none">
+          <span>Image preference</span>
+          <span className="flex items-center gap-2 text-xs font-normal text-slate-500">
+            {imageDisplayMode === "canonical" ? "Canonical art" : "Uploaded photo"}
+            <svg
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="h-4 w-4 transition-transform group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m5 7.5 5 5 5-5" />
+            </svg>
+          </span>
+        </summary>
+        <label className="block space-y-2 pb-3 pt-2">
+          <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Primary image</span>
           <select
             value={imageDisplayMode}
             disabled={!isActive || pendingField !== null}
             onChange={(event) => handleImageDisplayModeChange(event.target.value as VaultInstanceImageDisplayMode)}
-            className="w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+            className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {IMAGE_DISPLAY_MODE_OPTIONS.map((option) => (
               <option key={option} value={option}>
@@ -226,36 +254,57 @@ export default function VaultInstanceSettingsCard({
               </option>
             ))}
           </select>
-          <p className="text-xs text-slate-500">
+          <span className="block text-xs leading-5 text-slate-500">
             {imageDisplayMode === "uploaded"
-              ? "This copy prefers your uploaded front photo. Canonical art stays as fallback if the photo is unavailable."
-              : "This copy always presents with canonical card art for its primary image."}
-          </p>
+              ? "Your front photo is preferred; canonical art remains the fallback."
+              : "Canonical card art remains the primary image."}
+          </span>
         </label>
-      </div>
+      </details>
 
       {!isActive ? (
         <p className="text-sm text-slate-500">This copy is archived. Condition and intent are now historical.</p>
       ) : null}
 
       {statusMessage ? (
-        <p className={`text-sm ${statusMessage.tone === "success" ? "text-emerald-700" : "text-rose-700"}`}>
+        <p
+          role="status"
+          aria-live="polite"
+          className={`text-sm ${statusMessage.tone === "success" ? "text-emerald-700" : "text-rose-700"}`}
+        >
           {statusMessage.body}
         </p>
       ) : null}
 
       {isActive ? (
-        <div className="border-t border-slate-200 pt-4">
-          <p className="mb-3 text-sm text-slate-600">
-            Remove this exact copy from the active vault. History, notes, media, and outcomes stay preserved.
-          </p>
-          <OwnedObjectRemoveAction
-            instanceId={instanceId}
-            label="Remove from vault"
-            redirectHref="/vault"
-          />
-        </div>
+        <details className="group border-t border-slate-200 pt-2">
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-2 text-sm font-medium text-slate-600 marker:content-none">
+            <span>Remove this copy</span>
+            <svg
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              className="h-4 w-4 transition-transform group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m5 7.5 5 5 5-5" />
+            </svg>
+          </summary>
+          <div className="space-y-3 pb-1 pt-2">
+            <p className="text-sm leading-6 text-slate-600">
+              Removes this copy from the active Vault. History, notes, media, and outcomes stay preserved.
+            </p>
+            <OwnedObjectRemoveAction
+              instanceId={instanceId}
+              label="Remove from vault"
+              redirectHref="/vault"
+            />
+          </div>
+        </details>
       ) : null}
-    </div>
+    </section>
   );
 }

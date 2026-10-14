@@ -83,7 +83,7 @@ function MediaTile({
           onClick={() => inputRef.current?.click()}
           className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isBusy ? "Uploading..." : imageUrl ? "Replace" : "Upload"}
+          {isBusy ? "Uploading…" : imageUrl ? "Replace" : "Upload"}
         </button>
         {imageUrl ? (
           <button
@@ -348,9 +348,9 @@ export default function VaultInstanceNotesMediaCard({
             onClick={() => {
               void handleNotesSave();
             }}
-            className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition active:scale-[0.98] hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300 sm:w-auto"
           >
-            {pendingField === "notes" ? "Saving..." : "Save notes"}
+            {pendingField === "notes" ? "Saving…" : "Save notes"}
           </button>
           {!isActive ? <p className="text-sm text-slate-500">Archived copies keep notes as historical context.</p> : null}
         </div>

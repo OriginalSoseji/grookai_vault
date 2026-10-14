@@ -37,7 +37,7 @@ test("Search result hierarchy keeps collector facts visible and diagnostics disc
   assert.match(details, /<ExploreResultEvidence/);
   assert.match(list, /gv-search-result-row-commercial/);
   assert.match(search, /<ProductState/);
-  assert.match(search, />\s*Search cards\s*</);
+  assert.match(search, />\s*Search the catalog\s*</);
   assert.doesNotMatch(search, /Search collector reality/);
 });
 

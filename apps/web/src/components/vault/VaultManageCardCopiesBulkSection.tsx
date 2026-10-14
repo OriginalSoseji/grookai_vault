@@ -21,6 +21,7 @@ import type {
   OwnerWallSectionMembership,
   OwnerWallSectionMembershipModel,
 } from "@/lib/wallSections/wallSectionTypes";
+import { addCollectionReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 const INTENT_OPTIONS: VaultIntent[] = ["hold", "showcase", "trade", "sell"];
 
@@ -42,10 +43,12 @@ export default function VaultManageCardCopiesBulkSection({
   copies,
   membershipModels,
   publicWallHref,
+  returnPath,
 }: {
   copies: VaultCardInstanceData[];
   membershipModels: OwnerWallSectionMembershipModel[];
   publicWallHref: string | null;
+  returnPath: string;
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -173,7 +176,9 @@ export default function VaultManageCardCopiesBulkSection({
       </div>
 
       {copies.map((copy) => {
-        const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
+        const copyHref = copy.gv_vi_id
+          ? addCollectionReturnPath(`/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}`, returnPath)
+          : null;
         const createdAt = formatVaultCopyDate(copy.created_at);
         const membershipModel =
           membershipByInstanceId.get(copy.instance_id) ?? {

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import VendorQrManagementCard from "@/components/gvvi/VendorQrManagementCard";
-import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import MobilePushedRouteHeader from "@/components/layout/MobilePushedRouteHeader";
 import VaultExactCopyHero from "@/components/vault/VaultExactCopyHero";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
@@ -22,6 +22,11 @@ import { getVaultInstanceByGvvi, type VaultInstanceOutcome } from "@/lib/vault/g
 import { getPublicVaultInstanceByGvvi } from "@/lib/vault/getPublicVaultInstanceByGvvi";
 import { getVaultInstancePresentationImageSources } from "@/lib/vaultInstanceImageDisplay";
 import { getOwnerWallSectionMemberships } from "@/lib/wallSections/getOwnerWallSectionMemberships";
+import {
+  addCardReturnPath,
+  addCollectionReturnPath,
+  getCardReturnContext,
+} from "@/lib/navigation/cardDetailNavigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -74,10 +79,17 @@ function formatMessageSummary(activeCount: number, unreadCount: number) {
 export default async function VaultInstancePage(
   props: {
     params: Promise<{ gvvi_id: string }>;
+    searchParams?: Promise<{ from?: string }>;
   }
 ) {
   const params = await props.params;
-  const { user } = await requireServerUser(`/vault/gvvi/${params.gvvi_id}`);
+  const searchParams = await props.searchParams;
+  const returnContext = getCardReturnContext(searchParams?.from ?? "/vault");
+  const requestedManagementPath = addCollectionReturnPath(
+    `/vault/gvvi/${encodeURIComponent(params.gvvi_id)}`,
+    returnContext.href,
+  );
+  const { user } = await requireServerUser(requestedManagementPath);
 
   const detail = await getVaultInstanceByGvvi(user.id, params.gvvi_id);
   if (!detail) {
@@ -87,7 +99,10 @@ export default async function VaultInstancePage(
   const isActive = detail.archivedAt === null;
   const publicSharePath =
     isActive && detail.intent !== "hold" ? `/gvvi/${encodeURIComponent(detail.gvviId)}` : null;
-  const managementPath = `/vault/gvvi/${encodeURIComponent(detail.gvviId)}`;
+  const managementPath = addCollectionReturnPath(
+    `/vault/gvvi/${encodeURIComponent(detail.gvviId)}`,
+    returnContext.href,
+  );
   const sharePath = publicSharePath ?? managementPath;
   const siteOrigin = getSiteOrigin();
   const shareUrl = siteOrigin ? `${siteOrigin}${sharePath}` : sharePath;
@@ -133,6 +148,11 @@ export default async function VaultInstancePage(
 
   return (
     <div className="space-y-6 py-6 md:space-y-8 md:py-7">
+      <MobilePushedRouteHeader
+        backHref={returnContext.href}
+        backLabel={returnContext.label}
+        title="Exact copy"
+      />
       <VaultExactCopyHero
         eyebrow="Your exact copy"
         cardName={detail.cardName}
@@ -155,11 +175,19 @@ export default async function VaultInstancePage(
         contextLabel={isActive ? "This copy is in your Vault." : "This copy remains available as preserved history."}
         actions={
           <>
-            <Link href="/vault" prefetch={false} className="gv-secondary-button">
-              Back to Vault
+            <Link
+              href={returnContext.href}
+              prefetch={false}
+              className="gv-secondary-button gv-pushed-route-desktop-back"
+            >
+              Back to {returnContext.label}
             </Link>
             {detail.gvId ? (
-              <Link href={`/card/${detail.gvId}`} prefetch={false} className="gv-primary-button">
+              <Link
+                href={addCardReturnPath(`/card/${detail.gvId}`, managementPath)}
+                prefetch={false}
+                className="gv-primary-button"
+              >
                 View card
               </Link>
             ) : null}
@@ -173,12 +201,55 @@ export default async function VaultInstancePage(
         }
       />
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)]">
-        <div className="space-y-6">
-          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
+      <section className="border-y border-slate-200/80 py-5" aria-labelledby="manage-copy-title">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Exact-copy workspace</p>
+        <h2 id="manage-copy-title" className="mt-1 text-xl font-semibold tracking-tight text-slate-950">
+          Manage this copy
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+          Start with intent and condition. Pricing, notes, photos, and Wall sections are optional.
+        </p>
+      </section>
+
+      <div className="grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] xl:items-start">
+        <div className="space-y-8">
+          {/* LOCK: GVVI is the only product surface for exact-copy Wall and Section curation. */}
+          <div id="copy-details" className="scroll-mt-24">
+            <VaultInstanceSettingsCard
+              instanceId={detail.instanceId}
+              initialIntent={detail.intent}
+              initialConditionLabel={detail.conditionLabel}
+              initialImageDisplayMode={detail.imageDisplayMode}
+              isActive={isActive}
+              isGraded={detail.isGraded}
+            />
+          </div>
+
+          <div id="copy-pricing" className="scroll-mt-24">
+            <VaultInstancePricingCard
+              instanceId={detail.instanceId}
+              isActive={isActive}
+              isGraded={detail.isGraded}
+              initialPricingMode={detail.pricingMode}
+              initialAskingPriceAmount={detail.askingPriceAmount}
+              initialAskingPriceCurrency={detail.askingPriceCurrency}
+              initialAskingPriceNote={detail.askingPriceNote}
+              marketReferencePrice={detail.marketReferencePrice}
+              marketReferenceSource={detail.marketReferenceSource}
+              marketReferenceUpdatedAt={detail.marketReferenceUpdatedAt}
+              marketReferenceObservedAt={detail.marketReferenceObservedAt}
+              marketReferencePublishedAt={detail.marketReferencePublishedAt}
+              marketReferenceProvenanceId={detail.marketReferenceProvenanceId}
+              cardPrintId={detail.cardPrintId}
+              cardPrintingId={detail.cardPrintingId}
+              printingGvId={detail.marketReferencePrintingGvId}
+            />
+          </div>
+
+          <section id="copy-notes-media" className="scroll-mt-24 space-y-5 border-t border-slate-200 pt-7">
             <SectionHeader
-              title="Notes / Media"
-              description="Per-copy notes and exact-copy media live here instead of inside the grouped vault card."
+              title="Notes and photos"
+              description="Private context and exact-copy photos stay attached to this copy."
             />
 
             <VaultInstanceNotesMediaCard
@@ -191,128 +262,91 @@ export default async function VaultInstancePage(
               initialBackImagePath={detail.backImagePath}
               isActive={isActive}
             />
-          </PageSection>
-
-          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5 md:px-6">
-            <SectionHeader
-              title="Execution / History"
-              description="Exact transfer history and execution outcomes for this owned copy."
-            />
-
-            {detail.outcomes.length > 0 ? (
-              <div className="space-y-3">
-                {detail.outcomes.map((outcome) => (
-                  <div key={outcome.id} className="rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div className="space-y-1">
-                        <p className="text-sm font-medium text-slate-950">{formatOutcomeTitle(outcome)}</p>
-                        <p className="text-xs text-slate-500">{formatTimestamp(outcome.createdAt)}</p>
-                      </div>
-                      {outcome.priceAmount !== null && outcome.priceCurrency ? (
-                        <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700">
-                          {formatOutcomePrice(outcome.priceAmount, outcome.priceCurrency)}
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="rounded-[1rem] border border-slate-200 bg-white px-4 py-4 text-sm text-slate-600">
-                No execution outcome has been recorded for this copy yet.
-              </div>
-            )}
-          </PageSection>
+          </section>
         </div>
 
-        <div className="space-y-6">
-          <VaultInstancePricingCard
-            instanceId={detail.instanceId}
-            isActive={isActive}
-            isGraded={detail.isGraded}
-            initialPricingMode={detail.pricingMode}
-            initialAskingPriceAmount={detail.askingPriceAmount}
-            initialAskingPriceCurrency={detail.askingPriceCurrency}
-            initialAskingPriceNote={detail.askingPriceNote}
-            marketReferencePrice={detail.marketReferencePrice}
-            marketReferenceSource={detail.marketReferenceSource}
-            marketReferenceUpdatedAt={detail.marketReferenceUpdatedAt}
-            marketReferenceObservedAt={detail.marketReferenceObservedAt}
-            marketReferencePublishedAt={detail.marketReferencePublishedAt}
-            marketReferenceProvenanceId={detail.marketReferenceProvenanceId}
-            cardPrintId={detail.cardPrintId}
-            cardPrintingId={detail.cardPrintingId}
-            printingGvId={detail.marketReferencePrintingGvId}
-          />
+        <div className="space-y-8">
+          <div id="copy-sections" className="scroll-mt-24">
+            <VaultInstanceSectionMembershipCard
+              model={sectionMembershipModel}
+              isActive={isActive}
+            />
+          </div>
 
           {messageSummary && messagesHref ? (
-            <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
+            <section className="space-y-4 border-t border-slate-200 pt-7">
               <SectionHeader
                 title="Messages"
-                description="Demand for this card stays card-anchored, even when you are managing one exact copy."
+                description="Demand remains attached to the card while you manage this copy."
               />
-              <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-                <p
-                  className={`text-sm font-medium ${
-                    messageSummary.unreadCount > 0 ? "text-emerald-700" : "text-slate-700"
-                  }`}
-                >
-                  {formatMessageSummary(messageSummary.activeCount, messageSummary.unreadCount)}
-                </p>
-                <div>
-                  <Link
-                    href={messagesHref}
-                    prefetch={false}
-                    className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-                  >
-                    View messages
-                  </Link>
-                </div>
-              </div>
-            </PageSection>
+              <p
+                className={`text-sm font-medium ${
+                  messageSummary.unreadCount > 0 ? "text-emerald-700" : "text-slate-700"
+                }`}
+              >
+                {formatMessageSummary(messageSummary.activeCount, messageSummary.unreadCount)}
+              </p>
+              <Link
+                href={messagesHref}
+                prefetch={false}
+                className="inline-flex min-h-11 items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition active:scale-[0.98] hover:border-slate-400 hover:bg-slate-50"
+              >
+                View messages
+              </Link>
+            </section>
           ) : null}
 
-          {/* LOCK: GVVI is the only product surface for exact-copy Wall and Section curation. */}
-          <VaultInstanceSettingsCard
-            instanceId={detail.instanceId}
-            initialIntent={detail.intent}
-            initialConditionLabel={detail.conditionLabel}
-            initialImageDisplayMode={detail.imageDisplayMode}
-            isActive={isActive}
-            isGraded={detail.isGraded}
-          />
-
-          <VaultInstanceSectionMembershipCard
-            model={sectionMembershipModel}
-            isActive={isActive}
-          />
-
-          <PageSection surface="card" spacing="compact" className="px-4 py-4 sm:px-5">
+          <section className="space-y-4 border-t border-slate-200 pt-7">
             <SectionHeader
               title="Share"
               description={
                 publicSharePath
-                  ? "Copy the public link for this card."
-                  : "Mark this copy Trade, Sell, or Showcase to share a public link."
+                  ? "Copy the public link for this exact copy."
+                  : "Set the intent to Trade, Sell, or Showcase to create a public link."
               }
             />
-            <div className="space-y-3 rounded-[1rem] border border-slate-200 bg-white px-4 py-3">
-              <p className="break-all text-sm text-slate-600">{shareUrl}</p>
-              <div className="flex flex-wrap gap-2">
-                <CopyButton text={shareUrl} />
-                <CopyButton text={detail.gvviId} />
-                {publicSharePath ? (
-                  <Link
-                    href={publicSharePath}
-                    prefetch={false}
-                    className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
-                  >
-                    Open public page
-                  </Link>
-                ) : null}
-              </div>
+            <p className="break-all text-sm leading-6 text-slate-600">{shareUrl}</p>
+            <div className="flex flex-wrap gap-2">
+              <CopyButton text={shareUrl} />
+              <CopyButton text={detail.gvviId} />
+              {publicSharePath ? (
+                <Link
+                  href={publicSharePath}
+                  prefetch={false}
+                  className="inline-flex min-h-11 items-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition active:scale-[0.98] hover:border-slate-400 hover:bg-slate-50"
+                >
+                  Open public page
+                </Link>
+              ) : null}
             </div>
-          </PageSection>
+          </section>
+
+          <section id="copy-history" className="scroll-mt-24 space-y-4 border-t border-slate-200 pt-7">
+            <SectionHeader
+              title="History"
+              description="Transfers and execution outcomes for this exact copy."
+            />
+
+            {detail.outcomes.length > 0 ? (
+              <div className="divide-y divide-slate-200 border-y border-slate-200">
+                {detail.outcomes.map((outcome) => (
+                  <div key={outcome.id} className="flex flex-wrap items-center justify-between gap-3 py-3">
+                    <div className="space-y-1">
+                      <p className="text-sm font-medium text-slate-950">{formatOutcomeTitle(outcome)}</p>
+                      <p className="text-xs text-slate-500">{formatTimestamp(outcome.createdAt)}</p>
+                    </div>
+                    {outcome.priceAmount !== null && outcome.priceCurrency ? (
+                      <span className="text-sm font-medium text-slate-700">
+                        {formatOutcomePrice(outcome.priceAmount, outcome.priceCurrency)}
+                      </span>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm leading-6 text-slate-600">No transfer or sale has been recorded for this copy.</p>
+            )}
+          </section>
 
           {canManageVendorQr && qrDestinationUrl && qrDataUrl ? (
             <VendorQrManagementCard

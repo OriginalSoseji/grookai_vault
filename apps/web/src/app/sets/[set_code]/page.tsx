@@ -15,6 +15,7 @@ import { getBaseSetPrintRunLaneExplanation } from "@/lib/baseSetPrintRunLanes";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import type { PublicWorldChampionshipDecklist } from "@/lib/publicSets.shared";
+import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -271,7 +272,13 @@ async function SetPageContent({
                         {entry.quantity ?? "—"}
                       </td>
                       <td className="px-4 py-3 sm:px-5">
-                        <Link href={`/card/${encodeURIComponent(entry.gv_id)}`} className="font-bold text-slate-950 transition hover:text-slate-700 dark:text-slate-50 dark:hover:text-slate-200">
+                        <Link
+                          href={addCardReturnPath(
+                            `/card/${encodeURIComponent(entry.gv_id)}`,
+                            `/sets/${encodeURIComponent(setDetail.code)}`,
+                          )}
+                          className="font-bold text-slate-950 transition hover:text-slate-700 dark:text-slate-50 dark:hover:text-slate-200"
+                        >
                           {entry.name}
                         </Link>
                         {entry.rarity ? (

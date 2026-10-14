@@ -5,9 +5,10 @@ import { shareCard } from "@/lib/shareCard";
 
 type ShareCardButtonProps = {
   gvId: string;
+  variant?: "default" | "menu";
 };
 
-export default function ShareCardButton({ gvId }: ShareCardButtonProps) {
+export default function ShareCardButton({ gvId, variant = "default" }: ShareCardButtonProps) {
   const [copied, setCopied] = useState(false);
 
   async function handleShare() {
@@ -25,9 +26,29 @@ export default function ShareCardButton({ gvId }: ShareCardButtonProps) {
     <button
       type="button"
       onClick={handleShare}
-      className="text-xs text-slate-500 transition hover:text-slate-700"
+      className={
+        variant === "menu"
+          ? "flex min-h-12 w-full items-center gap-3 px-3 py-3 text-left text-sm font-medium text-slate-800 transition active:scale-[0.99] hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-white/[0.04]"
+          : "text-xs text-slate-500 transition hover:text-slate-700"
+      }
     >
-      {copied ? "Link copied" : "Share"}
+      {variant === "menu" ? (
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 dark:border-slate-700">
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            className="h-4 w-4 fill-none stroke-current"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M7.5 7.5 12.5 2.5" />
+            <path d="M9.5 2.5h3v3" />
+            <path d="M12 7.5v7H4.5v-7h3" />
+          </svg>
+        </span>
+      ) : null}
+      <span aria-live="polite">{copied ? "Link copied" : variant === "menu" ? "Copy card link" : "Share"}</span>
     </button>
   );
 }

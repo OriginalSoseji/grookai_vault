@@ -4,6 +4,7 @@ import { Fragment, type ReactNode } from "react";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import PublicSearchForm from "@/components/PublicSearchForm";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   buildIdentityFilterCounts,
@@ -855,6 +856,9 @@ export default function ExplorePageClient({
     router.replace(nextUrl, { scroll: false });
   };
 
+  const currentPath = searchParams.toString()
+    ? `${pathname}?${searchParams.toString()}`
+    : pathname;
   const buildCardHref = (row: Pick<ExploreRow, "gv_id" | "selected_printing_gv_id" | "printing_gv_id" | "route_query">) => {
     const selectedPrintingGvId = row.selected_printing_gv_id ?? row.printing_gv_id;
     const params = new URLSearchParams();
@@ -867,12 +871,10 @@ export default function ExplorePageClient({
         params.set("printing", printing);
       }
     }
+    params.set("from", currentPath);
 
     return buildPathWithCompareCards(`/card/${row.gv_id}`, params.toString(), compareCards);
   };
-  const currentPath = searchParams.toString()
-    ? `${pathname}?${searchParams.toString()}`
-    : pathname;
   const pricingSignInHref = `/login?next=${encodeURIComponent(currentPath)}`;
   const displayRows =
     shouldServerFilterByIdentity || !isIdentityFilterActive(identityFilter)
@@ -1604,7 +1606,7 @@ export default function ExplorePageClient({
               Discover
             </p>
             <h1 className="text-2xl font-semibold tracking-normal text-slate-950 dark:text-slate-50">
-              Search cards
+              Search the catalog
             </h1>
             <p className="max-w-xl text-[13px] leading-5 text-slate-600 dark:text-slate-300">
               Search by card, finish, stamp, year, artist, ownership, and image availability.
@@ -1631,7 +1633,7 @@ export default function ExplorePageClient({
                 Grookai Search
               </p>
               <h1 className="mt-1 text-3xl font-semibold leading-tight tracking-normal text-slate-950 dark:text-slate-50">
-                Search cards
+              Search the catalog
               </h1>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-300">
                 Search by card, finish, stamp, year, artist, ownership, or visible artwork details.
@@ -1643,6 +1645,10 @@ export default function ExplorePageClient({
                 {languageScopeControl}
               </div>
             </div>
+          </div>
+
+          <div className="mt-5 hidden border-t border-slate-200/70 pt-4 dark:border-slate-800/70 md:block">
+            <PublicSearchForm variant="command" />
           </div>
 
           <div className="mt-4 border-t border-slate-200/70 pt-3 dark:border-slate-800/70 md:hidden">
@@ -1681,6 +1687,9 @@ export default function ExplorePageClient({
                   </p>
                 </div>
                 {resultControls}
+              </div>
+              <div className="mt-4 hidden md:block">
+                <PublicSearchForm variant="command" />
               </div>
             </div>
             <div className="shrink-0">
@@ -1833,7 +1842,7 @@ export default function ExplorePageClient({
                       disabled={assistantPreviewLoading}
                       className="rounded-full border border-violet-300 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-violet-800 shadow-sm transition hover:border-violet-400 hover:text-violet-950 disabled:cursor-wait disabled:opacity-60 dark:border-violet-300/30 dark:bg-slate-950/60 dark:text-violet-100 dark:hover:text-white"
                     >
-                      {assistantPreviewLoading ? "Checking..." : "Check access"}
+                      {assistantPreviewLoading ? "Checking…" : "Check access"}
                     </button>
                   </div>
                   {assistantPreview ? (

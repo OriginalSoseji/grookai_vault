@@ -82,7 +82,7 @@ export function ConfirmRemovalModal({
             disabled={isPending}
             className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
           >
-            {isPending ? "Removing..." : "Remove"}
+            {isPending ? "Removing…" : "Remove"}
           </button>
         </div>
       }
@@ -130,7 +130,7 @@ export function PublicNoteModal({
             disabled={isPending}
             className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
           >
-            {isPending ? "Saving..." : "Save note"}
+            {isPending ? "Saving…" : "Save note"}
           </button>
         </div>
       }

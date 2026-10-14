@@ -47,6 +47,15 @@ function parseReleaseYear(value?: string | null) {
   return /^\d{4}$/.test(normalized) ? normalized : "";
 }
 
+function buildExploreReturnPath(searchParams?: Record<string, string | undefined>) {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(searchParams ?? {})) {
+    if (value) query.set(key, value);
+  }
+  const suffix = query.toString();
+  return suffix ? `/explore?${suffix}` : "/explore";
+}
+
 function getNotableExploreSets(sets: PublicSetSummary[]) {
   const selected = new Set<string>();
   const byCode = new Map(sets.map((setInfo) => [setInfo.code, setInfo]));
@@ -94,6 +103,7 @@ export default async function ExplorePage(
   const compareCards = normalizeCompareCardsParam(searchParams?.cards);
   const languageScope = normalizePublicLanguageScope(searchParams?.lang);
   const gameScope = normalizePublicGameScope(searchParams?.game);
+  const exploreReturnPath = buildExploreReturnPath(searchParams);
   const isDiscoveryMode =
     gameScope === "pokemon" &&
     !normalizeFreeTextQuery(searchParams?.q) &&
@@ -136,6 +146,7 @@ export default async function ExplorePage(
         provisionalCards={languageScope === "ja" ? [] : provisionalCards}
         currentView={searchParams?.view ? normalizeExploreViewMode(searchParams.view) : undefined}
         canViewPricing={canViewPricing}
+        returnPath={exploreReturnPath}
       />
     );
   }

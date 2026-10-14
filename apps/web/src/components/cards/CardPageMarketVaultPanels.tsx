@@ -3,8 +3,7 @@
 import { useMemo, useState } from "react";
 import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
 import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
-import CompareCardButton from "@/components/compare/CompareCardButton";
-import ShareCardButton from "@/components/ShareCardButton";
+import CardUtilityActions from "@/components/cards/CardUtilityActions";
 import AddToVaultCardAction, {
   type AddToVaultActionResult,
 } from "@/components/vault/AddToVaultCardAction";
@@ -78,7 +77,7 @@ export default function CardPageMarketVaultPanels({
 
   return (
     <aside className="grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
-      <div className="gv-action-panel p-5 sm:p-6">
+      <div className="gv-action-panel order-2 p-5 sm:p-6 lg:order-1">
         <CardPagePricingRail
           isAuthenticated={isAuthenticated}
           loginHref={loginHref}
@@ -91,9 +90,10 @@ export default function CardPageMarketVaultPanels({
         />
       </div>
 
-      <div className="gv-action-panel space-y-5 p-5 sm:p-6">
+      <div className="gv-action-panel order-1 space-y-5 p-5 sm:p-6 lg:order-2" data-card-vault-panel>
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Your collection</p>
+          <h2 className="mt-1 text-lg font-semibold tracking-tight text-slate-950 dark:text-white">Add to Vault</h2>
           <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
           {rawCount > 0 || slabCount > 0 ? (
             <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
@@ -116,10 +116,14 @@ export default function CardPageMarketVaultPanels({
           onSelectedPrintingChange={setSelectedPrinting}
         />
 
-        <div className="flex flex-wrap items-center gap-3">
-          {isAuthenticated ? <AddSlabCardAction action={createSlabAction} cardName={cardName} /> : null}
-          <CompareCardButton gvId={gvId} />
-          <ShareCardButton gvId={gvId} />
+        {isAuthenticated ? (
+          <div className="border-t border-slate-200/80 pt-3 dark:border-slate-700/80">
+            <AddSlabCardAction action={createSlabAction} cardName={cardName} />
+          </div>
+        ) : null}
+
+        <div className="border-t border-slate-200/80 pt-3 dark:border-slate-700/80">
+          <CardUtilityActions gvId={gvId} />
         </div>
       </div>
     </aside>

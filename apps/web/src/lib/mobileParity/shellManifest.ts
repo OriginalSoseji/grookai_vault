@@ -41,6 +41,11 @@ const MOBILE_BINDER_PUSHED_PREFIXES = [
   "/binders",
   "/binder-templates",
 ] as const;
+const MOBILE_CARD_PUSHED_PREFIXES = [
+  "/card",
+  "/vault/card",
+  "/vault/gvvi",
+] as const;
 const MOBILE_BINDER_STANDALONE_SECRET_PREFIXES = [
   "/b",
   "/binder-invites",
@@ -64,9 +69,9 @@ function matchesRoutePrefix(pathname: string, prefix: string) {
 }
 
 /**
- * This first production integration is deliberately bounded to the route
- * families explicitly approved for Scan/import and Collaborative Binders.
- * Other route families retain their existing chrome until their parity phase.
+ * Fullscreen routes provide their own task chrome. Pushed routes replace the
+ * root header and dock with a compact, route-owned back bar so the originating
+ * collection/search context remains clear.
  */
 export function getMobileRouteChromeMode(
   pathname: string,
@@ -82,7 +87,7 @@ export function getMobileRouteChromeMode(
   }
 
   if (
-    MOBILE_BINDER_PUSHED_PREFIXES.some((prefix) =>
+    [...MOBILE_BINDER_PUSHED_PREFIXES, ...MOBILE_CARD_PUSHED_PREFIXES].some((prefix) =>
       matchesRoutePrefix(normalizedPathname, prefix),
     )
   ) {

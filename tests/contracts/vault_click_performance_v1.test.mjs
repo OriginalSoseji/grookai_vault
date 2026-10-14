@@ -52,10 +52,12 @@ test("vault tile and mobile links do not prefetch heavy dynamic card routes", ()
   assert.match(gridTile, /imagePrefetch\?: boolean/);
   assert.match(gridTile, /<Link href=\{imageHref\} prefetch=\{imagePrefetch\}>/);
   assert.match(vaultTile, /imagePrefetch=\{false\}/);
-  assert.match(vaultTile, /href=\{`\/card\/\$\{item\.gv_id\}`\}\s+prefetch=\{false\}/);
+  assert.match(vaultTile, /const cardHref = addCardReturnPath\(`\/card\/\$\{item\.gv_id\}`, returnPath\)/);
+  assert.match(vaultTile, /href=\{cardHref\}\s+prefetch=\{false\}/);
   assert.match(vaultTile, /href=\{manageCardHref\}\s+prefetch=\{false\}/);
   assert.match(mobileViews, /imagePrefetch=\{false\}/);
-  assert.match(mobileViews, /href=\{`\/card\/\$\{item\.gv_id\}`\}\s+prefetch=\{false\}/);
+  assert.match(mobileViews, /const cardHref = addCardReturnPath\(`\/card\/\$\{item\.gv_id\}`, returnPath\)/);
+  assert.match(mobileViews, /href=\{cardHref\}\s+prefetch=\{false\}/);
   assert.match(collectionView, /imagePrefetch=\{false\}/);
   assert.match(groupedVaultPage, /href=\{primaryActionHref\}\s+prefetch=\{false\}/);
 });

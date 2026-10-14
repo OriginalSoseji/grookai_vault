@@ -25,6 +25,7 @@ import {
   mergePublicSetCardPage,
 } from "@/lib/publicSetCardPagination";
 import type { PublicSetCard } from "@/lib/publicSets.shared";
+import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 type PublicSetCardGridProps = {
   setCode: string;
@@ -67,7 +68,11 @@ export default function PublicSetCardGrid({
       params.set("printing", printingId);
     }
 
-    return buildPathWithCompareCards(`/card/${gvId}`, params.toString(), compareCards);
+    const cardHref = buildPathWithCompareCards(`/card/${gvId}`, params.toString(), compareCards);
+    const returnPath = searchParams.toString()
+      ? `${pathname}?${searchParams.toString()}`
+      : pathname;
+    return addCardReturnPath(cardHref, returnPath);
   }
 
   async function handleLoadMore() {

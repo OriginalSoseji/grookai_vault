@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
@@ -173,8 +172,9 @@ function HomeSearchFallback() {
         <input
           type="search"
           name="q"
-          placeholder="Search cards, sets, or Grookai IDs to find available cards"
-          className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400"
+          placeholder="Search cards, sets, or Grookai IDs…"
+          autoComplete="off"
+          className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-300/40"
           aria-label="Search cards"
         />
         <button
@@ -188,91 +188,74 @@ function HomeSearchFallback() {
   );
 }
 
+function HomeHeroCard({
+  card,
+  position,
+  priority = false,
+}: {
+  card: FeaturedCard;
+  position: "left" | "center" | "right";
+  priority?: boolean;
+}) {
+  const href = card.gv_id.startsWith("featured-") ? "/explore" : `/card/${card.gv_id}`;
+
+  return (
+    <Link
+      href={href}
+      className={`gv-home-card gv-home-card-${position}`}
+      aria-label={`View ${card.display_name}`}
+    >
+      <PublicCardImage
+        src={card.image_url}
+        alt={card.display_name}
+        imageClassName="h-full w-full object-contain"
+        fallbackClassName="flex h-full w-full items-center justify-center bg-slate-900 px-4 text-center text-sm text-slate-400"
+        fallbackLabel={card.display_name}
+        priority={priority}
+      />
+    </Link>
+  );
+}
+
 export default async function HomePage() {
   const [leftCard, centerCard, rightCard] = await getFeaturedCards();
 
   return (
-    <div className="space-y-16 py-8 md:space-y-20 md:py-12">
-      <section className="gv-showcase-hero px-5 py-10 md:px-10 md:py-14">
-        <div className="relative mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
-          <div className="space-y-5">
-            <Image
-              src="/grookai-logo-192.png"
-              alt="Grookai Vault logo"
-              width={88}
-              height={88}
-              className="mx-auto rounded-[26px] shadow-[0_18px_40px_-30px_rgba(74,144,226,0.9)]"
-              priority
-            />
-            <p className="gv-eyebrow">Grookai Vault</p>
-            <h1 className="gv-display-title mx-auto max-w-4xl">
-              Grookai Vault
-            </h1>
-            <p className="gv-body-copy mx-auto max-w-2xl">
-              The permanent digital card show. Find the exact card, add it to your Vault, see who has it available, and connect with the collector.
-            </p>
-          </div>
+    <div className="gv-home-page space-y-16 pb-8 md:space-y-20 md:pb-12">
+      <section className="gv-home-hero">
+        <div className="gv-home-hero-copy">
+          <p className="gv-eyebrow">Grookai Vault</p>
+          <h1 className="gv-home-title">
+            Find the exact card.
+            <span>Meet the collector.</span>
+          </h1>
+          <p className="gv-home-lede">
+            Search exact printings, track what you own, and connect with collectors ready to trade.
+          </p>
 
-          <div className="w-full max-w-2xl">
+          <div className="gv-home-search">
             <Suspense fallback={<HomeSearchFallback />}>
               <PublicSearchForm variant="hero" />
             </Suspense>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="gv-home-hero-actions">
             <Link href="/explore" className="gv-primary-button">
-              Explore cards
+              Explore the catalog
             </Link>
             <Link href="/login?next=%2Fvault" className="gv-secondary-button">
-              Sign in
+              Start your Vault
             </Link>
           </div>
+        </div>
 
-          <div className="mx-auto flex w-full max-w-[560px] items-end justify-center gap-3 pt-2 sm:gap-5">
-            <Link
-              href={leftCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${leftCard.gv_id}`}
-              className="block w-[29%] translate-y-5 -rotate-6 transition hover:-translate-y-0.5"
-            >
-              <div className="overflow-hidden rounded-[1.65rem] bg-white/82 p-3 shadow-[0_30px_70px_-48px_rgba(15,23,42,0.72)] ring-1 ring-white/80">
-                <PublicCardImage
-                  src={leftCard.image_url}
-                  alt={leftCard.display_name}
-                  imageClassName="aspect-[5/7] w-full rounded-[22px] bg-slate-50 object-contain"
-                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-slate-100 px-3 text-center text-xs text-slate-500"
-                  fallbackLabel={leftCard.display_name}
-                />
-              </div>
-            </Link>
-
-            <Link
-              href={centerCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${centerCard.gv_id}`}
-              className="block w-[38%] -translate-y-5 transition hover:-translate-y-6"
-            >
-              <div className="overflow-hidden rounded-[1.9rem] bg-white/88 p-3 shadow-[0_42px_90px_-50px_rgba(15,23,42,0.78)] ring-1 ring-white/90">
-                <PublicCardImage
-                  src={centerCard.image_url}
-                  alt={centerCard.display_name}
-                  imageClassName="aspect-[5/7] w-full rounded-[22px] bg-slate-50 object-contain"
-                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-slate-100 px-4 text-center text-sm text-slate-500"
-                  fallbackLabel={centerCard.display_name}
-                />
-              </div>
-            </Link>
-
-            <Link
-              href={rightCard.gv_id.startsWith("featured-") ? "/explore" : `/card/${rightCard.gv_id}`}
-              className="block w-[29%] translate-y-6 rotate-6 transition hover:translate-y-1"
-            >
-              <div className="overflow-hidden rounded-[1.65rem] bg-white/82 p-3 shadow-[0_30px_70px_-48px_rgba(15,23,42,0.72)] ring-1 ring-white/80">
-                <PublicCardImage
-                  src={rightCard.image_url}
-                  alt={rightCard.display_name}
-                  imageClassName="aspect-[5/7] w-full rounded-[22px] bg-slate-50 object-contain"
-                  fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-slate-100 px-3 text-center text-xs text-slate-500"
-                  fallbackLabel={rightCard.display_name}
-                />
-              </div>
-            </Link>
+        <div className="gv-home-card-stage" aria-label="Featured cards">
+          <HomeHeroCard card={leftCard} position="left" />
+          <HomeHeroCard card={rightCard} position="right" />
+          <HomeHeroCard card={centerCard} position="center" priority />
+          <div className="gv-home-featured-caption">
+            <strong>{centerCard.display_name}</strong>
+            <span>Explore this exact printing</span>
           </div>
         </div>
       </section>
@@ -280,7 +263,7 @@ export default async function HomePage() {
       <section className="space-y-5">
         <div className="mx-auto max-w-3xl space-y-2 text-center">
           <p className="gv-eyebrow">Built for collectors</p>
-          <h2 className="gv-section-title">Search the details collectors care about.</h2>
+          <h2 className="gv-section-title">Search the catalog.</h2>
           <p className="gv-body-copy text-sm">
             Find exact versions, special stamps, character appearances, collection gaps, and cards other collectors have available.
           </p>

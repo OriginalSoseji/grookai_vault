@@ -251,7 +251,7 @@ test("card detail streams lower panels after exact card information", () => {
   assert.match(cardPage, /<Suspense fallback=\{null\}>\s*<NearbyCardsSection/);
   assert.match(cardPage, /async function CardNetworkOffersSection/);
   assert.match(cardPage, /async function NearbyCardsSection/);
-  assert.match(cardPage, /\{ label: "Language", value: getCardLanguageLabel\(resolvedCard\.gv_id\) \}/);
+  assert.match(cardPage, /\{ label: "Language", value: getCardLanguageLabel\(resolvedCard\) \}/);
   assert.match(cardPage, /<h2>Card information<\/h2>/);
   assert.match(cardPage, /<h2>Other versions of this card<\/h2>/);
   assert.ok(

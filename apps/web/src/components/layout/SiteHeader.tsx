@@ -96,7 +96,7 @@ export function SiteHeader({
   const compareCards = normalizeCompareCardsParam(searchParams.get("cards"));
   const compareCount = compareCards.length;
   const showTopSearch =
-    pathname === "/explore" || pathname.startsWith("/search") || pathname.startsWith("/card/");
+    pathname.startsWith("/search") || pathname.startsWith("/card/");
   const showMobileGlobalSearch =
     pathname === "/vault" ||
     pathname.startsWith("/vault/") ||

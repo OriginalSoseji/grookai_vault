@@ -89,7 +89,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             name="q"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cards, sets, or Grookai IDs to find available cards"
+            placeholder="Search cards, sets, or Grookai IDs…"
+            autoComplete="off"
             shellClassName="min-w-0 flex-1"
             inputClassName="px-3 text-base"
             aria-label="Search cards"
@@ -131,7 +132,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             name="q"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cards, sets, numbers, or Grookai ID"
+            placeholder="Search cards, sets, numbers, or Grookai ID…"
+            autoComplete="off"
             enterKeyHint="search"
             shellClassName="gap-2"
             inputClassName="text-sm"
@@ -155,7 +157,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             name="q"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search cards, sets, numbers, or Grookai ID"
+            placeholder="Search cards, sets, numbers, or Grookai ID…"
+            autoComplete="off"
             tone="soft"
             shellClassName="min-w-0 flex-1"
             aria-label="Search cards"
@@ -185,7 +188,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
           name="q"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search cards, sets, numbers, or Grookai ID"
+          placeholder="Search cards, sets, numbers, or Grookai ID…"
+          autoComplete="off"
           tone="soft"
           shellClassName="w-full sm:max-w-[420px]"
           aria-label="Search cards"

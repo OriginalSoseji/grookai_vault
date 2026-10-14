@@ -39,7 +39,7 @@ const themeBootstrapScript = `
   try {
     const stored = window.localStorage.getItem("grookai-theme");
     const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = stored === "dark" || stored === "light" ? stored : prefersDark ? "dark" : "light";
+    const theme = stored === "dark" || stored === "light" ? stored : "dark";
     document.documentElement.classList.toggle("gv-dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
@@ -67,6 +67,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
       </head>
       <body>
+        <a href="#main-content" className="gv-skip-link">
+          Skip to content
+        </a>
         {visualParityFixtureMode ? (
           children
         ) : (
@@ -74,7 +77,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
               <AppChrome dexEnabled={dexEnabled} bindersEnabled={bindersEnabled} />
             </Suspense>
-            <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip">
+            <main id="main-content" className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip">
               <PageContainer>{children}</PageContainer>
             </main>
             <footer className="gv-site-footer border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur">
