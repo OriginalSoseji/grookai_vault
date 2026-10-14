@@ -55,6 +55,11 @@ const MAINTENANCE_RUNNER = readFileSync(
   "utf8",
 );
 
+test("read-only exact mapping planner requires verified remote database TLS", () => {
+  assert.match(SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.doesNotMatch(SCRIPT, /rejectUnauthorized:\s*false/);
+});
+
 function source(overrides = {}) {
   return {
     source_product_id: 704758,
