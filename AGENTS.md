@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## BW11 Radiant Collection truth review and mapping — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_142_BW11_RADIANT_COLLECTION_TRUTH_REVIEW_AND_MAPPING.md`.
+The active batch contains exactly nine Legendary Treasures: Radiant Collection
+Holo products. Their source products, canonical parents, and existing Holo
+children are exact, but the children first need explicit verified visible truth
+reviews. The production-connected rollback-only rehearsal passed for all nine
+and left zero rows. Merge the bounded review and authority code, then regenerate
+from the exact clean commit, apply the nine reviews, build and apply the nine
+exact mappings, perform independent readback, and continue into pricing shadow
+and publication. Do not bypass the review, mapping, or publication boundaries.
+
 ## TCGPlayer reviewed alias wave 2 — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_141_REVIEWED_ALIAS_WAVE_2_MAPPING_BATCH.md`.
