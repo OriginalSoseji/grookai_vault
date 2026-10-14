@@ -2457,6 +2457,16 @@ Prepared media and hashes live at:
 - `docs/audits/store_release_readiness_v1/store_media_manifest_v1.json`
 - `artifacts/store/google_play/`
 
+The Android release workflow runs the strict website build as a shared-product
+gate before packaging the signed AAB. That job must explicitly declare the
+canonical production web target (`GROOKAI_COLLECTOR_RELEASE_V1`, `VERCEL_ENV`,
+`VERCEL_PROJECT_ID`, `SITE_URL`, and `NEXT_PUBLIC_SITE_URL`); the collector
+release assertion must remain fail-closed if those values drift. The merged
+Android manifest removes broad photo-library, legacy external-storage, and
+microphone permissions because image selection uses the system picker and every
+camera controller disables audio. Verify the permissions from the packaged APK
+or AAB after every release; source manifest inspection alone is insufficient.
+
 Never create a second Play app because the existing app is hidden by the wrong
 profile. Do not accept IARC or other legal terms, send a draft for review, or
 publish without explicit authorization for that action.
