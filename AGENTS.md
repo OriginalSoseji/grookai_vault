@@ -3,8 +3,8 @@
 ## TCGPlayer Prism Star alias wave — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_140_PRISM_STAR_ALIAS_MAPPING_BATCH.md`.
-The next bounded batch is exactly 14 Holofoil Prism Star products across Ultra
-Prism, Forbidden Light, and Celestial Storm. Each frozen source name ending in
+The completed bounded batch was exactly 14 Holofoil Prism Star products across
+Ultra Prism, Forbidden Light, and Celestial Storm. Each frozen source name ending in
 `Prism Star` maps by exact product, group, and printed coordinate to one unique
 unmapped canonical parent whose Master Index name ends in `◇`, with one active
 verified visible Holo child. Four Team Up and two Dragon Majesty rows remain
