@@ -31,17 +31,53 @@ void main() {
     expect(service, contains("result['gv_vi_id']"));
   });
 
-  test('card detail bottom actions stay fixed and scheme-colored', () {
-    final screen = File('lib/card_detail_screen.dart').readAsStringSync();
+  test(
+    'card detail keeps ownership primary and secondary actions discoverable',
+    () {
+      final screen = File('lib/card_detail_screen.dart').readAsStringSync();
 
-    expect(screen, contains("tooltip: 'Compare'"));
-    expect(screen, contains('if (_canCompare)'));
+      expect(screen, contains('if (_canCompare)'));
+      expect(screen, contains("title: Text('Compare')"));
+      expect(screen, contains("tooltip: 'More card actions'"));
+      expect(
+        screen,
+        contains('bottomNavigationBar: _buildActions(context, theme)'),
+      );
+      expect(screen, contains('height: 52'));
+      expect(
+        screen,
+        contains("(ownedCount ?? 0) > 1 ? 'Manage copies' : 'Manage copy'"),
+      );
+      expect(
+        screen,
+        contains(
+          'label: Text(_addingToVault ? \'Adding…\' : \'Add to Vault\')',
+        ),
+      );
+      expect(screen, isNot(contains('Colors.red.shade400')));
+    },
+  );
+
+  test('card detail uses text tabs and layout-matched partial-load skeletons', () {
+    final screen = File('lib/card_detail_screen.dart').readAsStringSync();
+    final pricingLoading = RegExp(
+      r'if \(_priceLoading && _priceData == null\) \{[\s\S]*?\n    \}\n\n    if \(_priceError != null\)',
+    ).firstMatch(screen)?.group(0);
+    final journeyLoading = RegExp(
+      r'if \(_journeyLoading && overview == null\) \{[\s\S]*?\n    \}\n\n    if \(_journeyError != null',
+    ).firstMatch(screen)?.group(0);
+
     expect(
       screen,
-      isNot(contains("tooltip: _canCompare ? 'Compare' : 'Share'")),
+      contains('enum _CardDetailTab { overview, collection, activity }'),
     );
-    expect(screen, isNot(contains('Colors.red.shade400')));
-    expect(screen, contains('final tint = active ? colorScheme.error'));
+    expect(screen, contains("'Overview'"));
+    expect(screen, contains("'Collection'"));
+    expect(screen, contains("'Activity'"));
+    expect(pricingLoading, contains('_CardDetailSkeletonBlock'));
+    expect(pricingLoading, isNot(contains('CircularProgressIndicator')));
+    expect(journeyLoading, contains('_CardDetailSkeletonBlock'));
+    expect(journeyLoading, isNot(contains('CircularProgressIndicator')));
   });
 
   test(
@@ -178,18 +214,21 @@ void main() {
       expect(bottomNavBlock, contains("label: '$label'"));
       expect(drawerBlock, isNot(contains("label: '$label'")));
     }
+    final dockLabels = RegExp(
+      r"label: '([^']+)'",
+    ).allMatches(bottomNavBlock).map((match) => match.group(1)).toList();
+    expect(dockLabels, ['Pulse', 'Wall', 'Scan', 'Vault', 'Search']);
+    expect(bottomNavBlock, isNot(contains("label: 'Vendor'")));
+    expect(drawerBlock, contains("label: 'Vendor Mode'"));
 
     expect(drawerBlock, isNot(contains("label: 'My Wall'")));
     expect(drawerBlock, isNot(contains("label: 'Messages'")));
     expect(drawerBlock, contains("label: 'Grookai Dex'"));
     expect(drawerBlock, contains("label: 'Sets'"));
     expect(drawerBlock, contains("label: 'Compare'"));
-    expect(drawerBlock, contains("label: 'Grookai Objects'"));
     expect(drawerBlock, contains("label: 'Vendor Mode'"));
-    expect(
-      drawerBlock.indexOf("label: 'Vendor Mode'"),
-      greaterThan(drawerBlock.indexOf("label: 'Grookai Objects'")),
-    );
+    expect(drawerBlock, contains('if (signedIn)'));
+    expect(drawerBlock, contains('onOpenVendorMode'));
     expect(drawerBlock, contains('if (signedIn)'));
     expect(drawerBlock, contains("label: 'Followers'"));
     expect(drawerBlock, contains("label: 'Following'"));
@@ -201,6 +240,9 @@ void main() {
     expect(shell, contains('PublicCollectorRelationshipMode.following'));
     expect(shell, contains('PublicCollectorService.resolveOwnEntry'));
     expect(shell, contains('PublicCollectorService.loadPublicProfileBySlug'));
+    expect(shell, contains('VendorPricingWorkspaceScreen()'));
+    expect(shell, contains("label: 'Vendor Mode'"));
+    expect(shell, contains('onOpenVendorMode: _openVendorPricingWorkspace'));
     expect(shell, contains('Icons.collections_bookmark_rounded'));
     expect(
       shell,
@@ -239,6 +281,26 @@ void main() {
     expect(vault, contains('displayIdentity.suffix!.trim()'));
     expect(vault, contains('displayIdentity.baseName'));
     expect(vault, isNot(contains("final imageUrl = (row['photo_url']")));
+  });
+
+  test('Vault phone grid and loading state share lazy two-column geometry', () {
+    final vault = File('lib/main_vault.dart').readAsStringSync();
+    final tile = RegExp(
+      r'class _VaultGridTile extends StatelessWidget[\s\S]*?class _VaultGridArtwork',
+    ).firstMatch(vault)!.group(0)!;
+
+    expect(vault, contains('viewportWidth < 600'));
+    expect(vault, contains('_buildVaultLoadingSliver(columns: columns)'));
+    expect(vault, contains('childCount: columns * 2'));
+    expect(vault, contains('crossAxisCount: columns'));
+    expect(tile, contains('AspectRatio('));
+    expect(tile, contains('if (selectionMode)'));
+    expect(tile, contains('onTap: selectionMode ? onLongPress : onTap'));
+    expect(tile, contains('onLongPress: onLongPress'));
+    expect(
+      tile.indexOf('AspectRatio('),
+      lessThan(tile.indexOf('if (selectionMode)')),
+    );
   });
 
   test('mobile Japanese display mirrors web English primary contract', () {
@@ -358,8 +420,8 @@ void main() {
     expect(vault, contains('summarizeVaultExactPricing'));
     expect(vault, contains('estimatedValue += visiblePrice'));
     expect(vault, isNot(contains('visiblePrice * ownedCount')));
-    expect(vault, contains('valued copies'));
-    expect(vault, contains('30d trend pending'));
+    expect(vault, contains("\${derivedData.pricedCopyCount} valued"));
+    expect(vault, isNot(contains('30d trend pending')));
   });
 
   test('bottom dock collapse pauses while modal routes are active', () {
@@ -383,7 +445,7 @@ void main() {
       r'Widget _buildDockButton\([\s\S]*?\n\}',
     ).firstMatch(shell)!.group(0)!;
 
-    expect(bottomNavBlock, contains('maxWidth: 390'));
+    expect(bottomNavBlock, contains('textScale >= 1.5 ? viewportWidth : 390'));
     expect(bottomNavBlock, contains('mainAxisSize: MainAxisSize.max'));
     expect(bottomNavBlock, contains('Expanded('));
     expect(bottomNavBlock, contains('isPrimaryAction: true'));
@@ -394,8 +456,9 @@ void main() {
       contains('constraints: BoxConstraints(minHeight: collapsed ? 50 : 54)'),
     );
     expect(dockButtonBlock, isNot(contains('height: collapsed ? 50 : 54')));
-    expect(dockButtonBlock, contains('BoxShape.circle'));
     expect(dockButtonBlock, contains('Text('));
+    expect(shell, contains('class _DockUnreadBadge'));
+    expect(shell, contains('shape: BoxShape.circle'));
   });
 
   test('search controls do not hide secondary navigation shortcuts', () {
@@ -419,10 +482,12 @@ void main() {
     final search = File('lib/main.dart').readAsStringSync();
 
     expect(search, contains('int get _activeSearchFilterCount'));
-    expect(search, contains("'Filters · \$activeCount'"));
     expect(search, contains('Future<void> _openSearchFiltersSheet'));
     expect(search, contains('showModalBottomSheet<void>'));
-    expect(search, contains('_buildSearchFilterButton('));
+    expect(search, contains("? 'Search filters'"));
+    expect(search, contains("'Search filters, \$activeFilterCount active'"));
+    expect(search, contains('onFilterPressed: () => _openSearchFiltersSheet'));
+    expect(search, contains('Icons.tune_rounded'));
     expect(search, isNot(contains('Widget _buildRarityChip(')));
     expect(search, isNot(contains('Widget _buildIdentityChip(')));
   });
@@ -458,12 +523,15 @@ void main() {
 
     expect(vault, contains('Future<void> _openVaultFiltersSheet()'));
     expect(vault, contains('int get _activeVaultFilterCount'));
-    expect(vault, contains('Search vault · by card, set, or Pokemon'));
+    expect(vault, contains("hintText: 'Search by card, set, or Pokémon…'"));
+    expect(vault, contains("label: 'Search your Vault'"));
     expect(vault, isNot(contains('Search Pokemon')));
     expect(vault, isNot(contains('Widget _buildVaultViewChip(')));
     expect(vault, isNot(contains('_activeSearchValueForView')));
-    expect(vault, contains('if (_view == _VaultStructuralView.all) ...['));
-    expect(vault, contains("'Recently Added'"));
+    expect(vault, contains('Widget _buildVaultFilterButton(ThemeData theme)'));
+    expect(vault, contains('onPressed: _openVaultFiltersSheet'));
+    expect(vault, contains('_VaultStructuralView.recent'));
+    expect(vault, contains('final recentRows = derivedData.recentRows'));
   });
 
   test('card tile surfaces use shared grid geometry constants', () {

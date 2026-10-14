@@ -125,7 +125,7 @@ export default function PrintingSelector({
         : "Correct printing. Exact variant image is pending.");
 
   return (
-    <section className={`gv-variant-selector space-y-4 ${compact ? "p-1" : "p-2"}`}>
+    <section className={`gv-variant-selector space-y-4 ${compact ? "" : "p-2"}`} data-printing-selector>
       <div className="space-y-1">
         <h2 className="gv-eyebrow">{title}</h2>
         <p className="gv-quiet-line text-sm">
@@ -160,11 +160,20 @@ export default function PrintingSelector({
         ) : null}
       </div>
 
-      <div className="gv-hi-selected-version gv-quiet-panel px-4 py-3">
+      <div
+        className={
+          compact
+            ? "border-y border-slate-200/80 py-3 dark:border-slate-700/80"
+            : "gv-hi-selected-version gv-quiet-panel px-4 py-3"
+        }
+        data-selected-printing={selectedPrinting.id}
+      >
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Selected version</p>
-            <p className="gv-hi-card-identity mt-1 text-lg tracking-tight">{selectedPrinting.finish_name ?? "Printing"}</p>
+            <p className={`gv-hi-card-identity mt-1 tracking-tight ${compact ? "text-base" : "text-lg"}`}>
+              {selectedPrinting.finish_name ?? "Printing"}
+            </p>
           </div>
           <span
             className={`inline-flex w-fit rounded-full border px-3 py-1 text-xs font-semibold ${
@@ -176,7 +185,7 @@ export default function PrintingSelector({
             {selectedOwnershipLabel}
           </span>
         </div>
-        {showImageFallbackNotice ? (
+        {showImageFallbackNotice && !compact ? (
           <div className="mt-3 rounded-[14px] border border-slate-200/80 bg-white/76 px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] dark:border-slate-700 dark:bg-slate-900/72">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">

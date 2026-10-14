@@ -35,7 +35,8 @@ class CardSurfacePricingData {
 
   double? get visibleValue => marketClose;
 
-  String get compactLabel => 'Market';
+  String get compactLabel =>
+      isFromPrice ? 'From TCGPlayer Market' : 'TCGPlayer Market';
 
   bool get hasVisibleValue => visibleValue != null;
 }

@@ -10,6 +10,7 @@ import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapsh
 import CompareTray from "@/components/compare/CompareTray";
 import CardPageMarketVaultPanels from "@/components/cards/CardPageMarketVaultPanels";
 import CardFaceGallery from "@/components/cards/CardFaceGallery";
+import MobilePushedRouteHeader from "@/components/layout/MobilePushedRouteHeader";
 import VariantExplanationContextPreview from "@/components/cards/VariantExplanationContextPreview";
 import PricingDisclosure from "@/components/common/PricingDisclosure";
 import type { AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
@@ -69,6 +70,7 @@ import {
   type OwnedPrintingCountsByCardPrintId,
 } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
+import { getCardReturnContext } from "@/lib/navigation/cardDetailNavigation";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
 import type { CardCameo, CardDetail, RelatedCardPrint } from "@/types/cards";
 
@@ -325,6 +327,7 @@ export const dynamicParams = true;
 type CardPageSearchParams = {
   cards?: string;
   printing?: string;
+  from?: string;
   perf?: string;
   gv_perf?: string;
 };
@@ -542,7 +545,7 @@ function RelatedPrintsSection({
             <Link
               key={relatedCard.gv_id}
               href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
-              className="group min-w-0 transition-transform duration-150 hover:-translate-y-[2px]"
+              className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-[transform,border-color,background-color,box-shadow] duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
             >
               <div className="flex gap-3 md:flex-col md:items-start">
                 <div className="space-y-2">
@@ -1037,6 +1040,7 @@ async function CardPageContent({
     setName,
   });
   const initialRenderMs = roundPerfMs(performance.now() - pageStartedAt);
+  const returnContext = getCardReturnContext(searchParams?.from);
   logCardPageServerPerf(perfEnabled, "initial_render_ready", {
     requestedGvId: params.gv_id,
     gvId: resolvedCard.gv_id,
@@ -1069,7 +1073,12 @@ async function CardPageContent({
   ) : null;
 
   return (
-    <div className={`gv-approved-card-detail ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+    <div className={`gv-card-page space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+      <MobilePushedRouteHeader
+        backHref={returnContext.href}
+        backLabel={returnContext.label}
+        title="Card details"
+      />
       <CardPagePerformanceProbe
         enabled={perfEnabled}
         gvId={resolvedCard.gv_id}
@@ -1204,8 +1213,8 @@ async function CardPageContent({
                   <p className="mt-4 text-xs leading-5 text-slate-500 dark:text-slate-400">
                     {variantExplanation?.how_to_identify ?? variantOriginCopy.how_to_identify}
                   </p>
-                  <details className="mt-4 rounded-[14px] border border-slate-200/70 bg-white/60 px-3 py-3 dark:border-slate-700 dark:bg-slate-900/50">
-                    <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 transition hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200">
+                  <details className="mt-5 border-t border-slate-200/70 pt-2 dark:border-slate-700">
+                    <summary className="flex min-h-11 cursor-pointer items-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 transition-colors hover:text-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:text-slate-400 dark:hover:text-slate-200">
                       Source-backed modeling
                     </summary>
                     <div className="mt-3 space-y-3 text-xs leading-5 text-slate-600 dark:text-slate-300">
@@ -1228,8 +1237,8 @@ async function CardPageContent({
                       ) : null}
                     </div>
                   </details>
-                  <details className="mt-3 rounded-[14px] border border-violet-200/60 bg-violet-50/50 px-3 py-3 dark:border-violet-300/20 dark:bg-violet-400/[0.08]">
-                    <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-700 transition hover:text-violet-950 dark:text-violet-200 dark:hover:text-white">
+                  <details className="border-t border-slate-200/70 pt-2 dark:border-slate-700">
+                    <summary className="flex min-h-11 cursor-pointer items-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 transition-colors hover:text-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:text-slate-400 dark:hover:text-slate-200">
                       Assistant grounding
                     </summary>
                     <VariantExplanationContextPreview
@@ -1321,53 +1330,55 @@ async function CardPageContent({
         </details>
       ) : null}
 
-      {detailItems.length > 0 ? (
-        <details className="gv-detail-disclosure"><summary>Card information</summary>
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="gv-card-section-header">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Card Details</p>
-            <h2>Card information</h2>
-            <p>Identity, traits, and artwork facts for this exact card.</p>
-          </div>
-          <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {detailItems.map((item) => (
-              <div key={item.label} className="rounded-[18px] border border-slate-200/70 bg-white/54 px-4 py-4 dark:border-slate-700 dark:bg-white/[0.04]">
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</dt>
-                <dd className="mt-2 text-sm font-medium text-slate-900 dark:text-slate-100">{item.label === "Illustrator" ? illustratorLink : item.value}</dd>
+      {detailItems.length > 0 || setContextItems.length > 0 ? (
+        <details className="gv-card-lower-section group p-5 sm:p-6" data-card-and-set-details>
+          <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-500">
+            <span className="min-w-0">
+              <span className="block text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Reference</span>
+              <span className="mt-1 block text-xl font-semibold text-slate-950 dark:text-white">Card &amp; Set Details</span>
+              <span className="mt-1 block text-sm font-normal text-slate-600 dark:text-slate-300">Identity, traits, artwork, and set facts.</span>
+            </span>
+            <span aria-hidden="true" className="shrink-0 text-xl text-slate-400 group-open:hidden">+</span>
+            <span aria-hidden="true" className="hidden shrink-0 text-xl text-slate-400 group-open:inline">−</span>
+          </summary>
+          <div className="mt-5 space-y-6 border-t border-slate-200/70 pt-5 dark:border-slate-700">
+            {detailItems.length > 0 ? (
+              <div className="space-y-3">
+                <h2 className="text-base font-semibold text-slate-950 dark:text-white">Card Information</h2>
+                <dl className="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {detailItems.map((item) => (
+                    <div key={item.label} className="border-b border-slate-200/70 py-3 dark:border-slate-800">
+                      <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</dt>
+                      <dd className="mt-1 break-words text-sm font-medium text-slate-900 dark:text-slate-100">{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
-            ))}
-          </dl>
-        </section>
-        </details>
-      ) : null}
-
-      {setContextItems.length > 0 ? (
-        <details className="gv-detail-disclosure"><summary>About this set</summary>
-        <section className="gv-card-lower-section space-y-4 p-5 sm:p-6">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div className="gv-card-section-header">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">About This Set</p>
-              {setName ? <h2>{setName}</h2> : null}
-              <p>Set context for this exact print.</p>
-            </div>
-            {setHref ? (
-              <Link
-                href={setHref}
-                className="inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-950"
-              >
-                View Set
-              </Link>
+            ) : null}
+            {setContextItems.length > 0 ? (
+              <div className="space-y-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <h2 className="text-base font-semibold text-slate-950 dark:text-white">{setName ?? "Set Information"}</h2>
+                  {setHref ? (
+                    <Link
+                      href={setHref}
+                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
+                    >
+                      View Set
+                    </Link>
+                  ) : null}
+                </div>
+                <dl className="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {setContextItems.map((item) => (
+                    <div key={item.label} className="border-b border-slate-200/70 py-3 dark:border-slate-800">
+                      <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</dt>
+                      <dd className="mt-1 break-words text-sm font-medium text-slate-900 dark:text-slate-100">{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             ) : null}
           </div>
-          <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {setContextItems.map((item) => (
-              <div key={item.label} className="rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 dark:border-slate-800 dark:bg-white/[0.04]">
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.label}</dt>
-                <dd className="mt-2 text-sm font-medium text-slate-900 dark:text-slate-100">{item.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
         </details>
       ) : null}
 
@@ -1688,7 +1699,7 @@ function NearbyCardLink({
   return (
     <Link
       href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
-      className="flex items-center gap-3 transition-transform duration-150 hover:-translate-y-[2px]"
+      className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-[transform,border-color,background-color,box-shadow] duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
     >
       <div className="space-y-2">
         <PublicCardImage

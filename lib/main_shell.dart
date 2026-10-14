@@ -1048,15 +1048,6 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(const GrookaiObjectsHubScreen());
   }
 
-  Future<void> _openVendorMode() async {
-    await _pushPage<void>(const VendorPricingWorkspaceScreen());
-    if (!mounted) {
-      return;
-    }
-    unawaited(_wallKey.currentState?.reload());
-    unawaited(_vaultKey.currentState?.reload());
-  }
-
   Future<void> _openSalesDesk() async {
     await _pushPage<void>(const SalesDeskScreen());
     if (!mounted) return;
@@ -1072,6 +1063,13 @@ class _AppShellState extends State<AppShell> {
     await _pushPage<void>(
       const BinderLibraryScreen(featureFlags: BinderFeatureFlags.production),
     );
+  }
+
+  Future<void> _openVendorPricingWorkspace() async {
+    if (_supabase.auth.currentUser == null) {
+      return;
+    }
+    await _pushPage<void>(const VendorPricingWorkspaceScreen());
   }
 
   Future<void> _openMessages() async {
@@ -1514,17 +1512,24 @@ class _AppShellState extends State<AppShell> {
         tooltip: 'Messages',
         onPressed: _openMessages,
       ),
+      if (!isDesktopShell && _supabase.auth.currentUser != null)
+        _appBarActionButton(
+          icon: Icons.storefront_outlined,
+          tooltip: 'Vendor Mode',
+          onPressed: _openVendorPricingWorkspace,
+        ),
       if (isDesktopShell && _destination != _ShellDestination.search)
         _appBarActionButton(
           icon: Icons.refresh,
           tooltip: 'Refresh',
           onPressed: _refreshCurrent,
         ),
-      _appBarActionButton(
-        tooltip: 'Account',
-        icon: Icons.account_circle_outlined,
-        onPressed: _openAccountHub,
-      ),
+      if (isDesktopShell || _supabase.auth.currentUser == null)
+        _appBarActionButton(
+          tooltip: 'Account',
+          icon: Icons.account_circle_outlined,
+          onPressed: _openAccountHub,
+        ),
       _appBarActionButton(
         tooltip: 'Menu',
         icon: Icons.menu_rounded,
@@ -1561,6 +1566,7 @@ class _AppShellState extends State<AppShell> {
             children: [
               _GrookaiDesktopRail(
                 currentDestination: _destination,
+                signedIn: _supabase.auth.currentUser != null,
                 onOpenSearch: () =>
                     _selectDestination(_ShellDestination.search),
                 onOpenFeed: () => _selectDestination(_ShellDestination.feed),
@@ -1572,6 +1578,8 @@ class _AppShellState extends State<AppShell> {
                 onOpenCompare: () => unawaited(_openCompare()),
                 onOpenGrookaiObjects: () => unawaited(_openGrookaiObjectsHub()),
                 onOpenBinders: () => unawaited(_openBinderLibrary()),
+                onOpenVendorMode: () =>
+                    unawaited(_openVendorPricingWorkspace()),
                 onOpenMessages: () => unawaited(_openMessages()),
                 onOpenAccount: () => unawaited(_openAccountHub()),
                 onOpenGettingStarted: () => unawaited(_openGettingStarted()),
@@ -1600,55 +1608,77 @@ class _AppShellState extends State<AppShell> {
       ],
     );
 
-    return Scaffold(
-      key: _scaffoldKey,
-      extendBody: !isDesktopShell,
-      resizeToAvoidBottomInset: false,
-      endDrawer: _GrookaiAppDrawer(
-        signedIn: _supabase.auth.currentUser != null,
-        relationshipRouteLoading: _relationshipRouteLoading,
-        onOpenDex: _openDex,
-        onOpenSets: _openSets,
-        onOpenCompare: _openCompare,
-        onOpenGrookaiObjects: _openGrookaiObjectsHub,
-        onOpenVendorMode: _openVendorMode,
-        onOpenSalesDesk: _openSalesDesk,
-        onOpenManageStore: _openManageStore,
-        onOpenBinders: _openBinderLibrary,
-        onOpenNearby: _openNearby,
-        onOpenNearbyMap: _openNearbyMap,
-        onOpenAccount: _openAccountHub,
-        onOpenGettingStarted: _openGettingStarted,
-        onOpenFollowers: () =>
-            _openOwnRelationships(PublicCollectorRelationshipMode.followers),
-        onOpenFollowing: () =>
-            _openOwnRelationships(PublicCollectorRelationshipMode.following),
-        themeMode: widget.themeMode,
-        onThemeModeChanged: widget.onThemeModeChanged,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Color(0xFF0B0F14),
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+        systemNavigationBarColor: Color(0xFF0B0F14),
+        systemNavigationBarDividerColor: Color(0xFF0B0F14),
+        systemNavigationBarIconBrightness: Brightness.light,
+        systemNavigationBarContrastEnforced: false,
       ),
-      appBar: AppBar(
-        toolbarHeight: kShellAppBarHeight,
-        actionsPadding: const EdgeInsets.only(right: 6),
-        title: _ShellPageTitle(
-          title: _destination.title,
-          accent: switch (_destination) {
-            _ShellDestination.feed => colorScheme.secondary,
-            _ShellDestination.wall => colorScheme.tertiary,
-            _ShellDestination.vault => colorScheme.tertiary,
-            _ShellDestination.search => colorScheme.primary,
+      child: Theme(
+        data: buildGvRedesignV2Theme(),
+        child: Builder(
+          builder: (context) {
+            final v2ColorScheme = Theme.of(context).colorScheme;
+            return Scaffold(
+              key: _scaffoldKey,
+              // Keep feed actions and card metadata above the opaque dock.
+              // This also prevents large Android text from being hidden under
+              // navigation on Samsung devices.
+              extendBody: false,
+              resizeToAvoidBottomInset: false,
+              endDrawer: _GrookaiAppDrawer(
+                signedIn: _supabase.auth.currentUser != null,
+                relationshipRouteLoading: _relationshipRouteLoading,
+                onOpenDex: _openDex,
+                onOpenSets: _openSets,
+                onOpenCompare: _openCompare,
+                onOpenGrookaiObjects: _openGrookaiObjectsHub,
+                onOpenBinders: _openBinderLibrary,
+                onOpenVendorMode: _openVendorPricingWorkspace,
+                onOpenSalesDesk: _openSalesDesk,
+                onOpenManageStore: _openManageStore,
+                onOpenNearby: _openNearby,
+                onOpenNearbyMap: _openNearbyMap,
+                onOpenAccount: _openAccountHub,
+                onOpenGettingStarted: _openGettingStarted,
+                onOpenFollowers: () => _openOwnRelationships(
+                  PublicCollectorRelationshipMode.followers,
+                ),
+                onOpenFollowing: () => _openOwnRelationships(
+                  PublicCollectorRelationshipMode.following,
+                ),
+                themeMode: widget.themeMode,
+                onThemeModeChanged: widget.onThemeModeChanged,
+              ),
+              appBar: AppBar(
+                toolbarHeight: kShellAppBarHeight,
+                actionsPadding: const EdgeInsets.only(right: 6),
+                title: Text(
+                  'Grookai',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: -0.45,
+                  ),
+                ),
+                actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
+              ),
+              body: bodyWithOnboarding,
+              bottomNavigationBar: isDesktopShell
+                  ? null
+                  : _buildMobileBottomDock(
+                      context: context,
+                      colorScheme: v2ColorScheme,
+                      keyboardVisible: keyboardVisible,
+                      bottomSafeInset: bottomSafeInset,
+                    ),
+            );
           },
         ),
-        actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
       ),
-      body: bodyWithOnboarding,
-      bottomNavigationBar: isDesktopShell
-          ? null
-          : _buildMobileBottomDock(
-              context: context,
-              colorScheme: colorScheme,
-              keyboardVisible: keyboardVisible,
-              bottomSafeInset: bottomSafeInset,
-            ),
     );
   }
 
@@ -1660,36 +1690,45 @@ class _AppShellState extends State<AppShell> {
   }) {
     final routeIsCurrent = ModalRoute.of(context)?.isCurrent ?? true;
     final collapsed = routeIsCurrent && _bottomNavCollapsed && !keyboardVisible;
+    final reduceMotion = MediaQuery.disableAnimationsOf(context);
+    final viewportWidth = MediaQuery.sizeOf(context).width;
+    final textScale = MediaQuery.textScalerOf(context).scale(14) / 14;
+    final largeTextAllowance = ((textScale - 1).clamp(0.0, 1.0)) * 12;
     return AnimatedSlide(
-      duration: const Duration(milliseconds: 180),
+      duration: reduceMotion
+          ? Duration.zero
+          : const Duration(milliseconds: 180),
       curve: Curves.easeOutCubic,
       offset: keyboardVisible ? const Offset(0, 1.2) : Offset.zero,
       child: AnimatedOpacity(
-        duration: const Duration(milliseconds: 160),
+        duration: reduceMotion
+            ? Duration.zero
+            : const Duration(milliseconds: 160),
         opacity: keyboardVisible ? 0 : 1,
         child: SafeArea(
           top: false,
-          minimum: EdgeInsets.fromLTRB(12, 4, 12, bottomSafeInset > 0 ? 4 : 12),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            // Scaffold uses this height as the extended body's bottom inset.
-            // Reserve the dock's height, not the entire available screen.
-            heightFactor: 1,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 190),
-              curve: Curves.easeOutCubic,
-              constraints: BoxConstraints(
-                maxWidth: 390,
-                minHeight: collapsed
-                    ? kShellBottomNavCollapsedHeight
-                    : kShellBottomNavHeight,
+          minimum: EdgeInsets.fromLTRB(0, 4, 0, bottomSafeInset > 0 ? 4 : 8),
+          child: AnimatedContainer(
+            duration: reduceMotion
+                ? Duration.zero
+                : const Duration(milliseconds: 190),
+            curve: Curves.easeOutCubic,
+            height: collapsed
+                ? kShellBottomNavCollapsedHeight + largeTextAllowance
+                : kShellBottomNavHeight + largeTextAllowance,
+            decoration: BoxDecoration(
+              color: colorScheme.surface.withValues(alpha: 0.98),
+              border: Border(
+                top: BorderSide(
+                  color: colorScheme.outlineVariant.withValues(alpha: 0.72),
+                ),
               ),
-              child: GvSurface(
-                variant: GvSurfaceVariant.floating,
-                borderRadius: 22,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 6,
-                  vertical: collapsed ? 4 : 5,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: textScale >= 1.5 ? viewportWidth : 390,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -1771,98 +1810,87 @@ class _AppShellState extends State<AppShell> {
     required VoidCallback onPressed,
   }) {
     final selected = _destination.navIndex == navIndex;
+    final textScale = MediaQuery.textScalerOf(context).scale(14) / 14;
+    final useIconOnly = textScale >= 1.5;
     final foreground = selected
         ? colorScheme.primary
         : colorScheme.onSurface.withValues(alpha: 0.68);
-    final background = selected
-        ? colorScheme.primary.withValues(alpha: 0.12)
-        : Colors.transparent;
+    final background = selected ? Colors.transparent : Colors.transparent;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Tooltip(
         message: label,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(14),
-          onTap: onPressed,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            curve: Curves.easeOutCubic,
-            // Android font metrics can be a couple of logical pixels taller
-            // across OS versions even at the default text scale. Keep the
-            // visual target height while allowing the one-line label to claim
-            // its measured height instead of overflowing a fixed box.
-            constraints: BoxConstraints(minHeight: collapsed ? 50 : 54),
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-            decoration: BoxDecoration(
-              color: background,
-              borderRadius: BorderRadius.circular(14),
-              border: selected
-                  ? Border.all(
-                      color: colorScheme.primary.withValues(alpha: 0.28),
-                    )
-                  : null,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 180),
-                  width: selected ? 18 : 0,
-                  height: 2,
-                  decoration: BoxDecoration(
-                    color: selected ? colorScheme.primary : Colors.transparent,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-                const SizedBox(height: 3),
-                if (isPrimaryAction)
-                  Container(
-                    width: collapsed ? 28 : 30,
-                    height: collapsed ? 28 : 30,
+        child: Semantics(
+          label: label,
+          button: true,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(14),
+            onTap: onPressed,
+            child: AnimatedContainer(
+              duration: MediaQuery.disableAnimationsOf(context)
+                  ? Duration.zero
+                  : const Duration(milliseconds: 180),
+              curve: Curves.easeOutCubic,
+              // Android font metrics can be a couple of logical pixels taller
+              // across OS versions even at the default text scale. Keep the
+              // visual target height while allowing the one-line label to claim
+              // its measured height instead of overflowing a fixed box.
+              constraints: BoxConstraints(minHeight: collapsed ? 50 : 54),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+              decoration: BoxDecoration(
+                color: background,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AnimatedContainer(
+                    duration: MediaQuery.disableAnimationsOf(context)
+                        ? Duration.zero
+                        : const Duration(milliseconds: 180),
+                    width: selected ? 18 : 0,
+                    height: 2,
                     decoration: BoxDecoration(
                       color: selected
                           ? colorScheme.primary
-                          : colorScheme.primary.withValues(alpha: 0.16),
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: colorScheme.primary.withValues(alpha: 0.46),
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  if (isPrimaryAction)
+                    Icon(icon, size: selected ? 21 : 20, color: foreground)
+                  else
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Icon(icon, size: selected ? 19 : 18, color: foreground),
+                        if (badgeCount > 0)
+                          Positioned(
+                            right: -13,
+                            top: -8,
+                            child: _DockUnreadBadge(count: badgeCount),
+                          ),
+                      ],
+                    ),
+                  const SizedBox(height: 2),
+                  if (!useIconOnly)
+                    Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: foreground,
+                        fontSize: collapsed ? 10 : 11,
+                        fontWeight: selected
+                            ? FontWeight.w700
+                            : FontWeight.w600,
+                        letterSpacing: 0,
                       ),
                     ),
-                    child: Icon(
-                      icon,
-                      size: 17,
-                      color: selected
-                          ? colorScheme.onPrimary
-                          : colorScheme.primary,
-                    ),
-                  )
-                else
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Icon(icon, size: selected ? 19 : 18, color: foreground),
-                      if (badgeCount > 0)
-                        Positioned(
-                          right: -13,
-                          top: -8,
-                          child: _DockUnreadBadge(count: badgeCount),
-                        ),
-                    ],
-                  ),
-                const SizedBox(height: 2),
-                Text(
-                  label,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: foreground,
-                    fontSize: collapsed ? 10 : 11,
-                    fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
-                    letterSpacing: 0,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -1871,6 +1899,7 @@ class _AppShellState extends State<AppShell> {
   }
 }
 
+// ignore: unused_element
 class _ShellPageTitle extends StatelessWidget {
   const _ShellPageTitle({required this.title, required this.accent});
 
@@ -1944,6 +1973,7 @@ class _DockUnreadBadge extends StatelessWidget {
 class _GrookaiDesktopRail extends StatelessWidget {
   const _GrookaiDesktopRail({
     required this.currentDestination,
+    required this.signedIn,
     required this.onOpenSearch,
     required this.onOpenFeed,
     required this.onOpenWall,
@@ -1954,6 +1984,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
     required this.onOpenCompare,
     required this.onOpenGrookaiObjects,
     required this.onOpenBinders,
+    required this.onOpenVendorMode,
     required this.onOpenMessages,
     required this.onOpenAccount,
     required this.onOpenGettingStarted,
@@ -1961,6 +1992,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
   });
 
   final _ShellDestination currentDestination;
+  final bool signedIn;
   final VoidCallback onOpenSearch;
   final VoidCallback onOpenFeed;
   final VoidCallback onOpenWall;
@@ -1971,6 +2003,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
   final VoidCallback onOpenCompare;
   final VoidCallback onOpenGrookaiObjects;
   final VoidCallback onOpenBinders;
+  final VoidCallback onOpenVendorMode;
   final VoidCallback onOpenMessages;
   final VoidCallback onOpenAccount;
   final VoidCallback onOpenGettingStarted;
@@ -2042,6 +2075,12 @@ class _GrookaiDesktopRail extends StatelessWidget {
               selected: currentDestination == _ShellDestination.search,
               onTap: onOpenSearch,
             ),
+            if (signedIn)
+              _GrookaiRailTile(
+                icon: Icons.storefront_outlined,
+                label: 'Vendor Mode',
+                onTap: onOpenVendorMode,
+              ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Divider(height: 1),
@@ -2264,7 +2303,7 @@ class _GrookaiAppDrawer extends StatelessWidget {
         ),
         if (signedIn)
           _GrookaiDrawerTile(
-            icon: Icons.sell_outlined,
+            icon: Icons.storefront_outlined,
             label: 'Vendor Mode',
             onTap: () => _closeThenAsync(context, onOpenVendorMode),
           ),
@@ -3420,7 +3459,7 @@ class _MyWallTabState extends State<_MyWallTab> {
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return const Center(child: CircularProgressIndicator());
+      return const _MyWallLoadingSkeleton();
     }
 
     if (_loadFailed) {
@@ -3514,6 +3553,122 @@ class _MyWallTabState extends State<_MyWallTab> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _MyWallLoadingSkeleton extends StatelessWidget {
+  const _MyWallLoadingSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    final blockColor = Theme.of(
+      context,
+    ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.62);
+    Widget block({required double height, double? width, double radius = 8}) {
+      return Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: blockColor,
+          borderRadius: BorderRadius.circular(radius),
+        ),
+      );
+    }
+
+    return Semantics(
+      label: 'Loading your Wall',
+      liveRegion: true,
+      child: ExcludeSemantics(
+        child: ListView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: EdgeInsets.fromLTRB(
+            16,
+            18,
+            16,
+            shellContentBottomPadding(context),
+          ),
+          children: [
+            Row(
+              children: [
+                block(height: 56, width: 56, radius: 18),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      block(height: 18, width: 156),
+                      const SizedBox(height: 8),
+                      block(height: 12, width: 106),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
+            block(height: 44),
+            const SizedBox(height: 18),
+            for (var row = 0; row < 2; row++) ...[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Expanded(child: _MyWallLoadingTile()),
+                  SizedBox(width: 12),
+                  Expanded(child: _MyWallLoadingTile()),
+                ],
+              ),
+              if (row == 0) const SizedBox(height: 20),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MyWallLoadingTile extends StatelessWidget {
+  const _MyWallLoadingTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final blockColor = Theme.of(
+      context,
+    ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.62);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AspectRatio(
+          aspectRatio: 0.72,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: blockColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        FractionallySizedBox(
+          widthFactor: 0.76,
+          child: Container(
+            height: 14,
+            decoration: BoxDecoration(
+              color: blockColor,
+              borderRadius: BorderRadius.circular(999),
+            ),
+          ),
+        ),
+        const SizedBox(height: 7),
+        FractionallySizedBox(
+          widthFactor: 0.52,
+          child: Container(
+            height: 10,
+            decoration: BoxDecoration(
+              color: blockColor,
+              borderRadius: BorderRadius.circular(999),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

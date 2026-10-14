@@ -449,11 +449,16 @@ async function applyProtectedRouteAuth(request: NextRequest) {
 export async function proxy(request: NextRequest, event: NextFetchEvent) {
   if (collectorPreview) {
     const kind = previewRequestKind(request.nextUrl.pathname, request.method);
+    const isLocalVisualFixtureAction =
+      process.env.GROOKAI_VISUAL_TEST_MODE === "1" &&
+      process.env.VERCEL !== "1" &&
+      process.env.NODE_ENV !== "production" &&
+      request.nextUrl.pathname.startsWith("/visual-fixtures/");
     const headers = new Headers(request.headers);
     headers.delete("authorization");
     headers.delete("cookie");
     let response: NextResponse;
-    if (kind === "deny") {
+    if (kind === "deny" && !isLocalVisualFixtureAction) {
       response = NextResponse.json({ error: "Read-only design preview" }, { status: 403 });
     } else if (kind === "account") {
       response = NextResponse.redirect(new URL("/preview-access", request.url));

@@ -16,6 +16,7 @@ import {
 } from "@/lib/network/intent";
 
 export const dynamic = "force-dynamic";
+const NETWORK_STREAM_PAGE_SIZE = 8;
 const NETWORK_STREAM_PAGE_LIMIT = 24;
 
 function buildCurrentPath(intent: string | null) {
@@ -43,11 +44,13 @@ export default async function NetworkPage(
   const viewerUserId = user?.id ?? null;
   const intent = normalizeDiscoverableVaultIntent(searchParams?.intent);
   const currentPath = buildCurrentPath(intent);
-  const rows = await getCardStreamRows({
+  const pageRows = await getCardStreamRows({
     intent,
     excludeUserId: viewerUserId,
-    limit: NETWORK_STREAM_PAGE_LIMIT,
+    limit: NETWORK_STREAM_PAGE_SIZE + 1 +
+      (NETWORK_STREAM_PAGE_LIMIT - NETWORK_STREAM_PAGE_SIZE - 1),
   });
+  const rows = pageRows.slice(0, NETWORK_STREAM_PAGE_SIZE);
   const contactEligibilityTargets: ContactEligibilityTarget[] = rows.flatMap((row) => {
     const copyTargets = row.inPlayCopies.map((copy) => ({
       vaultItemId: copy.vaultItemId,

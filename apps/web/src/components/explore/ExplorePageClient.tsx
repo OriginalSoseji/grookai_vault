@@ -1561,7 +1561,7 @@ export default function ExplorePageClient({
       {isDiscoveryMode ? (
         <div className="gv-collector-discovery-heading flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/70 pb-5 dark:border-slate-800/70">
           <div className="min-w-0 flex-1 space-y-2">
-            <h1 className="gv-collector-discovery-title text-3xl font-semibold text-slate-950 dark:text-slate-50">A good find starts here.</h1>
+            <h1 className="gv-collector-discovery-title text-3xl font-semibold text-slate-950 dark:text-slate-50">Search the catalog</h1>
             <p className="gv-collector-discovery-description text-sm text-slate-600 dark:text-slate-400">Old favorites. New obsessions. The next piece of your collection.</p>
           </div>
           <Link

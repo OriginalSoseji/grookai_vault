@@ -10,7 +10,10 @@ void main() {
     final panel = File(
       'lib/widgets/vault/owned_sealed_panel.dart',
     ).readAsStringSync();
-    expect(wall, contains('wallCount: includesSealed ? null :'));
+    expect(
+      wall,
+      matches(RegExp(r'wallCount:\s*includesSealed\s*\?\s*null\s*:')),
+    );
     expect(wall, contains('_activeCards.isNotEmpty || !includesSealed'));
     expect(wall, contains('onInventoryChanged: widget.onWallChanged'));
     expect(panel, contains('removed > 0'));

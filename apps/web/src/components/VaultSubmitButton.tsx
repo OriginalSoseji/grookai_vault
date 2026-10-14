@@ -12,7 +12,7 @@ type VaultSubmitButtonProps = {
 
 export default function VaultSubmitButton({
   label,
-  pendingLabel = "Adding...",
+  pendingLabel = "Adding…",
   successActive = false,
   successLabel = "Added",
   disabled = false,
@@ -24,7 +24,7 @@ export default function VaultSubmitButton({
     <button
       type="submit"
       disabled={pending || disabled}
-      className={`inline-flex min-w-[140px] items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60 ${
+      className={`inline-flex min-h-11 w-full min-w-[140px] items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-white transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto ${
         isSuccess
           ? "bg-emerald-600 shadow-[0_10px_24px_rgba(5,150,105,0.18)] hover:bg-emerald-600"
           : "bg-slate-950 hover:bg-slate-800"

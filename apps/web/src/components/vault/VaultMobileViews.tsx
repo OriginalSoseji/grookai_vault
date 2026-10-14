@@ -27,11 +27,16 @@ import {
 } from "@/components/vault/VaultCardPrimitives";
 import { type VaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { getVaultIntentLabel } from "@/lib/network/intent";
+import {
+  addCardReturnPath,
+  addCollectionReturnPath,
+} from "@/lib/navigation/cardDetailNavigation";
 
 type VaultMobileCommonProps = {
   items: VaultCardData[];
   mode: VaultMobileViewMode;
   expandedCardId: string | null;
+  returnPath: string;
   onExpansionToggle: (item: VaultCardData) => void;
 };
 
@@ -71,13 +76,15 @@ function getRowKey(item: VaultCardData) {
   return item.card_id;
 }
 
-function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">) {
+function getSingleCopyHref(item: Pick<VaultCardData, "copy_items">, returnPath: string) {
   if (item.copy_items.length !== 1) {
     return null;
   }
 
   const gvviId = item.copy_items[0]?.gv_vi_id;
-  return gvviId ? `/vault/gvvi/${encodeURIComponent(gvviId)}` : null;
+  return gvviId
+    ? addCollectionReturnPath(`/vault/gvvi/${encodeURIComponent(gvviId)}`, returnPath)
+    : null;
 }
 
 function getVaultItemImagePresentation(item: VaultCardData) {
@@ -97,7 +104,7 @@ function getVaultItemImagePresentation(item: VaultCardData) {
   );
 }
 
-function MobileGridCard({ item }: { item: VaultCardData }) {
+function MobileGridCard({ item, returnPath }: { item: VaultCardData; returnPath: string }) {
   const displayIdentity = resolveDisplayIdentity(item);
   const imagePresentation = getVaultItemImagePresentation(item);
   const cardValue = formatVaultCardValue(item.effective_price);
@@ -107,6 +114,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
     unreadMessageCount: item.unread_message_count,
   });
   const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
+  const cardHref = addCardReturnPath(`/card/${item.gv_id}`, returnPath);
 
   return (
     <PokemonCardGridTile
@@ -115,7 +123,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       imageSrc={item.image_url}
       imageFallbackSrc={item.canonical_image_url}
       imageAlt={displayIdentity.display_name}
-      imageHref={`/card/${item.gv_id}`}
+      imageHref={cardHref}
       imagePrefetch={false}
       imageFallbackLabel={displayIdentity.display_name}
       imageOverlay={
@@ -128,7 +136,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
       }
       imageClassName="drop-shadow-[0_14px_24px_rgba(15,23,42,0.14)]"
       title={
-        <Link href={`/card/${item.gv_id}`} prefetch={false} className="line-clamp-2 block transition hover:text-slate-700">
+        <Link href={cardHref} prefetch={false} className="line-clamp-2 block transition hover:text-slate-700">
           {displayIdentity.display_name}
         </Link>
       }
@@ -154,7 +162,7 @@ function MobileGridCard({ item }: { item: VaultCardData }) {
   );
 }
 
-function MobileCompactRow({ item }: { item: VaultCardData }) {
+function MobileCompactRow({ item, returnPath }: { item: VaultCardData; returnPath: string }) {
   const displayIdentity = resolveDisplayIdentity(item);
   const imagePresentation = getVaultItemImagePresentation(item);
   const cardValue = formatVaultCardValue(item.effective_price);
@@ -164,10 +172,11 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
     unreadMessageCount: item.unread_message_count,
   });
   const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
+  const cardHref = addCardReturnPath(`/card/${item.gv_id}`, returnPath);
 
   return (
     <Link
-      href={`/card/${item.gv_id}`}
+      href={cardHref}
       prefetch={false}
       className="flex items-center gap-3.5 rounded-[1.4rem] border border-slate-200/80 bg-white/95 px-3.5 py-3.5 shadow-[0_18px_36px_-30px_rgba(15,23,42,0.26)] transition hover:border-slate-300"
     >
@@ -215,6 +224,7 @@ function MobileCompactRow({ item }: { item: VaultCardData }) {
 function MobileDetailRow({
   item,
   expandedCardId,
+  returnPath,
   onExpansionToggle,
 }: Omit<VaultMobileCommonProps, "items" | "mode"> & { item: VaultCardData }) {
   const rowKey = getRowKey(item);
@@ -222,7 +232,10 @@ function MobileDetailRow({
   const displayIdentity = resolveDisplayIdentity(item);
   const imagePresentation = getVaultItemImagePresentation(item);
   const intentMixSummary = formatIntentMixSummary(item);
-  const manageCardHref = `/vault/card/${encodeURIComponent(item.card_id)}`;
+  const manageCardHref = addCollectionReturnPath(
+    `/vault/card/${encodeURIComponent(item.card_id)}`,
+    returnPath,
+  );
   const cardValue = formatVaultCardValue(item.effective_price);
   const secondaryContext = formatVaultSecondaryContext(item);
   const messageSignal = getVaultMessageSignalLabel({
@@ -230,20 +243,21 @@ function MobileDetailRow({
     unreadMessageCount: item.unread_message_count,
   });
   const primaryActionHref =
-    (item.active_message_count > 0 ? item.messages_href : null) ?? getSingleCopyHref(item) ?? manageCardHref;
+    (item.active_message_count > 0 ? item.messages_href : null) ?? getSingleCopyHref(item, returnPath) ?? manageCardHref;
   const primaryActionLabel = getVaultPrimaryActionLabel({
     inPlayCount: item.in_play_count,
     activeMessageCount: item.active_message_count,
   });
   const previewCopies = item.copy_items.slice(0, 2);
   const copyPresentationSummary = getVaultCopyPresentationSummary(item.copy_items);
+  const cardHref = addCardReturnPath(`/card/${item.gv_id}`, returnPath);
 
   return (
     <article className="rounded-[1.65rem] border border-slate-200/80 bg-white/95 p-4 shadow-[0_24px_48px_-36px_rgba(15,23,42,0.3)]">
       <div className="space-y-4">
         <div className="flex gap-4">
           <Link
-            href={`/card/${item.gv_id}`}
+            href={cardHref}
             prefetch={false}
             className="flex w-24 shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-slate-200 bg-slate-50 p-3"
           >
@@ -260,7 +274,7 @@ function MobileDetailRow({
           <div className="min-w-0 flex-1 space-y-3">
             <div className="space-y-2">
               <div className="flex flex-wrap items-start justify-between gap-3">
-                <Link href={`/card/${item.gv_id}`} prefetch={false} className="min-w-0 flex-1">
+                <Link href={cardHref} prefetch={false} className="min-w-0 flex-1">
                   <h3 className="line-clamp-2 text-lg font-semibold tracking-tight text-slate-950">
                     {displayIdentity.display_name}
                   </h3>
@@ -348,7 +362,9 @@ function MobileDetailRow({
 
                 <div className="divide-y divide-slate-200/70 border-y border-slate-200/70">
                   {previewCopies.map((copy) => {
-                    const copyHref = copy.gv_vi_id ? `/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}` : null;
+                    const copyHref = copy.gv_vi_id
+                      ? addCollectionReturnPath(`/vault/gvvi/${encodeURIComponent(copy.gv_vi_id)}`, returnPath)
+                      : null;
                     const createdAt = formatVaultCopyDate(copy.created_at);
 
                     return (
@@ -425,7 +441,7 @@ export function VaultMobileViews(props: VaultMobileCommonProps) {
     return (
       <div className="space-y-2.5 md:hidden">
         {items.map((item) => (
-          <MobileCompactRow key={item.id} item={item} />
+          <MobileCompactRow key={item.id} item={item} returnPath={props.returnPath} />
         ))}
       </div>
     );
@@ -444,7 +460,7 @@ export function VaultMobileViews(props: VaultMobileCommonProps) {
   return (
     <div className="grid grid-cols-2 gap-3 md:hidden">
       {items.map((item) => (
-        <MobileGridCard key={item.id} item={item} />
+        <MobileGridCard key={item.id} item={item} returnPath={props.returnPath} />
       ))}
     </div>
   );

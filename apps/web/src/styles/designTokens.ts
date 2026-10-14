@@ -23,8 +23,8 @@ export const shadows = {
 } as const;
 
 export const transitions = {
-  fast: "transition-all duration-100 ease-out",
-  normal: "transition-all duration-150 ease-out",
+  fast: "transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-100 ease-out",
+  normal: "transition-[color,background-color,border-color,opacity,transform,box-shadow] duration-150 ease-out",
 } as const;
 
 export const pageWidths = {

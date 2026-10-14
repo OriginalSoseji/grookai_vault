@@ -64,6 +64,7 @@ import 'services/account/account_profile_service.dart';
 import 'services/onboarding/onboarding_ladder_service.dart';
 import 'services/diagnostics/app_boot_timing.dart';
 import 'services/diagnostics/grookai_crash_reporting_service.dart';
+import 'services/search/local_recent_searches.dart';
 import 'services/grookai_dex/grookai_dex_service.dart';
 import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
@@ -491,70 +492,17 @@ class _CatalogCardRow extends _CatalogRow {
 }
 
 class _ProductSurfaceCard extends StatelessWidget {
-  const _ProductSurfaceCard({
-    required this.child,
-    this.padding = const EdgeInsets.all(16),
-  });
+  const _ProductSurfaceCard({required this.child});
 
   final Widget child;
-  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
     return GvSurface(
       variant: GvSurfaceVariant.grouped,
       borderRadius: 22,
-      padding: padding,
+      padding: const EdgeInsets.all(16),
       child: child,
-    );
-  }
-}
-
-class _ProductSectionHeading extends StatelessWidget {
-  const _ProductSectionHeading({
-    required this.title,
-    required this.description,
-    this.trailing,
-  });
-
-  final String title;
-  final String description;
-  final Widget? trailing;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: theme.textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0,
-                ),
-              ),
-              if (description.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.72),
-                    height: 1.35,
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
-        if (trailing != null) ...[const SizedBox(width: 12), trailing!],
-      ],
     );
   }
 }
@@ -665,11 +613,15 @@ class _CatalogSearchField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onChanged;
   final ValueChanged<String>? onSubmitted;
+  final int activeFilterCount;
+  final VoidCallback? onFilterPressed;
 
   const _CatalogSearchField({
     required this.controller,
     required this.onChanged,
     this.onSubmitted,
+    this.activeFilterCount = 0,
+    this.onFilterPressed,
   });
 
   @override
@@ -692,6 +644,19 @@ class _CatalogSearchField extends StatelessWidget {
             Icons.search_rounded,
             color: colorScheme.onSurfaceVariant,
           ),
+          suffixIcon: onFilterPressed == null
+              ? null
+              : IconButton(
+                  tooltip: activeFilterCount == 0
+                      ? 'Search filters'
+                      : 'Search filters, $activeFilterCount active',
+                  onPressed: onFilterPressed,
+                  icon: Badge(
+                    isLabelVisible: activeFilterCount > 0,
+                    label: Text('$activeFilterCount'),
+                    child: const Icon(Icons.tune_rounded),
+                  ),
+                ),
           hintText: 'Search in a sentence',
           filled: true,
           fillColor: colorScheme.surfaceContainerLow,
@@ -718,6 +683,171 @@ class _CatalogSearchField extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _RecentSearchesSection extends StatelessWidget {
+  const _RecentSearchesSection({
+    required this.searches,
+    required this.onSelected,
+    required this.onRemove,
+    required this.onClear,
+  });
+
+  final List<String> searches;
+  final ValueChanged<String> onSelected;
+  final ValueChanged<String> onRemove;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                'Recent searches',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            TextButton(onPressed: onClear, child: const Text('Clear all')),
+          ],
+        ),
+        for (final search in searches)
+          DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: colorScheme.outlineVariant.withValues(alpha: 0.34),
+                ),
+              ),
+            ),
+            child: InkWell(
+              onTap: () => onSelected(search),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 54),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.history_rounded,
+                      color: colorScheme.onSurface.withValues(alpha: 0.62),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        search,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    IconButton(
+                      tooltip: 'Remove $search',
+                      onPressed: () => onRemove(search),
+                      icon: const Icon(Icons.close_rounded),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _SearchBrowseSection extends StatelessWidget {
+  const _SearchBrowseSection({
+    required this.onBrowseSets,
+    required this.onBrowseDex,
+    required this.onBrowseSpecialVersions,
+  });
+
+  final VoidCallback onBrowseSets;
+  final VoidCallback onBrowseDex;
+  final VoidCallback onBrowseSpecialVersions;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    Widget row({
+      required IconData icon,
+      required String title,
+      required String subtitle,
+      required VoidCallback onTap,
+    }) {
+      return InkWell(
+        onTap: onTap,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 64),
+          child: Row(
+            children: [
+              SizedBox(width: 44, child: Icon(icon)),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.chevron_right_rounded),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          'Browse',
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: 6),
+        row(
+          icon: Icons.layers_outlined,
+          title: 'Sets',
+          subtitle: 'Explore every card set',
+          onTap: onBrowseSets,
+        ),
+        row(
+          icon: Icons.catching_pokemon_outlined,
+          title: 'Dex',
+          subtitle: 'Browse progress by Pokémon species',
+          onTap: onBrowseDex,
+        ),
+        row(
+          icon: Icons.auto_awesome_outlined,
+          title: 'Special versions',
+          subtitle: 'Browse alternate art, stamps, foils, and more',
+          onTap: onBrowseSpecialVersions,
+        ),
+      ],
     );
   }
 }
@@ -3579,6 +3709,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  static const _recentSearchesKey = 'catalog_recent_searches_v1';
   final supabase = Supabase.instance.client;
   final _ownershipAdapter = OwnershipResolverAdapter.instance;
   final _searchCtrl = TextEditingController();
@@ -3618,6 +3749,7 @@ class HomePageState extends State<HomePage> {
   AppCardViewMode _viewMode = AppCardViewMode.grid;
   final Set<String> _addingCardIds = <String>{};
   bool _showFeedDebugOverlay = kDebugMode && kFeedDebugOverlay;
+  List<String> _recentSearches = const [];
 
   List<CardPrint> _takeSearchResultBatch(List<CardPrint> cards, int limit) {
     if (cards.length <= limit) {
@@ -3850,6 +3982,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    unawaited(_loadRecentSearches());
     _searchParameters.addAll(widget.initialSearchParameters);
     if (widget.initialQuery.trim().isNotEmpty || _searchParameters.isNotEmpty) {
       _searchCtrl.text = widget.initialQuery;
@@ -3859,6 +3992,45 @@ class HomePageState extends State<HomePage> {
     } else {
       _loadTrending();
     }
+  }
+
+  Future<void> _loadRecentSearches() async {
+    try {
+      final preferences = await SharedPreferences.getInstance();
+      final searches = normalizeLocalRecentSearches(
+        preferences.getStringList(_recentSearchesKey),
+      );
+      if (mounted) setState(() => _recentSearches = searches);
+    } catch (_) {
+      // Local search history is optional and never blocks catalog search.
+    }
+  }
+
+  Future<void> _saveRecentSearches(List<String> searches) async {
+    try {
+      final preferences = await SharedPreferences.getInstance();
+      await preferences.setStringList(_recentSearchesKey, searches);
+    } catch (_) {
+      // Local search history is optional and never blocks catalog search.
+    }
+  }
+
+  void _recordRecentSearch(String query) {
+    final next = recordLocalRecentSearch(_recentSearches, query);
+    if (listEquals(next, _recentSearches)) return;
+    setState(() => _recentSearches = next);
+    unawaited(_saveRecentSearches(next));
+  }
+
+  void _removeRecentSearch(String query) {
+    final next = removeLocalRecentSearch(_recentSearches, query);
+    setState(() => _recentSearches = next);
+    unawaited(_saveRecentSearches(next));
+  }
+
+  void _clearRecentSearches() {
+    setState(() => _recentSearches = const []);
+    unawaited(_saveRecentSearches(const []));
   }
 
   @override
@@ -3964,40 +4136,6 @@ class HomePageState extends State<HomePage> {
         .toList(growable: false);
   }
 
-  Widget _buildSearchFilterButton({
-    required ThemeData theme,
-    required Map<String, int> identityFilterCounts,
-    required List<IdentityFilterOption> visibleIdentityFilters,
-  }) {
-    final colorScheme = theme.colorScheme;
-    final activeCount = _activeSearchFilterCount;
-    return OutlinedButton.icon(
-      onPressed: () => _openSearchFiltersSheet(
-        identityFilterCounts: identityFilterCounts,
-        visibleIdentityFilters: visibleIdentityFilters,
-      ),
-      icon: const Icon(Icons.tune_rounded, size: 18),
-      label: Text(activeCount == 0 ? 'Filters' : 'Filters · $activeCount'),
-      style: OutlinedButton.styleFrom(
-        visualDensity: VisualDensity.compact,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        foregroundColor: colorScheme.onSurface.withValues(alpha: 0.84),
-        side: BorderSide(
-          color: activeCount == 0
-              ? colorScheme.outline.withValues(alpha: 0.26)
-              : colorScheme.primary.withValues(alpha: 0.7),
-        ),
-        backgroundColor: activeCount == 0
-            ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.24)
-            : colorScheme.primary.withValues(alpha: 0.1),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        textStyle: theme.textTheme.labelMedium?.copyWith(
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-    );
-  }
-
   Future<void> _openSearchFiltersSheet({
     required Map<String, int> identityFilterCounts,
     required List<IdentityFilterOption> visibleIdentityFilters,
@@ -4034,7 +4172,7 @@ class HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Refine by game, language, identity, and rarity.',
+                      'Filtered by game, language, identity, and rarity.',
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onSurface.withValues(alpha: 0.64),
                       ),
@@ -4218,12 +4356,13 @@ class HomePageState extends State<HomePage> {
     return _applyRarityFilter(identityFiltered, filter: rarityFilter);
   }
 
-  Future<void> _runSearch(String query) async {
+  Future<void> _runSearch(String query, {bool record = false}) async {
     final trimmed = query.trim();
     if (_shouldShowCuratedLanding(trimmed)) {
       _resetCuratedLandingState();
       return;
     }
+    if (record) _recordRecentSearch(trimmed);
 
     final searchKey = jsonEncode([
       trimmed,
@@ -4352,7 +4491,7 @@ class HomePageState extends State<HomePage> {
       text: query,
       selection: TextSelection.collapsed(offset: query.length),
     );
-    unawaited(_runSearch(query));
+    unawaited(_runSearch(query, record: true));
   }
 
   void _onQueryChanged(String value) {
@@ -4381,7 +4520,7 @@ class HomePageState extends State<HomePage> {
 
   void _submitSearch(String value) {
     _debounce?.cancel();
-    unawaited(_runSearch(value.trim()));
+    unawaited(_runSearch(value.trim(), record: true));
   }
 
   void _handleRarityFilterChanged(_RarityFilter filter) {
@@ -5630,6 +5769,11 @@ class HomePageState extends State<HomePage> {
                 controller: _searchCtrl,
                 onChanged: _onQueryChanged,
                 onSubmitted: _submitSearch,
+                activeFilterCount: _activeSearchFilterCount,
+                onFilterPressed: () => _openSearchFiltersSheet(
+                  identityFilterCounts: identityFilterCounts,
+                  visibleIdentityFilters: visibleIdentityFilters,
+                ),
               ),
               if (_searchInterpretation != null && !_loading)
                 SearchInterpretationChips(
@@ -5676,12 +5820,6 @@ class HomePageState extends State<HomePage> {
                   final utilityControls = Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      _buildSearchFilterButton(
-                        theme: theme,
-                        identityFilterCounts: identityFilterCounts,
-                        visibleIdentityFilters: visibleIdentityFilters,
-                      ),
-                      const SizedBox(width: 8),
                       SharedCardViewModeButton(
                         value: _viewMode,
                         onChanged: (mode) {
@@ -5735,6 +5873,17 @@ class HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            if (showingCuratedLanding &&
+                                !widget.signedOutBrowse &&
+                                _recentSearches.isNotEmpty) ...[
+                              _RecentSearchesSection(
+                                searches: _recentSearches,
+                                onSelected: _runSentenceSearchExample,
+                                onRemove: _removeRecentSearch,
+                                onClear: _clearRecentSearches,
+                              ),
+                              const SizedBox(height: 22),
+                            ],
                             _buildResultsLeadIn(
                               theme,
                               showingCuratedLanding: showingCuratedLanding,
@@ -5802,6 +5951,32 @@ class HomePageState extends State<HomePage> {
                             kDebugMode &&
                             kFeedDebugOverlay &&
                             _showFeedDebugOverlay,
+                      ),
+                    if (showingCuratedLanding)
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 24, 16, 4),
+                          child: _SearchBrowseSection(
+                            onBrowseSets: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute<void>(
+                                  builder: (_) => const PublicSetsScreen(),
+                                ),
+                              );
+                            },
+                            onBrowseDex: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute<void>(
+                                  builder: (_) => const GrookaiDexScreen(),
+                                ),
+                              );
+                            },
+                            onBrowseSpecialVersions: () =>
+                                _handleIdentityFilterChanged(
+                                  kIdentityFilterAlternateArt,
+                                ),
+                          ),
+                        ),
                       ),
                     if (!showingCuratedLanding && _hasMoreVisibleResults)
                       SliverPadding(

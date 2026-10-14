@@ -37,6 +37,7 @@ type ExploreDiscoverySectionsProps = {
   recentlyConfirmedCards: RecentlyConfirmedCanonicalCard[];
   currentView?: ExploreViewMode;
   canViewPricing: boolean;
+  returnPath?: string;
 };
 
 function FeaturedPrice({ card, canViewPricing }: { card: FeaturedExploreCard; canViewPricing: boolean }) {
@@ -79,7 +80,7 @@ function getDisplayName(card: FeaturedExploreCard) {
 
 export default function ExploreDiscoverySections({
   compareCards, featuredCards, notableSets, provisionalCards,
-  recentlyConfirmedCards, currentView, canViewPricing,
+  recentlyConfirmedCards, currentView, canViewPricing, returnPath = "/explore",
 }: ExploreDiscoverySectionsProps) {
   // Promote only already-authorized, usable artwork. Every supplied card stays
   // in the grid, including missing-image and review states.
@@ -231,7 +232,7 @@ export default function ExploreDiscoverySections({
       {/* LOCK: Canonical, recently confirmed, and unconfirmed Pulse surfaces must remain visually and structurally separated. */}
       {/* LOCK: Do not blend trust states into a single undifferentiated Pulse. */}
       <div className="gv-collector-discovery-confirmed">
-        <RecentlyConfirmedDiscoverySection cards={recentlyConfirmedCards} compareCards={compareCards} />
+        <RecentlyConfirmedDiscoverySection cards={recentlyConfirmedCards} compareCards={compareCards} returnPath={returnPath} />
       </div>
       <div className="gv-collector-discovery-provisional">
         <PublicProvisionalDiscoverySection cards={provisionalCards} />

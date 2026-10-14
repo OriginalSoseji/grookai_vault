@@ -4,6 +4,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import { getGrookaiDexSpeciesDetail } from "@/lib/grookaiDex/getGrookaiDexSpeciesDetail";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -211,6 +212,10 @@ export default async function GrookaiDexSpeciesPage(
     sort: activeSort,
     layout: activeLayout,
   } satisfies DexBrowseState;
+  const cardReturnPath = browseHref(detail.slug, {
+    ...browseState,
+    page: activePage,
+  });
   const hasFilters = Boolean(activeSet || activeRarity || activeFinish);
   const variantCompletionPercent = formatPercent(detail.ownedVariantOptionCount, detail.variantOptionCount);
 
@@ -321,7 +326,7 @@ export default async function GrookaiDexSpeciesPage(
               return (
                 <Link
                   key={`${cameo.gvId}:${cameo.cardName}`}
-                  href={`/card/${cameo.gvId}`}
+                  href={addCardReturnPath(`/card/${cameo.gvId}`, cardReturnPath)}
                   className="rounded-md border border-[var(--gv-border-hairline)] bg-[var(--gv-surface-container)] px-3 py-3 transition hover:bg-[var(--gv-surface-base)]"
                 >
                   <p className="truncate text-sm font-semibold text-[var(--gv-text-primary)]">{cameo.cardName}</p>
@@ -538,7 +543,7 @@ export default async function GrookaiDexSpeciesPage(
           return (
             <article key={`${card.cardPrintId}:${card.role}`} className={articleClassName}>
               {card.gvId ? (
-                <Link href={`/card/${card.gvId}`} className={artworkClassName}>
+                <Link href={addCardReturnPath(`/card/${card.gvId}`, cardReturnPath)} className={artworkClassName}>
                   {artwork}
                 </Link>
               ) : (
@@ -595,7 +600,7 @@ export default async function GrookaiDexSpeciesPage(
                 ) : null}
 
                 {card.gvId ? (
-                  <Link href={`/card/${card.gvId}`} className="inline-flex text-sm font-medium text-[var(--gv-text-secondary)] underline-offset-4 hover:text-[var(--gv-text-primary)] hover:underline">
+                  <Link href={addCardReturnPath(`/card/${card.gvId}`, cardReturnPath)} className="inline-flex text-sm font-medium text-[var(--gv-text-secondary)] underline-offset-4 hover:text-[var(--gv-text-primary)] hover:underline">
                     {card.isOwned ? "View card" : "Find card"}
                   </Link>
                 ) : null}

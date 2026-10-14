@@ -15,6 +15,7 @@ type CardPagePricingRailProps = {
   cardPrintId?: string | null;
   pricing: CardPricingUiRecord | null;
   pricingRecords?: CardPricingUiRecord[];
+  initialMarketIntelligenceRecords?: MarketIntelligenceRecordV1[];
   selectedCardPrintingId?: string | null;
   selectedPrintingGvId?: string | null;
 };
@@ -121,7 +122,6 @@ function MarketPriceBlock({
         {context}
         {observedAt ? ` · Updated ${observedAt}` : ""}
       </p>
-      <SourceRange pricing={pricing} />
     </div>
   );
 }
@@ -139,7 +139,7 @@ function ActiveAskBlock({
 
   return (
     <div
-      className="space-y-1.5 border-t border-slate-200/70 pt-4 dark:border-slate-800"
+      className="space-y-1.5"
       data-market-intelligence-proof="exact-printing-active-asks"
       data-market-intelligence-status={marketIntelligence ? "available" : "unavailable"}
       data-card-printing-id={marketIntelligence?.card_printing_id}
@@ -153,9 +153,10 @@ function ActiveAskBlock({
         Available Today
       </p>
       {isLoading ? (
-        <p className="text-xs leading-5 text-slate-500">
-          Loading active asking prices...
-        </p>
+        <div className="space-y-2" role="status" aria-label="Loading active asking prices">
+          <div className="h-7 w-24 animate-pulse rounded-md bg-slate-200 dark:bg-slate-800" />
+          <div className="h-4 w-52 animate-pulse rounded-md bg-slate-100 dark:bg-slate-900" />
+        </div>
       ) : marketIntelligence ? (
         <>
           <p className="text-2xl font-semibold text-slate-950 dark:text-slate-100">
@@ -222,7 +223,7 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
         </div>
         <Link
           href={loginHref}
-          className="inline-flex bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+          className="inline-flex min-h-11 items-center justify-center rounded-full bg-slate-950 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
         >
           Sign in
         </Link>
@@ -237,12 +238,16 @@ function AuthenticatedPricingState({
   marketIntelligence,
   isLoading,
   isLoadingMarketIntelligence,
+  error,
+  onRetry,
 }: {
   gvId: string;
   pricing: CardPricingUiRecord | null;
   marketIntelligence: MarketIntelligenceRecordV1 | null;
   isLoading: boolean;
   isLoadingMarketIntelligence: boolean;
+  error: string | null;
+  onRetry: () => void;
 }) {
   return (
     <div className="gv-card-pricing-panel px-1 py-1">
@@ -252,24 +257,48 @@ function AuthenticatedPricingState({
             Pricing
           </p>
           {isLoading ? (
-            <p className="text-sm text-slate-500">Loading market data...</p>
+            <div className="space-y-3" role="status" aria-label="Loading market data">
+              <div className="h-9 w-32 animate-pulse rounded-md bg-slate-200 dark:bg-slate-800" />
+              <div className="h-4 w-44 animate-pulse rounded-md bg-slate-100 dark:bg-slate-900" />
+              <div className="h-4 w-56 animate-pulse rounded-md bg-slate-100 dark:bg-slate-900" />
+            </div>
           ) : (
             <MarketPriceBlock pricing={pricing} />
           )}
         </div>
-        {!isLoading ? (
-          <ActiveAskBlock
-            marketIntelligence={marketIntelligence}
-            isLoading={isLoadingMarketIntelligence}
-          />
+        {error ? (
+          <div className="flex flex-col gap-3 border-t border-amber-200 pt-4 text-sm dark:border-amber-900/70 sm:flex-row sm:items-center sm:justify-between" role="status">
+            <p className="text-amber-800 dark:text-amber-200">{error}</p>
+            <button
+              type="button"
+              onClick={onRetry}
+              className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-full border border-amber-300 px-4 py-2 font-medium text-amber-900 transition-colors hover:bg-amber-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700 dark:border-amber-700 dark:text-amber-100 dark:hover:bg-amber-950/40"
+            >
+              Retry Pricing
+            </button>
+          </div>
         ) : null}
         {!isLoading ? (
-          <Link
-            href={`/card/${encodeURIComponent(gvId)}/market`}
-            className="inline-flex text-sm text-slate-500 transition hover:text-slate-950"
-          >
-            View market history
-          </Link>
+          <details className="group border-t border-slate-200/70 pt-1 dark:border-slate-800" data-market-evidence-disclosure>
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:text-slate-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:text-slate-300 dark:hover:text-white">
+              Market Evidence
+              <span aria-hidden="true" className="text-slate-400 group-open:hidden">+</span>
+              <span aria-hidden="true" className="hidden text-slate-400 group-open:inline">−</span>
+            </summary>
+            <div className="space-y-4 pb-1 pt-3">
+              {pricing ? <SourceRange pricing={pricing} /> : null}
+              <ActiveAskBlock
+                marketIntelligence={marketIntelligence}
+                isLoading={isLoadingMarketIntelligence}
+              />
+              <Link
+                href={`/card/${encodeURIComponent(gvId)}/market`}
+                className="inline-flex min-h-11 items-center text-sm font-medium text-slate-600 underline-offset-4 transition-colors hover:text-slate-950 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:text-slate-300 dark:hover:text-white"
+              >
+                View Market History
+              </Link>
+            </div>
+          </details>
         ) : null}
       </div>
     </div>
@@ -340,6 +369,7 @@ export default function CardPagePricingRail({
   cardPrintId = null,
   pricing,
   pricingRecords = [],
+  initialMarketIntelligenceRecords = [],
   selectedCardPrintingId = null,
   selectedPrintingGvId = null,
 }: CardPagePricingRailProps) {
@@ -348,13 +378,14 @@ export default function CardPagePricingRail({
   const [clientPricingRecords, setClientPricingRecords] =
     useState<CardPricingUiRecord[]>(pricingRecords);
   const [clientMarketIntelligenceRecords, setClientMarketIntelligenceRecords] =
-    useState<MarketIntelligenceRecordV1[]>([]);
+    useState<MarketIntelligenceRecordV1[]>(initialMarketIntelligenceRecords);
   const [hasLoadedPricingBundle, setHasLoadedPricingBundle] = useState(
     !cardPrintId,
   );
   const [isLoadingPricing, setIsLoadingPricing] = useState(
     effectiveIsAuthenticated && Boolean(cardPrintId),
   );
+  const [pricingError, setPricingError] = useState<string | null>(null);
   const selectedPricing = selectPricingRecord({
     records: clientPricingRecords,
     selectedCardPrintingId,
@@ -378,6 +409,7 @@ export default function CardPagePricingRail({
 
     const controller = new AbortController();
     setIsLoadingPricing(true);
+    setPricingError(null);
 
     async function loadPricing() {
       const {
@@ -394,27 +426,34 @@ export default function CardPagePricingRail({
           signal: controller.signal,
         },
       );
-      const payload = response.ok
-        ? ((await response.json()) as {
-            pricing?: CardPricingUiRecord | null;
-            pricingRecords?: CardPricingUiRecord[];
-            marketIntelligenceRecords?: MarketIntelligenceRecordV1[];
-          })
-        : null;
-      if (payload) {
-        setClientPricingRecords(
-          payload.pricingRecords ??
-            (payload.pricing ? [payload.pricing] : []),
-        );
-        setClientMarketIntelligenceRecords(
-          payload.marketIntelligenceRecords ?? [],
-        );
+      if (!response.ok) {
+        throw new Error(`Pricing request failed with ${response.status}`);
       }
-      setHasLoadedPricingBundle(true);
-      setIsLoadingPricing(false);
+      const payload = (await response.json()) as {
+        pricing?: CardPricingUiRecord | null;
+        pricingRecords?: CardPricingUiRecord[];
+        marketIntelligenceRecords?: MarketIntelligenceRecordV1[];
+      };
+      setClientPricingRecords(
+        payload.pricingRecords ??
+          (payload.pricing ? [payload.pricing] : []),
+      );
+      setClientMarketIntelligenceRecords(
+        payload.marketIntelligenceRecords ?? [],
+      );
     }
 
-    loadPricing().catch(() => setIsLoadingPricing(false));
+    loadPricing()
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setPricingError("Pricing couldn’t refresh. Check your connection, then try again.");
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) {
+          setHasLoadedPricingBundle(true);
+          setIsLoadingPricing(false);
+        }
+      });
     return () => controller.abort();
   }, [cardPrintId, effectiveIsAuthenticated, hasLoadedPricingBundle]);
 
@@ -428,6 +467,8 @@ export default function CardPagePricingRail({
       marketIntelligence={selectedMarketIntelligence}
       isLoading={isLoadingPricing && !selectedPricing}
       isLoadingMarketIntelligence={isLoadingPricing}
+      error={pricingError}
+      onRetry={() => setHasLoadedPricingBundle(false)}
     />
   );
 }

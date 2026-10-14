@@ -40,9 +40,12 @@ test('Vault remains owner-scoped and keeps the authenticated RPC boundary', () =
   assert.match(migration, /grant execute[\s\S]*to authenticated, service_role/i);
 });
 
-test('both Vault layouts render printing identity without changing mutation IDs', () => {
+test('shared Vault tile renders printing identity in both layouts without changing mutation IDs', () => {
   const occurrences = vaultUi.match(/printingIdentity\.label/g) ?? [];
-  assert.equal(occurrences.length, 2);
+  assert.equal(occurrences.length, 1);
+  assert.match(vaultUi, /return _VaultItemTile\(/);
+  assert.match(vaultUi, /SliverGrid\(/);
+  assert.match(vaultUi, /SliverList\(/);
   assert.match(vaultUi, /VaultCardService\.archiveOneVaultItem\([\s\S]*vaultItemId: vaultItemId,[\s\S]*cardId: cardId/);
   assert.match(vaultUi, /VaultCardService\.archiveAllVaultItems\([\s\S]*vaultItemId: vaultItemId,[\s\S]*cardId: cardId/);
 });

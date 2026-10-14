@@ -187,6 +187,7 @@ export type GetCardStreamRowsOptions = {
   cardPrintId?: string | null;
   excludeUserId?: string | null;
   limit?: number;
+  offset?: number;
 };
 
 function normalizeOptionalText(value: string | null | undefined) {
@@ -593,12 +594,14 @@ export async function getCardStreamRows({
   cardPrintId = null,
   excludeUserId = null,
   limit = 60,
+  offset = 0,
 }: GetCardStreamRowsOptions = {}): Promise<CardStreamRow[]> {
   const client = createServerAdminClient();
   const normalizedIntent = normalizeDiscoverableVaultIntent(intent);
   const normalizedCardPrintId = normalizeOptionalText(cardPrintId);
   const normalizedExcludeUserId = normalizeOptionalText(excludeUserId);
   const normalizedLimit = Math.max(1, Math.min(limit, 120));
+  const normalizedOffset = Math.max(0, Math.floor(offset));
 
   let query = client
     .from("v_card_stream_v1")
@@ -607,8 +610,7 @@ export async function getCardStreamRows({
       "vault_item_id,owner_user_id,owner_slug,owner_display_name,card_print_id,intent,quantity,in_play_count,trade_count,sell_count,showcase_count,raw_count,slab_count,condition_label,is_graded,grade_company,grade_value,grade_label,created_at,gv_id,name,set_code,set_name,number,image_url,display_image_url,display_image_kind",
     )
     .order("created_at", { ascending: false })
-    .order("vault_item_id", { ascending: false })
-    .limit(normalizedLimit);
+    .order("vault_item_id", { ascending: false });
 
   if (normalizedIntent) {
     query = query.gt(`${normalizedIntent}_count`, 0);
@@ -621,6 +623,11 @@ export async function getCardStreamRows({
   if (normalizedExcludeUserId) {
     query = query.neq("owner_user_id", normalizedExcludeUserId);
   }
+
+  query = query.range(
+    normalizedOffset,
+    normalizedOffset + normalizedLimit - 1,
+  );
 
   const { data, error } = await query;
   if (error) {

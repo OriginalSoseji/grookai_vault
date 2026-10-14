@@ -6,14 +6,19 @@ import CompareCardButton from "@/components/compare/CompareCardButton";
 import { buildPathWithCompareCards } from "@/lib/compareCards";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import type { RecentlyConfirmedCanonicalCard } from "@/lib/provisional/getRecentlyConfirmedCanonicalCards";
+import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 type RecentlyConfirmedDiscoverySectionProps = {
   cards: RecentlyConfirmedCanonicalCard[];
   compareCards: string[];
+  returnPath: string;
 };
 
-function buildCardHref(gvId: string, compareCards: string[]) {
-  return buildPathWithCompareCards(`/card/${gvId}`, "", compareCards);
+function buildCardHref(gvId: string, compareCards: string[], returnPath: string) {
+  return addCardReturnPath(
+    buildPathWithCompareCards(`/card/${gvId}`, "", compareCards),
+    returnPath,
+  );
 }
 
 function buildCardMetaLine(card: RecentlyConfirmedCanonicalCard) {
@@ -26,6 +31,7 @@ function buildCardMetaLine(card: RecentlyConfirmedCanonicalCard) {
 export default function RecentlyConfirmedDiscoverySection({
   cards,
   compareCards,
+  returnPath,
 }: RecentlyConfirmedDiscoverySectionProps) {
   if (cards.length === 0) {
     return null;
@@ -41,7 +47,7 @@ export default function RecentlyConfirmedDiscoverySection({
       <div className={POKEMON_CARD_DISCOVERY_COMPACT_GRID_CLASSNAME}>
         {cards.map((card) => {
           const imagePresentation = resolveCardImagePresentation(card);
-          const href = buildCardHref(card.gv_id, compareCards);
+          const href = buildCardHref(card.gv_id, compareCards, returnPath);
 
           return (
             <PokemonCardGridTile

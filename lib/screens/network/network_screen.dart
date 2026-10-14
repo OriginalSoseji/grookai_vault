@@ -22,6 +22,7 @@ import '../../services/notifications/founder_notification_service.dart';
 import '../../services/provisional/provisional_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/app_shell_metrics.dart';
 import '../../widgets/card_surface_artwork.dart';
@@ -164,9 +165,11 @@ class NetworkScreenState extends State<NetworkScreen> {
   final FounderNotificationService _founderNotificationService =
       FounderNotificationService(client: Supabase.instance.client);
 
-  _NetworkHomeSegment _segment = kPulseSurfaceEnabled
-      ? _NetworkHomeSegment.pulse
-      : _NetworkHomeSegment.discover;
+  // APP_REDESIGN_V2_PULSE_MODEL
+  // Pulse is the social card feed. The legacy notification/activity stream
+  // remains available through inbox surfaces instead of occupying the default
+  // collector-feed tab.
+  _NetworkHomeSegment _segment = _NetworkHomeSegment.discover;
   NetworkFeedMode _feedMode = NetworkFeedMode.collectors;
   String? _intent;
   bool _loading = true;
@@ -204,11 +207,7 @@ class NetworkScreenState extends State<NetworkScreen> {
     AppBootTiming.mark('network_screen_init_state');
     _scrollController.addListener(_handleScroll);
     unawaited(_restoreCachedRows());
-    if (_segment == _NetworkHomeSegment.pulse) {
-      unawaited(_loadPulse(reset: true));
-    } else {
-      _loadRows(resetSession: true);
-    }
+    _loadRows(resetSession: true);
   }
 
   @override
@@ -228,10 +227,7 @@ class NetworkScreenState extends State<NetworkScreen> {
   }
 
   void openPulse() {
-    if (!kPulseSurfaceEnabled) {
-      return;
-    }
-    unawaited(_setSegment(_NetworkHomeSegment.pulse));
+    unawaited(_setSegment(_NetworkHomeSegment.discover));
   }
 
   void openCanonicalSegment(String segment) {
@@ -239,7 +235,7 @@ class NetworkScreenState extends State<NetworkScreen> {
     final target = switch (normalized) {
       'discover' => _NetworkHomeSegment.discover,
       'following' => _NetworkHomeSegment.following,
-      _ => _NetworkHomeSegment.pulse,
+      _ => _NetworkHomeSegment.discover,
     };
     if (target == _NetworkHomeSegment.pulse && !kPulseSurfaceEnabled) {
       return;
@@ -838,6 +834,55 @@ class NetworkScreenState extends State<NetworkScreen> {
     await _loadRows(resetSession: true);
   }
 
+  Future<void> _openIntentFilterSheet() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      useSafeArea: true,
+      showDragHandle: true,
+      builder: (sheetContext) {
+        final theme = Theme.of(sheetContext);
+        final options = <(String, String?)>[
+          ('All cards', null),
+          ('For trade', 'trade'),
+          ('For sale', 'sell'),
+          ('Showcase', 'showcase'),
+        ];
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                'Filter Pulse',
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 10),
+              for (final option in options)
+                ListTile(
+                  minTileHeight: 52,
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(option.$1),
+                  trailing: _intent == option.$2
+                      ? Icon(
+                          Icons.check_rounded,
+                          color: theme.colorScheme.primary,
+                        )
+                      : null,
+                  onTap: () {
+                    Navigator.of(sheetContext).pop();
+                    unawaited(_setIntent(option.$2));
+                  },
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -861,63 +906,21 @@ class NetworkScreenState extends State<NetworkScreen> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  padding: const EdgeInsets.fromLTRB(20, 2, 12, 0),
                   child: _NetworkSegmentToggle(
                     value: _segment,
-                    pulseUnreadCount:
-                        _pulseUnreadSnapshot.unreadCount +
-                        _founderNotificationUnread.unreadCount,
+                    pulseUnreadCount: _pulseUnreadSnapshot.unreadCount,
+                    filtered: _intent != null,
                     onChanged: (segment) {
                       unawaited(_setSegment(segment));
                     },
+                    onFilterPressed: _openIntentFilterSheet,
                   ),
                 ),
               ),
-              if (_segment != _NetworkHomeSegment.pulse)
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          _IntentChip(
-                            label: 'All',
-                            selected: _intent == null,
-                            onPressed: () => _setIntent(null),
-                          ),
-                          const SizedBox(width: 8),
-                          _IntentChip(
-                            label: NetworkStreamService.getVaultIntentLabel(
-                              'trade',
-                            ),
-                            selected: _intent == 'trade',
-                            onPressed: () => _setIntent('trade'),
-                          ),
-                          const SizedBox(width: 8),
-                          _IntentChip(
-                            label: NetworkStreamService.getVaultIntentLabel(
-                              'sell',
-                            ),
-                            selected: _intent == 'sell',
-                            onPressed: () => _setIntent('sell'),
-                          ),
-                          const SizedBox(width: 8),
-                          _IntentChip(
-                            label: NetworkStreamService.getVaultIntentLabel(
-                              'showcase',
-                            ),
-                            selected: _intent == 'showcase',
-                            onPressed: () => _setIntent('showcase'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: _segment == _NetworkHomeSegment.pulse ? 10 : 6,
+                  height: _segment == _NetworkHomeSegment.pulse ? 10 : 4,
                 ),
               ),
               if (_segment != _NetworkHomeSegment.pulse &&
@@ -1386,97 +1389,98 @@ class _PulseItemRow extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final tone = _PulseTone.forItem(colorScheme, item);
-    final borderColor = item.isWantMatch
-        ? tone.foreground.withValues(alpha: 0.34)
-        : colorScheme.outline.withValues(alpha: 0.10);
-    final background = item.isWantMatch
-        ? tone.foreground.withValues(alpha: 0.055)
-        : colorScheme.surfaceContainerHighest.withValues(alpha: 0.18);
-
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onLongPress: () => _showQuickActions(context),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: background,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: borderColor),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _PulseArtworkTile(item: item),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _PulseKicker(item: item, tone: tone),
-                    const SizedBox(height: 3),
-                    Text(
-                      _primaryLine,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        color: colorScheme.onSurface,
-                        fontSize: 14.5,
-                        fontWeight: FontWeight.w600,
-                        height: 1.25,
-                        letterSpacing: 0,
-                      ),
-                    ),
-                    const SizedBox(height: 3),
-                    Text(
-                      _secondaryLine,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurface.withValues(alpha: 0.62),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        height: 1.20,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Wrap(
-                      spacing: 7,
-                      runSpacing: 4,
-                      children: [
-                        _PulseActionPill(
-                          label: item.isMemory
-                              ? 'View memory'
-                              : item.isCompletion
-                              ? 'View progress'
-                              : 'View card',
-                          icon: item.isMemory
-                              ? Icons.auto_stories_outlined
-                              : item.isCompletion
-                              ? Icons.trending_up_rounded
-                              : Icons.style_outlined,
-                          primary: true,
-                          onPressed: () => unawaited(_openPrimary(context)),
-                        ),
-                        if (item.isWantMatch &&
-                            item.contactVaultItemId.isNotEmpty)
-                          ContactOwnerButton(
-                            vaultItemId: item.contactVaultItemId,
-                            cardPrintId: item.cardPrintId,
-                            ownerUserId: item.actorUserId,
-                            ownerDisplayName: item.displayActorName,
-                            cardName: item.displayCardName,
-                            intent: item.intent,
-                            buttonLabel: 'Message collector',
-                            variant: ContactOwnerButtonVariant.pulseSecondary,
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.34),
           ),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _PulseArtworkTile(item: item),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: _PulseKicker(item: item, tone: tone),
+                      ),
+                      IconButton(
+                        tooltip: 'More actions',
+                        constraints: const BoxConstraints.tightFor(
+                          width: 44,
+                          height: 44,
+                        ),
+                        padding: EdgeInsets.zero,
+                        onPressed: () => _showQuickActions(context),
+                        icon: const Icon(Icons.more_vert_rounded, size: 20),
+                      ),
+                    ],
+                  ),
+                  Text(
+                    _primaryLine,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleSmall?.copyWith(
+                      color: colorScheme.onSurface,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      height: 1.22,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    _secondaryLine,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.62),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      height: 1.20,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  if (item.isWantMatch && item.contactVaultItemId.isNotEmpty)
+                    ContactOwnerButton(
+                      vaultItemId: item.contactVaultItemId,
+                      cardPrintId: item.cardPrintId,
+                      ownerUserId: item.actorUserId,
+                      ownerDisplayName: item.displayActorName,
+                      cardName: item.displayCardName,
+                      intent: item.intent,
+                      buttonLabel: 'Message',
+                      variant: ContactOwnerButtonVariant.pulseSecondary,
+                    )
+                  else
+                    _PulsePrimaryAction(
+                      label: item.isMemory
+                          ? 'View memory'
+                          : item.isCompletion
+                          ? 'View progress'
+                          : 'View card',
+                      icon: item.isMemory
+                          ? Icons.auto_stories_outlined
+                          : item.isCompletion
+                          ? Icons.trending_up_rounded
+                          : Icons.style_outlined,
+                      primary: true,
+                      onPressed: () => unawaited(_openPrimary(context)),
+                    ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -1978,8 +1982,8 @@ class _PulseArtworkTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 58,
-      height: 84,
+      width: 72,
+      height: 101,
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -2014,8 +2018,8 @@ class _PulseArtworkTile extends StatelessWidget {
   }
 }
 
-class _PulseActionPill extends StatelessWidget {
-  const _PulseActionPill({
+class _PulsePrimaryAction extends StatelessWidget {
+  const _PulsePrimaryAction({
     required this.label,
     required this.icon,
     required this.onPressed,
@@ -2030,46 +2034,18 @@ class _PulseActionPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final foreground = primary ? const Color(0xFF101114) : colorScheme.primary;
-    final background = primary
-        ? const Color(0xFFE9EBED)
-        : const Color(0xFF182838);
-    return Semantics(
-      button: true,
-      label: label,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 7.5),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: background,
-              borderRadius: BorderRadius.circular(999),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(icon, size: 14, color: foreground),
-                  const SizedBox(width: 7),
-                  Text(
-                    label,
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: foreground,
-                      fontSize: 12.5,
-                      fontWeight: FontWeight.w700,
-                      height: 1.0,
-                      letterSpacing: 0,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+    return TextButton.icon(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        minimumSize: const Size(44, 44),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        foregroundColor: primary ? colorScheme.primary : colorScheme.onSurface,
+        textStyle: Theme.of(
+          context,
+        ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
       ),
+      icon: Icon(icon, size: 18),
+      label: Text(label),
     );
   }
 }
@@ -2340,12 +2316,12 @@ class _NetworkFeedSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(2, 8, 2, 0),
+      padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
       child: Column(
         children: List.generate(
-          4,
+          2,
           (index) => Padding(
-            padding: EdgeInsets.only(bottom: index == 3 ? 0 : 6),
+            padding: EdgeInsets.only(bottom: index == 1 ? 0 : 6),
             child: const _NetworkSkeletonCard(),
           ),
         ),
@@ -2360,7 +2336,6 @@ class _NetworkSkeletonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final fill = colorScheme.surfaceContainerHighest.withValues(alpha: 0.72);
     final line = colorScheme.onSurface.withValues(alpha: 0.08);
 
     Widget block({required double width, required double height}) {
@@ -2373,58 +2348,58 @@ class _NetworkSkeletonCard extends StatelessWidget {
       );
     }
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: fill,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color: colorScheme.outline.withValues(alpha: 0.08),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.34),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: line,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: const SizedBox(width: 96, height: 132),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    block(width: 118, height: 14),
-                    const SizedBox(height: 10),
-                    block(width: 190, height: 20),
-                    const SizedBox(height: 8),
-                    block(width: 150, height: 12),
-                    const SizedBox(height: 22),
-                    block(width: double.infinity, height: 1),
-                    const SizedBox(height: 18),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: block(width: double.infinity, height: 34),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: block(width: double.infinity, height: 34),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Row(
+              children: [
+                block(width: 32, height: 32),
+                const SizedBox(width: 10),
+                Expanded(child: block(width: double.infinity, height: 13)),
+                const SizedBox(width: 48),
+                block(width: 54, height: 13),
+              ],
+            ),
           ),
-        ),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return ColoredBox(
+                color: colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.34,
+                ),
+                child: AspectRatio(
+                  aspectRatio: GvGridConstants.cardAspectRatio,
+                  child: DecoratedBox(decoration: BoxDecoration(color: line)),
+                ),
+              );
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                block(width: 138, height: 14),
+                const SizedBox(height: 13),
+                block(width: 190, height: 19),
+                const SizedBox(height: 7),
+                block(width: 152, height: 12),
+                const SizedBox(height: 7),
+                block(width: 108, height: 12),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -2441,11 +2416,11 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const spacing = 6.0;
+    const spacing = 0.0;
     final childCount = rows.isEmpty ? 0 : rows.length * 2 - 1;
 
     return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 2),
+      padding: EdgeInsets.zero,
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
           if (index.isOdd) {
@@ -2747,8 +2722,8 @@ class _NetworkDiscoveryContext extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 26,
-          height: 26,
+          width: 32,
+          height: 32,
           decoration: BoxDecoration(
             color: colorScheme.primary.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(999),
@@ -2759,7 +2734,7 @@ class _NetworkDiscoveryContext extends StatelessWidget {
           alignment: Alignment.center,
           child: Icon(
             Icons.auto_awesome_rounded,
-            size: 14,
+            size: 16,
             color: colorScheme.primary.withValues(alpha: 0.84),
           ),
         ),
@@ -2817,8 +2792,8 @@ class _NetworkCollectorContext extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 26,
-          height: 26,
+          width: 32,
+          height: 32,
           decoration: BoxDecoration(
             color: colorScheme.primary.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(999),
@@ -2882,49 +2857,33 @@ class _NetworkIntentMarker extends StatelessWidget {
     final normalized = label.trim().toLowerCase();
     final tone = switch (normalized) {
       'trade' => (
-        background: colorScheme.primary.withValues(alpha: 0.10),
-        border: colorScheme.primary.withValues(alpha: 0.18),
         foreground: colorScheme.primary,
         icon: Icons.sync_alt_rounded,
       ),
-      'sell' => (
-        background: colorScheme.errorContainer.withValues(alpha: 0.34),
-        border: colorScheme.error.withValues(alpha: 0.18),
-        foreground: colorScheme.error,
-        icon: Icons.sell_outlined,
-      ),
+      'sell' => (foreground: colorScheme.error, icon: Icons.sell_outlined),
       'showcase' => (
-        background: colorScheme.surfaceContainerHighest.withValues(alpha: 0.36),
-        border: colorScheme.outline.withValues(alpha: 0.12),
         foreground: colorScheme.onSurface.withValues(alpha: 0.66),
         icon: Icons.auto_awesome_outlined,
       ),
       _ => (
-        background: colorScheme.primary.withValues(alpha: 0.06),
-        border: colorScheme.primary.withValues(alpha: 0.10),
         foreground: colorScheme.onSurface.withValues(alpha: 0.64),
         icon: Icons.style_outlined,
       ),
     };
 
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: tone.background,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: tone.border),
-      ),
+    return Semantics(
+      label: '$label post intent',
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(tone.icon, size: 13, color: tone.foreground),
-          const SizedBox(width: 4),
+          Icon(tone.icon, size: 17, color: tone.foreground),
+          const SizedBox(width: 5),
           Text(
             label,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: tone.foreground,
               fontWeight: FontWeight.w700,
-              letterSpacing: 0.08,
+              letterSpacing: 0,
             ),
           ),
         ],
@@ -2988,13 +2947,11 @@ class _NetworkActionBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final Widget primaryAction;
-    final overflowActions = <_NetworkOverflowAction>[];
+    final actions = <Widget>[];
 
     if (directContact != null) {
-      primaryAction = _NetworkPrimaryActionShell(
-        // LOCK: Contact language must stay calm, clear, and product-facing.
-        child: ContactOwnerButton(
+      actions.add(
+        ContactOwnerButton(
           vaultItemInstanceId: directContact!.vaultItemInstanceId,
           vaultItemId: directContact!.vaultItemId,
           cardPrintId: row.cardPrintId,
@@ -3004,27 +2961,31 @@ class _NetworkActionBar extends StatelessWidget {
           intent: directContact!.intent,
           buttonLabel: primaryActionLabel,
           variant: ContactOwnerButtonVariant.compact,
+          iconOnly: true,
         ),
       );
     } else if (onChooseCopy != null) {
-      primaryAction = _NetworkActionLink(
-        icon: Icons.question_answer_outlined,
-        label: 'Message collector',
-        onPressed: onChooseCopy!,
-        emphasized: true,
-      );
-    } else {
-      primaryAction = _NetworkActionLink(
-        icon: Icons.open_in_new_rounded,
-        label: row.isDiscoverySource ? 'Open card' : 'View details',
-        onPressed: onViewDetails,
-        emphasized: true,
+      actions.add(
+        _NetworkIconAction(
+          icon: Icons.chat_bubble_outline_rounded,
+          label: 'Message collector',
+          onPressed: onChooseCopy!,
+          emphasized: true,
+        ),
       );
     }
 
+    actions.add(
+      _NetworkIconAction(
+        icon: Icons.info_outline_rounded,
+        label: row.isDiscoverySource ? 'Open card' : 'View details',
+        onPressed: onViewDetails,
+      ),
+    );
+
     if (directContact != null && onChooseCopy != null) {
-      overflowActions.add(
-        _NetworkOverflowAction(
+      actions.add(
+        _NetworkIconAction(
           icon: Icons.layers_outlined,
           label: 'Choose copy',
           onPressed: onChooseCopy!,
@@ -3032,117 +2993,12 @@ class _NetworkActionBar extends StatelessWidget {
       );
     }
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Flexible(child: primaryAction),
-        if (overflowActions.isNotEmpty) ...[
-          const SizedBox(width: 4),
-          _NetworkActionOverflowMenu(actions: overflowActions),
-        ],
-      ],
-    );
+    return Row(mainAxisSize: MainAxisSize.min, children: actions);
   }
 }
 
-class _NetworkOverflowAction {
-  const _NetworkOverflowAction({
-    required this.icon,
-    required this.label,
-    required this.onPressed,
-  });
-
-  final IconData icon;
-  final String label;
-  final VoidCallback onPressed;
-}
-
-class _NetworkActionOverflowMenu extends StatelessWidget {
-  const _NetworkActionOverflowMenu({required this.actions});
-
-  final List<_NetworkOverflowAction> actions;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return PopupMenuButton<_NetworkOverflowAction>(
-      tooltip: 'More actions',
-      onSelected: (action) => action.onPressed(),
-      itemBuilder: (context) {
-        return actions.map((action) {
-          return PopupMenuItem<_NetworkOverflowAction>(
-            value: action,
-            child: Row(
-              children: [
-                Icon(action.icon, size: 18),
-                const SizedBox(width: 10),
-                Text(action.label),
-              ],
-            ),
-          );
-        }).toList();
-      },
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.26),
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(
-            color: colorScheme.outline.withValues(alpha: 0.10),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(7),
-          child: Icon(
-            Icons.more_horiz_rounded,
-            size: 18,
-            color: colorScheme.onSurface.withValues(alpha: 0.68),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _NetworkPrimaryActionShell extends StatelessWidget {
-  const _NetworkPrimaryActionShell({required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Theme(
-      data: Theme.of(context).copyWith(
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            foregroundColor: colorScheme.onSurface,
-            textStyle: Theme.of(
-              context,
-            ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            visualDensity: VisualDensity.compact,
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-        ),
-      ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: colorScheme.primary.withValues(alpha: 0.06),
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(
-            color: colorScheme.primary.withValues(alpha: 0.09),
-          ),
-        ),
-        child: child,
-      ),
-    );
-  }
-}
-
-class _NetworkActionLink extends StatelessWidget {
-  const _NetworkActionLink({
+class _NetworkIconAction extends StatelessWidget {
+  const _NetworkIconAction({
     required this.icon,
     required this.label,
     required this.onPressed,
@@ -3158,32 +3014,17 @@ class _NetworkActionLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    final child = TextButton.icon(
+    return IconButton(
+      tooltip: label,
       onPressed: onPressed,
-      style: TextButton.styleFrom(
-        visualDensity: VisualDensity.compact,
+      icon: Icon(icon),
+      style: IconButton.styleFrom(
         foregroundColor: emphasized
             ? colorScheme.primary
-            : colorScheme.onSurface.withValues(alpha: 0.62),
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-        minimumSize: Size.zero,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            : colorScheme.onSurface.withValues(alpha: 0.78),
+        minimumSize: const Size(44, 44),
+        padding: const EdgeInsets.all(10),
       ),
-      icon: Icon(icon, size: 16),
-      label: Text(label),
-    );
-
-    if (!emphasized) {
-      return child;
-    }
-
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: colorScheme.primary.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: colorScheme.primary.withValues(alpha: 0.09)),
-      ),
-      child: child,
     );
   }
 }
@@ -3430,38 +3271,44 @@ class _NetworkSegmentToggle extends StatelessWidget {
   const _NetworkSegmentToggle({
     required this.value,
     required this.pulseUnreadCount,
+    required this.filtered,
     required this.onChanged,
+    required this.onFilterPressed,
   });
 
   final _NetworkHomeSegment value;
   final int pulseUnreadCount;
+  final bool filtered;
   final ValueChanged<_NetworkHomeSegment> onChanged;
+  final VoidCallback onFilterPressed;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final segments = kPulseSurfaceEnabled
-        ? const <_NetworkHomeSegment>[
-            _NetworkHomeSegment.pulse,
-            _NetworkHomeSegment.discover,
-            _NetworkHomeSegment.following,
-          ]
-        : const <_NetworkHomeSegment>[
-            _NetworkHomeSegment.discover,
-            _NetworkHomeSegment.following,
-          ];
+    const segments = <_NetworkHomeSegment>[
+      _NetworkHomeSegment.discover,
+      _NetworkHomeSegment.following,
+    ];
 
-    return Container(
-      padding: const EdgeInsets.all(4),
+    return DecoratedBox(
       decoration: BoxDecoration(
-        color: colorScheme.surface.withValues(alpha: 0.72),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.05)),
+        border: Border(
+          bottom: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.42),
+          ),
+        ),
       ),
       child: Row(
         children: [
+          Text(
+            'Pulse',
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w900,
+              letterSpacing: -0.3,
+            ),
+          ),
+          const SizedBox(width: 14),
           for (final segment in segments) ...[
-            if (segment != segments.first) const SizedBox(width: 6),
             Expanded(
               child: _NetworkSegmentChip(
                 segment: segment,
@@ -3471,6 +3318,16 @@ class _NetworkSegmentToggle extends StatelessWidget {
               ),
             ),
           ],
+          IconButton(
+            tooltip: filtered ? 'Change Pulse filter' : 'Filter Pulse',
+            onPressed: onFilterPressed,
+            icon: Badge(
+              isLabelVisible: filtered,
+              smallSize: 6,
+              backgroundColor: colorScheme.primary,
+              child: const Icon(Icons.tune_rounded, size: 20),
+            ),
+          ),
         ],
       ),
     );
@@ -3495,68 +3352,69 @@ class _NetworkSegmentChip extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final label = switch (segment) {
-      _NetworkHomeSegment.pulse => 'Pulse',
-      _NetworkHomeSegment.discover => 'Discover',
+      _NetworkHomeSegment.pulse => 'Activity',
+      _NetworkHomeSegment.discover => 'For you',
       _NetworkHomeSegment.following => 'Following',
     };
-    final icon = switch (segment) {
-      _NetworkHomeSegment.pulse => Icons.bolt_rounded,
-      _NetworkHomeSegment.discover => Icons.people_alt_outlined,
-      _NetworkHomeSegment.following => Icons.favorite_border_rounded,
-    };
+    final unreadSemantics =
+        segment == _NetworkHomeSegment.pulse && pulseUnreadCount > 0
+        ? '$label, $pulseUnreadCount unread'
+        : label;
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(18),
-        onTap: selected ? null : onPressed,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          curve: Curves.easeOut,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          decoration: BoxDecoration(
-            color: selected
-                ? colorScheme.primary.withValues(alpha: 0.10)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(
-              color: selected
-                  ? colorScheme.primary.withValues(alpha: 0.12)
-                  : Colors.transparent,
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Icon(
-                icon,
-                size: 16,
-                color: selected
-                    ? colorScheme.primary.withValues(alpha: 0.86)
-                    : colorScheme.onSurface.withValues(alpha: 0.56),
-              ),
-              const SizedBox(width: 7),
-              Flexible(
-                child: Text(
-                  label,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: selected
-                        ? colorScheme.primary.withValues(alpha: 0.86)
-                        : colorScheme.onSurface.withValues(alpha: 0.68),
-                    letterSpacing: 0.05,
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: unreadSemantics,
+      onTap: selected ? null : onPressed,
+      child: ExcludeSemantics(
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(4),
+            onTap: selected ? null : onPressed,
+            child: AnimatedContainer(
+              duration: MediaQuery.disableAnimationsOf(context)
+                  ? Duration.zero
+                  : const Duration(milliseconds: 180),
+              curve: Curves.easeOut,
+              height: 46,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border(
+                  bottom: BorderSide(
+                    color: selected ? colorScheme.primary : Colors.transparent,
+                    width: 3,
                   ),
                 ),
               ),
-              if (segment == _NetworkHomeSegment.pulse &&
-                  pulseUnreadCount > 0) ...[
-                const SizedBox(width: 6),
-                _PulseUnreadChip(count: pulseUnreadCount),
-              ],
-            ],
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Center(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: selected
+                            ? colorScheme.primary.withValues(alpha: 0.86)
+                            : colorScheme.onSurface.withValues(alpha: 0.68),
+                        letterSpacing: 0.05,
+                      ),
+                    ),
+                  ),
+                  if (segment == _NetworkHomeSegment.pulse &&
+                      pulseUnreadCount > 0)
+                    Positioned(
+                      top: 1,
+                      right: 0,
+                      child: _PulseUnreadChip(count: pulseUnreadCount),
+                    ),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -3587,73 +3445,6 @@ class _PulseUnreadChip extends StatelessWidget {
           color: amber,
           fontWeight: FontWeight.w700,
           height: 1,
-        ),
-      ),
-    );
-  }
-}
-
-class _IntentChip extends StatelessWidget {
-  const _IntentChip({
-    required this.label,
-    required this.selected,
-    required this.onPressed,
-  });
-
-  final String label;
-  final bool selected;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(999),
-        onTap: onPressed,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          curve: Curves.easeOut,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-          decoration: BoxDecoration(
-            color: selected
-                ? colorScheme.primary.withValues(alpha: 0.055)
-                : colorScheme.surface.withValues(alpha: 0.68),
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(
-              color: selected
-                  ? colorScheme.primary.withValues(alpha: 0.12)
-                  : colorScheme.outline.withValues(alpha: 0.04),
-            ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (selected) ...[
-                Container(
-                  width: 5,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: colorScheme.primary.withValues(alpha: 0.78),
-                  ),
-                ),
-                const SizedBox(width: 7),
-              ],
-              Text(
-                label.toUpperCase(),
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.6,
-                  color: selected
-                      ? colorScheme.primary.withValues(alpha: 0.82)
-                      : colorScheme.onSurface.withValues(alpha: 0.60),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

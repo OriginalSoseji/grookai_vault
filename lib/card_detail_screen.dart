@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,6 +23,8 @@ import 'services/identity/catalog_artwork_resolution.dart';
 import 'services/identity/image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
+import 'services/pricing/ebay_sold_search_uri.dart';
+import 'services/pricing/card_personal_sales_service.dart';
 import 'services/navigation/copy_detail_navigation_policy.dart';
 import 'services/navigation/pending_personal_card_action.dart';
 import 'services/network/card_engagement_service.dart';
@@ -35,12 +38,13 @@ import 'services/vault/collector_memory_service.dart';
 import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
+import 'theme/gv_tokens.dart';
 import 'utils/display_image_contract.dart';
 import 'widgets/card_surface_artwork.dart';
 import 'widgets/jungle_edition_choice_sheet.dart';
 import 'widgets/contact_owner_button.dart';
-import 'widgets/gv_surface.dart';
 import 'widgets/ownership/ownership_signal.dart';
+import 'widgets/pricing/card_market_history_sheet.dart';
 
 class CardDetailScreen extends StatefulWidget {
   final String cardPrintId;
@@ -118,6 +122,8 @@ class _CardDetailPrintingOption {
   final String? imageAltUrl;
 }
 
+enum _CardDetailTab { overview, collection, activity }
+
 class _CardImageFace {
   const _CardImageFace({
     required this.index,
@@ -169,6 +175,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   CardJourneyOverview? _journeyOverview;
   bool _journeyLoading = false;
   String? _journeyError;
+  _CardDetailTab _selectedTab = _CardDetailTab.overview;
 
   @override
   void initState() {
@@ -2083,72 +2090,253 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final sections = <Widget>[
-      _buildHeroPanel(theme, colorScheme),
-      _buildPricingSection(theme, colorScheme),
-      _buildTrustRows(theme, colorScheme),
-      if (_printingOptions.isNotEmpty)
-        _buildPrintingOptionsSection(theme, colorScheme),
-      if (_variantOriginCopy != null)
-        _buildVariantOriginSection(theme, colorScheme),
-      if (kCardJourneysEnabled) _buildCardJourneySection(theme, colorScheme),
-      if (_buildDetailEntries().isNotEmpty)
-        _buildCardDetailsSection(theme, colorScheme),
-      if (_hasContactContext) _buildCollectorNetworkSection(theme, colorScheme),
-    ];
-
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 10, 24, 28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _buildPageChrome(theme, colorScheme),
-              const SizedBox(height: 14),
-              for (var index = 0; index < sections.length; index++) ...[
-                if (index > 0) const SizedBox(height: _sectionSpacing),
-                sections[index],
-              ],
-            ],
-          ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Color(0xFF0B0F14),
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+        systemNavigationBarColor: Color(0xFF0B0F14),
+        systemNavigationBarDividerColor: Color(0xFF0B0F14),
+        systemNavigationBarIconBrightness: Brightness.light,
+        systemNavigationBarContrastEnforced: false,
+      ),
+      child: Theme(
+        data: buildGvRedesignV2Theme(),
+        child: Builder(
+          builder: (context) {
+            final theme = Theme.of(context);
+            final colorScheme = theme.colorScheme;
+            final collectionSections = <Widget>[
+              if (_printingOptions.isNotEmpty)
+                _buildPrintingOptionsSection(theme, colorScheme),
+              if (_variantOriginCopy != null)
+                _buildVariantOriginSection(theme, colorScheme),
+            ];
+            final activitySections = <Widget>[
+              _buildCommentsEntry(theme, colorScheme),
+              if (kCardJourneysEnabled)
+                _buildCardJourneySection(theme, colorScheme),
+              if (_hasContactContext)
+                _buildCollectorNetworkSection(theme, colorScheme),
+            ];
+            final overviewSections = <Widget>[
+              _buildTrustRows(theme, colorScheme),
+              if (_relatedVersions.isNotEmpty)
+                _buildCardFamilySummary(theme, colorScheme),
+              if (_buildDetailEntries().isNotEmpty)
+                _buildCardDetailsSection(theme, colorScheme),
+            ];
+            final sections = switch (_selectedTab) {
+              _CardDetailTab.overview => overviewSections,
+              _CardDetailTab.collection => collectionSections,
+              _CardDetailTab.activity => activitySections,
+            };
+            return Scaffold(
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(20, 6, 20, 28),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      _buildPageChrome(theme, colorScheme),
+                      const SizedBox(height: 12),
+                      _buildHeroPanel(theme, colorScheme),
+                      const SizedBox(height: 18),
+                      _buildPricingSection(theme, colorScheme),
+                      const SizedBox(height: 18),
+                      _buildDetailTabRail(theme, colorScheme),
+                      const SizedBox(height: _sectionSpacing),
+                      for (var index = 0; index < sections.length; index++) ...[
+                        if (index > 0) const SizedBox(height: _sectionSpacing),
+                        sections[index],
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              bottomNavigationBar: _buildActions(context, theme),
+            );
+          },
         ),
       ),
-      bottomNavigationBar: _buildActions(context, theme, colorScheme),
+    );
+  }
+
+  Widget _buildDetailTabRail(ThemeData theme, ColorScheme colorScheme) {
+    final reduceMotion = MediaQuery.disableAnimationsOf(context);
+    return Row(
+      children: [
+        for (final tab in _CardDetailTab.values)
+          Expanded(
+            child: Semantics(
+              button: true,
+              selected: _selectedTab == tab,
+              child: InkWell(
+                onTap: () => setState(() => _selectedTab = tab),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(minHeight: 44),
+                  child: AnimatedContainer(
+                    duration: reduceMotion
+                        ? Duration.zero
+                        : const Duration(milliseconds: 160),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: _selectedTab == tab ? 2 : 1,
+                          color: _selectedTab == tab
+                              ? colorScheme.primary
+                              : colorScheme.outlineVariant.withValues(
+                                  alpha: 0.26,
+                                ),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      switch (tab) {
+                        _CardDetailTab.overview => 'Overview',
+                        _CardDetailTab.collection => 'Collection',
+                        _CardDetailTab.activity => 'Activity',
+                      },
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: _selectedTab == tab
+                            ? colorScheme.primary
+                            : colorScheme.onSurface.withValues(alpha: 0.62),
+                        fontWeight: _selectedTab == tab
+                            ? FontWeight.w800
+                            : FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildCommentsEntry(ThemeData theme, ColorScheme colorScheme) {
+    return _buildSurface(
+      colorScheme: colorScheme,
+      padding: EdgeInsets.zero,
+      child: ListTile(
+        minTileHeight: 52,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 2),
+        leading: const Icon(Icons.mode_comment_outlined),
+        title: Text(
+          'Comments',
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        subtitle: const Text('Read or join the conversation'),
+        trailing: const Icon(Icons.chevron_right_rounded),
+        onTap: () => unawaited(_openCommentsSheet()),
+      ),
     );
   }
 
   Widget _buildPageChrome(ThemeData theme, ColorScheme colorScheme) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
           tooltip: 'Back',
           onPressed: () => Navigator.of(context).maybePop(),
           icon: const Icon(Icons.chevron_left_rounded, size: 30),
         ),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            IconButton(
-              tooltip: 'Comments',
-              onPressed: _openCommentsSheet,
-              icon: const Icon(Icons.mode_comment_outlined, size: 21),
+        Expanded(
+          child: Text(
+            'Card details',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        PopupMenuButton<String>(
+          tooltip: 'More card actions',
+          onSelected: (value) {
+            switch (value) {
+              case 'comments':
+                unawaited(_openCommentsSheet());
+                break;
+              case 'compare':
+                _openCompareWorkspace();
+                break;
+              case 'share':
+                unawaited(_shareCard());
+                break;
+              case 'memory':
+                unawaited(_openMemoryCapture());
+                break;
+              case 'sale':
+                unawaited(_openSaleTerms());
+                break;
+              case 'want':
+                unawaited(_toggleWant());
+                break;
+            }
+          },
+          itemBuilder: (_) => [
+            const PopupMenuItem(
+              value: 'comments',
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(Icons.mode_comment_outlined),
+                title: Text('Comments'),
+              ),
             ),
             if (_canCompare)
-              IconButton(
-                tooltip: 'Compare',
-                onPressed: _openCompareWorkspace,
-                icon: const Icon(Icons.compare_arrows_rounded, size: 22),
+              const PopupMenuItem(
+                value: 'compare',
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(Icons.compare_arrows_rounded),
+                  title: Text('Compare'),
+                ),
               ),
-            IconButton(
-              tooltip: 'Share',
-              onPressed: _shareCard,
-              icon: const Icon(Icons.ios_share_rounded, size: 22),
+            const PopupMenuItem(
+              value: 'share',
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(Icons.ios_share_outlined),
+                title: Text('Share'),
+              ),
+            ),
+            if (_canOpenMemoryCapture)
+              const PopupMenuItem(
+                value: 'memory',
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(Icons.auto_awesome_motion_outlined),
+                  title: Text('Share Memory'),
+                ),
+              ),
+            if (_canOpenSaleListing)
+              const PopupMenuItem(
+                value: 'sale',
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(Icons.sell_outlined),
+                  title: Text('List for Sale'),
+                ),
+              ),
+            PopupMenuItem(
+              value: 'want',
+              enabled: !_wantLoading,
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(
+                  _wantState.want
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_rounded,
+                ),
+                title: Text(_wantState.want ? 'Remove from Wants' : 'Want'),
+              ),
             ),
           ],
+          icon: const Icon(Icons.more_vert_rounded),
         ),
       ],
     );
@@ -2307,7 +2495,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final rarity = _formatRarity(
       resolvedRarity.isNotEmpty ? resolvedRarity : widget.rarity,
     );
-    final relatedVersionCount = _relatedVersionDisplayCount;
     final metaParts = <String>[
       if (setName.isNotEmpty) setName,
       if (_resolvedCollectorNumber.isNotEmpty) '#$_resolvedCollectorNumber',
@@ -2360,9 +2547,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ),
           ),
         ],
-        if (setName.isNotEmpty ||
-            _hasExactCopyContext ||
-            _relatedVersions.isNotEmpty) ...[
+        if (setName.isNotEmpty || _hasExactCopyContext) ...[
           const SizedBox(height: 13),
           Wrap(
             spacing: 18,
@@ -2379,13 +2564,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 _buildTextNavCue(
                   label: 'Copy',
                   onTap: _openExactCopy,
-                  theme: theme,
-                  colorScheme: colorScheme,
-                ),
-              if (_relatedVersions.isNotEmpty)
-                _buildTextNavCue(
-                  label: 'Card family · $relatedVersionCount versions',
-                  onTap: _openOtherVersions,
                   theme: theme,
                   colorScheme: colorScheme,
                 ),
@@ -2643,26 +2821,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         children: [
           _buildSectionLabel('Around this card', theme, colorScheme),
           const SizedBox(height: 9),
-          Row(
-            children: [
-              SizedBox(
-                width: 15,
-                height: 15,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: colorScheme.onSurface.withValues(alpha: 0.5),
-                ),
-              ),
-              const SizedBox(width: 9),
-              Text(
-                'Loading public activity...',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.55),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
+          const _CardDetailSkeletonBlock(width: 232, height: 12),
+          const SizedBox(height: 8),
+          const _CardDetailSkeletonBlock(width: 164, height: 10),
         ],
       );
     }
@@ -3276,10 +3437,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       rows.add(
         _buildTrustRow(
           icon: Icons.inventory_2_outlined,
-          label: ownedCount > 1
-              ? 'In your vault · $ownedCount copies'
-              : 'In your vault',
-          actionLabel: 'View your copy',
+          label: 'Your collection',
+          actionLabel: ownedCount > 1
+              ? '$ownedCount copies · Private'
+              : '1 raw copy · Private',
           onAction: _openResolvedOwnedCopy,
           theme: theme,
           colorScheme: colorScheme,
@@ -3312,6 +3473,49 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           if (index > 0) _buildFlowDivider(colorScheme),
           rows[index],
         ],
+      ],
+    );
+  }
+
+  Widget _buildCardFamilySummary(ThemeData theme, ColorScheme colorScheme) {
+    return Column(
+      children: [
+        _buildFlowDivider(colorScheme),
+        InkWell(
+          onTap: _openOtherVersions,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.style_outlined,
+                  size: 19,
+                  color: colorScheme.onSurface.withValues(alpha: 0.74),
+                ),
+                const SizedBox(width: 11),
+                Expanded(
+                  child: Text(
+                    'Card family',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                Text(
+                  '$_relatedVersionDisplayCount versions',
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.64),
+                  ),
+                ),
+                const SizedBox(width: 2),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: colorScheme.onSurface.withValues(alpha: 0.42),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -3382,6 +3586,65 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
+  Future<void> _openMarketHistory() async {
+    final printing = _selectedPrintingOption;
+    final printingId = _cleanText(printing?.id);
+    if (printingId.isEmpty ||
+        !_hasExplicitPrintingContext ||
+        supabase.auth.currentUser == null) {
+      return;
+    }
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => CardMarketHistorySheet(
+        cardName: _displayTitle,
+        printingLabel: printing?.finishName ?? 'Selected printing',
+        cardPrintingId: printingId,
+        loadPersonalSales: (cardPrintingId) =>
+            CardPersonalSalesService(supabase).loadForPrinting(cardPrintingId),
+        openSoldSearch: () => _openEbaySoldSearch(printing),
+      ),
+    );
+  }
+
+  Future<void> _openEbaySoldSearch(_CardDetailPrintingOption? printing) async {
+    final uri = buildEbaySoldSearchUri(
+      cardName: _displayTitle,
+      setName: _resolvedSetName,
+      collectorNumber: _resolvedCollectorNumber,
+      finish: printing?.finishName,
+    );
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  }
+
+  Widget _buildPriceHistoryAction(ThemeData theme, ColorScheme colorScheme) {
+    if (!_hasExplicitPrintingContext ||
+        _cleanText(_selectedPrintingOption?.id).isEmpty ||
+        supabase.auth.currentUser == null) {
+      return const SizedBox.shrink();
+    }
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: OutlinedButton.icon(
+          onPressed: _openMarketHistory,
+          icon: const Icon(Icons.show_chart_rounded, size: 18),
+          label: const Text('View price history'),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(44, 42),
+            textStyle: theme.textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildPricingSection(ThemeData theme, ColorScheme colorScheme) {
     if (_priceLoading && _priceData == null) {
       return Column(
@@ -3391,20 +3654,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           const SizedBox(height: 7),
           Row(
             children: [
-              const SizedBox(
-                width: 16,
-                height: 16,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Loading pricing...',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.66),
-                ),
-              ),
+              const _CardDetailSkeletonBlock(width: 132, height: 24),
+              const SizedBox(width: 10),
+              const _CardDetailSkeletonBlock(width: 82, height: 12),
             ],
           ),
+          const SizedBox(height: 7),
+          const _CardDetailSkeletonBlock(width: 192, height: 10),
+          _buildPriceHistoryAction(theme, colorScheme),
         ],
       );
     }
@@ -3432,6 +3689,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             icon: const Icon(Icons.refresh, size: 16),
             label: const Text('Retry'),
           ),
+          _buildPriceHistoryAction(theme, colorScheme),
         ],
       );
     }
@@ -3455,6 +3713,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               color: colorScheme.onSurface.withValues(alpha: 0.58),
             ),
           ),
+          _buildPriceHistoryAction(theme, colorScheme),
         ],
       );
     }
@@ -3509,6 +3768,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               color: colorScheme.onSurface.withValues(alpha: 0.58),
             ),
           ),
+          _buildPriceHistoryAction(theme, colorScheme),
         ] else ...[
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -3573,6 +3833,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               ),
             ),
           ],
+          _buildPriceHistoryAction(theme, colorScheme),
         ],
       ],
     );
@@ -3585,18 +3846,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   ButtonStyle _primaryActionButtonStyle(ThemeData theme) {
     return FilledButton.styleFrom(
       minimumSize: const Size(44, 44),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(999)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w700,
       ),
     );
   }
 
-  Widget _buildActions(
-    BuildContext context,
-    ThemeData theme,
-    ColorScheme colorScheme,
-  ) {
+  Widget _buildActions(BuildContext context, ThemeData theme) {
     final ownershipAction = _detailOwnershipAction;
     final isOwnedAction =
         ownershipAction == OwnershipAction.viewYourCopy ||
@@ -3604,15 +3861,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         ownershipAction == OwnershipAction.addAnotherCopy;
     final ownedCount =
         _ownershipState?.ownedCount ?? _managedOwnedCount ?? widget.quantity;
-    final ownedLabel = (ownedCount ?? 0) > 1
-        ? 'Your copies (${ownedCount!})'
-        : 'Your copy';
     final primaryOwnershipAction = !isOwnedAction
         ? FilledButton.icon(
             onPressed: _addingToVault ? null : _addToVault,
             style: _primaryActionButtonStyle(theme),
             icon: _buildPrimaryActionIcon(Icons.add_rounded),
-            label: Text(_addingToVault ? 'Adding...' : 'Add to Vault'),
+            label: Text(_addingToVault ? 'Adding…' : 'Add to Vault'),
           )
         : FilledButton.icon(
             onPressed: ownershipAction == OwnershipAction.viewYourCopy
@@ -3620,60 +3874,42 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 : _openManageCard,
             style: _primaryActionButtonStyle(theme),
             icon: const Icon(Icons.collections_bookmark_outlined),
-            label: Text(ownedLabel),
+            label: Text(
+              (ownedCount ?? 0) > 1 ? 'Manage copies' : 'Manage copy',
+            ),
           );
 
     return SafeArea(
       top: false,
-      minimum: const EdgeInsets.fromLTRB(24, 0, 24, 16),
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        widthFactor: 1,
-        heightFactor: 1,
-        child: GvSurface(
-          // Backdrop-filtered glass inside bottomNavigationBar can render as a
-          // full black SurfaceView on Android. Keep the same pill layout with a
-          // non-filtered floating surface.
-          variant: GvSurfaceVariant.floating,
-          borderRadius: 34,
-          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              primaryOwnershipAction,
-              const SizedBox(width: 6),
-              if (_canOpenMemoryCapture) ...[
-                _buildGlassIconButton(
-                  tooltip: 'Share Memory',
-                  icon: Icons.auto_awesome_motion_outlined,
-                  active: false,
-                  onPressed: _openMemoryCapture,
-                  colorScheme: colorScheme,
+      minimum: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+      child: Row(
+        children: [
+          Expanded(child: SizedBox(height: 52, child: primaryOwnershipAction)),
+          const SizedBox(width: 10),
+          SizedBox(
+            width: 52,
+            height: 52,
+            child: OutlinedButton(
+              onPressed: _wantLoading ? null : _toggleWant,
+              style: OutlinedButton.styleFrom(
+                padding: EdgeInsets.zero,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                const SizedBox(width: 6),
-              ],
-              if (_canOpenSaleListing) ...[
-                _buildGlassIconButton(
-                  tooltip: 'List for Sale',
-                  icon: Icons.sell_outlined,
-                  active: false,
-                  onPressed: _openSaleTerms,
-                  colorScheme: colorScheme,
-                ),
-                const SizedBox(width: 6),
-              ],
-              _buildGlassIconButton(
-                tooltip: _wantState.want ? 'Wanted' : 'Want this card',
-                icon: _wantState.want
-                    ? Icons.favorite_rounded
-                    : Icons.favorite_border_rounded,
-                active: _wantState.want,
-                onPressed: _wantLoading ? null : _toggleWant,
-                colorScheme: colorScheme,
               ),
-            ],
+              child: _wantLoading
+                  ? const SizedBox.square(
+                      dimension: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : Icon(
+                      _wantState.want
+                          ? Icons.bookmark_rounded
+                          : Icons.bookmark_border_rounded,
+                    ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -3689,26 +3925,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       child: CircularProgressIndicator(strokeWidth: 2),
     );
   }
-
-  Widget _buildGlassIconButton({
-    required String tooltip,
-    required IconData icon,
-    required bool active,
-    required VoidCallback? onPressed,
-    required ColorScheme colorScheme,
-  }) {
-    final tint = active ? colorScheme.error : colorScheme.onSurface;
-    return IconButton(
-      tooltip: tooltip,
-      onPressed: onPressed,
-      icon: Icon(icon),
-      color: tint.withValues(alpha: onPressed == null ? 0.34 : 0.78),
-      style: IconButton.styleFrom(
-        minimumSize: const Size.square(42),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      ),
-    );
-  }
 }
 
 class _JourneySnapshotLine {
@@ -3719,6 +3935,36 @@ class _JourneySnapshotLine {
 
   final String ownerSegment;
   final List<String> trailingSegments;
+}
+
+class _CardDetailSkeletonBlock extends StatelessWidget {
+  const _CardDetailSkeletonBlock({required this.width, required this.height});
+
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return Semantics(
+      label: 'Loading card details',
+      liveRegion: true,
+      child: ExcludeSemantics(
+        child: SizedBox(
+          width: width,
+          height: height,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.52,
+              ),
+              borderRadius: BorderRadius.circular(height / 2),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _CardJourneyCollectorsSheet extends StatefulWidget {

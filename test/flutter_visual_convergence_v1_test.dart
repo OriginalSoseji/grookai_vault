@@ -11,7 +11,7 @@ void main() {
     expect(tokens, contains('static const Color blue'));
     expect(tokens, contains('static const Color mint'));
     expect(tokens, contains('static const Color gold'));
-    expect(tokens, contains("surface: const Color(0xFF090C10)"));
+    expect(tokens, contains("surface: const Color(0xFF0B0F14)"));
     expect(theme, contains('GvPalette.scheme(brightness)'));
     expect(theme, contains('surfaceContainerLowest'));
     expect(theme, contains('filledButtonTheme: FilledButtonThemeData'));
@@ -31,11 +31,24 @@ void main() {
       cursor = next;
     }
 
-    expect(dock, contains('maxWidth: 390'));
-    expect(dock, contains('variant: GvSurfaceVariant.floating'));
+    expect(dock, contains('textScale >= 1.5 ? viewportWidth : 390'));
+    expect(shell, contains('final useIconOnly = textScale >= 1.5'));
+    expect(shell, contains('if (!useIconOnly)'));
+    expect(
+      shell,
+      contains('Semantics(\n          label: label,\n          button: true'),
+    );
+    expect(dock, contains('height: collapsed'));
+    expect(dock, contains('border: Border('));
+    expect(dock, contains('top: BorderSide('));
+    expect(dock, isNot(contains('BorderRadius.circular(34)')));
+    expect(
+      dock,
+      contains('color: colorScheme.surface.withValues(alpha: 0.98)'),
+    );
     expect(shell, contains('class _ShellPageTitle'));
     expect(shell, contains('width: selected ? 18 : 0'));
-    expect(shell, contains('colorScheme.primary.withValues(alpha: 0.12)'));
+    expect(shell, contains('collapsed ? 50 : 54'));
   });
 
   test('search and Vault retain factual card hierarchy', () {
@@ -53,8 +66,10 @@ void main() {
       main,
       contains('mainAxisExtent: GvGridConstants.catalogTileMainAxisExtent'),
     );
-    expect(vault, contains("'YOUR COLLECTION'"));
-    expect(vault, contains('variant: GvSurfaceVariant.grouped'));
+    expect(vault, contains("'Vault'"));
+    expect(vault, contains("'TCGPlayer Market'"));
+    expect(vault, contains("hintText: 'Search by card, set, or Pokémon…'"));
+    expect(vault, contains("label: 'Search your Vault'"));
     expect(vault, contains('resolveVaultPrintingIdentityPresentation(row)'));
     expect(vault, contains('artwork.primaryImageUrl'));
     expect(vault, contains('artwork.fallbackImageUrl'));
