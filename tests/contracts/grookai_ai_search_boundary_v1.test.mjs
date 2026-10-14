@@ -350,6 +350,50 @@ test('fully applied structured catalog results are not labeled approximate', () 
   );
 });
 
+test('fraction searches require matching printed denominator before a direct result', () => {
+  const { buildStructuredCollectorSearchMeta } = loadTsModule(
+    '../../apps/web/src/lib/search/structuredCollectorSearchMeta.ts',
+  );
+  const packet = {
+    numberTokens: ['004'],
+    numberDigitTokens: ['4'],
+    fractionTokens: ['004/163'],
+    expandedNameTokens: ['pikachu', '004', '163'],
+    expectedSetCodes: [],
+    promoTokens: [],
+    variantTokens: [],
+  };
+  const conflicting = buildStructuredCollectorSearchMeta(
+    [{ number: '004', printed_total: 72 }],
+    packet,
+  );
+  assert.equal(conflicting.resolverState, 'AMBIGUOUS_MATCH');
+  assert.equal(conflicting.structuredEvidenceFlags.fraction, false);
+  assert.deepEqual(Array.from(conflicting.intentSummary.nameTokens), ['pikachu']);
+
+  const exact = buildStructuredCollectorSearchMeta(
+    [{ number: '004', printed_total: 163 }],
+    packet,
+  );
+  assert.equal(exact.resolverState, 'DIRECT_MATCH');
+  assert.equal(exact.structuredEvidenceFlags.fraction, true);
+});
+
+test('collector scoped number lookup is case-insensitive and keeps suffix identity', () => {
+  const exploreRows = readFileSync(
+    new URL('../../apps/web/src/lib/explore/getExploreRows.ts', import.meta.url),
+    'utf8',
+  );
+  assert.match(
+    exploreRows,
+    /\.ilike\(field, collectorToken\.replace\(\/\[\\\\%_\]\/g, "\\\\\$&"\)\)/,
+  );
+  assert.doesNotMatch(
+    exploreRows,
+    /\.eq\(field, collectorToken\)/,
+  );
+});
+
 test('Grookai Search recognizes governed special-case identity families deterministically', () => {
   const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
   const { resolveSmartSearchQuery } = loadTsModule('../../apps/web/src/lib/search/resolveSmartSearchQuery.ts');

@@ -1049,6 +1049,9 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _openVendorMode() async {
+    if (_supabase.auth.currentUser == null) {
+      return;
+    }
     await _pushPage<void>(const VendorPricingWorkspaceScreen());
     if (!mounted) {
       return;
@@ -1075,10 +1078,7 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _openVendorPricingWorkspace() async {
-    if (_supabase.auth.currentUser == null) {
-      return;
-    }
-    await _pushPage<void>(const VendorPricingWorkspaceScreen());
+    await _openVendorMode();
   }
 
   Future<void> _openMessages() async {

@@ -24,5 +24,17 @@ void main() {
     expect(shell, contains('unawaited(_openVendorPricingWorkspace())'));
     expect(shell, contains('label: \'Vendor Mode\''));
     expect(shell, contains('_closeThenAsync(context, onOpenVendorMode)'));
+
+    final workspaceEntry = RegExp(
+      r'Future<void> _openVendorPricingWorkspace\(\) async \{[\s\S]*?\n  \}',
+    ).firstMatch(shell)!.group(0)!;
+    expect(workspaceEntry, contains('await _openVendorMode();'));
+    expect(workspaceEntry, isNot(contains('_pushPage<void>')));
+
+    final vendorEntry = RegExp(
+      r'Future<void> _openVendorMode\(\) async \{[\s\S]*?\n  \}',
+    ).firstMatch(shell)!.group(0)!;
+    expect(vendorEntry, contains('_wallKey.currentState?.reload()'));
+    expect(vendorEntry, contains('_vaultKey.currentState?.reload()'));
   });
 }

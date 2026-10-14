@@ -31,6 +31,7 @@ import {
 } from "@/lib/publicSets.shared";
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
+import { buildStructuredCollectorSearchMeta } from "@/lib/search/structuredCollectorSearchMeta";
 import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { catalogSearchAccess } from "@/lib/catalogSearchAccess";
 import { classifySmartVariantResolverState } from "@/lib/search/smartVariantSearchPolicy";
@@ -246,48 +247,6 @@ function buildSmartFilterDiscoveryMeta(
       fraction: false,
       promo: false,
       variants: smartSearchIntent.finishKeys,
-    },
-  };
-}
-
-function buildStructuredCollectorSearchMeta(
-  rows: ExploreResultCard[],
-  packet: ReturnType<typeof normalizeQuery>,
-): ResolverMeta {
-  const collectorTokens = new Set(
-    [
-      ...packet.numberTokens,
-      ...packet.numberDigitTokens,
-      ...packet.fractionTokens.flatMap((fraction) => fraction.split("/")),
-    ].map((token) => token.toLowerCase()),
-  );
-  const nameTokens = uniqueValues(
-    packet.expandedNameTokens.filter((token) => !collectorTokens.has(token)),
-  );
-  const resolverState =
-    rows.length === 0
-      ? "NO_MATCH"
-      : rows.length === 1
-        ? "DIRECT_MATCH"
-        : "AMBIGUOUS_MATCH";
-
-  return {
-    resolverState,
-    topScore: null,
-    candidateCount: rows.length,
-    autoResolved: false,
-    intentSummary: {
-      expectedSetCodes: packet.expectedSetCodes,
-      nameTokens,
-    },
-    structuredEvidenceFlags: {
-      text: nameTokens.length > 0,
-      textRequired: false,
-      expectedSet: packet.expectedSetCodes.length > 0,
-      number: packet.numberTokens.length > 0,
-      fraction: packet.fractionTokens.length > 0,
-      promo: packet.promoTokens.length > 0,
-      variants: packet.variantTokens,
     },
   };
 }

@@ -4081,7 +4081,7 @@ async function fetchCollectorScopedTextRows(
       let request = applyLanguageScopeQuery(
         supabase.from("card_prints").select(selectClause),
         languageScope,
-      ).eq(field, collectorToken);
+      ).ilike(field, collectorToken.replace(/[\\%_]/g, "\\$&"));
       for (const nameToken of nameTokens) {
         request = request.ilike("name", `%${nameToken}%`);
       }
