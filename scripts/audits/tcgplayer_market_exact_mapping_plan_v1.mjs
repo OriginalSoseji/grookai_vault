@@ -16,7 +16,7 @@ import "../../backend/env.mjs";
 import {
   planTcgplayerExactMappingCandidateV1,
   quarantineTcgplayerTargetCollisionsV1,
-  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
+  TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 
 const { Client } = pg;
@@ -24,7 +24,7 @@ const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const PLANNER_VERSION = "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_1";
+const PLANNER_VERSION = "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_2";
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,
   "artifacts",
@@ -561,7 +561,7 @@ async function main() {
 
     const summary = {
       planner_version: PLANNER_VERSION,
-      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
       status: findings.length === 0 ? "passed" : "failed",
       source_run: sourceRun,
       coverage_gaps_artifact: path
@@ -596,7 +596,7 @@ async function main() {
     await fs.mkdir(outDir, { recursive: true });
     const runPlan = {
       planner_version: PLANNER_VERSION,
-      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
       mode: "read_only_dry_run",
       commit_sha: commitSha,
       branch,
