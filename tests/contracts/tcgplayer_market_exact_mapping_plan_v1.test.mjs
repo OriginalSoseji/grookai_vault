@@ -52,6 +52,10 @@ import {
   TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1,
   TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_reviewed_alias_wave_2_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_bw11_radiant_collection_product_identity_authority_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -143,6 +147,15 @@ const REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_reviewed_alias_wave_2_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_bw11_radiant_collection_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -1060,6 +1073,58 @@ test("reviewed alias wave 2 authority is read-only and freezes three scopes", ()
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
   assert.match(SCRIPT, /TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1/);
+});
+
+test("BW11 Radiant Collection admits exactly nine reviewed Holo identities", () => {
+  assert.equal(TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1.length, 9);
+  assert.equal(new Set(TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1
+    .map((row) => row.source_product_id)).size, 9);
+  assert.equal(new Set(TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1
+    .map((row) => row.target.card_print_id)).size, 9);
+  assert.ok(TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1.every((row) =>
+    row.target.set_code === "bw11" && row.printing.finish_key === "holo"));
+
+  for (const authority of TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1) {
+    const reviewedSource = source({
+      source_product_id: authority.source_product_id,
+      source_product_name: authority.source_product_name,
+      source_group_id: authority.source_group_id,
+      source_group_name: authority.source_group_name,
+      printed_number: authority.printed_number,
+    });
+    const reviewedTarget = target({
+      card_print_id: authority.target.card_print_id,
+      gv_id: authority.target.gv_id,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: authority.target.name,
+      number: authority.target.number,
+      variant_key: authority.target.variant_key,
+      embedded_external_id: null,
+    });
+    const candidate = planTcgplayerExactMappingCandidateV1({ source: reviewedSource, setTargets: [reviewedTarget] });
+    assert.equal(candidate.disposition, "candidate", authority.source_product_id);
+    assert.equal(candidate.reviewed_product_identity_authority_version,
+      TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITY_AUTHORITY_V1);
+    assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+    assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, reviewedTarget), []);
+    assert.equal(matchesTcgplayerExactMappingLiveSourceNumberV1(candidate, authority.printed_number), true);
+  }
+});
+
+test("BW11 Radiant Collection mapping authority is read-only and evidence-bound", () => {
+  assert.match(BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT,
+    /begin transaction isolation level repeatable read read only/);
+  assert.match(BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 9/);
+  assert.match(BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT, /master_index_hash_changed/);
+  assert.match(BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT, /active_truth_review, "verified"/);
+  assert.match(BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    BW11_RADIANT_COLLECTION_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+  assert.match(SCRIPT, /TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1/);
 });
 
 test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {

@@ -45,6 +45,11 @@ import {
   reviewedTcgplayerAliasWave2ProductIdentityByIdV1,
   reviewedTcgplayerAliasWave2ProductIdentityV1,
 } from "./tcgplayer_reviewed_alias_wave_2_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerBw11RadiantCollectionProductTargetV1,
+  reviewedTcgplayerBw11RadiantCollectionProductIdentityByIdV1,
+  reviewedTcgplayerBw11RadiantCollectionProductIdentityV1,
+} from "./tcgplayer_bw11_radiant_collection_product_identity_authority_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1";
@@ -66,7 +71,8 @@ function reviewedProductIdentityById(sourceProductId) {
     reviewedTcgplayerExuUnownProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerAliasWaveProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerPrismStarAliasProductIdentityByIdV1(sourceProductId) ??
-    reviewedTcgplayerAliasWave2ProductIdentityByIdV1(sourceProductId);
+    reviewedTcgplayerAliasWave2ProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerBw11RadiantCollectionProductIdentityByIdV1(sourceProductId);
 }
 
 function reviewedProductIdentity(source) {
@@ -76,7 +82,8 @@ function reviewedProductIdentity(source) {
     reviewedTcgplayerExuUnownProductIdentityV1(source) ??
     reviewedTcgplayerAliasWaveProductIdentityV1(source) ??
     reviewedTcgplayerPrismStarAliasProductIdentityV1(source) ??
-    reviewedTcgplayerAliasWave2ProductIdentityV1(source);
+    reviewedTcgplayerAliasWave2ProductIdentityV1(source) ??
+    reviewedTcgplayerBw11RadiantCollectionProductIdentityV1(source);
 }
 
 function matchesReviewedProductTarget(source, target) {
@@ -86,7 +93,8 @@ function matchesReviewedProductTarget(source, target) {
     matchesReviewedTcgplayerExuUnownProductTargetV1(source, target) ||
     matchesReviewedTcgplayerAliasWaveProductTargetV1(source, target) ||
     matchesReviewedTcgplayerPrismStarAliasProductTargetV1(source, target) ||
-    matchesReviewedTcgplayerAliasWave2ProductTargetV1(source, target);
+    matchesReviewedTcgplayerAliasWave2ProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerBw11RadiantCollectionProductTargetV1(source, target);
 }
 
 function normalizedAlnum(value) {
