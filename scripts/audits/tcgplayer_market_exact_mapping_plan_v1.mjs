@@ -80,7 +80,7 @@ function connectionString() {
 function sslConfig(url) {
   return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
     ? false
-    : { rejectUnauthorized: false };
+    : { rejectUnauthorized: true };
 }
 
 function sha256(value) {

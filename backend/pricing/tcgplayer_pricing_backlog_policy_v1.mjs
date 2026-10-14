@@ -42,6 +42,11 @@ const REASON_LANES = Object.freeze({
     agent_key: "special-variant-pricing-expansion-v1",
     action: "Qualify the special variant for the supported pricing policy.",
   },
+  edition_bound_pricing_authority_required: {
+    lane: "edition_authority",
+    agent_key: "tcgplayer-edition-authority-repair-v1",
+    action: "Create or bind reviewed edition authority for this source product.",
+  },
 });
 
 function integer(value) {
