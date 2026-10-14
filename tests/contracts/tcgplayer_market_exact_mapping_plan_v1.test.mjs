@@ -31,6 +31,10 @@ import {
   TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1,
   TCGPLAYER_G1_RC_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_g1_rc_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_30c_classic_alias_product_identity_authority_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -77,6 +81,15 @@ const G1_RC_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_g1_rc_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const CLASSIC_ALIAS_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_30c_classic_alias_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -621,6 +634,68 @@ test("Generations Radiant Collection authority is read-only and split into bound
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
   assert.match(SCRIPT, /TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1/);
+});
+
+test("30th Celebration Classic aliases require exact reviewed product tuples", () => {
+  assert.equal(TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1.length, 2);
+  assert.deepEqual(
+    TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1.map((row) =>
+      row.source_product_id),
+    [716158, 716198],
+  );
+  assert.ok(TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1.every((row) =>
+    row.source_group_id === 24837 && row.target.set_code === "30c-classic" &&
+    row.target.variant_key === "" && row.printing.finish_key === "holo"));
+
+  const authority = TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1[0];
+  const reviewedSource = source({
+    source_product_id: authority.source_product_id,
+    source_product_name: authority.source_product_name,
+    source_group_id: authority.source_group_id,
+    source_group_name: authority.source_group_name,
+    printed_number: authority.printed_number,
+  });
+  const reviewedTarget = target({
+    card_print_id: authority.target.card_print_id,
+    gv_id: authority.target.gv_id,
+    set_id: authority.target.set_id,
+    set_code: authority.target.set_code,
+    name: authority.target.name,
+    number: authority.target.number,
+    variant_key: authority.target.variant_key,
+    embedded_external_id: null,
+  });
+  const candidate = planTcgplayerExactMappingCandidateV1({
+    source: reviewedSource,
+    setTargets: [reviewedTarget],
+  });
+  assert.equal(candidate.disposition, "candidate");
+  assert.equal(candidate.target.canonical_name, "Genesect EX");
+  assert.equal(candidate.reviewed_product_identity_authority_version,
+    TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1);
+  assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+
+  const drift = planTcgplayerExactMappingCandidateV1({
+    source: { ...reviewedSource, source_product_name: "Genesect EX" },
+    setTargets: [reviewedTarget],
+  });
+  assert.equal(drift.reason, "reviewed_product_source_drift");
+});
+
+test("30th Celebration Classic alias authority is read-only and binds live child state", () => {
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT,
+    /begin transaction isolation level repeatable read read only/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 2/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /left join public\.finish_keys/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /card_printing_truth_reviews/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /live_child_hidden/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    CLASSIC_ALIAS_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+  assert.match(SCRIPT, /TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1/);
 });
 
 test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {

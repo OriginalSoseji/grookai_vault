@@ -15,6 +15,11 @@ import {
   reviewedTcgplayerG1RcProductIdentityByIdV1,
   reviewedTcgplayerG1RcProductIdentityV1,
 } from "./tcgplayer_g1_rc_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayer30cClassicAliasProductTargetV1,
+  reviewedTcgplayer30cClassicAliasProductIdentityByIdV1,
+  reviewedTcgplayer30cClassicAliasProductIdentityV1,
+} from "./tcgplayer_30c_classic_alias_product_identity_authority_v1.mjs";
 
 import {
   tcgplayerExactMappingCandidateFingerprintV1,
@@ -38,17 +43,20 @@ function text(value) {
 
 function reviewedProductIdentityById(sourceProductId) {
   return reviewedTcgplayerProductIdentityByIdV1(sourceProductId) ??
-    reviewedTcgplayerG1RcProductIdentityByIdV1(sourceProductId);
+    reviewedTcgplayerG1RcProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayer30cClassicAliasProductIdentityByIdV1(sourceProductId);
 }
 
 function reviewedProductIdentity(source) {
   return reviewedTcgplayerProductIdentityV1(source) ??
-    reviewedTcgplayerG1RcProductIdentityV1(source);
+    reviewedTcgplayerG1RcProductIdentityV1(source) ??
+    reviewedTcgplayer30cClassicAliasProductIdentityV1(source);
 }
 
 function matchesReviewedProductTarget(source, target) {
   return matchesReviewedTcgplayerProductTargetV1(source, target) ||
-    matchesReviewedTcgplayerG1RcProductTargetV1(source, target);
+    matchesReviewedTcgplayerG1RcProductTargetV1(source, target) ||
+    matchesReviewedTcgplayer30cClassicAliasProductTargetV1(source, target);
 }
 
 function stableJson(value) {
