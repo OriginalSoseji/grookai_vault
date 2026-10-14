@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer Prism Star alias wave — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_140_PRISM_STAR_ALIAS_MAPPING_BATCH.md`.
+The next bounded batch is exactly 14 Holofoil Prism Star products across Ultra
+Prism, Forbidden Light, and Celestial Storm. Each frozen source name ending in
+`Prism Star` maps by exact product, group, and printed coordinate to one unique
+unmapped canonical parent whose Master Index name ends in `◇`, with one active
+verified visible Holo child. Four Team Up and two Dragon Majesty rows remain
+held because their public Holo children lack an active verified truth review.
+The read-only rehearsal passed for all 14 candidates; merge and regenerate from
+the exact clean commit before dry run or production apply.
+
 ## TCGPlayer reviewed alias wave — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_139_REVIEWED_ALIAS_WAVE_MAPPING_BATCH.md`.

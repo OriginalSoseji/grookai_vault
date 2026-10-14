@@ -35,6 +35,11 @@ import {
   reviewedTcgplayerAliasWaveProductIdentityByIdV1,
   reviewedTcgplayerAliasWaveProductIdentityV1,
 } from "./tcgplayer_reviewed_alias_wave_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerPrismStarAliasProductTargetV1,
+  reviewedTcgplayerPrismStarAliasProductIdentityByIdV1,
+  reviewedTcgplayerPrismStarAliasProductIdentityV1,
+} from "./tcgplayer_prism_star_alias_product_identity_authority_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1";
@@ -54,7 +59,8 @@ function reviewedProductIdentityById(sourceProductId) {
     reviewedTcgplayerG1RcProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayer30cClassicAliasProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerExuUnownProductIdentityByIdV1(sourceProductId) ??
-    reviewedTcgplayerAliasWaveProductIdentityByIdV1(sourceProductId);
+    reviewedTcgplayerAliasWaveProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerPrismStarAliasProductIdentityByIdV1(sourceProductId);
 }
 
 function reviewedProductIdentity(source) {
@@ -62,7 +68,8 @@ function reviewedProductIdentity(source) {
     reviewedTcgplayerG1RcProductIdentityV1(source) ??
     reviewedTcgplayer30cClassicAliasProductIdentityV1(source) ??
     reviewedTcgplayerExuUnownProductIdentityV1(source) ??
-    reviewedTcgplayerAliasWaveProductIdentityV1(source);
+    reviewedTcgplayerAliasWaveProductIdentityV1(source) ??
+    reviewedTcgplayerPrismStarAliasProductIdentityV1(source);
 }
 
 function matchesReviewedProductTarget(source, target) {
@@ -70,7 +77,8 @@ function matchesReviewedProductTarget(source, target) {
     matchesReviewedTcgplayerG1RcProductTargetV1(source, target) ||
     matchesReviewedTcgplayer30cClassicAliasProductTargetV1(source, target) ||
     matchesReviewedTcgplayerExuUnownProductTargetV1(source, target) ||
-    matchesReviewedTcgplayerAliasWaveProductTargetV1(source, target);
+    matchesReviewedTcgplayerAliasWaveProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerPrismStarAliasProductTargetV1(source, target);
 }
 
 function normalizedAlnum(value) {

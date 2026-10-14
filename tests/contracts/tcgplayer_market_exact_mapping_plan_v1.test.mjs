@@ -44,6 +44,10 @@ import {
   TCGPLAYER_REVIEWED_ALIAS_WAVE_PRODUCT_IDENTITIES_V1,
   TCGPLAYER_REVIEWED_ALIAS_WAVE_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_reviewed_alias_wave_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_prism_star_alias_product_identity_authority_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -117,6 +121,15 @@ const REVIEWED_ALIAS_WAVE_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_reviewed_alias_wave_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const PRISM_STAR_ALIAS_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_prism_star_alias_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -902,6 +915,73 @@ test("reviewed alias wave authority is read-only and freezes three set scopes", 
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
   assert.match(SCRIPT, /TCGPLAYER_REVIEWED_ALIAS_WAVE_PRODUCT_IDENTITIES_V1/);
+});
+
+test("Prism Star alias wave admits exactly 14 frozen Holo identities", () => {
+  assert.equal(TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1.length, 14);
+  assert.equal(new Set(TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1
+    .map((row) => row.source_product_id)).size, 14);
+  assert.equal(new Set(TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1
+    .map((row) => row.target.card_print_id)).size, 14);
+  assert.deepEqual(
+    Object.fromEntries([...new Set(TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1
+      .map((row) => row.target.set_code))].sort().map((setCode) => [setCode,
+      TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1
+        .filter((row) => row.target.set_code === setCode).length])),
+    { sm5: 6, sm6: 5, sm7: 3 },
+  );
+  assert.ok(TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1.every((row) =>
+    row.source_product_name.endsWith("Prism Star") &&
+    row.target.name.endsWith("◇") && row.printing.finish_key === "holo"));
+
+  for (const authority of ["sm5", "sm6", "sm7"].map((setCode) =>
+    TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1.find((row) => row.target.set_code === setCode))) {
+    const reviewedSource = source({
+      source_product_id: authority.source_product_id,
+      source_product_name: authority.source_product_name,
+      source_group_id: authority.source_group_id,
+      source_group_name: authority.source_group_name,
+      printed_number: authority.printed_number,
+    });
+    const reviewedTarget = target({
+      card_print_id: authority.target.card_print_id,
+      gv_id: authority.target.gv_id,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: authority.target.name,
+      number: authority.target.number,
+      variant_key: authority.target.variant_key,
+      embedded_external_id: null,
+    });
+    const candidate = planTcgplayerExactMappingCandidateV1({
+      source: reviewedSource,
+      setTargets: [reviewedTarget],
+    });
+    assert.equal(candidate.disposition, "candidate", authority.source_product_id);
+    assert.equal(candidate.reviewed_product_identity_authority_version,
+      TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1);
+    assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+    assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, reviewedTarget), []);
+    assert.equal(matchesTcgplayerExactMappingLiveSourceNumberV1(
+      candidate, authority.printed_number,
+    ), true);
+  }
+});
+
+test("Prism Star alias authority is read-only and freezes three set scopes", () => {
+  assert.match(PRISM_STAR_ALIAS_AUTHORITY_SCRIPT,
+    /begin transaction isolation level repeatable read read only/);
+  assert.match(PRISM_STAR_ALIAS_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(PRISM_STAR_ALIAS_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 14/);
+  for (const setCode of ["sm5", "sm6", "sm7"]) {
+    assert.match(PRISM_STAR_ALIAS_AUTHORITY_SCRIPT, new RegExp(`\\b${setCode}\\b`));
+  }
+  assert.match(PRISM_STAR_ALIAS_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    PRISM_STAR_ALIAS_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+  assert.match(SCRIPT, /TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1/);
 });
 
 test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {

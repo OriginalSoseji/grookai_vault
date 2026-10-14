@@ -33,6 +33,9 @@ import {
 import {
   TCGPLAYER_REVIEWED_ALIAS_WAVE_PRODUCT_IDENTITIES_V1,
 } from "../../backend/pricing/tcgplayer_reviewed_alias_wave_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1,
+} from "../../backend/pricing/tcgplayer_prism_star_alias_product_identity_authority_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -46,6 +49,7 @@ const REVIEWED_PRODUCT_IDENTITIES = Object.freeze([
   ...TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_REVIEWED_ALIAS_WAVE_PRODUCT_IDENTITIES_V1,
+  ...TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1,
 ]);
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,
