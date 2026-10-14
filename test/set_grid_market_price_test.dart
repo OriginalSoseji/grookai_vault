@@ -40,4 +40,30 @@ void main() {
     expect(find.text('TCGPlayer Market'), findsNothing);
     expect(find.byType(CardSurfacePriceText), findsNothing);
   });
+
+  testWidgets('set grid price footer grows with accessibility text scaling', (
+    tester,
+  ) async {
+    const pricing = CardSurfacePricingData(
+      cardPrintId: 'parent-1',
+      pricingScope: 'parent',
+      marketClose: 0.28,
+      sourceLabel: 'From TCGPlayer Market',
+      isFromPrice: true,
+    );
+
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: MediaQuery(
+          data: MediaQueryData(textScaler: TextScaler.linear(2)),
+          child: Scaffold(body: SetGridMarketPrice(pricing: pricing)),
+        ),
+      ),
+    );
+
+    expect(tester.getSize(find.byType(SetGridMarketPrice)).height, 51.25);
+    expect(find.text('TCGPlayer Market'), findsOneWidget);
+    expect(find.text(r'From $0.28'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }

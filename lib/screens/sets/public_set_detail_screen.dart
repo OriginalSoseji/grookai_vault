@@ -679,29 +679,42 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
       slivers.add(
         SliverPadding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 22),
-          sliver: SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: MediaQuery.sizeOf(context).width >= 860
+          sliver: SliverLayoutBuilder(
+            builder: (context, constraints) {
+              final width = MediaQuery.sizeOf(context).width;
+              final crossAxisCount = width >= 860
                   ? 4
-                  : MediaQuery.sizeOf(context).width >= 620
+                  : width >= 620
                   ? 3
-                  : 2,
-              mainAxisSpacing: 6,
-              crossAxisSpacing: 6,
-              childAspectRatio: 0.69,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                final card = detail.cards[index];
-                return _SetCardGridTile(
-                  card: card,
-                  ownershipState: _ownershipStateForCard(card),
-                  onOpenViewer: () => _openSetGallery(index),
-                );
-              },
-              childCount: detail.cards.length,
-              addAutomaticKeepAlives: false,
-            ),
+                  : 2;
+              final tileWidth =
+                  (constraints.crossAxisExtent - (crossAxisCount - 1) * 6) /
+                  crossAxisCount;
+              final artworkHeight = tileWidth / 0.69;
+              final priceFooterHeight = _setGridMarketPriceFooterExtent(
+                MediaQuery.textScalerOf(context),
+              );
+              return SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  mainAxisSpacing: 6,
+                  crossAxisSpacing: 6,
+                  mainAxisExtent: artworkHeight + priceFooterHeight,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final card = detail.cards[index];
+                    return _SetCardGridTile(
+                      card: card,
+                      ownershipState: _ownershipStateForCard(card),
+                      onOpenViewer: () => _openSetGallery(index),
+                    );
+                  },
+                  childCount: detail.cards.length,
+                  addAutomaticKeepAlives: false,
+                ),
+              );
+            },
           ),
         ),
       );
@@ -1854,17 +1867,21 @@ class SetGridMarketPrice extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final currentPricing = pricing;
+    final footerHeight = _setGridMarketPriceFooterExtent(
+      MediaQuery.textScalerOf(context),
+    );
     if (currentPricing == null) {
-      return const SizedBox(height: 34);
+      return SizedBox(height: footerHeight);
     }
 
     return SizedBox(
-      height: 34,
+      height: footerHeight,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
             Text(
               'TCGPlayer Market',
@@ -1878,18 +1895,22 @@ class SetGridMarketPrice extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 2),
-            SizedBox(
-              height: 15,
-              child: CardSurfacePriceText(
-                pricing: currentPricing,
-                size: CardSurfacePriceSize.dense,
-              ),
+            CardSurfacePriceText(
+              pricing: currentPricing,
+              size: CardSurfacePriceSize.dense,
             ),
           ],
         ),
       ),
     );
   }
+}
+
+double _setGridMarketPriceFooterExtent(TextScaler textScaler) {
+  final scaledLabelHeight = textScaler.scale(9.5);
+  final scaledPriceHeight = textScaler.scale(12.5) * 1.05;
+  final contentAndPaddingHeight = scaledLabelHeight + 2 + scaledPriceHeight + 4;
+  return contentAndPaddingHeight < 34 ? 34 : contentAndPaddingHeight;
 }
 
 class _SetDetailEmptyState extends StatelessWidget {
