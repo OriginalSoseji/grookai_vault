@@ -10,6 +10,8 @@ import { evaluateTcgplayerMarketQualificationV1 } from
 const root = process.cwd();
 const migrationPath = path.join(root, 'supabase', 'migrations',
   '20261013123000_pokemon_tcgplayer_gym_challenge_edition_assignment_v1.sql');
+const correctionMigrationPath = path.join(root, 'supabase', 'migrations',
+  '20261014003500_pokemon_tcgplayer_gym_challenge_binding_identity_v2.sql');
 const planPath = path.join(root, 'docs', 'audits', 'pricing',
   'pokemon_tcgplayer_variant_repair_20261012', 'batch_02', 'rehearsal.json');
 const receiptPath = path.join(root, 'docs', 'audits', 'pricing',
@@ -18,6 +20,10 @@ const receiptPath = path.join(root, 'docs', 'audits', 'pricing',
 const migrationBytes = await fs.readFile(migrationPath);
 const migrationSource = migrationBytes.toString('utf8').replace(/\r\n?/g, '\n');
 const migration = migrationSource
+  .replace(/^begin;\s*/i, '').replace(/commit;\s*$/i, '');
+const correctionMigrationSource = (await fs.readFile(correctionMigrationPath, 'utf8'))
+  .replace(/\r\n?/g, '\n');
+const correctionMigration = correctionMigrationSource
   .replace(/^begin;\s*/i, '').replace(/commit;\s*$/i, '');
 const plan = JSON.parse(await fs.readFile(planPath, 'utf8'));
 const rows = plan.gym_rows;
@@ -141,10 +147,36 @@ create table public.v_tcgplayer_market_qualification_candidates_v3(
   printed_identity_modifier text);
 `;
 
-const runId = 'e429784c-55f2-4922-94dc-0cc560acda8d';
-const artifactId = '10000000-0000-4000-8000-000000000001';
-const artifactHash = '2'.repeat(64);
-const runHash = '3'.repeat(64);
+const reviewedRunId = 'e429784c-55f2-4922-94dc-0cc560acda8d';
+const currentRunId = 'c0fb6b75-ba65-4be3-9a41-e2aa73f08049';
+const reviewedArtifactId = '10000000-0000-4000-8000-000000000001';
+const currentArtifactId = '10000000-0000-4000-8000-000000000002';
+const reviewedArtifactHash = '2'.repeat(64);
+const currentArtifactHash = '4'.repeat(64);
+const reviewedRunHash = '3'.repeat(64);
+const currentRunHash = '5'.repeat(64);
+const currentSources = new Map([
+  ['85720:1st Edition', {
+    id: '55629b52-5b46-4da1-8076-644a31b756dd',
+    hash: '5be81cf2afb4f6ea9cc562ff3837489c9048d2474d8b5e1d02c435f64b8f72fb',
+    market: 2.73,
+  }],
+  ['85720:Unlimited', {
+    id: '22cef5cb-4667-4345-93fc-8ecfb87e5893',
+    hash: '734c442d0e470a5a722bb71bc14e8f1d55d9debfe589c54aa40160e1ca91f4d7',
+    market: 1.16,
+  }],
+  ['85721:1st Edition', {
+    id: 'a2e77838-f992-4a09-850b-1dd58de7b41c',
+    hash: '3b85a9308d1122700d72373990b2079fa3800384b8bffbb154994ca4464a51c1',
+    market: 3.98,
+  }],
+  ['85721:Unlimited', {
+    id: '6251b992-3e72-46d1-82ef-5f0f0f2c24e9',
+    hash: '8783d840944b96cc08458069e98f91b8e199909f221b571a9657a0aa54137932',
+    market: 1.28,
+  }],
+]);
 const setId = 'bb258610-a859-4f71-b54a-21a8591a5fad';
 const legacy = new Map([
   [85720, { id: 'b12ba460-4fc9-4c73-892e-11ea0cf27176', gv: 'GV-PK-G2-75' }],
@@ -158,23 +190,31 @@ try {
   await client.query('begin');
   await client.query(setup);
   await client.query(migration);
+  await client.query(correctionMigration);
   await client.query(`insert into public.sets values($1,'gym2','pokemon','standard')`, [setId]);
-  await client.query(`insert into public.tcgcsv_source_sync_runs values(
-    $1,'gym-rehearsal','2026-10-12',$2,'2026-10-13T17:00:00Z',0,
-    'completed','current_full_sync','2026-10-13T16:00:00Z')`, [runId, runHash]);
-  await client.query(`insert into public.tcgcsv_source_artifacts values(
-    $1,$2,'gym-rehearsal','prices','2026-10-12',3,1440,200,4096,$3)`,
-  [artifactId, runId, artifactHash]);
+  await client.query(`insert into public.tcgcsv_source_sync_runs values
+    ($1,'gym-reviewed','2026-10-12',$2,'2026-10-12T09:34:29Z',0,
+      'completed','current_full_sync','2026-10-12T08:00:00Z'),
+    ($3,'gym-current','2026-10-13',$4,'2026-10-13T09:36:39Z',0,
+      'completed','current_full_sync','2026-10-13T08:00:00Z')`,
+  [reviewedRunId, reviewedRunHash, currentRunId, currentRunHash]);
+  await client.query(`insert into public.tcgcsv_source_artifacts values
+    ($1,$2,'gym-reviewed','prices','2026-10-12',3,1440,200,4096,$3),
+    ($4,$5,'gym-current','prices','2026-10-13',3,1440,200,4096,$6)`,
+  [reviewedArtifactId, reviewedRunId, reviewedArtifactHash,
+    currentArtifactId, currentRunId, currentArtifactHash]);
 
   for (const [productId, base] of legacy) {
     const sample = rows.find(row => row.source_observation.product_id === productId);
     await client.query(`insert into public.card_prints values(
       $1,$2,'gym2',$3,$4,$4,$5,'pokemon_eng_standard','standard','',null,'{}','missing')`,
     [base.id, setId, sample.card_print.name, sample.card_print.number, base.gv]);
+    const sourceName = productId === 85720
+      ? "Giovanni's Nidoran F" : "Giovanni's Nidoran M";
     await client.query(`insert into public.tcgcsv_source_products values(
-      $1,3,1440,$2,$3,true,'current',$4)`, [productId, sample.card_print.name,
-      sample.source_binding_template.source_product_sha256,
-      JSON.stringify([{ name: 'Number', value: `${sample.card_print.number}/132` }])]);
+      $1,3,1440,$2,$3,true,'current',$4)`, [productId, sourceName,
+      sha256(`current-ingestion-payload:${productId}`),
+      JSON.stringify([{ name: 'Number', value: `${sample.card_print.number.padStart(3, '0')}/132` }])]);
     await client.query(`insert into public.external_mappings values(
       $1,'tcgplayer',$2,true,$3)`, [350000 + productId, String(productId), base.id]);
   }
@@ -183,6 +223,10 @@ try {
     const card = row.card_print, identity = row.card_print_identity;
     const printing = row.card_printing, observation = row.source_observation;
     const binding = row.source_binding_template;
+    const current = currentSources.get(`${observation.product_id}:${observation.subtype_name}`);
+    const currentProductName = observation.product_id === 85720
+      ? "Giovanni's Nidoran F" : "Giovanni's Nidoran M";
+    assert.ok(current);
     await client.query(`insert into public.card_prints values(
       $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)`,
     [card.id, card.set_id, card.set_code, card.name, card.number, card.number_plain,
@@ -200,13 +244,19 @@ try {
     [printing.id, printing.card_print_id, printing.finish_key,
       printing.printing_gv_id, printing.provenance_source,
       printing.provenance_ref, printing.created_by]);
-    await client.query(`insert into public.tcgcsv_source_price_daily_observations values(
-      $1,$2,$3,3,1440,$4,lower($4),$5,$6,$7,'2026-10-12','2026-10-13T16:59:00Z',
-      $8,$8,$8,$8,$8,'USD',$9)`,
-    [observation.source_observation_id, artifactId, observation.product_id,
-      observation.subtype_name, runId,
+    await client.query(`insert into public.tcgcsv_source_price_daily_observations values
+      ($1,$2,$3,3,1440,$4,lower($4),$5,$6,$7,'2026-10-12','2026-10-12T09:00:00Z',
+        $8,$8,$8,$8,$8,'USD',$9),
+      ($10,$11,$3,3,1440,$4,lower($4),$12,$13,$14,'2026-10-13','2026-10-13T09:00:00Z',
+        $15,$15,$15,$15,$15,'USD',$16)`,
+    [observation.source_observation_id, reviewedArtifactId, observation.product_id,
+      observation.subtype_name, reviewedRunId,
       `tcgplayer:${observation.product_id}:${observation.subtype_name.toLowerCase()}`,
       observation.payload_hash, observation.market_price,
+      JSON.stringify({ productId: observation.product_id, subtypeName: observation.subtype_name }),
+      current.id, currentArtifactId, currentRunId,
+      `tcgplayer:${observation.product_id}:${observation.subtype_name.toLowerCase()}`,
+      current.hash, current.market,
       JSON.stringify({ productId: observation.product_id, subtypeName: observation.subtype_name })]);
     await client.query(`insert into public.v_tcgplayer_market_qualification_candidates_v3(
       source_observation_id,source_sync_run_id,source_artifact_id,source_artifact_date,
@@ -221,15 +271,15 @@ try {
       identity_domain_count,source_mapping_id,source_mapping_meta,has_printed_number_evidence,
       mapping_confidence,derived_variant_assignment_status,cosmos_finish_authority,
       edition_assignment_required,edition_assignment_current)
-      values($1,$2,$3,'2026-10-12',$4,4096,200,$5,$6,$7,3,1440,$8,lower($8),
-      '2026-10-12','2026-10-13T16:59:00Z',1,'USD',$9,$9,$9,$9,$9,$10,true,'current',
-      $11,'current_full_sync','completed','2026-10-13T17:00:00Z',0,$12,'normal',
+      values($1,$2,$3,'2026-10-13',$4,4096,200,$5,$6,$7,3,1440,$8,lower($8),
+      '2026-10-13','2026-10-13T09:00:00Z',1,'USD',$9,$9,$9,$9,$9,$10,true,'current',
+      $11,'current_full_sync','completed','2026-10-13T09:36:39Z',0,$12,'normal',
       0,0,0,0,null,null,true,1,'no_matching_child_finish',false,true,false)`,
-    [observation.source_observation_id, runId, artifactId, artifactHash,
+    [current.id, currentRunId, currentArtifactId, currentArtifactHash,
       `tcgplayer:${observation.product_id}:${observation.subtype_name.toLowerCase()}`,
-      observation.payload_hash, observation.product_id, observation.subtype_name,
-      observation.market_price, card.name,
-      JSON.stringify([{ name: 'Number', value: `${card.number}/132` }]), runHash]);
+      current.hash, observation.product_id, observation.subtype_name,
+      current.market, currentProductName,
+      JSON.stringify([{ name: 'Number', value: `${card.number}/132` }]), currentRunHash]);
     await client.query(`insert into public.tcgplayer_gym_challenge_edition_bindings_v1(
       id,contract_version,source,category_id,group_id,product_id,source_subtype,
       source_products_payload_sha256,source_product_sha256,source_observation_id,
@@ -252,12 +302,20 @@ try {
   assert.equal((await client.query(
     `select count(*)::int n from public.tcgplayer_gym_challenge_edition_bindings_v1
       where public.pokemon_tcgplayer_gym_challenge_binding_valid_v1(id,true)`)).rows[0].n, 4);
+  await client.query('savepoint current_product_identity_drift');
+  await client.query(`update public.tcgcsv_source_products
+    set name='Drifted source identity' where product_id=85720`);
+  assert.equal((await client.query(
+    `select count(*)::int n from public.tcgplayer_gym_challenge_edition_bindings_v1
+      where product_id=85720
+        and public.pokemon_tcgplayer_gym_challenge_binding_valid_v1(id,true)`)).rows[0].n, 0);
+  await client.query('rollback to savepoint current_product_identity_drift');
   assert.equal((await client.query(
     `select public.prepare_tcgplayer_gym_challenge_edition_assignments_v1($1) n`,
-    [runId])).rows[0].n, 4);
+    [currentRunId])).rows[0].n, 4);
   assert.equal((await client.query(
     `select public.prepare_tcgplayer_gym_challenge_edition_assignments_v1($1) n`,
-    [runId])).rows[0].n, 0);
+    [currentRunId])).rows[0].n, 0);
 
   const projected = (await client.query(
     `select * from public.v_tcgplayer_market_qualification_candidates_v4
@@ -289,24 +347,24 @@ try {
   await client.query('rollback to savepoint wrong_fk_lane');
 
   await client.query(`update public.tcgcsv_source_price_daily_observations
-    set payload_hash=$1 where id=$2`, ['0'.repeat(64), rows[0].source_observation.source_observation_id]);
+    set payload_hash=$1 where id=$2`, ['0'.repeat(64), currentSources.get(rows[0].key).id]);
   const drifted = (await client.query(
     `select * from public.v_tcgplayer_market_qualification_candidates_v4
-      where source_observation_id=$1`, [rows[0].source_observation.source_observation_id])).rows[0];
+      where source_observation_id=$1`, [currentSources.get(rows[0].key).id])).rows[0];
   assert.equal(drifted.gym_edition_assignment_id, null);
   assert.equal(evaluateTcgplayerMarketQualificationV1(
     { ...drifted, source_group_name: 'Gym Challenge' },
     { now: new Date('2026-10-13T18:00:00Z') }).eligible, false);
   await client.query(`update public.tcgcsv_source_price_daily_observations
-    set payload_hash=$1 where id=$2`, [rows[0].source_observation.payload_hash,
-    rows[0].source_observation.source_observation_id]);
+    set payload_hash=$1 where id=$2`, [currentSources.get(rows[0].key).hash,
+    currentSources.get(rows[0].key).id]);
 
   await client.query(`insert into public.card_printing_truth_reviews
     values(gen_random_uuid(),$1,true,'hidden_pending_review')`,
   [rows[1].card_printing.id]);
   const quarantined = (await client.query(
     `select * from public.v_tcgplayer_market_qualification_candidates_v4
-      where source_observation_id=$1`, [rows[1].source_observation.source_observation_id])).rows[0];
+      where source_observation_id=$1`, [currentSources.get(rows[1].key).id])).rows[0];
   assert.equal(quarantined.gym_edition_assignment_id, null);
 
   const readerTarget = projected[2];
@@ -391,6 +449,7 @@ try {
     version: 'POKEMON_TCGPLAYER_GYM_CHALLENGE_EDITION_ASSIGNMENT_SCHEMA_REHEARSAL_V1',
     status: 'passed_rolled_back',
     migration_sha256: sha256(migrationSource),
+    correction_migration_sha256: sha256(correctionMigrationSource),
     authority_plan_fingerprint: plan.authority_plan_fingerprint,
     target: { host: '127.0.0.1', port: 5432, database: 'postgres' },
     exact_binding_rows: projected.map(row => ({
@@ -403,6 +462,15 @@ try {
     })),
     separate_fk_lane: { accepted_gym_fk: true, rejected_as_jungle_fk: true },
     idempotent_prepare: { first_inserted: 4, second_inserted: 0 },
+    rolling_source_assignment: {
+      reviewed_source_run_id: reviewedRunId,
+      current_source_run_id: currentRunId,
+      current_observations_differ_from_reviewed_evidence: true,
+      current_product_ingestion_hash_differs_from_reviewed_source_sha: true,
+    },
+    current_product_identity_drift_test: {
+      changed_field: 'tcgcsv_source_products.name', binding_rejected: true,
+    },
     drift_test: { changed_field: 'source_observation.payload_hash', assignment_rejected: true },
     truth_quarantine_test: {
       public_visibility: 'hidden_pending_review', assignment_rejected: true,

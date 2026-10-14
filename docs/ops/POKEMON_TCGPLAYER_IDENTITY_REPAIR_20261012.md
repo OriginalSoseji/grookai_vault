@@ -238,3 +238,15 @@ request can be prepared.
 
 Batch 02 authorizes no database or price write. Duraludon can enter a later
 governed shadow run, but price publication still needs its own approval.
+
+## Gym current-run binding correction
+
+The October 13 production preflight stopped before writes because the reviewed
+source-product SHA and the warehouse ingestion payload hash use different
+representations. The original binding already rolls daily observation evidence
+through run-scoped assignments; only its live product check was incorrect.
+Migration `20261014003500_pokemon_tcgplayer_gym_challenge_binding_identity_v2.sql`
+retains the reviewed SHA as immutable provenance and validates the current product
+with exact TCGPlayer identity fields. The rollback rehearsal now proves four
+October 13 assignments from October 12 reviewed evidence, rejects product-name and
+price-row drift, and preserves immediate reader suppression after retirement.
