@@ -72,6 +72,7 @@ class ContactOwnerButton extends StatelessWidget {
     this.ownerUserId,
     this.buttonLabel,
     this.variant = ContactOwnerButtonVariant.filled,
+    this.iconOnly = false,
     this.closeParentOnSuccess = false,
     this.currentUserIdOverride,
     this.sendMessageOverride,
@@ -89,6 +90,7 @@ class ContactOwnerButton extends StatelessWidget {
   final String? ownerUserId;
   final String? buttonLabel;
   final ContactOwnerButtonVariant variant;
+  final bool iconOnly;
   final bool closeParentOnSuccess;
   final String? currentUserIdOverride;
   final ContactOwnerSendMessage? sendMessageOverride;
@@ -127,6 +129,19 @@ class ContactOwnerButton extends StatelessWidget {
         sendMessageOverride: sendMessageOverride,
         resolveThreadOverride: resolveThreadOverride,
         openConversationOverride: openConversationOverride,
+      );
+    }
+
+    if (iconOnly) {
+      return IconButton(
+        tooltip: label,
+        onPressed: onPressed,
+        icon: const Icon(Icons.chat_bubble_outline_rounded),
+        style: IconButton.styleFrom(
+          foregroundColor: Theme.of(context).colorScheme.primary,
+          minimumSize: const Size(44, 44),
+          padding: const EdgeInsets.all(10),
+        ),
       );
     }
 

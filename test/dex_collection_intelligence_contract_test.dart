@@ -36,6 +36,25 @@ void main() {
     );
   });
 
+  test(
+    'Dex filters live in one sheet with active count and stable layout toggle',
+    () {
+      final controls = RegExp(
+        r'class _DexBrowseControls extends StatelessWidget[\s\S]*?class _DexControlChip',
+      ).firstMatch(rootSource)!.group(0)!;
+
+      expect(controls, contains('showModalBottomSheet<void>'));
+      expect(controls, contains('activeFilterCount'));
+      expect(controls, contains("label: const Text('Filters')"));
+      expect(controls, contains("tooltip: 'Filter by generation'"));
+      expect(controls, contains("tooltip: 'Filter by Pokemon type'"));
+      expect(controls, contains("tooltip: 'Filter by collection progress'"));
+      expect(controls, contains("tooltip: 'Sort species'"));
+      expect(controls, contains('_DexSpeciesPresentationPicker('));
+      expect(controls, isNot(contains('ExpansionTile(')));
+    },
+  );
+
   test('species detail preserves semantic views and refines within them', () {
     expect(
       speciesSource,

@@ -257,10 +257,11 @@ class PublicSetsService {
   static const allReleaseYears = 'all';
   static const datePendingReleaseYear = 'date_pending';
   static const _setRowPageSize = 1000;
-  static const _setCountChunkSize = 200;
-  static const _setCatalogCacheTtl = Duration(minutes: 5);
-  static final Expando<Map<String, _PublicSetsCacheEntry>> _setCatalogCache =
-      Expando<Map<String, _PublicSetsCacheEntry>>();
+  // The public count RPC reaches the statement timeout on larger batches.
+  // Keep requests small and bounded; a timed-out batch is split once more
+  // until its codes can be counted without changing the database boundary.
+  static const _setCountChunkSize = 50;
+  static const _setCountRequestConcurrency = 2;
   static const _publicSetRouteAliases = <String, String>{
     'shiny vault': 'sma',
     'shiny-vault': 'sma',
@@ -391,22 +392,9 @@ class PublicSetsService {
 
   static Future<List<PublicSetSummary>> fetchSets({
     required SupabaseClient client,
-    bool forceRefresh = false,
     PublicCatalogGame? game,
   }) async {
-    final audience = client.auth.currentUser == null ? 'public' : 'signed_in';
-    final cacheKey = game == null ? audience : '$audience:${game.databaseCode}';
-    final cached = _setCatalogCache[client]?[cacheKey];
-    if (!forceRefresh &&
-        cached != null &&
-        DateTime.now().difference(cached.loadedAt) < _setCatalogCacheTtl) {
-      return cached.sets;
-    }
-
-    final setRows = await _fetchPublicCatalogSetRows(
-      client: client,
-      game: game,
-    );
+    final setRows = await _fetchAllVisibleSetRows(client: client, game: game);
 
     final preferredRowsByCode = <String, Map<String, dynamic>>{};
     for (final row in setRows) {
@@ -542,14 +530,19 @@ class PublicSetsService {
 
   static Future<List<Map<String, dynamic>>> _fetchAllVisibleSetRows({
     required SupabaseClient client,
+    PublicCatalogGame? game,
   }) async {
     final rows = <Map<String, dynamic>>[];
     for (var offset = 0; ; offset += _setRowPageSize) {
-      final rawRows = await client
+      var query = client
           .from('sets')
           .select(
             'id,game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
-          )
+          );
+      if (game != null) {
+        query = query.eq('game', game.databaseCode);
+      }
+      final rawRows = await query
           .order('id')
           .range(offset, offset + _setRowPageSize - 1);
       final page = (rawRows as List<dynamic>)
@@ -1482,22 +1475,66 @@ class PublicSetsService {
         .toSet()
         .toList(growable: false);
     final counts = <String, int>{};
+    final batches = <List<String>>[];
     for (var offset = 0; offset < codes.length; offset += _setCountChunkSize) {
       final end = (offset + _setCountChunkSize).clamp(0, codes.length);
-      final rawRows = await client.rpc(
-        'get_public_set_card_counts_v1',
-        params: {'p_set_codes': codes.sublist(offset, end)},
+      batches.add(codes.sublist(offset, end));
+    }
+
+    for (
+      var offset = 0;
+      offset < batches.length;
+      offset += _setCountRequestConcurrency
+    ) {
+      final batchEnd = (offset + _setCountRequestConcurrency).clamp(
+        0,
+        batches.length,
       );
-      for (final raw in rawRows as List<dynamic>) {
-        final row = Map<String, dynamic>.from(raw as Map);
-        final code = _normalizeCode(row['set_code']);
-        if (code.isEmpty) {
-          continue;
+      final rowsByBatch = await Future.wait(
+        batches
+            .sublist(offset, batchEnd)
+            .map((batch) => _fetchSetCardCountBatch(client, batch)),
+      );
+      for (final rawRows in rowsByBatch) {
+        for (final raw in rawRows) {
+          final row = Map<String, dynamic>.from(raw as Map);
+          final code = _normalizeCode(row['set_code']);
+          if (code.isEmpty) {
+            continue;
+          }
+          counts[code] = (counts[code] ?? 0) + _intValue(row['card_count']);
         }
-        counts[code] = (counts[code] ?? 0) + _intValue(row['card_count']);
       }
     }
     return counts;
+  }
+
+  static Future<List<dynamic>> _fetchSetCardCountBatch(
+    SupabaseClient client,
+    List<String> codes,
+  ) async {
+    try {
+      final rows = await client.rpc(
+        'get_public_set_card_counts_v1',
+        params: {'p_set_codes': codes},
+      );
+      return rows as List<dynamic>;
+    } on PostgrestException catch (error) {
+      if (error.code != '57014' || codes.length <= 1) {
+        rethrow;
+      }
+
+      final midpoint = codes.length ~/ 2;
+      final firstHalf = await _fetchSetCardCountBatch(
+        client,
+        codes.sublist(0, midpoint),
+      );
+      final secondHalf = await _fetchSetCardCountBatch(
+        client,
+        codes.sublist(midpoint),
+      );
+      return <dynamic>[...firstHalf, ...secondHalf];
+    }
   }
 
   static PublicCatalogGame _parseCatalogGame(dynamic value) {

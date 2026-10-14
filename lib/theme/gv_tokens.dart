@@ -22,11 +22,11 @@ class GvPalette {
 
     if (brightness == Brightness.dark) {
       return base.copyWith(
-        primary: blue,
-        onPrimary: const Color(0xFF071827),
-        primaryContainer: const Color(0xFF173857),
-        onPrimaryContainer: const Color(0xFFD7E9FF),
-        secondary: mint,
+        primary: const Color(0xFF59D7C1),
+        onPrimary: const Color(0xFF071713),
+        primaryContainer: const Color(0xFF153B34),
+        onPrimaryContainer: const Color(0xFFC9F8EE),
+        secondary: const Color(0xFF76E4D0),
         onSecondary: const Color(0xFF062019),
         secondaryContainer: const Color(0xFF123B31),
         onSecondaryContainer: const Color(0xFFC8F6E8),
@@ -34,16 +34,16 @@ class GvPalette {
         onTertiary: const Color(0xFF241A04),
         tertiaryContainer: const Color(0xFF463713),
         onTertiaryContainer: const Color(0xFFFFE8A9),
-        surface: const Color(0xFF090C10),
-        onSurface: const Color(0xFFF1F4F8),
-        surfaceContainerLowest: const Color(0xFF07090C),
-        surfaceContainerLow: const Color(0xFF0E1319),
-        surfaceContainer: const Color(0xFF121820),
-        surfaceContainerHigh: const Color(0xFF171F29),
-        surfaceContainerHighest: const Color(0xFF1D2732),
-        onSurfaceVariant: const Color(0xFFBAC3CF),
-        outline: const Color(0xFF667383),
-        outlineVariant: const Color(0xFF303B47),
+        surface: const Color(0xFF0B0F14),
+        onSurface: const Color(0xFFF5F1E8),
+        surfaceContainerLowest: const Color(0xFF090D12),
+        surfaceContainerLow: const Color(0xFF10161D),
+        surfaceContainer: const Color(0xFF131A22),
+        surfaceContainerHigh: const Color(0xFF17202A),
+        surfaceContainerHighest: const Color(0xFF1C2732),
+        onSurfaceVariant: const Color(0xFFA9B4C0),
+        outline: const Color(0xFF657280),
+        outlineVariant: const Color(0xFF2B3642),
         shadow: Colors.black,
       );
     }
@@ -74,6 +74,151 @@ class GvPalette {
       shadow: const Color(0xFF101820),
     );
   }
+}
+
+/// The shared visual contract for the V2 collector surfaces.
+///
+/// It intentionally stays independent of the user's legacy light-theme
+/// preference while the new shell is rolled out screen by screen.
+ThemeData buildGvRedesignV2Theme() {
+  final colorScheme = GvPalette.scheme(Brightness.dark);
+  final base = ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.dark,
+    colorScheme: colorScheme,
+  );
+
+  return base.copyWith(
+    scaffoldBackgroundColor: colorScheme.surface,
+    appBarTheme: AppBarTheme(
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      centerTitle: false,
+      toolbarHeight: 46,
+      titleSpacing: 20,
+      backgroundColor: colorScheme.surface,
+      foregroundColor: colorScheme.onSurface,
+      shape: Border(
+        bottom: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.72),
+        ),
+      ),
+      titleTextStyle: base.textTheme.titleLarge?.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 19,
+        fontWeight: FontWeight.w800,
+        letterSpacing: -0.25,
+      ),
+      iconTheme: IconThemeData(color: colorScheme.onSurfaceVariant, size: 20),
+      actionsIconTheme: IconThemeData(
+        color: colorScheme.onSurfaceVariant,
+        size: 20,
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: colorScheme.surfaceContainerLow,
+      hintStyle: TextStyle(
+        color: colorScheme.onSurface.withValues(alpha: 0.44),
+      ),
+      prefixIconColor: colorScheme.onSurfaceVariant,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(GvRadii.control),
+        borderSide: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.86),
+        ),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(GvRadii.control),
+        borderSide: BorderSide(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.86),
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(GvRadii.control),
+        borderSide: BorderSide(color: colorScheme.primary, width: 1.3),
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+    ),
+    dividerTheme: DividerThemeData(
+      color: colorScheme.outlineVariant.withValues(alpha: 0.72),
+      thickness: 1,
+      space: 1,
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: colorScheme.surfaceContainerLow,
+      modalBackgroundColor: colorScheme.surfaceContainerLow,
+      surfaceTintColor: Colors.transparent,
+      showDragHandle: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+    ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: colorScheme.surfaceContainerLow,
+      surfaceTintColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(GvRadii.surface),
+        side: BorderSide(color: colorScheme.outlineVariant),
+      ),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        minimumSize: const Size(44, 48),
+        foregroundColor: colorScheme.onPrimary,
+        backgroundColor: colorScheme.primary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(GvRadii.control),
+        ),
+        textStyle: const TextStyle(fontWeight: FontWeight.w800),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(44, 44),
+        foregroundColor: colorScheme.onSurface,
+        side: BorderSide(color: colorScheme.outlineVariant),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(GvRadii.control),
+        ),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        minimumSize: const Size(44, 44),
+        foregroundColor: colorScheme.onSurfaceVariant,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(GvRadii.control),
+        ),
+      ),
+    ),
+    textTheme: base.textTheme.copyWith(
+      headlineSmall: base.textTheme.headlineSmall?.copyWith(
+        color: colorScheme.onSurface,
+        fontWeight: FontWeight.w800,
+        letterSpacing: -0.3,
+      ),
+      titleLarge: base.textTheme.titleLarge?.copyWith(
+        color: colorScheme.onSurface,
+        fontWeight: FontWeight.w800,
+        letterSpacing: -0.2,
+      ),
+      titleMedium: base.textTheme.titleMedium?.copyWith(
+        color: colorScheme.onSurface,
+        fontWeight: FontWeight.w700,
+      ),
+      bodyLarge: base.textTheme.bodyLarge?.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      bodyMedium: base.textTheme.bodyMedium?.copyWith(
+        color: colorScheme.onSurface,
+      ),
+      labelLarge: base.textTheme.labelLarge?.copyWith(
+        color: colorScheme.onSurface,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
+  );
 }
 
 class GvOpacity {

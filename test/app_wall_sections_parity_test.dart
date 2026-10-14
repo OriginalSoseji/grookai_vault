@@ -93,7 +93,15 @@ void main() {
       expect(collectorScreen, contains("label: 'Wall'"));
       expect(collectorScreen, contains('for (final section in sections)'));
       expect(collectorScreen, contains('_loadSectionCards'));
-      expect(collectorScreen, contains('GridView.builder'));
+      expect(collectorScreen, contains('CustomScrollView('));
+      expect(collectorScreen, contains('SliverGrid('));
+      expect(collectorScreen, contains('SliverChildBuilderDelegate('));
+      expect(collectorScreen, contains('resolveCardViewModeForTextScale('));
+      expect(collectorScreen, contains('final columns = comfortableLayout'));
+      expect(collectorScreen, contains('final metadataExtent = 170.0 + 56'));
+      expect(collectorScreen, contains('subtitleSlotHeight * textScale'));
+      expect(collectorScreen, contains('priceSlotHeight * textScale'));
+      expect(collectorScreen, contains('childIsScrollable: _viewState =='));
       expect(collectorScreen, isNot(contains("label: 'Visible'")));
       expect(collectorScreen, isNot(contains("label: 'Collection'")));
     },
@@ -145,20 +153,13 @@ void main() {
     expect(collectorScreen, contains('The card is still in your Vault.'));
   });
 
-  test('drawer exposes one-screen exact-copy Vendor Mode workspace', () {
-    final drawerBlock = RegExp(
-      r'class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile',
-    ).firstMatch(mainShell)!.group(0)!;
-    final objectsIndex = drawerBlock.indexOf("label: 'Grookai Objects'");
-    final vendorIndex = drawerBlock.indexOf("label: 'Vendor Mode'");
-
-    expect(mainShell, contains('VendorPricingWorkspaceScreen'));
-    expect(mainShell, contains('onOpenVendorMode: _openVendorMode'));
-    expect(objectsIndex, greaterThanOrEqualTo(0));
-    expect(vendorIndex, greaterThan(objectsIndex));
-    expect(collectorScreen, isNot(contains('VendorPricingWorkspaceScreen')));
-    expect(collectorScreen, isNot(contains('class _VendorPricingShortcut')));
-    expect(vendorPricingScreen, contains("label: 'Market'"));
+  test('owner Wall exposes one-screen exact-copy Vendor Mode workspace', () {
+    expect(collectorScreen, contains('VendorPricingWorkspaceScreen'));
+    expect(collectorScreen, contains("title: Text('Vendor Mode')"));
+    expect(collectorScreen, contains("title: Text('Account settings')"));
+    expect(collectorScreen, contains("tooltip: 'Profile actions'"));
+    expect(collectorScreen, contains('onOpenVendorPricing: widget.isOwner'));
+    expect(vendorPricingScreen, contains("label: 'TCGPlayer Market'"));
     expect(vendorPricingScreen, contains("label: 'My price'"));
     expect(vendorPricingScreen, contains("Text('Wall'"));
     expect(vendorPricingScreen, contains('Assign sections'));

@@ -31,6 +31,7 @@ void main() {
 
     expect(find.byKey(ValueKey<String>(proofKey)), findsOneWidget);
     expect(find.text(r'$12.34'), findsOneWidget);
+    expect(pricing.compactLabel, 'TCGPlayer Market');
     final semantics = tester.getSemantics(
       find.byKey(ValueKey<String>(proofKey)),
     );

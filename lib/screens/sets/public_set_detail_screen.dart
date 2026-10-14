@@ -13,6 +13,7 @@ import '../../services/binders/binder_repository.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/public/compare_service.dart';
+import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/public/public_sets_service.dart';
 import '../../services/vault/collection_project_service.dart';
 import '../../theme/gv_grid_constants.dart';
@@ -1834,6 +1835,54 @@ class _SetCardGridTile extends StatelessWidget {
                       ),
                     ),
                 ],
+              ),
+            ),
+            SetGridMarketPrice(pricing: card.pricing),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SetGridMarketPrice extends StatelessWidget {
+  const SetGridMarketPrice({required this.pricing, super.key});
+
+  final CardSurfacePricingData? pricing;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final currentPricing = pricing;
+    if (currentPricing == null) {
+      return const SizedBox(height: 34);
+    }
+
+    return SizedBox(
+      height: 34,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'TCGPlayer Market',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.60),
+                fontSize: 9.5,
+                fontWeight: FontWeight.w700,
+                height: 1,
+              ),
+            ),
+            const SizedBox(height: 2),
+            SizedBox(
+              height: 15,
+              child: CardSurfacePriceText(
+                pricing: currentPricing,
+                size: CardSurfacePriceSize.dense,
               ),
             ),
           ],

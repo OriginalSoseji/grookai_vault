@@ -19,14 +19,19 @@ void main() {
     expect(networkScreen, contains("You're caught up"));
     expect(networkScreen, contains('openPulse()'));
     expect(networkScreen, contains('_PulseArtworkTile(item: item)'));
-    expect(networkScreen, contains('width: 58'));
-    expect(networkScreen, contains('height: 84'));
+    expect(networkScreen, contains('width: 72'));
+    expect(networkScreen, contains('height: 101'));
+    expect(networkScreen, contains('label: unreadSemantics'));
+    expect(networkScreen, contains("'\$label, \$pulseUnreadCount unread'"));
+    expect(networkScreen, contains('_PulsePrimaryAction'));
+    expect(networkScreen, contains('TextButton.icon('));
     expect(networkScreen, isNot(contains('height: 106')));
     expect(networkScreen, isNot(contains('_PulseProgressTile')));
+    expect(networkScreen, contains("tooltip: 'More actions'"));
     expect(networkScreen, contains('Icons.swap_horiz_rounded'));
     expect(networkScreen, contains("parts.join(' · ')"));
-    expect(networkScreen, contains("const Color(0xFFE9EBED)"));
-    expect(networkScreen, contains("const Color(0xFF182838)"));
+    expect(networkScreen, contains('bottom: BorderSide('));
+    expect(networkScreen, contains('outlineVariant.withValues(alpha: 0.34)'));
     expect(
       networkScreen,
       contains('if (_segment == _NetworkHomeSegment.pulse)'),
@@ -65,7 +70,7 @@ void main() {
       networkScreen,
       contains("'following' => _NetworkHomeSegment.following"),
     );
-    expect(networkScreen, contains('_ => _NetworkHomeSegment.pulse'));
+    expect(networkScreen, contains('_ => _NetworkHomeSegment.discover'));
   });
 
   test('Pulse navigation copy does not regress to Feed labels', () {
