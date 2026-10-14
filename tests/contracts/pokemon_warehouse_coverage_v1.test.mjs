@@ -1,7 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { buildPokemonWarehouseWorklist, pokemonCoverageDatabaseTarget, reconcilePokemonWarehouse } from '../../backend/catalog/pokemon_warehouse_coverage_v1.mjs';
 
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const observedAt = '2026-10-01T12:00:00Z';
 const product = { product_id: 456093, category_id: 3, group_id: 2374,
   name: 'Dragonite - 131/195 (Gamestop Exclusive)', extended_data: [{ name: 'Number', value: '131/195' }],
@@ -135,4 +139,15 @@ test('queue row ordering cannot change the coverage fingerprint', () => {
   const f = fixture();
   f.discovery.push({ id: 'b', tcgplayer_id: 456093 }, { id: 'a', tcgplayer_id: 456093 });
   assert.equal(run(f).fingerprint, run({ ...f, discovery: [...f.discovery].reverse() }).fingerprint);
+});
+
+test('scheduled warehouse measurement preserves an incomplete backlog without failing the agent', () => {
+  const workflow = fs.readFileSync(
+    path.join(ROOT, '.github/workflows/universal-catalog-discovery.yml'),
+    'utf8',
+  );
+  const coverageJob = workflow.split(/^  discover:/m)[0];
+  assert.match(coverageJob, /pokemon_warehouse_coverage_v1\.mjs/);
+  assert.match(coverageJob, /actions\/upload-artifact@v4/);
+  assert.doesNotMatch(coverageJob, /--require-complete/);
 });

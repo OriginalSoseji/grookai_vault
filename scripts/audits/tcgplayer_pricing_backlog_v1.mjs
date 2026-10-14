@@ -34,9 +34,9 @@ function connectionString() {
 }
 
 function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: true };
+  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(url)) return false;
+  const ca = process.env.SUPABASE_DB_CA_CERT?.trim();
+  return ca ? { rejectUnauthorized: true, ca } : { rejectUnauthorized: true };
 }
 
 function stamp() {
@@ -204,6 +204,8 @@ async function main() {
         routes: identityWorklist.routes,
         categories: identityWorklist.categories,
         top_groups: identityWorklist.groups.slice(0, 30),
+        pokemon_top_groups: identityWorklist.groups.filter((row) =>
+          row.source_category_id === 3).slice(0, 30),
       },
       generated_at: new Date().toISOString(),
       read_only: true,

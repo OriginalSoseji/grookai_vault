@@ -1,0 +1,70 @@
+name: TCGPlayer Pricing Completion Agent
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "47 */6 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tcgplayer-pricing-completion-agent-v1
+  cancel-in-progress: false
+
+jobs:
+  measure-and-route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+      PGOPTIONS: "-c default_transaction_read_only=on"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify pricing completion agent contracts
+        run: |
+          node --check backend/operations/tcgplayer_pricing_completion_agent_v1.mjs
+          node --check scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs
+          node --test tests/contracts/tcgplayer_pricing_completion_agent_v1.test.mjs
+
+      - name: Measure and route the production backlog
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/tcgplayer-pricing-completion-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs \
+            --out-dir="$OUT_DIR" \
+            --run-key="github-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+
+      - name: Publish agent summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$OUT_DIR/agent_run.json" ]]; then
+            echo '## TCGPlayer pricing completion agent' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            cat "$OUT_DIR/agent_run.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve agent evidence
+        if: always() && env.OUT_DIR != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: tcgplayer-pricing-completion-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90

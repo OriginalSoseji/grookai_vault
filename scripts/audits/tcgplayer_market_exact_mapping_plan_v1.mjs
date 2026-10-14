@@ -91,9 +91,9 @@ function connectionString() {
 }
 
 function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: true };
+  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(url)) return false;
+  const ca = process.env.SUPABASE_DB_CA_CERT?.trim();
+  return ca ? { rejectUnauthorized: true, ca } : { rejectUnauthorized: true };
 }
 
 function sha256(value) {
