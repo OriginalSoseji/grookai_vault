@@ -158,7 +158,7 @@ void main() {
     expect(vendorIndex, greaterThan(objectsIndex));
     expect(collectorScreen, isNot(contains('VendorPricingWorkspaceScreen')));
     expect(collectorScreen, isNot(contains('class _VendorPricingShortcut')));
-    expect(vendorPricingScreen, contains("label: 'Market'"));
+    expect(vendorPricingScreen, contains("label: 'TCGPlayer Market'"));
     expect(vendorPricingScreen, contains("label: 'My price'"));
     expect(vendorPricingScreen, contains("Text('Wall'"));
     expect(vendorPricingScreen, contains('Assign sections'));

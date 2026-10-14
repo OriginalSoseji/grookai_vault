@@ -1074,6 +1074,13 @@ class _AppShellState extends State<AppShell> {
     );
   }
 
+  Future<void> _openVendorPricingWorkspace() async {
+    if (_supabase.auth.currentUser == null) {
+      return;
+    }
+    await _pushPage<void>(const VendorPricingWorkspaceScreen());
+  }
+
   Future<void> _openMessages() async {
     await _pushPage<void>(const NetworkInboxScreen());
   }
@@ -1514,17 +1521,24 @@ class _AppShellState extends State<AppShell> {
         tooltip: 'Messages',
         onPressed: _openMessages,
       ),
+      if (!isDesktopShell && _supabase.auth.currentUser != null)
+        _appBarActionButton(
+          icon: Icons.storefront_outlined,
+          tooltip: 'Vendor Mode',
+          onPressed: _openVendorPricingWorkspace,
+        ),
       if (isDesktopShell && _destination != _ShellDestination.search)
         _appBarActionButton(
           icon: Icons.refresh,
           tooltip: 'Refresh',
           onPressed: _refreshCurrent,
         ),
-      _appBarActionButton(
-        tooltip: 'Account',
-        icon: Icons.account_circle_outlined,
-        onPressed: _openAccountHub,
-      ),
+      if (isDesktopShell || _supabase.auth.currentUser == null)
+        _appBarActionButton(
+          tooltip: 'Account',
+          icon: Icons.account_circle_outlined,
+          onPressed: _openAccountHub,
+        ),
       _appBarActionButton(
         tooltip: 'Menu',
         icon: Icons.menu_rounded,
@@ -1561,6 +1575,7 @@ class _AppShellState extends State<AppShell> {
             children: [
               _GrookaiDesktopRail(
                 currentDestination: _destination,
+                signedIn: _supabase.auth.currentUser != null,
                 onOpenSearch: () =>
                     _selectDestination(_ShellDestination.search),
                 onOpenFeed: () => _selectDestination(_ShellDestination.feed),
@@ -1572,6 +1587,8 @@ class _AppShellState extends State<AppShell> {
                 onOpenCompare: () => unawaited(_openCompare()),
                 onOpenGrookaiObjects: () => unawaited(_openGrookaiObjectsHub()),
                 onOpenBinders: () => unawaited(_openBinderLibrary()),
+                onOpenVendorMode: () =>
+                    unawaited(_openVendorPricingWorkspace()),
                 onOpenMessages: () => unawaited(_openMessages()),
                 onOpenAccount: () => unawaited(_openAccountHub()),
                 onOpenGettingStarted: () => unawaited(_openGettingStarted()),
@@ -1944,6 +1961,7 @@ class _DockUnreadBadge extends StatelessWidget {
 class _GrookaiDesktopRail extends StatelessWidget {
   const _GrookaiDesktopRail({
     required this.currentDestination,
+    required this.signedIn,
     required this.onOpenSearch,
     required this.onOpenFeed,
     required this.onOpenWall,
@@ -1954,6 +1972,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
     required this.onOpenCompare,
     required this.onOpenGrookaiObjects,
     required this.onOpenBinders,
+    required this.onOpenVendorMode,
     required this.onOpenMessages,
     required this.onOpenAccount,
     required this.onOpenGettingStarted,
@@ -1961,6 +1980,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
   });
 
   final _ShellDestination currentDestination;
+  final bool signedIn;
   final VoidCallback onOpenSearch;
   final VoidCallback onOpenFeed;
   final VoidCallback onOpenWall;
@@ -1971,6 +1991,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
   final VoidCallback onOpenCompare;
   final VoidCallback onOpenGrookaiObjects;
   final VoidCallback onOpenBinders;
+  final VoidCallback onOpenVendorMode;
   final VoidCallback onOpenMessages;
   final VoidCallback onOpenAccount;
   final VoidCallback onOpenGettingStarted;
@@ -2042,6 +2063,12 @@ class _GrookaiDesktopRail extends StatelessWidget {
               selected: currentDestination == _ShellDestination.search,
               onTap: onOpenSearch,
             ),
+            if (signedIn)
+              _GrookaiRailTile(
+                icon: Icons.storefront_outlined,
+                label: 'Vendor Mode',
+                onTap: onOpenVendorMode,
+              ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Divider(height: 1),

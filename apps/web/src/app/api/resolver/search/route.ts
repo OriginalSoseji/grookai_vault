@@ -22,6 +22,7 @@ import {
   matchesPublicLanguageScope,
   normalizePublicLanguageScope,
 } from "@/lib/publicLanguageScope";
+import { normalizeQuery } from "@/lib/resolver/normalizeQuery";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import {
@@ -249,6 +250,48 @@ function buildSmartFilterDiscoveryMeta(
   };
 }
 
+function buildStructuredCollectorSearchMeta(
+  rows: ExploreResultCard[],
+  packet: ReturnType<typeof normalizeQuery>,
+): ResolverMeta {
+  const collectorTokens = new Set(
+    [
+      ...packet.numberTokens,
+      ...packet.numberDigitTokens,
+      ...packet.fractionTokens.flatMap((fraction) => fraction.split("/")),
+    ].map((token) => token.toLowerCase()),
+  );
+  const nameTokens = uniqueValues(
+    packet.expandedNameTokens.filter((token) => !collectorTokens.has(token)),
+  );
+  const resolverState =
+    rows.length === 0
+      ? "NO_MATCH"
+      : rows.length === 1
+        ? "DIRECT_MATCH"
+        : "AMBIGUOUS_MATCH";
+
+  return {
+    resolverState,
+    topScore: null,
+    candidateCount: rows.length,
+    autoResolved: false,
+    intentSummary: {
+      expectedSetCodes: packet.expectedSetCodes,
+      nameTokens,
+    },
+    structuredEvidenceFlags: {
+      text: nameTokens.length > 0,
+      textRequired: false,
+      expectedSet: packet.expectedSetCodes.length > 0,
+      number: packet.numberTokens.length > 0,
+      fraction: packet.fractionTokens.length > 0,
+      promo: packet.promoTokens.length > 0,
+      variants: packet.variantTokens,
+    },
+  };
+}
+
 function buildDegradedSearchMeta(query: string): ResolverMeta {
   const nameTokens = query
     .toLowerCase()
@@ -374,6 +417,7 @@ export async function GET(request: NextRequest) {
   let smartSearchIntent = buildSmartSearchIntent(rawQuery, { gameScope: selectedGameScope });
   const gameScope = smartSearchIntent.gameScope ?? selectedGameScope;
   let query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
+  let resolverQuery = normalizeQuery(query);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
   let literalNameSearch = false;
@@ -419,6 +463,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
     }
   }
+  resolverQuery = normalizeQuery(query);
   const languageScope = smartSearchIntent.languageScope ?? normalizePublicLanguageScope(request.nextUrl.searchParams.get("lang"));
   const inlineExactSetCode =
     !exactSetCode && inlineSetIntent.setCodes.length === 1
@@ -531,10 +576,18 @@ export async function GET(request: NextRequest) {
     !query &&
     hasCatalogDiscoveryScope &&
     effectiveSmartSearchIntent.ownedState !== "owned";
+  const canUseFastStructuredCollectorSearch =
+    resolverQuery.collectorExpectations.length > 0 &&
+    resolverQuery.expectedSetCodes.length === 0 &&
+    resolverQuery.rarityIntent.length === 0 &&
+    resolverQuery.traitIntent.length === 0 &&
+    resolverQuery.variantTokens.length === 0;
   const shouldUseFastTextSearch =
     Boolean(query) &&
     !hasCatalogDiscoveryScope &&
-    !hasSmartOwnershipIntent;
+    !hasSmartOwnershipIntent &&
+    (!resolverQuery.hasStrongDisambiguator ||
+      canUseFastStructuredCollectorSearch);
 
   if (!query && !completeSearch && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
@@ -714,7 +767,9 @@ export async function GET(request: NextRequest) {
             includePricingDuringResolution,
           ).then((rows) => ({
             rows,
-            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+            meta: canUseFastStructuredCollectorSearch
+              ? buildStructuredCollectorSearchMeta(rows, resolverQuery)
+              : buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
             smartSearchIntent: effectiveSmartSearchIntent,
             degraded: false,
           }))
