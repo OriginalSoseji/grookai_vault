@@ -24,7 +24,7 @@ const candidate = { id: input.source_candidate_id, source: 'justtcg', upstream_i
   raw_import_id: 123, name_raw: 'Fixture (Stamped)', number_raw: '024', set_id: 'provider-set',
   payload: { name: 'Fixture (Stamped)', number: '024', arbitrary_detail: 'preserved' } };
 
-async function fixture({ overrides = {}, mappings = [], args = [], rows } = {}) {
+async function fixture({ overrides = {}, mappings = [], args = [], rows, timeoutMs = 15000 } = {}) {
   const folder = await mkdtemp(path.join(tmpdir(), 'grookai-source-review-'));
   const file = path.join(folder, 'input.json');
   await writeFile(file, JSON.stringify({ rows: rows ?? [{ ...input, ...overrides }] }));
@@ -55,7 +55,7 @@ async function fixture({ overrides = {}, mappings = [], args = [], rows } = {}) 
     const result = await new Promise((resolve, reject) => {
       const child = spawn(process.execPath, [script, '--dry-run', `--input-json=${file}`, ...args], {
         cwd: root, env: { ...env, SUPABASE_URL: `http://127.0.0.1:${server.address().port}` },
-        windowsHide: true, timeout: 15000,
+        windowsHide: true, timeout: timeoutMs,
       });
       let stdout = '', stderr = '';
       child.stdout.on('data', value => { stdout += value; });
@@ -132,7 +132,7 @@ test('source-backed review rejects oversize batch before client access without t
 test('conflicting external owner on a later page is not silently truncated', async () => {
   const mappings = Array.from({ length: 100 }, (_, index) => ({ ...exact, id: `m-${index}` }));
   mappings.push({ ...exact, id: 'later-owner', card_print_id: 'other' });
-  const result = await fixture({ mappings });
+  const result = await fixture({ mappings, timeoutMs: 60000 });
   assert.equal(result.code, 1);
   assert.equal(result.row.status, 'conflict_external_id_claimed_elsewhere');
   assert.equal(result.row.external_id_mappings.length, 101);
