@@ -31,6 +31,16 @@ function formatObservedAt(value: string) {
   }).format(parsed);
 }
 
+function useFormattedObservedAt(value: string | null | undefined) {
+  const [formatted, setFormatted] = useState<string | null>(null);
+
+  useEffect(() => {
+    setFormatted(value ? formatObservedAt(value) : null);
+  }, [value]);
+
+  return formatted;
+}
+
 function SourceRange({ pricing }: { pricing: CardPricingUiRecord }) {
   const values = [
     ["Low", pricing.low_price],
@@ -80,9 +90,10 @@ function MarketPriceBlock({
 }: {
   pricing: CardPricingUiRecord | null;
 }) {
+  const observedAt = useFormattedObservedAt(pricing?.observed_at);
+
   if (!pricing) return <PricingEmptyState />;
 
-  const observedAt = formatObservedAt(pricing.observed_at);
   const context =
     pricing.pricing_scope === "card_printing"
       ? pricing.finish_key
@@ -133,9 +144,7 @@ function ActiveAskBlock({
   marketIntelligence: MarketIntelligenceRecordV1 | null;
   isLoading: boolean;
 }) {
-  const observedAt = marketIntelligence
-    ? formatObservedAt(marketIntelligence.observed_at)
-    : null;
+  const observedAt = useFormattedObservedAt(marketIntelligence?.observed_at);
 
   return (
     <div

@@ -1,5 +1,6 @@
 import { vendorPilot } from "@/lib/vendorPilot.mjs";
 import Link from "next/link";
+import Script from "next/script";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
@@ -72,7 +73,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+        <Script
+          id="grookai-theme-bootstrap"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeBootstrapScript }}
+        />
       </head>
       <body>
         <a href="#main-content" className="gv-skip-link">
