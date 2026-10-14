@@ -12,6 +12,7 @@ import {
 } from "./tcgplayer_market_product_scope_v1.mjs";
 import {
   matchesReviewedTcgplayerProductTargetV1,
+  reviewedTcgplayerProductIdentityByIdV1,
   reviewedTcgplayerProductIdentityV1,
   TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "./tcgplayer_reviewed_product_identity_authority_v1.mjs";
@@ -224,7 +225,15 @@ export function planTcgplayerExactMappingCandidateV1({
 }) {
   const base = baseResult(source);
   const scope = classifyTcgplayerMarketProductScopeV1_2(source);
+  const reservedReviewedIdentity =
+    reviewedTcgplayerProductIdentityByIdV1(source?.source_product_id);
   const reviewedIdentity = reviewedTcgplayerProductIdentityV1(source);
+
+  if (reservedReviewedIdentity && !reviewedIdentity) {
+    return blocked(source, "reviewed_product_source_drift", {
+      evidence_lane: "reviewed_product_identity_authority",
+    });
+  }
 
   const pilotSource = matchesTrainerKitPilotSourceV1(source);
   if ((trainerKitPilotCardV1(source) && !pilotSource) ||

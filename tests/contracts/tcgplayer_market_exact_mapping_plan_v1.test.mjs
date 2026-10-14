@@ -388,10 +388,56 @@ test("reviewed product authority admits only the exact bound Pokemon Center iden
       set_code: authority.target.set_code,
       mapped_source_product_count: 1,
     },
-    setTargets: [reviewedTarget],
+    setTargets: [target({
+      card_print_id: "base-koraidon-014",
+      gv_id: "GV-PK-SVP-014",
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: "Koraidon",
+      number: "014",
+      variant_key: "",
+      embedded_external_id: null,
+    })],
   });
   assert.equal(sourceDrift.disposition, "blocked");
-  assert.equal(sourceDrift.reason, "no_exact_set_number_name_target");
+  assert.equal(sourceDrift.reason, "reviewed_product_source_drift");
+  assert.equal(sourceDrift.evidence_lane, "reviewed_product_identity_authority");
+
+  const forgedGeneralCandidate = planTcgplayerExactMappingCandidateV1({
+    source: {
+      ...reviewedSource,
+      source_product_id: 999999,
+      source_product_name: "Koraidon - 014",
+    },
+    groupConsensus: {
+      set_count: 1,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      mapped_source_product_count: 1,
+    },
+    setTargets: [target({
+      card_print_id: "base-koraidon-014",
+      gv_id: "GV-PK-SVP-014",
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: "Koraidon",
+      number: "014",
+      variant_key: "",
+      embedded_external_id: null,
+    })],
+  });
+  assert.equal(forgedGeneralCandidate.disposition, "candidate");
+  forgedGeneralCandidate.source_product_id = authority.source_product_id;
+  const {
+    candidate_fingerprint: ignoredForgedFingerprint,
+    ...forgedPayload
+  } = forgedGeneralCandidate;
+  forgedGeneralCandidate.candidate_fingerprint =
+    tcgplayerExactMappingCandidateFingerprintV1(forgedPayload);
+  assert.ok(
+    validateTcgplayerExactMappingCandidateForApplyV1(forgedGeneralCandidate)
+      .failures.includes("reviewed_product_source_drift"),
+  );
 
   const unreviewedProduct = planTcgplayerExactMappingCandidateV1({
     source: { ...reviewedSource, source_product_id: 999999 },

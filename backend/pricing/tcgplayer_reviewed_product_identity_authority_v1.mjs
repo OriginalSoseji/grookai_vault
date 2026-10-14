@@ -58,10 +58,14 @@ function text(value) {
   return String(value ?? "").trim();
 }
 
+export function reviewedTcgplayerProductIdentityByIdV1(sourceProductId) {
+  return rows.find((candidate) =>
+    Number(sourceProductId) === candidate.source_product_id,
+  ) ?? null;
+}
+
 export function reviewedTcgplayerProductIdentityV1(source) {
-  const row = rows.find((candidate) =>
-    Number(source?.source_product_id) === candidate.source_product_id,
-  );
+  const row = reviewedTcgplayerProductIdentityByIdV1(source?.source_product_id);
   if (!row) return null;
   return Number(source?.source_group_id) === row.source_group_id &&
     text(source?.source_group_name) === row.source_group_name &&

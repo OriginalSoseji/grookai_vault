@@ -7,6 +7,7 @@ import {
 import { classifyTcgplayerMarketProductScopeV1_2 } from "./tcgplayer_market_product_scope_v1.mjs";
 import {
   matchesReviewedTcgplayerProductTargetV1,
+  reviewedTcgplayerProductIdentityByIdV1,
   reviewedTcgplayerProductIdentityV1,
   TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "./tcgplayer_reviewed_product_identity_authority_v1.mjs";
@@ -54,6 +55,8 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
     has_printed_number_evidence: Boolean(text(candidate?.printed_number)),
   });
   const pilot = trainerKitPilotCardV1(candidate);
+  const reservedReviewedIdentity =
+    reviewedTcgplayerProductIdentityByIdV1(candidate?.source_product_id);
   const reviewedIdentity = reviewedTcgplayerProductIdentityV1(candidate);
   const reviewedMapping = reviewedIdentity &&
     matchesReviewedTcgplayerProductTargetV1(candidate, {
@@ -68,6 +71,9 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
   if (pilot && (candidate.pilot_policy_version !== TCGPLAYER_TRAINER_KIT_PILOT_V1 ||
       !matchesTrainerKitPilotMappingV1(candidate, candidate.target))) {
     failures.push("trainer_kit_pilot_identity_mismatch");
+  }
+  if (reservedReviewedIdentity && !reviewedIdentity) {
+    failures.push("reviewed_product_source_drift");
   }
   if (!scope.in_scope && !(scope.rule_id === "deck_exclusive_special_variant" &&
       matchesTrainerKitPilotMappingV1(candidate, candidate?.target)) &&
