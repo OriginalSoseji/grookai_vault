@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 
 enum AppCardViewMode { grid, compactList, comfortableList }
 
+AppCardViewMode resolveCardViewModeForTextScale(
+  AppCardViewMode requestedMode,
+  double textScale,
+) {
+  if (requestedMode == AppCardViewMode.grid && textScale >= 1.5) {
+    return AppCardViewMode.comfortableList;
+  }
+  return requestedMode;
+}
+
 extension AppCardViewModePresentation on AppCardViewMode {
   String get label {
     switch (this) {
@@ -43,11 +53,13 @@ class SharedCardViewModeButton extends StatelessWidget {
   const SharedCardViewModeButton({
     required this.value,
     required this.onChanged,
+    this.iconOnly = false,
     super.key,
   });
 
   final AppCardViewMode value;
   final ValueChanged<AppCardViewMode> onChanged;
+  final bool iconOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +90,7 @@ class SharedCardViewModeButton extends StatelessWidget {
           )
           .toList(),
       child: Container(
+        constraints: const BoxConstraints(minHeight: 44),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
           color: colorScheme.surface.withValues(alpha: 0.88),
@@ -94,15 +107,17 @@ class SharedCardViewModeButton extends StatelessWidget {
               size: 16,
               color: colorScheme.onSurface.withValues(alpha: 0.72),
             ),
-            const SizedBox(width: 6),
-            Text(
-              value.label,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-                color: colorScheme.onSurface.withValues(alpha: 0.84),
+            if (!iconOnly) ...[
+              const SizedBox(width: 6),
+              Text(
+                value.label,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: colorScheme.onSurface.withValues(alpha: 0.84),
+                ),
               ),
-            ),
-            const SizedBox(width: 4),
+              const SizedBox(width: 4),
+            ],
             Icon(
               Icons.unfold_more_rounded,
               size: 15,

@@ -136,7 +136,8 @@ void main() {
     expect(manage, contains("label: 'Slab upgrade'"));
     expect(manage, contains("label: 'Remove copy'"));
 
-    expect(network, contains('onLongPress: () => _showQuickActions(context)'));
+    expect(network, contains("tooltip: 'More actions'"));
+    expect(network, contains('onPressed: () => _showQuickActions(context)'));
     expect(network, contains('showVaultQuickActionSheet'));
     expect(network, contains("label: 'View collector Wall'"));
     expect(network, contains("label: 'Message collector'"));

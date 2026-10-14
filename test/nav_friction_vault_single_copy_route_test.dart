@@ -40,7 +40,7 @@ void main() {
     );
     expect(vault, contains('Widget _buildVaultTile'));
     expect(vault, contains('Widget _buildVaultGridTile'));
-    expect(vault, contains('Widget _buildRecentVaultStrip'));
+    expect(vault, contains('List<Widget> _buildVaultCollectionSlivers'));
     expect(vault, contains('final canOpen = _canOpenVaultRow(row);'));
     expect(vault, contains('() => _openManageCardRow(row)'));
   });

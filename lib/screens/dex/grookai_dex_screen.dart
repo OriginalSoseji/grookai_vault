@@ -42,7 +42,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
   String? _typeFilter;
   _DexSpeciesProgress _progressFilter = _DexSpeciesProgress.all;
   _DexSpeciesSort _sort = _DexSpeciesSort.nationalDex;
-  _DexSpeciesPresentation _presentation = _DexSpeciesPresentation.list;
+  _DexSpeciesPresentation _presentation = _DexSpeciesPresentation.grid;
 
   @override
   void initState() {
@@ -271,13 +271,6 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
     final ownedStartedCount = metricSpecies
         .where((row) => row.ownedPrintCount > 0)
         .length;
-    final completeCount = metricSpecies
-        .where(
-          (row) =>
-              row.totalPrintCount > 0 &&
-              row.ownedPrintCount >= row.totalPrintCount,
-        )
-        .length;
     final pageTotalPrints = metricSpecies.fold<int>(
       0,
       (sum, row) => sum + row.totalPrintCount,
@@ -289,13 +282,6 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
     final pageCompletionPercent = pageTotalPrints <= 0
         ? 0
         : ((pageOwnedPrints / pageTotalPrints) * 100).round().clamp(0, 100);
-    final incompleteCount = metricSpecies
-        .where(
-          (row) =>
-              row.totalPrintCount > 0 &&
-              row.ownedPrintCount < row.totalPrintCount,
-        )
-        .length;
     final showSpeciesList =
         !_loading && _error == null && filteredSpecies.isNotEmpty;
     final browsingFullDex =
@@ -326,146 +312,91 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      _DexHeroCard(
-                        emphasize: true,
+                      Semantics(
+                        label: 'National collection progress',
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: [
-                                _DexPill(label: 'Grookai Dex', strong: true),
-                                _DexPill(label: 'Vault-aware'),
-                              ],
-                            ),
-                            const SizedBox(height: 18),
                             Text(
-                              'Character completion, not just a checklist.',
-                              style: theme.textTheme.headlineMedium?.copyWith(
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: 0,
-                                height: 0.98,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Search a Pokemon and see every mapped card print, what your vault owns, and the gaps still left for that character.',
-                              style: theme.textTheme.bodyMedium?.copyWith(
+                              'NATIONAL COLLECTION',
+                              style: theme.textTheme.labelSmall?.copyWith(
                                 color: colorScheme.onSurface.withValues(
-                                  alpha: 0.64,
+                                  alpha: 0.52,
                                 ),
-                                fontWeight: FontWeight.w600,
-                                height: 1.35,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 1.4,
                               ),
                             ),
-                            const SizedBox(height: 18),
+                            const SizedBox(height: 6),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        initialLoading
-                                            ? '—'
-                                            : initialUnavailable
-                                            ? 'Unavailable'
-                                            : '$pageCompletionPercent%',
-                                        style: theme.textTheme.displaySmall
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.w900,
-                                              letterSpacing: 0,
-                                            ),
-                                      ),
-                                      Text(
-                                        initialLoading
-                                            ? 'Loading Dex printings…'
-                                            : initialUnavailable
-                                            ? 'Dex metrics are temporarily unavailable.'
-                                            : '$pageOwnedPrints / $pageTotalPrints printings collected',
-                                        style: theme.textTheme.bodySmall
-                                            ?.copyWith(
-                                              color: colorScheme.onSurface
-                                                  .withValues(alpha: 0.58),
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                      ),
-                                    ],
+                                  child: Text(
+                                    initialLoading
+                                        ? '—'
+                                        : initialUnavailable
+                                        ? 'Unavailable'
+                                        : '$ownedStartedCount / ${metricSpecies.length}',
+                                    style: theme.textTheme.headlineLarge
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w900,
+                                          letterSpacing: -1,
+                                        ),
                                   ),
                                 ),
-                                _DexPill(
-                                  label: initialLoading
-                                      ? 'Loading'
-                                      : initialUnavailable
-                                      ? 'Unavailable'
-                                      : isSearching
-                                      ? 'Search'
-                                      : '${filteredSpecies.length} shown',
-                                ),
+                                if (!initialUnavailable)
+                                  Text(
+                                    initialLoading
+                                        ? 'Loading…'
+                                        : '$pageCompletionPercent%',
+                                    style: theme.textTheme.titleMedium
+                                        ?.copyWith(
+                                          color: colorScheme.primary,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                  ),
                               ],
                             ),
-                            const SizedBox(height: 12),
-                            if (initialUnavailable)
-                              Container(
-                                height: 8,
-                                decoration: BoxDecoration(
-                                  color: colorScheme.surfaceContainerHighest
-                                      .withValues(alpha: 0.62),
-                                  borderRadius: BorderRadius.circular(999),
+                            Text(
+                              initialUnavailable
+                                  ? 'Collection metrics are temporarily unavailable.'
+                                  : 'species collected · $pageOwnedPrints of $pageTotalPrints printings',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.58,
                                 ),
-                              )
-                            else
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(999),
-                                child: LinearProgressIndicator(
-                                  minHeight: 8,
-                                  value: initialLoading
-                                      ? null
-                                      : pageCompletionPercent / 100,
-                                  backgroundColor: colorScheme
-                                      .surfaceContainerHighest
-                                      .withValues(alpha: 0.62),
-                                ),
+                                fontWeight: FontWeight.w700,
                               ),
-                            const SizedBox(height: 18),
-                            Row(
-                              children: [
-                                _DexMetric(
-                                  label: 'Species',
-                                  value: hasDexData
-                                      ? '${metricSpecies.length}'
-                                      : '—',
-                                ),
-                                _DexMetric(
-                                  label: 'Started',
-                                  value: hasDexData
-                                      ? '$ownedStartedCount'
-                                      : '—',
-                                ),
-                                _DexMetric(
-                                  label: 'Complete',
-                                  value: hasDexData ? '$completeCount' : '—',
-                                ),
-                                _DexMetric(
-                                  label: 'Missing',
-                                  value: hasDexData ? '$incompleteCount' : '—',
-                                ),
-                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(999),
+                              child: LinearProgressIndicator(
+                                minHeight: 7,
+                                value: initialLoading || initialUnavailable
+                                    ? null
+                                    : pageCompletionPercent / 100,
+                                backgroundColor: colorScheme
+                                    .surfaceContainerHighest
+                                    .withValues(alpha: 0.62),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 14),
-                      TextField(
-                        controller: _searchController,
-                        decoration: const InputDecoration(
-                          hintText: 'Search all Pokemon',
-                          prefixIcon: Icon(Icons.search_rounded),
+                      const SizedBox(height: 18),
+                      Semantics(
+                        textField: true,
+                        label: 'Search Pokemon species',
+                        child: TextField(
+                          controller: _searchController,
+                          decoration: const InputDecoration(
+                            hintText: 'Search species…',
+                            prefixIcon: Icon(Icons.search_rounded),
+                          ),
+                          onChanged: (_) => setState(() {}),
                         ),
-                        onChanged: (_) => setState(() {}),
                       ),
                       const SizedBox(height: 14),
                       if (hasDexData) ...[
@@ -499,10 +430,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                         const SizedBox(height: 14),
                       ],
                       if (_loading)
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 40),
-                          child: Center(child: CircularProgressIndicator()),
-                        )
+                        const _DexLoadingGrid()
                       else if (_error != null)
                         _DexSurfaceCard(
                           child: _DexEmptyState(
@@ -562,7 +490,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 230,
-                          mainAxisExtent: 280,
+                          mainAxisExtent: 220,
                           crossAxisSpacing: 8,
                           mainAxisSpacing: 8,
                         ),
@@ -698,121 +626,187 @@ class _DexBrowseControls extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    return _DexSurfaceCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
+    final activeFilterCount =
+        (generation == null ? 0 : 1) +
+        (type == null ? 0 : 1) +
+        (progress == _DexSpeciesProgress.all ? 0 : 1);
+
+    Future<void> openFilters() async {
+      await showModalBottomSheet<void>(
+        context: context,
+        useSafeArea: true,
+        showDragHandle: true,
+        isScrollControlled: true,
+        builder: (sheetContext) => StatefulBuilder(
+          builder: (context, setSheetState) {
+            void update(VoidCallback action) {
+              action();
+              setSheetState(() {});
+            }
+
+            return Padding(
+              padding: EdgeInsets.fromLTRB(
+                20,
+                4,
+                20,
+                20 + MediaQuery.viewPaddingOf(context).bottom,
+              ),
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Browse the collection',
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w900,
+                      'Filter Dex',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
+                    const SizedBox(height: 4),
                     Text(
                       '$resultCount species shown',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurface.withValues(alpha: 0.58),
-                        fontWeight: FontWeight.w600,
+                        color: colorScheme.onSurface.withValues(alpha: 0.62),
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        PopupMenuButton<String>(
+                          tooltip: 'Filter by generation',
+                          initialValue: generation == null
+                              ? 'all'
+                              : '$generation',
+                          onSelected: (value) => update(
+                            () => onGenerationChanged(
+                              value == 'all' ? null : int.tryParse(value),
+                            ),
+                          ),
+                          itemBuilder: (_) => [
+                            const PopupMenuItem(
+                              value: 'all',
+                              child: Text('All gens'),
+                            ),
+                            for (final value in generations)
+                              PopupMenuItem(
+                                value: '$value',
+                                child: Text('Generation $value'),
+                              ),
+                          ],
+                          child: _DexControlChip(
+                            icon: Icons.auto_awesome_motion_outlined,
+                            label: generation == null
+                                ? 'All gens'
+                                : 'Gen $generation',
+                            active: generation != null,
+                          ),
+                        ),
+                        PopupMenuButton<String>(
+                          tooltip: 'Filter by Pokemon type',
+                          initialValue: type ?? 'all',
+                          onSelected: (value) => update(
+                            () => onTypeChanged(value == 'all' ? null : value),
+                          ),
+                          itemBuilder: (_) => [
+                            const PopupMenuItem(
+                              value: 'all',
+                              child: Text('All types'),
+                            ),
+                            for (final value in types)
+                              PopupMenuItem(
+                                value: value,
+                                child: Text(_dexTitleCase(value)),
+                              ),
+                          ],
+                          child: _DexControlChip(
+                            icon: Icons.category_outlined,
+                            label: type == null
+                                ? 'All types'
+                                : _dexTitleCase(type!),
+                            active: type != null,
+                          ),
+                        ),
+                        PopupMenuButton<_DexSpeciesProgress>(
+                          tooltip: 'Filter by collection progress',
+                          initialValue: progress,
+                          onSelected: (value) =>
+                              update(() => onProgressChanged(value)),
+                          itemBuilder: (_) => [
+                            for (final value in _DexSpeciesProgress.values)
+                              PopupMenuItem(
+                                value: value,
+                                child: Text(value.label),
+                              ),
+                          ],
+                          child: _DexControlChip(
+                            icon: Icons.donut_large_rounded,
+                            label: progress.label,
+                            active: progress != _DexSpeciesProgress.all,
+                          ),
+                        ),
+                        PopupMenuButton<_DexSpeciesSort>(
+                          tooltip: 'Sort species',
+                          initialValue: sort,
+                          onSelected: (value) =>
+                              update(() => onSortChanged(value)),
+                          itemBuilder: (_) => [
+                            for (final value in _DexSpeciesSort.values)
+                              PopupMenuItem(
+                                value: value,
+                                child: Text(value.label),
+                              ),
+                          ],
+                          child: _DexControlChip(
+                            icon: Icons.sort_rounded,
+                            label: sort.label,
+                            active: sort != _DexSpeciesSort.nationalDex,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (hasFilters) ...[
+                      const SizedBox(height: 12),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton.icon(
+                          onPressed: () => update(onClearFilters),
+                          icon: const Icon(
+                            Icons.filter_alt_off_outlined,
+                            size: 18,
+                          ),
+                          label: const Text('Clear filters'),
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
-              if (hasFilters)
-                TextButton.icon(
-                  onPressed: onClearFilters,
-                  icon: const Icon(Icons.filter_alt_off_outlined, size: 18),
-                  label: const Text('Clear'),
-                ),
-            ],
+            );
+          },
+        ),
+      );
+    }
+
+    return Row(
+      children: [
+        TextButton.icon(
+          onPressed: openFilters,
+          icon: Badge(
+            isLabelVisible: activeFilterCount > 0,
+            label: Text('$activeFilterCount'),
+            child: const Icon(Icons.tune_rounded),
           ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              PopupMenuButton<String>(
-                tooltip: 'Filter by generation',
-                initialValue: generation == null ? 'all' : '$generation',
-                onSelected: (value) => onGenerationChanged(
-                  value == 'all' ? null : int.tryParse(value),
-                ),
-                itemBuilder: (_) => [
-                  const PopupMenuItem(value: 'all', child: Text('All gens')),
-                  for (final value in generations)
-                    PopupMenuItem(
-                      value: '$value',
-                      child: Text('Generation $value'),
-                    ),
-                ],
-                child: _DexControlChip(
-                  icon: Icons.auto_awesome_motion_outlined,
-                  label: generation == null ? 'All gens' : 'Gen $generation',
-                  active: generation != null,
-                ),
-              ),
-              PopupMenuButton<String>(
-                tooltip: 'Filter by Pokemon type',
-                initialValue: type ?? 'all',
-                onSelected: (value) =>
-                    onTypeChanged(value == 'all' ? null : value),
-                itemBuilder: (_) => [
-                  const PopupMenuItem(value: 'all', child: Text('All types')),
-                  for (final value in types)
-                    PopupMenuItem(
-                      value: value,
-                      child: Text(_dexTitleCase(value)),
-                    ),
-                ],
-                child: _DexControlChip(
-                  icon: Icons.category_outlined,
-                  label: type == null ? 'All types' : _dexTitleCase(type!),
-                  active: type != null,
-                ),
-              ),
-              PopupMenuButton<_DexSpeciesProgress>(
-                tooltip: 'Filter by collection progress',
-                initialValue: progress,
-                onSelected: onProgressChanged,
-                itemBuilder: (_) => [
-                  for (final value in _DexSpeciesProgress.values)
-                    PopupMenuItem(value: value, child: Text(value.label)),
-                ],
-                child: _DexControlChip(
-                  icon: Icons.donut_large_rounded,
-                  label: progress.label,
-                  active: progress != _DexSpeciesProgress.all,
-                ),
-              ),
-              PopupMenuButton<_DexSpeciesSort>(
-                tooltip: 'Sort species',
-                initialValue: sort,
-                onSelected: onSortChanged,
-                itemBuilder: (_) => [
-                  for (final value in _DexSpeciesSort.values)
-                    PopupMenuItem(value: value, child: Text(value.label)),
-                ],
-                child: _DexControlChip(
-                  icon: Icons.sort_rounded,
-                  label: sort.label,
-                  active: sort != _DexSpeciesSort.nationalDex,
-                ),
-              ),
-              _DexSpeciesPresentationPicker(
-                value: presentation,
-                onChanged: onPresentationChanged,
-              ),
-            ],
-          ),
-        ],
-      ),
+          label: const Text('Filters'),
+          style: TextButton.styleFrom(minimumSize: const Size(44, 44)),
+        ),
+        const Spacer(),
+        _DexSpeciesPresentationPicker(
+          value: presentation,
+          onChanged: onPresentationChanged,
+        ),
+      ],
     );
   }
 }
@@ -843,22 +837,25 @@ class _DexControlChip extends StatelessWidget {
               : colorScheme.outline.withValues(alpha: 0.09),
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 17),
-            const SizedBox(width: 6),
-            Text(
-              label,
-              style: Theme.of(
-                context,
-              ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(width: 3),
-            const Icon(Icons.arrow_drop_down_rounded, size: 18),
-          ],
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 44),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 17),
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(width: 3),
+              const Icon(Icons.arrow_drop_down_rounded, size: 18),
+            ],
+          ),
         ),
       ),
     );
@@ -966,6 +963,13 @@ class _DexSpeciesCompactCard extends StatelessWidget {
       if (species.types.isNotEmpty)
         species.types.take(2).map(_dexTitleCase).join(' / '),
     ].join(' · ');
+    final collectionStatus = species.totalPrintCount <= 0
+        ? 'No printings mapped'
+        : species.ownedPrintCount >= species.totalPrintCount
+        ? 'Complete'
+        : species.ownedPrintCount > 0
+        ? '${species.ownedPrintCount}/${species.totalPrintCount} collected'
+        : 'Not started';
 
     final progress = ClipRRect(
       borderRadius: BorderRadius.circular(999),
@@ -983,17 +987,10 @@ class _DexSpeciesCompactCard extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
         onTap: onTap,
-        child: Ink(
-          decoration: BoxDecoration(
-            color: colorScheme.surface.withValues(alpha: 0.86),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: colorScheme.outline.withValues(alpha: 0.09),
-            ),
-          ),
-          padding: const EdgeInsets.all(12),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
           child: grid
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -1007,25 +1004,13 @@ class _DexSpeciesCompactCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            species.displayName,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '$percent%',
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      species.displayName,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
                     ),
                     const SizedBox(height: 3),
                     Text(
@@ -1037,17 +1022,18 @@ class _DexSpeciesCompactCard extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const Spacer(),
+                    const SizedBox(height: 8),
                     Text(
-                      '${species.ownedPrintCount}/${species.totalPrintCount} owned · $missing missing',
+                      collectionStatus,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.labelSmall?.copyWith(
+                        color: species.ownedPrintCount > 0
+                            ? colorScheme.tertiary
+                            : colorScheme.onSurface.withValues(alpha: 0.54),
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 7),
-                    progress,
                   ],
                 )
               : Row(
@@ -1364,34 +1350,25 @@ class _DexInlineStat extends StatelessWidget {
 }
 
 class _DexPill extends StatelessWidget {
-  const _DexPill({required this.label, this.strong = false});
+  const _DexPill({required this.label});
 
   final String label;
-  final bool strong;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: strong
-            ? colorScheme.primaryContainer.withValues(alpha: 0.58)
-            : colorScheme.surfaceContainerHighest.withValues(alpha: 0.64),
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.64),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(
-          color: strong
-              ? colorScheme.primary.withValues(alpha: 0.16)
-              : colorScheme.outline.withValues(alpha: 0.08),
-        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
         child: Text(
           label,
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: strong
-                ? colorScheme.onPrimaryContainer
-                : colorScheme.onSurface.withValues(alpha: 0.68),
+            color: colorScheme.onSurface.withValues(alpha: 0.68),
             fontWeight: FontWeight.w900,
             letterSpacing: 1.1,
           ),
@@ -1401,73 +1378,71 @@ class _DexPill extends StatelessWidget {
   }
 }
 
-class _DexMetric extends StatelessWidget {
-  const _DexMetric({required this.label, required this.value});
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            value,
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: Theme.of(
-                context,
-              ).colorScheme.onSurface.withValues(alpha: 0.56),
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _DexHeroCard extends StatelessWidget {
-  const _DexHeroCard({required this.child, this.emphasize = false});
-
-  final Widget child;
-  final bool emphasize;
+class _DexLoadingGrid extends StatelessWidget {
+  const _DexLoadingGrid();
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colorScheme.primaryContainer.withValues(
-              alpha: emphasize ? 0.22 : 0.12,
-            ),
-            colorScheme.surface.withValues(alpha: 0.90),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withValues(alpha: 0.07),
-            blurRadius: 30,
-            offset: const Offset(0, 16),
+    final blockColor = colorScheme.surfaceContainerHighest.withValues(
+      alpha: 0.62,
+    );
+
+    return Semantics(
+      label: 'Loading Dex species',
+      liveRegion: true,
+      child: ExcludeSemantics(
+        child: GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 230,
+            mainAxisExtent: 220,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
           ),
-        ],
+          itemCount: 4,
+          itemBuilder: (_, _) => Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: blockColor,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: const SizedBox.expand(),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                FractionallySizedBox(
+                  widthFactor: 0.68,
+                  child: Container(
+                    height: 16,
+                    decoration: BoxDecoration(
+                      color: blockColor,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                FractionallySizedBox(
+                  widthFactor: 0.48,
+                  child: Container(
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: blockColor,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
-      padding: const EdgeInsets.all(20),
-      child: child,
     );
   }
 }
