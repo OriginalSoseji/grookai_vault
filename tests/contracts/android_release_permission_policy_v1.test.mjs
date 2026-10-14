@@ -71,3 +71,15 @@ test("Android release web gate targets the canonical production deployment", () 
     );
   }
 });
+
+test("Android release version stays above the installed Play production build", () => {
+  const pubspec = read("pubspec.yaml");
+  const version = pubspec.match(/^version:\s*([^+\s]+)\+(\d+)\s*$/m);
+
+  assert.ok(version, "pubspec.yaml must declare a numeric Android build number");
+  assert.equal(version[1], "1.0.0");
+  assert.ok(
+    Number(version[2]) >= 410,
+    "Android versionCode must remain above the installed Play production build 409",
+  );
+});
