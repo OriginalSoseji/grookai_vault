@@ -94,6 +94,8 @@ void main() {
     'Search discovery is local, bounded, and routes only to real surfaces',
     () {
       expect(search, contains("'catalog_recent_searches_v1'"));
+      expect(search, contains('localRecentSearchStorageKey('));
+      expect(recentSearches, contains("'catalog_recent_searches_v2'"));
       expect(recentSearches, contains('kLocalRecentSearchLimit = 5'));
       expect(recentSearches, contains('normalizeLocalRecentSearches'));
       expect(recentSearches, contains('recordLocalRecentSearch'));

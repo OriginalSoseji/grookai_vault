@@ -4,6 +4,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/search/local_recent_searches.dart';
 
 void main() {
+  test('storage keys isolate anonymous and signed-in search history', () {
+    expect(
+      localRecentSearchStorageKey(signedOutBrowse: true, userId: null),
+      'catalog_recent_searches_v2:anonymous',
+    );
+    expect(
+      localRecentSearchStorageKey(signedOutBrowse: false, userId: ' user-123 '),
+      'catalog_recent_searches_v2:user:user-123',
+    );
+    expect(
+      localRecentSearchStorageKey(signedOutBrowse: false, userId: null),
+      isNull,
+    );
+  });
+
   test('recent search history trims, deduplicates, and caps at five', () {
     expect(
       normalizeLocalRecentSearches([
@@ -56,13 +71,12 @@ void main() {
     expect(
       main,
       contains(
-        "static const _recentSearchesKey = 'catalog_recent_searches_v1'",
+        "static const _legacyRecentSearchesKey = 'catalog_recent_searches_v1'",
       ),
     );
-    expect(
-      main,
-      contains('preferences.setStringList(_recentSearchesKey, searches)'),
-    );
+    expect(main, contains('localRecentSearchStorageKey('));
+    expect(main, contains('preferences.remove(_legacyRecentSearchesKey)'));
+    expect(main, contains('preferences.setStringList(storageKey, searches)'));
     expect(main, contains('void _clearRecentSearches()'));
     expect(main, contains('_saveRecentSearches(const [])'));
   });

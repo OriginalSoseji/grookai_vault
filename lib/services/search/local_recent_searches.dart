@@ -1,4 +1,20 @@
 const int kLocalRecentSearchLimit = 5;
+const String kLocalRecentSearchStoragePrefix = 'catalog_recent_searches_v2';
+
+String? localRecentSearchStorageKey({
+  required bool signedOutBrowse,
+  required String? userId,
+}) {
+  if (signedOutBrowse) {
+    return '$kLocalRecentSearchStoragePrefix:anonymous';
+  }
+
+  final normalizedUserId = userId?.trim();
+  if (normalizedUserId == null || normalizedUserId.isEmpty) {
+    return null;
+  }
+  return '$kLocalRecentSearchStoragePrefix:user:$normalizedUserId';
+}
 
 List<String> normalizeLocalRecentSearches(Iterable<String>? values) {
   if (values == null) return const <String>[];

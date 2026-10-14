@@ -3724,7 +3724,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  static const _recentSearchesKey = 'catalog_recent_searches_v1';
+  static const _legacyRecentSearchesKey = 'catalog_recent_searches_v1';
   final supabase = Supabase.instance.client;
   final _ownershipAdapter = OwnershipResolverAdapter.instance;
   final _searchCtrl = TextEditingController();
@@ -3765,6 +3765,11 @@ class HomePageState extends State<HomePage> {
   final Set<String> _addingCardIds = <String>{};
   bool _showFeedDebugOverlay = kDebugMode && kFeedDebugOverlay;
   List<String> _recentSearches = const [];
+
+  String? get _recentSearchesKey => localRecentSearchStorageKey(
+    signedOutBrowse: widget.signedOutBrowse,
+    userId: supabase.auth.currentUser?.id,
+  );
 
   List<CardPrint> _takeSearchResultBatch(List<CardPrint> cards, int limit) {
     if (cards.length <= limit) {
@@ -4009,8 +4014,11 @@ class HomePageState extends State<HomePage> {
   Future<void> _loadRecentSearches() async {
     try {
       final preferences = await SharedPreferences.getInstance();
+      await preferences.remove(_legacyRecentSearchesKey);
+      final storageKey = _recentSearchesKey;
+      if (storageKey == null) return;
       final searches = normalizeLocalRecentSearches(
-        preferences.getStringList(_recentSearchesKey),
+        preferences.getStringList(storageKey),
       );
       if (mounted) {
         setState(() => _recentSearches = searches);
@@ -4022,8 +4030,10 @@ class HomePageState extends State<HomePage> {
 
   Future<void> _saveRecentSearches(List<String> searches) async {
     try {
+      final storageKey = _recentSearchesKey;
+      if (storageKey == null) return;
       final preferences = await SharedPreferences.getInstance();
-      await preferences.setStringList(_recentSearchesKey, searches);
+      await preferences.setStringList(storageKey, searches);
     } catch (_) {
       // Search history is a convenience and must never block results.
     }
