@@ -2,7 +2,7 @@
 
 ## Status
 
-`14 EXACT MAPPINGS PREPARED; PRODUCTION APPLY PENDING CLEAN MERGE`
+`14 EXACT MAPPINGS APPLIED AND INDEPENDENTLY VERIFIED`
 
 ## Scope
 
@@ -51,10 +51,33 @@ Trial evidence is retained under
 and `prism-star-alias-14-authority-trial-v1`. The broader 20-row probe and its
 failed strict authority rehearsal are also retained as exclusion evidence.
 
+## Production Release
+
+PR 662 passed the repository's security, drift, runtime, contract, and preview
+checks and was squash-merged at
+`ebe54053cecd9ca22f04fac361695febd3bb0864`. The clean authority regenerated
+from that exact commit accepted all 14 candidates across three scopes and froze
+one writer-bounded package.
+
+- clean authority fingerprint:
+  `f80b1fd54d78d06317619556421864710f28b7bcb1952e84a8a688173ebeb160`
+- clean authority file SHA-256:
+  `b256ab03aa99df618859d3450188c23066ef490795ff3dadb7854bfc74e878a8`
+- dry-run maintenance run: `599bcef4-e98b-4063-8aed-c7e967c65a5a`
+- production maintenance run: `afbd4a0d-e305-434b-b24a-465ca1d4d389`
+- inserted mappings: `14`
+- production readback rows: `14`
+- publication/customer-state writes: `0`
+
+The dry run proved rollback before the production transaction. A separate
+repeatable-read, read-only query then verified all 14 live source products,
+active mappings, exact canonical parents, and governed public Holo printings.
+The immutable operator evidence is retained under
+`C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/prism-star-alias-14-production-release-v1`.
+
 ## Next Gate
 
-Merge the exact registry, planner/apply support, read-only authority builder,
-and contracts. Regenerate the plan and authority package from that exact clean
-commit, prove rollback through the canonical maintenance launcher, apply the
-same frozen package under the production gate, and independently verify all 14
-mappings. Mapping and customer price publication remain separate guarded steps.
+Full-scope pricing shadow run `38619200134` is queued at the exact merge commit.
+Use its successful output for the later guarded price publication and
+independent price readback. Continue mapping work with the next exact reviewed
+batch; the six truth-review-blocked Prism Star products remain held.
