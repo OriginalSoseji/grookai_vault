@@ -17,6 +17,7 @@ import {
   matchesPublicLanguageScope,
   normalizePublicLanguageScope,
 } from "@/lib/publicLanguageScope";
+import { normalizeQuery } from "@/lib/resolver/normalizeQuery";
 import { resolveQueryWithMeta } from "@/lib/resolver/resolveQuery";
 import type { ResolverMeta } from "@/lib/resolver/resolveQuery";
 import { resolvePublicSetRouteCode } from "@/lib/publicSets.shared";
@@ -240,6 +241,48 @@ function buildSmartFilterDiscoveryMeta(
   };
 }
 
+function buildStructuredCollectorSearchMeta(
+  rows: ExploreResultCard[],
+  packet: ReturnType<typeof normalizeQuery>,
+): ResolverMeta {
+  const collectorTokens = new Set(
+    [
+      ...packet.numberTokens,
+      ...packet.numberDigitTokens,
+      ...packet.fractionTokens.flatMap((fraction) => fraction.split("/")),
+    ].map((token) => token.toLowerCase()),
+  );
+  const nameTokens = uniqueValues(
+    packet.expandedNameTokens.filter((token) => !collectorTokens.has(token)),
+  );
+  const resolverState =
+    rows.length === 0
+      ? "NO_MATCH"
+      : rows.length === 1
+        ? "DIRECT_MATCH"
+        : "AMBIGUOUS_MATCH";
+
+  return {
+    resolverState,
+    topScore: null,
+    candidateCount: rows.length,
+    autoResolved: false,
+    intentSummary: {
+      expectedSetCodes: packet.expectedSetCodes,
+      nameTokens,
+    },
+    structuredEvidenceFlags: {
+      text: nameTokens.length > 0,
+      textRequired: false,
+      expectedSet: packet.expectedSetCodes.length > 0,
+      number: packet.numberTokens.length > 0,
+      fraction: packet.fractionTokens.length > 0,
+      promo: packet.promoTokens.length > 0,
+      variants: packet.variantTokens,
+    },
+  };
+}
+
 function buildDegradedSearchMeta(query: string): ResolverMeta {
   const nameTokens = query
     .toLowerCase()
@@ -359,6 +402,7 @@ export async function GET(request: NextRequest) {
   const gameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
   const smartSearchIntent = buildSmartSearchIntent(rawQuery);
   const query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
+  const resolverQuery = normalizeQuery(query);
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   const exactReleaseYear = parseReleaseYear(request.nextUrl.searchParams.get("year"));
   const explicitYearMin = parseReleaseYearBound(request.nextUrl.searchParams.get("year_min"));
@@ -420,10 +464,18 @@ export async function GET(request: NextRequest) {
     !query &&
     hasCatalogDiscoveryScope &&
     effectiveSmartSearchIntent.ownedState !== "owned";
+  const canUseFastStructuredCollectorSearch =
+    resolverQuery.collectorExpectations.length > 0 &&
+    resolverQuery.expectedSetCodes.length === 0 &&
+    resolverQuery.rarityIntent.length === 0 &&
+    resolverQuery.traitIntent.length === 0 &&
+    resolverQuery.variantTokens.length === 0;
   const shouldUseFastTextSearch =
     Boolean(query) &&
     !hasCatalogDiscoveryScope &&
-    !hasSmartOwnershipIntent;
+    !hasSmartOwnershipIntent &&
+    (!resolverQuery.hasStrongDisambiguator ||
+      canUseFastStructuredCollectorSearch);
 
   if (!query && gameScope === "pokemon" && !exactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
     return NextResponse.json(
@@ -532,7 +584,9 @@ export async function GET(request: NextRequest) {
             includePricingDuringResolution,
           ).then((rows) => ({
             rows,
-            meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+            meta: canUseFastStructuredCollectorSearch
+              ? buildStructuredCollectorSearchMeta(rows, resolverQuery)
+              : buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
             smartSearchIntent: effectiveSmartSearchIntent,
             degraded: false,
           }))

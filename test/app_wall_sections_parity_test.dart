@@ -152,7 +152,7 @@ void main() {
       collectorScreen,
       contains("'Price, organize, publish, and share exact copies'"),
     );
-    expect(vendorPricingScreen, contains("label: 'Market'"));
+    expect(vendorPricingScreen, contains("label: 'TCGPlayer Market'"));
     expect(vendorPricingScreen, contains("label: 'My price'"));
     expect(vendorPricingScreen, contains("Text('Wall'"));
     expect(vendorPricingScreen, contains('Assign sections'));

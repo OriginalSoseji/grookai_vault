@@ -546,7 +546,12 @@ function normalizeTextForMatch(value?: string | null) {
 }
 
 function normalizeCollectorToken(value?: string | null) {
-  return (value ?? "").trim().toUpperCase().replace(/\s+/g, "");
+  return (value ?? "")
+    .trim()
+    .split("/", 1)[0]
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, "");
 }
 
 function normalizeDigits(value: string) {
@@ -634,6 +639,11 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
     packet.traitIntent,
   );
   const tokens = packet.expandedSearchTokens;
+  const fractionNumberTokens = new Set(
+    packet.fractionTokens
+      .flatMap((fraction) => fraction.split("/"))
+      .map((token) => normalizeTextForMatch(token)),
+  );
   const consumedTokenSet = new Set([
     ...packet.setConsumedTokens,
     ...packet.rarityConsumedTokens,
@@ -646,6 +656,7 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
         !collectorExpectations.some(
           (expectation) => normalizeTextForMatch(expectation.token) === token,
         ) &&
+        !fractionNumberTokens.has(token) &&
         !VARIANT_QUERY_CUE_TOKENS.has(token) &&
         !consumedTokenSet.has(token),
     ),
@@ -1122,6 +1133,15 @@ function getNumberMatchStrength(row: ExploreRow, query: ResolverQuery) {
       continue;
     }
 
+    if (
+      /^\d+$/.test(normalizedNumber) &&
+      /^\d+$/.test(normalizedToken) &&
+      normalizeDigits(normalizedNumber) === normalizeDigits(normalizedToken)
+    ) {
+      bestStrength = Math.max(bestStrength, 1);
+      continue;
+    }
+
     if (normalizedGvId.includes(`-${normalizedToken}`)) {
       bestStrength = Math.max(bestStrength, 0.72);
     }
@@ -1156,8 +1176,13 @@ function getFractionMatchStrength(row: ExploreRow, query: ResolverQuery) {
 
     const printedNumber = normalizeCollectorToken(match[1]);
     const printedTotalDigits = normalizeDigits(match[2]);
+    const samePrintedNumber =
+      normalizedNumber === printedNumber ||
+      (/^\d+$/.test(normalizedNumber) &&
+        /^\d+$/.test(printedNumber) &&
+        normalizeDigits(normalizedNumber) === normalizeDigits(printedNumber));
     if (
-      normalizedNumber === printedNumber &&
+      samePrintedNumber &&
       normalizedPrintedTotal === printedTotalDigits
     ) {
       return 1;
@@ -3791,6 +3816,72 @@ async function fetchLanguageScopedTextRows(
   return applyLanguageScopeRows([...rowsById.values()], languageScope);
 }
 
+async function fetchCollectorScopedTextRows(
+  query: ResolverQuery,
+  languageScope: PublicLanguageScope,
+) {
+  const collectorCandidates = new Set(
+    query.numberTokens.map((token) => normalizeCollectorToken(token)).filter(Boolean),
+  );
+  for (const fraction of query.fractionTokens) {
+    const match = fraction.match(/^([A-Z]*\d+[A-Z]?)\/([A-Z]*\d+[A-Z]?)$/i);
+    if (!match) continue;
+    const printedNumber = normalizeCollectorToken(match[1]);
+    const printedTotal = match[2].trim().toUpperCase();
+    collectorCandidates.add(printedNumber);
+    collectorCandidates.add(`${printedNumber}/${printedTotal}`);
+    if (/^\d+$/.test(printedNumber)) {
+      const paddedNumber = printedNumber.padStart(3, "0");
+      collectorCandidates.add(paddedNumber);
+      collectorCandidates.add(`${paddedNumber}/${printedTotal}`);
+    }
+  }
+  const collectorTokens = [...collectorCandidates];
+  if (collectorTokens.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const nameTokens = (
+    query.significantTextTokens.length > 0
+      ? query.significantTextTokens
+      : query.textTokens
+  )
+    .map(cleanFastSearchToken)
+    .filter((token) => token.length >= 2 && !GENERIC_TOKENS.has(token))
+    .slice(0, 3);
+  const supabase = await createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,number_plain,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const rowsById = new Map<string, CardPrintLookupRow>();
+
+  const requests = ["number", "number_plain"].flatMap((field) =>
+    collectorTokens.map(async (collectorToken) => {
+      let request = applyLanguageScopeQuery(
+        supabase.from("card_prints").select(selectClause),
+        languageScope,
+      ).eq(field, collectorToken);
+      for (const nameToken of nameTokens) {
+        request = request.ilike("name", `%${nameToken}%`);
+      }
+
+      const { data, error } = await request.limit(SEARCH_LIMIT);
+      if (error) {
+        throw new Error(error.message);
+      }
+      return (data ?? []) as CardPrintLookupRow[];
+    }),
+  );
+  for (const candidateRows of await Promise.all(requests)) {
+    for (const row of candidateRows) {
+      if (rowMatchesScopedTextTokens(row, query)) {
+        rowsById.set(row.id, row);
+      }
+    }
+  }
+
+  return [...rowsById.values()];
+}
+
 export async function getExploreRowsForLanguageScopedTextSearch(
   rawQuery: string,
   languageScope: PublicLanguageScope,
@@ -3799,7 +3890,10 @@ export async function getExploreRowsForLanguageScopedTextSearch(
 ): Promise<ExploreRow[]> {
   assertValueSortPricingEnabled(sortMode, includePricing);
   const query = await buildResolverQuery(normalizeQuery(rawQuery));
-  const exactRows = await fetchLanguageScopedTextRows(query, languageScope);
+  const exactRows =
+    query.numberTokens.length > 0 || query.fractionTokens.length > 0
+    ? await fetchCollectorScopedTextRows(query, languageScope)
+    : await fetchLanguageScopedTextRows(query, languageScope);
   const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
@@ -3828,8 +3922,13 @@ export async function getExploreRowsForLanguageScopedTextSearch(
         sortMode !== "value_low",
     },
   );
+  const collectorScopedRows = query.fractionTokens.length > 0
+    ? rows.filter((row) => getFractionMatchStrength(row, query) >= 1)
+    : query.numberTokens.length > 0
+      ? rows.filter((row) => getNumberMatchStrength(row, query) >= 1)
+      : rows;
 
-  return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
+  return sortRows(collectorScopedRows, query, sortMode).slice(0, SEARCH_LIMIT);
 }
 
 export async function getExploreRowsForGameScopedTextSearch(
