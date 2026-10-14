@@ -2,7 +2,7 @@
 
 ## Status
 
-`2 EXACT ALIAS MAPPINGS REHEARSED - CODE REVIEW AND CLEAN PACKAGE PENDING`
+`2 EXACT ALIAS MAPPINGS APPLIED AND INDEPENDENTLY VERIFIED`
 
 ## Scope
 
@@ -44,9 +44,18 @@ and `30c-classic-alias-authority-trial-v1`.
 
 ## Next Gate
 
-Run repository validation and review, merge the code, regenerate the plan and
-authority from the exact clean merged commit, execute the canonical rollback dry
-run, apply the two production mappings, and independently read them back. The
-queued combined pricing shadow may count these products only if it starts after
-the mapping commit. Pricing publication and independent price readback remain
-separate gates.
+PR `#655` merged at `360f2c672fb08f5482467a855d31b1528e76a7c4` after all
+required checks passed. Clean-commit regeneration preserved exactly two
+candidates and produced authority fingerprint
+`0a6901a7176636b547916dc7fbaa0890f578408fd3992cdc80672e4af3f67e26`.
+The canonical dry run `a70a11d2-13e2-4bd8-9e00-b2e3cfb74121` proved rollback
+with zero writes. Production maintenance run
+`1c0bb37f-a618-4494-9a25-60e43126c7e0` then inserted and read back exactly two
+active mappings, with zero publication or customer-state writes.
+
+Independent repeatable-read verification confirmed both exact live source
+products, active mappings, canonical parents, and governed public Holo
+printings. The earlier combined shadow had entered candidate staging before the
+mappings committed, so workflow run `38605006449` is queued at the exact merged
+commit for a fresh combined shadow. Pricing production publication and
+independent price readback remain separate gates.
