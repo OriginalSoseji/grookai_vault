@@ -1,5 +1,30 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer Classic Collection alias batch — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_137_30C_CLASSIC_ALIAS_MAPPING_BATCH.md`.
+The next bounded batch is exactly products 716158 and 716198 from TCGPlayer group
+24837. Their `(Team Plasma)` and `(Prime)` labels may map only through the exact
+reviewed-product registry to the unique `30c-classic` Genesect EX 11/101 and
+Gengar 94/102 parents. PR655 merged at `360f2c672`; maintenance run
+`1c0bb37f-a618-4494-9a25-60e43126c7e0` inserted both mappings, and independent
+repeatable-read verification passed. Fresh combined shadow run `38605006449`
+is queued at the merge commit; keep mapping and price publication separate.
+
+## TCGPlayer Generations Radiant Collection batch — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_136_G1_RADIANT_COLLECTION_MAPPING_BATCH.md`.
+The current bounded batch is all 32 TCGPlayer group 1729 products, mapped only
+through the exact checked-in registry to canonical `g1` `rc` parents. The live
+read-only rehearsal produced 32 candidates and retained 702 blocked products.
+The authority builder verified all source rows, parents, governed child
+printings, and English Master Index evidence, then split the scope into
+writer-bounded packages of 25 and 7. PR654 merged at `f96af060f`; maintenance
+runs `6706995e-20c4-4ff4-bd4f-6328fa7722c6` and
+`b0b88cc9-31aa-4726-a13f-82dc1a6f4231` committed all 32 mappings. Independent
+repeatable-read verification passed. Pricing shadow and production publication
+are still required.
+
 ## TCGPlayer SV Promo reviewed-product batch — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_135_SVP_REVIEWED_PRODUCT_MAPPING_BATCH.md`.

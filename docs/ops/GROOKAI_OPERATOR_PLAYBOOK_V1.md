@@ -1,5 +1,35 @@
 # Grookai Operator Playbook V1
 
+## Pokémon 30th Celebration Classic aliases — October 14
+
+Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_137_30C_CLASSIC_ALIAS_MAPPING_BATCH.md`.
+Products 716158 and 716198 are exact reviewed exceptions for source labels
+`Genesect EX (Team Plasma)` and `Gengar (Prime)`. Do not relax name
+normalization. Bind the exact source product, group, full printed coordinate,
+canonical parent UUID/GV-ID, Holo child GV-ID, and retained raw-import
+provenance. The single two-row package was regenerated from the clean merged
+commit, rollback-proved, applied once, and read back independently. PR655
+merged at `360f2c672`; dry run
+`a70a11d2-13e2-4bd8-9e00-b2e3cfb74121`, production run
+`1c0bb37f-a618-4494-9a25-60e43126c7e0`, and independent readback all passed.
+Continue with fresh combined shadow run `38605006449`, production publication,
+and independent price readback. Mapping alone does not publish prices.
+
+## Pokémon Generations Radiant Collection mapping — October 14
+
+Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_136_G1_RADIANT_COLLECTION_MAPPING_BATCH.md`.
+TCGPlayer group 1729 requires the exact 32-row reviewed-product registry because
+its `(Full Art)`, accent, and `EX` labels do not safely enter the general name
+lane and every canonical target is the `g1` `rc` variant. Preserve the global
+matcher. The read-only authority builder cross-checks the special-variant audit,
+English Master Index, live source payloads, exact parents, and one governed
+child per parent. The writer limit required packages of 25 and 7. PR654 and
+maintenance runs `6706995e-20c4-4ff4-bd4f-6328fa7722c6` and
+`b0b88cc9-31aa-4726-a13f-82dc1a6f4231` completed the mappings; independent
+readback verified all 32. Mapping alone does not publish prices.
+
 ## Pokémon TCGPlayer identity repair — October 12
 
 PR622 installed outcome-based completion control: six catalog/pricing lanes now
