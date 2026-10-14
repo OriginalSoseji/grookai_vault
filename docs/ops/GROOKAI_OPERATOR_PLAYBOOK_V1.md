@@ -8,12 +8,13 @@ Products 716158 and 716198 are exact reviewed exceptions for source labels
 `Genesect EX (Team Plasma)` and `Gengar (Prime)`. Do not relax name
 normalization. Bind the exact source product, group, full printed coordinate,
 canonical parent UUID/GV-ID, Holo child GV-ID, and retained raw-import
-provenance. Regenerate the single two-row package from the clean merged commit,
-prove rollback, apply once, and read it back independently. PR655 merged at
-`360f2c672`; dry run `a70a11d2-13e2-4bd8-9e00-b2e3cfb74121`, production run
+provenance. The single two-row package was regenerated from the clean merged
+commit, rollback-proved, applied once, and read back independently. PR655
+merged at `360f2c672`; dry run
+`a70a11d2-13e2-4bd8-9e00-b2e3cfb74121`, production run
 `1c0bb37f-a618-4494-9a25-60e43126c7e0`, and independent readback all passed.
-Fresh combined shadow run `38605006449` is queued. Mapping alone does not
-publish prices.
+Continue with fresh combined shadow run `38605006449`, production publication,
+and independent price readback. Mapping alone does not publish prices.
 
 ## Pokémon Generations Radiant Collection mapping — October 14
 
