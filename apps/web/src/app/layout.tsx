@@ -43,7 +43,6 @@ const themeBootstrapScript = `
 (() => {
   try {
     const stored = window.localStorage.getItem("grookai-theme");
-    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     const theme = stored === "dark" || stored === "light" ? stored : "dark";
     document.documentElement.classList.toggle("gv-dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
@@ -67,7 +66,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const visualParityFixtureMode = isLocalVisualParityFixtureMode();
 
   return (
-    <html lang="en" className={visualParityFixtureMode ? undefined : "gv-collector"} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={visualParityFixtureMode ? "gv-dark" : "gv-collector gv-dark"}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
       </head>
