@@ -141,11 +141,18 @@ export default function VaultInstancePricingCard({
   }
 
   return (
-    <div className="space-y-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm">
+    <section
+      className="space-y-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+      aria-labelledby="vault-copy-pricing-title"
+      data-vault-copy-pricing
+    >
       <div className="space-y-1">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Pricing</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Optional</p>
+        <h2 id="vault-copy-pricing-title" className="text-lg font-semibold tracking-tight text-slate-950">
+          Pricing
+        </h2>
         <p className="text-sm text-slate-600">
-          Pricing mode belongs to this exact owned copy only.
+          Use the market reference or set an asking price for this copy.
         </p>
       </div>
 
@@ -155,7 +162,7 @@ export default function VaultInstancePricingCard({
           value={pricingMode}
           disabled={!isActive || isPending}
           onChange={(event) => setPricingMode(event.target.value as VaultInstancePricingMode)}
-          className="w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
         >
           <option value="market">Market reference</option>
           <option value="asking">Set asking price</option>
@@ -211,7 +218,7 @@ export default function VaultInstancePricingCard({
                 value={askingPriceAmount}
                 disabled={!isActive || isPending}
                 onChange={(event) => setAskingPriceAmount(event.target.value)}
-                className="w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
               />
             </label>
             <label className="space-y-2">
@@ -222,7 +229,7 @@ export default function VaultInstancePricingCard({
                 value={askingPriceCurrency}
                 disabled={!isActive || isPending}
                 onChange={(event) => setAskingPriceCurrency(event.target.value.toUpperCase())}
-                className="w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm uppercase text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm uppercase text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
               />
             </label>
           </div>
@@ -236,7 +243,7 @@ export default function VaultInstancePricingCard({
               disabled={!isActive || isPending}
               onChange={(event) => setAskingPriceNote(event.target.value)}
               placeholder="Firm, negotiable, or trades considered."
-              className="w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
             />
           </label>
         </div>
@@ -247,7 +254,11 @@ export default function VaultInstancePricingCard({
       ) : null}
 
       {statusMessage ? (
-        <p className={`text-sm ${statusMessage.tone === "success" ? "text-emerald-700" : "text-rose-700"}`}>
+        <p
+          role="status"
+          aria-live="polite"
+          className={`text-sm ${statusMessage.tone === "success" ? "text-emerald-700" : "text-rose-700"}`}
+        >
           {statusMessage.body}
         </p>
       ) : null}
@@ -256,10 +267,10 @@ export default function VaultInstancePricingCard({
         type="button"
         disabled={!isActive || isPending || !hasChanges}
         onClick={handleSave}
-        className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300"
+        className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition active:scale-[0.98] hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-slate-300 sm:w-auto"
       >
-        {isPending ? "Saving..." : "Save pricing"}
+        {isPending ? "Saving…" : "Save pricing"}
       </button>
-    </div>
+    </section>
   );
 }

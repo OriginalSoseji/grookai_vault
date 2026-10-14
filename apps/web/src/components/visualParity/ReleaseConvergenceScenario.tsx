@@ -4,6 +4,7 @@ import PokemonCardGridTile, {
   PokemonCardGridBadge,
 } from "@/components/cards/PokemonCardGridTile";
 import { DesktopApplicationShell } from "@/components/layout/DesktopApplicationShell";
+import MobilePushedRouteHeader from "@/components/layout/MobilePushedRouteHeader";
 import { PageContainer } from "@/components/layout/PageContainer";
 import ExploreResultActions from "@/components/explore/ExploreResultActions";
 import ExploreCardListItem from "@/components/explore/ExploreCardListItem";
@@ -18,14 +19,29 @@ import type { CardStreamRow } from "@/lib/network/getCardStreamRows";
 import type { PublicWallCard } from "@/lib/sharedCards/publicWall.shared";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
 import VaultExactCopyHero from "@/components/vault/VaultExactCopyHero";
+import AddToVaultCardAction, {
+  type AddToVaultActionResult,
+} from "@/components/vault/AddToVaultCardAction";
+import AddSlabCardAction, {
+  type AddSlabActionResult,
+} from "@/components/slabs/AddSlabCardAction";
+import CardUtilityActions from "@/components/cards/CardUtilityActions";
+import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
+import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
+import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
 import ReleaseConvergenceVaultTileFixture from "@/components/visualParity/ReleaseConvergenceVaultTileFixture";
 import { BinderSummaryCard } from "@/components/binders/BinderViews";
 import type { BinderSummary } from "@/lib/binders/types";
+import type { CardPrinting } from "@/types/cards";
+import type { CardPricingUiRecord } from "@/lib/pricing/getCardPricingUiByCardPrintId";
+import type { MarketIntelligenceRecordV1 } from "@/lib/pricing/marketIntelligenceReadModelV1";
 
 export const RELEASE_CONVERGENCE_SCENARIOS = [
   "search-vault-bridge",
   "search-result-hierarchy",
   "card-detail-hierarchy",
+  "card-pricing-error",
+  "card-pricing-locked",
   "vault-loaded",
   "vault-empty",
   "vault-private",
@@ -452,14 +468,130 @@ function SearchResultHierarchy() {
   );
 }
 
+const CARD_DETAIL_FIXTURE_PRINTINGS: CardPrinting[] = [
+  {
+    id: "fixture-printing-normal",
+    printing_gv_id: "GV-PRINT-FIXTURE-PIKACHU-NORMAL",
+    finish_key: "normal",
+    finish_name: "Normal",
+    finish_sort_order: 1,
+    display_image_url: "/icon.png",
+    display_image_kind: "missing_variant_visual",
+    image_status: "missing_variant_visual",
+    image_note: "Correct printing. The exact Normal finish image is pending review.",
+    owned_count: 0,
+  },
+  {
+    id: "fixture-printing-reverse",
+    printing_gv_id: "GV-PRINT-FIXTURE-PIKACHU-REVERSE",
+    finish_key: "reverse",
+    finish_name: "Reverse Holo",
+    finish_sort_order: 2,
+    display_image_url: "/icon.png",
+    display_image_kind: "exact",
+    owned_count: 0,
+  },
+];
+
+async function fixtureAddToVaultAction(
+  _previousState: AddToVaultActionResult | null,
+  _formData: FormData,
+): Promise<AddToVaultActionResult> {
+  "use server";
+  return {
+    ok: true,
+    status: "added",
+    gvvi_id: "GV-VI-FIXTURE-PIKACHU-NEW",
+    submissionKey: 1,
+  };
+}
+
+async function fixtureAddSlabAction(
+  _previousState: AddSlabActionResult | null,
+  formData: FormData,
+): Promise<AddSlabActionResult> {
+  "use server";
+  return {
+    ok: true,
+    status: "created",
+    message: `PSA ${String(formData.get("grade") || "10")} added to your vault.`,
+    submissionKey: 2,
+    grade: String(formData.get("grade") || "10"),
+    certNumber: String(formData.get("cert_number") || "12345678"),
+    gvviId: "GV-VI-FIXTURE-PIKACHU-PSA10",
+  };
+}
+
+const CARD_DETAIL_PRICING_FIXTURE: CardPricingUiRecord = {
+  pricing_scope: "card_printing",
+  card_print_id: "fixture-card-print-pikachu",
+  card_printing_id: "fixture-printing-reverse",
+  gv_id: "GV-FIXTURE-PIKACHU",
+  printing_gv_id: "GV-PRINT-FIXTURE-PIKACHU-REVERSE",
+  finish_key: "reverse_holo",
+  status: "available",
+  currency: "USD",
+  market_close: 3.42,
+  source_name: "tcgplayer",
+  source_label: "TCGPlayer Market",
+  observed_at: "2026-10-12T18:15:00.000Z",
+  published_at: "2026-10-12T18:20:00.000Z",
+  freshness: "fresh",
+  low_price: 2.95,
+  mid_price: 3.55,
+  high_price: 8.75,
+  direct_low_price: 3.1,
+  is_from_price: false,
+  eligible_printing_count: 1,
+  lowest_active_ask: 3.99,
+  active_ask_listing_count: 8,
+  active_ask_observed_at: "2026-10-12T18:15:00.000Z",
+  provenance_id: "fixture-tcgplayer-pikachu-reverse",
+  primary_price: 3.42,
+  primary_source: "tcgplayer_market",
+  min_price: 2.95,
+  max_price: 8.75,
+  ebay_listing_count: 8,
+  display_label: "TCGPlayer Market",
+  pricing_basis: "tcgplayer_market_exact",
+};
+
+const CARD_DETAIL_MARKET_INTELLIGENCE_FIXTURE: MarketIntelligenceRecordV1 = {
+  market_intelligence_version: "MARKET_INTELLIGENCE_READ_MODEL_V1",
+  card_print_id: "fixture-card-print-pikachu",
+  card_printing_id: "fixture-printing-reverse",
+  printing_gv_id: "GV-PRINT-FIXTURE-PIKACHU-REVERSE",
+  finish_key: "reverse_holo",
+  status: "available",
+  currency: "USD",
+  lowest_active_ask: 3.99,
+  median_active_ask: 4.75,
+  listing_count: 8,
+  seller_count: 6,
+  ask_spread: 0.76,
+  ask_spread_pct: 19.05,
+  observed_at: "2026-10-12T18:15:00.000Z",
+  freshness: "fresh",
+  evidence_strength: "moderate",
+  source_name: "ebay_active",
+  source_label: "eBay active asks",
+  evidence_kind: "active_listing_ask",
+  is_market_value: false,
+  is_completed_sale: false,
+};
+
 function CardDetailHierarchy() {
   return (
     <div
-      className="min-h-dvh bg-[var(--gv-bg-base)] pb-[104px] text-slate-950 dark:text-white"
+      className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white"
       data-release-convergence-root
     >
-      <FixtureHeader title="Card" />
-      <main className="mx-auto w-full max-w-6xl px-4 py-5">
+      <main className="gv-page-container py-5">
+        <MobilePushedRouteHeader
+          backHref="/explore?q=Pikachu&finish=reverse"
+          backLabel="Results"
+          title="Card details"
+        />
         <section className="gv-product-hero gv-card-detail-hero isolate">
           <div className="relative z-10 grid gap-8 py-2 sm:py-4 lg:grid-cols-[minmax(280px,390px)_minmax(0,1fr)] lg:items-start lg:gap-12">
             <div className="mx-auto w-full max-w-[260px] sm:max-w-[330px] lg:max-w-[390px]">
@@ -491,17 +623,45 @@ function CardDetailHierarchy() {
                     <PokemonCardGridBadge>English</PokemonCardGridBadge>
                   </div>
                 </div>
+                <CardPagePricingRail
+                  isAuthenticated
+                  loginHref="/login?next=%2Fcard%2FGV-FIXTURE-PIKACHU"
+                  gvId="GV-FIXTURE-PIKACHU"
+                  pricing={CARD_DETAIL_PRICING_FIXTURE}
+                  pricingRecords={[CARD_DETAIL_PRICING_FIXTURE]}
+                  initialMarketIntelligenceRecords={[CARD_DETAIL_MARKET_INTELLIGENCE_FIXTURE]}
+                  selectedCardPrintingId="fixture-printing-reverse"
+                  selectedPrintingGvId="GV-PRINT-FIXTURE-PIKACHU-REVERSE"
+                />
                 <div
                   id="vault-actions"
-                  className="gv-action-panel order-1 space-y-3 p-4"
+                  className="gv-action-panel order-1 space-y-4 p-4"
+                  data-card-vault-panel
                 >
-                  <p className="text-sm font-semibold">
-                    Choose the exact version you own
-                  </p>
-                  <ExploreResultActions
-                    cardHref="/card/GV-FIXTURE-PIKACHU"
-                    cardName="Pikachu"
+                  <div>
+                    <p className="gv-eyebrow">Your collection</p>
+                    <h2 className="mt-1 text-lg font-semibold tracking-tight">Add to Vault</h2>
+                    <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Not in your Vault.</p>
+                  </div>
+                  <AddToVaultCardAction
+                    action={fixtureAddToVaultAction}
+                    isAuthenticated
+                    loginHref="/login?next=%2Fcard%2FGV-FIXTURE-PIKACHU"
+                    currentPath="/card/GV-FIXTURE-PIKACHU"
+                    gvId="GV-FIXTURE-PIKACHU"
+                    printings={CARD_DETAIL_FIXTURE_PRINTINGS}
+                    initialPrintingId="fixture-printing-reverse"
+                    telemetryEnabled={false}
                   />
+                  <div className="border-t border-slate-200/80 pt-3 dark:border-slate-700/80">
+                    <AddSlabCardAction
+                      action={fixtureAddSlabAction}
+                      cardName="Pikachu"
+                    />
+                  </div>
+                  <div className="border-t border-slate-200/80 pt-3 dark:border-slate-700/80">
+                    <CardUtilityActions gvId="GV-FIXTURE-PIKACHU" />
+                  </div>
                 </div>
                 <details className="gv-variant-story order-2 group px-5 py-4">
                   <summary className="cursor-pointer list-none text-sm font-semibold">
@@ -523,7 +683,31 @@ function CardDetailHierarchy() {
           </div>
         </section>
       </main>
-      <MobileParityDock activeKey="search" wallHref="/wall" />
+    </div>
+  );
+}
+
+function CardPricingState({ state }: { state: "error" | "locked" }) {
+  return (
+    <div
+      className="min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white"
+      data-release-convergence-root
+    >
+      <main className="gv-page-container py-8">
+        <section className="mx-auto max-w-xl space-y-5">
+          <div>
+            <p className="gv-eyebrow">Card Pricing</p>
+            <h1 className="mt-2 text-3xl font-semibold tracking-tight">Pikachu · Reverse Holo</h1>
+          </div>
+          <CardPagePricingRail
+            isAuthenticated={state === "error"}
+            loginHref="/login?next=%2Fcard%2FGV-FIXTURE-PIKACHU"
+            gvId="GV-FIXTURE-PIKACHU"
+            cardPrintId={state === "error" ? "fixture-card-print-pikachu" : null}
+            pricing={null}
+          />
+        </section>
+      </main>
     </div>
   );
 }
@@ -638,18 +822,35 @@ const VAULT_DUPLICATE_COPY: VaultCardData = {
 function VaultFixtureShell({
   children,
   title = "Vault",
+  pushed = false,
 }: {
   children: ReactNode;
   title?: string;
+  pushed?: boolean;
 }) {
   return (
     <div
-      className="min-h-dvh bg-[var(--gv-bg-base)] pb-[104px] text-slate-950 dark:text-white"
+      className={`min-h-dvh bg-[var(--gv-bg-base)] text-slate-950 dark:text-white ${pushed ? "" : "pb-[104px]"}`}
       data-release-convergence-root
     >
-      <FixtureHeader title={title} />
+      {pushed ? (
+        <>
+          <div className="gv-pushed-route-desktop-shell-header">
+            <FixtureHeader title={title} />
+          </div>
+          <div className="gv-pushed-route-mobile-shell-frame">
+            <MobilePushedRouteHeader
+              backHref="/vault?view=duplicates&page=2"
+              backLabel="Vault"
+              title={title}
+            />
+          </div>
+        </>
+      ) : (
+        <FixtureHeader title={title} />
+      )}
       {children}
-      <MobileParityDock activeKey="vault" wallHref="/wall" />
+      {pushed ? null : <MobileParityDock activeKey="vault" wallHref="/wall" />}
     </div>
   );
 }
@@ -708,7 +909,7 @@ function VaultDuplicateCopy() {
 
 function VaultExactCopy() {
   return (
-    <VaultFixtureShell title="Exact copy">
+    <VaultFixtureShell title="Exact copy" pushed>
       <main className="mx-auto w-full max-w-6xl px-4 py-5">
         <VaultExactCopyHero
           eyebrow="Your exact copy"
@@ -726,7 +927,10 @@ function VaultExactCopy() {
           contextLabel="This copy is in your Vault."
           actions={
             <>
-              <Link href="/vault" className="gv-secondary-button">
+              <Link
+                href="/vault?view=duplicates&page=2"
+                className="gv-secondary-button gv-pushed-route-desktop-back"
+              >
                 Back to Vault
               </Link>
               <Link
@@ -739,6 +943,45 @@ function VaultExactCopy() {
           }
           evidence={<p>Added Aug 4, 2026</p>}
         />
+
+        <section className="mt-8 border-y border-slate-200/80 py-5" aria-labelledby="fixture-manage-copy-title">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Exact-copy workspace</p>
+          <h2 id="fixture-manage-copy-title" className="mt-1 text-xl font-semibold tracking-tight text-slate-950">
+            Manage this copy
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+            Start with intent and condition. Pricing, notes, photos, and Wall sections are optional.
+          </p>
+        </section>
+
+        <div className="mt-8 grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] xl:items-start">
+          <VaultInstanceSettingsCard
+            instanceId="fixture-copy-instance"
+            initialIntent="hold"
+            initialConditionLabel="NM"
+            initialImageDisplayMode="canonical"
+            isActive
+            isGraded={false}
+          />
+          <VaultInstancePricingCard
+            instanceId="fixture-copy-instance"
+            isActive
+            isGraded={false}
+            initialPricingMode="market"
+            initialAskingPriceAmount={null}
+            initialAskingPriceCurrency="USD"
+            initialAskingPriceNote={null}
+            marketReferencePrice={47.23}
+            marketReferenceSource="tcgplayer"
+            marketReferenceUpdatedAt="2026-08-04T12:00:00.000Z"
+            marketReferenceObservedAt="2026-08-04T11:50:00.000Z"
+            marketReferencePublishedAt="2026-08-04T11:55:00.000Z"
+            marketReferenceProvenanceId="fixture-price-proof"
+            cardPrintId="fixture-card-print"
+            cardPrintingId="fixture-printing"
+            printingGvId="GV-FIXTURE-PIKACHU"
+          />
+        </div>
       </main>
     </VaultFixtureShell>
   );
@@ -1234,6 +1477,12 @@ export function ReleaseConvergenceScenario({
   }
   if (scenario === "card-detail-hierarchy") {
     return <CardDetailHierarchy />;
+  }
+  if (scenario === "card-pricing-error") {
+    return <CardPricingState state="error" />;
+  }
+  if (scenario === "card-pricing-locked") {
+    return <CardPricingState state="locked" />;
   }
   if (scenario === "vault-loaded") {
     return <VaultLoaded />;

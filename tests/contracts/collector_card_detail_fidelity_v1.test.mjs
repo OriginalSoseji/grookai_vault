@@ -55,7 +55,9 @@ test('real detail keeps image truth, multiple faces, selected printing and actua
 
 test('compact actions still connect selection to pricing and genuine Vault, share and compare controls', () => {
   const panels = read('components/cards/CardPageMarketVaultPanels.tsx');
-  for (const token of ['selectedCardPrintingId={selectedPrintingId}', 'selectedPrintingGvId={selectedPrintingGvId}', 'onSelectedPrintingChange={setSelectedPrinting}', 'AddToVaultCardAction', 'AddSlabCardAction', 'ShareCardButton', 'CompareCardButton']) assert.ok(panels.includes(token), token);
+  for (const token of ['selectedCardPrintingId={selectedPrintingId}', 'selectedPrintingGvId={selectedPrintingGvId}', 'onSelectedPrintingChange={setSelectedPrinting}', 'AddToVaultCardAction', 'AddSlabCardAction', 'CardUtilityActions', 'printingReference={printingReference}', 'cardName={cardName}']) assert.ok(panels.includes(token), token);
+  const utilityActions = read('components/cards/CardUtilityActions.tsx');
+  for (const token of ['ShareCardButton', 'CompareCardButton', 'printingReference={printingReference}', 'cardName={cardName}']) assert.ok(utilityActions.includes(token), token);
 });
 
 test('optional zoom label leaves every existing caller and image absence behavior intact', () => {

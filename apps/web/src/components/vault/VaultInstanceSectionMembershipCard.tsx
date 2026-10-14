@@ -147,7 +147,7 @@ export default function VaultInstanceSectionMembershipCard({
                   </span>
                 </span>
                 <span className="shrink-0 text-xs font-medium">
-                  {pending ? "Saving..." : section.is_member ? "Added" : "Add to section"}
+                  {pending ? "Saving…" : section.is_member ? "Added" : "Add to section"}
                 </span>
               </button>
             );

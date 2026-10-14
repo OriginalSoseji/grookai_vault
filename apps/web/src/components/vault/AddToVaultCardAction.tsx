@@ -49,6 +49,7 @@ type AddToVaultCardActionProps = {
   selectedPrintingId?: string | null;
   onSelectedPrintingChange?: (printing: CardPrinting) => void;
   compactPresentation?: boolean;
+  telemetryEnabled?: boolean;
 };
 
 function getDefaultPrinting(printings: CardPrinting[], initialPrintingId?: string | null) {
@@ -170,6 +171,7 @@ export default function AddToVaultCardAction({
   selectedPrintingId,
   onSelectedPrintingChange,
   compactPresentation = false,
+  telemetryEnabled = true,
 }: AddToVaultCardActionProps) {
   const finishSelectId = useId();
   const ready = useClientReady();
@@ -305,11 +307,13 @@ export default function AddToVaultCardAction({
           <form
             action={formAction}
             onSubmit={() => {
-              sendTelemetryEvent({
-                eventName: "vault_add_click",
-                path: currentPath,
-                gvId,
-              });
+              if (telemetryEnabled) {
+                sendTelemetryEvent({
+                  eventName: "vault_add_click",
+                  path: currentPath,
+                  gvId,
+                });
+              }
             }}
           >
             {selectedChildPrintingId ? <input type="hidden" name="card_printing_id" value={selectedChildPrintingId} /> : null}

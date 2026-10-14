@@ -7,6 +7,7 @@ import VaultManageCardCopiesBulkSection from "@/components/vault/VaultManageCard
 import VaultManageCardSettingsPanel from "@/components/vault/VaultManageCardSettingsPanel";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
+import MobilePushedRouteHeader from "@/components/layout/MobilePushedRouteHeader";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import {
   formatVaultCardValue,
@@ -21,25 +22,37 @@ import {
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getOwnerVaultItem } from "@/lib/vault/getOwnerVaultItems";
 import { getOwnerWallSectionMembershipsBatch } from "@/lib/wallSections/getOwnerWallSectionMemberships";
+import {
+  addCollectionReturnPath,
+  getCardReturnContext,
+} from "@/lib/navigation/cardDetailNavigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-function getSingleCopyHref(copyItems: Array<{ gv_vi_id: string | null }>) {
+function getSingleCopyHref(
+  copyItems: Array<{ gv_vi_id: string | null }>,
+  returnPath: string,
+) {
   if (copyItems.length !== 1) {
     return null;
   }
 
   const gvviId = copyItems[0]?.gv_vi_id;
-  return gvviId ? `/vault/gvvi/${encodeURIComponent(gvviId)}` : null;
+  return gvviId
+    ? addCollectionReturnPath(`/vault/gvvi/${encodeURIComponent(gvviId)}`, returnPath)
+    : null;
 }
 
 export default async function VaultManageCardPage(
   props: {
     params: Promise<{ cardId: string }>;
+    searchParams?: Promise<{ from?: string }>;
   }
 ) {
   const params = await props.params;
+  const searchParams = await props.searchParams;
+  const returnContext = getCardReturnContext(searchParams?.from ?? "/vault");
   const supabase = await createServerComponentClient();
   const {
     data: { user },
@@ -62,7 +75,7 @@ export default async function VaultManageCardPage(
     activeMessageCount: item.active_message_count,
     unreadMessageCount: item.unread_message_count,
   });
-  const singleCopyHref = getSingleCopyHref(item.copy_items);
+  const singleCopyHref = getSingleCopyHref(item.copy_items, returnContext.href);
   const primaryActionHref = item.active_message_count > 0 ? item.messages_href : singleCopyHref;
   const primaryActionLabel = getVaultPrimaryActionLabel({
     inPlayCount: item.in_play_count,
@@ -82,6 +95,11 @@ export default async function VaultManageCardPage(
     <>
       <TrackPageEvent eventName="vault_opened" path={`/vault/card/${item.card_id}`} />
       <div className="space-y-8 py-6 md:space-y-10 md:py-8">
+        <MobilePushedRouteHeader
+          backHref={returnContext.href}
+          backLabel={returnContext.label}
+          title="Manage card"
+        />
         <PageSection
           surface="plain"
           spacing="default"
@@ -90,10 +108,10 @@ export default async function VaultManageCardPage(
           <div className="space-y-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <Link
-                href="/vault"
-                className="text-sm font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
+                href={returnContext.href}
+                className="gv-pushed-route-desktop-back text-sm font-medium text-slate-500 underline-offset-4 transition hover:text-slate-900 hover:underline"
               >
-                Back to Vault
+                Back to {returnContext.label}
               </Link>
               <div className="flex flex-wrap items-center gap-3 text-sm text-slate-500">
                 {item.in_play_count > 0 && publicCollectionHref ? (
@@ -237,6 +255,7 @@ export default async function VaultManageCardPage(
                   },
               )}
               publicWallHref={publicProfileHref}
+              returnPath={returnContext.href}
             />
           </PageSection>
         </div>

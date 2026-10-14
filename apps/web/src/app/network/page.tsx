@@ -16,12 +16,20 @@ import {
 } from "@/lib/network/intent";
 
 export const dynamic = "force-dynamic";
-const NETWORK_STREAM_PAGE_LIMIT = 24;
+const NETWORK_STREAM_PAGE_SIZE = 8;
 
-function buildCurrentPath(intent: string | null) {
+function parsePage(value?: string) {
+  const parsed = Number.parseInt(value ?? "1", 10);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : 1;
+}
+
+function buildCurrentPath(intent: string | null, page = 1) {
   const params = new URLSearchParams();
   if (intent) {
     params.set("intent", intent);
+  }
+  if (page > 1) {
+    params.set("page", String(page));
   }
 
   const query = params.toString();
@@ -30,7 +38,7 @@ function buildCurrentPath(intent: string | null) {
 
 export default async function NetworkPage(
   props: {
-    searchParams?: Promise<{ intent?: string }>;
+    searchParams?: Promise<{ intent?: string; page?: string }>;
   }
 ) {
   if (collectorPreview) return <NetworkPageLayout active="cards" actions={null}>
@@ -42,12 +50,16 @@ export default async function NetworkPage(
   const { user } = await getOptionalServerUser();
   const viewerUserId = user?.id ?? null;
   const intent = normalizeDiscoverableVaultIntent(searchParams?.intent);
-  const currentPath = buildCurrentPath(intent);
-  const rows = await getCardStreamRows({
+  const currentPage = parsePage(searchParams?.page);
+  const currentPath = buildCurrentPath(intent, currentPage);
+  const pageRows = await getCardStreamRows({
     intent,
     excludeUserId: viewerUserId,
-    limit: NETWORK_STREAM_PAGE_LIMIT,
+    limit: NETWORK_STREAM_PAGE_SIZE + 1,
+    offset: (currentPage - 1) * NETWORK_STREAM_PAGE_SIZE,
   });
+  const hasNextPage = pageRows.length > NETWORK_STREAM_PAGE_SIZE;
+  const rows = pageRows.slice(0, NETWORK_STREAM_PAGE_SIZE);
   const contactEligibilityTargets: ContactEligibilityTarget[] = rows.flatMap((row) => {
     const copyTargets = row.inPlayCopies.map((copy) => ({
       vaultItemId: copy.vaultItemId,
@@ -126,6 +138,25 @@ export default async function NetworkPage(
             </div>
           </ContactEligibilityProvider>
         )}
+        {currentPage > 1 || hasNextPage ? (
+          <nav className="flex items-center justify-between gap-3 border-t border-[color:var(--gv-border-soft)] pt-5 text-sm" aria-label="Collector activity pages">
+            <Link
+              href={buildCurrentPath(intent, Math.max(1, currentPage - 1))}
+              aria-disabled={currentPage <= 1}
+              className={`gv-secondary-button min-h-0 px-4 py-2 ${currentPage <= 1 ? "pointer-events-none opacity-40" : ""}`}
+            >
+              Newer
+            </Link>
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[color:var(--gv-text-secondary)]">Page {currentPage}</span>
+            <Link
+              href={buildCurrentPath(intent, currentPage + 1)}
+              aria-disabled={!hasNextPage}
+              className={`gv-secondary-button min-h-0 px-4 py-2 ${!hasNextPage ? "pointer-events-none opacity-40" : ""}`}
+            >
+              Older
+            </Link>
+          </nav>
+        ) : null}
       </section>
     </NetworkPageLayout>
   );
