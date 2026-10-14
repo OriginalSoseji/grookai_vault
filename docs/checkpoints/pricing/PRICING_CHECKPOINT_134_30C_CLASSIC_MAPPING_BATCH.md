@@ -2,7 +2,7 @@
 
 ## Status
 
-`28 EXACT CANDIDATES VERIFIED - EVIDENCE PACKAGE REHEARSED - NO WRITE YET`
+`28 EXACT MAPPINGS APPLIED AND INDEPENDENTLY VERIFIED - PRICING SHADOW QUEUED`
 
 ## Continuous Agent Proof
 
@@ -70,7 +70,34 @@ The rehearsal passed with:
 - 28 projected missing-price observations; and
 - zero database, publication, or customer-state writes.
 
-Regenerate the plan and authority package from the clean merged commit before
-dry-run or apply. Then execute each batch through the canonical maintenance
-launcher, perform independent mapping readback, and route the resulting rows
-through governed shadow and production pricing publication.
+The clean package was regenerated from merged commit
+`4fd184658e802aa9875800672c6cea32476a1d84`. Both canonical maintenance dry runs
+passed with verified rollback, zero writes, and zero active publication overlap.
+
+## Production Mapping Apply
+
+The approved bounded applies completed through the canonical maintenance
+launcher:
+
+- batch 1 maintenance run `2ddb9afa-8dab-4846-ba73-2bee69c32387` committed and
+  read back 25 inserts;
+- batch 2 maintenance run `3451e9fc-9005-4dd7-b68f-feffbcb42781` committed and
+  read back 3 inserts; and
+- both runs reported certain commits, zero repair updates, zero publication
+  writes, and zero customer-state writes.
+
+A separate repeatable-read production probe then found all 30 source products,
+30 canonical parents, 30 Holo children, 28 active source mappings, 28 unique
+exact matches, and the same two unmapped aliases. This independently reconciles
+the committed write set.
+
+## Pricing Publication Gate
+
+GitHub Actions shadow run `38586974614` is queued at exact merged commit
+`4fd184658e802aa9875800672c6cea32476a1d84`. It follows the in-progress
+McDonald's shadow run `38575692018` under the workflow's non-cancelling pricing
+concurrency group. The queued run will measure both mapping batches together.
+
+Do not claim these prices are live until that combined shadow reaches verified
+reconciliation, a production publication is run against its exact shadow key,
+and an independent price readback succeeds.

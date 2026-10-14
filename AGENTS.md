@@ -5,12 +5,13 @@
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_134_30C_CLASSIC_MAPPING_BATCH.md`.
 The first hosted run of `tcgplayer-pricing-completion-v1` succeeded and retained
 its production measurement. The next reviewed group is TCGPlayer 24837 mapped to
-canonical `30c-classic`. Fresh production proof found 30 products, 30 verified
-Holo children, 28 exact name-and-coordinate candidates, and two label aliases
-held separately. Use the retained September Classic Collection printing
-authority and current TCGCSV group snapshot to package the 28 exact rows in
-bounded batches of 25 and 3. Do not normalize away `(Team Plasma)` or `(Prime)`;
-Genesect EX and Gengar need explicit alias adjudication before mapping.
+canonical `30c-classic`. Production mapping applies
+`2ddb9afa-8dab-4846-ba73-2bee69c32387` and
+`3451e9fc-9005-4dd7-b68f-feffbcb42781` committed and independently verified all
+28 exact rows in bounded batches of 25 and 3. Combined pricing shadow GitHub run
+`38586974614` is queued behind the earlier McDonald's shadow. Do not normalize
+away `(Team Plasma)` or `(Prime)`; Genesect EX and Gengar need explicit alias
+adjudication before mapping.
 
 ## TCGPlayer pricing completion agent — October 14
 

@@ -1799,6 +1799,12 @@ before execution. Keep `Genesect EX (Team Plasma)` and `Gengar (Prime)` outside
 this package until separate alias evidence is reviewed; do not relax global name
 normalization for those two labels.
 
+The 28-row package was applied on October 14 in maintenance runs
+`2ddb9afa-8dab-4846-ba73-2bee69c32387` and
+`3451e9fc-9005-4dd7-b68f-feffbcb42781`, then independently read back. Do not
+reapply it. Continue from combined pricing shadow run `38586974614`; retain the
+two label aliases as explicit evidence holds.
+
 ## Legacy TCGdex Mapping Discovery
 
 Read `TCGDEX_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Do not run the historical
