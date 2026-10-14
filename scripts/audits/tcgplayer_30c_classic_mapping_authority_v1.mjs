@@ -74,9 +74,10 @@ function productNumber(product) {
 async function readDatabase(candidates) {
   const publicUrl = new URL(process.env.SUPABASE_URL);
   assert.equal(publicUrl.hostname.split('.')[0], PROJECT_REF, 'production_project_ref_mismatch');
+  const ca = process.env.SUPABASE_DB_CA_CERT?.trim();
   const client = new pg.Client({
     connectionString: process.env.SUPABASE_DB_URL,
-    ssl: { rejectUnauthorized: true },
+    ssl: ca ? { rejectUnauthorized: true, ca } : { rejectUnauthorized: true },
     application_name: '30c_classic_mapping_authority_read_only',
     statement_timeout: 120_000,
     query_timeout: 125_000,
