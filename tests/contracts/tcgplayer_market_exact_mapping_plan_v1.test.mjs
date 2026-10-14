@@ -23,6 +23,10 @@ import {
   buildTcgplayerInactiveMappingRepairMetaV1,
   tcgplayerInactiveMappingRepairFingerprintV1,
 } from "../../backend/pricing/tcgplayer_inactive_mapping_repair_policy_v1.mjs";
+import {
+  TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_reviewed_product_identity_authority_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,6 +55,15 @@ const CLASSIC_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_30c_classic_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const SVP_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_svp_reviewed_product_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -331,6 +344,189 @@ test("out-of-scope special variants never become mapping candidates", () => {
   assert.equal(
     yearQualifiedStaff.reason,
     "source_outside_product_v1_scope",
+  );
+});
+
+test("reviewed product authority admits only the exact bound Pokemon Center identity", () => {
+  const authority = TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1[0];
+  const reviewedSource = source({
+    source_product_id: authority.source_product_id,
+    source_product_name: authority.source_product_name,
+    source_group_id: authority.source_group_id,
+    source_group_name: authority.source_group_name,
+    printed_number: authority.printed_number,
+  });
+  const reviewedTarget = target({
+    card_print_id: authority.target.card_print_id,
+    gv_id: authority.target.gv_id,
+    set_id: authority.target.set_id,
+    set_code: authority.target.set_code,
+    name: authority.target.name,
+    number: authority.target.number,
+    variant_key: authority.target.variant_key,
+    embedded_external_id: null,
+  });
+  const candidate = planTcgplayerExactMappingCandidateV1({
+    source: reviewedSource,
+    setTargets: [reviewedTarget],
+  });
+  assert.equal(candidate.disposition, "candidate");
+  assert.equal(candidate.evidence_lane, "reviewed_product_identity_authority");
+  assert.equal(
+    candidate.reviewed_product_identity_authority_version,
+    TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+  );
+  assert.equal(candidate.target.variant_key, "pokemon_center_stamp");
+  assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+  assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, reviewedTarget), []);
+
+  const sourceDrift = planTcgplayerExactMappingCandidateV1({
+    source: { ...reviewedSource, source_product_name: "Koraidon - 014" },
+    groupConsensus: {
+      set_count: 1,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      mapped_source_product_count: 1,
+    },
+    setTargets: [target({
+      card_print_id: "base-koraidon-014",
+      gv_id: "GV-PK-SVP-014",
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: "Koraidon",
+      number: "014",
+      variant_key: "",
+      embedded_external_id: null,
+    })],
+  });
+  assert.equal(sourceDrift.disposition, "blocked");
+  assert.equal(sourceDrift.reason, "reviewed_product_source_drift");
+  assert.equal(sourceDrift.evidence_lane, "reviewed_product_identity_authority");
+
+  const forgedGeneralCandidate = planTcgplayerExactMappingCandidateV1({
+    source: {
+      ...reviewedSource,
+      source_product_id: 999999,
+      source_product_name: "Koraidon - 014",
+    },
+    groupConsensus: {
+      set_count: 1,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      mapped_source_product_count: 1,
+    },
+    setTargets: [target({
+      card_print_id: "base-koraidon-014",
+      gv_id: "GV-PK-SVP-014",
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: "Koraidon",
+      number: "014",
+      variant_key: "",
+      embedded_external_id: null,
+    })],
+  });
+  assert.equal(forgedGeneralCandidate.disposition, "candidate");
+  forgedGeneralCandidate.source_product_id = authority.source_product_id;
+  const {
+    candidate_fingerprint: ignoredForgedFingerprint,
+    ...forgedPayload
+  } = forgedGeneralCandidate;
+  forgedGeneralCandidate.candidate_fingerprint =
+    tcgplayerExactMappingCandidateFingerprintV1(forgedPayload);
+  assert.ok(
+    validateTcgplayerExactMappingCandidateForApplyV1(forgedGeneralCandidate)
+      .failures.includes("reviewed_product_source_drift"),
+  );
+
+  const unreviewedProduct = planTcgplayerExactMappingCandidateV1({
+    source: { ...reviewedSource, source_product_id: 999999 },
+    setTargets: [reviewedTarget],
+  });
+  assert.equal(unreviewedProduct.disposition, "blocked");
+  assert.equal(unreviewedProduct.reason, "missing_unique_set_authority");
+});
+
+test("reviewed product authority remains fail-closed under target or authority drift", () => {
+  const authority = TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1[0];
+  const reviewedSource = source({
+    source_product_id: authority.source_product_id,
+    source_product_name: authority.source_product_name,
+    source_group_id: authority.source_group_id,
+    source_group_name: authority.source_group_name,
+    printed_number: authority.printed_number,
+  });
+  const reviewedTarget = target({
+    card_print_id: authority.target.card_print_id,
+    gv_id: authority.target.gv_id,
+    set_id: authority.target.set_id,
+    set_code: authority.target.set_code,
+    name: authority.target.name,
+    number: authority.target.number,
+    variant_key: authority.target.variant_key,
+    embedded_external_id: null,
+  });
+  const missing = planTcgplayerExactMappingCandidateV1({
+    source: reviewedSource,
+    setTargets: [{ ...reviewedTarget, gv_id: "GV-DRIFTED" }],
+  });
+  assert.equal(missing.reason, "reviewed_product_target_missing_or_drifted");
+
+  const candidate = planTcgplayerExactMappingCandidateV1({
+    source: reviewedSource,
+    setTargets: [reviewedTarget],
+  });
+  candidate.reviewed_product_identity_authority_version = "DRIFTED";
+  const { candidate_fingerprint: ignored, ...payload } = candidate;
+  candidate.candidate_fingerprint = tcgplayerExactMappingCandidateFingerprintV1(payload);
+  const validation = validateTcgplayerExactMappingCandidateForApplyV1(candidate);
+  assert.equal(validation.accepted, false);
+  assert.ok(validation.failures.includes("reviewed_product_identity_authority_version_mismatch"));
+  const legacyPolicyCandidate = {
+    ...candidate,
+    reviewed_product_identity_authority_version:
+      TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+    policy_version: "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2",
+  };
+  const {
+    candidate_fingerprint: ignoredLegacyFingerprint,
+    ...legacyPolicyPayload
+  } = legacyPolicyCandidate;
+  legacyPolicyCandidate.candidate_fingerprint =
+    tcgplayerExactMappingCandidateFingerprintV1(legacyPolicyPayload);
+  assert.ok(
+    validateTcgplayerExactMappingCandidateForApplyV1(legacyPolicyCandidate)
+      .failures.includes("unexpected_candidate_policy_version"),
+  );
+  assert.ok(validateTcgplayerExactMappingLiveTargetV1(
+    { ...candidate, reviewed_product_identity_authority_version: TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1 },
+    { ...reviewedTarget, variant_key: "staff_stamp" },
+  ).includes("target_not_base_variant"));
+});
+
+test("SVP reviewed registry and authority builder are bounded and read-only", () => {
+  assert.equal(TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1.length, 18);
+  assert.equal(
+    new Set(TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1.map((row) => row.source_product_id)).size,
+    18,
+  );
+  assert.equal(
+    new Set(TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1.map((row) => row.target.card_print_id)).size,
+    18,
+  );
+  assert.equal(
+    TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1.filter((row) =>
+      row.target.variant_key === "pokemon_center_stamp").length,
+    17,
+  );
+  assert.match(SVP_AUTHORITY_SCRIPT, /begin transaction isolation level repeatable read read only/);
+  assert.match(SVP_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(SVP_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 18/);
+  assert.match(SVP_AUTHORITY_SCRIPT, /World Championship and other unresolved aliases remain outside/);
+  assert.match(SVP_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    SVP_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
 });
 

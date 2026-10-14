@@ -1805,6 +1805,18 @@ The 28-row package was applied on October 14 in maintenance runs
 reapply it. Continue from combined pricing shadow run `38586974614`; retain the
 two label aliases as explicit evidence holds.
 
+For the reviewed Scarlet & Violet Promo product batch, use plan policy V1.3 and
+`scripts/audits/tcgplayer_svp_reviewed_product_mapping_authority_v1.mjs`. The
+checked-in registry contains exactly 18 rows: 17 source products explicitly
+labeled Pokemon Center Exclusive and base Charizard ex 196. It binds each raw
+source identity to one exact parent, variant, verified Holo child and provenance
+reference. The authority builder also binds the retained special-variant audit,
+the published English `svp` Master Index, and a current selected-product TCGCSV
+snapshot. Never add an unlabeled coordinate twin, prerelease/staff product, World
+Championship product, or another alias to this lane without a new exact registry
+row and source review. Regenerate the package from a clean merged commit before
+the canonical dry run and apply.
+
 ## Legacy TCGdex Mapping Discovery
 
 Read `TCGDEX_MAPPING_REVIEW_CHECKPOINT_20260917.md`. Do not run the historical
@@ -1818,8 +1830,9 @@ mapping reassignment or production authority is granted by a discovery report.
 ## Exact Mapping Plan Identity
 
 Read `EXACT_MAPPING_IDENTITY_CHECKPOINT_20260917.md` before preparing another
-TCGPlayer exact-mapping batch. Plan policy V1.2 preserves trailing source labels
-and rejects older plans at apply admission. Regenerate with fresh read-only
+TCGPlayer exact-mapping batch. Plan policy V1.3 preserves trailing source labels,
+adds only the exact reviewed-product registry lane described above, and rejects
+older plans at apply admission. Regenerate with fresh read-only
 source/target evidence; never change a historical plan's version or fingerprint
 to pass the new gate. The live writer also checks set UUID/code against the frozen
 target. Label differences require source adjudication, not automatic remapping.
