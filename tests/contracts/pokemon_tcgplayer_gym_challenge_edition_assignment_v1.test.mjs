@@ -61,10 +61,16 @@ test('current Gym products use stable identity evidence while assignments roll b
 
 test('production launcher is dry-run by default and seals the bounded release', () => {
   assert.match(releaseLauncher, /const apply = process\.argv\.includes\('--apply'\)/);
-  assert.match(releaseLauncher, /production apply requires/);
+  assert.match(releaseLauncher, /const rollbackRehearsal = process\.argv\.includes\('--rollback-rehearsal'\)/);
+  assert.match(releaseLauncher, /production transaction requires/);
+  assert.match(releaseLauncher, /choose either --apply or --rollback-rehearsal/);
   assert.match(releaseLauncher, /begin isolation level serializable/);
   assert.match(releaseLauncher, /pg_advisory_xact_lock/);
   assert.match(releaseLauncher, /assert\.equal\(prepared, 4\)/);
+  assert.doesNotMatch(releaseLauncher,
+    /insert into public\.card_prints\([\s\S]{0,300}\bnumber_plain\b/i);
+  assert.match(releaseLauncher, /POKEMON_TCGPLAYER_GYM_RELEASE_ROLLBACK_REHEARSAL_V1/);
+  assert.match(releaseLauncher, /status:'passed_rolled_back'/);
   assert.match(releaseLauncher, /price_publication_writes:0/);
   assert.match(releaseLauncher, /rollback_action:'retire the four binding IDs/);
 });

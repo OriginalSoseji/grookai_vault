@@ -12,8 +12,12 @@ const root = process.cwd();
 const authorityFingerprint = 'ced09a10c3194b404452b360a932e79b32e8e11c3c69d18989ca5f1f6d93e495';
 const approval = `--approval=${authorityFingerprint}`;
 const apply = process.argv.includes('--apply');
-if (apply && !process.argv.includes(approval)) {
-  throw new Error(`production apply requires ${approval}`);
+const rollbackRehearsal = process.argv.includes('--rollback-rehearsal');
+if (apply && rollbackRehearsal) {
+  throw new Error('choose either --apply or --rollback-rehearsal');
+}
+if ((apply || rollbackRehearsal) && !process.argv.includes(approval)) {
+  throw new Error(`production transaction requires ${approval}`);
 }
 
 const migrations = [
@@ -59,7 +63,9 @@ function productionUrl(raw) {
 const connectionString = productionUrl(process.env.SUPABASE_DB_URL ?? '');
 const client = new pg.Client({
   connectionString,
-  application_name: apply ? 'gym_edition_prod_apply_v1' : 'gym_edition_prod_dry_run_v1',
+  application_name: apply ? 'gym_edition_prod_apply_v1'
+    : rollbackRehearsal ? 'gym_edition_prod_rollback_rehearsal_v1'
+      : 'gym_edition_prod_dry_run_v1',
 });
 const outputRoot = path.join(root, 'artifacts', 'pokemon_tcgplayer_gym_release_v1');
 await fs.mkdir(outputRoot, { recursive: true });
@@ -152,10 +158,10 @@ async function insertReleaseRows(runId) {
     const printing = row.card_printing;
     const binding = row.source_binding_template;
     await client.query(`insert into public.card_prints(
-      id,set_id,set_code,name,number,number_plain,gv_id,identity_domain,
-      set_identity_model,variant_key,printed_identity_modifier,external_ids,image_status)
-      values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12::jsonb,$13)`,
-    [card.id,card.set_id,card.set_code,card.name,card.number,card.number_plain,card.gv_id,
+      id,set_id,set_code,name,number,gv_id,identity_domain,set_identity_model,
+      variant_key,printed_identity_modifier,external_ids,image_status)
+      values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11::jsonb,$12)`,
+    [card.id,card.set_id,card.set_code,card.name,card.number,card.gv_id,
       card.identity_domain,card.set_identity_model,card.variant_key,
       card.printed_identity_modifier,JSON.stringify(card.external_ids),card.image_status]);
     const identityHash = (await client.query(`select public.card_print_identity_hash_v1(
@@ -224,7 +230,7 @@ try {
   const before = await preflight();
   await client.query('rollback');
   const timestamp = new Date().toISOString().replaceAll(':','-').replaceAll('.','-');
-  if (!apply) {
+  if (!apply && !rollbackRehearsal) {
     const receipt = { version:'POKEMON_TCGPLAYER_GYM_RELEASE_PREFLIGHT_V1',
       status:'passed_read_only',authority_fingerprint:authorityFingerprint,
       latest_source_run_id:before.run.id,source_rows:before.sources.length,
@@ -247,18 +253,34 @@ try {
     assert.equal(inside.printings.length, 4);
     assert.equal(inside.bindings.length, 4);
     assert.equal(inside.assignments.length, 4);
-    await client.query('commit'); began = false;
-    const after = await captureRelevantState();
-    const receipt = { version:'POKEMON_TCGPLAYER_GYM_RELEASE_APPLY_V1',status:'committed',
-      authority_fingerprint:authorityFingerprint,source_run_id:run.id,
-      migration_versions:migrations.map(row=>row[0]),write,
-      committed_counts:{parents:after.parents.length,identities:after.identities.length,
-        printings:after.printings.length,bindings:after.bindings.length,
-        assignments:after.assignments.length},price_publication_writes:0,
-      rollback_action:'retire the four binding IDs to hide every dependent current price'};
-    await fs.writeFile(path.join(outputRoot,`${timestamp}_apply.json`),
-      `${JSON.stringify(receipt,null,2)}\n`);
-    console.log(JSON.stringify(receipt,null,2));
+    if (rollbackRehearsal) {
+      await client.query('rollback'); began = false;
+      const receipt = {
+        version:'POKEMON_TCGPLAYER_GYM_RELEASE_ROLLBACK_REHEARSAL_V1',
+        status:'passed_rolled_back',authority_fingerprint:authorityFingerprint,
+        source_run_id:run.id,migration_versions:migrations.map(row=>row[0]),
+        exercised_counts:{parents:inside.parents.length,identities:inside.identities.length,
+          printings:inside.printings.length,bindings:inside.bindings.length,
+          assignments:inside.assignments.length},database_writes:0,
+        price_publication_writes:0,
+      };
+      await fs.writeFile(path.join(outputRoot,`${timestamp}_rollback_rehearsal.json`),
+        `${JSON.stringify(receipt,null,2)}\n`);
+      console.log(JSON.stringify(receipt,null,2));
+    } else {
+      await client.query('commit'); began = false;
+      const after = await captureRelevantState();
+      const receipt = { version:'POKEMON_TCGPLAYER_GYM_RELEASE_APPLY_V1',status:'committed',
+        authority_fingerprint:authorityFingerprint,source_run_id:run.id,
+        migration_versions:migrations.map(row=>row[0]),write,
+        committed_counts:{parents:after.parents.length,identities:after.identities.length,
+          printings:after.printings.length,bindings:after.bindings.length,
+          assignments:after.assignments.length},price_publication_writes:0,
+        rollback_action:'retire the four binding IDs to hide every dependent current price'};
+      await fs.writeFile(path.join(outputRoot,`${timestamp}_apply.json`),
+        `${JSON.stringify(receipt,null,2)}\n`);
+      console.log(JSON.stringify(receipt,null,2));
+    }
   }
 } catch (error) {
   if (began) await client.query('rollback').catch(()=>{});
