@@ -24,6 +24,14 @@ jobs:
       SUPABASE_PUBLISHABLE_KEY: ${{ secrets.MOBILE_SUPABASE_PUBLISHABLE_KEY }}
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      # The strict web build is a release gate for the shared product. Supply
+      # the existing production target contract explicitly so the gate checks
+      # the canonical deployment instead of failing as an unclassified build.
+      GROOKAI_COLLECTOR_RELEASE_V1: "true"
+      VERCEL_ENV: production
+      VERCEL_PROJECT_ID: prj_m3B6s7jAwXJ4WGbE9fK2WhJsFlum
+      SITE_URL: https://grookaivault.com
+      NEXT_PUBLIC_SITE_URL: https://grookaivault.com
 
     steps:
       - name: Checkout
