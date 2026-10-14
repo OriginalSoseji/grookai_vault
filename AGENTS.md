@@ -6,9 +6,10 @@ Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_137_30C_CLASSIC_ALIAS_MAPPING_
 The next bounded batch is exactly products 716158 and 716198 from TCGPlayer group
 24837. Their `(Team Plasma)` and `(Prime)` labels may map only through the exact
 reviewed-product registry to the unique `30c-classic` Genesect EX 11/101 and
-Gengar 94/102 parents. The live read-only rehearsal verified both governed Holo
-children and their raw-import provenance. Merge and regenerate from the exact
-clean commit before any write; keep mapping and price publication separate.
+Gengar 94/102 parents. PR655 merged at `360f2c672`; maintenance run
+`1c0bb37f-a618-4494-9a25-60e43126c7e0` inserted both mappings, and independent
+repeatable-read verification passed. Fresh combined shadow run `38605006449`
+is queued at the merge commit; keep mapping and price publication separate.
 
 ## TCGPlayer Generations Radiant Collection batch — October 14
 
