@@ -9,8 +9,11 @@ Prism, Forbidden Light, and Celestial Storm. Each frozen source name ending in
 unmapped canonical parent whose Master Index name ends in `◇`, with one active
 verified visible Holo child. Four Team Up and two Dragon Majesty rows remain
 held because their public Holo children lack an active verified truth review.
-The read-only rehearsal passed for all 14 candidates; merge and regenerate from
-the exact clean commit before dry run or production apply.
+PR662 merged at `ebe54053cecd9ca22f04fac361695febd3bb0864`; maintenance
+run `afbd4a0d-e305-434b-b24a-465ca1d4d389` inserted all 14 mappings, and
+independent repeatable-read verification passed. Full-scope shadow run
+`38619200134` is queued at that exact commit. Mapping and customer price
+publication remain separate guarded steps.
 
 ## TCGPlayer reviewed alias wave — October 14
 
@@ -24,9 +27,10 @@ read-only rehearsal produced 21 candidates covering 28 missing-price
 observations and froze three Master Index scopes. PR660 merged at
 `ccffdee1afd820072e020ee52a9c59d32110d1c7`; maintenance run
 `227e73af-61c7-49c5-8819-12422f4e6c05` inserted all 21 mappings, and independent
-repeatable-read verification passed. Full-scope pricing shadow run `38615087902`
-is queued at that exact commit. Rows with target collisions, missing canonical
-cards, or ambiguous numbers remain blocked.
+repeatable-read verification passed. Its pending shadow was superseded by
+combined exact-commit run `38619200134`, which includes this wave and the later
+Prism Star mappings. Rows with target collisions, missing canonical cards, or
+ambiguous numbers remain blocked.
 
 ## TCGPlayer Unseen Forces Unown batch — October 14
 

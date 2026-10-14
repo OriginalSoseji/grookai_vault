@@ -86,9 +86,10 @@ receipt, and independent readback are retained under
 
 ## Next Gate
 
-Full-scope pricing shadow run `38615087902` is queued at exact mapping commit
-`ccffdee1afd820072e020ee52a9c59d32110d1c7` behind the earlier Unseen Forces
-shadow. Mapping alone did not publish customer prices. Inspect that shadow's
-coverage, quarantine, and freshness evidence before a governed pricing
-publication decision, while the completion agent continues routing the next
-evidence-backed mapping batch.
+Full-scope pricing shadow run `38615087902` was superseded while pending by
+combined run `38619200134`, which is queued at
+`ebe54053cecd9ca22f04fac361695febd3bb0864` and includes this wave plus the
+subsequent Prism Star mappings. Mapping alone did not publish customer prices.
+Inspect the combined shadow's coverage, quarantine, and freshness evidence
+before a governed pricing publication decision, while the completion agent
+continues routing the next evidence-backed mapping batch.
