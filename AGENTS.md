@@ -7,10 +7,11 @@ The next bounded batch is exactly 18 TCGPlayer group 22872 products: 17 source
 names explicitly labeled Pokemon Center Exclusive plus base Charizard ex 196.
 Plan policy V1.3 admits these only through the exact checked-in product registry;
 all unlabeled duplicates, prerelease/staff rows, World Championship products,
-and other aliases remain held. The verified-TLS read-only plan and authority
-rehearsal passed with zero writes. Merge, regenerate from the clean exact commit,
-run the canonical dry run, then use the standing founder approval for the bounded
-apply and independent readback. Mapping does not itself publish prices.
+and other aliases remain held. PR652 merged at `8be8ec9f9`; maintenance run
+`6122d6a6-6151-400c-a190-d086c606a4ab` committed exactly 18 insert-only mappings,
+and an independent repeatable-read probe verified all source rows, parents, and
+printings. Mapping does not itself publish prices. Continue through the queued
+pricing shadow, exact production publication, and independent price readback.
 
 ## TCGPlayer Classic Collection batch — October 14
 

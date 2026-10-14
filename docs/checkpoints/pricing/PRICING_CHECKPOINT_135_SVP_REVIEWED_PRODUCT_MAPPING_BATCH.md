@@ -2,7 +2,7 @@
 
 ## Status
 
-`18 EXACT PRODUCT IDENTITIES REHEARSED - SOURCE REVIEW PENDING MERGE`
+`18 EXACT MAPPINGS APPLIED AND INDEPENDENTLY VERIFIED - PRICING SHADOW PENDING`
 
 ## Scope
 
@@ -36,7 +36,8 @@ Exact mapping plan policy V1.3 adds one narrow reviewed-product lane. It does
 not remove treatment labels, permit arbitrary variants, or broaden set
 consensus. Planner and apply admission both require an exact match to the
 checked-in 18-row registry. Any source, target, authority-version, active
-identity, or mapping-state drift fails closed. Older plans must be regenerated.
+identity, or mapping-state drift fails closed. Existing V1.2 evidence packages
+remain verifiable, but the reviewed-product lane requires V1.3.
 
 ## Live Read-Only Rehearsal
 
@@ -69,11 +70,44 @@ fresh selected-product TCGCSV snapshot.
 Trial authority artifact:
 `C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/svp-authority-trial-v1`.
 
-## Next Gate
+## Review Repair And Merge
 
-Merge the reviewed registry, V1.3 planner/apply policy, authority builder, tests,
-and this checkpoint. Regenerate the plan and authority from that exact clean
-merged commit. Then run the canonical maintenance dry run, verify rollback, and
-apply the single bounded 18-row batch under the founder's standing approval.
-Follow with independent mapping readback and a later combined pricing shadow;
-mapping alone does not make prices live.
+PR `652` found and fixed one fail-closed issue before merge. A reserved reviewed
+product ID whose source title drifted could otherwise fall through to the
+general set-consensus lane. The final planner blocks any mismatch on a reserved
+ID before general matching, and apply validation independently rejects a
+fingerprint-valid forged candidate. The exact Koraidon-to-base fallback has a
+contract regression test.
+
+All repository checks passed and the PR merged at commit
+`8be8ec9f98d27a80faf92a353b1a1dfbde6e5d7a`.
+
+## Clean Package And Production Apply
+
+The clean plan and authority were regenerated from the exact merged commit with
+`tracked_worktree_clean: true`. They retained the same 18 candidates and exact
+source-candidate SHA-256:
+`9dbce434a274b2803e1c95f643ec017c43c68b76e9b045fb9cdd833232932537`.
+The fresh authority SHA-256 is
+`e15b9755cc2d7fafb85d582697c52d363c75b0906ad5d44973f037f02c8a4d9a`
+and its fingerprint is
+`1969ed0b3d9e1234ac31e050395f20bcc3ce150fc8cc8392bae480a67565859d`.
+
+The canonical maintenance dry run `58971657-a7dc-49ea-b0ea-806c9bdf1dd0`
+selected all 18 rows, found zero active-publication overlap, and proved rollback
+with zero writes. Production maintenance run
+`6122d6a6-6151-400c-a190-d086c606a4ab` then committed and read back exactly 18
+insert-only mappings. It reported a certain commit, zero repairs, zero
+publication writes, and zero customer-state writes.
+
+A separate repeatable-read, read-only probe reloaded current source products,
+active mappings, parents, and printings without consuming the writer's
+readback. It verified all 18 exact source identities, all 18 active mappings to
+their frozen parents, all 18 governed printings, and the maintenance run ID.
+
+## Pricing Publication Gate
+
+The mapping rows are live, but their prices are not yet claimed live. Pricing
+must pass the queued combined shadow, production publication against that exact
+verified shadow, and independent price readback. Evidence-blocked aliases and
+unlabeled duplicate products remain held for later reviewed batches.
