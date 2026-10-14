@@ -180,6 +180,161 @@ void main() {
     );
   });
 
+  test(
+    'set index bounds public count RPC batches and request concurrency',
+    () async {
+      final rows = List<Map<String, Object?>>.generate(
+        51,
+        (index) => {
+          'game': 'pokemon',
+          'code': 'set-$index',
+          'name': 'Set $index',
+          'release_date': '2020-01-01',
+        },
+      );
+      var inFlight = 0;
+      var maxInFlight = 0;
+      final batchSizes = <int>[];
+      final client = SupabaseClient(
+        'https://example.supabase.co',
+        'public-anon-key',
+        httpClient: MockClient((request) async {
+          if (request.url.path ==
+              '/rest/v1/rpc/get_public_set_card_counts_v1') {
+            final codes =
+                (jsonDecode(request.body)
+                        as Map<String, dynamic>)['p_set_codes']
+                    as List<dynamic>;
+            batchSizes.add(codes.length);
+            inFlight += 1;
+            if (inFlight > maxInFlight) maxInFlight = inFlight;
+            await Future<void>.delayed(const Duration(milliseconds: 10));
+            inFlight -= 1;
+            return http.Response(
+              jsonEncode([
+                for (final code in codes) {'set_code': code, 'card_count': 1},
+              ]),
+              200,
+              request: request,
+              headers: {'content-type': 'application/json'},
+            );
+          }
+          return http.Response(
+            jsonEncode(rows),
+            200,
+            request: request,
+            headers: {'content-type': 'application/json'},
+          );
+        }),
+      );
+      addTearDown(client.dispose);
+
+      final sets = await PublicSetsService.fetchSets(client: client);
+
+      expect(sets, hasLength(51));
+      expect(batchSizes, [50, 1]);
+      expect(maxInFlight, 2);
+    },
+  );
+
+  test('set index can load one game without counting other games', () async {
+    final requests = <http.Request>[];
+    final client = SupabaseClient(
+      'https://example.supabase.co',
+      'public-anon-key',
+      httpClient: MockClient((request) async {
+        requests.add(request);
+        if (request.url.path == '/rest/v1/rpc/get_public_set_card_counts_v1') {
+          final codes =
+              (jsonDecode(request.body) as Map<String, dynamic>)['p_set_codes']
+                  as List<dynamic>;
+          return http.Response(
+            jsonEncode([
+              for (final code in codes) {'set_code': code, 'card_count': 1},
+            ]),
+            200,
+            request: request,
+            headers: {'content-type': 'application/json'},
+          );
+        }
+        return http.Response(
+          jsonEncode([
+            {'game': 'pokemon', 'code': 'pokemon-one', 'name': 'Pokemon One'},
+          ]),
+          200,
+          request: request,
+          headers: {'content-type': 'application/json'},
+        );
+      }),
+    );
+    addTearDown(client.dispose);
+
+    final sets = await PublicSetsService.fetchSets(
+      client: client,
+      game: PublicCatalogGame.pokemon,
+    );
+
+    expect(sets, hasLength(1));
+    expect(sets.single.game, PublicCatalogGame.pokemon);
+    expect(requests.first.url.queryParameters['game'], 'eq.pokemon');
+    expect(requests, hasLength(2));
+  });
+
+  test('timed-out set count batches retry as smaller read requests', () async {
+    final setRows = List<Map<String, Object?>>.generate(
+      50,
+      (index) => {
+        'game': 'pokemon',
+        'code': 'retry-$index',
+        'name': 'Retry Set $index',
+      },
+    );
+    final batchSizes = <int>[];
+    final client = SupabaseClient(
+      'https://example.supabase.co',
+      'public-anon-key',
+      httpClient: MockClient((request) async {
+        if (request.url.path == '/rest/v1/rpc/get_public_set_card_counts_v1') {
+          final codes =
+              (jsonDecode(request.body) as Map<String, dynamic>)['p_set_codes']
+                  as List<dynamic>;
+          batchSizes.add(codes.length);
+          if (codes.length > 25) {
+            return http.Response(
+              jsonEncode({
+                'code': '57014',
+                'message': 'canceling statement due to statement timeout',
+              }),
+              500,
+              request: request,
+              headers: {'content-type': 'application/json'},
+            );
+          }
+          return http.Response(
+            jsonEncode([
+              for (final code in codes) {'set_code': code, 'card_count': 1},
+            ]),
+            200,
+            request: request,
+            headers: {'content-type': 'application/json'},
+          );
+        }
+        return http.Response(
+          jsonEncode(setRows),
+          200,
+          request: request,
+          headers: {'content-type': 'application/json'},
+        );
+      }),
+    );
+    addTearDown(client.dispose);
+
+    final sets = await PublicSetsService.fetchSets(client: client);
+
+    expect(sets, hasLength(50));
+    expect(batchSizes, [50, 25, 25]);
+  });
+
   test('set route aliases resolve to their canonical codes', () {
     expect(PublicSetsService.resolveSetRouteCode('Shiny Vault'), 'sma');
     expect(PublicSetsService.resolveSetRouteCode('SV3PT5'), 'sv03.5');

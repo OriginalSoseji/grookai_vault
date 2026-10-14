@@ -40,7 +40,7 @@ void main() {
     expect(main, contains("models/vault/collection_project.dart"));
     expect(main, contains("screens/vault/collection_projects_screen.dart"));
     expect(vault, contains('CollectionProjectsScreen('));
-    expect(vault, contains("tooltip: 'Binders'"));
+    expect(vault, contains("title: const Text('Collection lists')"));
     expect(vault, contains('CollectionProjectSubjectType.set'));
     expect(vault, contains('CollectionProjectSubjectType.species'));
     expect(vault, contains('onOpenScanner: widget.onOpenScanner'));
@@ -106,7 +106,7 @@ void main() {
         'lib/screens/dex/grookai_dex_species_screen.dart',
       ).readAsStringSync();
 
-      expect(vault, contains('exact copies in your Vault.'));
+      expect(vault, contains("title: const Text('Collection lists')"));
       expect(species, contains('exact copies from your Vault.'));
       expect(vault, isNot(contains('with people you invite')));
       expect(species, isNot(contains('with people you invite')));

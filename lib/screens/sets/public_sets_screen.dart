@@ -20,7 +20,8 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
 
   bool _loading = true;
   String? _error;
-  List<PublicSetSummary> _sets = const [];
+  final Map<PublicCatalogGame, List<PublicSetSummary>> _setsByGame = {};
+  int _loadGeneration = 0;
   PublicCatalogGame _activeGame = PublicCatalogGame.pokemon;
   PublicSetFilter _activeFilter = PublicSetFilter.all;
   PublicSetEra _activeEra = PublicSetEra.all;
@@ -38,23 +39,28 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
     super.dispose();
   }
 
-  Future<void> _load() async {
+  Future<void> _load([PublicCatalogGame? requestedGame]) async {
+    final game = requestedGame ?? _activeGame;
+    final generation = ++_loadGeneration;
     setState(() {
       _loading = true;
       _error = null;
     });
 
     try {
-      final sets = await PublicSetsService.fetchSets(client: _client);
-      if (!mounted) {
+      final sets = await PublicSetsService.fetchSets(
+        client: _client,
+        game: game,
+      );
+      if (!mounted || generation != _loadGeneration) {
         return;
       }
 
       setState(() {
-        _sets = sets;
+        _setsByGame[game] = sets;
       });
     } catch (error) {
-      if (!mounted) {
+      if (!mounted || generation != _loadGeneration) {
         return;
       }
 
@@ -62,7 +68,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
         _error = error is Error ? error.toString() : 'Unable to load sets.';
       });
     } finally {
-      if (mounted) {
+      if (mounted && generation == _loadGeneration) {
         setState(() {
           _loading = false;
         });
@@ -73,8 +79,9 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
   @override
   Widget build(BuildContext context) {
     final trimmedQuery = _searchController.text.trim();
+    final setsForActiveGame = _setsByGame[_activeGame] ?? const [];
     final filteredSets = PublicSetsService.filterAndSortSets(
-      sets: _sets,
+      sets: setsForActiveGame,
       query: _searchController.text,
       filter: _activeFilter,
       game: _activeGame,
@@ -82,14 +89,14 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
       lane: _activeLane,
     );
     final queryMatchedSets = PublicSetsService.filterAndSortSets(
-      sets: _sets,
+      sets: setsForActiveGame,
       query: _searchController.text,
       filter: PublicSetFilter.all,
       game: _activeGame,
       lane: _activeLane,
     );
     final eraScopedSets = PublicSetsService.filterAndSortSets(
-      sets: _sets,
+      sets: setsForActiveGame,
       query: _searchController.text,
       filter: PublicSetFilter.all,
       game: _activeGame,
@@ -98,6 +105,11 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
     final eraCounts = PublicSetsService.countSetsByEra(queryMatchedSets);
     final laneCounts = PublicSetsService.countSetsByLane(eraScopedSets);
     final groupedSets = PublicSetsService.groupSetsByEra(filteredSets);
+    final setCountLabel = _loading
+        ? 'Loading ${_activeGame.label} sets…'
+        : _error != null
+        ? 'Unable to load ${_activeGame.label} sets.'
+        : 'Browse ${filteredSets.length} ${_activeGame.label} sets.';
     final shouldGroupByEra =
         trimmedQuery.isEmpty &&
         _activeGame == PublicCatalogGame.pokemon &&
@@ -134,7 +146,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      'Browse ${filteredSets.length} ${_activeGame.label} sets.',
+                      setCountLabel,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurface.withValues(
                           alpha: 0.66,
@@ -197,10 +209,14 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                       selected: <PublicCatalogGame>{_activeGame},
                       showSelectedIcon: false,
                       onSelectionChanged: (selection) {
+                        final game = selection.first;
                         setState(() {
-                          _activeGame = selection.first;
+                          _activeGame = game;
                           _activeEra = PublicSetEra.all;
                         });
+                        if (!_setsByGame.containsKey(game)) {
+                          _load(game);
+                        }
                       },
                     ),
                     if (_activeGame == PublicCatalogGame.pokemon) ...[
@@ -240,39 +256,41 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 18),
-              _SetsSurfaceCard(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const _SetsSectionHeader(
-                      title: 'Browse by era',
-                      description:
-                          'Jump into the catalog by release era instead of scrolling through every set.',
-                    ),
-                    const SizedBox(height: 14),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: PublicSetsService.eraOptions
-                          .where((option) => option.value != PublicSetEra.all)
-                          .map((option) {
-                            return GvChip(
-                              label: option.label,
-                              count: eraCounts[option.value] ?? 0,
-                              selected: _activeEra == option.value,
-                              onSelected: (_) {
-                                setState(() {
-                                  _activeEra = option.value;
-                                });
-                              },
-                            );
-                          })
-                          .toList(),
-                    ),
-                  ],
+              if (_activeGame == PublicCatalogGame.pokemon) ...[
+                const SizedBox(height: 18),
+                _SetsSurfaceCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const _SetsSectionHeader(
+                        title: 'Browse by era',
+                        description:
+                            'Jump into the catalog by release era instead of scrolling through every set.',
+                      ),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: PublicSetsService.eraOptions
+                            .where((option) => option.value != PublicSetEra.all)
+                            .map((option) {
+                              return GvChip(
+                                label: option.label,
+                                count: eraCounts[option.value] ?? 0,
+                                selected: _activeEra == option.value,
+                                onSelected: (_) {
+                                  setState(() {
+                                    _activeEra = option.value;
+                                  });
+                                },
+                              );
+                            })
+                            .toList(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              ],
               const SizedBox(height: 18),
               _SetsSurfaceCard(
                 child: _SetsSectionHeader(

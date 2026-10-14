@@ -1,7 +1,5 @@
 part of 'main.dart';
 
-const double _kVaultGridTileChildAspectRatio = 0.45;
-
 String? _vaultDisplayImageUrl(Map<String, dynamic> row) {
   return normalizeDisplayImageUrl(row['photo_url']) ??
       resolveDisplayImageUrlFromRow(row);
@@ -274,6 +272,54 @@ class _VaultItemTile extends StatelessWidget {
 
 enum _VaultGridAction { scan, add, remove, delete }
 
+class _VaultGridLoadingTile extends StatelessWidget {
+  const _VaultGridLoadingTile();
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    BoxDecoration placeholder(double alpha, {double radius = 6}) {
+      return BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withValues(alpha: alpha),
+        borderRadius: BorderRadius.circular(radius),
+      );
+    }
+
+    return Semantics(
+      label: 'Loading Vault card',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AspectRatio(
+            aspectRatio: GvGridConstants.artworkAspectRatio,
+            child: DecoratedBox(
+              decoration: placeholder(
+                0.42,
+                radius: GvGridConstants.imageRadius,
+              ),
+            ),
+          ),
+          const SizedBox(height: 9),
+          FractionallySizedBox(
+            widthFactor: 0.76,
+            child: Container(height: 16, decoration: placeholder(0.52)),
+          ),
+          const SizedBox(height: 8),
+          FractionallySizedBox(
+            widthFactor: 0.92,
+            child: Container(height: 11, decoration: placeholder(0.34)),
+          ),
+          const SizedBox(height: 7),
+          FractionallySizedBox(
+            widthFactor: 0.48,
+            child: Container(height: 11, decoration: placeholder(0.28)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _VaultGridTile extends StatelessWidget {
   const _VaultGridTile({
     required this.row,
@@ -302,7 +348,6 @@ class _VaultGridTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final name = (row['name'] ?? 'Item').toString();
     final displayIdentity = resolveDisplayIdentityFromFields(
       name: name,
@@ -312,38 +357,16 @@ class _VaultGridTile extends StatelessWidget {
       setCode: row['set_code']?.toString(),
       number: row['number']?.toString(),
     );
-    final setCode = ((row['set_code'] ?? row['set_name']) ?? '')
-        .toString()
-        .trim();
-    final number = (row['number'] ?? '').toString().trim();
     final artwork = _vaultArtwork(row);
-    final quantity = _ownedCountForRow(row);
-    final condition = (row['condition_label'] ?? 'NM').toString();
-    final printingIdentity = resolveVaultPrintingIdentityPresentation(row);
-    final metaParts = <String>[
-      printingIdentity.label,
-      if ((displayIdentity.suffix ?? '').trim().isNotEmpty)
-        displayIdentity.suffix!.trim(),
-      if (setCode.isNotEmpty) setCode,
-      if (number.isNotEmpty) '#$number',
-      if (condition.isNotEmpty) condition,
-      'Qty $quantity',
-    ];
-    final metaLine = metaParts.join(' • ');
+
     return Material(
-      color: colorScheme.surfaceContainerLow,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
-        side: BorderSide(
-          color: colorScheme.outlineVariant.withValues(alpha: 0.34),
-        ),
-      ),
+      color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(GvGridConstants.tileTapRadius),
         onTap: selectionMode ? onLongPress : onTap,
         onLongPress: onLongPress,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(4, 4, 4, 5),
+          padding: const EdgeInsets.only(bottom: 6),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -358,92 +381,24 @@ class _VaultGridTile extends StatelessWidget {
                       onViewDetails: onTap,
                     ),
                   ),
-                  Positioned(
-                    right: 4,
-                    top: 4,
-                    child: selectionMode
-                        ? _VaultSelectionMark(selected: selected)
-                        : PopupMenuButton<_VaultGridAction>(
-                            tooltip: 'Card actions',
-                            iconSize: 18,
-                            padding: EdgeInsets.zero,
-                            icon: DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: colorScheme.surface.withValues(
-                                  alpha: 0.72,
-                                ),
-                                borderRadius: BorderRadius.circular(999),
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(2.5),
-                                child: Icon(Icons.more_horiz_rounded, size: 16),
-                              ),
-                            ),
-                            onSelected: (action) async {
-                              switch (action) {
-                                case _VaultGridAction.scan:
-                                  onScan?.call();
-                                  break;
-                                case _VaultGridAction.add:
-                                  onIncrement?.call();
-                                  break;
-                                case _VaultGridAction.remove:
-                                  onDecrement?.call();
-                                  break;
-                                case _VaultGridAction.delete:
-                                  onDelete?.call();
-                                  break;
-                              }
-                            },
-                            itemBuilder: (context) => const [
-                              PopupMenuItem(
-                                value: _VaultGridAction.scan,
-                                child: Text('Scan card'),
-                              ),
-                              PopupMenuItem(
-                                value: _VaultGridAction.add,
-                                child: Text('Add quantity'),
-                              ),
-                              PopupMenuItem(
-                                value: _VaultGridAction.remove,
-                                child: Text('Remove quantity'),
-                              ),
-                              PopupMenuItem(
-                                value: _VaultGridAction.delete,
-                                child: Text('Delete item'),
-                              ),
-                            ],
-                          ),
-                  ),
+                  if (selectionMode)
+                    Positioned(
+                      right: 8,
+                      top: 8,
+                      child: _VaultSelectionMark(selected: selected),
+                    ),
                 ],
               ),
               const SizedBox(height: GvGridConstants.imageToTitleGap),
-              SizedBox(
-                height: GvGridConstants.titleSlotHeight,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    displayIdentity.baseName,
-                    maxLines: GvGridConstants.titleMaxLines,
-                    overflow: TextOverflow.ellipsis,
-                    style: gvGridTitleStyle(theme),
-                  ),
-                ),
+              Text(
+                displayIdentity.baseName,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: gvGridTitleStyle(
+                  theme,
+                )?.copyWith(fontWeight: FontWeight.w700),
               ),
-              const SizedBox(height: GvGridConstants.titleToSubtitleGap),
-              SizedBox(
-                height: GvGridConstants.subtitleSlotHeight,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    metaLine,
-                    maxLines: GvGridConstants.subtitleMaxLines,
-                    overflow: TextOverflow.ellipsis,
-                    style: gvGridSubtitleStyle(theme, colorScheme),
-                  ),
-                ),
-              ),
-              const SizedBox(height: GvGridConstants.subtitleToPriceGap),
+              const SizedBox(height: 3),
               SizedBox(
                 height: GvGridConstants.priceSlotHeight,
                 child: Align(
@@ -489,6 +444,7 @@ class _VaultGridArtwork extends StatelessWidget {
       fallbackImageUrl: fallbackImageUrl,
       borderRadius: GvGridConstants.imageRadius,
       padding: const EdgeInsets.all(1.0),
+      enableTapToZoom: false,
       onViewDetails: onViewDetails,
       detailsLabel: 'Your copies',
     );
@@ -612,7 +568,6 @@ class VaultPageState extends State<VaultPage> {
   AppCardViewMode _cardViewMode = AppCardViewMode.grid;
   _VaultDerivedData _derivedData = const _VaultDerivedData.empty();
   final Set<String> _selectedLotCardPrintIds = <String>{};
-  bool _showBinderWhatsNew = false;
 
   @override
   void initState() {
@@ -620,9 +575,6 @@ class VaultPageState extends State<VaultPage> {
     _searchController = TextEditingController();
     _searchController.addListener(_handleSearchChanged);
     _uid = supabase.auth.currentUser?.id;
-    if (BinderFeatureFlags.production.personalAvailable) {
-      unawaited(_loadBinderWhatsNewState());
-    }
     reload();
   }
 
@@ -1279,29 +1231,6 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
-  Future<void> _loadBinderWhatsNewState() async {
-    try {
-      final preferences = await SharedPreferences.getInstance();
-      final dismissed =
-          preferences.getBool('binders_whats_new_dismissed_v1') ?? false;
-      if (mounted && !dismissed) {
-        setState(() => _showBinderWhatsNew = true);
-      }
-    } catch (_) {
-      // A missing preference store should not block the Vault.
-    }
-  }
-
-  Future<void> _dismissBinderWhatsNew() async {
-    setState(() => _showBinderWhatsNew = false);
-    try {
-      final preferences = await SharedPreferences.getInstance();
-      await preferences.setBool('binders_whats_new_dismissed_v1', true);
-    } catch (_) {
-      // Dismissal still applies for this session.
-    }
-  }
-
   String get _vaultSellerHandle {
     final metadata = supabase.auth.currentUser?.userMetadata ?? const {};
     for (final key in const ['display_name', 'full_name', 'name', 'username']) {
@@ -1491,7 +1420,12 @@ class VaultPageState extends State<VaultPage> {
     return _VaultItemTile(
       row: row,
       pricing: _pricingByCardPrintId[cardPrintId],
-      compact: _cardViewMode == AppCardViewMode.compactList,
+      compact:
+          resolveCardViewModeForTextScale(
+            _cardViewMode,
+            MediaQuery.textScalerOf(context).scale(14) / 14,
+          ) ==
+          AppCardViewMode.compactList,
       onScan: () {
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -1630,116 +1564,6 @@ class VaultPageState extends State<VaultPage> {
     );
   }
 
-  Widget _buildRecentVaultStrip(List<Map<String, dynamic>> rows) {
-    if (rows.isEmpty) {
-      return const _ProductEmptyState(
-        title: 'No recently added items yet',
-        body: 'New additions will appear here after you scan or add cards.',
-      );
-    }
-
-    final recentRows = _sortRowsByNewest(rows).take(10).toList();
-
-    return SizedBox(
-      height: 170,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: recentRows.length,
-        separatorBuilder: (_, index) => const SizedBox(width: 12),
-        itemBuilder: (context, index) {
-          final row = recentRows[index];
-          final cardPrintId = (row['card_id'] ?? '').toString();
-          final canOpen = _canOpenVaultRow(row);
-          final name = (row['name'] ?? 'Item').toString();
-          final displayIdentity = resolveDisplayIdentityFromFields(
-            name: name,
-            variantKey: row['variant_key']?.toString(),
-            printedIdentityModifier: row['printed_identity_modifier']
-                ?.toString(),
-            setIdentityModel: row['set_identity_model']?.toString(),
-            setCode: row['set_code']?.toString(),
-            number: row['number']?.toString(),
-          );
-          final setName = ((row['set_name'] ?? row['set_code']) ?? '')
-              .toString()
-              .trim();
-          final artwork = _vaultArtwork(row);
-          final pricing = _pricingByCardPrintId[cardPrintId];
-
-          return SizedBox(
-            width: 140,
-            child: Material(
-              color: Theme.of(
-                context,
-              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.14),
-              borderRadius: BorderRadius.circular(
-                GvGridConstants.tileTapRadius,
-              ),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(
-                  GvGridConstants.tileTapRadius,
-                ),
-                onTap: canOpen ? () => _openManageCardRow(row) : null,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Center(
-                          child: CardSurfaceArtwork(
-                            label: displayIdentity.baseName,
-                            imageUrl: artwork.primaryImageUrl,
-                            fallbackImageUrl: artwork.fallbackImageUrl,
-                            width: 88,
-                            height: 118,
-                            borderRadius: GvGridConstants.imageRadius,
-                            padding: const EdgeInsets.all(5),
-                            onViewDetails: canOpen
-                                ? () => _openManageCardRow(row)
-                                : null,
-                            detailsLabel: 'Your copies',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        displayIdentity.baseName,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        setName,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.onSurface.withValues(alpha: 0.68),
-                        ),
-                      ),
-                      if (pricing?.hasVisibleValue == true) ...[
-                        const SizedBox(height: 6),
-                        CardSurfacePriceText(
-                          pricing: pricing,
-                          size: CardSurfacePriceSize.dense,
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   String _vaultViewLabel(_VaultStructuralView view) {
     return switch (view) {
       _VaultStructuralView.all => 'All',
@@ -1761,10 +1585,9 @@ class VaultPageState extends State<VaultPage> {
     return OutlinedButton.icon(
       onPressed: _openVaultFiltersSheet,
       icon: const Icon(Icons.tune_rounded, size: 18),
-      label: Text(activeCount == 0 ? 'Filters' : 'Filters · $activeCount'),
+      label: Text(activeCount == 0 ? 'Filter' : 'Filter · $activeCount'),
       style: OutlinedButton.styleFrom(
-        visualDensity: VisualDensity.compact,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        minimumSize: const Size(44, 44),
         foregroundColor: colorScheme.onSurface.withValues(alpha: 0.84),
         side: BorderSide(
           color: activeCount == 0
@@ -1841,6 +1664,40 @@ class VaultPageState extends State<VaultPage> {
                             onSelected: (_) => selectView(view),
                           ),
                       ],
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Tools',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    if (BinderFeatureFlags.production.personalAvailable)
+                      ListTile(
+                        minTileHeight: 48,
+                        contentPadding: EdgeInsets.zero,
+                        leading: const Icon(
+                          Icons.collections_bookmark_outlined,
+                        ),
+                        title: const Text('Collection lists'),
+                        trailing: const Icon(Icons.chevron_right_rounded),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                          unawaited(_openCollectionProjects());
+                        },
+                      ),
+                    ListTile(
+                      minTileHeight: 48,
+                      contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.auto_awesome_motion_outlined),
+                      title: const Text('Memories'),
+                      trailing: const Icon(Icons.chevron_right_rounded),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        unawaited(_openMemoriesHome());
+                      },
                     ),
                   ],
                 ),
@@ -1925,7 +1782,26 @@ class VaultPageState extends State<VaultPage> {
       return const <Widget>[];
     }
 
-    if (_cardViewMode == AppCardViewMode.grid) {
+    final resolvedViewMode = resolveCardViewModeForTextScale(
+      _cardViewMode,
+      MediaQuery.textScalerOf(context).scale(14) / 14,
+    );
+    if (resolvedViewMode == AppCardViewMode.grid) {
+      const horizontalPadding = 28.0;
+      const gridSpacing = 12.0;
+      final availableWidth =
+          MediaQuery.sizeOf(context).width - horizontalPadding;
+      final tileWidth =
+          (availableWidth - (gridSpacing * (columns - 1))) / columns;
+      final tileMainAxisExtent =
+          (tileWidth / GvGridConstants.artworkAspectRatio) +
+          GvGridConstants.imageToTitleGap +
+          22 +
+          3 +
+          GvGridConstants.priceSlotHeight +
+          6 +
+          ((MediaQuery.textScalerOf(context).scale(1) - 1).clamp(0.0, 1.0) *
+              16);
       return [
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -1936,9 +1812,9 @@ class VaultPageState extends State<VaultPage> {
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: columns,
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-              childAspectRatio: _kVaultGridTileChildAspectRatio,
+              mainAxisSpacing: gridSpacing,
+              crossAxisSpacing: gridSpacing,
+              mainAxisExtent: tileMainAxisExtent,
             ),
           ),
         ),
@@ -1984,17 +1860,28 @@ class VaultPageState extends State<VaultPage> {
         SliverPadding(
           padding: const EdgeInsets.symmetric(horizontal: 14),
           sliver: SliverToBoxAdapter(
-            child: _ProductSurfaceCard(
-              padding: const EdgeInsets.all(14),
-              child: _ProductSectionHeading(
-                title: group.title,
-                description: 'Grouped vault rows for this set.',
-                trailing: Text(
-                  '${group.rows.length}',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
-                ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 8),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      group.title,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '${group.rows.length}',
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.56),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -2011,6 +1898,24 @@ class VaultPageState extends State<VaultPage> {
     return slivers;
   }
 
+  Widget _buildVaultLoadingSliver({required int columns}) {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      sliver: SliverGrid(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) => const _VaultGridLoadingTile(),
+          childCount: columns * 2,
+        ),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: columns,
+          mainAxisSpacing: 12,
+          crossAxisSpacing: 12,
+          childAspectRatio: 0.52,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -2020,24 +1925,25 @@ class VaultPageState extends State<VaultPage> {
     final pokemonRows = derivedData.pokemonRows;
     final pokemonSuggestions = derivedData.pokemonSuggestions;
     final totalCards = derivedData.totalCards;
-    final setCount = derivedData.setCount;
-    final columns = resolveSharedCardGridColumns(
-      context,
-      horizontalPadding: 28,
-      minTileWidth: 96,
+    final viewportWidth = MediaQuery.sizeOf(context).width;
+    final resolvedViewMode = resolveCardViewModeForTextScale(
+      _cardViewMode,
+      MediaQuery.textScalerOf(context).scale(14) / 14,
     );
+    final columns = resolvedViewMode != AppCardViewMode.grid
+        ? 1
+        : viewportWidth < 600
+        ? 2
+        : resolveSharedCardGridColumns(
+            context,
+            horizontalPadding: 28,
+            minTileWidth: 132,
+          );
     final vaultContentSlivers = <Widget>[];
     switch (_view) {
       case _VaultStructuralView.all:
         if (_loading) {
-          vaultContentSlivers.add(
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ),
-          );
+          vaultContentSlivers.add(_buildVaultLoadingSliver(columns: columns));
         } else if (searchedRows.isNotEmpty) {
           vaultContentSlivers.addAll(
             _buildVaultCollectionSlivers(searchedRows, columns: columns),
@@ -2060,14 +1966,7 @@ class VaultPageState extends State<VaultPage> {
       case _VaultStructuralView.duplicates:
         final duplicateRows = derivedData.duplicateRows;
         if (_loading) {
-          vaultContentSlivers.add(
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ),
-          );
+          vaultContentSlivers.add(_buildVaultLoadingSliver(columns: columns));
         } else if (duplicateRows.isNotEmpty) {
           vaultContentSlivers.addAll(
             _buildVaultCollectionSlivers(duplicateRows, columns: columns),
@@ -2088,14 +1987,7 @@ class VaultPageState extends State<VaultPage> {
       case _VaultStructuralView.recent:
         final recentRows = derivedData.recentRows;
         if (_loading) {
-          vaultContentSlivers.add(
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ),
-          );
+          vaultContentSlivers.add(_buildVaultLoadingSliver(columns: columns));
         } else if (recentRows.isNotEmpty) {
           vaultContentSlivers.addAll(
             _buildVaultCollectionSlivers(recentRows, columns: columns),
@@ -2116,14 +2008,7 @@ class VaultPageState extends State<VaultPage> {
       case _VaultStructuralView.bySet:
         final bySetGroups = derivedData.bySetGroups;
         if (_loading) {
-          vaultContentSlivers.add(
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ),
-          );
+          vaultContentSlivers.add(_buildVaultLoadingSliver(columns: columns));
         } else {
           vaultContentSlivers.addAll(
             _buildVaultBySetSlivers(bySetGroups, columns: columns),
@@ -2132,14 +2017,7 @@ class VaultPageState extends State<VaultPage> {
         break;
       case _VaultStructuralView.onWall:
         if (_loading) {
-          vaultContentSlivers.add(
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ),
-          );
+          vaultContentSlivers.add(_buildVaultLoadingSliver(columns: columns));
         } else if (onWallRows.isNotEmpty) {
           vaultContentSlivers.addAll(
             _buildVaultCollectionSlivers(onWallRows, columns: columns),
@@ -2161,14 +2039,7 @@ class VaultPageState extends State<VaultPage> {
         break;
       case _VaultStructuralView.pokemon:
         if (_loading) {
-          vaultContentSlivers.add(
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-            ),
-          );
+          vaultContentSlivers.add(_buildVaultLoadingSliver(columns: columns));
         } else {
           if (_canonicalSpeciesSlug != null) {
             vaultContentSlivers.add(
@@ -2277,93 +2148,14 @@ class VaultPageState extends State<VaultPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (BinderFeatureFlags.production.personalAvailable) ...[
-                    if (_showBinderWhatsNew)
-                      Card(
-                        margin: const EdgeInsets.only(bottom: 8),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.auto_awesome_rounded),
-                              const SizedBox(width: 10),
-                              const Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'What’s new: Binders',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    ),
-                                    SizedBox(height: 3),
-                                    Text(
-                                      'Build collection goals powered by '
-                                      'exact copies in your Vault.',
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              IconButton(
-                                tooltip: 'Dismiss Binder introduction',
-                                onPressed: _dismissBinderWhatsNew,
-                                icon: const Icon(Icons.close_rounded),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    GvSurface(
-                      key: const ValueKey<String>('vault-binders-entry'),
-                      variant: GvSurfaceVariant.grouped,
-                      padding: EdgeInsets.zero,
-                      child: ListTile(
-                        dense: true,
-                        visualDensity: VisualDensity.compact,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 2,
-                        ),
-                        leading: DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.tertiary.withValues(
-                              alpha: 0.14,
-                            ),
-                            borderRadius: BorderRadius.circular(
-                              GvRadii.control,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(9),
-                            child: Icon(
-                              Icons.collections_bookmark_outlined,
-                              size: 20,
-                              color: theme.colorScheme.tertiary,
-                            ),
-                          ),
-                        ),
-                        title: const Text(
-                          'Binders',
-                          style: TextStyle(fontWeight: FontWeight.w700),
-                        ),
-                        subtitle: const Text('What you’re building'),
-                        trailing: const Icon(Icons.chevron_right_rounded),
-                        onTap: _openCollectionProjects,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                  ],
                   Text(
-                    'YOUR COLLECTION',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: theme.colorScheme.primary,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0,
+                    'Vault',
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: -0.35,
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 12),
                   Semantics(
                     identifier:
                         derivedData.vaultPricingSummary.totalMarketValue == null
@@ -2381,17 +2173,18 @@ class VaultPageState extends State<VaultPage> {
                           : _formatVaultValue(derivedData.estimatedValue!),
                       style: theme.textTheme.headlineSmall?.copyWith(
                         color: theme.colorScheme.onSurface,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w800,
                         height: 1.0,
-                        letterSpacing: 0,
+                        letterSpacing: -0.5,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 6),
                   Text(
                     derivedData.estimatedValue == null
-                        ? '$totalCards cards • ${_items.length} unique • $setCount sets • Value pending'
-                        : '$totalCards cards • ${_items.length} unique • ${derivedData.pricedCopyCount} valued copies • 30d trend pending',
+                        ? '$totalCards cards · ${_items.length} unique · Value pending'
+                        : '$totalCards cards · ${_items.length} unique · ${derivedData.pricedCopyCount} valued',
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(
                         alpha: 0.66,
@@ -2399,26 +2192,34 @@ class VaultPageState extends State<VaultPage> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                  const SizedBox(height: 14),
+                  Semantics(
+                    textField: true,
+                    label: 'Search your Vault',
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: const InputDecoration(
+                        hintText: 'Search by card, set, or Pokémon…',
+                        prefixIcon: Icon(Icons.search_rounded),
+                        isDense: true,
+                        contentPadding: EdgeInsets.symmetric(vertical: 13),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  _VaultPrimaryTabs(
+                    selectedIndex: _view == _VaultStructuralView.bySet ? 1 : 0,
+                    onCards: () => _setView(_VaultStructuralView.all),
+                    onSets: () => _setView(_VaultStructuralView.bySet),
+                    onLists: () => unawaited(_openCollectionProjects()),
+                  ),
                   const SizedBox(height: 6),
                   Row(
                     children: [
-                      Expanded(
-                        child: TextField(
-                          controller: _searchController,
-                          decoration: InputDecoration(
-                            hintText: 'Search vault · by card, set, or Pokemon',
-                            prefixIcon: const Icon(Icons.search),
-                            isDense: true,
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 11,
-                            ),
-                          ),
-                        ),
-                      ),
+                      _buildVaultFilterButton(theme),
                       const SizedBox(width: 6),
                       PopupMenuButton<_SortBy>(
-                        tooltip: 'Sort vault',
-                        icon: const Icon(Icons.swap_vert_rounded),
+                        tooltip: 'Sort Vault',
                         onSelected: (value) {
                           setState(() {
                             _sortBy = value;
@@ -2432,47 +2233,42 @@ class VaultPageState extends State<VaultPage> {
                           ),
                           PopupMenuItem(
                             value: _SortBy.name,
-                            child: Text('Name (A-Z)'),
+                            child: Text('Name (A–Z)'),
                           ),
                           PopupMenuItem(
                             value: _SortBy.qty,
-                            child: Text('Qty (low-high)'),
+                            child: Text('Quantity (low–high)'),
                           ),
                         ],
-                      ),
-                      IconButton(
-                        tooltip: 'Binders',
-                        onPressed: _openCollectionProjects,
-                        icon: Icon(
-                          BinderFeatureFlags.production.personalAvailable
-                              ? Icons.collections_bookmark_outlined
-                              : Icons.flag_outlined,
+                        child: const _VaultToolbarControl(
+                          icon: Icons.swap_vert_rounded,
+                          label: 'Sort',
                         ),
                       ),
-                      IconButton(
-                        tooltip: 'Memories',
-                        onPressed: _openMemoriesHome,
-                        icon: const Icon(Icons.auto_awesome_motion_outlined),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
-                  Row(
-                    children: [
-                      _buildVaultFilterButton(theme),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: SharedCardViewModeButton(
-                            value: _cardViewMode,
-                            onChanged: (mode) {
-                              setState(() {
-                                _cardViewMode = mode;
-                              });
-                            },
-                          ),
-                        ),
+                      const Spacer(),
+                      SharedCardViewModeButton(
+                        value: resolvedViewMode,
+                        iconOnly:
+                            MediaQuery.textScalerOf(context).scale(14) / 14 >=
+                            1.5,
+                        onChanged: (mode) {
+                          final nextMode = resolveCardViewModeForTextScale(
+                            mode,
+                            MediaQuery.textScalerOf(context).scale(14) / 14,
+                          );
+                          setState(() {
+                            _cardViewMode = nextMode;
+                          });
+                          if (nextMode != mode) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Grid needs smaller text. Comfortable list is shown instead.',
+                                ),
+                              ),
+                            );
+                          }
+                        },
                       ),
                     ],
                   ),
@@ -2490,27 +2286,6 @@ class VaultPageState extends State<VaultPage> {
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
           ...vaultContentSlivers,
-          if (_view == _VaultStructuralView.all) ...[
-            const SliverToBoxAdapter(child: SizedBox(height: 18)),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Recently Added',
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    _buildRecentVaultStrip(_items),
-                  ],
-                ),
-              ),
-            ),
-          ],
           SliverToBoxAdapter(
             child: SizedBox(
               height: shellContentBottomPadding(context, extra: 8),
@@ -2547,6 +2322,112 @@ class VaultPageState extends State<VaultPage> {
       return _delete(row);
     }
     return false;
+  }
+}
+
+class _VaultPrimaryTabs extends StatelessWidget {
+  const _VaultPrimaryTabs({
+    required this.selectedIndex,
+    required this.onCards,
+    required this.onSets,
+    required this.onLists,
+  });
+
+  final int selectedIndex;
+  final VoidCallback onCards;
+  final VoidCallback onSets;
+  final VoidCallback onLists;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final tabs = <(String, VoidCallback)>[
+      ('Cards', onCards),
+      ('Sets', onSets),
+      ('Lists', onLists),
+    ];
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.72),
+          ),
+        ),
+      ),
+      child: Row(
+        children: [
+          for (var index = 0; index < tabs.length; index++)
+            Expanded(
+              child: Semantics(
+                button: true,
+                selected: selectedIndex == index,
+                child: InkWell(
+                  onTap: tabs[index].$2,
+                  child: Container(
+                    alignment: Alignment.center,
+                    constraints: const BoxConstraints(minHeight: 44),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: selectedIndex == index ? 2 : 1,
+                          color: selectedIndex == index
+                              ? colorScheme.primary
+                              : Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      tabs[index].$1,
+                      style: theme.textTheme.labelLarge?.copyWith(
+                        color: selectedIndex == index
+                            ? colorScheme.primary
+                            : colorScheme.onSurface.withValues(alpha: 0.58),
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VaultToolbarControl extends StatelessWidget {
+  const _VaultToolbarControl({required this.icon, required this.label});
+
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 44),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 18,
+              color: colorScheme.onSurface.withValues(alpha: 0.76),
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: Theme.of(
+                context,
+              ).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

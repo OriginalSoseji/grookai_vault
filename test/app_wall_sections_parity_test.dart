@@ -93,7 +93,15 @@ void main() {
       expect(collectorScreen, contains("label: 'Wall'"));
       expect(collectorScreen, contains('for (final section in sections)'));
       expect(collectorScreen, contains('_loadSectionCards'));
-      expect(collectorScreen, contains('GridView.builder'));
+      expect(collectorScreen, contains('CustomScrollView('));
+      expect(collectorScreen, contains('SliverGrid('));
+      expect(collectorScreen, contains('SliverChildBuilderDelegate('));
+      expect(collectorScreen, contains('resolveCardViewModeForTextScale('));
+      expect(collectorScreen, contains('final columns = comfortableLayout'));
+      expect(collectorScreen, contains('final metadataExtent = 170.0 + 56'));
+      expect(collectorScreen, contains('subtitleSlotHeight * textScale'));
+      expect(collectorScreen, contains('priceSlotHeight * textScale'));
+      expect(collectorScreen, contains('childIsScrollable: _viewState =='));
       expect(collectorScreen, isNot(contains("label: 'Visible'")));
       expect(collectorScreen, isNot(contains("label: 'Collection'")));
     },
@@ -147,12 +155,11 @@ void main() {
 
   test('owner Wall exposes one-screen exact-copy Vendor Mode workspace', () {
     expect(collectorScreen, contains('VendorPricingWorkspaceScreen'));
-    expect(collectorScreen, contains("'Vendor Mode'"));
-    expect(
-      collectorScreen,
-      contains("'Price, organize, publish, and share exact copies'"),
-    );
-    expect(vendorPricingScreen, contains("label: 'Market'"));
+    expect(collectorScreen, contains("title: Text('Vendor Mode')"));
+    expect(collectorScreen, contains("title: Text('Account settings')"));
+    expect(collectorScreen, contains("tooltip: 'Profile actions'"));
+    expect(collectorScreen, contains('onOpenVendorPricing: widget.isOwner'));
+    expect(vendorPricingScreen, contains("label: 'TCGPlayer Market'"));
     expect(vendorPricingScreen, contains("label: 'My price'"));
     expect(vendorPricingScreen, contains("Text('Wall'"));
     expect(vendorPricingScreen, contains('Assign sections'));

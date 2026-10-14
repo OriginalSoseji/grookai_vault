@@ -69,6 +69,9 @@ void main() {
     expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
     expect(find.byKey(const Key('vendor_row_copy-2')), findsOneWidget);
     expect(find.textContaining('25% below market'), findsOneWidget);
+    expect(find.text('Has ask 1'), findsOneWidget);
+    expect(find.text('Needs ask 1'), findsOneWidget);
+    expect(find.text('No asking price'), findsOneWidget);
 
     await tester.tap(find.byKey(const Key('vendor_filter_priced')));
     await tester.pumpAndSettle();

@@ -3,15 +3,19 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('Search teaches sentence-style queries with runnable examples', () {
+  test('Search provides recent-query and browse discovery', () {
     final main = File('lib/main.dart').readAsStringSync();
 
     expect(main, contains('Search in a sentence'));
-    expect(main, contains('Search like a sentence'));
-    expect(main, contains('Charizard from 151'));
-    expect(main, contains('Japanese Pikachu promo'));
-    expect(main, contains('Umbreon alt art'));
-    expect(main, contains('Lugia silver tempest secret rare'));
+    expect(main, contains('class _RecentSearchesSection'));
+    expect(main, contains("Text('Clear all')"));
+    expect(main, contains("tooltip: 'Remove \$search'"));
+    expect(main, contains('class _SearchBrowseSection'));
+    expect(main, contains("title: 'Sets'"));
+    expect(main, contains("title: 'Dex'"));
+    expect(main, contains("title: 'Special versions'"));
+    expect(main, contains('kIdentityFilterAlternateArt'));
+    expect(main, contains('Filtered by'));
     expect(main, contains('_runSentenceSearchExample'));
   });
 

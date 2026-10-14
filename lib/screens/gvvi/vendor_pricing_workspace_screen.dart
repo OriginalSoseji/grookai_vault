@@ -1474,7 +1474,7 @@ class _VendorInventoryRow extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: _LabeledField(
-                label: 'Market',
+                label: 'TCGPlayer Market',
                 child: _ReadOnlyValue(
                   value: row.marketPrice == null
                       ? '—'
@@ -1676,7 +1676,9 @@ class _MarketPositionLabel extends StatelessWidget {
       ),
       VendorMarketPosition.unpriced => (
         Icons.edit_outlined,
-        row.marketPrice == null ? 'Unpriced • No exact market' : 'Unpriced',
+        row.marketPrice == null
+            ? 'No asking price • No exact market'
+            : 'No asking price',
         colorScheme.onSurface.withValues(alpha: 0.58),
       ),
       VendorMarketPosition.noExactMarket => (
@@ -1748,8 +1750,8 @@ class _WorkspaceState extends StatelessWidget {
 
 String _filterLabel(_VendorWorkspaceFilter filter) => switch (filter) {
   _VendorWorkspaceFilter.all => 'All',
-  _VendorWorkspaceFilter.priced => 'Priced',
-  _VendorWorkspaceFilter.unpriced => 'Unpriced',
+  _VendorWorkspaceFilter.priced => 'Has ask',
+  _VendorWorkspaceFilter.unpriced => 'Needs ask',
   _VendorWorkspaceFilter.belowMarket => 'Below',
   _VendorWorkspaceFilter.atMarket => 'At market',
   _VendorWorkspaceFilter.aboveMarket => 'Above',
