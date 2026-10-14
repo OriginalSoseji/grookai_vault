@@ -28,6 +28,12 @@ widening Jungle, composes it through V4, and has a passing rollback-only four-ro
 schema rehearsal. The retained full-schema rollback rehearsal and combined
 six-row read-only pricing evaluation remain. No Gym catalog, binding, schema, or
 price write has occurred in production.
+PR635 merged the Gym lane as main `b04752916`. Its production preflight found the
+reviewed source-product SHA differs from the warehouse ingestion payload hash.
+The V2 correction preserves the reviewed SHA as provenance and validates current
+product identity by exact category/group/product/name/number while assignments
+continue to roll per current source run. The revised local rollback rehearsal and
+read-only production preflight pass. No production write has occurred yet.
 
 ## Collectr catalog review — October 9
 

@@ -60,6 +60,16 @@ receipt is bound to migration SHA-256
 `8166cd477de08e59e5c0103d4702d9e14faf2ad559b26e6fb0d0dec1705a1d9a`.
 Production database, price-publication, and customer-state writes remain zero.
 
+The production preflight on October 13 found that the reviewed source-product
+SHA is artifact provenance and does not equal the warehouse ingestion hash.
+Migration `20261014003500_pokemon_tcgplayer_gym_challenge_binding_identity_v2.sql`
+therefore keeps that reviewed SHA immutable while validating the live TCGPlayer
+product by exact category, group, product ID, product name, and printed number.
+Daily observation IDs, row hashes, artifacts, and prices remain frozen in a new
+assignment for each latest completed source run. The revised rollback rehearsal
+passed across the reviewed October 12 run and the current October 13 run, including
+the changed Unlimited price for product 85721, with zero committed writes.
+
 The next gate is a retained full-schema rollback rehearsal followed by a combined
 read-only evaluation of all six batch rows. Catalog identity creation, binding
 activation, schema deployment, and price publication remain separately guarded.
