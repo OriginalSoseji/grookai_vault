@@ -146,9 +146,19 @@ async function readDatabase(candidates) {
       count(distinct i.id) filter(where i.is_active and i.identity_domain='pokemon_eng_standard')::integer active_standard_identity_count
       from public.card_prints c left join public.card_print_identity i on i.card_print_id=c.id
       where c.id=any($1::uuid[]) group by c.id order by c.id`, [ids])).rows;
-    const printings = (await client.query(`select id::text,card_print_id::text,finish_key,printing_gv_id,
-      is_provisional,provenance_source,provenance_ref from public.card_printings
-      where card_print_id=any($1::uuid[]) order by card_print_id,finish_key`, [ids])).rows;
+    const printings = (await client.query(`select p.id::text,p.card_print_id::text,p.finish_key,
+      p.printing_gv_id,p.is_provisional,p.provenance_source,p.provenance_ref,
+      coalesce(f.is_active,false) finish_active,review.review_status active_truth_review,
+      review.public_visibility,
+      coalesce(f.is_active,false) and coalesce(review.public_visibility,'')
+        not in ('hidden_pending_review','hidden_unsupported') public_visible
+      from public.card_printings p
+      left join public.finish_keys f on f.key=p.finish_key
+      left join lateral (select r.review_status,r.public_visibility
+        from public.card_printing_truth_reviews r
+        where r.card_printing_id=p.id and r.active=true
+        order by r.created_at desc nulls last,r.id desc limit 1) review on true
+      where p.card_print_id=any($1::uuid[]) order by p.card_print_id,p.finish_key`, [ids])).rows;
     const products = (await client.query(`select product_id,category_id,group_id,name,source_url,
       source_modified_on,extended_data,raw_payload,payload_hash,last_seen_at,last_seen_run_id,
       source_active,catalog_metadata_status from public.tcgcsv_source_products
@@ -222,6 +232,8 @@ export async function buildG1RcMappingAuthority(args) {
     assert.equal(printing.is_provisional, false);
     assert.equal(printing.provenance_source, authority.printing.provenance_source);
     assert.equal(printing.provenance_ref, authority.printing.provenance_ref);
+    assert.equal(printing.finish_active, true, `live_finish_disabled:${candidate.source_product_id}`);
+    assert.equal(printing.public_visible, true, `live_child_hidden:${candidate.source_product_id}`);
   }
 
   const groupRef = "tcgcsv-group-1729-selected-products";

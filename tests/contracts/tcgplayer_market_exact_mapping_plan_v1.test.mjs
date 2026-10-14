@@ -612,6 +612,9 @@ test("Generations Radiant Collection authority is read-only and split into bound
   assert.match(G1_RC_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 32/);
   assert.match(G1_RC_AUTHORITY_SCRIPT, /const batchSize = 25/);
   assert.match(G1_RC_AUTHORITY_SCRIPT, /special_variant_and_english_master_index/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /left join public\.finish_keys/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /card_printing_truth_reviews/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /live_child_hidden/);
   assert.match(G1_RC_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
   assert.doesNotMatch(
     G1_RC_AUTHORITY_SCRIPT,

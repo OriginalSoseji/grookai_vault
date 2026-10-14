@@ -45,28 +45,29 @@ Trial plan artifact:
 
 The authority rehearsal independently revalidated all 32 live source products,
 parents, unique active standard identities, governed non-provisional children,
-English Master Index card/printing rows, and absence of source or target mapping
-collisions. Current null child provenance values are preserved exactly where
-the governed production row has null provenance; no provenance was invented.
+active finish keys, current non-hidden truth-review state, English Master Index
+card/printing rows, and absence of source or target mapping collisions. Current
+null child provenance values are preserved exactly where the governed
+production row has null provenance; no provenance was invented.
 
 - full candidate SHA-256:
   `a9890b9bd2fb728fe38def81957b3c586e68dd7b954fd6cb557abf7cf83a16a0`
 - batch 1 selected SHA-256:
   `8bc2aee3491813b2f95a35487ff631421c82a39c32b7af964afe5d4b97db36e5`
 - batch 1 authority SHA-256:
-  `ce2d142fb4f65ce5df315fd5af0fc18b51e1e8330d89c38e58c0ae6374943bed`
+  `71bc9996a44af221edbc9655faf34635e62da1b3c21cfc3391c020347ddcdc5c`
 - batch 1 authority fingerprint:
-  `38aa4f700b93f5b4216cf86d2da195eddeea60ea120805ca87c143d31a69681c`
+  `22cf487c830ad33589e438d961112e117c3cab44e4a2050aa90a75699bf7010f`
 - batch 2 selected SHA-256:
   `99f2fb08f12058ecc93eeb79109dc99fd8a11f460e8741a264fea41d75974401`
 - batch 2 authority SHA-256:
-  `f39ed01789255c9cdd66cfba829595a6075c7c9aa151f9c72f9cf47d3a5881b8`
+  `dc05e0ba09cf096ae197918700567c4a855597be49e903320c64897031520575`
 - batch 2 authority fingerprint:
-  `cbddb6f93ecbeae069d3bf58b21d0c9f8ae4e030ee5095e317695f76d9b531e8`
+  `ab42d60f49bbd64c26398e06a7f773e386ee417f7fdbe83c88fe8130c249fd3c`
 - database writes: `0`
 
 Trial authority artifact:
-`C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/g1-rc-authority-trial-v1`.
+`C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/g1-rc-authority-trial-v2`.
 
 ## Next Gate
 
