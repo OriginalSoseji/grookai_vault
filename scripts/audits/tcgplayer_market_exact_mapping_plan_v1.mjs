@@ -34,6 +34,19 @@ const DEFAULT_OUT_ROOT = path.join(
 
 const REVIEWED_SET_AUTHORITIES = Object.freeze([
   {
+    source_group_id: 2782,
+    source_group_name: "McDonald's 25th Anniversary Promos",
+    target_set_code: "mcd21",
+    evidence_lane: "reviewed_group_set_authority",
+    mapping_method: "exact_reviewed_set_number_name_authority_v1",
+    mapping_confidence: 0.99,
+    authority_evidence: {
+      authority_version: "TCGPLAYER_MARKET_REVIEWED_SET_AUTHORITY_V1",
+      rationale:
+        "TCGPlayer's 25-card anniversary promo group is the complete numbered McDonald's Collection 2021 set, whose reviewed printing authority and public route use mcd21",
+    },
+  },
+  {
     source_group_id: 23529,
     source_group_name: "SV: Shrouded Fable",
     target_set_code: "sv06.5",
