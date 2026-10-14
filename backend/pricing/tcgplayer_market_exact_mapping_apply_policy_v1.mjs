@@ -75,6 +75,19 @@ export function tcgplayerExactMappingApplyFingerprintV1(value) {
   return createHash("sha256").update(stableJson(value)).digest("hex");
 }
 
+export function matchesTcgplayerExactMappingLiveSourceNumberV1(
+  candidate,
+  livePrintedNumber,
+) {
+  const reviewedIdentity = reviewedProductIdentityById(candidate?.source_product_id);
+  if (reviewedIdentity) {
+    return Boolean(reviewedProductIdentity(candidate)) &&
+      text(livePrintedNumber) === reviewedIdentity.printed_number;
+  }
+  return normalizeTcgplayerMappingNumberV1(livePrintedNumber) ===
+    candidate?.normalized_source_number;
+}
+
 export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
   const failures = [];
   const scope = classifyTcgplayerMarketProductScopeV1_2({

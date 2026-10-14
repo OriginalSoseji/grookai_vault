@@ -192,6 +192,10 @@ export async function build30cClassicAliasMappingAuthority(args) {
     assert.equal(printing.provenance_ref, authority.printing.provenance_ref);
     assert.equal(printing.finish_active, true,
       `live_finish_disabled:${candidate.source_product_id}`);
+    assert.equal(printing.active_truth_review, "verified",
+      `live_child_truth_unverified:${candidate.source_product_id}`);
+    assert.equal(printing.public_visibility, "visible",
+      `live_child_visibility_not_visible:${candidate.source_product_id}`);
     assert.equal(printing.public_visible, true,
       `live_child_hidden:${candidate.source_product_id}`);
   }

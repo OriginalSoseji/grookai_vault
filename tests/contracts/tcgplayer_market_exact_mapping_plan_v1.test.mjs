@@ -13,6 +13,7 @@ import {
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 import {
   buildTcgplayerExactMappingMetaV1,
+  matchesTcgplayerExactMappingLiveSourceNumberV1,
   selectTcgplayerExactMappingApplyBatchV1,
   TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_CONFIRMATION_V1,
   validateTcgplayerExactMappingCandidateForApplyV1,
@@ -674,6 +675,14 @@ test("30th Celebration Classic aliases require exact reviewed product tuples", (
   assert.equal(candidate.reviewed_product_identity_authority_version,
     TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1);
   assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+  assert.equal(
+    matchesTcgplayerExactMappingLiveSourceNumberV1(candidate, "11/101"),
+    true,
+  );
+  assert.equal(
+    matchesTcgplayerExactMappingLiveSourceNumberV1(candidate, "11/102"),
+    false,
+  );
 
   const drift = planTcgplayerExactMappingCandidateV1({
     source: { ...reviewedSource, source_product_name: "Genesect EX" },
@@ -690,6 +699,10 @@ test("30th Celebration Classic alias authority is read-only and binds live child
   assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /left join public\.finish_keys/);
   assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /card_printing_truth_reviews/);
   assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /live_child_hidden/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT,
+    /active_truth_review, "verified"/);
+  assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT,
+    /public_visibility, "visible"/);
   assert.match(CLASSIC_ALIAS_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
   assert.doesNotMatch(
     CLASSIC_ALIAS_AUTHORITY_SCRIPT,
