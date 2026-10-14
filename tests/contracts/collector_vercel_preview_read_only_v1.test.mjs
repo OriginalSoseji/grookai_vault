@@ -48,6 +48,14 @@ test('HTTP boundary rejects server actions, sign-in and administration', () => {
   assert.equal(previewRequestKind('/api/resolver/search', 'GET'), 'read');
   assert.equal(previewRequestKind('/api/canon/cards/GV-PK-MEW-200/image', 'GET'), 'image');
 });
+test('synthetic server actions are limited to local visual fixtures', () => {
+  const proxySource = fs.readFileSync(new URL('../../apps/web/src/proxy.ts', import.meta.url), 'utf8');
+  assert.match(proxySource, /isLocalVisualParityFixtureMode\(\)/);
+  assert.match(proxySource, /request\.method === "POST"/);
+  assert.match(proxySource, /request\.headers\.has\("next-action"\)/);
+  assert.match(proxySource, /request\.nextUrl\.pathname\.startsWith\("\/visual-fixtures\/"\)/);
+  assert.match(proxySource, /if \(isLocalVisualFixtureAction\) \{\s*response = NextResponse\.next/);
+});
 test('preview build fails closed on admin credentials; all common clients are guarded', () => {
   const root = new URL('../../apps/web/', import.meta.url);
   assert.match(fs.readFileSync(new URL('next.config.mjs', root), 'utf8'), /collectorPreview && process\.env\.SUPABASE_SECRET_KEY/);

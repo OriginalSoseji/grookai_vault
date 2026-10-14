@@ -19,8 +19,8 @@ import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/app_shell_metrics.dart';
+import '../../widgets/card_view_mode.dart';
 import '../../widgets/contact_owner_button.dart';
-import '../../widgets/gv_chip.dart';
 import '../../widgets/gv_surface.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
@@ -528,6 +528,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
     final body = _CollectorScaffoldBody(
       embeddedInShell: widget.embeddedInShell,
       onRefresh: _load,
+      childIsScrollable: _viewState == PublicCollectorViewState.success,
       child: _buildBody(),
     );
 
@@ -613,11 +614,14 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           children: [
             _PublicCollectorHeader(
               profile: profile,
+              isOwner: isOwner,
               showFollowAction: _shouldShowFollowAction(profile),
               isFollowing: _isFollowing,
               followStateLoading: _followStateLoading,
               followActionBusy: _followActionBusy,
               onFollowPressed: _handleFollowAction,
+              onOpenSettings: widget.onOpenSettings,
+              onOpenVendorPricing: null,
             ),
             const SizedBox(height: 12),
             if (widget.embeddedInShell && isOwner)
@@ -647,6 +651,7 @@ class _PublicCollectorScreenState extends State<PublicCollectorScreen> {
           loadingSectionId: _loadingSectionId,
           sectionError: _sectionError,
           isOwner: _isSelfProfile(profile),
+          onOpenSettings: widget.onOpenSettings,
           creatingSection: _creatingSection,
           onSectionSelected: _selectWallSection,
           onAddSection: _createSection,
@@ -686,6 +691,7 @@ class _PublicCollectorWallLayout extends StatelessWidget {
     required this.loadingSectionId,
     required this.sectionError,
     required this.isOwner,
+    required this.onOpenSettings,
     required this.creatingSection,
     required this.onSectionSelected,
     required this.onAddSection,
@@ -703,6 +709,7 @@ class _PublicCollectorWallLayout extends StatelessWidget {
   final String? loadingSectionId;
   final String? sectionError;
   final bool isOwner;
+  final VoidCallback? onOpenSettings;
   final bool creatingSection;
   final Future<void> Function(String sectionId) onSectionSelected;
   final Future<void> Function() onAddSection;
@@ -722,6 +729,7 @@ class _PublicCollectorWallLayout extends StatelessWidget {
       loadingSectionId: loadingSectionId,
       sectionError: sectionError,
       isOwner: isOwner,
+      onOpenSettings: onOpenSettings,
       creatingSection: creatingSection,
       onSectionSelected: onSectionSelected,
       onAddSection: onAddSection,
@@ -743,6 +751,7 @@ class _PublicCollectorSegmentedContent extends StatefulWidget {
     required this.loadingSectionId,
     required this.sectionError,
     required this.isOwner,
+    required this.onOpenSettings,
     required this.creatingSection,
     required this.onSectionSelected,
     required this.onAddSection,
@@ -760,6 +769,7 @@ class _PublicCollectorSegmentedContent extends StatefulWidget {
   final String? loadingSectionId;
   final String? sectionError;
   final bool isOwner;
+  final VoidCallback? onOpenSettings;
   final bool creatingSection;
   final Future<void> Function(String sectionId) onSectionSelected;
   final Future<void> Function() onAddSection;
@@ -885,53 +895,131 @@ class _PublicCollectorSegmentedContentState
         : widget.selectedSectionId.trim();
     final loadingSelectedSection = widget.loadingSectionId == selectedSectionId;
     final includesSealed = kSealedOwnershipEnabled && _viewerUserId.isNotEmpty;
+    final cards = _activeCards;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _PublicCollectorHeader(
-          profile: widget.profile,
-          showFollowAction: widget.showFollowAction,
-          isFollowing: widget.isFollowing,
-          followStateLoading: widget.followStateLoading,
-          followActionBusy: widget.followActionBusy,
-          onFollowPressed: widget.onFollowPressed,
-        ),
-        const SizedBox(height: 8),
-        _CollectorWallSectionRail(
-          // The card page length is not a combined card-and-sealed total.
-          wallCount: includesSealed ? null : widget.wallView.wallCards.length,
-          sections: widget.wallView.sections,
-          selectedSectionId: selectedSectionId,
-          loadingSectionId: widget.loadingSectionId,
-          isOwner: widget.isOwner,
-          creatingSection: widget.creatingSection,
-          onSectionSelected: widget.onSectionSelected,
-          onAddSection: widget.onAddSection,
-        ),
-        const SizedBox(height: 8),
-        if ((widget.sectionError ?? '').trim().isNotEmpty)
-          _WallSectionCard(emptyMessage: widget.sectionError)
-        else if (loadingSelectedSection)
-          const _WallLoadingCard()
-        else if (_activeCards.isNotEmpty || !includesSealed)
-          _PublicWallCardsSection(
-            profile: widget.profile,
-            cards: _activeCards,
-            selectedSectionId: selectedSectionId,
-            isOwner: widget.isOwner,
-            onWallChanged: widget.onWallChanged,
-            viewerOwnershipStateForCard: _viewerOwnershipStateForCard,
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
+      slivers: [
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
+          sliver: SliverList(
+            delegate: SliverChildListDelegate([
+              _PublicCollectorHeader(
+                profile: widget.profile,
+                isOwner: widget.isOwner,
+                showFollowAction: widget.showFollowAction,
+                isFollowing: widget.isFollowing,
+                followStateLoading: widget.followStateLoading,
+                followActionBusy: widget.followActionBusy,
+                onFollowPressed: widget.onFollowPressed,
+                onOpenSettings: widget.onOpenSettings,
+                onOpenVendorPricing: null,
+              ),
+              const SizedBox(height: 8),
+              _CollectorWallSectionRail(
+                // The card page length is not a combined card-and-sealed total.
+                wallCount: includesSealed
+                    ? null
+                    : widget.wallView.wallCards.length,
+                sections: widget.wallView.sections,
+                selectedSectionId: selectedSectionId,
+                loadingSectionId: widget.loadingSectionId,
+                isOwner: widget.isOwner,
+                creatingSection: widget.creatingSection,
+                onSectionSelected: widget.onSectionSelected,
+                onAddSection: widget.onAddSection,
+              ),
+              const SizedBox(height: 8),
+              if ((widget.sectionError ?? '').trim().isNotEmpty)
+                _WallSectionCard(emptyMessage: widget.sectionError)
+              else if (loadingSelectedSection)
+                const _WallLoadingCard()
+              else if (cards.isEmpty && !includesSealed)
+                const _WallSectionCard(
+                  emptyMessage: 'Nothing to show right now.',
+                ),
+            ]),
           ),
-        if (_viewerUserId.isNotEmpty)
-          OwnedSealedPanel(
-            ownerId: widget.profile.userId,
-            wallOnly: true,
-            sectionId: selectedSectionId == _wallSectionId
-                ? null
-                : selectedSectionId,
-            onInventoryChanged: widget.onWallChanged,
+        ),
+        if ((widget.sectionError ?? '').trim().isEmpty &&
+            !loadingSelectedSection &&
+            cards.isNotEmpty)
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            sliver: SliverLayoutBuilder(
+              builder: (context, constraints) {
+                final width = constraints.crossAxisExtent;
+                final textScale =
+                    (MediaQuery.textScalerOf(context).scale(14) / 14)
+                        .clamp(1.0, 2.0)
+                        .toDouble();
+                final comfortableLayout = !resolveCardViewModeForTextScale(
+                  AppCardViewMode.grid,
+                  textScale,
+                ).isGrid;
+                final columns = comfortableLayout
+                    ? 1
+                    : width >= 900
+                    ? 4
+                    : width >= 620
+                    ? 3
+                    : width >= 260
+                    ? 2
+                    : 1;
+                const spacing = 12.0;
+                final tileWidth = (width - spacing * (columns - 1)) / columns;
+                final metadataExtent = 170.0 + 56 * (textScale - 1);
+                final tileExtent =
+                    tileWidth / GvGridConstants.artworkAspectRatio +
+                    metadataExtent;
+                return SliverGrid(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: columns,
+                    crossAxisSpacing: spacing,
+                    mainAxisSpacing: 20,
+                    mainAxisExtent: tileExtent,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => _PublicCardTile(
+                      profile: widget.profile,
+                      card: cards[index],
+                      selectedSectionId: selectedSectionId,
+                      isOwner: widget.isOwner,
+                      onWallChanged: widget.onWallChanged,
+                      ownershipState: _viewerOwnershipStateForCard(
+                        cards[index],
+                      ),
+                    ),
+                    childCount: cards.length,
+                  ),
+                );
+              },
+            ),
           ),
+        if (includesSealed)
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  if (_viewerUserId.isNotEmpty)
+                    OwnedSealedPanel(
+                      ownerId: widget.profile.userId,
+                      wallOnly: true,
+                      sectionId: selectedSectionId == _wallSectionId
+                          ? null
+                          : selectedSectionId,
+                      onInventoryChanged: widget.onWallChanged,
+                    ),
+                ],
+              ),
+            ),
+          ),
+        SliverToBoxAdapter(
+          child: SizedBox(height: shellContentBottomPadding(context, extra: 8)),
+        ),
       ],
     );
   }
@@ -942,11 +1030,13 @@ class _CollectorScaffoldBody extends StatelessWidget {
     required this.child,
     required this.embeddedInShell,
     required this.onRefresh,
+    required this.childIsScrollable,
   });
 
   final Widget child;
   final bool embeddedInShell;
   final Future<void> Function() onRefresh;
+  final bool childIsScrollable;
 
   @override
   Widget build(BuildContext context) {
@@ -957,11 +1047,13 @@ class _CollectorScaffoldBody extends StatelessWidget {
 
     final scrollBody = RefreshIndicator(
       onRefresh: onRefresh,
-      child: ListView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        padding: EdgeInsets.fromLTRB(10, 8, 10, bottomPadding),
-        children: [child],
-      ),
+      child: childIsScrollable
+          ? child
+          : ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: EdgeInsets.fromLTRB(10, 8, 10, bottomPadding),
+              children: [child],
+            ),
     );
 
     final decorated = DecoratedBox(
@@ -1080,22 +1172,21 @@ class _CollectorWallSectionRail extends StatelessWidget {
           ],
           if (isOwner) ...[
             const SizedBox(width: 6),
-            ActionChip(
+            IconButton(
+              tooltip: 'Add section',
+              constraints: const BoxConstraints.tightFor(width: 44, height: 44),
               onPressed: creatingSection
                   ? null
                   : () => unawaited(onAddSection()),
-              avatar: creatingSection
-                  ? SizedBox(
-                      width: 14,
-                      height: 14,
+              icon: creatingSection
+                  ? SizedBox.square(
+                      dimension: 18,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
                         color: colorScheme.primary,
                       ),
                     )
-                  : const Icon(Icons.add_rounded, size: 17),
-              label: const Text('+ Add Section'),
-              visualDensity: VisualDensity.compact,
+                  : const Icon(Icons.add_rounded),
             ),
           ],
         ],
@@ -1121,12 +1212,62 @@ class _SectionRailChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GvChip(
-      label: label,
-      count: count,
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final reduceMotion = MediaQuery.disableAnimationsOf(context);
+    return Semantics(
+      button: true,
       selected: selected,
-      onSelected: (_) => onTap(),
-      enabled: !loading,
+      label: '$label, $count cards',
+      child: InkWell(
+        onTap: loading ? null : onTap,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 44),
+          child: AnimatedContainer(
+            duration: reduceMotion
+                ? Duration.zero
+                : const Duration(milliseconds: 160),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  width: selected ? 2 : 1,
+                  color: selected ? colorScheme.primary : Colors.transparent,
+                ),
+              ),
+            ),
+            alignment: Alignment.center,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  label,
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    color: selected
+                        ? colorScheme.primary
+                        : colorScheme.onSurface.withValues(alpha: 0.68),
+                    fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(width: 5),
+                if (loading)
+                  const SizedBox.square(
+                    dimension: 13,
+                    child: CircularProgressIndicator(strokeWidth: 1.8),
+                  )
+                else
+                  Text(
+                    '$count',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.46),
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -1134,19 +1275,25 @@ class _SectionRailChip extends StatelessWidget {
 class _PublicCollectorHeader extends StatelessWidget {
   const _PublicCollectorHeader({
     required this.profile,
+    required this.isOwner,
     required this.showFollowAction,
     required this.isFollowing,
     required this.followStateLoading,
     required this.followActionBusy,
     required this.onFollowPressed,
+    required this.onOpenSettings,
+    required this.onOpenVendorPricing,
   });
 
   final PublicCollectorProfile profile;
+  final bool isOwner;
   final bool showFollowAction;
   final bool isFollowing;
   final bool followStateLoading;
   final bool followActionBusy;
   final Future<void> Function() onFollowPressed;
+  final VoidCallback? onOpenSettings;
+  final VoidCallback? onOpenVendorPricing;
 
   @override
   Widget build(BuildContext context) {
@@ -1162,9 +1309,8 @@ class _PublicCollectorHeader extends StatelessWidget {
         ? null
         : GrookaiWebRouteService.buildUri('/u/${profile.slug}');
 
-    return GvSurface(
-      variant: GvSurfaceVariant.grouped,
-      padding: const EdgeInsets.fromLTRB(12, 11, 12, 10),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(4, 8, 4, 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1244,36 +1390,69 @@ class _PublicCollectorHeader extends StatelessWidget {
               ],
             ),
           ),
-          if (shareUri != null)
-            IconButton(
-              tooltip: 'Share profile',
-              visualDensity: VisualDensity.compact,
-              padding: const EdgeInsets.all(8),
-              style: IconButton.styleFrom(
-                foregroundColor: colorScheme.onSurface,
-                backgroundColor: colorScheme.surface.withValues(alpha: 0.78),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  side: BorderSide(
-                    color: colorScheme.outline.withValues(alpha: 0.10),
-                  ),
-                ),
-              ),
-              onPressed: () async {
-                try {
-                  await SharePlus.instance.share(
-                    ShareParams(uri: shareUri, subject: displayName),
-                  );
-                } catch (_) {
-                  if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Unable to share this profile right now.'),
-                    ),
-                  );
+          if (shareUri != null ||
+              onOpenSettings != null ||
+              onOpenVendorPricing != null)
+            PopupMenuButton<String>(
+              tooltip: 'Profile actions',
+              onSelected: (action) {
+                switch (action) {
+                  case 'share':
+                    unawaited(() async {
+                      try {
+                        await SharePlus.instance.share(
+                          ShareParams(uri: shareUri!, subject: displayName),
+                        );
+                      } catch (_) {
+                        if (!context.mounted) return;
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Unable to share this profile right now.',
+                            ),
+                          ),
+                        );
+                      }
+                    }());
+                    break;
+                  case 'settings':
+                    onOpenSettings?.call();
+                    break;
+                  case 'vendor':
+                    onOpenVendorPricing?.call();
+                    break;
                 }
               },
-              icon: const Icon(Icons.share_outlined, size: 18),
+              itemBuilder: (context) => [
+                if (shareUri != null)
+                  const PopupMenuItem(
+                    value: 'share',
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.share_outlined),
+                      title: Text('Share profile'),
+                    ),
+                  ),
+                if (isOwner && onOpenSettings != null)
+                  const PopupMenuItem(
+                    value: 'settings',
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.settings_outlined),
+                      title: Text('Account settings'),
+                    ),
+                  ),
+                if (isOwner && onOpenVendorPricing != null)
+                  const PopupMenuItem(
+                    value: 'vendor',
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.storefront_outlined),
+                      title: Text('Vendor Mode'),
+                    ),
+                  ),
+              ],
+              icon: const Icon(Icons.more_vert_rounded),
             ),
         ],
       ),
@@ -1308,7 +1487,7 @@ class _ProfileFollowButton extends StatelessWidget {
         : colorScheme.primary.withValues(alpha: 0.18);
 
     return SizedBox(
-      height: 40,
+      height: 44,
       child: FilledButton(
         onPressed: loading ? null : () => unawaited(onPressed()),
         style: FilledButton.styleFrom(
@@ -1352,56 +1531,15 @@ class _ProfileFollowButton extends StatelessWidget {
   }
 }
 
-class _PublicWallCardsSection extends StatelessWidget {
-  const _PublicWallCardsSection({
-    required this.profile,
-    required this.cards,
-    required this.selectedSectionId,
-    required this.isOwner,
-    required this.onWallChanged,
-    required this.viewerOwnershipStateForCard,
-  });
-
-  final PublicCollectorProfile profile;
-  final List<PublicCollectorCard> cards;
-  final String selectedSectionId;
-  final bool isOwner;
-  final Future<void> Function() onWallChanged;
-  final OwnershipState? Function(PublicCollectorCard card)
-  viewerOwnershipStateForCard;
-
-  @override
-  Widget build(BuildContext context) {
-    return _WallSectionCard(
-      emptyMessage: cards.isEmpty ? 'Nothing to show right now.' : null,
-      child: cards.isEmpty
-          ? null
-          : _PublicCardTileList(
-              profile: profile,
-              cards: cards,
-              selectedSectionId: selectedSectionId,
-              isOwner: isOwner,
-              onWallChanged: onWallChanged,
-              viewerOwnershipStateForCard: viewerOwnershipStateForCard,
-            ),
-    );
-  }
-}
-
 class _WallSectionCard extends StatelessWidget {
-  const _WallSectionCard({this.emptyMessage, this.child});
+  const _WallSectionCard({this.emptyMessage});
 
   final String? emptyMessage;
-  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-
-    if (child != null) {
-      return child!;
-    }
 
     return GvSurface(
       variant: GvSurfaceVariant.grouped,
@@ -1436,67 +1574,65 @@ class _WallLoadingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-      child: const Center(child: CircularProgressIndicator()),
-    );
-  }
-}
+    final colorScheme = Theme.of(context).colorScheme;
+    Widget skeletonTile() {
+      return Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: GvGridConstants.artworkAspectRatio,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: colorScheme.surfaceContainerHighest.withValues(
+                    alpha: 0.42,
+                  ),
+                  borderRadius: BorderRadius.circular(
+                    GvGridConstants.imageRadius,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            FractionallySizedBox(
+              widthFactor: 0.72,
+              child: Container(
+                height: 14,
+                decoration: BoxDecoration(
+                  color: colorScheme.surfaceContainerHighest.withValues(
+                    alpha: 0.52,
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+            ),
+            const SizedBox(height: 7),
+            FractionallySizedBox(
+              widthFactor: 0.9,
+              child: Container(
+                height: 10,
+                decoration: BoxDecoration(
+                  color: colorScheme.surfaceContainerHighest.withValues(
+                    alpha: 0.34,
+                  ),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
 
-class _PublicCardTileList extends StatelessWidget {
-  const _PublicCardTileList({
-    required this.profile,
-    required this.cards,
-    required this.selectedSectionId,
-    required this.isOwner,
-    required this.onWallChanged,
-    required this.viewerOwnershipStateForCard,
-  });
-
-  final PublicCollectorProfile profile;
-  final List<PublicCollectorCard> cards;
-  final String selectedSectionId;
-  final bool isOwner;
-  final Future<void> Function() onWallChanged;
-  final OwnershipState? Function(PublicCollectorCard card)
-  viewerOwnershipStateForCard;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final columns = constraints.maxWidth >= 900
-            ? 4
-            : constraints.maxWidth >= 620
-            ? 3
-            : constraints.maxWidth >= 260
-            ? 2
-            : 1;
-        const spacing = 6.0;
-
-        return GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: cards.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: columns,
-            crossAxisSpacing: spacing,
-            mainAxisSpacing: spacing,
-            childAspectRatio: 0.40,
-          ),
-          itemBuilder: (context, index) {
-            final card = cards[index];
-            return _PublicCardTile(
-              profile: profile,
-              card: card,
-              selectedSectionId: selectedSectionId,
-              isOwner: isOwner,
-              onWallChanged: onWallChanged,
-              ownershipState: viewerOwnershipStateForCard(card),
-            );
-          },
-        );
-      },
+    return Semantics(
+      label: 'Loading Wall cards',
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [skeletonTile(), const SizedBox(width: 12), skeletonTile()],
+        ),
+      ),
     );
   }
 }
@@ -1522,6 +1658,9 @@ class _PublicCardTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final textScale = (MediaQuery.textScalerOf(context).scale(14) / 14)
+        .clamp(1.0, 2.0)
+        .toDouble();
     final displayIdentity = _publicCollectorDisplayIdentity(card);
     final primaryImageUrl = card.primaryImageUrl;
     final fallbackImageUrl = card.fallbackImageUrl;
@@ -1788,26 +1927,6 @@ class _PublicCardTile extends StatelessWidget {
                       onViewDetails: openCardDetails,
                     ),
                   ),
-                  if (isOwner)
-                    Positioned(
-                      top: 6,
-                      right: 6,
-                      child: Material(
-                        color: colorScheme.surface.withValues(alpha: 0.92),
-                        shape: const CircleBorder(),
-                        child: IconButton(
-                          tooltip: 'Manage card',
-                          visualDensity: VisualDensity.compact,
-                          constraints: const BoxConstraints.tightFor(
-                            width: 36,
-                            height: 36,
-                          ),
-                          padding: EdgeInsets.zero,
-                          onPressed: showQuickActions,
-                          icon: const Icon(Icons.more_vert_rounded, size: 20),
-                        ),
-                      ),
-                    ),
                   if (card.intent == 'trade' || card.intent == 'sell')
                     Positioned(
                       left: 6,
@@ -1825,18 +1944,36 @@ class _PublicCardTile extends StatelessWidget {
               ),
             ),
             const SizedBox(height: GvGridConstants.imageToTitleGap),
-            SizedBox(
-              height: GvGridConstants.titleSlotHeight,
-              child: Text(
-                displayIdentity.displayName,
-                maxLines: GvGridConstants.titleMaxLines,
-                overflow: TextOverflow.ellipsis,
-                style: gvGridTitleStyle(theme),
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 7),
+                    child: Text(
+                      displayIdentity.displayName,
+                      maxLines: GvGridConstants.titleMaxLines,
+                      overflow: TextOverflow.ellipsis,
+                      style: gvGridTitleStyle(theme),
+                    ),
+                  ),
+                ),
+                if (isOwner)
+                  IconButton(
+                    tooltip: 'Manage card',
+                    constraints: const BoxConstraints.tightFor(
+                      width: 44,
+                      height: 44,
+                    ),
+                    padding: EdgeInsets.zero,
+                    onPressed: showQuickActions,
+                    icon: const Icon(Icons.more_vert_rounded, size: 20),
+                  ),
+              ],
             ),
             const SizedBox(height: GvGridConstants.titleToSubtitleGap),
             SizedBox(
-              height: GvGridConstants.subtitleSlotHeight,
+              height: GvGridConstants.subtitleSlotHeight * textScale,
               child: Text(
                 metaParts.isEmpty ? 'Card' : metaParts.join(' • '),
                 maxLines: GvGridConstants.subtitleMaxLines,
@@ -1846,7 +1983,7 @@ class _PublicCardTile extends StatelessWidget {
             ),
             const SizedBox(height: GvGridConstants.subtitleToPriceGap),
             SizedBox(
-              height: GvGridConstants.priceSlotHeight,
+              height: GvGridConstants.priceSlotHeight * textScale,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: _buildPricePill(card),
@@ -1860,7 +1997,7 @@ class _PublicCardTile extends StatelessWidget {
               // Public-owner truth is primary.
               // Viewer-owned awareness is secondary and must not override the owner's card context.
               SizedBox(
-                height: 18,
+                height: 18 * textScale,
                 child: _PublicViewerOwnershipHint(
                   ownershipState: ownershipState!,
                 ),
@@ -2061,28 +2198,31 @@ class _ProfileStatChip extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(8),
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              size: 14,
-              color: colorScheme.onSurface.withValues(alpha: 0.44),
-            ),
-            const SizedBox(width: 5),
-            Text(
-              label,
-              style: theme.textTheme.labelSmall?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: colorScheme.onSurface.withValues(alpha: 0.64),
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: 44),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(8),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 11),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: 14,
+                color: colorScheme.onSurface.withValues(alpha: 0.44),
               ),
-            ),
-          ],
+              const SizedBox(width: 5),
+              Text(
+                label,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.onSurface.withValues(alpha: 0.64),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

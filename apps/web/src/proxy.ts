@@ -9,6 +9,7 @@ import {
 } from "./lib/auth/routeAccess";
 import { getSupabaseServerConfig } from "./lib/supabase/config";
 import { collectorPreview, previewRequestKind } from "./lib/collectorPreview";
+import { isLocalVisualParityFixtureMode } from "./lib/visualParity/fixtureMode";
 import {
   isBinderSecretPath,
   redactBinderSecretPath,
@@ -452,8 +453,15 @@ export async function proxy(request: NextRequest, event: NextFetchEvent) {
     const headers = new Headers(request.headers);
     headers.delete("authorization");
     headers.delete("cookie");
+    const isLocalVisualFixtureAction =
+      isLocalVisualParityFixtureMode() &&
+      request.method === "POST" &&
+      request.headers.has("next-action") &&
+      request.nextUrl.pathname.startsWith("/visual-fixtures/");
     let response: NextResponse;
-    if (kind === "deny") {
+    if (isLocalVisualFixtureAction) {
+      response = NextResponse.next({ request: { headers } });
+    } else if (kind === "deny") {
       response = NextResponse.json({ error: "Read-only design preview" }, { status: 403 });
     } else if (kind === "account") {
       response = NextResponse.redirect(new URL("/preview-access", request.url));

@@ -23,7 +23,7 @@ function RemoveSubmitButton({
       disabled={pending}
       className={className}
     >
-      {pending ? "Removing..." : label}
+      {pending ? "Removing…" : label}
     </button>
   );
 }

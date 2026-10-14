@@ -1,5 +1,6 @@
 import { vendorPilot } from "@/lib/vendorPilot.mjs";
 import Link from "next/link";
+import Script from "next/script";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
@@ -43,8 +44,7 @@ const themeBootstrapScript = `
 (() => {
   try {
     const stored = window.localStorage.getItem("grookai-theme");
-    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = stored === "dark" || stored === "light" ? stored : prefersDark ? "dark" : "light";
+    const theme = stored === "dark" || stored === "light" ? stored : "dark";
     document.documentElement.classList.toggle("gv-dark", theme === "dark");
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
@@ -67,11 +67,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const visualParityFixtureMode = isLocalVisualParityFixtureMode();
 
   return (
-    <html lang="en" className={visualParityFixtureMode ? undefined : "gv-collector"} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={visualParityFixtureMode ? "gv-dark" : "gv-collector gv-dark"}
+      suppressHydrationWarning
+    >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+        <Script
+          id="grookai-theme-bootstrap"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeBootstrapScript }}
+        />
       </head>
       <body>
+        <a href="#main-content" className="gv-skip-link">
+          Skip to content
+        </a>
         {collectorStaging ? <div role="status" style={{ padding: "6px 16px", background: "#194b3c", color: "white", textAlign: "center", fontSize: 12 }}>{vendorPilot ? "Vendor preview · Sample catalog · Payments disabled" : collectorFixtureLab ? "TEST FIXTURES ONLY - Prices are synthetic, not live market data" : "Test environment · Sample catalog · Separate from your live Vault"}</div> : null}
         {visualParityFixtureMode ? (
           children
@@ -80,7 +91,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Suspense fallback={<ChromeFallback dexEnabled={dexEnabled} />}>
               <AppChrome dexEnabled={dexEnabled} bindersEnabled={bindersEnabled} />
             </Suspense>
-            <main className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip">
+            <main id="main-content" className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip">
               <PageContainer>{children}</PageContainer>
             </main>
             <footer className="gv-site-footer border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur">

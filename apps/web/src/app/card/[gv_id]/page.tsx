@@ -10,6 +10,7 @@ import { ConditionSnapshotSection } from "@/components/condition/ConditionSnapsh
 import CompareTray from "@/components/compare/CompareTray";
 import CardPageMarketVaultPanels from "@/components/cards/CardPageMarketVaultPanels";
 import CardFaceGallery from "@/components/cards/CardFaceGallery";
+import MobilePushedRouteHeader from "@/components/layout/MobilePushedRouteHeader";
 import VariantExplanationContextPreview from "@/components/cards/VariantExplanationContextPreview";
 import PricingDisclosure from "@/components/common/PricingDisclosure";
 import type { AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
@@ -69,6 +70,7 @@ import {
   type OwnedPrintingCountsByCardPrintId,
 } from "@/lib/vault/getOwnedPrintingCountsByCardPrintIds";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
+import { getCardReturnContext } from "@/lib/navigation/cardDetailNavigation";
 import { getOwnedObjectSummaryForCard, type OwnedObjectSummary } from "@/lib/vault/getOwnedObjectSummaryForCard";
 import type { CardCameo, CardDetail, RelatedCardPrint } from "@/types/cards";
 
@@ -325,6 +327,7 @@ export const dynamicParams = true;
 type CardPageSearchParams = {
   cards?: string;
   printing?: string;
+  from?: string;
   perf?: string;
   gv_perf?: string;
 };
@@ -542,7 +545,7 @@ function RelatedPrintsSection({
             <Link
               key={relatedCard.gv_id}
               href={buildPathWithCompareCards(`/card/${relatedCard.gv_id}`, "", compareCards)}
-              className="group min-w-0 transition-transform duration-150 hover:-translate-y-[2px]"
+              className="group min-w-[172px] rounded-[16px] border border-slate-200 bg-slate-50 p-3 transition-[transform,border-color,background-color,box-shadow] duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
             >
               <div className="flex gap-3 md:flex-col md:items-start">
                 <div className="space-y-2">
@@ -1067,9 +1070,15 @@ async function CardPageContent({
       {illustratorName}
     </Link>
   ) : null;
+  const returnContext = getCardReturnContext(searchParams?.from);
 
   return (
-    <div className={`gv-approved-card-detail ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+    <div className={`gv-approved-card-detail gv-card-page space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+      <MobilePushedRouteHeader
+        backHref={returnContext.href}
+        backLabel={returnContext.label}
+        title="Card details"
+      />
       <CardPagePerformanceProbe
         enabled={perfEnabled}
         gvId={resolvedCard.gv_id}
@@ -1688,7 +1697,7 @@ function NearbyCardLink({
   return (
     <Link
       href={buildPathWithCompareCards(`/card/${card.gv_id}`, "", compareCards)}
-      className="flex items-center gap-3 transition-transform duration-150 hover:-translate-y-[2px]"
+      className="flex items-center gap-3 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-3 transition-[transform,border-color,background-color,box-shadow] duration-150 hover:-translate-y-[2px] hover:border-slate-300 hover:bg-white hover:shadow-md"
     >
       <div className="space-y-2">
         <PublicCardImage

@@ -231,7 +231,7 @@ export default function ExploreDiscoverySections({
       {/* LOCK: Canonical, recently confirmed, and unconfirmed Pulse surfaces must remain visually and structurally separated. */}
       {/* LOCK: Do not blend trust states into a single undifferentiated Pulse. */}
       <div className="gv-collector-discovery-confirmed">
-        <RecentlyConfirmedDiscoverySection cards={recentlyConfirmedCards} compareCards={compareCards} />
+        <RecentlyConfirmedDiscoverySection cards={recentlyConfirmedCards} compareCards={compareCards} returnPath="/explore" />
       </div>
       <div className="gv-collector-discovery-provisional">
         <PublicProvisionalDiscoverySection cards={provisionalCards} />

@@ -97,7 +97,7 @@ export default function VariantExplanationContextPreview({
           disabled={loading}
           className="rounded-full border border-violet-300 bg-white px-3 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-violet-800 shadow-sm transition hover:border-violet-400 hover:text-violet-950 disabled:cursor-wait disabled:opacity-60 dark:border-violet-300/30 dark:bg-slate-950/60 dark:text-violet-100 dark:hover:text-white"
         >
-          {loading ? "Checking..." : "Check context"}
+          {loading ? "Checking…" : "Check context"}
         </button>
       </div>
 

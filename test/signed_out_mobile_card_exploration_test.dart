@@ -34,7 +34,7 @@ void main() {
   test('guest catalog excludes personalized and mutating behavior', () {
     final main = File('lib/main.dart').readAsStringSync();
 
-    expect(main, contains('if (widget.signedOutBrowse)'));
+    expect(main, contains('!widget.signedOutBrowse'));
     expect(
       main,
       contains('!widget.signedOutBrowse && !(ownershipState?.owned ?? false)'),

@@ -93,7 +93,15 @@ void main() {
       expect(collectorScreen, contains("label: 'Wall'"));
       expect(collectorScreen, contains('for (final section in sections)'));
       expect(collectorScreen, contains('_loadSectionCards'));
-      expect(collectorScreen, contains('GridView.builder'));
+      expect(collectorScreen, contains('CustomScrollView('));
+      expect(collectorScreen, contains('SliverGrid('));
+      expect(collectorScreen, contains('SliverChildBuilderDelegate('));
+      expect(collectorScreen, contains('resolveCardViewModeForTextScale('));
+      expect(collectorScreen, contains('final columns = comfortableLayout'));
+      expect(collectorScreen, contains('final metadataExtent = 170.0 + 56'));
+      expect(collectorScreen, contains('subtitleSlotHeight * textScale'));
+      expect(collectorScreen, contains('priceSlotHeight * textScale'));
+      expect(collectorScreen, contains('childIsScrollable: _viewState =='));
       expect(collectorScreen, isNot(contains("label: 'Visible'")));
       expect(collectorScreen, isNot(contains("label: 'Collection'")));
     },

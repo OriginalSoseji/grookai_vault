@@ -31,8 +31,10 @@ test("card summary surfaces use the shared child image fallback resolver", () =>
       `${file} must not regress to parent-only image resolution`,
     );
   }
-  // Home redirects to Explore; image evidence is resolved by its bounded loader.
-  assert.match(source("apps/web/src/app/page.tsx"), /redirect\(query\.size \? `\/explore\?/);
+  // The redesigned home page resolves governed child fallbacks before rendering featured cards.
+  assert.match(source("apps/web/src/app/page.tsx"), /getChildDisplayImageFallbacks/);
+  assert.match(source("apps/web/src/app/page.tsx"), /applyChildDisplayImageFallback/);
+  assert.match(source("apps/web/src/app/page.tsx"), /<PublicCardImage/);
   assert.match(source("apps/web/src/app/explore/page.tsx"), /getPublicCardsByGvIds\(FEATURED_151_IDS\.slice/);
 });
 

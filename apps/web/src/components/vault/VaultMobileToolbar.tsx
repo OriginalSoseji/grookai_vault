@@ -31,8 +31,11 @@ export function VaultMobileToolbar({
         <div className="flex items-center gap-2">
           <SearchToolbarInput
             id="vault-mobile-search"
-            type="text"
-            placeholder="Search cards, sets, or number"
+            type="search"
+            name="vault-search"
+            aria-label="Search Vault"
+            autoComplete="off"
+            placeholder="Search cards, sets, or number…"
             value={searchQuery}
             onChange={(event) => onSearchChange(event.target.value)}
             tone="soft"

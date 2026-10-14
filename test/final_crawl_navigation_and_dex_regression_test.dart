@@ -89,11 +89,15 @@ void main() {
     expect(vaultService, contains(".filter('card_print_id', 'is', null)"));
     expect(dexService, contains('unassignedPrintingCount: printings.isEmpty'));
     expect(vaultService, contains("params: const {'p_card_print_ids': null}"));
-    expect(dexScreen, contains('Loading Dex printings…'));
+    expect(dexScreen, contains("label: 'National collection progress'"));
+    expect(dexScreen, contains("'Loading…'"));
     expect(dexScreen, contains('initialUnavailable'));
-    expect(dexScreen, contains('Dex metrics are temporarily unavailable.'));
-    expect(dexScreen, contains('value: hasDexData'));
-    expect(dexScreen, contains("'\${metricSpecies.length}'"));
+    expect(
+      dexScreen,
+      contains('Collection metrics are temporarily unavailable.'),
+    );
+    expect(dexScreen, contains('if (hasDexData)'));
+    expect(dexScreen, contains('\${metricSpecies.length}'));
   });
 
   test('Dex detail dedupe uses the canonical multi-role priority', () {

@@ -123,7 +123,7 @@ test("Pulse forwards reader rows, verified viewer and exact-copy eligibility wit
   const app = harness({ user: { id: "viewer" }, rows });
   const html = await app.render("cards", { intent: " TRADE " });
   assert.equal(app.calls.auth, 1);
-  assert.deepEqual(plain(app.calls.cards), [{ intent: "trade", excludeUserId: "viewer", limit: 24 }]);
+  assert.deepEqual(plain(app.calls.cards), [{ intent: "trade", excludeUserId: "viewer", limit: 9, offset: 0 }]);
   assert.deepEqual(app.calls.discover, []);
   assert.deepEqual(plain(app.calls.targets), [
     { vaultItemId: "copy-a", cardPrintId: "card-a" },

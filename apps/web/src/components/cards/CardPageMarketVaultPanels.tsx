@@ -5,9 +5,8 @@ import Link from "next/link";
 import { ImagePlus } from "lucide-react";
 import CardPagePricingRail from "@/components/pricing/CardPagePricingRail";
 import AddSlabCardAction, { type AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
-import CompareCardButton from "@/components/compare/CompareCardButton";
-import ShareCardButton from "@/components/ShareCardButton";
 import SaveCardButton from "@/components/cards/SaveCardButton";
+import CardUtilityActions from "@/components/cards/CardUtilityActions";
 import AddToVaultCardAction, {
   type AddToVaultActionResult,
 } from "@/components/vault/AddToVaultCardAction";
@@ -94,23 +93,27 @@ export default function CardPageMarketVaultPanels({
 
   return (
     <aside className="gv-detail-market-vault grid gap-4 lg:grid-cols-[minmax(240px,0.88fr)_minmax(300px,1.12fr)]">
-      <div className="gv-detail-market gv-action-panel p-5 sm:p-6">
+      <div className="gv-detail-market gv-action-panel order-2 p-5 sm:p-6 lg:order-1">
         {editionResolution && ["selection_required", "unavailable"].includes(editionResolution.status)
-          ? <p className="text-sm">Choose a confirmed edition to view its price.</p> : <CardPagePricingRail
-          isAuthenticated={isAuthenticated}
-          loginHref={loginHref}
-          gvId={gvId}
-          cardPrintId={cardPrintId}
-          pricing={pricing}
-          pricingRecords={pricingRecords}
-          selectedCardPrintingId={selectedPrintingId}
-          selectedPrintingGvId={selectedPrintingGvId}
-        />}
+          ? <p className="text-sm">Choose a confirmed edition to view its price.</p>
+          : (
+            <CardPagePricingRail
+              isAuthenticated={isAuthenticated}
+              loginHref={loginHref}
+              gvId={gvId}
+              cardPrintId={cardPrintId}
+              pricing={pricing}
+              pricingRecords={pricingRecords}
+              selectedCardPrintingId={selectedPrintingId}
+              selectedPrintingGvId={selectedPrintingGvId}
+            />
+          )}
       </div>
 
-      <div className="gv-detail-vault gv-action-panel space-y-5 p-5 sm:p-6">
+      <div className="gv-detail-vault gv-action-panel order-1 space-y-5 p-5 sm:p-6 lg:order-2" data-card-vault-panel>
         <div className="gv-detail-ownership" data-owned={rawCount > 0 || slabCount > 0}>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Vault</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Your collection</p>
+          <h2 className="mt-1 text-lg font-semibold tracking-tight text-slate-950 dark:text-white">Add to Vault</h2>
           <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
           {rawCount > 0 || slabCount > 0 ? (
             <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
@@ -135,13 +138,19 @@ export default function CardPageMarketVaultPanels({
           onSelectedPrintingChange={setSelectedPrinting}
         />}
 
-        <div className="gv-detail-secondary-actions flex flex-wrap items-center gap-3">
+        <div className="gv-detail-secondary-actions flex flex-wrap items-center gap-3 border-t border-slate-200/80 pt-3 dark:border-slate-700/80">
           {cardPrintId ? <SaveCardButton cardPrintId={cardPrintId} isAuthenticated={isAuthenticated} loginHref={loginHref} /> : null}
           {isAuthenticated && (!editionResolution || editionResolution.status === "not_applicable") ? <AddSlabCardAction action={createSlabAction} cardName={cardName} /> : null}
           {isAuthenticated && jungleSlabIntakeEnabled && editionResolution?.status === "ready"
             ? <AddJungleSlabAction options={editionResolution.options} /> : null}
-          <CompareCardButton gvId={gvId} />
-          <ShareCardButton gvId={gvId} printingReference={printingReference} cardName={cardName} />
+        </div>
+
+        <div className="border-t border-slate-200/80 pt-3 dark:border-slate-700/80">
+          <CardUtilityActions
+            gvId={gvId}
+            printingReference={printingReference}
+            cardName={cardName}
+          />
         </div>
         <Link className="gv-detail-update-image" href={isAuthenticated ? imagePath : `/login?next=${encodeURIComponent(imagePath)}`}>
           <ImagePlus size={14} aria-hidden="true" />Update image

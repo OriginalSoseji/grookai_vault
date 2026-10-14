@@ -256,7 +256,7 @@ export default function VaultManageCopyCurationControls({
                   disabled ? "cursor-not-allowed opacity-70" : "",
                 )}
               >
-                {pending ? "Saving..." : getVaultIntentLabel(option)}
+                {pending ? "Saving…" : getVaultIntentLabel(option)}
               </button>
             );
           })}
@@ -324,7 +324,7 @@ export default function VaultManageCopyCurationControls({
             disabled={disabled || !normalizedCreateName}
             className="rounded-full border border-slate-950 bg-slate-950 px-3 py-2 text-xs font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:border-slate-300 disabled:bg-slate-300"
           >
-            {creatingSection ? "Creating..." : "Create and add"}
+            {creatingSection ? "Creating…" : "Create and add"}
           </button>
         </form>
 

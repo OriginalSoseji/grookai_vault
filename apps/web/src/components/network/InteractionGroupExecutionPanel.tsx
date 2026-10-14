@@ -86,7 +86,7 @@ function SubmitExecutionButton({
       aria-disabled={isDisabled}
       className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
     >
-      {pending || isSubmitting ? "Saving..." : mode === "sale" ? "Confirm sale" : "Confirm trade"}
+      {pending || isSubmitting ? "Saving…" : mode === "sale" ? "Confirm sale" : "Confirm trade"}
     </button>
   );
 }

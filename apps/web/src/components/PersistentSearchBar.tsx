@@ -17,12 +17,12 @@ export function PersistentSearchBarFallback() {
         autoComplete="off"
         name="q"
         placeholder="Search cards, sets, numbers, or Grookai ID"
-        className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-all duration-100 placeholder:text-slate-400 sm:max-w-[420px]"
+        className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-[color,background-color,box-shadow] duration-100 placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-slate-400 sm:max-w-[420px]"
         aria-label="Search cards"
       />
       <button
         type="submit"
-        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-all duration-100 hover:bg-slate-700"
+        className="rounded-full bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition-[color,background-color,transform] duration-100 hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600"
       >
         Search
       </button>

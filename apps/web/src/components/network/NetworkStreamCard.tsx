@@ -11,6 +11,7 @@ import { getVaultIntentLabel } from "@/lib/network/intent";
 import type { CardStreamRow } from "@/lib/network/getCardStreamRows";
 import { getVaultInstanceHref } from "@/lib/vault/getVaultInstanceHref";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
+import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
 
 type NetworkStreamCardProps = {
   row: CardStreamRow;
@@ -18,6 +19,12 @@ type NetworkStreamCardProps = {
   viewerUserId: string | null;
   currentPath: string;
 };
+
+const NETWORK_DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+});
 
 function getGroupedContactAnchor(row: CardStreamRow) {
   if (row.inPlayCopies.length !== 1) {
@@ -125,26 +132,23 @@ export function NetworkStreamCard({
   const intentSummary = getIntentSummary(row);
   const groupedContactAnchor = getGroupedContactAnchor(row);
   const singleCopy = row.inPlayCopies.length === 1 ? row.inPlayCopies[0] : null;
+  const cardHref = addCardReturnPath(`/card/${encodeURIComponent(row.gvId)}`, currentPath);
   const singleCopyHref =
     row.inPlayCopies.length === 1 && row.inPlayCopies[0]?.gvviId
       ? (getVaultInstanceHref(
           row.inPlayCopies[0].gvviId,
           viewerUserId,
           row.ownerUserId,
-        ) ?? `/card/${row.gvId}`)
-      : `/card/${row.gvId}`;
+        ) ?? cardHref)
+      : cardHref;
 
   const freshnessLabel = row.createdAt
-    ? new Date(row.createdAt).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      })
+    ? NETWORK_DATE_FORMATTER.format(new Date(row.createdAt))
     : "Recently";
 
   return (
     <article
-      className="gv-social-event border-b border-slate-200/80 py-5 first:pt-0 last:border-b-0 dark:border-white/[0.08]"
+      className="gv-social-event border-b border-slate-200/80 py-7 first:pt-0 last:border-b-0 dark:border-white/[0.08]"
       data-pulse-event-card
     >
       <header className="mb-4 flex min-w-0 items-center gap-3">
@@ -174,15 +178,15 @@ export function NetworkStreamCard({
         </div>
       </header>
 
-      <div className="grid grid-cols-[104px_minmax(0,1fr)] gap-4 sm:grid-cols-[128px_minmax(0,1fr)] sm:gap-5">
-        <Link href={singleCopyHref} className="relative self-start">
+      <div className="gv-network-event-body">
+        <Link href={singleCopyHref} className="gv-network-event-image relative self-start">
           <PublicCardImage
             src={row.imageUrl ?? undefined}
             fallbackSrc={row.imageFallbackUrls[0]}
             fallbackSources={row.imageFallbackUrls.slice(1)}
             alt={displayIdentity.display_name}
-            imageClassName="aspect-[5/7] w-full rounded-[18px] bg-slate-50 object-contain"
-            fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[18px] bg-slate-100 px-3 text-center text-xs text-slate-500"
+            imageClassName="aspect-[5/7] w-full rounded-[20px] bg-slate-50 object-contain"
+            fallbackClassName="flex aspect-[5/7] w-full items-center justify-center rounded-[20px] bg-slate-100 px-3 text-center text-xs text-slate-500"
             fallbackLabel={displayIdentity.display_name}
           />
         </Link>
@@ -292,7 +296,7 @@ export function NetworkStreamCard({
                               copy.gvviId,
                               viewerUserId,
                               row.ownerUserId,
-                            ) ?? `/card/${row.gvId}`
+                            ) ?? cardHref
                           }
                           className="inline-flex text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline"
                         >

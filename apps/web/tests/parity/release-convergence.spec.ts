@@ -5,6 +5,8 @@ const scenarios = [
   "search-vault-bridge",
   "search-result-hierarchy",
   "card-detail-hierarchy",
+  "card-pricing-error",
+  "card-pricing-locked",
   "vault-loaded",
   "vault-empty",
   "vault-private",
@@ -215,11 +217,248 @@ test("Search result hierarchy keeps version, price, action, and evidence distinc
 test("Card detail hierarchy puts the collection action before expanded context", async ({ page }) => {
   await openScenario(page, "card-detail-hierarchy");
 
+  await expect(page.locator("[data-mobile-pushed-route-header]")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Results" })).toHaveAttribute(
+    "href",
+    "/explore?q=Pikachu&finish=reverse",
+  );
+  await expect(page.locator("[data-mobile-parity-dock]")).toHaveCount(0);
   const action = page.locator("#vault-actions");
   const versionContext = page.getByText("Why this version matters +", { exact: true });
   const [actionBox, contextBox] = await Promise.all([action.boundingBox(), versionContext.boundingBox()]);
   expect(actionBox?.y ?? Number.POSITIVE_INFINITY).toBeLessThan(contextBox?.y ?? Number.NEGATIVE_INFINITY);
   await expect(page.getByText("Grookai ID GV-FIXTURE-PIKACHU", { exact: true })).toBeHidden();
+});
+
+test("Card pricing keeps the market summary primary and evidence disclosed", async ({ page }) => {
+  await openScenario(page, "card-detail-hierarchy");
+
+  await expect(page.getByText("$3.42", { exact: true })).toBeVisible();
+  await expect(page.getByText("TCGPlayer Market", { exact: true })).toBeVisible();
+  await expect(page.getByText("reverse holo printing", { exact: false })).toBeVisible();
+  await expect(page.getByText("Lowest exact-printing eBay active ask", { exact: false })).toBeHidden();
+
+  const evidence = page.locator("[data-market-evidence-disclosure] summary");
+  await evidence.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByText("Lowest exact-printing eBay active ask", { exact: false })).toBeVisible();
+  await expect(page.getByText("Asking-price evidence, not a sale or market close.", { exact: false })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View Market History" })).toHaveAttribute(
+    "href",
+    "/card/GV-FIXTURE-PIKACHU/market",
+  );
+});
+
+test("Card pricing exposes an actionable failure and recovers on retry", async ({ page }) => {
+  let requestCount = 0;
+  await page.route("**/api/card-pricing?**", async (route) => {
+    requestCount += 1;
+    if (requestCount === 1) {
+      await route.fulfill({ status: 503, body: "unavailable" });
+      return;
+    }
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        pricingRecords: [{
+          pricing_scope: "card_printing",
+          card_print_id: "fixture-card-print-pikachu",
+          card_printing_id: "fixture-printing-reverse",
+          printing_gv_id: "GV-PRINT-FIXTURE-PIKACHU-REVERSE",
+          finish_key: "reverse_holo",
+          status: "available",
+          currency: "USD",
+          market_close: 3.42,
+          source_name: "tcgplayer",
+          source_label: "TCGPlayer Market",
+          observed_at: "2026-10-12T18:15:00.000Z",
+          published_at: "2026-10-12T18:20:00.000Z",
+          freshness: "fresh",
+          is_from_price: false,
+          eligible_printing_count: 1,
+          provenance_id: "fixture-tcgplayer-pikachu-reverse",
+          primary_price: 3.42,
+          primary_source: "tcgplayer_market",
+          display_label: "TCGPlayer Market",
+          pricing_basis: "tcgplayer_market_exact",
+        }],
+        marketIntelligenceRecords: [],
+      }),
+    });
+  });
+
+  await openScenario(page, "card-pricing-error");
+  await expect(page.getByRole("status")).toContainText("Pricing couldn’t refresh");
+  const retry = page.getByRole("button", { name: "Retry Pricing" });
+  expect((await retry.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+  await retry.click();
+  await expect(page.getByText("$3.42", { exact: true })).toBeVisible();
+  await expect(page.getByRole("status")).toHaveCount(0);
+});
+
+test("Signed-out card pricing has a clear full-size sign-in action", async ({ page }) => {
+  await openScenario(page, "card-pricing-locked");
+  await expect(page.getByText("Sign in to view pricing", { exact: true })).toBeVisible();
+  const signIn = page.getByRole("link", { name: "Sign in", exact: true });
+  await expect(signIn).toHaveAttribute("href", "/login?next=%2Fcard%2FGV-FIXTURE-PIKACHU");
+  expect((await signIn.boundingBox())?.height).toBeGreaterThanOrEqual(44);
+});
+
+test("Card detail Add to Vault keeps version choice, action, and success feedback together", async ({ page }) => {
+  await openScenario(page, "card-detail-hierarchy");
+
+  const flow = page.locator("[data-add-to-vault-flow]");
+  await expect(flow.getByText("1. Choose version", { exact: true })).toBeVisible();
+  await expect(flow.locator("[data-selected-printing='fixture-printing-reverse']")).toBeVisible();
+
+  await flow.getByRole("button", { name: "Normal", exact: true }).click();
+  await expect(flow.locator("[data-selected-printing='fixture-printing-normal']")).toBeVisible();
+  await expect(flow.getByText("Variant Image Pending", { exact: true })).toBeVisible();
+  await expect(flow.locator("input[name='card_printing_id']")).toHaveValue("fixture-printing-normal");
+
+  await flow.getByRole("button", { name: "Add to Vault", exact: true }).click();
+  await expect(flow.getByRole("status")).toContainText("Added to Vault");
+  await expect(flow.getByRole("link", { name: "View exact copy" })).toHaveAttribute(
+    "href",
+    "/vault/gvvi/GV-VI-FIXTURE-PIKACHU-NEW",
+  );
+});
+
+test("Card detail keeps graded copies secondary and reveals a verified two-step flow", async ({ page }) => {
+  await page.route("**/api/slabs/verify/psa", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        grader: "PSA",
+        cert_number: "12345678",
+        verified: true,
+        grade: "10",
+        title: "2023 Pokemon Pikachu 025",
+        parser_status: "verified",
+      }),
+    });
+  });
+  await openScenario(page, "card-detail-hierarchy");
+
+  const flow = page.locator("[data-add-slab-flow]");
+  await expect(flow.getByRole("button", { name: /Add graded copy/ })).toHaveAttribute("aria-expanded", "false");
+  await expect(flow.getByLabel("PSA grade")).toBeHidden();
+
+  await flow.getByRole("button", { name: /Add graded copy/ }).click();
+  await expect(flow.getByText("1. Verify certification", { exact: true })).toBeVisible();
+  await expect(flow.getByText("2. Confirm and add", { exact: true })).toBeHidden();
+
+  await flow.getByLabel("Certification number", { exact: true }).fill("12345678");
+  await flow.getByLabel("Confirm certification number", { exact: true }).fill("87654321");
+  await flow.getByRole("button", { name: "Verify PSA certification", exact: true }).click();
+  await expect(flow.getByRole("alert")).toContainText("Certification numbers must match exactly");
+
+  await flow.getByLabel("Confirm certification number", { exact: true }).fill("12345678");
+  await flow.getByRole("button", { name: "Verify PSA certification", exact: true }).click();
+
+  await expect(flow.getByRole("status")).toContainText("PSA verified");
+  await expect(flow.getByText("2. Confirm and add", { exact: true })).toBeVisible();
+  const addButton = flow.getByRole("button", { name: "Add graded copy to Vault", exact: true });
+  await expect(addButton).toBeDisabled();
+  await flow.getByLabel(/I own this slab/).check();
+  await expect(addButton).toBeEnabled();
+
+  const expandedResults = await new AxeBuilder({ page })
+    .include("[data-add-slab-flow]")
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+    .analyze();
+  expect(
+    expandedResults.violations.filter((result) => result.impact === "critical" || result.impact === "serious"),
+  ).toEqual([]);
+  await page.addStyleTag({
+    content: ".gv-skip-link, [data-mobile-pushed-route-header] { display: none !important; }",
+  });
+  await expect(flow).toHaveScreenshot("p0-card-detail-slab-expanded-mobile.png");
+
+  await addButton.click();
+
+  await expect(flow.getByText("Graded copy added", { exact: true })).toBeVisible();
+  await expect(flow.getByRole("link", { name: "View exact copy" })).toHaveAttribute(
+    "href",
+    "/vault/gvvi/GV-VI-FIXTURE-PIKACHU-PSA10",
+  );
+});
+
+test("Card detail keeps compare and sharing in one secondary disclosure", async ({ page }) => {
+  await openScenario(page, "card-detail-hierarchy");
+  await page.context().grantPermissions(["clipboard-read", "clipboard-write"], {
+    origin: new URL(page.url()).origin,
+  });
+
+  const utilities = page.locator("[data-card-utility-actions]");
+  const summary = utilities.getByText("More card actions", { exact: true });
+  await expect(summary).toBeVisible();
+  await expect(utilities.getByRole("button", { name: "Add to compare" })).toBeHidden();
+  await expect(utilities.getByRole("button", { name: "Copy card link" })).toBeHidden();
+
+  await summary.click();
+  const compareButton = utilities.getByRole("button", { name: "Add to compare" });
+  const shareButton = utilities.getByRole("button", { name: "Copy card link" });
+  await expect(compareButton).toBeVisible();
+  await expect(shareButton).toBeVisible();
+  const [compareBox, shareBox] = await Promise.all([compareButton.boundingBox(), shareButton.boundingBox()]);
+  expect(compareBox?.height).toBeGreaterThanOrEqual(44);
+  expect(shareBox?.height).toBeGreaterThanOrEqual(44);
+
+  const expandedResults = await new AxeBuilder({ page })
+    .include("[data-card-utility-actions]")
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+    .analyze();
+  expect(
+    expandedResults.violations.filter((result) => result.impact === "critical" || result.impact === "serious"),
+  ).toEqual([]);
+
+  await shareButton.click();
+  await expect(utilities.getByRole("button", { name: "Link copied" })).toBeVisible();
+  await compareButton.click();
+  await expect(page).toHaveURL(/cards=GV-FIXTURE-PIKACHU/);
+  await expect(utilities.getByRole("button", { name: "Remove from compare" })).toBeVisible();
+});
+
+for (const viewport of [
+  { width: 320, height: 740, name: "320px phone" },
+  { width: 384, height: 824, name: "384px Samsung" },
+  { width: 412, height: 915, name: "412px phone" },
+  { width: 1440, height: 1000, name: "desktop" },
+] as const) {
+  for (const colorScheme of ["light", "dark"] as const) {
+    test(`Core journeys fit ${viewport.name} in ${colorScheme} mode`, async ({ page }) => {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.emulateMedia({ colorScheme, reducedMotion: "reduce" });
+      for (const scenario of [
+        "search-result-hierarchy",
+        "card-detail-hierarchy",
+        "vault-loaded",
+        "vault-exact-copy",
+      ] as const) {
+        await openScenario(page, scenario);
+        const overflow = await page.evaluate(() =>
+          document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        );
+        expect(overflow, `${scenario} overflow at ${viewport.name}/${colorScheme}`).toBeLessThanOrEqual(0);
+      }
+    });
+  }
+}
+
+test("Long card identity content wraps without horizontal overflow", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await openScenario(page, "card-detail-hierarchy");
+  await page.locator("h1").evaluate((heading) => {
+    heading.textContent = "Pikachu With An Intentionally Very Long Collector-Facing Variant Name";
+  });
+  const dimensions = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth);
 });
 
 test("Vault families keep exact finish context visible without collapsing mixed copies", async ({ page }) => {
@@ -244,9 +483,41 @@ test("Duplicate family reveals each exact copy and keeps evidence disclosed", as
 test("Exact-copy hierarchy shows version before provenance", async ({ page }) => {
   await openScenario(page, "vault-exact-copy");
 
+  await expect(page.locator("[data-mobile-pushed-route-header]")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Vault", exact: true })).toHaveAttribute(
+    "href",
+    "/vault?view=duplicates&page=2",
+  );
+  await expect(page.locator("[data-mobile-parity-dock]")).toHaveCount(0);
   await expect(page.getByText("Reverse Holo", { exact: true }).first()).toBeVisible();
-  await expect(page.getByText("NM", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("Exact copy details").getByText("NM", { exact: true })).toBeVisible();
   await expect(page.getByText("Exact copy ID: GV-VI-FIXTURE-PIKACHU-RH", { exact: true })).toBeHidden();
+});
+
+test("Exact-copy editing puts required details before optional controls", async ({ page }) => {
+  await openScenario(page, "vault-exact-copy");
+
+  const settings = page.locator("[data-vault-copy-settings]");
+  const pricing = page.locator("[data-vault-copy-pricing]");
+  const [settingsBox, pricingBox] = await Promise.all([settings.boundingBox(), pricing.boundingBox()]);
+  expect(settingsBox?.y).toBeLessThan(pricingBox?.y ?? Number.POSITIVE_INFINITY);
+
+  await expect(page.getByLabel("Intent")).toHaveValue("hold");
+  await expect(page.getByLabel("Condition")).toHaveValue("NM");
+  await expect(page.getByLabel("Primary image")).toBeHidden();
+  await expect(page.getByRole("button", { name: "Remove from vault" })).toBeHidden();
+
+  await page.getByText("Image preference", { exact: true }).click();
+  await expect(page.getByLabel("Primary image")).toBeVisible();
+
+  const pricingMode = page.getByLabel("Mode");
+  await expect(page.getByRole("button", { name: "Save pricing" })).toBeDisabled();
+  await pricingMode.selectOption("asking");
+  await page.getByLabel("Amount").fill("52.40");
+  await expect(page.getByRole("button", { name: "Save pricing" })).toBeEnabled();
+
+  await page.getByText("Remove this copy", { exact: true }).click();
+  await expect(page.getByRole("button", { name: "Remove from vault" })).toBeVisible();
 });
 
 test("Partial Vault failure preserves loaded ownership context", async ({ page }) => {
