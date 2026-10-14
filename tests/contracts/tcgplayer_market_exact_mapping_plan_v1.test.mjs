@@ -57,6 +57,7 @@ const MAINTENANCE_RUNNER = readFileSync(
 
 test("read-only exact mapping planner requires verified remote database TLS", () => {
   assert.match(SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(SCRIPT, /SUPABASE_DB_CA_CERT/);
   assert.doesNotMatch(SCRIPT, /rejectUnauthorized:\s*false/);
 });
 

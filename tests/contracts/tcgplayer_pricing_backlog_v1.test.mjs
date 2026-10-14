@@ -7,6 +7,9 @@ import { fileURLToPath } from "node:url";
 import {
   evaluateTcgplayerPricingBacklogV1,
 } from "../../backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs";
+import {
+  buildTcgplayerIdentityMappingWorklistV1,
+} from "../../backend/pricing/tcgplayer_identity_mapping_worklist_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,6 +20,7 @@ const BACKLOG_SCRIPT = readFileSync(
 
 test("read-only pricing backlog audit requires verified remote database TLS", () => {
   assert.match(BACKLOG_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(BACKLOG_SCRIPT, /SUPABASE_DB_CA_CERT/);
   assert.doesNotMatch(BACKLOG_SCRIPT, /rejectUnauthorized:\s*false/);
 });
 
@@ -93,4 +97,25 @@ test("zero backlog is the only complete pricing state", () => {
   });
   assert.equal(report.status, "complete");
   assert.equal(report.counts.non_published, 0);
+});
+
+test("identity groups retain their source category for game-scoped routing", () => {
+  const worklist = buildTcgplayerIdentityMappingWorklistV1([
+    {
+      decision: "quarantine",
+      primary_reason: "missing_active_source_mapping",
+      source_observation_id: "observation-1",
+      source_product_id: 232318,
+      source_product_name: "Bulbasaur",
+      source_category_id: 3,
+      source_category_name: "Pokemon",
+      source_group_id: 2782,
+      source_group_name: "McDonald's 25th Anniversary Promos",
+      source_subtype_name: "Normal",
+      product_scope_result: "in_scope",
+      product_scope_rule_id: "pokemon_numbered_card",
+    },
+  ], { expectedRowCount: 1 });
+  assert.equal(worklist.groups[0].source_category_id, 3);
+  assert.equal(worklist.groups[0].source_category_name, "Pokemon");
 });

@@ -1,5 +1,20 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer pricing completion agent — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_133_TCGPLAYER_PRICING_COMPLETION_AGENT.md`.
+The dedicated `tcgplayer-pricing-completion-v1` operations agent owns the
+production pricing backlog as one continuous outcome. Every six hours it runs a
+read-only production audit, builds the Pokemon-scoped exact-mapping plan,
+heartbeats its measured state into the operations control plane, and preserves
+90-day evidence. A nonzero backlog is reported as incomplete work rather than an
+agent crash. Only reviewed exact candidates can become the next batch; all
+uncertain identities remain explicit holds. The current McDonald's 2021 mapping
+batch is already in its governed shadow/publication path and must be verified
+before its production result is counted. Continue with the highest-value
+evidence-backed Pokemon group after that readback; do not weaken identity,
+finish, freshness, or publication guards to make the totals look complete.
+
 ## Pokémon TCGPlayer identity repair — October 12
 
 Read `docs/ops/POKEMON_TCGPLAYER_IDENTITY_REPAIR_20261012.md`. PR622 merged the

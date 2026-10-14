@@ -164,6 +164,8 @@ export function buildTcgplayerIdentityMappingWorklistV1(
 
   const groupRows = [...groups.values()]
     .map((group) => ({
+      source_category_id: group.source_category_id,
+      source_category_name: group.source_category_name,
       source_group_id: group.source_group_id,
       source_group_name: group.source_group_name,
       backlog_rows: group.backlog_rows,

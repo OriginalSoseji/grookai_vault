@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_133_TCGPLAYER_PRICING_COMPLETION_AGENT.md`
+
+This checkpoint records the dedicated six-hour TCGPlayer pricing-completion
+agent, its live operations-control-plane registration, Pokemon-only exact-batch
+routing, verified TLS boundary, and the catalog-coverage workflow correction
+that stops treating an incomplete backlog as a crashed agent.
+
+Decision locked there:
+
+- pricing completion is one persistent zero-backlog outcome, while canonical
+  mappings and price publication remain separate guarded write paths
+
+Unresolved risk afterward:
+
+- unreviewed promotional groups still require exact external authority or
+  canonical printing completion before any mapping or price can be published
+
 ### `PRICING_CHECKPOINT_132_ME05_EXACT_MAPPING_BACKFILL_LIVE.md`
 
 This checkpoint records the five-batch ME05 exact-mapping apply, the stale
