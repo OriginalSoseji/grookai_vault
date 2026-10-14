@@ -48,6 +48,10 @@ import {
   TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1,
   TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_prism_star_alias_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_reviewed_alias_wave_2_product_identity_authority_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -130,6 +134,15 @@ const PRISM_STAR_ALIAS_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_prism_star_alias_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_reviewed_alias_wave_2_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -982,6 +995,71 @@ test("Prism Star alias authority is read-only and freezes three set scopes", () 
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
   assert.match(SCRIPT, /TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1/);
+});
+
+test("reviewed alias wave 2 admits exactly five frozen Holo identities", () => {
+  assert.equal(TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1.length, 5);
+  assert.equal(new Set(TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1
+    .map((row) => row.source_product_id)).size, 5);
+  assert.equal(new Set(TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1
+    .map((row) => row.target.card_print_id)).size, 5);
+  assert.deepEqual(
+    Object.fromEntries([...new Set(TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1
+      .map((row) => row.target.set_code))].sort().map((setCode) => [setCode,
+      TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1
+        .filter((row) => row.target.set_code === setCode).length])),
+    { "30c": 3, "sm3.5": 1, "swsh4.5": 1 },
+  );
+  assert.ok(TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1.every((row) =>
+    row.printing.finish_key === "holo"));
+
+  for (const authority of TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1) {
+    const reviewedSource = source({
+      source_product_id: authority.source_product_id,
+      source_product_name: authority.source_product_name,
+      source_group_id: authority.source_group_id,
+      source_group_name: authority.source_group_name,
+      printed_number: authority.printed_number,
+    });
+    const reviewedTarget = target({
+      card_print_id: authority.target.card_print_id,
+      gv_id: authority.target.gv_id,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: authority.target.name,
+      number: authority.target.number,
+      variant_key: authority.target.variant_key,
+      embedded_external_id: null,
+    });
+    const candidate = planTcgplayerExactMappingCandidateV1({
+      source: reviewedSource,
+      setTargets: [reviewedTarget],
+    });
+    assert.equal(candidate.disposition, "candidate", authority.source_product_id);
+    assert.equal(candidate.reviewed_product_identity_authority_version,
+      TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITY_AUTHORITY_V1);
+    assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+    assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, reviewedTarget), []);
+    assert.equal(matchesTcgplayerExactMappingLiveSourceNumberV1(
+      candidate, authority.printed_number,
+    ), true);
+  }
+});
+
+test("reviewed alias wave 2 authority is read-only and freezes three scopes", () => {
+  assert.match(REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT,
+    /begin transaction isolation level repeatable read read only/);
+  assert.match(REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 5/);
+  for (const setCode of ["sm3.5", "swsh4.5", "30c"]) {
+    assert.match(REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT, new RegExp(setCode.replace(".", "\\.")));
+  }
+  assert.match(REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    REVIEWED_ALIAS_WAVE_2_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+  assert.match(SCRIPT, /TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1/);
 });
 
 test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {
