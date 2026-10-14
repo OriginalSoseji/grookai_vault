@@ -20,6 +20,11 @@ import {
   reviewedTcgplayer30cClassicAliasProductIdentityByIdV1,
   reviewedTcgplayer30cClassicAliasProductIdentityV1,
 } from "./tcgplayer_30c_classic_alias_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerExuUnownProductTargetV1,
+  reviewedTcgplayerExuUnownProductIdentityByIdV1,
+  reviewedTcgplayerExuUnownProductIdentityV1,
+} from "./tcgplayer_exu_unown_product_identity_authority_v1.mjs";
 
 import {
   tcgplayerExactMappingCandidateFingerprintV1,
@@ -44,19 +49,22 @@ function text(value) {
 function reviewedProductIdentityById(sourceProductId) {
   return reviewedTcgplayerProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerG1RcProductIdentityByIdV1(sourceProductId) ??
-    reviewedTcgplayer30cClassicAliasProductIdentityByIdV1(sourceProductId);
+    reviewedTcgplayer30cClassicAliasProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerExuUnownProductIdentityByIdV1(sourceProductId);
 }
 
 function reviewedProductIdentity(source) {
   return reviewedTcgplayerProductIdentityV1(source) ??
     reviewedTcgplayerG1RcProductIdentityV1(source) ??
-    reviewedTcgplayer30cClassicAliasProductIdentityV1(source);
+    reviewedTcgplayer30cClassicAliasProductIdentityV1(source) ??
+    reviewedTcgplayerExuUnownProductIdentityV1(source);
 }
 
 function matchesReviewedProductTarget(source, target) {
   return matchesReviewedTcgplayerProductTargetV1(source, target) ||
     matchesReviewedTcgplayerG1RcProductTargetV1(source, target) ||
-    matchesReviewedTcgplayer30cClassicAliasProductTargetV1(source, target);
+    matchesReviewedTcgplayer30cClassicAliasProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerExuUnownProductTargetV1(source, target);
 }
 
 function stableJson(value) {
@@ -146,14 +154,16 @@ export function validateTcgplayerExactMappingCandidateForApplyV1(candidate) {
   if (!sourceName || sourceName !== candidate?.normalized_source_name) {
     failures.push("source_name_normalization_mismatch");
   }
-  if (!sourceNumber || sourceNumber !== candidate?.normalized_source_number) {
+  if (!reviewedIdentity &&
+      (!sourceNumber || sourceNumber !== candidate?.normalized_source_number)) {
     failures.push("source_number_normalization_mismatch");
   }
   if (!reviewedMapping &&
       normalizeTcgplayerMappingNameV1(candidate?.target?.canonical_name) !== sourceName) {
     failures.push("target_name_mismatch");
   }
-  if (normalizeTcgplayerMappingNumberV1(candidate?.target?.canonical_number) !== sourceNumber) {
+  if (!reviewedMapping &&
+      normalizeTcgplayerMappingNumberV1(candidate?.target?.canonical_number) !== sourceNumber) {
     failures.push("target_number_mismatch");
   }
   if (!reviewedMapping && text(candidate?.target?.variant_key)) {
@@ -222,7 +232,8 @@ export function validateTcgplayerExactMappingLiveTargetV1(candidate, target) {
       normalizeTcgplayerMappingNameV1(target.name) !== candidate.normalized_source_name) {
     failures.push("target_name_changed");
   }
-  if (normalizeTcgplayerMappingNumberV1(target.number) !== candidate.normalized_source_number) {
+  if (!reviewedMapping &&
+      normalizeTcgplayerMappingNumberV1(target.number) !== candidate.normalized_source_number) {
     failures.push("target_number_changed");
   }
   return failures;

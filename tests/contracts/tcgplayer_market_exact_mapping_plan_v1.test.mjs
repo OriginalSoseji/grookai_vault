@@ -36,6 +36,10 @@ import {
   TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1,
   TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_30c_classic_alias_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_exu_unown_product_identity_authority_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -91,6 +95,15 @@ const CLASSIC_ALIAS_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_30c_classic_alias_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const EXU_UNOWN_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_exu_unown_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -709,6 +722,105 @@ test("30th Celebration Classic alias authority is read-only and binds live child
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
   assert.match(SCRIPT, /TCGPLAYER_30C_CLASSIC_ALIAS_PRODUCT_IDENTITIES_V1/);
+});
+
+test("Unseen Forces Unown registry admits the exact 28-symbol collection", () => {
+  assert.equal(TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1.length, 28);
+  assert.equal(
+    new Set(TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1.map((row) => row.source_product_id)).size,
+    28,
+  );
+  assert.equal(
+    new Set(TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1.map((row) => row.target.card_print_id)).size,
+    28,
+  );
+  assert.deepEqual(
+    TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1.map((row) => row.target.number),
+    ["!", "?", ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"],
+  );
+  assert.ok(TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1.every((row) =>
+    row.source_group_id === 1398 && row.target.set_code === "exu" &&
+    row.target.variant_key === row.target.number && row.printing.finish_key === "holo"));
+
+  for (const symbol of ["!", "?", "A"]) {
+    const authority = TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1.find(
+      (row) => row.target.number === symbol,
+    );
+    const reviewedSource = source({
+      source_product_id: authority.source_product_id,
+      source_product_name: authority.source_product_name,
+      source_group_id: authority.source_group_id,
+      source_group_name: authority.source_group_name,
+      printed_number: authority.printed_number,
+    });
+    const reviewedTarget = target({
+      card_print_id: authority.target.card_print_id,
+      gv_id: authority.target.gv_id,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: authority.target.name,
+      number: authority.target.number,
+      variant_key: authority.target.variant_key,
+      embedded_external_id: null,
+    });
+    const candidate = planTcgplayerExactMappingCandidateV1({
+      source: reviewedSource,
+      setTargets: [reviewedTarget],
+    });
+    assert.equal(candidate.disposition, "candidate", symbol);
+    assert.equal(candidate.reviewed_product_identity_authority_version,
+      TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITY_AUTHORITY_V1);
+    assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+    assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, reviewedTarget), []);
+    assert.equal(matchesTcgplayerExactMappingLiveSourceNumberV1(
+      candidate, authority.printed_number,
+    ), true);
+    assert.equal(matchesTcgplayerExactMappingLiveSourceNumberV1(
+      candidate, `${symbol}/27`,
+    ), false);
+  }
+
+  const authority = TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1[0];
+  const drift = planTcgplayerExactMappingCandidateV1({
+    source: source({
+      source_product_id: authority.source_product_id,
+      source_product_name: "Unown",
+      source_group_id: authority.source_group_id,
+      source_group_name: authority.source_group_name,
+      printed_number: authority.printed_number,
+    }),
+    setTargets: [target({
+      card_print_id: authority.target.card_print_id,
+      gv_id: authority.target.gv_id,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: authority.target.name,
+      number: authority.target.number,
+      variant_key: authority.target.variant_key,
+      embedded_external_id: null,
+    })],
+  });
+  assert.equal(drift.reason, "reviewed_product_source_drift");
+});
+
+test("Unseen Forces Unown authority is read-only and split 25 plus 3", () => {
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT,
+    /begin transaction isolation level repeatable read read only/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 28/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /const batchSize = 25/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /masterIndexCoordinate/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /active_truth_review, null/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /public_visibility, null/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /sets\/exu\/cards\.json/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /sets\/exu\/printings\.json/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /special_variant_printing_coverage_v1/);
+  assert.match(EXU_UNOWN_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    EXU_UNOWN_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+  assert.match(SCRIPT, /TCGPLAYER_EXU_UNOWN_PRODUCT_IDENTITIES_V1/);
 });
 
 test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {

@@ -25,6 +25,11 @@ import {
   reviewedTcgplayer30cClassicAliasProductIdentityByIdV1,
   reviewedTcgplayer30cClassicAliasProductIdentityV1,
 } from "./tcgplayer_30c_classic_alias_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerExuUnownProductTargetV1,
+  reviewedTcgplayerExuUnownProductIdentityByIdV1,
+  reviewedTcgplayerExuUnownProductIdentityV1,
+} from "./tcgplayer_exu_unown_product_identity_authority_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1";
@@ -42,19 +47,22 @@ function text(value) {
 function reviewedProductIdentityById(sourceProductId) {
   return reviewedTcgplayerProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerG1RcProductIdentityByIdV1(sourceProductId) ??
-    reviewedTcgplayer30cClassicAliasProductIdentityByIdV1(sourceProductId);
+    reviewedTcgplayer30cClassicAliasProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerExuUnownProductIdentityByIdV1(sourceProductId);
 }
 
 function reviewedProductIdentity(source) {
   return reviewedTcgplayerProductIdentityV1(source) ??
     reviewedTcgplayerG1RcProductIdentityV1(source) ??
-    reviewedTcgplayer30cClassicAliasProductIdentityV1(source);
+    reviewedTcgplayer30cClassicAliasProductIdentityV1(source) ??
+    reviewedTcgplayerExuUnownProductIdentityV1(source);
 }
 
 function matchesReviewedProductTarget(source, target) {
   return matchesReviewedTcgplayerProductTargetV1(source, target) ||
     matchesReviewedTcgplayerG1RcProductTargetV1(source, target) ||
-    matchesReviewedTcgplayer30cClassicAliasProductTargetV1(source, target);
+    matchesReviewedTcgplayer30cClassicAliasProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerExuUnownProductTargetV1(source, target);
 }
 
 function normalizedAlnum(value) {
@@ -271,7 +279,8 @@ export function planTcgplayerExactMappingCandidateV1({
       product_scope: scope,
     });
   }
-  if (!source.has_printed_number_evidence || !base.normalized_source_number) {
+  if (!source.has_printed_number_evidence ||
+      (!base.normalized_source_number && !reviewedIdentity)) {
     return blocked(source, "missing_printed_number_evidence");
   }
   if (Number(source.active_source_mapping_count ?? 0) !== 0) {
