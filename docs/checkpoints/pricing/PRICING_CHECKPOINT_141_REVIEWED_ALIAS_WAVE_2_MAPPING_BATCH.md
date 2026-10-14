@@ -14,12 +14,13 @@ coordinates remain exact:
 - Poké Kid Full Art 070/072 from Shining Fates (`swsh4.5`); and
 - the red, green, and blue RGB Mew cards from 30th Celebration (`30c`).
 
-Every source product is active and current, has one Holofoil price observation,
-one unique unmapped `pokemon_eng_standard` parent, and one active, public,
-non-provisional Holo child with an active verified truth review. The registry
-freezes product ID, group, raw title, printed coordinate, parent identity, Holo
-printing identity, and provenance. It does not add a global name-normalization
-rule.
+Before apply, every source product was active and current, had one Holofoil
+price observation, one unique unmapped `pokemon_eng_standard` parent, and one
+active, public, non-provisional Holo child with an active verified truth review.
+The production run has now mapped each source product to that frozen parent.
+The registry freezes product ID, group, raw title, printed coordinate, parent
+identity, Holo printing identity, and provenance. It does not add a global
+name-normalization rule.
 
 ## Retained Holds
 
