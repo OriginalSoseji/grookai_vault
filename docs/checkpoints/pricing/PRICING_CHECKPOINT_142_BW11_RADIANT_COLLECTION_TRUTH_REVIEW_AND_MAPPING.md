@@ -2,7 +2,7 @@
 
 ## Status
 
-`9 PRINTINGS REHEARSED; PRODUCTION TRUTH REVIEW AND MAPPING PENDING MERGE`
+`9 TRUTH REVIEWS AND EXACT MAPPINGS APPLIED AND INDEPENDENTLY VERIFIED`
 
 ## Scope
 
@@ -21,10 +21,10 @@ existing active, non-provisional Holo child:
 - Servine `RC2/RC25`; and
 - Shaymin EX Full Art `RC21/RC25`.
 
-The source products and canonical parents are currently unmapped. Their Holo
-children are public under the current null-review policy, but lack an active
-truth review. This change adds a narrow truth-review maintenance task before
-the products can enter the exact-mapping authority path.
+Before this release, the source products and canonical parents were unmapped.
+Their Holo children were public under the null-review policy but lacked active
+truth reviews. This release added the nine narrow truth reviews first, then the
+nine exact mappings; both sets of rows are now active and independently verified.
 
 ## Evidence and Guardrails
 
@@ -56,10 +56,60 @@ pre-commit and fresh post-transaction readback, and contains no update or delete
 path. The exact-mapping authority remains a separate read-only package, and the
 existing guarded mapping writer remains the only mapping mutation path.
 
+## Production Result
+
+PR `#667` squash-merged the bounded review and mapping authority at commit
+`4764223949c38006f7b34c279dd353c380a31f13`. The merge included explicit
+reconciliation receipts for lost commit acknowledgements and failed fresh
+readback, and all required CI checks passed.
+
+From that exact clean commit, truth-review dry run
+`2f35a7ca-79b3-4368-82d5-47042f514cdd` selected all nine rows, proved rollback,
+and left zero durable rows. Production truth-review run
+`01cc9291-b391-4389-add8-344b55f02c9a` then committed exactly nine rows and read
+back all nine before and after commit. Its transaction outcome was acknowledged;
+`commit_uncertain`, `rollback_uncertain`, mapping writes, publication writes, and
+customer-state writes were all zero or false as applicable.
+
+An independent verified-TLS, repeatable-read query confirmed all nine active
+reviews are `verified`, `visible`, and `high` confidence; bind the intended Holo
+printing and canonical parent; carry authority fingerprint
+`5c296b788734ad0970e31bd5d63791691a76a1cb69e56327285f21e981351b1c`;
+and preserve the frozen Master Index file hashes.
+
+The refreshed exact-mapping planner evaluated 734 Pokémon source products and
+produced exactly nine candidates in the reviewed-product authority lane. It
+retained 725 blocked products. The bounded authority package froze:
+
+- candidate SHA-256:
+  `b13a30772e228a9103790b11352a59cfee62fc5d6dcd20d11611c1c36a2212f2`;
+- authority fingerprint:
+  `339c2e997bd0a8ff29b9cc8b130dd38f42d28cefc2cb428942286ac13a0957bc`;
+- authority file SHA-256:
+  `1373ddbb737c9524131ea9c5b9fe7f5f5ed42c256513fac55c6bbaf22ee3adf6`;
+  and
+- apply batch fingerprint:
+  `adf600d3e0b5f65589e60f42959b0b7873187c979e7f2aad6af574993ba6b59e`.
+
+Mapping dry run `b3992b95-2921-458c-9c3c-21a0fa6a337b` selected all nine,
+validated every live boundary, and proved rollback with zero writes. Production
+mapping run `77362035-d234-436b-ab4d-09288fba3ccf` committed exactly nine active
+mappings and read back all nine. An independent verified-TLS repeatable-read
+then confirmed nine current source products, nine active exact mappings, nine
+unique standard parents, nine verified visible Holo printings, and the exact
+maintenance run ID. Publication and customer-state writes remained zero.
+
+The full release evidence, including a 57-file SHA-256 inventory, is retained at
+`C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/bw11-radiant-collection-production-release-v1`.
+
+Stale full-scope shadow run `38624164995` was canceled because it predates this
+batch. Replacement run `38631343122` is queued from the exact merge commit and
+includes this batch plus every earlier mapping.
+
 ## Next Gate
 
-Merge the code through reviewed CI. From the exact clean merge commit, regenerate
-the fingerprint, rerun the truth-review dry run, apply and independently verify
-the nine review rows, then build and apply the nine exact mappings. Pricing
-shadow and customer-visible publication remain separate guarded steps. Continue
-to the next evidence-safe backlog batch after production readback.
+Inspect full-scope shadow run `38631343122`, retain its immutable evidence, and
+advance customer-visible pricing only through the existing publication gate.
+Use the refreshed completion-agent backlog to select the next evidence-safe
+set-authority or truth-review repair batch. Keep ambiguous, colliding, or
+unsupported products explicitly blocked.
