@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer reviewed alias wave 2 — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_141_REVIEWED_ALIAS_WAVE_2_MAPPING_BATCH.md`.
+The next bounded batch is exactly five verified Holofoil products: Pokémon
+Breeder Full Art, Poké Kid Full Art, and the three 30th Celebration RGB Mew
+cards. Each has one unique unmapped canonical parent and one active verified
+visible Holo child. Four Nintendo promo products remain held because multiple
+TCGPlayer editions compete for the same canonical parent. The read-only
+rehearsal passed for all five candidates; merge and regenerate from the exact
+clean commit before dry run or production apply.
+
 ## TCGPlayer Prism Star alias wave — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_140_PRISM_STAR_ALIAS_MAPPING_BATCH.md`.

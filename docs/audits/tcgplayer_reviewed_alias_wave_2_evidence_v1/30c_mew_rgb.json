@@ -1,0 +1,103 @@
+{
+  "version": "TCGPLAYER_REVIEWED_ALIAS_WAVE_2_30C_EVIDENCE_V1",
+  "reviewed_at": "2026-10-14T19:07:00.000Z",
+  "scope": {
+    "set_id": "50d8b80c-70b6-5733-9b97-89ef472d387f",
+    "set_code": "30c"
+  },
+  "rows": [
+    {
+      "source_product_id": 717607,
+      "source_product_name": "Mew - R/RGB",
+      "source_group_id": 24722,
+      "source_group_name": "ME: 30th Celebration",
+      "printed_number": "R/RGB",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "target": {
+        "card_print_id": "18675c36-ba36-5ebe-a12b-eeea0e61cb62",
+        "gv_id": "GV-PK-30C-R-RGB",
+        "set_id": "50d8b80c-70b6-5733-9b97-89ef472d387f",
+        "set_code": "30c",
+        "name": "Mew",
+        "number": "R/RGB",
+        "variant_key": ""
+      },
+      "printing": {
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-30C-R-RGB-HOLO",
+        "provenance_source": "pokemon_30th_base_printing_evidence_v1",
+        "provenance_ref": "raw_imports:-1004712276861621545|tcgcollector:89671:363"
+      },
+      "live_review": {
+        "review_status": "verified",
+        "public_visibility": "visible",
+        "finish_active": true,
+        "is_provisional": false
+      }
+    },
+    {
+      "source_product_id": 717608,
+      "source_product_name": "Mew - G/RGB",
+      "source_group_id": 24722,
+      "source_group_name": "ME: 30th Celebration",
+      "printed_number": "G/RGB",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "target": {
+        "card_print_id": "337f254a-b7a7-533d-9f63-d7caa9bc7777",
+        "gv_id": "GV-PK-30C-G-RGB",
+        "set_id": "50d8b80c-70b6-5733-9b97-89ef472d387f",
+        "set_code": "30c",
+        "name": "Mew",
+        "number": "G/RGB",
+        "variant_key": ""
+      },
+      "printing": {
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-30C-G-RGB-HOLO",
+        "provenance_source": "pokemon_30th_base_printing_evidence_v1",
+        "provenance_ref": "raw_imports:-1004712276861621545|tcgcollector:89672:363"
+      },
+      "live_review": {
+        "review_status": "verified",
+        "public_visibility": "visible",
+        "finish_active": true,
+        "is_provisional": false
+      }
+    },
+    {
+      "source_product_id": 717609,
+      "source_product_name": "Mew - B/RGB",
+      "source_group_id": 24722,
+      "source_group_name": "ME: 30th Celebration",
+      "printed_number": "B/RGB",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "target": {
+        "card_print_id": "39c22794-5cbd-5b9b-abf9-bea3a65c10a0",
+        "gv_id": "GV-PK-30C-B-RGB",
+        "set_id": "50d8b80c-70b6-5733-9b97-89ef472d387f",
+        "set_code": "30c",
+        "name": "Mew",
+        "number": "B/RGB",
+        "variant_key": ""
+      },
+      "printing": {
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-30C-B-RGB-HOLO",
+        "provenance_source": "pokemon_30th_base_printing_evidence_v1",
+        "provenance_ref": "raw_imports:-1004712276861621545|tcgcollector:89673:363"
+      },
+      "live_review": {
+        "review_status": "verified",
+        "public_visibility": "visible",
+        "finish_active": true,
+        "is_provisional": false
+      }
+    }
+  ]
+}
