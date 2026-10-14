@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_132_ME05_EXACT_MAPPING_BACKFILL_LIVE.md`
+
+This checkpoint records the five-batch ME05 exact-mapping apply, the stale
+source shadow stop, fresh scheduled production activation, independent 120/120
+mapping and 194-snapshot readback, and the refreshed 42,808-row repair backlog.
+
+Decision locked there:
+
+- exact source mappings may publish only through a fresh fully reconciled
+  publication; a source rollover invalidates the old run and requires the new
+  source authority
+
+Unresolved risk afterward:
+
+- 30,814 identity-mapping observations remain the largest repair lane and
+  require additional bounded authority batches
+
 ### `PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md`
 
 This checkpoint records the fielded MTG pricing preflight repair that derives
