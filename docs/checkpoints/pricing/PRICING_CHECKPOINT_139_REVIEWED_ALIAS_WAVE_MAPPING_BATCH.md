@@ -2,7 +2,7 @@
 
 ## Status
 
-`21 EXACT MAPPINGS PREPARED; PRODUCTION APPLY PENDING CLEAN MERGE`
+`21 EXACT MAPPINGS COMMITTED AND VERIFIED; PRICING SHADOW QUEUED`
 
 ## Scope
 
@@ -60,11 +60,35 @@ Trial artifacts are retained under
 `C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/alias-wave-21-plan-trial-v1`
 and `alias-wave-21-authority-trial-v2`.
 
+## Production Mapping Result
+
+PR #660 merged the reviewed registry, guarded planner/apply support, authority
+builder, and contracts at exact commit
+`ccffdee1afd820072e020ee52a9c59d32110d1c7`. The verified-TLS clean plan retained
+the same 21 candidates and SHA-256
+`7ff9072569b859f448173df6fba612357a6bba010bad1046152906ca3e5e1131`.
+The clean three-scope authority package was generated from a clean tracked
+worktree and has fingerprint
+`d88b27eaec488f92138c9738fcbd58508fa1d6497e52f6abcd354371756a4c6d`.
+
+Canonical dry run `1e13b6bc-dd17-4253-b07f-25f9bcaeeeba` selected all 21 rows,
+planned all 21 inserts, and proved rollback with zero writes. Production
+maintenance run `227e73af-61c7-49c5-8819-12422f4e6c05` then committed exactly 21
+insert-only mappings and read back all 21 inside the guarded transaction. It
+made zero publication writes and zero customer-state writes.
+
+An independent repeatable-read, read-only query subsequently verified 21 exact
+source products, 21 active mappings bound to that maintenance run, 21 unique
+active standard parents, and 21 selected governed public non-provisional
+printings. The complete clean plan, authority, rollback rehearsal, apply
+receipt, and independent readback are retained under
+`C:/grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/alias-wave-21-production-release-v1`.
+
 ## Next Gate
 
-Merge the reviewed registry, guarded planner/apply support, authority builder,
-and contracts. Regenerate the plan and three-scope authority package from that
-exact clean commit, prove rollback with the canonical maintenance launcher,
-apply the same frozen package under the production gate, and independently
-verify all 21 mappings. Mapping alone does not publish customer prices. Queue a
-fresh exact-commit pricing shadow before any governed publication decision.
+Full-scope pricing shadow run `38615087902` is queued at exact mapping commit
+`ccffdee1afd820072e020ee52a9c59d32110d1c7` behind the earlier Unseen Forces
+shadow. Mapping alone did not publish customer prices. Inspect that shadow's
+coverage, quarantine, and freshness evidence before a governed pricing
+publication decision, while the completion agent continues routing the next
+evidence-backed mapping batch.

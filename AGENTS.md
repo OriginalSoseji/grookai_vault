@@ -9,8 +9,11 @@ Thunder Prism Star/Fairy Charm aliases, and five MEP Pokemon Center stamped
 promos. Each tuple freezes the raw source title and full printed coordinate to
 one unique active standard parent and one selected governed child. The
 read-only rehearsal produced 21 candidates covering 28 missing-price
-observations and froze three Master Index scopes. Regenerate from a clean merged
-commit before dry run or apply. Rows with target collisions, missing canonical
+observations and froze three Master Index scopes. PR660 merged at
+`ccffdee1afd820072e020ee52a9c59d32110d1c7`; maintenance run
+`227e73af-61c7-49c5-8819-12422f4e6c05` inserted all 21 mappings, and independent
+repeatable-read verification passed. Full-scope pricing shadow run `38615087902`
+is queued at that exact commit. Rows with target collisions, missing canonical
 cards, or ambiguous numbers remain blocked.
 
 ## TCGPlayer Unseen Forces Unown batch — October 14
