@@ -27,6 +27,10 @@ import {
   TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1,
   TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_reviewed_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_G1_RC_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_g1_rc_product_identity_authority_v1.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -64,6 +68,15 @@ const SVP_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_svp_reviewed_product_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const G1_RC_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_g1_rc_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -528,6 +541,83 @@ test("SVP reviewed registry and authority builder are bounded and read-only", ()
     SVP_AUTHORITY_SCRIPT,
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
+});
+
+test("Generations Radiant Collection registry admits only its 32 exact identities", () => {
+  assert.equal(TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1.length, 32);
+  assert.equal(
+    new Set(TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1.map((row) => row.source_product_id)).size,
+    32,
+  );
+  assert.equal(
+    new Set(TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1.map((row) => row.target.card_print_id)).size,
+    32,
+  );
+  assert.ok(TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1.every((row) =>
+    row.source_group_id === 1729 && row.target.set_code === "g1" &&
+    row.target.variant_key === "rc"));
+
+  const authority = TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1.find(
+    (row) => row.source_product_id === 113748,
+  );
+  const reviewedSource = source({
+    source_product_id: authority.source_product_id,
+    source_product_name: authority.source_product_name,
+    source_group_id: authority.source_group_id,
+    source_group_name: authority.source_group_name,
+    printed_number: authority.printed_number,
+  });
+  const reviewedTarget = target({
+    card_print_id: authority.target.card_print_id,
+    gv_id: authority.target.gv_id,
+    set_id: authority.target.set_id,
+    set_code: authority.target.set_code,
+    name: authority.target.name,
+    number: authority.target.number,
+    variant_key: authority.target.variant_key,
+    embedded_external_id: null,
+  });
+  const candidate = planTcgplayerExactMappingCandidateV1({
+    source: reviewedSource,
+    setTargets: [reviewedTarget],
+  });
+  assert.equal(candidate.disposition, "candidate");
+  assert.equal(candidate.target.canonical_name, "Flareon-EX");
+  assert.equal(candidate.reviewed_product_identity_authority_version,
+    TCGPLAYER_G1_RC_PRODUCT_IDENTITY_AUTHORITY_V1);
+  assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+  assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, reviewedTarget), []);
+
+  const drift = planTcgplayerExactMappingCandidateV1({
+    source: { ...reviewedSource, source_product_name: "Flareon EX" },
+    setTargets: [reviewedTarget],
+  });
+  assert.equal(drift.reason, "reviewed_product_source_drift");
+
+  candidate.reviewed_product_identity_authority_version = "DRIFTED";
+  const { candidate_fingerprint: ignored, ...payload } = candidate;
+  candidate.candidate_fingerprint = tcgplayerExactMappingCandidateFingerprintV1(payload);
+  assert.ok(validateTcgplayerExactMappingCandidateForApplyV1(candidate).failures.includes(
+    "reviewed_product_identity_authority_version_mismatch",
+  ));
+  assert.ok(validateTcgplayerExactMappingLiveTargetV1(
+    { ...candidate, reviewed_product_identity_authority_version: TCGPLAYER_G1_RC_PRODUCT_IDENTITY_AUTHORITY_V1 },
+    { ...reviewedTarget, variant_key: "staff_stamp" },
+  ).includes("target_not_base_variant"));
+});
+
+test("Generations Radiant Collection authority is read-only and split into bounded batches", () => {
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /begin transaction isolation level repeatable read read only/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 32/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /const batchSize = 25/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /special_variant_and_english_master_index/);
+  assert.match(G1_RC_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    G1_RC_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+  assert.match(SCRIPT, /TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1/);
 });
 
 test("apply batch validates fingerprints, excludes canary rows, and stays bounded", () => {

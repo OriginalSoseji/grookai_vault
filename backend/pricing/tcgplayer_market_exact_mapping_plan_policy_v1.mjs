@@ -14,8 +14,12 @@ import {
   matchesReviewedTcgplayerProductTargetV1,
   reviewedTcgplayerProductIdentityByIdV1,
   reviewedTcgplayerProductIdentityV1,
-  TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "./tcgplayer_reviewed_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerG1RcProductTargetV1,
+  reviewedTcgplayerG1RcProductIdentityByIdV1,
+  reviewedTcgplayerG1RcProductIdentityV1,
+} from "./tcgplayer_g1_rc_product_identity_authority_v1.mjs";
 
 export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1 =
   "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1";
@@ -28,6 +32,21 @@ export const TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3 =
 
 function text(value) {
   return String(value ?? "").trim();
+}
+
+function reviewedProductIdentityById(sourceProductId) {
+  return reviewedTcgplayerProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerG1RcProductIdentityByIdV1(sourceProductId);
+}
+
+function reviewedProductIdentity(source) {
+  return reviewedTcgplayerProductIdentityV1(source) ??
+    reviewedTcgplayerG1RcProductIdentityV1(source);
+}
+
+function matchesReviewedProductTarget(source, target) {
+  return matchesReviewedTcgplayerProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerG1RcProductTargetV1(source, target);
 }
 
 function normalizedAlnum(value) {
@@ -180,12 +199,12 @@ function targetFailures(source, target) {
 }
 
 function baseResult(source) {
-  const reviewedIdentity = reviewedTcgplayerProductIdentityV1(source);
+  const reviewedIdentity = reviewedProductIdentity(source);
   return {
     ...(trainerKitPilotCardV1(source) ? { pilot_policy_version: TCGPLAYER_TRAINER_KIT_PILOT_V1 } : {}),
     ...(reviewedIdentity ? {
       reviewed_product_identity_authority_version:
-        TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+        reviewedIdentity.authority_version,
     } : {}),
     policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
     source_product_id: Number(source.source_product_id),
@@ -226,8 +245,8 @@ export function planTcgplayerExactMappingCandidateV1({
   const base = baseResult(source);
   const scope = classifyTcgplayerMarketProductScopeV1_2(source);
   const reservedReviewedIdentity =
-    reviewedTcgplayerProductIdentityByIdV1(source?.source_product_id);
-  const reviewedIdentity = reviewedTcgplayerProductIdentityV1(source);
+    reviewedProductIdentityById(source?.source_product_id);
+  const reviewedIdentity = reviewedProductIdentity(source);
 
   if (reservedReviewedIdentity && !reviewedIdentity) {
     return blocked(source, "reviewed_product_source_drift", {
@@ -259,7 +278,7 @@ export function planTcgplayerExactMappingCandidateV1({
         ) === index,
     );
     const target = possibleTargets.find((candidate) =>
-      matchesReviewedTcgplayerProductTargetV1(source, candidate),
+      matchesReviewedProductTarget(source, candidate),
     );
     if (!target) {
       return blocked(source, "reviewed_product_target_missing_or_drifted", {
@@ -289,7 +308,7 @@ export function planTcgplayerExactMappingCandidateV1({
       mapping_confidence: 1,
       target: targetEvidence(target),
       evidence: {
-        authority_version: TCGPLAYER_REVIEWED_PRODUCT_IDENTITY_AUTHORITY_V1,
+        authority_version: reviewedIdentity.authority_version,
         exact_source_product: true,
         exact_target_parent: true,
         exact_variant: true,

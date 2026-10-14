@@ -18,13 +18,23 @@ import {
   quarantineTcgplayerTargetCollisionsV1,
   TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
+import {
+  TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1,
+} from "../../backend/pricing/tcgplayer_reviewed_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1,
+} from "../../backend/pricing/tcgplayer_g1_rc_product_identity_authority_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
-const PLANNER_VERSION = "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_2";
+const PLANNER_VERSION = "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_3";
+const REVIEWED_PRODUCT_IDENTITIES = Object.freeze([
+  ...TCGPLAYER_REVIEWED_PRODUCT_IDENTITIES_V1,
+  ...TCGPLAYER_G1_RC_PRODUCT_IDENTITIES_V1,
+]);
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,
   "artifacts",
@@ -365,7 +375,13 @@ async function resolveAuthorities(client, sources, consensusByGroup) {
   const applicable = REVIEWED_SET_AUTHORITIES.filter((authority) =>
     sourceGroups.has(authority.source_group_id),
   );
-  const setCodes = applicable.map((authority) => authority.target_set_code);
+  const reviewedProducts = REVIEWED_PRODUCT_IDENTITIES.filter((identity) =>
+    sourceGroups.has(identity.source_group_id),
+  );
+  const setCodes = [...new Set([
+    ...applicable.map((authority) => authority.target_set_code),
+    ...reviewedProducts.map((identity) => identity.target.set_code),
+  ])];
   const setRows = setCodes.length
     ? (
         await client.query(
@@ -405,6 +421,17 @@ async function resolveAuthorities(client, sources, consensusByGroup) {
   );
   for (const authority of authorities.values()) {
     targetSetIds.add(authority.set_id);
+  }
+  for (const identity of reviewedProducts) {
+    const matches = (setsByCode.get(identity.target.set_code) ?? []).filter(
+      (row) => row.set_id === identity.target.set_id,
+    );
+    if (matches.length !== 1) {
+      throw new Error(
+        `reviewed product set ${identity.target.set_code}:${identity.target.set_id} resolved ${matches.length} rows`,
+      );
+    }
+    targetSetIds.add(matches[0].set_id);
   }
   for (const source of sources) {
     const pilotAuthority = trainerKitPilotPlanningAuthorityV1(source);

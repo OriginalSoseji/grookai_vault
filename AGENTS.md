@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer Generations Radiant Collection batch — October 14
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_136_G1_RADIANT_COLLECTION_MAPPING_BATCH.md`.
+The current bounded batch is all 32 TCGPlayer group 1729 products, mapped only
+through the exact checked-in registry to canonical `g1` `rc` parents. The live
+read-only rehearsal produced 32 candidates and retained 702 blocked products.
+The authority builder verified all source rows, parents, governed child
+printings, and English Master Index evidence, then split the scope into
+writer-bounded packages of 25 and 7. Code review, clean merged-commit regeneration,
+rollback dry runs, production apply, independent mapping readback, pricing
+shadow, and pricing publication are still required.
+
 ## TCGPlayer SV Promo reviewed-product batch — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_135_SVP_REVIEWED_PRODUCT_MAPPING_BATCH.md`.
