@@ -2467,6 +2467,11 @@ microphone permissions because image selection uses the system picker and every
 camera controller disables audio. Verify the permissions from the packaged APK
 or AAB after every release; source manifest inspection alone is insufficient.
 
+The installed Play production build is `1.0.0 (409)`. A Play candidate must use
+version code `410` or greater; the release workflow currently reads this value
+from `pubspec.yaml`. Confirm the packaged bundle version before opening Play
+Console, and do not upload a stale or lower-version artifact.
+
 Never create a second Play app because the existing app is hidden by the wrong
 profile. Do not accept IARC or other legal terms, send a draft for review, or
 publish without explicit authorization for that action.
