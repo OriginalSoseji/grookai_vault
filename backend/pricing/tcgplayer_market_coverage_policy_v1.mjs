@@ -2,6 +2,7 @@ import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "./tcgplayer_market_publication_policy_v1.mjs";
 import { applyTrainerKitPilotCoverageScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
+import { applyWcdTeamRushdownCoverageScopeV1 } from "./tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
 import { applyCosmosFinishPublicationScopeV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import {
   classifyTcgplayerMarketProductScopeV1_2,
@@ -90,10 +91,13 @@ export function tcgplayerMarketCoverageValueBandV1(marketPrice) {
 
 function productScope(row) {
   const candidate = { ...row.candidate_payload, ...row };
-  return applyCosmosFinishPublicationScopeV1(applyTrainerKitPilotCoverageScopeV1(
-    classifyTcgplayerMarketProductScopeV1_2(row),
-    candidate,
-  ), candidate);
+  return applyCosmosFinishPublicationScopeV1(
+    applyWcdTeamRushdownCoverageScopeV1(
+      applyTrainerKitPilotCoverageScopeV1(
+        classifyTcgplayerMarketProductScopeV1_2(row), candidate,
+      ), candidate,
+    ), candidate,
+  );
 }
 
 function denominatorExclusion(row) {
@@ -140,7 +144,10 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
   const exclusionReason = denominatorExclusion(row);
   const inDenominator = exclusionReason === null;
   const inNumerator =
-    inDenominator && productScope(row).rule_id !== "reviewed_trainer_kit_mapping_gap" &&
+    inDenominator && ![
+      "reviewed_trainer_kit_mapping_gap",
+      "reviewed_wcd_team_rushdown_mapping_gap",
+    ].includes(productScope(row).rule_id) &&
     ["publish", "delay"].includes(text(row.decision));
   const rowEvidence = evidence(row);
   const normalizedFinish =

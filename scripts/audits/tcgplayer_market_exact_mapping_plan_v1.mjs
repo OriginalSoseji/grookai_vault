@@ -42,6 +42,11 @@ import {
 import {
   TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1,
 } from "../../backend/pricing/tcgplayer_bw11_radiant_collection_product_identity_authority_v1.mjs";
+import {
+  TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1,
+  reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1,
+  uniqueWcdTeamRushdownPrintedNumberV1,
+} from "../../backend/pricing/tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -58,6 +63,7 @@ const REVIEWED_PRODUCT_IDENTITIES = Object.freeze([
   ...TCGPLAYER_PRISM_STAR_ALIAS_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_REVIEWED_ALIAS_WAVE_2_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_BW11_RADIANT_COLLECTION_PRODUCT_IDENTITIES_V1,
+  ...TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1,
 ]);
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,
@@ -308,7 +314,9 @@ async function loadSourceContext(client, sourceRunId, groupedGaps) {
       source_group_name: product.source_group_name,
       printed_number: trainerKitPilotCardV1(gap)
         ? uniqueTrainerKitPrintedNumberV1(product.extended_data)
-        : numberField(product.extended_data),
+        : reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1(gap.source_product_id)
+          ? uniqueWcdTeamRushdownPrintedNumberV1(product.extended_data)
+          : numberField(product.extended_data),
       has_printed_number_evidence: Boolean(numberField(product.extended_data)),
       source_product_active: product.source_active === true,
       source_product_catalog_status: product.catalog_metadata_status,
