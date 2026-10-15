@@ -44,10 +44,19 @@ export function CustomProductView({
       seller: { "@type": "Organization", name: data.store.display_name },
     } : undefined,
   };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: data.store.display_name, item: `${getSiteOrigin()}${base}` },
+      { "@type": "ListItem", position: 2, name: p.title || "Collectible", item: productUrl },
+    ],
+  };
 
   return (
     <div className="gv-page-container gv-page-rhythm py-5 sm:py-8">
       {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(productJsonLd) }} /> : null}
+      {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(breadcrumbJsonLd) }} /> : null}
       <nav aria-label="Store navigation" className="mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
         <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="transition hover:text-slate-950 dark:hover:text-white">{data.store.display_name}</Link>
         <span aria-hidden="true">/</span>
