@@ -248,6 +248,7 @@ export default async function VaultInstancePage(
               marketReferenceProvenanceId={detail.marketReferenceProvenanceId}
               cardPrintId={detail.cardPrintId}
               cardPrintingId={detail.cardPrintingId}
+              cardGvId={detail.gvId}
               printingGvId={detail.marketReferencePrintingGvId}
             />
           </div>

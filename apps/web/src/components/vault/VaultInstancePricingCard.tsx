@@ -27,6 +27,7 @@ type VaultInstancePricingCardProps = {
   marketReferenceProvenanceId: string | null;
   cardPrintId: string;
   cardPrintingId: string | null;
+  cardGvId: string;
   printingGvId: string | null;
 };
 
@@ -63,6 +64,7 @@ export default function VaultInstancePricingCard({
   marketReferenceProvenanceId,
   cardPrintId,
   cardPrintingId,
+  cardGvId,
   printingGvId,
 }: VaultInstancePricingCardProps) {
   const router = useRouter();
@@ -212,9 +214,9 @@ export default function VaultInstancePricingCard({
               <p className="text-sm leading-6 text-slate-600">
                 {marketReferenceAvailability?.description}
               </p>
-              {marketReferenceAvailability?.code === "missing_printing" && printingGvId ? (
+              {marketReferenceAvailability?.code === "missing_printing" && cardGvId ? (
                 <Link
-                  href={`/card/${encodeURIComponent(printingGvId)}`}
+                  href={`/card/${encodeURIComponent(cardGvId)}`}
                   className="inline-flex min-h-10 items-center rounded-[0.8rem] border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:text-slate-950"
                 >
                   {marketReferenceAvailability.actionLabel}
