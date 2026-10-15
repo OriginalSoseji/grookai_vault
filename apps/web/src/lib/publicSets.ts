@@ -298,6 +298,18 @@ function getCatalogSetType(row: Pick<SetRow, "set_role" | "catalog_set_type">) {
   return typeof value === "string" && value.trim() ? value.trim().toLowerCase() : undefined;
 }
 
+function getSetLevelHeroImage(row: Pick<SetRow, "hero_image_url" | "hero_image_source">) {
+  const url = row.hero_image_url?.trim();
+  const source = row.hero_image_source?.trim().toLowerCase();
+  if (!url || !source) return undefined;
+
+  // Set browsing should show set/package artwork, never a representative card.
+  // Keep this allowlist narrow so an unlabelled or card-level URL cannot leak
+  // back into the gallery as a set cover.
+  const isSetArtwork = /^(?:(?:official[_-])?(?:package|set)(?:[_-](?:cover|image|art|logo))?|sealed[_-]?product(?:[_-](?:cover|image|art))?)$/.test(source);
+  return isSetArtwork ? url : undefined;
+}
+
 function mapSetRowToSummary(
   row: SetRow,
   canonicalCardCount: number,
@@ -313,6 +325,8 @@ function mapSetRowToSummary(
     printedCode: row.printed_set_abbrev,
   });
   const displayName = presentation.name;
+  const rowHeroImage = getSetLevelHeroImage(row);
+  const heroImageUrl = rowHeroImage || presentation.package_cover_url;
 
   return {
     game_code: row.game?.trim().toLowerCase() || "pokemon",
@@ -327,8 +341,8 @@ function mapSetRowToSummary(
     release_year: getReleaseYear(row.release_date),
     card_count: canonicalCardCount + getBaseSetPrintRunLaneCardCountAdjustment(code),
     card_count_is_exact: cardCountIsExact,
-    hero_image_url: row.hero_image_url?.trim() || presentation.package_cover_url || presentation.representative_cover_url,
-    hero_image_source: row.hero_image_source?.trim() || (presentation.package_cover_url ? "official_package" : presentation.representative_cover_url ? "representative_card" : undefined),
+    hero_image_url: heroImageUrl,
+    hero_image_source: rowHeroImage ? row.hero_image_source?.trim() : (presentation.package_cover_url ? "official_package" : undefined),
     catalog_set_type: getCatalogSetType(row),
     normalized_code: normalizeSetCode(code),
     normalized_name: normalizeSetQuery(displayName),

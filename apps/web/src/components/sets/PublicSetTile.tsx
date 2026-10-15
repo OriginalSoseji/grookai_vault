@@ -30,8 +30,8 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
         className="gv-collector-set-accent absolute inset-x-0 top-0 z-20 h-[3px]"
         style={{ backgroundColor: accentColor }}
       />
-      {/* The summary has only the governed hero (card, package, or legacy logo),
-          not verified card candidates. Keep selection unchanged; never infer a hit card. */}
+      {/* Set tiles use only set/package artwork. A missing set image falls back
+          to the governed set logo below; never infer a representative card. */}
       <div className="gv-collector-set-cover relative z-10 h-[220px] overflow-hidden border-b border-slate-200/70 bg-slate-100 sm:h-[250px] dark:border-white/[0.08] dark:bg-slate-900">
         <PublicCardImage
           src={setInfo.hero_image_url}

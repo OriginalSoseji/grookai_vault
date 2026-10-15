@@ -17,6 +17,14 @@ const TRAINER_GALLERY_PARENT_SET_MAP = new Map<string, string>([
   ["swsh11tg", "swsh11"],
   ["swsh12tg", "swsh12"],
 ]);
+// TCGdex has verified set-level marks for the newest releases before the
+// local logo bundle is updated. These are logos, not representative cards.
+const VERIFIED_EXTERNAL_SET_LOGO_URL_MAP = new Map<string, string>([
+  ["30c", "https://assets.tcgdex.net/en/me/30th/logo.png"],
+  ["30c-classic", "https://assets.tcgdex.net/en/me/30th/logo.png"],
+  ["me02.5", "https://assets.tcgdex.net/en/me/me02.5/logo.png"],
+  ["me05", "https://assets.tcgdex.net/en/me/me05/logo.png"],
+]);
 
 const getAvailableSetLogoCodes = cache(async () => {
   try {
@@ -76,6 +84,10 @@ export async function getSetLogoAssetPathMap(setCodes: string[]) {
       : resolveFallbackSetCode(normalizedCode, availableCodes);
 
     if (!resolvedCode) {
+      const externalLogoUrl = VERIFIED_EXTERNAL_SET_LOGO_URL_MAP.get(normalizedCode);
+      if (externalLogoUrl) {
+        pathMap.set(normalizedCode, externalLogoUrl);
+      }
       continue;
     }
 
