@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Black and White Promos exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_145_BWP_ALIAS_MAPPING_BATCH.md`.
+The active bounded batch contains exactly two group 1407 products: Druddigon
+BW80 and Rayquaza-EX BW47. Each has exact frozen source identity, one unique
+standard parent, and a Master Index verified Holo printing. The production
+sequence is truth-review insertion, independent readback, exact mapping package,
+mapping insertion, independent readback, then full-scope pricing shadow and
+coverage verification. Ten Victory Cup products remain held because several
+year, season, and placement variants collide on BW29, BW30, and BW31.
+
 ## Local Ollama pricing triage — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md`.
