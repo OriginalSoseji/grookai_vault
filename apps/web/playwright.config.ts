@@ -28,6 +28,7 @@ export default defineConfig({
   testMatch: [
     "mobile.visual.spec.ts",
     "mobile.a11y.spec.ts",
+    "storefront.a11y.spec.ts",
     "gvvi-vendor-qr.responsive.spec.ts",
     "release-convergence.spec.ts",
   ],
