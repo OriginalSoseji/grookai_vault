@@ -979,6 +979,7 @@ function VaultExactCopy() {
             marketReferenceProvenanceId="fixture-price-proof"
             cardPrintId="fixture-card-print"
             cardPrintingId="fixture-printing"
+            cardGvId="GV-FIXTURE-PIKACHU"
             printingGvId="GV-FIXTURE-PIKACHU"
           />
         </div>
