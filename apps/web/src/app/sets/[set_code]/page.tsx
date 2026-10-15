@@ -169,7 +169,15 @@ async function SetPageContent({
               </div>
             ) : setLogoPath ? (
               <div className="gv-set-logo-stage flex max-w-[28rem] items-center justify-center px-6 py-5">
-                <Image src={setLogoPath} alt="" width={440} height={150} className="max-h-24 w-auto object-contain" priority />
+                <Image
+                  src={setLogoPath}
+                  alt=""
+                  width={440}
+                  height={150}
+                  className="max-h-24 w-auto object-contain"
+                  priority
+                  unoptimized={setLogoPath.startsWith("http")}
+                />
               </div>
             ) : null}
 
