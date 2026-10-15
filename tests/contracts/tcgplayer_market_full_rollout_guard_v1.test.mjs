@@ -86,4 +86,6 @@ test("shadow coverage and current-publication scope have separate gates", () => 
   assert.match(COVERAGE, /args\.statementTimeoutMs > 900_000/);
   assert.match(COVERAGE, /statement_timeout: args\.statementTimeoutMs/);
   assert.match(COVERAGE, /query_timeout: args\.statementTimeoutMs/);
+  assert.match(COVERAGE, /set_config\('statement_timeout', \$1, false\)/);
+  assert.match(COVERAGE, /database statement timeout was not applied/);
 });

@@ -214,6 +214,17 @@ async function main() {
   });
   await client.connect();
   try {
+    const timeoutSetting = (
+      await client.query(
+        `select set_config('statement_timeout', $1, false),
+                extract(epoch from current_setting('statement_timeout')::interval) * 1000
+                  as statement_timeout_ms`,
+        [`${args.statementTimeoutMs}ms`],
+      )
+    ).rows[0]?.statement_timeout_ms;
+    if (Number(timeoutSetting) !== args.statementTimeoutMs) {
+      throw new Error("database statement timeout was not applied");
+    }
     const run = (
       await client.query(
         `select *
