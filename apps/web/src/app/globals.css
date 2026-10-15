@@ -1699,6 +1699,86 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   box-shadow: none;
 }
 
+.gv-market-page {
+  min-width: 0;
+}
+
+.gv-market-header,
+.gv-market-empty,
+.gv-market-chart,
+.gv-market-insight-card {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-base);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-market-header {
+  background: var(--gv-surface-container-low);
+}
+
+.gv-market-chart {
+  box-shadow: var(--gv-shadow-md);
+}
+
+.gv-market-chart a {
+  border-radius: 999px;
+}
+
+.gv-market-disclosure {
+  border-color: var(--gv-border-soft);
+}
+
+html.gv-dark .gv-market-page .text-slate-950,
+html.gv-dark .gv-market-page .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-market-page .text-slate-700,
+html.gv-dark .gv-market-page .text-slate-600,
+html.gv-dark .gv-market-page .text-slate-500,
+html.gv-dark .gv-market-page .text-slate-400 {
+  color: var(--gv-text-secondary);
+}
+
+html.gv-dark .gv-market-page .gv-market-header,
+html.gv-dark .gv-market-page .gv-market-empty,
+html.gv-dark .gv-market-page .gv-market-chart,
+html.gv-dark .gv-market-page .gv-market-insight-card {
+  border-color: rgba(226, 232, 240, 0.12);
+  background: var(--gv-surface-base);
+}
+
+html.gv-dark .gv-market-page .gv-market-chart a.border-slate-200,
+html.gv-dark .gv-market-page .gv-market-chart a.bg-white {
+  border-color: rgba(226, 232, 240, 0.14);
+  background: var(--gv-surface-container);
+  color: var(--gv-text-secondary);
+}
+
+html.gv-dark .gv-market-page .gv-market-chart a.border-slate-200:hover,
+html.gv-dark .gv-market-page .gv-market-chart a.bg-white:hover {
+  background: var(--gv-surface-container-high);
+  color: var(--gv-text-primary);
+}
+
+@media (max-width: 639px) {
+  .gv-market-page {
+    gap: 1.25rem;
+  }
+
+  .gv-market-header,
+  .gv-market-empty,
+  .gv-market-chart,
+  .gv-market-insight-card {
+    border-radius: 1.25rem;
+    padding: 1.125rem;
+  }
+
+  .gv-market-header h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+}
+
 html.gv-dark .gv-public-profile-page .text-slate-950,
 html.gv-dark .gv-public-profile-page .text-slate-900 {
   color: var(--gv-text-primary);

@@ -62,7 +62,7 @@ function MarketInsightCard({
   children: React.ReactNode;
 }) {
   return (
-    <section className="space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="gv-market-insight-card space-y-4 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
       <div className="space-y-1">
         <h2 className="text-xl font-semibold tracking-tight text-slate-950">{title}</h2>
         {subtitle ? <p className="text-sm text-slate-600">{subtitle}</p> : null}
@@ -209,8 +209,8 @@ export default async function MarketAnalysisPage(
   const freshnessLabel = formatTimeAgo(model.heroUpdatedAt);
 
   return (
-    <div className="mx-auto max-w-5xl space-y-8 py-8">
-      <section className="space-y-3 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="gv-market-page mx-auto max-w-5xl space-y-8 py-5 sm:py-9">
+      <section className="gv-market-header space-y-3 rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
         <Link
           href={`/card/${encodeURIComponent(card.gv_id)}`}
           className="inline-flex text-sm font-medium text-slate-500 transition hover:text-slate-950"
@@ -225,7 +225,7 @@ export default async function MarketAnalysisPage(
       </section>
 
       {model.uiFlags.showEmptyState ? (
-        <section className="rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="gv-market-empty rounded-[20px] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="space-y-2">
             <h2 className="text-xl font-semibold tracking-tight text-slate-950">Market Analysis</h2>
             <p className="text-sm text-slate-600">No market insights are available for this card yet.</p>
@@ -234,7 +234,7 @@ export default async function MarketAnalysisPage(
       ) : (
         <>
           {model.uiFlags.showChart ? (
-            <section className="space-y-6 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
+            <section className="gv-market-chart space-y-6 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -316,7 +316,7 @@ export default async function MarketAnalysisPage(
           ) : null}
 
           {model.uiFlags.showEmptyHistory ? (
-            <section className="space-y-5 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
+            <section className="gv-market-chart gv-market-chart-empty space-y-5 rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -458,7 +458,7 @@ export default async function MarketAnalysisPage(
       )}
 
       {model.uiFlags.showDisclosure ? (
-        <section className="mt-4 border-t border-slate-200 pt-6 text-sm text-slate-500">
+        <section className="gv-market-disclosure mt-4 border-t border-slate-200 pt-6 text-sm text-slate-500">
           <h2 className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
             Pricing &amp; Data Sources
           </h2>
