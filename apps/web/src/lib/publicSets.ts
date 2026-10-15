@@ -433,15 +433,28 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   }
 
   const supabase = await createServerSupabase();
-  let query = supabase
-    .from("sets")
-    .select(PUBLIC_SET_DETAIL_SELECT)
-    .ilike("code", escapePostgrestLikePattern(normalizedCode));
   const normalizedGameCode = gameCode?.trim().toLowerCase();
-  if (normalizedGameCode) {
-    query = query.eq("game", normalizedGameCode);
+  // Route codes are normalized before lookup, so use the indexed equality path
+  // first. This avoids a broad ILIKE scan timing out on a large catalog.
+  const buildCodeQuery = (caseInsensitive: boolean) => {
+    let query = supabase
+      .from("sets")
+      .select(PUBLIC_SET_DETAIL_SELECT);
+    query = caseInsensitive
+      ? query.ilike("code", escapePostgrestLikePattern(normalizedCode))
+      : query.eq("code", normalizedCode);
+    if (normalizedGameCode) {
+      query = query.eq("game", normalizedGameCode);
+    }
+    return query;
+  };
+
+  let { data, error } = await buildCodeQuery(false);
+  // Preserve compatibility with legacy mixed-case set rows, but only pay for
+  // the slower case-insensitive lookup when the indexed route misses.
+  if (!error && (data ?? []).length === 0) {
+    ({ data, error } = await buildCodeQuery(true));
   }
-  const { data, error } = await query;
 
   if (error) {
     throw new Error(error.message);
