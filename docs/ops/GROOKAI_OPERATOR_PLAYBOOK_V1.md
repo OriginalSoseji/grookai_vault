@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Residual reviewed alias batch — October 15, 2026
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
+The next bounded pricing repair contains 24 exact TCGPlayer products, 24 distinct
+parents, and 30 governed printings across 11 English Pokémon sets. Use only the
+checked-in product registry, the 30-row truth-review executor, the filtered
+mapping authority, and the generic bounded exact-mapping executor. Preserve all
+documented collision and missing-evidence holds. Mapping and pricing publication
+remain separate gates.
+
 ## Pokémon energy-name alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.

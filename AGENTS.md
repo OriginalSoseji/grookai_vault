@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Residual reviewed alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
+The next bounded pricing repair freezes exactly 24 TCGPlayer products across 11
+English Pokémon sets, covering 30 missing-price observations. Every source title,
+printed coordinate, canonical parent, and source-listed finish is product-specific.
+Production order is 30 verified-visible truth reviews, independent readback,
+11-set mapping authority, 24 mappings, independent readback, then a later full
+pricing shadow and publication. Preserve the explicit Victory Cup, duplicate
+parent, multiple-child, missing-child, and incomplete-evidence holds.
+
 ## Energy-name exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.
