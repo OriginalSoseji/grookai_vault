@@ -918,6 +918,79 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   display: block;
 }
 
+.gv-collector-mobile-menu {
+  position: relative;
+}
+
+.gv-collector-mobile-menu-summary {
+  display: inline-flex;
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 999px;
+  color: var(--gv-text-primary);
+  background: var(--gv-surface-container-low);
+  cursor: pointer;
+  list-style: none;
+  transition: background-color var(--gv-transition-fast), border-color var(--gv-transition-fast), transform var(--gv-transition-fast);
+}
+
+.gv-collector-mobile-menu-summary::-webkit-details-marker {
+  display: none;
+}
+
+.gv-collector-mobile-menu-summary:hover,
+.gv-collector-mobile-menu[open] > .gv-collector-mobile-menu-summary {
+  border-color: var(--gv-text-tertiary);
+  background: var(--gv-surface-container);
+}
+
+.gv-collector-mobile-menu-summary:focus-visible {
+  outline: 2px solid var(--gv-primary);
+  outline-offset: 3px;
+}
+
+.gv-collector-mobile-tools {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  right: 0;
+  z-index: 60;
+  display: grid;
+  min-width: min(15rem, calc(100vw - 2.5rem));
+  gap: 0.2rem;
+  padding: 0.5rem;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 1rem;
+  background: var(--gv-surface-base);
+  box-shadow: 0 22px 50px -30px rgba(15, 23, 42, 0.72);
+}
+
+.gv-collector-mobile-tools a {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.7rem;
+  padding: 0.65rem 0.75rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.88rem;
+  font-weight: 650;
+  transition: background-color var(--gv-transition-fast), color var(--gv-transition-fast);
+}
+
+.gv-collector-mobile-tools a:hover,
+.gv-collector-mobile-tools a:focus-visible {
+  background: var(--gv-surface-container);
+  color: var(--gv-text-primary);
+}
+
+.gv-collector-mobile-tools a[aria-current="page"] {
+  background: var(--gv-primary-soft);
+  color: var(--gv-primary);
+}
+
 .gv-mobile-pushed-route-header {
   position: sticky;
   top: 0;
