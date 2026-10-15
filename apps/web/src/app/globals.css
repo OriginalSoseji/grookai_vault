@@ -1490,6 +1490,118 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   }
 }
 
+.gv-compare-page {
+  --gv-compare-accent: #b7791f;
+}
+
+.gv-compare-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--gv-text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.gv-compare-context-note {
+  margin-left: auto;
+  color: var(--gv-compare-accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gv-compare-controls {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+}
+
+.gv-compare-card {
+  min-width: 0;
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container);
+  box-shadow: 0 18px 40px -32px rgba(15, 23, 42, 0.72);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.gv-compare-card:hover,
+.gv-compare-card:focus-within {
+  border-color: color-mix(in srgb, var(--gv-compare-accent) 42%, var(--gv-border-soft));
+  box-shadow: 0 22px 48px -32px rgba(15, 23, 42, 0.78);
+  transform: translateY(-2px);
+}
+
+.gv-compare-card-header {
+  min-width: 0;
+}
+
+.gv-compare-card-actions {
+  flex-shrink: 0;
+}
+
+.gv-compare-breakdown table {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 639px) {
+  .gv-compare-page {
+    gap: 1.25rem;
+    padding-block: 0.75rem 1.5rem;
+  }
+
+  .gv-compare-header {
+    border-radius: 1rem;
+  }
+
+  .gv-compare-context-note {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+
+  .gv-compare-controls {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .gv-compare-controls > div:first-child,
+  .gv-compare-controls > div:last-child {
+    width: 100%;
+  }
+
+  .gv-compare-controls > div:first-child {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .gv-compare-controls > div:first-child > div:first-child {
+    justify-content: space-between;
+  }
+
+  .gv-compare-controls > div:last-child > * {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+
+  .gv-compare-card-header {
+    flex-direction: column;
+  }
+
+  .gv-compare-card-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .gv-compare-card-actions > * {
+    flex: 1 1 0;
+    justify-content: center;
+  }
+
+  .gv-compare-breakdown > div:first-child {
+    padding: 1rem;
+  }
+}
+
 .gv-vault-overview {
   border-bottom: 1px solid var(--gv-border-soft);
   padding-block: 1.5rem 2rem;
