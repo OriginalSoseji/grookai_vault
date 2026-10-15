@@ -1,5 +1,38 @@
 # Grookai Agent Entry Point
 
+## Residual reviewed alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
+The next bounded pricing repair freezes exactly 24 TCGPlayer products across 11
+English Pokémon sets, covering 30 missing-price observations. Every source title,
+printed coordinate, canonical parent, and source-listed finish is product-specific.
+Production order is 30 verified-visible truth reviews, independent readback,
+11-set mapping authority, 24 mappings, independent readback, then a later full
+pricing shadow and publication. Preserve the explicit Victory Cup, duplicate
+parent, multiple-child, missing-child, and incomplete-evidence holds.
+
+## Energy-name exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.
+The active bounded batch contains exactly seven TCGPlayer products across Ultra
+Prism and Darkness Ablaze, covering 12 missing-price observations and exact
+Normal, Holo, and Reverse children. Freeze each abbreviated source name to its
+exact numbered canonical energy parent. Production order is 12 truth reviews,
+independent readback, two-set mapping authority, seven mappings, independent
+readback, then a later full pricing shadow and publication. Do not broaden this
+into a global energy-name or abbreviation normalization rule.
+
+## Delta-species exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_148_DELTA_SPECIES_ALIAS_BATCH.md`.
+The active bounded batch contains exactly 12 products across EX Holon Phantoms,
+EX Dragon Frontiers, and POP Series 4, covering 21 missing-price observations
+and 21 exact Normal/Holo/Reverse children. Freeze every product and symbolic
+canonical name individually. Production order is 21 truth reviews, independent
+readback, three-set mapping authority, 12 mappings, independent readback, then
+a later full pricing shadow and publication. Do not broaden this into a global
+Delta Species, gender-symbol, forme, or Star normalization rule.
+
 ## Nintendo Target promo exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_147_NINTENDO_TARGET_PROMO_ALIAS_BATCH.md`.

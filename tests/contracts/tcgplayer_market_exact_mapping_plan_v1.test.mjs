@@ -391,7 +391,7 @@ test("unique group set consensus requires exact name and number", () => {
 test("name aliases remain blocked while preserving exact-number review targets", () => {
   const result = planTcgplayerExactMappingCandidateV1({
     source: source({
-      source_product_id: 83592,
+      source_product_id: 99999999,
       source_product_name: "Arceus (AR1)",
       source_group_id: 1391,
       source_group_name: "Arceus",
