@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import SignOutButton from "@/components/account/SignOutButton";
 import { PublicProfileSettingsForm } from "@/components/account/PublicProfileSettingsForm";
 import { WallSectionsSettingsCard } from "@/components/account/WallSectionsSettingsCard";
@@ -32,6 +33,35 @@ type AccountPageProps = {
     tab?: string | string[];
   }>;
 };
+
+const ACCOUNT_LINK_GROUPS = [
+  {
+    label: "Collection",
+    links: [
+      { href: "/vault", label: "View Vault", primary: true },
+      { href: "/wall", label: "View Wall", primary: false },
+      { href: "/following", label: "Following", primary: false },
+      { href: "/submit", label: "Submit missing card", primary: false },
+    ],
+  },
+  {
+    label: "Store",
+    links: [
+      { href: "/account/store", label: "Manage store", primary: true },
+      { href: "/account/orders", label: "Your purchases", primary: false },
+      { href: "/account/store/orders", label: "Store orders", primary: false },
+    ],
+  },
+  {
+    label: "Community",
+    links: [
+      { href: "/network", label: "Browse network", primary: false },
+      { href: "/network/inbox", label: "Messages", primary: false },
+      { href: "/support", label: "Support", primary: false },
+      { href: "/privacy", label: "Privacy", primary: false },
+    ],
+  },
+] as const;
 
 function cx(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
@@ -118,84 +148,57 @@ export default async function AccountPage(props: AccountPageProps) {
   }
 
   return (
-    <div className="space-y-8 py-8">
-      <section className="border-b border-slate-200 pb-6 dark:border-white/[0.08]">
-        <div className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Profile</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your Grookai profile</h1>
+    <div className="gv-account-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
+      <section className="gv-account-hero border-b border-slate-200 pb-6 dark:border-white/[0.08]">
+        <div className="flex flex-wrap items-start justify-between gap-5">
+          <div className="min-w-0 space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Account</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your Grookai profile</h1>
+            <p className="max-w-2xl text-base leading-7 text-slate-600">
+              Manage your Grookai identity, public page, and account settings here.
+            </p>
+          </div>
           <SignOutButton />
-          <p className="max-w-2xl text-base leading-7 text-slate-600">
-            Manage your Grookai identity, public page, and account settings here.
-          </p>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
+      <section className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="gv-account-card rounded-lg border border-slate-200 bg-white p-6">
           <h2 className="text-xl font-semibold tracking-tight text-slate-950">Signed in</h2>
           <p className="mt-3 text-sm text-slate-600">Email</p>
           <p className="mt-1 text-base font-medium text-slate-900">{user.email ?? "Email unavailable"}</p>
         </div>
 
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Quick Links</h2>
-          <div className="mt-4 flex flex-col gap-3">
-            <Link href="/account/orders" className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700">Your purchases</Link>
-            <Link href="/account/store/orders" className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700">Store orders</Link>
-            <Link href="/account/store" className="rounded-full bg-emerald-800 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-emerald-900">Manage store</Link>
-            <Link
-              href="/vault"
-              className="rounded-full bg-slate-950 px-5 py-2.5 text-center text-sm font-medium text-white transition hover:bg-slate-800"
-            >
-              View Vault
-            </Link>
-            <Link
-              href="/wall"
-              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
-            >
-              View Wall
-            </Link>
-            <Link
-              href="/network"
-              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
-            >
-              Browse Network
-            </Link>
-            <Link
-              href="/network/inbox"
-              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
-            >
-              Messages
-            </Link>
-            <Link
-              href="/submit"
-              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
-            >
-              Submit Missing Card
-            </Link>
-            <Link
-              href="/support"
-              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
-            >
-              Support
-            </Link>
-            <Link
-              href="/privacy"
-              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
-            >
-              Privacy
-            </Link>
-            <Link
-              href="/following"
-              className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:bg-white"
-            >
-              Following
-            </Link>
+        <div className="gv-account-card gv-account-links-card rounded-lg border border-slate-200 bg-slate-50 p-6">
+          <div className="space-y-1">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Quick links</h2>
+            <p className="text-sm leading-6 text-slate-600">Jump back into the parts of Grookai you use most.</p>
+          </div>
+          <div className="gv-account-links-grid mt-5">
+            {ACCOUNT_LINK_GROUPS.map((group) => (
+              <section key={group.label} className="gv-account-link-group" aria-labelledby={`account-links-${group.label.toLowerCase()}`}>
+                <h3 id={`account-links-${group.label.toLowerCase()}`} className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                  {group.label}
+                </h3>
+                <div className="mt-2 space-y-2">
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={`gv-account-link ${link.primary ? "gv-account-link-primary" : ""}`}
+                    >
+                      <span>{link.label}</span>
+                      <ArrowUpRight size={16} aria-hidden="true" />
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-slate-200 py-2 dark:border-white/[0.08]">
+      <section className="gv-account-tabs border-y border-slate-200 py-2 dark:border-white/[0.08]">
         <nav aria-label="Account sections" className="flex flex-wrap gap-2">
           {tabOptions.map((option) => {
             const active = option.value === activeTab;
@@ -229,7 +232,7 @@ export default async function AccountPage(props: AccountPageProps) {
 
           <WallSectionsSettingsCard initialModel={wallSectionsModel} publicProfileSlug={publicProfileSlug} />
 
-          <section className="rounded-lg border border-slate-200 bg-white p-6">
+          <section className="gv-account-card rounded-lg border border-slate-200 bg-white p-6">
             <div className="space-y-4">
               <div className="space-y-1">
                 <h2 className="text-xl font-semibold tracking-tight text-slate-950">Community</h2>
@@ -264,7 +267,7 @@ export default async function AccountPage(props: AccountPageProps) {
             </div>
           </section>
 
-          <section className="rounded-lg border border-slate-200 bg-white p-6">
+          <section className="gv-account-card rounded-lg border border-slate-200 bg-white p-6">
             <div className="space-y-4">
               <div className="space-y-1">
                 <h2 className="text-xl font-semibold tracking-tight text-slate-950">Collection Tools</h2>
@@ -284,7 +287,7 @@ export default async function AccountPage(props: AccountPageProps) {
           </section>
         </>
       ) : (
-        <section className="rounded-lg border border-slate-200 bg-white p-6">
+        <section className="gv-account-card rounded-lg border border-slate-200 bg-white p-6">
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
               Vendor Tools
