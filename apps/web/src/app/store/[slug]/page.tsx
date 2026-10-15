@@ -9,10 +9,36 @@ import { StorefrontView } from "@/components/stores/StorefrontView";
 import { StoreEntry } from "@/components/stores/StoreEntry";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata: Metadata = {
-  title: "Store | Grookai Vault",
-  robots: { index: false, follow: false },
-};
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const search = await searchParams;
+  const isPreview = search.preview === "1";
+  if (isPreview) {
+    return { title: "Store preview | Grookai Vault", robots: { index: false, follow: false } };
+  }
+
+  const data = await readStorefront(slug, "web", {});
+  if (!data) return { title: "Store not found | Grookai Vault", robots: { index: false, follow: false } };
+
+  const title = `${data.store.display_name} · Grookai Vault Store`;
+  const description = data.store.description?.trim() || `Browse collectibles from ${data.store.display_name} on Grookai Vault.`;
+  const canonical = `/store/${encodeURIComponent(data.store.slug)}`;
+  return {
+    title,
+    description,
+    robots: { index: true, follow: true },
+    alternates: { canonical },
+    openGraph: { title, description, type: "website", url: canonical },
+    twitter: { card: "summary", title, description },
+  };
+}
 export default async function StorePage({
   params,
   searchParams,
