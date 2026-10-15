@@ -37,7 +37,7 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
           src={setInfo.hero_image_url}
           fallbackSrc={logoPath}
           alt={`${setInfo.name} cover art`}
-          imageClassName="gv-collector-set-cover-image h-full w-full rotate-[7deg] object-contain p-6 drop-shadow-md"
+          imageClassName="gv-collector-set-cover-image h-full w-full object-contain p-6 drop-shadow-md"
           fallbackClassName="gv-collector-set-cover-empty flex h-full flex-col items-center justify-center gap-2 px-6 text-center text-sm text-slate-600 dark:text-slate-400"
           fallbackLabel={
             <>

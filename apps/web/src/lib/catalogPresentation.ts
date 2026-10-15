@@ -14,6 +14,14 @@ type PresentationEvidence = {
 const entries: Readonly<Record<string, PresentationEvidence>> = manifest.entries;
 const opaqueCode = /(?:jpn-)?product-[0-9a-f]{16}|(?:artofpkm|tcgcollector):/i;
 
+// ME05 was temporarily pointed at a warehouse object carrying the Black Bolt
+// image even though the card identity is Pitch Black 094. Keep the public
+// presentation on the verified TCGdex asset until the canonical warehouse
+// pointer is repaired; never show the mismatched image as set artwork.
+const verifiedRepresentativeCoverUrls: Readonly<Record<string, string>> = {
+  me05: "https://assets.tcgdex.net/en/me/me05/094/high.webp",
+};
+
 export function getCatalogSetPresentation(input: {
   id?: string | null;
   code: string;
@@ -39,7 +47,7 @@ export function getCatalogSetPresentation(input: {
     // Authorization remains in the existing canonical image endpoint. The
     // snapshot cannot grant access or replace live identity/image pointers.
     representative_cover_url: input.id && evidence?.cover_card_gv_id
-      ? `/api/canon/cards/${encodeURIComponent(evidence.cover_card_gv_id)}/image` : undefined,
+      ? verifiedRepresentativeCoverUrls[code] ?? `/api/canon/cards/${encodeURIComponent(evidence.cover_card_gv_id)}/image` : undefined,
   };
 }
 

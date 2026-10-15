@@ -66,7 +66,8 @@ test("set renders one contained real cover, never a logo or blurred duplicate", 
   const html = render(PublicSetTile, { setInfo, compareCards: [], logoPath: "/logo.png", priority: true });
   assert.equal((html.match(/<img /g) ?? []).length, 1);
   assert.ok(html.includes(`src="${coverUrl}"`));
-  assert.match(html, /gv-collector-set-cover-image[^\"]*rotate-\[7deg\][^\"]*object-contain[^\"]*p-6/);
+  assert.match(html, /gv-collector-set-cover-image[^\"]*object-contain[^\"]*p-6/);
+  assert.doesNotMatch(html, /gv-collector-set-cover-image[^\"]*rotate-/);
   assert.match(html, /fetchPriority="high"/);
   assert.doesNotMatch(html, /blur|watermark|logo\.png|object-cover/);
   assert.match(html, /2026.*42 cards/);
