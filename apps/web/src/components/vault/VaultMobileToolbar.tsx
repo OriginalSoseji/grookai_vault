@@ -26,7 +26,7 @@ export function VaultMobileToolbar({
   onModeChange,
 }: VaultMobileToolbarProps) {
   return (
-    <SearchToolbar surface="card" className="space-y-3 md:hidden">
+    <SearchToolbar surface="card" className="gv-vault-mobile-toolbar space-y-3 md:hidden">
       <SearchToolbarField label="Search Vault">
         <div className="flex items-center gap-2">
           <SearchToolbarInput

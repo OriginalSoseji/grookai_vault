@@ -85,3 +85,83 @@ html.gv-collector .gv-approved-card-detail .gv-card-section-header h2 { font-siz
   .gv-detail-related-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 14px; }
   html.gv-collector .gv-approved-card-detail .gv-card-lower-section > div > a.group img { height: 220px; }
 }
+
+/* Card detail hierarchy: keep the image, identity, and next action in one readable rhythm. */
+html.gv-collector .gv-card-page .gv-detail-layout {
+  max-width: 1160px;
+  gap: clamp(28px, 5vw, 72px);
+}
+
+html.gv-collector .gv-card-page .gv-detail-art-column {
+  position: sticky;
+  top: 6.5rem;
+}
+
+html.gv-collector .gv-card-page .gv-detail-art-stage {
+  min-height: clamp(34rem, 68vh, 46rem);
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 8%, color-mix(in srgb, var(--gv-primary) 10%, transparent), transparent 18rem),
+    var(--gv-surface-container-low);
+  padding: clamp(20px, 3vw, 36px);
+}
+
+html.gv-collector .gv-card-page .gv-detail-main-image {
+  max-height: min(68vh, 680px);
+  filter: drop-shadow(0 22px 26px rgba(20, 36, 28, 0.18));
+}
+
+html.gv-collector .gv-card-page .gv-detail-copy {
+  gap: 18px;
+}
+
+html.gv-collector .gv-card-page .gv-detail-heading h1 {
+  max-width: 18ch;
+  font-size: clamp(32px, 4vw, 48px);
+  letter-spacing: -0.035em;
+}
+
+html.gv-collector .gv-card-page .gv-detail-tags > span {
+  border-radius: 999px;
+  background: var(--gv-surface-container-low);
+  padding-inline: 9px;
+}
+
+html.gv-collector .gv-card-page .gv-detail-identity-table {
+  margin-top: 8px;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 12px;
+  background: var(--gv-surface-container-low);
+  padding: 14px 16px;
+}
+
+@media(max-width:760px) {
+  html.gv-collector .gv-card-page .gv-detail-art-column {
+    position: static;
+  }
+
+  html.gv-collector .gv-card-page .gv-detail-art-stage {
+    min-height: 22rem;
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  html.gv-collector .gv-card-page .gv-detail-main-image {
+    max-height: 380px;
+  }
+
+  html.gv-collector .gv-card-page .gv-detail-copy {
+    gap: 12px;
+  }
+
+  html.gv-collector .gv-card-page .gv-detail-heading h1 {
+    max-width: none;
+    font-size: clamp(28px, 9vw, 38px);
+  }
+
+  html.gv-collector .gv-card-page .gv-detail-identity-table {
+    border-radius: 10px;
+    padding: 12px;
+  }
+}

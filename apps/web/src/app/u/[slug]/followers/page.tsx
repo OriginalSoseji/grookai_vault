@@ -80,7 +80,7 @@ export default async function PublicFollowersPage(props: { params: Promise<{ slu
       : [];
 
   return (
-    <div className="space-y-8 py-8">
+    <div className="gv-public-network-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
       <PublicCollectorHeader
         displayName={profile.display_name}
         slug={profile.slug}
@@ -106,7 +106,7 @@ export default async function PublicFollowersPage(props: { params: Promise<{ slu
       />
 
       <section className="space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-[1.6rem] border border-slate-200 bg-white px-5 py-4 shadow-sm shadow-slate-200/60">
+        <div className="gv-public-network-heading flex flex-wrap items-center justify-between gap-4 rounded-[1.6rem] border border-slate-200 bg-white px-5 py-4 shadow-sm shadow-slate-200/60">
           <div className="space-y-1">
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Collector relationships</p>
             <h2 className="text-2xl font-semibold tracking-tight text-slate-950">Followers</h2>
@@ -123,7 +123,7 @@ export default async function PublicFollowersPage(props: { params: Promise<{ slu
             body={`No public collectors are following ${profile.display_name} yet.`}
           />
         ) : (
-          <div className="space-y-4">
+          <div className="gv-public-network-list space-y-4" aria-label="Followers">
             {followerCollectors.map((collector) => (
               <CollectorListRow
                 key={collector.userId}

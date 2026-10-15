@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import {
   CollectorCardFacts,
@@ -227,8 +228,8 @@ export default async function WallPage() {
   const feed = await normalizeFeed((data ?? null) as WallFeedRow[] | null, identityByGvId, supabase);
 
   return (
-    <div className="space-y-8 py-8">
-      <header className="flex flex-wrap items-end justify-between gap-4">
+    <div className="gv-wall-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
+      <header className="gv-wall-page-header flex flex-wrap items-end justify-between gap-4">
         <h1 className="gv-display-title">Your Wall</h1>
         <p className="text-sm text-[color:var(--gv-text-secondary)]" aria-label="Activity Window">
           {feed.length} {feed.length === 1 ? "recent item" : "recent items"}
@@ -254,7 +255,7 @@ export default async function WallPage() {
           description="Cards appear here after you add exact copies to your Vault."
         />
       ) : (
-        <section className="space-y-4">
+        <section className="gv-wall-activity-feed space-y-4" aria-label="Recent Wall activity">
           {feed.map((item) => (
             (() => {
               const imagePresentation = resolveCardImagePresentation(item);
@@ -263,10 +264,11 @@ export default async function WallPage() {
               return (
                 <article
                   key={item.id}
-                  className="grid grid-cols-[104px_minmax(0,1fr)] gap-4 border-b border-slate-200/80 py-5 first:pt-0 last:border-b-0 sm:grid-cols-[128px_minmax(0,1fr)] dark:border-white/[0.08]"
+                  className="gv-wall-activity-row gv-pulse-event border-b border-slate-200/80 py-5 first:pt-0 last:border-b-0 dark:border-white/[0.08]"
                   data-wall-activity-row
                 >
-                    <Link href={`/card/${item.gv_id}`} className="relative self-start">
+                  <div className="gv-pulse-event-body">
+                    <Link href={`/card/${item.gv_id}`} className="gv-pulse-art relative">
                       <PublicCardImage
                         src={item.image_url}
                         alt={item.display_name}
@@ -283,7 +285,7 @@ export default async function WallPage() {
                         </div>
                       ) : null}
                     </Link>
-                    <div className="min-w-0 space-y-3">
+                    <div className="gv-pulse-event-content min-w-0 space-y-3">
                       <p className="gv-eyebrow">Added to Vault · {formatTimeAgo(item.created_at)}</p>
                       <CollectorCardFacts
                         title={<Link href={`/card/${item.gv_id}`} className="transition hover:text-slate-700">{displayIdentity.base_name}</Link>}
@@ -291,12 +293,19 @@ export default async function WallPage() {
                         number={item.number}
                         versionLabel={displayIdentity.suffix}
                       />
+                      <div className="gv-pulse-actions" aria-label="Wall card actions">
+                        <Link href={`/card/${item.gv_id}`} className="gv-pulse-action">
+                          <ExternalLink size={17} aria-hidden="true" />
+                          <span>View card</span>
+                        </Link>
+                      </div>
                       <CollectorEvidenceDisclosure label="Activity evidence">
                         <p>Card ID: {item.gv_id}</p>
                         <p>Activity: Added to Vault</p>
                         <p>Recorded {formatTimeAgo(item.created_at)}</p>
                       </CollectorEvidenceDisclosure>
                     </div>
+                  </div>
                 </article>
               );
             })()

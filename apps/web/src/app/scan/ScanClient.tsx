@@ -570,7 +570,13 @@ export function ScanClient() {
             ) : null}
 
             {status !== "requesting" && status !== "live" ? (
-              <label className={styles.photoPicker}>
+              <label
+                className={`${styles.photoPicker} ${
+                  status === "idle" || status === "denied" || status === "unsupported" || status === "error"
+                    ? styles.photoPickerSecondary
+                    : ""
+                }`}
+              >
                 <input
                   type="file"
                   accept="image/*"

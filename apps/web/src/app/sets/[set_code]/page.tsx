@@ -8,7 +8,7 @@ import PublicSetCardGrid from "@/components/PublicSetCardGrid";
 import SetRouteLoading from "./SetRouteLoading";
 import { getSetLogoAssetPathMap } from "@/lib/setLogoAssets";
 import { getPublicSetByCode, getPublicSetCards, getPublicWorldChampionshipDecklist } from "@/lib/publicSets";
-import { getPublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
+import { getPublicSetMasterSetStats, type PublicSetMasterSetStats } from "@/lib/publicSetMasterSetStats";
 import { applyOwnedPrintingCountsToSetCards } from "@/lib/publicSetsOwnership";
 import { enrichPublicSetCardsWithMarketPricingV1 } from "@/lib/pricing/enrichPublicSetCardsWithMarketPricingV1";
 import { getBaseSetPrintRunLaneExplanation } from "@/lib/baseSetPrintRunLanes";
@@ -92,6 +92,91 @@ function buildWorldChampionshipDecklistBlurb(decklist: PublicWorldChampionshipDe
   return `${yearLabel} decks preserve tournament lists from that year's top players. This ${deckLabel} is tracked as a replica list: Grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.${playerLine}`;
 }
 
+function SetProgressPanelFallback({ isSignedIn }: { isSignedIn: boolean }) {
+  return (
+    <div className="gv-set-progress-panel p-5 sm:p-6" aria-busy="true" aria-label="Loading master set progress">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="gv-eyebrow">Master set progress</p>
+          <p className="mt-2 text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50">
+            {isSignedIn ? "…" : "Sign in"}
+          </p>
+        </div>
+        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-slate-500 dark:bg-white/[0.08] dark:text-slate-400">
+          Loading
+        </span>
+      </div>
+      <div className="mt-5 h-2 animate-pulse overflow-hidden rounded-full bg-slate-200/70 dark:bg-white/[0.08]" />
+      <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
+        {isSignedIn ? "Calculating your collection progress…" : "Sign in to compare this set against your vault."}
+      </p>
+      <div className="mt-5 grid grid-cols-3 gap-2" aria-hidden="true">
+        {["Cards", "Options", "Needs finish"].map((label) => (
+          <div key={label} className="gv-dex-mini-stat">
+            <p>—</p>
+            <span>{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+async function SetProgressPanel({
+  statsPromise,
+  isSignedIn,
+}: {
+  statsPromise: Promise<PublicSetMasterSetStats>;
+  isSignedIn: boolean;
+}) {
+  const masterSetStats = await statsPromise;
+  const completionPercent = masterSetStats.completionPercent ?? 0;
+  const missingOptionCount = masterSetStats.missingVariantOptionCount ?? masterSetStats.variantOptionCount;
+
+  return (
+    <div className="gv-set-progress-panel p-5 sm:p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="gv-eyebrow">Master set progress</p>
+          <p className="mt-2 text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50">
+            {isSignedIn ? `${completionPercent}%` : "Sign in"}
+          </p>
+        </div>
+        <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-800 dark:bg-emerald-400/14 dark:text-emerald-200">
+          {isSignedIn && masterSetStats.ownedVariantOptionCount !== null
+            ? `${masterSetStats.ownedVariantOptionCount}/${masterSetStats.variantOptionCount}`
+            : `${masterSetStats.variantOptionCount} options`}
+        </span>
+      </div>
+
+      <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-200/70 dark:bg-white/[0.08]">
+        <div className="h-full rounded-full bg-emerald-500" style={{ width: `${completionPercent}%` }} />
+      </div>
+
+      <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
+        {isSignedIn
+          ? `${missingOptionCount} finish, stamp, or parallel options still open.`
+          : "Sign in to compare this set against your vault."}
+      </p>
+
+      <div className="mt-5 grid grid-cols-3 gap-2">
+        <div className="gv-dex-mini-stat">
+          <p>{masterSetStats.parentPrintCount}</p>
+          <span>Cards</span>
+        </div>
+        <div className="gv-dex-mini-stat">
+          <p>{masterSetStats.variantOptionCount}</p>
+          <span>Options</span>
+        </div>
+        <div className="gv-dex-mini-stat">
+          <p>{masterSetStats.unclassifiedOwnedCount}</p>
+          <span>Needs finish</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 async function SetPageContent({
   params,
   setDetail,
@@ -108,7 +193,7 @@ async function SetPageContent({
   const requestScopedCatalogClient =
     user?.id && setDetail.game_code !== "pokemon" ? supabase : undefined;
 
-  const masterSetStats = await getPublicSetMasterSetStats(
+  const masterSetStatsPromise = getPublicSetMasterSetStats(
     setDetail.code,
     user?.id ?? null,
     requestScopedCatalogClient,
@@ -121,8 +206,6 @@ async function SetPageContent({
       : Promise.resolve(null),
   ]);
   const releaseLabel = formatReleaseDate(setDetail.release_date);
-  const completionPercent = masterSetStats.completionPercent ?? 0;
-  const missingOptionCount = masterSetStats.missingVariantOptionCount ?? masterSetStats.variantOptionCount;
   const isSignedIn = Boolean(user?.id);
   const printRunExplanation = getBaseSetPrintRunLaneExplanation(setDetail.code);
   const initialCardsWithOwnership = await applyOwnedPrintingCountsToSetCards(
@@ -137,7 +220,7 @@ async function SetPageContent({
     : initialCardsWithOwnership;
 
   return (
-    <main className="gv-page-shell gv-mobile-safe-content">
+    <main className="gv-set-detail-page gv-page-shell gv-mobile-safe-content">
       <div className="gv-page-container gv-page-rhythm py-5">
       <TrackPageEvent
         eventName="page_view_set"
@@ -169,7 +252,15 @@ async function SetPageContent({
               </div>
             ) : setLogoPath ? (
               <div className="gv-set-logo-stage flex max-w-[28rem] items-center justify-center px-6 py-5">
-                <Image src={setLogoPath} alt="" width={440} height={150} className="max-h-24 w-auto object-contain" priority />
+                <Image
+                  src={setLogoPath}
+                  alt=""
+                  width={440}
+                  height={150}
+                  className="max-h-24 w-auto object-contain"
+                  priority
+                  unoptimized={setLogoPath.startsWith("http")}
+                />
               </div>
             ) : null}
 
@@ -189,7 +280,7 @@ async function SetPageContent({
               {typeof setDetail.printed_total === "number" ? (
                 <span className="gv-metadata-pill">{setDetail.printed_total} printed cards</span>
               ) : null}
-              <span className="gv-metadata-pill">{masterSetStats.parentPrintCount} card identities</span>
+              <span className="gv-metadata-pill">{setDetail.card_count} card identities</span>
             </div>
 
             {printRunExplanation ? (
@@ -216,46 +307,9 @@ async function SetPageContent({
             ) : null}
           </div>
 
-          <div className="gv-set-progress-panel p-5 sm:p-6">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="gv-eyebrow">Master set progress</p>
-                <p className="mt-2 text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50">
-                  {isSignedIn ? `${completionPercent}%` : "Sign in"}
-                </p>
-              </div>
-              <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-emerald-800 dark:bg-emerald-400/14 dark:text-emerald-200">
-                {isSignedIn && masterSetStats.ownedVariantOptionCount !== null
-                  ? `${masterSetStats.ownedVariantOptionCount}/${masterSetStats.variantOptionCount}`
-                  : `${masterSetStats.variantOptionCount} options`}
-              </span>
-            </div>
-
-            <div className="mt-5 h-2 overflow-hidden rounded-full bg-slate-200/70 dark:bg-white/[0.08]">
-              <div className="h-full rounded-full bg-emerald-500" style={{ width: `${completionPercent}%` }} />
-            </div>
-
-            <p className="mt-3 text-sm font-medium text-slate-500 dark:text-slate-400">
-              {isSignedIn
-                ? `${missingOptionCount} finish, stamp, or parallel options still open.`
-                : "Sign in to compare this set against your vault."}
-            </p>
-
-            <div className="mt-5 grid grid-cols-3 gap-2">
-              <div className="gv-dex-mini-stat">
-                <p>{masterSetStats.parentPrintCount}</p>
-                <span>Cards</span>
-              </div>
-              <div className="gv-dex-mini-stat">
-                <p>{masterSetStats.variantOptionCount}</p>
-                <span>Options</span>
-              </div>
-              <div className="gv-dex-mini-stat">
-                <p>{masterSetStats.unclassifiedOwnedCount}</p>
-                <span>Needs finish</span>
-              </div>
-            </div>
-          </div>
+          <Suspense fallback={<SetProgressPanelFallback isSignedIn={isSignedIn} />}>
+            <SetProgressPanel statsPromise={masterSetStatsPromise} isSignedIn={isSignedIn} />
+          </Suspense>
         </div>
       </section>
 
@@ -334,7 +388,7 @@ async function SetPageContent({
         </section>
       ) : null}
 
-      <section className="space-y-5">
+      <section className="gv-set-checklist-section space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="gv-eyebrow">Set checklist</p>

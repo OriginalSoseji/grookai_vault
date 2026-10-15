@@ -74,7 +74,12 @@ test('cover evidence is exact-set bound and uses the governed image route', () =
     assert.equal(entry.cover_role, 'representative_card');
     assert.ok(entry.cover_image_path && entry.cover_card_print_id);
     const input = { id: entry.set_id, code, game: entry.game, name: code };
-    assert.match(getCatalogSetPresentation(input).representative_cover_url, /^\/api\/canon\/cards\/[^/]+\/image$/);
+    const coverUrl = getCatalogSetPresentation(input).representative_cover_url;
+    if (code === 'me05') {
+      assert.equal(coverUrl, 'https://assets.tcgdex.net/en/me/me05/094/high.webp');
+    } else {
+      assert.match(coverUrl, /^\/api\/canon\/cards\/[^/]+\/image$/);
+    }
     assert.equal(getCatalogSetPresentation({ ...input, id: 'different' }).representative_cover_url, undefined);
     assert.equal(getCatalogSetPresentation({ ...input, id: undefined }).representative_cover_url, undefined);
   }

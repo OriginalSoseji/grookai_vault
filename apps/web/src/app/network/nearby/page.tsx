@@ -4,7 +4,7 @@ import PageIntro from "@/components/layout/PageIntro";
 import PageSection from "@/components/layout/PageSection";
 import SectionHeader from "@/components/layout/SectionHeader";
 import LocalCommunityFeedCard, { getLocalCommunityFeedSourceLabel } from "@/components/network/LocalCommunityFeedCard";
-import NetworkSectionNav from "@/components/network/NetworkSectionNav";
+import NetworkPageLayout from "@/components/network/NetworkPageLayout";
 import { PublicCollectionEmptyState } from "@/components/public/PublicCollectionEmptyState";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { getLocalCommunityFeedRows, type LocalCommunityFeedRow } from "@/lib/network/getLocalCommunityFeedRows";
@@ -55,8 +55,9 @@ export default async function NearbyNetworkPage() {
   const displayRows = feed.status === "ready" ? getDisplayRows(feed.rows) : [];
 
   return (
-    <div className="space-y-8 py-8">
-      <PageSection surface="card" spacing="compact" className="px-5 py-5 sm:px-6">
+    <NetworkPageLayout active="nearby" title="Nearby">
+      <section className="gv-network-nearby space-y-6" aria-label="Nearby collectors">
+        <PageSection surface="card" spacing="compact" className="gv-network-context px-5 py-5 sm:px-6">
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600">
@@ -72,11 +73,7 @@ export default async function NearbyNetworkPage() {
             description="Only public cards from opted-in collectors appear here. Exact location is never shown."
           />
         </div>
-      </PageSection>
-
-      <PageSection surface="subtle" spacing="compact" className="p-2.5">
-        <NetworkSectionNav active="nearby" />
-      </PageSection>
+        </PageSection>
 
       {feed.status === "local_discovery_off" ? (
         <PageSection spacing="compact">
@@ -111,8 +108,9 @@ export default async function NearbyNetworkPage() {
       ) : null}
 
       {feed.status === "ready" ? (
-        <PageSection spacing="compact">
+        <PageSection spacing="compact" className="gv-network-nearby-results">
           <SectionHeader
+            className="gv-network-results-header"
             title="Nearby activity"
             description={
               feed.rows.length > 0
@@ -127,7 +125,7 @@ export default async function NearbyNetworkPage() {
               body="Cards appear here when opted-in local collectors share Wall, Trade, Sell, or Showcase cards."
             />
           ) : (
-            <div className="space-y-4">
+            <div className="gv-network-nearby-list space-y-4">
               {displayRows.map(({ row, sourceLabels, activityCount }) => (
                 <LocalCommunityFeedCard
                   key={`${row.ownerSlug}-${row.gvId}-${row.routeTarget}`}
@@ -140,6 +138,7 @@ export default async function NearbyNetworkPage() {
           )}
         </PageSection>
       ) : null}
-    </div>
+      </section>
+    </NetworkPageLayout>
   );
 }

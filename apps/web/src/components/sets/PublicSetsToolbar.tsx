@@ -165,7 +165,7 @@ export default function PublicSetsToolbar() {
     currentLane !== "all";
 
   return (
-    <form onSubmit={handleSubmit} aria-busy={!ready}>
+    <form onSubmit={handleSubmit} aria-busy={!ready} className="gv-sets-toolbar">
       <fieldset disabled={!ready} className="min-w-0">
       <SearchToolbar surface="none">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end">

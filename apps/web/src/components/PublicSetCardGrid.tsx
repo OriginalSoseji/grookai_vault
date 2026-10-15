@@ -222,7 +222,9 @@ export default function PublicSetCardGrid({
                   </span>
                 </Link>
               }
-              subtitle={<span className="block truncate">{setLabel}</span>}
+              // The set heading already establishes collection context; repeating it on
+              // every card adds noise, especially in the two-column mobile feed.
+              subtitle={undefined}
               badges={
                 badgeLabels.length > 0 || finishLabels.length > 0 ? (
                   <>
@@ -283,11 +285,7 @@ export default function PublicSetCardGrid({
                 ) : null
               }
               footer={
-                <div className="flex items-center justify-between gap-3">
-                  <details className="min-w-0 text-xs">
-                    <summary className="cursor-pointer">Catalog ID</summary>
-                    <span className="block break-all">{card.gv_id}</span>
-                  </details>
+                <div className="flex justify-end">
                   <ShareCardButton gvId={card.gv_id} />
                 </div>
               }

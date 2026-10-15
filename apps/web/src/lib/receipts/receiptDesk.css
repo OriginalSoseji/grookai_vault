@@ -3,3 +3,21 @@
 .rd .rd-file input{width:1px;height:1px;padding:0;border:0;clip-path:inset(50%);overflow:hidden}.rd-grid>*{min-width:0}.rd-item label{min-width:0}
 
 .rd button.rd-primary:hover{background:#124e3a}
+
+/* Keep receipt creation primary and history easy to scan on a busy sales day. */
+.rd-header{border-bottom:1px solid var(--line);padding-bottom:22px}
+.rd-toolbar{justify-content:flex-end}
+.rd-side{position:sticky;top:24px}
+.rd-history{border-color:transparent;background:#f7faf8;padding:11px 12px}
+.rd-history:hover{border-color:var(--line);background:#edf5f0}
+.rd-history:focus-visible{border-color:#a0c7b6}
+.rd-section h2{letter-spacing:-.02em}
+.rd-editor{min-width:0}
+@media(max-width:760px){.rd-side{position:static}.rd-header{padding-bottom:18px}.rd-toolbar{justify-content:flex-start}.rd-history{padding:10px}}
+html.gv-dark .rd{--ink:#edf5ef;--muted:#a6b9ad;--line:#34483c;--green:#8fd6aa}
+html.gv-dark .rd-section,html.gv-dark .rd-side{background:#182820;border-color:var(--line);box-shadow:none}
+html.gv-dark .rd-notice{background:#20382a;border-color:#3c5b48}
+html.gv-dark .rd button,html.gv-dark .rd-file,html.gv-dark .rd input,html.gv-dark .rd select,html.gv-dark .rd textarea{background:#102018;color:var(--ink);border-color:#456252}
+html.gv-dark .rd-history{background:#1e3327;border-color:transparent}
+html.gv-dark .rd-history:hover{background:#294536;border-color:#547665}
+html.gv-dark .rd .rd-primary{background:#8fd6aa;color:#102319;border-color:#8fd6aa}

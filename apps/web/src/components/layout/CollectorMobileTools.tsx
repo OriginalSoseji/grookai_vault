@@ -22,7 +22,7 @@ export function CollectorMobileTools({ pathname, isAuthenticated, dexEnabled, bi
         event.currentTarget.querySelector("summary")?.focus();
       }
     }}>
-      <summary aria-label="More navigation" title="More navigation"><Menu size={21} aria-hidden="true" /></summary>
+      <summary className="gv-collector-mobile-menu-summary" aria-label="More navigation" title="More navigation"><Menu size={21} aria-hidden="true" /></summary>
       <nav className="gv-collector-mobile-tools" aria-label="Collection and account tools" onClick={(event) => {
         if ((event.target as HTMLElement).closest("a")) event.currentTarget.closest("details")?.removeAttribute("open");
       }}>

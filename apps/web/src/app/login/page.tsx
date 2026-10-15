@@ -141,7 +141,7 @@ function LoginPageContent() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 py-6">
+    <div className="gv-login-page mx-auto flex w-full max-w-2xl flex-col gap-8 py-5 sm:py-9">
       <PageIntro
         eyebrow="Account"
         title={mode === "signin" ? `Sign in to ${destination.title}` : `Create an account for ${destination.title}`}
@@ -149,7 +149,7 @@ function LoginPageContent() {
         size="compact"
       />
 
-      <PageSection surface="card" spacing="loose" className="mx-auto w-full max-w-md">
+      <PageSection surface="card" spacing="loose" className="gv-login-card mx-auto w-full max-w-md">
         {confirmationEmail ? <div role="status" className="space-y-3">
           <h2 className="text-lg font-semibold">Check your email</h2>
           <p>Check {confirmationEmail} for a confirmation link. Open it to confirm your account, then continue to {destination.title}.</p>
@@ -161,7 +161,7 @@ function LoginPageContent() {
         {!collectorStaging ? <div className="space-y-3">
           <GoogleSignInButton
             label="Sign in with Google"
-            className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-60"
+            className="gv-login-google w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 disabled:opacity-60"
             nextPath={nextPath}
             onError={setError}
           />
@@ -171,7 +171,7 @@ function LoginPageContent() {
           <label className="block text-sm font-medium text-slate-700">
             <span>Email</span>
             <input
-              className="mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
+              className="gv-login-input mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -181,7 +181,7 @@ function LoginPageContent() {
           <label className="block text-sm font-medium text-slate-700">
             <span>Password</span>
             <input
-              className="mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
+              className="gv-login-input mt-1.5 h-11 w-full rounded-lg border border-slate-200 bg-slate-50 px-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-slate-200"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -200,7 +200,7 @@ function LoginPageContent() {
         {mode === "signin" ? <button type="button" disabled={loading} className="text-sm underline" onClick={resendConfirmation}>
           Resend confirmation email
         </button> : null}
-        <div className="text-sm text-slate-600">
+        <div className="gv-login-switch text-sm text-slate-600">
           {mode === "signin" ? (
             <button className="font-medium text-slate-700 hover:text-slate-950 hover:underline" onClick={() => setMode("signup")}>
               Need an account? Sign up
@@ -221,14 +221,14 @@ export default function LoginPage() {
   return (
     <Suspense
       fallback={(
-        <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 py-6">
+        <div className="gv-login-page mx-auto flex w-full max-w-2xl flex-col gap-8 py-5 sm:py-9">
           <PageIntro
             eyebrow="Account"
             title="Sign in"
             description="Sign in to build your vault, track your cards, and share your collection."
             size="compact"
           />
-          <PageSection surface="card" className="mx-auto w-full max-w-md text-sm text-slate-600">
+          <PageSection surface="card" className="gv-login-card mx-auto w-full max-w-md text-sm text-slate-600">
             Loading sign-in...
           </PageSection>
         </div>

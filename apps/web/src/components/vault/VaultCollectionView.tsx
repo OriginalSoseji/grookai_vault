@@ -940,6 +940,11 @@ export function VaultCollectionView({
             <SectionHeader
               title="Vault Cards"
               description="Cards currently in your collection."
+              actions={
+                <span className="gv-vault-results-meta" role="status" aria-live="polite">
+                  {activeResultCount} {activeResultCount === 1 ? "match" : "matches"}
+                </span>
+              }
             />
           </div>
 
@@ -980,9 +985,9 @@ export function VaultCollectionView({
 
           <PageSection
             spacing="compact"
-            className="gv-command-surface p-2.5 md:p-3"
+            className="gv-vault-smart-views gv-command-surface p-2.5 md:p-3"
           >
-            <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
+            <nav aria-label="Vault views" className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (
                 <SmartViewButton
                   key={view.key}
@@ -992,7 +997,7 @@ export function VaultCollectionView({
                   onClick={() => handleViewChange(view.key)}
                 />
               ))}
-            </div>
+            </nav>
           </PageSection>
 
           <div data-vault-page-items>

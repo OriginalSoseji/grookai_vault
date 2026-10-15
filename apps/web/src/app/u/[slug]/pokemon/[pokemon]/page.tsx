@@ -98,7 +98,7 @@ export default async function PublicPokemonCollectionPage(
   const description = `${pokemonLabel} in ${profile.display_name}'s collection on Grookai.`;
 
   return (
-    <div className="space-y-8 py-8">
+    <div className="gv-public-collection-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
       <PublicCollectorHeader
         displayName={profile.display_name}
         slug={profile.slug}
@@ -123,8 +123,8 @@ export default async function PublicPokemonCollectionPage(
         }
       />
 
-      <section className="space-y-4">
-        <div className="flex flex-col gap-4 rounded-[1.6rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/60 sm:px-5">
+      <section className="gv-public-collection-section space-y-4">
+        <div className="gv-public-collection-heading flex flex-col gap-4 rounded-[1.6rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/60 sm:px-5">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="space-y-1">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Pokémon</p>

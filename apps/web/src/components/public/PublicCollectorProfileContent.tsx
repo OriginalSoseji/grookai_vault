@@ -390,9 +390,9 @@ export function PublicCollectorProfileContent({
   }
 
   return (
-    <section className="space-y-4">
+    <section className="gv-public-profile-content space-y-4">
       {effectiveViewerUserId && <OwnedSealedPanel key={`${effectiveViewerUserId}:${activeSectionId}`} ownerId={collectorUserId} wallOnly sectionId={activeSectionId === PUBLIC_WALL_SECTION_ID ? undefined : activeSectionId} />}
-      <div className="rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
+      <div className="gv-public-profile-section-rail rounded-[1.4rem] border border-slate-200 bg-white p-1.5 shadow-sm shadow-slate-200/50">
         <div className="overflow-x-auto">
           <div className="flex min-w-max gap-2">
             {/* LOCK: /u/[slug] is the primary Wall experience for both viewing and owner section management. */}
@@ -478,7 +478,7 @@ export function PublicCollectorProfileContent({
 
       {activeSection.kind === "wall" ? (
         <div className="space-y-4">
-          <div className="rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:px-5">
+            <div className="gv-public-profile-section-panel rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:px-5">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div className="space-y-1">
                 {/* LOCK: Public wall/section language must remain short, calm, and collector-friendly. */}
@@ -673,7 +673,7 @@ export function PublicCollectorProfileContent({
         </div>
       ) : (
         <div className="space-y-4">
-          <div className="flex flex-col gap-4 rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:flex-row sm:items-start sm:justify-between sm:px-5">
+          <div className="gv-public-profile-section-panel flex flex-col gap-4 rounded-[1.4rem] border border-slate-200 bg-white px-4 py-4 shadow-sm shadow-slate-200/50 sm:flex-row sm:items-start sm:justify-between sm:px-5">
             <div className="min-w-0 space-y-1">
               <h2 className="truncate text-2xl font-semibold tracking-tight text-slate-950">{activeSection.name}</h2>
               {canManageSections && selectedCustomSection ? (

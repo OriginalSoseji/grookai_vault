@@ -298,6 +298,18 @@ function getCatalogSetType(row: Pick<SetRow, "set_role" | "catalog_set_type">) {
   return typeof value === "string" && value.trim() ? value.trim().toLowerCase() : undefined;
 }
 
+function getSetLevelHeroImage(row: Pick<SetRow, "hero_image_url" | "hero_image_source">) {
+  const url = row.hero_image_url?.trim();
+  const source = row.hero_image_source?.trim().toLowerCase();
+  if (!url || !source) return undefined;
+
+  // Set browsing should show set/package artwork, never a representative card.
+  // Keep this allowlist narrow so an unlabelled or card-level URL cannot leak
+  // back into the gallery as a set cover.
+  const isSetArtwork = /^(?:(?:official[_-])?(?:package|set)(?:[_-](?:cover|image|art|logo))?|sealed[_-]?product(?:[_-](?:cover|image|art))?)$/.test(source);
+  return isSetArtwork ? url : undefined;
+}
+
 function mapSetRowToSummary(
   row: SetRow,
   canonicalCardCount: number,
@@ -313,6 +325,8 @@ function mapSetRowToSummary(
     printedCode: row.printed_set_abbrev,
   });
   const displayName = presentation.name;
+  const rowHeroImage = getSetLevelHeroImage(row);
+  const heroImageUrl = rowHeroImage || presentation.package_cover_url;
 
   return {
     game_code: row.game?.trim().toLowerCase() || "pokemon",
@@ -327,8 +341,8 @@ function mapSetRowToSummary(
     release_year: getReleaseYear(row.release_date),
     card_count: canonicalCardCount + getBaseSetPrintRunLaneCardCountAdjustment(code),
     card_count_is_exact: cardCountIsExact,
-    hero_image_url: row.hero_image_url?.trim() || presentation.package_cover_url || presentation.representative_cover_url,
-    hero_image_source: row.hero_image_source?.trim() || (presentation.package_cover_url ? "official_package" : presentation.representative_cover_url ? "representative_card" : undefined),
+    hero_image_url: heroImageUrl,
+    hero_image_source: rowHeroImage ? row.hero_image_source?.trim() : (presentation.package_cover_url ? "official_package" : undefined),
     catalog_set_type: getCatalogSetType(row),
     normalized_code: normalizeSetCode(code),
     normalized_name: normalizeSetQuery(displayName),
@@ -419,15 +433,28 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   }
 
   const supabase = await createServerSupabase();
-  let query = supabase
-    .from("sets")
-    .select(PUBLIC_SET_DETAIL_SELECT)
-    .ilike("code", escapePostgrestLikePattern(normalizedCode));
   const normalizedGameCode = gameCode?.trim().toLowerCase();
-  if (normalizedGameCode) {
-    query = query.eq("game", normalizedGameCode);
+  // Route codes are normalized before lookup, so use the indexed equality path
+  // first. This avoids a broad ILIKE scan timing out on a large catalog.
+  const buildCodeQuery = (caseInsensitive: boolean) => {
+    let query = supabase
+      .from("sets")
+      .select(PUBLIC_SET_DETAIL_SELECT);
+    query = caseInsensitive
+      ? query.ilike("code", escapePostgrestLikePattern(normalizedCode))
+      : query.eq("code", normalizedCode);
+    if (normalizedGameCode) {
+      query = query.eq("game", normalizedGameCode);
+    }
+    return query;
+  };
+
+  let { data, error } = await buildCodeQuery(false);
+  // Preserve compatibility with legacy mixed-case set rows, but only pay for
+  // the slower case-insensitive lookup when the indexed route misses.
+  if (!error && (data ?? []).length === 0) {
+    ({ data, error } = await buildCodeQuery(true));
   }
-  const { data, error } = await query;
 
   if (error) {
     throw new Error(error.message);

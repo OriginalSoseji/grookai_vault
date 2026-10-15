@@ -131,7 +131,7 @@ export default async function PublicProfilePage(
   const description = `${profile.display_name}'s Wall on Grookai.`;
 
   return (
-    <div className="space-y-8 py-8">
+    <div className="gv-public-profile-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
       <PublicCollectorHeader
         displayName={profile.display_name}
         slug={profile.slug}

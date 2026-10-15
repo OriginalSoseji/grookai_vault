@@ -363,27 +363,34 @@ function InteractionGroupCard({
             ) : null}
           </div>
 
-          <div className="space-y-2 border-y border-slate-200 py-3 dark:border-white/[0.08]">
-            {group.messages.map((message, index) => (
-              <div
-                key={message.id}
-                className={`${index > 0 ? "border-t border-slate-100 pt-2.5" : ""}`}
-              >
-                <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
-                  <span>
-                    {message.direction === "sent"
-                      ? "You"
-                      : group.counterpartDisplayName}
-                  </span>
-                  <span className="h-1 w-1 rounded-full bg-slate-300" />
-                  <span>{formatTimestamp(message.createdAt)}</span>
-                </div>
-                <p className="text-sm leading-6 text-slate-700">
-                  {message.message}
-                </p>
+          {group.messages.length > 1 ? (
+            <details className="gv-message-history border-y border-slate-200 py-3 dark:border-white/[0.08]">
+              <summary className="cursor-pointer list-none text-sm font-semibold text-slate-700">
+                Conversation ({group.messages.length} messages)
+              </summary>
+              <div className="mt-3 space-y-2">
+                {group.messages.map((message, index) => (
+                  <div
+                    key={message.id}
+                    className={`${index > 0 ? "border-t border-slate-100 pt-2.5" : ""}`}
+                  >
+                    <div className="mb-1.5 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                      <span>
+                        {message.direction === "sent"
+                          ? "You"
+                          : group.counterpartDisplayName}
+                      </span>
+                      <span className="h-1 w-1 rounded-full bg-slate-300" />
+                      <span>{formatTimestamp(message.createdAt)}</span>
+                    </div>
+                    <p className="text-sm leading-6 text-slate-700">
+                      {message.message}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </details>
+          ) : null}
 
           {group.conversationState === "inbox" && group.vaultItemId ? (
             <InteractionGroupReplyForm

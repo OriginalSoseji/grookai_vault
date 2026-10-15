@@ -150,6 +150,13 @@ export default function CompareWorkspace({
 
   const visibleGridCols = Math.min(Math.max(1, gridCols), cards.length);
   const gridClassName = GRID_CLASS_BY_COUNT[visibleGridCols] ?? GRID_CLASS_BY_COUNT[cards.length] ?? GRID_CLASS_BY_COUNT[4];
+  const visibleAttributeSections = ATTRIBUTE_SECTIONS.map((section) => ({
+    ...section,
+    rows: section.rows.filter((row) => {
+      const identical = cards.every((card) => valuesMatch(card, referenceCard, row.key));
+      return !showDiffOnly || !identical;
+    }),
+  })).filter((section) => section.rows.length > 0);
 
   async function handleCopyShareUrl() {
     const url = typeof window === "undefined" ? buildCompareHref(cards.map((card) => card.gv_id)) : window.location.href;
@@ -163,28 +170,33 @@ export default function CompareWorkspace({
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 py-6">
-      <PageSection surface="card" spacing="loose">
+    <div className="gv-compare-page mx-auto flex w-full max-w-7xl flex-col gap-8 py-6">
+      <PageSection surface="card" spacing="loose" className="gv-compare-header">
         <PageIntro
           eyebrow="Compare"
           title="Card Comparison"
           description="Compare cards side by side, pin a reference, and focus only on what changes."
           size="compact"
         />
-        {effectiveCanViewPricing ? (
-          <p className="text-sm text-slate-500">Beta market estimate. Derived from active listings and market data.</p>
-        ) : null}
+        <div className="gv-compare-context">
+          <span>{cards.length} cards selected</span>
+          <span aria-hidden="true">·</span>
+          <span>Reference: {referenceCard?.name ?? "First card"}</span>
+          {effectiveCanViewPricing ? <span className="gv-compare-context-note">Market estimates included</span> : null}
+        </div>
 
-        <div className="flex flex-col gap-4 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="gv-compare-controls flex flex-col gap-4 rounded-[16px] border border-slate-200 bg-slate-50 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-slate-600">Grid Size</span>
+              <span className="text-sm font-medium text-slate-600">Columns</span>
               <div className="inline-flex rounded-full border border-slate-200 bg-white p-1 shadow-sm">
                 {[1, 2, 3, 4].map((count) => (
                   <button
                     key={count}
                     type="button"
                     disabled={count > cards.length}
+                    aria-pressed={visibleGridCols === count}
+                    aria-label={`Show ${count} comparison column${count === 1 ? "" : "s"}`}
                     onClick={() => setGridCols(count)}
                     className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
                       visibleGridCols === count
@@ -205,7 +217,7 @@ export default function CompareWorkspace({
                 onChange={() => setShowDiffOnly((current) => !current)}
                 className="h-4 w-4 rounded border-slate-300 text-slate-950 focus:ring-slate-400"
               />
-              Show only differences
+              Only show differences
             </label>
           </div>
 
@@ -227,7 +239,10 @@ export default function CompareWorkspace({
         </div>
       </PageSection>
 
-      <section className={`grid gap-6 ${gridClassName}`}>
+      <section aria-labelledby="compare-cards-heading" className={`gv-compare-cards grid gap-6 ${gridClassName}`}>
+        <div className="sr-only">
+          <h2 id="compare-cards-heading">Compared cards</h2>
+        </div>
         {cards.map((card) => {
           const displayIdentity = resolveDisplayIdentity({
             name: card.name,
@@ -250,12 +265,12 @@ export default function CompareWorkspace({
           return (
             <article
               key={card.gv_id}
-              className={`card-hover overflow-hidden rounded-[16px] border bg-white shadow-sm ${
+              className={`gv-compare-card card-hover overflow-hidden rounded-[16px] border bg-white shadow-sm ${
                 isReference ? "border-amber-400 bg-amber-50" : "border-slate-200"
               }`}
             >
               <div className="space-y-4 border-b border-slate-100 px-5 py-5">
-                <div className="flex items-start justify-between gap-4">
+                <div className="gv-compare-card-header flex items-start justify-between gap-4">
                   <div className="min-w-0 space-y-1">
                     {isReference ? (
                       <span className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-800">
@@ -288,7 +303,7 @@ export default function CompareWorkspace({
                     ) : null}
                     <p className="text-xs font-medium tracking-[0.08em] text-slate-500">{card.gv_id}</p>
                   </div>
-                  <div className="flex flex-wrap items-center justify-end gap-2">
+                  <div className="gv-compare-card-actions flex flex-wrap items-center justify-end gap-2">
                     <button
                       type="button"
                       onClick={() => setReferenceGvId(card.gv_id)}
@@ -334,7 +349,7 @@ export default function CompareWorkspace({
         })}
       </section>
 
-      <PageSection surface="card" className="overflow-hidden p-0">
+      <PageSection surface="card" className="gv-compare-breakdown overflow-hidden p-0">
         <div className="border-b border-slate-200 px-5 py-5">
           <SectionHeader
             title="Attribute breakdown"
@@ -375,16 +390,7 @@ export default function CompareWorkspace({
               </tr>
             </thead>
             <tbody>
-              {ATTRIBUTE_SECTIONS.map((section) => {
-                const visibleRows = section.rows.filter((row) => {
-                  const identical = cards.every((card) => valuesMatch(card, referenceCard, row.key));
-                  return !showDiffOnly || !identical;
-                });
-
-                if (visibleRows.length === 0) {
-                  return null;
-                }
-
+              {visibleAttributeSections.map((section) => {
                 return (
                   <Fragment key={section.title}>
                     <tr key={`${section.title}-header`}>
@@ -392,7 +398,7 @@ export default function CompareWorkspace({
                         <h3 className="text-xs uppercase tracking-wide text-slate-400">{section.title}</h3>
                       </td>
                     </tr>
-                    {visibleRows.map((row) => (
+                    {section.rows.map((row) => (
                       <tr key={row.key}>
                         <td className="sticky left-0 z-10 border-b border-slate-100 bg-white px-5 py-4 text-sm font-medium text-slate-600">
                           {row.label}
@@ -415,6 +421,13 @@ export default function CompareWorkspace({
                   </Fragment>
                 );
               })}
+              {visibleAttributeSections.length === 0 ? (
+                <tr>
+                  <td colSpan={cards.length + 1} className="px-5 py-8 text-center text-sm text-slate-500">
+                    All selected cards share the same values for the available attributes.
+                  </td>
+                </tr>
+              ) : null}
             </tbody>
           </table>
         </div>

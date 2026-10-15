@@ -90,7 +90,7 @@ function BinderCoverArtwork({
     <PublicCardImage
       src={src ?? undefined}
       alt={`${title} cover artwork`}
-      imageClassName="gv-collector-binder-cover-image h-full w-full -rotate-[7deg] object-contain p-6 drop-shadow-md"
+      imageClassName="gv-collector-binder-cover-image h-full w-full object-contain p-6 drop-shadow-md"
       fallbackClassName="gv-collector-binder-cover-empty flex h-full items-center justify-center px-6 text-center text-sm text-slate-500"
       fallbackLabel="Cover artwork unavailable"
       priority={priority}
@@ -103,7 +103,7 @@ export function BinderSummaryCard({ binder }: { binder: BinderSummary }) {
   return (
     <Link
       href={`/binders/${encodeURIComponent(binder.publicId)}`}
-      className="gv-collector-binder-tile group flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
+      className="gv-binder-summary-card gv-collector-binder-tile group flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
     >
       <div className="gv-collector-binder-cover h-[220px] overflow-hidden bg-slate-50 sm:h-[250px]">
         <BinderCoverArtwork src={binder.coverImageUrl} title={binder.title} />
@@ -177,7 +177,7 @@ export function BinderDashboardView({
   suspendedPageHref?: string | null;
 }) {
   return (
-    <div className="space-y-10">
+    <div className="gv-binder-dashboard space-y-10">
       <DashboardSection
         title="Continue building"
         description="Pick up the collection goals you are actively building."
@@ -388,8 +388,8 @@ export function BinderPublicView({
   checklistPageHref?: string | null;
 }) {
   return (
-    <div className="space-y-8">
-      <PageSection surface="card" spacing="loose">
+    <div className="gv-binder-public-view space-y-8">
+      <PageSection surface="card" spacing="loose" className="gv-binder-public-hero">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           <div className="gv-collector-binder-cover gv-collector-binder-public-cover h-[220px] w-full shrink-0 overflow-hidden rounded-lg bg-slate-50 sm:h-64 sm:w-48">
             <BinderCoverArtwork
@@ -426,7 +426,7 @@ export function BinderPublicView({
         </p>
       </PageSection>
 
-      <PageSection spacing="loose">
+      <PageSection spacing="loose" className="gv-binder-public-checklist">
         <div>
           <h2 className="gv-section-title">Checklist</h2>
           <p className="mt-1 text-sm text-slate-600">
@@ -438,7 +438,7 @@ export function BinderPublicView({
             {binder.checklist.map((slot) => (
               <li
                 key={slot.slotPublicId || `${slot.title}-${slot.subtitle ?? ""}`}
-                className="rounded-lg border border-slate-200 bg-white p-4"
+                className="gv-binder-public-slot rounded-lg border border-slate-200 bg-white p-4"
               >
                 <div className="mb-3 aspect-[5/7] overflow-hidden rounded-md bg-slate-50">
                   <PublicCardImage
@@ -509,7 +509,7 @@ export function BinderPublicView({
       </PageSection>
 
       {showTrustSafety && (binder.canReport || binder.canBlockOwner) ? (
-        <PageSection surface="subtle">
+        <PageSection surface="subtle" className="gv-binder-public-safety">
           <h2 className="text-base font-semibold text-slate-950">Community safety</h2>
           <p className="text-sm text-slate-600">
             {binder.canReport && binder.canBlockOwner

@@ -101,7 +101,7 @@ export function WallSectionsSettingsCard({ initialModel, publicProfileSlug = nul
   }
 
   return (
-    <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="gv-account-card gv-wall-sections-card rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Wall Sections</p>
@@ -109,7 +109,7 @@ export function WallSectionsSettingsCard({ initialModel, publicProfileSlug = nul
           <p className="max-w-2xl text-sm leading-7 text-slate-600">{WALL_SECTION_HELPER_COPY}</p>
         </div>
 
-        <div className="rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+        <div className="gv-wall-sections-limit rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
           <p className="font-medium text-slate-950">
             {activeCount} of {limitState.activeLimit} active
           </p>
@@ -173,7 +173,7 @@ export function WallSectionsSettingsCard({ initialModel, publicProfileSlug = nul
             return (
               <div
                 key={section.id}
-                className="grid gap-3 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-4 lg:grid-cols-[minmax(0,1fr)_auto]"
+                className="gv-wall-section-row grid gap-3 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-4 lg:grid-cols-[minmax(0,1fr)_auto]"
               >
                 <div className="min-w-0 space-y-3">
                   <div className="flex flex-wrap items-center gap-2">

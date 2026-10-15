@@ -292,6 +292,15 @@
   position: relative;
 }
 
+.photoPickerSecondary {
+  min-width: 164px;
+  border: 1px solid rgb(226 232 240 / 32%);
+  padding: 10px 18px;
+  color: #f8fafc;
+  background: rgb(255 255 255 / 9%);
+  text-decoration: none;
+}
+
 .photoPicker input {
   position: absolute;
   width: 1px;
@@ -428,7 +437,8 @@
 }
 
 .secondaryButton:hover,
-.handoffActions a:hover {
+.handoffActions a:hover,
+.photoPickerSecondary:hover {
   border-color: rgb(191 219 254 / 40%);
   background: rgb(255 255 255 / 13%);
 }

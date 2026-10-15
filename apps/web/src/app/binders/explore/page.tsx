@@ -44,7 +44,7 @@ export default async function BinderExplorePage(
       throw error;
     }
     return (
-      <div className="space-y-8 py-6">
+      <div className="gv-binder-explore-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
         <PageIntro
           eyebrow="Community"
           title="Explore Binders"
@@ -60,7 +60,7 @@ export default async function BinderExplorePage(
   }
 
   return (
-    <div className="space-y-10 py-6">
+    <div className="gv-binder-explore-page mx-auto max-w-[1170px] space-y-10 py-5 sm:py-9">
       <PageIntro
         eyebrow="Community"
         title="Explore Binders"
@@ -71,7 +71,7 @@ export default async function BinderExplorePage(
           </Link>
         }
       />
-      <PageSection spacing="loose">
+      <PageSection spacing="loose" className="gv-binder-explore-results">
         <h2 className="gv-section-title">Community Binders</h2>
         {result.items.length > 0 ? (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -79,7 +79,7 @@ export default async function BinderExplorePage(
               <Link
                 key={binder.publicId}
                 href={`/binders/${encodeURIComponent(binder.publicId)}`}
-                className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
+                className="gv-binder-explore-card rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-emerald-300 hover:shadow-md"
               >
                 <div className="mb-4 h-40 overflow-hidden rounded-2xl bg-slate-50">
                   <PublicCardImage
@@ -107,7 +107,7 @@ export default async function BinderExplorePage(
             ))}
           </div>
         ) : (
-          <p className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-8 text-sm text-slate-600">
+          <p className="gv-binder-explore-empty rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-8 text-sm text-slate-600">
             No moderated, listed community Binders are available yet.
           </p>
         )}
@@ -121,7 +121,7 @@ export default async function BinderExplorePage(
         ) : null}
       </PageSection>
       {flags.templates ? (
-        <PageSection spacing="loose">
+        <PageSection spacing="loose" className="gv-binder-template-section">
           <div>
             <h2 className="gv-section-title">Suggested Binder templates</h2>
             <p className="mt-1 text-sm text-slate-600">

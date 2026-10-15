@@ -53,7 +53,7 @@ function MediaFieldCard({
   onRemove: () => void;
 }) {
   return (
-    <div className="space-y-3 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-4">
+    <div className="gv-profile-media-card space-y-3 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 p-4">
       <div className="space-y-1">
         <p className="text-sm font-medium text-slate-950">{label}</p>
         <p className="text-sm leading-6 text-slate-600">{description}</p>
@@ -127,7 +127,7 @@ function ToggleField({
 }) {
   return (
     <label
-      className={`flex items-start justify-between gap-4 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 px-4 py-4 ${
+      className={`gv-profile-toggle flex items-start justify-between gap-4 rounded-[1.5rem] border border-slate-200 bg-slate-50/80 px-4 py-4 ${
         disabled ? "opacity-70" : ""
       }`}
     >
@@ -326,7 +326,7 @@ export function PublicProfileSettingsForm({
   }
 
   return (
-    <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="gv-account-card gv-profile-editor rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
       <div className="space-y-3">
         <div className="space-y-1">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Public Profile</p>
@@ -407,7 +407,7 @@ export function PublicProfileSettingsForm({
             </label>
           </div>
 
-          <div className="rounded-[1.75rem] border border-slate-200 bg-slate-50 px-5 py-5">
+          <div className="gv-profile-status rounded-[1.75rem] border border-slate-200 bg-slate-50 px-5 py-5">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Status</p>
             <dl className="mt-4 space-y-3 text-sm text-slate-600">
               <div className="flex items-center justify-between gap-4">

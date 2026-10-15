@@ -88,7 +88,7 @@ export function PublicCollectorHeader({
   ].filter((value): value is { label: string; href: string | null } => Boolean(value.label));
 
   return (
-    <section className="relative overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/60" data-collector-profile-header>
+    <section className="gv-public-profile-header relative overflow-hidden rounded-[1.8rem] border border-slate-200 bg-white shadow-sm shadow-slate-200/60" data-collector-profile-header>
       {bannerUrl ? (
         <div aria-hidden="true" className="relative h-24 overflow-hidden sm:h-28">
           <Image src={bannerUrl} alt="" fill className="object-cover" />
@@ -160,7 +160,7 @@ export function PublicCollectorHeader({
           {stats.length > 0 || actions ? (
             <div className="flex flex-col gap-3 md:max-w-[24rem] md:items-end">
               {stats.length > 0 ? (
-                <div className="flex flex-wrap gap-2 md:justify-end">
+                <div className="gv-public-profile-stats flex flex-wrap gap-2 md:justify-end">
                   {stats.map((stat) => (
                     <div
                       key={`${stat.label}-${stat.value}`}
@@ -172,7 +172,7 @@ export function PublicCollectorHeader({
                   ))}
                 </div>
               ) : null}
-              {actions ? <div className="flex flex-wrap gap-2 md:justify-end">{actions}</div> : null}
+              {actions ? <div className="gv-public-profile-actions flex flex-wrap gap-2 md:justify-end">{actions}</div> : null}
             </div>
           ) : null}
         </div>

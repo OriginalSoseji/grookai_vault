@@ -1073,7 +1073,7 @@ async function CardPageContent({
   const returnContext = getCardReturnContext(searchParams?.from);
 
   return (
-    <div className={`gv-approved-card-detail gv-card-page space-y-7 py-5 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
+    <div className={`gv-approved-card-detail gv-card-page mx-auto max-w-[1200px] space-y-7 py-5 sm:py-7 ${compareCards.length > 0 ? "pb-32 md:pb-36" : ""}`}>
       <MobilePushedRouteHeader
         backHref={returnContext.href}
         backLabel={returnContext.label}
