@@ -168,6 +168,29 @@ function DiscoveryComposition() {
   );
 }
 
+function PulseComposition() {
+  return (
+    <section className="gv-route-composition gv-route-composition-pulse" aria-labelledby="pulse-composition-title">
+      <div className="gv-pulse-feed-preview">
+        <div className="gv-composition-kicker">Collector activity</div>
+        <h1 id="pulse-composition-title">See what the community is collecting.</h1>
+        <p>Follow new additions, trade ideas, and the cards moving through your network.</p>
+        <div className="gv-pulse-feed-items">
+          <div className="gv-pulse-feed-item"><span className="gv-avatar-dot" /><div><strong>cardboard_king added a card</strong><small>Charizard ex · 2 min ago</small></div><span className="gv-pulse-mini-art gv-pulse-mini-art-a" /></div>
+          <div className="gv-pulse-feed-item"><span className="gv-avatar-dot gv-avatar-dot-blue" /><div><strong>maria.collects opened a binder</strong><small>Modern favorites · 18 min ago</small></div><span className="gv-pulse-mini-art gv-pulse-mini-art-b" /></div>
+        </div>
+      </div>
+      <aside className="gv-pulse-profile-preview">
+        <div className="gv-pulse-profile-avatar">G</div>
+        <strong>Your collector profile</strong>
+        <span>Make your Wall a place people want to visit.</span>
+        <div className="gv-pulse-profile-stats"><b>0 <small>cards</small></b><b>0 <small>followers</small></b><b>0 <small>following</small></b></div>
+        <Link href="/wall" className="gv-composition-secondary">Open your Wall</Link>
+      </aside>
+    </section>
+  );
+}
+
 function UtilityComposition() {
   const tools = [
     { href: "/compare", label: "Compare", copy: "See two printings side by side.", className: "gv-tool-card-compare" },
@@ -210,6 +233,7 @@ function AccountComposition() {
 
 function RouteComposition({ family, pathname }: { family: FamilyConfig; pathname: string }) {
   if (matches(pathname, "/dex")) return <DexComposition />;
+  if (matches(pathname, "/network")) return <PulseComposition />;
   if (family.key === "collections") return <CollectionComposition />;
   if (family.key === "discovery") return <DiscoveryComposition />;
   if (family.key === "utility") return <UtilityComposition />;

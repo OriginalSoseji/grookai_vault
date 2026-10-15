@@ -397,6 +397,100 @@
   color: #f4f8f2;
 }
 
+.gv-route-composition-pulse {
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+  min-height: 430px;
+  color: #f4f8f2;
+  background:
+    radial-gradient(circle at 78% 0%, rgb(85 142 255 / 18%), transparent 33%),
+    linear-gradient(135deg, #111b33, #080f1d 68%, #17243d);
+}
+
+.gv-route-composition-pulse h1,
+.gv-route-composition-pulse .gv-composition-kicker {
+  color: #f4f8f2;
+}
+
+.gv-route-composition-pulse p { color: rgb(244 248 242 / 72%); }
+
+.gv-pulse-feed-preview {
+  align-self: center;
+  max-width: 700px;
+}
+
+.gv-pulse-feed-preview h1 { max-width: 11ch; }
+
+.gv-pulse-feed-items {
+  display: grid;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.gv-pulse-feed-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 55px;
+  align-items: center;
+  gap: 11px;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+  padding-top: 12px;
+}
+
+.gv-pulse-feed-item div { display: grid; gap: 4px; min-width: 0; }
+.gv-pulse-feed-item strong { overflow: hidden; color: #f4f8f2; font-size: 13px; text-overflow: ellipsis; white-space: nowrap; }
+.gv-pulse-feed-item small { color: rgb(244 248 242 / 54%); font-size: 11px; }
+.gv-avatar-dot-blue { background: linear-gradient(135deg, #6cb4f3, #4d5cbd); }
+
+.gv-pulse-mini-art {
+  width: 55px;
+  height: 68px;
+  border-radius: 7px;
+  background: linear-gradient(155deg, #f4d66e, #9b5166 52%, #202d66);
+}
+
+.gv-pulse-mini-art-b { background: linear-gradient(155deg, #91dff4, #3e4b9a 55%, #171a32); }
+
+.gv-pulse-profile-preview {
+  display: grid;
+  align-self: center;
+  gap: 10px;
+  max-width: 300px;
+  justify-self: end;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 18px;
+  padding: 22px;
+  background: rgb(4 10 18 / 64%);
+  box-shadow: 0 24px 46px rgb(0 0 0 / 24%);
+}
+
+.gv-pulse-profile-avatar {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 50%;
+  color: #17243d;
+  background: linear-gradient(135deg, #c6efcc, #73b89d);
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.gv-pulse-profile-preview strong { color: #f4f8f2; font-size: 19px; letter-spacing: -.04em; }
+.gv-pulse-profile-preview > span { color: rgb(244 248 242 / 58%); font-size: 12px; line-height: 1.4; }
+
+.gv-pulse-profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 10px 0;
+  border-block: 1px solid rgb(255 255 255 / 12%);
+  padding-block: 12px;
+}
+
+.gv-pulse-profile-stats b { display: grid; gap: 2px; color: #f4f8f2; font-size: 16px; }
+.gv-pulse-profile-stats small { color: rgb(244 248 242 / 48%); font-size: 9px; font-weight: 500; }
+.gv-pulse-profile-preview .gv-composition-secondary { color: #f4f8f2; border-color: rgb(255 255 255 / 18%); }
+
 .gv-route-composition-dex {
   grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
   min-height: 410px;
@@ -735,7 +829,8 @@ html.gv-dark .gv-route-composition-utility {
   .gv-route-composition,
   .gv-route-composition-utility,
   .gv-route-composition-account,
-  .gv-route-composition-dex {
+  .gv-route-composition-dex,
+  .gv-route-composition-pulse {
     grid-template-columns: 1fr;
     gap: 26px;
     min-height: 0;
@@ -767,6 +862,7 @@ html.gv-dark .gv-route-composition-utility {
   .gv-activity-preview { grid-template-rows: auto 165px auto; }
   .gv-dex-progress-panel { width: 100%; }
   .gv-dex-starter-rail { gap: 6px; }
+  .gv-pulse-profile-preview { justify-self: stretch; max-width: none; }
   .gv-utility-tool-grid { grid-template-columns: 1fr; }
   .gv-utility-tool-card { min-height: 0; grid-template-columns: 58px 1fr; align-items: center; padding: 12px; }
   .gv-tool-card-icon { width: 58px; height: 58px; grid-row: 1 / span 3; }
