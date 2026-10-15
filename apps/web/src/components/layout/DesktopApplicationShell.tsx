@@ -79,7 +79,9 @@ export function DesktopApplicationShell({
         <nav className="gv-desktop-primary-nav" aria-label="Primary navigation" data-desktop-primary-navigation>
           {mockupPrimaryNav.map((item) => {
             const href = item.href;
-            const active = routeState.activePrimary === item.key || routeState.activeSecondary === item.key;
+            const active = item.key === "sets" || item.key === "dex"
+              ? routeState.activeSecondary === item.key
+              : routeState.activePrimary === item.key;
             return (
               <Link
                 key={item.key}
