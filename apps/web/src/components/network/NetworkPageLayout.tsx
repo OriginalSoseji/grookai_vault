@@ -6,17 +6,19 @@ import NetworkSectionNav from "@/components/network/NetworkSectionNav";
 export default function NetworkPageLayout({
   active,
   actions,
+  title = "Pulse",
   children,
 }: {
-  active: "cards" | "collectors";
-  actions: ReactNode;
+  active: "cards" | "collectors" | "nearby";
+  actions?: ReactNode;
+  title?: string;
   children: ReactNode;
 }) {
   return (
     <div className="gv-network-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
       <header className="flex flex-wrap items-start justify-between gap-5">
         <div className="min-w-0 space-y-2">
-          <h1 className="text-3xl font-medium leading-tight tracking-normal text-[color:var(--gv-text-primary)]">Pulse</h1>
+          <h1 className="text-3xl font-medium leading-tight tracking-normal text-[color:var(--gv-text-primary)]">{title}</h1>
         </div>
         <div className="flex max-w-full flex-wrap items-center gap-3">{actions}</div>
       </header>

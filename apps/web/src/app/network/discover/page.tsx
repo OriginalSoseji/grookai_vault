@@ -68,10 +68,10 @@ export default async function NetworkDiscoverPage(
         </Link>
       }
     >
-      <section aria-labelledby="discover-heading" className="space-y-4">
+      <section aria-labelledby="discover-heading" className="gv-network-discover-search space-y-4">
         <h2 id="discover-heading" className="text-lg font-medium text-[color:var(--gv-text-primary)]">Discover collectors</h2>
 
-        <form action="/network/discover" method="get" role="search" aria-label="Collector search" className="flex items-end gap-2">
+        <form action="/network/discover" method="get" role="search" aria-label="Collector search" className="gv-network-discover-form flex items-end gap-2">
           <div className="min-w-0 flex-1">
             <label htmlFor="collector-query" className="sr-only">Collector name or username</label>
             <input
@@ -99,7 +99,7 @@ export default async function NetworkDiscoverPage(
         </form>
       </section>
 
-      <section aria-labelledby="discover-results-heading" className="min-w-0 space-y-4">
+      <section aria-labelledby="discover-results-heading" className="gv-network-discover-results min-w-0 space-y-4">
         <h3 id="discover-results-heading" className="text-sm font-medium text-[color:var(--gv-text-secondary)] [overflow-wrap:anywhere]">
           {query ? `Collector results for "${query}"` : "Latest collectors"}
         </h3>
@@ -114,7 +114,7 @@ export default async function NetworkDiscoverPage(
             }
           />
         ) : (
-          <div className="space-y-3 [&>div]:rounded-lg">
+          <div className="gv-network-discover-list space-y-3 [&>div]:rounded-lg">
             {collectors.map((collector) => (
               <CollectorListRow
                 key={collector.userId}

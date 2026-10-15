@@ -1886,6 +1886,32 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   color: var(--gv-text-primary);
 }
 
+.gv-network-context {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+}
+
+.gv-network-nearby-list,
+.gv-network-discover-list {
+  min-width: 0;
+}
+
+.gv-network-results-header {
+  border-top: 1px solid var(--gv-border-hairline);
+  padding-top: 1.25rem;
+}
+
+.gv-network-discover-form {
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 1rem;
+  padding: 0.75rem;
+  background: var(--gv-surface-container-low);
+}
+
+.gv-network-discover-form input {
+  background: var(--gv-surface-container);
+}
+
 .gv-network-event-body {
   display: grid;
   min-width: 0;
@@ -2044,6 +2070,37 @@ html.gv-dark .gv-vault-value {
 }
 
 @media (max-width: 639px) {
+  .gv-network-page {
+    padding-block: 0.75rem 1.5rem;
+  }
+
+  .gv-network-page .gv-pulse-feed > nav {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 30;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.9rem;
+    overflow-x: auto;
+    border-color: var(--gv-border-hairline);
+    background: color-mix(in srgb, var(--gv-surface-page) 92%, transparent);
+    box-shadow: 0 16px 28px -24px rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(16px) saturate(130%);
+    scrollbar-width: none;
+  }
+
+  .gv-network-page .gv-pulse-feed > nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gv-network-page .gv-pulse-feed > nav a {
+    flex: 0 0 auto;
+  }
+
+  .gv-network-discover-form {
+    align-items: stretch;
+  }
+
   .gv-vault-page {
     padding-block: 1.25rem;
   }
