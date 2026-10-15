@@ -61,6 +61,10 @@ import {
   TCGPLAYER_BWP_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1,
 } from "../../backend/pricing/tcgplayer_bwp_alias_product_identity_authority_v1.mjs";
 import {
+  TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1,
+  TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITY_AUTHORITY_V1,
+} from "../../backend/pricing/tcgplayer_nintendo_target_promo_product_identity_authority_v1.mjs";
+import {
   TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1,
   TCGPLAYER_WCD_TEAM_RUSHDOWN_PILOT_V1,
 } from "../../backend/pricing/tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
@@ -173,6 +177,15 @@ const BWP_ALIAS_AUTHORITY_SCRIPT = readFileSync(
     "scripts",
     "audits",
     "tcgplayer_bwp_alias_mapping_authority_v1.mjs",
+  ),
+  "utf8",
+);
+const NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "scripts",
+    "audits",
+    "tcgplayer_nintendo_target_promo_mapping_authority_v1.mjs",
   ),
   "utf8",
 );
@@ -1240,6 +1253,69 @@ test("Black and White Promos mapping authority is read-only and evidence-bound",
     /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
   );
   assert.match(SCRIPT, /TCGPLAYER_BWP_ALIAS_PRODUCT_IDENTITIES_V1/);
+});
+
+test("Nintendo Target promos admit exactly four reviewed Normal aliases", () => {
+  assert.equal(TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1.length, 4);
+  assert.deepEqual(
+    TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1.map((row) => row.source_product_id),
+    [145343, 153316, 153317, 153319],
+  );
+  assert.equal(new Set(TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1
+    .map((row) => row.target.card_print_id)).size, 4);
+  assert.equal(new Set(TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1
+    .map((row) => row.printing.printing_id)).size, 4);
+  assert.ok(TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1.every((row) =>
+    row.source_group_id === 1423 && row.source_group_name === "Nintendo Promos" &&
+    row.target.set_code === "np" && row.printing.finish_key === "normal"));
+
+  for (const authority of TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1) {
+    const reviewedSource = source({
+      source_product_id: authority.source_product_id,
+      source_product_name: authority.source_product_name,
+      source_group_id: authority.source_group_id,
+      source_group_name: authority.source_group_name,
+      printed_number: authority.printed_number,
+    });
+    const reviewedTarget = target({
+      card_print_id: authority.target.card_print_id,
+      gv_id: authority.target.gv_id,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      name: authority.target.name,
+      number: authority.target.number,
+      variant_key: authority.target.variant_key,
+      embedded_external_id: null,
+    });
+    const candidate = planTcgplayerExactMappingCandidateV1({ source: reviewedSource, setTargets: [reviewedTarget] });
+    assert.equal(candidate.disposition, "candidate", authority.source_product_id);
+    assert.equal(candidate.reviewed_product_identity_authority_version,
+      TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITY_AUTHORITY_V1);
+    assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+    assert.deepEqual(validateTcgplayerExactMappingLiveTargetV1(candidate, reviewedTarget), []);
+    assert.equal(matchesTcgplayerExactMappingLiveSourceNumberV1(candidate, authority.printed_number), true);
+
+    const drifted = planTcgplayerExactMappingCandidateV1({
+      source: { ...reviewedSource, source_product_name: `${authority.source_product_name} drift` },
+      setTargets: [reviewedTarget],
+    });
+    assert.equal(drifted.disposition, "blocked", authority.source_product_id);
+  }
+});
+
+test("Nintendo Target promo mapping authority is read-only and evidence-bound", () => {
+  assert.match(NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT,
+    /begin transaction isolation level repeatable read read only/);
+  assert.match(NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 4/);
+  assert.match(NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT, /master_index_hash_changed/);
+  assert.match(NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT, /active_truth_review, "verified"/);
+  assert.match(NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
+  assert.doesNotMatch(
+    NINTENDO_TARGET_PROMO_AUTHORITY_SCRIPT,
+    /\b(insert|update|delete)\s+(?:into|from|public\.)/i,
+  );
+  assert.match(SCRIPT, /TCGPLAYER_NINTENDO_TARGET_PROMO_PRODUCT_IDENTITIES_V1/);
 });
 
 test("Team Rushdown registry and mapping authority are bounded and read-only", () => {
