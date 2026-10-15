@@ -71,6 +71,21 @@ test('slab review queue is founder-gated and read-only', () => {
   assert.doesNotMatch(migration, /insert into|update public\.|delete from/);
 });
 
+test('slab listing identity is normalized behind a service-role read model', () => {
+  const migration = fs.readFileSync(
+    path.join(ROOT, 'supabase/migrations/20261015130000_mee_slab_listing_identity_read_model_v1.sql'),
+    'utf8',
+  );
+  assert.match(migration, /v_market_evidence_slab_listing_identity_v1/);
+  assert.match(migration, /normalize_slab_grader_v1/);
+  assert.match(migration, /identity_status/);
+  assert.match(migration, /missing_grader/);
+  assert.match(migration, /missing_grade/);
+  assert.match(migration, /revoke all on public\.v_market_evidence_slab_listing_identity_v1/);
+  assert.match(migration, /grant select on public\.v_market_evidence_slab_listing_identity_v1 to service_role/);
+  assert.doesNotMatch(migration, /pricing_observations|market_truth|publishable = true/);
+});
+
 test('scheduled wrapper runs the repository automation command', () => {
   const script = fs.readFileSync(
     path.join(ROOT, 'scripts/ops/market_evidence_ollama_automation_v1.ps1'),

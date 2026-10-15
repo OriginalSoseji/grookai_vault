@@ -33,9 +33,11 @@ The slab queue is now reviewable through the founder-gated, read-only `get_marke
 
 The slab approval policy is explicit in every new automation payload as `MEE_SLAB_APPROVAL_POLICY_V1`. A slab event remains blocked until each listing has grader identity, numeric grade, same-grade rollup membership, and listing-level provenance. A bucket-level “graded” label is insufficient because it can mix PSA, CGC, different grades, signatures, and other non-comparable listings.
 
+Listing-level identity is now available through the service-role-only `v_market_evidence_slab_listing_identity_v1` read model. It extracts the existing grader and numeric-grade evidence from each slab listing event and reports `identified`, `missing_grader`, or `missing_grade`. A bounded production readback returned both identified listings and a missing-grade example; the view remains outside all app pricing surfaces.
+
 ## Validation
 
-- Contract tests: 17 passed, 0 failed.
+- Contract tests: 18 passed, 0 failed.
 - Clean evidence smoke: 10/10 model calls completed; 0 model errors.
 - Contamination smoke: 1/1 model call completed; deterministic guard forced `reject_contamination` from positive exclusion counts.
 - Live automation pages: the original raw-single page inserted 4 raw events; the slab lane smoke page inserted 1 slab event; the next 20-rollup page inserted 10 raw events and 10 slab events. The current automation readback is 68 raw events and 11 slab events; the slab table has no approvals and remains internal-only.
