@@ -2,6 +2,11 @@ import Link from "next/link";
 import { purchaseHref } from "@/lib/orders/orderAcquisitionTypes";
 import { StoreProductImage } from "./StoreProductImage";
 import type { CustomProductDetail } from "@/lib/stores/storefrontTypes";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
+
+function jsonLdMarkup(value: Record<string, unknown>) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
 
 function formatPrice(amount: number | null, currency: string) {
   if (amount == null || amount <= 0) return "Price on request";
@@ -19,9 +24,29 @@ export function CustomProductView({
   const base = `/store/${encodeURIComponent(data.store.slug)}`;
   const api = `/api/stores/${encodeURIComponent(data.store.slug)}${data.preview ? "/preview" : ""}/products/${p.id}`;
   const purchaseLink = purchaseHref({ storeId: data.store.id, itemId: p.id, kind: "custom", quantity: 1 });
+  const productUrl = `${getSiteOrigin()}${base}/products/${encodeURIComponent(p.id)}`;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.title || "Collectible",
+    description: p.description || undefined,
+    url: productUrl,
+    image: p.photo_ids.map((photo) => `${getSiteOrigin()}${api}/media/${encodeURIComponent(photo)}`),
+    sku: p.id,
+    brand: p.manufacturer ? { "@type": "Brand", name: p.manufacturer } : undefined,
+    offers: p.asking_price_amount != null && p.asking_price_amount > 0 ? {
+      "@type": "Offer",
+      url: productUrl,
+      priceCurrency: p.asking_price_currency,
+      price: p.asking_price_amount,
+      availability: p.available_quantity > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+      seller: { "@type": "Organization", name: data.store.display_name },
+    } : undefined,
+  };
 
   return (
     <main className="gv-page-container gv-page-rhythm py-5 sm:py-8">
+      {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(productJsonLd) }} /> : null}
       <nav aria-label="Store navigation" className="mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
         <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="transition hover:text-slate-950 dark:hover:text-white">{data.store.display_name}</Link>
         <span aria-hidden="true">/</span>

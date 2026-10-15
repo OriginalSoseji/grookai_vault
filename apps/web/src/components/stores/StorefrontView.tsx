@@ -4,6 +4,11 @@ import { purchaseHref } from "@/lib/orders/orderAcquisitionTypes";
 import { StoreProductImage } from "./StoreProductImage";
 import type { CustomStoreProduct, StoreEntry, Storefront, StoreFilters, StoreItem } from "@/lib/stores/storefrontTypes";
 import { buildLoginHref } from "@/lib/auth/routeAccess";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
+
+function jsonLdMarkup(value: Record<string, unknown>) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
 
 function formatPrice(amount: number | null | undefined, currency: string) {
   if (amount == null) return "Price on request";
@@ -118,9 +123,21 @@ export function StorefrontView({
     return `${base}?${next}`;
   };
   const hasFilters = Boolean(filters.query || filters.sectionId || filters.condition || (filters.kind && filters.kind !== "all"));
+  const storefrontUrl = `${getSiteOrigin()}${base}`;
+  const storefrontJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    name: store.display_name,
+    description: store.description || `Collectibles from ${store.display_name} on Grookai Vault.`,
+    url: storefrontUrl,
+    image: store.has_banner ? `${getSiteOrigin()}${storeMediaPath(store.slug, false, "banner")}` : undefined,
+    numberOfItems: data.total,
+    brand: { "@type": "Brand", name: "Grookai Vault" },
+  };
 
   return (
     <main className="gv-page-container gv-page-rhythm py-5 sm:py-8">
+      {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(storefrontJsonLd) }} /> : null}
       {data.preview ? <p role="status" className="gv-store-preview-note mb-5">Private owner preview · only you can open this link. Public customers see published listings and eligible inventory. <Link href="/account/store" className="ml-1 font-bold underline underline-offset-4">Open store workspace</Link></p> : null}
 
       <header className="gv-storefront-hero">
