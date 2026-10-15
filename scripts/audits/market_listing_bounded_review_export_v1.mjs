@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const AUDIT_DIR = path.join(REPO_ROOT, "docs", "audits", "market_evidence_engine_v1");
 const LIMIT_PER_BUCKET = 25;
+const OFFSET_PER_BUCKET = 0;
 const RAW_VERSION = "MEE_11S_INTERNAL_RAW_SINGLE_ACTIVE_ASK_REVIEW_V1";
 const SLAB_VERSION = "MEE_11S_INTERNAL_SLAB_ACTIVE_ASK_REVIEW_V1";
 const CANDIDATE_VERSION = "MEE_11S_REVIEW_ONLY_TARGETED_LISTING_CANDIDATES_V1";
@@ -28,6 +29,16 @@ function runSql(sql) {
   if (first < 0 || last <= first) throw new Error("Unable to parse Supabase query output");
   return JSON.parse(output.slice(first, last + 1)).rows ?? [];
 }
+
+function arg(argv, name, fallback) {
+  return argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3).trim() ?? fallback;
+}
+
+const argv = process.argv.slice(2);
+const limitPerBucket = Number.parseInt(arg(argv, "limit-per-bucket", String(LIMIT_PER_BUCKET)), 10);
+const offsetPerBucket = Number.parseInt(arg(argv, "offset-per-bucket", String(OFFSET_PER_BUCKET)), 10);
+if (!Number.isInteger(limitPerBucket) || limitPerBucket < 1 || limitPerBucket > 100) throw new Error("--limit-per-bucket must be 1-100");
+if (!Number.isInteger(offsetPerBucket) || offsetPerBucket < 0) throw new Error("--offset-per-bucket must be a non-negative integer");
 
 const bucketCase = `case
   when coalesce((select sum((value)::numeric) from jsonb_each_text(coalesce(r.exclusion_counts, '{}'::jsonb))), 0) > 0 then 'review_required_contamination'
@@ -74,16 +85,16 @@ with base as (
 )
 select row_to_json(ranked)::jsonb as row
 from ranked
-where bucket_rank <= ${LIMIT_PER_BUCKET}
+where bucket_rank > ${offsetPerBucket}
+  and bucket_rank <= ${offsetPerBucket + limitPerBucket}
 order by review_bucket, evidence_class, gv_id, rollup_id;
 `;
 
 const selectedRows = runSql(selectedSql).map((row) => row.row);
-if (!selectedRows.length) throw new Error("No bounded review rows found");
 
 const cardIds = [...new Set(selectedRows.map((row) => row.card_print_id).filter(Boolean))];
 const cardIdSql = cardIds.map((id) => `'${String(id).replaceAll("'", "''")}'::uuid`).join(", ");
-const sampleSql = `
+const sampleSql = cardIds.length ? `
 select jsonb_agg(to_jsonb(sample) order by sample.card_print_id, sample.evidence_class, sample.total_ask_price nulls last, sample.source_listing_id) as samples
 from (
   select
@@ -105,15 +116,16 @@ from (
   order by c.card_print_id, evidence_class, cardinality(c.exclusion_flags), c.match_confidence desc nulls last, o.total_ask_price nulls last
   limit ${cardIds.length * 5}
 ) sample;
-`;
-const sampleRows = runSql(sampleSql)[0]?.samples ?? [];
+` : null;
+const sampleRows = sampleSql ? (runSql(sampleSql)[0]?.samples ?? []) : [];
 
 const report = {
   package_id: "MARKET-LISTING-BOUNDED-REVIEW-EXPORT-V1",
   generated_at: new Date().toISOString(),
   mode: "bounded_local_review_export_no_writes_no_provider_calls",
   selection: {
-    limit_per_bucket: LIMIT_PER_BUCKET,
+    limit_per_bucket: limitPerBucket,
+    offset_per_bucket: offsetPerBucket,
     bucket_count: 6,
     selected_rollups: selectedRows.length,
     selected_card_ids: cardIds.length,
@@ -150,7 +162,7 @@ writeFileSync(mdPath, [
   `Generated: ${report.generated_at}`,
   `Fingerprint: ${report.package_fingerprint_sha256}`,
   "",
-  "This artifact is a deterministic top-25-per-bucket review slice. It performs no provider calls, writes, or pricing publication.",
+  `This artifact is a deterministic page of ${limitPerBucket} rows per review bucket at offset ${offsetPerBucket}. It performs no provider calls, writes, or pricing publication.`,
   "",
   "## Bucket counts",
   "",

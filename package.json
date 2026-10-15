@@ -206,7 +206,8 @@
     "pricing:market:ollama:model:create": "ollama create grookai-card-triage:4b -f deploy/ollama/grookai-card-triage-4b.Modelfile",
     "pricing:market:ollama-triage": "node scripts/workers/tcgplayer_ollama_triage_v1.mjs",
     "pricing:market:ollama:evidence-model:create": "ollama create grookai-evidence-review:4b -f deploy/ollama/grookai-evidence-review-4b.Modelfile",
-    "pricing:market:ollama:evidence-review": "node scripts/workers/market_listing_ollama_review_v1.mjs"
+    "pricing:market:ollama:evidence-review": "node scripts/workers/market_listing_ollama_review_v1.mjs",
+    "pricing:market:ollama:automation": "node scripts/workers/market_listing_ollama_automation_v1.mjs"
   },
   "devDependencies": {
     "@pgkit/client": "0.6.1",

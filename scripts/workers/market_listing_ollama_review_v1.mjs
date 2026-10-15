@@ -109,7 +109,7 @@ async function main() {
   const inputPath = path.resolve(arg(argv, "input"));
   const outDir = path.resolve(arg(argv, "out-dir"));
   if (!arg(argv, "input") || !arg(argv, "out-dir")) throw new Error("--input and --out-dir are required");
-  const limit = positive(arg(argv, "limit"), 10, 100, "--limit");
+  const limit = positive(arg(argv, "limit"), 10, 500, "--limit");
   const baseUrl = endpoint(arg(argv, "endpoint"));
   const input = JSON.parse(await fs.readFile(inputPath, "utf8"));
   if (!Array.isArray(input.rows) || !Array.isArray(input.samples)) throw new Error("Bounded review input must contain rows and samples arrays");
