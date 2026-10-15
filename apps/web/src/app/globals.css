@@ -2269,6 +2269,66 @@ html.gv-dark .gv-public-network-page .text-slate-400 {
   min-width: 0;
 }
 
+.gv-managed-store-page,
+.gv-store-manager-page {
+  min-width: 0;
+}
+
+.gv-managed-store-page {
+  display: grid;
+  gap: 1rem;
+  max-width: var(--gv-page-max-width);
+  margin-inline: auto;
+}
+
+.gv-managed-store-card {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+  transition: border-color var(--gv-transition-fast), box-shadow var(--gv-transition-fast), transform var(--gv-transition-fast);
+}
+
+.gv-managed-store-card:hover {
+  border-color: color-mix(in srgb, var(--gv-primary) 42%, var(--gv-border-soft));
+  box-shadow: var(--gv-shadow-md);
+  transform: translateY(-1px);
+}
+
+.gv-store-manager-page {
+  max-width: var(--gv-page-wide-max-width);
+  margin-inline: auto;
+}
+
+html.gv-dark .gv-managed-store-card {
+  border-color: rgba(226, 232, 240, 0.12);
+  background: var(--gv-surface-base);
+}
+
+html.gv-dark .gv-managed-store-page .text-slate-950,
+html.gv-dark .gv-store-manager-page .text-slate-950,
+html.gv-dark .gv-managed-store-page .text-slate-900,
+html.gv-dark .gv-store-manager-page .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-managed-store-page .text-slate-700,
+html.gv-dark .gv-store-manager-page .text-slate-700,
+html.gv-dark .gv-managed-store-page .text-slate-600,
+html.gv-dark .gv-store-manager-page .text-slate-600 {
+  color: var(--gv-text-secondary);
+}
+
+@media (max-width: 639px) {
+  .gv-managed-store-page,
+  .gv-store-manager-page {
+    padding-inline: 1rem;
+  }
+
+  .gv-managed-store-card {
+    border-radius: 1rem;
+  }
+}
+
 .gv-order-detail {
   min-width: 0;
 }
