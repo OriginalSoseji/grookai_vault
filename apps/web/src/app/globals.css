@@ -1707,6 +1707,21 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   display: none;
 }
 
+.gv-message-history summary::-webkit-details-marker {
+  display: none;
+}
+
+.gv-message-history summary::before {
+  display: inline-block;
+  margin-right: 0.45rem;
+  color: var(--gv-text-tertiary);
+  content: "+";
+}
+
+.gv-message-history[open] summary::before {
+  content: "−";
+}
+
 .gv-card-page .gv-card-detail-hero {
   border-bottom: 1px solid var(--gv-border-soft);
   padding-bottom: 2rem;
