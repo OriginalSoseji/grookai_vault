@@ -228,8 +228,8 @@ export default async function WallPage() {
   const feed = await normalizeFeed((data ?? null) as WallFeedRow[] | null, identityByGvId, supabase);
 
   return (
-    <div className="space-y-8 py-8">
-      <header className="flex flex-wrap items-end justify-between gap-4">
+    <div className="gv-wall-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
+      <header className="gv-wall-page-header flex flex-wrap items-end justify-between gap-4">
         <h1 className="gv-display-title">Your Wall</h1>
         <p className="text-sm text-[color:var(--gv-text-secondary)]" aria-label="Activity Window">
           {feed.length} {feed.length === 1 ? "recent item" : "recent items"}
@@ -255,7 +255,7 @@ export default async function WallPage() {
           description="Cards appear here after you add exact copies to your Vault."
         />
       ) : (
-        <section className="space-y-4">
+        <section className="gv-wall-activity-feed space-y-4" aria-label="Recent Wall activity">
           {feed.map((item) => (
             (() => {
               const imagePresentation = resolveCardImagePresentation(item);

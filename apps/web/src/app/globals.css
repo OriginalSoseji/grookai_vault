@@ -2024,6 +2024,83 @@ html.gv-dark .gv-wall-sections-card .text-slate-500 {
   color: var(--gv-text-secondary);
 }
 
+.gv-wall-page {
+  min-width: 0;
+}
+
+.gv-wall-page-header > p {
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 999px;
+  background: var(--gv-surface-container-low);
+  padding: 0.5rem 0.8rem;
+}
+
+.gv-wall-activity-feed {
+  min-width: 0;
+}
+
+.gv-wall-owner-rail {
+  border-color: var(--gv-border-soft);
+}
+
+.gv-wall-owner-tabs {
+  border-top: 1px solid var(--gv-border-hairline);
+  padding-top: 1rem;
+  scrollbar-width: none;
+}
+
+.gv-wall-owner-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.gv-wall-owner-tabs button:not([aria-current="page"]) {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  color: var(--gv-text-secondary);
+}
+
+.gv-wall-owner-tabs button:not([aria-current="page"]):hover {
+  border-color: var(--gv-text-tertiary);
+  background: var(--gv-surface-container);
+  color: var(--gv-text-primary);
+}
+
+.gv-wall-owner-create,
+.gv-wall-owner-selected,
+.gv-wall-owner-empty {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+}
+
+.gv-wall-owner-rail input {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container);
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-wall-owner-rail .text-slate-950,
+html.gv-dark .gv-wall-owner-rail .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-wall-owner-rail .text-slate-700,
+html.gv-dark .gv-wall-owner-rail .text-slate-600,
+html.gv-dark .gv-wall-owner-rail .text-slate-500 {
+  color: var(--gv-text-secondary);
+}
+
+@media (max-width: 639px) {
+  .gv-wall-owner-tabs {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 25;
+    margin-inline: -0.25rem;
+    padding: 0.75rem 0.25rem 0.5rem;
+    background: color-mix(in srgb, var(--gv-surface-page) 92%, transparent);
+    backdrop-filter: blur(16px) saturate(130%);
+  }
+}
+
 @media (max-width: 639px) {
   .gv-explore-command-surface {
     border-radius: 1rem;

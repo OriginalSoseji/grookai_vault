@@ -129,7 +129,7 @@ export function OwnerWallSectionRail({ initialModel, publicProfileSlug = null }:
   }
 
   return (
-    <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="gv-account-card gv-wall-owner-rail rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Wall</p>
@@ -146,7 +146,7 @@ export function OwnerWallSectionRail({ initialModel, publicProfileSlug = null }:
       </div>
 
       {/* LOCK: Owner Wall rail keeps Wall fixed first and owner-only section controls out of public profile rendering. */}
-      <nav aria-label="Wall sections" className="mt-6 flex gap-2 overflow-x-auto pb-1">
+      <nav aria-label="Wall sections" className="gv-wall-owner-tabs mt-6 flex gap-2 overflow-x-auto pb-1">
         <button
           type="button"
           onClick={() => setSelectedSectionId(PUBLIC_WALL_SECTION_ID)}
@@ -198,7 +198,7 @@ export function OwnerWallSectionRail({ initialModel, publicProfileSlug = null }:
       </nav>
 
       {isCreating ? (
-        <form className="mt-5 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4" onSubmit={handleCreate}>
+        <form className="gv-wall-owner-create mt-5 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-4" onSubmit={handleCreate}>
           <div className="flex flex-col gap-3 sm:flex-row">
             <label className="min-w-0 flex-1">
               <span className="sr-only">Section name</span>
@@ -256,7 +256,7 @@ export function OwnerWallSectionRail({ initialModel, publicProfileSlug = null }:
       ) : null}
 
       {selectedSection ? (
-        <div className="mt-6 grid gap-4 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 lg:grid-cols-[minmax(0,1fr)_auto]">
+        <div className="gv-wall-owner-selected mt-6 grid gap-4 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="min-w-0 space-y-3">
             <div className="flex flex-wrap items-center gap-2">
               <span
@@ -318,7 +318,7 @@ export function OwnerWallSectionRail({ initialModel, publicProfileSlug = null }:
           </div>
         </div>
       ) : (
-        <div className="mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5 text-sm leading-7 text-slate-600">
+        <div className="gv-wall-owner-empty mt-6 rounded-[1.5rem] border border-slate-200 bg-slate-50 px-5 py-5 text-sm leading-7 text-slate-600">
           {sections.length === 0
             ? "No custom sections yet. Add a section when you are ready to group cards beyond Wall."
             : "Wall is fixed. Choose a section above to manage it."}
