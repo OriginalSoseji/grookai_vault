@@ -82,4 +82,8 @@ test("shadow coverage and current-publication scope have separate gates", () => 
   assert.match(COVERAGE, /--require-coverage-pass/);
   assert.match(COVERAGE, /summary\.coverage_status !== "passed"/);
   assert.match(COVERAGE, /summary\.status !== "passed"/);
+  assert.match(COVERAGE, /--statement-timeout-ms=/);
+  assert.match(COVERAGE, /args\.statementTimeoutMs > 900_000/);
+  assert.match(COVERAGE, /statement_timeout: args\.statementTimeoutMs/);
+  assert.match(COVERAGE, /query_timeout: args\.statementTimeoutMs/);
 });

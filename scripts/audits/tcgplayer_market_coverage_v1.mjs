@@ -32,6 +32,7 @@ function parseArgs(argv) {
     runKey: "",
     outRoot: DEFAULT_OUT_ROOT,
     minimumCoveragePercent: TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
+    statementTimeoutMs: 180_000,
     requirePass: false,
     requireCoveragePass: false,
   };
@@ -43,6 +44,10 @@ function parseArgs(argv) {
     } else if (arg.startsWith("--minimum-coverage-percent=")) {
       args.minimumCoveragePercent = Number(
         arg.slice("--minimum-coverage-percent=".length),
+      );
+    } else if (arg.startsWith("--statement-timeout-ms=")) {
+      args.statementTimeoutMs = Number(
+        arg.slice("--statement-timeout-ms=".length),
       );
     } else if (arg === "--require-pass") {
       args.requirePass = true;
@@ -56,6 +61,13 @@ function parseArgs(argv) {
     args.minimumCoveragePercent > 100
   ) {
     throw new Error("--minimum-coverage-percent must be in (0, 100]");
+  }
+  if (
+    !Number.isInteger(args.statementTimeoutMs) ||
+    args.statementTimeoutMs < 30_000 ||
+    args.statementTimeoutMs > 900_000
+  ) {
+    throw new Error("--statement-timeout-ms must be an integer in [30000, 900000]");
   }
   return args;
 }
@@ -197,8 +209,8 @@ async function main() {
     connectionString: url,
     ssl: sslConfig(url),
     connectionTimeoutMillis: 15_000,
-    statement_timeout: 180_000,
-    query_timeout: 180_000,
+    statement_timeout: args.statementTimeoutMs,
+    query_timeout: args.statementTimeoutMs,
   });
   await client.connect();
   try {

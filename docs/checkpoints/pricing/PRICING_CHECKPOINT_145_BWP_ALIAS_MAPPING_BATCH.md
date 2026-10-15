@@ -23,3 +23,8 @@ The registry and authority builder make no database writes. Production work rema
 2. Build and apply the exact two-row TCGPlayer mapping package, followed by independent readback and pricing coverage verification.
 
 No Victory Cup mapping, broad name-normalization rule, parent mutation, or printing mutation is authorized by this checkpoint.
+
+The full-scope coverage audit also accepts a bounded `--statement-timeout-ms`
+override from 30 seconds through 15 minutes. The default remains three minutes;
+the larger explicit bound is for production snapshots that have outgrown the
+default without weakening either coverage requirement.
