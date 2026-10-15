@@ -1841,6 +1841,46 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   background: var(--gv-surface-container-low);
 }
 
+.gv-profile-editor input:not([type="file"]),
+.gv-wall-sections-card input:not([type="file"]) {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container);
+  color: var(--gv-text-primary);
+}
+
+.gv-profile-editor input:not([type="file"]):focus,
+.gv-wall-sections-card input:not([type="file"]):focus {
+  border-color: var(--gv-text-tertiary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gv-text-primary) 12%, transparent);
+}
+
+.gv-profile-media-card,
+.gv-profile-toggle,
+.gv-profile-status,
+.gv-wall-sections-limit,
+.gv-wall-section-row {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+}
+
+.gv-profile-media-card > div.relative.overflow-hidden {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container);
+}
+
+.gv-profile-editor button:not([type="submit"]),
+.gv-wall-sections-card button:not([type="submit"]) {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-base);
+  color: var(--gv-text-primary);
+}
+
+.gv-profile-editor button:not([type="submit"]):hover,
+.gv-wall-sections-card button:not([type="submit"]):hover {
+  border-color: var(--gv-text-tertiary);
+  background: var(--gv-surface-container);
+}
+
 .gv-account-links-grid {
   display: grid;
   gap: 1.25rem;
@@ -1893,6 +1933,22 @@ html.gv-dark .gv-account-page .gv-account-card {
 
 html.gv-dark .gv-account-page .gv-account-links-card {
   background: var(--gv-surface-container-low);
+}
+
+html.gv-dark .gv-profile-editor .text-slate-950,
+html.gv-dark .gv-profile-editor .text-slate-900,
+html.gv-dark .gv-wall-sections-card .text-slate-950,
+html.gv-dark .gv-wall-sections-card .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-profile-editor .text-slate-700,
+html.gv-dark .gv-profile-editor .text-slate-600,
+html.gv-dark .gv-profile-editor .text-slate-500,
+html.gv-dark .gv-wall-sections-card .text-slate-700,
+html.gv-dark .gv-wall-sections-card .text-slate-600,
+html.gv-dark .gv-wall-sections-card .text-slate-500 {
+  color: var(--gv-text-secondary);
 }
 
 @media (max-width: 639px) {
