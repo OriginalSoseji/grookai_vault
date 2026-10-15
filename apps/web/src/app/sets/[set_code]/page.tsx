@@ -220,7 +220,7 @@ async function SetPageContent({
     : initialCardsWithOwnership;
 
   return (
-    <main className="gv-page-shell gv-mobile-safe-content">
+    <main className="gv-set-detail-page gv-page-shell gv-mobile-safe-content">
       <div className="gv-page-container gv-page-rhythm py-5">
       <TrackPageEvent
         eventName="page_view_set"
@@ -388,7 +388,7 @@ async function SetPageContent({
         </section>
       ) : null}
 
-      <section className="space-y-5">
+      <section className="gv-set-checklist-section space-y-5">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="gv-eyebrow">Set checklist</p>

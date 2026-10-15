@@ -887,6 +887,20 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   backdrop-filter: blur(18px);
 }
 
+.gv-set-detail-page {
+  min-width: 0;
+}
+
+.gv-set-detail-page .gv-set-progress-panel {
+  position: sticky;
+  top: 6.5rem;
+}
+
+.gv-set-checklist-section {
+  border-top: 1px solid var(--gv-border-soft);
+  padding-top: 2rem;
+}
+
 .gv-quiet-panel {
   border: 1px solid var(--gv-border-hairline);
   border-radius: 18px;
@@ -2509,6 +2523,36 @@ html.gv-dark .gv-set-progress-panel {
   box-shadow:
     0 42px 118px -82px rgba(0, 0, 0, 0.98),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 899px) {
+  .gv-set-detail-page .gv-set-progress-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 639px) {
+  .gv-set-detail-page .gv-page-container {
+    padding-top: 0.75rem;
+  }
+
+  .gv-set-detail-page .gv-set-hero {
+    border-radius: 1.25rem;
+    padding-inline: 1rem;
+    padding-block: 1.25rem;
+  }
+
+  .gv-set-detail-page .gv-set-hero h1 {
+    font-size: clamp(2.45rem, 14vw, 4.25rem);
+  }
+
+  .gv-set-detail-page .gv-set-progress-panel {
+    border-radius: 1rem;
+  }
+
+  .gv-set-checklist-section {
+    padding-top: 1.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
