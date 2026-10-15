@@ -1,5 +1,16 @@
 # Grookai Operator Playbook V1
 
+## Pokémon delta-species alias batch — October 15, 2026
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_148_DELTA_SPECIES_ALIAS_BATCH.md`.
+The next bounded pricing repair freezes 12 TCGPlayer products across `ex13`,
+`ex15`, and `pop4` to 12 distinct standard parents and all 21 source-listed
+Normal, Holo, and Reverse children. The checked-in Master Index independently
+verifies every admitted finish. Apply the 21 truth reviews before building the
+mapping authority, then apply and independently read back the 12 mappings.
+Mapping does not publish prices; use a fresh full-source shadow after the
+mapping readback.
+
 ## Vendor cost evidence migration lane — October 15, 2026
 
 PR674 merged the vendor cost evidence schema and keeps both reporting switches
