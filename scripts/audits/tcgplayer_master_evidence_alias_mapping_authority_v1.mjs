@@ -21,26 +21,38 @@ import {
 
 const VERSION = "TCGPLAYER_MASTER_EVIDENCE_ALIAS_MAPPING_AUTHORITY_V1";
 const PROJECT_REF = "ycdxbpibncqcchqiihfz";
-const EXPECTED_CANDIDATES = 7;
-const EXPECTED_PRINTINGS = 10;
+const EXPECTED_CANDIDATES = 17;
+const EXPECTED_PRINTINGS = 20;
 const SOURCE_SUBTYPE_BY_FINISH = Object.freeze({
   holo: "Holofoil",
   normal: "Normal",
   reverse: "Reverse Holofoil",
 });
 const EXPECTED_SETS = Object.freeze({
+  "dp1": "6f5e00e3-2707-406e-a822-addef33a2ced",
+  "dp5": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+  "dp6": "74ac5cb4-d64c-451b-9642-18523097609a",
   "bw6": "31bab32f-dc83-4a51-b08d-f96256184cf7",
   "sm75": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
   "cel25c": "3be64773-d30e-48af-af8c-3563b57e5e4a",
   "sv10.5b": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
 });
 const MASTER_INDEX_SET_KEYS = Object.freeze({
+  "dp1": "dp1",
+  "dp5": "dp5",
+  "dp6": "dp6",
   "bw6": "bw6",
   "sm75": "sm7.5",
   "cel25c": "cel25c",
   "sv10.5b": "sv10.5b",
 });
 const EXPECTED_SOURCE_SHA256 = Object.freeze({
+  "dp1_cards": "d4bd82f20b4e67247a2618ae6435c2f85d0ec0fafe003512c8c5fa1330f3a220",
+  "dp1_printings": "57247211af0433603d28409502f201d13d0b152ab72f68b48387b5589f56f888",
+  "dp5_cards": "2568c310362aa54a6422cf72e91802eb64d1055388090834f8f59d7429c0d657",
+  "dp5_printings": "1fc13a41f688198052f9fa4a8d6107bf6ea620aa5104c724ba743cb9a8e57a52",
+  "dp6_cards": "1567654aac423a8087802859758c4ec9e8687e29e31aaf8f01cf734be104f5c9",
+  "dp6_printings": "74a9d7081927436b257f603adaedc6c7f8b869f859337b369acf65b6b60b68d3",
   "bw6_cards": "82bff84ccd5f222d4a407465e1f0dfd0cca9561ca6b8420eee6608aa72c59f1d",
   "bw6_printings": "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805",
   "sm75_cards": "05d446bb1608ec5ebf8946250190e8f91d00729e0c724989f5d4c7ba5d09e9ec",
@@ -118,7 +130,27 @@ async function loadSources() {
       sources[key] = { relative, bytes, value: JSON.parse(bytes.toString("utf8")) };
     }
   }
+  const catalogEvidence = new Map(TCGPLAYER_MASTER_EVIDENCE_ALIAS_PRODUCT_IDENTITIES_V1
+    .filter((row) => row.catalog_evidence)
+    .map((row) => [row.catalog_evidence.sha256, row.catalog_evidence]));
+  for (const evidence of catalogEvidence.values()) {
+    const bytes = await fs.readFile(path.join(REPO_ROOT, evidence.relative_path));
+    assert.equal(sha256(bytes), evidence.sha256, `catalog_evidence_hash_changed:${evidence.relative_path}`);
+    sources[`catalog_${evidence.sha256}`] = {
+      relative: evidence.relative_path,
+      bytes,
+      value: JSON.parse(bytes.toString("utf8")),
+    };
+  }
   return sources;
+}
+
+function catalogEvidenceTargets(value) {
+  return [
+    ...(Array.isArray(value?.scope?.targets) ? value.scope.targets : []),
+    ...(Array.isArray(value?.targets) ? value.targets : []),
+    ...(value?.target ? [value.target] : []),
+  ];
 }
 
 function sourceProjection(candidates, sources) {
@@ -139,13 +171,34 @@ function sourceProjection(candidates, sources) {
       row.card_name === authority.master_evidence.card_name && row.status === "master_verified");
     const printingRows = printings.filter((row) => row.set_key === masterSetKey &&
       normalizeTcgplayerMappingNumberV1(row.card_number) === normalizeTcgplayerMappingNumberV1(authority.target.number) &&
-      row.card_name === authority.master_evidence.printing_name && authority.printings.some((printing) => printing.finish_key === row.finish_key) &&
+      row.card_name === authority.master_evidence.printing_name &&
+      (authority.master_evidence.printing_finish_key ?
+        row.finish_key === authority.master_evidence.printing_finish_key :
+        authority.printings.some((printing) => printing.finish_key === row.finish_key)) &&
       row.status === "master_verified");
     assert.equal(cardRows.length, 1, `base_card_evidence_drift:${candidate.source_product_id}`);
-    assert.equal(printingRows.length, authority.printings.length,
+    assert.equal(printingRows.length, authority.master_evidence.printing_finish_key ? 1 : authority.printings.length,
       `base_printing_evidence_drift:${candidate.source_product_id}`);
+    let catalogEvidence = null;
+    if (authority.catalog_evidence) {
+      const source = sources[`catalog_${authority.catalog_evidence.sha256}`];
+      assert.ok(source, `catalog_evidence_missing:${candidate.source_product_id}`);
+      const matches = catalogEvidenceTargets(source.value).filter((row) =>
+        row.target_parent_id === authority.target.card_print_id &&
+        row.set_key === authority.target.set_code &&
+        normalizeTcgplayerMappingNumberV1(row.card_number) ===
+          normalizeTcgplayerMappingNumberV1(authority.target.number) &&
+        row.card_name === authority.target.name &&
+        row.target_variant_key === authority.target.variant_key &&
+        authority.printings.some((printing) => printing.finish_key === row.target_finish_key &&
+          printing.printing_id === row.target_child_id &&
+          (!row.target_printing_gv_id || printing.printing_gv_id === row.target_printing_gv_id)));
+      assert.equal(matches.length, 1, `catalog_variant_evidence_drift:${candidate.source_product_id}`);
+      catalogEvidence = { source: authority.catalog_evidence, target: matches[0] };
+    }
     return { source_product_id: candidate.source_product_id, authority,
-      source_kind: "english_master_index", card: cardRows[0], printings: printingRows };
+      source_kind: "english_master_index", card: cardRows[0], printings: printingRows,
+      catalog_evidence: catalogEvidence };
   });
 }
 
@@ -212,7 +265,19 @@ function buildManifest({ setCode, candidates, db, sources, projections, reviewed
         kind: "official_printing", url_or_identifier: sources[`${setCode}_printings`].relative, retrieved_at: reviewedAt },
     ],
     ...[...groupArtifacts.values()].map((item) => item.sourceArtifact),
+    ...[...new Map(candidates.filter((candidate) =>
+      reviewedTcgplayerMasterEvidenceAliasProductIdentityV1(candidate).catalog_evidence)
+      .map((candidate) => {
+        const evidence = reviewedTcgplayerMasterEvidenceAliasProductIdentityV1(candidate).catalog_evidence;
+        const ref = `catalog-evidence-${evidence.sha256.slice(0, 16)}`;
+        return [evidence.sha256, { ref, sha256: evidence.sha256, kind: "exact_printing_mapping",
+          url_or_identifier: evidence.relative_path, retrieved_at: reviewedAt }];
+      })).values()],
   ];
+  for (const source of sourceArtifacts.filter((row) => row.ref.startsWith("catalog-evidence-"))) {
+    const evidence = sources[`catalog_${source.sha256}`];
+    artifacts.set(source.ref, evidence.bytes);
+  }
   const parents = candidates.map((candidate) => {
     const row = db.parents.find((parent) => parent.id === candidate.target.card_print_id);
     return { id: row.id, name: row.name, gv_id: row.gv_id, set_id: row.set_id,
@@ -223,11 +288,17 @@ function buildManifest({ setCode, candidates, db, sources, projections, reviewed
     const authority = reviewedTcgplayerMasterEvidenceAliasProductIdentityV1(candidate);
     const sourceRef = `${setCode}-english-master-index-printings-v1`;
     const source = sourceArtifacts.find((row) => row.ref === sourceRef);
+    const catalogSource = authority.catalog_evidence ? sourceArtifacts.find((row) =>
+      row.sha256 === authority.catalog_evidence.sha256) : null;
     return authority.printings.map((printing) => ({
       card_print_id: authority.target.card_print_id, finish_key: printing.finish_key,
       printing_gv_id: printing.printing_gv_id, review_status: "verified",
       evidence: [{ kind: source.kind, source_ref: source.ref, sha256: source.sha256,
-        card_print_id: authority.target.card_print_id, finish_key: printing.finish_key }],
+        card_print_id: authority.target.card_print_id,
+        finish_key: authority.master_evidence.printing_finish_key ?? printing.finish_key },
+      ...(catalogSource ? [{ kind: catalogSource.kind, source_ref: catalogSource.ref,
+        sha256: catalogSource.sha256, card_print_id: authority.target.card_print_id,
+        finish_key: printing.finish_key }] : [])],
     }));
   });
   const mappingAssertions = candidates.map((candidate) => {
@@ -253,9 +324,10 @@ function buildManifest({ setCode, candidates, db, sources, projections, reviewed
     game: body.game, language: body.language, set_code: setCode, scope: body.scope,
     reviewer: "Codex source adjudication; not founder mutation approval", reviewed_at: reviewedAt,
     projection_sha256: printingManifestHash(body), reasoning: [
-      "Each source group has established single-set authority from existing active mappings.",
+      "Each admitted product has exact reviewed set, coordinate, parent, variant, and finish authority; no group-wide set inference is used.",
       "Each admitted source product has one reviewed canonical target at its exact printed coordinate; display-name differences are frozen product by product.",
       "Checked-in English Master Index card and printing exports verify the canonical name, coordinate, and every source-listed finish.",
+      "Checked-in catalog adjudication evidence freezes each Burger King stamped parent variant and finish without introducing a global stamp rule.",
       "Every selected live Normal, Holo, or Reverse child is active, public, non-provisional, and has an active verified visible truth review.",
       "The exact product registry preserves display-only source qualifiers and punctuation differences without adding a global normalization rule.",
       "This evidence package does not itself authorize a database mutation.",

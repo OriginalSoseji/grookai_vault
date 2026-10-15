@@ -1,0 +1,98 @@
+{
+  "version": "burger_king_replacement_child_adjudication_v1",
+  "generated_at": "2026-10-15T22:50:00.000Z",
+  "mode": "read_only_adjudication",
+  "db_writes_performed": false,
+  "authority_rule": "A historical governed apply proves the exact stamped parent and finish. The frozen production coverage snapshot proves the sole current active, public, non-provisional child on that parent. This artifact binds the historical evidence to that exact current replacement child; it does not authorize a new parent, finish, or broad alias rule.",
+  "source_artifacts": [
+    {
+      "relative_path": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15a_stamped_explicit_finish_real_apply_v1.json",
+      "sha256": "28d904eff44b1ce16ef9e1aae1f955e544a023b83e8bf044437fd25cf70a687e",
+      "role": "historical_parent_and_finish_authority"
+    },
+    {
+      "relative_path": "docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_pkg15c_stamped_reverse_burger_king_real_apply_v1.json",
+      "sha256": "3247679fd778699cdf02e75ba26fbd215cb90319800aae474c65543e29d0c807",
+      "role": "historical_parent_and_finish_authority"
+    },
+    {
+      "relative_path": "docs/audits/special_variant_printing_coverage_v1/special_variant_printing_coverage_v1.json",
+      "sha256": "d6b313b109f69ac7cc3d1bc6ef01db47361dd8083fdf23e74984383555c1c5a2",
+      "generated_at": "2026-08-04T18:07:55.108Z",
+      "role": "current_child_identity_and_state"
+    }
+  ],
+  "scope": {
+    "target_count": 4,
+    "targets": [
+      {
+        "source_product_id": 155608,
+        "target_parent_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+        "historical_child_id": "dbbaeb57-2ca7-4259-a183-c97bc44513ba",
+        "target_child_id": "4ac8916d-3a0a-4cfd-a673-1afd011559d7",
+        "target_printing_gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP-RH",
+        "set_key": "dp1",
+        "card_number": "49",
+        "card_name": "Grotle",
+        "target_variant_key": "diamond_pearl_stamp",
+        "target_finish_key": "reverse",
+        "finish_active": true,
+        "public_visible": true,
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "dp1:49:diamond_pearl_stamp:reverse"
+      },
+      {
+        "source_product_id": 174129,
+        "target_parent_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+        "historical_child_id": "f61e1f6a-ec43-485e-acd0-a1e3e824c22f",
+        "target_child_id": "28bffdea-1003-46c5-97c8-6502da04d936",
+        "target_printing_gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP-RH",
+        "set_key": "dp1",
+        "card_number": "56",
+        "card_name": "Monferno",
+        "target_variant_key": "diamond_pearl_stamp",
+        "target_finish_key": "reverse",
+        "finish_active": true,
+        "public_visible": true,
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "dp1:56:diamond_pearl_stamp:reverse"
+      },
+      {
+        "source_product_id": 213008,
+        "target_parent_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+        "historical_child_id": "28d5104c-f752-4e2a-9360-e4ee8f473a27",
+        "target_child_id": "6be5d985-17f7-4615-b875-d286b0e6ec4f",
+        "target_printing_gv_id": "GV-PK-DP1-58-DIAMOND-PEARL-STAMP-HOLO",
+        "set_key": "dp1",
+        "card_number": "58",
+        "card_name": "Prinplup",
+        "target_variant_key": "diamond_pearl_stamp",
+        "target_finish_key": "holo",
+        "finish_active": true,
+        "public_visible": true,
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "dp1:58:diamond_pearl_stamp:holo"
+      },
+      {
+        "source_product_id": 220666,
+        "target_parent_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+        "historical_child_id": "206271f6-5a8f-42e6-ab58-278bbc0e46db",
+        "target_child_id": "2e253893-efce-4eaa-8edd-e5a2b5e2e014",
+        "target_printing_gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP-RH",
+        "set_key": "dp1",
+        "card_number": "35",
+        "card_name": "Pachirisu",
+        "target_variant_key": "diamond_pearl_stamp",
+        "target_finish_key": "reverse",
+        "finish_active": true,
+        "public_visible": true,
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "dp1:35:diamond_pearl_stamp:reverse"
+      }
+    ]
+  }
+}

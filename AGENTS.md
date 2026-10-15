@@ -1,16 +1,31 @@
 # Grookai Agent Entry Point
 
+## Burger King stamped alias extension — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_152_BURGER_KING_STAMPED_ALIAS_BATCH.md`.
+Ten exact Burger King promo products now extend the pending master-evidence
+alias batch. The combined scope is 17 products, 17 parents, and 20 price
+observations across seven canonical sets. Burger King rows must bind to their
+existing `diamond_pearl_stamp` or `platinum_stamped_burger_king_2009` parent and
+the exact Holo or Reverse child established by checked-in catalog adjudication.
+Keep the other 14 Burger King rows blocked. Production order is 20 truth
+reviews, independent readback, seven-set mapping authority, 17 mappings,
+independent readback, then a later full pricing shadow and publication. Do not
+add a group-wide stamp, Burger King, Diamond & Pearl, or Platinum alias rule.
+
 ## Master-evidence alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_151_MASTER_EVIDENCE_ALIAS_BATCH.md`.
-Seven previously held TCGPlayer products now have exact reviewed authority across
+Checkpoint 152 extends these seven previously held TCGPlayer products to a
+combined 17-product authority across
 Dragons Exalted, Dragon Majesty, Celebrations: Classic Collection, and Black
-Bolt. They cover ten missing-price observations and ten existing Holo, Normal,
-or Reverse children. The authority explicitly reconciles the product-specific
+Bolt plus three Diamond & Pearl-era sets. The combined batch covers 20
+missing-price observations and 20 existing Holo, Normal, or Reverse children.
+The original authority explicitly reconciles the product-specific
 `GFPD` and `WLFM` Blend Energy abbreviations, the `sm75`/`sm7.5` set-key
 difference, and the Master Index `Umbreon Star`/`Umbreon ★` card/printing names.
-Production order is ten verified-visible truth reviews, independent readback,
-four-set mapping authority, seven mappings, independent readback, then a later
+Production order is 20 verified-visible truth reviews, independent readback,
+seven-set mapping authority, 17 mappings, independent readback, then a later
 full pricing shadow and publication. Do not broaden these product-specific
 aliases into a global abbreviation, symbol, persona, Full Art, or set-key
 normalization rule.

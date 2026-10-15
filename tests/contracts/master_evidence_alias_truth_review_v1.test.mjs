@@ -25,18 +25,39 @@ const SCRIPT = readFileSync(path.join(ROOT, RELATIVE), "utf8");
 const AUTHORITY_SCRIPT = readFileSync(path.join(ROOT,
   "scripts/audits/tcgplayer_master_evidence_alias_mapping_authority_v1.mjs"), "utf8");
 
-test("master-evidence-alias registry freezes 7 products, 7 parents, and all 10 source-listed printings", () => {
+test("master-evidence-alias registry freezes 17 products, 17 parents, and all 20 source-listed printings", () => {
   const rows = TCGPLAYER_MASTER_EVIDENCE_ALIAS_PRODUCT_IDENTITIES_V1;
   const printings = rows.flatMap((row) => row.printings);
-  assert.equal(rows.length, 7);
-  assert.equal(new Set(rows.map((row) => row.source_product_id)).size, 7);
-  assert.equal(new Set(rows.map((row) => row.target.card_print_id)).size, 7);
-  assert.equal(printings.length, 10);
-  assert.equal(new Set(printings.map((row) => row.printing_id)).size, 10);
-  assert.deepEqual([...new Set(rows.map((row) => row.target.set_code))].sort(), ["bw6","cel25c","sm75","sv10.5b"]);
+  assert.equal(rows.length, 17);
+  assert.equal(new Set(rows.map((row) => row.source_product_id)).size, 17);
+  assert.equal(new Set(rows.map((row) => row.target.card_print_id)).size, 17);
+  assert.equal(printings.length, 20);
+  assert.equal(new Set(printings.map((row) => row.printing_id)).size, 20);
+  assert.deepEqual([...new Set(rows.map((row) => row.target.set_code))].sort(),
+    ["bw6","cel25c","dp1","dp5","dp6","sm75","sv10.5b"]);
   assert.deepEqual([...new Set(printings.map((row) => row.finish_key))].sort(), ["holo", "normal", "reverse"]);
   assert.deepEqual(Object.fromEntries(["holo", "normal", "reverse"].map((finish) => [finish,
-    printings.filter((row) => row.finish_key === finish).length])), { holo: 4, normal: 3, reverse: 3 });
+    printings.filter((row) => row.finish_key === finish).length])), { holo: 5, normal: 3, reverse: 12 });
+  const burgerKing = rows.filter((row) => row.source_group_id === 2175);
+  assert.equal(burgerKing.length, 10);
+  assert.deepEqual(burgerKing.map((row) => row.source_product_id).sort((a, b) => a - b),
+    [155603,155605,155608,174129,188132,191913,213008,220666,224679,231450]);
+  assert.ok(burgerKing.every((row) => row.catalog_evidence?.sha256?.length === 64));
+  assert.ok(burgerKing.every((row) => row.master_evidence.printing_finish_key === "stamped"));
+  assert.deepEqual([...new Set(burgerKing.map((row) => row.target.variant_key))].sort(),
+    ["diamond_pearl_stamp", "platinum_stamped_burger_king_2009"]);
+  for (const row of burgerKing) {
+    const document = JSON.parse(readFileSync(path.join(ROOT, row.catalog_evidence.relative_path), "utf8"));
+    const targets = [
+      ...(Array.isArray(document?.scope?.targets) ? document.scope.targets : []),
+      ...(Array.isArray(document?.targets) ? document.targets : []),
+      ...(document?.target ? [document.target] : []),
+    ];
+    assert.equal(targets.filter((target) => target.target_parent_id === row.target.card_print_id &&
+      target.target_child_id === row.printings[0].printing_id &&
+      target.target_finish_key === row.printings[0].finish_key).length, 1,
+    `catalog evidence must bind exact child for product ${row.source_product_id}`);
+  }
 });
 
 test("each frozen master-evidence-alias source plans and validates only its exact parent", () => {
@@ -92,8 +113,8 @@ test("each frozen master-evidence-alias source plans and validates only its exac
 test("master-evidence-alias truth review is a bounded insert-only canon maintenance task", () => {
   assert.ok(CANON_MAINTENANCE_FILES_V1.includes(RELATIVE));
   assert.match(SCRIPT, /CANON MAINTENANCE-ONLY EXECUTION BOUNDARY/);
-  assert.match(SCRIPT, /const EXPECTED_PRODUCT_COUNT = 7/);
-  assert.match(SCRIPT, /const EXPECTED_COUNT = 10/);
+  assert.match(SCRIPT, /const EXPECTED_PRODUCT_COUNT = 17/);
+  assert.match(SCRIPT, /const EXPECTED_COUNT = 20/);
   assert.match(SCRIPT, /begin transaction isolation level repeatable read read only/);
   assert.match(SCRIPT, /begin isolation level serializable/);
   assert.match(SCRIPT, /pg_advisory_xact_lock/);
@@ -108,13 +129,15 @@ test("master-evidence-alias truth review is a bounded insert-only canon maintena
 });
 
 test("master-evidence-alias mapping authority is read-only, multi-finish, and evidence-bound", () => {
-  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 7/);
-  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_PRINTINGS = 10/);
+  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 17/);
+  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_PRINTINGS = 20/);
   assert.match(AUTHORITY_SCRIPT, /const allCandidates =/);
   assert.match(AUTHORITY_SCRIPT, /expectedProductIds\.has\(Number\(row\.source_product_id\)\)/);
   assert.match(AUTHORITY_SCRIPT, /begin transaction isolation level repeatable read read only/);
   assert.match(AUTHORITY_SCRIPT, /rejectUnauthorized:\s*true/);
   assert.match(AUTHORITY_SCRIPT, /master_index_hash_changed/);
+  assert.match(AUTHORITY_SCRIPT, /catalog_evidence_hash_changed/);
+  assert.match(AUTHORITY_SCRIPT, /catalog_variant_evidence_drift/);
   assert.match(AUTHORITY_SCRIPT, /authority\.printings\.map/);
   assert.match(AUTHORITY_SCRIPT, /active_truth_review, "verified"/);
   assert.match(AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
