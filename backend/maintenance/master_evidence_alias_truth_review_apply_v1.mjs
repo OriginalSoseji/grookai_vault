@@ -1,7 +1,7 @@
 /**
  * CANON MAINTENANCE-ONLY EXECUTION BOUNDARY
  *
- * Adds verified, visible printing truth reviews for exactly six existing
+ * Adds verified, visible printing truth reviews for exactly twenty existing
  * master-evidence-alias Normal, Holo, and Reverse printings. The command is
  * dry-run by default and must be launched through run_canon_maintenance_v1.
  */
@@ -38,14 +38,23 @@ import {
 const { Client } = pg;
 const SCRIPT_VERSION = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_APPLY_V1";
 const PROJECT_REF = "ycdxbpibncqcchqiihfz";
-const EXPECTED_PRODUCT_COUNT = 7;
-const EXPECTED_COUNT = 10;
+const EXPECTED_PRODUCT_COUNT = 17;
+const EXPECTED_COUNT = 20;
 const APPLY_CONFIRMATION = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_APPLY_V1";
 const CONFIRMATION_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_CONFIRMATION";
 const EXPECTED_FINGERPRINT_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_EXPECTED_FINGERPRINT";
 const EXPECTED_COMMIT_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_EXPECTED_COMMIT_SHA";
 const OUTPUT_ROOT_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_OUTPUT_ROOT";
 const SETS = Object.freeze({
+  "dp1": Object.freeze({ set_id: "6f5e00e3-2707-406e-a822-addef33a2ced", master_set_key: "dp1",
+    cards_sha256: "d4bd82f20b4e67247a2618ae6435c2f85d0ec0fafe003512c8c5fa1330f3a220",
+    printings_sha256: "57247211af0433603d28409502f201d13d0b152ab72f68b48387b5589f56f888" }),
+  "dp5": Object.freeze({ set_id: "f72d53bd-2e2a-47b4-b802-882424b650e4", master_set_key: "dp5",
+    cards_sha256: "2568c310362aa54a6422cf72e91802eb64d1055388090834f8f59d7429c0d657",
+    printings_sha256: "1fc13a41f688198052f9fa4a8d6107bf6ea620aa5104c724ba743cb9a8e57a52" }),
+  "dp6": Object.freeze({ set_id: "74ac5cb4-d64c-451b-9642-18523097609a", master_set_key: "dp6",
+    cards_sha256: "1567654aac423a8087802859758c4ec9e8687e29e31aaf8f01cf734be104f5c9",
+    printings_sha256: "74a9d7081927436b257f603adaedc6c7f8b869f859337b369acf65b6b60b68d3" }),
   "bw6": Object.freeze({ set_id: "31bab32f-dc83-4a51-b08d-f96256184cf7", master_set_key: "bw6",
     cards_sha256: "82bff84ccd5f222d4a407465e1f0dfd0cca9561ca6b8420eee6608aa72c59f1d",
     printings_sha256: "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805" }),
@@ -59,7 +68,7 @@ const SETS = Object.freeze({
     cards_sha256: "53b93747b034f5f01270ea211c48e3e3b5b4bd5ca7db45bd0e44392b554b771f",
     printings_sha256: "7b78c6d62bc97838c65240a4cff9cce51b67a34ad94b31d5d62a485e11f2ec50" }),
 });
-const REVIEW_REASON = "Exact printing supported by the reviewed English Master Index; this review covers only the selected master-evidence-alias Normal, Holo, and Reverse printing.";
+const REVIEW_REASON = "Exact printing supported by the reviewed English Master Index and, where applicable, checked-in stamped-variant catalog adjudication; this review covers only the selected master-evidence-alias Normal, Holo, and Reverse printing.";
 
 if (process.env[CANON_MAINTENANCE_ENABLE_ENV_V1] !== "true") {
   throw new Error("RUNTIME_ENFORCEMENT: canon maintenance is disabled. Set ENABLE_CANON_MAINTENANCE_MODE=true.");
@@ -108,6 +117,7 @@ function authorityBody() {
         review_id: reviewIdFor(printing.printing_id), source_product_id: row.source_product_id,
         card_print_id: row.target.card_print_id, printing_id: printing.printing_id,
         printing_gv_id: printing.printing_gv_id, finish_key: printing.finish_key,
+        catalog_evidence: row.catalog_evidence,
       }))),
   };
 }
@@ -125,9 +135,18 @@ function assertRegistry() {
   assert.equal(new Set(rows.map((row) => row.target.card_print_id)).size, EXPECTED_PRODUCT_COUNT, "parent_collision");
   assert.equal(new Set(printings.map((row) => row.printing_id)).size, EXPECTED_COUNT, "printing_collision");
   assert.ok(rows.every((row) => SETS[row.target.set_code]?.set_id === row.target.set_id &&
-    [[1394,"Dragons Exalted","bw6"],[2295,"Dragon Majesty","sm75"],[2931,"Celebrations: Classic Collection","cel25c"],[24325,"SV: Black Bolt","sv10.5b"]]
+    [[1394,"Dragons Exalted","bw6"],[2295,"Dragon Majesty","sm75"],[2931,"Celebrations: Classic Collection","cel25c"],[24325,"SV: Black Bolt","sv10.5b"],
+      [2175,"Burger King Promos","dp1"],[2175,"Burger King Promos","dp5"],[2175,"Burger King Promos","dp6"]]
       .some(([id,name,code]) => row.source_group_id === id && row.source_group_name === name && row.target.set_code === code)),
   "registry_scope_changed");
+}
+
+function catalogEvidenceTargets(value) {
+  return [
+    ...(Array.isArray(value?.scope?.targets) ? value.scope.targets : []),
+    ...(Array.isArray(value?.targets) ? value.targets : []),
+    ...(value?.target ? [value.target] : []),
+  ];
 }
 
 async function loadMasterEvidence() {
@@ -153,11 +172,27 @@ async function loadMasterEvidence() {
       row.card_name === authority.master_evidence.card_name && row.status === "master_verified");
     assert.equal(cardRows.length, 1, `master_card_evidence_changed:${authority.source_product_id}`);
     assert.ok(Number(cardRows[0].source_count) >= 2, `master_card_source_count_low:${authority.source_product_id}`);
+    let catalogEvidence = null;
+    if (authority.catalog_evidence) {
+      const bytes = await fs.readFile(path.join(REPO_ROOT, authority.catalog_evidence.relative_path));
+      assert.equal(sha256(bytes), authority.catalog_evidence.sha256,
+        `catalog_evidence_hash_changed:${authority.source_product_id}`);
+      const document = JSON.parse(bytes.toString("utf8"));
+      const targets = catalogEvidenceTargets(document).filter((row) =>
+        row.target_parent_id === authority.target.card_print_id && row.set_key === authority.target.set_code &&
+        normalizeTcgplayerMappingNumberV1(row.card_number) === normalizeTcgplayerMappingNumberV1(authority.target.number) &&
+        row.card_name === authority.target.name && row.target_variant_key === authority.target.variant_key &&
+        authority.printings.some((printing) => printing.finish_key === row.target_finish_key));
+      assert.equal(targets.length, 1, `catalog_variant_evidence_changed:${authority.source_product_id}`);
+      catalogEvidence = { ...authority.catalog_evidence, target: targets[0] };
+    }
     for (const printing of authority.printings) {
       const printingRows = source.printings.filter((row) => row.set_key === authority.master_evidence.master_set_key &&
         normalizeTcgplayerMappingNumberV1(row.card_number) ===
           normalizeTcgplayerMappingNumberV1(authority.target.number) &&
-        row.card_name === authority.master_evidence.printing_name && row.finish_key === printing.finish_key && row.status === "master_verified");
+        row.card_name === authority.master_evidence.printing_name &&
+        row.finish_key === (authority.master_evidence.printing_finish_key ?? printing.finish_key) &&
+        row.status === "master_verified");
       assert.equal(printingRows.length, 1,
         `master_printing_evidence_changed:${authority.source_product_id}:${printing.finish_key}`);
       assert.ok(Number(printingRows[0].source_count) >= 2,
@@ -165,7 +200,8 @@ async function loadMasterEvidence() {
       evidence.set(printing.printing_id, { card: cardRows[0], printing: printingRows[0],
         cardsRelative: source.cardsRelative, printingsRelative: source.printingsRelative,
         cardsSha256: SETS[authority.target.set_code].cards_sha256,
-        printingsSha256: SETS[authority.target.set_code].printings_sha256 });
+        printingsSha256: SETS[authority.target.set_code].printings_sha256,
+        catalogEvidence });
     }
   }
   return evidence;
@@ -244,16 +280,21 @@ function buildReviewPayload(evidence, reviewedAt, fingerprint) {
       const source = evidence.get(printing.printing_id);
       const checked = [...new Set([...(source.card.evidence_urls ?? []), ...(source.printing.evidence_urls ?? [])])].sort();
       const finishSources = [...new Set(source.printing.evidence_urls ?? [])].sort();
+      const catalogRef = source.catalogEvidence ?
+        `repo:${source.catalogEvidence.relative_path}#sha256=${source.catalogEvidence.sha256}` : null;
+      if (catalogRef) { checked.push(catalogRef); finishSources.push(catalogRef); }
       return {
       id: reviewIdFor(printing.printing_id), card_printing_id: printing.printing_id,
       reason: REVIEW_REASON, evidence_sources_checked: checked, evidence_sources_for_finish: finishSources,
       finish_key: printing.finish_key,
-      source_report_path: `${source.cardsRelative}|${source.printingsRelative}`,
+      source_report_path: [source.cardsRelative, source.printingsRelative,
+        source.catalogEvidence?.relative_path].filter(Boolean).join("|"),
       evidence: { version: SCRIPT_VERSION, authority_fingerprint: fingerprint,
         source_product_id: authority.source_product_id, card_print_id: authority.target.card_print_id,
         printing_id: printing.printing_id, printing_gv_id: printing.printing_gv_id,
         finish_key: printing.finish_key, cards_sha256: source.cardsSha256, printings_sha256: source.printingsSha256,
-        master_card: source.card, master_printing: source.printing },
+        master_card: source.card, master_printing: source.printing,
+        catalog_evidence: source.catalogEvidence },
       reviewed_at: reviewedAt,
     };
   }));
