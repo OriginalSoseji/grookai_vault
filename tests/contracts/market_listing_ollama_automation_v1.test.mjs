@@ -42,3 +42,16 @@ test('scheduled wrapper runs the repository automation command', () => {
   assert.match(script, /pricing:market:ollama:automation/);
   assert.match(script, /Set-Location \$repoRoot/);
 });
+
+test('approved MEE signals have a signed-in-only pricing read model', () => {
+  const migration = fs.readFileSync(
+    path.join(ROOT, 'supabase/migrations/20261015100000_mee_internal_price_read_model_v1.sql'),
+    'utf8',
+  );
+  assert.match(migration, /get_market_evidence_pricing_read_model_v1/);
+  assert.match(migration, /security definer/);
+  assert.match(migration, /revoke all on function/);
+  assert.match(migration, /to authenticated, service_role/);
+  assert.match(migration, /candidate_median is not null/);
+  assert.match(migration, /signal_at >= now\(\) - interval '14 days'/);
+});

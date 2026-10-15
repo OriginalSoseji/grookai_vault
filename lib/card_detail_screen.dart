@@ -670,20 +670,50 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     final rows = (response as List<dynamic>)
         .map((row) => Map<String, dynamic>.from(row as Map))
         .toList();
-    if (selectedCardPrintingId.isNotEmpty) {
-      for (final row in rows) {
-        if (row['pricing_scope'] == 'card_printing' &&
-            _cleanText(row['card_printing_id']) == selectedCardPrintingId) {
+    Map<String, dynamic>? selectPricingRow(
+      List<Map<String, dynamic>> candidates,
+    ) {
+      if (selectedCardPrintingId.isNotEmpty) {
+        for (final row in candidates) {
+          if (row['pricing_scope'] == 'card_printing' &&
+              _cleanText(row['card_printing_id']) == selectedCardPrintingId) {
+            return row;
+          }
+        }
+      }
+      for (final row in candidates) {
+        if (row['pricing_scope'] == 'parent') {
           return row;
         }
       }
+      return candidates.isEmpty ? null : candidates.first;
     }
-    for (final row in rows) {
-      if (row['pricing_scope'] == 'parent') {
-        return row;
-      }
+
+    bool hasAvailablePrice(Map<String, dynamic>? row) {
+      final value = row?['market_close'];
+      return row?['status'] == 'available' &&
+          value is num &&
+          value > 0;
     }
-    return rows.isEmpty ? null : rows.first;
+
+    final selected = selectPricingRow(rows);
+    if (hasAvailablePrice(selected)) {
+      return selected;
+    }
+
+    final meeResponse = await supabase.rpc(
+      'get_market_evidence_pricing_read_model_v1',
+      params: {'p_card_print_ids': [widget.cardPrintId]},
+    );
+    final meeRows = (meeResponse as List<dynamic>)
+        .map((row) => Map<String, dynamic>.from(row as Map))
+        .toList();
+    final meeSelected = selectPricingRow(meeRows);
+    if (hasAvailablePrice(meeSelected)) {
+      return meeSelected;
+    }
+
+    return selected;
   }
 
   Future<void> _loadPricing() async {
