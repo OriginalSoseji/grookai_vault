@@ -1903,6 +1903,49 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   min-width: 0;
 }
 
+.gv-login-page {
+  min-width: 0;
+}
+
+.gv-login-card {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-md);
+}
+
+.gv-login-google,
+.gv-login-input {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container);
+  color: var(--gv-text-primary);
+}
+
+.gv-login-google:hover {
+  border-color: var(--gv-text-tertiary);
+  background: var(--gv-surface-container-low);
+}
+
+.gv-login-input:focus {
+  border-color: var(--gv-text-tertiary);
+  background: var(--gv-surface-base);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gv-primary) 14%, transparent);
+}
+
+.gv-login-switch {
+  border-top: 1px solid var(--gv-border-hairline);
+  padding-top: 1rem;
+}
+
+html.gv-dark .gv-login-card .text-slate-700,
+html.gv-dark .gv-login-card .text-slate-600 {
+  color: var(--gv-text-secondary);
+}
+
+html.gv-dark .gv-login-card .text-slate-950,
+html.gv-dark .gv-login-card .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
 .gv-account-card {
   border-radius: 1.25rem;
   border-color: var(--gv-border-soft);
