@@ -54,10 +54,10 @@ export function CustomProductView({
   };
 
   return (
-    <div className="gv-page-container gv-page-rhythm py-5 sm:py-8">
+    <div className="gv-store-product-page gv-page-container gv-page-rhythm py-5 sm:py-8">
       {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(productJsonLd) }} /> : null}
       {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(breadcrumbJsonLd) }} /> : null}
-      <nav aria-label="Store navigation" className="mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
+      <nav aria-label="Store navigation" className="gv-store-product-breadcrumbs mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
         <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="transition hover:text-slate-950 dark:hover:text-white">{data.store.display_name}</Link>
         <span aria-hidden="true">/</span>
         <span className="text-slate-950 dark:text-white">Collectible details</span>
@@ -65,8 +65,8 @@ export function CustomProductView({
 
       {data.preview ? <p role="status" className="gv-store-preview-note mb-5">Owner preview · this collectible is not public yet. <Link href="/account/store" className="font-bold underline underline-offset-4">Return to store workspace</Link></p> : null}
 
-      <article className="grid overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white/70 shadow-sm dark:border-white/[0.08] dark:bg-white/[0.03] lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)]">
-        <div className="border-b border-slate-200/70 p-4 dark:border-white/[0.08] sm:p-7 lg:border-b-0 lg:border-r">
+      <article aria-labelledby="store-product-title" className="gv-store-product-detail grid overflow-hidden rounded-[2rem] border border-slate-200/70 bg-white/70 shadow-sm dark:border-white/[0.08] dark:bg-white/[0.03] lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)]">
+        <div className="gv-store-product-gallery border-b border-slate-200/70 p-4 dark:border-white/[0.08] sm:p-7 lg:border-b-0 lg:border-r">
           {p.photo_ids.length ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {p.photo_ids.map((photo, index) => (
@@ -80,22 +80,23 @@ export function CustomProductView({
           )}
         </div>
 
-        <div className="flex flex-col p-6 sm:p-9 lg:p-12">
+        <div className="gv-store-product-info flex flex-col p-6 sm:p-9 lg:p-12">
           <div className="flex flex-wrap items-center gap-2"><span className="gv-storefront-eyebrow">Custom collectible</span><span className="gv-metadata-pill">Seller-provided details</span></div>
-          <h1 className="mt-5 max-w-xl text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50 sm:text-5xl">{p.title || "Untitled collectible"}</h1>
+          <h1 id="store-product-title" className="mt-5 max-w-xl text-4xl font-black tracking-tight text-slate-950 dark:text-slate-50 sm:text-5xl">{p.title || "Untitled collectible"}</h1>
           <p className="mt-5 whitespace-pre-wrap break-words text-base leading-7 text-slate-600 dark:text-slate-300">{p.description || "Description not added yet."}</p>
 
-          <div className="mt-8 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-5 dark:border-white/[0.08] dark:bg-white/[0.04]">
+          <div className="gv-store-product-offer mt-8 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-5 dark:border-white/[0.08] dark:bg-white/[0.04]">
             <p className="text-3xl font-black tracking-tight text-slate-950 dark:text-slate-50">{formatPrice(p.asking_price_amount, p.asking_price_currency)}</p>
-            <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">{p.available_quantity > 0 ? `${p.available_quantity} available` : "Not currently available"}</p>
+            <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400" role="status">{p.available_quantity > 0 ? `${p.available_quantity} available` : "Not currently available"}</p>
             {purchaseEnabled && !data.preview && p.available_quantity > 0 ? <Link href={purchaseLink} prefetch={false} className="gv-primary-button mt-5 block w-full text-center">Review order</Link> : null}
+            {!data.preview && !purchaseEnabled ? <p className="gv-store-product-offer-note mt-4">Order review is currently unavailable. Use the seller details below to ask about this item.</p> : null}
           </div>
 
-          <dl className="mt-8 grid gap-x-6 gap-y-5 border-t border-slate-200/70 pt-6 dark:border-white/[0.08] sm:grid-cols-2">
+          <dl className="gv-store-product-details mt-8 grid gap-x-6 gap-y-5 border-t border-slate-200/70 pt-6 dark:border-white/[0.08] sm:grid-cols-2">
             {[["Category", p.category], ["Franchise", p.franchise], ["Manufacturer", p.manufacturer], ["Release region", p.release_region], ["Language", p.language], ["Condition", p.condition_description], ["Packaging", p.packaging_description]].filter(([, value]) => value).map(([label, value]) => <div key={label}><dt className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">{label}</dt><dd className="mt-1 whitespace-pre-wrap break-words text-sm font-semibold text-slate-800 dark:text-slate-200">{value}</dd></div>)}
           </dl>
 
-          <div className="mt-auto flex flex-wrap gap-4 pt-8 text-sm font-semibold">
+          <div className="gv-store-product-actions mt-auto flex flex-wrap gap-4 pt-8 text-sm font-semibold">
             <SharePublicLinkButton title={`${p.title || "Collectible"} from ${data.store.display_name}`} label="Share listing" className="gv-secondary-button" />
             {data.store.collector_slug ? <Link className="gv-secondary-button" href={`/u/${encodeURIComponent(data.store.collector_slug)}`}>Meet the seller</Link> : null}
             <Link className="gv-ghost-button inline-flex items-center rounded-xl px-3 py-2" href={`${base}${data.preview ? "?preview=1" : ""}`}>Back to the store</Link>
