@@ -2921,6 +2921,260 @@ html.gv-dark .gv-card-identity-wash {
   will-change: opacity, filter, transform;
 }
 
+.gv-storefront-hero {
+  position: relative;
+  min-height: 30rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2rem;
+  background: #101d1a;
+  box-shadow: 0 30px 80px -48px rgba(0, 0, 0, 0.75);
+  isolation: isolate;
+}
+
+.gv-storefront-hero-media,
+.gv-storefront-hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gv-storefront-hero-media {
+  object-fit: cover;
+  object-position: center;
+}
+
+.gv-storefront-hero-fallback {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(226, 184, 95, 0.32), transparent 34%),
+    radial-gradient(circle at 20% 82%, rgba(36, 117, 91, 0.54), transparent 42%),
+    linear-gradient(135deg, #0e211b 0%, #162f2a 52%, #0d1715 100%);
+}
+
+.gv-storefront-hero-overlay {
+  z-index: 0;
+  background: linear-gradient(90deg, rgba(5, 13, 12, 0.9) 0%, rgba(5, 13, 12, 0.68) 42%, rgba(5, 13, 12, 0.22) 100%), linear-gradient(0deg, rgba(5, 13, 12, 0.78) 0%, transparent 52%);
+}
+
+.gv-storefront-hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 30rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  color: white;
+}
+
+.gv-storefront-title {
+  max-width: 11ch;
+  color: white;
+  font-size: clamp(2.75rem, 7vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.gv-storefront-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(241, 210, 137, 0.42);
+  border-radius: 999px;
+  background: rgba(22, 34, 29, 0.54);
+  padding: 0.42rem 0.72rem;
+  color: #f3d58b;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.gv-storefront-eyebrow-muted {
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.gv-storefront-hero-button,
+.gv-storefront-hero-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  padding: 0.72rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 800;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.gv-storefront-hero-button {
+  background: #f1d289;
+  color: #15201a;
+  box-shadow: 0 12px 28px -16px rgba(241, 210, 137, 0.9);
+}
+
+.gv-storefront-hero-link {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.gv-storefront-hero-button:hover,
+.gv-storefront-hero-link:hover {
+  transform: translateY(-1px);
+}
+
+.gv-storefront-hero-link:hover {
+  border-color: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.gv-storefront-filters {
+  display: grid;
+  grid-template-columns: minmax(15rem, 1.6fr) repeat(3, minmax(8rem, 0.72fr)) auto;
+  align-items: end;
+  gap: 0.75rem;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 1.25rem;
+  background: var(--gv-surface-container-low);
+  padding: 1rem;
+}
+
+.gv-storefront-input {
+  min-height: 2.75rem;
+  border: 1px solid var(--gv-border-hairline);
+  border-radius: 0.75rem;
+  background: var(--gv-surface-container);
+  color: var(--gv-text-primary);
+  padding: 0.65rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.gv-storefront-input:focus {
+  border-color: rgba(241, 210, 137, 0.75);
+  box-shadow: 0 0 0 3px rgba(241, 210, 137, 0.14);
+}
+
+.gv-store-product-card {
+  min-width: 0;
+}
+
+.gv-store-product-art {
+  position: relative;
+  display: flex;
+  aspect-ratio: 4 / 5;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 1.35rem;
+  background: var(--gv-surface-container-low);
+  padding: 1rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.gv-store-product-card:hover .gv-store-product-art,
+.gv-store-product-card:focus-within .gv-store-product-art {
+  border-color: rgba(241, 210, 137, 0.7);
+  box-shadow: 0 18px 38px -28px rgba(0, 0, 0, 0.85);
+  transform: translateY(-2px);
+}
+
+.gv-store-product-badge {
+  position: absolute;
+  left: 0.7rem;
+  top: 0.7rem;
+  z-index: 1;
+  max-width: calc(100% - 1.4rem);
+  overflow: hidden;
+  border: 1px solid rgba(241, 210, 137, 0.42);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gv-surface-container) 86%, transparent);
+  padding: 0.35rem 0.55rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gv-store-product-kicker {
+  color: var(--gv-text-secondary);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.gv-storefront-empty,
+.gv-store-preview-note {
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 1.25rem;
+  background: var(--gv-surface-container-low);
+  padding: 2rem;
+}
+
+.gv-store-preview-note {
+  color: var(--gv-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .gv-storefront-filters {
+    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 1fr));
+  }
+
+  .gv-storefront-filters > label:first-of-type,
+  .gv-storefront-filters > div {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .gv-storefront-hero,
+  .gv-storefront-hero-content {
+    min-height: 34rem;
+  }
+
+  .gv-storefront-hero-content {
+    padding: 1.25rem;
+  }
+
+  .gv-storefront-title {
+    max-width: 9ch;
+    font-size: clamp(2.7rem, 15vw, 4.8rem);
+  }
+
+  .gv-storefront-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .gv-storefront-filters > label,
+  .gv-storefront-filters > label:first-of-type,
+  .gv-storefront-filters > div {
+    grid-column: auto;
+  }
+
+  .gv-storefront-filters > div {
+    padding-top: 0;
+  }
+
+  .gv-storefront-filters .gv-primary-button,
+  .gv-storefront-filters .gv-secondary-button {
+    flex: 1;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .gv-ghost-watermark {
     opacity: var(--wm-opacity-desktop, 0.08);

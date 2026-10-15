@@ -1,4 +1,5 @@
 import { notFound, redirect } from "next/navigation";
+import { acquisitionAvailable } from "@/lib/orders/orderAcquisitionRuntime";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { buildLoginHref } from "@/lib/auth/routeAccess";
 import { readCustomProduct } from "@/lib/stores/customProductServer";
@@ -37,7 +38,7 @@ export default async function ProductPage({
   return (
     <>
       {!preview && <StoreEntry slug={slug} />}
-      <CustomProductView data={data} />
+      <CustomProductView data={data} purchaseEnabled={!preview && acquisitionAvailable()} />
     </>
   );
 }

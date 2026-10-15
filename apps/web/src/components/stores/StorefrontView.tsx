@@ -2,8 +2,98 @@
 import Link from "next/link";
 import { purchaseHref } from "@/lib/orders/orderAcquisitionTypes";
 import { StoreProductImage } from "./StoreProductImage";
-import type { Storefront, StoreFilters } from "@/lib/stores/storefrontTypes";
+import type { CustomStoreProduct, StoreEntry, Storefront, StoreFilters, StoreItem } from "@/lib/stores/storefrontTypes";
 import { buildLoginHref } from "@/lib/auth/routeAccess";
+
+function formatPrice(amount: number | null | undefined, currency: string) {
+  if (amount == null) return "Price on request";
+  return new Intl.NumberFormat("en-US", { style: "currency", currency }).format(amount);
+}
+
+function storeMediaPath(slug: string, preview: boolean, kind: string) {
+  return `/api/stores/${encodeURIComponent(slug)}${preview ? "/preview" : ""}/media/${kind}`;
+}
+
+function StoreItemCard({
+  item,
+  store,
+  preview,
+  purchaseEnabled,
+}: {
+  item: StoreEntry;
+  store: Storefront["store"];
+  preview: boolean;
+  purchaseEnabled: boolean;
+}) {
+  const base = `/store/${encodeURIComponent(store.slug)}`;
+  const purchaseLink = purchaseHref({
+    storeId: store.id,
+    itemId: item.id,
+    kind: item.entry_type === "custom_product" ? "custom" : "copy",
+    quantity: 1,
+  });
+
+  if (item.entry_type === "custom_product") {
+    const product = item as CustomStoreProduct;
+    return (
+      <article className="gv-store-product-card group">
+        <Link href={`${base}/products/${product.id}${preview ? "?preview=1" : ""}`} className="block">
+          <div className="gv-store-product-art">
+            <span className="gv-store-product-badge">Custom collectible</span>
+            {product.photo_ids[0] ? (
+              <StoreProductImage
+                src={`/api/stores/${encodeURIComponent(store.slug)}${preview ? "/preview" : ""}/products/${product.id}/media/${product.photo_ids[0]}`}
+                alt={product.title}
+                className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.03]"
+              />
+            ) : (
+              <span className="px-6 text-center text-sm font-medium text-slate-400 dark:text-slate-500">Photo coming soon</span>
+            )}
+          </div>
+          <div className="space-y-2 px-1 pt-4">
+            <p className="gv-store-product-kicker">Seller-provided details</p>
+            <h3 className="line-clamp-2 text-base font-bold text-slate-950 dark:text-slate-50">{product.title}</h3>
+            <div className="flex items-end justify-between gap-3">
+              <p className="text-lg font-black tracking-tight text-slate-950 dark:text-slate-50">{formatPrice(product.asking_price_amount, product.asking_price_currency)}</p>
+              <p className="text-right text-xs font-medium text-slate-500 dark:text-slate-400">{product.available_quantity} available</p>
+            </div>
+          </div>
+        </Link>
+        {!preview && purchaseEnabled ? <Link href={purchaseLink} prefetch={false} className="gv-primary-button mt-4 block w-full text-center text-sm">Review order</Link> : null}
+      </article>
+    );
+  }
+
+  const catalogItem = item as StoreItem;
+  const condition = catalogItem.is_graded
+    ? [catalogItem.grade_company, catalogItem.grade_label ?? catalogItem.grade_value].filter(Boolean).join(" ")
+    : catalogItem.condition_label ?? "Condition not recorded";
+
+  return (
+    <article className="gv-store-product-card group">
+      <Link href={`/gvvi/${encodeURIComponent(catalogItem.gv_vi_id)}`} className="block">
+        <div className="gv-store-product-art">
+          {catalogItem.display_image_url ? (
+            <img src={catalogItem.display_image_url} alt={catalogItem.display_name} loading="lazy" className="h-full w-full object-contain transition duration-300 group-hover:scale-[1.03]" />
+          ) : (
+            <span className="px-6 text-center text-sm font-medium text-slate-400 dark:text-slate-500">Image unavailable</span>
+          )}
+          <span className="gv-store-product-badge">{catalogItem.finish_label ?? "Catalog copy"}</span>
+        </div>
+        <div className="space-y-2 px-1 pt-4">
+          <p className="gv-store-product-kicker">{catalogItem.set_code} · {catalogItem.number}</p>
+          <h3 className="line-clamp-2 text-base font-bold text-slate-950 dark:text-slate-50">{catalogItem.display_name}</h3>
+          <div className="flex items-end justify-between gap-3">
+            <p className="text-lg font-black tracking-tight text-slate-950 dark:text-slate-50">{formatPrice(catalogItem.asking_price_amount, catalogItem.asking_price_currency)}</p>
+            <p className="max-w-[48%] text-right text-xs font-medium text-slate-500 dark:text-slate-400">{condition}</p>
+          </div>
+          {catalogItem.display_image_kind !== "exact" && catalogItem.display_image_url ? <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Representative artwork</p> : null}
+        </div>
+      </Link>
+      {!preview && purchaseEnabled ? <Link href={purchaseLink} prefetch={false} className="gv-primary-button mt-4 block w-full text-center text-sm">Review order</Link> : null}
+    </article>
+  );
+}
 
 export function StorefrontView({
   data,
@@ -27,253 +117,41 @@ export function StorefrontView({
     next.set("offset", String(offset));
     return `${base}?${next}`;
   };
-  const media = (kind: string) =>
-    `/api/stores/${encodeURIComponent(store.slug)}${data.preview ? "/preview" : ""}/media/${kind}`;
+  const hasFilters = Boolean(filters.query || filters.sectionId || filters.condition || (filters.kind && filters.kind !== "all"));
+
   return (
-    <main className="mx-auto max-w-6xl space-y-8 px-4 py-8">
-      {data.preview && (
-        <p role="status" className="rounded-xl bg-amber-50 p-4 text-amber-950">
-          Private owner preview. This link only works for you. To share with customers,
-          use the public link in <Link href="/account/store" className="underline">your store workspace</Link>.
-          {" "}Eligible selected copies and complete custom listings appear here.
-        </p>
-      )}
-      <header className="overflow-hidden rounded-3xl border border-slate-200 bg-white">
-        {store.has_banner ? (
-          <img
-            src={media("banner")}
-            alt=""
-            className="h-44 w-full object-cover sm:h-64"
-          />
-        ) : (
-          <div className="h-24 bg-slate-900" />
-        )}
-        <div className="flex flex-wrap gap-5 p-6 sm:p-8">
-          {store.has_logo && (
-            <img
-              src={media("logo")}
-              alt={`${store.display_name} logo`}
-              className="h-20 w-20 rounded-2xl object-cover"
-            />
-          )}
-          <div className="min-w-0 flex-1">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-              Independent store · Grookai Vault
-            </p>
-            <h1 className="mt-2 break-words text-3xl font-semibold text-slate-950">
-              {store.display_name}
-            </h1>
-            {store.description && (
-              <p className="mt-3 max-w-2xl whitespace-pre-line text-slate-600">
-                {store.description}
-              </p>
-            )}
-            <div className="mt-4 flex flex-wrap gap-4 text-sm font-medium">
-              {store.collector_slug && (
-                <Link
-                  href={`/u/${encodeURIComponent(store.collector_slug)}`}
-                  className="underline"
-                >
-                  Meet the collector
-                </Link>
-              )}
-              <Link
-                href={buildLoginHref(`${base}?${params}`)}
-                className="underline"
-              >
-                Sign in to Grookai
-              </Link>
-            </div>
+    <main className="gv-page-container gv-page-rhythm py-5 sm:py-8">
+      {data.preview ? <p role="status" className="gv-store-preview-note mb-5">Private owner preview · only you can open this link. Public customers see published listings and eligible inventory. <Link href="/account/store" className="ml-1 font-bold underline underline-offset-4">Open store workspace</Link></p> : null}
+
+      <header className="gv-storefront-hero">
+        {store.has_banner ? <img src={storeMediaPath(store.slug, data.preview, "banner")} alt="" className="gv-storefront-hero-media" /> : <div className="gv-storefront-hero-media gv-storefront-hero-fallback" aria-hidden="true" />}
+        <div className="gv-storefront-hero-overlay" aria-hidden="true" />
+        <div className="gv-storefront-hero-content">
+          <div className="flex flex-wrap items-center gap-2"><span className="gv-storefront-eyebrow">Independent collector store</span><span className="gv-storefront-eyebrow gv-storefront-eyebrow-muted">Powered by Grookai Vault</span></div>
+          <div className="mt-5 flex flex-col gap-5 sm:flex-row sm:items-end">
+            {store.has_logo ? <img src={storeMediaPath(store.slug, data.preview, "logo")} alt={`${store.display_name} logo`} className="h-20 w-20 rounded-2xl border border-white/25 bg-black/20 object-cover shadow-2xl backdrop-blur sm:h-24 sm:w-24" /> : null}
+            <div className="min-w-0 max-w-3xl"><h1 className="gv-storefront-title">{store.display_name}</h1>{store.description ? <p className="mt-3 max-w-2xl whitespace-pre-line text-base leading-7 text-white/78 sm:text-lg">{store.description}</p> : null}</div>
           </div>
+          <div className="mt-6 flex flex-wrap items-center gap-3"><a href="#inventory" className="gv-storefront-hero-button">Browse inventory</a>{store.collector_slug ? <Link href={`/u/${encodeURIComponent(store.collector_slug)}`} className="gv-storefront-hero-link">Meet the collector</Link> : null}<Link href={buildLoginHref(`${base}?${params}`)} className="gv-storefront-hero-link">Sign in to Grookai</Link></div>
+          <div className="mt-7 flex flex-wrap gap-6 border-t border-white/15 pt-5 text-sm text-white/70"><span><strong className="text-white">{data.total}</strong> listings</span><span><strong className="text-white">{data.sections.length}</strong> collections</span><span>Secure order review before payment</span></div>
         </div>
       </header>
-      <section aria-label="Sale inventory" className="space-y-5">
-        <div>
-          <h2 className="text-xl font-semibold">Available collectibles</h2>
-          <p className="mt-1 text-sm text-slate-600">
-            Browse asking prices and seller-provided listings.
-          </p>
-        </div>
-        <form
-          method="get"
-          className="flex flex-wrap items-end gap-3 rounded-2xl bg-slate-50 p-4"
-        >
-          {data.preview && <input type="hidden" name="preview" value="1" />}
-          <label className="min-w-48 flex-1 text-sm">
-            Search
-            <input
-              name="q"
-              defaultValue={filters.query}
-              placeholder="Name or GV-ID"
-              maxLength={120}
-              className="mt-1 block w-full rounded-lg border p-2"
-            />
-          </label>
-          <label className="text-sm">
-            Section
-            <select
-              name="section"
-              defaultValue={filters.sectionId ?? ""}
-              className="mt-1 block rounded-lg border p-2"
-            >
-              <option value="">All sections</option>
-              {data.sections.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="text-sm">
-            Condition
-            <select
-              name="condition"
-              defaultValue={filters.condition ?? ""}
-              className="mt-1 block rounded-lg border p-2"
-            >
-              <option value="">All conditions</option>
-              {["NM", "LP", "MP", "HP", "DMG"].map((c) => (
-                <option key={c}>{c}</option>
-              ))}
-            </select>
-          </label>
-          <label className="text-sm">
-            Type
-            <select
-              name="kind"
-              defaultValue={filters.kind ?? "all"}
-              className="mt-1 block rounded-lg border p-2"
-            >
-              <option value="all">All collectibles</option>
-              <option value="catalog">Catalog copies</option>
-              <option value="custom">Custom collectibles</option>
-              <option value="raw">Raw</option>
-              <option value="slab">Graded</option>
-            </select>
-          </label>
-          <button className="rounded-lg bg-slate-900 px-5 py-2 text-white">
-            Apply
-          </button>
+
+      <section id="inventory" aria-label="Sale inventory" className="mt-10 space-y-6 scroll-mt-6">
+        <div className="flex flex-wrap items-end justify-between gap-4"><div><p className="gv-eyebrow">The shop</p><h2 className="mt-1 text-3xl font-black tracking-tight text-slate-950 dark:text-slate-50 sm:text-4xl">Available collectibles</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-400">Browse verified catalog copies and seller-provided collectibles. Open any item for its full details before you review an order.</p></div><span className="gv-metadata-pill">{data.total} {data.total === 1 ? "listing" : "listings"}</span></div>
+
+        <form method="get" className="gv-storefront-filters">
+          {data.preview ? <input type="hidden" name="preview" value="1" /> : null}
+          <label className="min-w-0 flex-1 text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Search the shop<input name="q" defaultValue={filters.query} placeholder="Search by name or GV-ID" maxLength={120} className="gv-storefront-input mt-2 w-full" /></label>
+          <label className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Collection<select name="section" defaultValue={filters.sectionId ?? ""} className="gv-storefront-input mt-2"><option value="">All collections</option>{data.sections.map((section) => <option key={section.id} value={section.id}>{section.name}</option>)}</select></label>
+          <label className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Condition<select name="condition" defaultValue={filters.condition ?? ""} className="gv-storefront-input mt-2"><option value="">All conditions</option>{["NM", "LP", "MP", "HP", "DMG"].map((condition) => <option key={condition}>{condition}</option>)}</select></label>
+          <label className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Type<select name="kind" defaultValue={filters.kind ?? "all"} className="gv-storefront-input mt-2"><option value="all">All collectibles</option><option value="catalog">Catalog copies</option><option value="custom">Custom collectibles</option><option value="raw">Raw</option><option value="slab">Graded</option></select></label>
+          <div className="flex items-center gap-2 pt-5 sm:pt-0"><button className="gv-primary-button whitespace-nowrap text-sm">Apply filters</button>{hasFilters ? <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="gv-secondary-button whitespace-nowrap text-sm">Reset</Link> : null}</div>
         </form>
-        <p className="text-sm text-slate-500">
-          {data.total} {data.total === 1 ? "listing" : "listings"}
-        </p>
-        {data.items.length === 0 ? (
-          <div className="rounded-2xl border border-dashed p-10 text-center text-slate-600">
-            No available collectibles match this view.
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {data.items.map((item) => (
-              <div key={`${item.entry_type}:${item.id}`} className="space-y-2">{item.entry_type === "custom_product" ? (
-                <Link
-                  key={`custom:${item.id}`}
-                  href={`${base}/products/${item.id}${data.preview ? "?preview=1" : ""}`}
-                  className="block overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 hover:border-slate-400"
-                >
-                  <div className="flex aspect-[3/4] items-center justify-center rounded-xl bg-slate-50 p-3">
-                    {item.photo_ids[0] && (
-                      <StoreProductImage
-                        src={`/api/stores/${encodeURIComponent(store.slug)}${data.preview ? "/preview" : ""}/products/${item.id}/media/${item.photo_ids[0]}`}
-                        alt={item.title}
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    )}
-                  </div>
-                  <p className="mt-3 text-xs text-slate-500">
-                    Custom collectible · Seller-provided details
-                  </p>
-                  <h3 className="mt-1 font-semibold">{item.title}</h3>
-                  <p className="mt-3 text-lg font-semibold">
-                    {new Intl.NumberFormat("en-US", {
-                      style: "currency",
-                      currency: item.asking_price_currency,
-                    }).format(item.asking_price_amount ?? 0)}
-                  </p>
-                  <p className="text-xs text-slate-500">
-                    Asking price · {item.available_quantity} available
-                  </p>
-                </Link>
-              ) : (
-                <Link
-                  key={item.id}
-                  href={`/gvvi/${encodeURIComponent(item.gv_vi_id)}`}
-                  className="block overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 transition hover:border-slate-400 focus-visible:outline-2 focus-visible:outline-slate-900"
-                >
-                  <div className="flex aspect-[3/4] items-center justify-center rounded-xl bg-slate-50 p-3">
-                    {item.display_image_url ? (
-                      <img
-                        src={item.display_image_url}
-                        alt={item.display_name}
-                        loading="lazy"
-                        className="max-h-full max-w-full object-contain"
-                      />
-                    ) : (
-                      <span className="text-center text-sm text-slate-500">
-                        Image unavailable
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="mt-3 font-semibold">{item.display_name}</h3>
-                  <p className="text-xs text-slate-500">
-                    {item.set_code} · {item.number}
-                  </p>
-                  <p className="mt-1 text-sm">
-                    {item.finish_label} ·{" "}
-                    {item.is_graded
-                      ? [
-                          item.grade_company,
-                          item.grade_label ?? item.grade_value,
-                        ]
-                          .filter(Boolean)
-                          .join(" ")
-                      : (item.condition_label ?? "Condition not recorded")}
-                  </p>
-                  <p className="mt-3 text-lg font-semibold">
-                    {new Intl.NumberFormat("en-US", {
-                      style: "currency",
-                      currency: item.asking_price_currency,
-                    }).format(item.asking_price_amount)}
-                  </p>
-                  <p className="text-xs text-slate-500">
-                    Asking price · {item.gv_vi_id}
-                  </p>
-                  {item.display_image_kind !== "exact" &&
-                    item.display_image_url && (
-                      <p className="mt-1 text-xs text-slate-500">
-                        Representative artwork
-                      </p>
-                    )}
-                </Link>
-              )}
-              {purchaseEnabled && !data.preview && <Link href={purchaseHref({ storeId: store.id, itemId: item.id, kind: item.entry_type === "custom_product" ? "custom" : "copy", quantity: 1 })} prefetch={false} className="block rounded-lg bg-emerald-800 px-3 py-2 text-center text-sm font-semibold text-white">Review order</Link>}
-              </div>
-            ))}
-          </div>
-        )}
-        <nav
-          aria-label="Inventory pages"
-          className="flex justify-between gap-4"
-        >
-          {data.offset > 0 ? (
-            <Link
-              className="rounded-lg border px-4 py-2"
-              href={pageHref(Math.max(0, data.offset - data.limit))}
-            >
-              Previous
-            </Link>
-          ) : (
-            <span />
-          )}
-          {data.offset + data.limit < data.total && (
-            <Link
-              className="rounded-lg border px-4 py-2"
-              href={pageHref(data.offset + data.limit)}
-            >
-              Next
-            </Link>
-          )}
-        </nav>
+
+        {data.items.length === 0 ? <div className="gv-storefront-empty"><p className="gv-eyebrow">Nothing matched</p><h3 className="mt-2 text-xl font-bold text-slate-950 dark:text-slate-50">No collectibles in this view</h3><p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Try clearing a filter or searching for another card, set, or collectible.</p>{hasFilters ? <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="gv-secondary-button mt-5 inline-flex text-sm">View all listings</Link> : null}</div> : <div className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">{data.items.map((item) => <StoreItemCard key={`${item.entry_type}:${item.id}`} item={item} store={store} preview={data.preview} purchaseEnabled={purchaseEnabled} />)}</div>}
+
+        <nav aria-label="Inventory pages" className="flex items-center justify-between gap-4 border-t border-slate-200/70 pt-6 dark:border-white/[0.08]">{data.offset > 0 ? <Link className="gv-secondary-button text-sm" href={pageHref(Math.max(0, data.offset - data.limit))}>Previous</Link> : <span />}{data.offset + data.limit < data.total ? <Link className="gv-secondary-button text-sm" href={pageHref(data.offset + data.limit)}>Next page</Link> : <span />}</nav>
       </section>
     </main>
   );
