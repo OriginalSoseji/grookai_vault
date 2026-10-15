@@ -256,26 +256,27 @@ counts after a future verified incremental save are 1,616 and 543. Private
 collectr_card_labels_20261007/CHECKPOINT.json tracks checks and remaining release
 work. Never replay PR603 or old save intents. The graded-item choice is pending.
 
-## Split external payments — October 6
+## Split external payments — October 6 (historical)
 
 PR604 now preserves PR603/main ddb7c764b's exact sealed-label update. The split
 SQL and native implementation stay unchanged; retain signed unuploaded347.
 Refresh normal hooks and gates for the combined source. The external checkpoint
 tracks simulator proof and actual release, never infer them from the archive.
 
-The exact release package is428+split=429, excluding deferred receipt delivery;
-all430 source migrations remain. Read the SalesSplitPaymentsReleaseV1 gate and
-external Release-* receipts. Fresh3290x/3292x labs and every old lab are retained.
-Do not apply receipt429 or reuse consumed intents to close a gap.
+The exact release package was428+split=429, excluding deferred receipt delivery;
+that historical package is not the current receipt release authority. Read the
+SalesSplitPaymentsReleaseV1 gate and external Release-* receipts only for that
+release. Do not apply receipt429 or reuse consumed intents to close a gap. The
+current receipt path is the October 15 forward reconciliation below.
 
 Candidate: C:/gv_sales_split_payments_20261006, base main04980f98d. Read
 [split payments checkpoint](SALES_SPLIT_PAYMENTS_20261006.md) and the SALES_SPLIT_PAYMENTS_V1 contract.
 Desktop/native split payments, cash change, receipt breakdown and tender reports
 use an additive default-off v3 writer. Existing v1/v2 writers remain unchanged.
 External sales_split_payments_20261006/CHECKPOINT.json owns proof/release state.
-Local430 replay/upgrade includes deferred receipt429; it is not authority to
-apply receipt delivery remotely. Preserve production428, prior web/TestFlight346,
-receipt sender deferral, catalog work and every retained lab/upload intent.
+Local430 replay/upgrade included deferred receipt429; it was never authority to
+apply receipt delivery remotely. Preserve the historical labs and upload intents.
+For the live receipt state, use the October 15 section below.
 
 ## Collectr remaining card review — October 6
 
@@ -323,35 +324,42 @@ Preserve receipt PR598, signed unuploaded iOS345 and live TestFlight344. Sender
 setup remains deferred; no production mutation, actual message or upload is implied.
 Do not reset retained labs, replay migration/upload intents or edit repair trees.
 
-## Receipt delivery release preparation — October 5
+## Receipt delivery forward reconciliation — October 15
 
-PR598 has complete local application proof against main62d287019 and schema429.
-The new `ReceiptDeliveryReleaseV1` gate permits only the exact receipt migration
-20261005150000 over production428. It rereads both retained labs, receipt/copy
-fixtures and production schema without resetting or applying anything. PrePush
-also requires clean committed source, current-main ancestry and fresh normal hooks.
-The fixed CLI inspection package supports preparation and dry-run only. Sending
-remains off; sender setup and authorized real delivery proof are still pending.
-Read external receipt_delivery_20261005/CHECKPOINT.json for actual outcomes.
-Do not replay previous fast-entry, Collectr, migration or native upload intents.
+Production has 447 migration-ledger rows through `20261014003500`. The original
+receipt candidate `20261005150000_vendor_receipt_delivery_v1.sql` was deferred
+while later migrations landed, so it is quarantined and must not be pushed with
+`--include-all`. The active candidate is the forward-only
+`20261015090000_vendor_receipt_delivery_reconcile_v1.sql`.
 
-## Receipt delivery combined integration — October 5
+`ReceiptDeliveryReleaseV1` accepts only `AuditLinkedSchema` or `PrePush` with
+the exact pending ID `20261015090000`. The gate reads the live ledger and
+receipt-table state, proves the vendor-cost migration is already present, and
+writes evidence with `productionWrites: 0`, `actualMessagesSent: 0`, and
+`applyAuthority: false`. The CLI package supports preparation and
+`supabase db push --dry-run` only; it never applies SQL or enables sending.
 
-PR598 source is being integrated with PR597/main62d287019. The Collectr release
-receipt reports production428; verify fresh baseline before receipt schema work.
-The combined receipt candidate is429 on fresh full/upgrade3270x/3272x labs.
-Earlier428 receipt labs and all Collectr fixtures are retained and must not reset.
-Receipt product/SQL bytes stay unchanged; only proof routing and integration change.
-External receipt_delivery_20261005/CHECKPOINT.json owns current proof/release state.
-Sending remains disabled; no receipt migration or sender activation in production.
+Run the gate from a clean current-main descendant, then inspect the exact
+forward migration with the normal dry run. Keep receipt controls and provider
+configuration off until a separate authorized apply and delivery readback.
+Historical PR598 evidence under `receipt_delivery_20261005` remains preserved;
+do not replay its backdated migration or reset its retained labs.
 
-## Direct receipt delivery — October 5, 2026
+## Receipt delivery combined integration — October 5 (historical)
 
-Read [the receipt delivery checkpoint](RECEIPT_DELIVERY_20261005.md). Native fast
-entry is released as344 and PR595 is merged. New receipt delivery is a local-only
-candidate with default-off428 schema and654xx labs. Preserve populated upgrade
-fixtures and catalog/Collectr work. Real sender configuration/delivery is pending;
-the external receipt_delivery_20261005 checkpoint distinguishes proof from release.
+PR598 source was integrated with PR597/main62d287019. Its production428/429
+numbers and checkpoint describe a historical candidate only; they are superseded
+by the October 15 forward reconciliation above. Do not use this section to
+choose a migration, reset a lab, or authorize a production push. Sending remains
+disabled unless the current gate and a separate authorization say otherwise.
+
+## Direct receipt delivery — October 5, 2026 (historical)
+
+Read [the receipt delivery checkpoint](RECEIPT_DELIVERY_20261005.md) only for
+historical evidence. Its local-only candidate, default-off428 schema and654xx
+labs are superseded by the October 15 forward migration. Preserve the retained
+fixtures; real sender configuration/delivery remains pending and requires the
+current release gate plus separate authorization.
 
 ## Collectr sealed live-release continuation — October 5
 
