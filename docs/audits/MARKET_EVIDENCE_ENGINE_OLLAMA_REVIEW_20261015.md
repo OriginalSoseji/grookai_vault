@@ -12,6 +12,7 @@ Status: installed locally; advisory only
 - Run with `npm run pricing:market:ollama:evidence-review -- --input=<bounded-review-json> --out-dir=<output-dir> --limit=10`.
 - End-to-end automation runs with `npm run pricing:market:ollama:automation`. It pages through the warehouse, calls Ollama, and idempotently writes internal-only price review events.
 - Windows Task Scheduler task `Grookai Market Evidence Ollama` is installed hourly and advances its page checkpoint in `C:\grookai_vault_operator_artifacts\mee_ollama_automation_state.json`.
+- Each scheduled invocation retains stdout, stderr, start time, completion, and failure state under `C:\grookai_vault_operator_artifacts\mee_ollama_scheduled_logs`. Run the same wrapper with `-DryRun` to reproduce the unattended environment without inserting review events.
 
 ## Safety boundary
 

@@ -93,6 +93,10 @@ test('scheduled wrapper runs the repository automation command', () => {
   );
   assert.match(script, /pricing:market:ollama:automation/);
   assert.match(script, /Set-Location \$repoRoot/);
+  assert.match(script, /mee_ollama_scheduled_logs/);
+  assert.match(script, /\$ErrorActionPreference = 'Continue'/);
+  assert.match(script, /\$exitCode = \$LASTEXITCODE/);
+  assert.match(script, /if \(\$DryRun\).*--dry-run/);
 });
 
 test('approved MEE signals have a signed-in-only pricing read model', () => {
