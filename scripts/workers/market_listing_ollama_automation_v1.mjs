@@ -147,8 +147,7 @@ function buildPriceEvent(row, review, modelDigest, sourcePackage, sourcePath) {
   };
 }
 
-function insertEvents(events) {
-  if (!events.length) return [];
+function insertEventChunk(events) {
   const values = events.map((event) => `(
     ${sqlLiteral(event.card_print_id)}::uuid,
     ${sqlLiteral(event.gv_id)},
@@ -182,6 +181,14 @@ insert into public.market_evidence_price_review_events (
 values ${values}
 returning id::text as event_id, source_rollup_id, action_name, review_state;
 `);
+}
+
+function insertEvents(events) {
+  const inserted = [];
+  for (let start = 0; start < events.length; start += 5) {
+    inserted.push(...insertEventChunk(events.slice(start, start + 5)));
+  }
+  return inserted;
 }
 
 async function main() {
