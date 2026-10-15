@@ -2079,6 +2079,77 @@ html.gv-dark .gv-wall-sections-card .text-slate-500 {
   min-width: 0;
 }
 
+.gv-order-history {
+  min-width: 0;
+}
+
+.gv-order-history-header,
+.gv-order-history-filters {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-order-card,
+.gv-order-history-empty {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-base);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-order-card {
+  transition: border-color var(--gv-transition-fast), box-shadow var(--gv-transition-fast), transform var(--gv-transition-fast);
+}
+
+.gv-order-card:hover {
+  border-color: color-mix(in srgb, var(--gv-primary) 42%, var(--gv-border-soft));
+  box-shadow: var(--gv-shadow-sm);
+  transform: translateY(-1px);
+}
+
+.gv-order-history-alert {
+  border-color: color-mix(in srgb, #f59e0b 38%, var(--gv-border-soft));
+  background: color-mix(in srgb, #f59e0b 10%, var(--gv-surface-base));
+}
+
+html.gv-dark .gv-order-history .gv-order-history-header,
+html.gv-dark .gv-order-history .gv-order-history-filters,
+html.gv-dark .gv-order-history .gv-order-card,
+html.gv-dark .gv-order-history .gv-order-history-empty {
+  border-color: rgba(226, 232, 240, 0.12);
+  background: var(--gv-surface-base);
+}
+
+html.gv-dark .gv-order-history .text-slate-950,
+html.gv-dark .gv-order-history .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-order-history .text-slate-700,
+html.gv-dark .gv-order-history .text-slate-600,
+html.gv-dark .gv-order-history .text-slate-500 {
+  color: var(--gv-text-secondary);
+}
+
+@media (max-width: 639px) {
+  .gv-order-history-header h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .gv-order-history-filters > * {
+    width: 100%;
+  }
+
+  .gv-order-history-filters select,
+  .gv-order-history-filters button {
+    width: 100%;
+  }
+
+  .gv-order-history-filters a {
+    padding-left: 0;
+  }
+}
+
 .gv-saved-header {
   border-color: var(--gv-border-soft);
   background: var(--gv-surface-container-low);
