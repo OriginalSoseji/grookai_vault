@@ -31,6 +31,8 @@ Slab rows now have a separate internal-only lane in `market_evidence_slab_review
 
 The slab queue is now reviewable through the founder-gated, read-only `get_market_evidence_slab_review_queue_v1` RPC. It returns the latest event per source rollup, orders manual holds before deferred and rejected rows, caps each request at 250 rows, and does not grant any write or pricing-publication authority.
 
+The slab approval policy is explicit in every new automation payload as `MEE_SLAB_APPROVAL_POLICY_V1`. A slab event remains blocked until each listing has grader identity, numeric grade, same-grade rollup membership, and listing-level provenance. A bucket-level “graded” label is insufficient because it can mix PSA, CGC, different grades, signatures, and other non-comparable listings.
+
 ## Validation
 
 - Contract tests: 17 passed, 0 failed.

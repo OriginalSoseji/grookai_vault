@@ -15,6 +15,7 @@ const AUTOMATION_VERSION = "MEE_OLLAMA_AUTOMATION_V1";
 const ACTOR = "ollama_automation_agent_v1";
 const RAW_EVENT_TABLE = "market_evidence_price_review_events";
 const SLAB_EVENT_TABLE = "market_evidence_slab_review_events";
+const SLAB_POLICY_VERSION = "MEE_SLAB_APPROVAL_POLICY_V1";
 
 function arg(argv, name, fallback = "") {
   return argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3).trim() ?? fallback;
@@ -105,6 +106,30 @@ function automationKey(row, review, modelDigest) {
   });
 }
 
+function slabPolicy(row, action) {
+  if (row.evidence_class !== "slab") return null;
+  const status = action.action_name === "reject_candidate"
+    ? "blocked_contamination"
+    : action.action_name === "defer_more_evidence"
+      ? "blocked_insufficient_evidence"
+      : row.review_bucket === "review_required_outlier_spread"
+        ? "blocked_outlier_spread"
+        : "blocked_missing_normalized_grade_identity";
+  return {
+    policy_version: SLAB_POLICY_VERSION,
+    status,
+    can_auto_approve: false,
+    can_publish: false,
+    requirements: [
+      "grader_identity_per_listing",
+      "numeric_grade_per_listing",
+      "same_grader_and_grade_rollup",
+      "listing_level_identity_provenance",
+    ],
+    rationale: "Slab asks cannot be promoted from a mixed rollup until grader and grade are normalized per listing.",
+  };
+}
+
 function buildPriceEvent(row, review, modelDigest, sourcePackage, sourcePath) {
   const action = actionFor(row, review);
   const key = automationKey(row, review, modelDigest);
@@ -137,6 +162,7 @@ function buildPriceEvent(row, review, modelDigest, sourcePackage, sourcePath) {
       source_input_path: sourcePath,
       review_bucket: row.review_bucket,
       model_review: review,
+      slab_policy: slabPolicy(row, action),
       public_boundary: {
         can_publish_price_directly: false,
         publishable: false,

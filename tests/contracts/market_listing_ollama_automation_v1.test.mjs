@@ -46,6 +46,10 @@ test('slab evidence is routed to a separate non-public review lane', () => {
   assert.match(worker, /market_evidence_slab_review_events/);
   assert.match(worker, /slab_candidates/);
   assert.match(worker, /special_lane_hold/);
+  assert.match(worker, /MEE_SLAB_APPROVAL_POLICY_V1/);
+  assert.match(worker, /blocked_missing_normalized_grade_identity/);
+  assert.match(worker, /grader_identity_per_listing/);
+  assert.match(worker, /can_auto_approve: false/);
   assert.doesNotMatch(worker, /slab_lane_requires_separate_policy/);
   assert.match(migration, /evidence_lane = 'slab'/);
   assert.match(migration, /market_evidence_slab_review_events_no_public_boundary_check/);
