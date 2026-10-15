@@ -74,7 +74,7 @@ jobs:
       - name: Record immutable migration evidence
         if: ${{ always() }}
         env:
-          JOB_SUCCEEDED: ${{ success() }}
+          JOB_STATUS: ${{ job.status }}
         shell: bash
         run: |
           set -euo pipefail
@@ -87,9 +87,9 @@ jobs:
             github_run_id: process.env.GITHUB_RUN_ID,
             github_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
             mode: process.env.DISPATCH_MODE,
-            job_status: process.env.JOB_SUCCEEDED === 'true' ? 'success' : 'failure',
+            job_status: process.env.JOB_STATUS,
             target_migration: process.env.TARGET_MIGRATION,
-            dry_run_completed: process.env.JOB_SUCCEEDED === 'true',
+            dry_run_completed: process.env.JOB_STATUS === 'success',
             db_row_writes_performed: false,
             application_flags_enabled_observed: false,
             production_apply_authorized: false,
