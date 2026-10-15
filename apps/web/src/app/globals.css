@@ -1699,6 +1699,31 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   box-shadow: none;
 }
 
+html.gv-dark .gv-public-profile-page .text-slate-950,
+html.gv-dark .gv-public-profile-page .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-public-profile-page .text-slate-700,
+html.gv-dark .gv-public-profile-page .text-slate-600,
+html.gv-dark .gv-public-profile-page .text-slate-500,
+html.gv-dark .gv-public-profile-page .text-slate-400 {
+  color: var(--gv-text-secondary);
+}
+
+html.gv-dark .gv-public-profile-section-rail a:not([aria-current="page"]),
+html.gv-dark .gv-public-profile-section-rail button {
+  border-color: rgba(226, 232, 240, 0.14);
+  background: var(--gv-surface-container);
+  color: var(--gv-text-secondary);
+}
+
+html.gv-dark .gv-public-profile-section-rail a:not([aria-current="page"]):hover,
+html.gv-dark .gv-public-profile-section-rail button:hover {
+  background: var(--gv-surface-container-high);
+  color: var(--gv-text-primary);
+}
+
 @media (max-width: 639px) {
   .gv-compare-page {
     gap: 1.25rem;
