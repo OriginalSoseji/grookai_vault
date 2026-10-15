@@ -1,0 +1,1104 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "stage freezes exact wire request",
+      "current": null,
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": null,
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "stage",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "22222222-2222-4222-8222-222222222222",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "valid": true
+    },
+    {
+      "name": "acknowledgement clears only verified request",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "acknowledge",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "acknowledgement": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "previousRevision": "0",
+          "revision": "1",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "22222222-2222-4222-8222-222222222222",
+        "pending": null,
+        "rejection": null
+      },
+      "valid": true
+    },
+    {
+      "name": "definitive refusal PT409",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "PT409"
+      },
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "22222222-2222-4222-8222-222222222222",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": "PT409"
+      },
+      "valid": true
+    },
+    {
+      "name": "definitive refusal 22023",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "22023"
+      },
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "22222222-2222-4222-8222-222222222222",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": "22023"
+      },
+      "valid": true
+    },
+    {
+      "name": "definitive refusal 42501",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "42501"
+      },
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "22222222-2222-4222-8222-222222222222",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": "42501"
+      },
+      "valid": true
+    },
+    {
+      "name": "explicitly discard a recorded refusal",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": "PT409"
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "discardRejected"
+      },
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "22222222-2222-4222-8222-222222222222",
+        "pending": null,
+        "rejection": null
+      },
+      "valid": true
+    },
+    {
+      "name": "retry acknowledgement can settle rejected request",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": "42501"
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "acknowledge",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "acknowledgement": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "previousRevision": "0",
+          "revision": "1",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "22222222-2222-4222-8222-222222222222",
+        "pending": null,
+        "rejection": null
+      },
+      "valid": true
+    },
+    {
+      "name": "cannot overwrite pending",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "stage",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "cannot discard uncertain request",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "discardRejected"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "transport failure is not rejection",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "NETWORK"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "auth expiry is not final rejection",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "28000"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "stale editor revision",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": null,
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "PT409"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "revision cannot repeat",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "PT409"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "foreign account",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "22222222-2222-4222-8222-222222222222",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "reject",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "code": "PT409"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "changed request cannot settle",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "acknowledge",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "1",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "acknowledgement": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "previousRevision": "0",
+          "revision": "1",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "wrong acknowledgement owner",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "acknowledge",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "acknowledgement": {
+          "version": 1,
+          "ownerId": "22222222-2222-4222-8222-222222222222",
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "previousRevision": "0",
+          "revision": "1",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "wrong acknowledgement revision",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "acknowledge",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "acknowledgement": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "previousRevision": "0",
+          "revision": "2",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "absent request cannot acknowledge",
+      "current": null,
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": null,
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "acknowledge",
+        "request": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "acknowledgement": {
+          "version": 1,
+          "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "previousRevision": "0",
+          "revision": "1",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        }
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "unknown action",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "delete"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "corrupt journal version",
+      "current": {
+        "version": 2,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "discardRejected"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "extra journal fields",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": {
+          "version": 1,
+          "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "expectedRevision": "0",
+          "operation": {
+            "type": "event_create",
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Autumn card show",
+            "startDate": "2026-10-31",
+            "endDate": "2026-11-01",
+            "timeZone": "America/Denver",
+            "currency": "USD",
+            "notes": ""
+          }
+        },
+        "rejection": null,
+        "extra": true
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "discardRejected"
+      },
+      "expected": null,
+      "valid": false
+    },
+    {
+      "name": "refusal without request",
+      "current": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "localRevision": "11111111-1111-4111-8111-111111111111",
+        "pending": null,
+        "rejection": "PT409"
+      },
+      "change": {
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedLocalRevision": "11111111-1111-4111-8111-111111111111",
+        "nextLocalRevision": "22222222-2222-4222-8222-222222222222",
+        "action": "discardRejected"
+      },
+      "expected": null,
+      "valid": false
+    }
+  ]
+}

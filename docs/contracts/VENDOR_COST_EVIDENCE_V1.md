@@ -1,0 +1,69 @@
+# Vendor cost evidence V1
+
+Local candidate for release 2 of the product overhaul. No production application
+or activation is authorized by this contract. Both new switches default off.
+
+## Authority and privacy
+
+Use the existing exact copy's `acquisition_cost` and `acquisition_currency`.
+Never replace ownership, inventory, cart completion or receipt-book authorities.
+An owner can read their costs and explicitly edit an active copy. No storefront,
+vendor entitlement or customer permission confers cost access. Costs stay outside
+customer receipts, customer display, shared cards and public listings.
+
+An edit has a durable owner/request UUID and an expected old amount/currency pair.
+It locks that copy, checks the expected pair and updates both values together.
+An identical retry returns the original result, even after a sale or switch-off.
+A changed request is rejected. An intervening cost edit or archived copy conflicts.
+Unknown is a null pair; zero is a known cost. A new amount requires explicit
+uppercase currency, finite nonnegative decimal value and at most two decimals.
+Legacy amounts without currency remain visible and require owner review.
+
+## Sale evidence
+
+A default-off AFTER INSERT trigger on the immutable cart receipt ledger captures
+private per-line costs in the same transaction as the existing v1/v2/v3 sale.
+Those writers already lock all outgoing exact copies in stable order. Cost edits
+lock a single copy and never take the receipt-book lock, avoiding inverse order.
+If capture fails, the sale rolls back; no successful sale may claim a partial
+snapshot. Malformed legacy costs become explicit unknown classifications rather
+than preventing an otherwise valid sale.
+
+If legacy cost evidence exceeds 1,500 bytes, the snapshot records an explicit
+`oversized_legacy_value`, no usable cost, a bounded currency when available and
+a SHA-256 fingerprint of the original classified evidence. The original copy
+values remain unchanged. Fifty such lines must still complete within the journal
+size bound. This fingerprint is provenance, never a usable price or currency.
+
+The snapshot records receipt ID, sale time, USD sale currency and ordered lines.
+Each line retains quantity, sales amount, exact instance where linked, original
+cost amount/currency, classified status and exact decimal-string minor units when
+qualified. Foreign-currency cost remains recorded but is excluded from USD profit.
+Manual/unlinked lines, missing amount, missing currency and invalid cost are
+distinct. No implicit currency, FX conversion or zero replacement is permitted.
+
+Completed snapshots cannot be updated. Cost edits cannot alter previous snapshots.
+Owner deletion can cascade private evidence; direct client writes are denied.
+Old receipts and retries do not receive today's costs as retrospective evidence.
+Missing snapshot means cost-at-sale unknown, regardless of current inventory cost.
+The existing receipt JSON and recovery response remain byte-equivalent.
+
+## Reporting boundary
+
+Revenue, taxes, external payment movements and trade credit remain distinct.
+Known-cost profit uses only evidenced lines in a compatible currency and displays
+coverage. Costs use exact decimal strings and integer arithmetic, never floats.
+Event association, expense revision, discount allocation and historical cost
+correction require their own explicit evidence; this migration does not invent it.
+
+## Qualification
+
+Verify fresh replay, no-op push, populated upgrade retention, schema parity and
+idempotent rerun on dedicated labs. Prove disabled defaults, owner isolation,
+anon denial, cost-zero handling, currency/precision errors, optimistic conflict,
+identical/mutated retries, sale/edit ordering, rollback and cost privacy. Exercise
+all three cart writers and foreign/unknown/manual costs. Do not reset prior labs.
+Strict linked baseline is read-only against actual production429. Source430
+includes deferred receipt delivery; a future release package must explicitly
+exclude it unless separately authorized. Full schema/release gates remain pending
+until their independent receipts pass.
