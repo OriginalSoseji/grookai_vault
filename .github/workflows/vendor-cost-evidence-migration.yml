@@ -30,7 +30,6 @@ jobs:
       TARGET_MIGRATION: 20261007180000_vendor_cost_evidence_v1.sql
       DISPATCH_MODE: ${{ inputs.mode }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}
-      JOB_STATUS: ${{ job.status }}
 
     steps:
       - name: Check out the exact merged ref
@@ -74,6 +73,8 @@ jobs:
 
       - name: Record immutable migration evidence
         if: ${{ always() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
         shell: bash
         run: |
           set -euo pipefail

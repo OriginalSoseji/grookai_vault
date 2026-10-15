@@ -17,4 +17,6 @@ test('vendor cost migration has no production apply path before release authorit
   assert.match(workflow, /db_row_writes_performed: false/);
   assert.match(workflow, /production_apply_authorized: false/);
   assert.match(workflow, /readback_verified: false/);
+  assert.match(workflow, /JOB_STATUS: \$\{\{ job\.status \}\}/);
+  assert.match(workflow, /dry_run_completed: process\.env\.JOB_STATUS === 'success'/);
 });
