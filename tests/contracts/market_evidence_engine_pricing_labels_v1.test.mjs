@@ -8,6 +8,8 @@ function source(relativePath) {
 
 test("card pricing rail labels TCGPlayer close and active asks explicitly", () => {
   const pricingRail = source("apps/web/src/components/pricing/CardPagePricingRail.tsx");
+  const marketPage = source("apps/web/src/app/card/[gv_id]/market/page.tsx");
+  const vaultPricing = source("apps/web/src/lib/vaultInstancePricing.ts");
 
   assert.doesNotMatch(pricingRail, /JustTCG/);
   assert.match(pricingRail, /TCGPlayer Market/);
@@ -18,6 +20,9 @@ test("card pricing rail labels TCGPlayer close and active asks explicitly", () =
   assert.doesNotMatch(pricingRail, /Grookai Value/);
   assert.doesNotMatch(pricingRail, /source=\{pricing\?\.primary_source\}/);
   assert.doesNotMatch(pricingRail, />\* Market reference</);
+  assert.match(marketPage, /TCGPlayer Market reference/);
+  assert.doesNotMatch(marketPage, />\s*Market reference\s*</);
+  assert.match(vaultPricing, /TCGPlayer Market reference/);
 });
 
 test("market evidence engine resume does not send future work back to initial reference implementation", () => {
