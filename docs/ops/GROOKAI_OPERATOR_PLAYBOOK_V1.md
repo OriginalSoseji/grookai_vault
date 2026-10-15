@@ -323,17 +323,26 @@ Preserve receipt PR598, signed unuploaded iOS345 and live TestFlight344. Sender
 setup remains deferred; no production mutation, actual message or upload is implied.
 Do not reset retained labs, replay migration/upload intents or edit repair trees.
 
-## Receipt delivery release preparation — October 5
+## Receipt delivery forward reconciliation — October 15
 
-PR598 has complete local application proof against main62d287019 and schema429.
-The new `ReceiptDeliveryReleaseV1` gate permits only the exact receipt migration
-20261005150000 over production428. It rereads both retained labs, receipt/copy
-fixtures and production schema without resetting or applying anything. PrePush
-also requires clean committed source, current-main ancestry and fresh normal hooks.
-The fixed CLI inspection package supports preparation and dry-run only. Sending
-remains off; sender setup and authorized real delivery proof are still pending.
-Read external receipt_delivery_20261005/CHECKPOINT.json for actual outcomes.
-Do not replay previous fast-entry, Collectr, migration or native upload intents.
+Production has 447 migration-ledger rows through `20261014003500`. The original
+receipt candidate `20261005150000_vendor_receipt_delivery_v1.sql` was deferred
+while later migrations landed, so it is quarantined and must not be pushed with
+`--include-all`. The active candidate is the forward-only
+`20261015090000_vendor_receipt_delivery_reconcile_v1.sql`.
+
+`ReceiptDeliveryReleaseV1` accepts only `AuditLinkedSchema` or `PrePush` with
+the exact pending ID `20261015090000`. The gate reads the live ledger and
+receipt-table state, proves the vendor-cost migration is already present, and
+writes evidence with `productionWrites: 0`, `actualMessagesSent: 0`, and
+`applyAuthority: false`. The CLI package supports preparation and
+`supabase db push --dry-run` only; it never applies SQL or enables sending.
+
+Run the gate from a clean current-main descendant, then inspect the exact
+forward migration with the normal dry run. Keep receipt controls and provider
+configuration off until a separate authorized apply and delivery readback.
+Historical PR598 evidence under `receipt_delivery_20261005` remains preserved;
+do not replay its backdated migration or reset its retained labs.
 
 ## Receipt delivery combined integration — October 5
 
