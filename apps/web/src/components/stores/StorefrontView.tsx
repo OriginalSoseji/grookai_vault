@@ -41,6 +41,7 @@ function StoreItemCard({
 
   if (item.entry_type === "custom_product") {
     const product = item as CustomStoreProduct;
+    const available = product.available_quantity > 0;
     return (
       <article className="gv-store-product-card group">
         <Link href={`${base}/products/${product.id}${preview ? "?preview=1" : ""}`} className="block">
@@ -61,11 +62,11 @@ function StoreItemCard({
             <h3 className="line-clamp-2 text-base font-bold text-slate-950 dark:text-slate-50">{product.title}</h3>
             <div className="flex items-end justify-between gap-3">
               <p className="text-lg font-black tracking-tight text-slate-950 dark:text-slate-50">{formatPrice(product.asking_price_amount, product.asking_price_currency)}</p>
-              <p className="text-right text-xs font-medium text-slate-500 dark:text-slate-400">{product.available_quantity} available</p>
+              <p className="text-right text-xs font-medium text-slate-500 dark:text-slate-400">{available ? `${product.available_quantity} available` : "Out of stock"}</p>
             </div>
           </div>
         </Link>
-        {!preview && purchaseEnabled ? <Link href={purchaseLink} prefetch={false} className="gv-primary-button mt-4 block w-full text-center text-sm">Review order</Link> : null}
+        {!preview && purchaseEnabled && available ? <Link href={purchaseLink} prefetch={false} className="gv-primary-button mt-4 block w-full text-center text-sm">Review order</Link> : null}
       </article>
     );
   }
@@ -169,7 +170,7 @@ export function StorefrontView({
 
         {data.items.length === 0 ? <div className="gv-storefront-empty"><p className="gv-eyebrow">Nothing matched</p><h3 className="mt-2 text-xl font-bold text-slate-950 dark:text-slate-50">No collectibles in this view</h3><p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Try clearing a filter or searching for another card, set, or collectible.</p>{hasFilters ? <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="gv-secondary-button mt-5 inline-flex text-sm">View all listings</Link> : null}</div> : <div className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">{data.items.map((item) => <StoreItemCard key={`${item.entry_type}:${item.id}`} item={item} store={store} preview={data.preview} purchaseEnabled={purchaseEnabled} />)}</div>}
 
-        <nav aria-label="Inventory pages" className="flex items-center justify-between gap-4 border-t border-slate-200/70 pt-6 dark:border-white/[0.08]">{data.offset > 0 ? <Link className="gv-secondary-button text-sm" href={pageHref(Math.max(0, data.offset - data.limit))}>Previous</Link> : <span />}{data.offset + data.limit < data.total ? <Link className="gv-secondary-button text-sm" href={pageHref(data.offset + data.limit)}>Next page</Link> : <span />}</nav>
+        {data.total > data.limit || data.offset > 0 ? <nav aria-label="Inventory pages" className="flex items-center justify-between gap-4 border-t border-slate-200/70 pt-6 dark:border-white/[0.08]">{data.offset > 0 ? <Link className="gv-secondary-button text-sm" href={pageHref(Math.max(0, data.offset - data.limit))}>Previous</Link> : <span />}{data.offset + data.limit < data.total ? <Link className="gv-secondary-button text-sm" href={pageHref(data.offset + data.limit)}>Next page</Link> : <span />}</nav> : null}
       </section>
     </main>
   );
