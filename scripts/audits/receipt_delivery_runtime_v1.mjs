@@ -92,6 +92,6 @@ try {
   const state=JSON.parse(sql("select json_build_object('users',(select count(*) from auth.users),'deliveries',(select count(*) from vendor_receipt_deliveries),'books',(select count(*) from vendor_receipt_books),'cloud',(select enabled from vendor_receipt_cloud_control),'email',(select email_enabled from vendor_receipt_delivery_control),'sms',(select sms_enabled from vendor_receipt_delivery_control))"));
   assert.deepEqual(state,{users:0,deliveries:0,books:0,cloud:false,email:false,sms:false});save('cleanup.json',state);cleanup=true;
 }
-const files=['supabase/migrations/20261005150000_vendor_receipt_delivery_v1.sql','backend/receipts/delivery_v1.mjs','apps/web/src/lib/receipts/receiptDelivery.mjs','apps/web/src/lib/receipts/receiptDesk.mjs'];
+const files=['supabase/migrations/20261015090000_vendor_receipt_delivery_reconcile_v1.sql','backend/receipts/delivery_v1.mjs','apps/web/src/lib/receipts/receiptDelivery.mjs','apps/web/src/lib/receipts/receiptDesk.mjs'];
 save('receipt.json',{at:new Date().toISOString(),status:'passed',project,actualAuth:true,actualRPC:true,providerMocked:true,sends,lookups,checks,cleanup,productionWrites:0,sourceHashes:Object.fromEntries(files.map(f=>[f,createHash('sha256').update(fs.readFileSync(root+'/'+f)).digest('hex')]))});
 console.log(JSON.stringify({status:'passed',checks:checks.length,productionWrites:0,providerMocked:true,out}));

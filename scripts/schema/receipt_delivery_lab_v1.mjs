@@ -11,7 +11,7 @@ import {createReceipt,emptyBook} from '../../apps/web/src/lib/receipts/receiptBo
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const out='C:/grookai_vault_operator_artifacts/receipt_delivery_20261005';
-const migration='20261005150000_vendor_receipt_delivery_v1.sql';
+const migration='20261015090000_vendor_receipt_delivery_reconcile_v1.sql';
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const hashes=dir=>Object.fromEntries(fs.readdirSync(dir).filter(n=>n.endsWith('.sql')).sort().map(n=>[n,hash(fs.readFileSync(path.join(dir,n)))]));
 const docker=(...a)=>execFileSync('docker',a,{encoding:'utf8',windowsHide:true,timeout:60000,maxBuffer:64*1024*1024,stdio:['pipe','pipe','pipe']}).trim();

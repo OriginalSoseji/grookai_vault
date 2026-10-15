@@ -29,7 +29,7 @@ for(const args of [
 test('prepared package has no apply operation and its CLI push is a dry run',()=>{
  const text=fs.readFileSync('scripts/release/prepare_receipt_delivery_cli_v1.mjs','utf8');
  assert.match(text,/\['prepare','dry-run'\]\.includes\(mode\)/);
- assert.match(text,/\['db','push','--linked','--include-all','--dry-run','--yes'\]/);
+ assert.match(text,/\['db','push','--linked','--dry-run','--yes'\]/);
  assert.match(text,/default_transaction_read_only=on/);
  assert.match(text,/Preparation intent consumed; preserve package/);
 });

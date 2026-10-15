@@ -12,7 +12,7 @@ const root=fileURLToPath(new URL('../../',import.meta.url));
 assert.equal(fs.realpathSync(root).replaceAll('\\','/').toLowerCase(),'c:/gv_receipt_delivery_20261005');
 const out='C:/grookai_vault_operator_artifacts/receipt_delivery_20261005';
 const dir=out+'/cli-package-v1',target='ycdxbpibncqcchqiihfz';
-const names=['20261005150000_vendor_receipt_delivery_v1.sql'];
+const names=['20261015090000_vendor_receipt_delivery_reconcile_v1.sql'];
 
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const read=p=>JSON.parse(fs.readFileSync(p));
@@ -74,7 +74,7 @@ if(mode==='prepare'){
   const evidence=out+'/dry-run-v1-'+Date.now();fs.mkdirSync(evidence);
   const before=await snapshot();save(evidence,'before.private.json',before);
   await compareSnapshots(before,read(gate.baseline+'/remote.private.json'),{output:evidence+'/before'});
-  const log=cli(['db','push','--linked','--include-all','--dry-run','--yes'],'dry-run',evidence);
+  const log=cli(['db','push','--linked','--dry-run','--yes'],'dry-run',evidence);
   const pending=[...new Set(log.match(/\d{14}_[a-z0-9_]+\.sql/g)??[])];assert.deepEqual(pending,names,'Unexpected CLI pending migrations');
   const after=await snapshot();save(evidence,'after.private.json',after);
   assert.deepEqual(after.LEDGER,before.LEDGER);await compareSnapshots(after,before,{output:evidence+'/after'});
