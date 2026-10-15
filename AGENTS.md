@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Delta-species exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_148_DELTA_SPECIES_ALIAS_BATCH.md`.
+The active bounded batch contains exactly 12 products across EX Holon Phantoms,
+EX Dragon Frontiers, and POP Series 4, covering 21 missing-price observations
+and 21 exact Normal/Holo/Reverse children. Freeze every product and symbolic
+canonical name individually. Production order is 21 truth reviews, independent
+readback, three-set mapping authority, 12 mappings, independent readback, then
+a later full pricing shadow and publication. Do not broaden this into a global
+Delta Species, gender-symbol, forme, or Star normalization rule.
+
 ## Nintendo Target promo exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_147_NINTENDO_TARGET_PROMO_ALIAS_BATCH.md`.
