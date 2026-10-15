@@ -52,6 +52,21 @@ test('slab evidence is routed to a separate non-public review lane', () => {
   assert.match(migration, /grant select, insert on public\.market_evidence_slab_review_events to service_role/);
 });
 
+test('slab review queue is founder-gated and read-only', () => {
+  const migration = fs.readFileSync(
+    path.join(ROOT, 'supabase/migrations/20261015120000_mee_slab_review_queue_rpc_v1.sql'),
+    'utf8',
+  );
+  assert.match(migration, /get_market_evidence_slab_review_queue_v1/);
+  assert.match(migration, /current_user_has_founder_entitlement_v1/);
+  assert.match(migration, /founder_access_required/);
+  assert.match(migration, /revoke all on function/);
+  assert.match(migration, /from public, anon, authenticated/);
+  assert.match(migration, /grant execute on function/);
+  assert.match(migration, /limit least\(greatest\(coalesce\(p_limit, 100\), 1\), 250\)/);
+  assert.doesNotMatch(migration, /insert into|update public\.|delete from/);
+});
+
 test('scheduled wrapper runs the repository automation command', () => {
   const script = fs.readFileSync(
     path.join(ROOT, 'scripts/ops/market_evidence_ollama_automation_v1.ps1'),

@@ -29,9 +29,11 @@ For raw-single rows, the automation can approve an internal price signal only wh
 
 Slab rows now have a separate internal-only lane in `market_evidence_slab_review_events`. They can be rejected for deterministic contamination, deferred for insufficient evidence, or held for the slab policy queue. They cannot be approved, published, app-visible, or treated as market truth. The lane is intentionally separate so raw-single approvals cannot be accidentally applied to graded/slab inventory.
 
+The slab queue is now reviewable through the founder-gated, read-only `get_market_evidence_slab_review_queue_v1` RPC. It returns the latest event per source rollup, orders manual holds before deferred and rejected rows, caps each request at 250 rows, and does not grant any write or pricing-publication authority.
+
 ## Validation
 
-- Contract tests: 16 passed, 0 failed.
+- Contract tests: 17 passed, 0 failed.
 - Clean evidence smoke: 10/10 model calls completed; 0 model errors.
 - Contamination smoke: 1/1 model call completed; deterministic guard forced `reject_contamination` from positive exclusion counts.
 - Live automation pages: the original raw-single page inserted 4 raw events; the slab lane smoke page inserted 1 slab event; the next 20-rollup page inserted 10 raw events and 10 slab events. The current automation readback is 68 raw events and 11 slab events; the slab table has no approvals and remains internal-only.
