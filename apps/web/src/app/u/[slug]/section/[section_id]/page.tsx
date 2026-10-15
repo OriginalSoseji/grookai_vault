@@ -117,7 +117,7 @@ export default async function PublicSectionPage(props: PublicSectionPageProps) {
       : [];
 
   return (
-    <div className="space-y-8 py-8">
+    <div className="gv-public-collection-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
       <PublicCollectorHeader
         displayName={profile.display_name}
         slug={profile.slug}

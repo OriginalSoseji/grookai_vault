@@ -2207,6 +2207,44 @@ html.gv-dark .gv-wall-sections-card .text-slate-500 {
   min-width: 0;
 }
 
+.gv-public-collection-page,
+.gv-public-collection-section {
+  min-width: 0;
+}
+
+.gv-public-collection-heading {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+html.gv-dark .gv-public-collection-heading {
+  border-color: rgba(226, 232, 240, 0.12);
+  background: var(--gv-surface-base);
+}
+
+html.gv-dark .gv-public-collection-page .text-slate-950,
+html.gv-dark .gv-public-collection-page .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-public-collection-page .text-slate-700,
+html.gv-dark .gv-public-collection-page .text-slate-600,
+html.gv-dark .gv-public-collection-page .text-slate-500,
+html.gv-dark .gv-public-collection-page .text-slate-400 {
+  color: var(--gv-text-secondary);
+}
+
+@media (max-width: 639px) {
+  .gv-public-collection-heading {
+    border-radius: 1.25rem;
+  }
+
+  .gv-public-collection-heading h2 {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+}
+
 .gv-public-network-heading {
   border-color: var(--gv-border-soft);
   background: var(--gv-surface-container-low);
@@ -2267,6 +2305,72 @@ html.gv-dark .gv-public-network-page .text-slate-400 {
 
 .gv-order-history {
   min-width: 0;
+}
+
+.gv-transaction-history {
+  min-width: 0;
+}
+
+.gv-transaction-header,
+.gv-transaction-filters,
+.gv-transaction-empty {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-transaction-card {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-base);
+  box-shadow: var(--gv-shadow-sm);
+  transition: border-color var(--gv-transition-fast), box-shadow var(--gv-transition-fast), transform var(--gv-transition-fast);
+}
+
+.gv-transaction-card:hover {
+  border-color: color-mix(in srgb, var(--gv-primary) 42%, var(--gv-border-soft));
+  box-shadow: var(--gv-shadow-md);
+  transform: translateY(-1px);
+}
+
+.gv-transaction-alert {
+  border-color: color-mix(in srgb, #f59e0b 38%, var(--gv-border-soft));
+  background: color-mix(in srgb, #f59e0b 10%, var(--gv-surface-base));
+}
+
+html.gv-dark .gv-transaction-history .gv-transaction-header,
+html.gv-dark .gv-transaction-history .gv-transaction-filters,
+html.gv-dark .gv-transaction-history .gv-transaction-card,
+html.gv-dark .gv-transaction-history .gv-transaction-empty {
+  border-color: rgba(226, 232, 240, 0.12);
+  background: var(--gv-surface-base);
+}
+
+html.gv-dark .gv-transaction-history .text-slate-950,
+html.gv-dark .gv-transaction-history .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-transaction-history .text-slate-700,
+html.gv-dark .gv-transaction-history .text-slate-600,
+html.gv-dark .gv-transaction-history .text-slate-500 {
+  color: var(--gv-text-secondary);
+}
+
+@media (max-width: 639px) {
+  .gv-transaction-header,
+  .gv-transaction-filters,
+  .gv-transaction-card,
+  .gv-transaction-empty {
+    border-radius: 1.25rem;
+  }
+
+  .gv-transaction-header h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .gv-transaction-filters > * {
+    width: 100%;
+  }
 }
 
 .gv-managed-store-page,
