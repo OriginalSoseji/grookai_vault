@@ -25,6 +25,7 @@ export const CANON_MAINTENANCE_FILES_V1 = [
   'backend/maintenance/delta_species_alias_truth_review_apply_v1.mjs',
   'backend/maintenance/energy_alias_truth_review_apply_v1.mjs',
   'backend/maintenance/residual_alias_truth_review_apply_v1.mjs',
+  'backend/maintenance/master_evidence_alias_truth_review_apply_v1.mjs',
   'backend/maintenance/tcgplayer_market_exact_mapping_apply_v1.mjs',
   'backend/maintenance/wcd_team_rushdown_identity_apply_v1.mjs',
   'backend/domain/domain_baseline_card_prints_v1.mjs',

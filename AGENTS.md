@@ -1,5 +1,18 @@
 # Grookai Agent Entry Point
 
+## Master-evidence alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_151_MASTER_EVIDENCE_ALIAS_BATCH.md`.
+Five previously held TCGPlayer products now have exact reviewed authority across
+Dragon Majesty, Celebrations: Classic Collection, and Black Bolt. They cover six
+missing-price observations and six existing Holo, Normal, or Reverse children.
+The authority explicitly reconciles the `sm75`/`sm7.5` set-key difference and
+the Master Index `Umbreon Star`/`Umbreon ★` card/printing names. Production order
+is six verified-visible truth reviews, independent readback, three-set mapping
+authority, five mappings, independent readback, then a later full pricing shadow
+and publication. Do not broaden these product-specific aliases into a global
+symbol, persona, Full Art, or set-key normalization rule.
+
 ## Residual reviewed alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
