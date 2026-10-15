@@ -28,7 +28,7 @@ function DockIcon({ name }: { name: MobilePrimaryDockKey }) {
     case "scan":
       return (
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className={iconClass} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-          <path d="M7 3.75H5.75a2 2 0 0 0-2 2V7M17 3.75h1.25a2 2 0 0 1 2 2V7M7 20.25H5.75a2 2 0 0 1-2-2V17M17 20.25h1.25a2 2 0 0 0 2-2V17M7.75 9.5h8.5M7.75 14.5h8.5" />
+          <path d="M12 5v14M5 12h14" />
         </svg>
       );
     case "vault":

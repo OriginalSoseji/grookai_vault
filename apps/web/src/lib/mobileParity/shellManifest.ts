@@ -8,14 +8,14 @@ export const MOBILE_PRIMARY_DOCK = [
     kind: "root",
   },
   {
-    key: "wall",
-    label: "Wall",
-    href: "/wall",
+    key: "search",
+    label: "Search",
+    href: "/explore",
     kind: "root",
   },
   {
     key: "scan",
-    label: "Scan",
+    label: "Add",
     href: "/scan",
     kind: "action",
   },
@@ -26,9 +26,9 @@ export const MOBILE_PRIMARY_DOCK = [
     kind: "root",
   },
   {
-    key: "search",
-    label: "Search",
-    href: "/explore",
+    key: "wall",
+    label: "Wall",
+    href: "/wall",
     kind: "root",
   },
 ] as const;
