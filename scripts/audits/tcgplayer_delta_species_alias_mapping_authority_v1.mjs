@@ -23,6 +23,11 @@ const VERSION = "TCGPLAYER_DELTA_SPECIES_ALIAS_MAPPING_AUTHORITY_V1";
 const PROJECT_REF = "ycdxbpibncqcchqiihfz";
 const EXPECTED_CANDIDATES = 12;
 const EXPECTED_PRINTINGS = 21;
+const SOURCE_SUBTYPE_BY_FINISH = Object.freeze({
+  holo: "Holofoil",
+  normal: "Normal",
+  reverse: "Reverse Holofoil",
+});
 const EXPECTED_SETS = Object.freeze({
   ex13: "05c6454a-02e2-401e-a8f3-1a433c4d6748",
   ex15: "d73bcf8f-d74e-4787-9bc9-fca8295730ad",
@@ -63,6 +68,31 @@ function parseArgs(args) {
 function productNumber(product) {
   return String(product.extended_data?.find((field) =>
     String(field?.name ?? "").trim().toLowerCase() === "number")?.value ?? "").trim();
+}
+
+export function assertDeltaSpeciesAliasCandidateObservationScopeV1(candidate) {
+  const authority = reviewedTcgplayerDeltaSpeciesAliasProductIdentityV1(candidate);
+  assert.ok(authority, `reviewed_source_drift:${candidate?.source_product_id}`);
+  const expectedSubtypes = authority.printings.map((printing) => {
+    const subtype = SOURCE_SUBTYPE_BY_FINISH[printing.finish_key];
+    assert.ok(subtype, `unsupported_finish_key:${candidate.source_product_id}:${printing.finish_key}`);
+    return subtype;
+  }).sort();
+  assert.ok(Array.isArray(candidate.source_subtypes),
+    `source_subtypes_missing:${candidate.source_product_id}`);
+  const actualSubtypes = candidate.source_subtypes.map((value) => String(value).trim()).sort();
+  assert.deepEqual(actualSubtypes, expectedSubtypes,
+    `source_subtypes_drift:${candidate.source_product_id}`);
+  assert.equal(candidate.supporting_gap_row_count, authority.printings.length,
+    `supporting_gap_row_count_drift:${candidate.source_product_id}`);
+  assert.ok(Array.isArray(candidate.supporting_gap_observation_ids),
+    `supporting_gap_observation_ids_missing:${candidate.source_product_id}`);
+  assert.equal(candidate.supporting_gap_observation_ids.length, authority.printings.length,
+    `supporting_gap_observation_count_drift:${candidate.source_product_id}`);
+  assert.equal(new Set(candidate.supporting_gap_observation_ids).size, authority.printings.length,
+    `supporting_gap_observation_duplicate:${candidate.source_product_id}`);
+  assert.ok(candidate.supporting_gap_observation_ids.every((value) => String(value).trim().length > 0),
+    `supporting_gap_observation_empty:${candidate.source_product_id}`);
 }
 
 async function writeFileExclusive(file, bytes) {
@@ -245,9 +275,12 @@ export async function buildDeltaSpeciesAliasMappingAuthority(args) {
     TCGPLAYER_DELTA_SPECIES_ALIAS_PRODUCT_IDENTITIES_V1.map((row) => row.source_product_id).sort((a,b) => a-b),
     "reviewed_product_selection_changed");
   for (const candidate of candidates) {
+    assertDeltaSpeciesAliasCandidateObservationScopeV1(candidate);
     const structural = validateTcgplayerExactMappingCandidateForApplyV1(candidate);
     assert.ok(structural.accepted, `invalid_candidate:${candidate.source_product_id}:${structural.failures.join(",")}`);
   }
+  assert.equal(candidates.reduce((sum, candidate) => sum + candidate.supporting_gap_row_count, 0),
+    EXPECTED_PRINTINGS, "exact_projected_gap_row_count_changed");
   const sources = await loadSources();
   const projections = sourceProjection(candidates, sources);
   const db = await readDatabase(candidates);

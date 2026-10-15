@@ -15,6 +15,9 @@ import {
 import {
   validateTcgplayerExactMappingCandidateForApplyV1,
 } from "../../backend/pricing/tcgplayer_market_exact_mapping_apply_policy_v1.mjs";
+import {
+  assertDeltaSpeciesAliasCandidateObservationScopeV1,
+} from "../../scripts/audits/tcgplayer_delta_species_alias_mapping_authority_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const RELATIVE = "backend/maintenance/delta_species_alias_truth_review_apply_v1.mjs";
@@ -35,6 +38,7 @@ test("delta-species registry freezes 12 products, 12 parents, and all 21 source-
 });
 
 test("each frozen delta-species source plans and validates only its exact parent", () => {
+  const subtypeByFinish = { holo: "Holofoil", normal: "Normal", reverse: "Reverse Holofoil" };
   for (const authority of TCGPLAYER_DELTA_SPECIES_ALIAS_PRODUCT_IDENTITIES_V1) {
     const source = {
       source_product_id: authority.source_product_id,
@@ -42,8 +46,9 @@ test("each frozen delta-species source plans and validates only its exact parent
       source_group_id: authority.source_group_id,
       source_group_name: authority.source_group_name,
       printed_number: authority.printed_number,
-      source_subtypes: authority.printings.map((row) => row.finish_key),
-      supporting_gap_observation_ids: [`gap-${authority.source_product_id}`],
+      source_subtypes: authority.printings.map((row) => subtypeByFinish[row.finish_key]),
+      supporting_gap_observation_ids: authority.printings.map((row) =>
+        `gap-${authority.source_product_id}-${row.finish_key}`),
       supporting_gap_row_count: authority.printings.length,
       active_source_mapping_count: 0,
       has_printed_number_evidence: true,
@@ -65,6 +70,16 @@ test("each frozen delta-species source plans and validates only its exact parent
       TCGPLAYER_DELTA_SPECIES_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1);
     assert.equal(candidate.target.card_print_id, authority.target.card_print_id);
     assert.equal(validateTcgplayerExactMappingCandidateForApplyV1(candidate).accepted, true);
+    assert.doesNotThrow(() => assertDeltaSpeciesAliasCandidateObservationScopeV1(candidate));
+    assert.throws(() => assertDeltaSpeciesAliasCandidateObservationScopeV1({
+      ...candidate,
+      supporting_gap_row_count: authority.printings.length - 1,
+      supporting_gap_observation_ids: candidate.supporting_gap_observation_ids.slice(1),
+    }), /supporting_gap_row_count_drift/);
+    assert.throws(() => assertDeltaSpeciesAliasCandidateObservationScopeV1({
+      ...candidate,
+      source_subtypes: candidate.source_subtypes.slice(0, -1),
+    }), /source_subtypes_drift/);
     const drift = planTcgplayerExactMappingCandidateV1({
       source: { ...source, source_product_name: `${source.source_product_name} drift` }, setTargets: [target],
     });
