@@ -818,6 +818,14 @@ html.gv-dark .gv-route-composition-utility {
   box-shadow: 0 20px 36px rgb(52 46 36 / 14%);
 }
 
+.gv-utility-tool-card.is-active {
+  border-color: #b86959;
+  box-shadow: 0 18px 34px rgb(126 79 63 / 16%), 0 0 0 2px rgb(184 105 89 / 18%);
+}
+
+.gv-route-composition-utility-scan .gv-utility-tool-card.is-active { border-color: #b96f64; }
+.gv-route-composition-utility-submit .gv-utility-tool-card.is-active { border-color: #8d75b8; }
+
 .gv-tool-card-icon {
   display: block;
   width: 100%;

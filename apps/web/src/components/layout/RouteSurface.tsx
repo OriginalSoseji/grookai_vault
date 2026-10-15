@@ -219,22 +219,28 @@ function WallComposition() {
   );
 }
 
-function UtilityComposition() {
+function UtilityComposition({ pathname }: { pathname: string }) {
+  const activeTool = matches(pathname, "/scan") ? "scan" : matches(pathname, "/submit") ? "submit" : "compare";
+  const copy = activeTool === "scan"
+    ? { kicker: "Visual search", title: "Identify the card in front of you.", description: "Use a quick scan to find the right character, set, and printing." }
+    : activeTool === "submit"
+      ? { kicker: "Catalog contribution", title: "Help complete the catalog.", description: "Submit missing images and exact-printing evidence for other collectors." }
+      : { kicker: "Side-by-side tools", title: "The right tool for the next card.", description: "Compare, identify, and contribute without losing your place." };
   const tools = [
     { href: "/compare", label: "Compare", copy: "See two printings side by side.", className: "gv-tool-card-compare" },
     { href: "/scan", label: "Scan", copy: "Identify a card in seconds.", className: "gv-tool-card-scan" },
     { href: "/submit", label: "Submit", copy: "Help complete the catalog.", className: "gv-tool-card-submit" },
   ];
   return (
-    <section className="gv-route-composition gv-route-composition-utility" aria-labelledby="utility-composition-title">
+    <section className={`gv-route-composition gv-route-composition-utility gv-route-composition-utility-${activeTool}`} aria-labelledby="utility-composition-title">
       <div className="gv-route-composition-main">
-        <div className="gv-composition-kicker">Collection tools</div>
-        <h1 id="utility-composition-title">The right tool for the next card.</h1>
-        <p>Compare, identify, and contribute without losing your place.</p>
+        <div className="gv-composition-kicker">{copy.kicker}</div>
+        <h1 id="utility-composition-title">{copy.title}</h1>
+        <p>{copy.description}</p>
       </div>
       <div className="gv-utility-tool-grid">
         {tools.map((tool) => (
-          <Link href={tool.href} key={tool.href} className={`gv-utility-tool-card ${tool.className}`}>
+          <Link href={tool.href} key={tool.href} aria-current={activeTool === tool.href.slice(1) ? "page" : undefined} className={`gv-utility-tool-card ${tool.className} ${activeTool === tool.href.slice(1) ? "is-active" : ""}`}>
             <span className="gv-tool-card-icon" aria-hidden="true" />
             <strong>{tool.label}</strong>
             <span>{tool.copy}</span>
@@ -265,7 +271,7 @@ function RouteComposition({ family, pathname }: { family: FamilyConfig; pathname
   if (matches(pathname, "/wall")) return <WallComposition />;
   if (family.key === "collections") return <CollectionComposition />;
   if (family.key === "discovery") return <DiscoveryComposition />;
-  if (family.key === "utility") return <UtilityComposition />;
+  if (family.key === "utility") return <UtilityComposition pathname={pathname} />;
   if (family.key === "account") return <AccountComposition />;
   return null;
 }
