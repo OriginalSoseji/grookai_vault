@@ -44,10 +44,12 @@ The exact dynamic plan was then replayed through the guarded apply command with 
 ## Validation
 
 - Contract tests: 18 passed, 0 failed.
+- Full repository contract suite after reconciling current `main`: 7,918 passed, 10 skipped, 0 failed.
 - Clean evidence smoke: 10/10 model calls completed; 0 model errors.
 - Contamination smoke: 1/1 model call completed; deterministic guard forced `reject_contamination` from positive exclusion counts.
 - Live automation pages: the original raw-single page inserted 4 raw events; the slab lane smoke page inserted 1 slab event; the next 20-rollup page inserted 10 raw events and 10 slab events. The current automation readback is 68 raw events and 11 slab events; the slab table has no approvals and remains internal-only.
 - Production readback: all automation events across both lanes have zero `can_publish_price_directly`, `publishable`, `app_visible`, or `market_truth` rows. The scheduled checkpoint advanced to offset 33 after the bounded page.
 - Artifacts are outside the repository under `C:\grookai_vault_operator_artifacts\ollama_evidence_review_20261015_final` and `C:\grookai_vault_operator_artifacts\ollama_evidence_review_contamination_20261015_final`.
+- Vercel preview deployment completed successfully for the reconciled PR; required GitHub workflows remain queued by repository runner capacity and must pass before merge.
 
 No production row was changed by this setup.
