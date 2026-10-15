@@ -11,8 +11,10 @@ test('vendor cost migration workflow is dry-run first and exact-ref pinned', () 
   assert.match(workflow, /test "\$\{pending\[0\]\}" = "\$TARGET_MIGRATION"/);
 });
 
-test('vendor cost migration apply requires the explicit approval phrase', () => {
-  assert.match(workflow, /inputs\.mode == 'apply'/);
-  assert.match(workflow, /APPLY_VENDOR_COST_EVIDENCE_V1/);
-  assert.match(workflow, /application_flags_enabled: false/);
+test('vendor cost migration has no production apply path before release authority', () => {
+  assert.doesNotMatch(workflow, /- apply/);
+  assert.doesNotMatch(workflow, /db push --db-url/);
+  assert.match(workflow, /db_row_writes_performed: false/);
+  assert.match(workflow, /production_apply_authorized: false/);
+  assert.match(workflow, /readback_verified: false/);
 });

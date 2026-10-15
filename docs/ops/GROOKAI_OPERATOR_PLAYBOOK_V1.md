@@ -1,5 +1,33 @@
 # Grookai Operator Playbook V1
 
+## Vendor cost evidence migration lane — October 15, 2026
+
+PR674 merged the vendor cost evidence schema and keeps both reporting switches
+off. The governing contract at
+`docs/contracts/VENDOR_COST_EVIDENCE_V1.md` explicitly withholds production
+application and activation authority. The checked-in workflow
+`.github/workflows/vendor-cost-evidence-migration.yml` is therefore dry-run
+only: it pins an exact merged SHA, requires `SUPABASE_DB_URL`, runs the focused
+report contracts, and proves that exactly one pending migration is
+`20261007180000_vendor_cost_evidence_v1.sql`.
+
+Run the inspection only from the exact merged commit:
+
+```powershell
+gh workflow run vendor-cost-evidence-migration.yml `
+  --ref main `
+  -f mode=dry_run `
+  -f expected_sha=<exact-merged-sha>
+```
+
+The workflow emits `docs/audits/vendor_cost_evidence_migration_v1/` as an
+artifact. A successful dry run is not an apply, readback, or feature release.
+Do not add an apply mode, run `supabase db push` locally, or enable
+`GV_VENDOR_PROFIT_V1` / `GV_VENDOR_EVENTS_V1` until a separate release
+authority updates the contract, adds direct database readback for the ledger,
+default-off controls, trigger, functions and grants, and records the required
+production approval.
+
 ## Local Ollama pricing triage — October 15, 2026
 
 Use the checked-in `grookai-card-triage:4b` Modelfile and the
