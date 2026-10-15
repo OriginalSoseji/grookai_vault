@@ -39,6 +39,8 @@ Future MEE-11S rollup plans now bind that identity into `rollup_payload.slab_ide
 
 The first live read-only plan with this binding scanned 198 price events and produced 175 candidate rows plus 9 internal rollups. Its two slab rollups were both blocked: one had 13/24 identified listings but eight distinct grader/grade pairs, and the other had no grader identity. No rows were applied.
 
+The exact dynamic plan was then replayed through the guarded apply command with collision skipping enabled. Remote readback verified all 175 candidate rows and all 9 rollups already existed; 0 rows were inserted and 184 planned rows were skipped as idempotent collisions. No public flags, app-visible fields, or market-truth fields were written.
+
 ## Validation
 
 - Contract tests: 18 passed, 0 failed.
