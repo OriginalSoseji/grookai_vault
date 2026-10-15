@@ -980,7 +980,7 @@ export function VaultCollectionView({
 
           <PageSection
             spacing="compact"
-            className="gv-command-surface p-2.5 md:p-3"
+            className="gv-vault-smart-views gv-command-surface p-2.5 md:p-3"
           >
             <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (
