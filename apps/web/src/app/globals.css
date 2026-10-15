@@ -2094,6 +2094,44 @@ html.gv-dark .gv-wall-sections-card .text-slate-500 {
   color: var(--gv-text-primary);
 }
 
+.gv-binder-public-view {
+  min-width: 0;
+}
+
+.gv-binder-public-hero,
+.gv-binder-public-safety {
+  border-color: var(--gv-border-soft);
+}
+
+.gv-binder-public-slot {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-base);
+  box-shadow: var(--gv-shadow-sm);
+  transition: border-color var(--gv-transition-fast), box-shadow var(--gv-transition-fast), transform var(--gv-transition-fast);
+}
+
+.gv-binder-public-slot:hover {
+  border-color: color-mix(in srgb, var(--gv-primary) 38%, var(--gv-border-soft));
+  box-shadow: var(--gv-shadow-md);
+  transform: translateY(-1px);
+}
+
+.gv-binder-public-slot > div:first-child {
+  border: 1px solid var(--gv-border-hairline);
+  background: var(--gv-surface-container-low);
+}
+
+html.gv-dark .gv-binder-public-view .text-slate-950,
+html.gv-dark .gv-binder-public-view .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-binder-public-view .text-slate-700,
+html.gv-dark .gv-binder-public-view .text-slate-600,
+html.gv-dark .gv-binder-public-view .text-slate-500 {
+  color: var(--gv-text-secondary);
+}
+
 html.gv-dark .gv-binder-workspace .text-slate-950,
 html.gv-dark .gv-binder-workspace .text-slate-900 {
   color: var(--gv-text-primary);
