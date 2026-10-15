@@ -3,7 +3,6 @@ import Link from "next/link";
 import SignOutButton from "@/components/account/SignOutButton";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import {
-  DESKTOP_PRIMARY_NAV,
   DESKTOP_SECONDARY_NAV,
   getDesktopRouteState,
   type DesktopWallAvailability,
@@ -49,11 +48,19 @@ export function DesktopApplicationShell({
 }: DesktopApplicationShellProps) {
   const routeState = getDesktopRouteState(pathname);
   const secondaryItems = DESKTOP_SECONDARY_NAV.filter((item) => {
-    if (item.key === "dex") return dexEnabled;
+    if (item.key === "sets" || item.key === "dex") return false;
     if (item.key === "binders") return isAuthenticated && bindersEnabled;
     if (item.key === "messages") return isAuthenticated;
     return true;
   });
+
+  const mockupPrimaryNav = [
+    { key: "search", label: "Search", href: searchHref, enabled: true },
+    { key: "sets", label: "Sets", href: "/sets", enabled: true },
+    { key: "dex", label: "Dex", href: "/dex", enabled: dexEnabled },
+    { key: "wall", label: "Wall", href: "/wall", enabled: true },
+    { key: "pulse", label: "Pulse", href: "/network", enabled: true },
+  ].filter((item) => item.enabled);
 
   return (
     <div className="gv-desktop-site-header" data-desktop-application-shell>
@@ -70,9 +77,9 @@ export function DesktopApplicationShell({
         </Link>
 
         <nav className="gv-desktop-primary-nav" aria-label="Primary navigation" data-desktop-primary-navigation>
-          {DESKTOP_PRIMARY_NAV.map((item) => {
-            const href = item.key === "search" ? searchHref : item.href;
-            const active = routeState.activePrimary === item.key;
+          {mockupPrimaryNav.map((item) => {
+            const href = item.href;
+            const active = routeState.activePrimary === item.key || routeState.activeSecondary === item.key;
             return (
               <Link
                 key={item.key}
