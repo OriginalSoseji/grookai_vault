@@ -122,6 +122,30 @@ function CollectionComposition() {
   );
 }
 
+function DexComposition() {
+  const starters = ["Bulbasaur", "Charmander", "Squirtle", "Pikachu"];
+  return (
+    <section className="gv-route-composition gv-route-composition-dex" aria-labelledby="dex-composition-title">
+      <div className="gv-dex-composition-copy">
+        <div className="gv-composition-kicker">Grookai Dex</div>
+        <h1 id="dex-composition-title">Collect every Pokémon, one exact printing at a time.</h1>
+        <p>Search a character and see what your Vault already owns, plus the exact gaps left to collect.</p>
+        <div className="gv-dex-composition-search"><span>Search Pikachu, Gengar, #025…</span><b>⌕</b></div>
+      </div>
+      <div className="gv-dex-progress-panel">
+        <div className="gv-dex-progress-head"><span>Collection progress</span><strong>161 <small>of 40,829</small></strong></div>
+        <div className="gv-dex-progress-bar"><span /></div>
+        <div className="gv-dex-progress-meta"><span>0.4% complete</span><span>Vault-aware</span></div>
+        <div className="gv-dex-starter-rail">
+          {starters.map((starter, index) => (
+            <div key={starter} className={`gv-dex-starter gv-dex-starter-${index + 1}`}><span>{starter.slice(0, 1)}</span><small>{starter}</small></div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function DiscoveryComposition() {
   return (
     <section className="gv-route-composition gv-route-composition-discovery" aria-labelledby="discovery-composition-title">
@@ -184,7 +208,8 @@ function AccountComposition() {
   );
 }
 
-function RouteComposition({ family }: { family: FamilyConfig }) {
+function RouteComposition({ family, pathname }: { family: FamilyConfig; pathname: string }) {
+  if (matches(pathname, "/dex")) return <DexComposition />;
   if (family.key === "collections") return <CollectionComposition />;
   if (family.key === "discovery") return <DiscoveryComposition />;
   if (family.key === "utility") return <UtilityComposition />;
@@ -257,7 +282,7 @@ export function RouteSurface({
           </div>
         </div>
       ) : null}
-      {family ? <RouteComposition family={family} /> : null}
+      {family ? <RouteComposition family={family} pathname={pathname} /> : null}
       {children}
     </div>
   );

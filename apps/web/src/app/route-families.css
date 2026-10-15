@@ -397,6 +397,159 @@
   color: #f4f8f2;
 }
 
+.gv-route-composition-dex {
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+  min-height: 410px;
+  color: #f4f8f2;
+  background:
+    radial-gradient(circle at 84% 8%, rgb(109 166 255 / 18%), transparent 28%),
+    linear-gradient(135deg, #111d33, #080f1c 66%, #13233d);
+}
+
+.gv-route-composition-dex h1,
+.gv-route-composition-dex .gv-composition-kicker {
+  color: #f4f8f2;
+}
+
+.gv-route-composition-dex p {
+  color: rgb(244 248 242 / 72%);
+}
+
+.gv-dex-composition-copy {
+  align-self: center;
+  max-width: 680px;
+}
+
+.gv-dex-composition-copy h1 {
+  max-width: 12ch;
+}
+
+.gv-dex-composition-search {
+  display: flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 590px;
+  margin-top: 28px;
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 999px;
+  padding: 0 17px 0 21px;
+  color: rgb(244 248 242 / 68%);
+  background: rgb(0 0 0 / 25%);
+  font-size: 13px;
+}
+
+.gv-dex-composition-search b {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  color: #091525;
+  background: #a9d8ff;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.gv-dex-progress-panel {
+  display: grid;
+  align-self: center;
+  gap: 18px;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 20px;
+  padding: 22px;
+  background: rgb(4 10 18 / 58%);
+  box-shadow: 0 24px 46px rgb(0 0 0 / 24%);
+}
+
+.gv-dex-progress-head,
+.gv-dex-progress-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gv-dex-progress-head span,
+.gv-dex-progress-meta {
+  color: rgb(244 248 242 / 62%);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.gv-dex-progress-head strong {
+  color: #f4f8f2;
+  font-size: 30px;
+  letter-spacing: -.06em;
+}
+
+.gv-dex-progress-head small {
+  color: rgb(244 248 242 / 55%);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.gv-dex-progress-bar {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 12%);
+}
+
+.gv-dex-progress-bar span {
+  display: block;
+  width: 28%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7bc3ff, #b9e4ff);
+}
+
+.gv-dex-progress-meta {
+  font-size: 10px;
+  letter-spacing: .04em;
+}
+
+.gv-dex-starter-rail {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding-top: 7px;
+}
+
+.gv-dex-starter {
+  display: grid;
+  min-height: 84px;
+  align-content: end;
+  gap: 6px;
+  border: 1px solid rgb(255 255 255 / 11%);
+  border-radius: 10px;
+  padding: 8px;
+  background: linear-gradient(160deg, rgb(78 135 191 / 62%), rgb(19 36 64 / 76%));
+}
+
+.gv-dex-starter span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  color: #13223a;
+  background: #8ac5ed;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.gv-dex-starter-2 { background: linear-gradient(160deg, rgb(191 101 75 / 68%), rgb(48 23 32 / 80%)); }
+.gv-dex-starter-2 span { background: #f1a47d; }
+.gv-dex-starter-3 { background: linear-gradient(160deg, rgb(71 120 183 / 70%), rgb(26 35 72 / 80%)); }
+.gv-dex-starter-3 span { background: #91b4ef; }
+.gv-dex-starter-4 { background: linear-gradient(160deg, rgb(211 168 61 / 70%), rgb(82 51 22 / 82%)); }
+.gv-dex-starter-4 span { background: #f6da74; }
+.gv-dex-starter small { overflow: hidden; color: rgb(244 248 242 / 72%); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+
 .gv-activity-preview {
   display: grid;
   align-self: center;
@@ -581,7 +734,8 @@ html.gv-dark .gv-route-composition-utility {
 
   .gv-route-composition,
   .gv-route-composition-utility,
-  .gv-route-composition-account {
+  .gv-route-composition-account,
+  .gv-route-composition-dex {
     grid-template-columns: 1fr;
     gap: 26px;
     min-height: 0;
@@ -611,6 +765,8 @@ html.gv-dark .gv-route-composition-utility {
   .gv-binder-cover { min-height: 210px; }
   .gv-binder-strip { justify-content: start; overflow: hidden; }
   .gv-activity-preview { grid-template-rows: auto 165px auto; }
+  .gv-dex-progress-panel { width: 100%; }
+  .gv-dex-starter-rail { gap: 6px; }
   .gv-utility-tool-grid { grid-template-columns: 1fr; }
   .gv-utility-tool-card { min-height: 0; grid-template-columns: 58px 1fr; align-items: center; padding: 12px; }
   .gv-tool-card-icon { width: 58px; height: 58px; grid-row: 1 / span 3; }
