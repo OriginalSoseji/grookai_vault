@@ -170,6 +170,375 @@
   background: var(--gv-route-accent-soft);
 }
 
+/* Mockup compositions: each route family gets a distinct editorial surface before
+   the existing route content. This keeps the product structure intact while
+   making the first viewport feel like the designed experience. */
+.gv-route-family-rail {
+  margin: -8px 0 18px;
+  border: 0;
+  border-bottom: 1px solid var(--gv-border-hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.gv-route-family-rail-inner {
+  min-height: 74px;
+  align-items: end;
+  padding: 16px 0 0;
+}
+
+.gv-route-family-copy {
+  padding-bottom: 15px;
+}
+
+.gv-route-family-label {
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.gv-route-family-description {
+  font-size: 13px;
+}
+
+.gv-route-family-nav {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.gv-route-family-nav a {
+  min-height: 39px;
+  border-radius: 999px;
+  padding-inline: 15px;
+}
+
+.gv-route-composition {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+  gap: clamp(28px, 5vw, 84px);
+  min-height: 390px;
+  margin: 0 0 44px;
+  overflow: hidden;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 30px;
+  padding: clamp(28px, 5vw, 68px);
+  background: var(--gv-surface-base);
+  box-shadow: var(--gv-shadow-md);
+}
+
+.gv-route-composition::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: radial-gradient(circle at 91% 12%, color-mix(in srgb, var(--gv-route-accent) 20%, transparent), transparent 32%);
+}
+
+.gv-route-composition-main,
+.gv-binder-preview,
+.gv-activity-preview,
+.gv-utility-tool-grid,
+.gv-account-preview {
+  position: relative;
+  z-index: 1;
+}
+
+.gv-route-composition-main {
+  align-self: center;
+  max-width: 650px;
+}
+
+.gv-composition-kicker {
+  margin-bottom: 14px;
+  color: var(--gv-route-accent);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.gv-route-composition h1 {
+  max-width: 11ch;
+  margin: 0;
+  color: var(--gv-text-primary);
+  font-size: clamp(2.5rem, 5.1vw, 5.45rem);
+  font-weight: 650;
+  letter-spacing: -.065em;
+  line-height: .93;
+}
+
+.gv-route-composition p {
+  max-width: 35rem;
+  margin: 22px 0 0;
+  color: var(--gv-text-secondary);
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.45;
+}
+
+.gv-composition-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.gv-composition-primary,
+.gv-composition-secondary {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 19px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.gv-composition-primary {
+  color: #131a25;
+  background: var(--gv-route-accent);
+}
+
+.gv-composition-secondary {
+  color: var(--gv-text-primary);
+  border: 1px solid var(--gv-border-soft);
+  background: color-mix(in srgb, var(--gv-surface-container) 72%, transparent);
+}
+
+.gv-composition-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 46px;
+}
+
+.gv-composition-metrics div {
+  display: grid;
+  gap: 3px;
+}
+
+.gv-composition-metrics strong {
+  color: var(--gv-text-primary);
+  font-size: 20px;
+  letter-spacing: -.04em;
+}
+
+.gv-composition-metrics span,
+.gv-activity-preview-foot span {
+  color: var(--gv-text-tertiary);
+  font-size: 11px;
+}
+
+.gv-binder-preview {
+  display: grid;
+  align-self: center;
+  justify-self: end;
+  width: min(100%, 390px);
+  gap: 16px;
+  transform: rotate(2deg);
+}
+
+.gv-binder-cover {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid color-mix(in srgb, var(--gv-route-accent) 55%, #19202c);
+  border-radius: 14px;
+  padding: 26px;
+  color: #f8f6ed;
+  background: linear-gradient(145deg, #294638, #18291f 64%, #0e1713);
+  box-shadow: 16px 18px 0 color-mix(in srgb, var(--gv-route-accent) 20%, transparent), 0 24px 50px rgb(0 0 0 / 22%);
+}
+
+.gv-binder-cover-title {
+  font-size: clamp(1.8rem, 3.8vw, 3.6rem);
+  font-weight: 650;
+  letter-spacing: -.075em;
+  line-height: .9;
+}
+
+.gv-binder-cover-mark {
+  align-self: end;
+  color: var(--gv-route-accent);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+
+.gv-binder-strip {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+.gv-binder-strip img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 8px;
+  background: var(--gv-surface-container-low);
+}
+
+.gv-route-composition-discovery {
+  --gv-route-accent: #a7e8c0;
+  color: #f4f8f2;
+  background: linear-gradient(135deg, #132c2b, #0a171e 64%, #111923);
+}
+
+.gv-route-composition-discovery h1,
+.gv-route-composition-discovery .gv-composition-metrics strong {
+  color: #f4f8f2;
+}
+
+.gv-activity-preview {
+  display: grid;
+  align-self: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 230px auto;
+  gap: 10px;
+  width: min(100%, 390px);
+  justify-self: end;
+  border: 1px solid rgb(255 255 255 / 13%);
+  border-radius: 20px;
+  padding: 16px;
+  background: rgb(5 12 18 / 64%);
+  box-shadow: 0 24px 50px rgb(0 0 0 / 28%);
+}
+
+.gv-activity-preview-head,
+.gv-activity-preview-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  grid-column: 1 / -1;
+  color: rgb(244 248 242 / 70%);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.gv-activity-preview-head b {
+  margin-left: auto;
+  letter-spacing: .16em;
+}
+
+.gv-avatar-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e3a563, #836047);
+}
+
+.gv-activity-card-art {
+  border-radius: 12px;
+  background: linear-gradient(155deg, #f2d67a, #9b5166 52%, #1b315f);
+}
+
+.gv-activity-card-art-b {
+  transform: translateY(18px) rotate(5deg);
+  background: linear-gradient(155deg, #88daf2, #39408e 55%, #17192e);
+}
+
+.gv-activity-preview-foot {
+  display: grid;
+  gap: 3px;
+  align-items: start;
+  margin-top: 3px;
+  color: #f4f8f2;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.gv-activity-preview-foot strong {
+  font-size: 15px;
+}
+
+.gv-route-composition-utility {
+  grid-template-columns: minmax(0, .8fr) minmax(420px, 1.2fr);
+  background: #f3f1ec;
+  border-color: #ddd8cf;
+}
+
+html.gv-dark .gv-route-composition-utility {
+  color-scheme: light;
+}
+
+.gv-route-composition-utility h1 {
+  color: #1c2530;
+}
+
+.gv-route-composition-utility p {
+  color: #5e6770;
+}
+
+.gv-utility-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-self: center;
+  gap: 10px;
+}
+
+.gv-utility-tool-card {
+  display: grid;
+  min-height: 245px;
+  align-content: start;
+  gap: 10px;
+  border: 1px solid #dedbd4;
+  border-radius: 15px;
+  padding: 15px;
+  color: #1c2530;
+  background: #fffefa;
+  text-decoration: none;
+  box-shadow: 0 14px 28px rgb(52 46 36 / 9%);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.gv-utility-tool-card:hover,
+.gv-utility-tool-card:focus-visible {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 36px rgb(52 46 36 / 14%);
+}
+
+.gv-tool-card-icon {
+  display: block;
+  width: 100%;
+  height: 105px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #dbddd5, #a7b2a1);
+}
+
+.gv-tool-card-scan .gv-tool-card-icon { background: linear-gradient(145deg, #f7d9d1, #b96f64); }
+.gv-tool-card-submit .gv-tool-card-icon { background: linear-gradient(145deg, #ded5ed, #9a85bd); }
+.gv-utility-tool-card strong { font-size: 17px; letter-spacing: -.03em; }
+.gv-utility-tool-card > span:not(.gv-tool-card-icon) { color: #6b747c; font-size: 12px; line-height: 1.35; }
+.gv-utility-tool-card em { margin-top: auto; color: #aa5d50; font-size: 11px; font-style: normal; font-weight: 750; }
+
+.gv-route-composition-account {
+  min-height: 300px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gv-account-preview {
+  display: grid;
+  align-self: center;
+  gap: 10px;
+  max-width: 330px;
+  justify-self: end;
+  border-left: 1px solid var(--gv-border-soft);
+  padding: 14px 0 14px 34px;
+}
+
+.gv-account-preview span { color: var(--gv-route-accent); font-size: 11px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.gv-account-preview strong { font-size: 31px; letter-spacing: -.055em; }
+.gv-account-preview small { color: var(--gv-text-secondary); font-size: 13px; line-height: 1.45; }
+
 @media (max-width: 760px) {
   .gv-route-family-rail {
     margin-top: -4px;
@@ -181,7 +550,7 @@
     display: grid;
     gap: 10px;
     min-height: 0;
-    padding: 20px 16px 0;
+    padding: 14px 0 0;
   }
 
   .gv-route-family-copy {
@@ -190,7 +559,7 @@
 
   .gv-route-family-nav {
     gap: 4px;
-    margin-inline: -4px;
+    margin-inline: 0;
     padding: 4px;
     border-radius: 13px 13px 0 0;
   }
@@ -209,6 +578,44 @@
     max-width: 14ch;
     font-size: clamp(2.15rem, 11vw, 3.2rem);
   }
+
+  .gv-route-composition,
+  .gv-route-composition-utility,
+  .gv-route-composition-account {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    min-height: 0;
+    margin-bottom: 30px;
+    border-radius: 22px;
+    padding: 25px 20px 22px;
+  }
+
+  .gv-route-composition h1 {
+    max-width: 12ch;
+    font-size: clamp(2.35rem, 12vw, 4rem);
+  }
+
+  .gv-composition-metrics {
+    gap: 17px;
+    margin-top: 30px;
+  }
+
+  .gv-binder-preview,
+  .gv-activity-preview,
+  .gv-account-preview {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .gv-binder-preview { transform: none; }
+  .gv-binder-cover { min-height: 210px; }
+  .gv-binder-strip { justify-content: start; overflow: hidden; }
+  .gv-activity-preview { grid-template-rows: auto 165px auto; }
+  .gv-utility-tool-grid { grid-template-columns: 1fr; }
+  .gv-utility-tool-card { min-height: 0; grid-template-columns: 58px 1fr; align-items: center; padding: 12px; }
+  .gv-tool-card-icon { width: 58px; height: 58px; grid-row: 1 / span 3; }
+  .gv-utility-tool-card em { grid-column: 2; margin-top: 0; }
+  .gv-account-preview { border-top: 1px solid var(--gv-border-soft); border-left: 0; padding: 20px 0 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

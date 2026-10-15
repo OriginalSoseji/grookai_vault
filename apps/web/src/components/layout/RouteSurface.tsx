@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -87,6 +88,110 @@ function getCanonicalRouteHref(pathname: string, family: RouteFamily) {
   return null;
 }
 
+const COLLECTION_LOGOS = ["base1", "ex16", "base6", "sv08", "cel25"];
+
+function CollectionComposition() {
+  return (
+    <section className="gv-route-composition gv-route-composition-collections" aria-labelledby="collection-composition-title">
+      <div className="gv-route-composition-main">
+        <div className="gv-composition-kicker">Your collection</div>
+        <h1 id="collection-composition-title">Modern favorites, kept in one place.</h1>
+        <p>Build a visual Vault that feels more like a binder than a database.</p>
+        <div className="gv-composition-actions">
+          <Link href="/vault" className="gv-composition-primary">Open Vault</Link>
+          <Link href="/binders" className="gv-composition-secondary">View binders</Link>
+        </div>
+        <div className="gv-composition-metrics" aria-label="Collection summary">
+          <div><strong>Cards</strong><span>in your Vault</span></div>
+          <div><strong>Sets</strong><span>to explore next</span></div>
+          <div><strong>Value</strong><span>track every change</span></div>
+        </div>
+      </div>
+      <div className="gv-binder-preview" aria-label="Binder preview">
+        <div className="gv-binder-cover">
+          <span className="gv-binder-cover-title">Modern<br />Favorites</span>
+          <span className="gv-binder-cover-mark">GV</span>
+        </div>
+        <div className="gv-binder-strip">
+          {COLLECTION_LOGOS.map((logo) => (
+            <Image key={logo} src={`/set-logos/${logo}.png`} alt="" width={68} height={68} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DiscoveryComposition() {
+  return (
+    <section className="gv-route-composition gv-route-composition-discovery" aria-labelledby="discovery-composition-title">
+      <div className="gv-route-composition-main">
+        <div className="gv-composition-kicker">Collector activity</div>
+        <h1 id="discovery-composition-title">Find the cards worth talking about.</h1>
+        <p>See what collectors are adding, trading, and saving right now.</p>
+        <div className="gv-composition-actions">
+          <Link href="/explore" className="gv-composition-primary">Explore cards</Link>
+          <Link href="/wall" className="gv-composition-secondary">Open your Wall</Link>
+        </div>
+      </div>
+      <div className="gv-activity-preview">
+        <div className="gv-activity-preview-head"><span className="gv-avatar-dot" /> <span>recent additions</span><b>•••</b></div>
+        <div className="gv-activity-card-art gv-activity-card-art-a" />
+        <div className="gv-activity-card-art gv-activity-card-art-b" />
+        <div className="gv-activity-preview-foot"><strong>Browse the community</strong><span>New cards from collectors you follow</span></div>
+      </div>
+    </section>
+  );
+}
+
+function UtilityComposition() {
+  const tools = [
+    { href: "/compare", label: "Compare", copy: "See two printings side by side.", className: "gv-tool-card-compare" },
+    { href: "/scan", label: "Scan", copy: "Identify a card in seconds.", className: "gv-tool-card-scan" },
+    { href: "/submit", label: "Submit", copy: "Help complete the catalog.", className: "gv-tool-card-submit" },
+  ];
+  return (
+    <section className="gv-route-composition gv-route-composition-utility" aria-labelledby="utility-composition-title">
+      <div className="gv-route-composition-main">
+        <div className="gv-composition-kicker">Collection tools</div>
+        <h1 id="utility-composition-title">The right tool for the next card.</h1>
+        <p>Compare, identify, and contribute without losing your place.</p>
+      </div>
+      <div className="gv-utility-tool-grid">
+        {tools.map((tool) => (
+          <Link href={tool.href} key={tool.href} className={`gv-utility-tool-card ${tool.className}`}>
+            <span className="gv-tool-card-icon" aria-hidden="true" />
+            <strong>{tool.label}</strong>
+            <span>{tool.copy}</span>
+            <em>Open tool →</em>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function AccountComposition() {
+  return (
+    <section className="gv-route-composition gv-route-composition-account" aria-labelledby="account-composition-title">
+      <div className="gv-route-composition-main">
+        <div className="gv-composition-kicker">Your Grookai account</div>
+        <h1 id="account-composition-title">Everything about your Vault, in control.</h1>
+        <p>Manage access, profile details, and the support you need.</p>
+      </div>
+      <div className="gv-account-preview"><span>Account center</span><strong>Private by default.</strong><small>Simple controls for a focused collecting experience.</small></div>
+    </section>
+  );
+}
+
+function RouteComposition({ family }: { family: FamilyConfig }) {
+  if (family.key === "collections") return <CollectionComposition />;
+  if (family.key === "discovery") return <DiscoveryComposition />;
+  if (family.key === "utility") return <UtilityComposition />;
+  if (family.key === "account") return <AccountComposition />;
+  return null;
+}
+
 export function RouteSurface({
   children,
   bindersEnabled = false,
@@ -152,6 +257,7 @@ export function RouteSurface({
           </div>
         </div>
       ) : null}
+      {family ? <RouteComposition family={family} /> : null}
       {children}
     </div>
   );
