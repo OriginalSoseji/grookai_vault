@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import { AppChrome } from "@/components/layout/AppChrome";
 import { MobileBottomNavFallback } from "@/components/layout/MobileBottomNav";
 import { PageContainer } from "@/components/layout/PageContainer";
+import { RouteSurface } from "@/components/layout/RouteSurface";
 import { SiteHeaderFallback } from "@/components/layout/SiteHeader";
 import { isGrookaiDexEnabled } from "@/lib/grookaiDex/featureFlag";
 import { isBinderLibraryEnabled } from "@/lib/binders/featureFlags";
@@ -16,6 +17,7 @@ import "./globals.css";
 import "./collector.css";
 import "./collector-approved.css";
 import "./collector-detail.css";
+import "./route-families.css";
 import { SafeAnalytics } from "@/components/analytics/SafeAnalytics";
 import { collectorStaging, collectorFixtureLab } from "@/lib/collectorStaging.mjs";
 
@@ -92,7 +94,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <AppChrome dexEnabled={dexEnabled} bindersEnabled={bindersEnabled} />
             </Suspense>
             <main id="main-content" className="gv-mobile-safe-content gv-page-shell w-full min-w-0 overflow-x-clip">
-              <PageContainer>{children}</PageContainer>
+              <PageContainer>
+                <RouteSurface bindersEnabled={bindersEnabled} dexEnabled={dexEnabled}>
+                  {children}
+                </RouteSurface>
+              </PageContainer>
             </main>
             <footer className="gv-site-footer border-t border-slate-200/60 bg-white/55 pb-[calc(5.1rem+env(safe-area-inset-bottom))] backdrop-blur">
               <PageContainer className="py-4 text-center text-sm text-slate-600">
