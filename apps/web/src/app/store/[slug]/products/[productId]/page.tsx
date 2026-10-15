@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { acquisitionAvailable } from "@/lib/orders/orderAcquisitionRuntime";
 import type { Metadata } from "next";
+import { cache } from "react";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { buildLoginHref } from "@/lib/auth/routeAccess";
 import { readCustomProduct } from "@/lib/stores/customProductServer";
@@ -9,6 +10,11 @@ import { StoreEntry } from "@/components/stores/StoreEntry";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+const readCustomProductCached = cache(
+  (slug: string, productId: string, surface: "web" | "preview") =>
+    readCustomProduct(slug, productId, surface),
+);
 
 export async function generateMetadata({
   params,
@@ -23,7 +29,7 @@ export async function generateMetadata({
     return { title: "Collectible preview | Grookai Vault", robots: { index: false, follow: false } };
   }
 
-  const data = await readCustomProduct(slug, productId, "web");
+  const data = await readCustomProductCached(slug, productId, "web");
   if (!data) return { title: "Collectible not found | Grookai Vault", robots: { index: false, follow: false } };
 
   const title = `${data.product.title || "Collectible"} · ${data.store.display_name}`;
@@ -59,7 +65,7 @@ export default async function ProductPage({
         `/store/${encodeURIComponent(slug)}/products/${encodeURIComponent(productId)}?preview=1`,
       ),
     );
-  const data = await readCustomProduct(
+  const data = await readCustomProductCached(
     slug,
     productId,
     preview ? "preview" : "web",

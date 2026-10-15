@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cache } from "react";
 import { acquisitionAvailable } from "@/lib/orders/orderAcquisitionRuntime";
 import { notFound, redirect } from "next/navigation";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -8,8 +9,28 @@ import { storeFilters } from "@/lib/stores/storefrontTypes";
 import { StorefrontView } from "@/components/stores/StorefrontView";
 import { StoreEntry } from "@/components/stores/StoreEntry";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
+import type { StoreSurface } from "@/lib/stores/storefrontTypes";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+const readStorefrontCached = cache(
+  async (
+    slug: string,
+    surface: StoreSurface,
+    query = "",
+    sectionId = "",
+    condition = "",
+    kind = "all",
+    offset = 0,
+  ) =>
+    readStorefront(slug, surface, {
+      query: query || undefined,
+      sectionId: sectionId || undefined,
+      condition: condition || undefined,
+      kind,
+      offset,
+    }),
+);
 
 export async function generateMetadata({
   params,
@@ -25,7 +46,7 @@ export async function generateMetadata({
     return { title: "Store preview | Grookai Vault", robots: { index: false, follow: false } };
   }
 
-  const data = await readStorefront(slug, "web", {});
+  const data = await readStorefrontCached(slug, "web");
   if (!data) return { title: "Store not found | Grookai Vault", robots: { index: false, follow: false } };
 
   const title = `${data.store.display_name} · Grookai Vault Store`;
@@ -69,7 +90,15 @@ export default async function StorePage({
   } catch {
     notFound();
   }
-  const data = await readStorefront(slug, preview ? "preview" : "web", filters);
+  const data = await readStorefrontCached(
+    slug,
+    preview ? "preview" : "web",
+    filters.query,
+    filters.sectionId,
+    filters.condition,
+    filters.kind,
+    filters.offset,
+  );
   if (!data) notFound();
   return (
     <>
