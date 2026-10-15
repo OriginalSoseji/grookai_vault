@@ -32,7 +32,7 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
       />
       {/* Set tiles use only set/package artwork. A missing set image falls back
           to the governed set logo below; never infer a representative card. */}
-      <div className="gv-collector-set-cover relative z-10 h-[220px] overflow-hidden border-b border-slate-200/70 bg-slate-100 sm:h-[250px] dark:border-white/[0.08] dark:bg-slate-900">
+      <div className="gv-collector-set-cover relative z-10 aspect-[4/5] w-full overflow-hidden border-b border-slate-200/70 bg-slate-100 dark:border-white/[0.08] dark:bg-slate-900">
         <PublicCardImage
           src={setInfo.hero_image_url}
           fallbackSrc={logoPath}
