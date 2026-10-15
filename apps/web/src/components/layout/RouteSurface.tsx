@@ -191,6 +191,26 @@ function PulseComposition() {
   );
 }
 
+function WallComposition() {
+  const cards = ["gv-wall-art-a", "gv-wall-art-b", "gv-wall-art-c", "gv-wall-art-d"];
+  return (
+    <section className="gv-route-composition gv-route-composition-wall" aria-labelledby="wall-composition-title">
+      <div className="gv-wall-profile-head">
+        <div className="gv-wall-avatar">C</div>
+        <div className="gv-wall-profile-copy">
+          <div className="gv-composition-kicker">Your Wall</div>
+          <h1 id="wall-composition-title">A collection worth coming back to.</h1>
+          <span>@collector</span>
+          <div className="gv-wall-stats"><b>29 <small>cards</small></b><b>38 <small>followers</small></b><b>12 <small>following</small></b></div>
+        </div>
+        <div className="gv-wall-profile-actions"><Link href="/wall">Share</Link><Link href="/account">Edit</Link></div>
+      </div>
+      <div className="gv-wall-tabs" role="tablist" aria-label="Wall sections"><span className="is-active">Wall</span><span>Favorites</span><span>For sale / trade</span></div>
+      <div className="gv-wall-card-grid" aria-label="Featured cards">{cards.map((className) => <span key={className} className={`gv-wall-art ${className}`} />)}</div>
+    </section>
+  );
+}
+
 function UtilityComposition() {
   const tools = [
     { href: "/compare", label: "Compare", copy: "See two printings side by side.", className: "gv-tool-card-compare" },
@@ -234,6 +254,7 @@ function AccountComposition() {
 function RouteComposition({ family, pathname }: { family: FamilyConfig; pathname: string }) {
   if (matches(pathname, "/dex")) return <DexComposition />;
   if (matches(pathname, "/network")) return <PulseComposition />;
+  if (matches(pathname, "/wall")) return <WallComposition />;
   if (family.key === "collections") return <CollectionComposition />;
   if (family.key === "discovery") return <DiscoveryComposition />;
   if (family.key === "utility") return <UtilityComposition />;
