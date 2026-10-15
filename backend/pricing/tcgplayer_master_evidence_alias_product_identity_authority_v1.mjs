@@ -24,17 +24,25 @@ const burgerKingCatalogEvidence = Object.freeze({
     relative_path: "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/burger_king_residual_child_insert_real_apply_v1.json",
     sha256: "16bc3a35a08e3ff73b026c1595e14e99f2e4dde0c6ccd3c0dfecd30599ac699c",
   }),
+  piplup: Object.freeze({
+    relative_path: "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/piplup_burger_king_child_insert_real_apply_v1.json",
+    sha256: "be2f4aa265e9351dc2566790c34c437116eb71bc639b081dfd56cdde9a867e4c",
+  }),
+  replacement: Object.freeze({
+    relative_path: "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/burger_king_replacement_child_adjudication_v1.json",
+    sha256: "32d8e565f236b73e7f4f7d1db3b33e3e5610a4551a5df850baf92d8cc6ed8f1b",
+  }),
 });
 
 const burgerKingEvidenceByProductId = Object.freeze({
   155603: burgerKingCatalogEvidence.residual,
   155605: burgerKingCatalogEvidence.residual,
-  155608: burgerKingCatalogEvidence.pkg15c,
-  174129: burgerKingCatalogEvidence.pkg15c,
-  188132: burgerKingCatalogEvidence.pkg15c,
+  155608: burgerKingCatalogEvidence.replacement,
+  174129: burgerKingCatalogEvidence.replacement,
+  188132: burgerKingCatalogEvidence.piplup,
   191913: burgerKingCatalogEvidence.residual,
-  213008: burgerKingCatalogEvidence.pkg15a,
-  220666: burgerKingCatalogEvidence.pkg15c,
+  213008: burgerKingCatalogEvidence.replacement,
+  220666: burgerKingCatalogEvidence.replacement,
   224679: burgerKingCatalogEvidence.residual,
   231450: burgerKingCatalogEvidence.residual,
 });

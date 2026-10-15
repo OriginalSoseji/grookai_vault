@@ -23,7 +23,10 @@ printed coordinate. The checked-in English Master Index supplies the base card
 and generic stamped-printing evidence. Existing governed catalog-adjudication
 artifacts supply the exact `diamond_pearl_stamp` or
 `platinum_stamped_burger_king_2009` parent and its actual Holo or Reverse child
-finish. The authority hashes those artifacts and rejects drift.
+finish. A checked-in replacement-child adjudication binds four historical
+parent/finish artifacts to their sole current governed child, and the dedicated
+Piplup apply artifact binds its replacement child directly. The authority
+hashes those artifacts, requires the exact child UUID, and rejects drift.
 
 The remaining 14 Burger King products stay blocked. They either lack an exact
 governed stamped identity in the catalog, have a source coordinate mismatch, or
@@ -37,12 +40,13 @@ products, ten unique active standard stamped parents, and ten active,
 non-provisional matching children. None has an active source or target
 TCGPlayer mapping, and none of the ten children has an active truth review.
 
-The combined working-tree planner passed with 48 candidates covering 62 missing
-price observations, 451 explicitly blocked products, and zero findings. Canon
-maintenance dry-run `9a41a110-250b-48c6-a471-ae37180cebe8` planned all 20
-combined master-evidence truth reviews, proved rollback, and made zero durable
-writes. Its working authority fingerprint is
-`b84c209667fda9d7553fedc735f9960799607261d64adc592cc4617f1d265777`.
+The exact-child-bound working-tree planner passed with 48 candidates covering
+62 missing price observations, 451 explicitly blocked products, and zero
+findings. Canon maintenance dry-run
+`7ecdc0ff-6f01-477f-8633-48a315925630` planned all 20 combined master-evidence
+truth reviews, proved rollback, and made zero durable writes. Its working
+authority fingerprint is
+`c0a4c537fa368b359533be876c95ab6e9712f84760c998695ddfc1dedd1dd303`.
 Regenerate both artifacts from the exact merged commit before production apply.
 
 Repository validation passed the complete ship check: 7,000-plus Node contract

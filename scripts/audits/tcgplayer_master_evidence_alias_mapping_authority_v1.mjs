@@ -190,7 +190,9 @@ function sourceProjection(candidates, sources) {
           normalizeTcgplayerMappingNumberV1(authority.target.number) &&
         row.card_name === authority.target.name &&
         row.target_variant_key === authority.target.variant_key &&
-        authority.printings.some((printing) => printing.finish_key === row.target_finish_key));
+        authority.printings.some((printing) => printing.finish_key === row.target_finish_key &&
+          printing.printing_id === row.target_child_id &&
+          (!row.target_printing_gv_id || printing.printing_gv_id === row.target_printing_gv_id)));
       assert.equal(matches.length, 1, `catalog_variant_evidence_drift:${candidate.source_product_id}`);
       catalogEvidence = { source: authority.catalog_evidence, target: matches[0] };
     }

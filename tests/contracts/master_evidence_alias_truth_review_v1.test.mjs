@@ -46,6 +46,18 @@ test("master-evidence-alias registry freezes 17 products, 17 parents, and all 20
   assert.ok(burgerKing.every((row) => row.master_evidence.printing_finish_key === "stamped"));
   assert.deepEqual([...new Set(burgerKing.map((row) => row.target.variant_key))].sort(),
     ["diamond_pearl_stamp", "platinum_stamped_burger_king_2009"]);
+  for (const row of burgerKing) {
+    const document = JSON.parse(readFileSync(path.join(ROOT, row.catalog_evidence.relative_path), "utf8"));
+    const targets = [
+      ...(Array.isArray(document?.scope?.targets) ? document.scope.targets : []),
+      ...(Array.isArray(document?.targets) ? document.targets : []),
+      ...(document?.target ? [document.target] : []),
+    ];
+    assert.equal(targets.filter((target) => target.target_parent_id === row.target.card_print_id &&
+      target.target_child_id === row.printings[0].printing_id &&
+      target.target_finish_key === row.printings[0].finish_key).length, 1,
+    `catalog evidence must bind exact child for product ${row.source_product_id}`);
+  }
 });
 
 test("each frozen master-evidence-alias source plans and validates only its exact parent", () => {

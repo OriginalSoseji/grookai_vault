@@ -182,7 +182,9 @@ async function loadMasterEvidence() {
         row.target_parent_id === authority.target.card_print_id && row.set_key === authority.target.set_code &&
         normalizeTcgplayerMappingNumberV1(row.card_number) === normalizeTcgplayerMappingNumberV1(authority.target.number) &&
         row.card_name === authority.target.name && row.target_variant_key === authority.target.variant_key &&
-        authority.printings.some((printing) => printing.finish_key === row.target_finish_key));
+        authority.printings.some((printing) => printing.finish_key === row.target_finish_key &&
+          printing.printing_id === row.target_child_id &&
+          (!row.target_printing_gv_id || printing.printing_gv_id === row.target_printing_gv_id)));
       assert.equal(targets.length, 1, `catalog_variant_evidence_changed:${authority.source_product_id}`);
       catalogEvidence = { ...authority.catalog_evidence, target: targets[0] };
     }
