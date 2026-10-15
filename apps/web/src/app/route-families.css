@@ -340,7 +340,6 @@
   justify-self: end;
   width: min(100%, 390px);
   gap: 16px;
-  transform: rotate(2deg);
 }
 
 .gv-binder-cover {
