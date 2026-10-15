@@ -276,6 +276,13 @@ function RouteComposition({ family, pathname }: { family: FamilyConfig; pathname
   return null;
 }
 
+function shouldShowRouteComposition(pathname: string, family: FamilyConfig) {
+  // Landing compositions orient users at a section boundary. Detail routes
+  // should get to the requested object immediately instead of repeating the
+  // section marketing panel above the actual content.
+  return family.routes.some((route) => pathname === route.href);
+}
+
 export function RouteSurface({
   children,
   bindersEnabled = false,
@@ -341,7 +348,7 @@ export function RouteSurface({
           </div>
         </div>
       ) : null}
-      {family ? <RouteComposition family={family} pathname={pathname} /> : null}
+      {family && shouldShowRouteComposition(pathname, family) ? <RouteComposition family={family} pathname={pathname} /> : null}
       {children}
     </div>
   );
