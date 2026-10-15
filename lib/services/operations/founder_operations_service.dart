@@ -199,6 +199,74 @@ class FounderOperationsAgentHealth {
   }
 }
 
+class FounderSlabReviewEvent {
+  const FounderSlabReviewEvent({
+    required this.eventId,
+    required this.cardPrintId,
+    required this.gvId,
+    required this.sourceRollupId,
+    required this.currency,
+    required this.candidateMedian,
+    required this.candidateLow,
+    required this.candidateHigh,
+    required this.minimumActiveAsk,
+    required this.maximumActiveAsk,
+    required this.evidenceCount,
+    required this.sellerCount,
+    required this.actionName,
+    required this.reviewState,
+    required this.reasonCode,
+    required this.reviewNote,
+    required this.modelReview,
+    required this.signalAt,
+    required this.createdAt,
+  });
+
+  final String eventId;
+  final String cardPrintId;
+  final String gvId;
+  final String sourceRollupId;
+  final String currency;
+  final num? candidateMedian;
+  final num? candidateLow;
+  final num? candidateHigh;
+  final num? minimumActiveAsk;
+  final num? maximumActiveAsk;
+  final int evidenceCount;
+  final int sellerCount;
+  final String actionName;
+  final String reviewState;
+  final String reasonCode;
+  final String reviewNote;
+  final Map<String, dynamic> modelReview;
+  final DateTime? signalAt;
+  final DateTime? createdAt;
+
+  factory FounderSlabReviewEvent.fromJson(Map<String, dynamic> json) {
+    return FounderSlabReviewEvent(
+      eventId: _text(json['event_id']),
+      cardPrintId: _text(json['card_print_id']),
+      gvId: _text(json['gv_id']),
+      sourceRollupId: _text(json['source_rollup_id']),
+      currency: _text(json['currency']),
+      candidateMedian: _number(json['candidate_median']),
+      candidateLow: _number(json['candidate_low']),
+      candidateHigh: _number(json['candidate_high']),
+      minimumActiveAsk: _number(json['minimum_active_ask']),
+      maximumActiveAsk: _number(json['maximum_active_ask']),
+      evidenceCount: _int(json['evidence_count']),
+      sellerCount: _int(json['seller_count']),
+      actionName: _text(json['action_name']),
+      reviewState: _text(json['review_state']),
+      reasonCode: _text(json['reason_code']),
+      reviewNote: _text(json['review_note']),
+      modelReview: _map(json['model_review']),
+      signalAt: _date(json['signal_at']),
+      createdAt: _date(json['created_at']),
+    );
+  }
+}
+
 class FounderOperationsWorkItemDetail {
   const FounderOperationsWorkItemDetail({
     required this.workItem,
@@ -322,6 +390,27 @@ class FounderOperationsService {
         .toList(growable: false);
   }
 
+  Future<List<FounderSlabReviewEvent>> fetchSlabReviewQueue({
+    int limit = 100,
+    List<String>? reviewStates,
+  }) async {
+    final response = await _client.rpc(
+      'get_market_evidence_slab_review_queue_v1',
+      params: <String, dynamic>{
+        'p_limit': limit.clamp(1, 250).toInt(),
+        'p_review_states': reviewStates,
+      },
+    );
+    return (response is List ? response : const <dynamic>[])
+        .whereType<Map>()
+        .map(
+          (row) =>
+              FounderSlabReviewEvent.fromJson(Map<String, dynamic>.from(row)),
+        )
+        .where((event) => event.eventId.isNotEmpty)
+        .toList(growable: false);
+  }
+
   Future<void> controlAgent({
     required FounderOperationsAgentHealth agent,
     required bool pause,
@@ -404,5 +493,7 @@ String? _nullableText(dynamic value) {
 
 int _int(dynamic value) =>
     value is num ? value.toInt() : int.tryParse(_text(value)) ?? 0;
+num? _number(dynamic value) =>
+    value is num ? value : num.tryParse(_text(value));
 DateTime? _date(dynamic value) =>
     value is DateTime ? value : DateTime.tryParse(_text(value));

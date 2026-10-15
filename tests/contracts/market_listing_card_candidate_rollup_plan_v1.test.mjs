@@ -16,4 +16,9 @@ test("MEE-11S candidate rollup plan stays review-only and non-public", () => {
   assert.doesNotMatch(script, /\.delete\s*\(/);
   assert.doesNotMatch(script, /\.from\(["']pricing_observations["']\)/);
   assert.doesNotMatch(script, /\.from\(["']ebay_active_prices_latest["']\)/);
+  assert.match(script, /slabIdentityFromEvent/);
+  assert.match(script, /slabIdentitySummary/);
+  assert.match(script, /reviewable_same_grade_identity/);
+  assert.match(script, /blocked_mixed_grader_grade/);
+  assert.match(script, /can_auto_approve: false/);
 });

@@ -43,7 +43,7 @@ Current pricing state in plain language:
 - JustTCG is reference-only and non-authoritative
 - future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence is governed by `PRICING_EVIDENCE_ENGINE_V1`
 - the reference lane is implemented as a read-only non-authoritative helper
-- Market Evidence Engine work is now in hardening / ingestion-planning mode, not initial reference implementation mode
+- Market Evidence Engine warehouse ingestion, internal review lanes, local Ollama evidence review, slab identity, and founder queue are implemented on PR #687
 - live eBay validation is still blocked by upstream throttle
 - the queue model is demand-driven and no longer broad-backfill by default
 
@@ -72,8 +72,9 @@ What remains blocked or unproven:
 - live comp density is still unproven under normal source conditions
 - live accepted comp persistence is still unproven in a non-throttled window
 - JustTCG runtime reliability remains unproven at scale
-- pricing UI/source labels still need strict lane clarity where legacy display views expose generic primary prices
-- full slab-truth pricing remains future work
+- PR #687 still needs merge and an unattended scheduled-worker success receipt from the merged commit
+- raw internal candidates still require governed review before any public-pricing decision
+- slab pricing remains founder-gated; no slab row can auto-approve or publish
 
 ## Pricing Lanes (Authoritative Summary)
 
@@ -120,35 +121,34 @@ Current operational reality:
 - fail-closed behavior under throttle is correct and must remain so
 - free-provider pricing can expand the reference evidence layer only; it cannot silently become market truth
 - demand-driven pricing is the correct operating model for this phase
-- broad backfill is not the current strategy
+- the Pokémon TCGPlayer completion agent owns the separate catalog and missing-price backlog under its exact-identity gates
 
 ## Next Logical Step
 
 Primary next step:
 
-- `MARKET_EVIDENCE_ENGINE_V1`
+- merge PR #687, then prove one unattended `Grookai Market Evidence Ollama` run from the merged commit
 
 That next step should:
 
-- obey `PRICING_EVIDENCE_ENGINE_V1`
-- reconcile pricing lane labels and stale resume/checkpoint pointers
-- keep the reference lane isolated from market truth
-- harden tests so `primary_price` cannot be displayed without source-specific labeling
-- plan the warehouse evidence ingestion layer before any migration or provider apply
-- preserve demand-driven queue behavior
+- retain the scheduled worker log and automation summary
+- verify its page checkpoint advances
+- independently read back both internal review-event tables
+- prove every public-price boundary field remains false
+- route slab rows only to the founder review queue
 
 That next step must not:
 
-- re-litigate truth / reference / projection separation
-- reopen broad backfill as the next move
-- add a new provider before the existing lane-label contract is enforced
+- treat Ollama output as mapping or publication authority
+- auto-approve slab rows
+- write `pricing_observations` or bypass the publication gate
 
 ## Resume Prompt Block
 
 Use this block to restart pricing work in a new chat:
 
 ```md
-Pricing is operating under AXIOM Execution Interface V4. Anchor to `docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md`, pricing checkpoints 01 through 12 and 14, the key pricing audits, and `docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md`. Current state: eBay is the only market-truth lane; pricing is observation-backed and `accepted + mapped` only; offline classifier hardening passed; comps and trust surfaces exist; projection exists as a separate modeled lane; JustTCG is reference-only and now has a read-only helper; future free-provider, free-tier API, CSV/export, user-uploaded, and manual/admin pricing evidence can expand reference evidence only and cannot silently become market truth; queue policy is demand-driven and vault-first; live eBay proof is still blocked by repeated first-call Browse 429s and must be treated as source constraint, not pricing-logic failure. Invariants: no silent fallback pricing, no reference/projection contamination of raw market truth, empty market stays honestly empty, fail closed under throttle, respect existing checkpoints before changes. Next objective: `MARKET_EVIDENCE_ENGINE_V1`: first reconcile lane labels and stale checkpoints, then plan warehouse evidence ingestion. Do not drift, do not re-litigate lane separation, do not add providers before lane labels are enforced, and do not reopen broad backfill as the next move.
+Pricing is operating under AXIOM Execution Interface V4. Anchor to `docs/checkpoints/pricing/PRICING_CHECKPOINT_INDEX.md`, the key pricing audits, `docs/contracts/PRICING_EVIDENCE_ENGINE_V1.md`, and `docs/audits/MARKET_EVIDENCE_ENGINE_OLLAMA_REVIEW_20261015.md`. Current state: eBay is the only market-truth lane; pricing is observation-backed and `accepted + mapped` only; Market Evidence Engine warehouse ingestion and internal review are implemented on PR #687; the local Ollama worker is advisory and writes only internal raw or slab review events; slab rows remain founder-gated and cannot auto-approve or publish; JustTCG and other reference sources remain non-authoritative. Invariants: no silent fallback pricing, no reference/projection contamination of raw market truth, empty market stays honestly empty, and fail closed under throttle. Next objective: merge PR #687 and retain one successful unattended scheduled-worker receipt from the merged commit, including independent proof that all public-price boundary fields remain false.
 ```
 
 ## Why This File Matters

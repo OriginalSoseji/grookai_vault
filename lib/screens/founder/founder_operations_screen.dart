@@ -29,7 +29,7 @@ class _FounderOperationsScreenState extends State<FounderOperationsScreen>
       widget.service ??
       FounderOperationsService(client: Supabase.instance.client);
   late final TabController _tabController = TabController(
-    length: 2,
+    length: 3,
     vsync: this,
   );
 
@@ -37,6 +37,7 @@ class _FounderOperationsScreenState extends State<FounderOperationsScreen>
   List<FounderOperationsWorkItem> _items = const <FounderOperationsWorkItem>[];
   List<FounderOperationsAgentHealth> _agents =
       const <FounderOperationsAgentHealth>[];
+  List<FounderSlabReviewEvent> _slabEvents = const <FounderSlabReviewEvent>[];
   _OperationsQueue _queue = _OperationsQueue.needsAction;
   bool _loading = true;
   bool _controllingAgent = false;
@@ -74,12 +75,14 @@ class _FounderOperationsScreenState extends State<FounderOperationsScreen>
         _service.fetchCounts(),
         _service.fetchWorkItems(queue: _queueRpcValue),
         _service.fetchAgentHealth(),
+        _service.fetchSlabReviewQueue(),
       ]);
       if (!mounted) return;
       setState(() {
         _counts = results[0] as FounderOperationsCounts;
         _items = results[1] as List<FounderOperationsWorkItem>;
         _agents = results[2] as List<FounderOperationsAgentHealth>;
+        _slabEvents = results[3] as List<FounderSlabReviewEvent>;
         _loading = false;
       });
       await _openInitialItemIfNeeded();
@@ -225,13 +228,18 @@ class _FounderOperationsScreenState extends State<FounderOperationsScreen>
           tabs: const [
             Tab(icon: Icon(Icons.inbox_outlined), text: 'Work queue'),
             Tab(icon: Icon(Icons.monitor_heart_outlined), text: 'Agent health'),
+            Tab(icon: Icon(Icons.layers_outlined), text: 'Slab review'),
           ],
         ),
       ),
       body: SafeArea(
         child: TabBarView(
           controller: _tabController,
-          children: [_buildWorkQueue(context), _buildAgentHealth(context)],
+          children: [
+            _buildWorkQueue(context),
+            _buildAgentHealth(context),
+            _buildSlabReview(context),
+          ],
         ),
       ),
     );
@@ -357,6 +365,50 @@ class _FounderOperationsScreenState extends State<FounderOperationsScreen>
                     ? null
                     : () => _controlAgent(_agents[index]),
               ),
+            ),
+    );
+  }
+
+  Widget _buildSlabReview(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: _load,
+      child: _loading && _slabEvents.isEmpty
+          ? ListView(
+              children: const [
+                SizedBox(height: 260),
+                Center(child: CircularProgressIndicator()),
+              ],
+            )
+          : _error != null && _slabEvents.isEmpty
+          ? ListView(
+              children: [
+                const SizedBox(height: 100),
+                _OperationsEmpty(
+                  icon: Icons.error_outline_rounded,
+                  title: 'Unable to load slab review',
+                  body: _error!,
+                  action: _load,
+                ),
+              ],
+            )
+          : _slabEvents.isEmpty
+          ? ListView(
+              children: const [
+                SizedBox(height: 100),
+                _OperationsEmpty(
+                  icon: Icons.task_alt_rounded,
+                  title: 'Slab review queue is clear',
+                  body:
+                      'No current slab evidence events are waiting for review.',
+                ),
+              ],
+            )
+          : ListView.separated(
+              padding: const EdgeInsets.fromLTRB(12, 16, 12, 24),
+              itemCount: _slabEvents.length,
+              separatorBuilder: (_, _) => const SizedBox(height: 8),
+              itemBuilder: (context, index) =>
+                  _SlabReviewRow(event: _slabEvents[index]),
             ),
     );
   }
@@ -965,6 +1017,74 @@ class _OperationsAgentRow extends StatelessWidget {
   }
 }
 
+class _SlabReviewRow extends StatelessWidget {
+  const _SlabReviewRow({required this.event});
+
+  final FounderSlabReviewEvent event;
+
+  @override
+  Widget build(BuildContext context) {
+    final tone = _slabReviewColor(context, event.reviewState);
+    final explanation = _text(event.modelReview['explanation']);
+    return Material(
+      color: Theme.of(context).colorScheme.surfaceContainerLow,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: BorderSide(color: tone.withValues(alpha: 0.28)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    event.gvId.isEmpty ? event.cardPrintId : event.gvId,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                _StatusPill(
+                  label: _displayToken(event.reviewState),
+                  tone: tone,
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '${_displayToken(event.reasonCode)} · ${event.evidenceCount} listings · ${event.sellerCount} sellers',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'Observed ${_formatMoney(event.candidateMedian, event.currency)} · range ${_formatMoney(event.candidateLow, event.currency)}–${_formatMoney(event.candidateHigh, event.currency)}',
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
+            ),
+            if (explanation.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(explanation, maxLines: 4, overflow: TextOverflow.ellipsis),
+            ],
+            if (event.reviewNote.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(
+                event.reviewNote,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _OutcomeWorkflowProgress extends StatelessWidget {
   const _OutcomeWorkflowProgress({
     required this.workflow,
@@ -1302,6 +1422,21 @@ Color _healthColor(BuildContext context, String health) => switch (health) {
   'paused' => Colors.grey,
   _ => Theme.of(context).colorScheme.outline,
 };
+
+Color _slabReviewColor(BuildContext context, String state) => switch (state) {
+  'manual_hold' => Colors.deepOrange,
+  'deferred' => Colors.amber.shade800,
+  'rejected' => Theme.of(context).colorScheme.error,
+  _ => Theme.of(context).colorScheme.outline,
+};
+
+String _formatMoney(num? value, String currency) {
+  if (value == null) return '—';
+  final symbol = currency.toUpperCase() == 'USD'
+      ? r'$'
+      : '${currency.toUpperCase()} ';
+  return '$symbol${value.toStringAsFixed(2)}';
+}
 
 String _displayToken(String value) => value
     .trim()

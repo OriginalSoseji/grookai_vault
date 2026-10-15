@@ -36,7 +36,11 @@ class CardSurfacePricingData {
   double? get visibleValue => marketClose;
 
   String get compactLabel =>
-      isFromPrice ? 'From TCGPlayer Market' : 'TCGPlayer Market';
+      primarySource == 'ebay'
+          ? 'eBay Active Listings'
+          : isFromPrice
+              ? 'From TCGPlayer Market'
+              : 'TCGPlayer Market';
 
   bool get hasVisibleValue => visibleValue != null;
 }
@@ -79,6 +83,28 @@ class CardSurfacePricingService {
           continue;
         }
 
+        pricingById[pricing.cardPrintId] = pricing;
+      }
+
+      final missingIds = chunk
+          .where((cardPrintId) => !pricingById.containsKey(cardPrintId))
+          .toList();
+      if (missingIds.isEmpty) {
+        continue;
+      }
+      final meeRows = await client.rpc(
+        'get_market_evidence_pricing_read_model_v1',
+        params: {'p_card_print_ids': missingIds},
+      );
+      for (final rawRow in meeRows as List<dynamic>) {
+        final row = Map<String, dynamic>.from(rawRow as Map);
+        if ((row['pricing_scope'] ?? '').toString() != 'parent') {
+          continue;
+        }
+        final pricing = cardSurfacePricingDataFromReadModelRow(row);
+        if (pricing == null || pricingById.containsKey(pricing.cardPrintId)) {
+          continue;
+        }
         pricingById[pricing.cardPrintId] = pricing;
       }
     }
@@ -142,9 +168,13 @@ CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
   final publishedAt = DateTime.tryParse((row['published_at'] ?? '').toString());
   final provenanceId = _cleanPricingValue(row['provenance_id']);
   final isFromPrice = row['is_from_price'] == true;
-  final expectedSourceLabel = isFromPrice
-      ? 'From TCGPlayer Market'
-      : 'TCGPlayer Market';
+  final sourceName = _cleanPricingValue(row['source_name'])?.toLowerCase();
+  final isEbayActiveListing = sourceName == 'ebay';
+  final expectedSourceLabel = isEbayActiveListing
+      ? 'eBay Active Listings'
+      : isFromPrice
+          ? 'From TCGPlayer Market'
+          : 'TCGPlayer Market';
 
   if (cardPrintId == null ||
       (pricingScope != 'parent' && pricingScope != 'card_printing') ||
@@ -154,8 +184,10 @@ CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
       row['status'] != 'available' ||
       row['currency'] != 'USD' ||
       row['freshness'] != 'fresh' ||
-      (row['source_name'] ?? '').toString().trim().toLowerCase() !=
-          'tcgplayer' ||
+      (sourceName != 'tcgplayer' && !isEbayActiveListing) ||
+      (isEbayActiveListing &&
+          _cleanPricingValue(row['pricing_basis']) !=
+              'active_listing_market_estimate') ||
       _cleanPricingValue(row['source_label']) != expectedSourceLabel ||
       observedAt == null ||
       publishedAt == null ||
@@ -172,7 +204,7 @@ CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
     finishKey: _cleanPricingValue(row['finish_key']),
     isFromPrice: isFromPrice,
     marketClose: marketClose,
-    primarySource: 'tcgplayer',
+    primarySource: sourceName,
     sourceLabel: expectedSourceLabel,
     observedAt: observedAt,
     publishedAt: publishedAt,

@@ -100,6 +100,7 @@ void main() {
           ];
         } else if ([
           'get_market_pricing_read_model_v1',
+          'get_market_evidence_pricing_read_model_v1',
           'get_public_card_printing_options_v1',
         ].contains(name)) {
           data = [];

@@ -3378,6 +3378,22 @@ reduces contention without widening the 45-minute freshness threshold. An active
 workflow and a successful manual audit do not prove timely scheduled execution.
 Verify actual `schedule` events; report stale evidence honestly if delays persist.
 
+## Market Evidence Ollama scheduled review — October 15, 2026
+
+The Windows task `Grookai Market Evidence Ollama` runs hourly from
+`scripts/ops/market_evidence_ollama_automation_v1.ps1`. It advances the bounded
+page checkpoint at
+`C:\grookai_vault_operator_artifacts\mee_ollama_automation_state.json` and keeps
+one timestamped execution log per invocation under
+`C:\grookai_vault_operator_artifacts\mee_ollama_scheduled_logs`.
+
+Use `powershell.exe -NoProfile -ExecutionPolicy Bypass -File
+scripts/ops/market_evidence_ollama_automation_v1.ps1 -DryRun` to reproduce the
+scheduled environment without inserting review events. A successful live run
+still requires independent readback that both internal event lanes have zero
+public-price boundary flags. Ollama output is advisory; it cannot map cards,
+publish prices, or approve slab evidence.
+
 ## Collectr explicit review choices — October 2, 2026
 
 Read `docs/checkpoints/collectr_review_choices_20261002.md` and the explicit web

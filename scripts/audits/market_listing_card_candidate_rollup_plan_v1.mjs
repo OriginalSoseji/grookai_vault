@@ -78,6 +78,81 @@ function safeNumber(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+function normalizeSlabGrader(value) {
+  const normalized = String(value ?? "").trim().toUpperCase();
+  if (!normalized) return null;
+  const aliases = {
+    CGC: "CGC",
+    CGC_CARDS: "CGC",
+    PSA: "PSA",
+    BGS: "BGS",
+    BECKETT: "BGS",
+    SGC: "SGC",
+    ACE: "ACE",
+    AGS: "AGS",
+  };
+  return aliases[normalized] ?? normalized;
+}
+
+function slabIdentityFromEvent(row) {
+  const eventPayload = row.event_payload ?? {};
+  const features = eventPayload.slab_features ?? {};
+  const graders = Array.isArray(features.graders) ? features.graders : [];
+  const grader = normalizeSlabGrader(graders[0]);
+  const gradeText = String(features.grade ?? "").trim();
+  const gradeValue = gradeText ? safeNumber(gradeText) : null;
+  return {
+    source_listing_id: row.source_listing_id ?? null,
+    grader,
+    grade_value: gradeValue,
+    identity_status: grader === null
+      ? "missing_grader"
+      : gradeValue === null
+        ? "missing_grade"
+        : "identified",
+  };
+}
+
+function slabIdentitySummary(group) {
+  const identities = group.slab_listing_identities ?? [];
+  const pairCounts = new Map();
+  let identified = 0;
+  let missingGrader = 0;
+  let missingGrade = 0;
+  for (const identity of identities) {
+    if (identity.identity_status === "identified") {
+      identified += 1;
+      const key = `${identity.grader}|${identity.grade_value}`;
+      pairCounts.set(key, (pairCounts.get(key) ?? 0) + 1);
+    } else if (identity.identity_status === "missing_grader") {
+      missingGrader += 1;
+    } else {
+      missingGrade += 1;
+    }
+  }
+  const pairs = [...pairCounts.entries()].sort(([left], [right]) => left.localeCompare(right)).map(([key, listing_count]) => {
+    const [grader, grade] = key.split("|");
+    return { grader, grade_value: Number(grade), listing_count };
+  });
+  const policyStatus = identities.length === 0
+    ? "blocked_missing_listing_identity"
+    : identified !== identities.length
+      ? "blocked_missing_listing_identity"
+      : pairs.length !== 1
+        ? "blocked_mixed_grader_grade"
+        : "reviewable_same_grade_identity";
+  return {
+    policy_version: "MEE_SLAB_APPROVAL_POLICY_V1",
+    listing_event_count: identities.length,
+    identified_listing_count: identified,
+    missing_grader_count: missingGrader,
+    missing_grade_count: missingGrade,
+    grader_grade_pairs: pairs,
+    status: policyStatus,
+    can_auto_approve: false,
+  };
+}
+
 function confidenceFor(strategy, evidenceClass) {
   let score = 0.55;
   if (strategy === "strict_identity") score = 0.72;
@@ -175,11 +250,13 @@ function addRollupSignal(groups, row) {
     sellers: new Set(),
     exclusion_counts: {},
     listing_count: 0,
+    slab_listing_identities: [],
   };
   group.prices.push(price);
   group.listing_count += 1;
   if (row.obs?.seller_key) group.sellers.add(row.obs.seller_key);
   for (const flag of eventPayload.ingestion_exclusion_flags ?? []) countInto(group.exclusion_counts, flag);
+  if (evidenceClass === "slab") group.slab_listing_identities.push(slabIdentityFromEvent(row));
   groups.set(key, group);
 }
 
@@ -376,6 +453,7 @@ function rollupRow(group, generatedAt, runKey) {
       p95: rounded(percentile(prices, 0.95)),
       source_run_key: runKey,
       review_only: true,
+      slab_identity: group.evidence_class === "slab" ? slabIdentitySummary(group) : null,
     },
     needs_review: true,
     publishable: false,

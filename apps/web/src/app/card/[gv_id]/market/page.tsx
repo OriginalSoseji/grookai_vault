@@ -238,7 +238,7 @@ export default async function MarketAnalysisPage(
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Market reference
+                    TCGPlayer Market reference
                   </p>
                   {model.selectedSlice ? (
                     <p className="text-sm font-medium text-slate-700">
@@ -320,7 +320,7 @@ export default async function MarketAnalysisPage(
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-2">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Market reference
+                    TCGPlayer Market reference
                   </p>
                   {model.selectedSlice ? (
                     <p className="text-sm font-medium text-slate-700">

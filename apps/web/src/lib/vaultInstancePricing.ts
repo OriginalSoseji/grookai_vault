@@ -79,5 +79,9 @@ export function getVaultInstancePricingSourceLabel(source?: string | null) {
     return "eBay active listing evidence";
   }
 
+  if (normalized === "tcgplayer" || normalized === "tcgplayer_market") {
+    return "TCGPlayer Market reference";
+  }
+
   return "Market reference";
 }
