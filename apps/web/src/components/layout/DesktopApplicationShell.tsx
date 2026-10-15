@@ -81,7 +81,9 @@ export function DesktopApplicationShell({
             const href = item.href;
             const active = item.key === "sets" || item.key === "dex"
               ? routeState.activeSecondary === item.key
-              : routeState.activePrimary === item.key;
+              : item.key === "search"
+                ? routeState.activePrimary === item.key && routeState.activeSecondary === null
+                : routeState.activePrimary === item.key;
             return (
               <Link
                 key={item.key}
