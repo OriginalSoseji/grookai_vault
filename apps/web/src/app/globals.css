@@ -2071,6 +2071,60 @@ html.gv-dark .gv-wall-sections-card .text-slate-500 {
   min-width: 0;
 }
 
+.gv-following-page {
+  min-width: 0;
+}
+
+.gv-following-hero,
+.gv-following-list-surface {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-following-row {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-base);
+  transition: border-color var(--gv-transition-fast), background-color var(--gv-transition-fast), box-shadow var(--gv-transition-fast), transform var(--gv-transition-fast);
+}
+
+.gv-following-row:hover {
+  border-color: color-mix(in srgb, var(--gv-primary) 42%, var(--gv-border-soft));
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+  transform: translateY(-1px);
+}
+
+.gv-following-avatar {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-following-page .text-slate-950,
+html.gv-dark .gv-following-page .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-following-page .text-slate-700,
+html.gv-dark .gv-following-page .text-slate-600,
+html.gv-dark .gv-following-page .text-slate-500 {
+  color: var(--gv-text-secondary);
+}
+
+@media (max-width: 639px) {
+  .gv-following-page .gv-following-hero h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .gv-following-row {
+    align-items: flex-start;
+  }
+
+  .gv-following-meta {
+    max-width: 9rem;
+  }
+}
+
 .gv-binders-page {
   min-width: 0;
 }
