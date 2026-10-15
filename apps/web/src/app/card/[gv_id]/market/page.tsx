@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import MarketHistoryChart from "@/components/pricing/MarketHistoryChart";
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
+import { getVariantLabels } from "@/lib/cards/variantPresentation";
 import { normalizeRequestedPublicGvId } from "@/lib/gvIdAlias";
 import { getPublicCardByGvId } from "@/lib/getPublicCardByGvId";
 import {
@@ -9,6 +10,7 @@ import {
   getCardMarketAnalysisModel,
   type MarketAnalysisAvailableSlice,
 } from "@/lib/pricing/getCardMarketAnalysisModel";
+import { buildEbaySoldSearchHref } from "@/lib/pricing/buildEbaySoldSearchHref";
 import { createServerComponentClient } from "@/lib/supabase/server";
 
 export const revalidate = 0;
@@ -120,6 +122,46 @@ function MarketPrintingSelector({
           </Link>
         );
       })}
+    </div>
+  );
+}
+
+function SoldEvidenceAction({
+  cardName,
+  setName,
+  collectorNumber,
+  finish,
+  variantLabels,
+}: {
+  cardName: string;
+  setName?: string | null;
+  collectorNumber?: string | null;
+  finish?: string | null;
+  variantLabels?: string[] | null;
+}) {
+  const href = buildEbaySoldSearchHref({
+    cardName,
+    setName,
+    collectorNumber,
+    finish,
+    variantLabels,
+  });
+
+  return (
+    <div className="space-y-2 border-t border-slate-200 pt-4 dark:border-slate-800">
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-500 hover:text-slate-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white"
+      >
+        Review eBay completed listings
+      </a>
+      <p className="text-xs leading-5 text-slate-500">
+        Opens a manual exact-print search for your review. Results are not
+        imported into Grookai pricing, and mismatched condition or printing
+        should be excluded.
+      </p>
     </div>
   );
 }
@@ -262,6 +304,13 @@ export default async function MarketAnalysisPage(
                 ) : null}
                 <MarketHistoryChart points={historyPoints} />
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
+                <SoldEvidenceAction
+                  cardName={card.name}
+                  setName={card.set_name}
+                  collectorNumber={card.number}
+                  finish={model.selectedSlice?.printing}
+                  variantLabels={getVariantLabels(card, 3)}
+                />
               </div>
             </section>
           ) : null}
@@ -340,6 +389,13 @@ export default async function MarketAnalysisPage(
                   </p>
                 ) : null}
                 {freshnessLabel ? <p className="text-sm text-slate-400">Updated {freshnessLabel}</p> : null}
+                <SoldEvidenceAction
+                  cardName={card.name}
+                  setName={card.set_name}
+                  collectorNumber={card.number}
+                  finish={model.selectedSlice?.printing}
+                  variantLabels={getVariantLabels(card, 3)}
+                />
               </div>
             </section>
           ) : null}
