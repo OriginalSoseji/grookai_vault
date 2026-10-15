@@ -1,5 +1,20 @@
 # Grookai Agent Entry Point
 
+## Local Ollama pricing triage — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md`.
+The local `grookai-card-triage:4b` model is a 2.5 GB, loopback-only advisory
+helper for blocked TCGPlayer identity rows. Calls are sequential, bounded to 100
+rows, and unload after each run. Its measured 4K-context allocation is 3.2 GB.
+Deterministic code removes coordinate, set,
+edition, and already-mapped conflicts before inference. Every model result still
+requires exact reviewed authority; it can never write mappings, publish prices,
+or touch customer state. Preserve the larger installed model but do not use it
+for this worker. The final enriched run preserved 125 exact set-and-number target
+rows, made 86 local model calls, and emitted 86 advisory leads with zero errors
+and no model left loaded. Black and White Promos is the largest 12-row lead
+group; those rows still need independent reviewed authority before any mapping.
+
 ## BW11 Radiant Collection truth review and mapping — October 14
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_142_BW11_RADIANT_COLLECTION_TRUTH_REVIEW_AND_MAPPING.md`.

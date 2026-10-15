@@ -202,7 +202,9 @@
     "catalog:pricing:completion:require": "node scripts/audits/catalog_pricing_completion_v1.mjs --require-complete",
     "pricing:market:backlog": "node scripts/audits/tcgplayer_pricing_backlog_v1.mjs",
     "pricing:market:backlog:require": "node scripts/audits/tcgplayer_pricing_backlog_v1.mjs --require-complete",
-    "pricing:market:completion-agent": "node scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs"
+    "pricing:market:completion-agent": "node scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs",
+    "pricing:market:ollama:model:create": "ollama create grookai-card-triage:4b -f deploy/ollama/grookai-card-triage-4b.Modelfile",
+    "pricing:market:ollama-triage": "node scripts/workers/tcgplayer_ollama_triage_v1.mjs"
   },
   "devDependencies": {
     "@pgkit/client": "0.6.1",

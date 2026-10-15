@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Local Ollama pricing triage — October 15, 2026
+
+Use the checked-in `grookai-card-triage:4b` Modelfile and the
+`pricing:market:ollama-triage` worker only for advisory review leads from an exact
+planner's blocked JSONL. Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md` before
+operating it. The endpoint must remain HTTP loopback, model calls must remain
+sequential, and every run must unload the model. Do not attach database
+credentials, add a write mode, or treat model output as reviewed mapping or
+publication authority. Keep exact deterministic validation and the governed
+release path unchanged.
+
 ## Pokémon 30th Celebration Classic aliases — October 14
 
 Read

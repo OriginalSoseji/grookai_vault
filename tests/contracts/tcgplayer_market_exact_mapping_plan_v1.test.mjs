@@ -362,6 +362,37 @@ test("unique group set consensus requires exact name and number", () => {
   assert.equal(result.mapping_confidence, 0.99);
 });
 
+test("name aliases remain blocked while preserving exact-number review targets", () => {
+  const result = planTcgplayerExactMappingCandidateV1({
+    source: source({
+      source_product_id: 83592,
+      source_product_name: "Arceus (AR1)",
+      source_group_id: 1391,
+      source_group_name: "Arceus",
+      printed_number: "AR1",
+    }),
+    groupConsensus: {
+      set_count: 1,
+      set_id: "set-1",
+      set_code: "pl4",
+      mapped_source_product_count: 108,
+    },
+    setTargets: [target({
+      card_print_id: "arceus-ar1",
+      gv_id: "GV-PK-AR-AR1",
+      set_code: "pl4",
+      name: "Arceus",
+      number: "AR1",
+      embedded_external_id: null,
+    })],
+  });
+  assert.equal(result.disposition, "blocked");
+  assert.equal(result.reason, "no_exact_set_number_name_target");
+  assert.deepEqual(result.candidate_targets, []);
+  assert.equal(result.review_targets.length, 1);
+  assert.equal(result.review_targets[0].card_print_id, "arceus-ar1");
+});
+
 test("ambiguous set authority and target collisions remain blocked", () => {
   const noAuthority = planTcgplayerExactMappingCandidateV1({
     source: source(),
