@@ -12,7 +12,8 @@ backlog: `tcgplayer-pricing-completion-v1`.
 Implementation PR: `#646`.
 
 The agent turns pricing completion into a persistent outcome instead of a series
-of disconnected manual investigations. Every six hours it:
+of disconnected manual investigations. It originally ran every six hours and,
+as of October 15, 2026, runs hourly at minute 47. Each cycle:
 
 1. reads the latest verified production publication;
 2. partitions every unpublished observation into its repair lane;

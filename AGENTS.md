@@ -140,8 +140,8 @@ adjudication before mapping.
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_133_TCGPLAYER_PRICING_COMPLETION_AGENT.md`.
 The dedicated `tcgplayer-pricing-completion-v1` operations agent owns the
-production pricing backlog as one continuous outcome. Every six hours it runs a
-read-only production audit, builds the Pokemon-scoped exact-mapping plan,
+production pricing backlog as one continuous outcome. Every hour at minute 47 it
+runs a read-only production audit, builds the Pokemon-scoped exact-mapping plan,
 heartbeats its measured state into the operations control plane, and preserves
 90-day evidence. A nonzero backlog is reported as incomplete work rather than an
 agent crash. Only reviewed exact candidates can become the next batch; all
