@@ -455,6 +455,15 @@ export function planTcgplayerExactMappingCandidateV1({
       !text(target.variant_key),
   );
   if (matchingTargets.length !== 1) {
+    const reviewTargets = matchingTargets.length === 0
+      ? setTargets.filter(
+          (target) =>
+            target.set_id === setAuthority.set_id &&
+            normalizeTcgplayerMappingNumberV1(source.printed_number) ===
+              normalizeTcgplayerMappingNumberV1(target.number) &&
+            !text(target.variant_key),
+        )
+      : [];
     return blocked(
       source,
       matchingTargets.length === 0
@@ -464,6 +473,9 @@ export function planTcgplayerExactMappingCandidateV1({
         evidence_lane: setAuthority.evidence_lane,
         set_authority: setAuthority,
         candidate_targets: matchingTargets.map(targetEvidence),
+        ...(reviewTargets.length > 0
+          ? { review_targets: reviewTargets.map(targetEvidence) }
+          : {}),
       },
     );
   }
