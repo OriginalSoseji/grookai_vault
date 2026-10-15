@@ -326,22 +326,23 @@ Do not reset retained labs, replay migration/upload intents or edit repair trees
 
 ## Receipt delivery forward reconciliation — October 15
 
-Production has 447 migration-ledger rows through `20261014003500`. The original
+Production now has 448 migration-ledger rows through `20261015090000`. The original
 receipt candidate `20261005150000_vendor_receipt_delivery_v1.sql` was deferred
 while later migrations landed, so it is quarantined and must not be pushed with
 `--include-all`. The active candidate is the forward-only
 `20261015090000_vendor_receipt_delivery_reconcile_v1.sql`.
 
-`ReceiptDeliveryReleaseV1` accepts only `AuditLinkedSchema` or `PrePush` with
-the exact pending ID `20261015090000`. The gate reads the live ledger and
-receipt-table state, proves the vendor-cost migration is already present, and
-writes evidence with `productionWrites: 0`, `actualMessagesSent: 0`, and
-`applyAuthority: false`. The CLI package supports preparation and
-`supabase db push --dry-run` only; it never applies SQL or enables sending.
+The forward migration was applied after the read-only audit, pre-push gate and
+normal Supabase dry run. The post-apply readback reports both receipt tables,
+zero delivery rows, and `email_enabled: false` / `sms_enabled: false`; provider
+configuration and sender activation remain off. `ReceiptDeliveryReleaseV1`
+continues to read the live ledger and receipt-table state and writes evidence
+with `productionWrites: 0`, `actualMessagesSent: 0`, and `applyAuthority: false`.
+The CLI package remains a preparation/dry-run artifact and has no apply mode.
 
-Run the gate from a clean current-main descendant, then inspect the exact
-forward migration with the normal dry run. Keep receipt controls and provider
-configuration off until a separate authorized apply and delivery readback.
+For future changes, run the gate from a clean current-main descendant and use a
+new forward migration. Do not replay the applied migration or enable receipt
+controls without a separate authorized delivery rollout and readback.
 Historical PR598 evidence under `receipt_delivery_20261005` remains preserved;
 do not replay its backdated migration or reset its retained labs.
 
