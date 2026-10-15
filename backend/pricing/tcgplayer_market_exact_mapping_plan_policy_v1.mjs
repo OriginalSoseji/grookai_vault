@@ -51,6 +51,21 @@ import {
   reviewedTcgplayerBw11RadiantCollectionProductIdentityV1,
 } from "./tcgplayer_bw11_radiant_collection_product_identity_authority_v1.mjs";
 import {
+  matchesReviewedTcgplayerBwpAliasProductTargetV1,
+  reviewedTcgplayerBwpAliasProductIdentityByIdV1,
+  reviewedTcgplayerBwpAliasProductIdentityV1,
+} from "./tcgplayer_bwp_alias_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerNintendoTargetPromoProductTargetV1,
+  reviewedTcgplayerNintendoTargetPromoProductIdentityByIdV1,
+  reviewedTcgplayerNintendoTargetPromoProductIdentityV1,
+} from "./tcgplayer_nintendo_target_promo_product_identity_authority_v1.mjs";
+import {
+  matchesReviewedTcgplayerDeltaSpeciesAliasProductTargetV1,
+  reviewedTcgplayerDeltaSpeciesAliasProductIdentityByIdV1,
+  reviewedTcgplayerDeltaSpeciesAliasProductIdentityV1,
+} from "./tcgplayer_delta_species_alias_product_identity_authority_v1.mjs";
+import {
   matchesReviewedTcgplayerWcdTeamRushdownProductTargetV1,
   reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1,
   reviewedTcgplayerWcdTeamRushdownProductIdentityV1,
@@ -78,6 +93,9 @@ function reviewedProductIdentityById(sourceProductId) {
     reviewedTcgplayerPrismStarAliasProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerAliasWave2ProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerBw11RadiantCollectionProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerBwpAliasProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerNintendoTargetPromoProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerDeltaSpeciesAliasProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1(sourceProductId);
 }
 
@@ -90,6 +108,9 @@ function reviewedProductIdentity(source) {
     reviewedTcgplayerPrismStarAliasProductIdentityV1(source) ??
     reviewedTcgplayerAliasWave2ProductIdentityV1(source) ??
     reviewedTcgplayerBw11RadiantCollectionProductIdentityV1(source) ??
+    reviewedTcgplayerBwpAliasProductIdentityV1(source) ??
+    reviewedTcgplayerNintendoTargetPromoProductIdentityV1(source) ??
+    reviewedTcgplayerDeltaSpeciesAliasProductIdentityV1(source) ??
     reviewedTcgplayerWcdTeamRushdownProductIdentityV1(source);
 }
 
@@ -102,6 +123,9 @@ function matchesReviewedProductTarget(source, target) {
     matchesReviewedTcgplayerPrismStarAliasProductTargetV1(source, target) ||
     matchesReviewedTcgplayerAliasWave2ProductTargetV1(source, target) ||
     matchesReviewedTcgplayerBw11RadiantCollectionProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerBwpAliasProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerNintendoTargetPromoProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerDeltaSpeciesAliasProductTargetV1(source, target) ||
     matchesReviewedTcgplayerWcdTeamRushdownProductTargetV1(source, target);
 }
 

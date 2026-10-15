@@ -1,5 +1,47 @@
 # Grookai Agent Entry Point
 
+## Delta-species exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_148_DELTA_SPECIES_ALIAS_BATCH.md`.
+The active bounded batch contains exactly 12 products across EX Holon Phantoms,
+EX Dragon Frontiers, and POP Series 4, covering 21 missing-price observations
+and 21 exact Normal/Holo/Reverse children. Freeze every product and symbolic
+canonical name individually. Production order is 21 truth reviews, independent
+readback, three-set mapping authority, 12 mappings, independent readback, then
+a later full pricing shadow and publication. Do not broaden this into a global
+Delta Species, gender-symbol, forme, or Star normalization rule.
+
+## Nintendo Target promo exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_147_NINTENDO_TARGET_PROMO_ALIAS_BATCH.md`.
+The next bounded pricing batch contains exactly four Nintendo Promos products:
+Treecko 16, Torchic 17, Mudkip 18, and Whismur 19. TCGPlayer appends the
+display-only qualifier `Target Promo`; each product otherwise has one exact
+numbered canonical parent and one verified visible Normal printing. Keep the
+registry product-specific and require the frozen mapping package, rollback
+rehearsal, apply, independent readback, and a later full pricing shadow.
+
+## Team Rushdown publication evidence repair — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_146_WCD_PUBLICATION_EVIDENCE_REPAIR.md`.
+The first post-mapping full shadow passed globally but excluded all 24 Team
+Rushdown rows because the publication query did not enrich those product IDs
+with parent and truth-review columns. The active repair extends the existing
+one-to-one evidence joins to all reviewed special products. Require a fresh
+exact-commit full shadow in which all 24 Team Rushdown rows publish before any
+production activation.
+
+## Black and White Promos exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_145_BWP_ALIAS_MAPPING_BATCH.md`.
+The active bounded batch contains exactly two group 1407 products: Druddigon
+BW80 and Rayquaza-EX BW47. Each has exact frozen source identity, one unique
+standard parent, and a Master Index verified Holo printing. The production
+sequence is truth-review insertion, independent readback, exact mapping package,
+mapping insertion, independent readback, then full-scope pricing shadow and
+coverage verification. Ten Victory Cup products remain held because several
+year, season, and placement variants collide on BW29, BW30, and BW31.
+
 ## Local Ollama pricing triage — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md`.
