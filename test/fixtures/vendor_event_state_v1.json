@@ -1,0 +1,3236 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "name": "selected event with precise large revision",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "list without selected detail",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": null
+      },
+      "selectedId": null,
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "empty owner does not need state row",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "0",
+        "entryEnabled": false,
+        "receiptAccess": false,
+        "events": [],
+        "selected": null
+      },
+      "selectedId": null,
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "entry off retains reads",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": false,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "cloud off retains association metadata",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": false,
+        "receiptAccess": false,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": null,
+          "receiptIdentityConflicts": [],
+          "bookRevision": null
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "void retains expense and reason",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": true,
+              "lastReason": "Duplicate",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "closed state has reason",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "closed",
+            "stateReason": "Show complete",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "ambiguous identity excluded from candidates",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [],
+          "receiptIdentityConflicts": [
+            "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+          ],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "unassigned candidate",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": null,
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": null
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "submillisecond timestamp order",
+      "valid": true,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123457+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "unknown response field",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        },
+        "owner": "extra"
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "wrong version",
+      "valid": false,
+      "value": {
+        "version": 2,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "numeric revision",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": 2,
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "revision overflow",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9223372036854775808",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "row newer than owner",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740994",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "zero row revision",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "0",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "entry without receipt access",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": false,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "string switch",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": "true",
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "duplicate events",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          },
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "events out of order",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          },
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "unsupported event state",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "deleted",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "closed without reason",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "closed",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "unknown event metadata",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00",
+            "extra": true
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "invalid event dates",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-02-30",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "malformed timestamp",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "yesterday",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "update before create",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2020-01-01T00:00:00Z"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "submillisecond backwards timestamp",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123455+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "overflow timestamp time",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T25:00:00.000000Z"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "overflow timestamp date",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2027-02-30T13:00:00.000000Z"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "overflow timestamp offset",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2027-02-01T13:00:00.000000+99:99"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "missing selection",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": null
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "wrong selected identity",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "missing selected event",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "duplicate expense",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            },
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "foreign expense event",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "numeric expense amount",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": 1000,
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "void without reason",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": true,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "string void state",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": "false",
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "duplicate assignment",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            },
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "unknown assignment event",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "candidate disagrees with assignment",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": null
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "candidate outside dates",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-03",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "ambiguous candidate",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [
+            "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+          ],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "duplicate conflicts",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [
+            "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+            "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+          ],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "numeric book revision",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": 1
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "missing accessible candidates",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": null,
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "null accessible book revision",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": null
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "cloud off exposes candidates",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": false,
+        "receiptAccess": false,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "cloud off exposes conflicts",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": false,
+        "receiptAccess": false,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": null,
+          "receiptIdentityConflicts": [
+            "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+          ],
+          "bookRevision": null
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "unknown candidate field",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "amount": 1
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    },
+    {
+      "name": "wrong account",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "ownerId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+    },
+    {
+      "name": "unexpected selection in list",
+      "valid": false,
+      "value": {
+        "version": 1,
+        "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "revision": "9007199254740993",
+        "entryEnabled": true,
+        "receiptAccess": true,
+        "events": [
+          {
+            "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+            "name": "Card show",
+            "startDate": "2026-11-01",
+            "endDate": "2026-11-02",
+            "timeZone": "America/Havana",
+            "currency": "USD",
+            "notes": "",
+            "status": "open",
+            "stateReason": "",
+            "revision": "9007199254740992",
+            "createdAt": "2026-10-08T13:00:00.123456+00:00",
+            "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+          }
+        ],
+        "selected": {
+          "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+          "expenses": [
+            {
+              "expenseId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "category": "booth",
+              "description": "Booth fee",
+              "amountMinor": "1000",
+              "currency": "USD",
+              "incurredOn": "2026-11-01",
+              "voided": false,
+              "lastReason": "",
+              "revision": "9007199254740993",
+              "createdAt": "2026-10-08T13:00:00.123456+00:00",
+              "updatedAt": "2026-10-08T13:00:00.123456+00:00"
+            }
+          ],
+          "assignments": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "eventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+              "revision": "2"
+            }
+          ],
+          "candidates": [
+            {
+              "receiptId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+              "localDate": "2026-11-01",
+              "previousEventId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            }
+          ],
+          "receiptIdentityConflicts": [],
+          "bookRevision": "1"
+        }
+      },
+      "selectedId": null,
+      "ownerId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    }
+  ]
+}

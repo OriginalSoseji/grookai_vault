@@ -1,0 +1,2082 @@
+{
+  "version": 1,
+  "requestCases": [
+    {
+      "name": "event_create",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "event_update",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_update",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "event_close",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_close",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "reason": "Show finished"
+        }
+      }
+    },
+    {
+      "name": "event_reopen",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_reopen",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "reason": "Receipt arrived late"
+        }
+      }
+    },
+    {
+      "name": "expense_create",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "1000",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "expense_update",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_update",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "800",
+          "currency": "USD",
+          "incurredOn": "2026-10-31",
+          "reason": "Corrected table fee"
+        }
+      }
+    },
+    {
+      "name": "expense_void",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_void",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "reason": "Duplicate fee"
+        }
+      }
+    },
+    {
+      "name": "receipts_assign",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000002",
+              "previousEventId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "receipts_assign unassign",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": null,
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "large exact revision",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "maximum revision syntax",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9223372036854775807",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "zero expense",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "0",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "maximum amount",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "999999999999",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "unicode codepoint name boundary",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "multiline notes",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": "Fee includes\n\tparking."
+        }
+      }
+    },
+    {
+      "name": "leap day",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2024-02-29",
+          "endDate": "2024-02-29",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "timezone alias syntax",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "Etc/GMT+5",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "future_version",
+      "valid": false,
+      "request": {
+        "version": 2,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "extra_owner",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        },
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+      }
+    },
+    {
+      "name": "missing_request",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "uppercase_request",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "numeric_revision",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": 0,
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "leading_zero_revision",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "00",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "negative_revision",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "-1",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "overflow_revision",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9223372036854775808",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "unknown_operation",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "delete_all",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "extra_operation_owner",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": "",
+          "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+        }
+      }
+    },
+    {
+      "name": "null_operation",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": null
+      }
+    },
+    {
+      "name": "empty_name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "  ",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "long_unicode_name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠💠",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "newline_name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Show\nName",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "nul_note",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": "bad\u0000note"
+        }
+      }
+    },
+    {
+      "name": "wrong_currency",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "CAD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "invalid_leap_day",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-02-29",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "invalid_month",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-13-01",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "invalid_year_zero",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "0000-01-01",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "reversed_dates",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-10-30",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "five digit year",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "10000-01-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "timezone_space",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "timezone_escape",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "../Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "missing_notes",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD"
+        }
+      }
+    },
+    {
+      "name": "number_amount",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": 1000,
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "leading_zero_amount",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "01000",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "negative_amount",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "-1",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "fraction_amount",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "1.5",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "overflow_amount",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "1000000000000",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "invalid_category",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "inventory",
+          "description": "Table fee",
+          "amountMinor": "1000",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "blank_description",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": " ",
+          "amountMinor": "1000",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "invalid_expense_date",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "1000",
+          "currency": "USD",
+          "incurredOn": "2026-04-31"
+        }
+      }
+    },
+    {
+      "name": "missing_update_reason",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_update",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "category": "booth",
+          "description": "Table fee",
+          "amountMinor": "1000",
+          "currency": "USD",
+          "incurredOn": "2026-10-31"
+        }
+      }
+    },
+    {
+      "name": "empty_batch",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": []
+        }
+      }
+    },
+    {
+      "name": "duplicate_receipts",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "unsorted_receipts",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000002",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "missing_previous_event",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001"
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000002",
+              "previousEventId": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "no_op_assignment",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000002",
+              "previousEventId": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "unknown_entry_field",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": null,
+              "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000002",
+              "previousEventId": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "invalid_previous_event",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": "foreign"
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000002",
+              "previousEventId": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "oversized_batch",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "receipts_assign",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "receipts": [
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000001",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000002",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000003",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000004",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000005",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000006",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000007",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000008",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000009",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000010",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000011",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000012",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000013",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000014",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000015",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000016",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000017",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000018",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000019",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000020",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000021",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000022",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000023",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000024",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000025",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000026",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000027",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000028",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000029",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000030",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000031",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000032",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000033",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000034",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000035",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000036",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000037",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000038",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000039",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000040",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000041",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000042",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000043",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000044",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000045",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000046",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000047",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000048",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000049",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000050",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000051",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000052",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000053",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000054",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000055",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000056",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000057",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000058",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000059",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000060",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000061",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000062",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000063",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000064",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000065",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000066",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000067",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000068",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000069",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000070",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000071",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000072",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000073",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000074",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000075",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000076",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000077",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000078",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000079",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000080",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000081",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000082",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000083",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000084",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000085",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000086",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000087",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000088",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000089",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000090",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000091",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000092",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000093",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000094",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000095",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000096",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000097",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000098",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000099",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000100",
+              "previousEventId": null
+            },
+            {
+              "receiptId": "00000000-0000-4000-8000-000000000101",
+              "previousEventId": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "blank close reason",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_close",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "reason": ""
+        }
+      }
+    },
+    {
+      "name": "blank void reason",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "expense_void",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "expenseId": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+          "reason": " "
+        }
+      }
+    },
+    {
+      "name": "UUID trailing newline",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa\n",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "revision trailing newline",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0\n",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "timezone trailing newline",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver\n",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "last four-digit date",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "9999-12-31",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "first four-digit year",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "0001-01-01",
+          "endDate": "0001-01-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "nonbreaking blank name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": " ",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "BOM blank name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "﻿",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "Unicode NEL inside name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Showname",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "Unicode line separator inside name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Show name",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "Unicode paragraph separator inside name",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Show name",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "Unicode NEL note",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "0",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": "Detailscontinued"
+        }
+      }
+    }
+  ],
+  "ackCases": [
+    {
+      "name": "exact acknowledgement beyond Number precision",
+      "valid": true,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740993",
+        "revision": "9007199254740994",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "wrong_owner",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740993",
+        "revision": "9007199254740994",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "wrong_request",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+        "previousRevision": "9007199254740993",
+        "revision": "9007199254740994",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "wrong_previous",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740992",
+        "revision": "9007199254740994",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "wrong_next",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740993",
+        "revision": "9007199254740995",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "numeric_next",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740993",
+        "revision": 9007199254740994,
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "changed_operation",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740993",
+        "revision": "9007199254740994",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Different show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "future_response",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 2,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740993",
+        "revision": "9007199254740994",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "name": "extra_response_field",
+      "valid": false,
+      "request": {
+        "version": 1,
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "expectedRevision": "9007199254740993",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        }
+      },
+      "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+      "result": {
+        "version": 1,
+        "ownerId": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+        "requestId": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+        "previousRevision": "9007199254740993",
+        "revision": "9007199254740994",
+        "operation": {
+          "type": "event_create",
+          "eventId": "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+          "name": "Autumn card show",
+          "startDate": "2026-10-31",
+          "endDate": "2026-11-01",
+          "timeZone": "America/Denver",
+          "currency": "USD",
+          "notes": ""
+        },
+        "accepted": true
+      }
+    }
+  ]
+}
