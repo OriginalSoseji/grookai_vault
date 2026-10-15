@@ -4,28 +4,30 @@ import { useState } from "react";
 
 export function SharePublicLinkButton({
   title,
+  label = "Share",
   className = "",
 }: {
   title: string;
+  label?: string;
   className?: string;
 }) {
-  const [label, setLabel] = useState("Share store");
+  const [status, setStatus] = useState(label);
 
   async function share() {
     const url = window.location.href;
     try {
       if (navigator.share) {
         await navigator.share({ title, url });
-        setLabel("Shared");
+        setStatus("Shared");
       } else {
         await navigator.clipboard.writeText(url);
-        setLabel("Link copied");
+        setStatus("Link copied");
       }
     } catch {
-      setLabel("Share unavailable");
+      setStatus("Share unavailable");
     }
-    window.setTimeout(() => setLabel("Share store"), 2200);
+    window.setTimeout(() => setStatus(label), 2200);
   }
 
-  return <button type="button" onClick={() => void share()} className={className}>{label}</button>;
+  return <button type="button" onClick={() => void share()} className={className}>{status}</button>;
 }

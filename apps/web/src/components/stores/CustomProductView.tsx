@@ -87,7 +87,7 @@ export function CustomProductView({
           </dl>
 
           <div className="mt-auto flex flex-wrap gap-4 pt-8 text-sm font-semibold">
-            <SharePublicLinkButton title={`${p.title || "Collectible"} from ${data.store.display_name}`} className="gv-secondary-button" />
+            <SharePublicLinkButton title={`${p.title || "Collectible"} from ${data.store.display_name}`} label="Share listing" className="gv-secondary-button" />
             {data.store.collector_slug ? <Link className="gv-secondary-button" href={`/u/${encodeURIComponent(data.store.collector_slug)}`}>Meet the seller</Link> : null}
             <Link className="gv-ghost-button inline-flex items-center rounded-xl px-3 py-2" href={`${base}${data.preview ? "?preview=1" : ""}`}>Back to the store</Link>
           </div>
