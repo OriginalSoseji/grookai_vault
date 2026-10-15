@@ -7,6 +7,7 @@ import { readStorefront } from "@/lib/stores/storefrontServer";
 import { storeFilters } from "@/lib/stores/storefrontTypes";
 import { StorefrontView } from "@/components/stores/StorefrontView";
 import { StoreEntry } from "@/components/stores/StoreEntry";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -30,13 +31,16 @@ export async function generateMetadata({
   const title = `${data.store.display_name} · Grookai Vault Store`;
   const description = data.store.description?.trim() || `Browse collectibles from ${data.store.display_name} on Grookai Vault.`;
   const canonical = `/store/${encodeURIComponent(data.store.slug)}`;
+  const image = data.store.has_banner
+    ? `${getSiteOrigin()}/api/stores/${encodeURIComponent(data.store.slug)}/media/banner`
+    : undefined;
   return {
     title,
     description,
     robots: { index: true, follow: true },
     alternates: { canonical },
-    openGraph: { title, description, type: "website", url: canonical },
-    twitter: { card: "summary", title, description },
+    openGraph: { title, description, type: "website", url: canonical, images: image ? [{ url: image, alt: `${data.store.display_name} store banner` }] : undefined },
+    twitter: { card: "summary_large_image", title, description, images: image ? [image] : undefined },
   };
 }
 export default async function StorePage({

@@ -6,6 +6,7 @@ import { buildLoginHref } from "@/lib/auth/routeAccess";
 import { readCustomProduct } from "@/lib/stores/customProductServer";
 import { CustomProductView } from "@/components/stores/CustomProductView";
 import { StoreEntry } from "@/components/stores/StoreEntry";
+import { getSiteOrigin } from "@/lib/getSiteOrigin";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -28,13 +29,16 @@ export async function generateMetadata({
   const title = `${data.product.title || "Collectible"} · ${data.store.display_name}`;
   const description = data.product.description?.trim() || `View this collectible from ${data.store.display_name} on Grookai Vault.`;
   const canonical = `/store/${encodeURIComponent(data.store.slug)}/products/${encodeURIComponent(data.product.id)}`;
+  const image = data.product.photo_ids[0]
+    ? `${getSiteOrigin()}/api/stores/${encodeURIComponent(data.store.slug)}/products/${encodeURIComponent(data.product.id)}/media/${encodeURIComponent(data.product.photo_ids[0])}`
+    : undefined;
   return {
     title,
     description,
     robots: { index: true, follow: true },
     alternates: { canonical },
-    openGraph: { title, description, type: "website", url: canonical },
-    twitter: { card: "summary", title, description },
+    openGraph: { title, description, type: "website", url: canonical, images: image ? [{ url: image, alt: data.product.title || "Collectible" }] : undefined },
+    twitter: { card: image ? "summary_large_image" : "summary", title, description, images: image ? [image] : undefined },
   };
 }
 export default async function ProductPage({
