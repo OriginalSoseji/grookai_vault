@@ -29,5 +29,5 @@ export function SharePublicLinkButton({
     window.setTimeout(() => setStatus(label), 2200);
   }
 
-  return <button type="button" onClick={() => void share()} className={className}>{status}</button>;
+  return <button type="button" onClick={() => void share()} className={className}><span aria-live="polite" aria-atomic="true">{status}</span></button>;
 }
