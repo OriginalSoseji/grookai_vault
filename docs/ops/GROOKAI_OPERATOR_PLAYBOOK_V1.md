@@ -340,9 +340,11 @@ continues to read the live ledger and receipt-table state and writes evidence
 with `productionWrites: 0`, `actualMessagesSent: 0`, and `applyAuthority: false`.
 The CLI package remains a preparation/dry-run artifact and has no apply mode.
 
-For future changes, run the gate from a clean current-main descendant and use a
-new forward migration. Do not replay the applied migration or enable receipt
-controls without a separate authorized delivery rollout and readback.
+For future changes, do not reuse `ReceiptDeliveryReleaseV1` or its CLI package;
+they are bounded to this already-applied migration. Create a new migration-
+specific gate and package from a clean current-main descendant. Do not replay
+the applied migration or enable receipt controls without a separate authorized
+delivery rollout and readback.
 Historical PR598 evidence under `receipt_delivery_20261005` remains preserved;
 do not replay its backdated migration or reset its retained labs.
 
