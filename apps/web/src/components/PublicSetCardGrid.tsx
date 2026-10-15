@@ -222,7 +222,9 @@ export default function PublicSetCardGrid({
                   </span>
                 </Link>
               }
-              subtitle={<span className="block truncate">{setLabel}</span>}
+              // The set heading already establishes collection context; repeating it on
+              // every card adds noise, especially in the two-column mobile feed.
+              subtitle={undefined}
               badges={
                 badgeLabels.length > 0 || finishLabels.length > 0 ? (
                   <>
