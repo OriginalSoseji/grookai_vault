@@ -23,8 +23,12 @@ export function SharePublicLinkButton({
         await navigator.clipboard.writeText(url);
         setStatus("Link copied");
       }
-    } catch {
-      setStatus("Share unavailable");
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        setStatus(label);
+      } else {
+        setStatus("Share unavailable");
+      }
     }
     window.setTimeout(() => setStatus(label), 2200);
   }
