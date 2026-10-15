@@ -25,15 +25,17 @@ The model output is advisory. A deterministic guard is applied after every call:
 
 The local model cannot override these warehouse gates.
 
-For raw-single rows, the automation can approve an internal price signal only when the deterministic bucket is `review_ready_internal_candidate`, the model returns clean identity with at least 0.95 confidence, and no contamination or outlier rule fires. This writes only `market_evidence_price_review_events`; it does not write `pricing_observations` or change any public pricing flag. Slab rows stay in their separate lane until a slab-specific policy exists.
+For raw-single rows, the automation can approve an internal price signal only when the deterministic bucket is `review_ready_internal_candidate`, the model returns clean identity with at least 0.95 confidence, and no contamination or outlier rule fires. This writes only `market_evidence_price_review_events`; it does not write `pricing_observations` or change any public pricing flag.
+
+Slab rows now have a separate internal-only lane in `market_evidence_slab_review_events`. They can be rejected for deterministic contamination, deferred for insufficient evidence, or held for the slab policy queue. They cannot be approved, published, app-visible, or treated as market truth. The lane is intentionally separate so raw-single approvals cannot be accidentally applied to graded/slab inventory.
 
 ## Validation
 
-- Contract tests: 11 passed, 0 failed.
+- Contract tests: 16 passed, 0 failed.
 - Clean evidence smoke: 10/10 model calls completed; 0 model errors.
 - Contamination smoke: 1/1 model call completed; deterministic guard forced `reject_contamination` from positive exclusion counts.
-- Live automation page: 8 rollups reviewed, 4 raw-single events inserted (2 internal approvals, 2 manual holds), 4 slab rows held for the separate lane, and 0 public flags.
-- Production readback: the four automation events have zero `can_publish_price_directly`, `publishable`, `app_visible`, or `market_truth` rows.
+- Live automation pages: the original raw-single page inserted 4 raw events; the slab lane smoke page inserted 1 slab event; the next 20-rollup page inserted 10 raw events and 10 slab events. The current automation readback is 68 raw events and 11 slab events; the slab table has no approvals and remains internal-only.
+- Production readback: all automation events across both lanes have zero `can_publish_price_directly`, `publishable`, `app_visible`, or `market_truth` rows. The scheduled checkpoint advanced to offset 33 after the bounded page.
 - Artifacts are outside the repository under `C:\grookai_vault_operator_artifacts\ollama_evidence_review_20261015_final` and `C:\grookai_vault_operator_artifacts\ollama_evidence_review_contamination_20261015_final`.
 
 No production row was changed by this setup.

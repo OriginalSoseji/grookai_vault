@@ -34,6 +34,24 @@ test('automation writes only internal price review events', () => {
   assert.match(worker, /dryRun/);
 });
 
+test('slab evidence is routed to a separate non-public review lane', () => {
+  const worker = fs.readFileSync(
+    path.join(ROOT, 'scripts/workers/market_listing_ollama_automation_v1.mjs'),
+    'utf8',
+  );
+  const migration = fs.readFileSync(
+    path.join(ROOT, 'supabase/migrations/20261015110000_mee_slab_price_review_events_v1.sql'),
+    'utf8',
+  );
+  assert.match(worker, /market_evidence_slab_review_events/);
+  assert.match(worker, /slab_candidates/);
+  assert.match(worker, /special_lane_hold/);
+  assert.doesNotMatch(worker, /slab_lane_requires_separate_policy/);
+  assert.match(migration, /evidence_lane = 'slab'/);
+  assert.match(migration, /market_evidence_slab_review_events_no_public_boundary_check/);
+  assert.match(migration, /grant select, insert on public\.market_evidence_slab_review_events to service_role/);
+});
+
 test('scheduled wrapper runs the repository automation command', () => {
   const script = fs.readFileSync(
     path.join(ROOT, 'scripts/ops/market_evidence_ollama_automation_v1.ps1'),

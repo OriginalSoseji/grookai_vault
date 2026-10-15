@@ -13,6 +13,8 @@ const EXPORTER = path.join(REPO_ROOT, "scripts", "audits", "market_listing_bound
 const REVIEWER = path.join(REPO_ROOT, "scripts", "workers", "market_listing_ollama_review_v1.mjs");
 const AUTOMATION_VERSION = "MEE_OLLAMA_AUTOMATION_V1";
 const ACTOR = "ollama_automation_agent_v1";
+const RAW_EVENT_TABLE = "market_evidence_price_review_events";
+const SLAB_EVENT_TABLE = "market_evidence_slab_review_events";
 
 function arg(argv, name, fallback = "") {
   return argv.find((value) => value.startsWith(`--${name}=`))?.slice(name.length + 3).trim() ?? fallback;
@@ -80,6 +82,9 @@ function actionFor(row, review) {
   if (row.review_bucket === "review_required_outlier_spread") {
     return { action_name: "hold_manual_review", review_state: "manual_hold", reason_code: "spread_review" };
   }
+  if (row.evidence_class === "slab") {
+    return { action_name: "hold_manual_review", review_state: "manual_hold", reason_code: "special_lane_hold" };
+  }
   if (row.review_bucket === "review_ready_internal_candidate"
     && review.decision === "route_to_human_review"
     && review.reason_code === "clean_identity"
@@ -107,7 +112,7 @@ function buildPriceEvent(row, review, modelDigest, sourcePackage, sourcePath) {
     card_print_id: row.card_print_id,
     gv_id: row.gv_id,
     source_type: "active_listing",
-    evidence_lane: "raw_single",
+    evidence_lane: row.evidence_class === "slab" ? "slab" : "raw_single",
     source_rollup_id: row.rollup_id,
     currency: row.currency ?? "USD",
     candidate_median: row.median_active_ask,
@@ -147,7 +152,8 @@ function buildPriceEvent(row, review, modelDigest, sourcePackage, sourcePath) {
   };
 }
 
-function insertEventChunk(events) {
+function insertEventChunk(events, tableName) {
+  if (![RAW_EVENT_TABLE, SLAB_EVENT_TABLE].includes(tableName)) throw new Error(`Unsupported event table: ${tableName}`);
   const values = events.map((event) => `(
     ${sqlLiteral(event.card_print_id)}::uuid,
     ${sqlLiteral(event.gv_id)},
@@ -172,7 +178,7 @@ function insertEventChunk(events) {
     false, false, false, false
   )`).join(",\n");
   return runSql(`
-insert into public.market_evidence_price_review_events (
+insert into public.${tableName} (
   card_print_id, gv_id, source_type, evidence_lane, source_rollup_id, currency,
   candidate_median, candidate_low, candidate_high, minimum_active_ask, maximum_active_ask,
   evidence_count, seller_count, signal_at, action_name, review_state, reason_code,
@@ -183,12 +189,18 @@ returning id::text as event_id, source_rollup_id, action_name, review_state;
 `);
 }
 
-function insertEvents(events) {
+function insertEvents(events, tableName) {
   const inserted = [];
   for (let start = 0; start < events.length; start += 5) {
-    inserted.push(...insertEventChunk(events.slice(start, start + 5)));
+    inserted.push(...insertEventChunk(events.slice(start, start + 5), tableName));
   }
   return inserted;
+}
+
+function existingAutomationKeys(tableName, keys) {
+  if (![RAW_EVENT_TABLE, SLAB_EVENT_TABLE].includes(tableName)) throw new Error(`Unsupported event table: ${tableName}`);
+  if (!keys.length) return [];
+  return runSql(`select action_payload->>'automation_key' as automation_key from public.${tableName} where action_payload->>'automation_version' = ${sqlLiteral(AUTOMATION_VERSION)} and action_payload->>'automation_key' in (${keys.map(sqlLiteral).join(",")});`);
 }
 
 async function main() {
@@ -214,7 +226,8 @@ async function main() {
   const reviews = (await fs.readFile(path.join(outDir, "review.jsonl"), "utf8"))
     .split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line));
   const rowsByRollup = new Map(input.rows.map((row) => [row.rollup_id, row]));
-  const candidates = [];
+  const rawCandidates = [];
+  const slabCandidates = [];
   const skipped = [];
   for (const result of reviews) {
     const row = rowsByRollup.get(result.rollup_id);
@@ -222,20 +235,18 @@ async function main() {
       skipped.push({ rollup_id: result.rollup_id, reason: result.disposition ?? "missing_review" });
       continue;
     }
-    if (row.evidence_class !== "raw_single") {
-      skipped.push({ rollup_id: result.rollup_id, reason: "slab_lane_requires_separate_policy" });
-      continue;
-    }
-    candidates.push(buildPriceEvent(row, result.review, reviewSummary.model_digest, exportSummary.package_id, inputPath));
+    const event = buildPriceEvent(row, result.review, reviewSummary.model_digest, exportSummary.package_id, inputPath);
+    (row.evidence_class === "slab" ? slabCandidates : rawCandidates).push(event);
   }
 
-  const keys = candidates.map((event) => event.automation_key);
-  const existing = keys.length
-    ? runSql(`select action_payload->>'automation_key' as automation_key from public.market_evidence_price_review_events where action_payload->>'automation_version' = ${sqlLiteral(AUTOMATION_VERSION)} and action_payload->>'automation_key' in (${keys.map(sqlLiteral).join(",")});`)
-    : [];
-  const existingKeys = new Set(existing.map((row) => row.automation_key));
-  const pending = candidates.filter((event) => !existingKeys.has(event.automation_key));
-  const inserted = args.dryRun ? [] : insertEvents(pending);
+  const rawExistingKeys = new Set(existingAutomationKeys(RAW_EVENT_TABLE, rawCandidates.map((event) => event.automation_key)).map((row) => row.automation_key));
+  const slabExistingKeys = new Set(existingAutomationKeys(SLAB_EVENT_TABLE, slabCandidates.map((event) => event.automation_key)).map((row) => row.automation_key));
+  const rawPending = rawCandidates.filter((event) => !rawExistingKeys.has(event.automation_key));
+  const slabPending = slabCandidates.filter((event) => !slabExistingKeys.has(event.automation_key));
+  const pending = [...rawPending, ...slabPending];
+  const insertedRaw = args.dryRun ? [] : insertEvents(rawPending, RAW_EVENT_TABLE);
+  const insertedSlab = args.dryRun ? [] : insertEvents(slabPending, SLAB_EVENT_TABLE);
+  const inserted = [...insertedRaw, ...insertedSlab];
   const cycleComplete = exportSummary.selection.selected_rollups === 0;
   const nextOffsetPerBucket = cycleComplete ? 0 : offsetPerBucket + args.pageSize;
   if (!args.dryRun && args.offset === null) {
@@ -249,10 +260,14 @@ async function main() {
     dry_run: args.dryRun,
     source_export: exportSummary,
     review: reviewSummary,
-    candidates: candidates.length,
-    already_applied: candidates.length - pending.length,
+    candidates: rawCandidates.length + slabCandidates.length,
+    raw_candidates: rawCandidates.length,
+    slab_candidates: slabCandidates.length,
+    already_applied: (rawCandidates.length - rawPending.length) + (slabCandidates.length - slabPending.length),
     pending_events: pending.length,
     inserted_events: inserted.length,
+    raw_inserted_events: insertedRaw.length,
+    slab_inserted_events: insertedSlab.length,
     page: {
       offset_per_bucket: offsetPerBucket,
       page_size: args.pageSize,
@@ -265,7 +280,7 @@ async function main() {
     boundary: {
       database_reads: true,
       database_writes: !args.dryRun,
-      writes_table: "market_evidence_price_review_events",
+      writes_tables: [RAW_EVENT_TABLE, SLAB_EVENT_TABLE],
       public_price_publication: false,
       pricing_observations_writes: false,
       app_visible_pricing: false,
