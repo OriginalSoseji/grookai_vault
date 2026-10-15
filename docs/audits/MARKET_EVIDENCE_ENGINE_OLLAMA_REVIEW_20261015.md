@@ -35,6 +35,8 @@ The slab approval policy is explicit in every new automation payload as `MEE_SLA
 
 Listing-level identity is now available through the service-role-only `v_market_evidence_slab_listing_identity_v1` read model. It extracts the existing grader and numeric-grade evidence from each slab listing event and reports `identified`, `missing_grader`, or `missing_grade`. A bounded production readback returned both identified listings and a missing-grade example; the view remains outside all app pricing surfaces.
 
+Future MEE-11S rollup plans now bind that identity into `rollup_payload.slab_identity`, including per-rollup pair counts and explicit statuses: `reviewable_same_grade_identity`, `blocked_mixed_grader_grade`, or `blocked_missing_listing_identity`. Even the reviewable status remains `can_auto_approve: false` until a founder policy decision exists.
+
 ## Validation
 
 - Contract tests: 18 passed, 0 failed.
