@@ -3285,6 +3285,43 @@ html.gv-dark .gv-card-identity-wash {
   padding: 1rem;
 }
 
+.gv-storefront-results-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--gv-text-tertiary);
+  font-size: 0.8rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.gv-storefront-filter-state {
+  border: 1px solid color-mix(in srgb, var(--gv-primary) 30%, var(--gv-border-soft));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gv-primary) 8%, transparent);
+  padding: 0.3rem 0.6rem;
+  color: var(--gv-text-secondary);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gv-storefront-product-grid {
+  min-width: 0;
+}
+
+.gv-storefront-pagination {
+  color: var(--gv-text-tertiary);
+}
+
+.gv-storefront-page-status {
+  font-size: 0.8rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
 .gv-storefront-input {
   min-height: 2.75rem;
   border: 1px solid var(--gv-border-hairline);
@@ -3414,6 +3451,30 @@ html.gv-dark .gv-card-identity-wash {
   .gv-storefront-filters .gv-primary-button,
   .gv-storefront-filters .gv-secondary-button {
     flex: 1;
+  }
+
+  .gv-storefront-inventory {
+    margin-top: 2.25rem;
+  }
+
+  .gv-storefront-results-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gv-storefront-pagination {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .gv-storefront-pagination > div {
+    width: 100%;
+  }
+
+  .gv-storefront-pagination > div > * {
+    flex: 1;
+    justify-content: center;
   }
 }
 

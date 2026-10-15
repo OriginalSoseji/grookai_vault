@@ -125,6 +125,10 @@ export function StorefrontView({
     return `${base}?${next}`;
   };
   const hasFilters = Boolean(filters.query || filters.sectionId || filters.condition || (filters.kind && filters.kind !== "all"));
+  const firstResult = data.total === 0 ? 0 : data.offset + 1;
+  const lastResult = Math.min(data.offset + data.items.length, data.total);
+  const pageNumber = Math.floor(data.offset / data.limit) + 1;
+  const pageCount = Math.max(1, Math.ceil(data.total / data.limit));
   const storefrontUrl = `${getSiteOrigin()}${base}`;
   const storefrontJsonLd = {
     "@context": "https://schema.org",
@@ -156,21 +160,26 @@ export function StorefrontView({
         </div>
       </header>
 
-      <section id="inventory" aria-label="Sale inventory" className="mt-10 space-y-6 scroll-mt-6">
-        <div className="flex flex-wrap items-end justify-between gap-4"><div><p className="gv-eyebrow">The shop</p><h2 className="mt-1 text-3xl font-black tracking-tight text-slate-950 dark:text-slate-50 sm:text-4xl">Available collectibles</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-400">Browse verified catalog copies and seller-provided collectibles. Open any item for its full details{purchaseEnabled ? " before you review an order" : " from the seller"}.</p></div><span className="gv-metadata-pill">{data.total} {data.total === 1 ? "listing" : "listings"}</span></div>
+      <section id="inventory" aria-label="Sale inventory" className="gv-storefront-inventory mt-10 space-y-6 scroll-mt-6">
+        <div className="gv-storefront-inventory-header flex flex-wrap items-end justify-between gap-4"><div><p className="gv-eyebrow">The shop</p><h2 className="mt-1 text-3xl font-black tracking-tight text-slate-950 dark:text-slate-50 sm:text-4xl">Available collectibles</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-400">Browse verified catalog copies and seller-provided collectibles. Open any item for its full details{purchaseEnabled ? " before you review an order" : " from the seller"}.</p></div><span className="gv-metadata-pill">{data.total} {data.total === 1 ? "listing" : "listings"}</span></div>
 
-        <form method="get" className="gv-storefront-filters">
+        <form method="get" aria-label="Filter storefront inventory" className="gv-storefront-filters">
           {data.preview ? <input type="hidden" name="preview" value="1" /> : null}
-          <label className="min-w-0 flex-1 text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Search the shop<input name="q" defaultValue={filters.query} placeholder="Search by name or GV-ID" maxLength={120} className="gv-storefront-input mt-2 w-full" /></label>
-          <label className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Collection<select name="section" defaultValue={filters.sectionId ?? ""} className="gv-storefront-input mt-2"><option value="">All collections</option>{data.sections.map((section) => <option key={section.id} value={section.id}>{section.name}</option>)}</select></label>
-          <label className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Condition<select name="condition" defaultValue={filters.condition ?? ""} className="gv-storefront-input mt-2"><option value="">All conditions</option>{["NM", "LP", "MP", "HP", "DMG"].map((condition) => <option key={condition}>{condition}</option>)}</select></label>
-          <label className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Type<select name="kind" defaultValue={filters.kind ?? "all"} className="gv-storefront-input mt-2"><option value="all">All collectibles</option><option value="catalog">Catalog copies</option><option value="custom">Custom collectibles</option><option value="raw">Raw</option><option value="slab">Graded</option></select></label>
+          <label htmlFor="storefront-search" className="min-w-0 flex-1 text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Search the shop<input id="storefront-search" name="q" defaultValue={filters.query} placeholder="Search by name or GV-ID" maxLength={120} className="gv-storefront-input mt-2 w-full" /></label>
+          <label htmlFor="storefront-section" className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Collection<select id="storefront-section" name="section" defaultValue={filters.sectionId ?? ""} className="gv-storefront-input mt-2"><option value="">All collections</option>{data.sections.map((section) => <option key={section.id} value={section.id}>{section.name}</option>)}</select></label>
+          <label htmlFor="storefront-condition" className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Condition<select id="storefront-condition" name="condition" defaultValue={filters.condition ?? ""} className="gv-storefront-input mt-2"><option value="">All conditions</option>{["NM", "LP", "MP", "HP", "DMG"].map((condition) => <option key={condition}>{condition}</option>)}</select></label>
+          <label htmlFor="storefront-kind" className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Type<select id="storefront-kind" name="kind" defaultValue={filters.kind ?? "all"} className="gv-storefront-input mt-2"><option value="all">All collectibles</option><option value="catalog">Catalog copies</option><option value="custom">Custom collectibles</option><option value="raw">Raw</option><option value="slab">Graded</option></select></label>
           <div className="flex items-center gap-2 pt-5 sm:pt-0"><button className="gv-primary-button whitespace-nowrap text-sm">Apply filters</button>{hasFilters ? <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="gv-secondary-button whitespace-nowrap text-sm">Reset</Link> : null}</div>
         </form>
 
-        {data.items.length === 0 ? <div className="gv-storefront-empty"><p className="gv-eyebrow">Nothing matched</p><h3 className="mt-2 text-xl font-bold text-slate-950 dark:text-slate-50">No collectibles in this view</h3><p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Try clearing a filter or searching for another card, set, or collectible.</p>{hasFilters ? <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="gv-secondary-button mt-5 inline-flex text-sm">View all listings</Link> : null}</div> : <div className="grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">{data.items.map((item) => <StoreItemCard key={`${item.entry_type}:${item.id}`} item={item} store={store} preview={data.preview} purchaseEnabled={purchaseEnabled} />)}</div>}
+        <div className="gv-storefront-results-meta" role="status" aria-live="polite">
+          <span>{firstResult === 0 ? "No listings" : `Showing ${firstResult}–${lastResult} of ${data.total}`}</span>
+          {hasFilters ? <span className="gv-storefront-filter-state">Filtered results</span> : null}
+        </div>
 
-        {data.total > data.limit || data.offset > 0 ? <nav aria-label="Inventory pages" className="flex items-center justify-between gap-4 border-t border-slate-200/70 pt-6 dark:border-white/[0.08]">{data.offset > 0 ? <Link className="gv-secondary-button text-sm" href={pageHref(Math.max(0, data.offset - data.limit))}>Previous</Link> : <span />}{data.offset + data.limit < data.total ? <Link className="gv-secondary-button text-sm" href={pageHref(data.offset + data.limit)}>Next page</Link> : <span />}</nav> : null}
+        {data.items.length === 0 ? <div className="gv-storefront-empty"><p className="gv-eyebrow">Nothing matched</p><h3 className="mt-2 text-xl font-bold text-slate-950 dark:text-slate-50">No collectibles in this view</h3><p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Try clearing a filter or searching for another card, set, or collectible.</p>{hasFilters ? <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="gv-secondary-button mt-5 inline-flex text-sm">View all listings</Link> : null}</div> : <div className="gv-storefront-product-grid grid grid-cols-2 gap-x-4 gap-y-9 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">{data.items.map((item) => <StoreItemCard key={`${item.entry_type}:${item.id}`} item={item} store={store} preview={data.preview} purchaseEnabled={purchaseEnabled} />)}</div>}
+
+        {data.total > data.limit || data.offset > 0 ? <nav aria-label="Inventory pages" className="gv-storefront-pagination flex items-center justify-between gap-4 border-t border-slate-200/70 pt-6 dark:border-white/[0.08]"><span className="gv-storefront-page-status">Page {pageNumber} of {pageCount}</span><div className="flex items-center gap-2">{data.offset > 0 ? <Link className="gv-secondary-button text-sm" href={pageHref(Math.max(0, data.offset - data.limit))}>Previous</Link> : <span />}{data.offset + data.limit < data.total ? <Link className="gv-secondary-button text-sm" href={pageHref(data.offset + data.limit)}>Next page</Link> : <span />}</div></nav> : null}
       </section>
     </div>
   );
