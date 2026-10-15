@@ -120,7 +120,7 @@ export default function ExploreDiscoverySections({
                       fallbackSrc={spotlightCard.display_image_fallback_url}
                       fallbackSources={[spotlightCard.external_image_fallback_url]}
                       alt={getCardImageAltText(getDisplayName(spotlightCard), spotlightCard)}
-                      imageClassName={`gv-collector-discovery-feature-image h-full w-full object-contain p-2 drop-shadow-md ${index === 0 ? "-rotate-[7deg]" : index === 2 ? "rotate-[7deg]" : ""}`}
+                      imageClassName="gv-collector-discovery-feature-image h-full w-full object-contain p-2 drop-shadow-md"
                       fallbackClassName="gv-collector-discovery-feature-empty flex h-full items-center justify-center px-2 text-center text-xs text-slate-500"
                       priority={index === 0}
                       sizes="(max-width: 640px) 30vw, (max-width: 1024px) 22vw, 220px"

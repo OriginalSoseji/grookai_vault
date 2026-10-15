@@ -131,7 +131,8 @@ test("binder summary uses only its cover and preserves link and progress", () =>
   assert.equal((html.match(/<img /g) ?? []).length, 1);
   assert.ok(html.includes(`src="${coverUrl}"`));
   assert.match(html, /href="\/binders\/binder%2Fopaque"/);
-  assert.match(html, /gv-collector-binder-cover-image[^\"]*-rotate-\[7deg\][^\"]*object-contain[^\"]*p-6/);
+  assert.match(html, /gv-collector-binder-cover-image[^\"]*object-contain[^\"]*p-6/);
+  assert.doesNotMatch(html, /gv-collector-binder-cover-image[^\"]*rotate-/);
   assert.match(html, /aria-valuenow="2"/);
   assert.match(html, /aria-valuemax="42"/);
   assert.match(html, /1 member/);

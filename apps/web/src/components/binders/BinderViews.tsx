@@ -90,7 +90,7 @@ function BinderCoverArtwork({
     <PublicCardImage
       src={src ?? undefined}
       alt={`${title} cover artwork`}
-      imageClassName="gv-collector-binder-cover-image h-full w-full -rotate-[7deg] object-contain p-6 drop-shadow-md"
+      imageClassName="gv-collector-binder-cover-image h-full w-full object-contain p-6 drop-shadow-md"
       fallbackClassName="gv-collector-binder-cover-empty flex h-full items-center justify-center px-6 text-center text-sm text-slate-500"
       fallbackLabel="Cover artwork unavailable"
       priority={priority}
