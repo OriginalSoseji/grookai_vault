@@ -1,6 +1,7 @@
 export default function StoreLoading() {
   return (
-    <div className="gv-page-container gv-page-rhythm py-5 sm:py-8" aria-busy="true" aria-label="Loading storefront">
+    <div className="gv-page-container gv-page-rhythm py-5 sm:py-8" role="status" aria-busy="true" aria-label="Loading storefront">
+      <h1 className="sr-only">Loading storefront</h1>
       <div className="gv-storefront-hero animate-pulse">
         <div className="gv-storefront-hero-content">
           <div className="h-6 w-52 rounded-full bg-white/15" />
