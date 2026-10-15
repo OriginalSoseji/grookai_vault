@@ -1556,7 +1556,7 @@ export default function ExplorePageClient({
 
   return (
     <div
-      className={`space-y-3 md:space-y-4 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
+      className={`gv-explore-page space-y-3 md:space-y-4 ${compareCards.length > 0 ? "pb-28 md:pb-36" : ""}`}
     >
       {isDiscoveryMode ? (
         <div className="gv-collector-discovery-heading flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/70 pb-5 dark:border-slate-800/70">
@@ -1572,7 +1572,7 @@ export default function ExplorePageClient({
           </Link>
         </div>
       ) : (
-        <section className="gv-command-surface px-4 py-3 sm:px-5">
+        <section className="gv-explore-command-surface gv-command-surface px-4 py-3 sm:px-5">
           <div className="flex flex-col gap-3 xl:flex-row xl:items-start xl:justify-between">
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
@@ -1607,7 +1607,7 @@ export default function ExplorePageClient({
         </section>
       )}
 
-      <div className="gv-collector-search-toolbar">
+      <div className="gv-explore-search-toolbar gv-collector-search-toolbar">
         <PublicSearchForm variant="command" />
         {isDiscoveryMode ? (
           <details className="gv-collector-disclosure">
