@@ -2075,6 +2075,46 @@ html.gv-dark .gv-wall-sections-card .text-slate-500 {
   min-width: 0;
 }
 
+.gv-saved-page {
+  min-width: 0;
+}
+
+.gv-saved-header {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-saved-grid {
+  min-width: 0;
+}
+
+html.gv-dark .gv-saved-page .gv-saved-header {
+  border-color: rgba(226, 232, 240, 0.12);
+  background: var(--gv-surface-base);
+}
+
+html.gv-dark .gv-saved-page .text-slate-950,
+html.gv-dark .gv-saved-page .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-saved-page .text-slate-700,
+html.gv-dark .gv-saved-page .text-slate-600,
+html.gv-dark .gv-saved-page .text-slate-500 {
+  color: var(--gv-text-secondary);
+}
+
+@media (max-width: 639px) {
+  .gv-saved-page .gv-saved-header h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .gv-saved-grid {
+    gap: 1rem;
+  }
+}
+
 .gv-following-hero,
 .gv-following-list-surface {
   border-color: var(--gv-border-soft);

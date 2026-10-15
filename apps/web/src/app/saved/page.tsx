@@ -33,9 +33,13 @@ export default async function SavedPage({ searchParams }: {
     ...row,
     image: row.card_prints ? await resolveCardImageFieldsV1(row.card_prints) : null,
   })));
-  return <div className="space-y-8 py-8">
-    <header className="flex flex-wrap items-end justify-between gap-4">
-      <h1 className="gv-display-title">Saved cards</h1>
+  return <div className="gv-saved-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
+    <header className="gv-saved-header flex flex-wrap items-end justify-between gap-5 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="space-y-2">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Your shortlist</p>
+        <h1 className="gv-display-title">Saved cards</h1>
+        <p className="max-w-2xl text-base leading-7 text-slate-600">Keep the cards you want to compare, price, or add to your Vault within easy reach.</p>
+      </div>
       <Link href="/vault" className="gv-secondary-button">Your Vault</Link>
     </header>
     {error ? <ProductState compact tone="error" title="Saved cards could not load" description="Your saved cards have not been changed."
@@ -43,7 +47,7 @@ export default async function SavedPage({ searchParams }: {
       : visible.length === 0 ? <ProductState compact title={page === 1 ? "No saved cards yet" : "No more saved cards"}
         description={page === 1 ? "Cards you save will appear here." : "You've reached the end of this list."}
         action={<Link href={page === 1 ? "/explore" : "/saved"} className="gv-primary-button">{page === 1 ? "Search cards" : "Back to saved cards"}</Link>} />
-      : <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+      : <div className="gv-saved-grid grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {visible.map(row => {
           const card = row.card_prints;
           const identity = card ? resolveDisplayIdentity({ name: card.name ?? "Unknown card",
