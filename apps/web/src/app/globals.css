@@ -1729,6 +1729,22 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   opacity: 0.42;
 }
 
+.gv-vault-results-meta {
+  color: var(--gv-text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.gv-vault-page [data-vault-page-items] {
+  min-width: 0;
+}
+
+.gv-vault-page .gv-vault-card-grid {
+  min-width: 0;
+  row-gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
 @media (min-width: 1280px) {
   .gv-vault-page .gv-vault-card-grid--default {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2002,8 +2018,15 @@ html.gv-dark .gv-vault-value {
   }
 
   .gv-vault-mobile-toolbar {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 30;
     border-radius: 1rem;
+    border-color: var(--gv-border-soft);
+    background: color-mix(in srgb, var(--gv-surface-page) 92%, transparent);
     padding: 0.75rem;
+    box-shadow: 0 16px 28px -24px rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(16px) saturate(130%);
   }
 
   .gv-vault-smart-views {
