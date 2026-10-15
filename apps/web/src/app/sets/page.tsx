@@ -46,7 +46,7 @@ export default async function SetsPage(props: SetsPageProps) {
   ).length;
 
   return (
-    <div className="gv-page-shell gv-mobile-safe-content">
+    <div className="gv-sets-page gv-page-shell gv-mobile-safe-content">
       <div className="gv-page-container gv-page-rhythm">
         <header className="gv-collector-page-intro flex flex-wrap items-end justify-between gap-4 py-4">
           <h1 className="gv-display-title">{browseConfig.pageTitle}</h1>
@@ -55,7 +55,7 @@ export default async function SetsPage(props: SetsPageProps) {
           </p>
         </header>
 
-        <section className="space-y-6">
+        <section className="gv-sets-browse space-y-6">
           {showMtgSealed || showPokemonSealed ? (
             <div className="flex flex-col gap-3 border-y border-slate-200 py-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between">
               <div>

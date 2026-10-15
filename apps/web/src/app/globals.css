@@ -1544,6 +1544,32 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   font-variant-numeric: tabular-nums;
 }
 
+.gv-sets-page {
+  min-width: 0;
+}
+
+.gv-sets-page .gv-collector-page-intro {
+  border-bottom: 1px solid var(--gv-border-soft);
+}
+
+.gv-sets-toolbar {
+  min-width: 0;
+}
+
+.gv-sets-results {
+  min-width: 0;
+}
+
+.gv-sets-results-header {
+  border-top: 1px solid var(--gv-border-hairline);
+  padding-top: 1.25rem;
+}
+
+.gv-sets-results > .gv-collector-disclosure {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+}
+
 .gv-public-profile-page {
   min-width: 0;
 }
@@ -1668,6 +1694,35 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
 
   .gv-public-profile-section-panel {
     border-radius: 1rem;
+  }
+
+  .gv-sets-page {
+    padding-bottom: 1.5rem;
+  }
+
+  .gv-sets-page .gv-collector-page-intro {
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-block: 0.75rem 1rem;
+  }
+
+  .gv-sets-page .gv-display-title {
+    font-size: clamp(2.2rem, 11vw, 3rem);
+  }
+
+  .gv-sets-toolbar {
+    position: sticky;
+    top: 3.5rem;
+    z-index: 30;
+    margin-inline: -1.25rem;
+    padding: 0.5rem 1.25rem;
+    border-bottom: 1px solid var(--gv-border-hairline);
+    background: color-mix(in srgb, var(--gv-surface-page) 92%, transparent);
+    backdrop-filter: blur(16px) saturate(130%);
+  }
+
+  .gv-sets-results-header {
+    padding-top: 0.75rem;
   }
 }
 

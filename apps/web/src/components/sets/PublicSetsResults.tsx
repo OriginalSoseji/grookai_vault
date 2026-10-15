@@ -257,8 +257,9 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
   }
 
   return (
-    <>
+    <div className="gv-sets-results">
       <SectionHeader
+        className="gv-sets-results-header"
         title={normalizedQuery ? `Results for "${rawQuery}"` : "Set results"}
         description={resultLabel}
         actions={(
@@ -429,6 +430,6 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
             : "No sets matched the current filter. Clear a filter to see more sets."}
         />
       )}
-    </>
+    </div>
   );
 }
