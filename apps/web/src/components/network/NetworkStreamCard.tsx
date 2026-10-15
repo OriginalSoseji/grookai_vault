@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ExternalLink, Info, MessageCircle } from "lucide-react";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import {
   CollectorCardFacts,
@@ -148,7 +149,7 @@ export function NetworkStreamCard({
 
   return (
     <article
-      className="gv-social-event border-b border-slate-200/80 py-7 first:pt-0 last:border-b-0 dark:border-white/[0.08]"
+      className="gv-social-event gv-pulse-event border-b border-slate-200/80 py-7 first:pt-0 last:border-b-0 dark:border-white/[0.08]"
       data-pulse-event-card
     >
       <header className="mb-4 flex min-w-0 items-center gap-3">
@@ -178,8 +179,8 @@ export function NetworkStreamCard({
         </div>
       </header>
 
-      <div className="gv-network-event-body">
-        <Link href={singleCopyHref} className="gv-network-event-image relative self-start">
+      <div className="gv-network-event-body gv-pulse-event-body">
+        <Link href={singleCopyHref} className="gv-network-event-image gv-pulse-art relative">
           <PublicCardImage
             src={row.imageUrl ?? undefined}
             fallbackSrc={row.imageFallbackUrls[0]}
@@ -191,7 +192,7 @@ export function NetworkStreamCard({
           />
         </Link>
 
-        <div className="min-w-0 space-y-4">
+        <div className="gv-pulse-event-content min-w-0 space-y-4">
           <CollectorCardFacts
             title={
               <Link
@@ -229,12 +230,13 @@ export function NetworkStreamCard({
             </div>
           ) : null}
 
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="gv-pulse-actions" aria-label="Card actions">
             <Link
               href={singleCopyHref}
-              className="text-sm font-medium text-slate-700 underline-offset-4 hover:text-slate-950 hover:underline dark:text-slate-300 dark:hover:text-white"
+              className="gv-pulse-action"
             >
-              View card
+              <ExternalLink size={17} aria-hidden="true" />
+              <span>View card</span>
             </Link>
             {canContactOwner && groupedContactAnchor ? (
               <ContactOwnerButton
@@ -252,12 +254,15 @@ export function NetworkStreamCard({
                 isAuthenticated={isAuthenticated}
                 loginHref={loginHref}
                 currentPath={currentPath}
+                buttonClassName="gv-pulse-action gv-pulse-message-action"
+                buttonIcon={<MessageCircle size={17} aria-hidden="true" />}
               />
             ) : null}
           </div>
           {row.inPlayCopies.length > 1 ? (
-            <details className="rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
-              <summary className="cursor-pointer text-sm font-medium text-slate-800">
+            <details className="gv-pulse-details rounded-[1rem] border border-slate-200 bg-slate-50 px-4 py-3">
+              <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-medium text-slate-800">
+                <Info size={16} aria-hidden="true" />
                 View copies ({row.inPlayCopies.length})
               </summary>
               <div className="mt-3 space-y-2">

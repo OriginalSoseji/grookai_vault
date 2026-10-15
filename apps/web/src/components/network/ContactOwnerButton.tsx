@@ -5,6 +5,7 @@ import { useActionState, useEffect, useId, useMemo, useRef, useState } from "rea
 import { useRouter } from "next/navigation";
 import { useFormStatus } from "react-dom";
 import { createPortal } from "react-dom";
+import type { ReactNode } from "react";
 import {
   createCardInteractionAction,
   type CreateCardInteractionActionResult,
@@ -36,6 +37,7 @@ type ContactOwnerButtonProps = {
   currentPath: string;
   buttonLabel?: string;
   buttonClassName?: string;
+  buttonIcon?: ReactNode;
 };
 
 function getDefaultMessage(ownerDisplayName: string, cardName: string, intent: DiscoverableVaultIntent | null) {
@@ -110,6 +112,7 @@ export function ContactOwnerButton({
   currentPath,
   buttonLabel: providedButtonLabel,
   buttonClassName,
+  buttonIcon,
 }: ContactOwnerButtonProps) {
   const router = useRouter();
   const viewer = useClientViewer(viewerUserId);
@@ -298,6 +301,7 @@ export function ContactOwnerButton({
           "inline-flex rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
         }
       >
+        {buttonIcon}
         Sign in to message
       </Link>
     );
@@ -321,6 +325,7 @@ export function ContactOwnerButton({
           "inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
         }
       >
+        {buttonIcon}
         {buttonLabel}
       </button>
 
