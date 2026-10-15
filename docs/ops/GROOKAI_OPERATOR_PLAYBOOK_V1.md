@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Pokémon energy-name alias batch — October 15, 2026
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.
+The next bounded pricing repair freezes seven TCGPlayer products across `sm5`
+and `swsh3` to seven distinct standard parents and all 12 source-listed Normal,
+Holo, and Reverse children. The checked-in Master Index independently verifies
+every admitted finish. Apply the 12 truth reviews before building the mapping
+authority, then apply and independently read back the seven mappings. Mapping
+does not publish prices; use a later fresh full-source shadow after readback.
+
 ## Pokémon delta-species alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_148_DELTA_SPECIES_ALIAS_BATCH.md`.

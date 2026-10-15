@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Energy-name exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.
+The active bounded batch contains exactly seven TCGPlayer products across Ultra
+Prism and Darkness Ablaze, covering 12 missing-price observations and exact
+Normal, Holo, and Reverse children. Freeze each abbreviated source name to its
+exact numbered canonical energy parent. Production order is 12 truth reviews,
+independent readback, two-set mapping authority, seven mappings, independent
+readback, then a later full pricing shadow and publication. Do not broaden this
+into a global energy-name or abbreviation normalization rule.
+
 ## Delta-species exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_148_DELTA_SPECIES_ALIAS_BATCH.md`.
