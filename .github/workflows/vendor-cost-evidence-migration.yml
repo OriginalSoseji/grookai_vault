@@ -1,0 +1,124 @@
+name: Vendor Cost Evidence Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Inspect the exact pending migration or apply it after review
+        required: true
+        type: choice
+        options:
+          - dry_run
+          - apply
+      expected_sha:
+        description: Exact merged commit SHA that must be checked out
+        required: true
+        type: string
+      approval_phrase:
+        description: Enter APPLY_VENDOR_COST_EVIDENCE_V1 only for an approved apply
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vendor-cost-evidence-migration-v1
+  cancel-in-progress: false
+
+jobs:
+  migration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TARGET_MIGRATION: 20261007180000_vendor_cost_evidence_v1.sql
+      DISPATCH_MODE: ${{ inputs.mode }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      APPROVAL_PHRASE: ${{ inputs.approval_phrase }}
+
+    steps:
+      - name: Check out the exact merged ref
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify the frozen migration boundary
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_SHA" = "$EXPECTED_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -f "supabase/migrations/$TARGET_MIGRATION"
+          grep -q "vendor_sale_cost_read_v1" "supabase/migrations/$TARGET_MIGRATION"
+          grep -q "grant execute on function public.vendor_sale_cost_read_v1" "supabase/migrations/$TARGET_MIGRATION"
+          if [[ "$DISPATCH_MODE" = apply ]]; then
+            test "$APPROVAL_PHRASE" = APPLY_VENDOR_COST_EVIDENCE_V1
+          fi
+
+      - name: Run focused contract checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test \
+            tests/contracts/sales_profit_v1.test.mjs \
+            tests/contracts/sales_purchase_v1.test.mjs \
+            tests/contracts/event_report_v1.test.mjs
+
+      - name: Inspect the exact pending migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push \
+            --db-url "$SUPABASE_DB_URL" \
+            --dry-run 2>&1 | tee migration_dry_run.txt
+          grep -q "$TARGET_MIGRATION" migration_dry_run.txt
+          mapfile -t pending < <(
+            grep -oE '[0-9]{14}_[A-Za-z0-9_]+\.sql' migration_dry_run.txt | sort -u
+          )
+          test "${#pending[@]}" -eq 1
+          test "${pending[0]}" = "$TARGET_MIGRATION"
+
+      - name: Apply the exact migration
+        if: ${{ inputs.mode == 'apply' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes supabase@2.54.11 db push --db-url "$SUPABASE_DB_URL"
+
+      - name: Record immutable migration evidence
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs/promises';
+          const report = {
+            version: 'VENDOR_COST_EVIDENCE_MIGRATION_GITHUB_V1',
+            generated_at: new Date().toISOString(),
+            github_sha: process.env.GITHUB_SHA,
+            github_run_id: process.env.GITHUB_RUN_ID,
+            github_run_attempt: process.env.GITHUB_RUN_ATTEMPT,
+            mode: process.env.DISPATCH_MODE,
+            target_migration: process.env.TARGET_MIGRATION,
+            db_row_writes_performed: process.env.DISPATCH_MODE === 'apply',
+            application_flags_enabled: false
+          };
+          await fs.mkdir('docs/audits/vendor_cost_evidence_migration_v1', {recursive: true});
+          await fs.writeFile(
+            'docs/audits/vendor_cost_evidence_migration_v1/github_migration_evidence.json',
+            `${JSON.stringify(report, null, 2)}\n`,
+          );
+          NODE
+
+      - name: Upload migration evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: vendor-cost-evidence-${{ inputs.mode }}-${{ github.run_id }}
+          path: |
+            migration_dry_run.txt
+            docs/audits/vendor_cost_evidence_migration_v1
+          if-no-files-found: warn
+          retention-days: 90
