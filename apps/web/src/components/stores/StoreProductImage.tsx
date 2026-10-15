@@ -17,7 +17,7 @@ export function StoreProductImage({
       <div
         role="img"
         aria-label="Vendor photo unavailable"
-        className="flex min-h-32 items-center justify-center p-4 text-center text-sm text-slate-500"
+        className={`flex h-full min-h-32 w-full items-center justify-center rounded-xl bg-slate-100/80 p-4 text-center text-sm font-medium text-slate-500 dark:bg-white/[0.04] dark:text-slate-400 ${className ?? ""}`.trim()}
       >
         Photo unavailable
       </div>
