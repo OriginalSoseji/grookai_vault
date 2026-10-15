@@ -531,9 +531,10 @@
 .gv-wall-profile-actions { display: flex; gap: 8px; align-self: start; }
 .gv-wall-profile-actions a { display: inline-flex; min-width: 64px; min-height: 38px; align-items: center; justify-content: center; border: 1px solid rgb(255 255 255 / 18%); border-radius: 999px; color: #f4f8f2; font-size: 12px; text-decoration: none; }
 .gv-wall-tabs { display: flex; gap: clamp(22px, 5vw, 64px); margin-top: 34px; border-block: 1px solid rgb(255 255 255 / 14%); overflow-x: auto; }
-.gv-wall-tabs span { position: relative; display: inline-flex; min-height: 51px; align-items: center; color: rgb(244 248 242 / 58%); font-size: 14px; white-space: nowrap; }
-.gv-wall-tabs span.is-active { color: #8bc3ff; font-weight: 700; }
-.gv-wall-tabs span.is-active::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 3px; border-radius: 3px 3px 0 0; content: ""; background: #8bc3ff; }
+.gv-wall-tabs button { position: relative; display: inline-flex; min-height: 51px; align-items: center; border: 0; padding: 0; color: rgb(244 248 242 / 58%); background: transparent; font: inherit; font-size: 14px; white-space: nowrap; cursor: pointer; }
+.gv-wall-tabs button:hover, .gv-wall-tabs button:focus-visible { color: #f4f8f2; }
+.gv-wall-tabs button.is-active { color: #8bc3ff; font-weight: 700; }
+.gv-wall-tabs button.is-active::after { position: absolute; right: 0; bottom: -1px; left: 0; height: 3px; border-radius: 3px 3px 0 0; content: ""; background: #8bc3ff; }
 .gv-wall-card-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
 .gv-wall-art { min-height: 255px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 13px; box-shadow: 0 20px 34px rgb(0 0 0 / 20%); }
 .gv-wall-art-a { background: linear-gradient(150deg, #f3b968, #a34941 48%, #2f4e7c); }
@@ -584,7 +585,20 @@
   font-size: 13px;
 }
 
-.gv-dex-composition-search b {
+.gv-dex-composition-search input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  color: #f4f8f2;
+  background: transparent;
+  font: inherit;
+}
+
+.gv-dex-composition-search input::placeholder { color: rgb(244 248 242 / 58%); }
+.gv-dex-composition-search:focus-within { border-color: #9fc6ff; box-shadow: 0 0 0 3px rgb(159 198 255 / 20%); }
+
+.gv-dex-composition-search button {
   display: grid;
   width: 30px;
   height: 30px;
@@ -594,6 +608,7 @@
   background: #a9d8ff;
   font-size: 20px;
   line-height: 1;
+  cursor: pointer;
 }
 
 .gv-dex-progress-panel {

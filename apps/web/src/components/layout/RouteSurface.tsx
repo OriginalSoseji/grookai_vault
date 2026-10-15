@@ -130,7 +130,11 @@ function DexComposition() {
         <div className="gv-composition-kicker">Grookai Dex</div>
         <h1 id="dex-composition-title">Collect every Pokémon, one exact printing at a time.</h1>
         <p>Search a character and see what your Vault already owns, plus the exact gaps left to collect.</p>
-        <div className="gv-dex-composition-search"><span>Search Pikachu, Gengar, #025…</span><b>⌕</b></div>
+        <form action="/dex" className="gv-dex-composition-search">
+          <label htmlFor="gv-dex-composition-query" className="sr-only">Search Pokémon character</label>
+          <input id="gv-dex-composition-query" name="q" type="search" placeholder="Search Pikachu, Gengar, #025…" autoComplete="off" />
+          <button type="submit" aria-label="Search Dex">⌕</button>
+        </form>
       </div>
       <div className="gv-dex-progress-panel">
         <div className="gv-dex-progress-head"><span>Collection progress</span><strong>161 <small>of 40,829</small></strong></div>
@@ -205,7 +209,11 @@ function WallComposition() {
         </div>
         <div className="gv-wall-profile-actions"><Link href="/wall">Share</Link><Link href="/account">Edit</Link></div>
       </div>
-      <div className="gv-wall-tabs" role="tablist" aria-label="Wall sections"><span className="is-active">Wall</span><span>Favorites</span><span>For sale / trade</span></div>
+      <div className="gv-wall-tabs" role="tablist" aria-label="Wall sections">
+        <button type="button" role="tab" aria-selected="true" className="is-active">Wall</button>
+        <button type="button" role="tab" aria-selected="false">Favorites</button>
+        <button type="button" role="tab" aria-selected="false">For sale / trade</button>
+      </div>
       <div className="gv-wall-card-grid" aria-label="Featured cards">{cards.map((className) => <span key={className} className={`gv-wall-art ${className}`} />)}</div>
     </section>
   );
