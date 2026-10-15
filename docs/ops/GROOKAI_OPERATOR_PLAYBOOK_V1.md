@@ -10,6 +10,16 @@ mapping authority, and the generic bounded exact-mapping executor. Preserve all
 documented collision and missing-evidence holds. Mapping and pricing publication
 remain separate gates.
 
+## Ruflo Codex integration — October 15, 2026
+
+Read `docs/ops/RUFLO_CODEX_INTEGRATION_20261015.md`. The repository candidate
+uses trusted-project `.codex/config.toml`, exact `ruflo@3.56.9`, child-process
+stdio, 120-second timeouts, and a 46-tool allowlist. It does not use the Ruflo
+initializer or install a user-scoped Codex plugin. HTTP, WebSocket, Docker,
+daemon, terminal, GitHub, browser, federation, and managed-agent surfaces remain
+disabled. Re-review and re-probe the exact package before changing the pin or
+tool surface; MCP availability grants no production or external-write authority.
+
 ## Pokémon energy-name alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.

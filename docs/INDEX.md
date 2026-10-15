@@ -60,6 +60,7 @@ The goal is clarity without destructive churn:
 ## Current Key Docs
 
 - [Grookai Operator Playbook](ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md)
+- [Ruflo Codex Integration](ops/RUFLO_CODEX_INTEGRATION_20261015.md)
 - [Documentation System](/c:/grookai_vault/docs/contracts/DOCUMENTATION_SYSTEM_V1.md)
 - [Contract Index](/c:/grookai_vault/docs/CONTRACT_INDEX.md)
 - [Stabilization Contract](/c:/grookai_vault/docs/contracts/STABILIZATION_CONTRACT_V1.md)
