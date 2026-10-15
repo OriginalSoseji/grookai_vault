@@ -144,7 +144,7 @@ export default async function GrookaiDexPage(
   const endRow = Math.min(speciesPage.totalSpeciesCount, startRow + species.length - 1);
 
   return (
-    <div className="gv-page-rhythm">
+    <div className="gv-dex-page gv-page-rhythm mx-auto max-w-[1320px]">
         <header className="gv-dex-hero px-5 py-7 sm:px-8 sm:py-9 lg:px-10">
           <div className="relative z-[1] grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-end">
             <div className="min-w-0 space-y-5">
@@ -239,7 +239,7 @@ export default async function GrookaiDexPage(
           </div>
         </header>
 
-        <section className="space-y-4" aria-label="Pokemon species progress">
+        <section className="gv-dex-species-section space-y-4" aria-label="Pokemon species progress">
           {searchQuery ? (
             <div className="gv-results-command-bar flex flex-wrap items-center justify-between gap-3 px-4 py-3">
               <div>
@@ -320,7 +320,7 @@ export default async function GrookaiDexPage(
           </div>
         </section>
 
-        <nav className="flex items-center justify-between gap-3 text-sm">
+        <nav className="gv-dex-pagination flex items-center justify-between gap-3 text-sm" aria-label="Dex pages">
         <Link
           href={dexPageHref(Math.max(1, speciesPage.page - 1), searchQuery)}
           aria-disabled={speciesPage.page <= 1}

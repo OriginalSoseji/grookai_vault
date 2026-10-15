@@ -232,6 +232,18 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   gap: clamp(1.5rem, 3vw, 2.75rem);
 }
 
+.gv-dex-page {
+  min-width: 0;
+}
+
+.gv-dex-species-section {
+  min-width: 0;
+}
+
+.gv-dex-pagination {
+  padding-top: 0.25rem;
+}
+
 .gv-page-container {
   box-sizing: border-box;
   width: 100%;
@@ -1574,6 +1586,17 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
 @media (max-width: 520px) {
   .gv-dex-species-grid {
     grid-template-columns: 1fr;
+  }
+
+  .gv-dex-pagination {
+    position: sticky;
+    bottom: 0.75rem;
+    z-index: 10;
+    border: 1px solid var(--gv-border-soft);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--gv-surface-page) 92%, transparent);
+    padding: 0.5rem;
+    backdrop-filter: blur(16px) saturate(130%);
   }
 }
 
