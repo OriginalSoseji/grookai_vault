@@ -9,7 +9,10 @@ import { promisify } from "node:util";
 import pg from "pg";
 import { writeMarketSnapshotBatchesV1 } from "../../backend/pricing/market_snapshot_batches_v1.mjs";
 import { hydrateTcgplayerEditionCandidateV1 } from "../../backend/pricing/tcgplayer_edition_identity_v1.mjs";
-import { TRAINER_KIT_CANDIDATE_COLUMNS_V1, TRAINER_KIT_CANDIDATE_JOINS_V1 } from "../../backend/pricing/tcgplayer_trainer_kit_candidate_evidence_v1.mjs";
+import {
+  REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1,
+  REVIEWED_SPECIAL_CANDIDATE_JOINS_V1,
+} from "../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v1.mjs";
 import { readMarketActivationCoverageV1 } from "../../backend/pricing/market_activation_coverage_v1.mjs";
 import { marketSessionConnectionStringV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
 import {
@@ -402,11 +405,11 @@ async function candidateRows(client, {
       `select
          candidate.*,
          source_group.name as source_group_name,
-         ${TRAINER_KIT_CANDIDATE_COLUMNS_V1}
+         ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
        from public.v_tcgplayer_market_qualification_candidates_v4 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
-       ${TRAINER_KIT_CANDIDATE_JOINS_V1}
+       ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
        where candidate.card_printing_id = any($1::uuid[])
          and candidate.source_sync_run_id = $2
          and candidate.source_product_id = any($3::integer[])
@@ -489,11 +492,11 @@ async function candidateRows(client, {
       `select
          candidate.*,
          source_group.name as source_group_name,
-         ${TRAINER_KIT_CANDIDATE_COLUMNS_V1}
+         ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
        from public.v_tcgplayer_market_qualification_candidates_v4 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
-       ${TRAINER_KIT_CANDIDATE_JOINS_V1}
+       ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
        where candidate.source_sync_run_id = $1
          and candidate.source_product_id = any($2::integer[])
        order by candidate.source_product_id,

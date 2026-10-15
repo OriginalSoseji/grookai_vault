@@ -19,6 +19,11 @@ import {
 import { evaluateTcgplayerMarketQualificationV1 as qualify } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
 import { classifyTcgplayerMarketProductScopeV1_3 as genericScope } from "../../backend/pricing/tcgplayer_market_product_scope_v1.mjs";
 import { classifyTcgplayerMarketCoverageRowV1 as coverage } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
+import {
+  REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1,
+  REVIEWED_SPECIAL_CANDIDATE_JOINS_V1,
+  TCGPLAYER_REVIEWED_SPECIAL_PRODUCT_IDS_V1,
+} from "../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v1.mjs";
 
 const NOW = new Date("2026-10-14T20:00:00Z");
 function source(card) {
@@ -63,6 +68,18 @@ test("Team Rushdown authority is the complete reviewed 24-card source scope", ()
   assert.equal(new Set(CARDS.map((row) => row.source_product_id)).size, 24);
   assert.equal(new Set(CARDS.map((row) => row.target.card_print_id)).size, 24);
   assert.ok(CARDS.every((row) => row.authority_version === TCGPLAYER_WCD_TEAM_RUSHDOWN_PILOT_V1));
+});
+
+test("publication query enriches every reviewed Team Rushdown product", () => {
+  assert.equal(TCGPLAYER_REVIEWED_SPECIAL_PRODUCT_IDS_V1.length, 26);
+  for (const card of CARDS) {
+    assert.ok(TCGPLAYER_REVIEWED_SPECIAL_PRODUCT_IDS_V1.includes(card.source_product_id));
+    assert.match(REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1, new RegExp(`\\b${card.source_product_id}\\b`));
+    assert.match(REVIEWED_SPECIAL_CANDIDATE_JOINS_V1, new RegExp(`\\b${card.source_product_id}\\b`));
+  }
+  assert.match(REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1, /as canonical_name/);
+  assert.match(REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1, /as printing_truth_verified/);
+  assert.match(REVIEWED_SPECIAL_CANDIDATE_JOINS_V1, /reviewed_printing\.card_print_id = reviewed_parent\.id/);
 });
 
 for (const card of CARDS) {
