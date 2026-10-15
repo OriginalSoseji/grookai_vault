@@ -46,7 +46,7 @@ export function CustomProductView({
   };
 
   return (
-    <main className="gv-page-container gv-page-rhythm py-5 sm:py-8">
+    <div className="gv-page-container gv-page-rhythm py-5 sm:py-8">
       {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(productJsonLd) }} /> : null}
       <nav aria-label="Store navigation" className="mb-5 flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
         <Link href={`${base}${data.preview ? "?preview=1" : ""}`} className="transition hover:text-slate-950 dark:hover:text-white">{data.store.display_name}</Link>
@@ -93,6 +93,6 @@ export function CustomProductView({
           </div>
         </div>
       </article>
-    </main>
+    </div>
   );
 }

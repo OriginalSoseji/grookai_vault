@@ -138,7 +138,7 @@ export function StorefrontView({
   };
 
   return (
-    <main className="gv-page-container gv-page-rhythm py-5 sm:py-8">
+    <div className="gv-page-container gv-page-rhythm py-5 sm:py-8">
       {!data.preview ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdMarkup(storefrontJsonLd) }} /> : null}
       {data.preview ? <p role="status" className="gv-store-preview-note mb-5">Private owner preview · only you can open this link. Public customers see published listings and eligible inventory. <Link href="/account/store" className="ml-1 font-bold underline underline-offset-4">Open store workspace</Link></p> : null}
 
@@ -172,6 +172,6 @@ export function StorefrontView({
 
         {data.total > data.limit || data.offset > 0 ? <nav aria-label="Inventory pages" className="flex items-center justify-between gap-4 border-t border-slate-200/70 pt-6 dark:border-white/[0.08]">{data.offset > 0 ? <Link className="gv-secondary-button text-sm" href={pageHref(Math.max(0, data.offset - data.limit))}>Previous</Link> : <span />}{data.offset + data.limit < data.total ? <Link className="gv-secondary-button text-sm" href={pageHref(data.offset + data.limit)}>Next page</Link> : <span />}</nav> : null}
       </section>
-    </main>
+    </div>
   );
 }
