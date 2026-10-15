@@ -1544,6 +1544,48 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   font-variant-numeric: tabular-nums;
 }
 
+.gv-public-profile-page {
+  min-width: 0;
+}
+
+.gv-public-profile-header,
+.gv-public-profile-section-rail,
+.gv-public-profile-section-panel {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-public-profile-header {
+  overflow: hidden;
+}
+
+.gv-public-profile-stats > div {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container);
+}
+
+.gv-public-profile-content {
+  min-width: 0;
+}
+
+.gv-public-profile-section-rail {
+  position: sticky;
+  top: 4.25rem;
+  z-index: 20;
+  padding: 0.4rem;
+  backdrop-filter: blur(14px) saturate(125%);
+}
+
+.gv-public-profile-section-rail a[aria-current="page"] {
+  background: var(--gv-text-primary);
+  color: var(--gv-surface-page);
+}
+
+.gv-public-profile-section-panel {
+  box-shadow: none;
+}
+
 @media (max-width: 639px) {
   .gv-compare-page {
     gap: 1.25rem;
@@ -1599,6 +1641,33 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
 
   .gv-compare-breakdown > div:first-child {
     padding: 1rem;
+  }
+
+  .gv-public-profile-page {
+    gap: 1.25rem;
+    padding-block: 1rem 1.5rem;
+  }
+
+  .gv-public-profile-header {
+    border-radius: 1.25rem;
+  }
+
+  .gv-public-profile-section-rail {
+    top: 3.5rem;
+    border-radius: 1rem;
+    margin-inline: -0.25rem;
+  }
+
+  .gv-public-profile-section-rail > div {
+    scrollbar-width: none;
+  }
+
+  .gv-public-profile-section-rail > div::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gv-public-profile-section-panel {
+    border-radius: 1rem;
   }
 }
 
