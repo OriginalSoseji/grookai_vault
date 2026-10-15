@@ -37,6 +37,8 @@ Listing-level identity is now available through the service-role-only `v_market_
 
 Future MEE-11S rollup plans now bind that identity into `rollup_payload.slab_identity`, including per-rollup pair counts and explicit statuses: `reviewable_same_grade_identity`, `blocked_mixed_grader_grade`, or `blocked_missing_listing_identity`. Even the reviewable status remains `can_auto_approve: false` until a founder policy decision exists.
 
+The first live read-only plan with this binding scanned 198 price events and produced 175 candidate rows plus 9 internal rollups. Its two slab rollups were both blocked: one had 13/24 identified listings but eight distinct grader/grade pairs, and the other had no grader identity. No rows were applied.
+
 ## Validation
 
 - Contract tests: 18 passed, 0 failed.
