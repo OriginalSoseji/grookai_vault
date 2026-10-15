@@ -194,7 +194,7 @@ function MembersTab({
   flags: BinderFeatureFlags;
 }) {
   return (
-    <div className="space-y-8">
+    <div className="gv-binder-workspace space-y-8">
       {binder.pendingJoinRequests.length > 0 &&
       binder.canApprove &&
       flags.community ? (
@@ -654,7 +654,7 @@ export function BinderWorkspace({
           Your Binder access changed while this page was open. Refresh before making changes.
         </div>
       ) : null}
-      <PageSection surface="card" spacing="loose">
+      <PageSection surface="card" spacing="loose" className="gv-binder-workspace-hero">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
           {binder.coverImageUrl ? <div className="h-56 w-full shrink-0 overflow-hidden rounded-2xl bg-slate-50 sm:w-40">
             <PublicCardImage
@@ -703,8 +703,8 @@ export function BinderWorkspace({
         </p>
       </PageSection>
 
-      <nav aria-label="Binder sections" className="overflow-x-auto">
-        <div className="flex min-w-max gap-2 rounded-2xl border border-slate-200 bg-white p-2">
+      <nav aria-label="Binder sections" className="gv-binder-workspace-tabs overflow-x-auto">
+        <div className="gv-binder-workspace-tabs-inner flex min-w-max gap-2 rounded-2xl border border-slate-200 bg-white p-2">
           {TABS.map((item) => (
             <Link
               key={item.value}
