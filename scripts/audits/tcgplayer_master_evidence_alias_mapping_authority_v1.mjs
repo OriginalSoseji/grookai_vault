@@ -21,24 +21,28 @@ import {
 
 const VERSION = "TCGPLAYER_MASTER_EVIDENCE_ALIAS_MAPPING_AUTHORITY_V1";
 const PROJECT_REF = "ycdxbpibncqcchqiihfz";
-const EXPECTED_CANDIDATES = 5;
-const EXPECTED_PRINTINGS = 6;
+const EXPECTED_CANDIDATES = 7;
+const EXPECTED_PRINTINGS = 10;
 const SOURCE_SUBTYPE_BY_FINISH = Object.freeze({
   holo: "Holofoil",
   normal: "Normal",
   reverse: "Reverse Holofoil",
 });
 const EXPECTED_SETS = Object.freeze({
+  "bw6": "31bab32f-dc83-4a51-b08d-f96256184cf7",
   "sm75": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
   "cel25c": "3be64773-d30e-48af-af8c-3563b57e5e4a",
   "sv10.5b": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
 });
 const MASTER_INDEX_SET_KEYS = Object.freeze({
+  "bw6": "bw6",
   "sm75": "sm7.5",
   "cel25c": "cel25c",
   "sv10.5b": "sv10.5b",
 });
 const EXPECTED_SOURCE_SHA256 = Object.freeze({
+  "bw6_cards": "82bff84ccd5f222d4a407465e1f0dfd0cca9561ca6b8420eee6608aa72c59f1d",
+  "bw6_printings": "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805",
   "sm75_cards": "05d446bb1608ec5ebf8946250190e8f91d00729e0c724989f5d4c7ba5d09e9ec",
   "sm75_printings": "38352ab4b002501e09b1de1c30713cff9f7707f35a42891611b6e7ac4036aa56",
   "cel25c_cards": "e77d5b7f852e9c5502d2304a4b2f66d9e41256e88a8cc95a97de4d53c26bca36",

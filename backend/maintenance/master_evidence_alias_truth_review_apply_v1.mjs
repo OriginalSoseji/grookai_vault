@@ -38,14 +38,17 @@ import {
 const { Client } = pg;
 const SCRIPT_VERSION = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_APPLY_V1";
 const PROJECT_REF = "ycdxbpibncqcchqiihfz";
-const EXPECTED_PRODUCT_COUNT = 5;
-const EXPECTED_COUNT = 6;
+const EXPECTED_PRODUCT_COUNT = 7;
+const EXPECTED_COUNT = 10;
 const APPLY_CONFIRMATION = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_APPLY_V1";
 const CONFIRMATION_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_CONFIRMATION";
 const EXPECTED_FINGERPRINT_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_EXPECTED_FINGERPRINT";
 const EXPECTED_COMMIT_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_EXPECTED_COMMIT_SHA";
 const OUTPUT_ROOT_ENV = "MASTER_EVIDENCE_ALIAS_TRUTH_REVIEW_OUTPUT_ROOT";
 const SETS = Object.freeze({
+  "bw6": Object.freeze({ set_id: "31bab32f-dc83-4a51-b08d-f96256184cf7", master_set_key: "bw6",
+    cards_sha256: "82bff84ccd5f222d4a407465e1f0dfd0cca9561ca6b8420eee6608aa72c59f1d",
+    printings_sha256: "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805" }),
   "sm75": Object.freeze({ set_id: "003fe7e8-ee17-4811-8e68-381fb01f1e09", master_set_key: "sm7.5",
     cards_sha256: "05d446bb1608ec5ebf8946250190e8f91d00729e0c724989f5d4c7ba5d09e9ec",
     printings_sha256: "38352ab4b002501e09b1de1c30713cff9f7707f35a42891611b6e7ac4036aa56" }),
@@ -122,7 +125,7 @@ function assertRegistry() {
   assert.equal(new Set(rows.map((row) => row.target.card_print_id)).size, EXPECTED_PRODUCT_COUNT, "parent_collision");
   assert.equal(new Set(printings.map((row) => row.printing_id)).size, EXPECTED_COUNT, "printing_collision");
   assert.ok(rows.every((row) => SETS[row.target.set_code]?.set_id === row.target.set_id &&
-    [[2295,"Dragon Majesty","sm75"],[2931,"Celebrations: Classic Collection","cel25c"],[24325,"SV: Black Bolt","sv10.5b"]]
+    [[1394,"Dragons Exalted","bw6"],[2295,"Dragon Majesty","sm75"],[2931,"Celebrations: Classic Collection","cel25c"],[24325,"SV: Black Bolt","sv10.5b"]]
       .some(([id,name,code]) => row.source_group_id === id && row.source_group_name === name && row.target.set_code === code)),
   "registry_scope_changed");
 }

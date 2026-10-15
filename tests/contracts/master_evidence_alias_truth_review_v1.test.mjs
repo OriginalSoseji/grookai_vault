@@ -25,18 +25,18 @@ const SCRIPT = readFileSync(path.join(ROOT, RELATIVE), "utf8");
 const AUTHORITY_SCRIPT = readFileSync(path.join(ROOT,
   "scripts/audits/tcgplayer_master_evidence_alias_mapping_authority_v1.mjs"), "utf8");
 
-test("master-evidence-alias registry freezes 5 products, 5 parents, and all 6 source-listed printings", () => {
+test("master-evidence-alias registry freezes 7 products, 7 parents, and all 10 source-listed printings", () => {
   const rows = TCGPLAYER_MASTER_EVIDENCE_ALIAS_PRODUCT_IDENTITIES_V1;
   const printings = rows.flatMap((row) => row.printings);
-  assert.equal(rows.length, 5);
-  assert.equal(new Set(rows.map((row) => row.source_product_id)).size, 5);
-  assert.equal(new Set(rows.map((row) => row.target.card_print_id)).size, 5);
-  assert.equal(printings.length, 6);
-  assert.equal(new Set(printings.map((row) => row.printing_id)).size, 6);
-  assert.deepEqual([...new Set(rows.map((row) => row.target.set_code))].sort(), ["cel25c","sm75","sv10.5b"]);
+  assert.equal(rows.length, 7);
+  assert.equal(new Set(rows.map((row) => row.source_product_id)).size, 7);
+  assert.equal(new Set(rows.map((row) => row.target.card_print_id)).size, 7);
+  assert.equal(printings.length, 10);
+  assert.equal(new Set(printings.map((row) => row.printing_id)).size, 10);
+  assert.deepEqual([...new Set(rows.map((row) => row.target.set_code))].sort(), ["bw6","cel25c","sm75","sv10.5b"]);
   assert.deepEqual([...new Set(printings.map((row) => row.finish_key))].sort(), ["holo", "normal", "reverse"]);
   assert.deepEqual(Object.fromEntries(["holo", "normal", "reverse"].map((finish) => [finish,
-    printings.filter((row) => row.finish_key === finish).length])), { holo: 4, normal: 1, reverse: 1 });
+    printings.filter((row) => row.finish_key === finish).length])), { holo: 4, normal: 3, reverse: 3 });
 });
 
 test("each frozen master-evidence-alias source plans and validates only its exact parent", () => {
@@ -92,8 +92,8 @@ test("each frozen master-evidence-alias source plans and validates only its exac
 test("master-evidence-alias truth review is a bounded insert-only canon maintenance task", () => {
   assert.ok(CANON_MAINTENANCE_FILES_V1.includes(RELATIVE));
   assert.match(SCRIPT, /CANON MAINTENANCE-ONLY EXECUTION BOUNDARY/);
-  assert.match(SCRIPT, /const EXPECTED_PRODUCT_COUNT = 5/);
-  assert.match(SCRIPT, /const EXPECTED_COUNT = 6/);
+  assert.match(SCRIPT, /const EXPECTED_PRODUCT_COUNT = 7/);
+  assert.match(SCRIPT, /const EXPECTED_COUNT = 10/);
   assert.match(SCRIPT, /begin transaction isolation level repeatable read read only/);
   assert.match(SCRIPT, /begin isolation level serializable/);
   assert.match(SCRIPT, /pg_advisory_xact_lock/);
@@ -108,8 +108,8 @@ test("master-evidence-alias truth review is a bounded insert-only canon maintena
 });
 
 test("master-evidence-alias mapping authority is read-only, multi-finish, and evidence-bound", () => {
-  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 5/);
-  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_PRINTINGS = 6/);
+  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_CANDIDATES = 7/);
+  assert.match(AUTHORITY_SCRIPT, /const EXPECTED_PRINTINGS = 10/);
   assert.match(AUTHORITY_SCRIPT, /const allCandidates =/);
   assert.match(AUTHORITY_SCRIPT, /expectedProductIds\.has\(Number\(row\.source_product_id\)\)/);
   assert.match(AUTHORITY_SCRIPT, /begin transaction isolation level repeatable read read only/);

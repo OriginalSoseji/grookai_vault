@@ -2,12 +2,27 @@ export const TCGPLAYER_MASTER_EVIDENCE_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1 =
   "TCGPLAYER_MASTER_EVIDENCE_ALIAS_PRODUCT_IDENTITY_AUTHORITY_V1";
 
 const setIds = Object.freeze({
+  "bw6": "31bab32f-dc83-4a51-b08d-f96256184cf7",
   "sm75": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
   "cel25c": "3be64773-d30e-48af-af8c-3563b57e5e4a",
   "sv10.5b": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
 });
 
 const rows = [
+  [83916, "Blend Energy GFPD", 1394, "Dragons Exalted", "117/124",
+    "f96a24f3-962c-40f3-83a0-83383b742dda", "GV-PK-DRX-117", "bw6",
+    "Blend Energy GrassFirePsychicDarkness", "117", "", "bw6",
+    "Blend Energy GrassFirePsychicDarkness", "Blend Energy GrassFirePsychicDarkness", [
+      ["9e6e0c7f-8258-4ad3-bced-24e794e078a9", "normal", "GV-PK-DRX-117-STD", "tcgdex", "bw6-117"],
+      ["2d67b786-d7cd-471e-921f-2ea4c9a2f0c8", "reverse", "GV-PK-DRX-117-RH", "tcgdex", "bw6-117"],
+    ]],
+  [83917, "Blend Energy WLFM", 1394, "Dragons Exalted", "118/124",
+    "13101167-6c6b-4cbb-86a8-472cbc2402b8", "GV-PK-DRX-118", "bw6",
+    "Blend Energy WaterLightningFightingMetal", "118", "", "bw6",
+    "Blend Energy WaterLightningFightingMetal", "Blend Energy WaterLightningFightingMetal", [
+      ["1742d906-279c-4773-a5ae-9fe8a2e0bc56", "normal", "GV-PK-DRX-118-STD", "tcgdex", "bw6-118"],
+      ["279cf80e-af67-4b15-be93-392395da4fad", "reverse", "GV-PK-DRX-118-RH", "tcgdex", "bw6-118"],
+    ]],
   [175275, "Victini Prism Star", 2295, "Dragon Majesty", "7/70",
     "cab17723-75ff-405c-b5c6-b41cb627cf6a", "GV-PK-DRM-7", "sm75",
     "Victini ◇", "7", "", "sm7.5", "Victini ◇", "Victini ◇", [
