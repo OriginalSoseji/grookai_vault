@@ -2,12 +2,14 @@
 
 import { useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { saveVaultItemInstancePricingAction } from "@/lib/vault/saveVaultItemInstancePricingAction";
 import {
   formatVaultInstancePrice,
   getVaultInstancePricingSourceLabel,
   type VaultInstancePricingMode,
 } from "@/lib/vaultInstancePricing";
+import { getMarketReferenceAvailability } from "@/lib/vault/getMarketReferenceAvailability";
 
 type VaultInstancePricingCardProps = {
   instanceId: string;
@@ -109,6 +111,9 @@ export default function VaultInstancePricingCard({
 
   const marketReferenceAvailable = !isGraded && typeof marketReferencePrice === "number";
   const marketReferenceDate = formatPricingTimestamp(marketReferenceUpdatedAt);
+  const marketReferenceAvailability = marketReferenceAvailable
+    ? null
+    : getMarketReferenceAvailability({ isGraded, cardPrintingId });
 
   function handleSave() {
     if (!isActive || isPending || !hasChanges) {
@@ -200,9 +205,30 @@ export default function VaultInstancePricingCard({
               </p>
             </>
           ) : (
-            <p className="text-sm text-slate-600">
-              {isGraded ? "No market reference available for this slab yet." : "No market reference available."}
-            </p>
+            <div className="space-y-2">
+              <p className="text-sm font-semibold text-slate-900">
+                {marketReferenceAvailability?.title ?? "No market reference available."}
+              </p>
+              <p className="text-sm leading-6 text-slate-600">
+                {marketReferenceAvailability?.description}
+              </p>
+              {marketReferenceAvailability?.code === "missing_printing" && printingGvId ? (
+                <Link
+                  href={`/card/${encodeURIComponent(printingGvId)}`}
+                  className="inline-flex min-h-10 items-center rounded-[0.8rem] border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:text-slate-950"
+                >
+                  {marketReferenceAvailability.actionLabel}
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  className="inline-flex min-h-10 items-center rounded-[0.8rem] border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:text-slate-950"
+                  onClick={() => setPricingMode("asking")}
+                >
+                  {marketReferenceAvailability?.actionLabel ?? "Set an asking price"}
+                </button>
+              )}
+            </div>
           )}
         </div>
       ) : (
