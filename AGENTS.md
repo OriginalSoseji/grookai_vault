@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Nintendo Target promo exact alias batch — October 15
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_147_NINTENDO_TARGET_PROMO_ALIAS_BATCH.md`.
+The next bounded pricing batch contains exactly four Nintendo Promos products:
+Treecko 16, Torchic 17, Mudkip 18, and Whismur 19. TCGPlayer appends the
+display-only qualifier `Target Promo`; each product otherwise has one exact
+numbered canonical parent and one verified visible Normal printing. Keep the
+registry product-specific and require the frozen mapping package, rollback
+rehearsal, apply, independent readback, and a later full pricing shadow.
+
 ## Team Rushdown publication evidence repair — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_146_WCD_PUBLICATION_EVIDENCE_REPAIR.md`.
