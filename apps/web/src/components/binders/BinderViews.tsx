@@ -103,7 +103,7 @@ export function BinderSummaryCard({ binder }: { binder: BinderSummary }) {
   return (
     <Link
       href={`/binders/${encodeURIComponent(binder.publicId)}`}
-      className="gv-collector-binder-tile group flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
+      className="gv-binder-summary-card gv-collector-binder-tile group flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
     >
       <div className="gv-collector-binder-cover h-[220px] overflow-hidden bg-slate-50 sm:h-[250px]">
         <BinderCoverArtwork src={binder.coverImageUrl} title={binder.title} />
@@ -177,7 +177,7 @@ export function BinderDashboardView({
   suspendedPageHref?: string | null;
 }) {
   return (
-    <div className="space-y-10">
+    <div className="gv-binder-dashboard space-y-10">
       <DashboardSection
         title="Continue building"
         description="Pick up the collection goals you are actively building."

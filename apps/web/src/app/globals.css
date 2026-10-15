@@ -2028,6 +2028,48 @@ html.gv-dark .gv-wall-sections-card .text-slate-500 {
   min-width: 0;
 }
 
+.gv-binders-page {
+  min-width: 0;
+}
+
+.gv-binder-dashboard > section + section {
+  border-top: 1px solid var(--gv-border-hairline);
+  padding-top: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.gv-binder-summary-card {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-base);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-binder-summary-card:hover {
+  border-color: color-mix(in srgb, var(--gv-primary) 48%, var(--gv-border-soft));
+  box-shadow: var(--gv-shadow-md);
+  transform: translateY(-2px);
+}
+
+.gv-binder-summary-card .gv-collector-binder-cover {
+  background: var(--gv-surface-container-low);
+}
+
+.gv-binder-notice {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-container-low);
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-binder-summary-card .text-slate-950,
+html.gv-dark .gv-binder-summary-card .text-slate-900 {
+  color: var(--gv-text-primary);
+}
+
+html.gv-dark .gv-binder-summary-card .text-slate-700,
+html.gv-dark .gv-binder-summary-card .text-slate-600,
+html.gv-dark .gv-binder-summary-card .text-slate-500 {
+  color: var(--gv-text-secondary);
+}
+
 .gv-wall-page-header > p {
   border: 1px solid var(--gv-border-soft);
   border-radius: 999px;

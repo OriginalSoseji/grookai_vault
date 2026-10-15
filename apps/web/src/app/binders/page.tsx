@@ -65,7 +65,7 @@ export default async function BindersPage(
       throw error;
     }
     return (
-      <div className="space-y-8 py-6">
+      <div className="gv-binders-page mx-auto max-w-[1170px] space-y-8 py-5 sm:py-9">
         <PageIntro
           eyebrow="Binders"
           title="Binders"
@@ -105,7 +105,7 @@ export default async function BindersPage(
   };
 
   return (
-    <div className="space-y-10 py-6">
+    <div className="gv-binders-page mx-auto max-w-[1170px] space-y-10 py-5 sm:py-9">
       <PageIntro
         eyebrow="Binders"
         title="Binders"
@@ -124,18 +124,18 @@ export default async function BindersPage(
       />
       <BinderConnectivityBoundary loadedAt={dashboard.loadedAt}>
       {searchParams.notice === "invitation-declined" ? (
-        <div role="status" className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+        <div role="status" className="gv-binder-notice rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
           Binder invitation declined.
         </div>
       ) : null}
       {searchParams.notice === "invitation-unavailable" ? (
-        <div role="alert" className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div role="alert" className="gv-binder-notice rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
           That invitation could not be completed. It may have expired, changed,
           or already been used.
         </div>
       ) : null}
       {searchParams.notice === "invitation-reported" ? (
-        <div role="status" className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+        <div role="status" className="gv-binder-notice rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
           Report received. Thank you for helping keep Binder invitations safe.
         </div>
       ) : null}
