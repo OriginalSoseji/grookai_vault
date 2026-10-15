@@ -1,10 +1,37 @@
 .gv-route-surface {
+  --gv-route-accent: var(--gv-primary);
+  --gv-route-accent-soft: color-mix(in srgb, var(--gv-route-accent) 14%, transparent);
+  position: relative;
+  isolation: isolate;
   min-width: 0;
 }
 
+.gv-route-surface[data-route-family="discovery"] {
+  --gv-route-accent: #b8e6c6;
+}
+
+.gv-route-surface[data-route-family="collections"] {
+  --gv-route-accent: #e0c48a;
+}
+
+.gv-route-surface[data-route-family="account"] {
+  --gv-route-accent: #b9d8e8;
+}
+
+.gv-route-surface[data-route-family="utility"] {
+  --gv-route-accent: #d1c1ed;
+}
+
 .gv-route-family-rail {
-  margin: -8px 0 28px;
-  border-bottom: 1px solid var(--gv-border-soft);
+  position: relative;
+  margin: -8px 0 40px;
+  overflow: hidden;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 100% 0%, var(--gv-route-accent-soft), transparent 44%),
+    linear-gradient(135deg, var(--gv-surface-container-low), var(--gv-surface-base));
+  box-shadow: var(--gv-shadow-md);
 }
 
 .gv-route-family-rail-inner {
@@ -12,35 +39,41 @@
   align-items: end;
   justify-content: space-between;
   gap: 24px;
-  min-height: 72px;
-  padding: 12px 0 0;
+  min-height: 132px;
+  padding: 26px 28px 0;
 }
 
 .gv-route-family-copy {
   display: grid;
   gap: 3px;
   min-width: 0;
-  padding-bottom: 13px;
+  max-width: 32rem;
+  padding-bottom: 22px;
 }
 
 .gv-route-family-label {
-  color: var(--gv-text-primary);
-  font-size: 12px;
+  color: var(--gv-route-accent);
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
 }
 
 .gv-route-family-description {
   color: var(--gv-text-secondary);
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .gv-route-family-nav {
   display: flex;
   align-items: stretch;
-  gap: 24px;
+  gap: 6px;
   min-width: 0;
+  padding: 6px;
+  border: 1px solid var(--gv-border-soft);
+  border-bottom: 0;
+  border-radius: 16px 16px 0 0;
+  background: color-mix(in srgb, var(--gv-surface-container) 78%, transparent);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -51,31 +84,36 @@
 
 .gv-route-family-nav a {
   display: inline-flex;
-  min-height: 42px;
+  min-height: 44px;
   align-items: center;
   white-space: nowrap;
-  border-bottom: 2px solid transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
   color: var(--gv-text-secondary);
-  font-size: 12px;
+  padding: 0 14px;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
-  transition: color var(--gv-transition-fast), border-color var(--gv-transition-fast);
+  transition: color var(--gv-transition-fast), border-color var(--gv-transition-fast), background-color var(--gv-transition-fast), transform var(--gv-transition-fast);
 }
 
 .gv-route-family-nav a:hover,
 .gv-route-family-nav a:focus-visible,
 .gv-route-family-nav a[aria-current="page"] {
-  color: var(--gv-primary);
+  color: var(--gv-route-accent);
 }
 
 .gv-route-family-nav a[aria-current="page"] {
-  border-color: var(--gv-primary);
+  border-color: color-mix(in srgb, var(--gv-route-accent) 55%, var(--gv-border-soft));
+  background: var(--gv-route-accent-soft);
+  transform: translateY(-1px);
 }
 
 .gv-route-surface .gv-collector-page-intro {
-  margin-bottom: 8px;
+  position: relative;
+  margin-bottom: 26px;
   border-bottom: 1px solid var(--gv-border-hairline);
-  padding-bottom: 20px;
+  padding: 12px 0 24px;
 }
 
 .gv-route-surface .gv-collector-page-intro .gv-display-title,
@@ -83,36 +121,93 @@
   letter-spacing: -0.025em;
 }
 
+.gv-route-surface .gv-collector-page-intro .gv-display-title {
+  max-width: 18ch;
+  font-size: clamp(2.35rem, 5vw, 4.35rem);
+  line-height: 0.98;
+}
+
+.gv-route-surface [data-page-section="card"],
+.gv-route-surface .gv-premium-surface {
+  border-color: var(--gv-border-soft);
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--gv-route-accent) 5%, transparent), transparent 42%),
+    var(--gv-surface-container-low);
+  box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-route-surface [data-page-section="subtle"],
+.gv-route-surface .gv-soft-surface {
+  border-color: color-mix(in srgb, var(--gv-route-accent) 22%, var(--gv-border-soft));
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--gv-route-accent) 5%, var(--gv-surface-container-low));
+}
+
+.gv-route-surface .gv-primary-button,
+.gv-route-surface .gv-secondary-button {
+  transition: transform var(--gv-transition-fast), background-color var(--gv-transition-fast), border-color var(--gv-transition-fast), color var(--gv-transition-fast);
+}
+
+.gv-route-surface .gv-primary-button:hover,
+.gv-route-surface .gv-secondary-button:hover {
+  transform: translateY(-1px);
+}
+
 .gv-route-surface .gv-product-state {
   border-color: var(--gv-border-soft);
-  background: var(--gv-surface-base);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 0% 0%, var(--gv-route-accent-soft), transparent 38%),
+    var(--gv-surface-base);
+  padding: clamp(28px, 5vw, 54px);
   box-shadow: var(--gv-shadow-sm);
+}
+
+.gv-route-surface .gv-product-state-icon {
+  border-color: color-mix(in srgb, var(--gv-route-accent) 34%, var(--gv-border-soft));
+  color: var(--gv-route-accent);
+  background: var(--gv-route-accent-soft);
 }
 
 @media (max-width: 760px) {
   .gv-route-family-rail {
     margin-top: -4px;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
+    border-radius: 20px;
   }
 
   .gv-route-family-rail-inner {
     display: grid;
-    gap: 2px;
+    gap: 10px;
     min-height: 0;
-    padding-top: 8px;
+    padding: 20px 16px 0;
   }
 
   .gv-route-family-copy {
-    padding-bottom: 4px;
+    padding-bottom: 2px;
   }
 
   .gv-route-family-nav {
-    gap: 20px;
-    margin-inline: -2px;
+    gap: 4px;
+    margin-inline: -4px;
+    padding: 4px;
+    border-radius: 13px 13px 0 0;
   }
 
   .gv-route-family-nav a {
-    min-height: 40px;
+    min-height: 42px;
+    padding-inline: 12px;
+  }
+
+  .gv-route-surface .gv-collector-page-intro {
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+  }
+
+  .gv-route-surface .gv-collector-page-intro .gv-display-title {
+    max-width: 14ch;
+    font-size: clamp(2.15rem, 11vw, 3.2rem);
   }
 }
 
