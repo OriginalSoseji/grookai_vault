@@ -2834,6 +2834,15 @@ html.gv-dark .gv-wall-owner-rail .text-slate-500 {
   padding-bottom: 2rem;
 }
 
+.gv-card-page {
+  min-width: 0;
+}
+
+.gv-card-page .gv-detail-breadcrumbs {
+  max-width: 1160px;
+  margin-inline: auto;
+}
+
 .gv-card-page .gv-card-lower-section {
   padding-inline: 0;
 }
