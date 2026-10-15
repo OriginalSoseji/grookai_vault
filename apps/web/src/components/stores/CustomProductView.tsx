@@ -3,6 +3,7 @@ import { purchaseHref } from "@/lib/orders/orderAcquisitionTypes";
 import { StoreProductImage } from "./StoreProductImage";
 import type { CustomProductDetail } from "@/lib/stores/storefrontTypes";
 import { getSiteOrigin } from "@/lib/getSiteOrigin";
+import { SharePublicLinkButton } from "./SharePublicLinkButton";
 
 function jsonLdMarkup(value: Record<string, unknown>) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
@@ -86,6 +87,7 @@ export function CustomProductView({
           </dl>
 
           <div className="mt-auto flex flex-wrap gap-4 pt-8 text-sm font-semibold">
+            <SharePublicLinkButton title={`${p.title || "Collectible"} from ${data.store.display_name}`} className="gv-secondary-button" />
             {data.store.collector_slug ? <Link className="gv-secondary-button" href={`/u/${encodeURIComponent(data.store.collector_slug)}`}>Meet the seller</Link> : null}
             <Link className="gv-ghost-button inline-flex items-center rounded-xl px-3 py-2" href={`${base}${data.preview ? "?preview=1" : ""}`}>Back to the store</Link>
           </div>
