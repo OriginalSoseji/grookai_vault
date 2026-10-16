@@ -64,6 +64,12 @@ A stale monitor creates one correlated incident per outage. New heartbeats or a
 successful run report recovery and close that incident. It does not erase the
 incident history.
 
+Heartbeat staleness applies only to periodic agents with `cron`, `timer`, or
+`continuous` schedules. `event` and `manual` agents are healthy while idle;
+their health changes when a run starts or fails. Maintenance recovers legacy
+stale incidents that were opened only because an event or manual agent had no
+recent trigger.
+
 The service-only maintenance pass also expires stale review plans, closes
 queued commands whose execution deadlines elapsed, and fails expired executor
 leases so that a founder must make an explicit retry decision.

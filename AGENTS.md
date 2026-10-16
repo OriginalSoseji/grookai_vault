@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Operations agent schedule health — October 16
+
+Read `docs/checkpoints/OPERATIONS_AGENT_SCHEDULE_HEALTH_20261016.md`. Heartbeat
+staleness applies only to periodic `cron`, `timer`, and `continuous` agents.
+Event and manual agents are healthy while idle, but their latest running or
+failed run still surfaces. The forward migration is locally rehearsed and
+remains production-blocked by the historical zero-state replay failure in the
+already-applied October 12 card-identity alias migration.
+
 ## Burger King stamped alias extension — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_152_BURGER_KING_STAMPED_ALIAS_BATCH.md`.

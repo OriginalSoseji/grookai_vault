@@ -19,6 +19,7 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$OperationsAgentScheduleHealthV1,
   [switch]$ReconciledReplayAudit,
   [switch]$CollectorCameoIsolatedReplay,
   [switch]$StorefrontReleaseIsolatedReplay,
@@ -94,6 +95,20 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($OperationsAgentScheduleHealthV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $allowedParameters = @('Phase','OperationsAgentScheduleHealthV1','ExpectedLocalOnlyIds','AuditEnvFile','AuditOutDir')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261016150000' -or
+      [string]::IsNullOrWhiteSpace($AuditEnvFile) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Operations agent schedule health permits only exact migration 20261016150000 with explicit AuditEnvFile and new AuditOutDir.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_operations_agent_schedule_health_v1.mjs') `
+    $Phase "--env-file=$AuditEnvFile" "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($CollectrCostReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

@@ -1,5 +1,31 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Operations agent schedule-health release — October 16
+
+`-OperationsAgentScheduleHealthV1` accepts only `AuditLinkedSchema` or
+`PrePush` for exact migration `20261016150000`, with an explicit production
+environment file and a new evidence directory. It rejects combined scopes,
+target overrides, unexpected pending migrations, duplicate migration versions,
+changed candidate SQL, changed production function definitions, changed grants,
+or a production ledger other than the exact 454-file baseline ending at
+`20261016140000`.
+
+This is a narrow exception to zero-state replay because the already-applied
+`20261012010000_card_print_identity_aliases_v1.sql` requires 647 production
+catalog pairs that an empty database does not contain. The verifier leaves the
+ordinary strict gate unchanged. It compares the two affected function
+fingerprints and security metadata between production and the isolated local
+schema, applies the exact candidate only inside a local transaction, verifies
+event/manual/cron/failed-run behavior and stale-incident recovery, then rolls
+back and proves both functions and the local ledger returned to their starting
+state. Production is held in a repeatable-read, read-only transaction and
+receives zero writes.
+
+`PrePush` additionally requires clean committed source containing current main.
+Neither phase applies the migration or authorizes a production write. Production
+application still requires the separate two-phase release approval, exact CLI
+dry-run, atomic apply, and independent ledger/function/incident readback.
+
 ## Collectr cost release qualification — October 9
 
 `-CollectrCostReleaseV1` accepts AuditLinkedSchema and PrePush for the exact
