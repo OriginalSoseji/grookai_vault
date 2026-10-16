@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, RefreshCw } from "lucide-react";
+import { ArrowLeft, Download, RefreshCw } from "lucide-react";
 import { minor, money } from "@/lib/sales/salesDesk.mjs";
 import { cardProfit, taxInclusivePortion } from "@/lib/sales/cardProfit.mjs";
 import type { SalesTaxMode } from "@/lib/sales/cardProfit.mjs";
@@ -54,8 +54,16 @@ export default function CardProfitabilityManager() {
     if (row.status !== "unsold" || row.acquisitionCostMinor == null || row.marketPriceMinor == null || !Number.isInteger(taxBps) || taxBps < 0 || taxBps > 10000) return sum;
     return sum + (cardProfit({ saleMinor: row.marketPriceMinor, costMinor: row.acquisitionCostMinor, incomeTaxBps: taxBps })?.profitAfterTaxMinor ?? 0);
   }, 0);
+  function exportCsv() {
+    const headers = ["GVVI", "Card", "Set", "Number", "Condition", "Acquisition date", "Sale date", "COG", "Sale", "Sales tax", "Net revenue", "Gross profit", "Income tax estimate", "Profit after tax", "Status"];
+    const escape = (value: unknown) => `"${String(value ?? "").replaceAll('"', '""')}"`;
+    const body = rows.map(row => [row.gvviId, row.name, row.setCode, row.number, row.condition, row.acquisitionDate, row.saleAt, row.acquisitionCostMinor == null ? "" : money(row.acquisitionCostMinor), row.saleMinor == null ? "" : money(row.saleMinor), money(row.allocatedSalesTaxMinor), row.netRevenueMinor == null ? "" : money(row.netRevenueMinor), row.grossProfitMinor == null ? "" : money(row.grossProfitMinor), row.incomeTaxMinor == null ? "" : money(row.incomeTaxMinor), row.profitAfterTaxMinor == null ? "" : money(row.profitAfterTaxMinor), row.status].map(escape).join(","));
+    const blob = new Blob([[headers.map(escape).join(","), ...body].join("\n")], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob), anchor = document.createElement("a");
+    anchor.href = url; anchor.download = `grookai-card-pnl-${new Date().toISOString().slice(0, 10)}.csv`; anchor.click(); URL.revokeObjectURL(url);
+  }
   return <main className={s.shell}>
-    <header className={s.header}><div><Link href="/account/store/inventory-cost"><ArrowLeft size={15}/> Inventory aging & COG</Link><h1>Per-card P&amp;L <span>Exact GVVI cost, sale proceeds, estimated income tax, and profit after tax.</span></h1></div><div className={s.actions}><button onClick={() => void load()} disabled={loading}><RefreshCw size={16}/> Refresh</button></div></header>
+    <header className={s.header}><div><Link href="/account/store/inventory-cost"><ArrowLeft size={15}/> Inventory aging & COG</Link><h1>Per-card P&amp;L <span>Exact GVVI cost, sale proceeds, estimated income tax, and profit after tax.</span></h1></div><div className={s.actions}><button onClick={exportCsv} disabled={loading || rows.length === 0}><Download size={16}/> Export CSV</button><button onClick={() => void load()} disabled={loading}><RefreshCw size={16}/> Refresh</button></div></header>
     {error && <div role="alert" className={s.error}>{error}</div>}
 
     <section className={s.toolbar}><label>Date basis<select value={dateBasis} onChange={event => setDateBasis(event.target.value as "acquired" | "sold")}><option value="acquired">Acquisition date</option><option value="sold">Sale date</option></select></label><label>{dateBasis === "sold" ? "Sold from" : "Acquired from"}<input type="date" value={from} onChange={event => setFrom(event.target.value)}/></label><label>{dateBasis === "sold" ? "Sold to" : "Acquired to"}<input type="date" value={to} onChange={event => setTo(event.target.value)}/></label><label>Estimated income tax rate<input inputMode="decimal" value={tax} onChange={event => { const value = event.target.value; setTax(value); const bps = Number(value) * 100; if (Number.isInteger(bps) && bps >= 0 && bps <= 10000) persistSettings(bps, taxMode, Math.round(Number(salesTaxRate) * 100)); }} aria-label="Estimated income tax rate"/><small>Used only to estimate tax on positive gross profit.</small></label><label>Sales tax treatment<select value={taxMode} onChange={event => { const mode = event.target.value as SalesTaxMode; setTaxMode(mode); persistSettings(Math.round(Number(tax) * 100), mode, Math.round(Number(salesTaxRate) * 100)); }}><option value="pass_through">Pass-through (recommended)</option><option value="include_in_offer">Customer offer includes sales tax</option></select></label>{taxMode === "include_in_offer" && <label>Sales tax rate<input inputMode="decimal" value={salesTaxRate} onChange={event => { const value = event.target.value; setSalesTaxRate(value); const rateBps = Number(value) * 100; if (Number.isInteger(rateBps) && rateBps >= 0 && rateBps <= 10000) persistSettings(Math.round(Number(tax) * 100), taxMode, rateBps); }} aria-label="Sales tax rate"/><small>Used for the hypothetical offer preview.</small></label>}</section>
