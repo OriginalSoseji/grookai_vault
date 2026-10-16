@@ -87,6 +87,15 @@ export async function POST(request: NextRequest) {
     const incomeTaxBps = body.incomeTaxBps;
     const salesTaxMode = body.salesTaxMode;
     const salesTaxRateBps = body.salesTaxRateBps;
+    const hasSellingFeeFields = Object.prototype.hasOwnProperty.call(body, "sellingFeeBps") || Object.prototype.hasOwnProperty.call(body, "sellingFeeFixedMinor");
+    if (!hasSellingFeeFields) {
+      if (!Number.isInteger(incomeTaxBps) || incomeTaxBps < 0 || incomeTaxBps > 10000 || !["pass_through", "include_in_offer"].includes(salesTaxMode) || !Number.isInteger(salesTaxRateBps) || salesTaxRateBps < 0 || salesTaxRateBps > 10000) {
+        return json({ error: "Invalid profit settings" }, 400);
+      }
+      const { data, error } = await context.client.rpc("inventory_profit_settings_save_v1", { p_income_tax_bps: incomeTaxBps, p_sales_tax_mode: salesTaxMode, p_sales_tax_rate_bps: salesTaxRateBps });
+      if (error) return json({ error: "Profit settings could not save" }, 503);
+      return json(data);
+    }
     const sellingFeeBps = body.sellingFeeBps ?? 0;
     const sellingFeeFixedMinor = body.sellingFeeFixedMinor ?? 0;
     if (!Number.isInteger(incomeTaxBps) || incomeTaxBps < 0 || incomeTaxBps > 10000 || !["pass_through", "include_in_offer"].includes(salesTaxMode) || !Number.isInteger(salesTaxRateBps) || salesTaxRateBps < 0 || salesTaxRateBps > 10000 || !Number.isInteger(sellingFeeBps) || sellingFeeBps < 0 || sellingFeeBps > 10000 || !Number.isSafeInteger(sellingFeeFixedMinor) || sellingFeeFixedMinor < 0 || sellingFeeFixedMinor > 1000000) {
