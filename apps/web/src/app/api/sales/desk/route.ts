@@ -157,6 +157,11 @@ export async function POST(req: NextRequest) {
             const rejected = ['22023', 'PT409', '23514', '23505', '42501', '22P02'].includes(error.code);
             return json({ error: rejected ? 'Request rejected. Review availability and details.' : 'Result unconfirmed. Recover this same request.', rejected }, rejected ? 409 : 503);
         }
+        if (b.action === 'sale') {
+            // Fee evidence is captured after the immutable sale succeeds. A snapshot failure
+            // must never turn a recorded sale into an apparent failed checkout.
+            await ctx.client.rpc('inventory_sale_fee_snapshot_save_v1', { p_request_id: b.id });
+        }
         return json({ result: data });
     }
     catch {
