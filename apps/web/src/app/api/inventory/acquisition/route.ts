@@ -21,6 +21,7 @@ export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const from = params.get("from");
   const to = params.get("to");
+  const action = params.get("action");
   const sort = params.get("sort") ?? "oldest";
   const limit = Number(params.get("limit") ?? "200");
   if (sort !== "oldest" && sort !== "newest" || !Number.isInteger(limit) || limit < 1 || limit > 500) {
@@ -31,7 +32,23 @@ export async function GET(request: NextRequest) {
   if (fromDate && Number.isNaN(fromDate.getTime()) || toDate && Number.isNaN(toDate.getTime())) {
     return json({ error: "Invalid inventory date filter" }, 400);
   }
-  if (params.get("action") === "report") {
+  if (action === "card-pnl") {
+    const incomeTaxBps = Number(params.get("incomeTaxBps") ?? "2500");
+    const salesTaxMode = params.get("salesTaxMode") ?? "pass_through";
+    if (!Number.isInteger(incomeTaxBps) || incomeTaxBps < 0 || incomeTaxBps > 10000 || !["pass_through", "include_in_offer"].includes(salesTaxMode)) {
+      return json({ error: "Invalid card profitability filter" }, 400);
+    }
+    const { data, error } = await context.client.rpc("inventory_card_profitability_read_v1", {
+      p_from: fromDate ? fromDate.toISOString() : null,
+      p_to: toDate ? toDate.toISOString() : null,
+      p_income_tax_bps: incomeTaxBps,
+      p_sales_tax_mode: salesTaxMode,
+      p_limit: limit,
+    });
+    if (error) return json({ error: "Card profitability could not load" }, 503);
+    return json(data);
+  }
+  if (action === "report") {
     const { data, error } = await context.client.rpc("inventory_acquisition_batch_report_v1", {
       p_from: fromDate ? fromDate.toISOString() : null,
       p_to: toDate ? toDate.toISOString() : null,
