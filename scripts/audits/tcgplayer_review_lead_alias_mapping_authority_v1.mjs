@@ -273,7 +273,8 @@ function buildManifest({ setCode, candidates, db, sources, projections, reviewed
 export async function buildReviewLeadAliasMappingAuthority(args) {
   const options = parseArgs(args);
   const candidateBytes = await fs.readFile(path.join(options.planDir, "candidates.jsonl"));
-  const candidates = candidateBytes.toString("utf8").split(/\r?\n/).filter(Boolean).map(JSON.parse);
+  const planCandidates = candidateBytes.toString("utf8").split(/\r?\n/).filter(Boolean).map(JSON.parse);
+  const candidates = selectReviewLeadAliasCandidatesV1(planCandidates);
   assert.equal(candidates.length, EXPECTED_CANDIDATES, "exact_candidate_count_changed");
   assert.equal(TCGPLAYER_REVIEW_LEAD_ALIAS_PRODUCT_IDENTITIES_V1.length, EXPECTED_CANDIDATES, "registry_count_changed");
   assert.ok(candidates.every((row) => row.evidence_lane === "reviewed_product_identity_authority" &&
@@ -372,6 +373,12 @@ export async function buildReviewLeadAliasMappingAuthority(args) {
     execution_authorized:false};
   await writeFileExclusive(path.join(options.outDir,"receipt.json"),jsonBytes(receipt));
   return receipt;
+}
+
+export function selectReviewLeadAliasCandidatesV1(candidates) {
+  const productIds = new Set(TCGPLAYER_REVIEW_LEAD_ALIAS_PRODUCT_IDENTITIES_V1
+    .map((row) => row.source_product_id));
+  return candidates.filter((row) => productIds.has(Number(row.source_product_id)));
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {

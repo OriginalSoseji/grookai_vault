@@ -13,7 +13,7 @@ import { planTcgplayerExactMappingCandidateV1 } from
   "../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs";
 import { validateTcgplayerExactMappingCandidateForApplyV1 } from
   "../../backend/pricing/tcgplayer_market_exact_mapping_apply_policy_v1.mjs";
-import { assertReviewLeadAliasCandidateObservationScopeV1 } from
+import { assertReviewLeadAliasCandidateObservationScopeV1, selectReviewLeadAliasCandidatesV1 } from
   "../../scripts/audits/tcgplayer_review_lead_alias_mapping_authority_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -115,4 +115,16 @@ test("review-lead mapping authority is read-only and evidence-bound", () => {
   assert.match(AUTHORITY_SCRIPT, /active_truth_review, "verified"/);
   assert.match(AUTHORITY_SCRIPT, /freezeMasterMappingAuthority/);
   assert.doesNotMatch(AUTHORITY_SCRIPT, /\b(insert|update|delete)\s+(?:into|from|public\.)/i);
+});
+
+test("review-lead mapping authority selects its six products from a full planner output", () => {
+  const batchRows = TCGPLAYER_REVIEW_LEAD_ALIAS_PRODUCT_IDENTITIES_V1.map((row) => ({
+    source_product_id: row.source_product_id,
+  }));
+  const selected = selectReviewLeadAliasCandidatesV1([
+    { source_product_id: 999999 },
+    ...batchRows,
+    { source_product_id: 888888 },
+  ]);
+  assert.deepEqual(selected, batchRows);
 });
