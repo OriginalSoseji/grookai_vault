@@ -2,9 +2,11 @@
 
 ## Status
 
-The repository-scoped Ruflo integration is configured for review in PR #690.
-It does not change production, GitHub settings, user-level Codex configuration,
-or another worktree.
+The repository-scoped Ruflo integration merged through PR #690 as main commit
+`e5a51be3812da752715b6366db1ba006abae837d` on October 16, 2026. Post-merge
+readback confirmed the exact Codex registration and a live stdio MCP handshake
+with 46 advertised tools and zero forbidden tool prefixes. The integration does
+not change production, GitHub settings, or user-level Codex configuration.
 
 ## Boundary
 
@@ -57,10 +59,10 @@ codex mcp get ruflo --json
 codex mcp list
 ```
 
-Start a new Codex session after merging or switching to the candidate so the
-project configuration is reloaded. Ruflo is started by Codex on demand; do not
-start a background service. The first start may populate the normal user npm
-cache with the exact pinned package.
+Start a new Codex session after checking out a commit containing this
+configuration so the project configuration is loaded. Ruflo is started by Codex
+on demand; do not start a background service. The first start may populate the
+normal user npm cache with the exact pinned package.
 
 Expected direct readback:
 

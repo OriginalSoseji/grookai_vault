@@ -30,9 +30,11 @@ remain separate gates.
 
 ## Ruflo Codex integration — October 15, 2026
 
-Read `docs/ops/RUFLO_CODEX_INTEGRATION_20261015.md`. The repository candidate
-uses trusted-project `.codex/config.toml`, exact `ruflo@3.56.9`, child-process
-stdio, 120-second timeouts, and a 46-tool allowlist. It does not use the Ruflo
+Read `docs/ops/RUFLO_CODEX_INTEGRATION_20261015.md`. PR #690 merged the
+repository integration as main commit `e5a51be3812da752715b6366db1ba006abae837d`.
+It uses trusted-project `.codex/config.toml`, exact `ruflo@3.56.9`, child-process
+stdio, 120-second timeouts, and a 46-tool allowlist. Post-merge readback confirmed
+the exact registration and live MCP tool inventory. It does not use the Ruflo
 initializer or install a user-scoped Codex plugin. HTTP, WebSocket, Docker,
 daemon, terminal, GitHub, browser, federation, and managed-agent surfaces remain
 disabled. Re-review and re-probe the exact package before changing the pin or
