@@ -48,6 +48,11 @@ export async function GET(request: NextRequest) {
     if (error) return json({ error: "Card profitability could not load" }, 503);
     return json(data);
   }
+  if (action === "settings") {
+    const { data, error } = await context.client.rpc("inventory_profit_settings_read_v1");
+    if (error) return json({ error: "Profit settings could not load" }, 503);
+    return json(data);
+  }
   if (action === "report") {
     const { data, error } = await context.client.rpc("inventory_acquisition_batch_report_v1", {
       p_from: fromDate ? fromDate.toISOString() : null,
@@ -76,6 +81,21 @@ export async function POST(request: NextRequest) {
   if (!context) return json({ error: "Sign in required" }, 401);
   let body: any;
   try { body = await request.json(); } catch { return json({ error: "Invalid request" }, 400); }
+  if (body?.action === "settings") {
+    const incomeTaxBps = body.incomeTaxBps;
+    const salesTaxMode = body.salesTaxMode;
+    const salesTaxRateBps = body.salesTaxRateBps;
+    if (!Number.isInteger(incomeTaxBps) || incomeTaxBps < 0 || incomeTaxBps > 10000 || !["pass_through", "include_in_offer"].includes(salesTaxMode) || !Number.isInteger(salesTaxRateBps) || salesTaxRateBps < 0 || salesTaxRateBps > 10000) {
+      return json({ error: "Invalid profit settings" }, 400);
+    }
+    const { data, error } = await context.client.rpc("inventory_profit_settings_save_v1", {
+      p_income_tax_bps: incomeTaxBps,
+      p_sales_tax_mode: salesTaxMode,
+      p_sales_tax_rate_bps: salesTaxRateBps,
+    });
+    if (error) return json({ error: "Profit settings could not save" }, 503);
+    return json(data);
+  }
   if (!body || body.action !== "batch" || !uuid(body.id) || !Array.isArray(body.lines)) {
     return json({ error: "Invalid acquisition batch" }, 400);
   }
