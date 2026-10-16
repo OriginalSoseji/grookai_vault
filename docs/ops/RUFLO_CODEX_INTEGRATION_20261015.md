@@ -2,11 +2,9 @@
 
 ## Status
 
-The repository-scoped Ruflo candidate is configured on branch
-`chore/ruflo-codex-integration-20261015`, based on
-`81ae0d7a35ca8db40454806e7519ac5e252c08ea`. It is a local candidate until its
-exact commit is reviewed and merged. It does not change production, GitHub
-settings, user-level Codex configuration, or another worktree.
+The repository-scoped Ruflo integration is configured for review in PR #690.
+It does not change production, GitHub settings, user-level Codex configuration,
+or another worktree.
 
 ## Boundary
 
@@ -74,8 +72,10 @@ Expected direct readback:
 - zero `terminal_*`, `github_*`, `browser_*`, `federation_*`, or
   `managed_agent_*` tools.
 
-If npm reports `UNABLE_TO_VERIFY_LEAF_SIGNATURE` on Windows, retain
-`NODE_OPTIONS=--use-system-ca`; never disable TLS verification.
+`NODE_USE_SYSTEM_CA=1` enables the Windows system CA store on Node 22.19 and
+newer. Node 20 ignores this environment variable and starts normally. If npm
+still reports `UNABLE_TO_VERIFY_LEAF_SIGNATURE`, configure the workstation's
+npm/Node certificate trust explicitly; never disable TLS verification.
 
 ## Change procedure
 

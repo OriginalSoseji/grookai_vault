@@ -24,8 +24,8 @@ startup_timeout_sec = 120
 tool_timeout_sec = 120
 
 [mcp_servers.ruflo.env]
-# This workstation's npm path requires the Windows system CA store. The flag is
-# harmless on Node 20+ hosts that already trust the registry certificate.
-NODE_OPTIONS = "--use-system-ca"
+# Node 22.19+ uses the Windows system CA store when available. Older supported
+# Node releases ignore this environment variable instead of rejecting startup.
+NODE_USE_SYSTEM_CA = "1"
 npm_config_update_notifier = "false"
 RUFLO_NO_SKILLS_SH = "1"

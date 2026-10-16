@@ -18,7 +18,8 @@ test("Ruflo remains pinned to a project-scoped stdio MCP server", () => {
   assert.doesNotMatch(config, /"(?:http|websocket|daemon)"/i);
   assert.match(config, /^startup_timeout_sec = 120$/m);
   assert.match(config, /^tool_timeout_sec = 120$/m);
-  assert.match(config, /^NODE_OPTIONS = "--use-system-ca"$/m);
+  assert.match(config, /^NODE_USE_SYSTEM_CA = "1"$/m);
+  assert.doesNotMatch(config, /^NODE_OPTIONS\s*=/m);
 });
 
 test("Ruflo tool advertisement excludes broad external and shell surfaces", () => {
