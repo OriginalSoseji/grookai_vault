@@ -1,5 +1,18 @@
 # Grookai Agent Entry Point
 
+## MEP catalog-backed pricing repair — October 16
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_154_MEP_CATALOG_BACKFILL.md`.
+The first missing-parent batch is exactly MEP 072, 073, 081, and 088: four
+parents, four active identities, four Holo children, and four exact TCGPlayer
+mappings with accepted mapping methods and two-source Master Index authority.
+The guarded production rehearsal passed and rolled all 16 attempted rows back
+with identical snapshots. Merge the frozen package,
+wait for the active full-market pricing publication and its readback, then use
+the clean exact-commit apply gate and independent catalog readback. Catalog
+insertion does not publish prices. Keep Zarude 088 Pokemon Center Exclusive,
+MEP 092-110 one-source rows, and all variant collisions held.
+
 ## Review-lead pricing aliases — October 16
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_153_REVIEW_LEAD_ALIAS_BATCH.md`.

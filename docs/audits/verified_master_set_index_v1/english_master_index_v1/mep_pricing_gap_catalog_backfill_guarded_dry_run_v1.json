@@ -1,0 +1,400 @@
+{
+  "generated_at": "2026-10-16T20:55:21.961Z",
+  "version": "mep_pricing_gap_catalog_backfill_guarded_dry_run_v1",
+  "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+  "package_fingerprint_sha256": "d11d0f2b4dc62f9806ccc2abb19ddb733889eac0b37a76109d217bb9d50018e3",
+  "db_writes_performed": false,
+  "migrations_created": false,
+  "scope": {
+    "parent_rows": [
+      {
+        "card_print_id": "b51a0069-2f8c-4c6d-bae7-8ebdc34339df",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "live_set_code": "mep",
+        "set_key": "mep",
+        "card_number": "072",
+        "number_plain": "072",
+        "card_name": "Mega Clefable ex",
+        "rarity": "Promo",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-072",
+        "external_ids": {
+          "tcgplayer": "696607"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "evidence_note": "Exact TCGPlayer MEP product 696607 supplies the Holofoil finish; the verified English Master Index independently fixes Mega Clefable ex at MEP 072.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/696607",
+            "https://api.tcgdex.net/v2/en/cards/mep-072",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        },
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "696607",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/696607"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/696607",
+          "https://api.tcgdex.net/v2/en/cards/mep-072",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ]
+      },
+      {
+        "card_print_id": "9e37deec-786d-4f22-bf63-28350e6dc523",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "live_set_code": "mep",
+        "set_key": "mep",
+        "card_number": "073",
+        "number_plain": "073",
+        "card_name": "Mega Gengar ex",
+        "rarity": "Promo",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-073",
+        "external_ids": {
+          "tcgplayer": "696608"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "evidence_note": "Exact TCGPlayer MEP product 696608 supplies the Holofoil finish; the verified English Master Index independently fixes Mega Gengar ex at MEP 073.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/696608",
+            "https://api.tcgdex.net/v2/en/cards/mep-073",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        },
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "696608",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/696608"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/696608",
+          "https://api.tcgdex.net/v2/en/cards/mep-073",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ]
+      },
+      {
+        "card_print_id": "c35b8cee-d244-401f-82a4-40070d77f72e",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "live_set_code": "mep",
+        "set_key": "mep",
+        "card_number": "081",
+        "number_plain": "081",
+        "card_name": "Mega Greninja ex",
+        "rarity": "Promo",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-081",
+        "external_ids": {
+          "tcgplayer": "704879"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "evidence_note": "Exact TCGPlayer MEP product 704879 supplies the Holofoil finish; the verified English Master Index independently fixes Mega Greninja ex at MEP 081.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/704879",
+            "https://api.tcgdex.net/v2/en/cards/mep-081",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        },
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "704879",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/704879"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/704879",
+          "https://api.tcgdex.net/v2/en/cards/mep-081",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ]
+      },
+      {
+        "card_print_id": "6a9d3fe6-d3b2-4f79-9eb2-b7b06eb68699",
+        "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+        "live_set_code": "mep",
+        "set_key": "mep",
+        "card_number": "088",
+        "number_plain": "088",
+        "card_name": "Zarude",
+        "rarity": "Promo",
+        "variant_key": "",
+        "printed_identity_modifier": null,
+        "gv_id": "GV-PK-MEP-088",
+        "external_ids": {
+          "tcgplayer": "706193"
+        },
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "evidence_note": "Exact TCGPlayer MEP product 706193 supplies the Holofoil finish; the verified English Master Index independently fixes Zarude at MEP 088.",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/706193",
+            "https://api.tcgdex.net/v2/en/cards/mep-088",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        },
+        "mapping": {
+          "source": "tcgplayer",
+          "external_id": "706193",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/706193"
+        },
+        "evidence_urls": [
+          "https://www.tcgplayer.com/product/706193",
+          "https://api.tcgdex.net/v2/en/cards/mep-088",
+          "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+        ]
+      }
+    ],
+    "identity_rows": [
+      {
+        "card_print_id": "b51a0069-2f8c-4c6d-bae7-8ebdc34339df",
+        "projected": {
+          "status": "ready",
+          "printed_number": "072",
+          "taxonomy_class": "SUPPORTED_CANON_DOMAIN",
+          "identity_domain": "pokemon_eng_standard",
+          "source_name_raw": null,
+          "identity_payload": {
+            "printed_total": 33,
+            "printed_set_abbrev": "MEP",
+            "variant_key_current": "base"
+          },
+          "identity_key_hash": "b66309b4742a8a5ede1241bf9563df2a6cf02a91510442ccb2110dd844c7fcfe",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "normalized_printed_name": "mega clefable ex"
+        }
+      },
+      {
+        "card_print_id": "9e37deec-786d-4f22-bf63-28350e6dc523",
+        "projected": {
+          "status": "ready",
+          "printed_number": "073",
+          "taxonomy_class": "SUPPORTED_CANON_DOMAIN",
+          "identity_domain": "pokemon_eng_standard",
+          "source_name_raw": null,
+          "identity_payload": {
+            "printed_total": 33,
+            "printed_set_abbrev": "MEP",
+            "variant_key_current": "base"
+          },
+          "identity_key_hash": "a98b4c10528352910234c4e35408c8ee2ac17265f44b0a2485d2067cc48d2cc4",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "normalized_printed_name": "mega gengar ex"
+        }
+      },
+      {
+        "card_print_id": "c35b8cee-d244-401f-82a4-40070d77f72e",
+        "projected": {
+          "status": "ready",
+          "printed_number": "081",
+          "taxonomy_class": "SUPPORTED_CANON_DOMAIN",
+          "identity_domain": "pokemon_eng_standard",
+          "source_name_raw": null,
+          "identity_payload": {
+            "printed_total": 33,
+            "printed_set_abbrev": "MEP",
+            "variant_key_current": "base"
+          },
+          "identity_key_hash": "20fc997938a4c2e7a8205368a01b8795a85e26acb16a65b055cee497a398cfad",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "normalized_printed_name": "mega greninja ex"
+        }
+      },
+      {
+        "card_print_id": "6a9d3fe6-d3b2-4f79-9eb2-b7b06eb68699",
+        "projected": {
+          "status": "ready",
+          "printed_number": "088",
+          "taxonomy_class": "SUPPORTED_CANON_DOMAIN",
+          "identity_domain": "pokemon_eng_standard",
+          "source_name_raw": null,
+          "identity_payload": {
+            "printed_total": 33,
+            "printed_set_abbrev": "MEP",
+            "variant_key_current": "base"
+          },
+          "identity_key_hash": "cad6389a2b3904fa46fc3bc185327de51d84416d1a2fce0aa09851fae2364537",
+          "set_code_identity": "mep",
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "normalized_printed_name": "zarude"
+        }
+      }
+    ],
+    "child_rows": [
+      {
+        "card_printing_id": "f788ae03-6a8e-446d-ba85-2297d9d6c7c0",
+        "card_print_id": "b51a0069-2f8c-4c6d-bae7-8ebdc34339df",
+        "set_key": "mep",
+        "card_number": "072",
+        "card_name": "Mega Clefable ex",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-MEP-072-HOLO",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:072:holo",
+        "created_by": "mep_pricing_gap_catalog_backfill_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "b93fed6a-7dce-44af-ace8-652b000364e7",
+        "card_print_id": "9e37deec-786d-4f22-bf63-28350e6dc523",
+        "set_key": "mep",
+        "card_number": "073",
+        "card_name": "Mega Gengar ex",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-MEP-073-HOLO",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:073:holo",
+        "created_by": "mep_pricing_gap_catalog_backfill_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "f6aaf813-8176-40f0-9e36-e77e580c02fb",
+        "card_print_id": "c35b8cee-d244-401f-82a4-40070d77f72e",
+        "set_key": "mep",
+        "card_number": "081",
+        "card_name": "Mega Greninja ex",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-MEP-081-HOLO",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:081:holo",
+        "created_by": "mep_pricing_gap_catalog_backfill_guarded_dry_run_v1"
+      },
+      {
+        "card_printing_id": "1a114f0e-4ac6-40b2-9420-2d393356d98f",
+        "card_print_id": "6a9d3fe6-d3b2-4f79-9eb2-b7b06eb68699",
+        "set_key": "mep",
+        "card_number": "088",
+        "card_name": "Zarude",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-MEP-088-HOLO",
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "mep:088:holo",
+        "created_by": "mep_pricing_gap_catalog_backfill_guarded_dry_run_v1"
+      }
+    ],
+    "external_mapping_rows": [
+      {
+        "source": "tcgplayer",
+        "external_id": "696607",
+        "card_print_id": "b51a0069-2f8c-4c6d-bae7-8ebdc34339df",
+        "meta": {
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "set_key": "mep",
+          "card_number": "072",
+          "card_name": "Mega Clefable ex",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/696607",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/696607",
+            "https://api.tcgdex.net/v2/en/cards/mep-072",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "696608",
+        "card_print_id": "9e37deec-786d-4f22-bf63-28350e6dc523",
+        "meta": {
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "set_key": "mep",
+          "card_number": "073",
+          "card_name": "Mega Gengar ex",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/696608",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/696608",
+            "https://api.tcgdex.net/v2/en/cards/mep-073",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "704879",
+        "card_print_id": "c35b8cee-d244-401f-82a4-40070d77f72e",
+        "meta": {
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "set_key": "mep",
+          "card_number": "081",
+          "card_name": "Mega Greninja ex",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/704879",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/704879",
+            "https://api.tcgdex.net/v2/en/cards/mep-081",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      },
+      {
+        "source": "tcgplayer",
+        "external_id": "706193",
+        "card_print_id": "6a9d3fe6-d3b2-4f79-9eb2-b7b06eb68699",
+        "meta": {
+          "package_id": "MEP-PRICING-GAP-CATALOG-BACKFILL-20261016",
+          "set_key": "mep",
+          "card_number": "088",
+          "card_name": "Zarude",
+          "mapping_method": "verified_master_set_index_v1",
+          "source_url": "https://www.tcgplayer.com/product/706193",
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/706193",
+            "https://api.tcgdex.net/v2/en/cards/mep-088",
+            "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+          ]
+        }
+      }
+    ]
+  },
+  "execution": {
+    "status": "passed_rolled_back",
+    "fingerprint": "d11d0f2b4dc62f9806ccc2abb19ddb733889eac0b37a76109d217bb9d50018e3",
+    "guard": {
+      "parent_rows": 4,
+      "child_rows": 4,
+      "identity_rows": 4,
+      "mapping_rows": 4,
+      "inactive_finishes": 0,
+      "parent_collisions": 0,
+      "child_collisions": 0,
+      "invalid_identity_projections": 0,
+      "identity_parent_collisions": 0,
+      "identity_hash_collisions": 0,
+      "duplicate_identity_hashes": 0,
+      "missing_mapping_methods": 0,
+      "mapping_collisions": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-10-16T20:55:17.968Z",
+      "rows": [],
+      "counts": {},
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "after_snapshot": {
+      "captured_at": "2026-10-16T20:55:21.961Z",
+      "rows": [],
+      "counts": {},
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "attempted": {
+      "parents": 4,
+      "identities": 4,
+      "children": 4,
+      "mappings": 4
+    },
+    "stop_findings": []
+  }
+}
