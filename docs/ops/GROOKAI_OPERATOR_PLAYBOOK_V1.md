@@ -1,5 +1,13 @@
 # Grookai Operator Playbook V1
 
+## Operations agent schedule health — October 16, 2026
+
+Founder Operations treats heartbeat age as a liveness signal only for periodic
+`cron`, `timer`, and `continuous` agents. Idle `event` and `manual` agents do
+not become stale merely because no trigger occurred. The maintenance pass
+recovers legacy stale incidents for those nonperiodic agents. A failed or
+running event-triggered run still surfaces through its latest run status.
+
 ## Residual reviewed alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
