@@ -61,6 +61,16 @@ Production order is 30 verified-visible truth reviews, independent readback,
 pricing shadow and publication. Preserve the explicit Victory Cup, duplicate
 parent, multiple-child, missing-child, and incomplete-evidence holds.
 
+## Ruflo Codex integration — October 15
+
+Read `docs/ops/RUFLO_CODEX_INTEGRATION_20261015.md`. Ruflo is configured only
+through the trusted-project `.codex/config.toml`, pinned to `3.56.9`, and run as
+a child stdio MCP server with a bounded tool allowlist. Do not run the upstream
+initializer, replace the version with `latest`, install its user-scoped Codex
+plugin, or enable HTTP, WebSocket, Docker, daemon, terminal, GitHub, browser,
+federation, or managed-agent surfaces without a new review. Existing Grookai
+instructions and authorization boundaries remain authoritative.
+
 ## Energy-name exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.

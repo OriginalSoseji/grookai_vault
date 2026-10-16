@@ -1,0 +1,31 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+# Project-scoped Ruflo integration. Keep the package version pinned and the
+# transport on stdio; do not replace this with @latest, HTTP, WebSocket, or a
+# daemon without a new security review.
+[mcp_servers.ruflo]
+command = "cmd.exe"
+args = [
+  "/d",
+  "/s",
+  "/c",
+  "npx",
+  "--yes",
+  "ruflo@3.56.9",
+  "mcp",
+  "start",
+  "--transport",
+  "stdio",
+  "--tools",
+  "agent_spawn,agent_execute,agent_status,agent_list,agent_health,swarm,task,memory_store,memory_retrieve,memory_search,memory_list,memory_stats,coordination,progress,guidance,workflow_validate,workflow_status,workflow_list",
+]
+enabled = true
+startup_timeout_sec = 120
+tool_timeout_sec = 120
+
+[mcp_servers.ruflo.env]
+# Node 22.19+ uses the Windows system CA store when available. Older supported
+# Node releases ignore this environment variable instead of rejecting startup.
+NODE_USE_SYSTEM_CA = "1"
+npm_config_update_notifier = "false"
+RUFLO_NO_SKILLS_SH = "1"

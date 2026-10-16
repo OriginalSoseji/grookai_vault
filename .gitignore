@@ -82,6 +82,10 @@ CON
 # Local logs for scheduled tasks
 logs/
 
+# Ruflo/Claude Flow runtime state (project configuration remains tracked)
+.claude-flow/data/
+.claude-flow/logs/
+
 # Track VS Code Token Doctor task
 !.vscode/tasks.json
 !.vscode/
