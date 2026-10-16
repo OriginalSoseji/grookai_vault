@@ -9,7 +9,7 @@ import type { SalesTaxMode } from "@/lib/sales/cardProfit.mjs";
 import { readIncomeTaxBps, writeIncomeTaxBps } from "@/lib/sales/cardProfitSettings.mjs";
 import s from "./SalesDesk.module.css";
 
-type CardRow = { instanceId: string; gvviId: string | null; name: string; setCode: string; number: string; condition: string; acquisitionDate: string; acquisitionCostMinor: number | null; saleAt: string | null; saleMinor: number | null; allocatedSalesTaxMinor: number; sellingFeeMinor: number; netRevenueMinor: number | null; grossProfitMinor: number | null; incomeTaxMinor: number | null; profitAfterTaxMinor: number | null; marketPriceMinor: number | null; estimatedGrossProfitMinor: number | null; status: "realized" | "sold_unknown_cost" | "unsold" };
+type CardRow = { instanceId: string; gvviId: string | null; name: string; setCode: string; number: string; condition: string; acquisitionDate: string; acquisitionCostMinor: number | null; saleAt: string | null; saleMinor: number | null; allocatedSalesTaxMinor: number; sellingFeeMinor: number | null; netRevenueMinor: number | null; grossProfitMinor: number | null; incomeTaxMinor: number | null; profitAfterTaxMinor: number | null; marketPriceMinor: number | null; estimatedGrossProfitMinor: number | null; status: "realized" | "sold_unknown_cost" | "unsold" };
 type Totals = { realizedRevenueMinor: number; realizedCogMinor: number; sellingFeeMinor: number; grossProfitMinor: number; incomeTaxMinor: number; profitAfterTaxMinor: number; knownSoldCount: number; unknownCostCount: number; unsoldCount: number };
 
 const n = (value: unknown) => typeof value === "number" ? value : Number(value ?? 0);
@@ -49,7 +49,7 @@ export default function CardProfitabilityManager() {
       const feeRate = Number(sellingFeeRate), feeBps = feeRate * 100, feeFixedMinor = minor(sellingFeeFixed);
       if (!Number.isInteger(feeBps) || feeBps < 0 || feeBps > 10000 || feeFixedMinor == null || feeFixedMinor < 0 || feeFixedMinor > 1000000) throw Error("Selling fees must be a percentage from 0% to 100% and a fixed fee from $0.00 to $10,000.00.");
       const items: CardRow[] = (data.items ?? []).map((row: CardRow) => {
-        const sellingFeeMinor = row.saleMinor == null ? 0 : Math.round(row.saleMinor * feeBps / 10000) + feeFixedMinor;
+        const sellingFeeMinor = row.saleMinor == null ? 0 : row.sellingFeeMinor == null ? Math.round(row.saleMinor * feeBps / 10000) + feeFixedMinor : row.sellingFeeMinor;
         const netRevenueMinor = row.netRevenueMinor == null ? null : row.netRevenueMinor - sellingFeeMinor;
         const grossProfitMinor = netRevenueMinor != null && row.acquisitionCostMinor != null ? netRevenueMinor - row.acquisitionCostMinor : null;
         const incomeTaxBps = Math.round(Number(tax) * 100);
@@ -57,7 +57,7 @@ export default function CardProfitabilityManager() {
         return { ...row, sellingFeeMinor, netRevenueMinor, grossProfitMinor, incomeTaxMinor, profitAfterTaxMinor: grossProfitMinor == null ? null : grossProfitMinor - (incomeTaxMinor ?? 0) };
       });
       const realized = items.filter(row => row.status === "realized");
-      setRows(items); setTotals({ realizedRevenueMinor: realized.reduce((sum, row) => sum + (row.netRevenueMinor ?? 0), 0), realizedCogMinor: realized.reduce((sum, row) => sum + (row.acquisitionCostMinor ?? 0), 0), sellingFeeMinor: realized.reduce((sum, row) => sum + row.sellingFeeMinor, 0), grossProfitMinor: realized.reduce((sum, row) => sum + (row.grossProfitMinor ?? 0), 0), incomeTaxMinor: realized.reduce((sum, row) => sum + (row.incomeTaxMinor ?? 0), 0), profitAfterTaxMinor: realized.reduce((sum, row) => sum + (row.profitAfterTaxMinor ?? 0), 0), knownSoldCount: realized.length, unknownCostCount: items.filter(row => row.status === "sold_unknown_cost").length, unsoldCount: items.filter(row => row.status === "unsold").length });
+      setRows(items); setTotals({ realizedRevenueMinor: realized.reduce((sum, row) => sum + (row.netRevenueMinor ?? 0), 0), realizedCogMinor: realized.reduce((sum, row) => sum + (row.acquisitionCostMinor ?? 0), 0), sellingFeeMinor: realized.reduce((sum, row) => sum + (row.sellingFeeMinor ?? 0), 0), grossProfitMinor: realized.reduce((sum, row) => sum + (row.grossProfitMinor ?? 0), 0), incomeTaxMinor: realized.reduce((sum, row) => sum + (row.incomeTaxMinor ?? 0), 0), profitAfterTaxMinor: realized.reduce((sum, row) => sum + (row.profitAfterTaxMinor ?? 0), 0), knownSoldCount: realized.length, unknownCostCount: items.filter(row => row.status === "sold_unknown_cost").length, unsoldCount: items.filter(row => row.status === "unsold").length });
     } catch (cause) { setError(cause instanceof Error ? cause.message : "Card profitability could not load"); }
     finally { setLoading(false); }
   }, [dateBasis, from, sellingFeeFixed, sellingFeeRate, tax, taxMode, to]);
