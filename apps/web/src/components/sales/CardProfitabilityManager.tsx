@@ -53,7 +53,7 @@ export default function CardProfitabilityManager() {
         const grossProfitMinor = netRevenueMinor != null && row.acquisitionCostMinor != null ? netRevenueMinor - row.acquisitionCostMinor : null;
         const incomeTaxBps = Math.round(Number(tax) * 100);
         const incomeTaxMinor = grossProfitMinor == null ? null : grossProfitMinor > 0 ? Math.round(grossProfitMinor * incomeTaxBps / 10000) : 0;
-        return { ...row, sellingFeeMinor, netRevenueMinor, grossProfitMinor, incomeTaxMinor, profitAfterTaxMinor: grossProfitMinor == null ? null : grossProfitMinor - incomeTaxMinor };
+        return { ...row, sellingFeeMinor, netRevenueMinor, grossProfitMinor, incomeTaxMinor, profitAfterTaxMinor: grossProfitMinor == null ? null : grossProfitMinor - (incomeTaxMinor ?? 0) };
       });
       const realized = items.filter(row => row.status === "realized");
       setRows(items); setTotals({ realizedRevenueMinor: realized.reduce((sum, row) => sum + (row.netRevenueMinor ?? 0), 0), realizedCogMinor: realized.reduce((sum, row) => sum + (row.acquisitionCostMinor ?? 0), 0), sellingFeeMinor: realized.reduce((sum, row) => sum + row.sellingFeeMinor, 0), grossProfitMinor: realized.reduce((sum, row) => sum + (row.grossProfitMinor ?? 0), 0), incomeTaxMinor: realized.reduce((sum, row) => sum + (row.incomeTaxMinor ?? 0), 0), profitAfterTaxMinor: realized.reduce((sum, row) => sum + (row.profitAfterTaxMinor ?? 0), 0), knownSoldCount: realized.length, unknownCostCount: items.filter(row => row.status === "sold_unknown_cost").length, unsoldCount: items.filter(row => row.status === "unsold").length });
