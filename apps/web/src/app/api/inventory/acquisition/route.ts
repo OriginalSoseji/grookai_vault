@@ -35,12 +35,14 @@ export async function GET(request: NextRequest) {
   if (action === "card-pnl") {
     const incomeTaxBps = Number(params.get("incomeTaxBps") ?? "2500");
     const salesTaxMode = params.get("salesTaxMode") ?? "pass_through";
-    if (!Number.isInteger(incomeTaxBps) || incomeTaxBps < 0 || incomeTaxBps > 10000 || !["pass_through", "include_in_offer"].includes(salesTaxMode)) {
+    const dateBasis = params.get("dateBasis") ?? "acquired";
+    if (!Number.isInteger(incomeTaxBps) || incomeTaxBps < 0 || incomeTaxBps > 10000 || !["pass_through", "include_in_offer"].includes(salesTaxMode) || !["acquired", "sold"].includes(dateBasis)) {
       return json({ error: "Invalid card profitability filter" }, 400);
     }
-    const { data, error } = await context.client.rpc("inventory_card_profitability_read_v1", {
+    const { data, error } = await context.client.rpc("inventory_card_profitability_read_v2", {
       p_from: fromDate ? fromDate.toISOString() : null,
       p_to: toDate ? toDate.toISOString() : null,
+      p_date_basis: dateBasis,
       p_income_tax_bps: incomeTaxBps,
       p_sales_tax_mode: salesTaxMode,
       p_limit: limit,
