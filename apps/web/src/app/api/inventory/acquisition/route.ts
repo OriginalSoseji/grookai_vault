@@ -84,8 +84,12 @@ export async function POST(request: NextRequest) {
   let body: any;
   try { body = await request.json(); } catch { return json({ error: "Invalid request" }, 400); }
   if (body?.action === "backfill-selling-fee") {
-    if (!uuid(body.requestId)) return json({ error: "A valid sale request is required" }, 400);
-    const { data, error } = await context.client.rpc("inventory_sale_fee_snapshot_save_v1", { p_request_id: body.requestId });
+    const sellingFeeBps = body.sellingFeeBps;
+    const sellingFeeFixedMinor = body.sellingFeeFixedMinor;
+    if (!uuid(body.requestId) || !Number.isInteger(sellingFeeBps) || sellingFeeBps < 0 || sellingFeeBps > 10000 || !Number.isSafeInteger(sellingFeeFixedMinor) || sellingFeeFixedMinor < 0 || sellingFeeFixedMinor > 1000000) {
+      return json({ error: "A valid sale request and fee assumption are required" }, 400);
+    }
+    const { data, error } = await context.client.rpc("inventory_sale_fee_snapshot_backfill_v1", { p_request_id: body.requestId, p_selling_fee_bps: sellingFeeBps, p_selling_fee_fixed_minor: sellingFeeFixedMinor });
     if (error) return json({ error: "Selling fee snapshot could not be saved" }, 503);
     return json(data);
   }

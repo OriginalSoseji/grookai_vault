@@ -64,9 +64,15 @@ export default function CardProfitabilityManager() {
   useEffect(() => { void load(); }, [load]);
   async function backfillFee(row: CardRow) {
     if (!row.saleRequestId || row.sellingFeeRecorded) return;
+    const sellingFeeBps = Number(sellingFeeRate) * 100;
+    const sellingFeeFixedMinor = minor(sellingFeeFixed);
+    if (!Number.isInteger(sellingFeeBps) || sellingFeeBps < 0 || sellingFeeBps > 10000 || sellingFeeFixedMinor == null || sellingFeeFixedMinor < 0 || sellingFeeFixedMinor > 1000000) {
+      setError("Selling fee assumption must be valid before it can be locked.");
+      return;
+    }
     setBackfilling(row.instanceId); setError("");
     try {
-      const response = await fetch("/api/inventory/acquisition", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ action: "backfill-selling-fee", requestId: row.saleRequestId }) });
+      const response = await fetch("/api/inventory/acquisition", { method: "POST", headers: { "Content-Type": "application/json" }, credentials: "same-origin", body: JSON.stringify({ action: "backfill-selling-fee", requestId: row.saleRequestId, sellingFeeBps, sellingFeeFixedMinor }) });
       const data = await response.json();
       if (!response.ok) throw Error(data.error ?? "Selling fee snapshot could not be saved");
       await load();
