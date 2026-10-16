@@ -13,6 +13,7 @@ export function cardProfit(input: Readonly<{
     incomeTaxBps?: number;
     salesTaxMinor?: number;
     salesTaxMode?: SalesTaxMode;
+    sellingFeeMinor?: number;
 }>): CardProfit | null;
 
 export function taxInclusivePortion(totalMinor: number, ratePercent: number): number;
