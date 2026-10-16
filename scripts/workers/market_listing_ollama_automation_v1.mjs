@@ -50,10 +50,33 @@ function sqlLiteral(value) {
 }
 
 function parseJsonFromOutput(output) {
-  const first = output.indexOf("{");
-  const last = output.lastIndexOf("}");
-  if (first < 0 || last <= first) throw new Error("Unable to parse JSON command output");
-  return JSON.parse(output.slice(first, last + 1));
+  for (let start = 0; start < output.length; start += 1) {
+    if (output[start] !== "{") continue;
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+    for (let index = start; index < output.length; index += 1) {
+      const character = output[index];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (character === "\\") escaped = true;
+        else if (character === '"') inString = false;
+        continue;
+      }
+      if (character === '"') {
+        inString = true;
+      } else if (character === "{") {
+        depth += 1;
+      } else if (character === "}" && --depth === 0) {
+        try {
+          return JSON.parse(output.slice(start, index + 1));
+        } catch {
+          break;
+        }
+      }
+    }
+  }
+  throw new Error("Unable to parse JSON command output");
 }
 
 function runNode(script, args = []) {
@@ -65,7 +88,7 @@ function runNode(script, args = []) {
 }
 
 function runSql(sql) {
-  const output = execFileSync("supabase", ["db", "query", sql, "--linked"], {
+  const output = execFileSync("supabase", ["db", "query", sql, "--linked", "--output", "json"], {
     cwd: REPO_ROOT,
     encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024,
