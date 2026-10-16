@@ -49,7 +49,6 @@ export default function InventoryAcquisitionDesk({ owner }: { owner: string }) {
     if (lines.length >= 50) { setError("A purchase can contain up to 50 exact copies."); return; }
     const printing = selected.printings?.find(item => item.id === printingId);
     if (!printing) { setError("That printing is no longer available. Search again."); return; }
-    if (lines.some(line => line.cardId === selected.id && line.printingId === printingId && line.condition === condition)) { setError("That exact card, printing, and condition is already in this purchase."); return; }
     setLines(current => [...current, { id: crypto.randomUUID(), cardId: selected.id, printingId, description: `${selected.name} · ${printing.printing_gv_id} · ${condition}`, condition, image: selected.image, referenceMinor: null, allocatedMinor: 0 }]);
     setSelected(null);
   }
