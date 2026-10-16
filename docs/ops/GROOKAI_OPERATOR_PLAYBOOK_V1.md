@@ -1,5 +1,15 @@
 # Grookai Operator Playbook V1
 
+## Review-lead pricing alias batch — October 16, 2026
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_153_REVIEW_LEAD_ALIAS_BATCH.md`.
+The bounded registry freezes six source products to six distinct parents and
+seven exact children. Preserve Fairy Charm's two existing verified reviews and
+insert only the five missing reviews. World Championship Paradise Resort rows
+bind only to their exact numbered Normal children; Staff, winner, stamped, and
+other colliding variants remain outside this batch. Mapping and price
+publication stay separate, and null source prices must remain null.
+
 ## Operations agent schedule health — October 16, 2026
 
 Founder Operations treats heartbeat age as a liveness signal only for periodic

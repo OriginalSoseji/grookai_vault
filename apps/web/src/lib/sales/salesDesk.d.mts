@@ -6,6 +6,7 @@ export type SaleLine = {
     quantity: number;
     unitMinor: number;
     askingMinor?: number | null;
+    acquisitionCostMinor?: number | null;
     image?: string | null;
 };
 export type TradeLine = {

@@ -76,6 +76,11 @@ import {
   reviewedTcgplayerMasterEvidenceAliasProductIdentityV1,
 } from "./tcgplayer_master_evidence_alias_product_identity_authority_v1.mjs";
 import {
+  matchesReviewedTcgplayerReviewLeadAliasProductTargetV1,
+  reviewedTcgplayerReviewLeadAliasProductIdentityByIdV1,
+  reviewedTcgplayerReviewLeadAliasProductIdentityV1,
+} from "./tcgplayer_review_lead_alias_product_identity_authority_v1.mjs";
+import {
   matchesReviewedTcgplayerWcdTeamRushdownProductTargetV1,
   reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1,
   reviewedTcgplayerWcdTeamRushdownProductIdentityV1,
@@ -116,6 +121,7 @@ function reviewedProductIdentityById(sourceProductId) {
     reviewedTcgplayerEnergyAliasProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerResidualAliasProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerMasterEvidenceAliasProductIdentityByIdV1(sourceProductId) ??
+    reviewedTcgplayerReviewLeadAliasProductIdentityByIdV1(sourceProductId) ??
     reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1(sourceProductId);
 }
 
@@ -134,6 +140,7 @@ function reviewedProductIdentity(source) {
     reviewedTcgplayerEnergyAliasProductIdentityV1(source) ??
     reviewedTcgplayerResidualAliasProductIdentityV1(source) ??
     reviewedTcgplayerMasterEvidenceAliasProductIdentityV1(source) ??
+    reviewedTcgplayerReviewLeadAliasProductIdentityV1(source) ??
     reviewedTcgplayerWcdTeamRushdownProductIdentityV1(source);
 }
 
@@ -152,6 +159,7 @@ function matchesReviewedProductTarget(source, target) {
     matchesReviewedTcgplayerEnergyAliasProductTargetV1(source, target) ||
     matchesReviewedTcgplayerResidualAliasProductTargetV1(source, target) ||
     matchesReviewedTcgplayerMasterEvidenceAliasProductTargetV1(source, target) ||
+    matchesReviewedTcgplayerReviewLeadAliasProductTargetV1(source, target) ||
     matchesReviewedTcgplayerWcdTeamRushdownProductTargetV1(source, target);
 }
 

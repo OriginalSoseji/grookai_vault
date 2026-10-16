@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## Review-lead pricing aliases — October 16
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_153_REVIEW_LEAD_ALIAS_BATCH.md`.
+The next bounded batch contains six exact TCGPlayer products, six parents, and
+seven printings across `ex15`, `smp`, `sm10`, and `svp`. Five printings need a
+new verified-visible truth review; the two Fairy Charm printings must retain
+their existing reviews. Keep Pikachu 225 and all documented promo, award,
+edition, and duplicate-parent collisions held. Production order is truth-review
+dry-run/apply/readback, exact mapping authority and apply/readback, then a later
+fresh full-scope pricing shadow and guarded publication.
+
 ## Operations agent schedule health — October 16
 
 Read `docs/checkpoints/OPERATIONS_AGENT_SCHEDULE_HEALTH_20261016.md`. Heartbeat
