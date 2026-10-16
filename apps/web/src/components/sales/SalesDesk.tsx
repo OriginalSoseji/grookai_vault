@@ -92,6 +92,13 @@ export default function SalesDesk() {
     }, []);
     const draft = journal.drafts.find(d => d.id === journal.active) ?? null, locked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true;
     const balance = draft ? totals(draft) : null;
+    const dealPnl = draft && balance ? draft.items.reduce((summary, line) => {
+        const taxBps = Number(incomeTaxRate) * 100;
+        if (!line.instanceId || line.acquisitionCostMinor == null || !Number.isInteger(taxBps) || taxBps < 0 || taxBps > 10000) return summary;
+        const allocatedSalesTax = salesTaxMode === 'include_in_offer' && balance.subtotal ? Math.round(draft.taxMinor * line.unitMinor / balance.subtotal) : 0;
+        const pnl = cardProfit({ saleMinor: line.unitMinor, costMinor: line.acquisitionCostMinor, incomeTaxBps: taxBps, salesTaxMode, salesTaxMinor: allocatedSalesTax });
+        return pnl ? { known: summary.known + 1, cog: summary.cog + line.acquisitionCostMinor, gross: summary.gross + pnl.grossProfitMinor, tax: summary.tax + pnl.incomeTaxMinor, after: summary.after + pnl.profitAfterTaxMinor } : summary;
+    }, { known: 0, cog: 0, gross: 0, tax: 0, after: 0 }) : null;
     const searchKey = JSON.stringify([query, game, scope, intent, revision]), stale = resultKey !== searchKey;
     const mutate = useCallback((change: (j: Journal) => Journal) => {
         const operation = queue.current.then(async () => {
@@ -378,7 +385,7 @@ export default function SalesDesk() {
             e.target.value = money(draft.taxMinor);
             setError('Check the tax amount.');
         } }}/></label><label>Receipt note<input maxLength={draft.trades.length ? 350 : 500} disabled={locked} key={draft.id} defaultValue={draft.note} onChange={e => { const value=e.target.value; edit(d => ({ ...d, note: value })); }}/></label></details>
-    <div className={s.checkout}><dl><dt>Items</dt><dd>${money(balance!.subtotal)}</dd><dt>Tax recorded</dt><dd>${money(draft.taxMinor)}</dd>{draft.trades.length > 0 && <><dt>Trade credit</dt><dd>−${money(balance!.credit)}</dd></>}<dt className={s.total}>{balance!.balance < 0 ? 'You pay customer' : 'Customer pays'}</dt><dd className={s.total}>${money(Math.abs(balance!.balance))}</dd></dl>
+    <div className={s.checkout}><dl><dt>Items</dt><dd>${money(balance!.subtotal)}</dd><dt>Tax recorded</dt><dd>${money(draft.taxMinor)}</dd>{draft.trades.length > 0 && <><dt>Trade credit</dt><dd>−${money(balance!.credit)}</dd></>}{dealPnl?.known ? <><dt>Known COG · {dealPnl.known} cards</dt><dd>${money(dealPnl.cog)}</dd><dt>Gross profit estimate</dt><dd>${money(dealPnl.gross)}</dd><dt>Income tax estimate</dt><dd>${money(dealPnl.tax)}</dd><dt>After-tax estimate</dt><dd>${money(dealPnl.after)}</dd></>}<dt className={s.total}>{balance!.balance < 0 ? 'You pay customer' : 'Customer pays'}</dt><dd className={s.total}>${money(Math.abs(balance!.balance))}</dd></dl>
     {receipt ? <div className={s.saved}><Check /> Sale recorded · {receipt.number}{paymentLines(receipt,n=>'$'+money(n)).map((line,i)=><p key={i}>{line}</p>)}<Link href={`/account/store/receipts/cloud?receipt=${encodeURIComponent(receipt.id)}`}>Open receipt to print, share or send</Link><button onClick={() => void fresh().catch(e => setError(e.message))}>Next customer</button></div> : journal.pending ? <button className={s.primary} disabled={busy} onClick={() => void complete()}>Recover this sale</button> : <button className={s.primary} disabled={locked || !draft.items.length} onClick={() => setReview(true)}>Review deal <span>${money(Math.abs(balance!.balance))}</span></button>}
     <small>Drafts stay on this browser. Payment is collected with cash or your external terminal.</small></div></>}
   </aside></div>}
