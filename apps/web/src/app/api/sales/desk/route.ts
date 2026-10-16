@@ -24,8 +24,12 @@ export async function GET(req: NextRequest) {
                 throw error;
             const { data: trades } = await client.rpc('vendor_sales_trade_available_v1');
             const { data: payments } = await client.rpc('vendor_sales_payments_available_v1');
-            const { data: purchase } = await client.rpc('vendor_sales_purchase_available_v1');
-            return json({ owner: user.id, payments: payments === true, available: available === true, trades: trades === true, purchase: purchase === true });
+            // The web deploy and the acquisition migration can land separately.
+            // Treat a missing rollout RPC as unavailable instead of taking the
+            // existing sell/trade desk offline during that window.
+            const purchaseResult = await client.rpc('vendor_sales_purchase_available_v1');
+            const purchase = purchaseResult.error ? false : purchaseResult.data === true;
+            return json({ owner: user.id, payments: payments === true, available: available === true, trades: trades === true, purchase });
         }
         if (action === 'book') {
             const { data, error } = await client.rpc('vendor_receipt_book_read_v1');
