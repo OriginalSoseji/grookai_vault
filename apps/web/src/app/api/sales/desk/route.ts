@@ -24,7 +24,8 @@ export async function GET(req: NextRequest) {
                 throw error;
             const { data: trades } = await client.rpc('vendor_sales_trade_available_v1');
             const { data: payments } = await client.rpc('vendor_sales_payments_available_v1');
-            return json({ owner: user.id, payments: payments === true, available: available === true, trades: trades === true });
+            const { data: purchase } = await client.rpc('vendor_sales_purchase_available_v1');
+            return json({ owner: user.id, payments: payments === true, available: available === true, trades: trades === true, purchase: purchase === true });
         }
         if (action === 'book') {
             const { data, error } = await client.rpc('vendor_receipt_book_read_v1');
@@ -136,11 +137,18 @@ export async function POST(req: NextRequest) {
         catch {
             return json({ error: 'Invalid request', rejected: true }, 400);
         }
-        if (!b || !uuid(b.id) || !['sale', 'catalog'].includes(b.action))
+        if (!b || !uuid(b.id) || !['sale', 'catalog', 'purchase'].includes(b.action))
             return json({ error: 'Invalid request', rejected: true }, 400);
         if (b.owner !== ctx.user.id)
             return json({ error: 'Your account changed. Reopen the sales desk.', rejected: false }, 409);
-        const { data, error } = b.action === 'catalog' ? await ctx.client.rpc('vendor_sales_catalog_add_v1', { p_request_id: b.id, p_card: b.card }) : await ctx.client.rpc(b.cart?.version === 3 ? 'vendor_sales_cart_complete_v3' : b.cart?.version === 2 ? 'vendor_sales_cart_complete_v2' : 'vendor_sales_cart_complete_v1', { p_request_id: b.id, p_cart: b.cart });
+        const rpc = b.action === 'catalog'
+            ? 'vendor_sales_catalog_add_v1'
+            : b.action === 'purchase'
+                ? 'vendor_sales_cart_complete_v4'
+                : (b.cart?.version === 3 ? 'vendor_sales_cart_complete_v3' : b.cart?.version === 2 ? 'vendor_sales_cart_complete_v2' : 'vendor_sales_cart_complete_v1');
+        const { data, error } = b.action === 'catalog'
+            ? await ctx.client.rpc(rpc, { p_request_id: b.id, p_card: b.card })
+            : await ctx.client.rpc(rpc, { p_request_id: b.id, p_cart: b.cart });
         if (error) {
             const rejected = ['22023', 'PT409', '23514', '23505', '42501', '22P02'].includes(error.code);
             return json({ error: rejected ? 'Request rejected. Review availability and details.' : 'Result unconfirmed. Recover this same request.', rejected }, rejected ? 409 : 503);

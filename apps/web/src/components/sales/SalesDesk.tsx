@@ -313,7 +313,7 @@ export default function SalesDesk() {
     if (changed)
         return <main className={s.shell}><h1>Reopen your sales desk</h1><p>{error || 'Your account changed. Saved deals remain with their original owner.'}</p><button onClick={() => location.reload()}>Reload saved deals</button></main>;
     return <main className={s.shell}>
-  <header className={s.header}><div><Link href="/account/store"><ArrowLeft size={15}/> Store workspace</Link><h1>Sales desk <span>Ready for your next deal.</span></h1></div><div className={s.actions}>
+   <header className={s.header}><div><Link href="/account/store"><ArrowLeft size={15}/> Store workspace</Link><h1>Sales desk <span>Ready for your next deal.</span></h1></div><div className={s.actions}><Link href="/account/store/sales/buy">Buy / intake</Link><Link href="/account/store/inventory-cost">Inventory aging</Link>
    <button disabled={!session} onClick={()=>showDashboard(!dashboard)}>{dashboard?'Back to selling':'Dashboard'}</button><Link href="/account/store/reports">Reports</Link><Link href="/account/store/receipts/cloud">Receipts & customers</Link><button disabled={locked} onClick={() => setShowHeld(!showHeld)}><Pause size={16}/> Held deals ({journal.drafts.length})</button><button disabled={busy || changed || !!journal.catalog || !!journal.pending && !receipt} onClick={() => void fresh().catch(e => setError(e.message))}><Plus size={16}/> {receipt ? 'Next customer' : 'New deal'}</button></div></header>
   {error && <div role="alert" className={s.error}>{error}<button aria-label="Dismiss error" onClick={() => setError('')}><X size={15}/></button></div>}
   {notice && <p role="status" className={s.notice}>{notice} · Draft saved on this browser</p>}
