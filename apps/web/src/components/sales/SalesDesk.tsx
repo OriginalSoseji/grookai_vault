@@ -11,6 +11,7 @@ import type {SalesReceipt} from '@/lib/sales/salesReport.mjs';
 import { ArrowLeft, Search, ShoppingBag, Plus, Pause, Users, Eye, X, ArrowRightLeft, Check, LoaderCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { addLine, conditions, customerDeal, draftJournal, methods, minor, money, newDraft, rate, saleRequest, totals, tradeCredit } from '@/lib/sales/salesDesk.mjs';
+import { cardProfit } from '@/lib/sales/cardProfit.mjs';
 import type { CatalogAttempt, Customer, Journal, SaleDraft, TradeLine } from '@/lib/sales/salesDesk.mjs';
 import s from './SalesDesk.module.css';
 type Card = {
@@ -25,6 +26,7 @@ type Card = {
     condition?: string;
     printing?: string;
     askingMinor?: number | null;
+    acquisitionCostMinor?: number | null;
     tcgplayer_id?: string;
     printings?: {
         id: string;
@@ -181,7 +183,7 @@ export default function SalesDesk() {
     useEffect(() => { if (!session || changed)
         return; const controller = new AbortController(); const timer = setTimeout(() => void search(null, controller.signal), 180); return () => { clearTimeout(timer); controller.abort(); invalidateSearch(); }; }, [search, session, changed, revision, invalidateSearch]);
     function choose(card: Card | null) { if (locked || card && (stale || searching))
-        return; setSelected(card); setQuick(!card); setPrinting(''); setDescription(card?.name ?? ''); setPrice(card?.askingMinor ? money(card.askingMinor) : ''); setQuantity('1'); setIntake(false); setError(''); }
+                return; setSelected(card); setQuick(!card); setPrinting(''); setDescription(card?.name ?? ''); setPrice(card?.askingMinor ? money(card.askingMinor) : ''); setQuantity('1'); setIntake(false); setError(''); }
     function addOwned(card: Card) {
         if (locked || !draft || stale || searching)
             return;
@@ -190,7 +192,7 @@ export default function SalesDesk() {
             return;
         }
         void mutate(j => { if (j.pending || j.catalog)
-            throw Error('Recover the pending request first.'); return { ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(d, { instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, image: card.image }) : d) }; }).then(() => { setNotice(card.name + ' added'); searchRef.current?.focus(); }).catch(e => setError(e.message));
+            throw Error('Recover the pending request first.'); return { ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(d, { instanceId: card.instanceId, gvviId: card.gvviId, description: card.name, quantity: 1, unitMinor: card.askingMinor!, askingMinor: card.askingMinor, acquisitionCostMinor: card.acquisitionCostMinor, image: card.image }) : d) }; }).then(() => { setNotice(card.name + ' added'); searchRef.current?.focus(); }).catch(e => setError(e.message));
     }
     async function catalogAttempt(saved: CatalogAttempt) {
         if (disabled.current)
@@ -234,7 +236,7 @@ export default function SalesDesk() {
                 await catalogAttempt(saved);
             }
             else
-                await mutate(j => ({ ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(d, { description: description.trim(), quantity: selected ? 1 : qty, unitMinor: value, instanceId: selected?.instanceId, gvviId: selected?.gvviId, askingMinor: selected?.askingMinor, image: selected?.image }) : d) }));
+                await mutate(j => ({ ...j, drafts: j.drafts.map(d => d.id === j.active ? addLine(d, { description: description.trim(), quantity: selected ? 1 : qty, unitMinor: value, instanceId: selected?.instanceId, gvviId: selected?.gvviId, askingMinor: selected?.askingMinor, acquisitionCostMinor: selected?.acquisitionCostMinor, image: selected?.image }) : d) }));
             setSelected(null);
             setQuick(false);
             setNotice(intent === 'trade' ? 'Trade added to the deal' : 'Card added to the deal');
@@ -354,11 +356,11 @@ export default function SalesDesk() {
    <div className={s.cartHeader}><h2><ShoppingBag size={20}/> Your deal</h2><button disabled={!draft || busy} onClick={() => setShowDeal(true)}><Eye size={16}/> Customer view</button></div>
    {draft && <><button className={s.customer} disabled={locked} onClick={() => setShowCustomer(!showCustomer)}><Users size={18}/><span>{draft.customer.name || 'Walk-up customer'}<small>{draft.customer.name ? 'Customer attached' : 'Add customer · optional'}</small></span></button>
     {showCustomer && <div className={s.details}><label>Saved customer<select value={draft.customerId ?? ''} onChange={e => { const c = book?.customers.find(c => c.id === e.target.value); edit(d => ({ ...d, customerId: c?.id ?? null, customer: c ? { name: c.name, email: c.email, phone: c.phone, wants: c.wants, notes: c.notes } : newDraft('').customer })); }}><option value="">New / walk-up customer</option>{book?.customers.map(c => <option key={c.id} value={c.id}>{c.name || c.email || c.phone}</option>)}</select></label>{(['name', 'email', 'phone', 'wants'] as const).map(k => <label key={k}>{k === 'wants' ? 'Cards they want' : k}<input key={draft.id+':'+(draft.customerId??'new')+':'+k} defaultValue={draft.customer[k]} disabled={locked || !!draft.customerId} maxLength={k === 'wants' ? 1000 : k === 'email' ? 254 : k === 'phone' ? 40 : 120} onChange={e => { const value=e.target.value; edit(d => ({ ...d, customer: { ...d.customer, [k]: value } })); }}/></label>)}</div>}
-    <div className={s.lines}>{!draft.items.length && <p className={s.empty}>Tap or drag a card here.<br />Your deal stays visible as you search.</p>}{draft.items.map((l, i) => <div className={s.line} key={l.instanceId ?? i}>{l.image && <Image unoptimized width={300} height={420} src={l.image} alt=""/>}<div><strong>{l.description}</strong>{l.askingMinor != null && <small>Your price ${money(l.askingMinor)}</small>}<small>{l.gvviId ?? `${l.quantity} × item`}</small><label>Deal price $<input aria-label={`Price for ${l.description}`} disabled={locked} inputMode="decimal" key={l.unitMinor} defaultValue={money(l.unitMinor)} onBlur={e => { const n = minor(e.target.value); if (n === null || n <= 0) {
+    <div className={s.lines}>{!draft.items.length && <p className={s.empty}>Tap or drag a card here.<br />Your deal stays visible as you search.</p>}{draft.items.map((l, i) => { const cardPnl = l.instanceId && l.acquisitionCostMinor != null ? cardProfit({ saleMinor: l.unitMinor, costMinor: l.acquisitionCostMinor, incomeTaxBps: 2500 }) : null; return <div className={s.line} key={l.instanceId ?? i}>{l.image && <Image unoptimized width={300} height={420} src={l.image} alt=""/>}<div><strong>{l.description}</strong>{l.askingMinor != null && <small>Your price ${money(l.askingMinor)}</small>}<small>{l.gvviId ?? `${l.quantity} × item`}</small>{l.acquisitionCostMinor != null && <small>COG ${money(l.acquisitionCostMinor)} · after-tax estimate at 25% ${money(cardPnl?.profitAfterTaxMinor ?? 0)} <Link href="/account/store/card-pnl">change tax assumptions</Link></small>}<label>Deal price $<input aria-label={`Price for ${l.description}`} disabled={locked} inputMode="decimal" key={l.unitMinor} defaultValue={money(l.unitMinor)} onBlur={e => { const n = minor(e.target.value); if (n === null || n <= 0) {
             e.target.value = money(l.unitMinor);
             setError('Enter a positive sale price.');
             return;
-        } edit(d => ({ ...d, items: d.items.map((x, j) => j === i ? { ...x, unitMinor: n } : x) })); }}/></label></div><button disabled={locked} aria-label={`Remove ${l.description}`} onClick={() => edit(d => ({ ...d, items: d.items.filter((_, j) => j !== i) }))}><X size={16}/></button></div>)}</div>
+        } edit(d => ({ ...d, items: d.items.map((x, j) => j === i ? { ...x, unitMinor: n } : x) })); }}/></label></div><button disabled={locked} aria-label={`Remove ${l.description}`} onClick={() => edit(d => ({ ...d, items: d.items.filter((_, j) => j !== i) }))}><X size={16}/></button></div>; })}</div>
     {draft.trades.length > 0 && <section className={s.trades}><h3>Customer trade-ins</h3>{draft.trades.map((t, i) => <div className={s.trade} key={i}><div><strong>{t.description}</strong><small>{t.quantity} × ${money(t.valueMinor)} × {t.rateBps / 100}%</small><strong>−${money(tradeCredit(t))}</strong></div><button disabled={locked} aria-label={`Remove trade ${t.description}`} onClick={() => edit(d => ({ ...d, trades: d.trades.filter((_, j) => j !== i) }))}><X size={16}/></button></div>)}</section>}
     <details className={s.details}><summary>Store, tax & receipt note</summary><label>Store name<input maxLength={120} disabled={locked} key={draft.id} defaultValue={draft.storeName} onChange={e => { const value=e.target.value; edit(d => ({ ...d, storeName: value })); }}/></label><label>Tax collected (USD)<input inputMode="decimal" disabled={locked} defaultValue={money(draft.taxMinor)} key={draft.id} onBlur={e => { const n = minor(e.target.value); if (n !== null)
             edit(d => ({ ...d, taxMinor: n }));
