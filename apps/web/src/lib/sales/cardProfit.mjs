@@ -1,6 +1,6 @@
-export function cardProfit({ saleMinor, costMinor, incomeTaxBps = 2500, salesTaxMinor = 0, salesTaxMode = "pass_through" }) {
+export function cardProfit({ saleMinor, costMinor, incomeTaxBps = 2500, salesTaxMinor = 0, salesTaxMode = "pass_through", sellingFeeMinor = 0 }) {
   if (!Number.isInteger(saleMinor) || !Number.isInteger(costMinor)) return null;
-  const netRevenueMinor = salesTaxMode === "include_in_offer" ? saleMinor - salesTaxMinor : saleMinor;
+  const netRevenueMinor = (salesTaxMode === "include_in_offer" ? saleMinor - salesTaxMinor : saleMinor) - sellingFeeMinor;
   const grossProfitMinor = netRevenueMinor - costMinor;
   const incomeTaxMinor = grossProfitMinor > 0 ? Math.round(grossProfitMinor * incomeTaxBps / 10000) : 0;
   return { netRevenueMinor, grossProfitMinor, incomeTaxMinor, profitAfterTaxMinor: grossProfitMinor - incomeTaxMinor };

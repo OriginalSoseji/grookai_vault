@@ -21,3 +21,9 @@ test("can subtract sales tax when the offer includes it", () => {
 test("derives the tax portion of a tax-inclusive offer", () => {
   assert.equal(taxInclusivePortion(9000, 8), 667);
 });
+
+test("subtracts an optional selling fee before income tax", () => {
+  assert.deepEqual(cardProfit({ saleMinor: 9000, costMinor: 8000, incomeTaxBps: 2500, sellingFeeMinor: 300 }), {
+    netRevenueMinor: 8700, grossProfitMinor: 700, incomeTaxMinor: 175, profitAfterTaxMinor: 525,
+  });
+});
