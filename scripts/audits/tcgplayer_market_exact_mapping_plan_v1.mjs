@@ -61,6 +61,9 @@ import {
   TCGPLAYER_MASTER_EVIDENCE_ALIAS_PRODUCT_IDENTITIES_V1,
 } from "../../backend/pricing/tcgplayer_master_evidence_alias_product_identity_authority_v1.mjs";
 import {
+  TCGPLAYER_REVIEW_LEAD_ALIAS_PRODUCT_IDENTITIES_V1,
+} from "../../backend/pricing/tcgplayer_review_lead_alias_product_identity_authority_v1.mjs";
+import {
   TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1,
   reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1,
   uniqueWcdTeamRushdownPrintedNumberV1,
@@ -87,6 +90,7 @@ const REVIEWED_PRODUCT_IDENTITIES = Object.freeze([
   ...TCGPLAYER_ENERGY_ALIAS_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_RESIDUAL_ALIAS_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_MASTER_EVIDENCE_ALIAS_PRODUCT_IDENTITIES_V1,
+  ...TCGPLAYER_REVIEW_LEAD_ALIAS_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1,
 ]);
 const DEFAULT_OUT_ROOT = path.join(
