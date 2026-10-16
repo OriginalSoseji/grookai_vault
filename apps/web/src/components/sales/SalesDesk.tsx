@@ -82,7 +82,13 @@ export default function SalesDesk() {
     const [selected, setSelected] = useState<Card | null>(null), [quick, setQuick] = useState(false), [showHeld, setShowHeld] = useState(false), [showCustomer, setShowCustomer] = useState(false), [showDeal, setShowDeal] = useState(false), [review, setReview] = useState(false), [receipt, setReceipt] = useState<Receipt | null>(null);
     const [printing, setPrinting] = useState(''), [condition, setCondition] = useState('NM'), [price, setPrice] = useState(''), [percent, setPercent] = useState(''), [description, setDescription] = useState(''), [quantity, setQuantity] = useState('1'), [intake, setIntake] = useState(false);
     const repository = useRef<ReturnType<typeof draftJournal> | null>(null), state = useRef(journal), owner = useRef<string | null>(null), generation = useRef(0), queue = useRef(Promise.resolve()), searchRef = useRef<HTMLInputElement>(null), disabled = useRef(false);
-    useEffect(() => { setIncomeTaxRate((readIncomeTaxBps(window.localStorage) / 100).toFixed(2)); }, []);
+    useEffect(() => {
+        setIncomeTaxRate((readIncomeTaxBps(window.localStorage) / 100).toFixed(2));
+        void fetch('/api/inventory/acquisition?action=settings', { cache: 'no-store', credentials: 'same-origin' }).then(async response => response.ok ? response.json() : null).then(settings => {
+            const bps = Number(settings?.incomeTaxBps);
+            if (Number.isInteger(bps) && bps >= 0 && bps <= 10000) { setIncomeTaxRate((bps / 100).toFixed(2)); writeIncomeTaxBps(window.localStorage, bps); }
+        }).catch(() => { /* local fallback remains active */ });
+    }, []);
     const draft = journal.drafts.find(d => d.id === journal.active) ?? null, locked = busy || changed || !!journal.pending || !!journal.catalog || !!receipt || session?.available !== true;
     const balance = draft ? totals(draft) : null;
     const searchKey = JSON.stringify([query, game, scope, intent, revision]), stale = resultKey !== searchKey;
