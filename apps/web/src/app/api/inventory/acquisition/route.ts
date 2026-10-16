@@ -31,6 +31,15 @@ export async function GET(request: NextRequest) {
   if (fromDate && Number.isNaN(fromDate.getTime()) || toDate && Number.isNaN(toDate.getTime())) {
     return json({ error: "Invalid inventory date filter" }, 400);
   }
+  if (params.get("action") === "report") {
+    const { data, error } = await context.client.rpc("inventory_acquisition_batch_report_v1", {
+      p_from: fromDate ? fromDate.toISOString() : null,
+      p_to: toDate ? toDate.toISOString() : null,
+      p_limit: limit,
+    });
+    if (error) return json({ error: "Batch profitability could not load" }, 503);
+    return json(data);
+  }
   const { data, error } = await context.client.rpc("inventory_acquisition_batches_read_v1", {
     p_from: fromDate ? fromDate.toISOString() : null,
     p_to: toDate ? toDate.toISOString() : null,
