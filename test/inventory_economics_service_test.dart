@@ -33,4 +33,3 @@ void main() {
     expect(inventoryMoney(601), '6.01');
   });
 }
-
