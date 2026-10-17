@@ -427,6 +427,16 @@ test("publishes an exact fresh English Pokemon printing", () => {
   assert.deepEqual(result.reason_codes, []);
 });
 
+test("quarantines an ordinary candidate whose mapping appeared after assignment preparation", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({ variant_assignment_id: null }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "quarantine");
+  assert.equal(result.eligible, false);
+  assert.ok(result.reason_codes.includes("missing_variant_assignment_identity"));
+});
+
 test("supporting low mid high and direct-low values do not derive the market close", () => {
   const first = evaluateTcgplayerMarketQualificationV1(validCandidate(), {
     now: NOW,
@@ -602,7 +612,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_14/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_15/);
   assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v4/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);

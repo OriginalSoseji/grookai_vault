@@ -79,7 +79,8 @@ const valid = {
   source_mapping_id: 'mapping', mapping_method: 'exact', card_print_mapping_count: 1,
   card_printing_mapping_count: 1, identity_domain_count: 1, identity_domain: 'pokemon_eng_standard',
   card_print_id: 'parent', gv_id: 'GV-PK-JU-1', card_printing_id: 'child', printing_gv_id: 'child-gvid',
-  variant_assignment_status: 'exact_child_finish', duplicate_product_row_count: 1,
+  variant_assignment_id: 'generic-assignment', variant_assignment_status: 'exact_child_finish',
+  duplicate_product_row_count: 1,
 };
 
 test('prefilled normalized finish and exact generic assignments cannot publish edition prices', () => {
