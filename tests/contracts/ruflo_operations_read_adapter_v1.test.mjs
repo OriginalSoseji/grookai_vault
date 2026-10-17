@@ -1,0 +1,159 @@
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+import { buildOperationsReadModelV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
+import { buildTaskEnvelopeV1, worktreeStatusFingerprintV1 } from "../../scripts/ruflo/build_task_envelope_v1.mjs";
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const registry = JSON.parse(fs.readFileSync(path.join(repoRoot, "config/ruflo/agent_registry_v1.json"), "utf8"));
+const inventory = JSON.parse(fs.readFileSync(path.join(repoRoot, "docs/audits/ruflo_agent_registry_v1/current_inventory_v1.json"), "utf8"));
+const snapshot = JSON.parse(fs.readFileSync(path.join(repoRoot, "tests/fixtures/ruflo/operations_health_snapshot_v1.json"), "utf8"));
+
+function clone(value) {
+  return structuredClone(value);
+}
+
+function sha256(value) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function taskSpec() {
+  const worktree = inventory.worktrees.find((entry) => entry.path === "C:/gv_ruflo_all_agents_plan_20261016");
+  assert.ok(worktree, "expected plan worktree in frozen inventory");
+  return {
+    task_id: "ruflo-readonly-catalog-health-20261017",
+    parent_goal: "Observe registered Grookai agent health without dispatching work",
+    agent_key: "universal-catalog-discovery-v1",
+    repository: {
+      remote: "OriginalSoseji/grookai_vault",
+      commit_sha: worktree.head,
+      ref: worktree.branch,
+      worktree_path: worktree.path,
+      initial_status_sha256: worktreeStatusFingerprintV1(worktree),
+    },
+    objective: "Build a sanitized read-only health summary.",
+    inclusions: ["Registered agent health and evidence references"],
+    exclusions: ["Production mutation"],
+    non_goals: ["Agent execution", "Workflow dispatch", "Worktree cleanup"],
+    inputs: [{
+      locator: "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
+      sha256: "7578f5fdaff92ab0566cc763e6e2f04483970352de4dcfd72d0e9b8e70bc2101",
+    }],
+    budgets: { time_seconds: 60, row_limit: 100, request_limit: 0, cost_usd: 0, concurrency: 1 },
+    expected_artifacts: ["docs/audits/ruflo_operations_adapter_v1/operations_read_model_v1.json"],
+    acceptance_tests: ["Ruflo adapter contract suite passes"],
+    evidence_expectations: { direct_readback_required: true, retention_class: "repository_checkpoint" },
+  };
+}
+
+test("read adapter preserves authoritative periodic staleness and event idle health", () => {
+  const model = buildOperationsReadModelV1({ snapshot: clone(snapshot), registry });
+  const periodic = model.agents.find((agent) => agent.agent_key === "universal-catalog-discovery-v1");
+  const eventAgent = model.agents.find((agent) => agent.agent_key === "catalog-set-outcome-v1");
+  assert.equal(periodic.health, "stale");
+  assert.equal(eventAgent.schedule_kind, "event");
+  assert.equal(eventAgent.health, "healthy");
+  assert.equal(model.boundaries.agent_execution, false);
+  assert.equal(model.boundaries.workflow_dispatch, false);
+  assert.equal(model.boundaries.production_writes, false);
+});
+
+test("read adapter rejects unknown agents", () => {
+  const candidate = clone(snapshot);
+  candidate.agents[0].agent_key = "unknown-agent-v1";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: candidate, registry }), /not registered/);
+});
+
+test("read adapter rejects secret-shaped and executable fields", () => {
+  const secretCandidate = clone(snapshot);
+  secretCandidate.api_token = "not-a-real-secret";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: secretCandidate, registry }), /Sensitive registry key is prohibited/);
+  const executableCandidate = clone(snapshot);
+  executableCandidate.agents[0].command = "do-not-run";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: executableCandidate, registry }), /not allowed|executable data/);
+});
+
+test("read adapter rejects stale health for event and manual agents", () => {
+  const candidate = clone(snapshot);
+  candidate.agents[1].health = "stale";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: candidate, registry }), /cannot be stale for event agents/);
+});
+
+test("task envelope is deterministic, protected, and permanently non-executable", () => {
+  const first = buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory, repoRoot });
+  const second = buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory, repoRoot });
+  assert.deepEqual(first, second);
+  assert.match(first.fingerprint_sha256, /^[a-f0-9]{64}$/);
+  assert.equal(first.agent.permission_tier, "R0");
+  assert.equal(first.lifecycle.execution_state, "not_started");
+  assert.deepEqual(first.boundaries, {
+    execution_enabled: false,
+    workflow_dispatch: false,
+    production_writes: false,
+    external_actions: false,
+    cleanup: false,
+    cross_worktree_writes: false,
+  });
+});
+
+test("task envelope rejects mutable refs, unknown worktrees, and traversal", () => {
+  const shortSha = taskSpec();
+  shortSha.repository.commit_sha = "deadbeef";
+  assert.throws(() => buildTaskEnvelopeV1({ spec: shortSha, registry, inventory, repoRoot }), /exact lowercase 40-character/);
+
+  const unknownTree = taskSpec();
+  unknownTree.repository.worktree_path = "C:/not-in-the-inventory";
+  assert.throws(() => buildTaskEnvelopeV1({ spec: unknownTree, registry, inventory, repoRoot }), /absent from the read-only inventory/);
+
+  const traversal = taskSpec();
+  traversal.expected_artifacts = ["../escape.json"];
+  assert.throws(() => buildTaskEnvelopeV1({ spec: traversal, registry, inventory, repoRoot }), /must not traverse/);
+});
+
+test("task envelope rejects unknown agents and executable fields", () => {
+  const unknownAgent = taskSpec();
+  unknownAgent.agent_key = "not-registered-v1";
+  assert.throws(() => buildTaskEnvelopeV1({ spec: unknownAgent, registry, inventory, repoRoot }), /not registered/);
+
+  const executable = taskSpec();
+  executable.command = "do-not-run";
+  assert.throws(() => buildTaskEnvelopeV1({ spec: executable, registry, inventory, repoRoot }), /prohibited|not allowed/);
+});
+
+test("task envelope rejects mismatched worktree-state and input fingerprints", () => {
+  const statusMismatch = taskSpec();
+  statusMismatch.repository.initial_status_sha256 = "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
+  assert.throws(() => buildTaskEnvelopeV1({ spec: statusMismatch, registry, inventory, repoRoot }), /must match the inventoried worktree state/);
+
+  const inputMismatch = taskSpec();
+  inputMismatch.inputs[0].sha256 = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+  assert.throws(() => buildTaskEnvelopeV1({ spec: inputMismatch, registry, inventory, repoRoot }), /does not match/);
+});
+
+test("adapter source has no network, database, dispatch, agent execution, or destructive Git path", () => {
+  const sources = [
+    "scripts/ruflo/build_operations_read_model_v1.mjs",
+    "scripts/ruflo/build_task_envelope_v1.mjs",
+  ].map((relative) => fs.readFileSync(path.join(repoRoot, relative), "utf8")).join("\n");
+  assert.doesNotMatch(sources, /\bfetch\s*\(|createClient\s*\(|\.rpc\s*\(|agent_execute\s*\(|workflow_dispatch\s*\(/);
+  assert.doesNotMatch(sources, /git\s+(?:clean|reset|checkout|branch\s+-D|worktree\s+remove)/i);
+  assert.doesNotMatch(sources, /child_process|execFile|spawn\s*\(/);
+});
+
+test("checked-in sample artifacts reproduce and match their manifest", () => {
+  const sampleDir = path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/sample");
+  const manifest = JSON.parse(fs.readFileSync(path.join(sampleDir, "artifact_hashes.json"), "utf8"));
+  assert.equal(manifest.live_runtime_readback, false);
+  for (const [name, expected] of Object.entries(manifest.files)) {
+    assert.equal(sha256(fs.readFileSync(path.join(sampleDir, name))), expected, name);
+  }
+  const checkedReadModel = JSON.parse(fs.readFileSync(path.join(sampleDir, "operations_read_model_v1.json"), "utf8"));
+  assert.deepEqual(buildOperationsReadModelV1({ snapshot: clone(snapshot), registry }), checkedReadModel);
+  const checkedSpec = JSON.parse(fs.readFileSync(path.join(sampleDir, "task_spec_v1.json"), "utf8"));
+  const checkedEnvelope = JSON.parse(fs.readFileSync(path.join(sampleDir, "ruflo-readonly-catalog-health-20261017.task_envelope_v1.json"), "utf8"));
+  assert.deepEqual(buildTaskEnvelopeV1({ spec: checkedSpec, registry, inventory, repoRoot }), checkedEnvelope);
+});

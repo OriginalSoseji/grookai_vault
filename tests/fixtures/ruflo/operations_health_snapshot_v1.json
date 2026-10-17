@@ -1,0 +1,49 @@
+{
+  "snapshot_version": "OPERATIONS_AGENT_HEALTH_SNAPSHOT_V1",
+  "captured_at": "2026-10-17T06:00:00.000Z",
+  "source": {
+    "kind": "operations_rpc_export",
+    "locator": "founder_operations_agent_health_v1"
+  },
+  "agents": [
+    {
+      "agent_key": "universal-catalog-discovery-v1",
+      "display_name": "Universal Catalog Discovery",
+      "domain": "catalog",
+      "execution_platform": "github_actions",
+      "source_locator": ".github/workflows/universal-catalog-discovery.yml",
+      "health": "stale",
+      "is_paused": false,
+      "paused_reason": null,
+      "last_heartbeat_at": "2026-10-16T18:00:00.000Z",
+      "last_success_at": "2026-10-16T12:00:00.000Z",
+      "stale_after_seconds": 21600,
+      "latest_run_status": "succeeded",
+      "latest_run_at": "2026-10-16T18:00:00.000Z",
+      "evidence_refs": [
+        {
+          "kind": "workflow_artifact",
+          "locator": "docs/audits/ruflo_operations_adapter_v1/source/universal-catalog-discovery-v1.json",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "captured_at": "2026-10-17T06:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "agent_key": "catalog-set-outcome-v1",
+      "display_name": "Catalog Set Outcome",
+      "domain": "catalog",
+      "execution_platform": "github_actions",
+      "source_locator": "backend/operations/catalog_founder_outcome_v1.mjs",
+      "health": "healthy",
+      "is_paused": false,
+      "paused_reason": null,
+      "last_heartbeat_at": "2026-01-01T00:00:00.000Z",
+      "last_success_at": "2026-01-01T00:00:00.000Z",
+      "stale_after_seconds": 3600,
+      "latest_run_status": "succeeded",
+      "latest_run_at": "2026-01-01T00:00:00.000Z",
+      "evidence_refs": []
+    }
+  ]
+}

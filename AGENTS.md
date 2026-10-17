@@ -95,6 +95,12 @@ agent registry or inventory builder. Phase 1 is R0-only: every discovered
 worktree is protected, all agent execution and workflow dispatch are disabled,
 and the generated inventory is evidence rather than runtime authority.
 
+Read `docs/checkpoints/RUFLO_READONLY_OPERATIONS_ADAPTER_V1_20261017.md` before
+changing the Operations health adapter or frozen task-envelope builder. They
+accept checked-in/local JSON only, reconcile to the registry and protected
+inventory, emit R0 evidence, and cannot connect to production, run agents,
+dispatch workflows, or clean worktrees.
+
 ## Energy-name exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.
