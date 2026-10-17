@@ -23,6 +23,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
   bool _loading = true, _saving = false, _initialized = false;
   String? _error;
   String _kind = 'all', _condition = '';
+  String _submittedQuery = '';
   int _offset = 0;
   @override
   void initState() {
@@ -48,7 +49,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
     }
     try {
       final owner = await _service.owner(
-        query: _search.text,
+        query: _submittedQuery,
         kind: _kind,
         condition: _condition,
         offset: _offset,
@@ -66,6 +67,12 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
     } finally {
       if (mounted) setState(() => _loading = false);
     }
+  }
+
+  Future<void> _searchInventory() async {
+    _submittedQuery = _search.text.trim();
+    _offset = 0;
+    await _load();
   }
 
   Future<void> _change(Map<String, dynamic> action) async {
@@ -457,22 +464,18 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
                   ),
                   const SizedBox(height: 12),
                   TextField(
+                    key: const ValueKey('store_inventory_search'),
                     controller: _search,
                     maxLength: 120,
-                    onSubmitted: (_) {
-                      _offset = 0;
-                      _load();
-                    },
+                    textInputAction: TextInputAction.search,
+                    onSubmitted: (_) => _searchInventory(),
                     decoration: InputDecoration(
                       labelText: 'Card name or GV-ID',
                       counterText: '',
                       border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
                         tooltip: 'Search inventory',
-                        onPressed: () {
-                          _offset = 0;
-                          _load();
-                        },
+                        onPressed: _searchInventory,
                         icon: const Icon(Icons.search),
                       ),
                     ),
