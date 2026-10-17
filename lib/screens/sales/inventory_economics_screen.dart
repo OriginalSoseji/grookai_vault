@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/card_print.dart';
 import '../../services/sales/inventory_economics_service.dart';
@@ -122,11 +124,14 @@ class _PurchasePaneState extends State<_PurchasePane> {
   bool _available = true;
   String? _error;
   Map<String, dynamic>? _receipt;
+  Map<String, dynamic>? _pendingRequest;
+  String? _pendingKey;
 
   @override
   void initState() {
     super.initState();
     unawaited(_checkAvailability());
+    unawaited(_restorePending());
   }
 
   @override
@@ -147,6 +152,45 @@ class _PurchasePaneState extends State<_PurchasePane> {
     } catch (_) {
       if (mounted) setState(() => _available = false);
     }
+  }
+
+  Future<void> _restorePending() async {
+    final owner = widget.service.client.auth.currentUser?.id;
+    if (owner == null) return;
+    _pendingKey = 'grookai.pending-purchase.v1.$owner';
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    final raw = preferences.getString(_pendingKey!);
+    if (raw == null) return;
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is Map &&
+          decoded['id'] is String &&
+          decoded['cart'] is Map &&
+          mounted) {
+        setState(() => _pendingRequest = Map<String, dynamic>.from(decoded));
+      }
+    } catch (_) {
+      await preferences.remove(_pendingKey!);
+    }
+  }
+
+  Future<void> _savePending(Map<String, dynamic> request) async {
+    final key = _pendingKey;
+    if (key == null) return;
+    final preferences = await SharedPreferences.getInstance();
+    if (!await preferences.setString(key, jsonEncode(request))) {
+      throw StateError('Could not preserve this purchase for recovery.');
+    }
+    if (mounted) setState(() => _pendingRequest = request);
+  }
+
+  Future<void> _clearPending() async {
+    final key = _pendingKey;
+    if (key == null) return;
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.remove(key);
+    if (mounted) setState(() => _pendingRequest = null);
   }
 
   void _search() {
@@ -224,11 +268,12 @@ class _PurchasePaneState extends State<_PurchasePane> {
   }
 
   Future<void> _submit() async {
-    if (_lines.isEmpty) {
+    if (_pendingRequest == null && _lines.isEmpty) {
       setState(() => _error = 'Add at least one exact copy.');
       return;
     }
-    if (_totalMinor < 1 || _allocatedTotal != _totalMinor) {
+    if (_pendingRequest == null &&
+        (_totalMinor < 1 || _allocatedTotal != _totalMinor)) {
       setState(() => _error = 'Enter a total paid that reconciles exactly.');
       return;
     }
@@ -237,52 +282,57 @@ class _PurchasePaneState extends State<_PurchasePane> {
       _error = null;
     });
     try {
-      final requestId = newSaleId();
-      final entries = [
-        {
-          'method': _method,
-          'amountMinor': _totalMinor,
-          'tenderedMinor': _totalMinor,
-        },
-      ];
-      final cart = {
-        'version': 4,
-        'kind': 'purchase',
-        'storeName': _store.text.trim().isEmpty
-            ? 'Grookai Vault'
-            : _store.text.trim(),
-        'items': [
-          for (var index = 0; index < _lines.length; index++)
-            {
-              'description': _lines[index].description,
-              'quantity': 1,
-              'unitMinor': _allocations[index],
-              'referenceMinor': _lines[index].referenceMinor,
-              'rateBps': _lines[index].referenceMinor == null ? null : 10000,
-              'cardId': _lines[index].card.id,
-              'printingId': _lines[index].printingId,
-              'condition': _lines[index].condition,
-              'addToVault': true,
-            },
-        ],
-        'payments': entries,
-        'note': _note.text.trim(),
-        'customerId': null,
-        'customer': {
-          'name': _seller.text.trim(),
-          'email': '',
-          'phone': '',
-          'wants': '',
-          'notes': '',
-        },
-      };
-      // The purchase RPC expects payment entries, with the negative balance
-      // represented by the direction of the external payout.
-      salesPaymentSnapshot(entries, -_totalMinor);
-      final receipt = await widget.service.completePurchase({
-        'id': requestId,
-        'cart': cart,
-      });
+      Map<String, dynamic> request;
+      if (_pendingRequest != null) {
+        request = _pendingRequest!;
+      } else {
+        final requestId = newSaleId();
+        final entries = [
+          {
+            'method': _method,
+            'amountMinor': _totalMinor,
+            'tenderedMinor': _totalMinor,
+          },
+        ];
+        final cart = {
+          'version': 4,
+          'kind': 'purchase',
+          'storeName': _store.text.trim().isEmpty
+              ? 'Grookai Vault'
+              : _store.text.trim(),
+          'items': [
+            for (var index = 0; index < _lines.length; index++)
+              {
+                'description': _lines[index].description,
+                'quantity': 1,
+                'unitMinor': _allocations[index],
+                'referenceMinor': _lines[index].referenceMinor,
+                'rateBps': _lines[index].referenceMinor == null ? null : 10000,
+                'cardId': _lines[index].card.id,
+                'printingId': _lines[index].printingId,
+                'condition': _lines[index].condition,
+                'addToVault': true,
+              },
+          ],
+          'payments': entries,
+          'note': _note.text.trim(),
+          'customerId': null,
+          'customer': {
+            'name': _seller.text.trim(),
+            'email': '',
+            'phone': '',
+            'wants': '',
+            'notes': '',
+          },
+        };
+        // The purchase RPC expects payment entries, with the negative balance
+        // represented by the direction of the external payout.
+        salesPaymentSnapshot(entries, -_totalMinor);
+        request = {'id': requestId, 'cart': cart};
+        await _savePending(request);
+      }
+      final receipt = await widget.service.completePurchase(request);
+      await _clearPending();
       if (mounted) setState(() => _receipt = receipt);
     } catch (error) {
       if (mounted) {
@@ -305,6 +355,7 @@ class _PurchasePaneState extends State<_PurchasePane> {
       _seller.clear();
       _note.clear();
     });
+    unawaited(_clearPending());
   }
 
   @override
@@ -369,6 +420,21 @@ class _PurchasePaneState extends State<_PurchasePane> {
             style: TextStyle(color: Theme.of(context).colorScheme.error),
           ),
         ],
+        if (_pendingRequest != null)
+          Card(
+            color: Theme.of(context).colorScheme.errorContainer,
+            child: ListTile(
+              leading: const Icon(Icons.sync_problem_outlined),
+              title: const Text('Purchase needs recovery'),
+              subtitle: const Text(
+                'The exact request was saved. Retry it to verify the original purchase before starting another.',
+              ),
+              trailing: FilledButton(
+                onPressed: _busy ? null : _submit,
+                child: const Text('Retry'),
+              ),
+            ),
+          ),
         const SizedBox(height: 16),
         LayoutBuilder(
           builder: (context, constraints) => constraints.maxWidth >= 900
