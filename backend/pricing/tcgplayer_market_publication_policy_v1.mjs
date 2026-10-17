@@ -1,4 +1,5 @@
 import { applyCosmosFinishPublicationScopeV1, cosmosFinishQualificationReasonsV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
+import { TCGPLAYER_EDITION_IDENTITY_V1, tcgplayerEditionQualificationReasonsV1, isTcgplayerJungleEditionAssignmentProjectionV1 } from "./tcgplayer_edition_identity_v1.mjs";
 import {
   classifyTcgplayerMarketProductScopeV1_3,
 } from "./tcgplayer_market_product_scope_v1.mjs";
@@ -59,7 +60,12 @@ export function evaluateTcgplayerMarketQualificationV1(
     suppressionHours = TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
   } = {},
 ) {
-  const reasons = cosmosFinishQualificationReasonsV1(row);
+  const editionReasons = tcgplayerEditionQualificationReasonsV1(row);
+  const exactEditionAssignment = isTcgplayerJungleEditionAssignmentProjectionV1(row);
+  const reasons = [
+    ...cosmosFinishQualificationReasonsV1(row),
+    ...editionReasons,
+  ];
   const exclusionReasons = [];
   const sourceProductId = positiveInteger(row.source_product_id);
   const marketPrice = finiteNumber(row.market_price);
@@ -134,7 +140,7 @@ export function evaluateTcgplayerMarketQualificationV1(
         : "ambiguous_active_source_mapping",
     );
   }
-  if (!clean(row.source_mapping_id)) reasons.push("missing_source_mapping_identity");
+  if (!exactEditionAssignment && !clean(row.source_mapping_id)) reasons.push("missing_source_mapping_identity");
   if (!clean(row.mapping_method)) reasons.push("missing_mapping_method");
   if (mappingCount !== 1) {
     reasons.push(mappingCount === 0 ? "missing_exact_card_mapping" : "ambiguous_card_mapping");
@@ -289,6 +295,13 @@ export function evaluateTcgplayerMarketQualificationV1(
     source_age_hours:
       sourceAgeHours === null ? null : Math.round(sourceAgeHours * 1000) / 1000,
     evidence: {
+      ...(editionReasons.length || exactEditionAssignment ? { edition_policy_version: TCGPLAYER_EDITION_IDENTITY_V1 } : {}),
+      ...(exactEditionAssignment ? {
+        edition_assignment_id: row.edition_assignment_id,
+        edition_binding_id: row.edition_binding_id,
+        edition_assignment_sha256: row.edition_assignment_sha256,
+        edition_assignment_version: row.edition_assignment_version,
+      } : {}),
       cosmos_finish_authority: row.cosmos_finish_authority === true,
       ...(scope.finish_policy_version ? { finish_policy_version: scope.finish_policy_version } : {}),
       category_id: categoryId,
