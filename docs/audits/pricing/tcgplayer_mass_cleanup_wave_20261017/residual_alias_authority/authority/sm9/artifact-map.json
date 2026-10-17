@@ -1,0 +1,62 @@
+[
+  {
+    "ref": "review:sm9:tcgplayer-residual-alias-20261015",
+    "path": "artifacts/review_sm9_tcgplayer-residual-alias-20261015"
+  },
+  {
+    "ref": "sm9-english-master-index-cards-v1",
+    "path": "artifacts/sm9-english-master-index-cards-v1"
+  },
+  {
+    "ref": "sm9-english-master-index-printings-v1",
+    "path": "artifacts/sm9-english-master-index-printings-v1"
+  },
+  {
+    "ref": "sm9-residual-alias-master-index-projection-v1",
+    "path": "artifacts/sm9-residual-alias-master-index-projection-v1"
+  },
+  {
+    "ref": "tcgcsv-group-1372-selected-products",
+    "path": "artifacts/tcgcsv-group-1372-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-1391-selected-products",
+    "path": "artifacts/tcgcsv-group-1391-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-1402-selected-products",
+    "path": "artifacts/tcgcsv-group-1402-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-1419-selected-products",
+    "path": "artifacts/tcgcsv-group-1419-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-1439-selected-products",
+    "path": "artifacts/tcgcsv-group-1439-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-1861-selected-products",
+    "path": "artifacts/tcgcsv-group-1861-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2209-selected-products",
+    "path": "artifacts/tcgcsv-group-2209-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2377-selected-products",
+    "path": "artifacts/tcgcsv-group-2377-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2545-selected-products",
+    "path": "artifacts/tcgcsv-group-2545-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2585-selected-products",
+    "path": "artifacts/tcgcsv-group-2585-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2626-selected-products",
+    "path": "artifacts/tcgcsv-group-2626-selected-products"
+  }
+]

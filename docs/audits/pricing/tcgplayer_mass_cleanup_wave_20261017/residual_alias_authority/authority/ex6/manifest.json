@@ -1,0 +1,197 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "ex6",
+  "scope": "verified_parent_families",
+  "scope_note": "Exact reviewed TCGPlayer residual aliases with unique set and number identity, frozen source titles, canonical parents, every source-listed finish, and checked-in source evidence.",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "ex6-residual-alias-master-index-projection-v1",
+  "master_index_sha256": "af524b5f523da15cfd882cdfbf39589df5750f4c64379d602727298c655f3082",
+  "parents": [
+    {
+      "id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+      "name": "Drowzee",
+      "gv_id": "GV-PK-RG-32",
+      "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "32",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-RG-32-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "ex6-english-master-index-printings-v1",
+          "sha256": "a64fbbde31112fcbbf1dd5ef9ddbe1b1c183548e6beb630f40f116efabda4420",
+          "card_print_id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-RG-32-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "ex6-english-master-index-printings-v1",
+          "sha256": "a64fbbde31112fcbbf1dd5ef9ddbe1b1c183548e6beb630f40f116efabda4420",
+          "card_print_id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 2,
+    "finishes": {
+      "normal": 1,
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+    "source_artifacts": [
+      {
+        "ref": "ex6-residual-alias-master-index-projection-v1",
+        "sha256": "af524b5f523da15cfd882cdfbf39589df5750f4c64379d602727298c655f3082",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "derived:ex6-residual-alias-master-index-projection-v1",
+        "retrieved_at": "2026-10-17T04:41:57.983Z"
+      },
+      {
+        "ref": "ex6-english-master-index-cards-v1",
+        "sha256": "cdd6f2c24c39a061f417f3be5a10958ca10b5ebf631b5ff6a8110932397530de",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/ex6/cards.json",
+        "retrieved_at": "2026-10-17T04:41:57.983Z"
+      },
+      {
+        "ref": "ex6-english-master-index-printings-v1",
+        "sha256": "a64fbbde31112fcbbf1dd5ef9ddbe1b1c183548e6beb630f40f116efabda4420",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/ex6/printings.json",
+        "retrieved_at": "2026-10-17T04:41:57.983Z"
+      },
+      {
+        "ref": "tcgcsv-group-1391-selected-products",
+        "sha256": "f5a5c6620d645d96c095e0435d684e6c99d9c4d1845b60ffa1548c8b85803dd8",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1391/products",
+        "retrieved_at": "2026-10-15T20:53:54.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-1439-selected-products",
+        "sha256": "e5c7ab7fd94a9e9270fee820c93e9ae146aa238693aeb12e8ecbd2808cc96ed6",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1439/products",
+        "retrieved_at": "2026-10-15T20:54:58.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-1419-selected-products",
+        "sha256": "50e35d5e787bcceae6fbc2054023d2d908eaeae912ea75a66f1583fbbbb98d99",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1419/products",
+        "retrieved_at": "2026-10-15T20:54:24.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-1402-selected-products",
+        "sha256": "ded88795b71226d6d5af981946c97a4c59f0a64780eb52e30928c5f3cb86cd7f",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1402/products",
+        "retrieved_at": "2026-10-15T20:53:50.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-1372-selected-products",
+        "sha256": "8d36053aae448f11a48408ebfec84340166f929339707689c3b8a6df964709b5",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1372/products",
+        "retrieved_at": "2026-10-15T20:54:35.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2209-selected-products",
+        "sha256": "fa7be8d3bde70f865d96bc471067255a37497afad1e0cc330713e4e40b1dbe1a",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2209/products",
+        "retrieved_at": "2026-10-15T20:52:40.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-1861-selected-products",
+        "sha256": "c897bfaa54d37b92ca68beaea9387b9dfdc29bae7701ef19cec871a1d77a491c",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1861/products",
+        "retrieved_at": "2026-10-15T20:52:53.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2377-selected-products",
+        "sha256": "2c985b69aefebffa0a4b9d3dee9fd2d42ab139b8e5e57d29e01ebd666c85141f",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2377/products",
+        "retrieved_at": "2026-10-15T20:52:27.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2585-selected-products",
+        "sha256": "e011b9487974dcfdac0add465c21d3bde224ff5212128e94d2a6e1f904d87b85",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2585/products",
+        "retrieved_at": "2026-10-15T20:52:14.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2626-selected-products",
+        "sha256": "66e4f544432709e89359d0e30ceaea2963757e2297d571150ec25f6ef935b388",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2626/products",
+        "retrieved_at": "2026-10-15T20:52:12.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2545-selected-products",
+        "sha256": "fb844699174a48f18f6999755845826f7fa23a7b59ab6f4e964b7b31d55ad98f",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2545/products",
+        "retrieved_at": "2026-10-15T20:52:16.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:ex6:tcgplayer-residual-alias-20261015",
+      "sha256": "e58b440a029062e013bb19f6247647046c982d1e353247adce21f37a4b925351"
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "84973",
+      "card_print_id": "c2063ddd-44c7-46e4-8feb-76050892f89e",
+      "candidate_fingerprint": "0058fe89c69dbe808b3a5753aadcd5613a51731c6223fdeb0b11a1c58e08f3d1",
+      "source_ref": "tcgcsv-group-1419-selected-products",
+      "source_sha256": "50e35d5e787bcceae6fbc2054023d2d908eaeae912ea75a66f1583fbbbb98d99"
+    }
+  ],
+  "fingerprint": "45b947183aa63c988bbfee4ca19eae9adde900cf1d767cf4f0c6f1cf156b237f"
+}
