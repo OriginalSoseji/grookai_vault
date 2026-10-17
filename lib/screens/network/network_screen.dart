@@ -3081,9 +3081,8 @@ _NetworkContactAnchor? _groupedContactAnchor(NetworkStreamRow row) {
 void _openCardDetail(
   BuildContext context,
   NetworkStreamRow row,
-  _NetworkContactAnchor? directContact, {
-  NetworkStreamCopy? exactCopy,
-}) {
+  _NetworkContactAnchor? directContact,
+) {
   Navigator.of(context).push(
     MaterialPageRoute<void>(
       builder: (_) => CardDetailScreen(
@@ -3101,8 +3100,6 @@ void _openCardDetail(
         contactOwnerDisplayName: row.ownerDisplayName,
         contactOwnerUserId: row.ownerUserId,
         contactIntent: directContact?.intent,
-        exactCopyGvviId: exactCopy?.gvviId,
-        exactCopyOwnerUserId: row.ownerUserId,
       ),
     ),
   );
@@ -3124,7 +3121,11 @@ void _openNetworkPrimaryDestination(
 ) {
   NetworkStreamService.recordInteraction(row, event: 'open');
   final exactCopy = _primaryExactCopy(row);
-  _openCardDetail(context, row, directContact, exactCopy: exactCopy);
+  if (exactCopy != null) {
+    _openExactCopy(context, row, exactCopy);
+    return;
+  }
+  _openCardDetail(context, row, directContact);
 }
 
 void _openExactCopy(
