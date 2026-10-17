@@ -83,6 +83,23 @@ export async function POST(request: NextRequest) {
   if (!context) return json({ error: "Sign in required" }, 401);
   let body: any;
   try { body = await request.json(); } catch { return json({ error: "Invalid request" }, 400); }
+  if (body?.action === "sold-cog-backfill") {
+    const paidAt = new Date(body.paidAt);
+    if (!uuid(body.instanceId) || typeof body.gvviId !== "string" || Number.isNaN(paidAt.getTime()) || !Number.isSafeInteger(body.costMinor) || body.costMinor < 0 || body.costMinor > 100000000000) {
+      return json({ error: "A valid sold copy, paid date, and exact cost are required" }, 400);
+    }
+    const { data, error } = await context.client.rpc("inventory_sold_cog_backfill_v1", {
+      p_instance_id: body.instanceId,
+      p_gvvi_id: body.gvviId,
+      p_paid_at: paidAt.toISOString(),
+      p_cost_minor: body.costMinor,
+    });
+    if (error) {
+      const rejected = ["22023", "PT409", "42501"].includes(error.code ?? "");
+      return json({ error: rejected ? error.message : "Sold COG backfill could not be saved" }, rejected ? 409 : 503);
+    }
+    return json(data);
+  }
   if (body?.action === "backfill-selling-fee") {
     const sellingFeeBps = body.sellingFeeBps;
     const sellingFeeFixedMinor = body.sellingFeeFixedMinor;
