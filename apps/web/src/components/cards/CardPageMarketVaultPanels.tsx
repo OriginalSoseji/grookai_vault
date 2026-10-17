@@ -36,6 +36,10 @@ type CardPageMarketVaultPanelsProps = {
   gvId: string;
   cardPrintId?: string | null;
   cardName: string;
+  setName?: string | null;
+  setCode?: string | null;
+  number?: string | null;
+  tcgplayerId?: string | null;
   printings: CardPrinting[];
   initialPrintingId?: string | null;
   pricing: CardPricingUiRecord | null;
@@ -70,6 +74,10 @@ export default function CardPageMarketVaultPanels({
   gvId,
   cardPrintId = null,
   cardName,
+  setName = null,
+  setCode = null,
+  number = null,
+  tcgplayerId = null,
   printings,
   initialPrintingId = null,
   pricing,
@@ -150,6 +158,10 @@ export default function CardPageMarketVaultPanels({
             gvId={gvId}
             printingReference={printingReference}
             cardName={cardName}
+            setName={setName}
+            setCode={setCode}
+            number={number}
+            tcgplayerId={tcgplayerId}
           />
         </div>
         <Link className="gv-detail-update-image" href={isAuthenticated ? imagePath : `/login?next=${encodeURIComponent(imagePath)}`}>

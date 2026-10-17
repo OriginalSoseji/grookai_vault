@@ -25,6 +25,7 @@ import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/pricing/ebay_sold_search_uri.dart';
 import 'services/pricing/card_personal_sales_service.dart';
+import 'services/sales/sales_card_reference.dart';
 import 'services/navigation/copy_detail_navigation_policy.dart';
 import 'services/navigation/pending_personal_card_action.dart';
 import 'services/network/card_engagement_service.dart';
@@ -338,7 +339,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       final rawDetailRow = await supabase
           .from('card_prints')
           .select(
-            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,printed_identity_modifier,set_code,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,printed_total,release_date,printed_set_abbrev,identity_model)',
+            'id,gv_id,name,number,number_plain,rarity,artist,variant_key,printed_identity_modifier,set_code,tcgplayer_id,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,printed_total,release_date,printed_set_abbrev,identity_model)',
           )
           .eq('id', widget.cardPrintId)
           .maybeSingle();
@@ -2297,6 +2298,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               case 'share':
                 unawaited(_shareCard());
                 break;
+              case 'tcgplayer':
+                unawaited(_openTcgplayerSearch());
+                break;
               case 'memory':
                 unawaited(_openMemoryCapture());
                 break;
@@ -2332,6 +2336,14 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 contentPadding: EdgeInsets.zero,
                 leading: Icon(Icons.ios_share_outlined),
                 title: Text('Share'),
+              ),
+            ),
+            const PopupMenuItem(
+              value: 'tcgplayer',
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(Icons.open_in_new_rounded),
+                title: Text('Search TCGplayer'),
               ),
             ),
             if (_canOpenMemoryCapture)
@@ -3650,6 +3662,47 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     await launchUrl(uri, mode: LaunchMode.externalApplication);
   }
 
+  Future<void> _openTcgplayerSearch() async {
+    final reference = SalesCardReference(
+      name: _displayTitle,
+      setName: _resolvedSetName,
+      number: _resolvedCollectorNumber,
+      productId: _cleanText(_cardContextData?['tcgplayer_id']).isEmpty
+          ? null
+          : _cleanText(_cardContextData?['tcgplayer_id']),
+    );
+    await launchUrl(reference.uri, mode: LaunchMode.externalApplication);
+  }
+
+  Widget _buildTcgplayerAction(ThemeData theme, ColorScheme colorScheme) {
+    if (_displayName == 'Card Detail') return const SizedBox.shrink();
+    final reference = SalesCardReference(
+      name: _displayTitle,
+      setName: _resolvedSetName,
+      number: _resolvedCollectorNumber,
+      productId: _cleanText(_cardContextData?['tcgplayer_id']).isEmpty
+          ? null
+          : _cleanText(_cardContextData?['tcgplayer_id']),
+    );
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: OutlinedButton.icon(
+          onPressed: () => unawaited(_openTcgplayerSearch()),
+          icon: const Icon(Icons.open_in_new_rounded, size: 17),
+          label: Text(reference.label),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(44, 42),
+            textStyle: theme.textTheme.labelLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildPriceHistoryAction(ThemeData theme, ColorScheme colorScheme) {
     if (!_hasExplicitPrintingContext ||
         _cleanText(_selectedPrintingOption?.id).isEmpty ||
@@ -3692,6 +3745,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           const SizedBox(height: 7),
           const _CardDetailSkeletonBlock(width: 192, height: 10),
           _buildPriceHistoryAction(theme, colorScheme),
+          _buildTcgplayerAction(theme, colorScheme),
         ],
       );
     }
@@ -3720,6 +3774,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             label: const Text('Retry'),
           ),
           _buildPriceHistoryAction(theme, colorScheme),
+          _buildTcgplayerAction(theme, colorScheme),
         ],
       );
     }
@@ -3744,6 +3799,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ),
           ),
           _buildPriceHistoryAction(theme, colorScheme),
+          _buildTcgplayerAction(theme, colorScheme),
         ],
       );
     }
@@ -3799,6 +3855,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ),
           ),
           _buildPriceHistoryAction(theme, colorScheme),
+          _buildTcgplayerAction(theme, colorScheme),
         ] else ...[
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -3864,6 +3921,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ),
           ],
           _buildPriceHistoryAction(theme, colorScheme),
+          _buildTcgplayerAction(theme, colorScheme),
         ],
       ],
     );

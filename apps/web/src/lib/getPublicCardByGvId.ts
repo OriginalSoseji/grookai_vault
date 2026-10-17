@@ -66,6 +66,7 @@ type PublicCardRow = {
   image_status: string | null;
   image_note: string | null;
   artist: string | null;
+  tcgplayer_id?: string | null;
   set_code: string | null;
   variant_key: string | null;
   printed_identity_modifier: string | null;
@@ -708,6 +709,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
         image_status,
         image_note,
         artist,
+        tcgplayer_id,
         external_ids,
         set_code,
         set_id,
@@ -810,6 +812,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     display_image_kind: imageFields.display_image_kind,
     tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
     artist: row.artist ?? undefined,
+    tcgplayer_id: row.tcgplayer_id?.trim() || undefined,
     printed_total: printedTotal,
     release_date: releaseDate ?? undefined,
     release_year: getReleaseYear(releaseDate),

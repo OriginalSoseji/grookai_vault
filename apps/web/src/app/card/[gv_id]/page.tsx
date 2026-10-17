@@ -1274,6 +1274,10 @@ async function CardPageContent({
                 gvId={resolvedCard.gv_id}
                 cardPrintId={resolvedCard.id}
                 cardName={resolvedDisplayIdentity.display_name}
+                setName={setName}
+                setCode={setCodeLabel}
+                number={resolvedCard.number}
+                tcgplayerId={resolvedCard.tcgplayer_id}
                 printings={displayPrintingsWithOwnedCounts}
                 initialPrintingId={searchParams?.printing ?? null}
                 pricing={pricingUi}
