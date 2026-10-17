@@ -1,5 +1,14 @@
 # Grookai Agent Entry Point
 
+## Pricing assignment-lane race repair — October 17
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_156_ASSIGNMENT_LANE_RACE_REPAIR.md`.
+Ordinary market-close rows must carry a concrete variant-assignment ledger ID
+before qualification can publish them. This prevents a mapping created after
+assignment preparation from passing policy and then failing the snapshot table
+constraint. The next run prepares the missing assignment normally; edition
+assignment lanes remain separate.
+
 ## Ollama bulk TCGPlayer mapping triage — October 17
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_155_OLLAMA_BULK_MAPPING_AGENT.md`.

@@ -170,6 +170,9 @@ export function evaluateTcgplayerMarketQualificationV1(
         : "missing_variant_assignment",
     );
   }
+  if (!exactEditionAssignment && !clean(row.variant_assignment_id)) {
+    reasons.push("missing_variant_assignment_identity");
+  }
   if (printingMappingCount !== 1) {
     reasons.push(
       printingMappingCount === 0
