@@ -49,7 +49,7 @@ export default function CardProfitabilityManager() {
     try {
       const incomeTaxBps = Math.round(Number(tax) * 100);
       if (!Number.isInteger(incomeTaxBps) || incomeTaxBps < 0 || incomeTaxBps > 10000) throw Error("Income tax must be between 0% and 100%.");
-      const query = new URLSearchParams({ action: "card-pnl", dateBasis, incomeTaxBps: String(incomeTaxBps), salesTaxMode: taxMode, limit: "500" });
+      const query = new URLSearchParams({ action: "card-pnl", dateBasis, incomeTaxBps: String(incomeTaxBps), salesTaxMode: taxMode, limit: "5000" });
       if (from) query.set("from", new Date(`${from}T00:00:00`).toISOString());
       if (to) query.set("to", new Date(`${to}T00:00:00`).toISOString());
       const response = await fetch(`/api/inventory/acquisition?${query}`, { cache: "no-store" });
