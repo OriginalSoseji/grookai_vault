@@ -706,14 +706,14 @@ class _VendorPricingWorkspaceScreenState
             },
             icon: const Icon(Icons.point_of_sale),
           ),
-          TextButton.icon(
+          IconButton(
+            tooltip: 'Manage store',
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => const StoreManagementScreen(),
               ),
             ),
             icon: const Icon(Icons.storefront_outlined),
-            label: const Text('Manage store'),
           ),
           IconButton(
             tooltip: 'Refresh inventory',
