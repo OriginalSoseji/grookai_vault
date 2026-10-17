@@ -100,6 +100,24 @@ export async function POST(request: NextRequest) {
     }
     return json(data);
   }
+  if (body?.action === "sold-cog-batch") {
+    const paidAt = new Date(body.paidAt);
+    const lines = body.lines;
+    if (!uuid(body.id) || typeof body.paidAt !== "string" || !body.paidAt.trim() || Number.isNaN(paidAt.getTime()) || !Number.isSafeInteger(body.totalPaidMinor) || body.totalPaidMinor < 0 || body.totalPaidMinor > 100000000000 || !Array.isArray(lines) || lines.length < 1 || lines.length > 1000) {
+      return json({ error: "A valid sold COG batch, paid date, total, and exact copies are required" }, 400);
+    }
+    const { data, error } = await context.client.rpc("inventory_sold_cog_batch_backfill_v1", {
+      p_batch_id: body.id,
+      p_paid_at: paidAt.toISOString(),
+      p_total_paid_minor: body.totalPaidMinor,
+      p_lines: lines,
+    });
+    if (error) {
+      const rejected = ["22023", "PT409", "42501", "23505"].includes(error.code ?? "");
+      return json({ error: rejected ? error.message : "Sold COG bulk backfill could not be saved" }, rejected ? 409 : 503);
+    }
+    return json(data);
+  }
   if (body?.action === "backfill-selling-fee") {
     const sellingFeeBps = body.sellingFeeBps;
     const sellingFeeFixedMinor = body.sellingFeeFixedMinor;
