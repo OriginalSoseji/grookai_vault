@@ -22,6 +22,7 @@ import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction"
 import CopyButton from "@/components/CopyButton";
 import PublicCardImage from "@/components/PublicCardImage";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
+import CardMarketLinks from "@/components/cards/CardMarketLinks";
 import CardPagePerformanceProbe from "@/components/performance/CardPagePerformanceProbe";
 import { buildGrookaiVariantExplanationFromPublicCopy } from "@/lib/ai/grookaiVariantExplanationBuilder";
 import { buildTcgDexImageUrl } from "@/lib/cards/buildTcgDexImageUrl";
@@ -1147,6 +1148,12 @@ async function CardPageContent({
                 {resolvedCardImagePresentation.detailNote}
               </p>
             ) : null}
+            <CardMarketLinks
+              name={resolvedDisplayIdentity.display_name}
+              setName={setName}
+              setCode={setCodeLabel}
+              number={resolvedCard.number}
+            />
           </div>
 
           <div className="gv-card-hero-copy gv-detail-copy">
