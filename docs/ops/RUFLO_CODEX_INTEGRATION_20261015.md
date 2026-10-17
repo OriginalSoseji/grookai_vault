@@ -8,6 +8,11 @@ readback confirmed the exact Codex registration and a live stdio MCP handshake
 with 46 advertised tools and zero forbidden tool prefixes. The integration does
 not change production, GitHub settings, or user-level Codex configuration.
 
+The proposed expansion across Grookai agents is defined in
+`docs/plans/RUFLO_ALL_AGENTS_INTEGRATION_PLAN_20261016.md`. That plan starts with
+a read-only registry and protected-worktree inventory. It is not execution,
+cleanup, production-write, workflow-dispatch, or tool-surface authority.
+
 ## Boundary
 
 - Ruflo is pinned to `3.56.9`; do not replace the pin with `latest`.

@@ -84,6 +84,12 @@ plugin, or enable HTTP, WebSocket, Docker, daemon, terminal, GitHub, browser,
 federation, or managed-agent surfaces without a new review. Existing Grookai
 instructions and authorization boundaries remain authoritative.
 
+The proposed all-agents rollout is documented in
+`docs/plans/RUFLO_ALL_AGENTS_INTEGRATION_PLAN_20261016.md`. Its first milestone
+is a read-only registry and protected-worktree inventory. It grants no cleanup,
+cross-worktree mutation, workflow dispatch, production write, or external-action
+authority.
+
 ## Energy-name exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.

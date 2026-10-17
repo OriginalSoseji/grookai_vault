@@ -18,6 +18,17 @@ not become stale merely because no trigger occurred. The maintenance pass
 recovers legacy stale incidents for those nonperiodic agents. A failed or
 running event-triggered run still surfaces through its latest run status.
 
+## Ruflo all-agents integration plan — October 16, 2026
+
+Read `docs/plans/RUFLO_ALL_AGENTS_INTEGRATION_PLAN_20261016.md`. The proposed
+rollout keeps Ruflo as a bounded coordination layer over the existing Grookai
+Operations Agent Protocol, schedulers, workers, contracts, and isolated
+worktrees. Start with a read-only registry and inventory. Every current
+worktree, including the active Japanese global catalog and in-flight Pokémon
+global discovery work, is protected by default. The plan authorizes no cleanup,
+workflow dispatch, production write, external action, version change, or wider
+Ruflo tool surface.
+
 ## Residual reviewed alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
