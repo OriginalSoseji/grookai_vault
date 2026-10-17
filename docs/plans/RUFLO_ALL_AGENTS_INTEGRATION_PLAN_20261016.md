@@ -572,6 +572,10 @@ PR 1 is complete when:
 5. focused tests and `git diff --check` pass;
 6. a generated report proves zero external and production writes.
 
+Implementation candidate status is recorded in
+`docs/checkpoints/RUFLO_AGENT_REGISTRY_V1_20261016.md`. It remains read-only and
+does not authorize the later pilot or execution phases.
+
 ## References
 
 - [Grookai Ruflo Codex integration runbook](../ops/RUFLO_CODEX_INTEGRATION_20261015.md)

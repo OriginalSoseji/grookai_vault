@@ -183,3 +183,17 @@ test("checked-in inventory snapshot and hashes reconcile", () => {
   }
 });
 
+test("registry commands and checkpoint are indexed", () => {
+  const packageJson = JSON.parse(readFileSync("package.json", "utf8"));
+  assert.equal(packageJson.scripts["ruflo:registry:validate"], "node scripts/ruflo/validate_agent_registry_v1.mjs");
+  assert.equal(packageJson.scripts["ruflo:inventory:build"], "node scripts/ruflo/build_readonly_inventory_v1.mjs");
+  assert.match(packageJson.scripts["ruflo:registry:test"], /ruflo_agent_registry_v1\.test\.mjs/);
+  for (const file of [
+    "AGENTS.md",
+    "docs/INDEX.md",
+    "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+    "docs/ops/RUFLO_CODEX_INTEGRATION_20261015.md",
+  ]) {
+    assert.match(readFileSync(file, "utf8"), /RUFLO_AGENT_REGISTRY_V1_20261016\.md/, file);
+  }
+});
