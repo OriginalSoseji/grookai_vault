@@ -25,6 +25,7 @@ function command(binary, args, { cwd, allowFailure = false } = {}) {
       encoding: "utf8",
       windowsHide: true,
       maxBuffer: 32 * 1024 * 1024,
+      stdio: ["ignore", "pipe", "pipe"],
     }).trim();
   } catch (error) {
     if (allowFailure) return null;
@@ -313,4 +314,3 @@ function main() {
 
 const invokedPath = process.argv[1] ? pathToFileURL(path.resolve(process.argv[1])).href : null;
 if (invokedPath === import.meta.url) main();
-
