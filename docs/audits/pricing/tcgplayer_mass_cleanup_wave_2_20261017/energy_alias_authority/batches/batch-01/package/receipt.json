@@ -1,0 +1,16 @@
+{
+  "version": "MASTER_INDEX_MAPPING_PACKAGE_RECEIPT_V1",
+  "batch": {
+    "index": 1,
+    "total": 1,
+    "offset": 0,
+    "size": 7
+  },
+  "authority_fingerprint": "34a75d4f6db03e84cf611d726267116e81403071527369eba84162f5bd0b1655",
+  "authority_file_sha256": "52e1528eda3f0dcd347e18baf08ef1ace371f811c62c06796e3ebe41cf2e19ee",
+  "selected_file_sha256": "e45d869b31462b475b74c193d143ae86f006bdca6438e73a86dcdf3bf57ac7ca",
+  "selected_count": 7,
+  "scope_count": 2,
+  "execution_authorized": false,
+  "database_writes": 0
+}

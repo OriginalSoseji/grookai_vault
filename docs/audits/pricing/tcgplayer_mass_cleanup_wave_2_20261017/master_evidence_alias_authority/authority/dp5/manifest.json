@@ -1,0 +1,297 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "dp5",
+  "scope": "verified_parent_families",
+  "scope_note": "Exact reviewed TCGPlayer residual aliases with unique set and number identity, frozen source titles, canonical parents, every source-listed finish, and checked-in source evidence.",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "dp5-master-evidence-alias-master-index-projection-v1",
+  "master_index_sha256": "7209ee76ee35e7f018962c971cb858b96c1659c72dfe59cd5a8c3724bd82be0c",
+  "parents": [
+    {
+      "id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+      "name": "Chimchar",
+      "gv_id": "GV-PK-DP5-56-PLATINUM-STAMPED-BURGER-KING-2009",
+      "set_id": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+      "variant_key": "platinum_stamped_burger_king_2009",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "56",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+      "name": "Eevee",
+      "gv_id": "GV-PK-DP5-62-PLATINUM-STAMPED-BURGER-KING-2009",
+      "set_id": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+      "variant_key": "platinum_stamped_burger_king_2009",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "62",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+      "name": "Piplup",
+      "gv_id": "GV-PK-DP5-71-PLATINUM-STAMPED-BURGER-KING-2009",
+      "set_id": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+      "variant_key": "platinum_stamped_burger_king_2009",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "71",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "41c3c346-edf5-4306-9dd9-992823418994",
+      "name": "Pikachu",
+      "gv_id": "GV-PK-DP5-70-PLATINUM-STAMPED-BURGER-KING-2009",
+      "set_id": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+      "variant_key": "platinum_stamped_burger_king_2009",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "70",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+      "name": "Turtwig",
+      "gv_id": "GV-PK-DP5-77-PLATINUM-STAMPED-BURGER-KING-2009",
+      "set_id": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+      "variant_key": "platinum_stamped_burger_king_2009",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "77",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP5-56-PLATINUM-STAMPED-BURGER-KING-2009-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-16bc3a35a08e3ff7",
+          "sha256": "16bc3a35a08e3ff73b026c1595e14e99f2e4dde0c6ccd3c0dfecd30599ac699c",
+          "card_print_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP5-62-PLATINUM-STAMPED-BURGER-KING-2009-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-16bc3a35a08e3ff7",
+          "sha256": "16bc3a35a08e3ff73b026c1595e14e99f2e4dde0c6ccd3c0dfecd30599ac699c",
+          "card_print_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP5-71-PLATINUM-STAMPED-BURGER-KING-2009-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-be2f4aa265e9351d",
+          "sha256": "be2f4aa265e9351dc2566790c34c437116eb71bc639b081dfd56cdde9a867e4c",
+          "card_print_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "41c3c346-edf5-4306-9dd9-992823418994",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP5-70-PLATINUM-STAMPED-BURGER-KING-2009-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-16bc3a35a08e3ff7",
+          "sha256": "16bc3a35a08e3ff73b026c1595e14e99f2e4dde0c6ccd3c0dfecd30599ac699c",
+          "card_print_id": "41c3c346-edf5-4306-9dd9-992823418994",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP5-77-PLATINUM-STAMPED-BURGER-KING-2009-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-16bc3a35a08e3ff7",
+          "sha256": "16bc3a35a08e3ff73b026c1595e14e99f2e4dde0c6ccd3c0dfecd30599ac699c",
+          "card_print_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 5,
+    "printings": 5,
+    "finishes": {
+      "reverse": 5
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "f72d53bd-2e2a-47b4-b802-882424b650e4",
+    "source_artifacts": [
+      {
+        "ref": "dp5-master-evidence-alias-master-index-projection-v1",
+        "sha256": "7209ee76ee35e7f018962c971cb858b96c1659c72dfe59cd5a8c3724bd82be0c",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "derived:dp5-master-evidence-alias-master-index-projection-v1",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "dp5-english-master-index-cards-v1",
+        "sha256": "2568c310362aa54a6422cf72e91802eb64d1055388090834f8f59d7429c0d657",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/dp5/cards.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "dp5-english-master-index-printings-v1",
+        "sha256": "1fc13a41f688198052f9fa4a8d6107bf6ea620aa5104c724ba743cb9a8e57a52",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/dp5/printings.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "tcgcsv-group-1394-selected-products",
+        "sha256": "51de58725223eba061cbd602f4169481adb5cc53a37b3e1252346c14c9da119b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1394/products",
+        "retrieved_at": "2026-10-15T20:53:34.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2175-selected-products",
+        "sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2175/products",
+        "retrieved_at": "2026-10-15T20:55:03.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2295-selected-products",
+        "sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2295/products",
+        "retrieved_at": "2026-10-15T20:52:31.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2931-selected-products",
+        "sha256": "b497584a5041af7d6aca2765cc5e71aa35ceb9a686a800fb7cda0c3b35295d46",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2931/products",
+        "retrieved_at": "2026-10-15T20:51:58.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-24325-selected-products",
+        "sha256": "33c2884bb4800aa43df783839e6b97bb87b97a7351d0bb4414b54a9682cf7168",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/24325/products",
+        "retrieved_at": "2026-10-15T20:50:30.000Z"
+      },
+      {
+        "ref": "catalog-evidence-16bc3a35a08e3ff7",
+        "sha256": "16bc3a35a08e3ff73b026c1595e14e99f2e4dde0c6ccd3c0dfecd30599ac699c",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/burger_king_residual_child_insert_real_apply_v1.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "catalog-evidence-be2f4aa265e9351d",
+        "sha256": "be2f4aa265e9351dc2566790c34c437116eb71bc639b081dfd56cdde9a867e4c",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/piplup_burger_king_child_insert_real_apply_v1.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "41c3c346-edf5-4306-9dd9-992823418994",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:dp5:tcgplayer-master-evidence-alias-20261015",
+      "sha256": "a681c2ad63f251849c8d60b80394912c9cfb2b4ff3e3b4f952431ee572427869"
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "155603",
+      "card_print_id": "006b48c2-45af-486e-9059-ebf0c2a4f329",
+      "candidate_fingerprint": "604dff27547656fc9d449417d9aca11119edc3c441b3441de7eafb0250783e92",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "155605",
+      "card_print_id": "5d43f0d8-0fb3-4a0d-bcef-999fd40e67af",
+      "candidate_fingerprint": "8c46e4985bf5e4d2b3191f7f200e96a77731854c6094317508556e1a4334378e",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "188132",
+      "card_print_id": "2df55ec4-c010-4a01-b468-d1da7270e9d2",
+      "candidate_fingerprint": "75d09dccf213300bbe4538caa05d2c883288530bb45d5dddf6d0c673fc0f485c",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "224679",
+      "card_print_id": "41c3c346-edf5-4306-9dd9-992823418994",
+      "candidate_fingerprint": "3d0288278b888541401b1eca2ba85542b13ebe535e6384694229a812c502fca9",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "231450",
+      "card_print_id": "d47a7931-82b8-42ba-a6dc-4137642c2f78",
+      "candidate_fingerprint": "37adb5834c229fd0db440a2e57daace1bc291368a09be2c34628d49b31cf452e",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    }
+  ],
+  "fingerprint": "da59d658a73372c326377a462126e801011fa21dd9579a61ee7a02bd15ad6508"
+}

@@ -1,0 +1,211 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bw6",
+  "scope": "verified_parent_families",
+  "scope_note": "Exact reviewed TCGPlayer residual aliases with unique set and number identity, frozen source titles, canonical parents, every source-listed finish, and checked-in source evidence.",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "bw6-master-evidence-alias-master-index-projection-v1",
+  "master_index_sha256": "6012ccc283da90a5bfc47cda77b6f7e4ee66317a227985fa758a756d31ff8329",
+  "parents": [
+    {
+      "id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+      "name": "Blend Energy GrassFirePsychicDarkness",
+      "gv_id": "GV-PK-DRX-117",
+      "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "117",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+      "name": "Blend Energy WaterLightningFightingMetal",
+      "gv_id": "GV-PK-DRX-118",
+      "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "118",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRX-117-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "bw6-english-master-index-printings-v1",
+          "sha256": "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805",
+          "card_print_id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DRX-117-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "bw6-english-master-index-printings-v1",
+          "sha256": "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805",
+          "card_print_id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRX-118-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "bw6-english-master-index-printings-v1",
+          "sha256": "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805",
+          "card_print_id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DRX-118-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "bw6-english-master-index-printings-v1",
+          "sha256": "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805",
+          "card_print_id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 4,
+    "finishes": {
+      "normal": 2,
+      "reverse": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "31bab32f-dc83-4a51-b08d-f96256184cf7",
+    "source_artifacts": [
+      {
+        "ref": "bw6-master-evidence-alias-master-index-projection-v1",
+        "sha256": "6012ccc283da90a5bfc47cda77b6f7e4ee66317a227985fa758a756d31ff8329",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "derived:bw6-master-evidence-alias-master-index-projection-v1",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "bw6-english-master-index-cards-v1",
+        "sha256": "82bff84ccd5f222d4a407465e1f0dfd0cca9561ca6b8420eee6608aa72c59f1d",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/bw6/cards.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "bw6-english-master-index-printings-v1",
+        "sha256": "1890201ec2277bd9253de3dd17d4f99c72d8b6f9583ec334abf01c649e2c6805",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/bw6/printings.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "tcgcsv-group-1394-selected-products",
+        "sha256": "51de58725223eba061cbd602f4169481adb5cc53a37b3e1252346c14c9da119b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1394/products",
+        "retrieved_at": "2026-10-15T20:53:34.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2175-selected-products",
+        "sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2175/products",
+        "retrieved_at": "2026-10-15T20:55:03.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2295-selected-products",
+        "sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2295/products",
+        "retrieved_at": "2026-10-15T20:52:31.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2931-selected-products",
+        "sha256": "b497584a5041af7d6aca2765cc5e71aa35ceb9a686a800fb7cda0c3b35295d46",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2931/products",
+        "retrieved_at": "2026-10-15T20:51:58.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-24325-selected-products",
+        "sha256": "33c2884bb4800aa43df783839e6b97bb87b97a7351d0bb4414b54a9682cf7168",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/24325/products",
+        "retrieved_at": "2026-10-15T20:50:30.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:bw6:tcgplayer-master-evidence-alias-20261015",
+      "sha256": "93394d34061da97814b6e05feb501910973f5fb73ad9163c7e0d6ac134025f5f"
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "83916",
+      "card_print_id": "f96a24f3-962c-40f3-83a0-83383b742dda",
+      "candidate_fingerprint": "72ea67e5346cf5bb836fa0b490763b39f2d5e3979ca2a7c7964c9e5bb28c97ce",
+      "source_ref": "tcgcsv-group-1394-selected-products",
+      "source_sha256": "51de58725223eba061cbd602f4169481adb5cc53a37b3e1252346c14c9da119b"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "83917",
+      "card_print_id": "13101167-6c6b-4cbb-86a8-472cbc2402b8",
+      "candidate_fingerprint": "ea24b07fcac509a5085bac6424c6909c5bebb778f5e43be14c0fad2df33f6aac",
+      "source_ref": "tcgcsv-group-1394-selected-products",
+      "source_sha256": "51de58725223eba061cbd602f4169481adb5cc53a37b3e1252346c14c9da119b"
+    }
+  ],
+  "fingerprint": "52a67d281c792d8b99a4cc57634a336c224822a779c78f1fc54988e1dd6f77f8"
+}

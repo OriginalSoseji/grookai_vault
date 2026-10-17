@@ -1,0 +1,38 @@
+[
+  {
+    "ref": "review:sv10.5b:tcgplayer-master-evidence-alias-20261015",
+    "path": "artifacts/review_sv10.5b_tcgplayer-master-evidence-alias-20261015"
+  },
+  {
+    "ref": "sv10.5b-english-master-index-cards-v1",
+    "path": "artifacts/sv10.5b-english-master-index-cards-v1"
+  },
+  {
+    "ref": "sv10.5b-english-master-index-printings-v1",
+    "path": "artifacts/sv10.5b-english-master-index-printings-v1"
+  },
+  {
+    "ref": "sv10.5b-master-evidence-alias-master-index-projection-v1",
+    "path": "artifacts/sv10.5b-master-evidence-alias-master-index-projection-v1"
+  },
+  {
+    "ref": "tcgcsv-group-1394-selected-products",
+    "path": "artifacts/tcgcsv-group-1394-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2175-selected-products",
+    "path": "artifacts/tcgcsv-group-2175-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2295-selected-products",
+    "path": "artifacts/tcgcsv-group-2295-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-24325-selected-products",
+    "path": "artifacts/tcgcsv-group-24325-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2931-selected-products",
+    "path": "artifacts/tcgcsv-group-2931-selected-products"
+  }
+]

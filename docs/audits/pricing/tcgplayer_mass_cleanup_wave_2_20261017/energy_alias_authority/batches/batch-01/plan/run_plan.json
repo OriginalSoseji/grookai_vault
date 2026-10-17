@@ -1,0 +1,63 @@
+{
+  "planner_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_3",
+  "policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+  "mode": "read_only_dry_run",
+  "commit_sha": "b54675fe0bfb5d8ee322048e131cca9acfcd567b",
+  "branch": "fix/tcgplayer-verified-wave-2-20261017",
+  "tracked_worktree_clean": false,
+  "source_sync_run_id": "71e7350b-8594-4d1d-885c-dbe46cb2f7fe",
+  "coverage_gaps_artifact": "../grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/completion_agent/post_mep_production_20261017/backlog/latest_pokemon_identity_mapping_gaps.jsonl",
+  "reviewed_set_authorities": [
+    {
+      "source_group_id": 2782,
+      "source_group_name": "McDonald's 25th Anniversary Promos",
+      "target_set_code": "mcd21",
+      "evidence_lane": "reviewed_group_set_authority",
+      "mapping_method": "exact_reviewed_set_number_name_authority_v1",
+      "mapping_confidence": 0.99,
+      "authority_evidence": {
+        "authority_version": "TCGPLAYER_MARKET_REVIEWED_SET_AUTHORITY_V1",
+        "rationale": "TCGPlayer's 25-card anniversary promo group is the complete numbered McDonald's Collection 2021 set, whose reviewed printing authority and public route use mcd21"
+      }
+    },
+    {
+      "source_group_id": 23529,
+      "source_group_name": "SV: Shrouded Fable",
+      "target_set_code": "sv06.5",
+      "evidence_lane": "reviewed_group_set_authority",
+      "mapping_method": "exact_reviewed_set_number_name_authority_v1",
+      "mapping_confidence": 0.99,
+      "authority_evidence": {
+        "authority_version": "TCGPLAYER_MARKET_REVIEWED_SET_AUTHORITY_V1",
+        "rationale": "TCGdex canonical set is the established TCGPlayer target when a PokemonAPI duplicate set exists"
+      }
+    },
+    {
+      "source_group_id": 24837,
+      "source_group_name": "ME: 30th Celebration Classic Collection",
+      "target_set_code": "30c-classic",
+      "evidence_lane": "reviewed_group_set_authority",
+      "mapping_method": "exact_reviewed_set_number_name_authority_v1",
+      "mapping_confidence": 0.99,
+      "authority_evidence": {
+        "authority_version": "TCGPLAYER_MARKET_REVIEWED_SET_AUTHORITY_V1",
+        "rationale": "TCGPlayer's 30-card Classic Collection group is the reviewed 30c-classic anthology; only exact normalized name and printed-coordinate matches may enter the base mapping lane"
+      }
+    }
+  ],
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "mapping_writes": false,
+    "publication_writes": false,
+    "customer_state_writes": false
+  },
+  "source_plan_commit_sha": "56781f40aebeb164b03f422d3062243f26022928",
+  "source_plan_candidates_sha256": "b9fa2a99987933e3e9b5618772ac15ba95efe0b747faa2d794c01dea1085be09",
+  "batch": {
+    "index": 1,
+    "total": 1,
+    "offset": 0,
+    "size": 7
+  }
+}
