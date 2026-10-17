@@ -87,6 +87,7 @@ export interface CardSummary {
   image_status?: string;
   image_note?: string;
   image_source?: string;
+  tcgplayer_id?: string;
   display_image_url?: string;
   display_image_fallback_url?: string;
   external_image_fallback_url?: string;
