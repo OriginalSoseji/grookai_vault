@@ -320,7 +320,15 @@ export async function buildResidualAliasMappingAuthority(args) {
   const projections = sourceProjection(candidates, sources);
   const db = await readDatabase(candidates);
   assert.equal(db.parents.length, candidates.length, "live_parent_count_changed");
-  assert.equal(db.printings.length, EXPECTED_PRINTINGS, "live_printing_count_changed");
+  const scopedPrintingKeys = new Set(candidates.flatMap((candidate) => {
+    const authority = reviewedTcgplayerResidualAliasProductIdentityV1(candidate);
+    return authority.printings.map((printing) =>
+      `${authority.target.card_print_id}:${printing.printing_gv_id}`);
+  }));
+  const scopedLivePrintings = db.printings.filter((printing) =>
+    scopedPrintingKeys.has(`${printing.card_print_id}:${printing.printing_gv_id}`));
+  assert.equal(scopedLivePrintings.length, EXPECTED_PRINTINGS,
+    "required_live_printing_count_changed");
   assert.equal(db.products.length, candidates.length, "live_source_product_count_changed");
   assert.equal(db.existing.length, 0, "target_or_source_already_mapped");
   for (const candidate of candidates) {
@@ -394,7 +402,8 @@ export async function buildResidualAliasMappingAuthority(args) {
   await writeFileExclusive(path.join(batchDir,"package","receipt.json"),jsonBytes(batchReceipt));
   const receipt={version:VERSION,status:"verified_scope",reviewed_at:options.reviewedAt,
     source_plan_candidates_sha256:sha256(candidateBytes),counts:{candidates:candidates.length,parents:candidates.length,
-      printings:db.printings.length,tcgcsv_products:db.products.length,batches:1,
+      printings:scopedLivePrintings.length,additional_live_printings_outside_scope:
+        db.printings.length-scopedLivePrintings.length,tcgcsv_products:db.products.length,batches:1,
       projected_gap_rows:candidates.reduce((sum,row)=>sum+Number(row.supporting_gap_row_count),0)},
     tracked_worktree_clean:trackedClean,commit_sha:head,batches:[{batch:"batch-01",...batchReceipt}],database_writes:0,
     execution_authorized:false};
