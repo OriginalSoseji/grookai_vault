@@ -43,32 +43,42 @@ class _InventoryEconomicsScreenState extends State<InventoryEconomicsScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Material(
-            color: Theme.of(context).colorScheme.surfaceContainerLow,
-            child: TabBar(
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              onTap: (value) => setState(() => _tab = value),
-              tabs: const [
-                Tab(icon: Icon(Icons.add_shopping_cart), text: 'Buy / intake'),
-                Tab(icon: Icon(Icons.hourglass_bottom), text: 'Aging'),
-                Tab(icon: Icon(Icons.calculate_outlined), text: 'Per-card P&L'),
-              ],
+      body: DefaultTabController(
+        length: 3,
+        initialIndex: _tab,
+        child: Column(
+          children: [
+            Material(
+              color: Theme.of(context).colorScheme.surfaceContainerLow,
+              child: TabBar(
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                onTap: (value) => setState(() => _tab = value),
+                tabs: const [
+                  Tab(
+                    icon: Icon(Icons.add_shopping_cart),
+                    text: 'Buy / intake',
+                  ),
+                  Tab(icon: Icon(Icons.hourglass_bottom), text: 'Aging'),
+                  Tab(
+                    icon: Icon(Icons.calculate_outlined),
+                    text: 'Per-card P&L',
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: IndexedStack(
-              index: _tab,
-              children: [
-                _PurchasePane(service: _service),
-                _AgingPane(service: _service),
-                _PnlPane(service: _service),
-              ],
+            Expanded(
+              child: IndexedStack(
+                index: _tab,
+                children: [
+                  _PurchasePane(service: _service),
+                  _AgingPane(service: _service),
+                  _PnlPane(service: _service),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -875,7 +885,9 @@ class _AgingPaneState extends State<_AgingPane> {
 
   Widget _inventoryCard(Map<String, dynamic> item) {
     final cost = item['acquisitionCost'];
-    final costMinor = cost is Map ? cost['minor'] as int? : null;
+    final costMinor = cost is Map
+        ? num.tryParse(cost['minor']?.toString() ?? '')?.toInt()
+        : null;
     final date = DateTime.tryParse(item['acquisitionDate']?.toString() ?? '');
     final age = date == null
         ? 'date unknown'
