@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md`
+
+This checkpoint records the overlapping current-warehouse sync that invalidated
+the October 17 shadow by moving shared dimension ownership between two source
+runs and leaving zero publication candidates.
+
+Decision locked there:
+
+- applying current syncs serialize through one database advisory lock held by
+  the same PostgreSQL session as the warehouse writes, and missing-row
+  finalization requires exact run ownership of every fetched dimension
+
+Unresolved gate afterward:
+
+- restore the current active dimension state with a fresh locked full sync,
+  then pass a nonzero exact-commit shadow and guarded production publication
+
 ### `PRICING_CHECKPOINT_133_TCGPLAYER_PRICING_COMPLETION_AGENT.md`
 
 This checkpoint records the dedicated six-hour TCGPlayer pricing-completion
