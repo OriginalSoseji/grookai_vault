@@ -208,9 +208,9 @@ function buildMarkdown(inventory) {
     `| \`${worktree.path}\` | ${worktree.branch ? `\`${worktree.branch}\`` : "detached"} | ${worktree.status_available ? String(worktree.dirty) : "unreadable"} | ${worktree.change_count ?? "unknown"} | protected |`,
   ).join("\n");
   return `# Ruflo Read-Only Inventory V1\n\n`
-    + `Generated: \`${inventory.generated_at}\`  \n`
-    + `Source commit: \`${inventory.source_commit_sha}\`  \n`
-    + `Inventory fingerprint: \`${inventory.inventory_fingerprint_sha256}\`\n\n`
+    + `- Generated: \`${inventory.generated_at}\`\n`
+    + `- Source commit: \`${inventory.source_commit_sha}\`\n`
+    + `- Inventory fingerprint: \`${inventory.inventory_fingerprint_sha256}\`\n\n`
     + `## Boundary\n\n`
     + `This inventory is read-only. It authorizes zero agent executions, workflow dispatches, production writes, external actions, branch/worktree cleanup operations, or cross-worktree writes. Every discovered worktree is protected.\n\n`
     + `## Counts\n\n`
