@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## Ollama bulk TCGPlayer mapping triage — October 17
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_155_OLLAMA_BULK_MAPPING_AGENT.md`.
+The local `grookai-card-triage:4b` worker now enriches every blocked product
+against the live unmapped canonical parent catalog before inference, processes
+up to 5,000 rows sequentially, and reconciles selected targets across the whole
+batch. Duplicate target selections, sealed products, uncertain identities, and
+missing evidence remain explicit holds. The agent is read-only and advisory: it
+cannot write mappings or publish prices. Promote only the collision-free review
+queue through the existing exact authority, rollback, apply, shadow, and
+publication gates.
+
 ## MEP catalog-backed pricing repair — October 16
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_154_MEP_CATALOG_BACKFILL.md`.
