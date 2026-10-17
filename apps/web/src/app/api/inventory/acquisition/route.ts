@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
   const action = params.get("action");
   const sort = params.get("sort") ?? "oldest";
   const limit = Number(params.get("limit") ?? "200");
-  if (sort !== "oldest" && sort !== "newest" || !Number.isInteger(limit) || limit < 1 || limit > 500) {
+  if (sort !== "oldest" && sort !== "newest" || !Number.isInteger(limit) || limit < 1 || limit > 5000) {
     return json({ error: "Invalid inventory filter" }, 400);
   }
   const fromDate = from ? new Date(from) : null;
