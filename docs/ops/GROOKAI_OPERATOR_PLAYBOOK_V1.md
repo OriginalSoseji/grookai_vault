@@ -92,14 +92,21 @@ production approval.
 ## Local Ollama pricing triage — October 15, 2026
 
 Use the checked-in `grookai-card-triage:4b` Modelfile and the
-`pricing:market:ollama-triage` worker only for advisory review leads from an exact
-planner's blocked JSONL. Read
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md` before
-operating it. The endpoint must remain HTTP loopback, model calls must remain
-sequential, and every run must unload the model. Do not attach database
-credentials, add a write mode, or treat model output as reviewed mapping or
-publication authority. Keep exact deterministic validation and the governed
-release path unchanged.
+`pricing:market:ollama-triage` worker only for advisory review leads. Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md` and
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_155_OLLAMA_BULK_MAPPING_AGENT.md`
+before operating it. The Windows task `Grookai Ollama Pricing Triage` polls every
+five minutes from `C:\gv_ollama_bulk_mapper_20261017`; hosted completion evidence
+refreshes every fifteen minutes. Retain state and output under
+`C:\grookai_vault_operator_artifacts\pokemon_pricing_repair_20261012\ollama\continuous`.
+The worker hashes each input and skips an unchanged completed batch, while its
+mutex prevents overlap. It enriches the full blocked input from a repeatable-read,
+read-only production transaction, limits each row to real catalog candidates,
+runs model calls sequentially, reconciles duplicate target selections across the
+batch, and unloads the model. Keep the endpoint on HTTP loopback. Do not attach a
+database writer, add mapping or publication authority, or treat model output as
+reviewed evidence. Promotion still requires deterministic validation and the
+governed release path.
 
 ## Pokémon 30th Celebration Classic aliases — October 14
 
