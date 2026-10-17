@@ -10,7 +10,9 @@ batch. Duplicate target selections, sealed products, uncertain identities, and
 missing evidence remain explicit holds. The agent is read-only and advisory: it
 cannot write mappings or publish prices. Promote only the collision-free review
 queue through the existing exact authority, rollback, apply, shadow, and
-publication gates.
+publication gates. The local worker polls every five minutes and no-ops on an
+unchanged input hash; the hosted production backlog measurement runs every
+fifteen minutes.
 
 ## MEP catalog-backed pricing repair — October 16
 

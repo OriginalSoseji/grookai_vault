@@ -54,9 +54,9 @@ test('pricing completion agent is a scheduled registered operations agent', () =
   assert.equal(agent.agent_key, TCGPLAYER_PRICING_COMPLETION_AGENT_KEY);
   assert.equal(agent.domain, 'pricing');
   assert.equal(agent.schedule_kind, 'cron');
-  assert.equal(agent.schedule_expression, '47 * * * *');
-  assert.equal(agent.heartbeat_interval_seconds, 3600);
-  assert.equal(agent.stale_after_seconds, 10800);
+  assert.equal(agent.schedule_expression, '*/15 * * * *');
+  assert.equal(agent.heartbeat_interval_seconds, 900);
+  assert.equal(agent.stale_after_seconds, 3600);
   assert.equal(agent.execution_platform, 'github_actions');
   assert.match(agent.source_locator, /tcgplayer-pricing-completion-agent\.yml$/);
 });
@@ -120,7 +120,7 @@ test('scheduled workflow measures production without treating backlog as a crash
     path.join(ROOT, '.github/workflows/tcgplayer-pricing-completion-agent.yml'),
     'utf8',
   );
-  assert.match(workflow, /cron: "47 \* \* \* \*"/);
+  assert.match(workflow, /cron: "\*\/15 \* \* \* \*"/);
   assert.match(workflow, /tcgplayer_pricing_completion_agent_v1\.mjs/);
   assert.match(workflow, /PGOPTIONS: "-c default_transaction_read_only=on"/);
   assert.doesNotMatch(workflow, /--require-complete/);

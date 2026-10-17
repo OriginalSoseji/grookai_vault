@@ -18,8 +18,11 @@ The first V2 run processed the 481-product backlog from GitHub completion run
 model when complete. Batch reconciliation retained 83 unique target leads and
 held 40 suggestions across 17 duplicate targets.
 
-The Windows scheduled task `Grookai Ollama Pricing Triage` is repaired and runs
-hourly from `C:\gv_ollama_bulk_mapper_20261017`. Its retained evidence is under
+The Windows scheduled task `Grookai Ollama Pricing Triage` is repaired and polls
+every five minutes from `C:\gv_ollama_bulk_mapper_20261017`. The hosted
+production backlog measurement refreshes every fifteen minutes. Unchanged input
+SHA-256 values are a no-op, and the task mutex prevents overlapping local runs.
+Its retained evidence is under
 `C:\grookai_vault_operator_artifacts\pokemon_pricing_repair_20261012\ollama\continuous`.
 
 ## Pipeline
