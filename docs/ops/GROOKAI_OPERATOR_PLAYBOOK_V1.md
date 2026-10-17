@@ -2823,7 +2823,7 @@ owns the connection.
 | MTG market pricing publication | `.github/workflows/mtg-pricing-publication-runner.yml` and `docs/checkpoints/pricing/PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md` | Exact reconciled shadow, indexed freshness-aware Pokemon baseline, production guard artifact, and final run reconciliation |
 | MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md` | Signed-in production web is active and flag-reversible; Android profile performance passed; TestFlight/iPhone and the separately prepared dimension constraint repair remain future gates |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
-| TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
+| TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` and `docs/checkpoints/pricing/PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md` | One locked current-sync writer, exact dimension ownership readback, and warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
 | Migration maintenance | `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md` | Strict preflight, replay, remote readback, and clean history |
 | GitHub/CI | `.github/workflows/` and the current checkpoint | Required checks green for the exact commit |

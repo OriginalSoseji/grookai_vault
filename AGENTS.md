@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## TCGCSV current-sync singleton repair — October 17
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md`.
+Every applying current TCGCSV warehouse sync must hold the shared database
+advisory lock for its full lifetime on the same PostgreSQL session that performs
+the warehouse writes. A second current sync must stop before ingestion, and a
+run must prove it still owns all fetched category, group, and product stamps
+before it may mark missing rows. The October 17 zero-candidate shadow is invalid
+and must not authorize publication. Repair the active flags with a fresh locked
+full sync, then require a nonzero exact-commit shadow before production.
+
 ## Pricing assignment-lane race repair — October 17
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_156_ASSIGNMENT_LANE_RACE_REPAIR.md`.

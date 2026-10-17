@@ -50,6 +50,31 @@ test("TCGCSV worker defaults to dry-run and records no public pricing boundary",
   assert.match(worker, /app_visible_pricing:\s*false/);
 });
 
+test("current TCGCSV syncs serialize shared dimension ownership", () => {
+  assert.match(worker, /CURRENT_ADVISORY_LOCK_NAME = "grookai:tcgcsv:current:v1"/);
+  assert.match(worker, /pg_try_advisory_lock\(hashtext\(\$1\)\)/);
+  assert.match(worker, /another current TCGCSV worker already owns the production lock/);
+  assert.match(worker, /pg_advisory_unlock\(hashtext\(\$1\)\)/);
+  assert.match(worker, /CURRENT_WORKER_LOCKED/);
+  assert.match(worker, /status: "skipped_worker_locked"/);
+  assert.match(worker, /args\.mode === "current" && result\.run\.status === "skipped_worker_locked"/);
+  assert.match(worker, /runCurrentSync\(args, runKey, artifactRoot, currentGuard\)/);
+  assert.match(worker, /const client = existingClient \?\? await connectDb\(\)/);
+});
+
+test("current TCGCSV sync refuses missing-row finalization after ownership drift", () => {
+  assert.match(worker, /async function assertCurrentRunOwnsDimensions/);
+  assert.match(worker, /current TCGCSV sync lost dimension ownership before missing-row finalization/);
+  assert.match(worker, /CURRENT_SYNC_OWNERSHIP_LOST/);
+  assert.match(worker, /async function recordCurrentFailure/);
+  assert.match(worker, /where run_key = \$1\s+and status = 'running'/);
+  assert.match(worker, /await recordCurrentFailure\(args, runKey, error, currentGuard\)/);
+  const ownershipCheck = worker.indexOf("await assertCurrentRunOwnsDimensions(client, runId, totals)");
+  const missingFinalization = worker.indexOf("? await markMissingCurrentRows(client, runId)", ownershipCheck);
+  assert.ok(ownershipCheck >= 0);
+  assert.ok(missingFinalization > ownershipCheck);
+});
+
 test("TCGCSV worker retries transient source fetches and fails closed on partial ingestion", () => {
   assert.match(worker, /DEFAULT_REQUEST_RETRIES = 3/);
   assert.match(worker, /TCGCSV_REQUEST_RETRIES/);
