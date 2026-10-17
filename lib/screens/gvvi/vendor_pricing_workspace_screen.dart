@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../stores/store_management_screen.dart';
 import '../sales/sales_desk_screen.dart';
+import '../sales/inventory_economics_screen.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../services/gvvi/gvvi_vendor_offer_service.dart';
@@ -685,6 +686,15 @@ class _VendorPricingWorkspaceScreenState
             : null,
         actions: [
           IconButton(
+            tooltip: 'Inventory economics · purchase, aging, P&L',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) => const InventoryEconomicsScreen(),
+              ),
+            ),
+            icon: const Icon(Icons.calculate_outlined),
+          ),
+          IconButton(
             tooltip: 'Sales desk · quick-add and cart',
             onPressed: () async {
               await Navigator.of(context).push(
@@ -696,14 +706,14 @@ class _VendorPricingWorkspaceScreenState
             },
             icon: const Icon(Icons.point_of_sale),
           ),
-          TextButton.icon(
+          IconButton(
+            tooltip: 'Manage store',
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => const StoreManagementScreen(),
               ),
             ),
             icon: const Icon(Icons.storefront_outlined),
-            label: const Text('Manage store'),
           ),
           IconButton(
             tooltip: 'Refresh inventory',
