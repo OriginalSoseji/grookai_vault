@@ -41,12 +41,13 @@ function sourceName(row) {
   return text(row.normalized_source_name || row.source_product_name);
 }
 
-export function isLikelySealedTcgplayerProductV1(value) {
+export function isLikelySealedTcgplayerProductV1(value, printedNumber = '') {
+  if (text(printedNumber)) return false;
   return /\b(booster|box|case|collection|deck|display|bundle|blister|tin|pack|poster|binder|portfolio|calendar|toolkit|build\s*&\s*battle|elite trainer|theme deck)\b/i.test(text(value));
 }
 
 export function rankTcgplayerOllamaCandidatesV1(row, cards, groupConsensus = null, limit = 20) {
-  if (isLikelySealedTcgplayerProductV1(row.source_product_name)) return [];
+  if (isLikelySealedTcgplayerProductV1(row.source_product_name, row.printed_number)) return [];
   const authoritySetId = text(row?.set_authority?.set_id);
   const consensusSetId = Number(groupConsensus?.set_count) === 1
     ? text(groupConsensus.set_id)
@@ -121,7 +122,7 @@ export function enrichTcgplayerOllamaRowV1(row, cards, groupConsensus = null) {
       version: 'TCGPLAYER_OLLAMA_CANDIDATE_ENRICHMENT_V1',
       database_reads_only: true,
       allow_missing_number_review: !text(row.printed_number),
-      likely_sealed_product: isLikelySealedTcgplayerProductV1(row.source_product_name),
+      likely_sealed_product: isLikelySealedTcgplayerProductV1(row.source_product_name, row.printed_number),
       group_consensus: groupConsensus,
       discovered_candidate_count: discovered.length,
       mapping_authority: false,

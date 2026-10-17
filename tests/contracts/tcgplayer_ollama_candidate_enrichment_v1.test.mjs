@@ -60,6 +60,21 @@ test('sealed products never receive card-parent candidates', () => {
   assert.deepEqual(ranked, []);
 });
 
+test('printed card coordinates override broad sealed-name terms', () => {
+  const card = {
+    ...baseCard,
+    canonical_name: 'Box of Disaster',
+    canonical_number: '154',
+  };
+  const row = {
+    source_product_name: 'Box of Disaster - 154/196',
+    normalized_source_name: 'Box of Disaster',
+    printed_number: '154/196',
+  };
+  assert.equal(isLikelySealedTcgplayerProductV1(row.source_product_name, row.printed_number), false);
+  assert.equal(rankTcgplayerOllamaCandidatesV1(row, [card])[0].card_print_id, card.card_print_id);
+});
+
 test('enrichment artifacts remain advisory and read-only', () => {
   const enriched = enrichTcgplayerOllamaRowV1({ source_product_name: 'Abomasnow', printed_number: '19' }, [baseCard]);
   assert.equal(enriched.candidate_search.mapping_authority, false);
