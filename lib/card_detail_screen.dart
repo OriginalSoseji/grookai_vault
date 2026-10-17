@@ -2417,9 +2417,78 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ),
           ),
         ],
+        _buildMarketCompActions(theme, colorScheme),
         const SizedBox(height: 22),
         _buildIdentitySection(theme, colorScheme),
       ],
+    );
+  }
+
+  Widget _buildMarketCompActions(ThemeData theme, ColorScheme colorScheme) {
+    if (_displayTitle.trim().isEmpty || _displayTitle == 'Card Detail') {
+      return const SizedBox.shrink();
+    }
+
+    final borderColor = colorScheme.outline.withValues(alpha: 0.22);
+    final foregroundColor = colorScheme.onSurface.withValues(alpha: 0.84);
+    final buttonStyle = OutlinedButton.styleFrom(
+      minimumSize: const Size(44, 42),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      foregroundColor: foregroundColor,
+      side: BorderSide(color: borderColor),
+      textStyle: theme.textTheme.labelLarge?.copyWith(
+        fontWeight: FontWeight.w700,
+      ),
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'CHECK MARKET COMPS',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.58),
+              fontWeight: FontWeight.w700,
+              letterSpacing: 1.4,
+            ),
+          ),
+          const SizedBox(height: 9),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () => unawaited(_openTcgplayerSearch()),
+                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                  label: const Text('TCGplayer'),
+                  style: buttonStyle,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () =>
+                      unawaited(_openEbaySoldSearch(_selectedPrintingOption)),
+                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                  label: const Text('eBay sold'),
+                  style: buttonStyle,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Opens the current card identity in a new tab.',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.52),
+              height: 1.25,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
