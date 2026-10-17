@@ -636,13 +636,11 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                           _handleViewerOwnershipAction(state, _data!),
                     ),
                   ],
-                  if (_vendorOffer == null) ...[
-                    const SizedBox(height: 10),
-                    _PublicGvviPriceRow(
-                      data: _data!,
-                      onCardTap: () => _openCard(_data!),
-                    ),
-                  ],
+                  const SizedBox(height: 10),
+                  _PublicGvviPriceRow(
+                    data: _data!,
+                    onCardTap: () => _openCard(_data!),
+                  ),
                   const SizedBox(height: 10),
                   _CompactIdentityGrid(data: _data!),
                   if ((_data!.publicNote ?? '').trim().isNotEmpty) ...[
@@ -1276,11 +1274,18 @@ class _PublicGvviPriceRow extends StatelessWidget {
       setName: data.setName,
       number: data.number == '—' ? null : data.number,
     );
+    final slabQualifier = [data.grader, data.grade]
+        .whereType<String>()
+        .map((value) => value.trim())
+        .where((value) => value.isNotEmpty)
+        .join(' ');
     final ebayUri = buildEbaySoldSearchUri(
       cardName: displayName,
       setName: data.setName,
       collectorNumber: data.number == '—' ? null : data.number,
-      finish: data.isGraded ? 'graded' : data.conditionLabel,
+      finish: data.isGraded
+          ? (slabQualifier.isEmpty ? 'graded' : slabQualifier)
+          : data.conditionLabel,
     );
 
     return Container(
