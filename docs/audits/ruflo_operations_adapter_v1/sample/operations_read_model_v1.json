@@ -1,0 +1,77 @@
+{
+  "read_model_version": "RUFLO_OPERATIONS_READ_MODEL_V1",
+  "source_snapshot_version": "OPERATIONS_AGENT_HEALTH_SNAPSHOT_V1",
+  "captured_at": "2026-10-17T06:00:00.000Z",
+  "source": {
+    "kind": "operations_rpc_export",
+    "locator": "founder_operations_agent_health_v1"
+  },
+  "agents": [
+    {
+      "agent_key": "catalog-set-outcome-v1",
+      "display_name": "Catalog Set Outcome",
+      "domain": "catalog",
+      "integration_class": "A",
+      "adoption_state": "observed",
+      "permission_tier": "R0",
+      "schedule_kind": "event",
+      "health": "healthy",
+      "is_paused": false,
+      "paused_reason": null,
+      "last_heartbeat_at": "2026-01-01T00:00:00.000Z",
+      "last_success_at": "2026-01-01T00:00:00.000Z",
+      "stale_after_seconds": 3600,
+      "latest_run_status": "succeeded",
+      "latest_run_at": "2026-01-01T00:00:00.000Z",
+      "evidence_refs": [],
+      "execution_enabled": false
+    },
+    {
+      "agent_key": "universal-catalog-discovery-v1",
+      "display_name": "Universal Catalog Discovery",
+      "domain": "catalog",
+      "integration_class": "A",
+      "adoption_state": "observed",
+      "permission_tier": "R0",
+      "schedule_kind": "cron",
+      "health": "stale",
+      "is_paused": false,
+      "paused_reason": null,
+      "last_heartbeat_at": "2026-10-16T18:00:00.000Z",
+      "last_success_at": "2026-10-16T12:00:00.000Z",
+      "stale_after_seconds": 21600,
+      "latest_run_status": "succeeded",
+      "latest_run_at": "2026-10-16T18:00:00.000Z",
+      "evidence_refs": [
+        {
+          "kind": "workflow_artifact",
+          "locator": "docs/audits/ruflo_operations_adapter_v1/source/universal-catalog-discovery-v1.json",
+          "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "captured_at": "2026-10-17T06:00:00.000Z"
+        }
+      ],
+      "execution_enabled": false
+    }
+  ],
+  "summary": {
+    "agent_count": 2,
+    "health_counts": {
+      "degraded": 0,
+      "failed": 0,
+      "healthy": 1,
+      "paused": 0,
+      "running": 0,
+      "stale": 1,
+      "unknown": 0
+    }
+  },
+  "boundaries": {
+    "read_only": true,
+    "agent_execution": false,
+    "workflow_dispatch": false,
+    "production_writes": false,
+    "external_actions": false,
+    "cleanup": false
+  },
+  "fingerprint_sha256": "3c288f574dd1d3ab1d61e8409fa2f4137ec50f61b6fafb2396b5e296377924ec"
+}

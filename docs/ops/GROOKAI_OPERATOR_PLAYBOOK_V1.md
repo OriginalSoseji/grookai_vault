@@ -36,6 +36,16 @@ The Phase 1 implementation candidate is recorded in
 The inventory protects unknown worktrees by default and does not establish
 runtime health or execution authority.
 
+The stacked Phase 1 adapter candidate is recorded in
+`docs/checkpoints/RUFLO_READONLY_OPERATIONS_ADAPTER_V1_20261017.md`. Use
+`npm run ruflo:registry:test` for the combined contract suite,
+`npm run ruflo:operations:read-model -- --input=<local-snapshot.json>` to
+sanitize a frozen Operations health export, and
+`npm run ruflo:task-envelope:build -- --input=<local-task-spec.json>` to build a
+deterministic R0 envelope. The builders have no network or child-process path
+and write only beneath `docs/audits/ruflo_operations_adapter_v1/`. Their sample
+evidence is synthetic and must not be cited as current production health.
+
 ## Residual reviewed alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.

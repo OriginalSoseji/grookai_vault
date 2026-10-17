@@ -107,6 +107,7 @@ shipcheck result.
 ## Remaining Gate
 
 Merge or otherwise accept the planning PR before this stacked implementation
-is rebased onto `main`. The next Ruflo phase remains a separate change: a
-read-only Operations health/evidence adapter and frozen task-envelope builder.
-No pilot execution is authorized by this checkpoint.
+is rebased onto `main`. The read-only Operations health/evidence adapter and
+frozen task-envelope builder now exist as a separate stacked candidate at
+`docs/checkpoints/RUFLO_READONLY_OPERATIONS_ADAPTER_V1_20261017.md`. No pilot
+execution is authorized by either checkpoint.
