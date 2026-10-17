@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
   try { body = await request.json(); } catch { return json({ error: "Invalid request" }, 400); }
   if (body?.action === "sold-cog-backfill") {
     const paidAt = new Date(body.paidAt);
-    if (!uuid(body.instanceId) || typeof body.gvviId !== "string" || Number.isNaN(paidAt.getTime()) || !Number.isSafeInteger(body.costMinor) || body.costMinor < 0 || body.costMinor > 100000000000) {
+    if (!uuid(body.instanceId) || typeof body.gvviId !== "string" || typeof body.paidAt !== "string" || !body.paidAt.trim() || Number.isNaN(paidAt.getTime()) || !Number.isSafeInteger(body.costMinor) || body.costMinor < 0 || body.costMinor > 100000000000) {
       return json({ error: "A valid sold copy, paid date, and exact cost are required" }, 400);
     }
     const { data, error } = await context.client.rpc("inventory_sold_cog_backfill_v1", {

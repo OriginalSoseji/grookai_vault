@@ -28,7 +28,7 @@ begin
   if not found or item.gv_vi_id is distinct from btrim(p_gvvi_id) then
     raise exception 'GVVI does not match this owned copy' using errcode='PT409';
   end if;
-  if item.acquisition_cost is not null and item.acquisition_currency='USD' then
+  if item.acquisition_cost is not null or item.acquisition_currency is not null then
     raise exception 'This copy already has an exact COG' using errcode='PT409';
   end if;
   if not exists (
