@@ -201,6 +201,10 @@ void main() {
         MaterialApp(home: StoreManagementScreen(service: service)),
       );
       await tester.pumpAndSettle();
+      final slugField = tester.widget<TextField>(
+        find.byKey(const ValueKey('store_slug')),
+      );
+      expect(slugField.decoration!.helperMaxLines, 2);
       await tester.enterText(
         find.byKey(const ValueKey('store_name')),
         'My Store',

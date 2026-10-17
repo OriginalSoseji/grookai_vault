@@ -252,6 +252,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen>
                     labelText: 'Store URL slug',
                     helperText:
                         'Lowercase letters, numbers, hyphens. Fixed after first publication.',
+                    helperMaxLines: 2,
                     border: OutlineInputBorder(),
                   ),
                 ),

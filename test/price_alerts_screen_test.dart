@@ -40,7 +40,8 @@ void main() {
                       'printings': [
                         {
                           'id': printing,
-                          'printing_gv_id': 'GV-PK-TEST-HOLO',
+                          'printing_gv_id':
+                              'GV-PK-MARKET-98f8f316-cefa-4832-897c-ea2250ba97cf',
                           'finish_label': 'Holofoil',
                         },
                       ],
@@ -71,7 +72,8 @@ void main() {
               'printingId': printing,
               'cardPrintId': card,
               'name': 'Synthetic card',
-              'printingGvId': 'GV-PK-TEST-HOLO',
+              'printingGvId':
+                  'GV-PK-MARKET-98f8f316-cefa-4832-897c-ea2250ba97cf',
               'finish': 'holo',
               'amount': body['amount'],
               'currency': 'USD',
@@ -110,8 +112,21 @@ void main() {
       await tester.ensureVisible(find.text('Choose a printing'));
       await tester.tap(find.byType(DropdownButtonFormField<String>).first);
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Holofoil · GV-PK-TEST-HOLO').last);
+      await tester.tap(
+        find
+            .text(
+              'Holofoil · GV-PK-MARKET-98f8f316-cefa-4832-897c-ea2250ba97cf',
+            )
+            .last,
+      );
       await tester.pumpAndSettle();
+      expect(
+        find.textContaining(
+          'Selected printing ID: GV-PK-MARKET-98f8f316-cefa-4832-897c-ea2250ba97cf',
+        ),
+        findsOneWidget,
+      );
+      expect(find.text('Holofoil · GV-PK-MARK…50ba97cf'), findsOneWidget);
       await tester.ensureVisible(
         find.widgetWithText(TextField, 'Target amount (USD)'),
       );

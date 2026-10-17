@@ -5,6 +5,11 @@ import '../../services/notifications/price_target_service.dart';
 import '../../services/notifications/price_targets.dart';
 import 'notification_settings_screen.dart';
 
+String _compactPrintingIdentifier(String value) {
+  if (value.length <= 21) return value;
+  return '${value.substring(0, 10)}…${value.substring(value.length - 8)}';
+}
+
 class PriceAlertsScreen extends StatefulWidget {
   const PriceAlertsScreen({super.key, this.service, this.initialTargetId});
   final PriceTargetService? service;
@@ -251,6 +256,13 @@ class _PriceAlertsScreenState extends State<PriceAlertsScreen> {
     final model = _model;
     final cards = (_catalog?['cards'] as List? ?? const []).cast<Map>();
     final printings = (_card?['printings'] as List? ?? const []).cast<Map>();
+    Map? selectedPrinting;
+    for (final printing in printings) {
+      if (printing['id'] == _printing) {
+        selectedPrinting = printing;
+        break;
+      }
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Price alerts'),
@@ -418,6 +430,17 @@ class _PriceAlertsScreenState extends State<PriceAlertsScreen> {
                               labelText: 'Exact printing',
                             ),
                             hint: const Text('Choose a printing'),
+                            selectedItemBuilder: (context) => [
+                              for (final p in printings)
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    '${p['finish_label']} · ${_compactPrintingIdentifier(p['printing_gv_id']?.toString() ?? 'Unknown')}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                            ],
                             items: [
                               for (final p in printings)
                                 DropdownMenuItem(
@@ -432,6 +455,10 @@ class _PriceAlertsScreenState extends State<PriceAlertsScreen> {
                             onChanged: _busy
                                 ? null
                                 : (value) => setState(() => _printing = value),
+                          ),
+                        if (selectedPrinting != null)
+                          _text(
+                            'Selected printing ID: ${selectedPrinting['printing_gv_id']}',
                           ),
                       ],
                       if (_selected != null || _printing != null) ...[
