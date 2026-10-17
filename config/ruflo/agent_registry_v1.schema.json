@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grookai.local/schemas/ruflo-agent-registry-v1.json",
+  "title": "Grookai Ruflo Agent Registry V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "authority_order",
+    "boundaries",
+    "surface_rules",
+    "host_lanes",
+    "protected_roots",
+    "agents"
+  ],
+  "properties": {
+    "schema_version": { "const": "RUFLO_AGENT_REGISTRY_V1" },
+    "mode": { "const": "read_only_foundation" },
+    "authority_order": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "boundaries": {
+      "type": "object",
+      "additionalProperties": { "const": false },
+      "required": [
+        "agent_execution",
+        "workflow_dispatch",
+        "production_writes",
+        "external_actions",
+        "branch_cleanup",
+        "worktree_cleanup",
+        "cross_worktree_writes"
+      ]
+    },
+    "surface_rules": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["surface_kind", "root", "pattern", "integration_class", "permission_tier"],
+        "properties": {
+          "surface_kind": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
+          "root": { "type": "string", "minLength": 1 },
+          "pattern": { "type": "string", "minLength": 1 },
+          "integration_class": { "enum": ["A", "B", "C", "D", "E", "F", "G"] },
+          "permission_tier": { "enum": ["R0", "R1"] }
+        }
+      }
+    },
+    "host_lanes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/surface" }
+    },
+    "protected_roots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "policy", "write_allowed", "reason"],
+        "properties": {
+          "path": { "type": "string", "minLength": 3 },
+          "policy": { "const": "protected" },
+          "write_allowed": { "const": false },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "agents": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/agent" }
+    }
+  },
+  "$defs": {
+    "surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface_key",
+        "surface_kind",
+        "source_locator",
+        "integration_class",
+        "permission_tier",
+        "execution_enabled"
+      ],
+      "properties": {
+        "surface_key": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
+        "surface_kind": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
+        "source_locator": { "type": "string", "minLength": 1 },
+        "integration_class": { "enum": ["A", "B", "C", "D", "E", "F", "G"] },
+        "permission_tier": { "enum": ["R0", "R1"] },
+        "execution_enabled": { "const": false },
+        "schedule_kind": { "enum": ["cron", "timer", "continuous", "event", "manual"] },
+        "schedule_expression": { "type": ["string", "null"] },
+        "contract": { "type": "string" }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_key",
+        "display_name",
+        "domain",
+        "owner_label",
+        "integration_class",
+        "adoption_state",
+        "permission_tier",
+        "execution_enabled",
+        "execution_platform",
+        "source_locator",
+        "source_ref_policy",
+        "schedule_kind",
+        "schedule_expression",
+        "allowed_work_item_types",
+        "allowed_command_actions",
+        "contracts",
+        "resource_locks",
+        "worktree_policy",
+        "evidence",
+        "ruflo",
+        "boundaries"
+      ],
+      "properties": {
+        "agent_key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]{2,127}$" },
+        "display_name": { "type": "string", "minLength": 1 },
+        "domain": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
+        "owner_label": { "type": "string", "minLength": 1 },
+        "integration_class": { "enum": ["A", "B", "C", "D", "E", "F", "G"] },
+        "adoption_state": { "enum": ["unregistered", "observed", "pilot", "coordinated", "execution_eligible", "held", "retired"] },
+        "permission_tier": { "enum": ["R0", "R1"] },
+        "execution_enabled": { "const": false },
+        "execution_platform": { "type": "string", "minLength": 1 },
+        "source_locator": { "type": "string", "minLength": 1 },
+        "source_ref_policy": { "const": "exact_task_commit" },
+        "schedule_kind": { "enum": ["cron", "timer", "continuous", "event", "manual"] },
+        "schedule_expression": { "type": ["string", "null"] },
+        "allowed_work_item_types": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "allowed_command_actions": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "contracts": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "resource_locks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["key", "mode"],
+            "properties": {
+              "key": { "type": "string", "minLength": 1 },
+              "mode": { "enum": ["read", "write"] }
+            }
+          }
+        },
+        "worktree_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["write_allowed", "assigned_path"],
+          "properties": {
+            "write_allowed": { "const": false },
+            "assigned_path": { "type": "null" }
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["retention_class", "direct_readback_required"],
+          "properties": {
+            "retention_class": { "type": "string", "minLength": 1 },
+            "direct_readback_required": { "const": true }
+          }
+        },
+        "ruflo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["topology_role", "memory_namespace"],
+          "properties": {
+            "topology_role": { "enum": ["root", "coordinator", "worker", "reviewer", "held"] },
+            "memory_namespace": { "type": "string", "pattern": "^grookai/[a-z0-9_.-]+/[a-z0-9_.-]+$" }
+          }
+        },
+        "boundaries": {
+          "type": "object",
+          "additionalProperties": { "const": false },
+          "required": ["production_writes", "external_actions", "workflow_dispatch", "cleanup"]
+        }
+      }
+    }
+  }
+}

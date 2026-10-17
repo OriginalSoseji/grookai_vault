@@ -29,6 +29,13 @@ global discovery work, is protected by default. The plan authorizes no cleanup,
 workflow dispatch, production write, external action, version change, or wider
 Ruflo tool surface.
 
+The Phase 1 implementation candidate is recorded in
+`docs/checkpoints/RUFLO_AGENT_REGISTRY_V1_20261016.md`. Use
+`npm run ruflo:registry:validate` for the semantic boundary check and
+`npm run ruflo:inventory:build` for the read-only source/worktree inventory.
+The inventory protects unknown worktrees by default and does not establish
+runtime health or execution authority.
+
 ## Residual reviewed alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
