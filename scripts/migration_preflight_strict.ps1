@@ -82,6 +82,8 @@ param(
   [switch]$ProductDealBaselineV1,
   [switch]$ProductDealReleaseV1,
   [switch]$ProductEconomicsReleaseV1,
+  [switch]$ProductOverhaulReleaseV1,
+  [string]$LocalDockerNetworkId,
   [switch]$CollectrCostBaselineV1,
   [switch]$CollectrCostReleaseV1,
   [switch]$SalesTradeReleaseV1,
@@ -112,6 +114,20 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if (-not $ProductOverhaulReleaseV1 -and -not [string]::IsNullOrEmpty($LocalDockerNetworkId)) {
+  throw 'LocalDockerNetworkId is supported only by ProductOverhaulReleaseV1.'
+}
+
+if ($ProductOverhaulReleaseV1) {
+  $overhaulExpected = '20261007180000,20261008021000,20261008060000,20261008130000,20261008160000,20261008170000,20261008190000,20261008220000,20261009010000,20261009180000,20261009181000,20261009190000'
+  $overhaulRequested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim() } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) } | Sort-Object)
+  $overhaulAllowedParameters = @('Phase','ExpectedLocalOnlyIds','ProductOverhaulReleaseV1')
+  if ($Phase -eq 'PrePush') { $overhaulAllowedParameters += 'LocalDockerNetworkId' }
+  if ($Phase -notin @('AuditLinkedSchema','PrePush') -or @($PSBoundParameters.Keys | Where-Object { $_ -notin $overhaulAllowedParameters }).Count -gt 0 -or ($overhaulRequested -join ',') -ne $overhaulExpected -or ($Phase -eq 'PrePush' -and $LocalDockerNetworkId -notmatch '^[a-zA-Z0-9][a-zA-Z0-9_.-]{0,127}$') -or ($Phase -eq 'AuditLinkedSchema' -and -not [string]::IsNullOrEmpty($LocalDockerNetworkId))) {
+    throw 'ProductOverhaulReleaseV1 permits only the exact 12-migration package; PrePush also requires a Docker network ID for isolated local replay. Receipt delivery remains deferred.'
+  }
+}
 
 if ($ProductCostHistoryReleaseBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ProductCostHistoryReleaseBaselineV1') }).Count -gt 0) {
@@ -771,6 +787,35 @@ function Get-ObjectDuplicates {
     DuplicateViews = @($viewDefinitions | Group-Object Name | Where-Object { $_.Count -gt 1 } | Sort-Object Name)
     DuplicateFunctions = @($functionDefinitions | Group-Object Name | Where-Object { $_.Count -gt 1 } | Sort-Object Name)
   }
+}
+
+function Test-ProductOverhaulKnownFunctionReplacements {
+  param([Parameter(Mandatory = $true)][object[]]$DuplicateGroups)
+
+  $expected = @{
+    'public.price_targets_evaluate_v1(p_limit integer default 100)' = @('20261009180000_price_targets_v1.sql','20261009190000_price_target_evaluation_audit_v1.sql')
+    'public.vendor_receipt_book_validate_v1(payload jsonb, actor uuid)' = @('20261008021000_vendor_purchase_v1.sql','20261008060000_vendor_negotiated_trade_v1.sql')
+    'public.vendor_sale_cost_capture_v1()' = @('20261007180000_vendor_cost_evidence_v1.sql','20261008021000_vendor_purchase_v1.sql','20261008160000_vendor_discounts_v1.sql')
+    'public.vendor_sales_cart_read_v3(p_request_id uuid,p_cart jsonb)' = @('20261008160000_vendor_discounts_v1.sql','20261008170000_vendor_discount_cancellation_v1.sql')
+  }
+
+  if ($DuplicateGroups.Count -ne $expected.Count) { return $false }
+  foreach ($group in $DuplicateGroups) {
+    if (-not $expected.ContainsKey($group.Name)) { return $false }
+    $expectedFiles = @($expected[$group.Name] | Sort-Object)
+    $actualFiles = @($group.Group | ForEach-Object { $_.File } | Sort-Object)
+    if (($actualFiles -join ',') -ne ($expectedFiles -join ',')) { return $false }
+
+    $functionName = ($group.Name -split '\(')[0].Split('.')[-1]
+    foreach ($entry in $group.Group) {
+      $path = Join-Path (Join-Path $repoRoot 'supabase/migrations') $entry.File
+      if (-not (Test-Path -LiteralPath $path)) { return $false }
+      $content = Get-Content -LiteralPath $path -Raw
+      $pattern = '(?is)\bcreate\s+or\s+replace\s+function\s+(?:public\s*\.\s*)?' + [regex]::Escape($functionName) + '\s*\('
+      if (-not [regex]::IsMatch($content, $pattern)) { return $false }
+    }
+  }
+  return $true
 }
 
 function Normalize-ExpectedIds([string[]]$ids) {
@@ -1866,7 +1911,7 @@ try {
       exit 1
     }
 
-    if ($duplicates.DuplicateFunctions.Count -gt 0) {
+    if ($duplicates.DuplicateFunctions.Count -gt 0 -and -not ($ProductOverhaulReleaseV1 -and (Test-ProductOverhaulKnownFunctionReplacements -DuplicateGroups $duplicates.DuplicateFunctions))) {
       Write-Section "FAIL - Duplicate Function Signatures In Pending Migrations"
       foreach ($group in $duplicates.DuplicateFunctions) {
         Write-Host "Function: $($group.Name)"
@@ -1877,11 +1922,17 @@ try {
       exit 1
     }
 
-    Write-Host "Pending migration object scan passed."
+    if ($ProductOverhaulReleaseV1 -and $duplicates.DuplicateFunctions.Count -gt 0) {
+      Write-Host 'Pending migration object scan passed; only the four allowlisted CREATE OR REPLACE function revision groups were present.'
+    } else {
+      Write-Host "Pending migration object scan passed."
+    }
   }
 
   Write-Section "5) Local Replay Proof"
-  if ($StorefrontReleaseIsolatedReplay) {
+  if ($ProductOverhaulReleaseV1) {
+    $resetResult = Invoke-SupabaseCommand -Arguments @("db", "reset", "--local", "--yes", "--network-id", $LocalDockerNetworkId)
+  } elseif ($StorefrontReleaseIsolatedReplay) {
     Require-Command "node"
     $resetResult = Invoke-ExternalCommand -FileName "node" -Arguments @(
       (Join-Path $repoRoot "scripts/schema/verify_storefront_release_v1.mjs"), "replay"

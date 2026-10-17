@@ -3,7 +3,7 @@
 # A string used to distinguish different Supabase projects on the same host. Defaults to the
 # working directory name when running `supabase init`.
 # Align with the remote project ref used by Flutter (.env.local).
-project_id = "ycdxbpibncqcchqiihfz"
+project_id = "gv-overhaul-prepush-20261011"
 
 [api]
 enabled = true
@@ -27,9 +27,9 @@ enabled = false
 
 [db]
 # Port to use for the local database URL.
-port = 54330
+port = 55440
 # Port used by db diff command to initialize the shadow database.
-shadow_port = 54331
+shadow_port = 55441
 # The database major version to use. This has to be the same as your remote database's. Run `SHOW
 # server_version;` on the remote database to check.
 major_version = 17
