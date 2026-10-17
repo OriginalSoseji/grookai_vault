@@ -1,0 +1,37 @@
+{
+  "version": "TCGPLAYER_MASTER_EVIDENCE_ALIAS_MAPPING_AUTHORITY_V1",
+  "status": "verified_scope",
+  "reviewed_at": "2026-10-17T04:50:49.911Z",
+  "source_plan_candidates_sha256": "b9fa2a99987933e3e9b5618772ac15ba95efe0b747faa2d794c01dea1085be09",
+  "counts": {
+    "candidates": 17,
+    "parents": 17,
+    "printings": 20,
+    "additional_live_printings_outside_scope": 1,
+    "tcgcsv_products": 17,
+    "batches": 1,
+    "projected_gap_rows": 20
+  },
+  "tracked_worktree_clean": false,
+  "commit_sha": "b54675fe0bfb5d8ee322048e131cca9acfcd567b",
+  "batches": [
+    {
+      "batch": {
+        "index": 1,
+        "total": 1,
+        "offset": 0,
+        "size": 17
+      },
+      "version": "MASTER_INDEX_MAPPING_PACKAGE_RECEIPT_V1",
+      "authority_fingerprint": "b919adaa1eee976df2e415f2d1d4bc01cc1ea8ced44e4cd162463fd75d5824fb",
+      "authority_file_sha256": "5e1d87e7f6b0d5caaca39f14253eec310b248870ab6f24b3ff22e390bfd87654",
+      "selected_file_sha256": "71f4141c91e824bdb3ab82394903a6899b9b619e3b8039fe363d7330961e88a2",
+      "selected_count": 17,
+      "scope_count": 7,
+      "execution_authorized": false,
+      "database_writes": 0
+    }
+  ],
+  "database_writes": 0,
+  "execution_authorized": false
+}

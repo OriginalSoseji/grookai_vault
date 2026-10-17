@@ -1,0 +1,37 @@
+{
+  "version": "TCGPLAYER_ENERGY_ALIAS_MAPPING_AUTHORITY_V1",
+  "status": "verified_scope",
+  "reviewed_at": "2026-10-17T04:50:14.669Z",
+  "source_plan_candidates_sha256": "b9fa2a99987933e3e9b5618772ac15ba95efe0b747faa2d794c01dea1085be09",
+  "counts": {
+    "candidates": 7,
+    "parents": 7,
+    "printings": 12,
+    "additional_live_printings_outside_scope": 0,
+    "tcgcsv_products": 7,
+    "batches": 1,
+    "projected_gap_rows": 12
+  },
+  "tracked_worktree_clean": false,
+  "commit_sha": "b54675fe0bfb5d8ee322048e131cca9acfcd567b",
+  "batches": [
+    {
+      "batch": {
+        "index": 1,
+        "total": 1,
+        "offset": 0,
+        "size": 7
+      },
+      "version": "MASTER_INDEX_MAPPING_PACKAGE_RECEIPT_V1",
+      "authority_fingerprint": "34a75d4f6db03e84cf611d726267116e81403071527369eba84162f5bd0b1655",
+      "authority_file_sha256": "52e1528eda3f0dcd347e18baf08ef1ace371f811c62c06796e3ebe41cf2e19ee",
+      "selected_file_sha256": "e45d869b31462b475b74c193d143ae86f006bdca6438e73a86dcdf3bf57ac7ca",
+      "selected_count": 7,
+      "scope_count": 2,
+      "execution_authorized": false,
+      "database_writes": 0
+    }
+  ],
+  "database_writes": 0,
+  "execution_authorized": false
+}

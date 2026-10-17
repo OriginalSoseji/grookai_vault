@@ -1,0 +1,26 @@
+[
+  {
+    "ref": "review:sm5:tcgplayer-energy-alias-20261015",
+    "path": "artifacts/review_sm5_tcgplayer-energy-alias-20261015"
+  },
+  {
+    "ref": "sm5-energy-alias-alias-master-index-projection-v1",
+    "path": "artifacts/sm5-energy-alias-alias-master-index-projection-v1"
+  },
+  {
+    "ref": "sm5-english-master-index-cards-v1",
+    "path": "artifacts/sm5-english-master-index-cards-v1"
+  },
+  {
+    "ref": "sm5-english-master-index-printings-v1",
+    "path": "artifacts/sm5-english-master-index-printings-v1"
+  },
+  {
+    "ref": "tcgcsv-group-2178-selected-products",
+    "path": "artifacts/tcgcsv-group-2178-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2675-selected-products",
+    "path": "artifacts/tcgcsv-group-2675-selected-products"
+  }
+]

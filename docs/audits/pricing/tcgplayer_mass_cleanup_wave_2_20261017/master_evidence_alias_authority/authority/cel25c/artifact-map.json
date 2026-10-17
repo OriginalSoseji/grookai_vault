@@ -1,0 +1,38 @@
+[
+  {
+    "ref": "cel25c-english-master-index-cards-v1",
+    "path": "artifacts/cel25c-english-master-index-cards-v1"
+  },
+  {
+    "ref": "cel25c-english-master-index-printings-v1",
+    "path": "artifacts/cel25c-english-master-index-printings-v1"
+  },
+  {
+    "ref": "cel25c-master-evidence-alias-master-index-projection-v1",
+    "path": "artifacts/cel25c-master-evidence-alias-master-index-projection-v1"
+  },
+  {
+    "ref": "review:cel25c:tcgplayer-master-evidence-alias-20261015",
+    "path": "artifacts/review_cel25c_tcgplayer-master-evidence-alias-20261015"
+  },
+  {
+    "ref": "tcgcsv-group-1394-selected-products",
+    "path": "artifacts/tcgcsv-group-1394-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2175-selected-products",
+    "path": "artifacts/tcgcsv-group-2175-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2295-selected-products",
+    "path": "artifacts/tcgcsv-group-2295-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-24325-selected-products",
+    "path": "artifacts/tcgcsv-group-24325-selected-products"
+  },
+  {
+    "ref": "tcgcsv-group-2931-selected-products",
+    "path": "artifacts/tcgcsv-group-2931-selected-products"
+  }
+]

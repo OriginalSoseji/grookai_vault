@@ -1,0 +1,246 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh3",
+  "scope": "verified_parent_families",
+  "scope_note": "Exact reviewed TCGPlayer energy-name aliases with unique set and number identity, frozen source titles, canonical parents, every source-listed finish, and checked-in source evidence.",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "swsh3-energy-alias-alias-master-index-projection-v1",
+  "master_index_sha256": "6228752273400a9fae93ca02fc56927f1111b9b747d97057d13d1a23ea8dd603",
+  "parents": [
+    {
+      "id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+      "name": "Heat Fire Energy",
+      "gv_id": "GV-PK-DAA-174",
+      "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "174",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+      "name": "Hiding Darkness Energy",
+      "gv_id": "GV-PK-DAA-175",
+      "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "175",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+      "name": "Powerful Colorless Energy",
+      "gv_id": "GV-PK-DAA-176",
+      "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "176",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DAA-174-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "swsh3-english-master-index-printings-v1",
+          "sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+          "card_print_id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DAA-174-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "swsh3-english-master-index-printings-v1",
+          "sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+          "card_print_id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DAA-175-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "swsh3-english-master-index-printings-v1",
+          "sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+          "card_print_id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DAA-175-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "swsh3-english-master-index-printings-v1",
+          "sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+          "card_print_id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DAA-176-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "swsh3-english-master-index-printings-v1",
+          "sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+          "card_print_id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DAA-176-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "swsh3-english-master-index-printings-v1",
+          "sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+          "card_print_id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 3,
+    "printings": 6,
+    "finishes": {
+      "normal": 3,
+      "reverse": 3
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+    "source_artifacts": [
+      {
+        "ref": "swsh3-energy-alias-alias-master-index-projection-v1",
+        "sha256": "6228752273400a9fae93ca02fc56927f1111b9b747d97057d13d1a23ea8dd603",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "derived:swsh3-energy-alias-alias-master-index-projection-v1",
+        "retrieved_at": "2026-10-17T04:50:14.669Z"
+      },
+      {
+        "ref": "swsh3-english-master-index-cards-v1",
+        "sha256": "866f1afdc8d9488ca49a31138570d3e2521e14ac79f0b4a0bf5dde1457d5a10c",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/swsh3/cards.json",
+        "retrieved_at": "2026-10-17T04:50:14.669Z"
+      },
+      {
+        "ref": "swsh3-english-master-index-printings-v1",
+        "sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/swsh3/printings.json",
+        "retrieved_at": "2026-10-17T04:50:14.669Z"
+      },
+      {
+        "ref": "tcgcsv-group-2178-selected-products",
+        "sha256": "4f649e1b7871df8cfcd28af77ef0b3616ce452b6ee82f53f58900721d77e281c",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2178/products",
+        "retrieved_at": "2026-10-15T20:52:42.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2675-selected-products",
+        "sha256": "fa4aa19a47198548715cf9553d4e3d48b3be46a3481ad7002ea07220ddf3edce",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2675/products",
+        "retrieved_at": "2026-10-15T20:52:10.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:swsh3:tcgplayer-energy-alias-20261015",
+      "sha256": "5cb60b8b06d76a86df05fd8bff47903027474d8c9f7b7b90c69d1cfc683e043a"
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "219291",
+      "card_print_id": "079bf483-22c3-4a06-9c68-a3d6663c6752",
+      "candidate_fingerprint": "7f5a6d6667c46c08a50e6fb68c3186817600a9a40a65bab816ac6c8afcd1dc54",
+      "source_ref": "tcgcsv-group-2675-selected-products",
+      "source_sha256": "fa4aa19a47198548715cf9553d4e3d48b3be46a3481ad7002ea07220ddf3edce"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "219293",
+      "card_print_id": "88437e62-6274-49f6-a0f9-fef53ca4ca49",
+      "candidate_fingerprint": "72e7b02176c4598b71a274856abbb89d4980297b55efa6f891d2ac860d29886d",
+      "source_ref": "tcgcsv-group-2675-selected-products",
+      "source_sha256": "fa4aa19a47198548715cf9553d4e3d48b3be46a3481ad7002ea07220ddf3edce"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "219294",
+      "card_print_id": "6cbc0611-4438-41db-aeee-215e59e6bbb1",
+      "candidate_fingerprint": "40df45c1faf8dddc666a1802738b1e2a2bbb31ee28bf8052c853650b0532efc1",
+      "source_ref": "tcgcsv-group-2675-selected-products",
+      "source_sha256": "fa4aa19a47198548715cf9553d4e3d48b3be46a3481ad7002ea07220ddf3edce"
+    }
+  ],
+  "fingerprint": "97a504beb8387d41fc71e88b01aa774030b8c09581a5affe16c9ed28824d9d66"
+}

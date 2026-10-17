@@ -1,0 +1,135 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "cel25c",
+  "scope": "verified_parent_families",
+  "scope_note": "Exact reviewed TCGPlayer residual aliases with unique set and number identity, frozen source titles, canonical parents, every source-listed finish, and checked-in source evidence.",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "cel25c-master-evidence-alias-master-index-projection-v1",
+  "master_index_sha256": "5a3727e8a910c0573ece53872ffa0428a4d5a9854c783fd71fec5447619ee30b",
+  "parents": [
+    {
+      "id": "c9c1a789-a686-4541-99b7-ac7d4de7be30",
+      "name": "Umbreon ★",
+      "gv_id": "GV-PK-CEL-17CC",
+      "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+      "variant_key": "cc",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "17",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "c9c1a789-a686-4541-99b7-ac7d4de7be30",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-CEL-17CC-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "cel25c-english-master-index-printings-v1",
+          "sha256": "1e1995948796a4f6e2b57ca9916e3bb0feadcb4b93602b0fb370c2f516ebba7a",
+          "card_print_id": "c9c1a789-a686-4541-99b7-ac7d4de7be30",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "holo": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "3be64773-d30e-48af-af8c-3563b57e5e4a",
+    "source_artifacts": [
+      {
+        "ref": "cel25c-master-evidence-alias-master-index-projection-v1",
+        "sha256": "5a3727e8a910c0573ece53872ffa0428a4d5a9854c783fd71fec5447619ee30b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "derived:cel25c-master-evidence-alias-master-index-projection-v1",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "cel25c-english-master-index-cards-v1",
+        "sha256": "e77d5b7f852e9c5502d2304a4b2f66d9e41256e88a8cc95a97de4d53c26bca36",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/cel25c/cards.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "cel25c-english-master-index-printings-v1",
+        "sha256": "1e1995948796a4f6e2b57ca9916e3bb0feadcb4b93602b0fb370c2f516ebba7a",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/cel25c/printings.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "tcgcsv-group-1394-selected-products",
+        "sha256": "51de58725223eba061cbd602f4169481adb5cc53a37b3e1252346c14c9da119b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1394/products",
+        "retrieved_at": "2026-10-15T20:53:34.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2175-selected-products",
+        "sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2175/products",
+        "retrieved_at": "2026-10-15T20:55:03.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2295-selected-products",
+        "sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2295/products",
+        "retrieved_at": "2026-10-15T20:52:31.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2931-selected-products",
+        "sha256": "b497584a5041af7d6aca2765cc5e71aa35ceb9a686a800fb7cda0c3b35295d46",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2931/products",
+        "retrieved_at": "2026-10-15T20:51:58.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-24325-selected-products",
+        "sha256": "33c2884bb4800aa43df783839e6b97bb87b97a7351d0bb4414b54a9682cf7168",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/24325/products",
+        "retrieved_at": "2026-10-15T20:50:30.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "c9c1a789-a686-4541-99b7-ac7d4de7be30",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:cel25c:tcgplayer-master-evidence-alias-20261015",
+      "sha256": "6fdcc4e07e053eea52747163a91907181d34cd3497635d9b72bbc7fcd5dcc290"
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "250332",
+      "card_print_id": "c9c1a789-a686-4541-99b7-ac7d4de7be30",
+      "candidate_fingerprint": "e61c56376fea7c1c3e1ad213b3a820ea64715f09d42c5d4a01044a067b97ba1b",
+      "source_ref": "tcgcsv-group-2931-selected-products",
+      "source_sha256": "b497584a5041af7d6aca2765cc5e71aa35ceb9a686a800fb7cda0c3b35295d46"
+    }
+  ],
+  "fingerprint": "6fc5a99c8d9e8c0aac6a0b9f14c5ee4505e701ad4318e02d1b088513af02cb7b"
+}

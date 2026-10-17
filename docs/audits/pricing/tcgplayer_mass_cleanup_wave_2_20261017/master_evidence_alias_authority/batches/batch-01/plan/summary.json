@@ -1,0 +1,46 @@
+{
+  "planner_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLANNER_V1_3",
+  "policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+  "status": "passed",
+  "source_run": {
+    "id": "71e7350b-8594-4d1d-885c-dbe46cb2f7fe",
+    "sync_mode": "current_full_sync",
+    "status": "completed",
+    "failed_count": 0,
+    "observed_on": "2026-10-15T06:00:00.000Z",
+    "finished_at": "2026-10-15T22:05:00.886Z",
+    "artifact_hash": "0cf4f13c506bdcf34f48992880bc3dcb91d1f5888da6ad403b32494a6056ad65"
+  },
+  "coverage_gaps_artifact": "../grookai_vault_operator_artifacts/pokemon_pricing_repair_20261012/completion_agent/post_mep_production_20261017/backlog/latest_pokemon_identity_mapping_gaps.jsonl",
+  "counts": {
+    "coverage_gap_rows": 582,
+    "missing_mapping_gap_rows": 581,
+    "source_products": 525,
+    "candidates": 17,
+    "blocked": 477,
+    "projected_gap_rows": 20
+  },
+  "candidates_by_lane": {
+    "reviewed_product_identity_authority": 48
+  },
+  "blocked_by_reason": {
+    "missing_printed_number_evidence": 248,
+    "missing_unique_set_authority": 109,
+    "no_exact_set_number_name_target": 111,
+    "target_already_has_active_tcgplayer_mapping": 9
+  },
+  "findings": [],
+  "boundaries": {
+    "database_reads_only": true,
+    "database_writes": false,
+    "mapping_writes": false,
+    "publication_writes": false,
+    "customer_state_writes": false
+  },
+  "batch": {
+    "index": 1,
+    "total": 1,
+    "offset": 0,
+    "size": 17
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm75",
+  "scope": "verified_parent_families",
+  "scope_note": "Exact reviewed TCGPlayer residual aliases with unique set and number identity, frozen source titles, canonical parents, every source-listed finish, and checked-in source evidence.",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "sm75-master-evidence-alias-master-index-projection-v1",
+  "master_index_sha256": "b4ad78e8500974d1e586d8e7535a14a45fbe390e5f4bf0481ebc8a0f3ebb396b",
+  "parents": [
+    {
+      "id": "cab17723-75ff-405c-b5c6-b41cb627cf6a",
+      "name": "Victini ◇",
+      "gv_id": "GV-PK-DRM-7",
+      "set_id": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "7",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7a95b59f-18b4-4673-97ea-1b1ca89e182a",
+      "name": "Lance ◇",
+      "gv_id": "GV-PK-DRM-61",
+      "set_id": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "61",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "aa5cc30b-eb91-4956-9a51-31a66eab9c35",
+      "name": "Blaine's Last Stand",
+      "gv_id": "GV-PK-DRM-69",
+      "set_id": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
+      "variant_key": "",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "69",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "cab17723-75ff-405c-b5c6-b41cb627cf6a",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DRM-7-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "sm75-english-master-index-printings-v1",
+          "sha256": "38352ab4b002501e09b1de1c30713cff9f7707f35a42891611b6e7ac4036aa56",
+          "card_print_id": "cab17723-75ff-405c-b5c6-b41cb627cf6a",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7a95b59f-18b4-4673-97ea-1b1ca89e182a",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DRM-61-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "sm75-english-master-index-printings-v1",
+          "sha256": "38352ab4b002501e09b1de1c30713cff9f7707f35a42891611b6e7ac4036aa56",
+          "card_print_id": "7a95b59f-18b4-4673-97ea-1b1ca89e182a",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "aa5cc30b-eb91-4956-9a51-31a66eab9c35",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DRM-69-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "official_printing",
+          "source_ref": "sm75-english-master-index-printings-v1",
+          "sha256": "38352ab4b002501e09b1de1c30713cff9f7707f35a42891611b6e7ac4036aa56",
+          "card_print_id": "aa5cc30b-eb91-4956-9a51-31a66eab9c35",
+          "finish_key": "holo"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 3,
+    "printings": 3,
+    "finishes": {
+      "holo": 3
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "003fe7e8-ee17-4811-8e68-381fb01f1e09",
+    "source_artifacts": [
+      {
+        "ref": "sm75-master-evidence-alias-master-index-projection-v1",
+        "sha256": "b4ad78e8500974d1e586d8e7535a14a45fbe390e5f4bf0481ebc8a0f3ebb396b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "derived:sm75-master-evidence-alias-master-index-projection-v1",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "sm75-english-master-index-cards-v1",
+        "sha256": "05d446bb1608ec5ebf8946250190e8f91d00729e0c724989f5d4c7ba5d09e9ec",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/sm7.5/cards.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "sm75-english-master-index-printings-v1",
+        "sha256": "38352ab4b002501e09b1de1c30713cff9f7707f35a42891611b6e7ac4036aa56",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/sm7.5/printings.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "tcgcsv-group-1394-selected-products",
+        "sha256": "51de58725223eba061cbd602f4169481adb5cc53a37b3e1252346c14c9da119b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1394/products",
+        "retrieved_at": "2026-10-15T20:53:34.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2175-selected-products",
+        "sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2175/products",
+        "retrieved_at": "2026-10-15T20:55:03.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2295-selected-products",
+        "sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2295/products",
+        "retrieved_at": "2026-10-15T20:52:31.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2931-selected-products",
+        "sha256": "b497584a5041af7d6aca2765cc5e71aa35ceb9a686a800fb7cda0c3b35295d46",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2931/products",
+        "retrieved_at": "2026-10-15T20:51:58.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-24325-selected-products",
+        "sha256": "33c2884bb4800aa43df783839e6b97bb87b97a7351d0bb4414b54a9682cf7168",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/24325/products",
+        "retrieved_at": "2026-10-15T20:50:30.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "cab17723-75ff-405c-b5c6-b41cb627cf6a",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "7a95b59f-18b4-4673-97ea-1b1ca89e182a",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "aa5cc30b-eb91-4956-9a51-31a66eab9c35",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:sm75:tcgplayer-master-evidence-alias-20261015",
+      "sha256": "ec72cdab6edd91a28b595c5e65162443c47a7a514e4983a090102b6212709158"
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "175275",
+      "card_print_id": "cab17723-75ff-405c-b5c6-b41cb627cf6a",
+      "candidate_fingerprint": "91a32445e6c9442d6b9a01ee41b23414b146362a7aa95706950ca8425fb86286",
+      "source_ref": "tcgcsv-group-2295-selected-products",
+      "source_sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "175491",
+      "card_print_id": "7a95b59f-18b4-4673-97ea-1b1ca89e182a",
+      "candidate_fingerprint": "22f8db00aca385c97df5c9f0706bdd48f419af9de8c3fe222bdc5b5e46b00cbc",
+      "source_ref": "tcgcsv-group-2295-selected-products",
+      "source_sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "175499",
+      "card_print_id": "aa5cc30b-eb91-4956-9a51-31a66eab9c35",
+      "candidate_fingerprint": "8f3b4bb55fd95c0437fda49406faffdd1997d9add6836dd68d19b2b7228c595a",
+      "source_ref": "tcgcsv-group-2295-selected-products",
+      "source_sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5"
+    }
+  ],
+  "fingerprint": "3838fd686ce7ef47002c68bb751e57567e5cdb165dfe29e802c030936141f278"
+}

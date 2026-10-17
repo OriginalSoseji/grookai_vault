@@ -1,0 +1,254 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "dp1",
+  "scope": "verified_parent_families",
+  "scope_note": "Exact reviewed TCGPlayer residual aliases with unique set and number identity, frozen source titles, canonical parents, every source-listed finish, and checked-in source evidence.",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "dp1-master-evidence-alias-master-index-projection-v1",
+  "master_index_sha256": "528c272ccb8a5a7ee6d2d8ef989ac5c0dd7ef2ae9213bb11317e65cce3ade55a",
+  "parents": [
+    {
+      "id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+      "name": "Grotle",
+      "gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP",
+      "set_id": "6f5e00e3-2707-406e-a822-addef33a2ced",
+      "variant_key": "diamond_pearl_stamp",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "49",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+      "name": "Monferno",
+      "gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP",
+      "set_id": "6f5e00e3-2707-406e-a822-addef33a2ced",
+      "variant_key": "diamond_pearl_stamp",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "56",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+      "name": "Prinplup",
+      "gv_id": "GV-PK-DP1-58-DIAMOND-PEARL-STAMP",
+      "set_id": "6f5e00e3-2707-406e-a822-addef33a2ced",
+      "variant_key": "diamond_pearl_stamp",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "58",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+      "name": "Pachirisu",
+      "gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP",
+      "set_id": "6f5e00e3-2707-406e-a822-addef33a2ced",
+      "variant_key": "diamond_pearl_stamp",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_coordinate": "35",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-49-DIAMOND-PEARL-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-32d8e565f236b73e",
+          "sha256": "32d8e565f236b73e7f4f7d1db3b33e3e5610a4551a5df850baf92d8cc6ed8f1b",
+          "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-56-DIAMOND-PEARL-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-32d8e565f236b73e",
+          "sha256": "32d8e565f236b73e7f4f7d1db3b33e3e5610a4551a5df850baf92d8cc6ed8f1b",
+          "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DP1-58-DIAMOND-PEARL-STAMP-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-32d8e565f236b73e",
+          "sha256": "32d8e565f236b73e7f4f7d1db3b33e3e5610a4551a5df850baf92d8cc6ed8f1b",
+          "card_print_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+          "finish_key": "holo"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP1-35-DIAMOND-PEARL-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "exact_printing_mapping",
+          "source_ref": "catalog-evidence-32d8e565f236b73e",
+          "sha256": "32d8e565f236b73e7f4f7d1db3b33e3e5610a4551a5df850baf92d8cc6ed8f1b",
+          "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 4,
+    "printings": 4,
+    "finishes": {
+      "holo": 1,
+      "reverse": 3
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "6f5e00e3-2707-406e-a822-addef33a2ced",
+    "source_artifacts": [
+      {
+        "ref": "dp1-master-evidence-alias-master-index-projection-v1",
+        "sha256": "528c272ccb8a5a7ee6d2d8ef989ac5c0dd7ef2ae9213bb11317e65cce3ade55a",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "derived:dp1-master-evidence-alias-master-index-projection-v1",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "dp1-english-master-index-cards-v1",
+        "sha256": "d4bd82f20b4e67247a2618ae6435c2f85d0ec0fafe003512c8c5fa1330f3a220",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/dp1/cards.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "dp1-english-master-index-printings-v1",
+        "sha256": "57247211af0433603d28409502f201d13d0b152ab72f68b48387b5589f56f888",
+        "kind": "official_printing",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/dp1/printings.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      },
+      {
+        "ref": "tcgcsv-group-1394-selected-products",
+        "sha256": "51de58725223eba061cbd602f4169481adb5cc53a37b3e1252346c14c9da119b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/1394/products",
+        "retrieved_at": "2026-10-15T20:53:34.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2175-selected-products",
+        "sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2175/products",
+        "retrieved_at": "2026-10-15T20:55:03.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2295-selected-products",
+        "sha256": "e8806ca786c3a93d2c1450d06bad1f802f2a387e02529f559d19ad3d58773dc5",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2295/products",
+        "retrieved_at": "2026-10-15T20:52:31.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-2931-selected-products",
+        "sha256": "b497584a5041af7d6aca2765cc5e71aa35ceb9a686a800fb7cda0c3b35295d46",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/2931/products",
+        "retrieved_at": "2026-10-15T20:51:58.000Z"
+      },
+      {
+        "ref": "tcgcsv-group-24325-selected-products",
+        "sha256": "33c2884bb4800aa43df783839e6b97bb87b97a7351d0bb4414b54a9682cf7168",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "https://tcgcsv.com/tcgplayer/3/24325/products",
+        "retrieved_at": "2026-10-15T20:50:30.000Z"
+      },
+      {
+        "ref": "catalog-evidence-32d8e565f236b73e",
+        "sha256": "32d8e565f236b73e7f4f7d1db3b33e3e5610a4551a5df850baf92d8cc6ed8f1b",
+        "kind": "exact_printing_mapping",
+        "url_or_identifier": "docs/audits/verified_master_set_index_v1/english_master_index_v1/retailer_stamp_active_finish_route_v1/burger_king_replacement_child_adjudication_v1.json",
+        "retrieved_at": "2026-10-17T04:50:49.911Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review:dp1:tcgplayer-master-evidence-alias-20261015",
+      "sha256": "449b0b2e8c2d00e73e8fe28362df162a89cf934ad173203b8900f04a8141ea0d"
+    }
+  },
+  "external_mapping_assertions": [
+    {
+      "source": "tcgplayer",
+      "external_id": "155608",
+      "card_print_id": "b6b3c332-aeb6-4a6a-9653-b7a66680009d",
+      "candidate_fingerprint": "2d6f2afa0a31e5b44aa967c7b80c056cdcea1024fb4887bf6421c3b7692ca070",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "174129",
+      "card_print_id": "e9d4ab93-6433-4172-960a-5d8cf180edf4",
+      "candidate_fingerprint": "37695260c469763a6ef1ac98596974412ece90ff4a02b8c87a637cba794f7539",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "213008",
+      "card_print_id": "4e007c58-5b91-4110-af5b-c274eaa694c0",
+      "candidate_fingerprint": "4f67fd978343ded74c28d96c1c1b8287dfcd500d4418696edcab4f2021d67dc6",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    },
+    {
+      "source": "tcgplayer",
+      "external_id": "220666",
+      "card_print_id": "d9051f0b-5fe3-4a6c-9195-bdc3aa7cad45",
+      "candidate_fingerprint": "18149c27e7fd7b38502f73f64e7930c8e0914dda6f2d1ce33185c1f6a28a5156",
+      "source_ref": "tcgcsv-group-2175-selected-products",
+      "source_sha256": "d21fd6ee5c37951af4ba4b435e14a5636ebd0a5679acd08921829798fa0a6cc2"
+    }
+  ],
+  "fingerprint": "dea2f852d46a4e312e17c33d2f156e4ac57a59441b0efc7bd55c830dabd303c1"
+}
