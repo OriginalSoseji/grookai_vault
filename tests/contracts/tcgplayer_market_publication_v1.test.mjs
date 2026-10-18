@@ -73,6 +73,15 @@ const MTG_FINISH_BRIDGE_MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20261018193000_mtg_finish_snapshot_lineage_guard_fix_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -662,7 +671,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_15/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_16/);
   assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v5/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
@@ -674,6 +683,16 @@ test("MTG finish bridge carries one exact printing mapping through every durable
   assert.match(MTG_FINISH_BRIDGE_MIGRATION, /mtg_tcgplayer_finish_price_row_valid_v1/);
   assert.match(MTG_FINISH_BRIDGE_MIGRATION, /mtg_finish_price_lineage_invalid/);
   assert.equal((WORKER.match(/mtg_printing_mapping_id/g) ?? []).length >= 12, true);
+});
+
+test("MTG snapshot guard links the already-validated decision without a redundant nested validator", () => {
+  assert.match(MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION, /decision_row\.source_observation_id/);
+  assert.match(MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION, /decision_row\.card_printing_id/);
+  assert.doesNotMatch(
+    MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION,
+    /mtg_tcgplayer_finish_price_row_valid_v1\(to_jsonb\(decision_row\)\)/,
+  );
+  assert.match(WORKER, /20261018193000/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
