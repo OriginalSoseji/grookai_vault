@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## MTG finish-specific market bridge — October 18
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_158_MTG_FINISH_SPECIFIC_MARKET_BRIDGE.md`.
+MTG TCGPlayer `productId` is not a canonical parent identity. When the exact
+`productId:normal` and `productId:foil` mappings resolve to different Scryfall
+parents, publication must carry the active `external_printing_mappings` row as
+its durable lineage. Never invent or select a parent-level mapping to force the
+two finishes together. The new lane remains category 1, Normal/Foil only,
+one-owner, nonprovisional, visible, English paper printing evidence.
+
 ## TCGCSV current-sync singleton repair — October 17
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md`.

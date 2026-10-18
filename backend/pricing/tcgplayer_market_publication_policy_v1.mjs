@@ -90,6 +90,14 @@ export function evaluateTcgplayerMarketQualificationV1(
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
   const categoryId = Number(row.category_id);
   const expectedIdentityDomain = SUPPORTED_IDENTITY_DOMAINS.get(categoryId) ?? null;
+  const exactMtgPrintingMapping =
+    categoryId === 1 &&
+    Boolean(clean(row.mtg_printing_mapping_id)) &&
+    !clean(row.source_mapping_id) &&
+    !clean(row.variant_assignment_id) &&
+    !clean(row.edition_assignment_id) &&
+    !clean(row.gym_edition_assignment_id) &&
+    clean(row.mapping_method) === "exact_external_printing_mapping_v1";
   const scope = applyCosmosFinishPublicationScopeV1(
     applyWcdTeamRushdownPublicationScopeV1(
       applyTrainerKitPilotPublicationScopeV1(
@@ -145,7 +153,9 @@ export function evaluateTcgplayerMarketQualificationV1(
         : "ambiguous_active_source_mapping",
     );
   }
-  if (!exactEditionAssignment && !clean(row.source_mapping_id)) reasons.push("missing_source_mapping_identity");
+  if (!exactEditionAssignment && !exactMtgPrintingMapping && !clean(row.source_mapping_id)) {
+    reasons.push("missing_source_mapping_identity");
+  }
   if (!clean(row.mapping_method)) reasons.push("missing_mapping_method");
   if (mappingCount !== 1) {
     reasons.push(mappingCount === 0 ? "missing_exact_card_mapping" : "ambiguous_card_mapping");
@@ -170,7 +180,7 @@ export function evaluateTcgplayerMarketQualificationV1(
         : "missing_variant_assignment",
     );
   }
-  if (!exactEditionAssignment && !clean(row.variant_assignment_id)) {
+  if (!exactEditionAssignment && !exactMtgPrintingMapping && !clean(row.variant_assignment_id)) {
     reasons.push("missing_variant_assignment_identity");
   }
   if (printingMappingCount !== 1) {
@@ -311,6 +321,10 @@ export function evaluateTcgplayerMarketQualificationV1(
         edition_binding_id: row.edition_binding_id,
         edition_assignment_sha256: row.edition_assignment_sha256,
         edition_assignment_version: row.edition_assignment_version,
+      } : {}),
+      ...(exactMtgPrintingMapping ? {
+        mtg_printing_mapping_id: clean(row.mtg_printing_mapping_id),
+        mapping_lane: "mtg_exact_finish_v1",
       } : {}),
       cosmos_finish_authority: row.cosmos_finish_authority === true,
       ...(scope.finish_policy_version ? { finish_policy_version: scope.finish_policy_version } : {}),
