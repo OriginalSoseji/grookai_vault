@@ -1518,24 +1518,16 @@ async function restoreVerifiedProductionGuardArtifact(client, run) {
 }
 
 async function artifactRows(client, runId) {
-  const [runResult, reconciliationResult] = await Promise.all([
-    client.query(
-      `select *
-         from public.market_price_pipeline_runs
-        where id = $1`,
-      [runId],
-    ),
-    client.query(
-      `select reconciliation
-         from public.market_price_pipeline_runs
-        where id = $1`,
-      [runId],
-    ),
-  ]);
+  const runResult = await client.query(
+    `select *
+       from public.market_price_pipeline_runs
+      where id = $1`,
+    [runId],
+  );
   return {
     run: runResult.rows[0],
     decisions: marketLedgerRowsV1(client, 'decisions', runId),
-    reconciliation: reconciliationResult.rows[0]?.reconciliation ?? {},
+    reconciliation: runResult.rows[0]?.reconciliation ?? {},
   };
 }
 
