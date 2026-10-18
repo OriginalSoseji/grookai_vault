@@ -64,6 +64,15 @@ const ASSIGNMENT_RUNTIME_REPAIR_MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const MTG_FINISH_BRIDGE_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20261018170000_mtg_tcgplayer_finish_publication_bridge_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -427,6 +436,47 @@ test("publishes an exact fresh English Pokemon printing", () => {
   assert.deepEqual(result.reason_codes, []);
 });
 
+test("publishes MTG through an exact product-and-finish mapping without a false parent", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      category_id: 1,
+      source_price_row_identity: "1:2810:foil:2026-07-27",
+      source_subtype_name: "Foil",
+      normalized_finish_key: "foil",
+      identity_domain: "mtg_eng_paper_print",
+      source_mapping_id: null,
+      variant_assignment_id: null,
+      mtg_printing_mapping_id: "40000000-0000-4000-8000-000000000001",
+      mapping_method: "exact_external_printing_mapping_v1",
+      variant_assignment_version: "MTG_EXACT_PRINTING_MAPPING_V1",
+      finish_key: "foil",
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "publish");
+  assert.deepEqual(result.reason_codes, []);
+  assert.equal(result.evidence.mapping_lane, "mtg_exact_finish_v1");
+});
+
+test("does not waive MTG parent lineage without the exact finish mapping FK", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      category_id: 1,
+      source_subtype_name: "Foil",
+      normalized_finish_key: "foil",
+      identity_domain: "mtg_eng_paper_print",
+      source_mapping_id: null,
+      variant_assignment_id: null,
+      mapping_method: "exact_external_printing_mapping_v1",
+      finish_key: "foil",
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.eligible, false);
+  assert.ok(result.reason_codes.includes("missing_source_mapping_identity"));
+  assert.ok(result.reason_codes.includes("missing_variant_assignment_identity"));
+});
+
 test("quarantines an ordinary candidate whose mapping appeared after assignment preparation", () => {
   const result = evaluateTcgplayerMarketQualificationV1(
     validCandidate({ variant_assignment_id: null }),
@@ -613,9 +663,17 @@ test("worker enriches candidates with source-group evidence before qualification
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
   assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_15/);
-  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v4/);
+  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v5/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
+});
+
+test("MTG finish bridge carries one exact printing mapping through every durable table", () => {
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /external_id = candidate\.source_product_id::text \|\| ':'/);
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /identity_domain = 'mtg_eng_paper_print'/);
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /mtg_tcgplayer_finish_price_row_valid_v1/);
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /mtg_finish_price_lineage_invalid/);
+  assert.equal((WORKER.match(/mtg_printing_mapping_id/g) ?? []).length >= 12, true);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {
