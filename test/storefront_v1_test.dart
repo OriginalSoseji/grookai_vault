@@ -274,4 +274,42 @@ void main() {
       ]);
     },
   );
+  testWidgets('inventory search only uses a query after explicit submission', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(1000, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final requests = <http.Request>[];
+    final service = StorefrontService(
+      baseUrl: 'http://127.0.0.1:15440',
+      accessToken: 'local-token',
+      client: MockClient((r) async {
+        requests.add(r);
+        if (r.method == 'POST') {
+          return http.Response('{}', 200);
+        }
+        return http.Response(jsonEncode(owner()), 200);
+      }),
+    );
+    await tester.pumpWidget(
+      MaterialApp(home: StoreManagementScreen(service: service)),
+    );
+    await tester.pumpAndSettle();
+
+    final search = find.byKey(const ValueKey('store_inventory_search'));
+    await tester.ensureVisible(search);
+    await tester.enterText(search, 'Charizard');
+    await tester.tap(find.byKey(const ValueKey('store_save')));
+    await tester.pumpAndSettle();
+
+    var gets = requests.where((request) => request.method == 'GET').toList();
+    expect(gets.last.url.queryParameters['q'], isEmpty);
+
+    await tester.tap(find.byTooltip('Search inventory'));
+    await tester.pumpAndSettle();
+    gets = requests.where((request) => request.method == 'GET').toList();
+    expect(gets.last.url.queryParameters['q'], 'Charizard');
+  });
 }
