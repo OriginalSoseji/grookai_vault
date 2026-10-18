@@ -30,6 +30,12 @@ printing-mapping FK and method are present. Database statement triggers
 revalidate the source observation, current full sync, product, mapping, parent,
 child, finish, price, and visibility at both decision and snapshot insertion.
 
+Migration `20261018193000_mtg_finish_snapshot_lineage_guard_fix_v1.sql`
+keeps the full incoming-snapshot validation and links it to the exact already
+validated decision by decision, run, observation, printing, and mapping IDs. It
+removes a redundant nested validator whose combined PostgreSQL predicate
+rejected valid snapshot rows during the first full shadow.
+
 ## Verification
 
 - Focused pricing contracts: 174 passed, 0 failed.

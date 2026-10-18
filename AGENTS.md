@@ -9,6 +9,9 @@ parents, publication must carry the active `external_printing_mappings` row as
 its durable lineage. Never invent or select a parent-level mapping to force the
 two finishes together. The new lane remains category 1, Normal/Foil only,
 one-owner, nonprovisional, visible, English paper printing evidence.
+Snapshot guards fully validate the incoming row, then link it to the exact
+already-validated decision by decision, run, observation, printing, and mapping
+IDs; do not re-run the full validator inside that lineage lookup.
 
 ## TCGCSV current-sync singleton repair — October 17
 
