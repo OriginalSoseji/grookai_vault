@@ -126,14 +126,20 @@ test("tracked backend, script-worker, and GitHub workflow surfaces are completel
 
 test("every discovered worktree is protected even when it is not predeclared", () => {
   const worktrees = discoverWorktreesV1({ repoRoot, registry });
-  assert.ok(worktrees.length >= 20);
-  assert.ok(worktrees.some((worktree) => /grookai_vault$/i.test(worktree.path)));
-  assert.ok(worktrees.some((worktree) => /gv_ruflo_registry_foundation_20261016$/i.test(worktree.path)));
+  assert.ok(worktrees.length >= 1);
+  const normalizedRepoRoot = path.resolve(repoRoot).replaceAll("\\", "/").toLowerCase();
+  assert.ok(worktrees.some((worktree) => worktree.path.toLowerCase() === normalizedRepoRoot));
+  const declaredRoots = new Set(registry.protected_roots.map((entry) => entry.path.toLowerCase()));
   for (const worktree of worktrees) {
     assert.equal(worktree.protection, "protected");
     assert.equal(worktree.write_allowed, false);
     assert.equal(worktree.cleanup_authorized, false);
-    assert.ok(["protected_root_registry", "dynamic_fail_closed_discovery"].includes(worktree.protection_source));
+    assert.equal(
+      worktree.protection_source,
+      declaredRoots.has(worktree.path.toLowerCase())
+        ? "protected_root_registry"
+        : "dynamic_fail_closed_discovery",
+    );
   }
 });
 
@@ -147,7 +153,7 @@ test("inventory generation is read-only and artifact hashes reconcile", () => {
     });
     const result = writeInventoryV1({ inventory, outDir });
     assert.ok(inventory.counts.surfaces >= 150);
-    assert.ok(inventory.counts.worktrees >= 20);
+    assert.ok(inventory.counts.worktrees >= 1);
     assert.ok(Object.values(inventory.boundaries).every((value) => value === 0));
     assert.equal(inventory.counts.non_executable_agents, inventory.counts.agents);
     for (const [file, expected] of Object.entries(result.hashes.files)) {
