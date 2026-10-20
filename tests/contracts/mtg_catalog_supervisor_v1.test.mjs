@@ -45,6 +45,9 @@ function exact(row) {
     card_printings: row.card_printings,
     external_mappings: row.candidate_count,
     external_printing_mappings: row.external_printing_mappings,
+    card_prints_with_identity: row.candidate_count,
+    card_prints_with_printing: row.candidate_count,
+    card_prints_with_scryfall_mapping: row.candidate_count,
   };
 }
 
@@ -78,6 +81,71 @@ test("exact and absent set states are distinguished from partial state", () => {
       .state,
     "partial_or_drifted",
   );
+});
+
+test("a structurally complete additive set refresh supersedes frozen counts", () => {
+  const row = batch(0);
+  assert.equal(
+    classifyMtgCatalogSupervisorSetStateV1(row, {
+      sets: 1,
+      card_prints: 15,
+      card_print_identity: 15,
+      card_printings: 27,
+      external_mappings: 15,
+      external_printing_mappings: 23,
+      card_prints_with_identity: 15,
+      card_prints_with_printing: 15,
+      card_prints_with_scryfall_mapping: 15,
+    }).state,
+    "complete_additive_superset",
+  );
+  for (const unsafe of [
+    { card_print_identity: 14 },
+    { external_mappings: 14 },
+    { card_printings: 14 },
+    { external_printing_mappings: 17 },
+  ]) {
+    assert.equal(
+      classifyMtgCatalogSupervisorSetStateV1(row, {
+        sets: 1,
+        card_prints: 15,
+        card_print_identity: 15,
+        card_printings: 27,
+        external_mappings: 15,
+        external_printing_mappings: 23,
+        card_prints_with_identity: 15,
+        card_prints_with_printing: 15,
+        card_prints_with_scryfall_mapping: 15,
+        ...unsafe,
+      }).state,
+      "partial_or_drifted",
+    );
+  }
+});
+
+test("aggregate totals cannot conceal a parent without complete structural coverage", () => {
+  const row = batch(0);
+  for (const missingCoverage of [
+    { card_prints_with_identity: 14 },
+    { card_prints_with_printing: 14 },
+    { card_prints_with_scryfall_mapping: 14 },
+  ]) {
+    assert.equal(
+      classifyMtgCatalogSupervisorSetStateV1(row, {
+        sets: 1,
+        card_prints: 15,
+        card_print_identity: 15,
+        card_printings: 27,
+        external_mappings: 15,
+        external_printing_mappings: 23,
+        card_prints_with_identity: 15,
+        card_prints_with_printing: 15,
+        card_prints_with_scryfall_mapping: 15,
+        ...missingCoverage,
+      }).state,
+      "partial_or_drifted",
+    );
+  }
 });
 
 test("active or queued runner prevents another dispatch without a database readback", () => {
@@ -189,6 +257,31 @@ test("public catalog remains an exact-count observer with no writer authority", 
   }), /Partial or drifted MTG set state/);
 });
 
+test("public catalog accepts only structurally complete additive supersets", () => {
+  const executionOrder = [batch(0)];
+  const result = plan({
+    releaseStatus: "public",
+    executionOrder,
+    readbackByCode: {
+      set0: {
+        sets: 1,
+        card_prints: 15,
+        card_print_identity: 15,
+        card_printings: 27,
+        external_mappings: 15,
+        external_printing_mappings: 23,
+        card_prints_with_identity: 15,
+        card_prints_with_printing: 15,
+        card_prints_with_scryfall_mapping: 15,
+      },
+    },
+  });
+  assert.equal(result.status, "eligible_catalog_complete_public_no_dispatch");
+  assert.equal(result.catalog.complete_exact_count, 0);
+  assert.equal(result.catalog.complete_additive_superset_count, 1);
+  assert.equal(result.catalog.complete_count, 1);
+});
+
 test("two failed runs retry from database truth but the third stops automation", () => {
   const failures = [0, 1, 2].map((index) => ({
     id: 100 - index,
@@ -258,6 +351,8 @@ test("entrypoint is read-only and writes the plan before dispatch", () => {
   assert.match(ENTRYPOINT, /runner-ref is outside the frozen supervisor authority/);
   assert.match(ENTRYPOINT, /frozen ceiling of 35/);
   assert.match(ENTRYPOINT, /begin transaction read only/);
+  assert.match(ENTRYPOINT, /card_prints_with_scryfall_mapping/);
+  assert.match(ENTRYPOINT, /summary\.catalog\?\.complete_count/);
   assert.match(ENTRYPOINT, /run_plan\.json/);
   assert.match(ENTRYPOINT, /artifact_hashes\.json/);
   assert.match(ENTRYPOINT, /dispatchRunner/);
