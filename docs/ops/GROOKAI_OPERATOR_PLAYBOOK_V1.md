@@ -1,5 +1,24 @@
 # Grookai Operator Playbook V1
 
+## MTG catalog supervisor frozen ref repair — October 20, 2026
+
+The MTG catalog supervisor resolves the immutable runner commit through
+`archive/closed-pr-218-mtg-pointer-release-v1`. The prior
+`agent/mtg-pointer-release-v1` branch was deleted after archival and caused
+scheduled supervisor runs to fail before database readback. The archive ref
+resolves to the same frozen commit
+`7e9f2bb92f56335a6a352f655e12000b344a63a4`; the writer workflow, manifest,
+payload archive, read-only scheduled boundary, and no-dispatch policy are
+unchanged. Verify both ref resolution and a successful manual supervisor run
+after any future branch-retention change.
+
+The frozen August manifest is also a minimum reconciliation floor for sets
+that received later governed additive refreshes. A refreshed set is complete
+only when it retains one set row, has one active identity and Scryfall parent
+mapping per parent, has at least one printing per parent, and stays at or above
+the frozen printing and exact-price-mapping counts. Any under-count or broken
+one-to-one relationship still fails closed.
+
 ## Review-lead pricing alias batch — October 16, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_153_REVIEW_LEAD_ALIAS_BATCH.md`.

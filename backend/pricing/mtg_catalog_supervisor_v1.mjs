@@ -69,14 +69,28 @@ export function classifyMtgCatalogSupervisorSetStateV1(batch, readback) {
   const expected = expectedCounts(batch);
   const actual = actualCounts(readback);
   const absent = EXPECTED_COUNT_FIELDS.every((field) => actual[field] === 0);
-  const complete = EXPECTED_COUNT_FIELDS.every(
+  const completeExact = EXPECTED_COUNT_FIELDS.every(
     (field) => actual[field] === expected[field],
   );
+  const completeAdditiveSuperset =
+    actual.sets === 1
+    && actual.card_prints > expected.card_prints
+    && actual.card_print_identity === actual.card_prints
+    && actual.external_mappings === actual.card_prints
+    && actual.card_printings >= expected.card_printings
+    && actual.card_printings >= actual.card_prints
+    && actual.external_printing_mappings >= expected.external_printing_mappings;
   return {
     code: clean(batch.code).toLowerCase(),
     execution_ordinal: integer(batch.execution_ordinal, "execution_ordinal"),
     source_set_id: clean(batch.source_set_id),
-    state: complete ? "complete_exact_counts" : absent ? "absent" : "partial_or_drifted",
+    state: completeExact
+      ? "complete_exact_counts"
+      : completeAdditiveSuperset
+        ? "complete_additive_superset"
+        : absent
+          ? "absent"
+          : "partial_or_drifted",
     expected,
     actual,
   };
@@ -217,13 +231,18 @@ export function buildMtgCatalogSupervisorPlanV1({
     const codes = partial.slice(0, 10).map((row) => row.code).join(", ");
     throw new Error(`Partial or drifted MTG set state blocks automation: ${codes}`);
   }
-  const complete = states.filter((row) => row.state === "complete_exact_counts");
+  const completeExact = states.filter((row) => row.state === "complete_exact_counts");
+  const completeAdditiveSuperset = states.filter(
+    (row) => row.state === "complete_additive_superset",
+  );
   const absent = states.filter((row) => row.state === "absent");
   const catalog = {
     release_status: releaseStatus,
     eligible_set_count: eligible.length,
     deferred_future_set_count: deferred.length,
-    complete_exact_count: complete.length,
+    complete_exact_count: completeExact.length,
+    complete_additive_superset_count: completeAdditiveSuperset.length,
+    complete_count: completeExact.length + completeAdditiveSuperset.length,
     absent_count: absent.length,
     partial_or_drifted_count: partial.length,
   };

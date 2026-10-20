@@ -12,12 +12,16 @@ background catalog automation and requires a separate explicit authorization.
 ## Frozen Authority
 
 - Runner workflow ID: `335602786`
-- Runner ref: `agent/mtg-pointer-release-v1`
+- Runner ref: `archive/closed-pr-218-mtg-pointer-release-v1`
 - Runner commit: `7e9f2bb92f56335a6a352f655e12000b344a63a4`
 - Manifest SHA-256: `1240b4ab9aa71c118d022d23e393e8c06397346c61d778e223d0b3b549f8c3e1`
 - Frozen manifest eligibility baseline: `2026-08-16`
 - Maximum observed candidate range: `35` execution-order rows
 - Maximum consecutive failed writer runs: `3`
+
+The archive ref is the durable repository pointer for the original frozen
+runner commit. It replaces the deleted pull-request branch without changing
+the authorized commit, workflow, manifest, or payload inventory.
 
 ## Operation
 
@@ -32,12 +36,17 @@ For each invocation it:
 4. Stops after three consecutive failed, cancelled, or timed-out writer runs.
 5. Opens a production database transaction in read-only mode.
 6. Requires the MTG release control to be `hidden`, `signed_in` or `public`.
-7. Reconciles each eligible manifest set by exact set, card, identity, printing, parent-mapping, and printing-mapping counts.
-8. Stops on any partial or drifted set.
-9. When the release is `signed_in` or `public`, requires every eligible set to be complete and exits successfully with no dispatch.
-10. When the release is `hidden`, identifies the first absent eligible execution ordinal.
-11. Writes `run_plan.json` and marks the row as a shadow candidate.
-12. Performs no dispatch and grants no canonical authority.
+7. Reconciles each eligible manifest set by set, card, identity, printing,
+   parent-mapping, and printing-mapping counts.
+8. Accepts exact frozen counts or a structurally complete additive refresh: one
+   set, more parents than the frozen floor, one identity and Scryfall mapping
+   per parent, at least one printing per parent, and no regression below the
+   frozen printing or exact-price-mapping floors.
+9. Stops on any partial, under-counted, or structurally incomplete set.
+10. When the release is `signed_in` or `public`, requires every eligible set to be complete and exits successfully with no dispatch.
+11. When the release is `hidden`, identifies the first absent eligible execution ordinal.
+12. Writes `run_plan.json` and marks the row as a shadow candidate.
+13. Performs no dispatch and grants no canonical authority.
 
 The writer remains idempotent. A timeout or cancellation is resumed from production readback, not from an assumed cursor.
 
@@ -65,7 +74,8 @@ Automation fails closed when:
 - the manifest hash or contract validation changes;
 - MTG release control is not `hidden`, `signed_in` or `public`;
 - an eligible set is absent after the release becomes `signed_in` or `public`;
-- a selected set is partially present or count-drifted;
+- a selected set is partially present, below its frozen floor, or fails the
+  additive-refresh structural reconciliation;
 - the database readback fails;
 - GitHub workflow state cannot be read;
 - three consecutive writer runs fail, time out, or are cancelled.

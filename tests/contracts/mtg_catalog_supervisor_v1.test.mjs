@@ -80,6 +80,40 @@ test("exact and absent set states are distinguished from partial state", () => {
   );
 });
 
+test("a structurally complete additive set refresh supersedes frozen counts", () => {
+  const row = batch(0);
+  assert.equal(
+    classifyMtgCatalogSupervisorSetStateV1(row, {
+      sets: 1,
+      card_prints: 15,
+      card_print_identity: 15,
+      card_printings: 27,
+      external_mappings: 15,
+      external_printing_mappings: 23,
+    }).state,
+    "complete_additive_superset",
+  );
+  for (const unsafe of [
+    { card_print_identity: 14 },
+    { external_mappings: 14 },
+    { card_printings: 14 },
+    { external_printing_mappings: 17 },
+  ]) {
+    assert.equal(
+      classifyMtgCatalogSupervisorSetStateV1(row, {
+        sets: 1,
+        card_prints: 15,
+        card_print_identity: 15,
+        card_printings: 27,
+        external_mappings: 15,
+        external_printing_mappings: 23,
+        ...unsafe,
+      }).state,
+      "partial_or_drifted",
+    );
+  }
+});
+
 test("active or queued runner prevents another dispatch without a database readback", () => {
   const runnerRuns = [
     { id: 1, status: "in_progress", conclusion: null },
@@ -187,6 +221,28 @@ test("public catalog remains an exact-count observer with no writer authority", 
     readbackByCode: { set0: exact(executionOrder[0]),
       set1: { ...exact(executionOrder[1]), card_printings: 1 } },
   }), /Partial or drifted MTG set state/);
+});
+
+test("public catalog accepts only structurally complete additive supersets", () => {
+  const executionOrder = [batch(0)];
+  const result = plan({
+    releaseStatus: "public",
+    executionOrder,
+    readbackByCode: {
+      set0: {
+        sets: 1,
+        card_prints: 15,
+        card_print_identity: 15,
+        card_printings: 27,
+        external_mappings: 15,
+        external_printing_mappings: 23,
+      },
+    },
+  });
+  assert.equal(result.status, "eligible_catalog_complete_public_no_dispatch");
+  assert.equal(result.catalog.complete_exact_count, 0);
+  assert.equal(result.catalog.complete_additive_superset_count, 1);
+  assert.equal(result.catalog.complete_count, 1);
 });
 
 test("two failed runs retry from database truth but the third stops automation", () => {
