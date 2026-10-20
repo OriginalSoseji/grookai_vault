@@ -1,0 +1,8 @@
+{
+  "inventory_version": "RUFLO_READONLY_INVENTORY_V1",
+  "inventory_fingerprint_sha256": "74d6cb0f9f52c9308040252bb676ab3c70604217e347ac0228ae1941ff439fc4",
+  "files": {
+    "current_inventory_v1.json": "20ceb52700d030eae35a5ad12925ff3bf994a6018316a9772f537b767d336c41",
+    "RUFLO_READONLY_INVENTORY_V1.md": "a2974455c2110e6648fe9bda8a7b33731d23c4dedf37445d1c57f341c922fc38"
+  }
+}

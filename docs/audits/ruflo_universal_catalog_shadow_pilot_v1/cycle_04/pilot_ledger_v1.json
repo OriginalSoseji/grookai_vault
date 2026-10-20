@@ -1,0 +1,48 @@
+{
+  "ledger_version": "RUFLO_UNIVERSAL_CATALOG_SHADOW_LEDGER_V1",
+  "agent_key": "universal-catalog-discovery-v1",
+  "required_qualifying_cycles": 7,
+  "observed_cycle_count": 4,
+  "qualifying_cycle_count": 0,
+  "readiness": "collecting",
+  "cycles": [
+    {
+      "cycle_number": 1,
+      "source_run_id": 39334612376,
+      "source_completed_at": "2026-10-19T22:28:21.144Z",
+      "observation_fingerprint_sha256": "566ba174eedd42a81c1300b57182307d21ed3743c3aed5e3447174a07a37b7ea",
+      "status": "held",
+      "qualifies_toward_pilot_minimum": false
+    },
+    {
+      "cycle_number": 2,
+      "source_run_id": 39372137263,
+      "source_completed_at": "2026-10-20T05:00:57.112Z",
+      "observation_fingerprint_sha256": "42ec0e18cc6f55aec45d4f1d08557081349372cca94beea8610137e7995b4ca3",
+      "status": "held",
+      "qualifies_toward_pilot_minimum": false
+    },
+    {
+      "cycle_number": 3,
+      "source_run_id": 39417042104,
+      "source_completed_at": "2026-10-20T11:49:38.308Z",
+      "observation_fingerprint_sha256": "fbf5d8f754b8c4be78e70752293e273c4a1d521ee197bae0435776df4337dbb9",
+      "status": "held",
+      "qualifies_toward_pilot_minimum": false
+    },
+    {
+      "cycle_number": 4,
+      "source_run_id": 39464118813,
+      "source_completed_at": "2026-10-20T17:17:46.767Z",
+      "observation_fingerprint_sha256": "444e8d65be0919162807820060477ab21f94b8128f5b35e4776c083ab24c2f65",
+      "status": "held",
+      "qualifies_toward_pilot_minimum": false
+    }
+  ],
+  "authority": {
+    "execution_enabled": false,
+    "promotion_eligible": false,
+    "workflow_dispatch": false
+  },
+  "fingerprint_sha256": "2a30dc451ae7d26e354556cc559b8d7f099c08e4e351a761761b974fdce232da"
+}

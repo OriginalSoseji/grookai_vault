@@ -16,6 +16,7 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../
 const evidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39334612376");
 const secondEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39372137263");
 const thirdEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39417042104");
+const fourthEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39464118813");
 
 function clone(value) {
   return structuredClone(value);
@@ -66,6 +67,17 @@ test("pilot verifies the third captured scheduled discovery evidence", () => {
   assert.equal(evidence.metadata.run_id, 39417042104);
   assert.equal(evidence.metadata.event, "schedule");
   assert.equal(evidence.summary.completed_at, "2026-10-20T11:49:38.308Z");
+  assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
+  assert.equal(evidence.sourceFailures.length, 1);
+  assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
+});
+
+test("pilot verifies the fourth pre-repair scheduled discovery evidence", () => {
+  const evidence = readDiscoveryEvidenceV1({ evidenceDir: fourthEvidenceDir });
+  assert.equal(evidence.metadata.run_id, 39464118813);
+  assert.equal(evidence.metadata.event, "schedule");
+  assert.equal(evidence.metadata.head_sha, "51856a6a2f81aa9e18c9e96dbb6737e7d5067973");
+  assert.equal(evidence.summary.completed_at, "2026-10-20T17:17:46.767Z");
   assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
   assert.equal(evidence.sourceFailures.length, 1);
   assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
@@ -159,8 +171,8 @@ test("checked-in cycle observations and cumulative ledger reproduce from frozen 
   const manifest = JSON.parse(readFileSync(path.join(auditRoot, "artifact_hashes.json"), "utf8"));
   assert.equal(manifest.workflow_dispatched_by_ruflo, false);
   assert.equal(manifest.agent_executed_by_ruflo, false);
-  assert.equal(manifest.captured_cycle_count, 3);
-  assert.equal(manifest.latest_source_workflow_run_id, 39417042104);
+  assert.equal(manifest.captured_cycle_count, 4);
+  assert.equal(manifest.latest_source_workflow_run_id, 39464118813);
   for (const [relative, expected] of Object.entries(manifest.files)) {
     assert.equal(sha256(readFileSync(path.resolve(auditRoot, relative))), expected, relative);
   }
@@ -209,6 +221,28 @@ test("checked-in cycle observations and cumulative ledger reproduce from frozen 
   assert.deepEqual(threeCycleLedger, checkedThreeCycleLedger);
   assert.equal(threeCycleLedger.observed_cycle_count, 3);
   assert.equal(threeCycleLedger.qualifying_cycle_count, 0);
+  const fourthTaskEnvelope = JSON.parse(readFileSync(
+    path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-04-20261020.task_envelope_v1.json"),
+    "utf8",
+  ));
+  const fourthEvidence = readDiscoveryEvidenceV1({ evidenceDir: fourthEvidenceDir });
+  const fourthObservation = buildUniversalCatalogShadowObservationV1({
+    envelope: fourthTaskEnvelope,
+    evidence: fourthEvidence,
+    cycleNumber: 4,
+  });
+  const checkedFourthObservation = JSON.parse(readFileSync(path.join(auditRoot, "cycle_04/cycle_04_observation.json"), "utf8"));
+  assert.deepEqual(fourthObservation, checkedFourthObservation);
+  const fourCycleLedger = buildUniversalCatalogPilotLedgerV1([
+    observation,
+    secondObservation,
+    thirdObservation,
+    fourthObservation,
+  ]);
+  const checkedFourCycleLedger = JSON.parse(readFileSync(path.join(auditRoot, "cycle_04/pilot_ledger_v1.json"), "utf8"));
+  assert.deepEqual(fourCycleLedger, checkedFourCycleLedger);
+  assert.equal(fourCycleLedger.observed_cycle_count, 4);
+  assert.equal(fourCycleLedger.qualifying_cycle_count, 0);
   const baseline = JSON.parse(readFileSync(path.join(auditRoot, "prepilot_baseline_runs_v1.json"), "utf8"));
   assert.equal(baseline.runs.length, 7);
   assert.equal(baseline.counts_toward_ruflo_pilot_minimum, false);

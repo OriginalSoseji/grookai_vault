@@ -1,0 +1,116 @@
+{
+  "envelope_version": "RUFLO_TASK_ENVELOPE_V1",
+  "task_id": "ruflo-universal-catalog-shadow-cycle-04-20261020",
+  "parent_goal": "Observe the universal catalog discovery agent without dispatching or executing it",
+  "agent": {
+    "agent_key": "universal-catalog-discovery-v1",
+    "integration_class": "A",
+    "permission_tier": "R0",
+    "memory_namespace": "grookai/catalog/universal-catalog-discovery-v1/ruflo-universal-catalog-shadow-cycle-04-20261020/869dbb86dc2952de4a406eaa8b0bf05bf96d3e67"
+  },
+  "lifecycle": {
+    "initial_state": "validated",
+    "execution_state": "not_started"
+  },
+  "repository": {
+    "remote": "OriginalSoseji/grookai_vault",
+    "commit_sha": "869dbb86dc2952de4a406eaa8b0bf05bf96d3e67",
+    "ref": "feat/ruflo-universal-catalog-shadow-pilot-v1",
+    "worktree_path": "C:/gv_ruflo_universal_catalog_shadow_pilot_20261019",
+    "initial_status_sha256": "cb68a190d3b10bec8f509b8f090761e526d3a13cc998023a7536c4f3baf059f9",
+    "inventory_fingerprint_sha256": "74d6cb0f9f52c9308040252bb676ab3c70604217e347ac0228ae1941ff439fc4",
+    "protection": "protected",
+    "write_allowed": false
+  },
+  "scope": {
+    "objective": "Verify and summarize the next existing scheduled universal catalog discovery artifact as a non-executable Ruflo shadow observation.",
+    "inclusions": [
+      "Exact scheduled-run metadata",
+      "Artifact hash verification",
+      "Read-only run-plan boundary verification",
+      "Gap and source-degradation counts",
+      "Cumulative distinct-run pilot ledger"
+    ],
+    "exclusions": [
+      "Workflow dispatch",
+      "Agent execution",
+      "GitHub issue reconciliation",
+      "Catalog promotion or mutation"
+    ],
+    "non_goals": [
+      "Resolving catalog gaps",
+      "Bypassing source access denial",
+      "Taking ownership of an active catalog worktree"
+    ]
+  },
+  "inputs": [
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39464118813/artifact_hashes.json",
+      "sha256": "b4edbbe7c4076e74fb39854d50902481d6bc17ba8d41349a7c7a92d177911377"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39464118813/run_metadata.json",
+      "sha256": "077626e36f34fa063d1be4ada64c1b634cba8dcdd55b44cc78ffe7ee1ac9608d"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39464118813/run_plan.json",
+      "sha256": "9e83d13873eb2afa1bf5eba3fee80f01820e91b837a08c8815adb4cbc63d4b6d"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39464118813/source_failures.json",
+      "sha256": "868e5ee14c68b33ab19b788bd00a2b8b49d768eecce4e7ee61c0ff074cc02258"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39464118813/summary.json",
+      "sha256": "545c7f2090f6851b071512c63ad916cfb91a4e0b2aeeda179aaf3a5e2656d23f"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_01/cycle_01_observation.json",
+      "sha256": "1f58126b846be14cded4aac7eee7d3f2bb0e0c0ea4c732af2bd57f2f0c3a83a8"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_02/cycle_02_observation.json",
+      "sha256": "375bbe1c76f843353cd4ab257fc4a33830fa013571b61ae833b8000bd5906db2"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_03/cycle_03_observation.json",
+      "sha256": "27eddffe2f9011d5db95129e9edcd3399d033d8061d756b8f62602b7760abd0e"
+    }
+  ],
+  "resource_locks": [
+    {
+      "key": "catalog:all:discovery",
+      "mode": "read"
+    }
+  ],
+  "budgets": {
+    "time_seconds": 60,
+    "row_limit": 4,
+    "request_limit": 0,
+    "cost_usd": 0,
+    "concurrency": 1
+  },
+  "expected_artifacts": [
+    "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_04/cycle_04_observation.json",
+    "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_04/pilot_ledger_v1.json"
+  ],
+  "acceptance_tests": [
+    "Every copied discovery file matches its source artifact hash",
+    "Degraded source evidence produces a held observation",
+    "Cycles 1 through 3 remain present in the cumulative distinct-run ledger",
+    "All execution and mutation boundaries remain false"
+  ],
+  "evidence_expectations": {
+    "direct_readback_required": true,
+    "retention_class": "repository_checkpoint"
+  },
+  "boundaries": {
+    "execution_enabled": false,
+    "workflow_dispatch": false,
+    "production_writes": false,
+    "external_actions": false,
+    "cleanup": false,
+    "cross_worktree_writes": false
+  },
+  "fingerprint_sha256": "276d97019b321c37c7c9c77285e290b27ebb012c6f567e1f2a7515e04bb39ac7"
+}

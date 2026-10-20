@@ -2,7 +2,7 @@
 
 ## Status
 
-`CYCLES 1 THROUGH 3 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
+`CYCLES 1 THROUGH 4 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
 
 The first Phase 2 Ruflo pilot now has an R0-only implementation candidate at
 core commit `730be7ed0f2d9643d956e19acaf18583fa27c3a0` on
@@ -49,13 +49,22 @@ completed at `2026-10-20T11:49:38.308Z`. The separately visible manual run
 held for the same `source_access_denied` failure and did not grant promotion,
 dispatch, or execution authority.
 
+Cycle 4 captured scheduled run `39464118813` and artifact `12285235118`,
+completed at `2026-10-20T17:17:46.767Z`. It began on main commit
+`51856a6a2f81aa9e18c9e96dbb6737e7d5067973`, four minutes before catalog
+resilience PR #751 merged as main commit
+`41fdd6241c70391c9f0fd2fa2588caa902d1c0ed`. It therefore correctly remains a
+pre-repair held observation with the same Storm Emeralda
+`source_access_denied` failure; it is not evidence for or against the merged
+repair. No replacement run was dispatched.
+
 ## Pilot Progress
 
 Seven recent scheduled workflow runs already concluded successfully and are
 recorded as pre-pilot baseline evidence. They do not count retroactively toward
 the Ruflo minimum. The pilot ledger currently records:
 
-- observed cycles: 3;
+- observed cycles: 4;
 - qualifying cycles: 0;
 - required qualifying cycles: 7;
 - readiness: `collecting`.
@@ -84,19 +93,21 @@ npm run ruflo:pilot:universal-catalog:build -- --evidence-dir=<local-evidence> -
 
 ## Verification
 
-- New pilot contracts: 10 of 10 passed.
-- Combined Ruflo registry, adapter, envelope, and pilot contracts: 32 of 32
+- New pilot contracts: 11 of 11 passed.
+- Combined Ruflo registry, adapter, envelope, and pilot contracts: 33 of 33
   passed.
 - Secret-packaging guard: passed before the evidence/documentation commit.
 - `git diff --check`: passed before the evidence/documentation commit.
-- Generated inventory: 27 protected worktrees, five dirty, zero unreadable,
+- Generated inventory: 30 protected worktrees, seven dirty, zero unreadable,
   and zero execution, dispatch, write, external-action, or cleanup boundaries.
 - The pilot worktree entered the inventory through
   `dynamic_fail_closed_discovery` with writes and cleanup disabled.
 
 ## Remaining Gate
 
-Observe the next existing scheduled discovery artifact after its workflow
-finishes. Do not dispatch a replacement run. Degraded cycles remain held and do
-not advance the seven-cycle minimum. The pilot stays R0 even after the minimum
-is met; any later execution request requires a separate contract and PR.
+Observe the first naturally scheduled discovery artifact whose source commit
+contains merged repair `41fdd6241c70391c9f0fd2fa2588caa902d1c0ed` or a later
+descendant. Do not dispatch a replacement run. Degraded cycles remain held and
+do not advance the seven-cycle minimum. The pilot stays R0 even after the
+minimum is met; any later execution request requires a separate contract and
+PR.
