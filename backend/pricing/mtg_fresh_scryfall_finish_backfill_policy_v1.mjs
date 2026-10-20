@@ -68,6 +68,17 @@ export function scryfallLinkSupportsFinishV1(link, finish) {
   return false;
 }
 
+export function canonicalChildSupportsFinishV1(row, finish) {
+  return (
+    String(row?.finish ?? "").toLowerCase() === finish &&
+    row?.finish_is_active === true &&
+    row?.card_is_visible === true &&
+    row?.is_provisional !== true &&
+    Number(row?.exact_identity_count) === 1 &&
+    Number(row?.hidden_review_count) === 0
+  );
+}
+
 function normalizeLane(row) {
   const candidates = [...(row.child_candidates ?? [])]
     .map((candidate) => ({

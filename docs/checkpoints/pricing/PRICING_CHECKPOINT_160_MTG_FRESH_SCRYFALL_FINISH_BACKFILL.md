@@ -20,12 +20,13 @@ The backfill uses Scryfall's current default-card bulk export updated at
 It links only standard `tcgplayer_id` values from English paper cards to
 existing active Scryfall parent mappings and their exact Normal or Foil child.
 
-A product is eligible only when every observed pricing lane is Normal or Foil
-and each lane collapses to one child. The child must have exactly one active
-`mtg_eng_paper_print` identity, must not be provisional, and must not have an
-active hidden truth review. An existing `tcgplayer_market` mapping must be
-identical or absent. Conflicts block the run, while partial and ambiguous
-products remain review-only.
+A product is eligible only when every decision lane for that product in the
+frozen pricing run, including already-published lanes, is Normal or Foil and
+each lane collapses to one child. The child must use an active finish key, have
+a request-visible parent and exactly one active `mtg_eng_paper_print` identity,
+must not be provisional, and must not have an active hidden truth review. An
+existing `tcgplayer_market` mapping must be identical or absent. Conflicts block
+the run, while partial and ambiguous products remain review-only.
 
 ## Frozen Plan and Rehearsal
 

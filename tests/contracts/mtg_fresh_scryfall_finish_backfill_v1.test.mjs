@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   buildMtgFreshScryfallFinishPlanV1,
+  canonicalChildSupportsFinishV1,
   MTG_FRESH_SCRYFALL_FINISH_BACKFILL_V1,
   mtgFreshScryfallDatabaseConfigV1,
   scryfallLinkSupportsFinishV1,
@@ -60,6 +61,22 @@ test("holds the entire product when one observed lane is ambiguous", () => {
   assert.equal(plan.review_only_product_count, 1);
 });
 
+test("holds a missing lane when another lane for the product is already published but no longer exact", () => {
+  const plan = buildMtgFreshScryfallFinishPlanV1([
+    lane(),
+    lane({
+      subtype: "foil",
+      finish: "foil",
+      source_observation_id: "observation-b",
+      child_candidates: [],
+      existing_mappings: [{ id: "mapping-b", card_printing_id: "old-child", active: true }],
+    }),
+  ]);
+  assert.equal(plan.selected_insert_count, 0);
+  assert.equal(plan.already_exact_count, 0);
+  assert.equal(plan.review_only_product_count, 1);
+});
+
 test("accepts an identical active row and blocks a conflicting row", () => {
   const exact = buildMtgFreshScryfallFinishPlanV1([
     lane({
@@ -98,6 +115,20 @@ test("standard Scryfall links cannot borrow etched product authority", () => {
     scryfallLinkSupportsFinishV1({ role: "etched", finishes: ["foil", "etched"] }, "foil"),
     false,
   );
+});
+
+test("canonical candidates require an active finish and visible parent", () => {
+  const candidate = {
+    finish: "foil",
+    finish_is_active: true,
+    card_is_visible: true,
+    is_provisional: false,
+    exact_identity_count: 1,
+    hidden_review_count: 0,
+  };
+  assert.equal(canonicalChildSupportsFinishV1(candidate, "foil"), true);
+  assert.equal(canonicalChildSupportsFinishV1({ ...candidate, finish_is_active: false }, "foil"), false);
+  assert.equal(canonicalChildSupportsFinishV1({ ...candidate, card_is_visible: false }, "foil"), false);
 });
 
 test("database target pins the Grookai project and verified TLS", () => {

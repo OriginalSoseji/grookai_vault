@@ -10,6 +10,7 @@ import { createGunzip } from "node:zlib";
 import "../../backend/env.mjs";
 import {
   buildMtgFreshScryfallFinishPlanV1,
+  canonicalChildSupportsFinishV1,
   MTG_FRESH_SCRYFALL_FINISH_BACKFILL_V1,
   mtgFreshScryfallDatabaseConfigV1,
   scryfallLinkSupportsFinishV1,
@@ -99,6 +100,17 @@ function subtypeToFinish(subtype) {
 
 async function targetRows(client, pricingRunId) {
   const result = await client.query(`
+    with target_products as (
+      select distinct candidate.source_product_id
+        from public.market_price_qualification_decisions candidate
+        join public.tcgcsv_source_products candidate_product
+          on candidate_product.product_id = candidate.source_product_id
+       where candidate.run_id = $1::uuid
+         and candidate_product.category_id = 1
+         and candidate.decision <> 'publish'
+         and candidate.reason_codes[1] = 'missing_active_source_mapping'
+         and candidate.evidence ->> 'product_scope_result' = 'in_scope'
+    )
     select decision.source_product_id::text as product_id,
            decision.source_observation_id::text,
            product.group_id::integer,
@@ -110,11 +122,10 @@ async function targetRows(client, pricingRunId) {
         on product.product_id = decision.source_product_id
       join public.tcgcsv_source_groups source_group
         on source_group.group_id = product.group_id
+      join target_products target
+        on target.source_product_id = decision.source_product_id
      where decision.run_id = $1::uuid
        and product.category_id = 1
-       and decision.decision <> 'publish'
-       and decision.reason_codes[1] = 'missing_active_source_mapping'
-       and decision.evidence ->> 'product_scope_result' = 'in_scope'
      order by decision.source_product_id::bigint, lower(decision.source_subtype_name)
   `, [pricingRunId]);
   return result.rows;
@@ -163,6 +174,8 @@ async function canonicalRows(client, scryfallIds) {
              mapping.card_print_id::text,
              printing.id::text as card_printing_id,
              lower(printing.finish_key) as finish,
+             finish.is_active as finish_is_active,
+             public.catalog_card_print_visible_to_request_v1(mapping.card_print_id) as card_is_visible,
              printing.is_provisional,
              (select count(*)::integer
                 from public.card_print_identity exact_identity
@@ -177,10 +190,14 @@ async function canonicalRows(client, scryfallIds) {
         from public.external_mappings mapping
         join public.card_prints card on card.id = mapping.card_print_id
         join public.card_printings printing on printing.card_print_id = mapping.card_print_id
+        join public.finish_keys finish
+          on finish.key = printing.finish_key
+         and finish.is_active = true
        where mapping.source = 'scryfall'
          and mapping.active = true
          and mapping.external_id = any($1::text[])
          and card.game_id = $2::uuid
+         and public.catalog_card_print_visible_to_request_v1(mapping.card_print_id)
        order by mapping.external_id, mapping.card_print_id, printing.finish_key
     `, [batch, MTG_GAME_ID]);
     for (const row of result.rows) {
@@ -218,12 +235,7 @@ function buildLaneRows(targets, scryfall, canonical, existing) {
     for (const link of scryfall.linksByProduct.get(target.product_id) ?? []) {
       if (!scryfallLinkSupportsFinishV1(link, finish)) continue;
       for (const row of canonical.get(link.scryfall_id) ?? []) {
-        if (
-          row.finish !== finish ||
-          row.is_provisional === true ||
-          Number(row.exact_identity_count) !== 1 ||
-          Number(row.hidden_review_count) !== 0
-        ) continue;
+        if (!canonicalChildSupportsFinishV1(row, finish)) continue;
         const candidate = candidates.get(row.card_printing_id) ?? {
           card_print_id: row.card_print_id,
           card_printing_id: row.card_printing_id,
