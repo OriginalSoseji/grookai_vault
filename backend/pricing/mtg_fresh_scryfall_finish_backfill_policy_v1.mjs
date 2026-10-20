@@ -79,6 +79,42 @@ export function canonicalChildSupportsFinishV1(row, finish) {
   );
 }
 
+export function classifyMtgFreshScryfallFinishGapV1({
+  finish,
+  total_scryfall_link_count = 0,
+  standard_scryfall_link_count = 0,
+  finish_compatible_scryfall_link_count = 0,
+  canonical_row_count = 0,
+  finish_matching_canonical_row_count = 0,
+  active_finish_row_count = 0,
+  visible_parent_row_count = 0,
+  non_provisional_row_count = 0,
+  exact_identity_row_count = 0,
+  review_clear_row_count = 0,
+  eligible_child_candidate_count = 0,
+} = {}) {
+  if (!["normal", "foil"].includes(String(finish ?? "").toLowerCase())) {
+    return "unsupported_source_subtype";
+  }
+  if (Number(total_scryfall_link_count) === 0) return "missing_scryfall_product_link";
+  if (Number(standard_scryfall_link_count) === 0) return "etched_only_scryfall_product_link";
+  if (Number(finish_compatible_scryfall_link_count) === 0) {
+    return "scryfall_finish_not_supported";
+  }
+  if (Number(canonical_row_count) === 0) return "missing_canonical_scryfall_mapping";
+  if (Number(finish_matching_canonical_row_count) === 0) {
+    return "missing_canonical_finish_child";
+  }
+  if (Number(active_finish_row_count) === 0) return "inactive_finish_child";
+  if (Number(visible_parent_row_count) === 0) return "hidden_canonical_parent";
+  if (Number(non_provisional_row_count) === 0) return "provisional_finish_child";
+  if (Number(exact_identity_row_count) === 0) return "non_exact_canonical_identity";
+  if (Number(review_clear_row_count) === 0) return "hidden_printing_truth_review";
+  if (Number(eligible_child_candidate_count) > 1) return "ambiguous_eligible_finish_children";
+  if (Number(eligible_child_candidate_count) === 1) return "exact";
+  return "unclassified_finish_gap";
+}
+
 function normalizeLane(row) {
   const candidates = [...(row.child_candidates ?? [])]
     .map((candidate) => ({
@@ -108,6 +144,12 @@ function normalizeLane(row) {
     source_observation_id: String(row.source_observation_id),
     child_candidates: candidates,
     existing_mappings: existing,
+    gap_classification: String(row.gap_classification ?? "unclassified_finish_gap"),
+    evidence_counts: Object.fromEntries(
+      Object.entries(row.evidence_counts ?? {})
+        .map(([key, value]) => [String(key), Number(value)])
+        .sort(([left], [right]) => left.localeCompare(right)),
+    ),
   };
 }
 
@@ -133,6 +175,7 @@ export function buildMtgFreshScryfallFinishPlanV1(
   const reviewOnlyRows = [];
   const unsafeRows = [];
   let fullyExactProducts = 0;
+  const reviewClassificationCounts = {};
 
   for (const [productId, productLanes] of byProduct) {
     const finishKeys = productLanes.map((lane) => lane.finish);
@@ -148,6 +191,11 @@ export function buildMtgFreshScryfallFinishPlanV1(
           lane.child_candidates.length === 1,
       );
     if (!fullyExact) {
+      for (const lane of productLanes) {
+        if (lane.child_candidates.length === 1 && lane.gap_classification === "exact") continue;
+        reviewClassificationCounts[lane.gap_classification] =
+          (reviewClassificationCounts[lane.gap_classification] ?? 0) + 1;
+      }
       reviewOnlyRows.push({
         product_id: productId,
         group_id: productLanes[0]?.group_id ?? null,
@@ -158,6 +206,8 @@ export function buildMtgFreshScryfallFinishPlanV1(
           subtype: lane.subtype,
           finish: lane.finish,
           child_candidate_count: lane.child_candidates.length,
+          gap_classification: lane.gap_classification,
+          evidence_counts: lane.evidence_counts,
         })),
       });
       continue;
@@ -228,6 +278,10 @@ export function buildMtgFreshScryfallFinishPlanV1(
     selected_insert_count: insertRows.length,
     already_exact_count: alreadyExactRows.length,
     review_only_product_count: reviewOnlyRows.length,
+    review_classification_counts: Object.fromEntries(
+      Object.entries(reviewClassificationCounts)
+        .sort(([left], [right]) => left.localeCompare(right)),
+    ),
     blocking_unsafe_count: unsafeRows.length,
     insert_rows_sha256: sha256(insertRows),
     already_exact_rows_sha256: sha256(alreadyExactRows),

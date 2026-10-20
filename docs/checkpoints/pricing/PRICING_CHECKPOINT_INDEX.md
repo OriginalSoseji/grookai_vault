@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_161_MTG_SCRYFALL_GAP_CLASSIFICATION.md`
+
+This checkpoint replaces the generic MTG Scryfall review bucket with exact
+lane-level failure reasons and evidence counts. The live read-only result
+separates 14,296 missing provider links, 1,148 etched-only links, 762 missing
+canonical mappings, 13 true ambiguities, and one missing finish child.
+
+Decision locked there:
+
+- local-model advice cannot authorize identity writes; deterministic source,
+  canonical-parent, finish, visibility, identity, and review gates route every
+  held lane to its actual repair owner
+
+Unresolved gate afterward:
+
+- admit or map the 597 canonically missing linked products, then add another
+  external authority for products that Scryfall does not link to TCGPlayer
+
 ### `PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md`
 
 This checkpoint records the overlapping current-warehouse sync that invalidated
