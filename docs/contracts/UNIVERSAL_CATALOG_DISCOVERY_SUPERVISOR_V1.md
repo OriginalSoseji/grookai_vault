@@ -42,6 +42,15 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
   do not bypass authentication or access restrictions. The affected source lane
   emits no inferred gaps or promotion candidates and remains in the source issue.
   Access denial does not authorize the optional frozen-candidate fallback.
+- Within Japanese product discovery, Bulbapedia is an independent corroborating
+  checklist rather than the primary structured checklist. Its typed access-denied
+  or unavailable transport failure may be contained only when the same product's
+  parsed TCGdex checklist is nonempty and its row count exactly matches TCGdex's
+  declared total. This is not the frozen-candidate fallback and does not make
+  access denial globally optional. Missing or partial TCGdex evidence, parser
+  failures, and cross-source count disagreements remain fatal for the lane. A
+  contained secondary-source failure remains visible on that source set as a
+  `secondary_source_observations` entry.
 - A failed concurrent source lane settles all in-flight requests before evidence
   counts, hashes, or artifacts are finalized.
 - Source integrity and parser failures remain fatal. Network degradation may
