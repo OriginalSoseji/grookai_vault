@@ -29,9 +29,7 @@ export function canSkipUnavailableIndependentJapaneseChecklistV1(
     return false;
   }
   const cardCount = primaryChecklist?.cards?.length;
-  const declaredCount = Number(
-    primaryChecklist?.cardCount?.total ?? primaryChecklist?.cardCount?.official,
-  );
+  const declaredCount = Number(primaryChecklist?.cardCount?.total);
   return Number.isSafeInteger(cardCount) && cardCount > 0 &&
     Number.isSafeInteger(declaredCount) && declaredCount > 0 &&
     cardCount === declaredCount;

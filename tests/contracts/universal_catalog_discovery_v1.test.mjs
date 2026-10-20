@@ -110,6 +110,13 @@ test("Japanese discovery skips an unavailable independent checklist only with a 
   );
   assert.equal(
     canSkipUnavailableIndependentJapaneseChecklistV1(
+      { catalogSourceFailureClass: "SOURCE_ACCESS_DENIED" },
+      { cardCount: { official: 2 }, cards: completePrimary.cards },
+    ),
+    false,
+  );
+  assert.equal(
+    canSkipUnavailableIndependentJapaneseChecklistV1(
       { catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE" },
       completePrimary,
     ),
