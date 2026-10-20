@@ -2,7 +2,7 @@
 
 ## Status
 
-`CYCLES 1 AND 2 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
+`CYCLES 1 THROUGH 3 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
 
 The first Phase 2 Ruflo pilot now has an R0-only implementation candidate at
 core commit `730be7ed0f2d9643d956e19acaf18583fa27c3a0` on
@@ -43,13 +43,19 @@ Storm Emeralda Bulbapedia lane, seven actionable gaps, six source-reported
 promotion candidates, and 212 recent Japanese-card gaps. No replacement run
 was dispatched.
 
+Cycle 3 captured scheduled run `39417042104` and artifact `12261159875`,
+completed at `2026-10-20T11:49:38.308Z`. The separately visible manual run
+`39397326254` was excluded because only scheduled runs qualify. Cycle 3 was
+held for the same `source_access_denied` failure and did not grant promotion,
+dispatch, or execution authority.
+
 ## Pilot Progress
 
 Seven recent scheduled workflow runs already concluded successfully and are
 recorded as pre-pilot baseline evidence. They do not count retroactively toward
 the Ruflo minimum. The pilot ledger currently records:
 
-- observed cycles: 2;
+- observed cycles: 3;
 - qualifying cycles: 0;
 - required qualifying cycles: 7;
 - readiness: `collecting`.
@@ -78,8 +84,8 @@ npm run ruflo:pilot:universal-catalog:build -- --evidence-dir=<local-evidence> -
 
 ## Verification
 
-- New pilot contracts: 9 of 9 passed.
-- Combined Ruflo registry, adapter, envelope, and pilot contracts: 31 of 31
+- New pilot contracts: 10 of 10 passed.
+- Combined Ruflo registry, adapter, envelope, and pilot contracts: 32 of 32
   passed.
 - Secret-packaging guard: passed before the evidence/documentation commit.
 - `git diff --check`: passed before the evidence/documentation commit.

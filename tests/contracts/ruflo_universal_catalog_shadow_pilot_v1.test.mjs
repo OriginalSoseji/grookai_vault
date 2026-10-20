@@ -15,6 +15,7 @@ import {
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const evidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39334612376");
 const secondEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39372137263");
+const thirdEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39417042104");
 
 function clone(value) {
   return structuredClone(value);
@@ -55,6 +56,16 @@ test("pilot verifies the next captured scheduled discovery evidence", () => {
   assert.equal(evidence.metadata.run_id, 39372137263);
   assert.equal(evidence.metadata.event, "schedule");
   assert.equal(evidence.summary.completed_at, "2026-10-20T05:00:57.112Z");
+  assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
+  assert.equal(evidence.sourceFailures.length, 1);
+  assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
+});
+
+test("pilot verifies the third captured scheduled discovery evidence", () => {
+  const evidence = readDiscoveryEvidenceV1({ evidenceDir: thirdEvidenceDir });
+  assert.equal(evidence.metadata.run_id, 39417042104);
+  assert.equal(evidence.metadata.event, "schedule");
+  assert.equal(evidence.summary.completed_at, "2026-10-20T11:49:38.308Z");
   assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
   assert.equal(evidence.sourceFailures.length, 1);
   assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
@@ -148,8 +159,8 @@ test("checked-in cycle observations and cumulative ledger reproduce from frozen 
   const manifest = JSON.parse(readFileSync(path.join(auditRoot, "artifact_hashes.json"), "utf8"));
   assert.equal(manifest.workflow_dispatched_by_ruflo, false);
   assert.equal(manifest.agent_executed_by_ruflo, false);
-  assert.equal(manifest.captured_cycle_count, 2);
-  assert.equal(manifest.latest_source_workflow_run_id, 39372137263);
+  assert.equal(manifest.captured_cycle_count, 3);
+  assert.equal(manifest.latest_source_workflow_run_id, 39417042104);
   for (const [relative, expected] of Object.entries(manifest.files)) {
     assert.equal(sha256(readFileSync(path.resolve(auditRoot, relative))), expected, relative);
   }
@@ -181,6 +192,23 @@ test("checked-in cycle observations and cumulative ledger reproduce from frozen 
   assert.deepEqual(cumulativeLedger, checkedCumulativeLedger);
   assert.equal(cumulativeLedger.observed_cycle_count, 2);
   assert.equal(cumulativeLedger.qualifying_cycle_count, 0);
+  const thirdTaskEnvelope = JSON.parse(readFileSync(
+    path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-03-20261020.task_envelope_v1.json"),
+    "utf8",
+  ));
+  const thirdEvidence = readDiscoveryEvidenceV1({ evidenceDir: thirdEvidenceDir });
+  const thirdObservation = buildUniversalCatalogShadowObservationV1({
+    envelope: thirdTaskEnvelope,
+    evidence: thirdEvidence,
+    cycleNumber: 3,
+  });
+  const checkedThirdObservation = JSON.parse(readFileSync(path.join(auditRoot, "cycle_03/cycle_03_observation.json"), "utf8"));
+  assert.deepEqual(thirdObservation, checkedThirdObservation);
+  const threeCycleLedger = buildUniversalCatalogPilotLedgerV1([observation, secondObservation, thirdObservation]);
+  const checkedThreeCycleLedger = JSON.parse(readFileSync(path.join(auditRoot, "cycle_03/pilot_ledger_v1.json"), "utf8"));
+  assert.deepEqual(threeCycleLedger, checkedThreeCycleLedger);
+  assert.equal(threeCycleLedger.observed_cycle_count, 3);
+  assert.equal(threeCycleLedger.qualifying_cycle_count, 0);
   const baseline = JSON.parse(readFileSync(path.join(auditRoot, "prepilot_baseline_runs_v1.json"), "utf8"));
   assert.equal(baseline.runs.length, 7);
   assert.equal(baseline.counts_toward_ruflo_pilot_minimum, false);
