@@ -10,6 +10,17 @@ missing/partial primary evidence, parser failures, and count disagreements remai
 fatal. Do not dispatch discovery, write catalog data, or count a pre-merge/manual
 run as Ruflo pilot qualification.
 
+## MTG fresh Scryfall finish backfill — October 20
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_160_MTG_FRESH_SCRYFALL_FINISH_BACKFILL.md`.
+Fresh Scryfall bulk data may create `tcgplayer_market` printing mappings only
+when every observed Normal/Foil lane for a blocked MTG product collapses to one
+existing visible, nonprovisional English paper child. Bind the plan to the
+source bulk hash and immutable pricing run. Write only missing
+`productId:finish` rows; conflicting, ambiguous, partial, etched, unsupported,
+and hidden rows remain held. Mapping insertion and price publication are
+separate guarded releases.
+
 ## MTG exact-finish missing-number bridge — October 20
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_159_MTG_EXACT_FINISH_MISSING_NUMBER_BRIDGE.md`.
