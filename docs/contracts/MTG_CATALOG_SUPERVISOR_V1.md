@@ -42,6 +42,8 @@ For each invocation it:
    set, more parents than the frozen floor, one identity and Scryfall mapping
    per parent, at least one printing per parent, and no regression below the
    frozen printing or exact-price-mapping floors.
+   Distinct covered-parent counts prove those relationships; aggregate identity,
+   printing, or mapping totals cannot substitute for per-parent coverage.
 9. Stops on any partial, under-counted, or structurally incomplete set.
 10. When the release is `signed_in` or `public`, requires every eligible set to be complete and exits successfully with no dispatch.
 11. When the release is `hidden`, identifies the first absent eligible execution ordinal.

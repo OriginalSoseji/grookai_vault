@@ -45,6 +45,9 @@ function exact(row) {
     card_printings: row.card_printings,
     external_mappings: row.candidate_count,
     external_printing_mappings: row.external_printing_mappings,
+    card_prints_with_identity: row.candidate_count,
+    card_prints_with_printing: row.candidate_count,
+    card_prints_with_scryfall_mapping: row.candidate_count,
   };
 }
 
@@ -90,6 +93,9 @@ test("a structurally complete additive set refresh supersedes frozen counts", ()
       card_printings: 27,
       external_mappings: 15,
       external_printing_mappings: 23,
+      card_prints_with_identity: 15,
+      card_prints_with_printing: 15,
+      card_prints_with_scryfall_mapping: 15,
     }).state,
     "complete_additive_superset",
   );
@@ -107,7 +113,35 @@ test("a structurally complete additive set refresh supersedes frozen counts", ()
         card_printings: 27,
         external_mappings: 15,
         external_printing_mappings: 23,
+        card_prints_with_identity: 15,
+        card_prints_with_printing: 15,
+        card_prints_with_scryfall_mapping: 15,
         ...unsafe,
+      }).state,
+      "partial_or_drifted",
+    );
+  }
+});
+
+test("aggregate totals cannot conceal a parent without complete structural coverage", () => {
+  const row = batch(0);
+  for (const missingCoverage of [
+    { card_prints_with_identity: 14 },
+    { card_prints_with_printing: 14 },
+    { card_prints_with_scryfall_mapping: 14 },
+  ]) {
+    assert.equal(
+      classifyMtgCatalogSupervisorSetStateV1(row, {
+        sets: 1,
+        card_prints: 15,
+        card_print_identity: 15,
+        card_printings: 27,
+        external_mappings: 15,
+        external_printing_mappings: 23,
+        card_prints_with_identity: 15,
+        card_prints_with_printing: 15,
+        card_prints_with_scryfall_mapping: 15,
+        ...missingCoverage,
       }).state,
       "partial_or_drifted",
     );
@@ -236,6 +270,9 @@ test("public catalog accepts only structurally complete additive supersets", () 
         card_printings: 27,
         external_mappings: 15,
         external_printing_mappings: 23,
+        card_prints_with_identity: 15,
+        card_prints_with_printing: 15,
+        card_prints_with_scryfall_mapping: 15,
       },
     },
   });
@@ -314,6 +351,8 @@ test("entrypoint is read-only and writes the plan before dispatch", () => {
   assert.match(ENTRYPOINT, /runner-ref is outside the frozen supervisor authority/);
   assert.match(ENTRYPOINT, /frozen ceiling of 35/);
   assert.match(ENTRYPOINT, /begin transaction read only/);
+  assert.match(ENTRYPOINT, /card_prints_with_scryfall_mapping/);
+  assert.match(ENTRYPOINT, /summary\.catalog\?\.complete_count/);
   assert.match(ENTRYPOINT, /run_plan\.json/);
   assert.match(ENTRYPOINT, /artifact_hashes\.json/);
   assert.match(ENTRYPOINT, /dispatchRunner/);

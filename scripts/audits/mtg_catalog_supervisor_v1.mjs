@@ -261,11 +261,49 @@ async function captureCatalogReadback() {
        group by lower(card.set_code)`,
       "external_printing_mappings",
     );
+    const parentCoverageResult = await client.query(`
+      select lower(card.set_code) as code,
+             count(*) filter (
+               where exists (
+                 select 1
+                 from public.card_print_identity identity_row
+                 where identity_row.card_print_id = card.id
+               )
+             )::integer as card_prints_with_identity,
+             count(*) filter (
+               where exists (
+                 select 1
+                 from public.card_printings printing
+                 where printing.card_print_id = card.id
+               )
+             )::integer as card_prints_with_printing,
+             count(*) filter (
+               where exists (
+                 select 1
+                 from public.external_mappings mapping
+                 where mapping.card_print_id = card.id
+                   and mapping.source = 'scryfall'
+               )
+             )::integer as card_prints_with_scryfall_mapping
+      from public.card_prints card
+      where card.game_id = $1::uuid
+      group by lower(card.set_code)
+    `, [MTG_GAME_ID]);
     await client.query("rollback");
 
     const byCode = {};
     const setCounts = new Map(
       sets.rows.map((row) => [String(row.code).toLowerCase(), Number(row.sets)]),
+    );
+    const parentCoverage = new Map(
+      parentCoverageResult.rows.map((row) => [
+        String(row.code).toLowerCase(),
+        {
+          card_prints_with_identity: Number(row.card_prints_with_identity),
+          card_prints_with_printing: Number(row.card_prints_with_printing),
+          card_prints_with_scryfall_mapping: Number(row.card_prints_with_scryfall_mapping),
+        },
+      ]),
     );
     const codes = new Set([
       ...setCounts.keys(),
@@ -274,6 +312,7 @@ async function captureCatalogReadback() {
       ...printings.keys(),
       ...mappings.keys(),
       ...printingMappings.keys(),
+      ...parentCoverage.keys(),
     ]);
     for (const code of [...codes].sort()) {
       byCode[code] = {
@@ -283,6 +322,10 @@ async function captureCatalogReadback() {
         card_printings: printings.get(code) ?? 0,
         external_mappings: mappings.get(code) ?? 0,
         external_printing_mappings: printingMappings.get(code) ?? 0,
+        card_prints_with_identity: parentCoverage.get(code)?.card_prints_with_identity ?? 0,
+        card_prints_with_printing: parentCoverage.get(code)?.card_prints_with_printing ?? 0,
+        card_prints_with_scryfall_mapping:
+          parentCoverage.get(code)?.card_prints_with_scryfall_mapping ?? 0,
       };
     }
     return {
@@ -351,7 +394,7 @@ async function appendGithubMetadata(summary) {
       `- Frozen runner commit: \`${summary.target_commit_sha ?? "unavailable"}\``,
       `- Dispatch created: \`${summary.dispatched === true}\``,
       `- Next range: \`${summary.dispatch ? `${summary.dispatch.start_index} + ${summary.dispatch.max_sets}` : "none"}\``,
-      `- Complete eligible sets: \`${summary.catalog?.complete_exact_count ?? "not read while writer active"}\``,
+      `- Complete eligible sets: \`${summary.catalog?.complete_count ?? "not read while writer active"}\``,
       `- Remaining eligible sets: \`${summary.catalog?.absent_count ?? "not read while writer active"}\``,
     ];
     await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, `${lines.join("\n")}\n`, "utf8");

@@ -18,6 +18,8 @@ only when it retains one set row, has one active identity and Scryfall parent
 mapping per parent, has at least one printing per parent, and stays at or above
 the frozen printing and exact-price-mapping counts. Any under-count or broken
 one-to-one relationship still fails closed.
+The supervisor measures distinct covered parents so duplicate child or mapping
+rows cannot conceal a parent with missing structural evidence.
 
 ## Review-lead pricing alias batch — October 16, 2026
 

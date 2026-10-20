@@ -26,6 +26,12 @@ const EXPECTED_COUNT_FIELDS = Object.freeze([
   "external_printing_mappings",
 ]);
 
+const PARENT_COVERAGE_FIELDS = Object.freeze([
+  "card_prints_with_identity",
+  "card_prints_with_printing",
+  "card_prints_with_scryfall_mapping",
+]);
+
 function clean(value) {
   return String(value ?? "").trim();
 }
@@ -65,16 +71,30 @@ function actualCounts(readback) {
   );
 }
 
+function actualParentCoverage(readback) {
+  const source = readback ?? {};
+  return Object.fromEntries(
+    PARENT_COVERAGE_FIELDS.map((field) => [field, integer(source[field] ?? 0, field)]),
+  );
+}
+
 export function classifyMtgCatalogSupervisorSetStateV1(batch, readback) {
   const expected = expectedCounts(batch);
-  const actual = actualCounts(readback);
+  const actual = {
+    ...actualCounts(readback),
+    ...actualParentCoverage(readback),
+  };
   const absent = EXPECTED_COUNT_FIELDS.every((field) => actual[field] === 0);
+  const parentCoverageComplete = PARENT_COVERAGE_FIELDS.every(
+    (field) => actual[field] === actual.card_prints,
+  );
   const completeExact = EXPECTED_COUNT_FIELDS.every(
     (field) => actual[field] === expected[field],
-  );
+  ) && parentCoverageComplete;
   const completeAdditiveSuperset =
     actual.sets === 1
     && actual.card_prints > expected.card_prints
+    && parentCoverageComplete
     && actual.card_print_identity === actual.card_prints
     && actual.external_mappings === actual.card_prints
     && actual.card_printings >= expected.card_printings
