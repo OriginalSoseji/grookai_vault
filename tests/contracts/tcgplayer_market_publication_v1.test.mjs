@@ -82,6 +82,15 @@ const MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const MTG_MISSING_NUMBER_BRIDGE_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20261020062000_mtg_exact_finish_missing_number_bridge_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -467,6 +476,27 @@ test("publishes MTG through an exact product-and-finish mapping without a false 
   assert.equal(result.evidence.mapping_lane, "mtg_exact_finish_v1");
 });
 
+test("exact MTG product-and-finish authority replaces missing printed-number text", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      category_id: 1,
+      source_subtype_name: "Normal",
+      normalized_finish_key: "normal",
+      identity_domain: "mtg_eng_paper_print",
+      source_mapping_id: null,
+      variant_assignment_id: null,
+      mtg_printing_mapping_id: "40000000-0000-4000-8000-000000000002",
+      mapping_method: "exact_external_printing_mapping_v1",
+      variant_assignment_version: "MTG_EXACT_PRINTING_MAPPING_V1",
+      finish_key: "normal",
+      has_printed_number_evidence: false,
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "publish");
+  assert.deepEqual(result.reason_codes, []);
+});
+
 test("does not waive MTG parent lineage without the exact finish mapping FK", () => {
   const result = evaluateTcgplayerMarketQualificationV1(
     validCandidate({
@@ -671,8 +701,8 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_16/);
-  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v5/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_17/);
+  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v6/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
 });
@@ -692,7 +722,14 @@ test("MTG snapshot guard links the already-validated decision without a redundan
     MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION,
     /mtg_tcgplayer_finish_price_row_valid_v1\(to_jsonb\(decision_row\)\)/,
   );
-  assert.match(WORKER, /20261018193000/);
+  assert.match(WORKER, /20261020062000/);
+});
+
+test("MTG missing-number bridge requires an independent mapping to the same exact printing", () => {
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /candidate\.has_printed_number_evidence = false/);
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /mapping\.card_printing_id = candidate\.card_printing_id/);
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /candidate\.card_printing_mapping_count = 1/);
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /v_tcgplayer_market_qualification_candidates_v6/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {

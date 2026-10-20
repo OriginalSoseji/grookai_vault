@@ -39,7 +39,7 @@ test('reviewed MEP override is exact, private, and takes candidate precedence', 
   assert.match(migration, /candidate\.source_product_id,/);
   assert.doesNotMatch(migration, /jsonb_populate_record/);
   assert.match(migration, /then reviewed_override\.assigned_finish_key/);
-  assert.match(worker, /from public\.v_tcgplayer_market_qualification_candidates_v5 candidate/g);
+  assert.match(worker, /from public\.v_tcgplayer_market_qualification_candidates_v6 candidate/g);
   assert.doesNotMatch(worker, /from public\.v_tcgplayer_market_qualification_candidates_v2 candidate/);
 });
 

@@ -1,5 +1,17 @@
 # Grookai Agent Entry Point
 
+## MTG exact-finish missing-number bridge — October 20
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_159_MTG_EXACT_FINISH_MISSING_NUMBER_BRIDGE.md`.
+Missing printed-number text may be waived only for category 1 Normal/Foil rows
+whose active `tcgplayer_market` `productId:finish` mapping points to the same
+single canonical printing already selected by the ordinary mapping lane. The
+candidate must have one card mapping, one printing mapping, one English paper
+identity domain, and an exact child-finish assignment. Publication must switch
+to the durable `mtg_printing_mapping_id` lineage; never carry both that lineage
+and the generic source/variant assignment IDs. All ambiguous, provisional,
+hidden, unsupported, and non-positive-price rows remain held.
+
 ## MTG finish-specific market bridge — October 18
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_158_MTG_FINISH_SPECIFIC_MARKET_BRIDGE.md`.

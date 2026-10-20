@@ -115,7 +115,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   if (clean(row.source_product_catalog_status) !== "current") {
     reasons.push("source_product_not_current");
   }
-  if (row.has_printed_number_evidence !== true) {
+  if (row.has_printed_number_evidence !== true && !exactMtgPrintingMapping) {
     reasons.push("missing_printed_number_evidence");
   }
   if (!scope.in_scope) exclusionReasons.push(scope.reason_code);
