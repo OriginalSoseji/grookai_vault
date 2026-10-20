@@ -57,8 +57,10 @@ test("MTG incremental promotion uses existing canonical contracts dynamically", 
   assert.match(worker, /unique", "prints"/);
 });
 
-test("MTG incremental promotion blocks partial sets and external image pointers", () => {
-  assert.match(worker, /Partial MTG set requires bounded repair/);
+test("MTG incremental promotion extends only fully accounted partial sets", () => {
+  assert.match(worker, /Partial MTG set has unaccounted canonical parents/);
+  assert.match(worker, /Retained MTG \$\{name\} drift/);
+  assert.match(worker, /eligible_partial_extension_plan/);
   assert.match(payloadBuilder, /image_url:\s*null/);
   assert.match(payloadBuilder, /image_pending_self_host/);
   assert.match(worker, /rollback absence proof failed/i);
@@ -69,15 +71,72 @@ test("MTG incremental promotion blocks partial sets and external image pointers"
 test("MTG plan status distinguishes absent, completed and future sets", () => {
   const initializer = worker.match(/let transactionResult = (\{[\s\S]*?\n    \});/);
   assert.ok(initializer, "worker retains the tested plan-result initializer");
-  for (const [releaseEligible, shouldMutate, action, reason] of [
-    [true, true, "plan_only", "eligible_absent_plan"],
-    [true, false, "no_op", "already_exact_complete"],
-    [false, false, "no_op", "future_release"],
+  for (const [releaseEligible, shouldMutate, databaseState, action, reason] of [
+    [true, true, "absent", "plan_only", "eligible_absent_plan"],
+    [true, true, "partial_or_drifted", "plan_only", "eligible_partial_extension_plan"],
+    [true, false, "exact_complete", "no_op", "already_exact_complete"],
+    [false, false, "absent", "no_op", "future_release"],
   ]) {
     const result = vm.runInNewContext(`(${initializer[1]})`, {
-      releaseEligible, shouldMutate,
+      releaseEligible, shouldMutate, databaseState,
     }, { timeout: 1000 });
     assert.equal(result.action, action);
     assert.equal(result.reason, reason);
   }
+});
+
+test("MTG partial extension retains existing parents and selects related rows only", () => {
+  const source = worker.match(
+    /function selectMtgPromotionRowsV1\(rows, parentIds, includeSet = false\) \{[\s\S]*?\n\}/,
+  )?.[0];
+  assert.ok(source);
+  const selectRows = vm.runInNewContext(`(${source})`);
+  const rows = {
+    sets: [{ id: "set" }],
+    card_prints: [{ id: "a" }, { id: "b" }],
+    card_print_identity: [
+      { id: "ia", card_print_id: "a" },
+      { id: "ib", card_print_id: "b" },
+    ],
+    card_printings: [
+      { id: "pa", card_print_id: "a" },
+      { id: "pb", card_print_id: "b" },
+    ],
+    external_mappings: [
+      { external_id: "sa", card_print_id: "a" },
+      { external_id: "sb", card_print_id: "b" },
+    ],
+    external_printing_mappings: [
+      { external_id: "1:normal", card_printing_id: "pa" },
+      { external_id: "2:normal", card_printing_id: "pb" },
+    ],
+  };
+  const selected = selectRows(rows, new Set(["b"]), false);
+  assert.deepEqual(JSON.parse(JSON.stringify(selected)), {
+    sets: [],
+    card_prints: [{ id: "b" }],
+    card_print_identity: [{ id: "ib", card_print_id: "b" }],
+    card_printings: [{ id: "pb", card_print_id: "b" }],
+    external_mappings: [{ external_id: "sb", card_print_id: "b" }],
+    external_printing_mappings: [{ external_id: "2:normal", card_printing_id: "pb" }],
+  });
+});
+
+test("MTG partial extension preserves an existing set release date but rejects identity drift", () => {
+  const source = worker.match(
+    /function assertExistingSetCompatibleV1\(actual, planned\) \{[\s\S]*?\n\}/,
+  )?.[0];
+  assert.ok(source);
+  const assertCompatible = vm.runInNewContext(`(${source})`);
+  const base = {
+    id: "set-id", game: "mtg", code: "fdc", name: "Foundations Commander",
+    set_role: null, identity_domain_default: "mtg_eng_paper_print",
+    identity_model: "standard",
+    source: { scryfall: { id: "source-set", code: "fdc", set_type: "commander" } },
+  };
+  assert.doesNotThrow(() => assertCompatible(
+    { ...base, release_date: "2024-11-15" },
+    { ...base, release_date: "2026-10-02" },
+  ));
+  assert.throws(() => assertCompatible(base, { ...base, name: "Other" }), /identity drift/);
 });
