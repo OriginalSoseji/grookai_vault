@@ -52,7 +52,9 @@ The first Phase 2 shadow pilot is recorded in
 already-completed scheduled discovery artifact and its R0 task envelope. Never
 dispatch a workflow to feed the pilot. Source-degraded observations are held and
 do not advance the required seven qualifying cycles. The pilot cannot promote a
-catalog candidate, reconcile a GitHub issue, or write any active worktree.
+catalog candidate, reconcile a GitHub issue, or write any active worktree. For
+cycle 2 and later, pass every checked-in prior observation explicitly so the
+builder can verify a contiguous, fingerprint-valid, distinct-run ledger.
 
 ## Residual reviewed alias batch — October 15, 2026
 

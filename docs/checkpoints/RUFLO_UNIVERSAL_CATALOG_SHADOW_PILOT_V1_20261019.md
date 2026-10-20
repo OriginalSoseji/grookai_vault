@@ -2,7 +2,7 @@
 
 ## Status
 
-`CYCLE 1 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
+`CYCLES 1 AND 2 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
 
 The first Phase 2 Ruflo pilot now has an R0-only implementation candidate at
 core commit `730be7ed0f2d9643d956e19acaf18583fa27c3a0` on
@@ -36,13 +36,20 @@ The pilot therefore emitted `held`, set `promotion_eligible` and
 only next safe step. It did not reinterpret the 403, infer data from the denied
 lane, or take ownership of the active Japanese catalog worktree.
 
+Cycle 2 captured the next naturally scheduled run `39372137263` and artifact
+`12241639190`, completed at `2026-10-20T05:00:57.112Z`. It independently
+reproduced the same held result: one `source_access_denied` failure for the
+Storm Emeralda Bulbapedia lane, seven actionable gaps, six source-reported
+promotion candidates, and 212 recent Japanese-card gaps. No replacement run
+was dispatched.
+
 ## Pilot Progress
 
 Seven recent scheduled workflow runs already concluded successfully and are
 recorded as pre-pilot baseline evidence. They do not count retroactively toward
 the Ruflo minimum. The pilot ledger currently records:
 
-- observed cycles: 1;
+- observed cycles: 2;
 - qualifying cycles: 0;
 - required qualifying cycles: 7;
 - readiness: `collecting`.
@@ -57,20 +64,22 @@ not create execution or promotion authority.
 `scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs` verifies the copied
 artifact hashes, reconciles summary and failure counts, validates the R0 task
 envelope, emits a deterministic observation fingerprint, and maintains a
-distinct-run ledger. The builder has no network, database, child-process,
+distinct-run ledger. Cycle accumulation now verifies prior observation
+fingerprints, rejects duplicate or non-contiguous cycle numbers, and requires
+the caller to provide prior observations explicitly. The builder has no network, database, child-process,
 workflow-dispatch, agent-execution, or destructive Git path.
 
 Commands from a trusted checkout:
 
 ```powershell
 npm run ruflo:registry:test
-npm run ruflo:pilot:universal-catalog:build -- --evidence-dir=<local-evidence> --envelope=<frozen-envelope> --cycle=<number>
+npm run ruflo:pilot:universal-catalog:build -- --evidence-dir=<local-evidence> --envelope=<frozen-envelope> --cycle=<number> --prior-observation=<checked-in-prior-observation>
 ```
 
 ## Verification
 
-- New pilot contracts: 8 of 8 passed.
-- Combined Ruflo registry, adapter, envelope, and pilot contracts: 30 of 30
+- New pilot contracts: 9 of 9 passed.
+- Combined Ruflo registry, adapter, envelope, and pilot contracts: 31 of 31
   passed.
 - Secret-packaging guard: passed before the evidence/documentation commit.
 - `git diff --check`: passed before the evidence/documentation commit.

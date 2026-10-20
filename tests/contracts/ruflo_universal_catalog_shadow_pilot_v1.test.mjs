@@ -14,6 +14,7 @@ import {
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const evidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39334612376");
+const secondEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39372137263");
 
 function clone(value) {
   return structuredClone(value);
@@ -45,6 +46,16 @@ test("pilot verifies the captured scheduled discovery evidence", () => {
   assert.equal(evidence.metadata.run_id, 39334612376);
   assert.equal(evidence.metadata.event, "schedule");
   assert.equal(evidence.summary.actionable_gap_count, 7);
+  assert.equal(evidence.sourceFailures.length, 1);
+  assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
+});
+
+test("pilot verifies the next captured scheduled discovery evidence", () => {
+  const evidence = readDiscoveryEvidenceV1({ evidenceDir: secondEvidenceDir });
+  assert.equal(evidence.metadata.run_id, 39372137263);
+  assert.equal(evidence.metadata.event, "schedule");
+  assert.equal(evidence.summary.completed_at, "2026-10-20T05:00:57.112Z");
+  assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
   assert.equal(evidence.sourceFailures.length, 1);
   assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
 });
@@ -116,7 +127,14 @@ test("pilot ledger requires seven distinct qualifying cycles", () => {
   assert.equal(complete.readiness, "minimum_observation_met");
   assert.equal(complete.qualifying_cycle_count, 7);
   assert.equal(complete.authority.execution_enabled, false);
-  assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], observations[0]]), /duplicate source run/);
+  assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], observations[0]]), /duplicate cycle number/);
+  const duplicateRun = clone(observations[1]);
+  duplicateRun.source_run.run_id = observations[0].source_run.run_id;
+  assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], duplicateRun]), /duplicate source run/);
+  assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[1]]), /contiguous from 1/);
+  const tampered = clone(observations[0]);
+  tampered.findings.actionable_gap_count += 1;
+  assert.throws(() => buildUniversalCatalogPilotLedgerV1([tampered]), /fingerprint mismatch/);
 });
 
 test("pilot source has no network, dispatch, execution, database, or destructive Git path", () => {
@@ -125,11 +143,13 @@ test("pilot source has no network, dispatch, execution, database, or destructive
   assert.doesNotMatch(source, /workflow_dispatch\s*\(|agent_execute\s*\(|git\s+(?:clean|reset|checkout|branch\s+-D|worktree\s+remove)/i);
 });
 
-test("checked-in first-cycle observation and ledger reproduce from frozen evidence", () => {
+test("checked-in cycle observations and cumulative ledger reproduce from frozen evidence", () => {
   const auditRoot = path.join(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
   const manifest = JSON.parse(readFileSync(path.join(auditRoot, "artifact_hashes.json"), "utf8"));
   assert.equal(manifest.workflow_dispatched_by_ruflo, false);
   assert.equal(manifest.agent_executed_by_ruflo, false);
+  assert.equal(manifest.captured_cycle_count, 2);
+  assert.equal(manifest.latest_source_workflow_run_id, 39372137263);
   for (const [relative, expected] of Object.entries(manifest.files)) {
     assert.equal(sha256(readFileSync(path.resolve(auditRoot, relative))), expected, relative);
   }
@@ -144,6 +164,23 @@ test("checked-in first-cycle observation and ledger reproduce from frozen eviden
   const ledger = buildUniversalCatalogPilotLedgerV1([observation]);
   const checkedLedger = JSON.parse(readFileSync(path.join(auditRoot, "cycle_01/pilot_ledger_v1.json"), "utf8"));
   assert.deepEqual(ledger, checkedLedger);
+  const secondTaskEnvelope = JSON.parse(readFileSync(
+    path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-02-20261020.task_envelope_v1.json"),
+    "utf8",
+  ));
+  const secondEvidence = readDiscoveryEvidenceV1({ evidenceDir: secondEvidenceDir });
+  const secondObservation = buildUniversalCatalogShadowObservationV1({
+    envelope: secondTaskEnvelope,
+    evidence: secondEvidence,
+    cycleNumber: 2,
+  });
+  const checkedSecondObservation = JSON.parse(readFileSync(path.join(auditRoot, "cycle_02/cycle_02_observation.json"), "utf8"));
+  assert.deepEqual(secondObservation, checkedSecondObservation);
+  const cumulativeLedger = buildUniversalCatalogPilotLedgerV1([observation, secondObservation]);
+  const checkedCumulativeLedger = JSON.parse(readFileSync(path.join(auditRoot, "cycle_02/pilot_ledger_v1.json"), "utf8"));
+  assert.deepEqual(cumulativeLedger, checkedCumulativeLedger);
+  assert.equal(cumulativeLedger.observed_cycle_count, 2);
+  assert.equal(cumulativeLedger.qualifying_cycle_count, 0);
   const baseline = JSON.parse(readFileSync(path.join(auditRoot, "prepilot_baseline_runs_v1.json"), "utf8"));
   assert.equal(baseline.runs.length, 7);
   assert.equal(baseline.counts_toward_ruflo_pilot_minimum, false);

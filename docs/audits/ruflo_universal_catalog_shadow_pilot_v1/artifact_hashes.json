@@ -3,6 +3,9 @@
   "source_implementation_commit": "730be7ed0f2d9643d956e19acaf18583fa27c3a0",
   "source_workflow_run_id": 39334612376,
   "source_artifact_id": 12226890562,
+  "latest_source_workflow_run_id": 39372137263,
+  "latest_source_artifact_id": 12241639190,
+  "captured_cycle_count": 2,
   "workflow_dispatched_by_ruflo": false,
   "agent_executed_by_ruflo": false,
   "files": {
@@ -13,6 +16,13 @@
     "task_spec_v1.json": "56791e1366b32e699e81517725bfd4515844fdc1d275b4b2bf0de5835bd8e96b",
     "../ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-01-20261019.task_envelope_v1.json": "e67f0d7f82ecec93fc2be72c22ea885122da21ef0424cb93b8b296139d5b1503",
     "cycle_01/cycle_01_observation.json": "1f58126b846be14cded4aac7eee7d3f2bb0e0c0ea4c732af2bd57f2f0c3a83a8",
-    "cycle_01/pilot_ledger_v1.json": "114b3793d6d0559d71bf3f46d37398c68b2038626bcf2012af3ed93eab8ffbfc"
+    "cycle_01/pilot_ledger_v1.json": "114b3793d6d0559d71bf3f46d37398c68b2038626bcf2012af3ed93eab8ffbfc",
+    "cycle_02/inventory/current_inventory_v1.json": "201873931a94eeee1a860aaf397e3616171ec732b96d0321b8cf5d2016a70aaa",
+    "cycle_02/inventory/RUFLO_READONLY_INVENTORY_V1.md": "ee3285d9c00fedfeef03c6920e27211df4dceb71dc0416c180b9f2387bbda13e",
+    "cycle_02/inventory/artifact_hashes.json": "9883296af9bf918783b674d7a51d880cba49668973ce47faf742f2200d60ce7d",
+    "cycle_02/task_spec_v1.json": "7cbda848224abb6b958acd4431aa0bfdb5d1ce05e8d7b47679e0536c64b2cb41",
+    "../ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-02-20261020.task_envelope_v1.json": "30b984f6f634b299ee9e3e36600e0441e13d6a9086f383c093c2ef7e9af7de70",
+    "cycle_02/cycle_02_observation.json": "375bbe1c76f843353cd4ab257fc4a33830fa013571b61ae833b8000bd5906db2",
+    "cycle_02/pilot_ledger_v1.json": "47d3a72566eb1cf8d791f589ef0c348ac47ef8b1eadd6bbae188fa275e471249"
   }
 }

@@ -184,12 +184,27 @@ export function buildUniversalCatalogShadowObservationV1({ envelope, evidence, c
 export function buildUniversalCatalogPilotLedgerV1(observations) {
   assert(Array.isArray(observations) && observations.length > 0, "observations must be a non-empty array");
   const runIds = new Set();
+  const cycleNumbers = new Set();
   for (const observation of observations) {
+    assertObject(observation, "ledger observation");
     assert(observation.pilot_version === UNIVERSAL_CATALOG_SHADOW_PILOT_VERSION, "ledger observation version is invalid");
+    assert(Number.isSafeInteger(observation.cycle_number) && observation.cycle_number > 0, "ledger observation cycle number is invalid");
+    assert(!cycleNumbers.has(observation.cycle_number), `duplicate cycle number: ${observation.cycle_number}`);
+    cycleNumbers.add(observation.cycle_number);
     assert(!runIds.has(observation.source_run.run_id), `duplicate source run: ${observation.source_run.run_id}`);
     runIds.add(observation.source_run.run_id);
+    const { fingerprint_sha256: fingerprint, ...core } = observation;
+    assert(/^[a-f0-9]{64}$/.test(fingerprint), "ledger observation fingerprint is invalid");
+    assert(fingerprint === sha256(stableJsonV1(core)), `ledger observation fingerprint mismatch: cycle ${observation.cycle_number}`);
+    assert(observation.outcome?.promotion_eligible === false, "ledger observation cannot grant promotion authority");
+    assert(observation.outcome?.dispatch_eligible === false, "ledger observation cannot grant dispatch authority");
+    assertObject(observation.boundaries, "ledger observation boundaries");
+    assert(Object.values(observation.boundaries).every((value) => value === false), "ledger observation boundaries must remain false");
   }
   const ordered = [...observations].sort((left, right) => left.cycle_number - right.cycle_number);
+  ordered.forEach((observation, index) => {
+    assert(observation.cycle_number === index + 1, `ledger cycle sequence must be contiguous from 1; found ${observation.cycle_number} at position ${index + 1}`);
+  });
   const qualifying = ordered.filter((entry) => entry.outcome.qualifies_toward_pilot_minimum).length;
   const core = {
     ledger_version: "RUFLO_UNIVERSAL_CATALOG_SHADOW_LEDGER_V1",
@@ -217,6 +232,11 @@ function argument(name, fallback = null) {
   return match ? match.slice(prefix.length) : fallback;
 }
 
+function argumentsNamed(name) {
+  const prefix = `--${name}=`;
+  return process.argv.filter((entry) => entry.startsWith(prefix)).map((entry) => entry.slice(prefix.length));
+}
+
 function resolveRepoPath(repoRoot, value, label) {
   const normalized = normalizeRepoPath(value);
   assert(normalized && !path.isAbsolute(normalized) && !normalized.split("/").includes(".."), `${label} must be repository-relative without traversal`);
@@ -234,7 +254,10 @@ function main() {
   const envelope = readJson(resolveRepoPath(repoRoot, envelopeArg, "envelope"));
   const evidence = readDiscoveryEvidenceV1({ evidenceDir });
   const observation = buildUniversalCatalogShadowObservationV1({ envelope, evidence, cycleNumber });
-  const ledger = buildUniversalCatalogPilotLedgerV1([observation]);
+  const priorObservations = argumentsNamed("prior-observation").map((value) => (
+    readJson(resolveRepoPath(repoRoot, value, "prior-observation"))
+  ));
+  const ledger = buildUniversalCatalogPilotLedgerV1([...priorObservations, observation]);
   const approvedRoot = path.resolve(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
   const outDir = path.resolve(repoRoot, argument("out-dir", "docs/audits/ruflo_universal_catalog_shadow_pilot_v1"));
   assert(outDir === approvedRoot || outDir.startsWith(`${approvedRoot}${path.sep}`), "out-dir must remain under docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
