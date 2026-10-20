@@ -20,6 +20,23 @@ export function isOptionalCatalogSourceFallbackV1(error) {
     error?.httpStatus === 404;
 }
 
+export function canSkipUnavailableIndependentJapaneseChecklistV1(
+  error,
+  primaryChecklist,
+) {
+  const failureClass = error?.catalogSourceFailureClass;
+  if (!["SOURCE_ACCESS_DENIED", "SOURCE_UNAVAILABLE"].includes(failureClass)) {
+    return false;
+  }
+  const cardCount = primaryChecklist?.cards?.length;
+  const declaredCount = Number(
+    primaryChecklist?.cardCount?.total ?? primaryChecklist?.cardCount?.official,
+  );
+  return Number.isSafeInteger(cardCount) && cardCount > 0 &&
+    Number.isSafeInteger(declaredCount) && declaredCount > 0 &&
+    cardCount === declaredCount;
+}
+
 export async function mapPoolSettledV1(values, concurrency, task) {
   if (!Array.isArray(values) || !Number.isInteger(concurrency) || concurrency < 1 ||
       typeof task !== "function") {

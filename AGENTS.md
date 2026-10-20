@@ -1,5 +1,15 @@
 # Grookai Agent Entry Point
 
+## Japanese catalog secondary-checklist resilience — October 20
+
+Read `docs/ops/UNIVERSAL_CATALOG_JAPANESE_CHECKLIST_FALLBACK_20261020.md`.
+Bulbapedia is independent corroboration for the Japanese product lane. Its typed
+access denial or outage may be contained only behind a complete TCGdex checklist
+whose row count matches its declared total. HTTP 401/403 remains globally strict;
+missing/partial primary evidence, parser failures, and count disagreements remain
+fatal. Do not dispatch discovery, write catalog data, or count a pre-merge/manual
+run as Ruflo pilot qualification.
+
 ## MTG exact-finish missing-number bridge — October 20
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_159_MTG_EXACT_FINISH_MISSING_NUMBER_BRIDGE.md`.

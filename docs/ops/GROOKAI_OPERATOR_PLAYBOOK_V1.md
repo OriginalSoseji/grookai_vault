@@ -49,6 +49,17 @@ mapping authority, and the generic bounded exact-mapping executor. Preserve all
 documented collision and missing-evidence holds. Mapping and pricing publication
 remain separate gates.
 
+## Japanese catalog secondary-checklist resilience — October 20, 2026
+
+Read `docs/ops/UNIVERSAL_CATALOG_JAPANESE_CHECKLIST_FALLBACK_20261020.md`.
+Bulbapedia remains independent corroboration in Japanese product discovery. A
+typed access denial or transport outage may be contained only when the parsed
+TCGdex checklist is nonempty and its row count exactly matches TCGdex's declared
+total. This does not make HTTP 401/403 globally optional; missing or partial
+primary evidence, parser failures, and cross-source count disagreements remain
+fatal. The repair is read-only and does not authorize catalog writes, workflow
+dispatch, endpoint bypass, or Ruflo pilot qualification.
+
 ## Ruflo Codex integration — October 15, 2026
 
 Read `docs/ops/RUFLO_CODEX_INTEGRATION_20261015.md`. PR #690 merged the

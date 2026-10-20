@@ -9,6 +9,7 @@ import {
   buildCatalogSearchAliases,
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
+  canSkipUnavailableIndependentJapaneseChecklistV1,
   CATALOG_GAP_STATUSES,
   classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
@@ -77,6 +78,49 @@ test("optional sources fall back only for outages and expected absence", () => {
     catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE",
   }), false);
   assert.equal(isOptionalCatalogSourceFallbackV1(new SyntaxError("invalid JSON")), false);
+});
+
+test("Japanese discovery skips an unavailable independent checklist only with a complete primary checklist", () => {
+  const completePrimary = {
+    cardCount: { total: 2 },
+    cards: [{ id: "sv1a-001" }, { id: "sv1a-002" }],
+  };
+  for (const failureClass of ["SOURCE_ACCESS_DENIED", "SOURCE_UNAVAILABLE"]) {
+    const error = Object.assign(new Error(failureClass), {
+      catalogSourceFailureClass: failureClass,
+    });
+    assert.equal(
+      canSkipUnavailableIndependentJapaneseChecklistV1(error, completePrimary),
+      true,
+    );
+  }
+  assert.equal(
+    canSkipUnavailableIndependentJapaneseChecklistV1(
+      { catalogSourceFailureClass: "SOURCE_ACCESS_DENIED" },
+      { cardCount: { total: 3 }, cards: completePrimary.cards },
+    ),
+    false,
+  );
+  assert.equal(
+    canSkipUnavailableIndependentJapaneseChecklistV1(
+      { catalogSourceFailureClass: "SOURCE_ACCESS_DENIED" },
+      { cardCount: { total: 0 }, cards: [] },
+    ),
+    false,
+  );
+  assert.equal(
+    canSkipUnavailableIndependentJapaneseChecklistV1(
+      { catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE" },
+      completePrimary,
+    ),
+    false,
+  );
+  assert.equal(
+    isOptionalCatalogSourceFallbackV1({
+      catalogSourceFailureClass: "SOURCE_ACCESS_DENIED",
+    }),
+    false,
+  );
 });
 
 test("HTTP access denials are outages, not malformed checklists or missing sets", async () => {
@@ -776,6 +820,8 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /runDegradedCatalogSourceLaneV1/);
   assert.match(worker, /mapPoolSettledV1/);
   assert.match(worker, /isOptionalCatalogSourceFallbackV1/);
+  assert.match(worker, /canSkipUnavailableIndependentJapaneseChecklistV1\(error, tcgdexSet\)/);
+  assert.match(worker, /secondary_source_observations: \[independentChecklistFailure\]/);
   assert.doesNotMatch(worker, /HTTP 404\|fetch failed\|timeout/);
   assert.match(worker, /english_master_index_set_alias_normalization_v1\.json/);
   assert.match(worker, /setOwnerRemaps/);
