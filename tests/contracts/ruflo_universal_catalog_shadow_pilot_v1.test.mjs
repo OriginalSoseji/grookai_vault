@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -16,6 +17,10 @@ const evidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_
 
 function clone(value) {
   return structuredClone(value);
+}
+
+function sha256(value) {
+  return createHash("sha256").update(value).digest("hex");
 }
 
 function envelope() {
@@ -118,4 +123,28 @@ test("pilot source has no network, dispatch, execution, database, or destructive
   const source = readFileSync(path.join(repoRoot, "scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs"), "utf8");
   assert.doesNotMatch(source, /\bfetch\s*\(|child_process|execFile|spawn\s*\(|createClient\s*\(|\.rpc\s*\(/);
   assert.doesNotMatch(source, /workflow_dispatch\s*\(|agent_execute\s*\(|git\s+(?:clean|reset|checkout|branch\s+-D|worktree\s+remove)/i);
+});
+
+test("checked-in first-cycle observation and ledger reproduce from frozen evidence", () => {
+  const auditRoot = path.join(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
+  const manifest = JSON.parse(readFileSync(path.join(auditRoot, "artifact_hashes.json"), "utf8"));
+  assert.equal(manifest.workflow_dispatched_by_ruflo, false);
+  assert.equal(manifest.agent_executed_by_ruflo, false);
+  for (const [relative, expected] of Object.entries(manifest.files)) {
+    assert.equal(sha256(readFileSync(path.resolve(auditRoot, relative))), expected, relative);
+  }
+  const taskEnvelope = JSON.parse(readFileSync(
+    path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-01-20261019.task_envelope_v1.json"),
+    "utf8",
+  ));
+  const evidence = readDiscoveryEvidenceV1({ evidenceDir });
+  const observation = buildUniversalCatalogShadowObservationV1({ envelope: taskEnvelope, evidence, cycleNumber: 1 });
+  const checkedObservation = JSON.parse(readFileSync(path.join(auditRoot, "cycle_01/cycle_01_observation.json"), "utf8"));
+  assert.deepEqual(observation, checkedObservation);
+  const ledger = buildUniversalCatalogPilotLedgerV1([observation]);
+  const checkedLedger = JSON.parse(readFileSync(path.join(auditRoot, "cycle_01/pilot_ledger_v1.json"), "utf8"));
+  assert.deepEqual(ledger, checkedLedger);
+  const baseline = JSON.parse(readFileSync(path.join(auditRoot, "prepilot_baseline_runs_v1.json"), "utf8"));
+  assert.equal(baseline.runs.length, 7);
+  assert.equal(baseline.counts_toward_ruflo_pilot_minimum, false);
 });

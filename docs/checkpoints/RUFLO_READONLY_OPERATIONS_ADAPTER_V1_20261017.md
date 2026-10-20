@@ -88,7 +88,9 @@ dependency-free contracts and repository guards were run directly first.
 ## Remaining Gate
 
 This candidate is stacked on the unmerged registry PR and must not be treated as
-runtime activation. The next change is the first shadow-only catalog pilot,
-starting with `universal-catalog-discovery-v1`; it may consume a separately
-captured health export but still may not execute the agent or dispatch its
-workflow. Production or external state remains outside Ruflo authority.
+runtime activation. The first shadow-only catalog pilot now exists as a separate
+stacked candidate at
+`docs/checkpoints/RUFLO_UNIVERSAL_CATALOG_SHADOW_PILOT_V1_20261019.md`. It may
+consume separately captured evidence but still may not execute the agent or
+dispatch its workflow. Production or external state remains outside Ruflo
+authority.

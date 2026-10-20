@@ -1,0 +1,18 @@
+{
+  "evidence_kind": "live_existing_workflow_artifact_shadow_observation",
+  "source_implementation_commit": "730be7ed0f2d9643d956e19acaf18583fa27c3a0",
+  "source_workflow_run_id": 39334612376,
+  "source_artifact_id": 12226890562,
+  "workflow_dispatched_by_ruflo": false,
+  "agent_executed_by_ruflo": false,
+  "files": {
+    "inventory/current_inventory_v1.json": "b57a0a808b95fce68506d84863a57c00044787080d1be6838d39350a2c1deb7b",
+    "inventory/RUFLO_READONLY_INVENTORY_V1.md": "47d3193b74bd91ca69bcbac6e0b91732a70902103160d82c4d3857d87cfb810c",
+    "inventory/artifact_hashes.json": "b875d181d7f64235fb7dfd0a10bc25cb494041257ee904e59f4908b193399dba",
+    "prepilot_baseline_runs_v1.json": "5dcd24cba35b715558d9bab51569f29dfa92154c17288ce851ec589531d76273",
+    "task_spec_v1.json": "56791e1366b32e699e81517725bfd4515844fdc1d275b4b2bf0de5835bd8e96b",
+    "../ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-01-20261019.task_envelope_v1.json": "e67f0d7f82ecec93fc2be72c22ea885122da21ef0424cb93b8b296139d5b1503",
+    "cycle_01/cycle_01_observation.json": "1f58126b846be14cded4aac7eee7d3f2bb0e0c0ea4c732af2bd57f2f0c3a83a8",
+    "cycle_01/pilot_ledger_v1.json": "114b3793d6d0559d71bf3f46d37398c68b2038626bcf2012af3ed93eab8ffbfc"
+  }
+}

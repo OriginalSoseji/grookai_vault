@@ -101,6 +101,12 @@ accept checked-in/local JSON only, reconcile to the registry and protected
 inventory, emit R0 evidence, and cannot connect to production, run agents,
 dispatch workflows, or clean worktrees.
 
+Read `docs/checkpoints/RUFLO_UNIVERSAL_CATALOG_SHADOW_PILOT_V1_20261019.md`
+before changing the first catalog pilot. It observes existing scheduled
+artifacts only. A degraded source lane is held, does not count toward the
+seven-cycle minimum, and never authorizes workflow dispatch, promotion, issue
+reconciliation, or ownership of an active catalog worktree.
+
 ## Energy-name exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.

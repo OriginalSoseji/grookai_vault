@@ -23,6 +23,12 @@ checkpointed at
 explicit local JSON only and has no connection, dispatch, execution, or cleanup
 path. Its generated sample is contract evidence rather than live runtime state.
 
+The first stacked R0 pilot is checkpointed at
+`docs/checkpoints/RUFLO_UNIVERSAL_CATALOG_SHADOW_PILOT_V1_20261019.md`. It reads
+an already-completed Universal Catalog Discovery artifact from local frozen
+files. It neither dispatches nor executes the agent, and a degraded source lane
+is held rather than converted into promotion authority.
+
 ## Boundary
 
 - Ruflo is pinned to `3.56.9`; do not replace the pin with `latest`.

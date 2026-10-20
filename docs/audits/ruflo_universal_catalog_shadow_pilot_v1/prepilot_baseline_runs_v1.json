@@ -1,0 +1,14 @@
+{
+  "baseline_kind": "existing_successful_scheduled_workflows",
+  "counts_toward_ruflo_pilot_minimum": false,
+  "captured_at": "2026-10-19T22:40:00.000Z",
+  "runs": [
+    { "run_id": 39334612376, "head_sha": "145fb54980a804143a488f4c5d4f7a97ef65c486", "created_at": "2026-10-19T22:23:35.000Z", "conclusion": "success" },
+    { "run_id": 39259886598, "head_sha": "e7141e9ced1a45c6769776f51e9d92c8cbbeac09", "created_at": "2026-10-19T13:24:30.000Z", "conclusion": "success" },
+    { "run_id": 39201154175, "head_sha": "ee0e520c6c7984ca32a529f5e6f444aa2f18586d", "created_at": "2026-10-19T04:46:23.000Z", "conclusion": "success" },
+    { "run_id": 39164978747, "head_sha": "ee0e520c6c7984ca32a529f5e6f444aa2f18586d", "created_at": "2026-10-18T20:48:19.000Z", "conclusion": "success" },
+    { "run_id": 39142631606, "head_sha": "9014fe4ebee4ba6a2ed17d6e043f800472c6946a", "created_at": "2026-10-18T15:55:05.000Z", "conclusion": "success" },
+    { "run_id": 39122341719, "head_sha": "a5589c2fb6adf1a89061aa4c8632dbc691ce40e8", "created_at": "2026-10-18T11:13:07.000Z", "conclusion": "success" },
+    { "run_id": 39097811290, "head_sha": "0733ac9013965800e2e2823ba519a8003181ecc1", "created_at": "2026-10-18T04:38:47.000Z", "conclusion": "success" }
+  ]
+}
