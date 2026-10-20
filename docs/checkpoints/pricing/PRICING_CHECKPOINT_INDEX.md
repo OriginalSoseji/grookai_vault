@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_162_MTG_PARTIAL_SET_EXTENSION.md`
+
+This checkpoint records the bounded extension path for an MTG set that already
+contains exact canonical parents. The Foundations Commander rollback proof
+retained 3 existing parents, inserted and exactly read back 1,580 rows for 316
+new parents, rolled back, and proved zero residue.
+
+Decision locked there:
+
+- a partial MTG set can expand only when every retained parent and its identity,
+  printing, and mapping cores are accounted for; the writer selects missing
+  parent-owned rows only and remains insert-only
+
+Unresolved gate afterward:
+
+- merge and run the exact clean durable Foundations Commander extension, then
+  rerun the Scryfall finish classifier and pricing backfill
+
 ### `PRICING_CHECKPOINT_161_MTG_SCRYFALL_GAP_CLASSIFICATION.md`
 
 This checkpoint replaces the generic MTG Scryfall review bucket with exact
