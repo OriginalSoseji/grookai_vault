@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   buildMtgFreshScryfallFinishPlanV1,
   canonicalChildSupportsFinishV1,
+  classifyMtgFreshScryfallFinishGapV1,
   MTG_FRESH_SCRYFALL_FINISH_BACKFILL_V1,
   mtgFreshScryfallDatabaseConfigV1,
   scryfallLinkSupportsFinishV1,
@@ -25,6 +26,8 @@ const lane = (overrides = {}) => ({
   source_observation_id: "observation-a",
   child_candidates: [child("child-normal")],
   existing_mappings: [],
+  gap_classification: "exact",
+  evidence_counts: { eligible_child_candidate_count: 1 },
   ...overrides,
 });
 
@@ -55,10 +58,15 @@ test("holds the entire product when one observed lane is ambiguous", () => {
       subtype: "foil",
       finish: "foil",
       child_candidates: [child("child-foil-a"), child("child-foil-b")],
+      gap_classification: "ambiguous_eligible_finish_children",
+      evidence_counts: { eligible_child_candidate_count: 2 },
     }),
   ]);
   assert.equal(plan.selected_insert_count, 0);
   assert.equal(plan.review_only_product_count, 1);
+  assert.deepEqual(plan.review_classification_counts, {
+    ambiguous_eligible_finish_children: 1,
+  });
 });
 
 test("holds a missing lane when another lane for the product is already published but no longer exact", () => {
@@ -69,12 +77,80 @@ test("holds a missing lane when another lane for the product is already publishe
       finish: "foil",
       source_observation_id: "observation-b",
       child_candidates: [],
+      gap_classification: "missing_canonical_finish_child",
+      evidence_counts: { eligible_child_candidate_count: 0 },
       existing_mappings: [{ id: "mapping-b", card_printing_id: "old-child", active: true }],
     }),
   ]);
   assert.equal(plan.selected_insert_count, 0);
   assert.equal(plan.already_exact_count, 0);
   assert.equal(plan.review_only_product_count, 1);
+});
+
+test("classifies each deterministic zero-candidate boundary", () => {
+  const base = {
+    finish: "normal",
+    total_scryfall_link_count: 1,
+    standard_scryfall_link_count: 1,
+    finish_compatible_scryfall_link_count: 1,
+    canonical_row_count: 1,
+    finish_matching_canonical_row_count: 1,
+    active_finish_row_count: 1,
+    visible_parent_row_count: 1,
+    non_provisional_row_count: 1,
+    exact_identity_row_count: 1,
+    review_clear_row_count: 1,
+    eligible_child_candidate_count: 1,
+  };
+  assert.equal(classifyMtgFreshScryfallFinishGapV1(base), "exact");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    total_scryfall_link_count: 0,
+  }), "missing_scryfall_product_link");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    standard_scryfall_link_count: 0,
+  }), "etched_only_scryfall_product_link");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    finish_compatible_scryfall_link_count: 0,
+  }), "scryfall_finish_not_supported");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    canonical_row_count: 0,
+  }), "missing_canonical_scryfall_mapping");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    finish_matching_canonical_row_count: 0,
+  }), "missing_canonical_finish_child");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    active_finish_row_count: 0,
+  }), "inactive_finish_child");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    visible_parent_row_count: 0,
+  }), "hidden_canonical_parent");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    non_provisional_row_count: 0,
+  }), "provisional_finish_child");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    exact_identity_row_count: 0,
+  }), "non_exact_canonical_identity");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    review_clear_row_count: 0,
+  }), "hidden_printing_truth_review");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    eligible_child_candidate_count: 2,
+  }), "ambiguous_eligible_finish_children");
+  assert.equal(classifyMtgFreshScryfallFinishGapV1({
+    ...base,
+    finish: null,
+  }), "unsupported_source_subtype");
 });
 
 test("accepts an identical active row and blocks a conflicting row", () => {

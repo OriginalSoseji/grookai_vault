@@ -11,6 +11,7 @@ import "../../backend/env.mjs";
 import {
   buildMtgFreshScryfallFinishPlanV1,
   canonicalChildSupportsFinishV1,
+  classifyMtgFreshScryfallFinishGapV1,
   MTG_FRESH_SCRYFALL_FINISH_BACKFILL_V1,
   mtgFreshScryfallDatabaseConfigV1,
   scryfallLinkSupportsFinishV1,
@@ -190,14 +191,12 @@ async function canonicalRows(client, scryfallIds) {
         from public.external_mappings mapping
         join public.card_prints card on card.id = mapping.card_print_id
         join public.card_printings printing on printing.card_print_id = mapping.card_print_id
-        join public.finish_keys finish
+        left join public.finish_keys finish
           on finish.key = printing.finish_key
-         and finish.is_active = true
        where mapping.source = 'scryfall'
          and mapping.active = true
          and mapping.external_id = any($1::text[])
          and card.game_id = $2::uuid
-         and public.catalog_card_print_visible_to_request_v1(mapping.card_print_id)
        order by mapping.external_id, mapping.card_print_id, printing.finish_key
     `, [batch, MTG_GAME_ID]);
     for (const row of result.rows) {
@@ -232,7 +231,22 @@ function buildLaneRows(targets, scryfall, canonical, existing) {
   return targets.map((target) => {
     const finish = subtypeToFinish(target.subtype);
     const candidates = new Map();
-    for (const link of scryfall.linksByProduct.get(target.product_id) ?? []) {
+    const links = scryfall.linksByProduct.get(target.product_id) ?? [];
+    const standardLinks = links.filter((link) => link.role === "standard");
+    const compatibleLinks = standardLinks.filter((link) =>
+      scryfallLinkSupportsFinishV1(link, finish));
+    const canonicalRowsForLane = compatibleLinks.flatMap((link) =>
+      canonical.get(link.scryfall_id) ?? []);
+    const finishRows = canonicalRowsForLane.filter((row) =>
+      String(row.finish ?? "").toLowerCase() === finish);
+    const activeFinishRows = finishRows.filter((row) => row.finish_is_active === true);
+    const visibleRows = activeFinishRows.filter((row) => row.card_is_visible === true);
+    const nonProvisionalRows = visibleRows.filter((row) => row.is_provisional !== true);
+    const exactIdentityRows = nonProvisionalRows.filter((row) =>
+      Number(row.exact_identity_count) === 1);
+    const reviewClearRows = exactIdentityRows.filter((row) =>
+      Number(row.hidden_review_count) === 0);
+    for (const link of compatibleLinks) {
       if (!scryfallLinkSupportsFinishV1(link, finish)) continue;
       for (const row of canonical.get(link.scryfall_id) ?? []) {
         if (!canonicalChildSupportsFinishV1(row, finish)) continue;
@@ -247,11 +261,29 @@ function buildLaneRows(targets, scryfall, canonical, existing) {
       }
     }
     const externalId = finish ? `${target.product_id}:${finish}` : `${target.product_id}:unsupported`;
+    const evidenceCounts = {
+      total_scryfall_link_count: links.length,
+      standard_scryfall_link_count: standardLinks.length,
+      finish_compatible_scryfall_link_count: compatibleLinks.length,
+      canonical_row_count: canonicalRowsForLane.length,
+      finish_matching_canonical_row_count: finishRows.length,
+      active_finish_row_count: activeFinishRows.length,
+      visible_parent_row_count: visibleRows.length,
+      non_provisional_row_count: nonProvisionalRows.length,
+      exact_identity_row_count: exactIdentityRows.length,
+      review_clear_row_count: reviewClearRows.length,
+      eligible_child_candidate_count: candidates.size,
+    };
     return {
       ...target,
       finish,
       child_candidates: [...candidates.values()],
       existing_mappings: existing.get(externalId) ?? [],
+      gap_classification: classifyMtgFreshScryfallFinishGapV1({
+        finish,
+        ...evidenceCounts,
+      }),
+      evidence_counts: evidenceCounts,
     };
   });
 }
