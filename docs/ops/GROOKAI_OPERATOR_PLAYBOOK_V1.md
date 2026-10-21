@@ -150,13 +150,16 @@ five minutes from `C:\gv_ollama_bulk_mapper_20261017`; hosted completion evidenc
 refreshes every fifteen minutes. Retain state and output under
 `C:\grookai_vault_operator_artifacts\pokemon_pricing_repair_20261012\ollama\continuous`.
 The worker hashes each input and skips an unchanged completed batch, while its
-mutex prevents overlap. It enriches the full blocked input from a repeatable-read,
-read-only production transaction, limits each row to real catalog candidates,
-runs model calls sequentially, reconciles duplicate target selections across the
-batch, and unloads the model. Keep the endpoint on HTTP loopback. Do not attach a
-database writer, add mapping or publication authority, or treat model output as
-reviewed evidence. Promotion still requires deterministic validation and the
-governed release path.
+mutex prevents overlap. Its V2 input was the Pokemon exact planner's
+`blocked.jsonl`; it was not the full cross-category backlog. Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_164_CROSS_CATEGORY_COMPLETION_QUEUE.md`
+before changing the consumer. The hosted completion artifact now owns the
+deduplicated in-scope product queues for Magic and Pokemon. Reconcile those queue
+counts before moving the local task to the new input. Candidate enrichment must
+preserve each category's identity domain. Keep the endpoint on HTTP loopback.
+Do not attach a database writer, add mapping or publication authority, or treat
+model output as reviewed evidence. Promotion still requires deterministic
+validation and the governed release path.
 
 ## Pokémon 30th Celebration Classic aliases — October 14
 

@@ -6,7 +6,7 @@ import {
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_KEY =
   'tcgplayer-pricing-completion-v1';
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION =
-  'TCGPLAYER_PRICING_COMPLETION_AGENT_V1';
+  'TCGPLAYER_PRICING_COMPLETION_AGENT_V2';
 
 function integer(value) {
   const parsed = Number(value);
@@ -40,7 +40,71 @@ export function buildTcgplayerPricingCompletionAgentV1() {
   });
 }
 
-export function summarizeTcgplayerPricingCompletionRunV1(report, { exactPlan = null } = {}) {
+export function buildTcgplayerIdentityProductQueueV1(gaps = []) {
+  const products = new Map();
+  for (const gap of gaps) {
+    if (String(gap?.product_scope_result ?? '').trim() !== 'in_scope') continue;
+    const sourceProductId = integer(gap?.source_product_id);
+    const sourceCategoryId = integer(gap?.source_category_id);
+    if (!sourceProductId || !sourceCategoryId) continue;
+    const key = `${sourceCategoryId}:${sourceProductId}`;
+    const current = products.get(key) ?? {
+      schema_version: 'TCGPLAYER_IDENTITY_PRODUCT_QUEUE_V1',
+      source_product_id: sourceProductId,
+      source_product_name: String(gap.source_product_name ?? '').trim(),
+      source_category_id: sourceCategoryId,
+      source_category_name: String(gap.source_category_name ?? '').trim(),
+      source_group_id: integer(gap.source_group_id),
+      source_group_name: String(gap.source_group_name ?? '').trim(),
+      product_scope_result: String(gap.product_scope_result ?? '').trim(),
+      agent_key: String(gap.agent_key ?? '').trim(),
+      primary_gap_reasons: new Set(),
+      source_subtypes: new Set(),
+      supporting_gap_observation_ids: new Set(),
+    };
+    current.primary_gap_reasons.add(String(gap.primary_gap_reason ?? '').trim());
+    current.source_subtypes.add(String(gap.source_subtype_name ?? '').trim());
+    current.supporting_gap_observation_ids.add(
+      String(gap.source_observation_id ?? '').trim(),
+    );
+    products.set(key, current);
+  }
+  return [...products.values()].map((row) => ({
+    ...row,
+    primary_gap_reasons: [...row.primary_gap_reasons].filter(Boolean).sort(),
+    source_subtypes: [...row.source_subtypes].filter(Boolean).sort(),
+    supporting_gap_observation_ids:
+      [...row.supporting_gap_observation_ids].filter(Boolean).sort(),
+    supporting_gap_row_count: row.supporting_gap_observation_ids.size,
+    disposition: 'queued_for_category_identity_repair',
+    mapping_authority: false,
+    publication_authority: false,
+  })).sort((left, right) =>
+    left.source_category_id - right.source_category_id
+    || left.source_group_id - right.source_group_id
+    || left.source_product_id - right.source_product_id);
+}
+
+function categoryLane(worklist, categoryId, queue) {
+  const category = Array.isArray(worklist.categories)
+    ? worklist.categories.find((row) => integer(row.source_category_id) === categoryId)
+    : null;
+  const queuedProducts = queue.filter((row) => row.source_category_id === categoryId).length;
+  return {
+    agent_key: category?.agent_key ?? (categoryId === 1
+      ? 'mtg-tcgplayer-identity-repair-v1'
+      : 'pokemon-tcgplayer-identity-repair-v1'),
+    backlog_rows: integer(category?.backlog_rows),
+    source_products: integer(category?.source_products),
+    source_groups: integer(category?.source_groups),
+    queued_products: queuedProducts,
+  };
+}
+
+export function summarizeTcgplayerPricingCompletionRunV1(
+  report,
+  { exactPlan = null, identityProductQueue = [] } = {},
+) {
   if (!report || typeof report !== 'object' || Array.isArray(report)) {
     throw new Error('Pricing backlog report is required');
   }
@@ -55,8 +119,8 @@ export function summarizeTcgplayerPricingCompletionRunV1(report, { exactPlan = n
   if (worklist.status !== 'ready') {
     throw new Error(`Pricing identity worklist is invalid: ${worklist.status ?? 'missing'}`);
   }
-  const largestUnreviewedGroup = Array.isArray(worklist.pokemon_top_groups)
-    ? worklist.pokemon_top_groups[0] ?? null
+  const largestUnreviewedGroup = Array.isArray(worklist.top_groups)
+    ? worklist.top_groups[0] ?? null
     : null;
   if (exactPlan && exactPlan.status !== 'passed') {
     throw new Error(`Exact mapping plan is invalid: ${exactPlan.status ?? 'missing'}`);
@@ -65,6 +129,8 @@ export function summarizeTcgplayerPricingCompletionRunV1(report, { exactPlan = n
     ? exactPlan.candidates
     : [];
   const nextCandidate = exactCandidates[0] ?? null;
+  const mtgLane = categoryLane(worklist, 1, identityProductQueue);
+  const pokemonLane = categoryLane(worklist, 3, identityProductQueue);
   return {
     agent_version: TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION,
     completion_status: report.status,
@@ -80,6 +146,10 @@ export function summarizeTcgplayerPricingCompletionRunV1(report, { exactPlan = n
     verified_mapping_candidates: integer(exactPlan?.counts?.candidates),
     verified_projected_gap_rows: integer(exactPlan?.counts?.projected_gap_rows),
     blocked_mapping_products: integer(exactPlan?.counts?.blocked),
+    identity_repair_lanes: {
+      mtg: mtgLane,
+      pokemon: pokemonLane,
+    },
     next_group: nextCandidate
       ? {
           source_group_id: integer(nextCandidate.source_group_id),
@@ -99,6 +169,8 @@ export function summarizeTcgplayerPricingCompletionRunV1(report, { exactPlan = n
       : null,
     next_action: exactCandidates.length > 0
       ? 'prepare_verified_mapping_batch'
+      : mtgLane.queued_products > 0
+        ? 'advance_mtg_identity_repair_queue'
       : report.status === 'complete'
         ? null
         : 'expand_reviewed_pokemon_set_authority',
