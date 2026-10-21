@@ -142,9 +142,11 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
 
   assertObject(spec.repository, "spec.repository");
   assertOnlyKeys(spec.repository, REPOSITORY_KEYS, "spec.repository");
-  assert(clean(spec.repository.remote), "spec.repository.remote is required");
+  assert(typeof spec.repository.remote === "string" && clean(spec.repository.remote), "spec.repository.remote must be a non-empty string");
+  const repositoryRemote = clean(spec.repository.remote);
   assert(/^[a-f0-9]{40}$/.test(spec.repository.commit_sha), "spec.repository.commit_sha must be an exact lowercase 40-character commit SHA");
-  assert(clean(spec.repository.ref), "spec.repository.ref is required");
+  assert(typeof spec.repository.ref === "string" && clean(spec.repository.ref), "spec.repository.ref must be a non-empty string");
+  const repositoryRef = clean(spec.repository.ref);
   assert(/^[a-f0-9]{64}$/.test(spec.repository.initial_status_sha256), "spec.repository.initial_status_sha256 must be a lowercase SHA-256");
   const normalizedWorktree = normalizeAbsolutePath(spec.repository.worktree_path);
   const inventoryWorktree = inventory.worktrees.find((entry) => normalizeAbsolutePath(entry.path) === normalizedWorktree);
@@ -153,7 +155,7 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
   assert(inventoryWorktree.write_allowed === false, "spec.repository.worktree_path must remain read-only");
   assert(inventoryWorktree.cleanup_authorized === false, "spec.repository.worktree_path must not authorize cleanup");
   assert(inventoryWorktree.head === spec.repository.commit_sha, "spec.repository.commit_sha must match the inventoried worktree HEAD");
-  if (inventoryWorktree.branch) assert(inventoryWorktree.branch === spec.repository.ref, "spec.repository.ref must match the inventoried branch");
+  if (inventoryWorktree.branch) assert(inventoryWorktree.branch === repositoryRef, "spec.repository.ref must match the inventoried branch");
   assert(
     spec.repository.initial_status_sha256 === worktreeStatusFingerprintV1(inventoryWorktree),
     "spec.repository.initial_status_sha256 must match the inventoried worktree state",
@@ -171,7 +173,7 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
     assertOnlyKeys(entry, INPUT_KEYS, `spec.inputs[${index}]`);
     const locator = validateStringArray([entry.locator], `spec.inputs[${index}].locator`, { allowEmpty: false, repoPaths: true })[0];
     assert(/^[a-f0-9]{64}$/.test(entry.sha256), `spec.inputs[${index}].sha256 must be a lowercase SHA-256`);
-    const actualSha256 = sha256(readRepositoryFileAtCommit(inventoryWorktree.path, spec.repository.commit_sha, locator));
+    const actualSha256 = sha256(readRepositoryFileAtCommit(repoRoot, spec.repository.commit_sha, locator));
     assert(actualSha256 === entry.sha256, `spec.inputs[${index}].sha256 does not match ${locator}`);
     return { locator, sha256: entry.sha256 };
   });
@@ -201,9 +203,9 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
     },
     lifecycle: { initial_state: "validated", execution_state: "not_started" },
     repository: {
-      remote: spec.repository.remote,
+      remote: repositoryRemote,
       commit_sha: spec.repository.commit_sha,
-      ref: spec.repository.ref,
+      ref: repositoryRef,
       worktree_path: inventoryWorktree.path,
       initial_status_sha256: spec.repository.initial_status_sha256,
       inventory_fingerprint_sha256: inventory.inventory_fingerprint_sha256,

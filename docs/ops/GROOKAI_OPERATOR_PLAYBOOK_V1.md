@@ -81,8 +81,10 @@ The stacked Phase 1 adapter candidate is recorded in
 `npm run ruflo:operations:read-model -- --input=<local-snapshot.json>` to
 sanitize a frozen Operations health export, and
 `npm run ruflo:task-envelope:build -- --input=<local-task-spec.json>` to build a
-deterministic R0 envelope. The builders have no network or child-process path
-and write only beneath `docs/audits/ruflo_operations_adapter_v1/`. Their sample
+deterministic R0 envelope. The builders have no network path. Their only child
+process is the task-envelope builder's fixed read-only `git show` lookup of
+declared input bytes at an immutable commit. They write only beneath
+`docs/audits/ruflo_operations_adapter_v1/`. Their sample
 evidence is synthetic and must not be cited as current production health.
 
 The first Phase 2 shadow pilot is recorded in

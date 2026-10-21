@@ -105,6 +105,7 @@ function validateAgentSnapshot(value, registryAgent, label) {
     assert(value.health !== "stale", `${label}.health cannot be stale for ${registryAgent.schedule_kind} agents`);
   }
   if (value.is_paused) assert(value.health === "paused", `${label}.health must be paused when is_paused is true`);
+  if (value.health === "paused") assert(value.is_paused === true, `${label}.is_paused must be true when health is paused`);
   if (value.health === "running") assert(value.latest_run_status === "running", `${label}.running health requires a running latest run`);
   if (value.health === "failed") assert(value.latest_run_status === "failed", `${label}.failed health requires a failed latest run`);
   if (!["paused", "stale"].includes(value.health) && value.latest_run_status === "running") {
