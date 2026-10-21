@@ -95,4 +95,6 @@ test("workflow installs dependencies before testing and binds apply to rollback 
   assert.match(workflow, /proof\.status !== 'rollback_verified'/);
   assert.match(workflow, /proof\.plan\?\.plan_fingerprint !== current\.plan\?\.plan_fingerprint/);
   assert.match(workflow, /proof\.plan\?\.selected_update_count !== 2/);
+  assert.match(workflow, /\n {10}NODE\n {14}export MTG_REVIEWED_PRINTING_CORRECTION_APPROVAL=/);
+  assert.doesNotMatch(workflow, /\n {14}NODE\n {14}export MTG_REVIEWED_PRINTING_CORRECTION_APPROVAL=/);
 });

@@ -483,7 +483,7 @@ jobs:
                   proof.view_before !== 'v_tcgplayer_market_qualification_candidates_v7') {
                 fail('Correction dry-run rollback proof mismatch');
               }
-              NODE
+          NODE
               export MTG_REVIEWED_PRINTING_CORRECTION_APPROVAL="$(node -e \
                 "const s=require(process.argv[1]);process.stdout.write(s.plan.required_approval)" \
                 "$plan/summary.json")"
