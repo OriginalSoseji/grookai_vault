@@ -1,0 +1,3081 @@
+{
+  "inventory_version": "RUFLO_READONLY_INVENTORY_V1",
+  "registry_version": "RUFLO_AGENT_REGISTRY_V1",
+  "registry_sha256": "1d4902f6717d192e82ef2ee8e6ef3cd871c55e395887f05a775907c9a82010aa",
+  "source_commit_sha": "d5bdd5016328c34e1dead008b8b375bd9616a5f0",
+  "source_branch": "feat/ruflo-universal-catalog-shadow-pilot-v1",
+  "agents": [
+    {
+      "agent_key": "universal-catalog-discovery-v1",
+      "display_name": "Universal Catalog Discovery",
+      "domain": "catalog",
+      "owner_label": "Grookai Catalog Operations",
+      "integration_class": "A",
+      "adoption_state": "observed",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "github_actions",
+      "source_locator": ".github/workflows/universal-catalog-discovery.yml",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "cron",
+      "schedule_expression": "17 */6 * * *",
+      "allowed_work_item_types": [
+        "catalog_set_candidate_review"
+      ],
+      "allowed_command_actions": [
+        "review_catalog_set_candidate"
+      ],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md",
+        "docs/contracts/UNIVERSAL_CATALOG_DISCOVERY_SUPERVISOR_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:all:discovery",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "workflow_90_day",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "worker",
+        "memory_namespace": "grookai/catalog/universal-catalog-discovery-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "tcgplayer-pricing-completion-v1",
+      "display_name": "TCGPlayer Pricing Completion",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "A",
+      "adoption_state": "observed",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "github_actions",
+      "source_locator": ".github/workflows/tcgplayer-pricing-completion-agent.yml",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "cron",
+      "schedule_expression": "47 * * * *",
+      "allowed_work_item_types": [
+        "tcgplayer_pricing_backlog_repair"
+      ],
+      "allowed_command_actions": [
+        "advance_tcgplayer_pricing_backlog"
+      ],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md",
+        "docs/checkpoints/pricing/PRICING_CHECKPOINT_133_TCGPLAYER_PRICING_COMPLETION_AGENT.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "pricing:tcgplayer:completion",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "workflow_90_day",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "worker",
+        "memory_namespace": "grookai/pricing/tcgplayer-pricing-completion-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "catalog-set-outcome-v1",
+      "display_name": "Catalog Set Outcome",
+      "domain": "catalog",
+      "owner_label": "Grookai Catalog Operations",
+      "integration_class": "A",
+      "adoption_state": "observed",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "github_actions",
+      "source_locator": "backend/operations/catalog_founder_outcome_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "event",
+      "schedule_expression": null,
+      "allowed_work_item_types": [
+        "founder_outcome_workflow"
+      ],
+      "allowed_command_actions": [
+        "execute_registered_outcome_workflow_v1"
+      ],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md",
+        "docs/contracts/UNIVERSAL_CATALOG_DISCOVERY_SUPERVISOR_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:all:outcome",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "workflow_90_day",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/catalog/catalog-set-outcome-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "tk-sm-r-hidden-set-apply-v1",
+      "display_name": "TK-SM-R Hidden Set Apply",
+      "domain": "catalog",
+      "owner_label": "Grookai Catalog Operations",
+      "integration_class": "A",
+      "adoption_state": "held",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "github_actions",
+      "source_locator": ".github/workflows/tk-sm-r-founder-apply-command.yml",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "event",
+      "schedule_expression": null,
+      "allowed_work_item_types": [
+        "catalog_hidden_set_apply"
+      ],
+      "allowed_command_actions": [
+        "apply_tk_sm_r_hidden_set_v1"
+      ],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:pokemon:tk-sm-r",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "workflow_90_day",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/catalog/tk-sm-r-hidden-set-apply-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "new-set-admission-v1",
+      "display_name": "New Set Admission",
+      "domain": "catalog",
+      "owner_label": "Grookai Catalog Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/operations/catalog_pricing_completion_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:all:new-set-admission",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/catalog/new-set-admission-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "cross-tcg-sealed-completion-v1",
+      "display_name": "Cross-TCG Sealed Completion",
+      "domain": "catalog",
+      "owner_label": "Grookai Catalog Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/operations/catalog_pricing_completion_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:all:sealed-completion",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/catalog/cross-tcg-sealed-completion-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "funko-catalog-completion-v1",
+      "display_name": "Funko Catalog Completion",
+      "domain": "catalog",
+      "owner_label": "Grookai Catalog Operations",
+      "integration_class": "F",
+      "adoption_state": "held",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/operations/catalog_pricing_completion_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:funko:completion",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/catalog/funko-catalog-completion-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "tcgplayer-identity-mapping-repair-v1",
+      "display_name": "TCGPlayer Identity Mapping Repair",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "pricing:tcgplayer:identity",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/tcgplayer-identity-mapping-repair-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "catalog-printing-evidence-repair-v1",
+      "display_name": "Catalog Printing Evidence Repair",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:pokemon:printing-evidence",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/catalog-printing-evidence-repair-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "exact-printing-repair-v1",
+      "display_name": "Exact Printing Repair",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:pokemon:exact-printing",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/exact-printing-repair-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "market-price-source-recovery-v1",
+      "display_name": "Market Price Source Recovery",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "pricing:tcgplayer:source-recovery",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/market-price-source-recovery-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "printing-finish-assignment-repair-v1",
+      "display_name": "Printing Finish Assignment Repair",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "catalog:pokemon:finish-assignment",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/printing-finish-assignment-repair-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "special-variant-pricing-expansion-v1",
+      "display_name": "Special Variant Pricing Expansion",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "held",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "pricing:tcgplayer:special-variant",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/special-variant-pricing-expansion-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "tcgplayer-edition-authority-repair-v1",
+      "display_name": "TCGPlayer Edition Authority Repair",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "held",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "pricing:tcgplayer:edition-authority",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/tcgplayer-edition-authority-repair-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    },
+    {
+      "agent_key": "pricing-backlog-triage-v1",
+      "display_name": "Pricing Backlog Triage",
+      "domain": "pricing",
+      "owner_label": "Grookai Pricing Operations",
+      "integration_class": "F",
+      "adoption_state": "unregistered",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "execution_platform": "policy_only",
+      "source_locator": "backend/pricing/tcgplayer_pricing_backlog_policy_v1.mjs",
+      "source_ref_policy": "exact_task_commit",
+      "schedule_kind": "manual",
+      "schedule_expression": null,
+      "allowed_work_item_types": [],
+      "allowed_command_actions": [],
+      "contracts": [
+        "docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md"
+      ],
+      "resource_locks": [
+        {
+          "key": "pricing:tcgplayer:triage",
+          "mode": "read"
+        }
+      ],
+      "worktree_policy": {
+        "write_allowed": false,
+        "assigned_path": null
+      },
+      "evidence": {
+        "retention_class": "repository_checkpoint",
+        "direct_readback_required": true
+      },
+      "ruflo": {
+        "topology_role": "held",
+        "memory_namespace": "grookai/pricing/pricing-backlog-triage-v1"
+      },
+      "boundaries": {
+        "production_writes": false,
+        "external_actions": false,
+        "workflow_dispatch": false,
+        "cleanup": false
+      }
+    }
+  ],
+  "surfaces": [
+    {
+      "surface_key": "backend_automation.backend-billing-vendor-billing-closeout-worker-v1.acf59186d9",
+      "surface_kind": "backend_automation",
+      "domain": "billing",
+      "source_locator": "backend/billing/vendor_billing_closeout_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-billing-vendor-billing-reconcile-worker-v1.9a5446758b",
+      "surface_kind": "backend_automation",
+      "domain": "billing",
+      "source_locator": "backend/billing/vendor_billing_reconcile_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-billing-vendor-billing-recovery-worker-v1.7e1282e328",
+      "surface_kind": "backend_automation",
+      "domain": "billing",
+      "source_locator": "backend/billing/vendor_billing_recovery_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-billing-vendor-billing-worker-config-v1.aba68a4a54",
+      "surface_kind": "backend_automation",
+      "domain": "billing",
+      "source_locator": "backend/billing/vendor_billing_worker_config_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-condition-centering-measurement-worker-v2.e889338a99",
+      "surface_kind": "backend_automation",
+      "domain": "condition",
+      "source_locator": "backend/condition/centering_measurement_worker_v2.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-condition-condition-assist-analysis-worker-v1.86c4b3908d",
+      "surface_kind": "backend_automation",
+      "domain": "condition",
+      "source_locator": "backend/condition/condition_assist_analysis_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-condition-edges-corners-worker-v1.ea6460d741",
+      "surface_kind": "backend_automation",
+      "domain": "condition",
+      "source_locator": "backend/condition/edges_corners_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-condition-fingerprint-worker-v1.9079c8a012",
+      "surface_kind": "backend_automation",
+      "domain": "condition",
+      "source_locator": "backend/condition/fingerprint_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-condition-scratches-surface-worker-v1.61b19ed341",
+      "surface_kind": "backend_automation",
+      "domain": "condition",
+      "source_locator": "backend/condition/scratches_surface_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-ebay-ebay-self-orders-worker.01d42f801a",
+      "surface_kind": "backend_automation",
+      "domain": "ebay",
+      "source_locator": "backend/ebay/ebay_self_orders_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-ebay-ebay-sellers-sync-worker.849724d53a",
+      "surface_kind": "backend_automation",
+      "domain": "ebay",
+      "source_locator": "backend/ebay/ebay_sellers_sync_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-grookai-dex-grookai-dex-mapping-worker-v1.61e299d485",
+      "surface_kind": "backend_automation",
+      "domain": "grookai_dex",
+      "source_locator": "backend/grookai_dex/grookai_dex_mapping_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-grookai-dex-grookai-dex-species-worker-v1.10409004f8",
+      "surface_kind": "backend_automation",
+      "domain": "grookai_dex",
+      "source_locator": "backend/grookai_dex/grookai_dex_species_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-identity-delta-species-backfill-worker-v1.d7b40c01ff",
+      "surface_kind": "backend_automation",
+      "domain": "identity",
+      "source_locator": "backend/identity/delta_species_backfill_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-identity-grookai-vision-worker-v1.0e7b22a5e8",
+      "surface_kind": "backend_automation",
+      "domain": "identity",
+      "source_locator": "backend/identity/grookai_vision_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-identity-identity-scan-worker-v1.132ec15c56",
+      "surface_kind": "backend_automation",
+      "domain": "identity",
+      "source_locator": "backend/identity/identity_scan_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-images-source-image-enrichment-worker-v1.ea58e2cd09",
+      "surface_kind": "backend_automation",
+      "domain": "images",
+      "source_locator": "backend/images/source_image_enrichment_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-infra-backfill-print-identity-worker.c0174c5058",
+      "surface_kind": "backend_automation",
+      "domain": "infra",
+      "source_locator": "backend/infra/backfill_print_identity_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-infra-system-health-worker.60aaae1694",
+      "surface_kind": "backend_automation",
+      "domain": "infra",
+      "source_locator": "backend/infra/system_health_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-ingestion-controlled-growth-ingestion-worker-v1.4d896edd47",
+      "surface_kind": "backend_automation",
+      "domain": "ingestion",
+      "source_locator": "backend/ingestion/controlled_growth_ingestion_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-ingestion-controlled-growth-non-canonical-filter-worker-v1.86a91e8db9",
+      "surface_kind": "backend_automation",
+      "domain": "ingestion",
+      "source_locator": "backend/ingestion/controlled_growth_non_canonical_filter_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-operations-founder-outcome-workflow-v1.7267522ddd",
+      "surface_kind": "backend_automation",
+      "domain": "operations",
+      "source_locator": "backend/operations/founder_outcome_workflow_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-operations-operations-control-plane-v1.7a2fda5109",
+      "surface_kind": "backend_automation",
+      "domain": "operations",
+      "source_locator": "backend/operations/operations_control_plane_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-operations-tcgplayer-pricing-completion-agent-v1.be75867291",
+      "surface_kind": "backend_automation",
+      "domain": "operations",
+      "source_locator": "backend/operations/tcgplayer_pricing_completion_agent_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-payments-vendor-commerce-worker-config-v1.e10e04c1f9",
+      "surface_kind": "backend_automation",
+      "domain": "payments",
+      "source_locator": "backend/payments/vendor_commerce_worker_config_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-payments-vendor-commerce-worker-v1.7ee7eceb2f",
+      "surface_kind": "backend_automation",
+      "domain": "payments",
+      "source_locator": "backend/payments/vendor_commerce_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-payments-vendor-seller-closeout-worker-v1.481d2d921d",
+      "surface_kind": "backend_automation",
+      "domain": "payments",
+      "source_locator": "backend/payments/vendor_seller_closeout_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pokemon-pokemon-enrichment-worker.fb30a81e61",
+      "surface_kind": "backend_automation",
+      "domain": "pokemon",
+      "source_locator": "backend/pokemon/pokemon_enrichment_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pokemon-pokemonapi-backfill-mappings-worker.9d7933566b",
+      "surface_kind": "backend_automation",
+      "domain": "pokemon",
+      "source_locator": "backend/pokemon/pokemonapi_backfill_mappings_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pokemon-pokemonapi-import-cards-worker.d107034f02",
+      "surface_kind": "backend_automation",
+      "domain": "pokemon",
+      "source_locator": "backend/pokemon/pokemonapi_import_cards_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pokemon-pokemonapi-normalize-worker.cd76bb464c",
+      "surface_kind": "backend_automation",
+      "domain": "pokemon",
+      "source_locator": "backend/pokemon/pokemonapi_normalize_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pokemon-tcgdex-import-cards-worker.97e14af44d",
+      "surface_kind": "backend_automation",
+      "domain": "pokemon",
+      "source_locator": "backend/pokemon/tcgdex_import_cards_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pokemon-tcgdex-normalize-worker.f929ddf1f4",
+      "surface_kind": "backend_automation",
+      "domain": "pokemon",
+      "source_locator": "backend/pokemon/tcgdex_normalize_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-ebay-browse-prices-worker.e377bac551",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/ebay_browse_prices_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-get-live-price-worker.374ef88d0b",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/get_live_price_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-import-prices-worker.58c51adb2c",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/import_prices_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-justtcg-domain-dry-run-worker-v1.a2524e90c3",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/justtcg_domain_dry_run_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-justtcg-domain-ingest-worker-v1.9420e037bc",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/justtcg_domain_ingest_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-justtcg-import-cards-worker.19fd9b5547",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/justtcg_import_cards_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-mtg-catalog-supervisor-v1.ec7fd02c05",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/mtg_catalog_supervisor_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-pricing-backfill-worker-v1.84b10d671e",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/pricing_backfill_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-pricing-queue-worker.befaabb3c2",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/pricing_queue_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-pricing-tk-mapping-worker-v1.32329c9e10",
+      "surface_kind": "backend_automation",
+      "domain": "pricing",
+      "source_locator": "backend/pricing/tk_mapping_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-sets-import-sets-worker.615fc4366f",
+      "surface_kind": "backend_automation",
+      "domain": "sets",
+      "source_locator": "backend/sets/import_sets_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-sets-tcgdex-import-sets-worker.5119dcb198",
+      "surface_kind": "backend_automation",
+      "domain": "sets",
+      "source_locator": "backend/sets/tcgdex_import_sets_worker.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-vault-vault-instance-backfill-worker-v1.8f37df2432",
+      "surface_kind": "backend_automation",
+      "domain": "vault",
+      "source_locator": "backend/vault/vault_instance_backfill_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-warehouse-classification-worker-v1.0b05c0c405",
+      "surface_kind": "backend_automation",
+      "domain": "warehouse",
+      "source_locator": "backend/warehouse/classification_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-warehouse-gv-id-assignment-worker-v1.8f729d0de5",
+      "surface_kind": "backend_automation",
+      "domain": "warehouse",
+      "source_locator": "backend/warehouse/gv_id_assignment_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-warehouse-justtcg-discovery-worker-v1.5de71b27a8",
+      "surface_kind": "backend_automation",
+      "domain": "warehouse",
+      "source_locator": "backend/warehouse/justtcg_discovery_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-warehouse-metadata-extraction-worker-v1.16c2fb9acf",
+      "surface_kind": "backend_automation",
+      "domain": "warehouse",
+      "source_locator": "backend/warehouse/metadata_extraction_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-warehouse-promotion-image-normalization-worker-v1.66b5927ea5",
+      "surface_kind": "backend_automation",
+      "domain": "warehouse",
+      "source_locator": "backend/warehouse/promotion_image_normalization_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "backend_automation.backend-warehouse-promotion-stage-worker-v1.d06499abe0",
+      "surface_kind": "backend_automation",
+      "domain": "warehouse",
+      "source_locator": "backend/warehouse/promotion_stage_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-auto-align-import-prices-bridge.1b4fc2a594",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/auto-align-import-prices-bridge.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-bridge-ops.f9093e64e8",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/bridge-ops.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-catalog-founder-review-supersession.a50bc38a35",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/catalog-founder-review-supersession.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-catalog-incremental-promotion.8532eba36f",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/catalog-incremental-promotion.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-catalog-set-release-boundary.f8af8bfbf6",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/catalog-set-release-boundary.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-ci-guard-keys.3b62fe7344",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/ci-guard-keys.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-shadow-adapters.81ef005727",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-shadow-adapters.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-shadow-parser-wave1.07e2453115",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-shadow-parser-wave1.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-alt-art-row-addressability.2f9ad4bcf3",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-alt-art-row-addressability.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-canonical-reconciliation.5465323371",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-canonical-reconciliation.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-card-identity-proposal.ce5e5ba88c",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-card-identity-proposal.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-parent-apply-rollback-v1.44e469648b",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-parent-apply-rollback-v1.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-set-apply-proposal.a1abd3ad21",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-set-apply-proposal.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-set-foundation-proposal.0845829342",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-set-foundation-proposal.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-set-foundations-apply.a7553db31b",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-set-foundations-apply.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collectible-wave1-set-foundations-rollback.b836132452",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/collectible-wave1-set-foundations-rollback.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-collector-memory-share-route-migration.fde76cf7bc",
+      "surface_kind": "github_workflow",
+      "domain": "infrastructure",
+      "source_locator": ".github/workflows/collector-memory-share-route-migration.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-contracts-drift-gate.4658e92202",
+      "surface_kind": "github_workflow",
+      "domain": "governance",
+      "source_locator": ".github/workflows/contracts-drift-gate.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-contracts-runtime-protection.c6cd397b5e",
+      "surface_kind": "github_workflow",
+      "domain": "governance",
+      "source_locator": ".github/workflows/contracts-runtime-protection.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-cross-tcg-set-cover-gap-repair.59a5676bff",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/cross-tcg-set-cover-gap-repair.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-flutter-build-apk.22e33fd74c",
+      "surface_kind": "github_workflow",
+      "domain": "client",
+      "source_locator": ".github/workflows/flutter-build-apk.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-flutter-ci.1fd7d76323",
+      "surface_kind": "github_workflow",
+      "domain": "client",
+      "source_locator": ".github/workflows/flutter-ci.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-founder-notification-dispatcher-deploy.220487f061",
+      "surface_kind": "github_workflow",
+      "domain": "operations",
+      "source_locator": ".github/workflows/founder-notification-dispatcher-deploy.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-founder-ops-dashboard.5e2bd15324",
+      "surface_kind": "github_workflow",
+      "domain": "operations",
+      "source_locator": ".github/workflows/founder-ops-dashboard.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-japanese-v4-image-pointer-rollback-proof.f237fe34db",
+      "surface_kind": "github_workflow",
+      "domain": "images",
+      "source_locator": ".github/workflows/japanese-v4-image-pointer-rollback-proof.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-kick-auto-align-bridge.9062acf199",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/kick-auto-align-bridge.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mobile-web-parity.c7e8a0de15",
+      "surface_kind": "github_workflow",
+      "domain": "client",
+      "source_locator": ".github/workflows/mobile-web-parity.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-catalog-supervisor.6de6a15aa1",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-catalog-supervisor.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-hidden-catalog-runner.07571d1b97",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-hidden-catalog-runner.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-image-pointer-runner.b2298beae6",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-image-pointer-runner.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-image-storage-runner.f87f198c5f",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-image-storage-runner.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-pricing-publication-runner.129f6a2513",
+      "surface_kind": "github_workflow",
+      "domain": "pricing",
+      "source_locator": ".github/workflows/mtg-pricing-publication-runner.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-sealed-image-coverage-v1.fd8d9dde75",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-sealed-image-coverage-v1.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-sealed-image-signer-deploy-v1.f99c7020b7",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-sealed-image-signer-deploy-v1.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-sealed-paired-refresh-v1.2565935295",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-sealed-paired-refresh-v1.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-sealed-pricing-refresh-v1.34751a6852",
+      "surface_kind": "github_workflow",
+      "domain": "pricing",
+      "source_locator": ".github/workflows/mtg-sealed-pricing-refresh-v1.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-sealed-visibility-boundary.193912e08d",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-sealed-visibility-boundary.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-sealed-world-runner.65b319d842",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-sealed-world-runner.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-mtg-signed-in-catalog-release.73db4e5426",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/mtg-signed-in-catalog-release.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-one-piece-image-source-constraint.fea6f60495",
+      "surface_kind": "github_workflow",
+      "domain": "images",
+      "source_locator": ".github/workflows/one-piece-image-source-constraint.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-one-piece-incremental-promotion.c765f9eac0",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/one-piece-incremental-promotion.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-one-piece-set-production-closure.677cea2d09",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/one-piece-set-production-closure.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-one-piece-verified-external-image-source.3336df3aac",
+      "surface_kind": "github_workflow",
+      "domain": "images",
+      "source_locator": ".github/workflows/one-piece-verified-external-image-source.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-operations-control-plane-maintenance.3918e8d903",
+      "surface_kind": "github_workflow",
+      "domain": "operations",
+      "source_locator": ".github/workflows/operations-control-plane-maintenance.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-pokemon-master-index-refresh.d57f3be1aa",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/pokemon-master-index-refresh.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-pokemon-sealed-health-v1.950c6b9e92",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/pokemon-sealed-health-v1.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-prod-edge-probe.28c352461a",
+      "surface_kind": "github_workflow",
+      "domain": "observability",
+      "source_locator": ".github/workflows/prod-edge-probe.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-prod-import-prices-validate-edge.3d013baea9",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/prod-import-prices-validate-edge.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-prod-import-prices-validate-pub.51ad9868ee",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/prod-import-prices-validate-pub.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-prod-import-prices-validate.01fab8c3cc",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/prod-import-prices-validate.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-prod-probe.703359f623",
+      "surface_kind": "github_workflow",
+      "domain": "observability",
+      "source_locator": ".github/workflows/prod-probe.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-release.87db21a973",
+      "surface_kind": "github_workflow",
+      "domain": "release",
+      "source_locator": ".github/workflows/release.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-special-variant-printing-bounded-apply.75fea5b668",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/special-variant-printing-bounded-apply.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-special-variant-printing-health.c915c6156c",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/special-variant-printing-health.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-special-variant-printing-pricing-boundary-migration.db10da5731",
+      "surface_kind": "github_workflow",
+      "domain": "pricing",
+      "source_locator": ".github/workflows/special-variant-printing-pricing-boundary-migration.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-staging-probe.70219df5b6",
+      "surface_kind": "github_workflow",
+      "domain": "observability",
+      "source_locator": ".github/workflows/staging-probe.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-supabase-disk-autoscale-apply.22f57d3632",
+      "surface_kind": "github_workflow",
+      "domain": "infrastructure",
+      "source_locator": ".github/workflows/supabase-disk-autoscale-apply.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-supabase-production-capacity-audit.dd0362cf8c",
+      "surface_kind": "github_workflow",
+      "domain": "infrastructure",
+      "source_locator": ".github/workflows/supabase-production-capacity-audit.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-tcgplayer-market-canary-observation.15a1bb78ed",
+      "surface_kind": "github_workflow",
+      "domain": "pricing",
+      "source_locator": ".github/workflows/tcgplayer-market-canary-observation.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-tcgplayer-market-full-rollout-observation.6f2bfa3925",
+      "surface_kind": "github_workflow",
+      "domain": "pricing",
+      "source_locator": ".github/workflows/tcgplayer-market-full-rollout-observation.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-tcgplayer-market-full-scope-shadow.33cb78360c",
+      "surface_kind": "github_workflow",
+      "domain": "pricing",
+      "source_locator": ".github/workflows/tcgplayer-market-full-scope-shadow.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-tcgplayer-pricing-completion-agent.4348c28986",
+      "surface_kind": "github_workflow",
+      "domain": "pricing",
+      "source_locator": ".github/workflows/tcgplayer-pricing-completion-agent.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-tk-sm-r-founder-apply-command.5407cba039",
+      "surface_kind": "github_workflow",
+      "domain": "operations",
+      "source_locator": ".github/workflows/tk-sm-r-founder-apply-command.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-tk-sm-r-hidden-set-executor.21e5b06f03",
+      "surface_kind": "github_workflow",
+      "domain": "automation",
+      "source_locator": ".github/workflows/tk-sm-r-hidden-set-executor.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-universal-catalog-discovery.d3c2063b1c",
+      "surface_kind": "github_workflow",
+      "domain": "catalog",
+      "source_locator": ".github/workflows/universal-catalog-discovery.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "github_workflow.github-workflows-vendor-cost-evidence-migration.bf7ddc1012",
+      "surface_kind": "github_workflow",
+      "domain": "infrastructure",
+      "source_locator": ".github/workflows/vendor-cost-evidence-migration.yml",
+      "integration_class": "E",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-catalog-founder-outcome-packager-v1.fa64d969df",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/catalog_founder_outcome_packager_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-catalog-founder-work-item-publisher-v1.5d7bf65460",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/catalog_founder_work_item_publisher_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-catalog-incremental-promotion-v1.9b4e103ed2",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/catalog_incremental_promotion_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-catalog-incremental-supervisor-v1.1e09028e3a",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/catalog_incremental_supervisor_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-catalog-shadow-reconciliation-v1.8dec093299",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/catalog_shadow_reconciliation_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-collectible-shadow-adapter-probe-v1.c38f1123c7",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/collectible_shadow_adapter_probe_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-collectible-shadow-parser-wave1-v1.4e7848be95",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/collectible_shadow_parser_wave1_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-collectible-wave1-canonical-reconciliation-v1.3e34e0ec28",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/collectible_wave1_canonical_reconciliation_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-collectible-wave1-card-identity-proposal-v1.ee23cf5c10",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/collectible_wave1_card_identity_proposal_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-collectible-wave1-set-apply-proposal-v1.01c6512fb0",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/collectible_wave1_set_apply_proposal_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-collectible-wave1-set-foundation-proposal-v1.a4587bb143",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/collectible_wave1_set_foundation_proposal_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-cross-tcg-set-publication-gate-v1.8abed9ff1e",
+      "surface_kind": "script_worker",
+      "domain": "automation",
+      "source_locator": "scripts/workers/cross_tcg_set_publication_gate_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-english-pokemon-incremental-promotion-v1.0865a5e1d6",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/english_pokemon_incremental_promotion_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-english-pokemon-master-index-refresh-v1.b3a7c3f035",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/english_pokemon_master_index_refresh_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-founder-command-dispatcher-v1.589c8a6999",
+      "surface_kind": "script_worker",
+      "domain": "operations",
+      "source_locator": "scripts/workers/founder_command_dispatcher_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-founder-outcome-workflow-executor-v1.6e3d2e5afd",
+      "surface_kind": "script_worker",
+      "domain": "operations",
+      "source_locator": "scripts/workers/founder_outcome_workflow_executor_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-japanese-official-incremental-promotion-v1.6f4c807a3e",
+      "surface_kind": "script_worker",
+      "domain": "automation",
+      "source_locator": "scripts/workers/japanese_official_incremental_promotion_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-japanese-pokemon-master-index-incremental-refresh-v1.aa6ec2fd24",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/japanese_pokemon_master_index_incremental_refresh_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-market-listing-ollama-automation-v1.f5151cbaa2",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/market_listing_ollama_automation_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-market-listing-ollama-review-v1.748b83b10a",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/market_listing_ollama_review_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-market-listing-variant-assignment-incremental-v1.e9debedf75",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/market_listing_variant_assignment_incremental_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-mee-nightly-droplet-worker-v1.0527f97259",
+      "surface_kind": "script_worker",
+      "domain": "market_evidence",
+      "source_locator": "scripts/workers/mee_nightly_droplet_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-mee-reference-refresh-phase-ledger-v1.4a92697121",
+      "surface_kind": "script_worker",
+      "domain": "market_evidence",
+      "source_locator": "scripts/workers/mee_reference_refresh_phase_ledger_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-mee-reference-source-refresh-worker-v1.a1942e8880",
+      "surface_kind": "script_worker",
+      "domain": "market_evidence",
+      "source_locator": "scripts/workers/mee_reference_source_refresh_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-mee-reference-warehouse-delta-writer-v1.01e6f87ecf",
+      "surface_kind": "script_worker",
+      "domain": "market_evidence",
+      "source_locator": "scripts/workers/mee_reference_warehouse_delta_writer_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-mtg-incremental-promotion-v1.60f12dd4ec",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/mtg_incremental_promotion_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-one-piece-incremental-promotion-v1.dbaba53a14",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/one_piece_incremental_promotion_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-one-piece-set-release-closure-v1.6992917b08",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/one_piece_set_release_closure_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-operations-maintenance-v1.8f9edb0e51",
+      "surface_kind": "script_worker",
+      "domain": "operations",
+      "source_locator": "scripts/workers/operations_maintenance_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-pokemon-language-master-index-refresh-v1.83121275a8",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/pokemon_language_master_index_refresh_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-pokemon-warehouse-coverage-v1.5244ce333d",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/pokemon_warehouse_coverage_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgcsv-full-source-warehouse-worker-v1.a99564b246",
+      "surface_kind": "script_worker",
+      "domain": "automation",
+      "source_locator": "scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgcsv-historical-backfill-agent-v1.46d1c5cd31",
+      "surface_kind": "script_worker",
+      "domain": "automation",
+      "source_locator": "scripts/workers/tcgcsv_historical_backfill_agent_v1.sh",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgcsv-historical-load-guard-v1.112c97e78d",
+      "surface_kind": "script_worker",
+      "domain": "automation",
+      "source_locator": "scripts/workers/tcgcsv_historical_load_guard_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-market-active-ask-refresh-v1.3bee07fa05",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_market_active_ask_refresh_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-market-health-v1.00e3fdc05b",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_market_health_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-market-pipeline-v1.c8df6d5d88",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_market_pipeline_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-market-publication-worker-v1.5b8318c8de",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_market_publication_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-market-rollback-v1.1c5bfb641e",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_market_rollback_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-market-scheduled-runner-v1.5fa1dec0b4",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-ollama-triage-v1.4ee03f6389",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_ollama_triage_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tcgplayer-pricing-completion-agent-v1.48bcc4725a",
+      "surface_kind": "script_worker",
+      "domain": "pricing",
+      "source_locator": "scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tk-sm-r-founder-apply-publisher-v1.740e13b852",
+      "surface_kind": "script_worker",
+      "domain": "operations",
+      "source_locator": "scripts/workers/tk_sm_r_founder_apply_publisher_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tk-sm-r-founder-command-executor-v1.0de42b9457",
+      "surface_kind": "script_worker",
+      "domain": "operations",
+      "source_locator": "scripts/workers/tk_sm_r_founder_command_executor_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-tk-sm-r-founder-command-resolver-v1.59d426a332",
+      "surface_kind": "script_worker",
+      "domain": "operations",
+      "source_locator": "scripts/workers/tk_sm_r_founder_command_resolver_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "script_worker.scripts-workers-universal-catalog-discovery-v1.97f96e7bbb",
+      "surface_kind": "script_worker",
+      "domain": "catalog",
+      "source_locator": "scripts/workers/universal_catalog_discovery_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "classification_source": "surface_rule"
+    },
+    {
+      "surface_key": "mee-nightly-droplet-v1",
+      "surface_kind": "systemd_timer",
+      "source_locator": "scripts/workers/mee_nightly_droplet_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "schedule_kind": "timer",
+      "schedule_expression": "grookai-mee-nightly.timer",
+      "contract": "docs/contracts/MEE_NIGHTLY_DROPLET_WORKER_V1.md",
+      "domain": "market_evidence",
+      "classification_source": "host_lane_registry"
+    },
+    {
+      "surface_key": "mee-reference-refresh-v1",
+      "surface_kind": "systemd_timer",
+      "source_locator": "scripts/workers/mee_reference_source_refresh_worker_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "schedule_kind": "timer",
+      "schedule_expression": "grookai-mee-reference-refresh.timer",
+      "contract": "docs/contracts/MEE_NIGHTLY_DROPLET_WORKER_V1.md",
+      "domain": "market_evidence",
+      "classification_source": "host_lane_registry"
+    },
+    {
+      "surface_key": "tcgplayer-market-scheduler-v1",
+      "surface_kind": "systemd_timer",
+      "source_locator": "scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs",
+      "integration_class": "C",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "schedule_kind": "timer",
+      "schedule_expression": "existing-host-timer",
+      "contract": "docs/contracts/PRICING_SCHEDULER_CONTRACT_V1.md",
+      "domain": "pricing",
+      "classification_source": "host_lane_registry"
+    },
+    {
+      "surface_key": "market-evidence-ollama-windows-v1",
+      "surface_kind": "windows_scheduled_task",
+      "source_locator": "scripts/ops/market_evidence_ollama_automation_v1.ps1",
+      "integration_class": "D",
+      "permission_tier": "R0",
+      "execution_enabled": false,
+      "schedule_kind": "timer",
+      "schedule_expression": "hourly",
+      "contract": "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md",
+      "domain": "pricing",
+      "classification_source": "host_lane_registry"
+    }
+  ],
+  "worktrees": [
+    {
+      "path": "C:/grookai_cog_tracking_20261016",
+      "branch": "main",
+      "head": "034ba2e2fb62996a25f0a8ef5673b52dd16bd16c",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active cognitive tracking worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/grookai_market_links",
+      "branch": "release/testflight-411-final",
+      "head": "67822590ad8709b28f3b6b1e763fb14d0ebcb6b1",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active Flutter market-links worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/grookai_mee_governance_20261015",
+      "branch": "codex/mee-governance-20261015",
+      "head": "7dfcc795b6ea82cc255371b5a029f66134ea4e24",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": true,
+      "change_count": 122,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Dirty MEE governance worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/grookai_sales_overhaul",
+      "branch": "fix/vendor-store-search-trigger-main",
+      "head": "5cac74eabbb998806801436de9839cbc1f1f5a73",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/grookai_vault",
+      "branch": "feat/app-visual-simplification-v1",
+      "head": "35b7b8ec46353721d7fd54cac3bd299d34e01765",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": true,
+      "change_count": 732,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Dirty primary application and discovery worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/grookai_vault_app_visual_integration",
+      "branch": "feat/app-visual-simplification-v1-main",
+      "head": "80afec771faae1a54097b23e8fe0bbc907c51ac3",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active application visual integration worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/grookai_vault_full_route_redesign_20261015",
+      "branch": "feat/web-visual-redesign-v2",
+      "head": "6c1abf049cab0815ad0b097d6af8a3903ddb853d",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active web redesign worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/grookai_vault_vault_add_repair_20260916",
+      "branch": "fix/anniversary-vault-add-20260916",
+      "head": "6e747bb1561354fc56b62c73be39f258da506f15",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active Vault repair worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_gamestop_zoroark_20261001",
+      "branch": "catalog/gamestop-zoroark-20261001",
+      "head": "e2cd2ad471ce016a4e204703efc3d6546eb52f66",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active catalog repair worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_jpn_catalog_checkpoint_20261016",
+      "branch": "catalog/jpn-master-index-v5-official-global-catalog",
+      "head": "a4ea79a5a0c9e591beb2baaf79dd76028cec1c09",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active Japanese global catalog checkpoint.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_jungle_edition_20261001",
+      "branch": "fix/jungle-catalog-production-20261004",
+      "head": "3a368664c920822a6515094711996a7b7ac83137",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active Jungle catalog repair worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_mep_catalog_backfill_20261016",
+      "branch": "fix/mep-catalog-backfill-20261016",
+      "head": "4c587ead111b67e35a378946de107652537f289e",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active MEP catalog backfill worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_mep_catalog_backfill_release_20261016",
+      "branch": null,
+      "head": "56781f40aebeb164b03f422d3062243f26022928",
+      "detached": true,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Detached MEP release evidence worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_mtg_backlog_classifier_20261020",
+      "branch": "codex/mtg-backlog-classifier-20261020",
+      "head": "c42e9c454950305667d1d6d5a97e8eb7a9ca57fa",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_mtg_catalog_batch_20261020",
+      "branch": "fix/mtg-correction-workflow-binding-v1",
+      "head": "3c18fc1d89b8f5861a2396adef80fb5f76f56d26",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_mtg_scryfall_apply_20261020",
+      "branch": null,
+      "head": "b6516ffaef1949875622d788d6a909f90a393c65",
+      "detached": true,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_mtg_scryfall_backfill_20261020",
+      "branch": "codex/mtg-scryfall-crosswalk-backfill-20261020",
+      "head": "abe4bbda0ef423e384c5c6d412494ef5e23295ff",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_mtg_supervisor_fix_20261020",
+      "branch": "codex/mtg-supervisor-archive-ref-20261020",
+      "head": "138a7a14520d08c4a5ad899921b98e201ef3a781",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_ollama_bulk_mapper_20261017",
+      "branch": "codex/ollama-bulk-mapper-20261017",
+      "head": "a09c980fe83d4fb398bb392be2dfdfbe6b7ae8c2",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Dirty Ollama mapping worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_overhaul_release_20261011",
+      "branch": "release/overhaul-main-20261011",
+      "head": "7eeab28977064cab55f9ee038b047e0cb89a2ebc",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": true,
+      "change_count": 14,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Dirty overhaul release worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_pricing_completion_agent_20261013",
+      "branch": "feature/pricing-completion-agent-20261013",
+      "head": "7719e3c091244732cdbfe5190dc50e87f63ee6da",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": true,
+      "change_count": 82,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Dirty pricing completion worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_pricing_lane_fix_20261017",
+      "branch": "codex/pricing-lane-fix-20261017",
+      "head": "54b21986912f132c68a05ae3097eabed4c719095",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_pricing_lane_fix_release_20261017",
+      "branch": null,
+      "head": "cdcec2aa6ab39c237047119fa1dd31605ea1449f",
+      "detached": true,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_pricing_market_history_20261012",
+      "branch": "feature/native-market-history-20261012",
+      "head": "6d56a82dca102f0497727ea4d5c820ca3223c43a",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": true,
+      "change_count": 12,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Dirty pricing market-history worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_pricing_review_lead_release_20261016",
+      "branch": null,
+      "head": "86460bfdf4d56c5c0333dd5c65ebe75712808e4c",
+      "detached": true,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Detached pricing review release worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_receipt_delivery_20261005",
+      "branch": "feature/receipt-delivery-20261005",
+      "head": "103c1838f05a30d242acb4559e37ea8fd6791e79",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active receipt delivery worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_ruflo_all_agents_plan_20261016",
+      "branch": "docs/ruflo-all-agents-integration-plan-20261016",
+      "head": "be7997018a171fa77ea083ffe6119e2bb6d0128e",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_ruflo_readonly_adapter_20261017",
+      "branch": "feat/ruflo-readonly-operations-adapter-v1",
+      "head": "3956adceeed3e6e7b895a4d3c8f662341151008d",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_ruflo_registry_foundation_20261016",
+      "branch": "feat/ruflo-agent-registry-v1",
+      "head": "5534df59fcfeb10e58f2152634a92bd1d049d8f2",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_ruflo_universal_catalog_shadow_pilot_20261019",
+      "branch": "feat/ruflo-universal-catalog-shadow-pilot-v1",
+      "head": "d5bdd5016328c34e1dead008b8b375bd9616a5f0",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": true,
+      "change_count": 8,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_tcgplayer_mass_cleanup_20261017",
+      "branch": "fix/tcgplayer-mass-cleanup-20261017",
+      "head": "dcc6e23b0c60566c09bbc793ac89cf01c8703544",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Active TCGPlayer repair worktree despite its historical name.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_tcgplayer_mass_cleanup_release_20261017",
+      "branch": null,
+      "head": "363e7dc554cdc3d6862df7ba1eafe32f6d0b825b",
+      "detached": true,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "protected_root_registry",
+      "configured_reason": "Detached TCGPlayer release worktree.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    },
+    {
+      "path": "C:/gv_universal_catalog_optional_bulbapedia_fix_20261020",
+      "branch": "fix/universal-catalog-optional-bulbapedia-v1",
+      "head": "90551680aef71497dea16a55289738b492da3099",
+      "detached": false,
+      "prunable": null,
+      "status_available": true,
+      "dirty": false,
+      "change_count": 0,
+      "protection": "protected",
+      "protection_source": "dynamic_fail_closed_discovery",
+      "configured_reason": "Unknown or newly discovered worktree is protected by default.",
+      "write_allowed": false,
+      "cleanup_authorized": false
+    }
+  ],
+  "declared_protected_roots": [
+    {
+      "path": "C:/grookai_vault",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Dirty primary application and discovery worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/grookai_cog_tracking_20261016",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active cognitive tracking worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/grookai_market_links",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active Flutter market-links worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/grookai_mee_governance_20261015",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Dirty MEE governance worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/grookai_vault_app_visual_integration",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active application visual integration worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/grookai_vault_full_route_redesign_20261015",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active web redesign worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/grookai_vault_vault_add_repair_20260916",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active Vault repair worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_gamestop_zoroark_20261001",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active catalog repair worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_jpn_catalog_checkpoint_20261016",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active Japanese global catalog checkpoint.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_jungle_edition_20261001",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active Jungle catalog repair worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_mep_catalog_backfill_20261016",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active MEP catalog backfill worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_mep_catalog_backfill_release_20261016",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Detached MEP release evidence worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_ollama_bulk_mapper_20261017",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Dirty Ollama mapping worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_overhaul_release_20261011",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Dirty overhaul release worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_pricing_completion_agent_20261013",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Dirty pricing completion worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_pricing_market_history_20261012",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Dirty pricing market-history worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_pricing_review_lead_release_20261016",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Detached pricing review release worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_receipt_delivery_20261005",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active receipt delivery worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_tcgplayer_mass_cleanup_20261017",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Active TCGPlayer repair worktree despite its historical name.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/gv_tcgplayer_mass_cleanup_release_20261017",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Detached TCGPlayer release worktree.",
+      "exists_on_inventory_host": true
+    },
+    {
+      "path": "C:/grookai_vault_checkpoint_docs_sparse",
+      "policy": "protected",
+      "write_allowed": false,
+      "reason": "Separate sparse clone and all linked release worktrees.",
+      "exists_on_inventory_host": true
+    }
+  ],
+  "counts": {
+    "agents": 15,
+    "registered_agents": 4,
+    "non_executable_agents": 15,
+    "surfaces": 168,
+    "host_lanes": 4,
+    "worktrees": 33,
+    "dirty_worktrees": 6,
+    "unreadable_worktrees": 0,
+    "surfaces_by_kind": {
+      "backend_automation": 52,
+      "github_workflow": 66,
+      "script_worker": 46,
+      "systemd_timer": 3,
+      "windows_scheduled_task": 1
+    },
+    "surfaces_by_domain": {
+      "automation": 18,
+      "billing": 4,
+      "catalog": 46,
+      "client": 3,
+      "condition": 5,
+      "ebay": 2,
+      "governance": 2,
+      "grookai_dex": 2,
+      "identity": 3,
+      "images": 4,
+      "infra": 2,
+      "infrastructure": 4,
+      "ingestion": 2,
+      "market_evidence": 6,
+      "observability": 3,
+      "operations": 13,
+      "payments": 3,
+      "pokemon": 6,
+      "pricing": 30,
+      "release": 1,
+      "sets": 2,
+      "vault": 1,
+      "warehouse": 6
+    }
+  },
+  "boundaries": {
+    "agent_executions": 0,
+    "workflow_dispatches": 0,
+    "production_writes": 0,
+    "external_actions": 0,
+    "branch_cleanups": 0,
+    "worktree_cleanups": 0,
+    "cross_worktree_writes": 0
+  },
+  "generated_at": "2026-10-21T05:00:59.7512623Z",
+  "inventory_fingerprint_sha256": "606b414d648d1489f521cbffd4c0c9829945270166ff5d94a7f5e81bd7a0b1ee"
+}

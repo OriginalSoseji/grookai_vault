@@ -28,10 +28,10 @@ Implementation progress as of October 19, 2026:
 - PR step 2 has a stacked local-only Operations health/evidence adapter and
   frozen R0 task-envelope candidate at
   `docs/checkpoints/RUFLO_READONLY_OPERATIONS_ADAPTER_V1_20261017.md`;
-- PR step 3 has a stacked four-cycle Universal Catalog Discovery shadow pilot
+- PR step 3 has a stacked six-cycle Universal Catalog Discovery shadow pilot
   at `docs/checkpoints/RUFLO_UNIVERSAL_CATALOG_SHADOW_PILOT_V1_20261019.md`;
 - none of the candidates is merged or activated, and the pilot remains R0 with
-  zero qualifying cycles because all four observations were source-degraded.
+  zero qualifying cycles because all six observations were source-degraded.
 
 ## Outcome
 

@@ -1,0 +1,94 @@
+{
+  "task_id": "ruflo-universal-catalog-shadow-cycle-06-20261020",
+  "parent_goal": "Observe the universal catalog discovery agent without dispatching or executing it",
+  "agent_key": "universal-catalog-discovery-v1",
+  "repository": {
+    "remote": "OriginalSoseji/grookai_vault",
+    "commit_sha": "d5bdd5016328c34e1dead008b8b375bd9616a5f0",
+    "ref": "feat/ruflo-universal-catalog-shadow-pilot-v1",
+    "worktree_path": "C:/gv_ruflo_universal_catalog_shadow_pilot_20261019",
+    "initial_status_sha256": "c84e49f67643d80c097b4e6709b6370c6ee7b6190d9569db1515c4f0d688f1cc"
+  },
+  "objective": "Verify and summarize the next existing scheduled universal catalog discovery artifact as a non-executable Ruflo shadow observation.",
+  "inclusions": [
+    "Exact scheduled-run metadata",
+    "Artifact hash verification",
+    "Read-only run-plan boundary verification",
+    "Gap and source-degradation counts",
+    "Cumulative distinct-run pilot ledger"
+  ],
+  "exclusions": [
+    "Workflow dispatch",
+    "Agent execution",
+    "GitHub issue reconciliation",
+    "Catalog promotion or mutation"
+  ],
+  "non_goals": [
+    "Resolving catalog gaps",
+    "Bypassing source access denial",
+    "Taking ownership of an active catalog worktree"
+  ],
+  "inputs": [
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39546617897/artifact_hashes.json",
+      "sha256": "2878ec86c61df768a9455f76b3d3e57709924815573053fd9d4f39c667ea48c9"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39546617897/run_metadata.json",
+      "sha256": "7c178edb5a43ffcd681f57b3f3ef96a44f455ada23abb095d9f2bf7d7b47c44f"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39546617897/run_plan.json",
+      "sha256": "13d8a3eed25fc8285d570409263867575e6b74304be2d4af775ea7b16d198451"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39546617897/source_failures.json",
+      "sha256": "8d9251be20ac604b374f59921f242e957f91fd0e307fa680a73c98d828815d03"
+    },
+    {
+      "locator": "tests/fixtures/ruflo/universal_catalog_run_39546617897/summary.json",
+      "sha256": "554aeb1f944316100968fc0a6b9039a9918b1d22a9c7bebc7e9f3e5ab8b22abb"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_01/cycle_01_observation.json",
+      "sha256": "1f58126b846be14cded4aac7eee7d3f2bb0e0c0ea4c732af2bd57f2f0c3a83a8"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_02/cycle_02_observation.json",
+      "sha256": "375bbe1c76f843353cd4ab257fc4a33830fa013571b61ae833b8000bd5906db2"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_03/cycle_03_observation.json",
+      "sha256": "27eddffe2f9011d5db95129e9edcd3399d033d8061d756b8f62602b7760abd0e"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_04/cycle_04_observation.json",
+      "sha256": "affe7eaeac6ea487486e6db75251c5cba53bd8f7a596683566745bfb9cf6be4e"
+    },
+    {
+      "locator": "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_05/cycle_05_observation.json",
+      "sha256": "81105e38b816a95c2e08d6932ba59627ac8b9c8bec64eca38ce0be487e63cafb"
+    }
+  ],
+  "budgets": {
+    "time_seconds": 60,
+    "row_limit": 6,
+    "request_limit": 0,
+    "cost_usd": 0,
+    "concurrency": 1
+  },
+  "expected_artifacts": [
+    "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_06/cycle_06_observation.json",
+    "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_06/pilot_ledger_v1.json"
+  ],
+  "acceptance_tests": [
+    "Every copied discovery file matches its source artifact hash",
+    "Degraded source evidence produces a held observation",
+    "Cycles 1 through 5 remain present in the cumulative distinct-run ledger",
+    "All execution and mutation boundaries remain false"
+  ],
+  "evidence_expectations": {
+    "direct_readback_required": true,
+    "retention_class": "repository_checkpoint"
+  }
+}

@@ -2,7 +2,7 @@
 
 ## Status
 
-`CYCLES 1 THROUGH 4 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
+`CYCLES 1 THROUGH 6 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
 
 The first Phase 2 Ruflo pilot now has an R0-only implementation candidate at
 core commit `730be7ed0f2d9643d956e19acaf18583fa27c3a0` on
@@ -58,13 +58,30 @@ pre-repair held observation with the same Storm Emeralda
 `source_access_denied` failure; it is not evidence for or against the merged
 repair. No replacement run was dispatched.
 
+Cycle 5 captured the first post-repair scheduled run `39502200235` and artifact
+`12302776333`, completed at `2026-10-20T21:45:24.727Z`. Its source commit
+`515592aed9426d5736b694b15b54dfea12dfa0c6` contains merged repair
+`41fdd6241c70391c9f0fd2fa2588caa902d1c0ed`. The prior Storm Emeralda failure
+did not recur, but a different Bulbapedia lane for `30th Celebration` returned
+HTTP 403 without sufficient alternate evidence. The run therefore remained
+`degraded_source_unavailable` and Cycle 5 correctly held fail-closed. No
+replacement run was dispatched and the source policy was not weakened.
+
+Cycle 6 captured scheduled run `39546617897` and artifact `12321089943`,
+completed at `2026-10-21T04:59:35.863Z`. Its source commit
+`1e1ca17aee118e6b5b08434f847ec750826cde5e` also contains the merged repair.
+The same `30th Celebration` Bulbapedia lane returned HTTP 403, so the cycle
+again remained `degraded_source_unavailable` and held. This repeat confirms a
+remaining source-evidence gap rather than a regression to the prior Storm
+Emeralda failure. No replacement run was dispatched.
+
 ## Pilot Progress
 
 Seven recent scheduled workflow runs already concluded successfully and are
 recorded as pre-pilot baseline evidence. They do not count retroactively toward
 the Ruflo minimum. The pilot ledger currently records:
 
-- observed cycles: 4;
+- observed cycles: 6;
 - qualifying cycles: 0;
 - required qualifying cycles: 7;
 - readiness: `collecting`.
@@ -93,21 +110,19 @@ npm run ruflo:pilot:universal-catalog:build -- --evidence-dir=<local-evidence> -
 
 ## Verification
 
-- New pilot contracts: 11 of 11 passed.
-- Combined Ruflo registry, adapter, envelope, and pilot contracts: 33 of 33
+- New pilot contracts: 13 of 13 passed.
+- Combined Ruflo registry, adapter, envelope, and pilot contracts: 35 of 35
   passed.
 - Secret-packaging guard: passed before the evidence/documentation commit.
 - `git diff --check`: passed before the evidence/documentation commit.
-- Generated inventory: 30 protected worktrees, seven dirty, zero unreadable,
+- Generated inventory: 33 protected worktrees, six dirty, zero unreadable,
   and zero execution, dispatch, write, external-action, or cleanup boundaries.
 - The pilot worktree entered the inventory through
   `dynamic_fail_closed_discovery` with writes and cleanup disabled.
 
 ## Remaining Gate
 
-Observe the first naturally scheduled discovery artifact whose source commit
-contains merged repair `41fdd6241c70391c9f0fd2fa2588caa902d1c0ed` or a later
-descendant. Do not dispatch a replacement run. Degraded cycles remain held and
-do not advance the seven-cycle minimum. The pilot stays R0 even after the
-minimum is met; any later execution request requires a separate contract and
-PR.
+Observe the next naturally scheduled discovery artifact. Do not dispatch a
+replacement run. Degraded cycles remain held and do not advance the seven-cycle
+minimum. The pilot stays R0 even after the minimum is met; any later execution
+request requires a separate contract and PR.

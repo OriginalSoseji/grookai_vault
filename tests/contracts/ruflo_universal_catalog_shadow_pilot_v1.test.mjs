@@ -17,6 +17,8 @@ const evidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_
 const secondEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39372137263");
 const thirdEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39417042104");
 const fourthEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39464118813");
+const fifthEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39502200235");
+const sixthEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39546617897");
 
 function clone(value) {
   return structuredClone(value);
@@ -80,6 +82,30 @@ test("pilot verifies the fourth pre-repair scheduled discovery evidence", () => 
   assert.equal(evidence.summary.completed_at, "2026-10-20T17:17:46.767Z");
   assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
   assert.equal(evidence.sourceFailures.length, 1);
+  assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
+});
+
+test("pilot verifies the fifth post-repair scheduled discovery evidence", () => {
+  const evidence = readDiscoveryEvidenceV1({ evidenceDir: fifthEvidenceDir });
+  assert.equal(evidence.metadata.run_id, 39502200235);
+  assert.equal(evidence.metadata.event, "schedule");
+  assert.equal(evidence.metadata.head_sha, "515592aed9426d5736b694b15b54dfea12dfa0c6");
+  assert.equal(evidence.summary.completed_at, "2026-10-20T21:45:24.727Z");
+  assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
+  assert.equal(evidence.sourceFailures.length, 1);
+  assert.match(evidence.sourceFailures[0].message, /30th_Celebration/);
+  assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
+});
+
+test("pilot verifies the sixth post-repair scheduled discovery evidence", () => {
+  const evidence = readDiscoveryEvidenceV1({ evidenceDir: sixthEvidenceDir });
+  assert.equal(evidence.metadata.run_id, 39546617897);
+  assert.equal(evidence.metadata.event, "schedule");
+  assert.equal(evidence.metadata.head_sha, "1e1ca17aee118e6b5b08434f847ec750826cde5e");
+  assert.equal(evidence.summary.completed_at, "2026-10-21T04:59:35.863Z");
+  assert.equal(evidence.summary.run_status, "degraded_source_unavailable");
+  assert.equal(evidence.sourceFailures.length, 1);
+  assert.match(evidence.sourceFailures[0].message, /30th_Celebration/);
   assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
 });
 
@@ -171,8 +197,8 @@ test("checked-in cycle observations and cumulative ledger reproduce from frozen 
   const manifest = JSON.parse(readFileSync(path.join(auditRoot, "artifact_hashes.json"), "utf8"));
   assert.equal(manifest.workflow_dispatched_by_ruflo, false);
   assert.equal(manifest.agent_executed_by_ruflo, false);
-  assert.equal(manifest.captured_cycle_count, 4);
-  assert.equal(manifest.latest_source_workflow_run_id, 39464118813);
+  assert.equal(manifest.captured_cycle_count, 6);
+  assert.equal(manifest.latest_source_workflow_run_id, 39546617897);
   for (const [relative, expected] of Object.entries(manifest.files)) {
     assert.equal(sha256(readFileSync(path.resolve(auditRoot, relative))), expected, relative);
   }
@@ -243,6 +269,53 @@ test("checked-in cycle observations and cumulative ledger reproduce from frozen 
   assert.deepEqual(fourCycleLedger, checkedFourCycleLedger);
   assert.equal(fourCycleLedger.observed_cycle_count, 4);
   assert.equal(fourCycleLedger.qualifying_cycle_count, 0);
+  const fifthTaskEnvelope = JSON.parse(readFileSync(
+    path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-05-20261020.task_envelope_v1.json"),
+    "utf8",
+  ));
+  const fifthEvidence = readDiscoveryEvidenceV1({ evidenceDir: fifthEvidenceDir });
+  const fifthObservation = buildUniversalCatalogShadowObservationV1({
+    envelope: fifthTaskEnvelope,
+    evidence: fifthEvidence,
+    cycleNumber: 5,
+  });
+  const checkedFifthObservation = JSON.parse(readFileSync(path.join(auditRoot, "cycle_05/cycle_05_observation.json"), "utf8"));
+  assert.deepEqual(fifthObservation, checkedFifthObservation);
+  const fiveCycleLedger = buildUniversalCatalogPilotLedgerV1([
+    observation,
+    secondObservation,
+    thirdObservation,
+    fourthObservation,
+    fifthObservation,
+  ]);
+  const checkedFiveCycleLedger = JSON.parse(readFileSync(path.join(auditRoot, "cycle_05/pilot_ledger_v1.json"), "utf8"));
+  assert.deepEqual(fiveCycleLedger, checkedFiveCycleLedger);
+  assert.equal(fiveCycleLedger.observed_cycle_count, 5);
+  assert.equal(fiveCycleLedger.qualifying_cycle_count, 0);
+  const sixthTaskEnvelope = JSON.parse(readFileSync(
+    path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-06-20261020.task_envelope_v1.json"),
+    "utf8",
+  ));
+  const sixthEvidence = readDiscoveryEvidenceV1({ evidenceDir: sixthEvidenceDir });
+  const sixthObservation = buildUniversalCatalogShadowObservationV1({
+    envelope: sixthTaskEnvelope,
+    evidence: sixthEvidence,
+    cycleNumber: 6,
+  });
+  const checkedSixthObservation = JSON.parse(readFileSync(path.join(auditRoot, "cycle_06/cycle_06_observation.json"), "utf8"));
+  assert.deepEqual(sixthObservation, checkedSixthObservation);
+  const sixCycleLedger = buildUniversalCatalogPilotLedgerV1([
+    observation,
+    secondObservation,
+    thirdObservation,
+    fourthObservation,
+    fifthObservation,
+    sixthObservation,
+  ]);
+  const checkedSixCycleLedger = JSON.parse(readFileSync(path.join(auditRoot, "cycle_06/pilot_ledger_v1.json"), "utf8"));
+  assert.deepEqual(sixCycleLedger, checkedSixCycleLedger);
+  assert.equal(sixCycleLedger.observed_cycle_count, 6);
+  assert.equal(sixCycleLedger.qualifying_cycle_count, 0);
   const baseline = JSON.parse(readFileSync(path.join(auditRoot, "prepilot_baseline_runs_v1.json"), "utf8"));
   assert.equal(baseline.runs.length, 7);
   assert.equal(baseline.counts_toward_ruflo_pilot_minimum, false);
