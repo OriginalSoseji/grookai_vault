@@ -4,15 +4,16 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 export const REGISTRY_VERSION = "RUFLO_AGENT_REGISTRY_V1";
 export const READ_ONLY_PERMISSION_TIERS = new Set(["R0", "R1"]);
-export const INTEGRATION_CLASSES = new Set(["A", "B", "C", "D", "E", "F", "G"]);
+export const LIFECYCLE_STATES = new Set(["registered", "unregistered", "retired"]);
+export const TOPOLOGY_ROLES = new Set(["operations_agent", "domain_supervisor", "bounded_worker"]);
+export const ACTION_RISKS = new Set(["read_only", "source_write", "external_write"]);
 export const ADOPTION_STATES = new Set([
-  "unregistered",
+  "not_adopted",
   "observed",
   "pilot",
   "coordinated",
   "execution_eligible",
   "held",
-  "retired",
 ]);
 export const SCHEDULE_KINDS = new Set(["cron", "timer", "continuous", "event", "manual"]);
 export const SECRET_KEY_PATTERN = /(authorization|token|secret|password|service.?role|api.?key|cookie)/i;
@@ -86,7 +87,9 @@ function validateSurfaceV1(surface, { repoRoot, label }) {
   assertPlainObject(surface, label);
   assert(/^[a-z0-9_.-]+$/.test(clean(surface.surface_key)), `${label}.surface_key is invalid`);
   assert(/^[a-z0-9_.-]+$/.test(clean(surface.surface_kind)), `${label}.surface_kind is invalid`);
-  assert(INTEGRATION_CLASSES.has(surface.integration_class), `${label}.integration_class is invalid`);
+  assert(LIFECYCLE_STATES.has(surface.lifecycle_state), `${label}.lifecycle_state is invalid`);
+  assert(TOPOLOGY_ROLES.has(surface.topology_role), `${label}.topology_role is invalid`);
+  assert(ACTION_RISKS.has(surface.action_risk), `${label}.action_risk is invalid`);
   assert(READ_ONLY_PERMISSION_TIERS.has(surface.permission_tier), `${label}.permission_tier exceeds R1`);
   assert(surface.execution_enabled === false, `${label}.execution_enabled must remain false`);
   assertRepositoryLocator(repoRoot, surface.source_locator, `${label}.source_locator`);
@@ -107,7 +110,9 @@ function validateAgentV1(agent, { repoRoot, index }) {
   for (const key of ["display_name", "domain", "owner_label", "execution_platform"]) {
     assert(clean(agent[key]), `${label}.${key} is required`);
   }
-  assert(INTEGRATION_CLASSES.has(agent.integration_class), `${label}.integration_class is invalid`);
+  assert(LIFECYCLE_STATES.has(agent.lifecycle_state), `${label}.lifecycle_state is invalid`);
+  assert(TOPOLOGY_ROLES.has(agent.topology_role), `${label}.topology_role is invalid`);
+  assert(ACTION_RISKS.has(agent.action_risk), `${label}.action_risk is invalid`);
   assert(ADOPTION_STATES.has(agent.adoption_state), `${label}.adoption_state is invalid`);
   assert(READ_ONLY_PERMISSION_TIERS.has(agent.permission_tier), `${label}.permission_tier exceeds R1`);
   assert(agent.execution_enabled === false, `${label}.execution_enabled must remain false`);
@@ -126,9 +131,12 @@ function validateAgentV1(agent, { repoRoot, index }) {
   }
 
   assert(Array.isArray(agent.resource_locks), `${label}.resource_locks must be an array`);
+  const declaredLockKeys = new Set();
   for (const [lockIndex, lock] of agent.resource_locks.entries()) {
     assertPlainObject(lock, `${label}.resource_locks[${lockIndex}]`);
     assert(clean(lock.key), `${label}.resource_locks[${lockIndex}].key is required`);
+    assert(!declaredLockKeys.has(lock.key), `${label} has duplicate resource lock declaration: ${lock.key}`);
+    declaredLockKeys.add(lock.key);
     assert(["read", "write"].includes(lock.mode), `${label}.resource_locks[${lockIndex}].mode is invalid`);
     assert(lock.mode !== "write", `${label} requests a write lock in the read-only foundation`);
   }
@@ -140,7 +148,6 @@ function validateAgentV1(agent, { repoRoot, index }) {
   assert(clean(agent.evidence.retention_class), `${label}.evidence.retention_class is required`);
   assert(agent.evidence.direct_readback_required === true, `${label} must require direct readback`);
   assertPlainObject(agent.ruflo, `${label}.ruflo`);
-  assert(["root", "coordinator", "worker", "reviewer", "held"].includes(agent.ruflo.topology_role), `${label}.ruflo.topology_role is invalid`);
   assert(
     new RegExp(`^grookai/${agent.domain.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/${agent.agent_key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`).test(agent.ruflo.memory_namespace),
     `${label}.ruflo.memory_namespace must match its domain and agent_key`,
@@ -150,8 +157,14 @@ function validateAgentV1(agent, { repoRoot, index }) {
     assert(agent.boundaries[boundary] === false, `${label}.boundaries.${boundary} must remain false`);
   }
 
-  if (agent.adoption_state === "unregistered" || agent.adoption_state === "held") {
+  if (agent.lifecycle_state !== "registered" || agent.adoption_state === "held") {
     assert(agent.execution_enabled === false, `${label} held or unregistered agent cannot execute`);
+  }
+  if (agent.lifecycle_state === "unregistered") {
+    assert(["not_adopted", "held"].includes(agent.adoption_state), `${label} unregistered lifecycle requires not_adopted or held adoption`);
+  }
+  if (agent.lifecycle_state === "retired") {
+    assert(agent.adoption_state === "held", `${label} retired lifecycle must remain held`);
   }
 }
 
@@ -182,7 +195,9 @@ export function validateRegistryV1(registry, { repoRoot = process.cwd() } = {}) 
     } catch {
       throw new Error(`${label}.pattern is not a valid regular expression`);
     }
-    assert(INTEGRATION_CLASSES.has(rule.integration_class), `${label}.integration_class is invalid`);
+    assert(LIFECYCLE_STATES.has(rule.lifecycle_state), `${label}.lifecycle_state is invalid`);
+    assert(TOPOLOGY_ROLES.has(rule.topology_role), `${label}.topology_role is invalid`);
+    assert(ACTION_RISKS.has(rule.action_risk), `${label}.action_risk is invalid`);
     assert(READ_ONLY_PERMISSION_TIERS.has(rule.permission_tier), `${label}.permission_tier exceeds R1`);
   }
 
@@ -211,15 +226,14 @@ export function validateRegistryV1(registry, { repoRoot = process.cwd() } = {}) 
 
   assert(Array.isArray(registry.agents) && registry.agents.length > 0, "agents must not be empty");
   const agentKeys = new Set();
-  const writeLockOwners = new Map();
+  const declaredWriteLockKeys = new Set();
   registry.agents.forEach((agent, index) => {
     validateAgentV1(agent, { repoRoot, index });
     assert(!agentKeys.has(agent.agent_key), `Duplicate agent_key: ${agent.agent_key}`);
     agentKeys.add(agent.agent_key);
     for (const lock of agent.resource_locks) {
       if (lock.mode !== "write") continue;
-      assert(!writeLockOwners.has(lock.key), `Duplicate write lock: ${lock.key}`);
-      writeLockOwners.set(lock.key, agent.agent_key);
+      declaredWriteLockKeys.add(lock.key);
     }
   });
 
@@ -227,11 +241,11 @@ export function validateRegistryV1(registry, { repoRoot = process.cwd() } = {}) 
     schema_version: registry.schema_version,
     mode: registry.mode,
     agent_count: registry.agents.length,
-    registered_agent_count: registry.agents.filter((agent) => agent.integration_class === "A").length,
+    registered_agent_count: registry.agents.filter((agent) => agent.lifecycle_state === "registered").length,
     non_executable_agent_count: registry.agents.filter((agent) => agent.execution_enabled === false).length,
     host_lane_count: registry.host_lanes.length,
     protected_root_count: registry.protected_roots.length,
-    write_lock_count: writeLockOwners.size,
+    write_lock_count: declaredWriteLockKeys.size,
     boundaries: { ...registry.boundaries },
   };
 }

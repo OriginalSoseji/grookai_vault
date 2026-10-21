@@ -11,7 +11,9 @@
       "agent_key": "catalog-set-outcome-v1",
       "display_name": "Catalog Set Outcome",
       "domain": "catalog",
-      "integration_class": "A",
+      "lifecycle_state": "registered",
+      "topology_role": "operations_agent",
+      "action_risk": "external_write",
       "adoption_state": "observed",
       "permission_tier": "R0",
       "schedule_kind": "event",
@@ -30,7 +32,9 @@
       "agent_key": "universal-catalog-discovery-v1",
       "display_name": "Universal Catalog Discovery",
       "domain": "catalog",
-      "integration_class": "A",
+      "lifecycle_state": "registered",
+      "topology_role": "operations_agent",
+      "action_risk": "read_only",
       "adoption_state": "observed",
       "permission_tier": "R0",
       "schedule_kind": "cron",
@@ -73,5 +77,5 @@
     "external_actions": false,
     "cleanup": false
   },
-  "fingerprint_sha256": "3c288f574dd1d3ab1d61e8409fa2f4137ec50f61b6fafb2396b5e296377924ec"
+  "fingerprint_sha256": "08ea017687fd843a6ba402a377a6cd3f918efd2e3ca591090c38706e265997e9"
 }

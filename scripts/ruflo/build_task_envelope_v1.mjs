@@ -149,7 +149,9 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot }) {
     parent_goal: spec.parent_goal,
     agent: {
       agent_key: agent.agent_key,
-      integration_class: agent.integration_class,
+      lifecycle_state: agent.lifecycle_state,
+      topology_role: agent.topology_role,
+      action_risk: agent.action_risk,
       permission_tier: "R0",
       memory_namespace: `${agent.ruflo.memory_namespace}/${spec.task_id}/${spec.repository.commit_sha}`,
     },

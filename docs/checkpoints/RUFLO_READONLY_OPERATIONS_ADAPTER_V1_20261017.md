@@ -6,7 +6,7 @@
 
 Pull-request step 2 from the all-agents plan now has an R0-only implementation
 candidate. Its core implementation is commit
-`7db02d998ac7b22882921275ddcb930503626070` on
+`bdafab1ad9158590a6894f206e65deaece3571ad` on
 `feat/ruflo-readonly-operations-adapter-v1`, stacked on the registry foundation.
 It does not connect to Supabase, call an Operations RPC, contact Ruflo, execute
 an agent, dispatch a workflow, write production state, or clean a worktree.
@@ -17,7 +17,9 @@ an agent, dispatch a workflow, write production state, or clean a worktree.
 local JSON export of `founder_operations_agent_health_v1`. It reconciles every
 row to `config/ruflo/agent_registry_v1.json`, copies only allowlisted health and
 evidence-reference fields, emits stable JSON, and computes a deterministic
-SHA-256 fingerprint.
+SHA-256 fingerprint. The read model carries lifecycle state, topology role, and
+action risk independently, so a registered external writer remains visibly
+high-risk even in an R0 observation.
 
 The adapter fails closed on:
 
@@ -45,6 +47,8 @@ The emitted envelope is always `validated` but `not_started`. Its permission is
 R0 and its execution, workflow-dispatch, production-write, external-action,
 cleanup, and cross-worktree-write boundaries are all false. The format contains
 no command, shell, tool-call, workflow-dispatch, or agent-execution payload.
+Its agent identity also binds the independent lifecycle, topology-role, and
+action-risk values from the registry.
 
 ## Commands
 
@@ -68,7 +72,7 @@ core implementation commit. This is synthetic contract evidence, not a live
 production health readback.
 
 - New adapter/envelope contracts: 10 of 10 passed.
-- Combined Ruflo registry, pinning, adapter, and envelope contracts: 22 of 22
+- Combined Ruflo registry, pinning, adapter, and envelope contracts: 23 of 23
   passed.
 - Secret-packaging guard: passed.
 - `git diff --check`: passed before the evidence/documentation commit.
