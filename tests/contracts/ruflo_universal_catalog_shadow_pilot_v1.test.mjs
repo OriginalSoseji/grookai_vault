@@ -245,6 +245,22 @@ test("pilot rejects discovery evidence whose executed database mode is not read-
   }
 });
 
+test("pilot rejects substitution of the frozen pre-pilot baseline", () => {
+  const temporary = mkdtempSync(path.join(os.tmpdir(), "ruflo-catalog-baseline-"));
+  const substitutePath = path.join(temporary, "prepilot_baseline_runs_v1.json");
+  try {
+    const substitute = JSON.parse(readFileSync(prepilotBaselinePath, "utf8"));
+    substitute.runs = substitute.runs.slice(1);
+    writeFileSync(substitutePath, `${JSON.stringify(substitute, null, 2)}\n`);
+    assert.throws(
+      () => readPrepilotBaselineV1({ baselinePath: substitutePath }),
+      /does not match the frozen audit artifact/,
+    );
+  } finally {
+    rmSync(temporary, { recursive: true, force: true });
+  }
+});
+
 test("pilot rejects prior observations that do not match frozen envelope inputs", () => {
   const temporary = mkdtempSync(path.join(os.tmpdir(), "ruflo-catalog-prior-"));
   const locator = "prior_observation.json";

@@ -12,6 +12,7 @@ export const REQUIRED_QUALIFYING_CYCLES = 7;
 
 const CAPTURE_VERSION = "UNIVERSAL_CATALOG_DISCOVERY_CAPTURE_V1";
 const DISCOVERY_VERSION = "UNIVERSAL_CATALOG_DISCOVERY_V1";
+const PREPILOT_BASELINE_SHA256 = "5dcd24cba35b715558d9bab51569f29dfa92154c17288ce851ec589531d76273";
 const REQUIRED_EVIDENCE_FILES = ["summary.json", "source_failures.json", "run_plan.json"];
 const CAPTURE_INPUT_FILES = ["artifact_hashes.json", "run_metadata.json", ...REQUIRED_EVIDENCE_FILES];
 const OBSERVATION_BOUNDARY_KEYS = [
@@ -162,7 +163,9 @@ export function readDiscoveryEvidenceV1({ evidenceDir }) {
 }
 
 export function readPrepilotBaselineV1({ baselinePath }) {
-  const baseline = readJson(baselinePath);
+  const baselineBytes = readFileSync(baselinePath);
+  assert(sha256(baselineBytes) === PREPILOT_BASELINE_SHA256, "prepilot baseline does not match the frozen audit artifact");
+  const baseline = JSON.parse(baselineBytes.toString("utf8"));
   assertObject(baseline, "prepilot_baseline");
   const allowed = new Set(["baseline_kind", "counts_toward_ruflo_pilot_minimum", "captured_at", "runs"]);
   for (const key of Object.keys(baseline)) assert(allowed.has(key), `prepilot_baseline.${key} is not allowed`);
