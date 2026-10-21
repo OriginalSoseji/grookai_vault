@@ -12,7 +12,7 @@ import {
 export const OPERATIONS_READ_MODEL_VERSION = "RUFLO_OPERATIONS_READ_MODEL_V1";
 export const OPERATIONS_SNAPSHOT_VERSION = "OPERATIONS_AGENT_HEALTH_SNAPSHOT_V1";
 
-const HEALTH_VALUES = new Set(["healthy", "running", "degraded", "failed", "stale", "paused", "unknown"]);
+const HEALTH_VALUES = new Set(["healthy", "running", "failed", "stale", "paused", "unknown"]);
 const RUN_STATUS_VALUES = new Set(["queued", "running", "succeeded", "failed", "cancelled"]);
 const PERIODIC_SCHEDULES = new Set(["cron", "timer", "continuous"]);
 const TOP_LEVEL_KEYS = new Set(["snapshot_version", "captured_at", "source", "agents"]);

@@ -105,6 +105,10 @@ test("read adapter rejects unknown agents", () => {
   const candidate = clone(snapshot);
   candidate.agents[0].agent_key = "unknown-agent-v1";
   assert.throws(() => buildOperationsReadModelV1({ snapshot: candidate, registry }), /not registered/);
+
+  const impossibleHealth = clone(snapshot);
+  impossibleHealth.agents[0].health = "degraded";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: impossibleHealth, registry }), /health is invalid/);
 });
 
 test("read adapter rejects secret-shaped and executable fields", () => {
@@ -231,6 +235,8 @@ test("adapter source has no network, database, dispatch, agent execution, or des
 test("runtime protection fetches the immutable commits verified by task envelopes", () => {
   const workflow = fs.readFileSync(path.join(repoRoot, ".github/workflows/contracts-runtime-protection.yml"), "utf8");
   assert.match(workflow, /- name: Checkout\s+uses: actions\/checkout@v4\s+with:\s+# Ruflo envelopes[^\n]*\s+fetch-depth: 0/);
+  assert.equal(workflow.match(/'scripts\/ruflo\/\*\*'/g)?.length, 2);
+  assert.equal(workflow.match(/'config\/ruflo\/\*\*'/g)?.length, 2);
 });
 
 test("checked-in sample artifacts reproduce and match their manifest", () => {
