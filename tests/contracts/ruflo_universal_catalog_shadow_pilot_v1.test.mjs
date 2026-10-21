@@ -7,11 +7,12 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import {
-  buildUniversalCatalogPilotLedgerV1,
+  buildUniversalCatalogPilotLedgerV1 as buildUniversalCatalogPilotLedgerV1WithBaseline,
   buildUniversalCatalogShadowObservationV1,
   defaultUniversalCatalogPilotOutputDirV1,
   readDiscoveryEvidenceV1,
   readEnvelopeBoundJsonInputV1,
+  readPrepilotBaselineV1,
   validateUniversalCatalogPilotOutputBindingV1,
 } from "../../scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs";
 import { stableJsonV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
@@ -24,6 +25,11 @@ const fourthEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_ca
 const fifthEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39502200235");
 const sixthEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39546617897");
 const seventhEvidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39595599455");
+const prepilotBaselinePath = path.join(
+  repoRoot,
+  "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/prepilot_baseline_runs_v1.json",
+);
+const prepilotBaseline = readPrepilotBaselineV1({ baselinePath: prepilotBaselinePath });
 
 function clone(value) {
   return structuredClone(value);
@@ -36,6 +42,10 @@ function sha256(value) {
 function refingerprint(observation) {
   const { fingerprint_sha256: ignored, ...core } = observation;
   return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
+}
+
+function buildUniversalCatalogPilotLedgerV1(observations) {
+  return buildUniversalCatalogPilotLedgerV1WithBaseline(observations, { prepilotBaseline });
 }
 
 function createHealthyEvidenceFixture() {
@@ -92,6 +102,7 @@ test("pilot verifies the captured scheduled discovery evidence", () => {
   assert.equal(evidence.metadata.event, "schedule");
   assert.equal(evidence.summary.actionable_gap_count, 7);
   assert.equal(evidence.sourceFailures.length, 1);
+  assert.equal(evidence.summary.database_mode, "read-only transaction");
   assert.equal(evidence.runPlan.boundaries.database_transaction, "read_only");
 });
 
@@ -213,6 +224,27 @@ test("pilot rejects artifact hash drift", () => {
   }
 });
 
+test("pilot rejects discovery evidence whose executed database mode is not read-only", () => {
+  const temporary = mkdtempSync(path.join(os.tmpdir(), "ruflo-catalog-database-mode-"));
+  try {
+    cpSync(evidenceDir, temporary, { recursive: true });
+    const summaryPath = path.join(temporary, "summary.json");
+    const hashesPath = path.join(temporary, "artifact_hashes.json");
+    const summary = JSON.parse(readFileSync(summaryPath, "utf8"));
+    summary.database_mode = "read-write transaction";
+    writeFileSync(summaryPath, `${JSON.stringify(summary, null, 2)}\n`);
+    const hashes = JSON.parse(readFileSync(hashesPath, "utf8"));
+    hashes["summary.json"] = sha256(readFileSync(summaryPath));
+    writeFileSync(hashesPath, `${JSON.stringify(hashes, null, 2)}\n`);
+    assert.throws(
+      () => readDiscoveryEvidenceV1({ evidenceDir: temporary }),
+      /database_mode must be read-only transaction/,
+    );
+  } finally {
+    rmSync(temporary, { recursive: true, force: true });
+  }
+});
+
 test("pilot rejects prior observations that do not match frozen envelope inputs", () => {
   const temporary = mkdtempSync(path.join(os.tmpdir(), "ruflo-catalog-prior-"));
   const locator = "prior_observation.json";
@@ -285,8 +317,8 @@ test("pilot ledger requires seven distinct qualifying cycles", (t) => {
   const observations = Array.from({ length: 7 }, (_, index) => {
     const observation = clone(baseObservation);
     observation.cycle_number = index + 1;
-    observation.source_run.run_id += index;
-    observation.source_run.artifact_id += index;
+    observation.source_run.run_id = 50000000000 + index;
+    observation.source_run.artifact_id = 60000000000 + index;
     observation.source_run.artifact_name = `universal-catalog-discovery-${observation.source_run.run_id}`;
     observation.source_run.workflow_url = `https://github.com/OriginalSoseji/grookai_vault/actions/runs/${observation.source_run.run_id}`;
     observation.source_run.completed_at = new Date(Date.parse(baseObservation.source_run.completed_at) + index * 1000).toISOString();
@@ -298,6 +330,21 @@ test("pilot ledger requires seven distinct qualifying cycles", (t) => {
   assert.equal(complete.readiness, "minimum_observation_met");
   assert.equal(complete.qualifying_cycle_count, 7);
   assert.equal(complete.authority.execution_enabled, false);
+  const prepilotObservation = clone(observations[0]);
+  prepilotObservation.source_run.run_id = prepilotBaseline.runs[0].run_id;
+  prepilotObservation.source_run.artifact_name = `universal-catalog-discovery-${prepilotObservation.source_run.run_id}`;
+  prepilotObservation.source_run.workflow_url = `https://github.com/OriginalSoseji/grookai_vault/actions/runs/${prepilotObservation.source_run.run_id}`;
+  const baselineExcluded = buildUniversalCatalogPilotLedgerV1([
+    refingerprint(prepilotObservation),
+    ...observations.slice(1),
+  ]);
+  assert.equal(baselineExcluded.qualifying_cycle_count, 6);
+  assert.equal(baselineExcluded.cycles[0].qualifies_toward_pilot_minimum, false);
+  assert.equal(baselineExcluded.readiness, "collecting");
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1WithBaseline(observations, { prepilotBaseline: clone(prepilotBaseline) }),
+    /must come directly from readPrepilotBaselineV1/,
+  );
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], observations[0]]), /duplicate cycle number/);
   const duplicateRun = clone(observations[1]);
   duplicateRun.source_run.run_id = observations[0].source_run.run_id;

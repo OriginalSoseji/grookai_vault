@@ -20,6 +20,7 @@ const OBSERVATION_BOUNDARY_KEYS = [
 ];
 const PROHIBITED_KEY_PATTERN = /(authorization|token|secret|password|service.?role|api.?key|cookie|command|payload|arguments?|argv|shell|workflow_dispatch|agent_execute|tool_call)/i;
 const VALIDATED_DISCOVERY_EVIDENCE = new WeakSet();
+const VALIDATED_PREPILOT_BASELINES = new WeakSet();
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -143,6 +144,7 @@ export function readDiscoveryEvidenceV1({ evidenceDir }) {
   }
   assert(summary.version === DISCOVERY_VERSION, "discovery summary version is invalid");
   assert(["completed", "degraded_source_unavailable"].includes(summary.run_status), "discovery run_status is invalid");
+  assert(summary.database_mode === "read-only transaction", "discovery summary database_mode must be read-only transaction");
   assert(Number.isInteger(summary.actionable_gap_count) && summary.actionable_gap_count >= 0, "actionable_gap_count is invalid");
   assert(Number.isInteger(summary.source_failure_count) && summary.source_failure_count >= 0, "source_failure_count is invalid");
   assert(Array.isArray(sourceFailures), "source_failures.json must contain an array");
@@ -157,6 +159,39 @@ export function readDiscoveryEvidenceV1({ evidenceDir }) {
   const evidence = deepFreeze({ metadata, artifactHashes, summary, sourceFailures, runPlan, captureInputHashes });
   VALIDATED_DISCOVERY_EVIDENCE.add(evidence);
   return evidence;
+}
+
+export function readPrepilotBaselineV1({ baselinePath }) {
+  const baseline = readJson(baselinePath);
+  assertObject(baseline, "prepilot_baseline");
+  const allowed = new Set(["baseline_kind", "counts_toward_ruflo_pilot_minimum", "captured_at", "runs"]);
+  for (const key of Object.keys(baseline)) assert(allowed.has(key), `prepilot_baseline.${key} is not allowed`);
+  assert(
+    baseline.baseline_kind === "existing_successful_scheduled_workflows",
+    "prepilot_baseline.baseline_kind is invalid",
+  );
+  assert(
+    baseline.counts_toward_ruflo_pilot_minimum === false,
+    "prepilot baseline runs must not count toward the pilot minimum",
+  );
+  const capturedAt = assertTimestamp(baseline.captured_at, "prepilot_baseline.captured_at");
+  assert(Array.isArray(baseline.runs) && baseline.runs.length > 0, "prepilot_baseline.runs must be a non-empty array");
+  const runIds = new Set();
+  for (const [index, run] of baseline.runs.entries()) {
+    assertObject(run, `prepilot_baseline.runs[${index}]`);
+    const runAllowed = new Set(["run_id", "head_sha", "created_at", "conclusion"]);
+    for (const key of Object.keys(run)) assert(runAllowed.has(key), `prepilot_baseline.runs[${index}].${key} is not allowed`);
+    assert(Number.isSafeInteger(run.run_id) && run.run_id > 0, `prepilot_baseline.runs[${index}].run_id is invalid`);
+    assert(!runIds.has(run.run_id), `duplicate prepilot baseline run: ${run.run_id}`);
+    runIds.add(run.run_id);
+    assert(/^[a-f0-9]{40}$/.test(run.head_sha), `prepilot_baseline.runs[${index}].head_sha is invalid`);
+    const createdAt = assertTimestamp(run.created_at, `prepilot_baseline.runs[${index}].created_at`);
+    assert(Date.parse(createdAt) <= Date.parse(capturedAt), `prepilot_baseline.runs[${index}] was created after baseline capture`);
+    assert(run.conclusion === "success", `prepilot_baseline.runs[${index}].conclusion is invalid`);
+  }
+  const validated = deepFreeze(baseline);
+  VALIDATED_PREPILOT_BASELINES.add(validated);
+  return validated;
 }
 
 export function buildUniversalCatalogShadowObservationV1({ envelope, evidence, cycleNumber }) {
@@ -220,8 +255,13 @@ export function buildUniversalCatalogShadowObservationV1({ envelope, evidence, c
   return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
 }
 
-export function buildUniversalCatalogPilotLedgerV1(observations) {
+export function buildUniversalCatalogPilotLedgerV1(observations, { prepilotBaseline } = {}) {
   assert(Array.isArray(observations) && observations.length > 0, "observations must be a non-empty array");
+  assert(
+    VALIDATED_PREPILOT_BASELINES.has(prepilotBaseline),
+    "prepilotBaseline must come directly from readPrepilotBaselineV1",
+  );
+  const prepilotRunIds = new Set(prepilotBaseline.runs.map((run) => run.run_id));
   const runIds = new Set();
   const artifactIds = new Set();
   const cycleNumbers = new Set();
@@ -311,7 +351,10 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
       );
     }
   });
-  const qualifying = ordered.filter((entry) => entry.outcome.qualifies_toward_pilot_minimum).length;
+  const qualifies = (entry) => (
+    entry.outcome.qualifies_toward_pilot_minimum && !prepilotRunIds.has(entry.source_run.run_id)
+  );
+  const qualifying = ordered.filter(qualifies).length;
   const core = {
     ledger_version: "RUFLO_UNIVERSAL_CATALOG_SHADOW_LEDGER_V1",
     agent_key: UNIVERSAL_CATALOG_AGENT_KEY,
@@ -325,7 +368,7 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
       source_completed_at: entry.source_run.completed_at,
       observation_fingerprint_sha256: entry.fingerprint_sha256,
       status: entry.outcome.status,
-      qualifies_toward_pilot_minimum: entry.outcome.qualifies_toward_pilot_minimum,
+      qualifies_toward_pilot_minimum: qualifies(entry),
     })),
     authority: { execution_enabled: false, promotion_eligible: false, workflow_dispatch: false },
   };
@@ -389,11 +432,24 @@ function main() {
   const evidenceDir = resolveRepoPath(repoRoot, evidenceArg, "evidence-dir");
   const envelope = readJson(resolveRepoPath(repoRoot, envelopeArg, "envelope"));
   const evidence = readDiscoveryEvidenceV1({ evidenceDir });
+  const prepilotBaseline = readPrepilotBaselineV1({
+    baselinePath: resolveRepoPath(
+      repoRoot,
+      argument(
+        "prepilot-baseline",
+        "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/prepilot_baseline_runs_v1.json",
+      ),
+      "prepilot-baseline",
+    ),
+  });
   const observation = buildUniversalCatalogShadowObservationV1({ envelope, evidence, cycleNumber });
   const priorObservations = argumentsNamed("prior-observation").map((value) => (
     readEnvelopeBoundJsonInputV1({ repoRoot, locator: value, envelope, label: "prior-observation" })
   ));
-  const ledger = buildUniversalCatalogPilotLedgerV1([...priorObservations, observation]);
+  const ledger = buildUniversalCatalogPilotLedgerV1(
+    [...priorObservations, observation],
+    { prepilotBaseline },
+  );
   const approvedRoot = path.resolve(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
   const outDir = path.resolve(repoRoot, argument("out-dir", defaultUniversalCatalogPilotOutputDirV1(cycleNumber)));
   assert(outDir === approvedRoot || outDir.startsWith(`${approvedRoot}${path.sep}`), "out-dir must remain under docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
