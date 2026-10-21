@@ -73,7 +73,10 @@ architecture debt and are outside this bounded pricing correction.
 
 Merge an exact tested commit. Run the migration dry-run and apply from that
 merged SHA, then the reviewed correction plan, rollback dry-run, apply, and
-independent readback. Start a new full-scope shadow from the same current source
-run and exact merged pricing worker. Production activation must reconcile
-snapshot rows and distinct current printings exactly before switching the
-customer-facing pointer.
+independent readback. Correction apply must receive the exact successful dry-run
+workflow run ID; the workflow re-downloads its immutable artifact and verifies
+the commit, source run, plan fingerprint, two selected updates, rollback status,
+and transaction readback before it can write. Start a new full-scope shadow from
+the same current source run and exact merged pricing worker. Production
+activation must reconcile snapshot rows and distinct current printings exactly
+before switching the customer-facing pointer.

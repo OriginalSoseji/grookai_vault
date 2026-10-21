@@ -20,6 +20,10 @@ const correctionWorker = fs.readFileSync(new URL(
   "../../scripts/audits/mtg_tcgplayer_reviewed_printing_correction_v1.mjs",
   import.meta.url,
 ), "utf8");
+const workflow = fs.readFileSync(new URL(
+  "../../.github/workflows/mtg-pricing-publication-runner.yml",
+  import.meta.url,
+), "utf8");
 
 function scopeFixture({ corrected = false } = {}) {
   return {
@@ -79,4 +83,16 @@ test("bounded writer updates only the two reviewed mapping rows", () => {
   assert.match(correctionWorker, /reviewed correction migration transaction wrapper drift/);
   assert.match(correctionWorker, /Exact \$\{APPROVAL_ENV\} acknowledgement is required/);
   assert.doesNotMatch(correctionWorker, /delete\s+from|truncate\s+/i);
+});
+
+test("workflow installs dependencies before testing and binds apply to rollback proof", () => {
+  assert.ok(
+    workflow.indexOf("name: Install operator dependencies") <
+      workflow.indexOf("name: Verify frozen repository boundary"),
+  );
+  assert.match(workflow, /expected_correction_dry_run_id:/);
+  assert.match(workflow, /gh run download "\$EXPECTED_CORRECTION_DRY_RUN_ID"/);
+  assert.match(workflow, /proof\.status !== 'rollback_verified'/);
+  assert.match(workflow, /proof\.plan\?\.plan_fingerprint !== current\.plan\?\.plan_fingerprint/);
+  assert.match(workflow, /proof\.plan\?\.selected_update_count !== 2/);
 });

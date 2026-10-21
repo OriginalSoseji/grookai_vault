@@ -13,6 +13,9 @@ contract and emits exact `mtg_printing_mapping_id` lineage with the stale generi
 assignment removed from the candidate. Use the exact merged SHA through
 `mtg-pricing-publication-runner.yml`: migration dry-run/apply, correction
 plan/dry-run/apply, then a new full shadow and guarded production publication.
+Pass the successful correction dry-run workflow run ID into correction apply;
+apply revalidates its immutable rollback artifact against the same merged SHA,
+source run, and plan fingerprint before either mapping row can change.
 Do not reuse shadow `39471419997` or production run `39486729222`.
 
 ## MTG catalog supervisor frozen ref repair — October 20, 2026
