@@ -296,6 +296,16 @@ function resolveRepoPath(repoRoot, value, label) {
   return path.resolve(repoRoot, normalized);
 }
 
+export function readEnvelopeBoundJsonInputV1({ repoRoot, locator, envelope, label = "input" }) {
+  const normalizedLocator = normalizeRepoPath(locator);
+  const inputPath = resolveRepoPath(repoRoot, normalizedLocator, label);
+  const matches = envelope.inputs.filter((entry) => entry && normalizeRepoPath(entry.locator) === normalizedLocator);
+  assert(matches.length === 1, `${label} must match exactly one frozen task-envelope input`);
+  const bytes = readFileSync(inputPath);
+  assert(matches[0].sha256 === sha256(bytes), `${label} hash does not match the frozen task-envelope input`);
+  return JSON.parse(bytes.toString("utf8"));
+}
+
 function main() {
   const repoRoot = path.resolve(argument("repo-root", process.cwd()));
   const evidenceArg = argument("evidence-dir");
@@ -308,7 +318,7 @@ function main() {
   const evidence = readDiscoveryEvidenceV1({ evidenceDir });
   const observation = buildUniversalCatalogShadowObservationV1({ envelope, evidence, cycleNumber });
   const priorObservations = argumentsNamed("prior-observation").map((value) => (
-    readJson(resolveRepoPath(repoRoot, value, "prior-observation"))
+    readEnvelopeBoundJsonInputV1({ repoRoot, locator: value, envelope, label: "prior-observation" })
   ));
   const ledger = buildUniversalCatalogPilotLedgerV1([...priorObservations, observation]);
   const approvedRoot = path.resolve(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1");

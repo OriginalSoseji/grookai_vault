@@ -107,9 +107,10 @@ envelope and its recomputed fingerprint, binds every captured evidence file to
 the envelope's frozen input hashes, emits a deterministic observation
 fingerprint, and maintains a distinct-run ledger. The default output directory
 is the requested `cycle_XX` directory. Cycle accumulation now verifies prior
-observation fingerprints, requires scheduled successful source runs, rejects
-duplicate or non-contiguous cycle numbers, and requires the caller to provide
-prior observations explicitly. Ledger validation derives qualification from
+observation fingerprints and their frozen task-envelope input hashes, requires
+scheduled successful source runs, rejects duplicate or non-contiguous cycle
+numbers, and requires the caller to provide prior observations explicitly.
+Ledger validation derives qualification from
 source-degradation signals and rejects
 fingerprint-consistent observations whose status or qualification contradicts
 those signals. The builder has no network, database, child-process,
@@ -124,8 +125,8 @@ npm run ruflo:pilot:universal-catalog:build -- --evidence-dir=<local-evidence> -
 
 ## Verification
 
-- New pilot contracts: 14 of 14 passed.
-- Combined Ruflo registry, adapter, envelope, and pilot contracts: 36 of 36
+- New pilot contracts: 15 of 15 passed.
+- Combined Ruflo registry, adapter, envelope, and pilot contracts: 37 of 37
   passed.
 - Secret-packaging guard: passed before the evidence/documentation commit.
 - `git diff --check`: passed before the evidence/documentation commit.

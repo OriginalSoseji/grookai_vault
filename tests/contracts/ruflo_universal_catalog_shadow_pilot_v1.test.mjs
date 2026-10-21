@@ -11,6 +11,7 @@ import {
   buildUniversalCatalogShadowObservationV1,
   defaultUniversalCatalogPilotOutputDirV1,
   readDiscoveryEvidenceV1,
+  readEnvelopeBoundJsonInputV1,
 } from "../../scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs";
 import { stableJsonV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
 
@@ -166,6 +167,39 @@ test("pilot rejects artifact hash drift", () => {
     cpSync(evidenceDir, temporary, { recursive: true });
     writeFileSync(path.join(temporary, "source_failures.json"), "[]\n");
     assert.throws(() => readDiscoveryEvidenceV1({ evidenceDir: temporary }), /artifact hash mismatch/);
+  } finally {
+    rmSync(temporary, { recursive: true, force: true });
+  }
+});
+
+test("pilot rejects prior observations that do not match frozen envelope inputs", () => {
+  const temporary = mkdtempSync(path.join(os.tmpdir(), "ruflo-catalog-prior-"));
+  const locator = "prior_observation.json";
+  const priorPath = path.join(temporary, locator);
+  try {
+    const original = readFileSync(path.join(
+      repoRoot,
+      "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_01/cycle_01_observation.json",
+    ));
+    writeFileSync(priorPath, original);
+    const frozenEnvelope = { inputs: [{ locator, sha256: sha256(original) }] };
+    const prior = readEnvelopeBoundJsonInputV1({
+      repoRoot: temporary,
+      locator,
+      envelope: frozenEnvelope,
+      label: "prior-observation",
+    });
+    assert.equal(prior.cycle_number, 1);
+    writeFileSync(priorPath, `${JSON.stringify({ ...prior, cycle_number: 2 })}\n`);
+    assert.throws(
+      () => readEnvelopeBoundJsonInputV1({
+        repoRoot: temporary,
+        locator,
+        envelope: frozenEnvelope,
+        label: "prior-observation",
+      }),
+      /hash does not match/,
+    );
   } finally {
     rmSync(temporary, { recursive: true, force: true });
   }
