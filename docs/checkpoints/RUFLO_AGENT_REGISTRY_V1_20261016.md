@@ -12,7 +12,7 @@ workflow, query a production service, modify another worktree, or perform any
 cleanup.
 
 The current source foundation is commit
-`e7d98ee2fd0abb6cda8f5c2dde9df7877b7c1d5a` on
+`7fc0d4049214a9e88db542b48fafe79438e6bc55` on
 `feat/ruflo-agent-registry-v1`. The checked-in inventory was refreshed from
 that exact commit on October 21; later documentation commits do not change the
 registry or inventory implementation recorded by the snapshot.
@@ -30,6 +30,8 @@ It records:
 - eleven policy-defined backlog owners held as non-executable;
 - independent lifecycle-state, topology-role, and action-risk dimensions, so a
   registered writer remains registered without losing its external-write risk;
+- heartbeat and staleness policy reconciled from every registered Operations
+  Agent Protocol builder;
 - four checked-in host schedule lanes;
 - 21 explicitly protected roots, plus fail-closed dynamic protection for every
   newly discovered worktree;
@@ -40,9 +42,10 @@ It records:
 The validator rejects duplicate agent keys, duplicate resource-lock
 declarations within one record, sensitive field names, absolute or traversing
 repository locators, missing contracts, execution enablement, permissions above
-R1, worktree write assignments, and write locks. Shared resource-lock keys
-across agent records are valid because they identify runtime contention; the
-future lease manager must enforce exclusive writer ownership.
+R1, worktree write assignments, write locks, and every undeclared object field.
+Shared resource-lock keys across agent records are valid because they identify
+runtime contention; the future lease manager must enforce exclusive writer
+ownership.
 
 ## Read-Only Inventory
 
@@ -57,8 +60,8 @@ The October 21 refresh under `docs/audits/ruflo_agent_registry_v1/` records:
 |---|---:|
 | Registry agents | 15 |
 | Registered operations agents | 4 |
-| Classified automation surfaces | 168 |
-| Backend automation surfaces | 52 |
+| Classified automation surfaces | 728 |
+| Backend automation surfaces | 615 |
 | Script workers | 46 |
 | GitHub workflows | 66 |
 | Host lanes | 4 |
@@ -70,6 +73,11 @@ All 36 discovered worktrees are recorded as protected with
 `write_allowed: false` and `cleanup_authorized: false`. A worktree absent from
 the explicit root list receives `dynamic_fail_closed_discovery`, not a weaker
 policy.
+
+Every tracked backend `.mjs` module is conservatively inventoried so runners,
+apply entrypoints, and promotion entrypoints cannot escape through a filename
+allowlist. Host scheduling metadata is merged into its matching tracked source;
+all 728 surface locators are unique.
 
 The snapshot does not claim that a GitHub schedule, Windows task, systemd
 timer, or production runtime is installed, enabled, healthy, or authorized.
