@@ -47,9 +47,10 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
   or unavailable transport failure may be contained only when the same product's
   parsed TCGdex checklist is nonempty and its row count exactly matches TCGdex's
   declared total. For official expansion products only, it may also be contained
-  when the official enumeration exactly matches its declared hit count, contains
-  unique card IDs and one exact image set code, and a same-code Limitless
-  checklist has unique rows exactly matching its declared numbered count. That
+  only when TCGdex evidence is absent, the official enumeration exactly matches
+  its declared hit count, contains unique card IDs and one exact image set code,
+  and a same-code Limitless checklist has unique rows exactly matching its
+  declared numbered count. Present but partial TCGdex evidence remains fatal. That
   second shape supplies an official `full_set` count but remains ineligible for
   unattended writes because it lacks the writer's TCGdex authority. Neither
   path is the frozen-candidate fallback or makes access denial globally optional.

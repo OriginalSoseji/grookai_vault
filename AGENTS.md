@@ -21,7 +21,8 @@ Also read
 Bulbapedia is independent corroboration for the Japanese product lane. Its typed
 access denial or outage may be contained behind a complete TCGdex checklist, or
 for official expansion products only, behind an exact official product
-enumeration plus an exact same-code Limitless numbered checklist. The latter
+enumeration plus an exact same-code Limitless numbered checklist when TCGdex
+evidence is absent. Present but partial TCGdex evidence remains fatal. The latter
 evidence shape remains ineligible for unattended writes. HTTP 401/403 remains
 globally strict; missing/partial evidence, parser failures, mixed set codes, and
 count disagreements remain fatal. Do not dispatch discovery, write catalog

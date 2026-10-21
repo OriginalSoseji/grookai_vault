@@ -29,6 +29,8 @@ Bulbapedia remains requested as independent corroboration. Its typed
 `SOURCE_ACCESS_DENIED` or `SOURCE_UNAVAILABLE` response may be contained for an
 official Japanese **expansion** only when all of the following are true:
 
+- TCGdex evidence is absent; any present but incomplete TCGdex checklist is
+  fatal and cannot enter this fallback;
 - the official product card array is nonempty and exactly equals `hitCnt`;
 - all official card IDs are numeric and unique;
 - every official card image path carries the exact discovered set code;

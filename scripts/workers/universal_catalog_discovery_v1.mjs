@@ -944,6 +944,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
                   error,
                   productType,
                   sourceSetCode,
+                  tcgdexChecklist: tcgdexSet,
                   officialChecklist: cardList,
                   numberedChecklist: checklist,
                 });

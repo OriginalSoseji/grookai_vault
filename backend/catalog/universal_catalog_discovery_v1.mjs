@@ -49,12 +49,13 @@ export function canUseCompleteOfficialJapaneseExpansionChecklistV1({
   error,
   productType,
   sourceSetCode,
+  tcgdexChecklist,
   officialChecklist,
   numberedChecklist,
 }) {
   const failureClass = error?.catalogSourceFailureClass;
   if (!["SOURCE_ACCESS_DENIED", "SOURCE_UNAVAILABLE"].includes(failureClass) ||
-      productType !== "expansion") {
+      productType !== "expansion" || tcgdexChecklist != null) {
     return false;
   }
   const expectedCode = String(sourceSetCode ?? "").trim().toLocaleLowerCase("und");

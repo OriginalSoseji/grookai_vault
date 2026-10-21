@@ -153,6 +153,7 @@ test("Japanese discovery uses complete official expansion evidence only with an 
     error,
     productType: "expansion",
     sourceSetCode: "M6a",
+    tcgdexChecklist: null,
     officialChecklist,
     numberedChecklist,
   };
@@ -164,6 +165,13 @@ test("Japanese discovery uses complete official expansion evidence only with an 
   assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
     ...evidence,
     error: { catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE" },
+  }), false);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    tcgdexChecklist: {
+      cardCount: { total: 3 },
+      cards: [{ id: "M6a-001" }, { id: "M6a-002" }],
+    },
   }), false);
   assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
     ...evidence,
