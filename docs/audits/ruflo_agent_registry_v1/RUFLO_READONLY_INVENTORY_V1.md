@@ -1,8 +1,8 @@
 # Ruflo Read-Only Inventory V1
 
-- Generated: `2026-10-21T09:03:00-06:00`
-- Source commit: `7fc0d4049214a9e88db542b48fafe79438e6bc55`
-- Inventory fingerprint: `1a28f52962f2d52e4a19a0e389082d28d837242482462a12a76525f56731e07f`
+- Generated: `2026-10-21T09:10:05-06:00`
+- Source commit: `3758d51cb0a5b7334a3b2be3b91c07129bbcf891`
+- Inventory fingerprint: `512c322ae51561a412a972921f9aed714f9830dd654d9aa30948ede0fb917210`
 
 ## Boundary
 
