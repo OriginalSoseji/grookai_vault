@@ -106,7 +106,10 @@ artifact hashes, reconciles summary and failure counts, validates the R0 task
 envelope, emits a deterministic observation fingerprint, and maintains a
 distinct-run ledger. Cycle accumulation now verifies prior observation
 fingerprints, rejects duplicate or non-contiguous cycle numbers, and requires
-the caller to provide prior observations explicitly. The builder has no network, database, child-process,
+the caller to provide prior observations explicitly. Ledger validation derives
+qualification from source-degradation signals and rejects
+fingerprint-consistent observations whose status or qualification contradicts
+those signals. The builder has no network, database, child-process,
 workflow-dispatch, agent-execution, or destructive Git path.
 
 Commands from a trusted checkout:

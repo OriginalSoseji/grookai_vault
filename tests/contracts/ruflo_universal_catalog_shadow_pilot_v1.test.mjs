@@ -11,6 +11,7 @@ import {
   buildUniversalCatalogShadowObservationV1,
   readDiscoveryEvidenceV1,
 } from "../../scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs";
+import { stableJsonV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const evidenceDir = path.join(repoRoot, "tests/fixtures/ruflo/universal_catalog_run_39334612376");
@@ -27,6 +28,11 @@ function clone(value) {
 
 function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
+}
+
+function refingerprint(observation) {
+  const { fingerprint_sha256: ignored, ...core } = observation;
+  return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
 }
 
 function envelope() {
@@ -197,6 +203,22 @@ test("pilot ledger requires seven distinct qualifying cycles", () => {
   const tampered = clone(observations[0]);
   tampered.findings.actionable_gap_count += 1;
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([tampered]), /fingerprint mismatch/);
+  const heldButQualifying = clone(observations[0]);
+  heldButQualifying.outcome.status = "held";
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(heldButQualifying)]),
+    /status conflicts with source degradation/,
+  );
+  const degradedButQualifying = clone(observations[0]);
+  degradedButQualifying.source_run.discovery_status = "degraded_source_unavailable";
+  degradedButQualifying.findings.attention_class = "source_degraded";
+  degradedButQualifying.findings.source_failure_count = 1;
+  degradedButQualifying.findings.source_failure_classes = ["source_access_denied"];
+  degradedButQualifying.outcome.status = "held";
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(degradedButQualifying)]),
+    /qualification conflicts with source degradation/,
+  );
 });
 
 test("pilot source has no network, dispatch, execution, database, or destructive Git path", () => {

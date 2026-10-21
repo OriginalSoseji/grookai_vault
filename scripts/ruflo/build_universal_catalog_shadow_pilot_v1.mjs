@@ -196,6 +196,37 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
     const { fingerprint_sha256: fingerprint, ...core } = observation;
     assert(/^[a-f0-9]{64}$/.test(fingerprint), "ledger observation fingerprint is invalid");
     assert(fingerprint === sha256(stableJsonV1(core)), `ledger observation fingerprint mismatch: cycle ${observation.cycle_number}`);
+    assertObject(observation.source_run, "ledger observation source_run");
+    assertObject(observation.findings, "ledger observation findings");
+    assertObject(observation.outcome, "ledger observation outcome");
+    assert(
+      ["completed", "degraded_source_unavailable"].includes(observation.source_run.discovery_status),
+      "ledger observation discovery status is invalid",
+    );
+    assert(
+      ["source_degraded", "catalog_gaps_observed", "no_actionable_gaps"].includes(observation.findings.attention_class),
+      "ledger observation attention class is invalid",
+    );
+    assert(
+      Number.isInteger(observation.findings.source_failure_count) && observation.findings.source_failure_count >= 0,
+      "ledger observation source failure count is invalid",
+    );
+    assert(Array.isArray(observation.findings.source_failure_classes), "ledger observation source failure classes are invalid");
+    const sourceDegraded = observation.source_run.discovery_status === "degraded_source_unavailable"
+      || observation.findings.source_failure_count > 0
+      || observation.findings.source_failure_classes.length > 0;
+    assert(
+      (observation.findings.attention_class === "source_degraded") === sourceDegraded,
+      "ledger observation source degradation signals conflict",
+    );
+    assert(
+      observation.outcome.status === (sourceDegraded ? "held" : "observed"),
+      "ledger observation status conflicts with source degradation",
+    );
+    assert(
+      observation.outcome.qualifies_toward_pilot_minimum === !sourceDegraded,
+      "ledger observation qualification conflicts with source degradation",
+    );
     assert(observation.outcome?.promotion_eligible === false, "ledger observation cannot grant promotion authority");
     assert(observation.outcome?.dispatch_eligible === false, "ledger observation cannot grant dispatch authority");
     assertObject(observation.boundaries, "ledger observation boundaries");
