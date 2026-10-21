@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { spawn } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -10,6 +11,7 @@ import {
 } from '../../backend/operations/operations_control_plane_v1.mjs';
 import {
   buildTcgplayerPricingCompletionAgentV1,
+  buildTcgplayerIdentityProductQueueV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
 
@@ -97,6 +99,14 @@ async function readJsonl(filePath) {
   return value.split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line));
 }
 
+function jsonl(rows) {
+  return rows.length ? `${rows.map((row) => JSON.stringify(row)).join('\n')}\n` : '';
+}
+
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
 async function heartbeat({ credentials, agent, runKey, status, summary }) {
   return callOperationsRpcV1({
     ...credentials,
@@ -163,15 +173,60 @@ async function main() {
       ...exactPlanSummary,
       candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
     };
-    const summary = summarizeTcgplayerPricingCompletionRunV1(report, { exactPlan });
+    const identityGaps = await readJsonl(
+      path.join(backlogRoot, 'latest_identity_mapping_gaps.jsonl'),
+    );
+    const identityProductQueue = buildTcgplayerIdentityProductQueueV1(identityGaps);
+    const mtgIdentityQueue = identityProductQueue.filter((row) =>
+      row.source_category_id === 1);
+    const pokemonIdentityQueue = identityProductQueue.filter((row) =>
+      row.source_category_id === 3);
+    const identityProductQueueJsonl = jsonl(identityProductQueue);
+    const mtgIdentityQueueJsonl = jsonl(mtgIdentityQueue);
+    const pokemonIdentityQueueJsonl = jsonl(pokemonIdentityQueue);
+    await Promise.all([
+      fs.writeFile(
+        path.join(args.outDir, 'identity_product_queue.jsonl'),
+        identityProductQueueJsonl,
+      ),
+      fs.writeFile(
+        path.join(args.outDir, 'mtg_identity_product_queue.jsonl'),
+        mtgIdentityQueueJsonl,
+      ),
+      fs.writeFile(
+        path.join(args.outDir, 'pokemon_identity_product_queue.jsonl'),
+        pokemonIdentityQueueJsonl,
+      ),
+    ]);
+    const summary = summarizeTcgplayerPricingCompletionRunV1(report, {
+      exactPlan,
+      identityProductQueue,
+    });
     const receipt = {
-      schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V1',
+      schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V2',
       observed_at: new Date().toISOString(),
       run_key: args.runKey,
       agent,
       summary,
       backlog_artifact_root: path.relative(args.outDir, backlogRoot).replace(/\\/g, '/'),
       exact_mapping_plan_artifact_root: path.relative(args.outDir, exactPlanDir).replace(/\\/g, '/'),
+      identity_product_queue_artifacts: {
+        combined: {
+          path: 'identity_product_queue.jsonl',
+          rows: identityProductQueue.length,
+          sha256: sha256(identityProductQueueJsonl),
+        },
+        mtg: {
+          path: 'mtg_identity_product_queue.jsonl',
+          rows: mtgIdentityQueue.length,
+          sha256: sha256(mtgIdentityQueueJsonl),
+        },
+        pokemon: {
+          path: 'pokemon_identity_product_queue.jsonl',
+          rows: pokemonIdentityQueue.length,
+          sha256: sha256(pokemonIdentityQueueJsonl),
+        },
+      },
       audit_stdout: audit.stdout.trim(),
       exact_mapping_plan_stdout: exactPlanProcess.stdout.trim(),
       boundaries: {

@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_164_CROSS_CATEGORY_COMPLETION_QUEUE.md`
+
+This checkpoint records the repair that makes the continuous pricing agent emit
+deduplicated in-scope product queues for both Magic and Pokemon instead of
+feeding the local worker only Pokemon planner holds.
+
+Decision locked there:
+
+- a pricing backlog count must retain category and product-scope meaning, and
+  advisory queue construction grants no mapping or publication authority
+
+Unresolved gate afterward:
+
+- verify the V2 hosted artifact, then move the local consumer from the legacy
+  Pokemon `blocked.jsonl` input to the category queue
+
 ### `PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`
 
 This checkpoint records the single duplicate-printing defect that blocked the
