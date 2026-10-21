@@ -108,8 +108,10 @@ the envelope's frozen input hashes, emits a deterministic observation
 fingerprint, and maintains a distinct-run ledger. The default output directory
 is the requested `cycle_XX` directory. Cycle accumulation now verifies prior
 observation fingerprints and their frozen task-envelope input hashes, requires
-scheduled successful source runs, rejects duplicate or non-contiguous cycle
-numbers, and requires the caller to provide prior observations explicitly.
+the universal-catalog shadow identity, scheduled successful source runs, and
+strictly increasing source completion times, rejects duplicate or
+non-contiguous cycle numbers, and requires the caller to provide prior
+observations explicitly.
 Ledger validation derives qualification from
 source-degradation signals and rejects
 fingerprint-consistent observations whose status or qualification contradicts

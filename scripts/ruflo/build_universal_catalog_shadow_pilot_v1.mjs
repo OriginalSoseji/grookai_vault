@@ -216,10 +216,18 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
   for (const observation of observations) {
     assertObject(observation, "ledger observation");
     assert(observation.pilot_version === UNIVERSAL_CATALOG_SHADOW_PILOT_VERSION, "ledger observation version is invalid");
+    assert(observation.agent_key === UNIVERSAL_CATALOG_AGENT_KEY, "ledger observation agent is invalid");
+    assert(observation.cycle_kind === "shadow_observation", "ledger observation cycle kind is invalid");
+    assert(
+      /^[a-f0-9]{64}$/.test(observation.task_envelope_fingerprint_sha256),
+      "ledger observation task envelope fingerprint is invalid",
+    );
     assert(Number.isSafeInteger(observation.cycle_number) && observation.cycle_number > 0, "ledger observation cycle number is invalid");
     assertObject(observation.source_run, "ledger observation source_run");
     assertObject(observation.findings, "ledger observation findings");
     assertObject(observation.outcome, "ledger observation outcome");
+    assert(Number.isSafeInteger(observation.source_run.run_id) && observation.source_run.run_id > 0, "ledger observation source run ID is invalid");
+    assertTimestamp(observation.source_run.completed_at, "ledger observation source completion time");
     assert(!cycleNumbers.has(observation.cycle_number), `duplicate cycle number: ${observation.cycle_number}`);
     cycleNumbers.add(observation.cycle_number);
     assert(!runIds.has(observation.source_run.run_id), `duplicate source run: ${observation.source_run.run_id}`);
@@ -273,6 +281,12 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
   const ordered = [...observations].sort((left, right) => left.cycle_number - right.cycle_number);
   ordered.forEach((observation, index) => {
     assert(observation.cycle_number === index + 1, `ledger cycle sequence must be contiguous from 1; found ${observation.cycle_number} at position ${index + 1}`);
+    if (index > 0) {
+      assert(
+        Date.parse(observation.source_run.completed_at) > Date.parse(ordered[index - 1].source_run.completed_at),
+        `ledger source completion time must increase strictly at cycle ${observation.cycle_number}`,
+      );
+    }
   });
   const qualifying = ordered.filter((entry) => entry.outcome.qualifies_toward_pilot_minimum).length;
   const core = {

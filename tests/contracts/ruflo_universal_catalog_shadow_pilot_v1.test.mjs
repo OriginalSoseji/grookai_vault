@@ -250,6 +250,7 @@ test("pilot ledger requires seven distinct qualifying cycles", () => {
   const observations = Array.from({ length: 7 }, (_, index) => {
     const cycleEvidence = clone(evidence);
     cycleEvidence.metadata.run_id += index;
+    cycleEvidence.metadata.completed_at = new Date(Date.parse(evidence.metadata.completed_at) + index * 1000).toISOString();
     return buildUniversalCatalogShadowObservationV1({
       envelope: envelope(evidenceDir, index + 1),
       evidence: cycleEvidence,
@@ -303,6 +304,19 @@ test("pilot ledger requires seven distinct qualifying cycles", () => {
   assert.throws(
     () => buildUniversalCatalogPilotLedgerV1([refingerprint(missingBoundaries)]),
     /boundary agent_execution must be false/,
+  );
+  const wrongIdentity = clone(observations[0]);
+  wrongIdentity.agent_key = "another-agent-v1";
+  wrongIdentity.cycle_kind = "execution";
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(wrongIdentity)]),
+    /agent is invalid/,
+  );
+  const outOfOrder = clone(observations[1]);
+  outOfOrder.source_run.completed_at = observations[0].source_run.completed_at;
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([observations[0], refingerprint(outOfOrder)]),
+    /completion time must increase strictly/,
   );
 });
 
