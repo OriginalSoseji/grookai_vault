@@ -16,12 +16,18 @@ normal production activation reconciliation. Never reuse failed production run
 ## Japanese catalog secondary-checklist resilience — October 20
 
 Read `docs/ops/UNIVERSAL_CATALOG_JAPANESE_CHECKLIST_FALLBACK_20261020.md`.
+Also read
+`docs/ops/UNIVERSAL_CATALOG_JAPANESE_OFFICIAL_EXPANSION_FALLBACK_20261021.md`.
 Bulbapedia is independent corroboration for the Japanese product lane. Its typed
-access denial or outage may be contained only behind a complete TCGdex checklist
-whose row count matches its declared total. HTTP 401/403 remains globally strict;
-missing/partial primary evidence, parser failures, and count disagreements remain
-fatal. Do not dispatch discovery, write catalog data, or count a pre-merge/manual
-run as Ruflo pilot qualification.
+access denial or outage may be contained behind a complete TCGdex checklist, or
+for official expansion products only, behind an exact official product
+enumeration plus an exact same-code Limitless numbered checklist when TCGdex
+evidence is entirely absent. Metadata-only or other partial TCGdex evidence
+remains fatal. The latter
+evidence shape remains ineligible for unattended writes. HTTP 401/403 remains
+globally strict; missing/partial evidence, parser failures, mixed set codes, and
+count disagreements remain fatal. Do not dispatch discovery, write catalog
+data, or count a pre-merge/manual run as Ruflo pilot qualification.
 
 ## MTG fresh Scryfall finish backfill — October 20
 
