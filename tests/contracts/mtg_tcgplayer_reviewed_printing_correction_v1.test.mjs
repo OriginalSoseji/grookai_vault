@@ -86,6 +86,10 @@ test("bounded writer updates only the two reviewed mapping rows", () => {
 });
 
 test("workflow installs dependencies before testing and binds apply to rollback proof", () => {
+  assert.match(
+    workflow,
+    /SUPABASE_URL: https:\/\/ycdxbpibncqcchqiihfz\.supabase\.co/,
+  );
   assert.ok(
     workflow.indexOf("name: Install operator dependencies") <
       workflow.indexOf("name: Verify frozen repository boundary"),

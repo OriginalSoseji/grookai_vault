@@ -45,6 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 355
     env:
+      SUPABASE_URL: https://ycdxbpibncqcchqiihfz.supabase.co
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       OPERATION: ${{ inputs.operation }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}
