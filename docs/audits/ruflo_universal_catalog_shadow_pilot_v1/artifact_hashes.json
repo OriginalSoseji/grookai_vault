@@ -3,9 +3,9 @@
   "source_implementation_commit": "730be7ed0f2d9643d956e19acaf18583fa27c3a0",
   "source_workflow_run_id": 39334612376,
   "source_artifact_id": 12226890562,
-  "latest_source_workflow_run_id": 39546617897,
-  "latest_source_artifact_id": 12321089943,
-  "captured_cycle_count": 6,
+  "latest_source_workflow_run_id": 39595599455,
+  "latest_source_artifact_id": 12343758487,
+  "captured_cycle_count": 7,
   "workflow_dispatched_by_ruflo": false,
   "agent_executed_by_ruflo": false,
   "files": {
@@ -51,6 +51,13 @@
     "cycle_06/task_spec_v1.json": "7cf3c2f7ccab634f6fabe391ac78f47ee040d6dd25a7e82b9d70cd7c98faaaba",
     "../ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-06-20261020.task_envelope_v1.json": "f898300be592eca19c599a434ffd93cb5bf5fd66398a9471ed7841647e2d6538",
     "cycle_06/cycle_06_observation.json": "36621f460b4a2dcaac9081bc378530c256ddbc227642988fff450e4729b08ff6",
-    "cycle_06/pilot_ledger_v1.json": "7e2c823d35a5083b95b678a8a5a0a3a03cbd0dd8f72df0a124da7de5bf9c7d79"
+    "cycle_06/pilot_ledger_v1.json": "7e2c823d35a5083b95b678a8a5a0a3a03cbd0dd8f72df0a124da7de5bf9c7d79",
+    "cycle_07/inventory/current_inventory_v1.json": "ad05685b209e24ce7db12c6a29ac7cd7ee869c2a9496cee2b8b019e093962111",
+    "cycle_07/inventory/RUFLO_READONLY_INVENTORY_V1.md": "83a3ad8ad9fad994667146a25bcb625e12506a47c67ab5a30e62526138a0f979",
+    "cycle_07/inventory/artifact_hashes.json": "6e8013b9dd6f9f6c57c41ad98765b57ca72524d8f379df3e82709b4a85fac9b7",
+    "cycle_07/task_spec_v1.json": "fe8023aa9f5f01003c3e0813a67edb4db319be268715897b405847f8277675be",
+    "../ruflo_operations_adapter_v1/universal_catalog_shadow_pilot_v1/ruflo-universal-catalog-shadow-cycle-07-20261021.task_envelope_v1.json": "98fff16d0d7703594f0771c90d6c563702f29930a4a80c472ec491a732d4e81d",
+    "cycle_07/cycle_07_observation.json": "4b7100d8d480b98491b6dcafededca6091a263788f489f400e0fce659cd5d496",
+    "cycle_07/pilot_ledger_v1.json": "4b10c84ab986fd474c9dbb9e66a67e129b2f8272bf81e619deaa4cb322b383b9"
   }
 }

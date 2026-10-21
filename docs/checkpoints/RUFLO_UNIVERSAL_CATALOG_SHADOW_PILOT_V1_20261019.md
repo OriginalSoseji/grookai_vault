@@ -2,14 +2,13 @@
 
 ## Status
 
-`CYCLES 1 THROUGH 6 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
+`CYCLES 1 THROUGH 7 OBSERVED AND HELD — STACKED FEATURE BRANCH, NOT MERGED OR ACTIVATED`
 
-The first Phase 2 Ruflo pilot now has an R0-only implementation candidate at
-core commit `730be7ed0f2d9643d956e19acaf18583fa27c3a0` on
-`feat/ruflo-universal-catalog-shadow-pilot-v1`. It is stacked on the corrected
-read-only adapter branch. The pilot did not start the discovery worker, dispatch
-a GitHub workflow, call Ruflo agent execution, reconcile an issue, or write any
-catalog, pricing, Storage, production, or external state.
+The first Phase 2 Ruflo pilot now has an R0-only implementation candidate on
+`feat/ruflo-universal-catalog-shadow-pilot-v1`. It remains stacked on the
+corrected read-only adapter branch. The pilot did not start the discovery
+worker, dispatch a GitHub workflow, call Ruflo agent execution, reconcile an
+issue, or write any catalog, pricing, Storage, production, or external state.
 
 ## Existing Evidence Readback
 
@@ -75,13 +74,22 @@ again remained `degraded_source_unavailable` and held. This repeat confirms a
 remaining source-evidence gap rather than a regression to the prior Storm
 Emeralda failure. No replacement run was dispatched.
 
+Cycle 7 captured scheduled run `39595599455` and artifact `12343758487`,
+completed at `2026-10-21T12:01:23.252Z`. Its source commit
+`f6205f12a58275b620cec7915a2826eba3d72ad0` predates Japanese official
+expansion fallback merge commit
+`6f43ce2e70900ca978fd7260c6bb8434787f67f0`, so it is not post-fix evidence.
+The same `30th Celebration` Bulbapedia lane returned HTTP 403 and the cycle
+correctly remained `degraded_source_unavailable` and held. No replacement run
+was dispatched.
+
 ## Pilot Progress
 
 Seven recent scheduled workflow runs already concluded successfully and are
 recorded as pre-pilot baseline evidence. They do not count retroactively toward
 the Ruflo minimum. The pilot ledger currently records:
 
-- observed cycles: 6;
+- observed cycles: 7;
 - qualifying cycles: 0;
 - required qualifying cycles: 7;
 - readiness: `collecting`.
@@ -110,19 +118,21 @@ npm run ruflo:pilot:universal-catalog:build -- --evidence-dir=<local-evidence> -
 
 ## Verification
 
-- New pilot contracts: 13 of 13 passed.
-- Combined Ruflo registry, adapter, envelope, and pilot contracts: 35 of 35
+- New pilot contracts: 14 of 14 passed.
+- Combined Ruflo registry, adapter, envelope, and pilot contracts: 36 of 36
   passed.
 - Secret-packaging guard: passed before the evidence/documentation commit.
 - `git diff --check`: passed before the evidence/documentation commit.
-- Generated inventory: 33 protected worktrees, six dirty, zero unreadable,
-  and zero execution, dispatch, write, external-action, or cleanup boundaries.
+- Generated Cycle 7 inventory: 35 protected worktrees, seven dirty, zero
+  unreadable, and zero execution, dispatch, write, external-action, or cleanup
+  boundaries.
 - The pilot worktree entered the inventory through
   `dynamic_fail_closed_discovery` with writes and cleanup disabled.
 
 ## Remaining Gate
 
-Observe the next naturally scheduled discovery artifact. Do not dispatch a
-replacement run. Degraded cycles remain held and do not advance the seven-cycle
-minimum. The pilot stays R0 even after the minimum is met; any later execution
-request requires a separate contract and PR.
+Observe the first naturally scheduled discovery artifact whose source commit
+contains main merge `6f43ce2e70900ca978fd7260c6bb8434787f67f0`. Do not dispatch a replacement
+run. Degraded cycles remain held and do not advance the seven-cycle minimum.
+The pilot stays R0 even after the minimum is met; any later execution request
+requires a separate contract and PR.
