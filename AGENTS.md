@@ -1,5 +1,18 @@
 # Grookai Agent Entry Point
 
+## MTG reviewed printing correction — October 20
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`.
+TCGPlayer product 269823 is Treasure Token number 17; its legacy number-13
+parent and child mappings caused two products to publish toward one printing and
+blocked activation. Only the frozen two-row correction may move it to the
+existing `tsnc` number-17 parent/Normal child. Apply candidate V7 first so the
+reviewed correction uses exact `mtg_printing_mapping_id` lineage and leaves the
+historical assignment ledger unchanged. Require rollback proof, exact merged
+SHA, plan-derived acknowledgement, independent readback, a new full shadow, and
+normal production activation reconciliation. Never reuse failed production run
+39486729222 or its older shadow.
+
 ## Japanese catalog secondary-checklist resilience — October 20
 
 Read `docs/ops/UNIVERSAL_CATALOG_JAPANESE_CHECKLIST_FALLBACK_20261020.md`.

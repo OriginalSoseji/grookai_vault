@@ -1,5 +1,23 @@
 # Grookai Operator Playbook V1
 
+## MTG reviewed printing correction — October 20, 2026
+
+Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`.
+Pricing production run `39486729222` rolled back safely because product 269823
+and product 269807 both resolved to the `tsnc` number-13 Normal child. Product
+269823 is explicitly `Treasure Token (017)` and must resolve to the existing
+number-17 parent and Normal child. Apply candidate V7 before the bounded mapping
+correction. V7 accepts the override only through the reviewed correction
+contract and emits exact `mtg_printing_mapping_id` lineage with the stale generic
+assignment removed from the candidate. Use the exact merged SHA through
+`mtg-pricing-publication-runner.yml`: migration dry-run/apply, correction
+plan/dry-run/apply, then a new full shadow and guarded production publication.
+Pass the successful correction dry-run workflow run ID into correction apply;
+apply revalidates its immutable rollback artifact against the same merged SHA,
+source run, and plan fingerprint before either mapping row can change.
+Do not reuse shadow `39471419997` or production run `39486729222`.
+
 ## MTG catalog supervisor frozen ref repair — October 20, 2026
 
 The MTG catalog supervisor resolves the immutable runner commit through
