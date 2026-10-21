@@ -286,6 +286,9 @@ test("pilot ledger requires seven distinct qualifying cycles", (t) => {
     const observation = clone(baseObservation);
     observation.cycle_number = index + 1;
     observation.source_run.run_id += index;
+    observation.source_run.artifact_id += index;
+    observation.source_run.artifact_name = `universal-catalog-discovery-${observation.source_run.run_id}`;
+    observation.source_run.workflow_url = `https://github.com/OriginalSoseji/grookai_vault/actions/runs/${observation.source_run.run_id}`;
     observation.source_run.completed_at = new Date(Date.parse(baseObservation.source_run.completed_at) + index * 1000).toISOString();
     return refingerprint(observation);
   });
@@ -298,7 +301,24 @@ test("pilot ledger requires seven distinct qualifying cycles", (t) => {
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], observations[0]]), /duplicate cycle number/);
   const duplicateRun = clone(observations[1]);
   duplicateRun.source_run.run_id = observations[0].source_run.run_id;
+  duplicateRun.source_run.artifact_name = observations[0].source_run.artifact_name;
+  duplicateRun.source_run.workflow_url = observations[0].source_run.workflow_url;
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], duplicateRun]), /duplicate source run/);
+  const duplicateArtifact = clone(observations[1]);
+  duplicateArtifact.source_run.artifact_id = observations[0].source_run.artifact_id;
+  assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], duplicateArtifact]), /duplicate source artifact/);
+  const mismatchedArtifactName = clone(observations[0]);
+  mismatchedArtifactName.source_run.artifact_name = "universal-catalog-discovery-1";
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(mismatchedArtifactName)]),
+    /artifact name does not match the run/,
+  );
+  const mismatchedWorkflowUrl = clone(observations[0]);
+  mismatchedWorkflowUrl.source_run.workflow_url = "https://github.com/OriginalSoseji/grookai_vault/actions/runs/1";
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(mismatchedWorkflowUrl)]),
+    /workflow URL does not match the run/,
+  );
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[1]]), /contiguous from 1/);
   const manualRun = clone(observations[0]);
   manualRun.source_run.event = "workflow_dispatch";

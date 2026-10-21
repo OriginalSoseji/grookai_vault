@@ -223,6 +223,7 @@ export function buildUniversalCatalogShadowObservationV1({ envelope, evidence, c
 export function buildUniversalCatalogPilotLedgerV1(observations) {
   assert(Array.isArray(observations) && observations.length > 0, "observations must be a non-empty array");
   const runIds = new Set();
+  const artifactIds = new Set();
   const cycleNumbers = new Set();
   for (const observation of observations) {
     assertObject(observation, "ledger observation");
@@ -238,11 +239,22 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
     assertObject(observation.findings, "ledger observation findings");
     assertObject(observation.outcome, "ledger observation outcome");
     assert(Number.isSafeInteger(observation.source_run.run_id) && observation.source_run.run_id > 0, "ledger observation source run ID is invalid");
+    assert(Number.isSafeInteger(observation.source_run.artifact_id) && observation.source_run.artifact_id > 0, "ledger observation source artifact ID is invalid");
+    assert(
+      observation.source_run.artifact_name === `universal-catalog-discovery-${observation.source_run.run_id}`,
+      "ledger observation source artifact name does not match the run",
+    );
+    assert(
+      observation.source_run.workflow_url === `https://github.com/OriginalSoseji/grookai_vault/actions/runs/${observation.source_run.run_id}`,
+      "ledger observation source workflow URL does not match the run",
+    );
     assertTimestamp(observation.source_run.completed_at, "ledger observation source completion time");
     assert(!cycleNumbers.has(observation.cycle_number), `duplicate cycle number: ${observation.cycle_number}`);
     cycleNumbers.add(observation.cycle_number);
     assert(!runIds.has(observation.source_run.run_id), `duplicate source run: ${observation.source_run.run_id}`);
     runIds.add(observation.source_run.run_id);
+    assert(!artifactIds.has(observation.source_run.artifact_id), `duplicate source artifact: ${observation.source_run.artifact_id}`);
+    artifactIds.add(observation.source_run.artifact_id);
     const { fingerprint_sha256: fingerprint, ...core } = observation;
     assert(/^[a-f0-9]{64}$/.test(fingerprint), "ledger observation fingerprint is invalid");
     assert(fingerprint === sha256(stableJsonV1(core)), `ledger observation fingerprint mismatch: cycle ${observation.cycle_number}`);
