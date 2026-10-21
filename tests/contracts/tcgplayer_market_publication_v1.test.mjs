@@ -701,8 +701,8 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_17/);
-  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v6/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_18/);
+  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v7/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
 });
@@ -722,7 +722,7 @@ test("MTG snapshot guard links the already-validated decision without a redundan
     MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION,
     /mtg_tcgplayer_finish_price_row_valid_v1\(to_jsonb\(decision_row\)\)/,
   );
-  assert.match(WORKER, /20261020062000/);
+  assert.match(WORKER, /20261020220000/);
 });
 
 test("MTG missing-number bridge requires an independent mapping to the same exact printing", () => {

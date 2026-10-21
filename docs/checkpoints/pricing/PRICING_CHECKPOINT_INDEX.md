@@ -33,6 +33,24 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`
+
+This checkpoint records the single duplicate-printing defect that blocked the
+176,836-row MTG/Pokemon pricing activation. TCGPlayer Treasure Token product
+269823 carried printed number 17 but its legacy parent and child mappings both
+pointed to `tsnc` number 13.
+
+Decision locked there:
+
+- reviewed corrections update only frozen mapping rows and enter publication
+  through exact `mtg_printing_mapping_id` lineage; historical assignments are
+  retained and cannot override the reviewed target
+
+Unresolved gate afterward:
+
+- merge, apply candidate V7 and the two-row correction, then run a new exact-
+  commit full shadow and guarded production activation
+
 ### `PRICING_CHECKPOINT_162_MTG_PARTIAL_SET_EXTENSION.md`
 
 This checkpoint records the bounded extension path for an MTG set that already

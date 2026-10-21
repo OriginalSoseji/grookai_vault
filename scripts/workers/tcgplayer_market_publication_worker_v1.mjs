@@ -53,11 +53,11 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_17";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_18";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
-const MIGRATION_VERSION = "20261020062000";
+const MIGRATION_VERSION = "20261020220000";
 const REQUIRED_PHASES = [
   "prepare_variant_assignments",
   "stage_candidates",
@@ -406,7 +406,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v6 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v7 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
@@ -493,7 +493,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v6 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v7 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}

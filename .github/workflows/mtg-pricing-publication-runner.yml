@@ -16,6 +16,9 @@ on:
           - publication_dry_run
           - publication_shadow
           - publication_production
+          - correction_plan
+          - correction_dry_run
+          - correction_apply
       expected_sha:
         description: Exact merged commit SHA that must produce the evidence
         required: true
@@ -40,7 +43,7 @@ jobs:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
       OPERATION: ${{ inputs.operation }}
       EXPECTED_SHA: ${{ inputs.expected_sha }}
-      TARGET_MIGRATION: 20260816160000_mtg_tcgplayer_market_publication_v1.sql
+      TARGET_MIGRATION: 20261020220000_mtg_reviewed_printing_correction_bridge_v1.sql
       EXPECTED_SHADOW_RUN_KEY: ${{ inputs.expected_shadow_run_key }}
 
     steps:
@@ -78,11 +81,13 @@ jobs:
           node --check backend/pricing/mtg_pricing_production_guard_v1.mjs
           node --check backend/pricing/mtg_tcgplayer_parent_mapping_policy_v1.mjs
           node --check scripts/audits/mtg_tcgplayer_parent_mapping_backfill_v1.mjs
+          node --check scripts/audits/mtg_tcgplayer_reviewed_printing_correction_v1.mjs
           node --check scripts/workers/tcgplayer_market_publication_worker_v1.mjs
           node --check backend/pricing/market_activation_coverage_v1.mjs
           node --test \
             tests/contracts/market_activation_coverage_v1.test.mjs \
             tests/contracts/mtg_tcgplayer_market_publication_v1.test.mjs \
+            tests/contracts/mtg_tcgplayer_reviewed_printing_correction_v1.test.mjs \
             tests/contracts/tcgplayer_market_publication_v1.test.mjs \
             tests/contracts/tcgplayer_market_full_rollout_guard_v1.test.mjs
           git diff --check
@@ -394,6 +399,59 @@ jobs:
           done
           test "$completed" = true
 
+      - name: Execute reviewed printing correction
+        if: ${{ startsWith(inputs.operation, 'correction_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${OPERATION#correction_}"
+          source_sync_run_id="$(node --input-type=module - <<'NODE'
+          import pg from 'pg';
+          const client = new pg.Client({
+            connectionString: process.env.SUPABASE_DB_URL,
+            ssl: { rejectUnauthorized: false },
+            connectionTimeoutMillis: 15_000,
+            statement_timeout: 120_000,
+            query_timeout: 125_000,
+          });
+          await client.connect();
+          try {
+            const result = await client.query(`select id from public.tcgcsv_source_sync_runs
+              where sync_mode='current_full_sync' and status='completed' and failed_count=0
+                and finished_at is not null
+              order by finished_at desc,created_at desc,id desc limit 1`);
+            if (result.rows.length !== 1) throw new Error('current source sync run unavailable');
+            process.stdout.write(String(result.rows[0].id));
+          } finally { await client.end(); }
+          NODE
+          )"
+          out="$RUNNER_TEMP/mtg-reviewed-correction-$mode"
+          common=(
+            "--source-sync-run-id=$source_sync_run_id"
+            "--expected-head-sha=$EXPECTED_SHA"
+          )
+          case "$mode" in
+            plan)
+              node scripts/audits/mtg_tcgplayer_reviewed_printing_correction_v1.mjs \
+                --plan "${common[@]}" "--out-dir=$out"
+              ;;
+            dry_run)
+              node scripts/audits/mtg_tcgplayer_reviewed_printing_correction_v1.mjs \
+                --dry-run "${common[@]}" "--out-dir=$out"
+              ;;
+            apply)
+              plan="$RUNNER_TEMP/mtg-reviewed-correction-frozen-plan"
+              node scripts/audits/mtg_tcgplayer_reviewed_printing_correction_v1.mjs \
+                --plan "${common[@]}" "--out-dir=$plan"
+              export MTG_REVIEWED_PRINTING_CORRECTION_APPROVAL="$(node -e \
+                "const s=require(process.argv[1]);process.stdout.write(s.plan.required_approval)" \
+                "$plan/summary.json")"
+              node scripts/audits/mtg_tcgplayer_reviewed_printing_correction_v1.mjs \
+                --apply "${common[@]}" "--out-dir=$out"
+              ;;
+            *) exit 2 ;;
+          esac
+
       - name: Upload immutable evidence
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -403,5 +461,6 @@ jobs:
             migration_dry_run.txt
             ${{ runner.temp }}/mtg-parent-map-*
             ${{ runner.temp }}/mtg-pricing-*
+            ${{ runner.temp }}/mtg-reviewed-correction-*
           if-no-files-found: warn
           retention-days: 90
