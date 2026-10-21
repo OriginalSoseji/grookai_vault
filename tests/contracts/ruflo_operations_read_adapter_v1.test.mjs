@@ -184,6 +184,11 @@ test("adapter source has no network, database, dispatch, agent execution, or des
   assert.match(sources, /execFileSync\("git", \["-C", worktreePath, "show"/);
 });
 
+test("runtime protection fetches the immutable commits verified by task envelopes", () => {
+  const workflow = fs.readFileSync(path.join(repoRoot, ".github/workflows/contracts-runtime-protection.yml"), "utf8");
+  assert.match(workflow, /- name: Checkout\s+uses: actions\/checkout@v4\s+with:\s+# Ruflo envelopes[^\n]*\s+fetch-depth: 0/);
+});
+
 test("checked-in sample artifacts reproduce and match their manifest", () => {
   const sampleDir = path.join(repoRoot, "docs/audits/ruflo_operations_adapter_v1/sample");
   const manifest = JSON.parse(fs.readFileSync(path.join(sampleDir, "artifact_hashes.json"), "utf8"));
