@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -12,11 +13,12 @@ import {
 import { stableJsonV1 } from "./build_operations_read_model_v1.mjs";
 
 export const TASK_ENVELOPE_VERSION = "RUFLO_TASK_ENVELOPE_V1";
+const INVENTORY_VERSION = "RUFLO_READONLY_INVENTORY_V1";
 
 const TOP_LEVEL_KEYS = new Set([
   "task_id", "parent_goal", "agent_key", "repository", "objective", "inclusions",
   "exclusions", "non_goals", "inputs", "budgets", "expected_artifacts",
-  "acceptance_tests", "evidence_expectations",
+  "acceptance_tests", "evidence_expectations", "inventory_fingerprint_sha256",
 ]);
 const REPOSITORY_KEYS = new Set(["remote", "commit_sha", "ref", "worktree_path", "initial_status_sha256"]);
 const INPUT_KEYS = new Set(["locator", "sha256"]);
@@ -47,6 +49,45 @@ function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+function assertRepositoryRelative(value, label) {
+  const normalized = normalizeRepoPath(value);
+  assert(normalized, `${label} is required`);
+  assert(!path.isAbsolute(normalized), `${label} must be repository-relative`);
+  assert(!/^[a-z][a-z0-9+.-]*:/i.test(normalized), `${label} must not use a URI scheme`);
+  assert(!normalized.split("/").includes(".."), `${label} must not traverse outside the repository`);
+  return normalized;
+}
+
+function validateInventoryV1({ inventory, registry, registryRaw, expectedFingerprint }) {
+  assertObject(inventory, "inventory");
+  assert(inventory.inventory_version === INVENTORY_VERSION, `inventory.inventory_version must be ${INVENTORY_VERSION}`);
+  assert(inventory.registry_version === registry.schema_version, "inventory.registry_version does not match the registry");
+  assert(inventory.registry_sha256 === sha256(registryRaw), "inventory.registry_sha256 does not match the registry bytes");
+  assert(/^[a-f0-9]{64}$/.test(expectedFingerprint), "spec.inventory_fingerprint_sha256 must be a lowercase SHA-256");
+  assert(inventory.inventory_fingerprint_sha256 === expectedFingerprint, "inventory fingerprint does not match the task spec");
+  const { generated_at: generatedAt, inventory_fingerprint_sha256: fingerprint, ...core } = inventory;
+  assert(Number.isFinite(Date.parse(generatedAt)), "inventory.generated_at must be an ISO timestamp");
+  assert(fingerprint === sha256(stableJsonV1(core)), "inventory content fingerprint is invalid");
+  assert(Array.isArray(inventory.agents), "inventory.agents must be an array");
+  assert(Array.isArray(inventory.surfaces), "inventory.surfaces must be an array");
+  assert(Array.isArray(inventory.worktrees), "inventory.worktrees must be an array");
+  assertObject(inventory.boundaries, "inventory.boundaries");
+  assert(Object.values(inventory.boundaries).every((value) => value === 0), "inventory boundaries must all remain zero");
+}
+
+function readRepositoryFileAtCommit(worktreePath, commitSha, locator) {
+  try {
+    return execFileSync("git", ["-C", worktreePath, "show", `${commitSha}:${locator}`], {
+      encoding: null,
+      windowsHide: true,
+      maxBuffer: 32 * 1024 * 1024,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+  } catch {
+    throw new Error(`spec input does not exist at the declared repository commit: ${locator}`);
+  }
+}
+
 export function worktreeStatusFingerprintV1(worktree) {
   return sha256(stableJsonV1({
     path: worktree.path,
@@ -69,10 +110,7 @@ function validateStringArray(value, label, { allowEmpty = true, repoPaths = fals
     const result = clean(entry);
     assert(result, `${label}[${index}] must be a non-empty string`);
     if (repoPaths) {
-      const normalized = normalizeRepoPath(result);
-      assert(!path.isAbsolute(normalized), `${label}[${index}] must be repository-relative`);
-      assert(!normalized.split("/").includes(".."), `${label}[${index}] must not traverse outside the repository`);
-      return normalized;
+      return assertRepositoryRelative(result, `${label}[${index}]`);
     }
     return result;
   });
@@ -84,7 +122,7 @@ function validateBudget(value, key) {
   return value;
 }
 
-export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot }) {
+export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, registryRaw = null }) {
   assertNoSensitiveKeysV1(spec, "spec");
   assertObject(spec, "spec");
   assertOnlyKeys(spec, TOP_LEVEL_KEYS, "spec");
@@ -94,6 +132,13 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot }) {
   assert(agent, `spec.agent_key is not registered: ${clean(spec.agent_key)}`);
   assert(agent.execution_enabled === false, "registered agent must remain non-executable");
   assert(["R0", "R1"].includes(agent.permission_tier), "registered agent exceeds the read-only rollout tier");
+  const effectiveRegistryRaw = registryRaw ?? readFileSync(path.resolve(repoRoot, "config/ruflo/agent_registry_v1.json"));
+  validateInventoryV1({
+    inventory,
+    registry,
+    registryRaw: effectiveRegistryRaw,
+    expectedFingerprint: spec.inventory_fingerprint_sha256,
+  });
 
   assertObject(spec.repository, "spec.repository");
   assertOnlyKeys(spec.repository, REPOSITORY_KEYS, "spec.repository");
@@ -126,8 +171,7 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot }) {
     assertOnlyKeys(entry, INPUT_KEYS, `spec.inputs[${index}]`);
     const locator = validateStringArray([entry.locator], `spec.inputs[${index}].locator`, { allowEmpty: false, repoPaths: true })[0];
     assert(/^[a-f0-9]{64}$/.test(entry.sha256), `spec.inputs[${index}].sha256 must be a lowercase SHA-256`);
-    assert(repoRoot, "repoRoot is required to verify input fingerprints");
-    const actualSha256 = sha256(readFileSync(path.resolve(repoRoot, locator)));
+    const actualSha256 = sha256(readRepositoryFileAtCommit(inventoryWorktree.path, spec.repository.commit_sha, locator));
     assert(actualSha256 === entry.sha256, `spec.inputs[${index}].sha256 does not match ${locator}`);
     return { locator, sha256: entry.sha256 };
   });
@@ -211,8 +255,9 @@ function main() {
   assert(outDir === approvedRoot || outDir.startsWith(`${approvedRoot}${path.sep}`), "out-dir must remain under docs/audits/ruflo_operations_adapter_v1");
   const spec = JSON.parse(readFileSync(repoFile(repoRoot, input, "input"), "utf8"));
   const inventory = JSON.parse(readFileSync(repoFile(repoRoot, inventoryPath, "inventory"), "utf8"));
+  const registryRaw = readFileSync(repoFile(repoRoot, registryPath, "registry"));
   const { registry } = readRegistryV1(registryPath, { repoRoot });
-  const envelope = buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot });
+  const envelope = buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, registryRaw });
   mkdirSync(outDir, { recursive: true });
   const outputPath = path.join(outDir, `${spec.task_id}.task_envelope_v1.json`);
   writeFileSync(outputPath, `${JSON.stringify(envelope, null, 2)}\n`);

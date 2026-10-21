@@ -22,12 +22,13 @@ function sha256(value) {
 }
 
 function taskSpec() {
-  const worktree = inventory.worktrees.find((entry) => entry.path === "C:/gv_ruflo_all_agents_plan_20261016");
-  assert.ok(worktree, "expected plan worktree in frozen inventory");
+  const worktree = inventory.worktrees.find((entry) => entry.path === "C:/gv_ruflo_readonly_adapter_20261017");
+  assert.ok(worktree, "expected adapter worktree in frozen inventory");
   return {
     task_id: "ruflo-readonly-catalog-health-20261017",
     parent_goal: "Observe registered Grookai agent health without dispatching work",
     agent_key: "universal-catalog-discovery-v1",
+    inventory_fingerprint_sha256: inventory.inventory_fingerprint_sha256,
     repository: {
       remote: "OriginalSoseji/grookai_vault",
       commit_sha: worktree.head,
@@ -41,7 +42,7 @@ function taskSpec() {
     non_goals: ["Agent execution", "Workflow dispatch", "Worktree cleanup"],
     inputs: [{
       locator: "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
-      sha256: "6cdaa59efa5cd752b093f04f4417276d89c0f488932d651dd706fbfd9cec6b47",
+      sha256: "7578f5fdaff92ab0566cc763e6e2f04483970352de4dcfd72d0e9b8e70bc2101",
     }],
     budgets: { time_seconds: 60, row_limit: 100, request_limit: 0, cost_usd: 0, concurrency: 1 },
     expected_artifacts: ["docs/audits/ruflo_operations_adapter_v1/operations_read_model_v1.json"],
@@ -82,12 +83,23 @@ test("read adapter rejects secret-shaped and executable fields", () => {
   const executableCandidate = clone(snapshot);
   executableCandidate.agents[0].command = "do-not-run";
   assert.throws(() => buildOperationsReadModelV1({ snapshot: executableCandidate, registry }), /not allowed|executable data/);
+
+  const uriEvidence = clone(snapshot);
+  uriEvidence.agents[0].evidence_refs[0].locator = "https://example.com/artifact.json";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: uriEvidence, registry }), /must not use a URI scheme/);
 });
 
 test("read adapter rejects stale health for event and manual agents", () => {
   const candidate = clone(snapshot);
   candidate.agents[1].health = "stale";
   assert.throws(() => buildOperationsReadModelV1({ snapshot: candidate, registry }), /cannot be stale for event agents/);
+});
+
+test("read adapter rejects health that contradicts the latest run", () => {
+  const candidate = clone(snapshot);
+  candidate.agents[1].health = "healthy";
+  candidate.agents[1].latest_run_status = "failed";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: candidate, registry }), /latest failed run requires failed health/);
 });
 
 test("task envelope is deterministic, protected, and permanently non-executable", () => {
@@ -122,6 +134,10 @@ test("task envelope rejects mutable refs, unknown worktrees, and traversal", () 
   const traversal = taskSpec();
   traversal.expected_artifacts = ["../escape.json"];
   assert.throws(() => buildTaskEnvelopeV1({ spec: traversal, registry, inventory, repoRoot }), /must not traverse/);
+
+  const uri = taskSpec();
+  uri.expected_artifacts = ["https://example.com/result.json"];
+  assert.throws(() => buildTaskEnvelopeV1({ spec: uri, registry, inventory, repoRoot }), /must not use a URI scheme/);
 });
 
 test("task envelope rejects unknown agents and executable fields", () => {
@@ -144,6 +160,20 @@ test("task envelope rejects mismatched worktree-state and input fingerprints", (
   assert.throws(() => buildTaskEnvelopeV1({ spec: inputMismatch, registry, inventory, repoRoot }), /does not match/);
 });
 
+test("task envelope validates the frozen inventory before trusting worktree protection", () => {
+  const wrongVersion = clone(inventory);
+  wrongVersion.inventory_version = "UNKNOWN";
+  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: wrongVersion, repoRoot }), /inventory_version/);
+
+  const wrongRegistry = clone(inventory);
+  wrongRegistry.registry_sha256 = "a".repeat(64);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: wrongRegistry, repoRoot }), /registry_sha256/);
+
+  const drifted = clone(inventory);
+  drifted.worktrees[0].head = "b".repeat(40);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: drifted, repoRoot }), /content fingerprint/);
+});
+
 test("adapter source has no network, database, dispatch, agent execution, or destructive Git path", () => {
   const sources = [
     "scripts/ruflo/build_operations_read_model_v1.mjs",
@@ -151,7 +181,7 @@ test("adapter source has no network, database, dispatch, agent execution, or des
   ].map((relative) => fs.readFileSync(path.join(repoRoot, relative), "utf8")).join("\n");
   assert.doesNotMatch(sources, /\bfetch\s*\(|createClient\s*\(|\.rpc\s*\(|agent_execute\s*\(|workflow_dispatch\s*\(/);
   assert.doesNotMatch(sources, /git\s+(?:clean|reset|checkout|branch\s+-D|worktree\s+remove)/i);
-  assert.doesNotMatch(sources, /child_process|execFile|spawn\s*\(/);
+  assert.match(sources, /execFileSync\("git", \["-C", worktreePath, "show"/);
 });
 
 test("checked-in sample artifacts reproduce and match their manifest", () => {

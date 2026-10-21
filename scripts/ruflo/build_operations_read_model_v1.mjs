@@ -55,6 +55,7 @@ function assertRepoRelative(value, label) {
   const normalized = normalizeRepoPath(value);
   assert(normalized, `${label} is required`);
   assert(!path.isAbsolute(normalized), `${label} must be repository-relative`);
+  assert(!/^[a-z][a-z0-9+.-]*:/i.test(normalized), `${label} must not use a URI scheme`);
   assert(!normalized.split("/").includes(".."), `${label} must not traverse outside the repository`);
   assert(!/[?#]/.test(normalized), `${label} must not contain a URL query or fragment`);
   return normalized;
@@ -106,6 +107,12 @@ function validateAgentSnapshot(value, registryAgent, label) {
   if (value.is_paused) assert(value.health === "paused", `${label}.health must be paused when is_paused is true`);
   if (value.health === "running") assert(value.latest_run_status === "running", `${label}.running health requires a running latest run`);
   if (value.health === "failed") assert(value.latest_run_status === "failed", `${label}.failed health requires a failed latest run`);
+  if (!["paused", "stale"].includes(value.health) && value.latest_run_status === "running") {
+    assert(value.health === "running", `${label}.latest running run requires running health`);
+  }
+  if (!["paused", "stale"].includes(value.health) && value.latest_run_status === "failed") {
+    assert(value.health === "failed", `${label}.latest failed run requires failed health`);
+  }
   const evidenceRefs = value.evidence_refs ?? [];
   assert(Array.isArray(evidenceRefs), `${label}.evidence_refs must be an array`);
   return {
