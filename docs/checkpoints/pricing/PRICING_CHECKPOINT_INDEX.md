@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`
+
+This checkpoint records the live-queue audit and V1.4 scope correction that
+removes numberless sealed and packaged TCGPlayer products from the ordinary
+missing-card lane while preserving numbered cards.
+
+Decision locked there:
+
+- package-name exclusion requires absent printed-number evidence, and historical
+  scope-policy versions remain reproducible
+
+Unresolved gate afterward:
+
+- merge, run the exact-commit full shadow and guarded production publication,
+  then verify the corrected hosted queue before changing its local consumer
+
 ### `PRICING_CHECKPOINT_164_CROSS_CATEGORY_COMPLETION_QUEUE.md`
 
 This checkpoint records the repair that makes the continuous pricing agent emit
@@ -46,8 +62,8 @@ Decision locked there:
 
 Unresolved gate afterward:
 
-- verify the V2 hosted artifact, then move the local consumer from the legacy
-  Pokemon `blocked.jsonl` input to the category queue
+- complete checkpoint 165's product-scope release, then move the local consumer
+  from the legacy Pokemon `blocked.jsonl` input to the corrected category queue
 
 ### `PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`
 

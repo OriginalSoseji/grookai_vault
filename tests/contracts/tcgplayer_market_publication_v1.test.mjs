@@ -618,7 +618,7 @@ test("quarantines foreign, special, sealed, and code-card lanes", () => {
   assert.ok(sealed.reason_codes.includes("unsupported_product_kind"));
 });
 
-test("publication V1.2 scope is evidence-aware and keeps numbered card names", () => {
+test("publication V1.4 scope is evidence-aware and keeps numbered card names", () => {
   const sealed = evaluateTcgplayerMarketQualificationV1(
     validCandidate({
       source_product_name: "Journey Together Booster Bundle",
@@ -641,6 +641,53 @@ test("publication V1.2 scope is evidence-aware and keeps numbered card names", (
   );
   assert.equal(ordinaryTinCard.decision, "publish");
 
+  const mtgExactFinish = {
+    category_id: 1,
+    source_subtype_name: "Normal",
+    normalized_finish_key: "normal",
+    identity_domain: "mtg_eng_paper_print",
+    source_mapping_id: null,
+    variant_assignment_id: null,
+    mtg_printing_mapping_id: "40000000-0000-4000-8000-000000000009",
+    mapping_method: "exact_external_printing_mapping_v1",
+    variant_assignment_version: "MTG_EXACT_PRINTING_MAPPING_V1",
+    finish_key: "normal",
+  };
+  for (const sourceProductName of [
+    "10th Edition - Fat Pack",
+    "Alara Reborn - Intro Pack - Eternal Siege",
+    "Commander - Heavenly Inferno Deck",
+    "Challenger Deck 2022 Display",
+    "Kaladesh - Bundle",
+    "Born of the Gods - Prerelease Kit (Set of 5)",
+    "Secret Lair Drop: Bitterblossom Dreams - Non-Foil Edition",
+  ]) {
+    const packaged = evaluateTcgplayerMarketQualificationV1(
+      validCandidate({
+        ...mtgExactFinish,
+        source_product_name: sourceProductName,
+        has_printed_number_evidence: false,
+      }),
+      { now: NOW },
+    );
+    assert.equal(packaged.decision, "exclude", sourceProductName);
+    assert.equal(
+      packaged.evidence.product_scope_rule_id,
+      "sealed_or_packaged_product_v1_4",
+      sourceProductName,
+    );
+  }
+
+  const numberedDeckCard = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      ...mtgExactFinish,
+      source_product_name: "The Deck of Many Things",
+      has_printed_number_evidence: true,
+    }),
+    { now: NOW },
+  );
+  assert.equal(numberedDeckCard.decision, "publish");
+
   const special = evaluateTcgplayerMarketQualificationV1(
     validCandidate({ source_product_name: "Pikachu (Master Ball Pattern)" }),
     { now: NOW },
@@ -649,7 +696,7 @@ test("publication V1.2 scope is evidence-aware and keeps numbered card names", (
   assert.ok(special.reason_codes.includes("special_variant_v1_1"));
   assert.equal(
     special.evidence.product_scope_policy_version,
-    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3",
+    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4",
   );
   assert.equal(special.evidence.product_scope_rule_id, "ball_pattern_print");
 
@@ -701,7 +748,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_18/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_19/);
   assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v7/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);

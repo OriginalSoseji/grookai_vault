@@ -71,7 +71,7 @@ test("V7 override requires the reviewed correction contract and keeps exact line
   assert.match(migration, /case when exact\.id is not null then null else candidate\.source_mapping_id/);
   assert.match(migration, /case when exact\.id is not null then null else candidate\.variant_assignment_id/);
   assert.match(publicationWorker, /v_tcgplayer_market_qualification_candidates_v7/);
-  assert.match(publicationWorker, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_18/);
+  assert.match(publicationWorker, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_19/);
 });
 
 test("bounded writer updates only the two reviewed mapping rows", () => {
