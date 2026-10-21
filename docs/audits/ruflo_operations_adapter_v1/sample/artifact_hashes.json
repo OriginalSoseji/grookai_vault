@@ -4,7 +4,7 @@
   "live_runtime_readback": false,
   "files": {
     "operations_read_model_v1.json": "cdd20c457bec8db112148f6e57a707691c1e3de57f96c9a09a7206e1f8a6f254",
-    "ruflo-readonly-catalog-health-20261017.task_envelope_v1.json": "41446899bda9d93dff41d0c060783f872214ac6b4e195d64575656eb1f986fc9",
-    "task_spec_v1.json": "014b6a9b140e8baf6f7b5a6bc3ed25c009eb793bcbfc55fab65c28a769bab028"
+    "ruflo-readonly-catalog-health-20261017.task_envelope_v1.json": "56a40aa9d6584a5bc721b54b8f12f7509d43bb99358dbd11f500c10ff8195b5d",
+    "task_spec_v1.json": "09d9f27fc332a3901d114fe7d4ac17c21dde45b679437ccdc4dc558b654ed2ae"
   }
 }

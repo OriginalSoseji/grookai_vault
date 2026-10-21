@@ -2,13 +2,13 @@
   "task_id": "ruflo-readonly-catalog-health-20261017",
   "parent_goal": "Observe registered Grookai agent health without dispatching work",
   "agent_key": "universal-catalog-discovery-v1",
-  "inventory_fingerprint_sha256": "1a28f52962f2d52e4a19a0e389082d28d837242482462a12a76525f56731e07f",
+  "inventory_fingerprint_sha256": "512c322ae51561a412a972921f9aed714f9830dd654d9aa30948ede0fb917210",
   "repository": {
     "remote": "OriginalSoseji/grookai_vault",
-    "commit_sha": "312252f6348663cfd83c1870f4d9731297cdaf31",
+    "commit_sha": "87c42ea2be181221aa8cf5641d31b1212594d46b",
     "ref": "feat/ruflo-readonly-operations-adapter-v1",
     "worktree_path": "C:/gv_ruflo_readonly_adapter_20261017",
-    "initial_status_sha256": "74ac0086b8ebbc9c894f595a1f5e168d83d85cf2e3e053710a997d5f9faf05d9"
+    "initial_status_sha256": "858cdbbe1ae8acd6fe538c688f3e9ae86eac9db3f1387e272c488225bc457e69"
   },
   "objective": "Build a sanitized read-only health summary from a frozen local snapshot.",
   "inclusions": [
@@ -25,7 +25,7 @@
   "inputs": [
     {
       "locator": "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
-      "sha256": "7578f5fdaff92ab0566cc763e6e2f04483970352de4dcfd72d0e9b8e70bc2101"
+      "sha256": "6cdaa59efa5cd752b093f04f4417276d89c0f488932d651dd706fbfd9cec6b47"
     }
   ],
   "budgets": {
