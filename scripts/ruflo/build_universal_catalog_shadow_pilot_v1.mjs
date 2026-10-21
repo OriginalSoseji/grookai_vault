@@ -19,6 +19,7 @@ const OBSERVATION_BOUNDARY_KEYS = [
   "cleanup", "cross_worktree_writes", "issue_reconciliation",
 ];
 const PROHIBITED_KEY_PATTERN = /(authorization|token|secret|password|service.?role|api.?key|cookie|command|payload|arguments?|argv|shell|workflow_dispatch|agent_execute|tool_call)/i;
+const VALIDATED_DISCOVERY_EVIDENCE = new WeakSet();
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -30,6 +31,13 @@ function sha256(value) {
 
 function assertObject(value, label) {
   assert(value && typeof value === "object" && !Array.isArray(value), `${label} must be an object`);
+}
+
+function deepFreeze(value) {
+  if (!value || typeof value !== "object" || Object.isFrozen(value)) return value;
+  Object.freeze(value);
+  for (const entry of Object.values(value)) deepFreeze(entry);
+  return value;
 }
 
 function assertNoExecutableKeys(value, label) {
@@ -146,10 +154,13 @@ export function readDiscoveryEvidenceV1({ evidenceDir }) {
     assert(runPlan.boundaries?.[key] === false, `source run boundary ${key} must be false`);
   }
   assert(summary.completed_at === metadata.completed_at, "capture completion time does not match summary");
-  return { metadata, artifactHashes, summary, sourceFailures, runPlan, captureInputHashes };
+  const evidence = deepFreeze({ metadata, artifactHashes, summary, sourceFailures, runPlan, captureInputHashes });
+  VALIDATED_DISCOVERY_EVIDENCE.add(evidence);
+  return evidence;
 }
 
 export function buildUniversalCatalogShadowObservationV1({ envelope, evidence, cycleNumber }) {
+  assert(VALIDATED_DISCOVERY_EVIDENCE.has(evidence), "evidence must come directly from readDiscoveryEvidenceV1");
   assertNoSensitiveKeysV1(envelope, "task_envelope");
   assertNoExecutableKeys(envelope, "task_envelope");
   validateEnvelope(envelope, evidence, cycleNumber);

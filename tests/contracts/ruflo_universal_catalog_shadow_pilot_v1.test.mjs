@@ -38,6 +38,25 @@ function refingerprint(observation) {
   return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
 }
 
+function createHealthyEvidenceFixture() {
+  const temporary = mkdtempSync(path.join(os.tmpdir(), "ruflo-catalog-healthy-"));
+  cpSync(evidenceDir, temporary, { recursive: true });
+  const summaryPath = path.join(temporary, "summary.json");
+  const failuresPath = path.join(temporary, "source_failures.json");
+  const hashesPath = path.join(temporary, "artifact_hashes.json");
+  const summary = JSON.parse(readFileSync(summaryPath, "utf8"));
+  summary.run_status = "completed";
+  summary.source_failure_count = 0;
+  summary.source_failures = [];
+  writeFileSync(summaryPath, `${JSON.stringify(summary, null, 2)}\n`);
+  writeFileSync(failuresPath, "[]\n");
+  const hashes = JSON.parse(readFileSync(hashesPath, "utf8"));
+  hashes["summary.json"] = sha256(readFileSync(summaryPath));
+  hashes["source_failures.json"] = sha256(readFileSync(failuresPath));
+  writeFileSync(hashesPath, `${JSON.stringify(hashes, null, 2)}\n`);
+  return { temporary, evidence: readDiscoveryEvidenceV1({ evidenceDir: temporary }) };
+}
+
 function envelope(inputEvidenceDir = evidenceDir, cycleNumber = 1) {
   const inputFiles = ["artifact_hashes.json", "run_metadata.json", "run_plan.json", "source_failures.json", "summary.json"];
   const cycleLabel = String(cycleNumber).padStart(2, "0");
@@ -155,14 +174,28 @@ test("degraded source evidence is held and never becomes dispatch or promotion a
   assert.ok(Object.values(observation.boundaries).every((value) => value === false));
 });
 
-test("a healthy observation remains evidence-only and deterministic", () => {
-  const evidence = clone(readDiscoveryEvidenceV1({ evidenceDir }));
-  evidence.summary.run_status = "completed";
-  evidence.summary.source_failure_count = 0;
-  evidence.summary.source_failures = [];
-  evidence.sourceFailures = [];
-  const first = buildUniversalCatalogShadowObservationV1({ envelope: envelope(evidenceDir, 2), evidence, cycleNumber: 2 });
-  const second = buildUniversalCatalogShadowObservationV1({ envelope: envelope(evidenceDir, 2), evidence, cycleNumber: 2 });
+test("a healthy observation remains evidence-only and deterministic", (t) => {
+  const altered = clone(readDiscoveryEvidenceV1({ evidenceDir }));
+  altered.summary.run_status = "completed";
+  altered.summary.source_failure_count = 0;
+  altered.summary.source_failures = [];
+  altered.sourceFailures = [];
+  assert.throws(
+    () => buildUniversalCatalogShadowObservationV1({ envelope: envelope(evidenceDir, 2), evidence: altered, cycleNumber: 2 }),
+    /must come directly from readDiscoveryEvidenceV1/,
+  );
+  const healthy = createHealthyEvidenceFixture();
+  t.after(() => rmSync(healthy.temporary, { recursive: true, force: true }));
+  const first = buildUniversalCatalogShadowObservationV1({
+    envelope: envelope(healthy.temporary, 2),
+    evidence: healthy.evidence,
+    cycleNumber: 2,
+  });
+  const second = buildUniversalCatalogShadowObservationV1({
+    envelope: envelope(healthy.temporary, 2),
+    evidence: healthy.evidence,
+    cycleNumber: 2,
+  });
   assert.deepEqual(first, second);
   assert.equal(first.outcome.status, "observed");
   assert.equal(first.outcome.qualifies_toward_pilot_minimum, true);
@@ -241,21 +274,20 @@ test("pilot rejects another agent, execution authority, and secret-shaped fields
   );
 });
 
-test("pilot ledger requires seven distinct qualifying cycles", () => {
-  const evidence = clone(readDiscoveryEvidenceV1({ evidenceDir }));
-  evidence.summary.run_status = "completed";
-  evidence.summary.source_failure_count = 0;
-  evidence.summary.source_failures = [];
-  evidence.sourceFailures = [];
+test("pilot ledger requires seven distinct qualifying cycles", (t) => {
+  const healthy = createHealthyEvidenceFixture();
+  t.after(() => rmSync(healthy.temporary, { recursive: true, force: true }));
+  const baseObservation = buildUniversalCatalogShadowObservationV1({
+    envelope: envelope(healthy.temporary, 1),
+    evidence: healthy.evidence,
+    cycleNumber: 1,
+  });
   const observations = Array.from({ length: 7 }, (_, index) => {
-    const cycleEvidence = clone(evidence);
-    cycleEvidence.metadata.run_id += index;
-    cycleEvidence.metadata.completed_at = new Date(Date.parse(evidence.metadata.completed_at) + index * 1000).toISOString();
-    return buildUniversalCatalogShadowObservationV1({
-      envelope: envelope(evidenceDir, index + 1),
-      evidence: cycleEvidence,
-      cycleNumber: index + 1,
-    });
+    const observation = clone(baseObservation);
+    observation.cycle_number = index + 1;
+    observation.source_run.run_id += index;
+    observation.source_run.completed_at = new Date(Date.parse(baseObservation.source_run.completed_at) + index * 1000).toISOString();
+    return refingerprint(observation);
   });
   const partial = buildUniversalCatalogPilotLedgerV1(observations.slice(0, 6));
   assert.equal(partial.readiness, "collecting");

@@ -104,7 +104,8 @@ not create execution or promotion authority.
 `scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs` verifies the copied
 artifact hashes, reconciles summary and failure counts, validates the R0 task
 envelope and its recomputed fingerprint, binds every captured evidence file to
-the envelope's frozen input hashes, emits a deterministic observation
+the envelope's frozen input hashes, and accepts only the immutable evidence
+object returned directly by that verification step. It emits a deterministic observation
 fingerprint, and maintains a distinct-run ledger. The default output directory
 is the requested `cycle_XX` directory. Cycle accumulation now verifies prior
 observation fingerprints and their frozen task-envelope input hashes, requires
