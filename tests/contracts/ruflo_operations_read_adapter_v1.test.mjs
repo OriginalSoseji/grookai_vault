@@ -141,6 +141,21 @@ test("read adapter rejects health that contradicts the latest run", () => {
   falselyPaused.agents[1].is_paused = false;
   falselyPaused.agents[1].latest_run_status = "failed";
   assert.throws(() => buildOperationsReadModelV1({ snapshot: falselyPaused, registry }), /is_paused must be true when health is paused/);
+
+  const impossibleUnknown = clone(snapshot);
+  impossibleUnknown.agents[1].health = "unknown";
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: impossibleUnknown, registry }),
+    /unknown health requires null heartbeat and latest run status/,
+  );
+
+  const missingUnknown = clone(snapshot);
+  missingUnknown.agents[1].last_heartbeat_at = null;
+  missingUnknown.agents[1].latest_run_status = null;
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: missingUnknown, registry }),
+    /null heartbeat and latest run status require unknown health/,
+  );
 });
 
 test("task envelope is deterministic, protected, and permanently non-executable", () => {
