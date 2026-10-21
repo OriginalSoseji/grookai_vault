@@ -2,7 +2,7 @@
   "inventory_version": "RUFLO_READONLY_INVENTORY_V1",
   "registry_version": "RUFLO_AGENT_REGISTRY_V1",
   "registry_sha256": "8d3fcd9fe310951e6707033d8789ac1a6c61136543d4473e32ed53dc6b6d4258",
-  "source_commit_sha": "7fc0d4049214a9e88db542b48fafe79438e6bc55",
+  "source_commit_sha": "3758d51cb0a5b7334a3b2be3b91c07129bbcf891",
   "source_branch": "feat/ruflo-agent-registry-v1",
   "agents": [
     {
@@ -9895,7 +9895,7 @@
     {
       "path": "C:/gv_ruflo_readonly_adapter_20261017",
       "branch": "feat/ruflo-readonly-operations-adapter-v1",
-      "head": "312252f6348663cfd83c1870f4d9731297cdaf31",
+      "head": "87c42ea2be181221aa8cf5641d31b1212594d46b",
       "detached": false,
       "prunable": null,
       "status_available": true,
@@ -9910,7 +9910,7 @@
     {
       "path": "C:/gv_ruflo_registry_foundation_20261016",
       "branch": "feat/ruflo-agent-registry-v1",
-      "head": "7fc0d4049214a9e88db542b48fafe79438e6bc55",
+      "head": "3758d51cb0a5b7334a3b2be3b91c07129bbcf891",
       "detached": false,
       "prunable": null,
       "status_available": true,
@@ -10238,6 +10238,6 @@
     "worktree_cleanups": 0,
     "cross_worktree_writes": 0
   },
-  "generated_at": "2026-10-21T09:03:00-06:00",
-  "inventory_fingerprint_sha256": "1a28f52962f2d52e4a19a0e389082d28d837242482462a12a76525f56731e07f"
+  "generated_at": "2026-10-21T09:10:05-06:00",
+  "inventory_fingerprint_sha256": "512c322ae51561a412a972921f9aed714f9830dd654d9aa30948ede0fb917210"
 }

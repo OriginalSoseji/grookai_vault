@@ -1,8 +1,8 @@
 {
   "inventory_version": "RUFLO_READONLY_INVENTORY_V1",
-  "inventory_fingerprint_sha256": "1a28f52962f2d52e4a19a0e389082d28d837242482462a12a76525f56731e07f",
+  "inventory_fingerprint_sha256": "512c322ae51561a412a972921f9aed714f9830dd654d9aa30948ede0fb917210",
   "files": {
-    "current_inventory_v1.json": "c5b930f746fa67a8cc6b0e18f731a00ca5706533d6d7c1ccd066dc4ff0bd71b5",
-    "RUFLO_READONLY_INVENTORY_V1.md": "08f95e94212f8f0bde9bfea7b28324c616dac07b312bd377028e40f3d2c6e8d5"
+    "current_inventory_v1.json": "f59540cf9e06a9b64e76bd90427cff3f7ed484b83fa64d030a73f5fd0724031b",
+    "RUFLO_READONLY_INVENTORY_V1.md": "4cc7a80d3f63d27735791baf45a9f3396002c52c84e736df3d831de9b954bef2"
   }
 }
