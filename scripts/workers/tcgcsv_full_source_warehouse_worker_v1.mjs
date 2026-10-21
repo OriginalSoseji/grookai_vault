@@ -39,6 +39,7 @@ const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
 const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 2000;
 const DEFAULT_PRICE_BATCH_DELAY_MS = 25;
 const FIRST_ARCHIVE_DATE = "2024-02-08";
+const CURRENT_ADVISORY_LOCK_NAME = "grookai:tcgcsv:current:v1";
 const HISTORICAL_ADVISORY_LOCK_NAME = "grookai:tcgcsv:historical:v1";
 const EMPTY_CATEGORY_IDS = new Set([9, 10, 12, 14, 21, 55, 69, 70]);
 const CURL_BIN = os.platform() === "win32" ? "curl.exe" : "curl";
@@ -995,6 +996,32 @@ async function markMissingCurrentRows(client, runId) {
   return result.rows[0];
 }
 
+async function assertCurrentRunOwnsDimensions(client, runId, expected) {
+  const result = await client.query(
+    `select
+       (select count(*)::integer from public.tcgcsv_source_categories
+        where last_seen_run_id = $1) as category_count,
+       (select count(*)::integer from public.tcgcsv_source_groups
+        where last_seen_run_id = $1) as group_count,
+       (select count(*)::integer from public.tcgcsv_source_products
+        where last_seen_run_id = $1) as product_count`,
+    [runId],
+  );
+  const actual = result.rows[0];
+  const mismatches = ["category", "group", "product"].filter(
+    (kind) => Number(actual[`${kind}_count`]) !== Number(expected[`${kind}Count`]),
+  );
+  if (mismatches.length > 0) {
+    const error = new Error(
+      `current TCGCSV sync lost dimension ownership before missing-row finalization: ${mismatches
+        .map((kind) => `${kind}=${actual[`${kind}_count`]}/${expected[`${kind}Count`]}`)
+        .join(",")}`,
+    );
+    error.code = "CURRENT_SYNC_OWNERSHIP_LOST";
+    throw error;
+  }
+}
+
 async function ensureHistoricalProducts(client, prices, runId) {
   const productIds = Array.from(new Set(prices.map((row) => Number(row.productId)).filter(Number.isInteger)));
   const chunkSize = positiveIntFromEnv("TCGCSV_HISTORICAL_PRODUCT_BATCH_SIZE", 1000);
@@ -1067,10 +1094,11 @@ async function sourceRunByKey(client, runKey) {
   return result.rows[0] ?? null;
 }
 
-async function resumeSuccessfulCurrentRun(args, runKey) {
+async function resumeSuccessfulCurrentRun(args, runKey, existingClient = null) {
   if (!args.apply) return null;
 
-  const client = await connectDb();
+  const ownsClient = existingClient === null;
+  const client = existingClient ?? await connectDb();
   try {
     const existingRun = await sourceRunByKey(client, runKey);
     const decision = evaluateTcgcsvSourceRunResumeV1(existingRun, {
@@ -1097,7 +1125,7 @@ async function resumeSuccessfulCurrentRun(args, runKey) {
       artifact_count: Number(existingRun.artifact_count ?? 0),
     };
   } finally {
-    await client.end().catch(() => {});
+    if (ownsClient) await client.end().catch(() => {});
   }
 }
 
@@ -1143,8 +1171,8 @@ function parseCategoryGroupFromPricePath(filePath, observedOn) {
   };
 }
 
-async function runCurrentSync(args, runKey, artifactRoot) {
-  const resumedRun = await resumeSuccessfulCurrentRun(args, runKey);
+async function runCurrentSync(args, runKey, artifactRoot, lockedClient = null) {
+  const resumedRun = await resumeSuccessfulCurrentRun(args, runKey, lockedClient);
   if (resumedRun) return resumedRun;
 
   const fetcher = new Fetcher({
@@ -1158,10 +1186,14 @@ async function runCurrentSync(args, runKey, artifactRoot) {
   const startedAt = new Date().toISOString();
   const { text: sourceMarker } = await fetcher.fetchText(`${BASE_URL}/last-updated.txt`, "last_updated", "last-updated.txt");
 
-  let client = null;
+  let client = lockedClient;
+  let ownsClient = false;
   let existingMarker = null;
   if (args.apply) {
-    client = await connectDb();
+    if (!client) {
+      client = await connectDb();
+      ownsClient = true;
+    }
     existingMarker = await latestCompletedCurrentMarker(client);
     if (!args.force && !args.ignoreLastUpdated && existingMarker && existingMarker === sourceMarker) {
       const run = {
@@ -1179,7 +1211,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
       };
       const runId = await upsertRun(client, run);
       await insertArtifacts(client, runId, runKey, fetcher.artifacts);
-      await client.end();
+      if (ownsClient) await client.end();
       return { run, summary: { skipped: true }, artifacts: fetcher.artifacts };
     }
   }
@@ -1343,6 +1375,9 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         await checkpoint(runId);
       }
 
+      if (failedFetches.length === 0 && !isTargetedCurrentRetry) {
+        await assertCurrentRunOwnsDimensions(client, runId, totals);
+      }
       const missing = failedFetches.length === 0 && !isTargetedCurrentRetry
         ? await markMissingCurrentRows(client, runId)
         : isTargetedCurrentRetry
@@ -1387,7 +1422,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         artifacts: fetcher.artifacts,
       };
     } finally {
-      await client.end().catch(() => {});
+      if (ownsClient) await client.end().catch(() => {});
     }
   }
 
@@ -1473,6 +1508,13 @@ async function runCurrentSync(args, runKey, artifactRoot) {
         categoryId: row.categoryId,
         groupId: row.groupId,
       })));
+      if (failedFetches.length === 0 && !isTargetedCurrentRetry) {
+        await assertCurrentRunOwnsDimensions(client, runId, {
+          categoryCount: categories.length,
+          groupCount: allGroups.length,
+          productCount: allProducts.length,
+        });
+      }
       const missing = failedFetches.length === 0 && !isTargetedCurrentRetry
         ? await markMissingCurrentRows(client, runId)
         : isTargetedCurrentRetry
@@ -1487,7 +1529,7 @@ async function runCurrentSync(args, runKey, artifactRoot) {
       run.payload = { ...run.payload, missing_marked: missing, apply_results: { categoriesResult, groupsResult, productsResult, priceResult, artifactCount } };
       await upsertRun(client, run);
     } finally {
-      await client.end().catch(() => {});
+      if (ownsClient) await client.end().catch(() => {});
     }
   }
 
@@ -1658,6 +1700,31 @@ async function acquireHistoricalGuard(args) {
   return client;
 }
 
+async function acquireCurrentGuard(args) {
+  if (!args.apply || args.mode !== "current") return null;
+  const client = await connectDb();
+  const lock = await client.query(
+    "select pg_try_advisory_lock(hashtext($1)) as acquired",
+    [CURRENT_ADVISORY_LOCK_NAME],
+  );
+  if (!lock.rows[0]?.acquired) {
+    await client.end().catch(() => {});
+    const error = new Error("another current TCGCSV worker already owns the production lock");
+    error.code = "CURRENT_WORKER_LOCKED";
+    throw error;
+  }
+  return client;
+}
+
+async function releaseCurrentGuard(client) {
+  if (!client) return;
+  try {
+    await client.query("select pg_advisory_unlock(hashtext($1))", [CURRENT_ADVISORY_LOCK_NAME]);
+  } finally {
+    await client.end().catch(() => {});
+  }
+}
+
 async function releaseHistoricalGuard(client) {
   if (!client) return;
   try {
@@ -1687,6 +1754,33 @@ async function recordHistoricalFailure(args, runKey, error) {
   }
 }
 
+async function recordCurrentFailure(args, runKey, error, existingClient = null) {
+  if (!args.apply || args.mode !== "current") return;
+  const ownsClient = existingClient === null;
+  const client = existingClient ?? await connectDb();
+  try {
+    await client.query(
+      `update public.tcgcsv_source_sync_runs
+       set status = 'failed',
+           finished_at = now(),
+           error = $2,
+           payload = coalesce(payload, '{}'::jsonb) || jsonb_build_object(
+             'failure_code', $3::text,
+             'failed_at', now()
+           )
+       where run_key = $1
+         and status = 'running'`,
+      [
+        runKey,
+        String(error?.message ?? error).slice(0, 4000),
+        error?.code ?? null,
+      ],
+    );
+  } finally {
+    if (ownsClient) await client.end().catch(() => {});
+  }
+}
+
 async function writeSummary(outDir, runKey, result) {
   await fs.mkdir(outDir, { recursive: true });
   const fullPath = path.join(outDir, `${runKey}_summary.json`);
@@ -1706,9 +1800,11 @@ async function main() {
   const artifactRoot = path.join(args.outDir, runKey);
   await fs.mkdir(artifactRoot, { recursive: true });
 
+  let currentGuard = null;
   let historicalGuard = null;
   let result;
   try {
+    currentGuard = await acquireCurrentGuard(args);
     historicalGuard = await acquireHistoricalGuard(args);
     const requestedDates = args.mode === "historical" ? dateRange(args.dateFrom, args.dateTo) : [];
     if (requestedDates.length > 0 && requestedDates.every((date) => args.completedHistoricalDates?.has(date))) {
@@ -1729,7 +1825,7 @@ async function main() {
       };
     } else {
       result = args.mode === "current"
-        ? await runCurrentSync(args, runKey, artifactRoot)
+        ? await runCurrentSync(args, runKey, artifactRoot, currentGuard)
         : await runHistoricalSync(args, runKey, artifactRoot);
     }
   } catch (error) {
@@ -1760,6 +1856,19 @@ async function main() {
           await client.end().catch(() => {});
         }
       }
+    } else if (error?.code === "CURRENT_WORKER_LOCKED") {
+      result = {
+        run: {
+          run_key: runKey,
+          sync_mode: "current_full_sync",
+          status: "skipped_worker_locked",
+          error: error.message,
+          started_at: args.actualStartedAt,
+          finished_at: new Date().toISOString(),
+        },
+        summary: { error: error.message },
+        artifacts: [],
+      };
     } else if (error?.code === "HISTORICAL_WORKER_LOCKED") {
       result = {
         run: {
@@ -1774,11 +1883,13 @@ async function main() {
         artifacts: [],
       };
     } else {
+      await recordCurrentFailure(args, runKey, error, currentGuard);
       await recordHistoricalFailure(args, runKey, error);
       throw error;
     }
   } finally {
     await releaseHistoricalGuard(historicalGuard);
+    await releaseCurrentGuard(currentGuard);
   }
 
   const summaryPath = await writeSummary(artifactRoot, runKey, {
@@ -1803,6 +1914,9 @@ async function main() {
   console.log(`[tcgcsv-full] price_rows=${result.run.price_row_count ?? 0}`);
   console.log(`[tcgcsv-full] summary=${path.relative(REPO_ROOT, summaryPath).replace(/\\/g, "/")}`);
   if (["partial_success", "failed", "aborted_request_ceiling"].includes(result.run.status)) {
+    process.exitCode = 1;
+  }
+  if (args.mode === "current" && result.run.status === "skipped_worker_locked") {
     process.exitCode = 1;
   }
 }

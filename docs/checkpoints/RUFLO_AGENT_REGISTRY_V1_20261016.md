@@ -12,7 +12,7 @@ workflow, query a production service, modify another worktree, or perform any
 cleanup.
 
 The current source foundation is commit
-`2792ef94c5912afe92b439feaa83d3d2bec1318a` on
+`e7d98ee2fd0abb6cda8f5c2dde9df7877b7c1d5a` on
 `feat/ruflo-agent-registry-v1`. The checked-in inventory was refreshed from
 that exact commit on October 21; later documentation commits do not change the
 registry or inventory implementation recorded by the snapshot.

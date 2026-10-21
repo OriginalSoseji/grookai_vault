@@ -64,6 +64,33 @@ const ASSIGNMENT_RUNTIME_REPAIR_MIGRATION = readFileSync(
   ),
   "utf8",
 );
+const MTG_FINISH_BRIDGE_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20261018170000_mtg_tcgplayer_finish_publication_bridge_v1.sql",
+  ),
+  "utf8",
+);
+const MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20261018193000_mtg_finish_snapshot_lineage_guard_fix_v1.sql",
+  ),
+  "utf8",
+);
+const MTG_MISSING_NUMBER_BRIDGE_MIGRATION = readFileSync(
+  path.join(
+    ROOT,
+    "supabase",
+    "migrations",
+    "20261020062000_mtg_exact_finish_missing_number_bridge_v1.sql",
+  ),
+  "utf8",
+);
 const WORKER = readFileSync(
   path.join(
     ROOT,
@@ -427,6 +454,78 @@ test("publishes an exact fresh English Pokemon printing", () => {
   assert.deepEqual(result.reason_codes, []);
 });
 
+test("publishes MTG through an exact product-and-finish mapping without a false parent", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      category_id: 1,
+      source_price_row_identity: "1:2810:foil:2026-07-27",
+      source_subtype_name: "Foil",
+      normalized_finish_key: "foil",
+      identity_domain: "mtg_eng_paper_print",
+      source_mapping_id: null,
+      variant_assignment_id: null,
+      mtg_printing_mapping_id: "40000000-0000-4000-8000-000000000001",
+      mapping_method: "exact_external_printing_mapping_v1",
+      variant_assignment_version: "MTG_EXACT_PRINTING_MAPPING_V1",
+      finish_key: "foil",
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "publish");
+  assert.deepEqual(result.reason_codes, []);
+  assert.equal(result.evidence.mapping_lane, "mtg_exact_finish_v1");
+});
+
+test("exact MTG product-and-finish authority replaces missing printed-number text", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      category_id: 1,
+      source_subtype_name: "Normal",
+      normalized_finish_key: "normal",
+      identity_domain: "mtg_eng_paper_print",
+      source_mapping_id: null,
+      variant_assignment_id: null,
+      mtg_printing_mapping_id: "40000000-0000-4000-8000-000000000002",
+      mapping_method: "exact_external_printing_mapping_v1",
+      variant_assignment_version: "MTG_EXACT_PRINTING_MAPPING_V1",
+      finish_key: "normal",
+      has_printed_number_evidence: false,
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "publish");
+  assert.deepEqual(result.reason_codes, []);
+});
+
+test("does not waive MTG parent lineage without the exact finish mapping FK", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      category_id: 1,
+      source_subtype_name: "Foil",
+      normalized_finish_key: "foil",
+      identity_domain: "mtg_eng_paper_print",
+      source_mapping_id: null,
+      variant_assignment_id: null,
+      mapping_method: "exact_external_printing_mapping_v1",
+      finish_key: "foil",
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.eligible, false);
+  assert.ok(result.reason_codes.includes("missing_source_mapping_identity"));
+  assert.ok(result.reason_codes.includes("missing_variant_assignment_identity"));
+});
+
+test("quarantines an ordinary candidate whose mapping appeared after assignment preparation", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({ variant_assignment_id: null }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "quarantine");
+  assert.equal(result.eligible, false);
+  assert.ok(result.reason_codes.includes("missing_variant_assignment_identity"));
+});
+
 test("supporting low mid high and direct-low values do not derive the market close", () => {
   const first = evaluateTcgplayerMarketQualificationV1(validCandidate(), {
     now: NOW,
@@ -519,7 +618,7 @@ test("quarantines foreign, special, sealed, and code-card lanes", () => {
   assert.ok(sealed.reason_codes.includes("unsupported_product_kind"));
 });
 
-test("publication V1.2 scope is evidence-aware and keeps numbered card names", () => {
+test("publication V1.4 scope is evidence-aware and keeps numbered card names", () => {
   const sealed = evaluateTcgplayerMarketQualificationV1(
     validCandidate({
       source_product_name: "Journey Together Booster Bundle",
@@ -542,6 +641,53 @@ test("publication V1.2 scope is evidence-aware and keeps numbered card names", (
   );
   assert.equal(ordinaryTinCard.decision, "publish");
 
+  const mtgExactFinish = {
+    category_id: 1,
+    source_subtype_name: "Normal",
+    normalized_finish_key: "normal",
+    identity_domain: "mtg_eng_paper_print",
+    source_mapping_id: null,
+    variant_assignment_id: null,
+    mtg_printing_mapping_id: "40000000-0000-4000-8000-000000000009",
+    mapping_method: "exact_external_printing_mapping_v1",
+    variant_assignment_version: "MTG_EXACT_PRINTING_MAPPING_V1",
+    finish_key: "normal",
+  };
+  for (const sourceProductName of [
+    "10th Edition - Fat Pack",
+    "Alara Reborn - Intro Pack - Eternal Siege",
+    "Commander - Heavenly Inferno Deck",
+    "Challenger Deck 2022 Display",
+    "Kaladesh - Bundle",
+    "Born of the Gods - Prerelease Kit (Set of 5)",
+    "Secret Lair Drop: Bitterblossom Dreams - Non-Foil Edition",
+  ]) {
+    const packaged = evaluateTcgplayerMarketQualificationV1(
+      validCandidate({
+        ...mtgExactFinish,
+        source_product_name: sourceProductName,
+        has_printed_number_evidence: false,
+      }),
+      { now: NOW },
+    );
+    assert.equal(packaged.decision, "exclude", sourceProductName);
+    assert.equal(
+      packaged.evidence.product_scope_rule_id,
+      "sealed_or_packaged_product_v1_4",
+      sourceProductName,
+    );
+  }
+
+  const numberedDeckCard = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      ...mtgExactFinish,
+      source_product_name: "The Deck of Many Things",
+      has_printed_number_evidence: true,
+    }),
+    { now: NOW },
+  );
+  assert.equal(numberedDeckCard.decision, "publish");
+
   const special = evaluateTcgplayerMarketQualificationV1(
     validCandidate({ source_product_name: "Pikachu (Master Ball Pattern)" }),
     { now: NOW },
@@ -550,7 +696,7 @@ test("publication V1.2 scope is evidence-aware and keeps numbered card names", (
   assert.ok(special.reason_codes.includes("special_variant_v1_1"));
   assert.equal(
     special.evidence.product_scope_policy_version,
-    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3",
+    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4",
   );
   assert.equal(special.evidence.product_scope_rule_id, "ball_pattern_print");
 
@@ -602,10 +748,35 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_14/);
-  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v4/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_19/);
+  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v7/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
+});
+
+test("MTG finish bridge carries one exact printing mapping through every durable table", () => {
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /external_id = candidate\.source_product_id::text \|\| ':'/);
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /identity_domain = 'mtg_eng_paper_print'/);
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /mtg_tcgplayer_finish_price_row_valid_v1/);
+  assert.match(MTG_FINISH_BRIDGE_MIGRATION, /mtg_finish_price_lineage_invalid/);
+  assert.equal((WORKER.match(/mtg_printing_mapping_id/g) ?? []).length >= 12, true);
+});
+
+test("MTG snapshot guard links the already-validated decision without a redundant nested validator", () => {
+  assert.match(MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION, /decision_row\.source_observation_id/);
+  assert.match(MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION, /decision_row\.card_printing_id/);
+  assert.doesNotMatch(
+    MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION,
+    /mtg_tcgplayer_finish_price_row_valid_v1\(to_jsonb\(decision_row\)\)/,
+  );
+  assert.match(WORKER, /20261020220000/);
+});
+
+test("MTG missing-number bridge requires an independent mapping to the same exact printing", () => {
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /candidate\.has_printed_number_evidence = false/);
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /mapping\.card_printing_id = candidate\.card_printing_id/);
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /candidate\.card_printing_mapping_count = 1/);
+  assert.match(MTG_MISSING_NUMBER_BRIDGE_MIGRATION, /v_tcgplayer_market_qualification_candidates_v6/);
 });
 
 test("candidate pages are bounded, deterministic, and deduplicate product IDs", () => {

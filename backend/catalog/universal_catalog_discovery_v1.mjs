@@ -20,6 +20,85 @@ export function isOptionalCatalogSourceFallbackV1(error) {
     error?.httpStatus === 404;
 }
 
+export function canSkipUnavailableIndependentJapaneseChecklistV1(
+  error,
+  primaryChecklist,
+) {
+  const failureClass = error?.catalogSourceFailureClass;
+  if (!["SOURCE_ACCESS_DENIED", "SOURCE_UNAVAILABLE"].includes(failureClass)) {
+    return false;
+  }
+  const cardCount = primaryChecklist?.cards?.length;
+  const declaredCount = Number(primaryChecklist?.cardCount?.total);
+  return Number.isSafeInteger(cardCount) && cardCount > 0 &&
+    Number.isSafeInteger(declaredCount) && declaredCount > 0 &&
+    cardCount === declaredCount;
+}
+
+function officialJapaneseImageSetCodeV1(value) {
+  try {
+    return new URL(value).pathname.match(
+      /\/card_images\/[^/]+\/(?<code>[^/]+)\//i,
+    )?.groups?.code ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export function canUseCompleteOfficialJapaneseExpansionChecklistV1({
+  error,
+  productType,
+  sourceSetCode,
+  tcgdexEvidencePresent,
+  tcgdexChecklist,
+  officialChecklist,
+  numberedChecklist,
+}) {
+  const failureClass = error?.catalogSourceFailureClass;
+  if (!["SOURCE_ACCESS_DENIED", "SOURCE_UNAVAILABLE"].includes(failureClass) ||
+      productType !== "expansion" || tcgdexEvidencePresent === true ||
+      tcgdexChecklist != null) {
+    return false;
+  }
+  const expectedCode = String(sourceSetCode ?? "").trim().toLocaleLowerCase("und");
+  const officialCards = officialChecklist?.cards;
+  const officialCount = Number(officialChecklist?.hit_count);
+  const numberedCards = numberedChecklist?.cards;
+  const numberedCount = Number(numberedChecklist?.set?.card_count);
+  if (!expectedCode || !Array.isArray(officialCards) || officialCards.length === 0 ||
+      !Number.isSafeInteger(officialCount) || officialCount <= 0 ||
+      officialCards.length !== officialCount || !Array.isArray(numberedCards) ||
+      numberedCards.length === 0 || !Number.isSafeInteger(numberedCount) ||
+      numberedCount <= 0 || numberedCards.length !== numberedCount ||
+      numberedCount > officialCount ||
+      String(numberedChecklist?.set?.id ?? "").trim().toLocaleLowerCase("und") !==
+        expectedCode) {
+    return false;
+  }
+  const officialIds = new Set();
+  for (const card of officialCards) {
+    const cardId = String(card?.card_id ?? "").trim();
+    const imageSetCode = officialJapaneseImageSetCodeV1(card?.image_url)
+      ?.toLocaleLowerCase("und");
+    if (!/^\d+$/.test(cardId) || officialIds.has(cardId) ||
+        imageSetCode !== expectedCode) {
+      return false;
+    }
+    officialIds.add(cardId);
+  }
+  const numberedIds = new Set();
+  for (const card of numberedCards) {
+    const cardId = String(card?.source_external_id ?? "").trim();
+    const cardSetCode = String(card?.source_set_code ?? "")
+      .trim().toLocaleLowerCase("und");
+    if (!cardId || numberedIds.has(cardId) || cardSetCode !== expectedCode) {
+      return false;
+    }
+    numberedIds.add(cardId);
+  }
+  return true;
+}
+
 export async function mapPoolSettledV1(values, concurrency, task) {
   if (!Array.isArray(values) || !Number.isInteger(concurrency) || concurrency < 1 ||
       typeof task !== "function") {

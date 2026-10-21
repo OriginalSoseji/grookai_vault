@@ -1,7 +1,7 @@
 import { applyCosmosFinishPublicationScopeV1, cosmosFinishQualificationReasonsV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import { TCGPLAYER_EDITION_IDENTITY_V1, tcgplayerEditionQualificationReasonsV1, isTcgplayerEditionAssignmentProjectionV1 } from "./tcgplayer_edition_identity_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_3,
+  classifyTcgplayerMarketProductScopeV1_4,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 import { applyTrainerKitPilotPublicationScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 import { applyWcdTeamRushdownPublicationScopeV1 } from "./tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
@@ -90,10 +90,18 @@ export function evaluateTcgplayerMarketQualificationV1(
     normalizeTcgplayerMarketSubtypeV1(row.source_subtype_name);
   const categoryId = Number(row.category_id);
   const expectedIdentityDomain = SUPPORTED_IDENTITY_DOMAINS.get(categoryId) ?? null;
+  const exactMtgPrintingMapping =
+    categoryId === 1 &&
+    Boolean(clean(row.mtg_printing_mapping_id)) &&
+    !clean(row.source_mapping_id) &&
+    !clean(row.variant_assignment_id) &&
+    !clean(row.edition_assignment_id) &&
+    !clean(row.gym_edition_assignment_id) &&
+    clean(row.mapping_method) === "exact_external_printing_mapping_v1";
   const scope = applyCosmosFinishPublicationScopeV1(
     applyWcdTeamRushdownPublicationScopeV1(
       applyTrainerKitPilotPublicationScopeV1(
-        classifyTcgplayerMarketProductScopeV1_3(row), row,
+        classifyTcgplayerMarketProductScopeV1_4(row), row,
       ), row,
     ), row,
   );
@@ -107,7 +115,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   if (clean(row.source_product_catalog_status) !== "current") {
     reasons.push("source_product_not_current");
   }
-  if (row.has_printed_number_evidence !== true) {
+  if (row.has_printed_number_evidence !== true && !exactMtgPrintingMapping) {
     reasons.push("missing_printed_number_evidence");
   }
   if (!scope.in_scope) exclusionReasons.push(scope.reason_code);
@@ -145,7 +153,9 @@ export function evaluateTcgplayerMarketQualificationV1(
         : "ambiguous_active_source_mapping",
     );
   }
-  if (!exactEditionAssignment && !clean(row.source_mapping_id)) reasons.push("missing_source_mapping_identity");
+  if (!exactEditionAssignment && !exactMtgPrintingMapping && !clean(row.source_mapping_id)) {
+    reasons.push("missing_source_mapping_identity");
+  }
   if (!clean(row.mapping_method)) reasons.push("missing_mapping_method");
   if (mappingCount !== 1) {
     reasons.push(mappingCount === 0 ? "missing_exact_card_mapping" : "ambiguous_card_mapping");
@@ -169,6 +179,9 @@ export function evaluateTcgplayerMarketQualificationV1(
         ? "variant_assignment_not_exact_child_finish"
         : "missing_variant_assignment",
     );
+  }
+  if (!exactEditionAssignment && !exactMtgPrintingMapping && !clean(row.variant_assignment_id)) {
+    reasons.push("missing_variant_assignment_identity");
   }
   if (printingMappingCount !== 1) {
     reasons.push(
@@ -308,6 +321,10 @@ export function evaluateTcgplayerMarketQualificationV1(
         edition_binding_id: row.edition_binding_id,
         edition_assignment_sha256: row.edition_assignment_sha256,
         edition_assignment_version: row.edition_assignment_version,
+      } : {}),
+      ...(exactMtgPrintingMapping ? {
+        mtg_printing_mapping_id: clean(row.mtg_printing_mapping_id),
+        mapping_lane: "mtg_exact_finish_v1",
       } : {}),
       cosmos_finish_authority: row.cosmos_finish_authority === true,
       ...(scope.finish_policy_version ? { finish_policy_version: scope.finish_policy_version } : {}),

@@ -90,7 +90,7 @@ test("MTG normal and foil are exact ordinary finish lanes", () => {
   assert.equal(normalizeTcgplayerMarketSubtypeV1("Etched"), null);
 });
 
-test("an exact fresh English MTG printing qualifies under V1.3", () => {
+test("an exact fresh English MTG printing qualifies under publication V1.3", () => {
   const result = evaluateTcgplayerMarketQualificationV1(mtgCandidate(), {
     now: NOW,
   });

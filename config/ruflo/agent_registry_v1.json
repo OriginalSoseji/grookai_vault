@@ -164,7 +164,7 @@
       "source_locator": ".github/workflows/tcgplayer-pricing-completion-agent.yml",
       "source_ref_policy": "exact_task_commit",
       "schedule_kind": "cron",
-      "schedule_expression": "47 * * * *",
+      "schedule_expression": "*/15 * * * *",
       "allowed_work_item_types": ["tcgplayer_pricing_backlog_repair"],
       "allowed_command_actions": ["advance_tcgplayer_pricing_backlog"],
       "contracts": ["docs/contracts/OPERATIONS_AGENT_PROTOCOL_V1.md", "docs/checkpoints/pricing/PRICING_CHECKPOINT_133_TCGPLAYER_PRICING_COMPLETION_AGENT.md"],

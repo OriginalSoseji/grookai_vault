@@ -138,7 +138,7 @@ represented across every required dimension.
 | Agent key | Domain | Trigger | Initial Ruflo mode |
 |---|---|---|---|
 | `universal-catalog-discovery-v1` | Catalog discovery | Cron every six hours | Observe and coordinate review |
-| `tcgplayer-pricing-completion-v1` | Pricing completion | Hourly cron | Observe backlog and route bounded review |
+| `tcgplayer-pricing-completion-v1` | Pricing completion | Every 15 minutes | Observe backlog and route bounded review |
 | `catalog-set-outcome-v1` | Catalog outcome workflow | Event/manual workflow | Plan-only until command adapter is separately approved |
 | `tk-sm-r-hidden-set-apply-v1` | Catalog bounded apply | Event | Status-only; high-risk execution remains external |
 

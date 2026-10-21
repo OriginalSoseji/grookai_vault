@@ -33,6 +33,109 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`
+
+This checkpoint records the live-queue audit and V1.4 scope correction that
+removes numberless sealed and packaged TCGPlayer products from the ordinary
+missing-card lane while preserving numbered cards.
+
+Decision locked there:
+
+- package-name exclusion requires absent printed-number evidence, and historical
+  scope-policy versions remain reproducible
+
+Unresolved gate afterward:
+
+- merge, run the exact-commit full shadow and guarded production publication,
+  then verify the corrected hosted queue before changing its local consumer
+
+### `PRICING_CHECKPOINT_164_CROSS_CATEGORY_COMPLETION_QUEUE.md`
+
+This checkpoint records the repair that makes the continuous pricing agent emit
+deduplicated in-scope product queues for both Magic and Pokemon instead of
+feeding the local worker only Pokemon planner holds.
+
+Decision locked there:
+
+- a pricing backlog count must retain category and product-scope meaning, and
+  advisory queue construction grants no mapping or publication authority
+
+Unresolved gate afterward:
+
+- complete checkpoint 165's product-scope release, then move the local consumer
+  from the legacy Pokemon `blocked.jsonl` input to the corrected category queue
+
+### `PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`
+
+This checkpoint records the single duplicate-printing defect that blocked the
+176,836-row MTG/Pokemon pricing activation. TCGPlayer Treasure Token product
+269823 carried printed number 17 but its legacy parent and child mappings both
+pointed to `tsnc` number 13.
+
+Decision locked there:
+
+- reviewed corrections update only frozen mapping rows and enter publication
+  through exact `mtg_printing_mapping_id` lineage; historical assignments are
+  retained and cannot override the reviewed target
+
+Unresolved gate afterward:
+
+- merge, apply candidate V7 and the two-row correction, then run a new exact-
+  commit full shadow and guarded production activation
+
+### `PRICING_CHECKPOINT_162_MTG_PARTIAL_SET_EXTENSION.md`
+
+This checkpoint records the bounded extension path for an MTG set that already
+contains exact canonical parents. The Foundations Commander rollback proof
+retained 3 existing parents, inserted and exactly read back 1,580 rows for 316
+new parents, rolled back, and proved zero residue.
+
+Decision locked there:
+
+- a partial MTG set can expand only when every retained parent and its identity,
+  printing, and mapping cores are accounted for; the writer selects missing
+  parent-owned rows only and remains insert-only
+
+Unresolved gate afterward:
+
+- merge and run the exact clean durable Foundations Commander extension, then
+  rerun the Scryfall finish classifier and pricing backfill
+
+### `PRICING_CHECKPOINT_161_MTG_SCRYFALL_GAP_CLASSIFICATION.md`
+
+This checkpoint replaces the generic MTG Scryfall review bucket with exact
+lane-level failure reasons and evidence counts. The live read-only result
+separates 14,296 missing provider links, 1,148 etched-only links, 762 missing
+canonical mappings, 13 true ambiguities, and one missing finish child.
+
+Decision locked there:
+
+- local-model advice cannot authorize identity writes; deterministic source,
+  canonical-parent, finish, visibility, identity, and review gates route every
+  held lane to its actual repair owner
+
+Unresolved gate afterward:
+
+- admit or map the 597 canonically missing linked products, then add another
+  external authority for products that Scryfall does not link to TCGPlayer
+
+### `PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md`
+
+This checkpoint records the overlapping current-warehouse sync that invalidated
+the October 17 shadow by moving shared dimension ownership between two source
+runs and leaving zero publication candidates.
+
+Decision locked there:
+
+- applying current syncs serialize through one database advisory lock held by
+  the same PostgreSQL session as the warehouse writes, and missing-row
+  finalization requires exact run ownership of every fetched dimension
+
+Unresolved gate afterward:
+
+- restore the current active dimension state with a fresh locked full sync,
+  then pass a nonzero exact-commit shadow and guarded production publication
+
 ### `PRICING_CHECKPOINT_133_TCGPLAYER_PRICING_COMPLETION_AGENT.md`
 
 This checkpoint records the dedicated six-hour TCGPlayer pricing-completion
