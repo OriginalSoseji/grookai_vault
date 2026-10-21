@@ -171,7 +171,7 @@ function gymEditionRow() {
   return row;
 }
 
-test('complete exact edition projection qualifies through separate assignment lane with unchanged V1_3 policy', () => {
+test('complete exact edition projection qualifies through its assignment lane under publication V1.3', () => {
   const row = editionRow(); assert.equal(exact(row), true);
   const result = qualify(row, { now });
   assert.equal(result.eligible, true); assert.equal(result.decision, 'publish');

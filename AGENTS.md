@@ -1,5 +1,16 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer packaging scope repair — October 21
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`.
+The first live cross-category queue was hash-valid but included numberless Fat
+Packs, Intro Packs, decks, bundles, displays, collections, cases, kits, Boxes,
+and whole Secret Lair drops as missing cards. V1.4 excludes only products with
+both an explicit package signal and no printed-number evidence. Preserve the
+V1.3 classifier for historical replay. Require an exact-commit full shadow,
+guarded production activation, independent completion-artifact readback, and a
+corrected category queue before changing the local Ollama consumer.
+
 ## MTG reviewed printing correction — October 20
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`.

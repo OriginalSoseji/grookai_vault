@@ -2,7 +2,7 @@
 
 ## Status
 
-`IMPLEMENTED - LIVE WORKFLOW VERIFICATION PENDING`
+`LIVE WORKFLOW VERIFIED - PRODUCT SCOPE REPAIR REQUIRED`
 
 ## Problem
 
@@ -47,3 +47,22 @@ contains exactly one `identity_product_queue.jsonl`, one
 `pokemon_identity_product_queue.jsonl`. Reconcile their product counts to the
 V2 heartbeat, then update the local consumer to use the category queue rather
 than the Pokemon planner's `blocked.jsonl`.
+
+## Live Verification
+
+PR 761 merged at `24cea687b4fe9d99460e372e1cf310584e365113`.
+Workflow run `39613976600` completed from that exact commit and emitted one copy
+of every required queue. The receipt and downloaded bytes reconciled exactly:
+
+- combined: 15,669 rows, SHA-256
+  `1f8b0cf0d9527fc285e4af5f3aed335895b8a5725375c03a7a6f95cbb425c5ca`;
+- Magic: 15,198 rows, SHA-256
+  `d2f410dea9df4eff879560f984e01de4143b273a4013f6a9181bb6b52ab65aca`;
+- Pokemon: 471 rows, SHA-256
+  `e38e68575f724f8ce9953d65a4428ac87967a406705094a8e9aec0de74b567b5`.
+
+The live artifact also exposed stale scope classification: Fat Packs, Intro
+Packs, decks, bundles, displays, and other packaged products were marked
+`in_scope`. Checkpoint 165 owns that correction. The local consumer must remain
+on its existing input until a V1.4 pricing run and a fresh completion artifact
+remove those products from the card-identity queue.
