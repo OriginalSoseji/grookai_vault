@@ -41,7 +41,7 @@ function taskSpec() {
     non_goals: ["Agent execution", "Workflow dispatch", "Worktree cleanup"],
     inputs: [{
       locator: "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
-      sha256: "7578f5fdaff92ab0566cc763e6e2f04483970352de4dcfd72d0e9b8e70bc2101",
+      sha256: "6cdaa59efa5cd752b093f04f4417276d89c0f488932d651dd706fbfd9cec6b47",
     }],
     budgets: { time_seconds: 60, row_limit: 100, request_limit: 0, cost_usd: 0, concurrency: 1 },
     expected_artifacts: ["docs/audits/ruflo_operations_adapter_v1/operations_read_model_v1.json"],
@@ -58,6 +58,8 @@ test("read adapter preserves authoritative periodic staleness and event idle hea
   assert.equal(periodic.lifecycle_state, "registered");
   assert.equal(periodic.topology_role, "operations_agent");
   assert.equal(periodic.action_risk, "read_only");
+  assert.equal(periodic.heartbeat_interval_seconds, 21600);
+  assert.equal(periodic.stale_after_seconds, 50400);
   assert.equal(eventAgent.schedule_kind, "event");
   assert.equal(eventAgent.health, "healthy");
   assert.equal(eventAgent.lifecycle_state, "registered");

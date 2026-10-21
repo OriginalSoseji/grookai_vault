@@ -98,6 +98,7 @@ function validateAgentSnapshot(value, registryAgent, label) {
   assert(typeof value.is_paused === "boolean", `${label}.is_paused must be boolean`);
   assert(value.paused_reason === null || typeof value.paused_reason === "string", `${label}.paused_reason must be a string or null`);
   assert(Number.isInteger(value.stale_after_seconds) && value.stale_after_seconds > 0, `${label}.stale_after_seconds must be a positive integer`);
+  assert(value.stale_after_seconds === registryAgent.stale_after_seconds, `${label}.stale_after_seconds does not match the registry`);
   assert(value.latest_run_status === null || RUN_STATUS_VALUES.has(value.latest_run_status), `${label}.latest_run_status is invalid`);
   if (!PERIODIC_SCHEDULES.has(registryAgent.schedule_kind)) {
     assert(value.health !== "stale", `${label}.health cannot be stale for ${registryAgent.schedule_kind} agents`);
@@ -122,7 +123,8 @@ function validateAgentSnapshot(value, registryAgent, label) {
     paused_reason: value.paused_reason,
     last_heartbeat_at: assertTimestamp(value.last_heartbeat_at, `${label}.last_heartbeat_at`),
     last_success_at: assertTimestamp(value.last_success_at, `${label}.last_success_at`),
-    stale_after_seconds: value.stale_after_seconds,
+    heartbeat_interval_seconds: registryAgent.heartbeat_interval_seconds,
+    stale_after_seconds: registryAgent.stale_after_seconds,
     latest_run_status: value.latest_run_status,
     latest_run_at: assertTimestamp(value.latest_run_at, `${label}.latest_run_at`),
     evidence_refs: evidenceRefs.map((entry, index) => validateEvidenceRef(entry, `${label}.evidence_refs[${index}]`)),
