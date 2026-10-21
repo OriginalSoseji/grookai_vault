@@ -6,7 +6,7 @@
 
 Pull-request step 2 from the all-agents plan now has an R0-only implementation
 candidate. Its core implementation is commit
-`bdafab1ad9158590a6894f206e65deaece3571ad` on
+`974470b21d1a651a569e3574a043166b43fca1ef` on
 `feat/ruflo-readonly-operations-adapter-v1`, stacked on the registry foundation.
 It does not connect to Supabase, call an Operations RPC, contact Ruflo, execute
 an agent, dispatch a workflow, write production state, or clean a worktree.
@@ -19,7 +19,8 @@ row to `config/ruflo/agent_registry_v1.json`, copies only allowlisted health and
 evidence-reference fields, emits stable JSON, and computes a deterministic
 SHA-256 fingerprint. The read model carries lifecycle state, topology role, and
 action risk independently, so a registered external writer remains visibly
-high-risk even in an R0 observation.
+high-risk even in an R0 observation. It also requires the snapshot's staleness
+window to match the registry and emits the source-defined heartbeat interval.
 
 The adapter fails closed on:
 
@@ -42,6 +43,10 @@ against the checked-in registry and read-only inventory. It requires a lowercase
 40-character commit SHA, exact inventoried branch and worktree HEAD, protected
 and non-writable worktree state, hashed inputs, bounded resources, expected
 artifacts, acceptance tests, and direct-readback evidence expectations.
+The inventory version, registry-byte hash, zero boundaries, and stable content
+fingerprint must match the task's expected inventory fingerprint before any
+worktree is trusted. Input bytes are read from the declared Git commit, not the
+builder checkout, and repository-relative locators reject URI schemes.
 
 The emitted envelope is always `validated` but `not_started`. Its permission is
 R0 and its execution, workflow-dispatch, production-write, external-action,
@@ -71,8 +76,8 @@ inventory. `artifact_hashes.json` binds all three sample inputs/outputs to the
 core implementation commit. This is synthetic contract evidence, not a live
 production health readback.
 
-- New adapter/envelope contracts: 10 of 10 passed.
-- Combined Ruflo registry, pinning, adapter, and envelope contracts: 23 of 23
+- New adapter/envelope contracts: 12 of 12 passed.
+- Combined Ruflo registry, pinning, adapter, and envelope contracts: 25 of 25
   passed.
 - Secret-packaging guard: passed.
 - `git diff --check`: passed before the evidence/documentation commit.

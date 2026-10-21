@@ -133,9 +133,10 @@ export function discoverTrackedSurfacesV1({ repoRoot, registry }) {
       if (!(sourceLocator === root || sourceLocator.startsWith(`${root}/`))) continue;
       const relative = sourceLocator === root ? "" : sourceLocator.slice(root.length + 1);
       if (!pattern.test(relative)) continue;
-      const collisionKey = `${rule.surface_kind}:${sourceLocator}`;
-      if (classifiedPaths.has(collisionKey)) continue;
-      classifiedPaths.add(collisionKey);
+      if (classifiedPaths.has(sourceLocator)) {
+        throw new Error(`Automation surface matches more than one rule: ${sourceLocator}`);
+      }
+      classifiedPaths.add(sourceLocator);
       surfaces.push({
         surface_key: surfaceKey(rule.surface_kind, sourceLocator),
         surface_kind: rule.surface_kind,
@@ -152,6 +153,18 @@ export function discoverTrackedSurfacesV1({ repoRoot, registry }) {
   }
 
   for (const lane of registry.host_lanes) {
+    const existing = surfaces.find((surface) => surface.source_locator === lane.source_locator);
+    if (existing) {
+      Object.assign(existing, {
+        host_lane_key: lane.surface_key,
+        host_surface_kind: lane.surface_kind,
+        schedule_kind: lane.schedule_kind,
+        schedule_expression: lane.schedule_expression,
+        contract: lane.contract,
+        classification_source: "surface_rule+host_lane_registry",
+      });
+      continue;
+    }
     surfaces.push({
       ...lane,
       domain: inferDomain(lane.source_locator),

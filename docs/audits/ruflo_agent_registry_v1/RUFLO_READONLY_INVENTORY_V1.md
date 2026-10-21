@@ -1,8 +1,8 @@
 # Ruflo Read-Only Inventory V1
 
-- Generated: `2026-10-21T08:56:40-06:00`
-- Source commit: `e7d98ee2fd0abb6cda8f5c2dde9df7877b7c1d5a`
-- Inventory fingerprint: `bc393fbe107d8967cd9b05891fd44c108f4baf4b71727c343c26407bc06007ad`
+- Generated: `2026-10-21T09:10:05-06:00`
+- Source commit: `3758d51cb0a5b7334a3b2be3b91c07129bbcf891`
+- Inventory fingerprint: `512c322ae51561a412a972921f9aed714f9830dd654d9aa30948ede0fb917210`
 
 ## Boundary
 
@@ -11,7 +11,7 @@ This inventory is read-only. It authorizes zero agent executions, workflow dispa
 ## Counts
 
 - Registry agents: 15
-- Automation surfaces: 168
+- Automation surfaces: 728
 - Host lanes: 4
 - Discovered worktrees: 36
 - Dirty worktrees: 5
@@ -21,39 +21,49 @@ This inventory is read-only. It authorizes zero agent executions, workflow dispa
 
 | Value | Count |
 |---|---:|
-| backend_automation | 52 |
+| backend_automation | 615 |
 | github_workflow | 66 |
 | script_worker | 46 |
-| systemd_timer | 3 |
 | windows_scheduled_task | 1 |
 
 ### Surfaces By Domain
 
 | Value | Count |
 |---|---:|
-| automation | 18 |
-| billing | 4 |
-| catalog | 46 |
+| account_deletion | 1 |
+| automation | 19 |
+| billing | 5 |
+| catalog | 86 |
 | client | 3 |
-| condition | 5 |
-| ebay | 2 |
+| clients | 6 |
+| condition | 10 |
+| domain | 3 |
+| ebay | 3 |
+| engagement | 1 |
 | governance | 2 |
-| grookai_dex | 2 |
-| identity | 3 |
+| grookai_dex | 3 |
+| identity | 116 |
+| identity_v3 | 20 |
 | images | 4 |
 | infra | 2 |
-| infrastructure | 4 |
-| ingestion | 2 |
-| market_evidence | 6 |
+| infrastructure | 5 |
+| ingestion | 4 |
+| lib | 7 |
+| maintenance | 17 |
+| market_evidence | 4 |
 | observability | 3 |
-| operations | 13 |
-| payments | 3 |
-| pokemon | 6 |
-| pricing | 30 |
-| release | 1 |
-| sets | 2 |
-| vault | 1 |
-| warehouse | 6 |
+| operations | 17 |
+| payments | 5 |
+| pokemon | 10 |
+| pricing | 277 |
+| printing | 12 |
+| receipts | 1 |
+| release | 3 |
+| scanner_v4 | 3 |
+| sets | 3 |
+| tools | 5 |
+| vault | 2 |
+| warehouse | 66 |
 
 ## Worktrees
 

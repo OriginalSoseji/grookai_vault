@@ -1,10 +1,10 @@
 {
   "evidence_kind": "deterministic_contract_sample",
-  "source_implementation_commit": "bdafab1ad9158590a6894f206e65deaece3571ad",
+  "source_implementation_commit": "974470b21d1a651a569e3574a043166b43fca1ef",
   "live_runtime_readback": false,
   "files": {
-    "operations_read_model_v1.json": "ef6579d44fa67d8baac0f8932e31fcb29e21ec0534b654b689279b2349eadfac",
-    "ruflo-readonly-catalog-health-20261017.task_envelope_v1.json": "3c6bfb831865ce83ee659f6b15c58ffcd1dc6de4cce5003c0d1bbc16d1f45ed3",
-    "task_spec_v1.json": "74cbd21f0523dedbc8098da85df2a1c4dd197080b32e7a06e5c05858de8f9fb8"
+    "operations_read_model_v1.json": "cdd20c457bec8db112148f6e57a707691c1e3de57f96c9a09a7206e1f8a6f254",
+    "ruflo-readonly-catalog-health-20261017.task_envelope_v1.json": "56a40aa9d6584a5bc721b54b8f12f7509d43bb99358dbd11f500c10ff8195b5d",
+    "task_spec_v1.json": "09d9f27fc332a3901d114fe7d4ac17c21dde45b679437ccdc4dc558b654ed2ae"
   }
 }

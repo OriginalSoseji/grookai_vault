@@ -18,6 +18,40 @@ export const ADOPTION_STATES = new Set([
 export const SCHEDULE_KINDS = new Set(["cron", "timer", "continuous", "event", "manual"]);
 export const SECRET_KEY_PATTERN = /(authorization|token|secret|password|service.?role|api.?key|cookie)/i;
 
+const REGISTRY_KEYS = new Set([
+  "schema_version", "mode", "authority_order", "boundaries", "surface_rules",
+  "host_lanes", "protected_roots", "agents",
+]);
+const REGISTRY_BOUNDARY_KEYS = new Set([
+  "agent_execution", "workflow_dispatch", "production_writes", "external_actions",
+  "branch_cleanup", "worktree_cleanup", "cross_worktree_writes",
+]);
+const SURFACE_RULE_KEYS = new Set([
+  "surface_kind", "root", "pattern", "lifecycle_state", "topology_role",
+  "action_risk", "permission_tier",
+]);
+const HOST_LANE_KEYS = new Set([
+  "surface_key", "surface_kind", "source_locator", "lifecycle_state", "topology_role",
+  "action_risk", "permission_tier", "execution_enabled", "schedule_kind",
+  "schedule_expression", "contract",
+]);
+const PROTECTED_ROOT_KEYS = new Set(["path", "policy", "write_allowed", "reason"]);
+const AGENT_KEYS = new Set([
+  "agent_key", "display_name", "domain", "owner_label", "lifecycle_state",
+  "topology_role", "action_risk", "adoption_state", "permission_tier",
+  "execution_enabled", "execution_platform", "source_locator", "source_ref_policy",
+  "schedule_kind", "schedule_expression", "heartbeat_interval_seconds",
+  "stale_after_seconds", "allowed_work_item_types", "allowed_command_actions",
+  "contracts", "resource_locks", "worktree_policy", "evidence", "ruflo", "boundaries",
+]);
+const RESOURCE_LOCK_KEYS = new Set(["key", "mode"]);
+const WORKTREE_POLICY_KEYS = new Set(["write_allowed", "assigned_path"]);
+const EVIDENCE_KEYS = new Set(["retention_class", "direct_readback_required"]);
+const RUFLO_KEYS = new Set(["memory_namespace"]);
+const AGENT_BOUNDARY_KEYS = new Set([
+  "production_writes", "external_actions", "workflow_dispatch", "cleanup",
+]);
+
 const REQUIRED_FALSE_BOUNDARIES = [
   "agent_execution",
   "workflow_dispatch",
@@ -45,6 +79,12 @@ function assert(condition, message) {
 
 function assertPlainObject(value, label) {
   assert(value && typeof value === "object" && !Array.isArray(value), `${label} must be an object`);
+}
+
+function assertOnlyKeys(value, allowed, label) {
+  for (const key of Object.keys(value)) {
+    assert(allowed.has(key), `${label}.${key} is not allowed`);
+  }
 }
 
 function assertStringArray(value, label, { allowEmpty = true } = {}) {
@@ -85,6 +125,7 @@ function assertRepositoryLocator(repoRoot, value, label) {
 
 function validateSurfaceV1(surface, { repoRoot, label }) {
   assertPlainObject(surface, label);
+  assertOnlyKeys(surface, HOST_LANE_KEYS, label);
   assert(/^[a-z0-9_.-]+$/.test(clean(surface.surface_key)), `${label}.surface_key is invalid`);
   assert(/^[a-z0-9_.-]+$/.test(clean(surface.surface_kind)), `${label}.surface_kind is invalid`);
   assert(LIFECYCLE_STATES.has(surface.lifecycle_state), `${label}.lifecycle_state is invalid`);
@@ -106,6 +147,7 @@ function validateSurfaceV1(surface, { repoRoot, label }) {
 function validateAgentV1(agent, { repoRoot, index }) {
   const label = `agents[${index}]`;
   assertPlainObject(agent, label);
+  assertOnlyKeys(agent, AGENT_KEYS, label);
   assert(/^[a-z0-9][a-z0-9_.-]{2,127}$/.test(clean(agent.agent_key)), `${label}.agent_key is invalid`);
   for (const key of ["display_name", "domain", "owner_label", "execution_platform"]) {
     assert(clean(agent[key]), `${label}.${key} is required`);
@@ -123,6 +165,17 @@ function validateAgentV1(agent, { repoRoot, index }) {
     agent.schedule_expression === null || clean(agent.schedule_expression),
     `${label}.schedule_expression must be null or non-empty`,
   );
+  for (const field of ["heartbeat_interval_seconds", "stale_after_seconds"]) {
+    assert(
+      agent[field] === null || (Number.isInteger(agent[field]) && agent[field] > 0),
+      `${label}.${field} must be a positive integer or null`,
+    );
+  }
+  if (agent.lifecycle_state === "registered") {
+    assert(Number.isInteger(agent.heartbeat_interval_seconds), `${label}.heartbeat_interval_seconds is required for registered agents`);
+    assert(Number.isInteger(agent.stale_after_seconds), `${label}.stale_after_seconds is required for registered agents`);
+    assert(agent.stale_after_seconds >= agent.heartbeat_interval_seconds, `${label}.stale_after_seconds must not be shorter than heartbeat_interval_seconds`);
+  }
   assertStringArray(agent.allowed_work_item_types, `${label}.allowed_work_item_types`);
   assertStringArray(agent.allowed_command_actions, `${label}.allowed_command_actions`);
   assertStringArray(agent.contracts, `${label}.contracts`, { allowEmpty: false });
@@ -134,6 +187,7 @@ function validateAgentV1(agent, { repoRoot, index }) {
   const declaredLockKeys = new Set();
   for (const [lockIndex, lock] of agent.resource_locks.entries()) {
     assertPlainObject(lock, `${label}.resource_locks[${lockIndex}]`);
+    assertOnlyKeys(lock, RESOURCE_LOCK_KEYS, `${label}.resource_locks[${lockIndex}]`);
     assert(clean(lock.key), `${label}.resource_locks[${lockIndex}].key is required`);
     assert(!declaredLockKeys.has(lock.key), `${label} has duplicate resource lock declaration: ${lock.key}`);
     declaredLockKeys.add(lock.key);
@@ -142,17 +196,21 @@ function validateAgentV1(agent, { repoRoot, index }) {
   }
 
   assertPlainObject(agent.worktree_policy, `${label}.worktree_policy`);
+  assertOnlyKeys(agent.worktree_policy, WORKTREE_POLICY_KEYS, `${label}.worktree_policy`);
   assert(agent.worktree_policy.write_allowed === false, `${label} must not allow worktree writes`);
   assert(agent.worktree_policy.assigned_path === null, `${label} must not assign a writable worktree`);
   assertPlainObject(agent.evidence, `${label}.evidence`);
+  assertOnlyKeys(agent.evidence, EVIDENCE_KEYS, `${label}.evidence`);
   assert(clean(agent.evidence.retention_class), `${label}.evidence.retention_class is required`);
   assert(agent.evidence.direct_readback_required === true, `${label} must require direct readback`);
   assertPlainObject(agent.ruflo, `${label}.ruflo`);
+  assertOnlyKeys(agent.ruflo, RUFLO_KEYS, `${label}.ruflo`);
   assert(
     new RegExp(`^grookai/${agent.domain.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/${agent.agent_key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`).test(agent.ruflo.memory_namespace),
     `${label}.ruflo.memory_namespace must match its domain and agent_key`,
   );
   assertPlainObject(agent.boundaries, `${label}.boundaries`);
+  assertOnlyKeys(agent.boundaries, AGENT_BOUNDARY_KEYS, `${label}.boundaries`);
   for (const boundary of REQUIRED_AGENT_FALSE_BOUNDARIES) {
     assert(agent.boundaries[boundary] === false, `${label}.boundaries.${boundary} must remain false`);
   }
@@ -171,11 +229,13 @@ function validateAgentV1(agent, { repoRoot, index }) {
 export function validateRegistryV1(registry, { repoRoot = process.cwd() } = {}) {
   assertPlainObject(registry, "registry");
   assertNoSensitiveKeysV1(registry);
+  assertOnlyKeys(registry, REGISTRY_KEYS, "registry");
   assert(registry.schema_version === REGISTRY_VERSION, `schema_version must be ${REGISTRY_VERSION}`);
   assert(registry.mode === "read_only_foundation", "mode must remain read_only_foundation");
   assertStringArray(registry.authority_order, "authority_order", { allowEmpty: false });
 
   assertPlainObject(registry.boundaries, "boundaries");
+  assertOnlyKeys(registry.boundaries, REGISTRY_BOUNDARY_KEYS, "boundaries");
   for (const boundary of REQUIRED_FALSE_BOUNDARIES) {
     assert(registry.boundaries[boundary] === false, `boundaries.${boundary} must remain false`);
   }
@@ -185,6 +245,7 @@ export function validateRegistryV1(registry, { repoRoot = process.cwd() } = {}) 
   for (const [index, rule] of registry.surface_rules.entries()) {
     const label = `surface_rules[${index}]`;
     assertPlainObject(rule, label);
+    assertOnlyKeys(rule, SURFACE_RULE_KEYS, label);
     assert(/^[a-z0-9_.-]+$/.test(clean(rule.surface_kind)), `${label}.surface_kind is invalid`);
     assert(!surfaceKinds.has(rule.surface_kind), `Duplicate surface_kind: ${rule.surface_kind}`);
     surfaceKinds.add(rule.surface_kind);
@@ -214,6 +275,7 @@ export function validateRegistryV1(registry, { repoRoot = process.cwd() } = {}) 
   for (const [index, root] of registry.protected_roots.entries()) {
     const label = `protected_roots[${index}]`;
     assertPlainObject(root, label);
+    assertOnlyKeys(root, PROTECTED_ROOT_KEYS, label);
     assert(clean(root.path), `${label}.path is required`);
     const normalized = normalizeAbsolutePath(root.path);
     assert(/^(?:[a-z]:\/|\/)/.test(normalized), `${label}.path must be absolute`);
