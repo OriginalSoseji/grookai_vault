@@ -9,6 +9,7 @@ import {
   buildCatalogSearchAliases,
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
+  canUseCompleteOfficialJapaneseExpansionChecklistV1,
   canSkipUnavailableIndependentJapaneseChecklistV1,
   catalogSetScope,
   CATALOG_GAP_STATUSES,
@@ -853,6 +854,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
       let fullChecklist = null;
       let tcgdexSet = null;
       let independentChecklistFailure = null;
+      let officialExpansionFullChecklistCount = null;
       if (sourceSetCode) {
         const tcgdexUrl = `https://api.tcgdex.net/v2/ja/sets/${encodeURIComponent(sourceSetCode)}`;
         const candidateSet = japaneseCandidateSnapshot?.sets.find((row) =>
@@ -937,13 +939,28 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
                 );
               const completePrimaryFallback =
                 canSkipUnavailableIndependentJapaneseChecklistV1(error, tcgdexSet);
-              if (!expectedAbsence && !completePrimaryFallback) {
+              const completeOfficialExpansionFallback =
+                canUseCompleteOfficialJapaneseExpansionChecklistV1({
+                  error,
+                  productType,
+                  sourceSetCode,
+                  officialChecklist: cardList,
+                  numberedChecklist: checklist,
+                });
+              if (!expectedAbsence && !completePrimaryFallback &&
+                  !completeOfficialExpansionFallback) {
                 throw error;
               }
-              if (completePrimaryFallback) {
+              if (completePrimaryFallback || completeOfficialExpansionFallback) {
+                if (completeOfficialExpansionFallback) {
+                  officialExpansionFullChecklistCount = cardList.cards.length;
+                }
                 independentChecklistFailure = {
                   authority: "bulbapedia_modern_japanese_set_list",
                   failure_class: error.catalogSourceFailureClass.toLowerCase(),
+                  containment_evidence: completePrimaryFallback
+                    ? "complete_tcgdex_full_set"
+                    : "complete_official_expansion_with_limitless_numbered_checklist",
                   ...(Number.isInteger(error.httpStatus)
                     ? { http_status: error.httpStatus }
                     : {}),
@@ -968,7 +985,8 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
           `TCGdex=${tcgdexFullCount}, Bulbapedia=${bulbapediaFullCount}`,
         );
       }
-      const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount;
+      const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount ??
+        officialExpansionFullChecklistCount;
       sourceSets.push({
         game_code: "pokemon",
         catalog_scope: "pokemon_ja",
@@ -988,7 +1006,9 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
         count_evidence: [
           {
             authority: "pokemon_card_official_jp_product",
-            scope: "official_product_linked",
+            scope: officialExpansionFullChecklistCount !== null
+              ? "full_set"
+              : "official_product_linked",
             count: Number(cardList.hit_count),
           },
           ...(baseChecklistCount !== null ? [{

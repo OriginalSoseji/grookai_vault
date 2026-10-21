@@ -70,13 +70,18 @@ remain separate gates.
 ## Japanese catalog secondary-checklist resilience — October 20, 2026
 
 Read `docs/ops/UNIVERSAL_CATALOG_JAPANESE_CHECKLIST_FALLBACK_20261020.md`.
+Also read
+`docs/ops/UNIVERSAL_CATALOG_JAPANESE_OFFICIAL_EXPANSION_FALLBACK_20261021.md`.
 Bulbapedia remains independent corroboration in Japanese product discovery. A
 typed access denial or transport outage may be contained only when the parsed
 TCGdex checklist is nonempty and its row count exactly matches TCGdex's declared
-total. This does not make HTTP 401/403 globally optional; missing or partial
-primary evidence, parser failures, and cross-source count disagreements remain
-fatal. The repair is read-only and does not authorize catalog writes, workflow
-dispatch, endpoint bypass, or Ruflo pilot qualification.
+total, or for an official expansion only when the official product enumeration
+is exact, unique, and single-set and the same-code Limitless numbered checklist
+is exact and unique. The official/Limitless evidence shape remains ineligible
+for unattended writes. This does not make HTTP 401/403 globally optional;
+missing or partial evidence, parser failures, mixed set codes, and cross-source
+count disagreements remain fatal. The repair is read-only and does not authorize
+catalog writes, workflow dispatch, endpoint bypass, or Ruflo pilot qualification.
 
 ## Ruflo Codex integration — October 15, 2026
 

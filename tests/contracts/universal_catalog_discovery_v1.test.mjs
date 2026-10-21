@@ -9,6 +9,7 @@ import {
   buildCatalogSearchAliases,
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
+  canUseCompleteOfficialJapaneseExpansionChecklistV1,
   canSkipUnavailableIndependentJapaneseChecklistV1,
   CATALOG_GAP_STATUSES,
   classifyCatalogSourceTransportFailureV1,
@@ -128,6 +129,78 @@ test("Japanese discovery skips an unavailable independent checklist only with a 
     }),
     false,
   );
+});
+
+test("Japanese discovery uses complete official expansion evidence only with an exact independent numbered checklist", () => {
+  const error = {
+    catalogSourceFailureClass: "SOURCE_ACCESS_DENIED",
+  };
+  const officialChecklist = {
+    hit_count: 3,
+    cards: ["501", "502", "503"].map((cardId) => ({
+      card_id: cardId,
+      image_url: `https://www.pokemon-card.com/assets/images/card_images/large/M6a/${cardId}.jpg`,
+    })),
+  };
+  const numberedChecklist = {
+    set: { id: "M6a", card_count: 2 },
+    cards: ["1", "2"].map((number) => ({
+      source_external_id: `M6a:${number}`,
+      source_set_code: "M6a",
+    })),
+  };
+  const evidence = {
+    error,
+    productType: "expansion",
+    sourceSetCode: "M6a",
+    officialChecklist,
+    numberedChecklist,
+  };
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1(evidence), true);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    productType: "construction",
+  }), false);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    error: { catalogSourceFailureClass: "SOURCE_INTEGRITY_FAILURE" },
+  }), false);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    officialChecklist: { ...officialChecklist, hit_count: 4 },
+  }), false);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    officialChecklist: {
+      ...officialChecklist,
+      cards: [officialChecklist.cards[0], officialChecklist.cards[0], officialChecklist.cards[2]],
+    },
+  }), false);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    officialChecklist: {
+      ...officialChecklist,
+      cards: officialChecklist.cards.map((card, index) => index === 0
+        ? { ...card, image_url: card.image_url.replace("/M6a/", "/M6/") }
+        : card),
+    },
+  }), false);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    numberedChecklist: {
+      ...numberedChecklist,
+      set: { ...numberedChecklist.set, card_count: 3 },
+    },
+  }), false);
+  assert.equal(canUseCompleteOfficialJapaneseExpansionChecklistV1({
+    ...evidence,
+    numberedChecklist: {
+      ...numberedChecklist,
+      cards: numberedChecklist.cards.map((card, index) => index === 0
+        ? { ...card, source_set_code: "M6" }
+        : card),
+    },
+  }), false);
 });
 
 test("HTTP access denials are outages, not malformed checklists or missing sets", async () => {
@@ -828,6 +901,8 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /mapPoolSettledV1/);
   assert.match(worker, /isOptionalCatalogSourceFallbackV1/);
   assert.match(worker, /canSkipUnavailableIndependentJapaneseChecklistV1\(error, tcgdexSet\)/);
+  assert.match(worker, /canUseCompleteOfficialJapaneseExpansionChecklistV1/);
+  assert.match(worker, /complete_official_expansion_with_limitless_numbered_checklist/);
   assert.match(worker, /secondary_source_observations: \[independentChecklistFailure\]/);
   assert.doesNotMatch(worker, /HTTP 404\|fetch failed\|timeout/);
   assert.match(worker, /english_master_index_set_alias_normalization_v1\.json/);

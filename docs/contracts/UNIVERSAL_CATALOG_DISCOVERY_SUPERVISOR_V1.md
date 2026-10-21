@@ -46,11 +46,17 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
   checklist rather than the primary structured checklist. Its typed access-denied
   or unavailable transport failure may be contained only when the same product's
   parsed TCGdex checklist is nonempty and its row count exactly matches TCGdex's
-  declared total. This is not the frozen-candidate fallback and does not make
-  access denial globally optional. Missing or partial TCGdex evidence, parser
-  failures, and cross-source count disagreements remain fatal for the lane. A
-  contained secondary-source failure remains visible on that source set as a
-  `secondary_source_observations` entry.
+  declared total. For official expansion products only, it may also be contained
+  when the official enumeration exactly matches its declared hit count, contains
+  unique card IDs and one exact image set code, and a same-code Limitless
+  checklist has unique rows exactly matching its declared numbered count. That
+  second shape supplies an official `full_set` count but remains ineligible for
+  unattended writes because it lacks the writer's TCGdex authority. Neither
+  path is the frozen-candidate fallback or makes access denial globally optional.
+  Missing or partial evidence, parser failures, mixed set codes, and cross-source
+  count disagreements remain fatal for the lane. A contained secondary-source
+  failure remains visible on that source set as a
+  `secondary_source_observations` entry with its containment evidence.
 - A failed concurrent source lane settles all in-flight requests before evidence
   counts, hashes, or artifacts are finalized.
 - Source integrity and parser failures remain fatal. Network degradation may

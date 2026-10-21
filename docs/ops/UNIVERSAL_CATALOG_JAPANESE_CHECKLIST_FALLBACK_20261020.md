@@ -2,9 +2,10 @@
 
 ## Status
 
-Narrow read-only repair prepared on
-`fix/universal-catalog-optional-bulbapedia-v1`. It is not merged or deployed and
-does not qualify a Ruflo shadow-pilot cycle.
+The narrow read-only repair merged through PR #751 as main commit
+`41fdd6241c70391c9f0fd2fa2588caa902d1c0ed`. Its pre-merge validation did not
+qualify a Ruflo shadow-pilot cycle; only later natural scheduled runs may be
+evaluated as pilot evidence.
 
 ## Failure evidence
 
