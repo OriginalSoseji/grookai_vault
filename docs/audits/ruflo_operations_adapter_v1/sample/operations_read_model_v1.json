@@ -62,7 +62,6 @@
   "summary": {
     "agent_count": 2,
     "health_counts": {
-      "degraded": 0,
       "failed": 0,
       "healthy": 1,
       "paused": 0,
@@ -79,5 +78,5 @@
     "external_actions": false,
     "cleanup": false
   },
-  "fingerprint_sha256": "fab543bfb829fd414d65c8b3a2265202361a9cce536b4bb35cba99a99a3c692f"
+  "fingerprint_sha256": "0bb1fde19154ce8d3dd2ce74d68342d574a07c6d74ae653aafafbed92a859a82"
 }
