@@ -86,7 +86,9 @@ function validateEnvelope(envelope) {
     "cleanup", "cross_worktree_writes",
   ];
   for (const key of requiredFalse) assert(envelope.boundaries?.[key] === false, `task envelope boundary ${key} must be false`);
-  assert(/^[a-f0-9]{64}$/.test(envelope.fingerprint_sha256), "task envelope fingerprint is invalid");
+  const { fingerprint_sha256: fingerprint, ...core } = envelope;
+  assert(/^[a-f0-9]{64}$/.test(fingerprint), "task envelope fingerprint is invalid");
+  assert(fingerprint === sha256(stableJsonV1(core)), "task envelope fingerprint does not match its contents");
 }
 
 export function readDiscoveryEvidenceV1({ evidenceDir }) {
@@ -189,6 +191,9 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
     assertObject(observation, "ledger observation");
     assert(observation.pilot_version === UNIVERSAL_CATALOG_SHADOW_PILOT_VERSION, "ledger observation version is invalid");
     assert(Number.isSafeInteger(observation.cycle_number) && observation.cycle_number > 0, "ledger observation cycle number is invalid");
+    assertObject(observation.source_run, "ledger observation source_run");
+    assertObject(observation.findings, "ledger observation findings");
+    assertObject(observation.outcome, "ledger observation outcome");
     assert(!cycleNumbers.has(observation.cycle_number), `duplicate cycle number: ${observation.cycle_number}`);
     cycleNumbers.add(observation.cycle_number);
     assert(!runIds.has(observation.source_run.run_id), `duplicate source run: ${observation.source_run.run_id}`);
@@ -196,9 +201,8 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
     const { fingerprint_sha256: fingerprint, ...core } = observation;
     assert(/^[a-f0-9]{64}$/.test(fingerprint), "ledger observation fingerprint is invalid");
     assert(fingerprint === sha256(stableJsonV1(core)), `ledger observation fingerprint mismatch: cycle ${observation.cycle_number}`);
-    assertObject(observation.source_run, "ledger observation source_run");
-    assertObject(observation.findings, "ledger observation findings");
-    assertObject(observation.outcome, "ledger observation outcome");
+    assert(observation.source_run.event === "schedule", "ledger observations must come from scheduled runs");
+    assert(observation.source_run.conclusion === "success", "ledger observation source run must be successful");
     assert(
       ["completed", "degraded_source_unavailable"].includes(observation.source_run.discovery_status),
       "ledger observation discovery status is invalid",
@@ -257,6 +261,11 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
   return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
 }
 
+export function defaultUniversalCatalogPilotOutputDirV1(cycleNumber) {
+  assert(Number.isSafeInteger(cycleNumber) && cycleNumber > 0, "cycleNumber must be a positive integer");
+  return `docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_${String(cycleNumber).padStart(2, "0")}`;
+}
+
 function argument(name, fallback = null) {
   const prefix = `--${name}=`;
   const match = process.argv.find((entry) => entry.startsWith(prefix));
@@ -290,7 +299,7 @@ function main() {
   ));
   const ledger = buildUniversalCatalogPilotLedgerV1([...priorObservations, observation]);
   const approvedRoot = path.resolve(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
-  const outDir = path.resolve(repoRoot, argument("out-dir", "docs/audits/ruflo_universal_catalog_shadow_pilot_v1"));
+  const outDir = path.resolve(repoRoot, argument("out-dir", defaultUniversalCatalogPilotOutputDirV1(cycleNumber)));
   assert(outDir === approvedRoot || outDir.startsWith(`${approvedRoot}${path.sep}`), "out-dir must remain under docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
   mkdirSync(outDir, { recursive: true });
   writeFileSync(path.join(outDir, `cycle_${String(cycleNumber).padStart(2, "0")}_observation.json`), `${JSON.stringify(observation, null, 2)}\n`);

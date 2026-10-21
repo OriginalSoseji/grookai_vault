@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import {
   buildUniversalCatalogPilotLedgerV1,
   buildUniversalCatalogShadowObservationV1,
+  defaultUniversalCatalogPilotOutputDirV1,
   readDiscoveryEvidenceV1,
 } from "../../scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs";
 import { stableJsonV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
@@ -36,7 +37,7 @@ function refingerprint(observation) {
 }
 
 function envelope() {
-  return {
+  const core = {
     envelope_version: "RUFLO_TASK_ENVELOPE_V1",
     agent: { agent_key: "universal-catalog-discovery-v1", permission_tier: "R0" },
     lifecycle: { initial_state: "validated", execution_state: "not_started" },
@@ -48,8 +49,8 @@ function envelope() {
       cleanup: false,
       cross_worktree_writes: false,
     },
-    fingerprint_sha256: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   };
+  return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
 }
 
 test("pilot verifies the captured scheduled discovery evidence", () => {
@@ -176,6 +177,12 @@ test("pilot rejects another agent, execution authority, and secret-shaped fields
   const sensitive = envelope();
   sensitive.api_token = "not-a-real-secret";
   assert.throws(() => buildUniversalCatalogShadowObservationV1({ envelope: sensitive, evidence, cycleNumber: 1 }), /Sensitive registry key is prohibited/);
+  const staleFingerprint = envelope();
+  staleFingerprint.lifecycle.initial_state = "tampered";
+  assert.throws(
+    () => buildUniversalCatalogShadowObservationV1({ envelope: staleFingerprint, evidence, cycleNumber: 1 }),
+    /fingerprint does not match/,
+  );
 });
 
 test("pilot ledger requires seven distinct qualifying cycles", () => {
@@ -200,6 +207,12 @@ test("pilot ledger requires seven distinct qualifying cycles", () => {
   duplicateRun.source_run.run_id = observations[0].source_run.run_id;
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[0], duplicateRun]), /duplicate source run/);
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([observations[1]]), /contiguous from 1/);
+  const manualRun = clone(observations[0]);
+  manualRun.source_run.event = "workflow_dispatch";
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(manualRun)]),
+    /must come from scheduled runs/,
+  );
   const tampered = clone(observations[0]);
   tampered.findings.actionable_gap_count += 1;
   assert.throws(() => buildUniversalCatalogPilotLedgerV1([tampered]), /fingerprint mismatch/);
@@ -225,6 +238,10 @@ test("pilot source has no network, dispatch, execution, database, or destructive
   const source = readFileSync(path.join(repoRoot, "scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs"), "utf8");
   assert.doesNotMatch(source, /\bfetch\s*\(|child_process|execFile|spawn\s*\(|createClient\s*\(|\.rpc\s*\(/);
   assert.doesNotMatch(source, /workflow_dispatch\s*\(|agent_execute\s*\(|git\s+(?:clean|reset|checkout|branch\s+-D|worktree\s+remove)/i);
+  assert.equal(
+    defaultUniversalCatalogPilotOutputDirV1(7),
+    "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_07",
+  );
 });
 
 test("checked-in cycle observations and cumulative ledger reproduce from frozen evidence", () => {
