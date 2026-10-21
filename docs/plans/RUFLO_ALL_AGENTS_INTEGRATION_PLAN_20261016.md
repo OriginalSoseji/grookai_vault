@@ -129,7 +129,7 @@ represented across every required dimension.
 | Agent key | Domain | Trigger | Initial Ruflo mode |
 |---|---|---|---|
 | `universal-catalog-discovery-v1` | Catalog discovery | Cron every six hours | Observe and coordinate review |
-| `tcgplayer-pricing-completion-v1` | Pricing completion | Hourly cron | Observe backlog and route bounded review |
+| `tcgplayer-pricing-completion-v1` | Pricing completion | Every 15 minutes | Observe backlog and route bounded review |
 | `catalog-set-outcome-v1` | Catalog outcome workflow | Event/manual workflow | Plan-only until command adapter is separately approved |
 | `tk-sm-r-hidden-set-apply-v1` | Catalog bounded apply | Event | Status-only; high-risk execution remains external |
 
@@ -590,6 +590,10 @@ PR 1 is complete when:
    a lock key;
 5. focused tests and `git diff --check` pass;
 6. a generated report proves zero external and production writes.
+
+Implementation candidate status is recorded in
+`docs/checkpoints/RUFLO_AGENT_REGISTRY_V1_20261016.md`. It remains read-only and
+does not authorize the later pilot or execution phases.
 
 ## References
 

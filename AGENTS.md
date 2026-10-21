@@ -200,6 +200,11 @@ is a read-only registry and protected-worktree inventory. It grants no cleanup,
 cross-worktree mutation, workflow dispatch, production write, or external-action
 authority.
 
+Read `docs/checkpoints/RUFLO_AGENT_REGISTRY_V1_20261016.md` before changing the
+agent registry or inventory builder. Phase 1 is R0-only: every discovered
+worktree is protected, all agent execution and workflow dispatch are disabled,
+and the generated inventory is evidence rather than runtime authority.
+
 ## Energy-name exact alias batch — October 15
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_149_ENERGY_ALIAS_BATCH.md`.

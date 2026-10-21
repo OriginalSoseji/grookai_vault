@@ -13,6 +13,10 @@ The proposed expansion across Grookai agents is defined in
 a read-only registry and protected-worktree inventory. It is not execution,
 cleanup, production-write, workflow-dispatch, or tool-surface authority.
 
+The Phase 1 implementation candidate is checkpointed at
+`docs/checkpoints/RUFLO_AGENT_REGISTRY_V1_20261016.md`. Its registry and
+inventory remain R0-only and non-executable.
+
 ## Boundary
 
 - Ruflo is pinned to `3.56.9`; do not replace the pin with `latest`.
