@@ -123,6 +123,21 @@ printing owner. Multiple owners are quarantined. The resolver may not choose a
 winner from card name, set similarity, collector-number normalization, image,
 or price.
 
+### Finish-specific market publication
+
+A TCGPlayer product may lawfully span separate Scryfall parents when its Normal
+and Foil print objects have different canonical identities. Publication must
+therefore use the active `external_printing_mappings` row for the exact
+`productId:normal` or `productId:foil` lane. It must not require, synthesize, or
+arbitrarily select one parent-level `external_mappings` row for both finishes.
+
+The finish-specific lane is valid only when the source observation is current,
+the external printing mapping is active and unique, the target is one active
+`mtg_eng_paper_print` identity, the target child finish exactly matches the
+normalized source subtype, and the child is nonprovisional and publicly
+visible. The mapping UUID must remain present in candidate, qualification, and
+snapshot ledgers. Any missing or changed lineage fails closed.
+
 ## Dry-Run Result
 
 Frozen Scryfall default-card bulk export:

@@ -3,7 +3,7 @@ name: TCGPlayer Pricing Completion Agent
 on:
   workflow_dispatch:
   schedule:
-    - cron: "47 * * * *"
+    - cron: "*/15 * * * *"
 
 permissions:
   contents: read

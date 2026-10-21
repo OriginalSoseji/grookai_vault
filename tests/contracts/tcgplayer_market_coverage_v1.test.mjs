@@ -421,7 +421,7 @@ test("coverage audit is read-only and produces governed artifacts", () => {
   assert.match(AUDIT, /current_publication_scope\.json/);
   assert.match(
     AUDIT,
-    /current_publication_contains_v1_2_scope_exclusion/,
+    /current_publication_contains_scope_exclusion/,
   );
   assert.match(AUDIT, /artifact_hashes\.json/);
   assert.doesNotMatch(AUDIT, /\b(insert|update|delete)\s+(?:into|from|public\.)/i);
@@ -436,7 +436,7 @@ test("coverage audit reads frozen run evidence without a warehouse-wide observat
   assert.match(AUDIT, /decision\.evidence ->> 'source_product_active'/);
   assert.match(AUDIT, /product_scope_policy_version/);
   assert.match(AUDIT, /product_scope_result/);
-  assert.match(AUDIT, /TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3/);
+  assert.match(AUDIT, /TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4/);
   assert.match(AUDIT, /currentPublicationOutOfScopeCount > 0/);
   assert.match(AUDIT, /product_scope_rule_id/);
   assert.doesNotMatch(

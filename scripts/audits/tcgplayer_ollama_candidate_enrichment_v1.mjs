@@ -1,0 +1,148 @@
+#!/usr/bin/env node
+
+import { createHash } from 'node:crypto';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+import pg from 'pg';
+
+import '../../backend/env.mjs';
+import {
+  enrichTcgplayerOllamaRowV1,
+} from '../../backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs';
+
+const { Client } = pg;
+
+function value(argv, name) {
+  return argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3).trim() ?? '';
+}
+
+function connectionString() {
+  return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL || '';
+}
+
+function sslConfig(url) {
+  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(url)) return false;
+  const ca = process.env.SUPABASE_DB_CA_CERT?.trim();
+  return ca ? { rejectUnauthorized: true, ca } : { rejectUnauthorized: true };
+}
+
+function jsonl(rows) {
+  return rows.length ? `${rows.map((row) => JSON.stringify(row)).join('\n')}\n` : '';
+}
+
+async function readJsonl(filePath) {
+  const raw = await fs.readFile(filePath, 'utf8');
+  if (Buffer.byteLength(raw) > 50 * 1024 * 1024) throw new Error('Input exceeds 50 MiB');
+  return { raw, rows: raw.split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line)) };
+}
+
+async function main() {
+  const argv = process.argv.slice(2);
+  if (argv.includes('--apply') || argv.includes('--run')) throw new Error('Candidate enrichment is read-only');
+  const inputPath = path.resolve(value(argv, 'input'));
+  const outputPath = path.resolve(value(argv, 'output'));
+  if (!value(argv, 'input') || !value(argv, 'output')) throw new Error('--input and --output are required');
+  const input = await readJsonl(inputPath);
+  const groupIds = [...new Set(input.rows.map((row) => Number(row.source_group_id)).filter(Number.isSafeInteger))];
+  const url = connectionString();
+  if (!url) throw new Error('Database URL required');
+  const client = new Client({
+    connectionString: url,
+    ssl: sslConfig(url),
+    connectionTimeoutMillis: 15_000,
+    statement_timeout: 120_000,
+    query_timeout: 125_000,
+    application_name: 'tcgplayer_ollama_candidate_enrichment_v1_read_only',
+  });
+  await client.connect();
+  let cards;
+  let consensusRows;
+  try {
+    await client.query('begin isolation level repeatable read read only');
+    consensusRows = (await client.query(
+      `select product.group_id as source_group_id,
+              count(distinct mapping.external_id)::integer as mapped_source_product_count,
+              count(distinct card.set_id)::integer as set_count,
+              min(card.set_id::text) as set_id,
+              min(set_row.code) as set_code
+         from public.tcgcsv_source_products product
+         join public.external_mappings mapping
+           on mapping.source = 'tcgplayer'
+          and mapping.external_id = product.product_id::text
+          and mapping.active = true
+         join public.card_prints card on card.id = mapping.card_print_id
+         join public.sets set_row on set_row.id = card.set_id
+        where product.group_id = any($1::integer[])
+        group by product.group_id`,
+      [groupIds],
+    )).rows;
+    cards = (await client.query(
+      `select card.id::text as card_print_id, card.gv_id, card.set_id::text,
+              card.set_code, set_row.name as set_name,
+              card.name as canonical_name, card.number as canonical_number,
+              card.variant_key,
+              count(distinct identity.id) filter (
+                where identity.is_active = true
+                  and identity.identity_domain = 'pokemon_eng_standard'
+              )::integer as active_standard_identity_count,
+              count(distinct mapping.id) filter (
+                where mapping.source = 'tcgplayer' and mapping.active = true
+              )::integer as active_tcgplayer_mapping_count
+         from public.card_prints card
+         join public.sets set_row on set_row.id = card.set_id
+         left join public.card_print_identity identity on identity.card_print_id = card.id
+         left join public.external_mappings mapping on mapping.card_print_id = card.id
+        where coalesce(card.variant_key, '') = ''
+        group by card.id, card.gv_id, card.set_id, card.set_code, set_row.name,
+                 card.name, card.number, card.variant_key
+       having count(distinct identity.id) filter (
+                where identity.is_active = true
+                  and identity.identity_domain = 'pokemon_eng_standard'
+              ) = 1
+          and count(distinct mapping.id) filter (
+                where mapping.source = 'tcgplayer' and mapping.active = true
+              ) = 0`,
+    )).rows;
+    await client.query('rollback');
+  } finally {
+    await client.end();
+  }
+  const consensus = new Map(consensusRows.map((row) => [Number(row.source_group_id), row]));
+  const enriched = input.rows.map((row) => enrichTcgplayerOllamaRowV1(
+    row,
+    cards,
+    consensus.get(Number(row.source_group_id)) ?? null,
+  ));
+  const output = jsonl(enriched);
+  await fs.mkdir(path.dirname(outputPath), { recursive: true });
+  await fs.writeFile(outputPath, output);
+  const summary = {
+    schema_version: 'TCGPLAYER_OLLAMA_CANDIDATE_ENRICHMENT_V1',
+    created_at: new Date().toISOString(),
+    input_path: inputPath,
+    input_sha256: createHash('sha256').update(input.raw).digest('hex'),
+    output_path: outputPath,
+    output_sha256: createHash('sha256').update(output).digest('hex'),
+    input_rows: input.rows.length,
+    catalog_candidates_scanned: cards.length,
+    rows_with_review_targets: enriched.filter((row) => row.review_targets.length > 0).length,
+    rows_without_review_targets: enriched.filter((row) => row.review_targets.length === 0).length,
+    missing_number_rows_enriched: enriched.filter((row) =>
+      !String(row.printed_number ?? '').trim() && row.review_targets.length > 0).length,
+    boundaries: {
+      database_reads_only: true,
+      database_writes: false,
+      mapping_authority: false,
+      publication_authority: false,
+      customer_state_writes: false,
+    },
+  };
+  await fs.writeFile(`${outputPath}.summary.json`, `${JSON.stringify(summary, null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
+}
+
+main().catch((error) => {
+  console.error(`[tcgplayer-ollama-candidate-enrichment] ${error.stack ?? error.message}`);
+  process.exitCode = 1;
+});

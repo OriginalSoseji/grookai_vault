@@ -139,12 +139,22 @@ function candidateCollisionRows(candidates) {
 
 async function loadDatabase(client, setCode, candidates) {
   const set = await client.query(`
-    select s.id::text, s.code, count(cp.id)::int as card_count
+    select s.id::text, s.game, s.code, s.name, s.release_date::text,
+           s.source, s.set_role, s.identity_domain_default, s.identity_model,
+           count(cp.id)::int as card_count
     from public.sets s
     left join public.card_prints cp on cp.set_id=s.id
     where s.game='mtg' and lower(s.code)=$1
-    group by s.id,s.code
+    group by s.id,s.game,s.code,s.name,s.release_date,s.source,s.set_role,
+             s.identity_domain_default,s.identity_model
   `, [setCode]);
+  const sourcePrintIds = candidates.map((candidate) => candidate.card.source_print_id);
+  const mappings = sourcePrintIds.length ? await client.query(`
+    select external_id, card_print_id::text, active
+    from public.external_mappings
+    where source='scryfall' and external_id=any($1::text[])
+    order by external_id
+  `, [sourcePrintIds]) : { rows: [] };
   const productIds = [...new Set(candidates.flatMap((candidate) =>
     candidate.exact_source_links.map((link) => link.product_id)))];
   const warehouse = productIds.length ? await client.query(`
@@ -159,12 +169,130 @@ async function loadDatabase(client, setCode, candidates) {
   `, [productIds]) : { rows: [] };
   return {
     setRows: set.rows,
+    existingScryfallMappings: mappings.rows,
     warehouseProducts: new Map(warehouse.rows.map((row) => [Number(row.product_id), {
       product_id: Number(row.product_id),
       subtypes: new Set(row.subtypes ?? []),
       positive_market_subtypes: new Set(row.positive_subtypes ?? []),
     }])),
   };
+}
+
+function promotionRowCounts(rows) {
+  return Object.fromEntries(Object.entries(rows).map(([name, values]) => [name, values.length]));
+}
+
+function selectMtgPromotionRowsV1(rows, parentIds, includeSet = false) {
+  const selectedParents = new Set(parentIds);
+  const selectedPrintingIds = new Set(rows.card_printings
+    .filter((row) => selectedParents.has(row.card_print_id))
+    .map((row) => row.id));
+  return {
+    sets: includeSet ? rows.sets.map((row) => ({ ...row })) : [],
+    card_prints: rows.card_prints.filter((row) => selectedParents.has(row.id)),
+    card_print_identity: rows.card_print_identity
+      .filter((row) => selectedParents.has(row.card_print_id)),
+    card_printings: rows.card_printings
+      .filter((row) => selectedParents.has(row.card_print_id)),
+    external_mappings: rows.external_mappings
+      .filter((row) => selectedParents.has(row.card_print_id)),
+    external_printing_mappings: rows.external_printing_mappings
+      .filter((row) => selectedPrintingIds.has(row.card_printing_id)),
+  };
+}
+
+function assertExistingSetCompatibleV1(actual, planned) {
+  const stableActual = {
+    id: actual.id,
+    game: actual.game,
+    code: actual.code,
+    name: actual.name,
+    set_role: actual.set_role,
+    identity_domain_default: actual.identity_domain_default,
+    identity_model: actual.identity_model,
+    source_set_id: actual.source?.scryfall?.id ?? null,
+    source_code: actual.source?.scryfall?.code ?? null,
+    source_set_type: actual.source?.scryfall?.set_type ?? null,
+  };
+  const stablePlanned = {
+    id: planned.id,
+    game: planned.game,
+    code: planned.code,
+    name: planned.name,
+    set_role: planned.set_role,
+    identity_domain_default: planned.identity_domain_default,
+    identity_model: planned.identity_model,
+    source_set_id: planned.source?.scryfall?.id ?? null,
+    source_code: planned.source?.scryfall?.code ?? null,
+    source_set_type: planned.source?.scryfall?.set_type ?? null,
+  };
+  if (JSON.stringify(stableActual) !== JSON.stringify(stablePlanned)) {
+    throw new Error(`Existing MTG set identity drift: ${JSON.stringify(stableActual)}`);
+  }
+}
+
+async function captureRetainedMtgCoreReadbackV1(client, rows) {
+  const result = await client.query(`
+    with planned_cards as (
+      select * from jsonb_to_recordset($1::jsonb) as row(
+        id uuid, set_id uuid, name text, number text, variant_key text, gv_id text,
+        identity_domain text, external_ids jsonb, variants jsonb, print_identity_key text
+      )
+    ), planned_identities as (
+      select * from jsonb_to_recordset($2::jsonb) as row(
+        id uuid, card_print_id uuid, identity_domain text, set_code_identity text,
+        printed_number text, normalized_printed_name text, source_name_raw text,
+        identity_payload jsonb, identity_key_version text, identity_key_hash text,
+        is_active boolean
+      )
+    ), planned_printings as (
+      select * from jsonb_to_recordset($3::jsonb) as row(
+        id uuid, card_print_id uuid, finish_key text, is_provisional boolean,
+        printing_gv_id text
+      )
+    ), planned_parent_mappings as (
+      select * from jsonb_to_recordset($4::jsonb) as row(
+        card_print_id uuid, source text, external_id text, active boolean
+      )
+    ), planned_printing_mappings as (
+      select * from jsonb_to_recordset($5::jsonb) as row(
+        card_printing_id uuid, source text, external_id text, active boolean
+      )
+    )
+    select jsonb_build_object(
+      'sets', 0,
+      'card_prints', (select count(*) from planned_cards p join public.card_prints a on a.id=p.id
+        where a.set_id=p.set_id and a.name=p.name and a.number is not distinct from p.number
+          and a.variant_key is not distinct from p.variant_key and a.gv_id=p.gv_id
+          and a.identity_domain=p.identity_domain and a.external_ids=p.external_ids
+          and a.variants=p.variants and a.print_identity_key=p.print_identity_key),
+      'card_print_identity', (select count(*) from planned_identities p
+        join public.card_print_identity a on a.id=p.id
+        where a.card_print_id=p.card_print_id and a.identity_domain=p.identity_domain
+          and a.set_code_identity=p.set_code_identity and a.printed_number=p.printed_number
+          and a.normalized_printed_name is not distinct from p.normalized_printed_name
+          and a.source_name_raw is not distinct from p.source_name_raw
+          and a.identity_payload=p.identity_payload and a.identity_key_version=p.identity_key_version
+          and a.identity_key_hash=p.identity_key_hash and a.is_active=p.is_active),
+      'card_printings', (select count(*) from planned_printings p
+        join public.card_printings a on a.id=p.id
+        where a.card_print_id=p.card_print_id and a.finish_key=p.finish_key
+          and a.is_provisional=p.is_provisional and a.printing_gv_id=p.printing_gv_id),
+      'external_mappings', (select count(*) from planned_parent_mappings p
+        join public.external_mappings a on a.source=p.source and a.external_id=p.external_id
+        where a.card_print_id=p.card_print_id and a.active=p.active),
+      'external_printing_mappings', (select count(*) from planned_printing_mappings p
+        join public.external_printing_mappings a on a.source=p.source and a.external_id=p.external_id
+        where a.card_printing_id=p.card_printing_id and a.active=p.active)
+    ) as value
+  `, [
+    JSON.stringify(rows.card_prints),
+    JSON.stringify(rows.card_print_identity),
+    JSON.stringify(rows.card_printings),
+    JSON.stringify(rows.external_mappings),
+    JSON.stringify(rows.external_printing_mappings),
+  ]);
+  return result.rows[0].value;
 }
 
 async function fileHash(relativePath) {
@@ -207,7 +335,7 @@ async function main() {
     set_code: options.setCode,
     repository,
     boundaries: {
-      complete_absent_released_sets_only: true,
+      complete_absent_or_exact_partial_extensions_only: true,
       insert_only: true,
       updates: 0,
       deletes: 0,
@@ -254,9 +382,6 @@ async function main() {
       : existingCount === candidates.length
         ? "exact_complete"
         : "partial_or_drifted";
-    if (databaseState === "partial_or_drifted") {
-      throw new Error(`Partial MTG set requires bounded repair: ${existingCount}/${candidates.length}`);
-    }
     const sourceBulkSha256 = sha256(JSON.stringify(source.snapshots.map((row) => row.body_sha256)));
     const payload = buildMtgCanaryPayloadV1({
       candidates,
@@ -277,38 +402,77 @@ async function main() {
       throw new Error("Expected payload fingerprint does not match the frozen MTG plan");
     }
     const promotion = buildMtgCanonicalSetPromotionContractV1(payload);
-    const shouldMutate = releaseEligible && databaseState === "absent";
+    const allParentIds = new Set(promotion.rows.card_prints.map((row) => row.id));
+    const retainedParentIds = new Set();
+    if (databaseState === "partial_or_drifted") {
+      assertExistingSetCompatibleV1(database.setRows[0], promotion.rows.sets[0]);
+      const plannedMappingByExternalId = new Map(promotion.rows.external_mappings
+        .map((row) => [row.external_id, row]));
+      for (const existing of database.existingScryfallMappings) {
+        const planned = plannedMappingByExternalId.get(existing.external_id);
+        if (!planned || existing.active !== true || existing.card_print_id !== planned.card_print_id) {
+          throw new Error(`Existing Scryfall mapping drift: ${existing.external_id}`);
+        }
+        retainedParentIds.add(existing.card_print_id);
+      }
+      if (retainedParentIds.size !== existingCount) {
+        throw new Error(
+          `Partial MTG set has unaccounted canonical parents: ${retainedParentIds.size}/${existingCount}`,
+        );
+      }
+      const retainedRows = selectMtgPromotionRowsV1(promotion.rows, retainedParentIds);
+      const retainedReadback = await captureRetainedMtgCoreReadbackV1(client, retainedRows);
+      const retainedCounts = promotionRowCounts(retainedRows);
+      for (const [name, expected] of Object.entries(retainedCounts)) {
+        if (Number(retainedReadback[name]) !== expected) {
+          throw new Error(
+            `Retained MTG ${name} drift: ${retainedReadback[name]}/${expected}`,
+          );
+        }
+      }
+    }
+    const newParentIds = new Set([...allParentIds]
+      .filter((parentId) => !retainedParentIds.has(parentId)));
+    const executionRows = databaseState === "absent"
+      ? selectMtgPromotionRowsV1(promotion.rows, newParentIds, true)
+      : databaseState === "partial_or_drifted"
+        ? selectMtgPromotionRowsV1(promotion.rows, newParentIds, false)
+        : selectMtgPromotionRowsV1(promotion.rows, [], false);
+    const executionRowCounts = promotionRowCounts(executionRows);
+    const shouldMutate = releaseEligible && executionRows.card_prints.length > 0;
     let transactionResult = {
       action: shouldMutate ? "plan_only" : "no_op",
       reason: !releaseEligible ? "future_release"
-        : shouldMutate ? "eligible_absent_plan" : "already_exact_complete",
+        : databaseState === "partial_or_drifted" && shouldMutate
+          ? "eligible_partial_extension_plan"
+          : shouldMutate ? "eligible_absent_plan" : "already_exact_complete",
     };
     let collisions = null;
     if (shouldMutate) {
-      collisions = await captureMtgPromotionCollisionsV1(client, promotion.rows);
+      collisions = await captureMtgPromotionCollisionsV1(client, executionRows);
       if (Object.values(collisions).some((count) => Number(count) !== 0)) {
         throw new Error(`MTG collision preflight failed: ${JSON.stringify(collisions)}`);
       }
       if (options.mode !== "plan") {
-        const inserted = await insertMtgPromotionRowsV1(client, promotion.rows);
-        if (JSON.stringify(inserted) !== JSON.stringify(promotion.row_counts)) {
+        const inserted = await insertMtgPromotionRowsV1(client, executionRows);
+        if (JSON.stringify(inserted) !== JSON.stringify(executionRowCounts)) {
           throw new Error(`MTG inserted count mismatch: ${JSON.stringify(inserted)}`);
         }
-        const exact = await captureMtgPromotionExactReadbackV1(client, promotion.rows);
-        if (!exactReadbackMatches(exact, promotion.row_counts)) {
+        const exact = await captureMtgPromotionExactReadbackV1(client, executionRows);
+        if (!exactReadbackMatches(exact, executionRowCounts)) {
           throw new Error("MTG exact transaction readback mismatch");
         }
         if (options.mode === "dry-run") {
           await client.query("rollback");
           transactionOpen = false;
-          const absent = await captureMtgPromotionExactReadbackV1(client, promotion.rows);
+          const absent = await captureMtgPromotionExactReadbackV1(client, executionRows);
           if (!exactReadbackAbsent(absent)) throw new Error("MTG rollback absence proof failed");
           transactionResult = { action: "rolled_back", inserted, exact_readback: exact, post_rollback: absent };
         } else {
           await client.query("commit");
           transactionOpen = false;
-          const durable = await captureMtgPromotionExactReadbackV1(client, promotion.rows);
-          if (!exactReadbackMatches(durable, promotion.row_counts)) {
+          const durable = await captureMtgPromotionExactReadbackV1(client, executionRows);
+          if (!exactReadbackMatches(durable, executionRowCounts)) {
             throw new Error("MTG durable exact readback mismatch");
           }
           transactionResult = { action: "committed", inserted, durable_readback: durable };
@@ -329,6 +493,8 @@ async function main() {
       database_state: databaseState,
       source_card_count: candidates.length,
       promotion_row_counts: promotion.row_counts,
+      retained_parent_count: retainedParentIds.size,
+      execution_row_counts: executionRowCounts,
       source_snapshot_count: source.snapshots.length,
       source_bulk_sha256: sourceBulkSha256,
       writer_payload_fingerprint: payload.writer_payload_fingerprint,
@@ -339,6 +505,9 @@ async function main() {
       "payload.json": await writeJson(path.join(options.outDir, "payload.json"), payload),
       "promotion_plan.json": await writeJson(path.join(options.outDir, "promotion_plan.json"), {
         ...promotion,
+        execution_rows: executionRows,
+        execution_row_counts: executionRowCounts,
+        retained_parent_ids: [...retainedParentIds].sort(),
         collisions,
         transaction_result: transactionResult,
       }),

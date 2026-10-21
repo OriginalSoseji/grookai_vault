@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
@@ -6,6 +8,7 @@ import 'package:printing/printing.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../card_detail_screen.dart';
 import '../../models/ownership_state.dart';
@@ -14,6 +17,8 @@ import '../../services/identity/display_identity.dart';
 import '../../services/gvvi/gvvi_vendor_offer_service.dart';
 import '../../services/printing/p21_label.dart';
 import '../../services/printing/p21_printer_service.dart';
+import '../../services/pricing/ebay_sold_search_uri.dart';
+import '../../services/sales/sales_card_reference.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -631,10 +636,11 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                           _handleViewerOwnershipAction(state, _data!),
                     ),
                   ],
-                  if (_vendorOffer == null) ...[
-                    const SizedBox(height: 10),
-                    _PublicGvviPriceRow(data: _data!),
-                  ],
+                  const SizedBox(height: 10),
+                  _PublicGvviPriceRow(
+                    data: _data!,
+                    onCardTap: () => _openCard(_data!),
+                  ),
                   const SizedBox(height: 10),
                   _CompactIdentityGrid(data: _data!),
                   if ((_data!.publicNote ?? '').trim().isNotEmpty) ...[
@@ -1239,9 +1245,10 @@ class _VendorOwnerQrPanel extends StatelessWidget {
 }
 
 class _PublicGvviPriceRow extends StatelessWidget {
-  const _PublicGvviPriceRow({required this.data});
+  const _PublicGvviPriceRow({required this.data, required this.onCardTap});
 
   final PublicGvviData data;
+  final VoidCallback onCardTap;
 
   @override
   Widget build(BuildContext context) {
@@ -1261,6 +1268,25 @@ class _PublicGvviPriceRow extends StatelessWidget {
     final supporting = data.pricingMode == GvviPricingMode.asking
         ? data.askingPriceNote
         : _pricingSourceLabel(data.marketReferenceSource);
+    final displayName = _publicGvviDisplayIdentity(data).displayName;
+    final reference = SalesCardReference(
+      name: displayName,
+      setName: data.setName,
+      number: data.number == '—' ? null : data.number,
+    );
+    final slabQualifier = [data.grader, data.grade]
+        .whereType<String>()
+        .map((value) => value.trim())
+        .where((value) => value.isNotEmpty)
+        .join(' ');
+    final ebayUri = buildEbaySoldSearchUri(
+      cardName: displayName,
+      setName: data.setName,
+      collectorNumber: data.number == '—' ? null : data.number,
+      finish: data.isGraded
+          ? (slabQualifier.isEmpty ? 'graded' : slabQualifier)
+          : data.conditionLabel,
+    );
 
     return Container(
       padding: const EdgeInsets.all(12),
@@ -1300,6 +1326,65 @@ class _PublicGvviPriceRow extends StatelessWidget {
               ),
             ),
           ],
+          const SizedBox(height: 12),
+          Text(
+            'Compare this card against current marketplace references.',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.68),
+              height: 1.3,
+            ),
+          ),
+          const SizedBox(height: 9),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () => unawaited(
+                    launchUrl(
+                      reference.uri,
+                      mode: LaunchMode.externalApplication,
+                    ),
+                  ),
+                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                  label: const Text('TCGplayer'),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(44, 42),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () => unawaited(
+                    launchUrl(ebayUri, mode: LaunchMode.externalApplication),
+                  ),
+                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                  label: const Text('eBay sold'),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(44, 42),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          TextButton.icon(
+            onPressed: onCardTap,
+            icon: const Icon(Icons.style_outlined, size: 17),
+            label: const Text('Open card details'),
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              visualDensity: VisualDensity.compact,
+            ),
+          ),
         ],
       ),
     );

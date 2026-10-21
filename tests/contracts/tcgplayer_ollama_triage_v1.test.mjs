@@ -126,4 +126,6 @@ test('worker has no database dependency or mutation mode', () => {
   assert.match(worker, /does not support write modes/);
   assert.match(worker, /keep_alive: '15s'/);
   assert.match(worker, /\/api\/tags/);
+  assert.match(worker, /review_leads\.jsonl/);
+  assert.match(worker, /5000, '--limit'/);
 });

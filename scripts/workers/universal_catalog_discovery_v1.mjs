@@ -9,6 +9,8 @@ import {
   buildCatalogSearchAliases,
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
+  canUseCompleteOfficialJapaneseExpansionChecklistV1,
+  canSkipUnavailableIndependentJapaneseChecklistV1,
   catalogSetScope,
   CATALOG_GAP_STATUSES,
   classifyCatalogSourceTransportFailureV1,
@@ -851,6 +853,8 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
       let checklist = null;
       let fullChecklist = null;
       let tcgdexSet = null;
+      let independentChecklistFailure = null;
+      let officialExpansionFullChecklistCount = null;
       if (sourceSetCode) {
         const tcgdexUrl = `https://api.tcgdex.net/v2/ja/sets/${encodeURIComponent(sourceSetCode)}`;
         const candidateSet = japaneseCandidateSnapshot?.sets.find((row) =>
@@ -929,8 +933,41 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
                 source_release_date: released,
               });
             } catch (error) {
-              if (!/HTTP 404|yielded no proven Japanese card-list rows/i.test(String(error.message))) {
+              const expectedAbsence =
+                /HTTP 404|yielded no proven Japanese card-list rows/i.test(
+                  String(error.message),
+                );
+              const completePrimaryFallback =
+                canSkipUnavailableIndependentJapaneseChecklistV1(error, tcgdexSet);
+              const completeOfficialExpansionFallback =
+                canUseCompleteOfficialJapaneseExpansionChecklistV1({
+                  error,
+                  productType,
+                  sourceSetCode,
+                  tcgdexEvidencePresent: candidateSet != null || tcgdexSet != null,
+                  tcgdexChecklist: tcgdexSet,
+                  officialChecklist: cardList,
+                  numberedChecklist: checklist,
+                });
+              if (!expectedAbsence && !completePrimaryFallback &&
+                  !completeOfficialExpansionFallback) {
                 throw error;
+              }
+              if (completePrimaryFallback || completeOfficialExpansionFallback) {
+                if (completeOfficialExpansionFallback) {
+                  officialExpansionFullChecklistCount = cardList.cards.length;
+                }
+                independentChecklistFailure = {
+                  authority: "bulbapedia_modern_japanese_set_list",
+                  failure_class: error.catalogSourceFailureClass.toLowerCase(),
+                  containment_evidence: completePrimaryFallback
+                    ? "complete_tcgdex_full_set"
+                    : "complete_official_expansion_with_limitless_numbered_checklist",
+                  ...(Number.isInteger(error.httpStatus)
+                    ? { http_status: error.httpStatus }
+                    : {}),
+                  source_url: articleUrl,
+                };
               }
             }
           }
@@ -950,7 +987,8 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
           `TCGdex=${tcgdexFullCount}, Bulbapedia=${bulbapediaFullCount}`,
         );
       }
-      const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount;
+      const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount ??
+        officialExpansionFullChecklistCount;
       sourceSets.push({
         game_code: "pokemon",
         catalog_scope: "pokemon_ja",
@@ -970,7 +1008,9 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
         count_evidence: [
           {
             authority: "pokemon_card_official_jp_product",
-            scope: "official_product_linked",
+            scope: officialExpansionFullChecklistCount !== null
+              ? "full_set"
+              : "official_product_linked",
             count: Number(cardList.hit_count),
           },
           ...(baseChecklistCount !== null ? [{
@@ -992,6 +1032,9 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
             source_url: fullChecklist.cards[0]?.source_url ?? null,
           }] : []),
         ],
+        ...(independentChecklistFailure ? {
+          secondary_source_observations: [independentChecklistFailure],
+        } : {}),
         tcgdex_cards: (tcgdexSet?.cards ?? []).map((card) => ({
           source_external_id: clean(card.id),
           card_number_raw: clean(card.localId),
