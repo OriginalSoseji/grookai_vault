@@ -66,7 +66,10 @@ node scripts/ruflo/build_task_envelope_v1.mjs --input=<local-task-spec.json>
 ```
 
 Both builders restrict output to `docs/audits/ruflo_operations_adapter_v1/`.
-They read checked-in files only and spawn no child process.
+They read checked-in files only. The task-envelope builder uses one narrowly
+scoped read-only `git show <commit>:<path>` child process per declared input so
+the hashed bytes come from the exact immutable commit; it cannot run arbitrary
+commands or mutate Git state.
 
 ## Evidence And Verification
 
@@ -81,8 +84,9 @@ production health readback.
   passed.
 - Secret-packaging guard: passed.
 - `git diff --check`: passed before the evidence/documentation commit.
-- Static source guard found no network, database, child-process,
-  workflow-dispatch, agent-execution, or destructive-Git path.
+- Static source guard found no network, database, workflow-dispatch,
+  agent-execution, or destructive-Git path and permits only the documented
+  read-only `git show` child-process shape.
 
 An extended Operations/Ruflo selection passed 52 of 54 tests. The two file-level
 load failures were the already-known fresh-worktree dependency gap: one requires

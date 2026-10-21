@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { buildOperationsReadModelV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
+import { buildOperationsReadModelV1, stableJsonV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
 import { buildTaskEnvelopeV1, worktreeStatusFingerprintV1 } from "../../scripts/ruflo/build_task_envelope_v1.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -21,14 +23,43 @@ function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+const portableRepoRoot = fs.mkdtempSync(path.join(os.tmpdir(), "ruflo-envelope-contract-"));
+const portableWorktreePath = portableRepoRoot.replaceAll("\\", "/");
+fs.mkdirSync(path.join(portableRepoRoot, "config/ruflo"), { recursive: true });
+fs.mkdirSync(path.join(portableRepoRoot, "tests/fixtures/ruflo"), { recursive: true });
+fs.copyFileSync(path.join(repoRoot, "config/ruflo/agent_registry_v1.json"), path.join(portableRepoRoot, "config/ruflo/agent_registry_v1.json"));
+fs.copyFileSync(path.join(repoRoot, "tests/fixtures/ruflo/operations_health_snapshot_v1.json"), path.join(portableRepoRoot, "tests/fixtures/ruflo/operations_health_snapshot_v1.json"));
+execFileSync("git", ["init", "-b", "fixture"], { cwd: portableRepoRoot, stdio: "ignore" });
+execFileSync("git", ["config", "user.name", "Ruflo Contract"], { cwd: portableRepoRoot });
+execFileSync("git", ["config", "user.email", "ruflo-contract@example.invalid"], { cwd: portableRepoRoot });
+execFileSync("git", ["add", "config/ruflo/agent_registry_v1.json", "tests/fixtures/ruflo/operations_health_snapshot_v1.json"], { cwd: portableRepoRoot, stdio: "ignore" });
+execFileSync("git", ["commit", "-m", "fixture"], { cwd: portableRepoRoot, stdio: "ignore" });
+const portableCommitSha = execFileSync("git", ["rev-parse", "HEAD"], { cwd: portableRepoRoot, encoding: "utf8" }).trim();
+const portableInventory = clone(inventory);
+const portableWorktree = portableInventory.worktrees.find((entry) => entry.path === "C:/gv_ruflo_readonly_adapter_20261017");
+assert.ok(portableWorktree, "expected adapter worktree in frozen inventory");
+Object.assign(portableWorktree, {
+  path: portableWorktreePath,
+  branch: "fixture",
+  head: portableCommitSha,
+  detached: false,
+  status_available: true,
+  dirty: false,
+  change_count: 0,
+});
+const portableInventoryCore = clone(portableInventory);
+delete portableInventoryCore.generated_at;
+delete portableInventoryCore.inventory_fingerprint_sha256;
+portableInventory.inventory_fingerprint_sha256 = sha256(stableJsonV1(portableInventoryCore));
+test.after(() => fs.rmSync(portableRepoRoot, { recursive: true, force: true }));
+
 function taskSpec() {
-  const worktree = inventory.worktrees.find((entry) => entry.path === "C:/gv_ruflo_readonly_adapter_20261017");
-  assert.ok(worktree, "expected adapter worktree in frozen inventory");
+  const worktree = portableWorktree;
   return {
     task_id: "ruflo-readonly-catalog-health-20261017",
     parent_goal: "Observe registered Grookai agent health without dispatching work",
     agent_key: "universal-catalog-discovery-v1",
-    inventory_fingerprint_sha256: inventory.inventory_fingerprint_sha256,
+    inventory_fingerprint_sha256: portableInventory.inventory_fingerprint_sha256,
     repository: {
       remote: "OriginalSoseji/grookai_vault",
       commit_sha: worktree.head,
@@ -100,11 +131,17 @@ test("read adapter rejects health that contradicts the latest run", () => {
   candidate.agents[1].health = "healthy";
   candidate.agents[1].latest_run_status = "failed";
   assert.throws(() => buildOperationsReadModelV1({ snapshot: candidate, registry }), /latest failed run requires failed health/);
+
+  const falselyPaused = clone(snapshot);
+  falselyPaused.agents[1].health = "paused";
+  falselyPaused.agents[1].is_paused = false;
+  falselyPaused.agents[1].latest_run_status = "failed";
+  assert.throws(() => buildOperationsReadModelV1({ snapshot: falselyPaused, registry }), /is_paused must be true when health is paused/);
 });
 
 test("task envelope is deterministic, protected, and permanently non-executable", () => {
-  const first = buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory, repoRoot });
-  const second = buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory, repoRoot });
+  const first = buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: portableInventory, repoRoot: portableRepoRoot });
+  const second = buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: portableInventory, repoRoot: portableRepoRoot });
   assert.deepEqual(first, second);
   assert.match(first.fingerprint_sha256, /^[a-f0-9]{64}$/);
   assert.equal(first.agent.permission_tier, "R0");
@@ -125,53 +162,60 @@ test("task envelope is deterministic, protected, and permanently non-executable"
 test("task envelope rejects mutable refs, unknown worktrees, and traversal", () => {
   const shortSha = taskSpec();
   shortSha.repository.commit_sha = "deadbeef";
-  assert.throws(() => buildTaskEnvelopeV1({ spec: shortSha, registry, inventory, repoRoot }), /exact lowercase 40-character/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: shortSha, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /exact lowercase 40-character/);
 
   const unknownTree = taskSpec();
-  unknownTree.repository.worktree_path = "C:/not-in-the-inventory";
-  assert.throws(() => buildTaskEnvelopeV1({ spec: unknownTree, registry, inventory, repoRoot }), /absent from the read-only inventory/);
+  unknownTree.repository.worktree_path = path.join(portableRepoRoot, "not-in-the-inventory");
+  assert.throws(() => buildTaskEnvelopeV1({ spec: unknownTree, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /absent from the read-only inventory/);
 
   const traversal = taskSpec();
   traversal.expected_artifacts = ["../escape.json"];
-  assert.throws(() => buildTaskEnvelopeV1({ spec: traversal, registry, inventory, repoRoot }), /must not traverse/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: traversal, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /must not traverse/);
 
   const uri = taskSpec();
   uri.expected_artifacts = ["https://example.com/result.json"];
-  assert.throws(() => buildTaskEnvelopeV1({ spec: uri, registry, inventory, repoRoot }), /must not use a URI scheme/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: uri, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /must not use a URI scheme/);
 });
 
 test("task envelope rejects unknown agents and executable fields", () => {
   const unknownAgent = taskSpec();
   unknownAgent.agent_key = "not-registered-v1";
-  assert.throws(() => buildTaskEnvelopeV1({ spec: unknownAgent, registry, inventory, repoRoot }), /not registered/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: unknownAgent, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /not registered/);
 
   const executable = taskSpec();
   executable.command = "do-not-run";
-  assert.throws(() => buildTaskEnvelopeV1({ spec: executable, registry, inventory, repoRoot }), /prohibited|not allowed/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: executable, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /prohibited|not allowed/);
+
+  const objectRemote = taskSpec();
+  objectRemote.repository.remote = { command: "do-not-run" };
+  assert.throws(
+    () => buildTaskEnvelopeV1({ spec: objectRemote, registry, inventory: portableInventory, repoRoot: portableRepoRoot }),
+    /remote must be a non-empty string/,
+  );
 });
 
 test("task envelope rejects mismatched worktree-state and input fingerprints", () => {
   const statusMismatch = taskSpec();
   statusMismatch.repository.initial_status_sha256 = "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd";
-  assert.throws(() => buildTaskEnvelopeV1({ spec: statusMismatch, registry, inventory, repoRoot }), /must match the inventoried worktree state/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: statusMismatch, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /must match the inventoried worktree state/);
 
   const inputMismatch = taskSpec();
   inputMismatch.inputs[0].sha256 = "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
-  assert.throws(() => buildTaskEnvelopeV1({ spec: inputMismatch, registry, inventory, repoRoot }), /does not match/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: inputMismatch, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /does not match/);
 });
 
 test("task envelope validates the frozen inventory before trusting worktree protection", () => {
-  const wrongVersion = clone(inventory);
+  const wrongVersion = clone(portableInventory);
   wrongVersion.inventory_version = "UNKNOWN";
-  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: wrongVersion, repoRoot }), /inventory_version/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: wrongVersion, repoRoot: portableRepoRoot }), /inventory_version/);
 
-  const wrongRegistry = clone(inventory);
+  const wrongRegistry = clone(portableInventory);
   wrongRegistry.registry_sha256 = "a".repeat(64);
-  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: wrongRegistry, repoRoot }), /registry_sha256/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: wrongRegistry, repoRoot: portableRepoRoot }), /registry_sha256/);
 
-  const drifted = clone(inventory);
+  const drifted = clone(portableInventory);
   drifted.worktrees[0].head = "b".repeat(40);
-  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: drifted, repoRoot }), /content fingerprint/);
+  assert.throws(() => buildTaskEnvelopeV1({ spec: taskSpec(), registry, inventory: drifted, repoRoot: portableRepoRoot }), /content fingerprint/);
 });
 
 test("adapter source has no network, database, dispatch, agent execution, or destructive Git path", () => {
