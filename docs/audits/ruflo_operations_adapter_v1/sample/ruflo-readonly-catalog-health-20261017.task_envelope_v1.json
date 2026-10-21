@@ -8,7 +8,7 @@
     "topology_role": "operations_agent",
     "action_risk": "read_only",
     "permission_tier": "R0",
-    "memory_namespace": "grookai/catalog/universal-catalog-discovery-v1/ruflo-readonly-catalog-health-20261017/502627449963a99015735ef20547cc2470737d1a"
+    "memory_namespace": "grookai/catalog/universal-catalog-discovery-v1/ruflo-readonly-catalog-health-20261017/312252f6348663cfd83c1870f4d9731297cdaf31"
   },
   "lifecycle": {
     "initial_state": "validated",
@@ -16,10 +16,10 @@
   },
   "repository": {
     "remote": "OriginalSoseji/grookai_vault",
-    "commit_sha": "502627449963a99015735ef20547cc2470737d1a",
-    "ref": "docs/ruflo-all-agents-integration-plan-20261016",
-    "worktree_path": "C:/gv_ruflo_all_agents_plan_20261016",
-    "initial_status_sha256": "7ada3368af017f82c1fa712b9db7393610d68c74e976f9ebf0c9f65ad42b6e2b",
+    "commit_sha": "312252f6348663cfd83c1870f4d9731297cdaf31",
+    "ref": "feat/ruflo-readonly-operations-adapter-v1",
+    "worktree_path": "C:/gv_ruflo_readonly_adapter_20261017",
+    "initial_status_sha256": "74ac0086b8ebbc9c894f595a1f5e168d83d85cf2e3e053710a997d5f9faf05d9",
     "inventory_fingerprint_sha256": "1a28f52962f2d52e4a19a0e389082d28d837242482462a12a76525f56731e07f",
     "protection": "protected",
     "write_allowed": false
@@ -41,7 +41,7 @@
   "inputs": [
     {
       "locator": "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
-      "sha256": "6cdaa59efa5cd752b093f04f4417276d89c0f488932d651dd706fbfd9cec6b47"
+      "sha256": "7578f5fdaff92ab0566cc763e6e2f04483970352de4dcfd72d0e9b8e70bc2101"
     }
   ],
   "resource_locks": [
@@ -75,5 +75,5 @@
     "cleanup": false,
     "cross_worktree_writes": false
   },
-  "fingerprint_sha256": "fc4105fadee2e03930492f9573b3b6a2e5640703fd2137c0d720f1f84deb56cc"
+  "fingerprint_sha256": "12fb444c4be35cd69b461488b2541be6b58eda225763f95edcf71ce85a825038"
 }
