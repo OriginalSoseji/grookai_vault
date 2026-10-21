@@ -113,8 +113,11 @@ numbers, and requires the caller to provide prior observations explicitly.
 Ledger validation derives qualification from
 source-degradation signals and rejects
 fingerprint-consistent observations whose status or qualification contradicts
-those signals. The builder has no network, database, child-process,
-workflow-dispatch, agent-execution, or destructive Git path.
+those signals. It also requires verified evidence hashes and every safety
+boundary explicitly set to false. The CLI binds the requested cycle and actual
+output paths to the envelope task ID and declared artifacts. The builder has no
+network, database, child-process, workflow-dispatch, agent-execution, or
+destructive Git path.
 
 Commands from a trusted checkout:
 

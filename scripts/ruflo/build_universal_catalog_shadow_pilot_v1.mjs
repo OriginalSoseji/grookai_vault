@@ -14,6 +14,10 @@ const CAPTURE_VERSION = "UNIVERSAL_CATALOG_DISCOVERY_CAPTURE_V1";
 const DISCOVERY_VERSION = "UNIVERSAL_CATALOG_DISCOVERY_V1";
 const REQUIRED_EVIDENCE_FILES = ["summary.json", "source_failures.json", "run_plan.json"];
 const CAPTURE_INPUT_FILES = ["artifact_hashes.json", "run_metadata.json", ...REQUIRED_EVIDENCE_FILES];
+const OBSERVATION_BOUNDARY_KEYS = [
+  "agent_execution", "workflow_dispatch", "production_writes", "external_actions",
+  "cleanup", "cross_worktree_writes", "issue_reconciliation",
+];
 const PROHIBITED_KEY_PATTERN = /(authorization|token|secret|password|service.?role|api.?key|cookie|command|payload|arguments?|argv|shell|workflow_dispatch|agent_execute|tool_call)/i;
 
 function assert(condition, message) {
@@ -76,7 +80,7 @@ function validateCaptureMetadata(metadata) {
   };
 }
 
-function validateEnvelope(envelope, evidence) {
+function validateEnvelope(envelope, evidence, cycleNumber) {
   assertObject(envelope, "task_envelope");
   assert(envelope.envelope_version === "RUFLO_TASK_ENVELOPE_V1", "task envelope version is invalid");
   assert(envelope.agent?.agent_key === UNIVERSAL_CATALOG_AGENT_KEY, "task envelope agent is not the universal catalog discovery agent");
@@ -98,6 +102,15 @@ function validateEnvelope(envelope, evidence) {
     assert(matches.length === 1, `task envelope inputs must bind exactly one ${file}`);
     assert(matches[0].sha256 === expectedSha256, `task envelope input does not bind captured evidence: ${file}`);
   }
+  const cycleLabel = String(cycleNumber).padStart(2, "0");
+  assert(envelope.task_id.includes(`cycle-${cycleLabel}-`), "task envelope task ID does not match the requested cycle");
+  assert(Array.isArray(envelope.expected_artifacts), "task envelope expected_artifacts must be an array");
+  const expectedDir = defaultUniversalCatalogPilotOutputDirV1(cycleNumber);
+  const expectedObservation = `${expectedDir}/cycle_${cycleLabel}_observation.json`;
+  const expectedLedger = `${expectedDir}/pilot_ledger_v1.json`;
+  const declaredArtifacts = new Set(envelope.expected_artifacts.map((entry) => normalizeRepoPath(entry)));
+  assert(declaredArtifacts.has(expectedObservation), "task envelope does not declare the requested cycle observation");
+  assert(declaredArtifacts.has(expectedLedger), "task envelope does not declare the requested cycle ledger");
 }
 
 export function readDiscoveryEvidenceV1({ evidenceDir }) {
@@ -139,7 +152,7 @@ export function readDiscoveryEvidenceV1({ evidenceDir }) {
 export function buildUniversalCatalogShadowObservationV1({ envelope, evidence, cycleNumber }) {
   assertNoSensitiveKeysV1(envelope, "task_envelope");
   assertNoExecutableKeys(envelope, "task_envelope");
-  validateEnvelope(envelope, evidence);
+  validateEnvelope(envelope, evidence, cycleNumber);
   assert(Number.isSafeInteger(cycleNumber) && cycleNumber > 0, "cycleNumber must be a positive integer");
   const degraded = evidence.summary.run_status === "degraded_source_unavailable" || evidence.sourceFailures.length > 0;
   const hasGaps = evidence.summary.actionable_gap_count > 0 || evidence.summary.recent_japanese_cards?.missing > 0;
@@ -246,7 +259,15 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
     );
     assert(observation.outcome?.promotion_eligible === false, "ledger observation cannot grant promotion authority");
     assert(observation.outcome?.dispatch_eligible === false, "ledger observation cannot grant dispatch authority");
+    assertObject(observation.evidence_integrity, "ledger observation evidence_integrity");
+    assert(observation.evidence_integrity.verified === true, "ledger observation evidence integrity must be verified");
+    for (const key of ["summary_sha256", "source_failures_sha256", "run_plan_sha256"]) {
+      assert(/^[a-f0-9]{64}$/.test(observation.evidence_integrity[key]), `ledger observation ${key} is invalid`);
+    }
     assertObject(observation.boundaries, "ledger observation boundaries");
+    for (const key of OBSERVATION_BOUNDARY_KEYS) {
+      assert(observation.boundaries[key] === false, `ledger observation boundary ${key} must be false`);
+    }
     assert(Object.values(observation.boundaries).every((value) => value === false), "ledger observation boundaries must remain false");
   }
   const ordered = [...observations].sort((left, right) => left.cycle_number - right.cycle_number);
@@ -277,6 +298,21 @@ export function buildUniversalCatalogPilotLedgerV1(observations) {
 export function defaultUniversalCatalogPilotOutputDirV1(cycleNumber) {
   assert(Number.isSafeInteger(cycleNumber) && cycleNumber > 0, "cycleNumber must be a positive integer");
   return `docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_${String(cycleNumber).padStart(2, "0")}`;
+}
+
+export function validateUniversalCatalogPilotOutputBindingV1({ repoRoot, envelope, cycleNumber, outDir }) {
+  const cycleLabel = String(cycleNumber).padStart(2, "0");
+  const expectedDir = defaultUniversalCatalogPilotOutputDirV1(cycleNumber);
+  const expectedObservation = `${expectedDir}/cycle_${cycleLabel}_observation.json`;
+  const expectedLedger = `${expectedDir}/pilot_ledger_v1.json`;
+  const actualObservation = normalizeRepoPath(path.relative(repoRoot, path.join(outDir, `cycle_${cycleLabel}_observation.json`)));
+  const actualLedger = normalizeRepoPath(path.relative(repoRoot, path.join(outDir, "pilot_ledger_v1.json")));
+  assert(actualObservation === expectedObservation, "output observation path does not match the requested cycle");
+  assert(actualLedger === expectedLedger, "output ledger path does not match the requested cycle");
+  const declaredArtifacts = new Set(envelope.expected_artifacts.map((entry) => normalizeRepoPath(entry)));
+  assert(declaredArtifacts.has(actualObservation), "output observation path is not declared by the task envelope");
+  assert(declaredArtifacts.has(actualLedger), "output ledger path is not declared by the task envelope");
+  return { observationPath: path.join(outDir, `cycle_${cycleLabel}_observation.json`), ledgerPath: path.join(outDir, "pilot_ledger_v1.json") };
 }
 
 function argument(name, fallback = null) {
@@ -324,9 +360,10 @@ function main() {
   const approvedRoot = path.resolve(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
   const outDir = path.resolve(repoRoot, argument("out-dir", defaultUniversalCatalogPilotOutputDirV1(cycleNumber)));
   assert(outDir === approvedRoot || outDir.startsWith(`${approvedRoot}${path.sep}`), "out-dir must remain under docs/audits/ruflo_universal_catalog_shadow_pilot_v1");
+  const outputPaths = validateUniversalCatalogPilotOutputBindingV1({ repoRoot, envelope, cycleNumber, outDir });
   mkdirSync(outDir, { recursive: true });
-  writeFileSync(path.join(outDir, `cycle_${String(cycleNumber).padStart(2, "0")}_observation.json`), `${JSON.stringify(observation, null, 2)}\n`);
-  writeFileSync(path.join(outDir, "pilot_ledger_v1.json"), `${JSON.stringify(ledger, null, 2)}\n`);
+  writeFileSync(outputPaths.observationPath, `${JSON.stringify(observation, null, 2)}\n`);
+  writeFileSync(outputPaths.ledgerPath, `${JSON.stringify(ledger, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify({ status: "pass", outcome: observation.outcome, findings: observation.findings, ledger: { observed: ledger.observed_cycle_count, qualifying: ledger.qualifying_cycle_count, required: ledger.required_qualifying_cycles }, boundaries: observation.boundaries }, null, 2)}\n`);
 }
 

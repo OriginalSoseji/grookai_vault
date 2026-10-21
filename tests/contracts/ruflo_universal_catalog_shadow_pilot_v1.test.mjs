@@ -12,6 +12,7 @@ import {
   defaultUniversalCatalogPilotOutputDirV1,
   readDiscoveryEvidenceV1,
   readEnvelopeBoundJsonInputV1,
+  validateUniversalCatalogPilotOutputBindingV1,
 } from "../../scripts/ruflo/build_universal_catalog_shadow_pilot_v1.mjs";
 import { stableJsonV1 } from "../../scripts/ruflo/build_operations_read_model_v1.mjs";
 
@@ -37,16 +38,23 @@ function refingerprint(observation) {
   return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
 }
 
-function envelope(inputEvidenceDir = evidenceDir) {
+function envelope(inputEvidenceDir = evidenceDir, cycleNumber = 1) {
   const inputFiles = ["artifact_hashes.json", "run_metadata.json", "run_plan.json", "source_failures.json", "summary.json"];
+  const cycleLabel = String(cycleNumber).padStart(2, "0");
+  const cycleDir = `docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_${cycleLabel}`;
   const core = {
     envelope_version: "RUFLO_TASK_ENVELOPE_V1",
+    task_id: `ruflo-universal-catalog-shadow-cycle-${cycleLabel}-test`,
     agent: { agent_key: "universal-catalog-discovery-v1", permission_tier: "R0" },
     lifecycle: { initial_state: "validated", execution_state: "not_started" },
     inputs: inputFiles.map((file) => ({
       locator: path.relative(repoRoot, path.join(inputEvidenceDir, file)).replaceAll("\\", "/"),
       sha256: sha256(readFileSync(path.join(inputEvidenceDir, file))),
     })),
+    expected_artifacts: [
+      `${cycleDir}/cycle_${cycleLabel}_observation.json`,
+      `${cycleDir}/pilot_ledger_v1.json`,
+    ],
     boundaries: {
       execution_enabled: false,
       workflow_dispatch: false,
@@ -153,8 +161,8 @@ test("a healthy observation remains evidence-only and deterministic", () => {
   evidence.summary.source_failure_count = 0;
   evidence.summary.source_failures = [];
   evidence.sourceFailures = [];
-  const first = buildUniversalCatalogShadowObservationV1({ envelope: envelope(), evidence, cycleNumber: 2 });
-  const second = buildUniversalCatalogShadowObservationV1({ envelope: envelope(), evidence, cycleNumber: 2 });
+  const first = buildUniversalCatalogShadowObservationV1({ envelope: envelope(evidenceDir, 2), evidence, cycleNumber: 2 });
+  const second = buildUniversalCatalogShadowObservationV1({ envelope: envelope(evidenceDir, 2), evidence, cycleNumber: 2 });
   assert.deepEqual(first, second);
   assert.equal(first.outcome.status, "observed");
   assert.equal(first.outcome.qualifies_toward_pilot_minimum, true);
@@ -224,8 +232,12 @@ test("pilot rejects another agent, execution authority, and secret-shaped fields
   );
   const secondEvidence = readDiscoveryEvidenceV1({ evidenceDir: secondEvidenceDir });
   assert.throws(
-    () => buildUniversalCatalogShadowObservationV1({ envelope: envelope(), evidence: secondEvidence, cycleNumber: 2 }),
+    () => buildUniversalCatalogShadowObservationV1({ envelope: envelope(evidenceDir, 2), evidence: secondEvidence, cycleNumber: 2 }),
     /does not bind captured evidence/,
+  );
+  assert.throws(
+    () => buildUniversalCatalogShadowObservationV1({ envelope: envelope(evidenceDir, 8), evidence, cycleNumber: 7 }),
+    /task ID does not match/,
   );
 });
 
@@ -238,7 +250,11 @@ test("pilot ledger requires seven distinct qualifying cycles", () => {
   const observations = Array.from({ length: 7 }, (_, index) => {
     const cycleEvidence = clone(evidence);
     cycleEvidence.metadata.run_id += index;
-    return buildUniversalCatalogShadowObservationV1({ envelope: envelope(), evidence: cycleEvidence, cycleNumber: index + 1 });
+    return buildUniversalCatalogShadowObservationV1({
+      envelope: envelope(evidenceDir, index + 1),
+      evidence: cycleEvidence,
+      cycleNumber: index + 1,
+    });
   });
   const partial = buildUniversalCatalogPilotLedgerV1(observations.slice(0, 6));
   assert.equal(partial.readiness, "collecting");
@@ -276,6 +292,18 @@ test("pilot ledger requires seven distinct qualifying cycles", () => {
     () => buildUniversalCatalogPilotLedgerV1([refingerprint(degradedButQualifying)]),
     /qualification conflicts with source degradation/,
   );
+  const unverified = clone(observations[0]);
+  unverified.evidence_integrity.verified = false;
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(unverified)]),
+    /evidence integrity must be verified/,
+  );
+  const missingBoundaries = clone(observations[0]);
+  missingBoundaries.boundaries = {};
+  assert.throws(
+    () => buildUniversalCatalogPilotLedgerV1([refingerprint(missingBoundaries)]),
+    /boundary agent_execution must be false/,
+  );
 });
 
 test("pilot source has no network, dispatch, execution, database, or destructive Git path", () => {
@@ -286,6 +314,20 @@ test("pilot source has no network, dispatch, execution, database, or destructive
     defaultUniversalCatalogPilotOutputDirV1(7),
     "docs/audits/ruflo_universal_catalog_shadow_pilot_v1/cycle_07",
   );
+  const cycleSevenEnvelope = envelope(seventhEvidenceDir, 7);
+  const expectedOutDir = path.join(repoRoot, defaultUniversalCatalogPilotOutputDirV1(7));
+  assert.doesNotThrow(() => validateUniversalCatalogPilotOutputBindingV1({
+    repoRoot,
+    envelope: cycleSevenEnvelope,
+    cycleNumber: 7,
+    outDir: expectedOutDir,
+  }));
+  assert.throws(() => validateUniversalCatalogPilotOutputBindingV1({
+    repoRoot,
+    envelope: cycleSevenEnvelope,
+    cycleNumber: 7,
+    outDir: path.join(repoRoot, "docs/audits/ruflo_universal_catalog_shadow_pilot_v1"),
+  }), /output observation path does not match/);
 });
 
 test("checked-in cycle observations and cumulative ledger reproduce from frozen evidence", () => {
