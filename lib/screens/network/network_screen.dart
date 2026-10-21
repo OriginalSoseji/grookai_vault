@@ -3125,7 +3125,6 @@ void _openNetworkPrimaryDestination(
     _openExactCopy(context, row, exactCopy);
     return;
   }
-
   _openCardDetail(context, row, directContact);
 }
 

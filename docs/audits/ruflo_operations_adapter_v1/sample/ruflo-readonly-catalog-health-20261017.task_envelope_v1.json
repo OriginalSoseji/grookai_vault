@@ -20,7 +20,7 @@
     "ref": "docs/ruflo-all-agents-integration-plan-20261016",
     "worktree_path": "C:/gv_ruflo_all_agents_plan_20261016",
     "initial_status_sha256": "7ada3368af017f82c1fa712b9db7393610d68c74e976f9ebf0c9f65ad42b6e2b",
-    "inventory_fingerprint_sha256": "c34f13ba122ee8bfa9c808eb46b66b0f9cfe92eac7abc6021b18e140b3227a44",
+    "inventory_fingerprint_sha256": "bc393fbe107d8967cd9b05891fd44c108f4baf4b71727c343c26407bc06007ad",
     "protection": "protected",
     "write_allowed": false
   },
@@ -75,5 +75,5 @@
     "cleanup": false,
     "cross_worktree_writes": false
   },
-  "fingerprint_sha256": "819704f13070c35e41f90be42ce4507cf0193fb585eb3d3ab84ee469a9f01df1"
+  "fingerprint_sha256": "bacd1776e93f8a8234190dbf456f0af634c4a0ed5f0837fb346d7172cbccd46b"
 }

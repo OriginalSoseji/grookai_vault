@@ -49,6 +49,7 @@ function candidate(card) {
     source_sync_mode: "current_full_sync", source_sync_status: "completed",
     source_sync_failed_count: 0, source_sync_finished_at: "2026-09-29T10:00:00Z",
     currency: "USD", market_price: 1.23, duplicate_product_row_count: 1,
+    variant_assignment_id: "reviewed-variant-assignment",
     variant_assignment_status: "exact_child_finish" };
 }
 function resign(row) {

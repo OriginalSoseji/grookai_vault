@@ -1,5 +1,44 @@
 # Grookai Operator Playbook V1
 
+## MTG reviewed printing correction — October 20, 2026
+
+Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`.
+Pricing production run `39486729222` rolled back safely because product 269823
+and product 269807 both resolved to the `tsnc` number-13 Normal child. Product
+269823 is explicitly `Treasure Token (017)` and must resolve to the existing
+number-17 parent and Normal child. Apply candidate V7 before the bounded mapping
+correction. V7 accepts the override only through the reviewed correction
+contract and emits exact `mtg_printing_mapping_id` lineage with the stale generic
+assignment removed from the candidate. Use the exact merged SHA through
+`mtg-pricing-publication-runner.yml`: migration dry-run/apply, correction
+plan/dry-run/apply, then a new full shadow and guarded production publication.
+Pass the successful correction dry-run workflow run ID into correction apply;
+apply revalidates its immutable rollback artifact against the same merged SHA,
+source run, and plan fingerprint before either mapping row can change.
+Do not reuse shadow `39471419997` or production run `39486729222`.
+
+## MTG catalog supervisor frozen ref repair — October 20, 2026
+
+The MTG catalog supervisor resolves the immutable runner commit through
+`archive/closed-pr-218-mtg-pointer-release-v1`. The prior
+`agent/mtg-pointer-release-v1` branch was deleted after archival and caused
+scheduled supervisor runs to fail before database readback. The archive ref
+resolves to the same frozen commit
+`7e9f2bb92f56335a6a352f655e12000b344a63a4`; the writer workflow, manifest,
+payload archive, read-only scheduled boundary, and no-dispatch policy are
+unchanged. Verify both ref resolution and a successful manual supervisor run
+after any future branch-retention change.
+
+The frozen August manifest is also a minimum reconciliation floor for sets
+that received later governed additive refreshes. A refreshed set is complete
+only when it retains one set row, has one active identity and Scryfall parent
+mapping per parent, has at least one printing per parent, and stays at or above
+the frozen printing and exact-price-mapping counts. Any under-count or broken
+one-to-one relationship still fails closed.
+The supervisor measures distinct covered parents so duplicate child or mapping
+rows cannot conceal a parent with missing structural evidence.
+
 ## Review-lead pricing alias batch — October 16, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_153_REVIEW_LEAD_ALIAS_BATCH.md`.
@@ -66,6 +105,23 @@ mapping authority, and the generic bounded exact-mapping executor. Preserve all
 documented collision and missing-evidence holds. Mapping and pricing publication
 remain separate gates.
 
+## Japanese catalog secondary-checklist resilience — October 20, 2026
+
+Read `docs/ops/UNIVERSAL_CATALOG_JAPANESE_CHECKLIST_FALLBACK_20261020.md`.
+Also read
+`docs/ops/UNIVERSAL_CATALOG_JAPANESE_OFFICIAL_EXPANSION_FALLBACK_20261021.md`.
+Bulbapedia remains independent corroboration in Japanese product discovery. A
+typed access denial or transport outage may be contained only when the parsed
+TCGdex checklist is nonempty and its row count exactly matches TCGdex's declared
+total, or for an official expansion only when TCGdex evidence is absent, the
+official product enumeration is exact, unique, and single-set, and the same-code
+Limitless numbered checklist is exact and unique. Metadata-only or other partial
+TCGdex evidence remains fatal. The official/Limitless evidence shape remains ineligible
+for unattended writes. This does not make HTTP 401/403 globally optional;
+missing or partial evidence, parser failures, mixed set codes, and cross-source
+count disagreements remain fatal. The repair is read-only and does not authorize
+catalog writes, workflow dispatch, endpoint bypass, or Ruflo pilot qualification.
+
 ## Ruflo Codex integration — October 15, 2026
 
 Read `docs/ops/RUFLO_CODEX_INTEGRATION_20261015.md`. PR #690 merged the
@@ -130,14 +186,28 @@ production approval.
 ## Local Ollama pricing triage — October 15, 2026
 
 Use the checked-in `grookai-card-triage:4b` Modelfile and the
-`pricing:market:ollama-triage` worker only for advisory review leads from an exact
-planner's blocked JSONL. Read
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md` before
-operating it. The endpoint must remain HTTP loopback, model calls must remain
-sequential, and every run must unload the model. Do not attach database
-credentials, add a write mode, or treat model output as reviewed mapping or
-publication authority. Keep exact deterministic validation and the governed
-release path unchanged.
+`pricing:market:ollama-triage` worker only for advisory review leads. Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_144_LOCAL_OLLAMA_TRIAGE.md` and
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_155_OLLAMA_BULK_MAPPING_AGENT.md`
+before operating it. The Windows task `Grookai Ollama Pricing Triage` polls every
+five minutes from `C:\gv_ollama_bulk_mapper_20261017`; hosted completion evidence
+refreshes every fifteen minutes. Retain state and output under
+`C:\grookai_vault_operator_artifacts\pokemon_pricing_repair_20261012\ollama\continuous`.
+The worker hashes each input and skips an unchanged completed batch, while its
+mutex prevents overlap. Its V2 input was the Pokemon exact planner's
+`blocked.jsonl`; it was not the full cross-category backlog. Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_164_CROSS_CATEGORY_COMPLETION_QUEUE.md`
+before changing the consumer. The hosted completion artifact now owns the
+deduplicated in-scope product queues for Magic and Pokemon. Reconcile those queue
+counts before moving the local task to the new input. The first verified live
+queue exposed packaged products in the ordinary card lane; read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`
+and require a V1.4 production readback plus a corrected completion artifact
+before changing the consumer. Candidate enrichment must
+preserve each category's identity domain. Keep the endpoint on HTTP loopback.
+Do not attach a database writer, add mapping or publication authority, or treat
+model output as reviewed evidence. Promotion still requires deterministic
+validation and the governed release path.
 
 ## Pokémon 30th Celebration Classic aliases — October 14
 
@@ -2854,7 +2924,7 @@ owns the connection.
 | MTG market pricing publication | `.github/workflows/mtg-pricing-publication-runner.yml` and `docs/checkpoints/pricing/PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED.md` | Exact reconciled shadow, indexed freshness-aware Pokemon baseline, production guard artifact, and final run reconciliation |
 | MTG sealed world | `docs/checkpoints/pricing/PRICING_CHECKPOINT_130_MTG_SEALED_MOBILE_PROFILE_CANARY_PASSED.md` | Signed-in production web is active and flag-reversible; Android profile performance passed; TestFlight/iPhone and the separately prepared dimension constraint repair remain future gates |
 | MEE nightly operations | `docs/runbooks/MEE_NIGHTLY_DROPLET_WORKER_V1.md` | Live-ops verifier plus newest run artifacts |
-| TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` | Warehouse reconciliation with no public-price mutation |
+| TCGCSV warehouse | `docs/runbooks/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md` and `docs/checkpoints/pricing/PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md` | One locked current-sync writer, exact dimension ownership readback, and warehouse reconciliation with no public-price mutation |
 | New Pokemon sets | `docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md` | Manifest-backed canon, mapping, and image readback |
 | Migration maintenance | `docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md` | Strict preflight, replay, remote readback, and clean history |
 | GitHub/CI | `.github/workflows/` and the current checkpoint | Required checks green for the exact commit |

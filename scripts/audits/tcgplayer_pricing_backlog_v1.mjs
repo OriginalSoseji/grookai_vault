@@ -204,6 +204,8 @@ async function main() {
         routes: identityWorklist.routes,
         categories: identityWorklist.categories,
         top_groups: identityWorklist.groups.slice(0, 30),
+        mtg_top_groups: identityWorklist.groups.filter((row) =>
+          row.source_category_id === 1).slice(0, 30),
         pokemon_top_groups: identityWorklist.groups.filter((row) =>
           row.source_category_id === 3).slice(0, 30),
       },

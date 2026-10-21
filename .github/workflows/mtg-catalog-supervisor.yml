@@ -72,7 +72,7 @@ jobs:
             --shadow-only \
             --repository="$GITHUB_REPOSITORY" \
             --workflow-id=335602786 \
-            --runner-ref=agent/mtg-pointer-release-v1 \
+            --runner-ref=archive/closed-pr-218-mtg-pointer-release-v1 \
             --runner-commit=7e9f2bb92f56335a6a352f655e12000b344a63a4 \
             --as-of="$(date -u +%F)" \
             --max-sets=25 \

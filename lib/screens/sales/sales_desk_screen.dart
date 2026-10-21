@@ -18,6 +18,7 @@ import 'sales_catalog_dialog.dart';
 import 'sales_trade_dialog.dart';
 import 'sales_price_reference.dart';
 import 'receipt_delivery_panel.dart';
+import 'inventory_economics_screen.dart';
 
 class SalesDeskScreen extends StatefulWidget {
   const SalesDeskScreen({super.key, this.service});
@@ -1776,6 +1777,17 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                     onPressed: _locked ? null : _heldDeals,
                     icon: const Icon(Icons.pause_circle_outline),
                   ),
+                IconButton(
+                  tooltip: 'Inventory economics',
+                  onPressed: _busy
+                      ? null
+                      : () => Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (_) => const InventoryEconomicsScreen(),
+                          ),
+                        ),
+                  icon: const Icon(Icons.calculate_outlined),
+                ),
                 IconButton(
                   tooltip: _dashboard ? 'Back to selling' : 'Sales dashboard',
                   onPressed: _data == null || _busy

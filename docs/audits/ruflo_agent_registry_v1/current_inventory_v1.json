@@ -1,8 +1,8 @@
 {
   "inventory_version": "RUFLO_READONLY_INVENTORY_V1",
   "registry_version": "RUFLO_AGENT_REGISTRY_V1",
-  "registry_sha256": "9eae3942c9754ca673abb07e013ebbfce78c37788000d2fb687f6ee9163727f2",
-  "source_commit_sha": "2792ef94c5912afe92b439feaa83d3d2bec1318a",
+  "registry_sha256": "998082e3a39579d36e8af91e67038282ff81ffb2282a587714e6552f8edec227",
+  "source_commit_sha": "e7d98ee2fd0abb6cda8f5c2dde9df7877b7c1d5a",
   "source_branch": "feat/ruflo-agent-registry-v1",
   "agents": [
     {
@@ -70,7 +70,7 @@
       "source_locator": ".github/workflows/tcgplayer-pricing-completion-agent.yml",
       "source_ref_policy": "exact_task_commit",
       "schedule_kind": "cron",
-      "schedule_expression": "47 * * * *",
+      "schedule_expression": "*/15 * * * *",
       "allowed_work_item_types": [
         "tcgplayer_pricing_backlog_repair"
       ],
@@ -3139,7 +3139,7 @@
     {
       "path": "C:/gv_ruflo_readonly_adapter_20261017",
       "branch": "feat/ruflo-readonly-operations-adapter-v1",
-      "head": "3956adceeed3e6e7b895a4d3c8f662341151008d",
+      "head": "dddf24beec4d1341331d6806637b3c7d2eee77eb",
       "detached": false,
       "prunable": null,
       "status_available": true,
@@ -3154,7 +3154,7 @@
     {
       "path": "C:/gv_ruflo_registry_foundation_20261016",
       "branch": "feat/ruflo-agent-registry-v1",
-      "head": "2792ef94c5912afe92b439feaa83d3d2bec1318a",
+      "head": "e7d98ee2fd0abb6cda8f5c2dde9df7877b7c1d5a",
       "detached": false,
       "prunable": null,
       "status_available": true,
@@ -3169,7 +3169,7 @@
     {
       "path": "C:/gv_ruflo_universal_catalog_shadow_pilot_20261019",
       "branch": "feat/ruflo-universal-catalog-shadow-pilot-v1",
-      "head": "76a98199f8a39dd85d3d36072fc3b7c88eec007b",
+      "head": "378a94787b830a9d50028618946cd63b1ef66f27",
       "detached": false,
       "prunable": null,
       "status_available": true,
@@ -3472,6 +3472,6 @@
     "worktree_cleanups": 0,
     "cross_worktree_writes": 0
   },
-  "generated_at": "2026-10-21T08:50:10-06:00",
-  "inventory_fingerprint_sha256": "c34f13ba122ee8bfa9c808eb46b66b0f9cfe92eac7abc6021b18e140b3227a44"
+  "generated_at": "2026-10-21T08:56:40-06:00",
+  "inventory_fingerprint_sha256": "bc393fbe107d8967cd9b05891fd44c108f4baf4b71727c343c26407bc06007ad"
 }

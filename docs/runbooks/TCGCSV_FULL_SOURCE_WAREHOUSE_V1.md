@@ -38,6 +38,20 @@ npm run tcgcsv:warehouse:current:apply -- --out-dir=docs/audits/market_evidence_
 
 Use `--force` / `--ignore-last-updated` only when the prior run was incomplete, parser logic changed, or the operator intentionally wants to refresh despite an unchanged `last-updated.txt`.
 
+### Current-Sync Concurrency
+
+Applying current syncs share the PostgreSQL advisory lock
+`grookai:tcgcsv:current:v1`. The worker acquires it before source acquisition and
+holds it on the same database session used for every warehouse write. A second
+current sync exits nonzero with `skipped_worker_locked`; its enclosing pipeline
+must stop and retry later rather than continue to publication.
+
+Before marking absent dimensions inactive, the worker compares the number of
+categories, groups, and products stamped with its run ID to the exact counts it
+fetched. Any ownership drift fails before missing-row finalization. Treat a
+completed pricing shadow with zero selected rows as invalid release evidence,
+even if later phases report success.
+
 ### Targeted Current Retry
 
 If a full current sync finishes as `partial_success` because a small number of category/group fetches failed, retry only those source groups:
@@ -131,7 +145,7 @@ Install the current-sync timer after manual proof:
 sudo bash deploy/scripts/install-tcgcsv-warehouse-systemd.sh
 ```
 
-The timer runs `grookai-tcgcsv-warehouse.service` daily at `08:15 UTC` with a randomized delay. It is intentionally scheduled after the eBay/MEE window to avoid memory and network contention.
+The timer runs `grookai-tcgcsv-warehouse.service` daily at `08:15 UTC` with a randomized delay. It is intentionally scheduled after the eBay/MEE window to avoid memory and network contention. Manual shadow and production runs use the same database lock, so they cannot overlap this timer's current sync.
 
 Historical archive backfills remain manual bounded jobs; do not wire historical archive backfill to systemd.
 

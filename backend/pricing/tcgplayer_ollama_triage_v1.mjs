@@ -117,7 +117,9 @@ export function planTcgplayerOllamaTriageRowV1(row) {
   const sourceName = scalar(row.source_product_name);
   const sourceGroup = scalar(row.source_group_name);
   const printedNumber = scalar(row.printed_number);
-  if (!sourceName || !sourceGroup || !printedNumber) {
+  const missingNumberReviewAllowed = !printedNumber
+    && row.candidate_search?.allow_missing_number_review === true;
+  if (!sourceName || !sourceGroup || (!printedNumber && !missingNumberReviewAllowed)) {
     return {
       source_product_id: sourceProductId,
       disposition: 'held_by_deterministic_guard',
@@ -125,7 +127,7 @@ export function planTcgplayerOllamaTriageRowV1(row) {
       missing_fields: [
         !sourceName ? 'source_product_name' : null,
         !sourceGroup ? 'source_group_name' : null,
-        !printedNumber ? 'printed_number' : null,
+        !printedNumber && !missingNumberReviewAllowed ? 'printed_number' : null,
       ].filter(Boolean),
       model_call_allowed: false,
       candidate_count: Array.isArray(row.candidate_targets)
@@ -204,6 +206,7 @@ export function planTcgplayerOllamaTriageRowV1(row) {
         name: sourceName,
         group: sourceGroup,
         printed_number: printedNumber,
+        printed_number_missing: !printedNumber,
         normalized_name: scalar(row.normalized_source_name) || null,
         normalized_number: scalar(row.normalized_source_number) || null,
         subtypes: Array.isArray(row.source_subtypes) ? row.source_subtypes : [],
@@ -217,6 +220,7 @@ export function planTcgplayerOllamaTriageRowV1(row) {
         output_is_advisory_only: true,
         candidate_index_must_come_from_candidates: true,
         uncertainty_requires_ambiguous_or_insufficient_evidence: true,
+        missing_printed_number_can_only_produce_a_review_lead: true,
       },
     },
   };

@@ -45,7 +45,7 @@ function parseArgs(argv) {
     endpoint: assertLoopbackOllamaUrlV1(
       value(argv, 'endpoint') || 'http://127.0.0.1:11434',
     ),
-    limit: positiveInteger(value(argv, 'limit'), 25, 100, '--limit'),
+    limit: positiveInteger(value(argv, 'limit'), 500, 5000, '--limit'),
     offset: Math.max(0, Number.parseInt(value(argv, 'offset') || '0', 10) || 0),
   };
 }
@@ -176,6 +176,9 @@ async function main() {
           model_called: true,
           model: args.model,
           advice,
+          lead_target: advice.candidate_index === null
+            ? null
+            : plan.compatible_candidates[advice.candidate_index],
           metrics: response.metrics,
           compatible_candidate_ids:
             plan.compatible_candidates.map((candidate) => candidate.candidate_id),
@@ -217,6 +220,12 @@ async function main() {
       row.disposition === 'held_by_deterministic_guard').length,
     review_required: results.filter((row) =>
       row.disposition === 'review_required').length,
+    lead_candidates: results.filter((row) =>
+      row.advice?.decision === 'lead_candidate').length,
+    ambiguous: results.filter((row) =>
+      row.advice?.decision === 'ambiguous').length,
+    insufficient_evidence: results.filter((row) =>
+      row.advice?.decision === 'insufficient_evidence').length,
     boundaries: {
       sequential_model_calls: true,
       loopback_only: true,
@@ -228,6 +237,10 @@ async function main() {
     },
   };
   await fs.writeFile(path.join(args.outDir, 'triage.jsonl'), jsonl(results));
+  await fs.writeFile(
+    path.join(args.outDir, 'review_leads.jsonl'),
+    jsonl(results.filter((row) => row.advice?.decision === 'lead_candidate')),
+  );
   await fs.writeFile(
     path.join(args.outDir, 'summary.json'),
     `${JSON.stringify(summary, null, 2)}\n`,

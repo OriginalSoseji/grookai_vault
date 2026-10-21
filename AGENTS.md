@@ -1,5 +1,115 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer packaging scope repair — October 21
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`.
+The first live cross-category queue was hash-valid but included numberless Fat
+Packs, Intro Packs, decks, bundles, displays, collections, cases, kits, Boxes,
+and whole Secret Lair drops as missing cards. V1.4 excludes only products with
+both an explicit package signal and no printed-number evidence. Preserve the
+V1.3 classifier for historical replay. Require an exact-commit full shadow,
+guarded production activation, independent completion-artifact readback, and a
+corrected category queue before changing the local Ollama consumer.
+
+## MTG reviewed printing correction — October 20
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_163_MTG_REVIEWED_PRINTING_CORRECTION.md`.
+TCGPlayer product 269823 is Treasure Token number 17; its legacy number-13
+parent and child mappings caused two products to publish toward one printing and
+blocked activation. Only the frozen two-row correction may move it to the
+existing `tsnc` number-17 parent/Normal child. Apply candidate V7 first so the
+reviewed correction uses exact `mtg_printing_mapping_id` lineage and leaves the
+historical assignment ledger unchanged. Require rollback proof, exact merged
+SHA, plan-derived acknowledgement, independent readback, a new full shadow, and
+normal production activation reconciliation. Never reuse failed production run
+39486729222 or its older shadow.
+
+## Japanese catalog secondary-checklist resilience — October 20
+
+Read `docs/ops/UNIVERSAL_CATALOG_JAPANESE_CHECKLIST_FALLBACK_20261020.md`.
+Also read
+`docs/ops/UNIVERSAL_CATALOG_JAPANESE_OFFICIAL_EXPANSION_FALLBACK_20261021.md`.
+Bulbapedia is independent corroboration for the Japanese product lane. Its typed
+access denial or outage may be contained behind a complete TCGdex checklist, or
+for official expansion products only, behind an exact official product
+enumeration plus an exact same-code Limitless numbered checklist when TCGdex
+evidence is entirely absent. Metadata-only or other partial TCGdex evidence
+remains fatal. The latter
+evidence shape remains ineligible for unattended writes. HTTP 401/403 remains
+globally strict; missing/partial evidence, parser failures, mixed set codes, and
+count disagreements remain fatal. Do not dispatch discovery, write catalog
+data, or count a pre-merge/manual run as Ruflo pilot qualification.
+
+## MTG fresh Scryfall finish backfill — October 20
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_160_MTG_FRESH_SCRYFALL_FINISH_BACKFILL.md`.
+Fresh Scryfall bulk data may create `tcgplayer_market` printing mappings only
+when every observed Normal/Foil lane for a blocked MTG product collapses to one
+existing visible, nonprovisional English paper child. Bind the plan to the
+source bulk hash and immutable pricing run. Write only missing
+`productId:finish` rows; conflicting, ambiguous, partial, etched, unsupported,
+and hidden rows remain held. Mapping insertion and price publication are
+separate guarded releases.
+
+## MTG exact-finish missing-number bridge — October 20
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_159_MTG_EXACT_FINISH_MISSING_NUMBER_BRIDGE.md`.
+Missing printed-number text may be waived only for category 1 Normal/Foil rows
+whose active `tcgplayer_market` `productId:finish` mapping points to the same
+single canonical printing already selected by the ordinary mapping lane. The
+candidate must have one card mapping, one printing mapping, one English paper
+identity domain, and an exact child-finish assignment. Publication must switch
+to the durable `mtg_printing_mapping_id` lineage; never carry both that lineage
+and the generic source/variant assignment IDs. All ambiguous, provisional,
+hidden, unsupported, and non-positive-price rows remain held.
+
+## MTG finish-specific market bridge — October 18
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_158_MTG_FINISH_SPECIFIC_MARKET_BRIDGE.md`.
+MTG TCGPlayer `productId` is not a canonical parent identity. When the exact
+`productId:normal` and `productId:foil` mappings resolve to different Scryfall
+parents, publication must carry the active `external_printing_mappings` row as
+its durable lineage. Never invent or select a parent-level mapping to force the
+two finishes together. The new lane remains category 1, Normal/Foil only,
+one-owner, nonprovisional, visible, English paper printing evidence.
+Snapshot guards fully validate the incoming row, then link it to the exact
+already-validated decision by decision, run, observation, printing, and mapping
+IDs; do not re-run the full validator inside that lineage lookup.
+
+## TCGCSV current-sync singleton repair — October 17
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_157_TCGCSV_CURRENT_SYNC_SINGLETON_REPAIR.md`.
+Every applying current TCGCSV warehouse sync must hold the shared database
+advisory lock for its full lifetime on the same PostgreSQL session that performs
+the warehouse writes. A second current sync must stop before ingestion, and a
+run must prove it still owns all fetched category, group, and product stamps
+before it may mark missing rows. The October 17 zero-candidate shadow is invalid
+and must not authorize publication. Repair the active flags with a fresh locked
+full sync, then require a nonzero exact-commit shadow before production.
+
+## Pricing assignment-lane race repair — October 17
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_156_ASSIGNMENT_LANE_RACE_REPAIR.md`.
+Ordinary market-close rows must carry a concrete variant-assignment ledger ID
+before qualification can publish them. This prevents a mapping created after
+assignment preparation from passing policy and then failing the snapshot table
+constraint. The next run prepares the missing assignment normally; edition
+assignment lanes remain separate.
+
+## Ollama bulk TCGPlayer mapping triage — October 17
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_155_OLLAMA_BULK_MAPPING_AGENT.md`.
+The local `grookai-card-triage:4b` worker now enriches every blocked product
+against the live unmapped canonical parent catalog before inference, processes
+up to 5,000 rows sequentially, and reconciles selected targets across the whole
+batch. Duplicate target selections, sealed products, uncertain identities, and
+missing evidence remain explicit holds. The agent is read-only and advisory: it
+cannot write mappings or publish prices. Promote only the collision-free review
+queue through the existing exact authority, rollback, apply, shadow, and
+publication gates. The local worker polls every five minutes and no-ops on an
+unchanged input hash; the hosted production backlog measurement runs every
+fifteen minutes.
+
 ## MEP catalog-backed pricing repair — October 16
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_154_MEP_CATALOG_BACKFILL.md`.

@@ -53,11 +53,11 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_14";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_19";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
-const MIGRATION_VERSION = "20261014003500";
+const MIGRATION_VERSION = "20261020220000";
 const REQUIRED_PHASES = [
   "prepare_variant_assignments",
   "stage_candidates",
@@ -406,7 +406,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v4 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v7 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
@@ -493,7 +493,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v4 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v7 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
@@ -542,6 +542,7 @@ function buildCandidate(row, runId) {
     variant_assignment_id: row.variant_assignment_id,
     edition_assignment_id: row.edition_assignment_id ?? null,
     gym_edition_assignment_id: row.gym_edition_assignment_id ?? null,
+    mtg_printing_mapping_id: row.mtg_printing_mapping_id ?? null,
     card_print_id: row.card_print_id,
     card_printing_id: row.card_printing_id,
     candidate_hash: sha256({
@@ -551,6 +552,7 @@ function buildCandidate(row, runId) {
       variant_assignment_id: row.variant_assignment_id,
       edition_assignment_id: row.edition_assignment_id ?? null,
       gym_edition_assignment_id: row.gym_edition_assignment_id ?? null,
+      mtg_printing_mapping_id: row.mtg_printing_mapping_id ?? null,
       card_printing_id: row.card_printing_id,
     }),
     candidate_payload: row,
@@ -585,6 +587,9 @@ function buildDecision(candidate, evaluation, run, phaseAttemptId, evaluatedAt) 
     candidate_mapping_identity: editionAssignmentId ? [
       "tcgplayer_edition", row.source_product_id, row.source_subtype_name,
       row.edition_binding_id, editionAssignmentId, row.card_print_id,
+    ].join(":") : row.mtg_printing_mapping_id ? [
+      "tcgplayer_mtg_finish", row.source_product_id, row.source_subtype_name,
+      row.mtg_printing_mapping_id, row.card_printing_id,
     ].join(":") : [
       "tcgplayer",
       row.source_product_id,
@@ -594,6 +599,7 @@ function buildDecision(candidate, evaluation, run, phaseAttemptId, evaluatedAt) 
     variant_assignment_id: row.variant_assignment_id,
     edition_assignment_id: row.edition_assignment_id ?? null,
     gym_edition_assignment_id: row.gym_edition_assignment_id ?? null,
+    mtg_printing_mapping_id: row.mtg_printing_mapping_id ?? null,
     variant_assignment_status:
       row.variant_assignment_status ?? row.derived_variant_assignment_status,
     variant_assignment_version: row.variant_assignment_version,
@@ -907,6 +913,7 @@ async function insertCandidates(client, candidates, batchSize) {
            variant_assignment_id uuid,
            edition_assignment_id uuid,
            gym_edition_assignment_id uuid,
+           mtg_printing_mapping_id uuid,
            card_print_id uuid,
            card_printing_id uuid,
            candidate_hash text,
@@ -926,6 +933,7 @@ async function insertCandidates(client, candidates, batchSize) {
          variant_assignment_id,
          edition_assignment_id,
          gym_edition_assignment_id,
+         mtg_printing_mapping_id,
          card_print_id,
          card_printing_id,
          candidate_hash,
@@ -944,6 +952,7 @@ async function insertCandidates(client, candidates, batchSize) {
          variant_assignment_id,
          edition_assignment_id,
          gym_edition_assignment_id,
+         mtg_printing_mapping_id,
          card_print_id,
          card_printing_id,
          candidate_hash,
@@ -979,6 +988,7 @@ async function insertDecisions(client, decisions, batchSize) {
            variant_assignment_id uuid,
            edition_assignment_id uuid,
            gym_edition_assignment_id uuid,
+           mtg_printing_mapping_id uuid,
            variant_assignment_status text,
            variant_assignment_version text,
            mapping_method text,
@@ -1029,6 +1039,7 @@ async function insertDecisions(client, decisions, batchSize) {
          variant_assignment_id,
          edition_assignment_id,
          gym_edition_assignment_id,
+         mtg_printing_mapping_id,
          variant_assignment_status,
          variant_assignment_version,
          mapping_method,
@@ -1078,6 +1089,7 @@ async function insertDecisions(client, decisions, batchSize) {
          variant_assignment_id,
          edition_assignment_id,
          gym_edition_assignment_id,
+         mtg_printing_mapping_id,
          variant_assignment_status,
          variant_assignment_version,
          mapping_method,
@@ -1165,6 +1177,7 @@ async function insertSnapshotBatch(client, run, publicationSet, phaseAttemptId, 
        variant_assignment_id,
        edition_assignment_id,
        gym_edition_assignment_id,
+       mtg_printing_mapping_id,
        source_product_id,
        source_subtype_name,
        source_observed_on,
@@ -1203,6 +1216,7 @@ async function insertSnapshotBatch(client, run, publicationSet, phaseAttemptId, 
        decision.variant_assignment_id,
        decision.edition_assignment_id,
        decision.gym_edition_assignment_id,
+       decision.mtg_printing_mapping_id,
        decision.source_product_id,
        decision.source_subtype_name,
        decision.source_observed_on,
@@ -1518,24 +1532,16 @@ async function restoreVerifiedProductionGuardArtifact(client, run) {
 }
 
 async function artifactRows(client, runId) {
-  const [runResult, reconciliationResult] = await Promise.all([
-    client.query(
-      `select *
-         from public.market_price_pipeline_runs
-        where id = $1`,
-      [runId],
-    ),
-    client.query(
-      `select reconciliation
-         from public.market_price_pipeline_runs
-        where id = $1`,
-      [runId],
-    ),
-  ]);
+  const runResult = await client.query(
+    `select *
+       from public.market_price_pipeline_runs
+      where id = $1`,
+    [runId],
+  );
   return {
     run: runResult.rows[0],
     decisions: marketLedgerRowsV1(client, 'decisions', runId),
-    reconciliation: reconciliationResult.rows[0]?.reconciliation ?? {},
+    reconciliation: runResult.rows[0]?.reconciliation ?? {},
   };
 }
 
