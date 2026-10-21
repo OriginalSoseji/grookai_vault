@@ -77,7 +77,11 @@ test("registered Operations Agent Protocol records reconcile with source builder
     assert.deepEqual(registered.allowed_command_actions, sourceAgent.allowed_command_actions);
     assert.equal(registered.execution_enabled, false);
     assert.equal(registered.permission_tier, "R0");
+    assert.equal(registered.lifecycle_state, "registered");
+    assert.equal(registered.topology_role, "operations_agent");
   }
+  assert.equal(recordByAgentKey("catalog-set-outcome-v1").action_risk, "external_write");
+  assert.equal(recordByAgentKey("tk-sm-r-hidden-set-apply-v1").action_risk, "external_write");
 });
 
 test("registry fails closed on execution, secrets, traversal, missing contracts, and write locks", () => {
@@ -99,8 +103,24 @@ test("registry fails closed on execution, secrets, traversal, missing contracts,
 
   const writer = clone(registry);
   writer.agents[0].resource_locks = [{ key: "catalog:all:writer", mode: "write" }];
-  writer.agents[1].resource_locks = [{ key: "catalog:all:writer", mode: "write" }];
-  assert.throws(() => validateRegistryV1(writer, { repoRoot }), /write lock|Duplicate write lock/);
+  assert.throws(() => validateRegistryV1(writer, { repoRoot }), /requests a write lock/);
+});
+
+test("resource lock declarations may be shared across agents but not duplicated within one record", () => {
+  const shared = clone(registry);
+  shared.agents[0].resource_locks = [{ key: "catalog:all:shared", mode: "read" }];
+  shared.agents[1].resource_locks = [{ key: "catalog:all:shared", mode: "read" }];
+  assert.doesNotThrow(() => validateRegistryV1(shared, { repoRoot }));
+
+  const duplicateWithinAgent = clone(registry);
+  duplicateWithinAgent.agents[0].resource_locks = [
+    { key: "catalog:all:shared", mode: "read" },
+    { key: "catalog:all:shared", mode: "read" },
+  ];
+  assert.throws(
+    () => validateRegistryV1(duplicateWithinAgent, { repoRoot }),
+    /duplicate resource lock declaration/,
+  );
 });
 
 test("tracked backend, script-worker, and GitHub workflow surfaces are completely classified", () => {
@@ -111,6 +131,9 @@ test("tracked backend, script-worker, and GitHub workflow surfaces are completel
     actualByKind.get(surface.surface_kind).add(surface.source_locator);
     assert.equal(surface.execution_enabled, false);
     assert.equal(surface.permission_tier, "R0");
+    assert.ok(["registered", "unregistered", "retired"].includes(surface.lifecycle_state));
+    assert.ok(["operations_agent", "domain_supervisor", "bounded_worker"].includes(surface.topology_role));
+    assert.ok(["read_only", "source_write", "external_write"].includes(surface.action_risk));
   }
 
   const expectedBackend = gitFiles("backend").filter((entry) =>

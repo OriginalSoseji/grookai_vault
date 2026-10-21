@@ -106,25 +106,32 @@ Ruflo may propose and coordinate. A Grookai adapter must validate every task
 against registry, worktree, authority, risk, concurrency, and evidence rules
 before an executor can receive it.
 
-## Integration Classes
+## Integration Dimensions
 
-Every current and future automation surface must be classified exactly once.
+Every current and future automation surface must be represented across three
+orthogonal dimensions. A value in one dimension never lowers or replaces the
+restrictions imposed by another dimension.
 
-| Class | Meaning | Ruflo behavior | Execution authority |
-|---|---|---|---|
-| A — registered operations agent | Has a stable `agent_key` and Operations Agent Protocol lifecycle | Read health, coordinate review, link work items and evidence | Existing control plane and command policy |
-| B — domain supervisor | Observes a bounded domain and may build plans or candidates | Decompose and aggregate; no implied dispatch | Existing workflow or operator gate |
-| C — bounded worker | Performs one deterministic operation | Prepare task envelope only after exact entrypoint and policy registration | Existing worker contract and frozen plan |
-| D — advisory/read-only worker | Produces evidence, classification, or recommendations | May run in a read-only pilot when its source/worktree is assigned | Assigned local or hosted read-only runtime |
-| E — release/external action | Deploys, publishes, submits, migrates, or changes external state | Plan and verify only | Explicit founder authorization plus release gate |
-| F — in-flight/unregistered work | Dirty tree, unmerged branch, detached release checkout, or experimental agent | Observe status only; protected from mutation | Current owner in its existing worktree |
-| G — historical/retired | Preserved for evidence or replay protection | Index only; never resurrect automatically | New review and new authority required |
+| Dimension | Allowed values | Meaning |
+|---|---|---|
+| Lifecycle state | `registered`, `unregistered`, `retired` | Whether the surface has a stable registry identity and active Operations Agent Protocol lifecycle. Dirty, experimental, detached, or otherwise in-flight work remains `unregistered`; historical evidence remains `retired`. |
+| Topology role | `operations_agent`, `domain_supervisor`, `bounded_worker` | Whether Ruflo observes a durable agent, decomposes a bounded domain, or prepares one deterministic operation. This describes coordination shape, not write authority. |
+| Action risk | `read_only`, `source_write`, `external_write` | The highest-impact action the surface can request. `source_write` is limited to its assigned worktree. `external_write` includes deploy, publish, submit, migration, database, Storage, account, payment, and other external-state changes. |
+
+Lifecycle registration and action risk are independent. For example,
+`catalog-set-outcome-v1` and `tk-sm-r-hidden-set-apply-v1` are registered
+operations agents whose action risk is `external_write`; registration does not
+make their writers Ruflo-executable. Ruflo may observe their lifecycle and
+prepare review material, while execution remains behind the existing command,
+approval, frozen-plan, lease, and readback gates. An unregistered surface is
+observe-only regardless of its intended topology role or action risk, and a
+retired surface is index-only until a new review creates new authority.
 
 ## Current Agent Estate
 
 This is the October 16 inventory baseline. Phase 1 will convert it into a
 machine-validated registry and will fail closed when a source cannot be
-classified.
+represented across every required dimension.
 
 ### Registered Operations Agents
 
@@ -155,7 +162,7 @@ The pricing backlog policy also assigns work to these logical repair owners:
 - `pricing-backlog-triage-v1`.
 
 These names must not be passed to `agent_execute` until each has a real registry
-entry, source locator, owner, permission class, execution contract, and tests.
+entry, source locator, owner, permission tier, execution contract, and tests.
 
 ### Catalog And Discovery Family
 
@@ -164,7 +171,7 @@ entry, source locator, owner, permission class, execution contract, and tests.
 | Universal catalog discovery | Multi-TCG official-source, evidence-only gap detection | Phase 2 read-only pilot |
 | English Pokémon Master Index refresh | Language-scoped authority refresh and reconciliation | Phase 3 catalog coordinator |
 | Japanese Pokémon Master Index refresh | Language-scoped authority; active global-catalog work remains protected | Phase 2 status/evidence pilot, then Phase 3 |
-| Pokémon global discovery agent | In-flight English/Japanese/Chinese discovery planner in the dirty primary tree | Class F until checkpointed and merged; then Phase 2 read-only pilot |
+| Pokémon global discovery agent | In-flight English/Japanese/Chinese discovery planner in the dirty primary tree | `unregistered` and observe-only until checkpointed and merged; then Phase 2 read-only pilot |
 | MTG catalog supervisor | Read-only frozen-manifest watchdog | Phase 2 read-only pilot |
 | MTG incremental promotion and hidden runner | Bounded source-specific promotion | Phase 4, single-writer only |
 | One Piece incremental promotion and set closure | Source-specific promotion and release reconciliation | Phase 4, single-writer only |
@@ -200,10 +207,11 @@ worker receives canonical-write authority from the integration.
 
 Condition-analysis workers, eBay account synchronization, vendor billing,
 vendor commerce, seller closeout, receipt delivery, storefront, mobile release,
-and store-console work begin as Classes D, E, or F. Ruflo may coordinate local
-analysis and evidence. Payments, customer communications, account changes,
-store submission, public release, and other external actions remain outside
-Ruflo authority and require their existing explicit approvals.
+and store-console work receive independent lifecycle, topology-role, and
+action-risk values. Ruflo may coordinate local analysis and evidence. Payments,
+customer communications, account changes, store submission, public release,
+and other external actions remain outside Ruflo authority and require their
+existing explicit approvals.
 
 ### CI, Release, And Infrastructure Family
 
@@ -252,7 +260,8 @@ eligible.
 Phase 1 adds a versioned registry, proposed at
 `config/ruflo/agent_registry_v1.json`. Each record must include:
 
-- `agent_key`, display name, domain, owner label, and integration class;
+- `agent_key`, display name, domain, owner label, lifecycle state, topology role,
+  and action-risk class;
 - source branch/ref, source locator, and entrypoint;
 - execution platform and schedule/trigger semantics;
 - assigned worktree policy and protected path patterns;
@@ -265,12 +274,18 @@ Phase 1 adds a versioned registry, proposed at
 - heartbeat/staleness policy appropriate to cron, timer, continuous, event, or
   manual execution;
 - Ruflo topology role and memory namespace;
-- current adoption state: `unregistered`, `observed`, `pilot`, `coordinated`,
-  `execution_eligible`, `held`, or `retired`.
+- current coordination-adoption state: `not_adopted`, `observed`, `pilot`,
+  `coordinated`, `execution_eligible`, or `held`. Lifecycle `unregistered` and
+  `retired` are recorded only in the lifecycle dimension, not overloaded as
+  adoption states.
 
-Registry validation must reject duplicate keys, duplicate writer locks, missing
-contracts, unsafe paths, secret-bearing fields, unpinned source references, and
-write-capable records without rollback and readback requirements.
+Registry validation must reject duplicate agent keys, duplicate lock
+declarations within one record, missing contracts, unsafe paths, secret-bearing
+fields, unpinned source references, and write-capable records without rollback
+and readback requirements. Multiple agents may and should declare the same
+resource-lock key when they can contend for that resource. The runtime lease
+manager, not registry uniqueness, enforces exclusive ownership so that only one
+write-capable task holds the shared resource lock at a time.
 
 ## Permission Tiers
 
@@ -312,7 +327,8 @@ surface.
 
 Every Ruflo-coordinated task must carry a frozen envelope:
 
-- task ID, parent goal, agent key, integration class, and risk tier;
+- task ID, parent goal, agent key, lifecycle state, topology role, action-risk
+  class, and permission tier;
 - exact repository, commit/ref, assigned worktree, and initial status hash;
 - objective, inclusions, exclusions, and explicit non-goals;
 - required inputs and their SHA-256 fingerprints;
@@ -492,8 +508,8 @@ operational when Ruflo is disabled.
 
 - Exact Ruflo version, stdio transport, timeout, and tool allowlist.
 - Zero forbidden tool prefixes or user-scoped configuration.
-- Registry schema, unique keys, stable serialization, and full inventory
-  classification.
+- Registry schema, unique keys, stable serialization, and complete lifecycle,
+  topology-role, and action-risk classification.
 - Secret-key and sensitive-payload rejection.
 - Dirty, detached, untracked, unreadable, unknown, and actively owned worktree
   protection.
@@ -573,11 +589,14 @@ production system, or edit any existing active worktree.
 
 PR 1 is complete when:
 
-1. every current automation surface is classified;
+1. every current automation surface has lifecycle, topology-role, and
+   action-risk values;
 2. every current worktree is represented as protected state;
 3. registered operations-agent records reconcile with source code;
-4. the validator fails closed on an unknown writer, duplicate lock, dirty-tree
-   write assignment, secret field, or missing contract;
+4. the validator fails closed on an unknown writer, duplicate lock declaration
+   within one record, dirty-tree write assignment, secret field, or missing
+   contract, while allowing agents that contend for the same resource to share
+   a lock key;
 5. focused tests and `git diff --check` pass;
 6. a generated report proves zero external and production writes.
 

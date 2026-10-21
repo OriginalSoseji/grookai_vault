@@ -42,12 +42,14 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["surface_kind", "root", "pattern", "integration_class", "permission_tier"],
+        "required": ["surface_kind", "root", "pattern", "lifecycle_state", "topology_role", "action_risk", "permission_tier"],
         "properties": {
           "surface_kind": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
           "root": { "type": "string", "minLength": 1 },
           "pattern": { "type": "string", "minLength": 1 },
-          "integration_class": { "enum": ["A", "B", "C", "D", "E", "F", "G"] },
+          "lifecycle_state": { "enum": ["registered", "unregistered", "retired"] },
+          "topology_role": { "enum": ["operations_agent", "domain_supervisor", "bounded_worker"] },
+          "action_risk": { "enum": ["read_only", "source_write", "external_write"] },
           "permission_tier": { "enum": ["R0", "R1"] }
         }
       }
@@ -85,7 +87,9 @@
         "surface_key",
         "surface_kind",
         "source_locator",
-        "integration_class",
+        "lifecycle_state",
+        "topology_role",
+        "action_risk",
         "permission_tier",
         "execution_enabled"
       ],
@@ -93,7 +97,9 @@
         "surface_key": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
         "surface_kind": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
         "source_locator": { "type": "string", "minLength": 1 },
-        "integration_class": { "enum": ["A", "B", "C", "D", "E", "F", "G"] },
+        "lifecycle_state": { "enum": ["registered", "unregistered", "retired"] },
+        "topology_role": { "enum": ["operations_agent", "domain_supervisor", "bounded_worker"] },
+        "action_risk": { "enum": ["read_only", "source_write", "external_write"] },
         "permission_tier": { "enum": ["R0", "R1"] },
         "execution_enabled": { "const": false },
         "schedule_kind": { "enum": ["cron", "timer", "continuous", "event", "manual"] },
@@ -109,7 +115,9 @@
         "display_name",
         "domain",
         "owner_label",
-        "integration_class",
+        "lifecycle_state",
+        "topology_role",
+        "action_risk",
         "adoption_state",
         "permission_tier",
         "execution_enabled",
@@ -132,8 +140,10 @@
         "display_name": { "type": "string", "minLength": 1 },
         "domain": { "type": "string", "pattern": "^[a-z0-9_.-]+$" },
         "owner_label": { "type": "string", "minLength": 1 },
-        "integration_class": { "enum": ["A", "B", "C", "D", "E", "F", "G"] },
-        "adoption_state": { "enum": ["unregistered", "observed", "pilot", "coordinated", "execution_eligible", "held", "retired"] },
+        "lifecycle_state": { "enum": ["registered", "unregistered", "retired"] },
+        "topology_role": { "enum": ["operations_agent", "domain_supervisor", "bounded_worker"] },
+        "action_risk": { "enum": ["read_only", "source_write", "external_write"] },
+        "adoption_state": { "enum": ["not_adopted", "observed", "pilot", "coordinated", "execution_eligible", "held"] },
         "permission_tier": { "enum": ["R0", "R1"] },
         "execution_enabled": { "const": false },
         "execution_platform": { "type": "string", "minLength": 1 },
@@ -177,9 +187,8 @@
         "ruflo": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["topology_role", "memory_namespace"],
+          "required": ["memory_namespace"],
           "properties": {
-            "topology_role": { "enum": ["root", "coordinator", "worker", "reviewer", "held"] },
             "memory_namespace": { "type": "string", "pattern": "^grookai/[a-z0-9_.-]+/[a-z0-9_.-]+$" }
           }
         },

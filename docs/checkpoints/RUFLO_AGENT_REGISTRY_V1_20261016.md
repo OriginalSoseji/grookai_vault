@@ -11,11 +11,11 @@ builder, and contract suite. It does not call Ruflo `agent_execute`, dispatch a
 workflow, query a production service, modify another worktree, or perform any
 cleanup.
 
-The source foundation is commit
-`ffbb759b455d1c9d2a851385ffce9eb7fd2d5718` on
-`feat/ruflo-agent-registry-v1`. The checked-in inventory was generated from
-that exact commit; later documentation commits do not change the registry or
-inventory implementation recorded by the snapshot.
+The current source foundation is commit
+`2792ef94c5912afe92b439feaa83d3d2bec1318a` on
+`feat/ruflo-agent-registry-v1`. The checked-in inventory was refreshed from
+that exact commit on October 21; later documentation commits do not change the
+registry or inventory implementation recorded by the snapshot.
 
 ## Registry
 
@@ -28,6 +28,8 @@ It records:
 - 15 agent identities;
 - four source-registered Operations Agent Protocol agents;
 - eleven policy-defined backlog owners held as non-executable;
+- independent lifecycle-state, topology-role, and action-risk dimensions, so a
+  registered writer remains registered without losing its external-write risk;
 - four checked-in host schedule lanes;
 - 21 explicitly protected roots, plus fail-closed dynamic protection for every
   newly discovered worktree;
@@ -35,9 +37,12 @@ It records:
 - false boundaries for execution, workflow dispatch, production writes,
   external actions, cleanup, and cross-worktree writes.
 
-The validator rejects duplicate agent keys, sensitive field names, absolute or
-traversing repository locators, missing contracts, execution enablement,
-permissions above R1, worktree write assignments, and write locks.
+The validator rejects duplicate agent keys, duplicate resource-lock
+declarations within one record, sensitive field names, absolute or traversing
+repository locators, missing contracts, execution enablement, permissions above
+R1, worktree write assignments, and write locks. Shared resource-lock keys
+across agent records are valid because they identify runtime contention; the
+future lease manager must enforce exclusive writer ownership.
 
 ## Read-Only Inventory
 
@@ -46,7 +51,7 @@ tracked source with Git and reads registered worktree status. It does not read
 secret values, enumerate arbitrary files outside registered worktrees, query
 the network, or inspect production systems.
 
-The October 16 snapshot under `docs/audits/ruflo_agent_registry_v1/` records:
+The October 21 refresh under `docs/audits/ruflo_agent_registry_v1/` records:
 
 | Measure | Count |
 |---|---:|
@@ -57,11 +62,11 @@ The October 16 snapshot under `docs/audits/ruflo_agent_registry_v1/` records:
 | Script workers | 46 |
 | GitHub workflows | 66 |
 | Host lanes | 4 |
-| Discovered worktrees | 22 |
-| Dirty worktrees | 7 |
+| Discovered worktrees | 36 |
+| Dirty worktrees | 5 |
 | Unreadable worktrees | 0 |
 
-All 22 discovered worktrees are recorded as protected with
+All 36 discovered worktrees are recorded as protected with
 `write_allowed: false` and `cleanup_authorized: false`. A worktree absent from
 the explicit root list receives `dynamic_fail_closed_discovery`, not a weaker
 policy.
@@ -88,7 +93,7 @@ It never changes the Ruflo MCP configuration or starts an agent.
 
 - Registry semantic validation: passed.
 - JavaScript syntax checks: passed.
-- Focused Ruflo contracts: 12 of 12 passed.
+- Focused registry and Ruflo integration contracts: 13 of 13 passed.
 - Tracked backend/script/workflow inventory reconciliation: passed.
 - Worktree fail-closed protection tests: passed.
 - Artifact SHA-256 reconciliation: passed.
