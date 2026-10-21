@@ -6,7 +6,7 @@
 
 Pull-request step 2 from the all-agents plan now has an R0-only implementation
 candidate. Its core implementation is commit
-`bdafab1ad9158590a6894f206e65deaece3571ad` on
+`0148c64d636c3c2d2fc3b7d91a85ca84b06a78c6` on
 `feat/ruflo-readonly-operations-adapter-v1`, stacked on the registry foundation.
 It does not connect to Supabase, call an Operations RPC, contact Ruflo, execute
 an agent, dispatch a workflow, write production state, or clean a worktree.
@@ -19,7 +19,8 @@ row to `config/ruflo/agent_registry_v1.json`, copies only allowlisted health and
 evidence-reference fields, emits stable JSON, and computes a deterministic
 SHA-256 fingerprint. The read model carries lifecycle state, topology role, and
 action risk independently, so a registered external writer remains visibly
-high-risk even in an R0 observation.
+high-risk even in an R0 observation. It also requires the snapshot's staleness
+window to match the registry and emits the source-defined heartbeat interval.
 
 The adapter fails closed on:
 

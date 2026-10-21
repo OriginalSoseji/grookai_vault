@@ -20,7 +20,7 @@
     "ref": "docs/ruflo-all-agents-integration-plan-20261016",
     "worktree_path": "C:/gv_ruflo_all_agents_plan_20261016",
     "initial_status_sha256": "7ada3368af017f82c1fa712b9db7393610d68c74e976f9ebf0c9f65ad42b6e2b",
-    "inventory_fingerprint_sha256": "bc393fbe107d8967cd9b05891fd44c108f4baf4b71727c343c26407bc06007ad",
+    "inventory_fingerprint_sha256": "1a28f52962f2d52e4a19a0e389082d28d837242482462a12a76525f56731e07f",
     "protection": "protected",
     "write_allowed": false
   },
@@ -41,7 +41,7 @@
   "inputs": [
     {
       "locator": "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
-      "sha256": "7578f5fdaff92ab0566cc763e6e2f04483970352de4dcfd72d0e9b8e70bc2101"
+      "sha256": "6cdaa59efa5cd752b093f04f4417276d89c0f488932d651dd706fbfd9cec6b47"
     }
   ],
   "resource_locks": [
@@ -75,5 +75,5 @@
     "cleanup": false,
     "cross_worktree_writes": false
   },
-  "fingerprint_sha256": "bacd1776e93f8a8234190dbf456f0af634c4a0ed5f0837fb346d7172cbccd46b"
+  "fingerprint_sha256": "fc4105fadee2e03930492f9573b3b6a2e5640703fd2137c0d720f1f84deb56cc"
 }
