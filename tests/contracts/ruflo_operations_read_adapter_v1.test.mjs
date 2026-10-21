@@ -55,8 +55,13 @@ test("read adapter preserves authoritative periodic staleness and event idle hea
   const periodic = model.agents.find((agent) => agent.agent_key === "universal-catalog-discovery-v1");
   const eventAgent = model.agents.find((agent) => agent.agent_key === "catalog-set-outcome-v1");
   assert.equal(periodic.health, "stale");
+  assert.equal(periodic.lifecycle_state, "registered");
+  assert.equal(periodic.topology_role, "operations_agent");
+  assert.equal(periodic.action_risk, "read_only");
   assert.equal(eventAgent.schedule_kind, "event");
   assert.equal(eventAgent.health, "healthy");
+  assert.equal(eventAgent.lifecycle_state, "registered");
+  assert.equal(eventAgent.action_risk, "external_write");
   assert.equal(model.boundaries.agent_execution, false);
   assert.equal(model.boundaries.workflow_dispatch, false);
   assert.equal(model.boundaries.production_writes, false);
@@ -89,6 +94,9 @@ test("task envelope is deterministic, protected, and permanently non-executable"
   assert.deepEqual(first, second);
   assert.match(first.fingerprint_sha256, /^[a-f0-9]{64}$/);
   assert.equal(first.agent.permission_tier, "R0");
+  assert.equal(first.agent.lifecycle_state, "registered");
+  assert.equal(first.agent.topology_role, "operations_agent");
+  assert.equal(first.agent.action_risk, "read_only");
   assert.equal(first.lifecycle.execution_state, "not_started");
   assert.deepEqual(first.boundaries, {
     execution_enabled: false,
