@@ -13,6 +13,7 @@ export const REQUIRED_QUALIFYING_CYCLES = 7;
 const CAPTURE_VERSION = "UNIVERSAL_CATALOG_DISCOVERY_CAPTURE_V1";
 const DISCOVERY_VERSION = "UNIVERSAL_CATALOG_DISCOVERY_V1";
 const REQUIRED_EVIDENCE_FILES = ["summary.json", "source_failures.json", "run_plan.json"];
+const CAPTURE_INPUT_FILES = ["artifact_hashes.json", "run_metadata.json", ...REQUIRED_EVIDENCE_FILES];
 const PROHIBITED_KEY_PATTERN = /(authorization|token|secret|password|service.?role|api.?key|cookie|command|payload|arguments?|argv|shell|workflow_dispatch|agent_execute|tool_call)/i;
 
 function assert(condition, message) {
@@ -75,7 +76,7 @@ function validateCaptureMetadata(metadata) {
   };
 }
 
-function validateEnvelope(envelope) {
+function validateEnvelope(envelope, evidence) {
   assertObject(envelope, "task_envelope");
   assert(envelope.envelope_version === "RUFLO_TASK_ENVELOPE_V1", "task envelope version is invalid");
   assert(envelope.agent?.agent_key === UNIVERSAL_CATALOG_AGENT_KEY, "task envelope agent is not the universal catalog discovery agent");
@@ -89,9 +90,21 @@ function validateEnvelope(envelope) {
   const { fingerprint_sha256: fingerprint, ...core } = envelope;
   assert(/^[a-f0-9]{64}$/.test(fingerprint), "task envelope fingerprint is invalid");
   assert(fingerprint === sha256(stableJsonV1(core)), "task envelope fingerprint does not match its contents");
+  assert(Array.isArray(envelope.inputs), "task envelope inputs must be an array");
+  for (const [file, expectedSha256] of Object.entries(evidence.captureInputHashes)) {
+    const matches = envelope.inputs.filter((entry) => (
+      entry && normalizeRepoPath(entry.locator).split("/").at(-1) === file
+    ));
+    assert(matches.length === 1, `task envelope inputs must bind exactly one ${file}`);
+    assert(matches[0].sha256 === expectedSha256, `task envelope input does not bind captured evidence: ${file}`);
+  }
 }
 
 export function readDiscoveryEvidenceV1({ evidenceDir }) {
+  const captureInputHashes = Object.fromEntries(CAPTURE_INPUT_FILES.map((file) => [
+    file,
+    sha256(readFileSync(path.join(evidenceDir, file))),
+  ]));
   const metadata = validateCaptureMetadata(readJson(path.join(evidenceDir, "run_metadata.json")));
   const artifactHashes = readJson(path.join(evidenceDir, "artifact_hashes.json"));
   assertObject(artifactHashes, "artifact_hashes");
@@ -120,13 +133,13 @@ export function readDiscoveryEvidenceV1({ evidenceDir }) {
     assert(runPlan.boundaries?.[key] === false, `source run boundary ${key} must be false`);
   }
   assert(summary.completed_at === metadata.completed_at, "capture completion time does not match summary");
-  return { metadata, artifactHashes, summary, sourceFailures, runPlan };
+  return { metadata, artifactHashes, summary, sourceFailures, runPlan, captureInputHashes };
 }
 
 export function buildUniversalCatalogShadowObservationV1({ envelope, evidence, cycleNumber }) {
   assertNoSensitiveKeysV1(envelope, "task_envelope");
   assertNoExecutableKeys(envelope, "task_envelope");
-  validateEnvelope(envelope);
+  validateEnvelope(envelope, evidence);
   assert(Number.isSafeInteger(cycleNumber) && cycleNumber > 0, "cycleNumber must be a positive integer");
   const degraded = evidence.summary.run_status === "degraded_source_unavailable" || evidence.sourceFailures.length > 0;
   const hasGaps = evidence.summary.actionable_gap_count > 0 || evidence.summary.recent_japanese_cards?.missing > 0;

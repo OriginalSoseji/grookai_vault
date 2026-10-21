@@ -36,11 +36,16 @@ function refingerprint(observation) {
   return { ...core, fingerprint_sha256: sha256(stableJsonV1(core)) };
 }
 
-function envelope() {
+function envelope(inputEvidenceDir = evidenceDir) {
+  const inputFiles = ["artifact_hashes.json", "run_metadata.json", "run_plan.json", "source_failures.json", "summary.json"];
   const core = {
     envelope_version: "RUFLO_TASK_ENVELOPE_V1",
     agent: { agent_key: "universal-catalog-discovery-v1", permission_tier: "R0" },
     lifecycle: { initial_state: "validated", execution_state: "not_started" },
+    inputs: inputFiles.map((file) => ({
+      locator: path.relative(repoRoot, path.join(inputEvidenceDir, file)).replaceAll("\\", "/"),
+      sha256: sha256(readFileSync(path.join(inputEvidenceDir, file))),
+    })),
     boundaries: {
       execution_enabled: false,
       workflow_dispatch: false,
@@ -182,6 +187,11 @@ test("pilot rejects another agent, execution authority, and secret-shaped fields
   assert.throws(
     () => buildUniversalCatalogShadowObservationV1({ envelope: staleFingerprint, evidence, cycleNumber: 1 }),
     /fingerprint does not match/,
+  );
+  const secondEvidence = readDiscoveryEvidenceV1({ evidenceDir: secondEvidenceDir });
+  assert.throws(
+    () => buildUniversalCatalogShadowObservationV1({ envelope: envelope(), evidence: secondEvidence, cycleNumber: 2 }),
+    /does not bind captured evidence/,
   );
 });
 
