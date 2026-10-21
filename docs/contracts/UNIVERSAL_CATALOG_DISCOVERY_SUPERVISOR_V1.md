@@ -50,7 +50,8 @@ The adapter registry is extensible. A new TCG must define its authority, stable 
   only when TCGdex evidence is absent, the official enumeration exactly matches
   its declared hit count, contains unique card IDs and one exact image set code,
   and a same-code Limitless checklist has unique rows exactly matching its
-  declared numbered count. Present but partial TCGdex evidence remains fatal. That
+  declared numbered count. A metadata-only TCGdex set and any other present but
+  partial TCGdex evidence remain fatal. That
   second shape supplies an official `full_set` count but remains ineligible for
   unattended writes because it lacks the writer's TCGdex authority. Neither
   path is the frozen-candidate fallback or makes access denial globally optional.

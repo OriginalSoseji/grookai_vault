@@ -77,8 +77,8 @@ typed access denial or transport outage may be contained only when the parsed
 TCGdex checklist is nonempty and its row count exactly matches TCGdex's declared
 total, or for an official expansion only when TCGdex evidence is absent, the
 official product enumeration is exact, unique, and single-set, and the same-code
-Limitless numbered checklist is exact and unique. Present but partial TCGdex
-evidence remains fatal. The official/Limitless evidence shape remains ineligible
+Limitless numbered checklist is exact and unique. Metadata-only or other partial
+TCGdex evidence remains fatal. The official/Limitless evidence shape remains ineligible
 for unattended writes. This does not make HTTP 401/403 globally optional;
 missing or partial evidence, parser failures, mixed set codes, and cross-source
 count disagreements remain fatal. The repair is read-only and does not authorize

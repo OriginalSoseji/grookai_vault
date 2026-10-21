@@ -944,6 +944,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
                   error,
                   productType,
                   sourceSetCode,
+                  tcgdexEvidencePresent: candidateSet != null || tcgdexSet != null,
                   tcgdexChecklist: tcgdexSet,
                   officialChecklist: cardList,
                   numberedChecklist: checklist,
