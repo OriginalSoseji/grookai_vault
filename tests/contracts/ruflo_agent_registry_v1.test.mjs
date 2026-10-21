@@ -68,8 +68,11 @@ test("registered Operations Agent Protocol records reconcile with source builder
       "display_name",
       "domain",
       "execution_platform",
+      "source_locator",
       "schedule_kind",
       "schedule_expression",
+      "heartbeat_interval_seconds",
+      "stale_after_seconds",
     ]) {
       assert.equal(registered[key], sourceAgent[key], `${sourceAgent.agent_key}.${key}`);
     }
@@ -92,6 +95,10 @@ test("registry fails closed on execution, secrets, traversal, missing contracts,
   const sensitive = clone(registry);
   sensitive.agents[0].api_key = "prohibited-even-as-a-placeholder";
   assert.throws(() => validateRegistryV1(sensitive, { repoRoot }), /Sensitive registry key is prohibited/);
+
+  const unknownShape = clone(registry);
+  unknownShape.agents[0].credentials = "prohibited-even-when-the-key-is-not-secret-shaped";
+  assert.throws(() => validateRegistryV1(unknownShape, { repoRoot }), /credentials is not allowed/);
 
   const traversal = clone(registry);
   traversal.agents[0].source_locator = "../outside.mjs";
@@ -137,14 +144,18 @@ test("tracked backend, script-worker, and GitHub workflow surfaces are completel
   }
 
   const expectedBackend = gitFiles("backend").filter((entry) =>
-    /(?:agent|worker|supervisor|orchestrator|control_plane|workflow).*\.mjs$/i.test(entry.slice("backend/".length)));
+    /\.mjs$/i.test(entry.slice("backend/".length)));
   const expectedScriptWorkers = gitFiles("scripts/workers");
   const expectedWorkflows = gitFiles(".github/workflows").filter((entry) => /\.ya?ml$/i.test(entry));
 
   assert.deepEqual([...actualByKind.get("backend_automation")].sort(), expectedBackend.sort());
   assert.deepEqual([...actualByKind.get("script_worker")].sort(), expectedScriptWorkers.sort());
   assert.deepEqual([...actualByKind.get("github_workflow")].sort(), expectedWorkflows.sort());
-  assert.equal(surfaces.filter((surface) => surface.classification_source === "host_lane_registry").length, registry.host_lanes.length);
+  assert.equal(new Set(surfaces.map((surface) => surface.source_locator)).size, surfaces.length);
+  assert.equal(
+    surfaces.filter((surface) => surface.classification_source.includes("host_lane_registry")).length,
+    registry.host_lanes.length,
+  );
 });
 
 test("every discovered worktree is protected even when it is not predeclared", () => {
