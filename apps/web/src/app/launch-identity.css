@@ -310,7 +310,25 @@ html.gv-launch[data-visual-system="launch"] .gv-home-card-stage::before { displa
 html.gv-launch[data-visual-system="launch"] .gv-home-card { background: var(--gv-surface-container); }
 html.gv-launch[data-visual-system="launch"] :is(.gv-home-card-left, .gv-home-card-right) { opacity: 1; }
 html.gv-launch[data-visual-system="launch"] .gv-home-card .bg-slate-900 { background: var(--gv-surface-container); }
+html.gv-launch[data-visual-system="launch"] .gv-home-featured-caption { color: var(--gv-text-primary); text-shadow: none; }
+html.gv-launch[data-visual-system="launch"] .gv-home-featured-caption span { color: var(--gv-text-secondary); }
 html.gv-launch[data-visual-system="launch"] .gv-home-page .gv-premium-surface { border-color: var(--gv-border-soft); background: var(--gv-surface-base); }
+
+@media (min-width: 900px) {
+  html.gv-launch[data-visual-system="launch"] .gv-home-hero-copy { max-width: 50%; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-card-stage { left: 50%; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-card-center { left: 30%; top: 50%; width: min(40%, 280px); transform: translateY(-60%); }
+  html.gv-launch[data-visual-system="launch"] .gv-home-card-center:is(:hover, :focus-visible) { transform: translateY(calc(-60% - 6px)); }
+  html.gv-launch[data-visual-system="launch"] .gv-home-card-left { top: 50%; transform: translateY(-50%) rotate(-4deg); }
+  html.gv-launch[data-visual-system="launch"] .gv-home-card-right { right: 2%; top: 50%; transform: translateY(-50%) rotate(4deg); }
+  html.gv-launch[data-visual-system="launch"] .gv-home-featured-caption { left: 0; right: 0; bottom: 16px; width: 100%; align-items: center; padding-inline: 16px; text-align: center; transform: none; }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  html.gv-launch[data-visual-system="launch"] .gv-home-search .gv-control-surface { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-search .gv-control-surface > div:first-child { grid-column: 1 / -1; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-search select { width: 100%; max-width: none; }
+}
 
 /* Current production collector layouts retain their data and controls while
    adopting the approved native geometry and compact header rhythm. */
