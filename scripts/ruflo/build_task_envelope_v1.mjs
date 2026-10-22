@@ -107,6 +107,7 @@ function validateStringArray(value, label, { allowEmpty = true, repoPaths = fals
   assert(Array.isArray(value), `${label} must be an array`);
   assert(allowEmpty || value.length > 0, `${label} must not be empty`);
   return value.map((entry, index) => {
+    assert(typeof entry === "string", `${label}[${index}] must be a string`);
     const result = clean(entry);
     assert(result, `${label}[${index}] must be a non-empty string`);
     if (repoPaths) {
@@ -126,8 +127,9 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
   assertNoSensitiveKeysV1(spec, "spec");
   assertObject(spec, "spec");
   assertOnlyKeys(spec, TOP_LEVEL_KEYS, "spec");
-  assert(/^[a-z0-9][a-z0-9_.-]{2,127}$/.test(clean(spec.task_id)), "spec.task_id is invalid");
-  assert(clean(spec.parent_goal), "spec.parent_goal is required");
+  assert(typeof spec.task_id === "string" && /^[a-z0-9][a-z0-9_.-]{2,127}$/.test(clean(spec.task_id)), "spec.task_id is invalid");
+  assert(typeof spec.parent_goal === "string" && clean(spec.parent_goal), "spec.parent_goal must be a non-empty string");
+  const parentGoal = clean(spec.parent_goal);
   const agent = registry.agents.find((entry) => entry.agent_key === spec.agent_key);
   assert(agent, `spec.agent_key is not registered: ${clean(spec.agent_key)}`);
   assert(agent.execution_enabled === false, "registered agent must remain non-executable");
@@ -161,8 +163,8 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
     "spec.repository.initial_status_sha256 must match the inventoried worktree state",
   );
 
+  assert(typeof spec.objective === "string" && clean(spec.objective), "spec.objective must be a non-empty string");
   const objective = clean(spec.objective);
-  assert(objective, "spec.objective is required");
   const inclusions = validateStringArray(spec.inclusions, "spec.inclusions", { allowEmpty: false });
   const exclusions = validateStringArray(spec.exclusions, "spec.exclusions", { allowEmpty: false });
   const nonGoals = validateStringArray(spec.non_goals, "spec.non_goals", { allowEmpty: false });
@@ -187,12 +189,17 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
   assertObject(spec.evidence_expectations, "spec.evidence_expectations");
   assertOnlyKeys(spec.evidence_expectations, EVIDENCE_KEYS, "spec.evidence_expectations");
   assert(spec.evidence_expectations.direct_readback_required === true, "spec.evidence_expectations.direct_readback_required must be true");
-  assert(clean(spec.evidence_expectations.retention_class), "spec.evidence_expectations.retention_class is required");
+  assert(
+    typeof spec.evidence_expectations.retention_class === "string"
+      && clean(spec.evidence_expectations.retention_class),
+    "spec.evidence_expectations.retention_class must be a non-empty string",
+  );
+  const retentionClass = clean(spec.evidence_expectations.retention_class);
 
   const core = {
     envelope_version: TASK_ENVELOPE_VERSION,
     task_id: spec.task_id,
-    parent_goal: spec.parent_goal,
+    parent_goal: parentGoal,
     agent: {
       agent_key: agent.agent_key,
       lifecycle_state: agent.lifecycle_state,
@@ -220,7 +227,7 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
     acceptance_tests: acceptanceTests,
     evidence_expectations: {
       direct_readback_required: true,
-      retention_class: spec.evidence_expectations.retention_class,
+      retention_class: retentionClass,
     },
     boundaries: {
       execution_enabled: false,

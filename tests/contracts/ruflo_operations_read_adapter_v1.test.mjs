@@ -152,9 +152,26 @@ test("read adapter rejects health that contradicts the latest run", () => {
   const missingUnknown = clone(snapshot);
   missingUnknown.agents[1].last_heartbeat_at = null;
   missingUnknown.agents[1].latest_run_status = null;
+  missingUnknown.agents[1].latest_run_at = null;
   assert.throws(
     () => buildOperationsReadModelV1({ snapshot: missingUnknown, registry }),
     /null heartbeat and latest run status require unknown health/,
+  );
+
+  const statusWithoutTimestamp = clone(snapshot);
+  statusWithoutTimestamp.agents[1].health = "failed";
+  statusWithoutTimestamp.agents[1].latest_run_status = "failed";
+  statusWithoutTimestamp.agents[1].latest_run_at = null;
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: statusWithoutTimestamp, registry }),
+    /latest_run_status and latest_run_at must be jointly null or non-null/,
+  );
+
+  const timestampWithoutStatus = clone(snapshot);
+  timestampWithoutStatus.agents[1].latest_run_status = null;
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: timestampWithoutStatus, registry }),
+    /latest_run_status and latest_run_at must be jointly null or non-null/,
   );
 });
 
@@ -210,6 +227,20 @@ test("task envelope rejects unknown agents and executable fields", () => {
   assert.throws(
     () => buildTaskEnvelopeV1({ spec: objectRemote, registry, inventory: portableInventory, repoRoot: portableRepoRoot }),
     /remote must be a non-empty string/,
+  );
+
+  const objectParentGoal = taskSpec();
+  objectParentGoal.parent_goal = { command: "do-not-run" };
+  assert.throws(
+    () => buildTaskEnvelopeV1({ spec: objectParentGoal, registry, inventory: portableInventory, repoRoot: portableRepoRoot }),
+    /parent_goal must be a non-empty string/,
+  );
+
+  const objectRetention = taskSpec();
+  objectRetention.evidence_expectations.retention_class = { command: "do-not-run" };
+  assert.throws(
+    () => buildTaskEnvelopeV1({ spec: objectRetention, registry, inventory: portableInventory, repoRoot: portableRepoRoot }),
+    /retention_class must be a non-empty string/,
   );
 });
 
