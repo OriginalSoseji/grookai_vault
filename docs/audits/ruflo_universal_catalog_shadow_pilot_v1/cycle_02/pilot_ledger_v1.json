@@ -1,0 +1,32 @@
+{
+  "ledger_version": "RUFLO_UNIVERSAL_CATALOG_SHADOW_LEDGER_V1",
+  "agent_key": "universal-catalog-discovery-v1",
+  "required_qualifying_cycles": 7,
+  "observed_cycle_count": 2,
+  "qualifying_cycle_count": 0,
+  "readiness": "collecting",
+  "cycles": [
+    {
+      "cycle_number": 1,
+      "source_run_id": 39334612376,
+      "source_completed_at": "2026-10-19T22:28:21.144Z",
+      "observation_fingerprint_sha256": "566ba174eedd42a81c1300b57182307d21ed3743c3aed5e3447174a07a37b7ea",
+      "status": "held",
+      "qualifies_toward_pilot_minimum": false
+    },
+    {
+      "cycle_number": 2,
+      "source_run_id": 39372137263,
+      "source_completed_at": "2026-10-20T05:00:57.112Z",
+      "observation_fingerprint_sha256": "42ec0e18cc6f55aec45d4f1d08557081349372cca94beea8610137e7995b4ca3",
+      "status": "held",
+      "qualifies_toward_pilot_minimum": false
+    }
+  ],
+  "authority": {
+    "execution_enabled": false,
+    "promotion_eligible": false,
+    "workflow_dispatch": false
+  },
+  "fingerprint_sha256": "8c2733034579bb50e646608452332bbea6147f2d295a9656161cfdfe58c063c3"
+}

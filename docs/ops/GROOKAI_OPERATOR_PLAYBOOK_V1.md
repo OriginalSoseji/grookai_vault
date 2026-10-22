@@ -87,6 +87,16 @@ declared input bytes at an immutable commit. They write only beneath
 `docs/audits/ruflo_operations_adapter_v1/`. Their sample
 evidence is synthetic and must not be cited as current production health.
 
+The first Phase 2 shadow pilot is recorded in
+`docs/checkpoints/RUFLO_UNIVERSAL_CATALOG_SHADOW_PILOT_V1_20261019.md`. Use
+`npm run ruflo:pilot:universal-catalog:build` only with a frozen local copy of an
+already-completed scheduled discovery artifact and its R0 task envelope. Never
+dispatch a workflow to feed the pilot. Source-degraded observations are held and
+do not advance the required seven qualifying cycles. The pilot cannot promote a
+catalog candidate, reconcile a GitHub issue, or write any active worktree. For
+cycle 2 and later, pass every checked-in prior observation explicitly so the
+builder can verify a contiguous, fingerprint-valid, distinct-run ledger.
+
 ## Residual reviewed alias batch — October 15, 2026
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_150_RESIDUAL_ALIAS_BATCH.md`.
