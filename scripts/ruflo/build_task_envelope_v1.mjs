@@ -15,6 +15,7 @@ import { stableJsonV1 } from "./build_operations_read_model_v1.mjs";
 export const TASK_ENVELOPE_VERSION = "RUFLO_TASK_ENVELOPE_V1";
 const INVENTORY_VERSION = "RUFLO_READONLY_INVENTORY_V1";
 const REPOSITORY_REMOTE = "OriginalSoseji/grookai_vault";
+const RFC3339_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,9})?(?:Z|[+-]\d{2}:\d{2})$/;
 
 const TOP_LEVEL_KEYS = new Set([
   "task_id", "parent_goal", "agent_key", "repository", "objective", "inclusions",
@@ -67,7 +68,13 @@ function validateInventoryV1({ inventory, registry, registryRaw, expectedFingerp
   assert(/^[a-f0-9]{64}$/.test(expectedFingerprint), "spec.inventory_fingerprint_sha256 must be a lowercase SHA-256");
   assert(inventory.inventory_fingerprint_sha256 === expectedFingerprint, "inventory fingerprint does not match the task spec");
   const { generated_at: generatedAt, inventory_fingerprint_sha256: fingerprint, ...core } = inventory;
-  assert(Number.isFinite(Date.parse(generatedAt)), "inventory.generated_at must be an ISO timestamp");
+  const generatedAtMilliseconds = typeof generatedAt === "string" && RFC3339_TIMESTAMP_PATTERN.test(generatedAt)
+    ? Date.parse(generatedAt)
+    : Number.NaN;
+  assert(
+    Number.isFinite(generatedAtMilliseconds),
+    "inventory.generated_at must be an RFC 3339 timestamp",
+  );
   assert(fingerprint === sha256(stableJsonV1(core)), "inventory content fingerprint is invalid");
   assert(Array.isArray(inventory.agents), "inventory.agents must be an array");
   assert(Array.isArray(inventory.surfaces), "inventory.surfaces must be an array");

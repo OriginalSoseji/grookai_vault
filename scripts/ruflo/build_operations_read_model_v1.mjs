@@ -15,6 +15,7 @@ export const OPERATIONS_SNAPSHOT_VERSION = "OPERATIONS_AGENT_HEALTH_SNAPSHOT_V1"
 const HEALTH_VALUES = new Set(["healthy", "running", "failed", "stale", "paused", "unknown"]);
 const RUN_STATUS_VALUES = new Set(["queued", "running", "succeeded", "failed", "cancelled"]);
 const PERIODIC_SCHEDULES = new Set(["cron", "timer", "continuous"]);
+const CANONICAL_UTC_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
 const TOP_LEVEL_KEYS = new Set(["snapshot_version", "captured_at", "source", "agents"]);
 const SOURCE_KEYS = new Set(["kind", "locator"]);
 const AGENT_KEYS = new Set([
@@ -46,9 +47,13 @@ function clean(value) {
 
 function assertTimestamp(value, label, { nullable = true } = {}) {
   if (value === null && nullable) return null;
-  assert(typeof value === "string" && value.length > 0, `${label} must be an ISO timestamp${nullable ? " or null" : ""}`);
-  assert(Number.isFinite(Date.parse(value)), `${label} must be an ISO timestamp`);
-  return new Date(value).toISOString();
+  assert(
+    typeof value === "string" && CANONICAL_UTC_TIMESTAMP_PATTERN.test(value),
+    `${label} must be a canonical UTC ISO timestamp${nullable ? " or null" : ""}`,
+  );
+  const parsed = Date.parse(value);
+  assert(Number.isFinite(parsed) && new Date(parsed).toISOString() === value, `${label} must be a canonical UTC ISO timestamp`);
+  return value;
 }
 
 function assertRepoRelative(value, label) {

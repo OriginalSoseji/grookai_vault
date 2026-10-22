@@ -109,6 +109,20 @@ test("read adapter rejects unknown agents", () => {
   const impossibleHealth = clone(snapshot);
   impossibleHealth.agents[0].health = "degraded";
   assert.throws(() => buildOperationsReadModelV1({ snapshot: impossibleHealth, registry }), /health is invalid/);
+
+  const looseTimestamp = clone(snapshot);
+  looseTimestamp.captured_at = "0";
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: looseTimestamp, registry }),
+    /captured_at must be a canonical UTC ISO timestamp/,
+  );
+
+  const impossibleCalendarDate = clone(snapshot);
+  impossibleCalendarDate.captured_at = "2026-02-30T00:00:00.000Z";
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: impossibleCalendarDate, registry }),
+    /captured_at must be a canonical UTC ISO timestamp/,
+  );
 });
 
 test("read adapter rejects secret-shaped and executable fields", () => {

@@ -35,9 +35,9 @@ The adapter fails closed on:
 It does not infer health from the current wall clock. The Operations Agent
 Protocol remains authoritative: periodic `cron`, `timer`, and `continuous`
 staleness is reconciled against the export's immutable `captured_at` timestamp,
-while idle `event` and `manual` agents are not reclassified as stale. Actual
-`running` and `failed` states remain visible when staleness does not take
-precedence.
+which must use canonical UTC ISO form (`YYYY-MM-DDTHH:mm:ss.sssZ`), while idle
+`event` and `manual` agents are not reclassified as stale. Actual `running` and
+`failed` states remain visible when staleness does not take precedence.
 
 ## Frozen Task Envelope
 
