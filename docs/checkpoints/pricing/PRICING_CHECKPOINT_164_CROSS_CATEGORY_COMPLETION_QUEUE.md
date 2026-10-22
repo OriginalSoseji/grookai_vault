@@ -63,6 +63,8 @@ of every required queue. The receipt and downloaded bytes reconciled exactly:
 
 The live artifact also exposed stale scope classification: Fat Packs, Intro
 Packs, decks, bundles, displays, and other packaged products were marked
-`in_scope`. Checkpoint 165 owns that correction. The local consumer must remain
-on its existing input until a V1.4 pricing run and a fresh completion artifact
-remove those products from the card-identity queue.
+`in_scope`. Checkpoint 165's exact-commit shadow, production activation, and
+completion readback removed 2,352 of them. That readback exposed 253 narrower
+package-name families; checkpoint 166 owns the remaining correction. The local
+consumer must remain on its existing input until V1.5 production and completion
+evidence remove those products from the card-identity queue.
