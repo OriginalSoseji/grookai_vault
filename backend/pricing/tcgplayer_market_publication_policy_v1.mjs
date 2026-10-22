@@ -1,7 +1,7 @@
 import { applyCosmosFinishPublicationScopeV1, cosmosFinishQualificationReasonsV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import { TCGPLAYER_EDITION_IDENTITY_V1, tcgplayerEditionQualificationReasonsV1, isTcgplayerEditionAssignmentProjectionV1 } from "./tcgplayer_edition_identity_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_4,
+  classifyTcgplayerMarketProductScopeV1_5,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 import { applyTrainerKitPilotPublicationScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 import { applyWcdTeamRushdownPublicationScopeV1 } from "./tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
@@ -101,7 +101,7 @@ export function evaluateTcgplayerMarketQualificationV1(
   const scope = applyCosmosFinishPublicationScopeV1(
     applyWcdTeamRushdownPublicationScopeV1(
       applyTrainerKitPilotPublicationScopeV1(
-        classifyTcgplayerMarketProductScopeV1_4(row), row,
+        classifyTcgplayerMarketProductScopeV1_5(row), row,
       ), row,
     ), row,
   );

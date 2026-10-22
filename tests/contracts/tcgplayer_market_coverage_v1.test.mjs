@@ -414,6 +414,7 @@ test("unclassified denominator gaps fail deterministically", () => {
 });
 
 test("coverage audit is read-only and produces governed artifacts", () => {
+  assert.match(AUDIT, /TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_5/);
   assert.match(AUDIT, /database_reads_only:\s*true/);
   assert.match(AUDIT, /database_writes:\s*false/);
   assert.match(AUDIT, /coverage_gaps\.jsonl/);
@@ -436,7 +437,7 @@ test("coverage audit reads frozen run evidence without a warehouse-wide observat
   assert.match(AUDIT, /decision\.evidence ->> 'source_product_active'/);
   assert.match(AUDIT, /product_scope_policy_version/);
   assert.match(AUDIT, /product_scope_result/);
-  assert.match(AUDIT, /TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4/);
+  assert.match(AUDIT, /TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5/);
   assert.match(AUDIT, /currentPublicationOutOfScopeCount > 0/);
   assert.match(AUDIT, /product_scope_rule_id/);
   assert.doesNotMatch(

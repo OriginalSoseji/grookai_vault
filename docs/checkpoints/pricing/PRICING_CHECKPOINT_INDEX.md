@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_166_TCGPLAYER_RESIDUAL_PACKAGING_SCOPE_REPAIR.md`
+
+This checkpoint records the audited residual package-name families left after
+the successful V1.4 production release and the V1.5 classifier that removes 253
+more numberless sealed products while protecting numbered cards.
+
+Decision locked there:
+
+- residual package exclusions require both an explicit V1.5 naming signal and
+  absent printed-number evidence
+
+Unresolved gate afterward:
+
+- merge, run exact-commit shadow and guarded production, then independently
+  reconcile the expected 13,064-product completion queue
+
 ### `PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`
 
 This checkpoint records the live-queue audit and V1.4 scope correction that
@@ -44,10 +60,11 @@ Decision locked there:
 - package-name exclusion requires absent printed-number evidence, and historical
   scope-policy versions remain reproducible
 
-Unresolved gate afterward:
+Live result:
 
-- merge, run the exact-commit full shadow and guarded production publication,
-  then verify the corrected hosted queue before changing its local consumer
+- exact-commit shadow `39617270650`, guarded production `39643358995`, and
+  completion readback `39702473069` passed; checkpoint 166 owns 253 residual
+  package listings
 
 ### `PRICING_CHECKPOINT_164_CROSS_CATEGORY_COMPLETION_QUEUE.md`
 

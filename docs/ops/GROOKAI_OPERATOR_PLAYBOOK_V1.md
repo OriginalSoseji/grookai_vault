@@ -180,9 +180,11 @@ mutex prevents overlap. Its V2 input was the Pokemon exact planner's
 before changing the consumer. The hosted completion artifact now owns the
 deduplicated in-scope product queues for Magic and Pokemon. Reconcile those queue
 counts before moving the local task to the new input. The first verified live
-queue exposed packaged products in the ordinary card lane; read
-`docs/checkpoints/pricing/PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`
-and require a V1.4 production readback plus a corrected completion artifact
+queue exposed packaged products in the ordinary card lane. Checkpoint 165's
+V1.4 production readback passed and its corrected queue exposed narrower
+residual naming families. Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_166_TCGPLAYER_RESIDUAL_PACKAGING_SCOPE_REPAIR.md`
+and require a V1.5 production readback plus a corrected completion artifact
 before changing the consumer. Candidate enrichment must
 preserve each category's identity domain. Keep the endpoint on HTTP loopback.
 Do not attach a database writer, add mapping or publication authority, or treat

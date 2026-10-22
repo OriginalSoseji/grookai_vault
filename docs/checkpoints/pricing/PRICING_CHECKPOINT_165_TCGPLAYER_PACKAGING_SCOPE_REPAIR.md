@@ -2,7 +2,7 @@
 
 ## Status
 
-`IMPLEMENTED - EXACT-COMMIT SHADOW PENDING`
+`LIVE VERIFIED - RESIDUAL SCOPE REPAIR CONTINUES IN CHECKPOINT 166`
 
 ## Problem
 
@@ -57,3 +57,22 @@ category's ordinary identity queue before changing the local Ollama input.
 
 No scope-policy change creates card mappings, canonical identities, or customer
 ownership records. Publication activation remains a separate guarded operation.
+
+## Live Verification
+
+The exact-commit full shadow completed in workflow run `39617270650` at commit
+`91439ea8f57827beecc77d4911a3ae0d4c97a183`. All 208,666 decisions used product
+scope V1.4, all 2,352 audited package products were excluded, all 12,860
+numbered products had zero package-rule violations, and reconciliation was
+exact.
+
+Guarded production workflow `39643358995` activated publication set
+`0fd8c589-0e56-4c7e-a9bb-e1ec89cb0692` from the same commit and shadow key.
+It activated 176,830 rows, excluded 14,006, quarantined 17,830, and reported no
+reconciliation mismatch. Scheduled completion workflow `39702473069` then
+emitted an exact 13,317-product queue: 13,017 Magic and 300 Pokemon.
+
+The completion readback confirmed that V1.4 removed its intended package
+population without touching numbered card names. It also exposed 253 additional
+numberless package listings with naming families outside V1.4. Checkpoint 166
+owns that narrower residual correction.

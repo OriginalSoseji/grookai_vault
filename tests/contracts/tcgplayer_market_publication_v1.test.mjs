@@ -10,6 +10,9 @@ import {
   normalizeTcgplayerMarketSubtypeV1,
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
 import {
+  classifyTcgplayerMarketProductScopeV1_5,
+} from "../../backend/pricing/tcgplayer_market_product_scope_v1.mjs";
+import {
   classifyMarketPipelineFailureV1,
   parseRetryDelaysV1,
   retryDelayMsV1,
@@ -618,7 +621,7 @@ test("quarantines foreign, special, sealed, and code-card lanes", () => {
   assert.ok(sealed.reason_codes.includes("unsupported_product_kind"));
 });
 
-test("publication V1.4 scope is evidence-aware and keeps numbered card names", () => {
+test("publication V1.5 scope is evidence-aware and keeps numbered card names", () => {
   const sealed = evaluateTcgplayerMarketQualificationV1(
     validCandidate({
       source_product_name: "Journey Together Booster Bundle",
@@ -696,7 +699,7 @@ test("publication V1.4 scope is evidence-aware and keeps numbered card names", (
   assert.ok(special.reason_codes.includes("special_variant_v1_1"));
   assert.equal(
     special.evidence.product_scope_policy_version,
-    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4",
+    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5",
   );
   assert.equal(special.evidence.product_scope_rule_id, "ball_pattern_print");
 
@@ -737,6 +740,52 @@ test("publication V1.4 scope is evidence-aware and keeps numbered card names", (
     trainerKit.evidence.product_scope_rule_id,
     "deck_exclusive_special_variant",
   );
+
+  const v15Packages = new Map([
+    ["Clash Pack - Fate Reforged", "sealed_pack_family_v1_5"],
+    ["Portal Three Kingdoms - 2 Player Starter", "sealed_starter_family_v1_5"],
+    ["Dominaria United Prerelease", "sealed_event_family_v1_5"],
+    ["Magic Game Night - Set", "sealed_boxed_edition_family_v1_5"],
+    ["SDCC 2019 EXCLUSIVE Dragon's Endgame Set", "sealed_boxed_edition_family_v1_5"],
+  ]);
+  for (const [sourceProductName, expectedRuleId] of v15Packages) {
+    const scope = classifyTcgplayerMarketProductScopeV1_5({
+      category_id: 1,
+      source_product_name: sourceProductName,
+      has_printed_number_evidence: false,
+    });
+    assert.equal(scope.in_scope, false, sourceProductName);
+    assert.equal(scope.rule_id, expectedRuleId, sourceProductName);
+  }
+
+  for (const sourceProductName of [
+    "Booster Tutor",
+    "Wolf Pack",
+    "Pack Rat",
+    "The Deck of Many Things",
+  ]) {
+    const scope = classifyTcgplayerMarketProductScopeV1_5({
+      category_id: 1,
+      source_product_name: sourceProductName,
+      has_printed_number_evidence: true,
+    });
+    assert.equal(scope.in_scope, true, sourceProductName);
+  }
+
+  for (const [categoryId, sourceProductName] of [
+    [1, "Plateau"],
+    [1, "Aang and Katara Art Card"],
+    [1, "Letter Card - A"],
+    [3, "Darkness Energy (2019 Unnumbered)"],
+    [1, "1996 Bertrand Lestree Biography Card"],
+  ]) {
+    const scope = classifyTcgplayerMarketProductScopeV1_5({
+      category_id: categoryId,
+      source_product_name: sourceProductName,
+      has_printed_number_evidence: false,
+    });
+    assert.equal(scope.in_scope, true, sourceProductName);
+  }
 });
 
 test("worker enriches candidates with source-group evidence before qualification", () => {
@@ -748,7 +797,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_19/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_20/);
   assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v7/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);

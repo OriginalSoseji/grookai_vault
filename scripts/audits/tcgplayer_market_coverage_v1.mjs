@@ -12,7 +12,7 @@ import {
   TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
 import {
-  TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4,
+  TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5,
 } from "../../backend/pricing/tcgplayer_market_product_scope_v1.mjs";
 
 const { Client } = pg;
@@ -25,7 +25,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "market_pricing_product_v1",
   "coverage",
 );
-const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_4";
+const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_5";
 
 function parseArgs(argv) {
   const args = {
@@ -353,7 +353,7 @@ async function main() {
           join public.market_price_qualification_decisions decision
             on decision.id = snapshot.qualification_decision_id
         `,
-        [TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4],
+        [TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5],
       )
     ).rows[0];
     const currentPublicationOutOfScopeCount = Number(
@@ -389,12 +389,12 @@ async function main() {
               or decision.evidence ->> 'product_scope_result'
                    is distinct from 'in_scope'
            order by snapshot.source_product_id, snapshot.source_subtype_name`,
-          [TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4],
+          [TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5],
         )
       ).rows;
     }
     const currentPublicationScope = {
-      policy_version: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4,
+      policy_version: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5,
       status: currentPublicationOutOfScopeCount === 0 ? "passed" : "failed",
       row_count: Number(currentPublicationAudit.row_count),
       out_of_scope_count: currentPublicationOutOfScopeCount,

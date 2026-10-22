@@ -6,6 +6,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3 =
   "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3";
 export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4 =
   "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4";
+export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5 =
+  "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5";
 
 export const TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES = Object.freeze([
   {
@@ -128,6 +130,29 @@ const UNSUPPORTED_PRODUCT_RULES_V1_4 = Object.freeze([
     id: "sealed_or_packaged_product_v1_4",
     pattern:
       /(?:\b(?:fat|intro|booster|pre-?release|sample|launch) packs?\b|\bbox(?:es)?\b|\bdecks?\b|\bset of (?:two|three|four|five|six|seven|eight|nine|ten|\d+)\b|\bdisplay\b|\bbundles?\b|\bkits?\b|\bcase\b|\bcollections?\b|^secret lair\b)/i,
+  },
+]);
+
+const UNSUPPORTED_PRODUCT_RULES_V1_5 = Object.freeze([
+  ...UNSUPPORTED_PRODUCT_RULES_V1_4,
+  {
+    id: "sealed_pack_family_v1_5",
+    pattern:
+      /(?:\b(?:theme|collector|draft|set|play) boosters?\b|\b(?:tournament|promo|fun|mini|sampling|preview|battle|gift|play|draft|omega|hanger|edition|clash) packs?\b|\b\d+\s*[- ]\s*(?:booster\s+)?packs?\b|\bbooster (?:two|three|four|five|six|seven|eight|nine|ten) pack\b|\bpack\s+blisters?\b|\bblisters?\b|\bcartons?\b)/i,
+  },
+  {
+    id: "sealed_starter_family_v1_5",
+    pattern:
+      /(?:\bstarter (?:set|game)\b|\b(?:2|two)[- ]player(?: cd-rom)? starter(?: set)?\b|^introductory two-player set$)/i,
+  },
+  {
+    id: "sealed_event_family_v1_5",
+    pattern: /(?:\bpre-?release\b|\bland station\b|\bdraft night\b)/i,
+  },
+  {
+    id: "sealed_boxed_edition_family_v1_5",
+    pattern:
+      /(?:\bgame night\b.*\bset\b|\b(?:planeswalkers?|collector) set\b|\bsdcc\b.*\b(?:exclusive\b.*)?set\b|\bmythic edition\b|^ravnica: clue edition$|^global series\b|^commander 20\d{2} -)/i,
   },
 ]);
 
@@ -286,5 +311,21 @@ export function classifyTcgplayerMarketProductScopeV1_4(row = {}) {
     policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4,
     specialVariantRules: SPECIAL_VARIANT_RULES_V1_2,
     unsupportedProductRules: UNSUPPORTED_PRODUCT_RULES_V1_4,
+  });
+}
+
+export function classifyTcgplayerMarketProductScopeV1_5(row = {}) {
+  if (Number(row.category_id) === 1) {
+    return classifyTcgplayerMarketProductScope(row, {
+      policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5,
+      specialVariantRules: [],
+      groupScopeRules: [],
+      unsupportedProductRules: UNSUPPORTED_PRODUCT_RULES_V1_5,
+    });
+  }
+  return classifyTcgplayerMarketProductScope(row, {
+    policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5,
+    specialVariantRules: SPECIAL_VARIANT_RULES_V1_2,
+    unsupportedProductRules: UNSUPPORTED_PRODUCT_RULES_V1_5,
   });
 }

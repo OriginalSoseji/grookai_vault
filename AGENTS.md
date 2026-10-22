@@ -1,15 +1,26 @@
 # Grookai Agent Entry Point
 
+## TCGPlayer residual packaging scope repair — October 21
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_166_TCGPLAYER_RESIDUAL_PACKAGING_SCOPE_REPAIR.md`.
+The verified V1.4 queue still contained 253 numberless sealed or packaged
+products under narrower TCGPlayer names. V1.5 adds explicit pack, starter,
+event, and boxed-edition families while preserving every numbered product and
+204 audited numberless card-like products. Preserve V1.1 through V1.4 for
+historical replay and keep the broader publication ledger on V1.3. Require an
+exact-commit full shadow, guarded production activation, and independent
+completion-artifact readback before changing the local Ollama consumer.
+
 ## TCGPlayer packaging scope repair — October 21
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_165_TCGPLAYER_PACKAGING_SCOPE_REPAIR.md`.
 The first live cross-category queue was hash-valid but included numberless Fat
 Packs, Intro Packs, decks, bundles, displays, collections, cases, kits, Boxes,
 and whole Secret Lair drops as missing cards. V1.4 excludes only products with
-both an explicit package signal and no printed-number evidence. Preserve the
-V1.3 classifier for historical replay. Require an exact-commit full shadow,
-guarded production activation, independent completion-artifact readback, and a
-corrected category queue before changing the local Ollama consumer.
+both an explicit package signal and no printed-number evidence. Its exact-commit
+shadow, guarded production activation, and completion readback passed. Preserve
+V1.3 and V1.4 for historical replay; checkpoint 166 owns the residual naming
+families.
 
 ## MTG reviewed printing correction — October 20
 
