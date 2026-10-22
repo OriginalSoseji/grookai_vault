@@ -1,77 +1,86 @@
 import 'package:flutter/material.dart';
 
+import 'gv_typography.dart';
+
 class GvRadii {
   const GvRadii._();
 
-  static const double control = 10;
-  static const double surface = 12;
-  static const double artwork = 16;
-  static const double floating = 20;
+  static const double control = 8;
+  static const double surface = 8;
+  static const double artwork = 10;
+  static const double floating = 16;
   static const double pill = 999;
 }
 
 class GvPalette {
   const GvPalette._();
 
-  static const Color blue = Color(0xFF6CAEFF);
-  static const Color mint = Color(0xFF5ED3B3);
-  static const Color gold = Color(0xFFE6B85C);
+  static const Color ink = Color(0xFF080B09);
+  static const Color bone = Color(0xFFF4F5ED);
+  static const Color electric = Color(0xFFB7F23A);
+  static const Color market = Color(0xFFF0AF6E);
+
+  // Legacy names remain aliases while older surfaces migrate to the launch
+  // identity. This keeps every existing feature on one visual contract.
+  static const Color blue = electric;
+  static const Color mint = electric;
+  static const Color gold = market;
 
   static ColorScheme scheme(Brightness brightness) {
     final base = ColorScheme.fromSeed(seedColor: blue, brightness: brightness);
 
     if (brightness == Brightness.dark) {
       return base.copyWith(
-        primary: const Color(0xFF59D7C1),
-        onPrimary: const Color(0xFF071713),
-        primaryContainer: const Color(0xFF153B34),
-        onPrimaryContainer: const Color(0xFFC9F8EE),
-        secondary: const Color(0xFF76E4D0),
-        onSecondary: const Color(0xFF062019),
-        secondaryContainer: const Color(0xFF123B31),
-        onSecondaryContainer: const Color(0xFFC8F6E8),
-        tertiary: gold,
-        onTertiary: const Color(0xFF241A04),
-        tertiaryContainer: const Color(0xFF463713),
-        onTertiaryContainer: const Color(0xFFFFE8A9),
-        surface: const Color(0xFF0B0F14),
-        onSurface: const Color(0xFFF5F1E8),
-        surfaceContainerLowest: const Color(0xFF090D12),
-        surfaceContainerLow: const Color(0xFF10161D),
-        surfaceContainer: const Color(0xFF131A22),
-        surfaceContainerHigh: const Color(0xFF17202A),
-        surfaceContainerHighest: const Color(0xFF1C2732),
-        onSurfaceVariant: const Color(0xFFA9B4C0),
-        outline: const Color(0xFF657280),
-        outlineVariant: const Color(0xFF2B3642),
+        primary: electric,
+        onPrimary: ink,
+        primaryContainer: const Color(0xFF283915),
+        onPrimaryContainer: const Color(0xFFE6FFB1),
+        secondary: bone,
+        onSecondary: ink,
+        secondaryContainer: const Color(0xFF272B25),
+        onSecondaryContainer: bone,
+        tertiary: market,
+        onTertiary: ink,
+        tertiaryContainer: const Color(0xFF4A321C),
+        onTertiaryContainer: const Color(0xFFFFE2C2),
+        surface: ink,
+        onSurface: bone,
+        surfaceContainerLowest: const Color(0xFF050705),
+        surfaceContainerLow: const Color(0xFF101310),
+        surfaceContainer: const Color(0xFF151915),
+        surfaceContainerHigh: const Color(0xFF1B201B),
+        surfaceContainerHighest: const Color(0xFF242A23),
+        onSurfaceVariant: const Color(0xFFB7BCAE),
+        outline: const Color(0xFF777D70),
+        outlineVariant: const Color(0xFF343A32),
         shadow: Colors.black,
       );
     }
 
     return base.copyWith(
-      primary: const Color(0xFF245F9F),
+      primary: const Color(0xFF466D00),
       onPrimary: Colors.white,
-      primaryContainer: const Color(0xFFD6E8FF),
-      onPrimaryContainer: const Color(0xFF0A315A),
-      secondary: const Color(0xFF267A64),
-      onSecondary: Colors.white,
-      secondaryContainer: const Color(0xFFC7F2E5),
-      onSecondaryContainer: const Color(0xFF0A493B),
-      tertiary: const Color(0xFF8B650F),
+      primaryContainer: const Color(0xFFDDF7A3),
+      onPrimaryContainer: const Color(0xFF182600),
+      secondary: ink,
+      onSecondary: bone,
+      secondaryContainer: const Color(0xFFE5E7DC),
+      onSecondaryContainer: ink,
+      tertiary: const Color(0xFF8B4F13),
       onTertiary: Colors.white,
-      tertiaryContainer: const Color(0xFFFFE5A2),
-      onTertiaryContainer: const Color(0xFF4B3600),
-      surface: const Color(0xFFF7F9FC),
-      onSurface: const Color(0xFF151A20),
-      surfaceContainerLowest: Colors.white,
-      surfaceContainerLow: const Color(0xFFF0F3F7),
-      surfaceContainer: const Color(0xFFE9EDF2),
-      surfaceContainerHigh: const Color(0xFFE2E7ED),
-      surfaceContainerHighest: const Color(0xFFD9E0E8),
-      onSurfaceVariant: const Color(0xFF4D5865),
-      outline: const Color(0xFF73808F),
-      outlineVariant: const Color(0xFFC4CDD7),
-      shadow: const Color(0xFF101820),
+      tertiaryContainer: const Color(0xFFFFDCC0),
+      onTertiaryContainer: const Color(0xFF2D1600),
+      surface: bone,
+      onSurface: ink,
+      surfaceContainerLowest: const Color(0xFFFCFDF6),
+      surfaceContainerLow: const Color(0xFFEEEFE7),
+      surfaceContainer: const Color(0xFFE6E8DE),
+      surfaceContainerHigh: const Color(0xFFDCDED3),
+      surfaceContainerHighest: const Color(0xFFD1D4C8),
+      onSurfaceVariant: const Color(0xFF50564C),
+      outline: const Color(0xFF70766B),
+      outlineVariant: const Color(0xFFC2C6B9),
+      shadow: ink,
     );
   }
 }
@@ -86,6 +95,7 @@ ThemeData buildGvRedesignV2Theme() {
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: colorScheme,
+    fontFamily: GvTypography.fontFamily,
   );
 
   return base.copyWith(
@@ -94,7 +104,7 @@ ThemeData buildGvRedesignV2Theme() {
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
-      toolbarHeight: 46,
+      toolbarHeight: 48,
       titleSpacing: 20,
       backgroundColor: colorScheme.surface,
       foregroundColor: colorScheme.onSurface,
@@ -105,9 +115,9 @@ ThemeData buildGvRedesignV2Theme() {
       ),
       titleTextStyle: base.textTheme.titleLarge?.copyWith(
         color: colorScheme.onSurface,
-        fontSize: 19,
-        fontWeight: FontWeight.w800,
-        letterSpacing: -0.25,
+        fontSize: 20,
+        fontWeight: FontWeight.w900,
+        letterSpacing: -0.65,
       ),
       iconTheme: IconThemeData(color: colorScheme.onSurfaceVariant, size: 20),
       actionsIconTheme: IconThemeData(
@@ -195,8 +205,8 @@ ThemeData buildGvRedesignV2Theme() {
     textTheme: base.textTheme.copyWith(
       headlineSmall: base.textTheme.headlineSmall?.copyWith(
         color: colorScheme.onSurface,
-        fontWeight: FontWeight.w800,
-        letterSpacing: -0.3,
+        fontWeight: FontWeight.w900,
+        letterSpacing: -0.65,
       ),
       titleLarge: base.textTheme.titleLarge?.copyWith(
         color: colorScheme.onSurface,

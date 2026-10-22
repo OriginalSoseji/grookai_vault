@@ -214,7 +214,7 @@ void main() {
         addTearDown(service.changes.close);
         await open(tester, service, size);
         await tester.enterText(
-          find.widgetWithText(TextField, 'Find a card, GV-ID or copy ID'),
+          find.widgetWithText(TextField, 'Find a card or copy ID'),
           'Pikachu',
         );
         await tester.tap(find.text('Catalog'));

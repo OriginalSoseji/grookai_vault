@@ -11,7 +11,7 @@ void main() {
       });
 
       expect(presentation.status, VaultPrintingIdentityStatus.exact);
-      expect(presentation.label, 'Printing: Reverse Holo');
+      expect(presentation.label, 'Reverse Holo');
       expect(presentation.isExact, isTrue);
     });
 
@@ -21,7 +21,7 @@ void main() {
         'printing_gv_id': 'GV-PK-TEST-001-RH',
       });
 
-      expect(presentation.label, 'Printing: GV-PK-TEST-001-RH');
+      expect(presentation.label, 'GV-PK-TEST-001-RH');
     });
 
     test('never invents a finish for unassigned ownership', () {
@@ -31,7 +31,7 @@ void main() {
       });
 
       expect(presentation.status, VaultPrintingIdentityStatus.unassigned);
-      expect(presentation.label, 'Printing unassigned');
+      expect(presentation.label, 'Variant needed');
       expect(presentation.isExact, isFalse);
     });
 
@@ -40,21 +40,27 @@ void main() {
         resolveVaultPrintingIdentityPresentation({
           'printing_identity_status': 'mixed',
         }).label,
-        'Mixed printings',
+        'Mixed variants',
       );
       expect(
         resolveVaultPrintingIdentityPresentation({
           'printing_identity_status': 'partially_unassigned',
         }).label,
-        'Printing partially unassigned',
+        'Some variants needed',
       );
     });
 
     test('makes an older or unavailable server contract explicit', () {
       expect(
         resolveVaultPrintingIdentityPresentation(const {}).label,
-        'Printing status unavailable',
+        'Variant unavailable',
       );
+    });
+
+    test('normalizes legacy display labels without the old prefix', () {
+      expect(formatVaultVariantLabel('Printing: Holo'), 'Holo');
+      expect(formatVaultVariantLabel('Printing unassigned'), 'Variant needed');
+      expect(formatVaultVariantLabel(null), 'Variant not recorded');
     });
   });
 }

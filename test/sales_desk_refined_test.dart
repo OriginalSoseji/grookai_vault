@@ -158,11 +158,11 @@ void main() {
       );
       await tester.pump();
       await tester.pump();
-      final quick = find.widgetWithText(
-        FilledButton,
-        'Quick-add unlisted item',
+      final quick = find.ancestor(
+        of: find.byTooltip('Quick-add unlisted item'),
+        matching: find.byType(IconButton),
       );
-      expect(tester.widget<FilledButton>(quick).onPressed, isNotNull);
+      expect(tester.widget<IconButton>(quick).onPressed, isNotNull);
       expect(find.textContaining('Loading your stock'), findsOneWidget);
       service.inventory.completeError(StateError('synthetic outage'));
       service.book.complete({
@@ -172,7 +172,7 @@ void main() {
       });
       await tester.pumpAndSettle();
       expect(find.textContaining('Stock could not load'), findsOneWidget);
-      expect(tester.widget<FilledButton>(quick).onPressed, isNotNull);
+      expect(tester.widget<IconButton>(quick).onPressed, isNotNull);
       expect(tester.takeException(), isNull);
     },
   );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../theme/gv_typography.dart';
 import 'grookai_object_atoms.dart';
 import 'grookai_object_frame.dart';
 import 'grookai_object_models.dart';
@@ -18,15 +19,15 @@ class MemoryCardFront extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.topLeft,
-            child: Text(
-              'GROOKAI VAULT',
+            child: GrookaiBrandText(
+              includeVault: true,
               style: monoLabel(
                 t,
                 size: 10.5,
                 color: t.accent,
                 letterSpacing: 0.24,
-                weight: FontWeight.w600,
               ),
+              letterSpacing: 0.24,
             ),
           ),
           Expanded(

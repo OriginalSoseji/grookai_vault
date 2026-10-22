@@ -381,7 +381,7 @@ class _AccountScreenState extends State<AccountScreen> {
     final uri = Uri(
       scheme: 'mailto',
       path: 'support@grookaivault.com',
-      queryParameters: {'subject': 'Grookai Vault support'},
+      queryParameters: {'subject': 'grookai vault support'},
     );
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication) &&
         mounted) {

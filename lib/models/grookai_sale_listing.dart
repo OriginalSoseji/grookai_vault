@@ -1,5 +1,6 @@
 import '../services/grookai_objects/sale_listing_service.dart';
 import '../services/identity/display_identity.dart';
+import '../utils/vault_printing_identity.dart';
 import '../widgets/grookai_objects/grookai_object_models.dart';
 import '../widgets/grookai_objects/grookai_object.dart';
 import '../widgets/grookai_objects/grookai_object_skin.dart';
@@ -10,7 +11,7 @@ class GrookaiSaleListingSource {
   const GrookaiSaleListingSource({
     required this.cardName,
     required this.setLine,
-    this.printingIdentityLabel = 'Printing not recorded',
+    this.printingIdentityLabel = 'Variant not recorded',
     this.cardImageUrl,
     this.cardImageFallbackUrl,
     this.sellerHandle = 'Collector',
@@ -47,9 +48,8 @@ class GrookaiSaleListingAdapter {
       card: CardObjectRef(
         cardName: _fallback(source.cardName, 'Card listing'),
         setLine: source.setLine,
-        printingIdentityLabel: _fallback(
+        printingIdentityLabel: formatVaultVariantLabel(
           source.printingIdentityLabel,
-          'Printing not recorded',
         ),
         cardImageUrl: _blankToNull(source.cardImageUrl),
         cardImageFallbackUrl: _blankToNull(source.cardImageFallbackUrl),
@@ -131,7 +131,7 @@ class GrookaiLotListingItemSource {
     required this.condition,
     required this.price,
     this.marketPrice,
-    this.printingIdentityLabel = 'Printing not recorded',
+    this.printingIdentityLabel = 'Variant not recorded',
     this.imageUrl,
     this.fallbackImageUrl,
   });
@@ -197,7 +197,7 @@ class GrookaiLotListingItemSource {
       condition: condition,
       marketPrice: marketPrice,
       price: marketPrice ?? 0,
-      printingIdentityLabel: variantLabel ?? 'Printing not recorded',
+      printingIdentityLabel: variantLabel ?? 'Variant not recorded',
       imageUrl: imageUrl,
       fallbackImageUrl: fallbackImageUrl,
     );
@@ -258,9 +258,8 @@ class GrookaiLotListingAdapter {
             collectorNumber: _blankToNull(item.collectorNumber),
             printedTotal: item.printedTotal,
             variantLabel: _blankToNull(item.variantLabel),
-            printingIdentityLabel: _fallback(
+            printingIdentityLabel: formatVaultVariantLabel(
               item.printingIdentityLabel,
-              'Printing not recorded',
             ),
             condition: _fallback(
               item.condition,
@@ -362,6 +361,9 @@ String? _meaningfulLotVariant(String? value) {
         'printing not recorded',
         'printing status unavailable',
         'exact printing assigned',
+        'variant not recorded',
+        'variant unavailable',
+        'variant assigned',
         'unassigned',
       }.contains(normalized.toLowerCase())) {
     return null;

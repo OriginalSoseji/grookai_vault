@@ -137,10 +137,10 @@ void main() {
         resolverBlock,
         contains('_fetchPrintingOptions(cardPrintId, swallowErrors: false)'),
       );
-      expect(resolverBlock, contains('Exact printing is unavailable.'));
+      expect(resolverBlock, contains('No verified variant is available.'));
       expect(
         resolverBlock,
-        contains('Choose the exact printing before adding this card.'),
+        contains('Choose the exact variant before adding this card.'),
       );
       expect(resolverBlock, contains('_selectedCardPrintingId = resolved.id'));
       expect(
@@ -178,16 +178,36 @@ void main() {
 
     expect(main, contains('PublicCardPrintingOptionsService.fetch'));
     expect(main, contains('_ensureCatalogPrintingOptions'));
-    expect(main, contains(r"return '${options.length} printings';"));
-    expect(main, contains("'Choose the exact printing'"));
+    expect(main, contains(r"return '${options.length} variants';"));
+    expect(main, contains("'Choose the exact variant'"));
     expect(main, contains('ChoiceChip('));
-    expect(main, contains("'Printing unavailable'"));
+    expect(main, contains("'Variant unavailable'"));
     expect(
       main,
-      contains('Exact printing is unavailable. Try again before adding.'),
+      contains('No verified variant is available. Try again before adding.'),
     );
     expect(addBlock, contains('cardPrintingId: cardPrintingId'));
     expect(quickAddBlock, contains('printingOptions.length != 1'));
     expect(quickAddBlock, contains('_openSearchCardActionHub(card)'));
   });
+
+  test(
+    'scanner add routes require an exact printing before the vault write',
+    () {
+      for (final path in <String>[
+        'lib/screens/scanner_v5/scan_capture_v5_screen.dart',
+        'lib/screens/identity_scan/identity_scan_screen.dart',
+        'lib/screens/scanner/scan_identify_screen.dart',
+      ]) {
+        final source = File(path).readAsStringSync();
+        final pickerIndex = source.indexOf('await chooseVaultPrinting(');
+        final writeIndex = source.indexOf(
+          'await VaultCardService.addOrIncrementVaultItem(',
+        );
+        expect(pickerIndex, greaterThanOrEqualTo(0), reason: path);
+        expect(writeIndex, greaterThan(pickerIndex), reason: path);
+        expect(source, contains('cardPrintingId: printing.id'), reason: path);
+      }
+    },
+  );
 }

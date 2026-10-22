@@ -20,7 +20,32 @@ enum NetworkStreamSourceType {
   dbRandomExplore,
 }
 
-enum NetworkFeedMode { collectors, following }
+enum NetworkFeedMode { catalog, collectors, following }
+
+enum NetworkCatalogGame { all, pokemon, mtg, onePiece }
+
+extension NetworkCatalogGamePresentation on NetworkCatalogGame {
+  String get databaseCode => switch (this) {
+    NetworkCatalogGame.all => 'all',
+    NetworkCatalogGame.pokemon => 'pokemon',
+    NetworkCatalogGame.mtg => 'mtg',
+    NetworkCatalogGame.onePiece => 'one_piece',
+  };
+
+  String get label => switch (this) {
+    NetworkCatalogGame.all => 'All',
+    NetworkCatalogGame.pokemon => 'Pokémon',
+    NetworkCatalogGame.mtg => 'Magic',
+    NetworkCatalogGame.onePiece => 'One Piece',
+  };
+
+  String get catalogPrefix => switch (this) {
+    NetworkCatalogGame.all => 'GV-%',
+    NetworkCatalogGame.pokemon => 'GV-PK-%',
+    NetworkCatalogGame.mtg => 'GV-MTG-%',
+    NetworkCatalogGame.onePiece => 'GV-OP-%',
+  };
+}
 
 enum NetworkStreamEmptyState { none, noFollowedCollectors, noFollowedCards }
 
@@ -77,6 +102,7 @@ class NetworkStreamRow {
     this.setIdentityModel,
     this.sourceLabel,
     this.rarity,
+    this.releaseDate,
     this.intent,
     this.conditionLabel,
     this.isGraded = false,
@@ -91,6 +117,7 @@ class NetworkStreamRow {
     this.pricing,
     this.listingCount,
     this.rankingScore = 0,
+    this.catalogGame = NetworkCatalogGame.pokemon,
   });
 
   final NetworkStreamSourceType sourceType;
@@ -123,6 +150,7 @@ class NetworkStreamRow {
   final String? setIdentityModel;
   final String? sourceLabel;
   final String? rarity;
+  final String? releaseDate;
   final String? imageUrl;
   final String? fallbackImageUrl;
   final bool hasCollectorUploadedImage;
@@ -130,6 +158,7 @@ class NetworkStreamRow {
   final CardSurfacePricingData? pricing;
   final int? listingCount;
   final int rankingScore;
+  final NetworkCatalogGame catalogGame;
 
   bool get isCollectorSource =>
       sourceType == NetworkStreamSourceType.collectorWall ||
@@ -143,6 +172,7 @@ class NetworkStreamRow {
     NetworkStreamSourceType? sourceType,
     String? sourceLabel,
     String? rarity,
+    String? releaseDate,
     String? variantKey,
     String? printedIdentityModifier,
     String? setIdentityModel,
@@ -155,6 +185,7 @@ class NetworkStreamRow {
     CardSurfacePricingData? pricing,
     int? listingCount,
     int? rankingScore,
+    NetworkCatalogGame? catalogGame,
   }) {
     return NetworkStreamRow(
       sourceType: sourceType ?? this.sourceType,
@@ -188,6 +219,7 @@ class NetworkStreamRow {
       setIdentityModel: setIdentityModel ?? this.setIdentityModel,
       sourceLabel: sourceLabel ?? this.sourceLabel,
       rarity: rarity ?? this.rarity,
+      releaseDate: releaseDate ?? this.releaseDate,
       imageUrl: clearImageUrl ? null : imageUrl ?? this.imageUrl,
       fallbackImageUrl: clearFallbackImageUrl
           ? null
@@ -198,6 +230,7 @@ class NetworkStreamRow {
       pricing: pricing ?? this.pricing,
       listingCount: listingCount ?? this.listingCount,
       rankingScore: rankingScore ?? this.rankingScore,
+      catalogGame: catalogGame ?? this.catalogGame,
     );
   }
 }
@@ -268,6 +301,12 @@ class _NetworkFeedSession {
   final String scopeKey;
   final List<String> recentCardPrintIds = <String>[];
   final List<String> recentSourceKeys = <String>[];
+  final List<String> recentNameFamilyKeys = <String>[];
+  final List<String> recentOwnerKeys = <String>[];
+  final List<String> recentSetKeys = <String>[];
+  final List<String> recentLeadOwnerKeys = <String>[];
+  final List<String> recentLeadFamilyKeys = <String>[];
+  final List<String> recentLeadLaneKeys = <String>[];
   final Set<String> emittedSourceKeys = <String>{};
   final Set<String> emittedCollectorSourceKeys = <String>{};
   final Set<String> emittedDiscoverySourceKeys = <String>{};
@@ -277,9 +316,39 @@ class _NetworkFeedSession {
   bool collectorExhausted = false;
   bool dbOnlyMode = false;
   int pageCount = 0;
+  final Map<String, String?> catalogCursorByLane = <String, String?>{};
+  final Map<NetworkCatalogGame, int> nextCatalogLaneByGame =
+      <NetworkCatalogGame, int>{};
+  final Set<String> exhaustedCatalogLanes = <String>{};
+  final Set<NetworkCatalogGame> exhaustedCatalogGames = <NetworkCatalogGame>{};
+}
+
+class _NetworkExposureMemory {
+  final List<String> recentCardPrintIds = <String>[];
+  final List<String> recentSourceKeys = <String>[];
+  final List<String> recentNameFamilyKeys = <String>[];
+  final List<String> recentOwnerKeys = <String>[];
+  final List<String> recentSetKeys = <String>[];
+  final List<String> recentLeadOwnerKeys = <String>[];
+  final List<String> recentLeadFamilyKeys = <String>[];
+  final List<String> recentLeadLaneKeys = <String>[];
+}
+
+class _NetworkCatalogChunk {
+  const _NetworkCatalogChunk({
+    required this.game,
+    required this.rows,
+    required this.rawCount,
+  });
+
+  final NetworkCatalogGame game;
+  final List<NetworkStreamRow> rows;
+  final int rawCount;
 }
 
 class NetworkStreamService {
+  static const String _catalogLaneAlphabet =
+      '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   static const Duration _selectedCollectorHydrationBudget = Duration(
     milliseconds: 1800,
   );
@@ -295,8 +364,13 @@ class NetworkStreamService {
   static const int _recentHardSourceWindow = 14;
   static const int _recentSoftSourceWindow = 40;
   static const int _tasteSignalMemory = 8;
+  static const int _discoveryCatalogWindowSize = 96;
+  static const int _discoveryCatalogRotationRows = 12000;
+  static const int _rememberedFeedScopes = 8;
   static _NetworkFeedSession? _activeSession;
   static int _sessionCounter = 0;
+  static final Map<String, _NetworkExposureMemory> _exposureMemoryByScope =
+      <String, _NetworkExposureMemory>{};
 
   static Future<NetworkStreamPage> fetchRows({
     required SupabaseClient client,
@@ -304,6 +378,7 @@ class NetworkStreamService {
     String? intent,
     String? excludeUserId,
     String? viewerUserId,
+    NetworkCatalogGame catalogGame = NetworkCatalogGame.all,
     int limit = 24,
     bool resetSession = false,
   }) async {
@@ -317,9 +392,20 @@ class NetworkStreamService {
         intent: normalizedIntent,
         excludeUserId: normalizedExcludeUserId,
         viewerUserId: normalizedViewerUserId,
+        catalogGame: catalogGame,
       ),
       reset: resetSession,
     )..pageCount += 1;
+
+    if (mode == NetworkFeedMode.catalog) {
+      return _fetchCatalogPage(
+        client: client,
+        session: session,
+        catalogGame: catalogGame,
+        excludeUserId: normalizedExcludeUserId,
+        limit: normalizedLimit,
+      );
+    }
 
     if (mode == NetworkFeedMode.following) {
       final followedOwnerUserIds = await _loadFollowedOwnerUserIds(
@@ -424,11 +510,84 @@ class NetworkStreamService {
       seed: _buildSessionSeed(scopeKey, _sessionCounter),
       scopeKey: scopeKey,
     );
+    final rememberedExposure = _exposureMemoryByScope[scopeKey];
+    if (rememberedExposure != null) {
+      session.recentCardPrintIds.addAll(rememberedExposure.recentCardPrintIds);
+      session.recentSourceKeys.addAll(rememberedExposure.recentSourceKeys);
+      session.recentNameFamilyKeys.addAll(
+        rememberedExposure.recentNameFamilyKeys,
+      );
+      session.recentOwnerKeys.addAll(rememberedExposure.recentOwnerKeys);
+      session.recentSetKeys.addAll(rememberedExposure.recentSetKeys);
+      session.recentLeadOwnerKeys.addAll(
+        rememberedExposure.recentLeadOwnerKeys,
+      );
+      session.recentLeadFamilyKeys.addAll(
+        rememberedExposure.recentLeadFamilyKeys,
+      );
+      session.recentLeadLaneKeys.addAll(rememberedExposure.recentLeadLaneKeys);
+    }
     _activeSession = session;
     _debugFreshness(
       'session_reset session=${session.sessionId} seed=${session.seed} scope=$scopeKey',
     );
     return session;
+  }
+
+  @visibleForTesting
+  static List<NetworkStreamRow> selectDiverseHeroRowsForTesting(
+    List<NetworkStreamRow> rows, {
+    int budget = 3,
+    int seed = 731,
+    List<NetworkStreamRow> recentRows = const <NetworkStreamRow>[],
+  }) {
+    final session = _NetworkFeedSession(
+      sessionId: 1,
+      seed: seed,
+      scopeKey: 'test',
+    )..pageCount = 1;
+    for (final row in recentRows) {
+      session.recentCardPrintIds.add(row.cardPrintId);
+      session.recentSourceKeys.add(_sessionSourceKey(row));
+      session.recentNameFamilyKeys.add(_nameFamilyKey(row.name));
+      session.recentOwnerKeys.add(_ownerKey(row));
+      session.recentSetKeys.add(row.setCode.trim().toLowerCase());
+    }
+    if (recentRows.isNotEmpty) {
+      session.recentLeadOwnerKeys.add(_ownerKey(recentRows.first));
+      session.recentLeadFamilyKeys.add(_nameFamilyKey(recentRows.first.name));
+    }
+    final rankedRows = _rankRows(rows, session: session);
+    return _selectCollectorRowsForPage(
+      eligibleCollectors: rankedRows,
+      budget: budget,
+      session: session,
+      context: 'test',
+    );
+  }
+
+  @visibleForTesting
+  static List<NetworkStreamRow> mixFeedRowsForTesting({
+    required List<NetworkStreamRow> collectors,
+    required List<NetworkStreamRow> discovery,
+    bool previousLeadWasCollector = false,
+    int limit = 12,
+  }) {
+    final session = _NetworkFeedSession(
+      sessionId: 1,
+      seed: 731,
+      scopeKey: 'test',
+    )..pageCount = 1;
+    if (previousLeadWasCollector) {
+      session.recentLeadLaneKeys.add('collector');
+    }
+    return _injectDiscoveryRows(
+      collectors: collectors,
+      discovery: discovery,
+      limit: limit,
+      targetDiscoveryCount: discovery.length,
+      session: session,
+    );
   }
 
   static Future<List<String>> _loadFollowedOwnerUserIds({
@@ -531,6 +690,7 @@ class NetworkStreamService {
       discovery: discoveryRows,
       limit: limit,
       targetDiscoveryCount: discoveryRows.length,
+      session: session,
     );
     final pageRows = _diversifyFirstViewportRows(mergedRows, session: session);
     _commitSessionRows(session, pageRows);
@@ -550,14 +710,473 @@ class NetworkStreamService {
     required String? intent,
     required String excludeUserId,
     required String viewerUserId,
+    required NetworkCatalogGame catalogGame,
   }) =>
-      '${mode.name}:${intent ?? 'all'}:'
+      '${mode.name}:${catalogGame.databaseCode}:${intent ?? 'all'}:'
       '${excludeUserId.isEmpty ? 'viewer' : 'self'}:'
       '${viewerUserId.isEmpty ? 'anon' : viewerUserId}';
+
+  static Future<NetworkStreamPage> _fetchCatalogPage({
+    required SupabaseClient client,
+    required _NetworkFeedSession session,
+    required NetworkCatalogGame catalogGame,
+    required String excludeUserId,
+    required int limit,
+  }) async {
+    final catalogLeadCount = _clampedInt((limit / 4).floor(), 1, limit);
+    final pageParts = await Future.wait<Object>(<Future<Object>>[
+      _fetchCollectorCandidates(
+        client: client,
+        session: session,
+        intent: null,
+        excludeUserId: excludeUserId,
+        limit: limit,
+      ),
+      _fetchCatalogOnlyPage(
+        client: client,
+        session: session,
+        catalogGame: catalogGame,
+        limit: catalogLeadCount,
+      ),
+    ]);
+    final collectorCandidates = pageParts[0] as List<NetworkStreamRow>;
+    final initialCatalogPage = pageParts[1] as NetworkStreamPage;
+    final eligibleCollectors = collectorCandidates
+        .where((row) => !_hasEmittedCollectorRow(session, row))
+        .toList(growable: false);
+    final collectorBudget = (limit - catalogLeadCount).clamp(0, limit);
+    final selectedCollectorRows = _selectCollectorRowsForPage(
+      eligibleCollectors: eligibleCollectors,
+      budget: collectorBudget,
+      session: session,
+      context: 'catalog_mixed',
+    );
+    final collectorRows = await _hydrateSelectedCollectorRows(
+      client: client,
+      rows: selectedCollectorRows,
+    );
+
+    final catalogRows = <NetworkStreamRow>[...initialCatalogPage.rows];
+    final catalogBudget = limit - collectorRows.length;
+    var catalogHasMore = initialCatalogPage.hasMore;
+    if (catalogRows.length < catalogBudget && catalogHasMore) {
+      final remainingCatalogPage = await _fetchCatalogOnlyPage(
+        client: client,
+        session: session,
+        catalogGame: catalogGame,
+        limit: catalogBudget - catalogRows.length,
+      );
+      catalogRows.addAll(remainingCatalogPage.rows);
+      catalogHasMore = remainingCatalogPage.hasMore;
+    }
+
+    final mergedRows = _injectDiscoveryRows(
+      collectors: collectorRows,
+      discovery: catalogRows,
+      limit: limit,
+      targetDiscoveryCount: catalogRows.length,
+      session: session,
+    );
+    final pageRows = _diversifyFirstViewportRows(mergedRows, session: session);
+    session
+      ..collectorExhausted = eligibleCollectors.length <= collectorRows.length
+      ..dbOnlyMode = collectorRows.isEmpty;
+    _commitSessionRows(session, pageRows);
+    _debugPageSnapshot(session, pageRows);
+    return NetworkStreamPage(
+      rows: pageRows,
+      hasMore:
+          catalogHasMore || eligibleCollectors.length > collectorRows.length,
+      collectorExhausted: session.collectorExhausted,
+      dbOnlyMode: session.dbOnlyMode,
+      sessionId: session.sessionId,
+    );
+  }
+
+  static Future<NetworkStreamPage> _fetchCatalogOnlyPage({
+    required SupabaseClient client,
+    required _NetworkFeedSession session,
+    required NetworkCatalogGame catalogGame,
+    required int limit,
+  }) async {
+    final baseRequestedGames = catalogGame == NetworkCatalogGame.all
+        ? const <NetworkCatalogGame>[
+            NetworkCatalogGame.pokemon,
+            NetworkCatalogGame.mtg,
+            NetworkCatalogGame.onePiece,
+          ]
+        : <NetworkCatalogGame>[catalogGame];
+    final requestedGames = _rotateList(
+      baseRequestedGames,
+      session.seed.abs() % baseRequestedGames.length,
+    );
+    final pageRows = <NetworkStreamRow>[];
+
+    // CATALOG_STREAM_CURSOR_V1
+    // Seek-pagination has no fixed offset ceiling, so every visible catalog
+    // identity remains reachable even when a game grows beyond 10,000 cards.
+    // In the combined lane, fetch each TCG independently and weave the chunks
+    // so one large catalog cannot drown out the others.
+    var rounds = 0;
+    while (pageRows.length < limit && rounds < 4) {
+      rounds += 1;
+      final activeGames = requestedGames
+          .where((game) => !session.exhaustedCatalogGames.contains(game))
+          .toList(growable: false);
+      if (activeGames.isEmpty) {
+        break;
+      }
+
+      final remaining = limit - pageRows.length;
+      final pageGames = activeGames.length > remaining
+          ? activeGames.take(remaining).toList(growable: false)
+          : activeGames;
+      final baseQuota = remaining ~/ pageGames.length;
+      final extraQuota = remaining % pageGames.length;
+      final chunks = await Future.wait(
+        pageGames.indexed.map((entry) {
+          final (index, game) = entry;
+          final gameLimit = _clampedInt(
+            baseQuota + (index < extraQuota ? 1 : 0),
+            1,
+            6,
+          );
+          return _fetchCatalogChunk(
+            client: client,
+            session: session,
+            game: game,
+            limit: gameLimit,
+          );
+        }),
+      );
+
+      var madeProgress = false;
+      for (final chunk in chunks) {
+        if (chunk.rows.isNotEmpty || chunk.rawCount > 0) {
+          madeProgress = true;
+        }
+      }
+
+      var rowIndex = 0;
+      while (pageRows.length < limit) {
+        var addedThisPass = false;
+        for (final chunk in chunks) {
+          if (rowIndex >= chunk.rows.length || pageRows.length >= limit) {
+            continue;
+          }
+          final row = chunk.rows[rowIndex];
+          if (!session.emittedDiscoveryCardPrintIds.contains(row.cardPrintId)) {
+            pageRows.add(row);
+          }
+          addedThisPass = true;
+        }
+        if (!addedThisPass) {
+          break;
+        }
+        rowIndex += 1;
+      }
+
+      if (!madeProgress) {
+        final hasUnvisitedLane = requestedGames.any(
+          (game) => !session.exhaustedCatalogGames.contains(game),
+        );
+        if (hasUnvisitedLane) {
+          continue;
+        }
+        break;
+      }
+    }
+
+    final prioritizedRows = _prioritizeCatalogRows(pageRows, session: session);
+    final hasMore = requestedGames.any(
+      (game) => !session.exhaustedCatalogGames.contains(game),
+    );
+    return NetworkStreamPage(
+      rows: prioritizedRows,
+      hasMore: hasMore,
+      collectorExhausted: true,
+      dbOnlyMode: true,
+      sessionId: session.sessionId,
+    );
+  }
+
+  static Future<_NetworkCatalogChunk> _fetchCatalogChunk({
+    required SupabaseClient client,
+    required _NetworkFeedSession session,
+    required NetworkCatalogGame game,
+    required int limit,
+  }) async {
+    assert(game != NetworkCatalogGame.all);
+    final laneIndex = _nextCatalogLane(session: session, game: game);
+    if (laneIndex == null) {
+      return _NetworkCatalogChunk(
+        game: game,
+        rows: const <NetworkStreamRow>[],
+        rawCount: 0,
+      );
+    }
+    final laneKey = '${game.databaseCode}:$laneIndex';
+    final cursor = session.catalogCursorByLane[laneKey];
+    final lowerBound = _catalogLaneLowerBound(game, laneIndex);
+    final upperBound = _catalogLaneUpperBound(game, laneIndex);
+    dynamic query = client
+        .from('card_prints')
+        .select(
+          'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_path,representative_image_url,sets(name,identity_model,release_date)',
+        )
+        .gte('gv_id', lowerBound)
+        .lt('gv_id', upperBound);
+    final normalizedCursor = _clean(cursor);
+    if (normalizedCursor.isNotEmpty) {
+      query = query.gt('gv_id', normalizedCursor);
+    }
+    final response = await query
+        .order('gv_id', ascending: true)
+        .limit(_clampedInt(limit, 1, 60));
+    final rawRows = (response as List<dynamic>)
+        .map((raw) => Map<String, dynamic>.from(raw as Map))
+        .toList(growable: false);
+    final rows = rawRows
+        .map(
+          (row) => _buildDiscoveryRow(
+            cardRow: row,
+            sourceType: NetworkStreamSourceType.dbRandomExplore,
+            sourceLabel: game.label,
+            catalogGame: game,
+          ),
+        )
+        .whereType<NetworkStreamRow>()
+        .toList(growable: false);
+    if (rawRows.isNotEmpty) {
+      session.catalogCursorByLane[laneKey] = _nullable(rawRows.last['gv_id']);
+    }
+    if (rawRows.length < limit) {
+      session.exhaustedCatalogLanes.add(laneKey);
+      if (_catalogGameExhausted(session, game)) {
+        session.exhaustedCatalogGames.add(game);
+      }
+    }
+    return _NetworkCatalogChunk(
+      game: game,
+      rows: rows,
+      rawCount: rawRows.length,
+    );
+  }
+
+  static int? _nextCatalogLane({
+    required _NetworkFeedSession session,
+    required NetworkCatalogGame game,
+  }) {
+    final laneCount = _catalogLaneCount(game);
+    final initial = session.nextCatalogLaneByGame.putIfAbsent(
+      game,
+      () =>
+          _stableDiscoveryHash(
+            '${session.seed}:${game.databaseCode}',
+            session.seed,
+          ).abs() %
+          laneCount,
+    );
+    for (var step = 0; step < laneCount; step += 1) {
+      final laneIndex = (initial + step) % laneCount;
+      final laneKey = '${game.databaseCode}:$laneIndex';
+      if (session.exhaustedCatalogLanes.contains(laneKey)) continue;
+      session.nextCatalogLaneByGame[game] = (laneIndex + 1) % laneCount;
+      return laneIndex;
+    }
+    session.exhaustedCatalogGames.add(game);
+    return null;
+  }
+
+  static String _catalogLowerBound(NetworkCatalogGame game) {
+    return game.catalogPrefix.substring(0, game.catalogPrefix.length - 1);
+  }
+
+  static String _catalogUpperBound(NetworkCatalogGame game) {
+    final lowerBound = _catalogLowerBound(game);
+    return '${lowerBound.substring(0, lowerBound.length - 1)}.';
+  }
+
+  static String _catalogLaneLowerBound(NetworkCatalogGame game, int laneIndex) {
+    if (_catalogLaneCount(game) == 1) {
+      return _catalogLowerBound(game);
+    }
+    return '${_catalogLowerBound(game)}${_catalogLaneAlphabet[laneIndex]}';
+  }
+
+  static String _catalogLaneUpperBound(NetworkCatalogGame game, int laneIndex) {
+    if (_catalogLaneCount(game) == 1) {
+      return _catalogUpperBound(game);
+    }
+    if (laneIndex + 1 >= _catalogLaneAlphabet.length) {
+      return _catalogUpperBound(game);
+    }
+    return '${_catalogLowerBound(game)}${_catalogLaneAlphabet[laneIndex + 1]}';
+  }
+
+  static bool _catalogGameExhausted(
+    _NetworkFeedSession session,
+    NetworkCatalogGame game,
+  ) {
+    for (var index = 0; index < _catalogLaneCount(game); index += 1) {
+      if (!session.exhaustedCatalogLanes.contains(
+        '${game.databaseCode}:$index',
+      )) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  static int _catalogLaneCount(NetworkCatalogGame game) {
+    return game == NetworkCatalogGame.pokemon ? _catalogLaneAlphabet.length : 1;
+  }
+
+  @visibleForTesting
+  static List<NetworkStreamRow> prioritizeCatalogRowsForTesting(
+    List<NetworkStreamRow> rows, {
+    List<NetworkStreamRow> recentRows = const <NetworkStreamRow>[],
+    int seed = 731,
+  }) {
+    final session = _NetworkFeedSession(
+      sessionId: 1,
+      seed: seed,
+      scopeKey: 'catalog-test',
+    );
+    for (final row in recentRows) {
+      _rememberExposureValue(session.recentCardPrintIds, row.cardPrintId);
+      _rememberExposureValue(
+        session.recentNameFamilyKeys,
+        _nameFamilyKey(row.name),
+      );
+    }
+    return _prioritizeCatalogRows(rows, session: session);
+  }
+
+  static List<NetworkStreamRow> _prioritizeCatalogRows(
+    List<NetworkStreamRow> rows, {
+    required _NetworkFeedSession session,
+  }) {
+    if (rows.length < 2) {
+      return rows;
+    }
+
+    final remaining = [...rows];
+    final selected = <NetworkStreamRow>[];
+    final selectedEras = <String>{};
+    final selectedGames = <NetworkCatalogGame>{};
+    final selectedSets = <String>{};
+    while (remaining.isNotEmpty) {
+      NetworkStreamRow? best;
+      var bestScore = -1 << 30;
+      for (final candidate in remaining) {
+        final era = catalogEraLabel(candidate) ?? '';
+        final setKey = candidate.setCode.trim().toLowerCase();
+        var score = _catalogRarityPriority(candidate.rarity) * 100;
+        if (era.isNotEmpty && !selectedEras.contains(era)) score += 160;
+        if (!selectedGames.contains(candidate.catalogGame)) score += 200;
+        if (setKey.isNotEmpty && !selectedSets.contains(setKey)) score += 90;
+        if (session.recentCardPrintIds.contains(candidate.cardPrintId)) {
+          score -= 900;
+        }
+        if (session.recentNameFamilyKeys.contains(
+          _nameFamilyKey(candidate.name),
+        )) {
+          score -= 240;
+        }
+        score +=
+            _stableDiscoveryHash(
+              '${candidate.cardPrintId}:${session.seed}:${selected.length}',
+              session.seed,
+            ) %
+            17;
+        if (best == null || score > bestScore) {
+          best = candidate;
+          bestScore = score;
+        }
+      }
+      selected.add(best!);
+      remaining.remove(best);
+      final era = catalogEraLabel(best);
+      if (era != null) selectedEras.add(era);
+      selectedGames.add(best.catalogGame);
+      final setKey = best.setCode.trim().toLowerCase();
+      if (setKey.isNotEmpty) selectedSets.add(setKey);
+    }
+    return selected;
+  }
+
+  static int _catalogRarityPriority(String? rarity) {
+    final value = _clean(rarity).toLowerCase();
+    if (value.isEmpty) return 0;
+    if (value.contains('manga') ||
+        value.contains('serialized') ||
+        value.contains('god rare')) {
+      return 10;
+    }
+    if (value.contains('special illustration') ||
+        value.contains('hyper rare') ||
+        value.contains('secret rare') ||
+        value.contains('alternate art') ||
+        value.contains('alt art')) {
+      return 9;
+    }
+    if (value.contains('illustration rare') ||
+        value.contains('ultra rare') ||
+        value.contains('mythic')) {
+      return 8;
+    }
+    if (value.contains('super rare') ||
+        value.contains('triple rare') ||
+        value.contains('double rare')) {
+      return 7;
+    }
+    if (value.contains('rare')) return 6;
+    if (value.contains('promo')) return 5;
+    if (value.contains('uncommon')) return 2;
+    if (value.contains('common')) return 1;
+    return 3;
+  }
+
+  static String? catalogEraLabel(NetworkStreamRow row) {
+    final parsed = DateTime.tryParse(_clean(row.releaseDate));
+    final fallbackYearMatch = RegExp(
+      r'\b(?:19|20)\d{2}\b',
+    ).firstMatch('${row.setName} ${row.setCode}');
+    final year =
+        parsed?.year ?? int.tryParse(fallbackYearMatch?.group(0) ?? '');
+    if (year == null) return null;
+    return switch (row.catalogGame) {
+      NetworkCatalogGame.pokemon => switch (year) {
+        <= 2002 => 'Classic era',
+        <= 2006 => 'EX era',
+        <= 2010 => 'Diamond & Pearl era',
+        <= 2013 => 'Black & White era',
+        <= 2016 => 'XY era',
+        <= 2019 => 'Sun & Moon era',
+        <= 2022 => 'Sword & Shield era',
+        _ => 'Scarlet & Violet era',
+      },
+      NetworkCatalogGame.mtg => '${(year ~/ 10) * 10}s Magic',
+      NetworkCatalogGame.onePiece => '$year era',
+      NetworkCatalogGame.all => '$year era',
+    };
+  }
 
   static int _buildSessionSeed(String scopeKey, int sessionId) {
     final millis = DateTime.now().toUtc().millisecondsSinceEpoch;
     return _stableDiscoveryHash('$scopeKey:$millis:$sessionId', sessionId + 97);
+  }
+
+  static int discoveryCatalogWindowStart({
+    required int seed,
+    required int pageCount,
+  }) {
+    const windowCount =
+        _discoveryCatalogRotationRows ~/ _discoveryCatalogWindowSize;
+    final normalizedPage = pageCount < 1 ? 1 : pageCount;
+    final slot = (seed.abs() + (normalizedPage * 37)) % windowCount;
+    return slot * _discoveryCatalogWindowSize;
   }
 
   static void _debugFreshness(String message) {
@@ -794,6 +1413,46 @@ class NetworkStreamService {
         penalty += 180;
       } else {
         penalty += 72;
+      }
+    }
+
+    final familyDistance = _recentDistanceFromEnd(
+      session.recentNameFamilyKeys,
+      _nameFamilyKey(row.name),
+    );
+    if (familyDistance >= 0) {
+      penalty += familyDistance < 6 ? 84 : 28;
+    }
+
+    final ownerDistance = _recentDistanceFromEnd(
+      session.recentOwnerKeys,
+      _ownerKey(row),
+    );
+    if (ownerDistance >= 0) {
+      penalty += ownerDistance < 5 ? 96 : 32;
+    }
+
+    final leadOwnerDistance = _recentDistanceFromEnd(
+      session.recentLeadOwnerKeys,
+      _ownerKey(row),
+    );
+    if (leadOwnerDistance >= 0 && leadOwnerDistance < 3) {
+      penalty += 260 - (leadOwnerDistance * 60);
+    }
+
+    final leadFamilyDistance = _recentDistanceFromEnd(
+      session.recentLeadFamilyKeys,
+      _nameFamilyKey(row.name),
+    );
+    if (leadFamilyDistance >= 0 && leadFamilyDistance < 3) {
+      penalty += 180 - (leadFamilyDistance * 40);
+    }
+
+    final setKey = row.setCode.trim().toLowerCase();
+    if (setKey.isNotEmpty) {
+      final setDistance = _recentDistanceFromEnd(session.recentSetKeys, setKey);
+      if (setDistance >= 0) {
+        penalty += setDistance < 4 ? 48 : 16;
       }
     }
 
@@ -1430,24 +2089,35 @@ class NetworkStreamService {
     required Set<String> excludeCardPrintIds,
     required int limit,
   }) async {
-    final rawRows = await client
+    final windowStart = discoveryCatalogWindowStart(
+      seed: session.seed,
+      pageCount: session.pageCount,
+    );
+    var rawRows = await client
         .from('card_prints')
         .select(
           'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(name,identity_model)',
         )
-        .order('name', ascending: true)
-        .limit(96);
+        .order('id', ascending: true)
+        .range(windowStart, windowStart + _discoveryCatalogWindowSize - 1);
+    if ((rawRows as List<dynamic>).isEmpty && windowStart > 0) {
+      rawRows = await client
+          .from('card_prints')
+          .select(
+            'id,gv_id,name,set_code,number,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,sets(name,identity_model)',
+          )
+          .order('id', ascending: true)
+          .range(0, _discoveryCatalogWindowSize - 1);
+    }
 
     final catalogRows = (rawRows as List<dynamic>)
         .map((raw) => Map<String, dynamic>.from(raw as Map))
         .where((row) {
           final cardPrintId = _nullable(row['id']);
           final gvId = _nullable(row['gv_id']);
-          final imageUrl = _displayImageUrl(row);
           return cardPrintId != null &&
               gvId != null &&
-              !excludeCardPrintIds.contains(cardPrintId) &&
-              imageUrl != null;
+              !excludeCardPrintIds.contains(cardPrintId);
         })
         .toList();
 
@@ -1489,22 +2159,17 @@ class NetworkStreamService {
       return const <NetworkStreamRow>[];
     }
 
-    final selectedIds = selectedRows
-        .map((row) => _nullable(row['id']))
-        .whereType<String>()
-        .toList();
-    final pricingById = await CardSurfacePricingService.fetchByCardPrintIds(
-      client: client,
-      cardPrintIds: selectedIds,
-    );
-
+    // NETWORK_DISCOVERY_FAST_CANONICAL_LANE_V1
+    // Random explore exists to keep the feed visually fresh even when the
+    // collector pool is small. Canonical identity and artwork are enough for
+    // first paint; optional pricing must not consume this lane's short budget
+    // and cause the whole source to disappear.
     final rows = <NetworkStreamRow>[];
     for (final cardRow in selectedRows) {
       final discoveryRow = _buildDiscoveryRow(
         cardRow: cardRow,
         sourceType: NetworkStreamSourceType.dbRandomExplore,
         sourceLabel: 'Canonical explore',
-        pricing: pricingById[_nullable(cardRow['id']) ?? ''],
       );
       if (discoveryRow != null) {
         rows.add(discoveryRow);
@@ -1518,6 +2183,7 @@ class NetworkStreamService {
     required Map<String, dynamic> cardRow,
     required NetworkStreamSourceType sourceType,
     required String sourceLabel,
+    NetworkCatalogGame? catalogGame,
     CardSurfacePricingData? pricing,
     int? listingCount,
   }) {
@@ -1538,7 +2204,7 @@ class NetworkStreamService {
       vaultItemId: 'db:$cardPrintId',
       ownerUserId: '',
       ownerSlug: '',
-      ownerDisplayName: 'Grookai Discovery',
+      ownerDisplayName: 'grookai Discovery',
       cardPrintId: cardPrintId,
       quantity: 1,
       inPlayCount: 0,
@@ -1559,11 +2225,24 @@ class NetworkStreamService {
       printedIdentityModifier: _nullable(cardRow['printed_identity_modifier']),
       setIdentityModel: _nullable(setRecord?['identity_model']),
       rarity: _nullable(cardRow['rarity']),
+      releaseDate: _nullable(setRecord?['release_date']),
       imageUrl: catalogArtwork.primaryImageUrl,
       fallbackImageUrl: catalogArtwork.fallbackImageUrl,
       pricing: pricing,
       listingCount: listingCount,
+      catalogGame: catalogGame ?? _catalogGameFromGvId(gvId),
     );
+  }
+
+  static NetworkCatalogGame _catalogGameFromGvId(String gvId) {
+    final normalized = gvId.trim().toUpperCase();
+    if (normalized.startsWith('GV-MTG-')) {
+      return NetworkCatalogGame.mtg;
+    }
+    if (normalized.startsWith('GV-OP-')) {
+      return NetworkCatalogGame.onePiece;
+    }
+    return NetworkCatalogGame.pokemon;
   }
 
   static String _groupKey(String ownerUserId, String cardPrintId) =>
@@ -1840,6 +2519,7 @@ class NetworkStreamService {
     required List<NetworkStreamRow> discovery,
     required int limit,
     required int targetDiscoveryCount,
+    required _NetworkFeedSession session,
   }) {
     final collectorQueue = [...collectors];
     // NETWORK_FEED_DISCOVERY_CRASH_FIX_V1
@@ -1850,10 +2530,20 @@ class NetworkStreamService {
     final rows = <NetworkStreamRow>[];
     var insertedDiscovery = 0;
 
+    final previousLeadLane = session.recentLeadLaneKeys.isEmpty
+        ? null
+        : session.recentLeadLaneKeys.last;
+    if (previousLeadLane == 'collector' &&
+        discoveryQueue.isNotEmpty &&
+        rows.length < limit) {
+      rows.add(discoveryQueue.removeAt(0));
+      insertedDiscovery += 1;
+    }
+
     while (rows.length < limit &&
         (collectorQueue.isNotEmpty || discoveryQueue.isNotEmpty)) {
       var collectorBurst = 0;
-      while (collectorBurst < 3 &&
+      while (collectorBurst < 2 &&
           collectorQueue.isNotEmpty &&
           rows.length < limit) {
         rows.add(collectorQueue.removeAt(0));
@@ -1891,6 +2581,7 @@ class NetworkStreamService {
     final ordered = <NetworkStreamRow>[];
     final recentNameKeys = <String>[];
     final recentOwnerKeys = <String>[];
+    final recentSetKeys = <String>[];
 
     while (pool.isNotEmpty) {
       var bestIndex = 0;
@@ -1902,6 +2593,7 @@ class NetworkStreamService {
           candidate,
           recentNameKeys: recentNameKeys,
           recentOwnerKeys: recentOwnerKeys,
+          recentSetKeys: recentSetKeys,
         );
         if (penalty < bestPenalty) {
           bestPenalty = penalty;
@@ -1940,12 +2632,14 @@ class NetworkStreamService {
       ordered.add(nextRow);
       recentNameKeys.add(_nameKey(nextRow));
       recentOwnerKeys.add(_ownerKey(nextRow));
-      if (recentNameKeys.length > 2) {
+      recentSetKeys.add(nextRow.setCode.trim().toLowerCase());
+      if (recentNameKeys.length > 4) {
         recentNameKeys.removeAt(0);
       }
-      if (recentOwnerKeys.length > 2) {
+      if (recentOwnerKeys.length > 3) {
         recentOwnerKeys.removeAt(0);
       }
+      if (recentSetKeys.length > 4) recentSetKeys.removeAt(0);
     }
 
     return ordered;
@@ -2060,7 +2754,6 @@ class NetworkStreamService {
 
     final remaining = [...eligibleCollectors];
     final selected = <NetworkStreamRow>[];
-    final selectedHeroKeys = <String>{};
     final heroPools = <String>[];
     final heroSlots = limitedBudget < _heroCollectorSlotCount
         ? limitedBudget
@@ -2069,11 +2762,11 @@ class NetworkStreamService {
     for (var slot = 0; slot < heroSlots && remaining.isNotEmpty; slot += 1) {
       final rawCandidatePool = _rawHeroCollectorPoolForSlot(
         remaining,
-        selectedHeroKeys,
+        selected,
       );
       final candidatePool = _dedupeHeroCollectorPool(
         rawCandidatePool,
-        selectedHeroKeys,
+        selected.map(_heroCollectorDedupeKey).toSet(),
       );
       heroPools.add(
         'slot${slot + 1}[raw:${rawCandidatePool.map(_debugHeroRow).join(',')}=>deduped:${candidatePool.map(_debugHeroRow).join(',')}]',
@@ -2085,7 +2778,6 @@ class NetworkStreamService {
         slot: slot,
       );
       selected.add(selectedRow);
-      selectedHeroKeys.add(_heroCollectorDedupeKey(selectedRow));
       remaining.remove(selectedRow);
     }
 
@@ -2106,7 +2798,7 @@ class NetworkStreamService {
 
   static List<NetworkStreamRow> _rawHeroCollectorPoolForSlot(
     List<NetworkStreamRow> remainingCollectors,
-    Set<String> excludedKeys,
+    List<NetworkStreamRow> selectedCollectors,
   ) {
     if (remainingCollectors.isEmpty) {
       return const <NetworkStreamRow>[];
@@ -2125,10 +2817,64 @@ class NetworkStreamService {
       return [remainingCollectors.first];
     }
 
+    final selectedExactKeys = selectedCollectors
+        .map(_heroCollectorDedupeKey)
+        .toSet();
     final availablePool = boundedPool
-        .where((row) => !excludedKeys.contains(_heroCollectorDedupeKey(row)))
+        .where(
+          (row) => !selectedExactKeys.contains(_heroCollectorDedupeKey(row)),
+        )
         .toList(growable: false);
-    return availablePool.isEmpty ? boundedPool : availablePool;
+    if (availablePool.isEmpty || selectedCollectors.isEmpty) {
+      return availablePool.isEmpty ? boundedPool : availablePool;
+    }
+
+    final selectedFamilies = selectedCollectors
+        .map((row) => _nameFamilyKey(row.name))
+        .where((key) => key.isNotEmpty)
+        .toSet();
+    final selectedOwners = selectedCollectors
+        .map((row) => row.ownerUserId.trim().toLowerCase())
+        .where((key) => key.isNotEmpty)
+        .toSet();
+    final selectedSets = selectedCollectors
+        .map((row) => row.setCode.trim().toLowerCase())
+        .where((key) => key.isNotEmpty)
+        .toSet();
+
+    final strictNovelPool = availablePool
+        .where((row) {
+          final family = _nameFamilyKey(row.name);
+          final owner = row.ownerUserId.trim().toLowerCase();
+          final set = row.setCode.trim().toLowerCase();
+          return (family.isEmpty || !selectedFamilies.contains(family)) &&
+              (owner.isEmpty || !selectedOwners.contains(owner)) &&
+              (set.isEmpty || !selectedSets.contains(set));
+        })
+        .toList(growable: false);
+    if (strictNovelPool.isNotEmpty) {
+      return strictNovelPool;
+    }
+
+    final identityNovelPool = availablePool
+        .where((row) {
+          final family = _nameFamilyKey(row.name);
+          final owner = row.ownerUserId.trim().toLowerCase();
+          return (family.isEmpty || !selectedFamilies.contains(family)) &&
+              (owner.isEmpty || !selectedOwners.contains(owner));
+        })
+        .toList(growable: false);
+    if (identityNovelPool.isNotEmpty) {
+      return identityNovelPool;
+    }
+
+    final familyNovelPool = availablePool
+        .where((row) {
+          final family = _nameFamilyKey(row.name);
+          return family.isEmpty || !selectedFamilies.contains(family);
+        })
+        .toList(growable: false);
+    return familyNovelPool.isEmpty ? availablePool : familyNovelPool;
   }
 
   static List<NetworkStreamRow> _dedupeHeroCollectorPool(
@@ -2398,10 +3144,12 @@ class NetworkStreamService {
     NetworkStreamRow row, {
     required List<String> recentNameKeys,
     required List<String> recentOwnerKeys,
+    required List<String> recentSetKeys,
   }) {
     var penalty = 0;
     final nameKey = _nameKey(row);
     final ownerKey = _ownerKey(row);
+    final setKey = row.setCode.trim().toLowerCase();
 
     if (recentNameKeys.isNotEmpty && recentNameKeys.last == nameKey) {
       penalty += 10;
@@ -2413,6 +3161,14 @@ class NetworkStreamService {
       penalty += 8;
     } else if (recentOwnerKeys.contains(ownerKey)) {
       penalty += 3;
+    }
+
+    if (setKey.isNotEmpty &&
+        recentSetKeys.isNotEmpty &&
+        recentSetKeys.last == setKey) {
+      penalty += 7;
+    } else if (setKey.isNotEmpty && recentSetKeys.contains(setKey)) {
+      penalty += 2;
     }
 
     return penalty;
@@ -2440,7 +3196,7 @@ class NetworkStreamService {
   }
 
   static String _nameKey(NetworkStreamRow row) {
-    return row.name.trim().toLowerCase();
+    return _nameFamilyKey(row.name);
   }
 
   static String _ownerKey(NetworkStreamRow row) {
@@ -2474,20 +3230,80 @@ class NetworkStreamService {
     _NetworkFeedSession session,
     List<NetworkStreamRow> rows,
   ) {
+    if (!_exposureMemoryByScope.containsKey(session.scopeKey) &&
+        _exposureMemoryByScope.length >= _rememberedFeedScopes) {
+      _exposureMemoryByScope.remove(_exposureMemoryByScope.keys.first);
+    }
+    final rememberedExposure = _exposureMemoryByScope.putIfAbsent(
+      session.scopeKey,
+      _NetworkExposureMemory.new,
+    );
     final exposureSlice = rows.take(18);
-    for (final row in exposureSlice) {
-      session.recentCardPrintIds.remove(row.cardPrintId);
-      session.recentCardPrintIds.add(row.cardPrintId);
-      if (session.recentCardPrintIds.length > _sessionExposureMemory) {
-        session.recentCardPrintIds.removeAt(0);
+    if (rows.isNotEmpty) {
+      final leadLaneKey = rows.first.isCollectorSource
+          ? 'collector'
+          : 'discovery';
+      _rememberExposureValue(session.recentLeadLaneKeys, leadLaneKey);
+      _rememberExposureValue(
+        rememberedExposure.recentLeadLaneKeys,
+        leadLaneKey,
+      );
+      final leadOwnerKey = _ownerKey(rows.first);
+      if (leadOwnerKey.isNotEmpty) {
+        _rememberExposureValue(session.recentLeadOwnerKeys, leadOwnerKey);
+        _rememberExposureValue(
+          rememberedExposure.recentLeadOwnerKeys,
+          leadOwnerKey,
+        );
       }
+      final leadFamilyKey = _nameFamilyKey(rows.first.name);
+      if (leadFamilyKey.isNotEmpty) {
+        _rememberExposureValue(session.recentLeadFamilyKeys, leadFamilyKey);
+        _rememberExposureValue(
+          rememberedExposure.recentLeadFamilyKeys,
+          leadFamilyKey,
+        );
+      }
+    }
+    for (final row in exposureSlice) {
+      _rememberExposureValue(session.recentCardPrintIds, row.cardPrintId);
+      _rememberExposureValue(
+        rememberedExposure.recentCardPrintIds,
+        row.cardPrintId,
+      );
 
       final sourceKey = _sessionSourceKey(row);
-      session.recentSourceKeys.remove(sourceKey);
-      session.recentSourceKeys.add(sourceKey);
-      if (session.recentSourceKeys.length > _sessionExposureMemory) {
-        session.recentSourceKeys.removeAt(0);
+      _rememberExposureValue(session.recentSourceKeys, sourceKey);
+      _rememberExposureValue(rememberedExposure.recentSourceKeys, sourceKey);
+
+      final familyKey = _nameFamilyKey(row.name);
+      if (familyKey.isNotEmpty) {
+        _rememberExposureValue(session.recentNameFamilyKeys, familyKey);
+        _rememberExposureValue(
+          rememberedExposure.recentNameFamilyKeys,
+          familyKey,
+        );
       }
+
+      final ownerKey = _ownerKey(row);
+      if (ownerKey.isNotEmpty) {
+        _rememberExposureValue(session.recentOwnerKeys, ownerKey);
+        _rememberExposureValue(rememberedExposure.recentOwnerKeys, ownerKey);
+      }
+
+      final setKey = row.setCode.trim().toLowerCase();
+      if (setKey.isNotEmpty) {
+        _rememberExposureValue(session.recentSetKeys, setKey);
+        _rememberExposureValue(rememberedExposure.recentSetKeys, setKey);
+      }
+    }
+  }
+
+  static void _rememberExposureValue(List<String> values, String value) {
+    values.remove(value);
+    values.add(value);
+    if (values.length > _sessionExposureMemory) {
+      values.removeAt(0);
     }
   }
 

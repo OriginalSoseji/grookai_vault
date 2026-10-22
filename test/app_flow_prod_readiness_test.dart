@@ -24,10 +24,8 @@ void main() {
 
     expect(service, contains("'vault-add-card-instance-v1'"));
     expect(service, contains("'card_print_id': cardId"));
-    expect(
-      service,
-      contains("'card_printing_id': _trimmedOrNull(cardPrintingId)"),
-    );
+    expect(service, contains('requireVaultPrintingSelection(cardPrintingId)'));
+    expect(service, contains("'card_printing_id': exactCardPrintingId"));
     expect(service, contains("result['gv_vi_id']"));
   });
 
@@ -182,7 +180,7 @@ void main() {
     expect(bottomNavBlock, contains("label: 'Vault'"));
     expect(bottomNavBlock, isNot(contains("label: 'Dex'")));
     expect(bottomNavBlock, isNot(contains('_openDex()')));
-    expect(shell, contains("label: 'Grookai Dex'"));
+    expect(shell, contains("label: 'grookai Dex'"));
     expect(shell, contains('onTap: () => _closeThenAsync(context, onOpenDex)'));
   });
 
@@ -223,14 +221,14 @@ void main() {
 
     expect(drawerBlock, isNot(contains("label: 'My Wall'")));
     expect(drawerBlock, isNot(contains("label: 'Messages'")));
-    expect(drawerBlock, contains("label: 'Grookai Dex'"));
+    expect(drawerBlock, contains("label: 'grookai Dex'"));
     expect(drawerBlock, contains("label: 'Sets'"));
     expect(drawerBlock, contains("label: 'Compare'"));
-    expect(drawerBlock, contains("label: 'Grookai Objects'"));
+    expect(drawerBlock, contains("label: 'grookai Objects'"));
     expect(drawerBlock, contains("label: 'Vendor Mode'"));
     expect(
       drawerBlock.indexOf("label: 'Vendor Mode'"),
-      greaterThan(drawerBlock.indexOf("label: 'Grookai Objects'")),
+      greaterThan(drawerBlock.indexOf("label: 'grookai Objects'")),
     );
     expect(drawerBlock, contains('onOpenVendorMode'));
     expect(drawerBlock, contains('if (signedIn)'));

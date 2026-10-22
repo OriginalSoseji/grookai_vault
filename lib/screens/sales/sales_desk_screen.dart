@@ -10,6 +10,7 @@ import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../services/sales/sales_cart_service.dart';
 import '../../services/sales/sales_trade.dart';
 import '../../services/sales/sales_payments.dart';
+import '../../theme/gv_grid_constants.dart';
 import 'sales_payment_editor.dart';
 import '../../services/sales/sales_drafts.dart';
 import '../../widgets/card_surface_artwork.dart';
@@ -1014,7 +1015,7 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
   Widget _entryPanel() => Column(
     children: [
       Padding(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+        padding: const EdgeInsets.fromLTRB(10, 6, 10, 0),
         child: SegmentedButton<String>(
           segments: [
             const ButtonSegment(
@@ -1080,34 +1081,36 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.fromLTRB(10, 6, 10, 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                'Your cards. Ready to sell.',
-                style: Theme.of(context).textTheme.headlineSmall,
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _search,
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.search),
+                        hintText: 'Find a card or copy ID',
+                        border: OutlineInputBorder(),
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  IconButton.filled(
+                    tooltip: 'Quick-add unlisted item',
+                    onPressed: _locked ? null : () => _edit(),
+                    icon: const Icon(Icons.add_rounded),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'Tap or drag to add at your saved USD price. Edit the price in your cart.',
-              ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _search,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  labelText: 'Find a card, GV-ID or copy ID',
-                  border: OutlineInputBorder(),
+              if (_inventoryLoading)
+                const Padding(
+                  padding: EdgeInsets.only(top: 4),
+                  child: LinearProgressIndicator(),
                 ),
-              ),
-              const SizedBox(height: 12),
-              FilledButton.icon(
-                onPressed: _locked ? null : () => _edit(),
-                icon: const Icon(Icons.add),
-                label: const Text('Quick-add unlisted item'),
-              ),
-              if (_inventoryLoading) const LinearProgressIndicator(),
               if (_inventoryError != null)
                 TextButton(
                   onPressed: _hydrateInventory,
@@ -1128,12 +1131,17 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                   ),
                 )
               : GridView.builder(
-                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  padding: const EdgeInsets.fromLTRB(
+                    GvGridConstants.gridOuterPadding,
+                    0,
+                    GvGridConstants.gridOuterPadding,
+                    16,
+                  ),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 230,
                     mainAxisExtent: 420,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
+                    crossAxisSpacing: GvGridConstants.gridSpacing,
+                    mainAxisSpacing: GvGridConstants.gridSpacing,
                   ),
                   itemCount: rows.length,
                   itemBuilder: (context, index) {
@@ -1863,25 +1871,13 @@ class _SalesDeskScreenState extends State<SalesDeskScreen> {
                               }
                               return Column(
                                 children: [
-                                  if (!_showCart)
-                                    _dropCart(
-                                      compact: true,
-                                      child: ListTile(
-                                        leading: const Icon(
-                                          Icons.shopping_cart_outlined,
-                                        ),
-                                        title: Text(
-                                          'Drop here to add · ${_lines.length} in cart',
-                                        ),
-                                        trailing: const Icon(
-                                          Icons.chevron_right,
-                                        ),
-                                        onTap: () =>
-                                            setState(() => _showCart = true),
-                                      ),
-                                    ),
                                   Padding(
-                                    padding: const EdgeInsets.all(8),
+                                    padding: const EdgeInsets.fromLTRB(
+                                      10,
+                                      6,
+                                      10,
+                                      2,
+                                    ),
                                     child: SegmentedButton<bool>(
                                       segments: [
                                         const ButtonSegment(

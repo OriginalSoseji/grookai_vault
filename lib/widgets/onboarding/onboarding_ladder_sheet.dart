@@ -10,6 +10,7 @@ import '../../services/onboarding/onboarding_ladder_service.dart';
 import '../../services/public/collector_follow_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../card_surface_artwork.dart';
+import '../vault/vault_printing_picker.dart';
 
 class OnboardingLadderOverlay extends StatefulWidget {
   const OnboardingLadderOverlay({
@@ -200,6 +201,13 @@ class _OnboardingLadderOverlayState extends State<OnboardingLadderOverlay> {
     }
     setState(() => _busy = true);
     try {
+      final printing = await chooseVaultPrinting(
+        context: context,
+        client: Supabase.instance.client,
+        cardPrintId: card.cardPrintId,
+        cardName: card.name,
+      );
+      if (printing == null) return;
       await VaultCardService.addOrIncrementVaultItem(
         client: Supabase.instance.client,
         userId: userId,
@@ -207,6 +215,7 @@ class _OnboardingLadderOverlayState extends State<OnboardingLadderOverlay> {
         fallbackName: card.name,
         fallbackSetName: card.setCode,
         fallbackImageUrl: card.imageUrl,
+        cardPrintingId: printing.id,
       );
       final next = await widget.service.recordOwned(
         cardPrintId: card.cardPrintId,

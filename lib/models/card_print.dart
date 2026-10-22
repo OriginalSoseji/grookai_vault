@@ -12,6 +12,32 @@ import 'search_interpretation.dart';
 
 enum RarityOption { all, common, uncommon, rare, ultra, secret }
 
+@visibleForTesting
+String resolverExactNameRetryQuery(String query) {
+  final normalized = query.trim();
+  if (normalized.isEmpty ||
+      normalized.contains('"') ||
+      RegExp(r'\bfrom\b', caseSensitive: false).hasMatch(normalized) ||
+      RegExp(r'^artist\b', caseSensitive: false).hasMatch(normalized)) {
+    return normalized;
+  }
+
+  final numberMatch = RegExp(r'\b\d+\/\d+\b').firstMatch(normalized);
+  final rarityMatch = RegExp(
+    r'\b(?:special illustration rare|illustration rare|double rare|ultra rare|hyper rare|uncommon|common|rare)\s*$',
+    caseSensitive: false,
+  ).firstMatch(normalized);
+  final constraint = numberMatch ?? rarityMatch;
+  if (constraint == null) return normalized;
+
+  final name = normalized.substring(0, constraint.start).trim();
+  final suffix = normalized.substring(constraint.start).trim();
+  if (name.isEmpty || suffix.isEmpty || name.split(RegExp(r'\s+')).length > 6) {
+    return normalized;
+  }
+  return '"$name" $suffix';
+}
+
 class CardSearchOptions {
   const CardSearchOptions({
     this.query = '',
@@ -653,6 +679,7 @@ class CardPrintRepository {
     required String trimmed,
     required String? identityFilter,
     required int searchLimit,
+    bool allowExactNameRetry = true,
   }) async {
     final gameScope = _normalizeCatalogGameScope(options.gameScope);
     final resolverUri = Uri.parse(grookaiWebBaseUrl)
@@ -733,6 +760,18 @@ class CardPrintRepository {
               .map(CardPrint.fromJson)
               .toList()
         : <CardPrint>[];
+
+    final exactNameRetryQuery = resolverExactNameRetryQuery(trimmed);
+    if (allowExactNameRetry && rows.isEmpty && exactNameRetryQuery != trimmed) {
+      return _searchCardPrintsViaWebResolver(
+        client: client,
+        options: options,
+        trimmed: exactNameRetryQuery,
+        identityFilter: identityFilter,
+        searchLimit: searchLimit,
+        allowExactNameRetry: false,
+      );
+    }
 
     final filteredRows = _filterByRarity(rows, options.rarity);
     final provisionalRows = provisionalJson is List

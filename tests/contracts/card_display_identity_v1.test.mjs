@@ -30,7 +30,7 @@ test('binder cards transport and render canonical variant context', () => {
     assert.match(text, /printed(?:_identity_modifier|IdentityModifier)/i);
   }
   assert.match(screen, /resolveBinderChecklistItemIdentity/);
-  assert.match(screen, /Standard printing/);
+  assert.match(screen, /Standard variant/);
 });
 
 test('scanner generations preserve variants through result rendering', () => {

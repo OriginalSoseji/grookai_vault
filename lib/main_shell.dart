@@ -829,6 +829,14 @@ class _AppShellState extends State<AppShell> {
     setState(() => _pulseUnreadCount = normalized);
   }
 
+  void _openNotifications() {
+    _selectDestination(_ShellDestination.feed);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      _networkKey.currentState?.openActivity();
+    });
+  }
+
   void _openCollectorSection(GrookaiCanonicalRoute route) {
     unawaited(
       _pushPage<void>(
@@ -1462,7 +1470,7 @@ class _AppShellState extends State<AppShell> {
               itemBuilder: (context) => [
                 const PopupMenuItem(
                   value: _ExploreHeaderAction.dex,
-                  child: Text('Grookai Dex'),
+                  child: Text('grookai Dex'),
                 ),
                 const PopupMenuItem(
                   value: _ExploreHeaderAction.sets,
@@ -1516,17 +1524,15 @@ class _AppShellState extends State<AppShell> {
           tooltip: 'Open public collector',
           onPressed: _openPublicCollectorPrompt,
         ),
+      _GrookaiNotificationButton(
+        hasUnread: _pulseUnreadCount > 0,
+        onPressed: _openNotifications,
+      ),
       _appBarActionButton(
         icon: Icons.mail_outline_rounded,
         tooltip: 'Messages',
         onPressed: _openMessages,
       ),
-      if (!isDesktopShell && _supabase.auth.currentUser != null)
-        _appBarActionButton(
-          icon: Icons.storefront_outlined,
-          tooltip: 'Vendor Mode',
-          onPressed: _openVendorPricingWorkspace,
-        ),
       if (isDesktopShell && _destination != _ShellDestination.search)
         _appBarActionButton(
           icon: Icons.refresh,
@@ -1619,11 +1625,11 @@ class _AppShellState extends State<AppShell> {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: Color(0xFF0B0F14),
+        statusBarColor: Color(0xFF080B09),
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
-        systemNavigationBarColor: Color(0xFF0B0F14),
-        systemNavigationBarDividerColor: Color(0xFF0B0F14),
+        systemNavigationBarColor: Color(0xFF080B09),
+        systemNavigationBarDividerColor: Color(0xFF080B09),
         systemNavigationBarIconBrightness: Brightness.light,
         systemNavigationBarContrastEnforced: false,
       ),
@@ -1666,13 +1672,7 @@ class _AppShellState extends State<AppShell> {
               appBar: AppBar(
                 toolbarHeight: kShellAppBarHeight,
                 actionsPadding: const EdgeInsets.only(right: 6),
-                title: Text(
-                  'Grookai',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: -0.45,
-                  ),
-                ),
+                title: const _GrookaiWordmark(),
                 actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
               ),
               body: bodyWithOnboarding,
@@ -1749,7 +1749,6 @@ class _AppShellState extends State<AppShell> {
                         label: 'Pulse',
                         icon: Icons.dynamic_feed_rounded,
                         collapsed: collapsed,
-                        badgeCount: _pulseUnreadCount,
                         onPressed: () =>
                             _selectDestination(_ShellDestination.feed),
                       ),
@@ -1821,7 +1820,9 @@ class _AppShellState extends State<AppShell> {
     final selected = _destination.navIndex == navIndex;
     final textScale = MediaQuery.textScalerOf(context).scale(14) / 14;
     final useIconOnly = textScale >= 1.5;
-    final foreground = selected
+    final foreground = isPrimaryAction
+        ? colorScheme.onPrimary
+        : selected
         ? colorScheme.primary
         : colorScheme.onSurface.withValues(alpha: 0.68);
     final background = selected ? Colors.transparent : Colors.transparent;
@@ -1854,22 +1855,39 @@ class _AppShellState extends State<AppShell> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  AnimatedContainer(
-                    duration: MediaQuery.disableAnimationsOf(context)
-                        ? Duration.zero
-                        : const Duration(milliseconds: 180),
-                    width: selected ? 18 : 0,
-                    height: 2,
-                    decoration: BoxDecoration(
-                      color: selected
-                          ? colorScheme.primary
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(2),
+                  if (!isPrimaryAction)
+                    AnimatedContainer(
+                      duration: MediaQuery.disableAnimationsOf(context)
+                          ? Duration.zero
+                          : const Duration(milliseconds: 180),
+                      width: selected ? 18 : 0,
+                      height: 2,
+                      decoration: BoxDecoration(
+                        color: selected
+                            ? colorScheme.primary
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 3),
+                  SizedBox(height: isPrimaryAction ? 0 : 3),
                   if (isPrimaryAction)
-                    Icon(icon, size: selected ? 21 : 20, color: foreground)
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: colorScheme.primary,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: colorScheme.primary.withValues(alpha: 0.22),
+                            blurRadius: 16,
+                            spreadRadius: 1,
+                          ),
+                        ],
+                      ),
+                      child: SizedBox.square(
+                        dimension: collapsed ? 33 : 36,
+                        child: Icon(icon, size: 21, color: foreground),
+                      ),
+                    )
                   else
                     Stack(
                       clipBehavior: Clip.none,
@@ -1883,14 +1901,16 @@ class _AppShellState extends State<AppShell> {
                           ),
                       ],
                     ),
-                  const SizedBox(height: 2),
+                  SizedBox(height: isPrimaryAction ? 1 : 2),
                   if (!useIconOnly)
                     Text(
                       label,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: foreground,
+                        color: isPrimaryAction
+                            ? colorScheme.primary
+                            : foreground,
                         fontSize: collapsed ? 10 : 11,
                         fontWeight: selected
                             ? FontWeight.w700
@@ -1898,6 +1918,110 @@ class _AppShellState extends State<AppShell> {
                         letterSpacing: 0,
                       ),
                     ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _GrookaiWordmark extends StatelessWidget {
+  const _GrookaiWordmark();
+
+  static const String _logoAsset =
+      'ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png';
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(7),
+          child: const Image(
+            image: AssetImage(_logoAsset),
+            width: 26,
+            height: 26,
+            fit: BoxFit.contain,
+            filterQuality: FilterQuality.high,
+          ),
+        ),
+        const SizedBox(width: 9),
+        GrookaiBrandText(style: theme.textTheme.titleLarge),
+      ],
+    );
+  }
+}
+
+class _GrookaiNotificationButton extends StatelessWidget {
+  const _GrookaiNotificationButton({
+    required this.hasUnread,
+    required this.onPressed,
+  });
+
+  static const String _logoAsset =
+      'ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png';
+  static const Color _unreadRed = Color(0xFFE5484D);
+
+  final bool hasUnread;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final semanticsLabel = hasUnread
+        ? 'Notifications, unread activity'
+        : 'Notifications';
+    return Semantics(
+      button: true,
+      label: semanticsLabel,
+      child: Tooltip(
+        message: semanticsLabel,
+        child: InkResponse(
+          onTap: onPressed,
+          radius: 24,
+          child: SizedBox.square(
+            dimension: 44,
+            child: Center(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(7),
+                    child: const Image(
+                      image: AssetImage(_logoAsset),
+                      width: 27,
+                      height: 27,
+                      fit: BoxFit.cover,
+                      filterQuality: FilterQuality.high,
+                    ),
+                  ),
+                  Positioned(
+                    top: -2,
+                    right: -2,
+                    child: AnimatedScale(
+                      scale: hasUnread ? 1 : 0,
+                      duration: MediaQuery.disableAnimationsOf(context)
+                          ? Duration.zero
+                          : const Duration(milliseconds: 180),
+                      curve: Curves.easeOutBack,
+                      child: Container(
+                        width: 9,
+                        height: 9,
+                        decoration: BoxDecoration(
+                          color: _unreadRed,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.surface,
+                            width: 1.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -2037,12 +2161,7 @@ class _GrookaiDesktopRail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Grookai',
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
+                  GrookaiBrandText(style: theme.textTheme.titleMedium),
                   const SizedBox(height: 3),
                   Text(
                     'Collector OS',
@@ -2068,15 +2187,15 @@ class _GrookaiDesktopRail extends StatelessWidget {
               onTap: onOpenWall,
             ),
             _GrookaiRailTile(
+              icon: Icons.center_focus_strong_rounded,
+              label: 'Scan',
+              onTap: onOpenScan,
+            ),
+            _GrookaiRailTile(
               icon: Icons.inventory_2_rounded,
               label: 'Vault',
               selected: currentDestination == _ShellDestination.vault,
               onTap: onOpenVault,
-            ),
-            _GrookaiRailTile(
-              icon: Icons.center_focus_strong_rounded,
-              label: 'Scan',
-              onTap: onOpenScan,
             ),
             _GrookaiRailTile(
               icon: Icons.search_rounded,
@@ -2250,126 +2369,128 @@ class _GrookaiAppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return NavigationDrawer(
-      selectedIndex: null,
-      onDestinationSelected: (_) {},
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(24, 22, 20, 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Grookai Vault',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Collector tools',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.62),
-                  fontWeight: FontWeight.w600,
+    return SafeArea(
+      top: false,
+      child: NavigationDrawer(
+        selectedIndex: null,
+        onDestinationSelected: (_) {},
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 22, 20, 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GrookaiBrandText(
+                  includeVault: true,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-              ),
-            ],
+                const SizedBox(height: 4),
+                Text(
+                  'Collector tools',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.62),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        const Divider(indent: 20, endIndent: 20),
-        if (kLocalCommunityFeedV1Enabled)
+          const Divider(indent: 20, endIndent: 20),
+          if (kLocalCommunityFeedV1Enabled)
+            _GrookaiDrawerTile(
+              icon: Icons.radar_rounded,
+              label: 'Nearby',
+              onTap: () => _closeThenAsync(context, onOpenNearby),
+            ),
+          if (kLocalCommunityFeedV1Enabled)
+            _GrookaiDrawerTile(
+              icon: Icons.map_outlined,
+              label: 'Nearby Map',
+              onTap: () => _closeThenAsync(context, onOpenNearbyMap),
+            ),
+          const Divider(indent: 20, endIndent: 20),
           _GrookaiDrawerTile(
-            icon: Icons.radar_rounded,
-            label: 'Nearby',
-            onTap: () => _closeThenAsync(context, onOpenNearby),
+            icon: Icons.catching_pokemon_rounded,
+            label: 'grookai Dex',
+            onTap: () => _closeThenAsync(context, onOpenDex),
           ),
-        if (kLocalCommunityFeedV1Enabled)
           _GrookaiDrawerTile(
-            icon: Icons.map_outlined,
-            label: 'Nearby Map',
-            onTap: () => _closeThenAsync(context, onOpenNearbyMap),
+            icon: Icons.style_rounded,
+            label: 'Sets',
+            onTap: () => _closeThenAsync(context, onOpenSets),
           ),
-        const Divider(indent: 20, endIndent: 20),
-        _GrookaiDrawerTile(
-          icon: Icons.catching_pokemon_rounded,
-          label: 'Grookai Dex',
-          onTap: () => _closeThenAsync(context, onOpenDex),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.style_rounded,
-          label: 'Sets',
-          onTap: () => _closeThenAsync(context, onOpenSets),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.compare_arrows_rounded,
-          label: 'Compare',
-          onTap: () => _closeThenAsync(context, onOpenCompare),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.auto_awesome_outlined,
-          label: 'Grookai Objects',
-          onTap: () => _closeThenAsync(context, onOpenGrookaiObjects),
-        ),
-        if (signedIn)
           _GrookaiDrawerTile(
-            icon: Icons.sell_outlined,
-            label: 'Vendor Mode',
-            onTap: () => _closeThenAsync(context, onOpenVendorMode),
+            icon: Icons.compare_arrows_rounded,
+            label: 'Compare',
+            onTap: () => _closeThenAsync(context, onOpenCompare),
           ),
-        if (signedIn)
           _GrookaiDrawerTile(
-            icon: Icons.point_of_sale,
-            label: 'Sales desk',
-            onTap: () => _closeThenAsync(context, onOpenSalesDesk),
+            icon: Icons.auto_awesome_outlined,
+            label: 'grookai Objects',
+            onTap: () => _closeThenAsync(context, onOpenGrookaiObjects),
           ),
-        if (signedIn)
+          if (signedIn)
+            _GrookaiDrawerTile(
+              icon: Icons.sell_outlined,
+              label: 'Vendor Mode',
+              onTap: () => _closeThenAsync(context, onOpenVendorMode),
+            ),
+          if (signedIn)
+            _GrookaiDrawerTile(
+              icon: Icons.point_of_sale,
+              label: 'Sales desk',
+              onTap: () => _closeThenAsync(context, onOpenSalesDesk),
+            ),
+          if (signedIn)
+            _GrookaiDrawerTile(
+              icon: Icons.storefront_outlined,
+              label: 'Manage store',
+              onTap: () => _closeThenAsync(context, onOpenManageStore),
+            ),
+          if (signedIn && BinderFeatureFlags.production.personalAvailable)
+            _GrookaiDrawerTile(
+              icon: Icons.bookmarks_rounded,
+              label: 'Binders',
+              onTap: () => _closeThenAsync(context, onOpenBinders),
+            ),
+          if (signedIn)
+            _GrookaiDrawerTile(
+              icon: Icons.group_outlined,
+              label: 'Followers',
+              enabled: !relationshipRouteLoading,
+              trailing: relationshipRouteLoading
+                  ? const _GrookaiDrawerLoadingIndicator()
+                  : null,
+              onTap: () => unawaited(onOpenFollowers()),
+            ),
+          if (signedIn)
+            _GrookaiDrawerTile(
+              icon: Icons.people_alt_outlined,
+              label: 'Following',
+              enabled: !relationshipRouteLoading,
+              trailing: relationshipRouteLoading
+                  ? const _GrookaiDrawerLoadingIndicator()
+                  : null,
+              onTap: () => unawaited(onOpenFollowing()),
+            ),
           _GrookaiDrawerTile(
-            icon: Icons.storefront_outlined,
-            label: 'Manage store',
-            onTap: () => _closeThenAsync(context, onOpenManageStore),
+            icon: Icons.account_circle_rounded,
+            label: 'Account',
+            onTap: () => _closeThenAsync(context, onOpenAccount),
           ),
-        if (signedIn && BinderFeatureFlags.production.personalAvailable)
           _GrookaiDrawerTile(
-            icon: Icons.bookmarks_rounded,
-            label: 'Binders',
-            onTap: () => _closeThenAsync(context, onOpenBinders),
+            icon: Icons.school_outlined,
+            label: 'Getting Started',
+            onTap: () => _closeThenAsync(context, onOpenGettingStarted),
           ),
-        if (signedIn)
-          _GrookaiDrawerTile(
-            icon: Icons.group_outlined,
-            label: 'Followers',
-            enabled: !relationshipRouteLoading,
-            trailing: relationshipRouteLoading
-                ? const _GrookaiDrawerLoadingIndicator()
-                : null,
-            onTap: () => unawaited(onOpenFollowers()),
+          const Divider(indent: 20, endIndent: 20),
+          _GrookaiDrawerAppearanceSelector(
+            value: themeMode,
+            onChanged: onThemeModeChanged,
           ),
-        if (signedIn)
-          _GrookaiDrawerTile(
-            icon: Icons.people_alt_outlined,
-            label: 'Following',
-            enabled: !relationshipRouteLoading,
-            trailing: relationshipRouteLoading
-                ? const _GrookaiDrawerLoadingIndicator()
-                : null,
-            onTap: () => unawaited(onOpenFollowing()),
-          ),
-        _GrookaiDrawerTile(
-          icon: Icons.account_circle_rounded,
-          label: 'Account',
-          onTap: () => _closeThenAsync(context, onOpenAccount),
-        ),
-        _GrookaiDrawerTile(
-          icon: Icons.school_outlined,
-          label: 'Getting Started',
-          onTap: () => _closeThenAsync(context, onOpenGettingStarted),
-        ),
-        const Divider(indent: 20, endIndent: 20),
-        _GrookaiDrawerAppearanceSelector(
-          value: themeMode,
-          onChanged: onThemeModeChanged,
-        ),
-      ],
+          const SizedBox(height: 16),
+        ],
+      ),
     );
   }
 
@@ -2402,6 +2523,8 @@ class _GrookaiDrawerTile extends StatelessWidget {
     );
 
     return ListTile(
+      minTileHeight: 52,
+      visualDensity: const VisualDensity(vertical: -1),
       leading: Icon(icon, color: foreground),
       title: Text(
         label,
@@ -2563,7 +2686,7 @@ class GettingStartedScreen extends StatelessWidget {
             ),
             const _GettingStartedCard(
               icon: Icons.auto_awesome_outlined,
-              title: 'Create Grookai Objects',
+              title: 'Create grookai Objects',
               body:
                   'Once cards are in your Vault, make Memories, For Sale cards, and Lot shares.',
             ),
@@ -2903,13 +3026,12 @@ class _LoginPageState extends State<LoginPage> {
           const _LoginBrandMark(),
           const SizedBox(height: 16),
           // LOGIN_BRAND_LOCKUP_NAME_V1
-          // The login hero pairs the official Grookai mark with the Grookai Vault name as a premium brand lockup.
-          Text(
-            'Grookai Vault',
+          // The login hero pairs the official grookai mark with the grookai vault name as a premium brand lockup.
+          GrookaiBrandText(
+            includeVault: true,
             textAlign: TextAlign.center,
+            letterSpacing: 0.3,
             style: textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0.3,
               color: Colors.white.withValues(alpha: 0.82),
             ),
           ),
@@ -3133,7 +3255,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 6),
             Text(
-              'We sent the account link to $email. Open it on this device, then Grookai will finish setup.',
+              'We sent the account link to $email. Open it on this device, then grookai will finish setup.',
               style: textTheme.bodySmall?.copyWith(
                 color: scheme.onSurface.withValues(alpha: 0.68),
                 height: 1.35,
@@ -3238,7 +3360,7 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                               const SizedBox(height: 22),
                               Text(
-                                'Use one Grookai identity across your vault, wall, and Pulse.',
+                                'Use one grookai identity across your vault, wall, and Pulse.',
                                 textAlign: TextAlign.center,
                                 style: textTheme.bodySmall?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.46),
@@ -3323,7 +3445,7 @@ class _LoginBrandMark extends StatelessWidget {
           width: 112,
           height: 112,
           // LOGIN_BRAND_POLISH_V1
-          // Use the official Grookai logo as the login hero brand mark.
+          // Use the official grookai logo as the login hero brand mark.
           child: Image.asset(
             _kGrookaiLogoAsset,
             fit: BoxFit.cover,

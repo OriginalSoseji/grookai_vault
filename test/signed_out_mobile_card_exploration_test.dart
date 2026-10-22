@@ -70,7 +70,7 @@ void main() {
       );
       expect(main, contains('GrookaiCanonicalRoute.card'));
       expect(main, contains('_navigatorKey.currentState?.popUntil'));
-      expect(main, contains("destinationLabel: 'continue to Grookai'"));
+      expect(main, contains("destinationLabel: 'continue to grookai'"));
       expect(cardDetail, contains('SignInContinuationScreen'));
       expect(
         cardDetail,

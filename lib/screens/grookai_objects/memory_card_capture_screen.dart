@@ -223,8 +223,8 @@ class _MemoryCardCaptureScreenState extends State<MemoryCardCaptureScreen> {
           type: 'memory-${destination.slug}',
           title: _exportTitle(object),
         ),
-        subject: 'Grookai memory card',
-        text: 'Shared from Grookai Vault',
+        subject: 'grookai memory card',
+        text: 'Shared from grookai vault',
         sharePositionOrigin: sharePositionOrigin,
       );
     } catch (error, stackTrace) {

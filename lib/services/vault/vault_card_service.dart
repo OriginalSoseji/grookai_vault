@@ -131,6 +131,15 @@ class VaultSetCompletionCopy {
 }
 
 @visibleForTesting
+String requireVaultPrintingSelection(String? cardPrintingId) {
+  final normalized = (cardPrintingId ?? '').trim();
+  if (normalized.isEmpty) {
+    throw StateError('Choose the exact variant before adding this card.');
+  }
+  return normalized;
+}
+
+@visibleForTesting
 VaultSetCompletionSnapshot calculateVaultSetCompletionSnapshot({
   required Iterable<VaultSetCompletionOption> options,
   required Iterable<VaultSetCompletionCopy> copies,
@@ -1254,16 +1263,17 @@ class VaultCardService {
     String? cardPrintingId,
   }) async {
     final qtyDelta = deltaQty < 1 ? 1 : deltaQty;
+    final exactCardPrintingId = requireVaultPrintingSelection(cardPrintingId);
     (await getJungleEditionResolution(
       client,
       cardId,
-    )).assertSelection(cardId, cardPrintingId);
+    )).assertSelection(cardId, exactCardPrintingId);
     debugPrint('vault.mobile.add.begin: $cardId');
     final completionBefore = await _fetchInterestGraphCompletionSnapshot(
       client: client,
       userId: userId,
       cardPrintId: cardId,
-      cardPrintingId: cardPrintingId,
+      cardPrintingId: exactCardPrintingId,
     );
 
     late final FunctionResponse response;
@@ -1278,8 +1288,7 @@ class VaultCardService {
           'name': fallbackName,
           'set_name': fallbackSetName,
           'photo_url': fallbackImageUrl,
-          if (_trimmedOrNull(cardPrintingId) != null)
-            'card_printing_id': _trimmedOrNull(cardPrintingId),
+          'card_printing_id': exactCardPrintingId,
         },
       );
     } on FunctionException catch (error) {
@@ -1311,7 +1320,7 @@ class VaultCardService {
           client: client,
           userId: userId,
           cardPrintId: cardId,
-          cardPrintingId: cardPrintingId,
+          cardPrintingId: exactCardPrintingId,
           previous: completionBefore,
         );
         return gvviId;
@@ -1322,7 +1331,7 @@ class VaultCardService {
       client: client,
       userId: userId,
       cardPrintId: cardId,
-      cardPrintingId: cardPrintingId,
+      cardPrintingId: exactCardPrintingId,
       previous: completionBefore,
     );
     return '';
@@ -1977,6 +1986,70 @@ class VaultCardService {
     }
 
     return savedIntent;
+  }
+
+  static Future<void> saveVaultItemInstanceVariant({
+    required SupabaseClient client,
+    required String instanceId,
+    required String cardPrintId,
+    required String cardPrintingId,
+  }) async {
+    final userId = client.auth.currentUser?.id;
+    if (userId == null || userId.isEmpty) {
+      throw Exception('Sign in required.');
+    }
+
+    final normalizedInstanceId = _trimmedOrNull(instanceId);
+    final normalizedCardPrintId = _trimmedOrNull(cardPrintId);
+    final normalizedCardPrintingId = _trimmedOrNull(cardPrintingId);
+    if (normalizedInstanceId == null ||
+        normalizedCardPrintId == null ||
+        normalizedCardPrintingId == null) {
+      throw Exception('Choose a valid variant for this copy.');
+    }
+
+    final ownedCopy = await client
+        .from('vault_item_instances')
+        .select('id,card_print_id,slab_cert_id')
+        .eq('id', normalizedInstanceId)
+        .eq('user_id', userId)
+        .eq('card_print_id', normalizedCardPrintId)
+        .filter('archived_at', 'is', null)
+        .maybeSingle();
+    if (ownedCopy == null) {
+      throw Exception('This copy is no longer available.');
+    }
+    if (_trimmedOrNull(ownedCopy['slab_cert_id']) != null) {
+      throw Exception('A slab variant cannot be changed here.');
+    }
+
+    final authoritativeVariant = await client
+        .from('card_printings')
+        .select('id,card_print_id')
+        .eq('id', normalizedCardPrintingId)
+        .eq('card_print_id', normalizedCardPrintId)
+        .maybeSingle();
+    if (authoritativeVariant == null) {
+      throw Exception('That variant does not belong to this card.');
+    }
+
+    // LOCK: Variant changes are exact-copy scoped and fail closed if the copy
+    // becomes graded, archived, changes owner, or changes parent identity.
+    final saved = await client
+        .from('vault_item_instances')
+        .update({'card_printing_id': normalizedCardPrintingId})
+        .eq('id', normalizedInstanceId)
+        .eq('user_id', userId)
+        .eq('card_print_id', normalizedCardPrintId)
+        .filter('slab_cert_id', 'is', null)
+        .filter('archived_at', 'is', null)
+        .select('id,card_print_id,card_printing_id')
+        .maybeSingle();
+    if (saved == null ||
+        _trimmedOrNull(saved['card_print_id']) != normalizedCardPrintId ||
+        _trimmedOrNull(saved['card_printing_id']) != normalizedCardPrintingId) {
+      throw Exception('Variant could not be saved.');
+    }
   }
 
   static Future<String> saveVaultItemInstancesIntentBulk({

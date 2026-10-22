@@ -102,6 +102,11 @@ void main() {
       expect(collectorScreen, contains('subtitleSlotHeight * textScale'));
       expect(collectorScreen, contains('priceSlotHeight * textScale'));
       expect(collectorScreen, contains('childIsScrollable: _viewState =='));
+      expect(
+        collectorScreen,
+        contains("label: count == null ? label : '\$label, \$count cards'"),
+      );
+      expect(collectorScreen, contains('else if (count != null)'));
       expect(collectorScreen, isNot(contains("label: 'Visible'")));
       expect(collectorScreen, isNot(contains("label: 'Collection'")));
     },
@@ -157,7 +162,7 @@ void main() {
     final drawerBlock = RegExp(
       r'class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile',
     ).firstMatch(mainShell)!.group(0)!;
-    final objectsIndex = drawerBlock.indexOf("label: 'Grookai Objects'");
+    final objectsIndex = drawerBlock.indexOf("label: 'grookai Objects'");
     final vendorIndex = drawerBlock.indexOf("label: 'Vendor Mode'");
 
     expect(mainShell, contains('VendorPricingWorkspaceScreen'));

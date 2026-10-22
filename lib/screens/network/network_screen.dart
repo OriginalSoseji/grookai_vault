@@ -9,7 +9,6 @@ import '../stores/storefront_screen.dart';
 import '../stores/custom_product_screen.dart';
 
 import '../../card_detail_screen.dart';
-import '../../models/provisional_card.dart';
 import '../../services/identity/display_identity.dart';
 import '../../models/ownership_state.dart';
 import '../../services/diagnostics/app_boot_timing.dart';
@@ -19,7 +18,6 @@ import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/network/network_stream_service.dart';
 import '../../services/network/pulse_service.dart';
 import '../../services/notifications/founder_notification_service.dart';
-import '../../services/provisional/provisional_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../theme/gv_grid_constants.dart';
@@ -29,7 +27,6 @@ import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/contact_owner_button.dart';
 import '../../widgets/network/network_interaction_card.dart';
-import '../../widgets/provisional/provisional_card_section.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../dex/grookai_dex_screen.dart';
 import '../dex/grookai_dex_species_screen.dart';
@@ -170,7 +167,8 @@ class NetworkScreenState extends State<NetworkScreen> {
   // remains available through inbox surfaces instead of occupying the default
   // collector-feed tab.
   _NetworkHomeSegment _segment = _NetworkHomeSegment.discover;
-  NetworkFeedMode _feedMode = NetworkFeedMode.collectors;
+  NetworkFeedMode _feedMode = NetworkFeedMode.catalog;
+  NetworkCatalogGame _catalogGame = NetworkCatalogGame.all;
   String? _intent;
   bool _loading = true;
   bool _loadingMore = false;
@@ -179,8 +177,6 @@ class NetworkScreenState extends State<NetworkScreen> {
   bool _showingCachedRows = false;
   NetworkStreamEmptyState _emptyState = NetworkStreamEmptyState.none;
   List<NetworkStreamRow> _rows = const <NetworkStreamRow>[];
-  List<PublicProvisionalCard> _provisionalCards =
-      const <PublicProvisionalCard>[];
   bool _pulseLoading = kPulseSurfaceEnabled;
   bool _pulseLoadingOlder = false;
   bool _pulseOlderLoaded = false;
@@ -195,11 +191,13 @@ class NetworkScreenState extends State<NetworkScreen> {
   bool _founderNotificationAccessChecked = false;
   bool _founderNotificationAccessLoading = false;
   bool _hasFounderNotificationAccess = false;
+  int _notificationUnreadRequest = 0;
   DateTime? _pulseNextCursorCreatedAt;
   String? _pulseNextCursorEventId;
   Map<String, OwnershipState> _ownershipStatesByCardPrintId =
       const <String, OwnershipState>{};
   int _resetGeneration = 0;
+  bool _showFloatingCatalogSwitcher = false;
 
   @override
   void initState() {
@@ -208,6 +206,7 @@ class NetworkScreenState extends State<NetworkScreen> {
     _scrollController.addListener(_handleScroll);
     unawaited(_restoreCachedRows());
     _loadRows(resetSession: true);
+    unawaited(_refreshCombinedNotificationUnread());
   }
 
   @override
@@ -230,9 +229,14 @@ class NetworkScreenState extends State<NetworkScreen> {
     unawaited(_setSegment(_NetworkHomeSegment.discover));
   }
 
+  void openActivity() {
+    unawaited(_setSegment(_NetworkHomeSegment.pulse));
+  }
+
   void openCanonicalSegment(String segment) {
     final normalized = segment.trim().toLowerCase();
     final target = switch (normalized) {
+      'activity' || 'pulse' => _NetworkHomeSegment.pulse,
       'discover' => _NetworkHomeSegment.discover,
       'following' => _NetworkHomeSegment.following,
       _ => _NetworkHomeSegment.discover,
@@ -244,17 +248,24 @@ class NetworkScreenState extends State<NetworkScreen> {
   }
 
   void _handleScroll() {
-    if (_segment == _NetworkHomeSegment.pulse) {
+    if (!_scrollController.hasClients) {
       return;
     }
-    if (!_scrollController.hasClients ||
+    final position = _scrollController.position;
+    final shouldShowCatalogSwitcher =
+        _segment == _NetworkHomeSegment.discover && position.pixels > 88;
+    if (shouldShowCatalogSwitcher != _showFloatingCatalogSwitcher) {
+      setState(() {
+        _showFloatingCatalogSwitcher = shouldShowCatalogSwitcher;
+      });
+    }
+    if (_segment == _NetworkHomeSegment.pulse ||
         _loading ||
         _loadingMore ||
         !_hasMore) {
       return;
     }
 
-    final position = _scrollController.position;
     if (position.pixels >= position.maxScrollExtent - 420) {
       _loadRows(append: true);
     }
@@ -290,12 +301,10 @@ class NetworkScreenState extends State<NetworkScreen> {
         intent: _intent,
         excludeUserId: _client.auth.currentUser?.id,
         viewerUserId: _client.auth.currentUser?.id,
+        catalogGame: _catalogGame,
         limit: pageSize,
         resetSession: resetSession,
       );
-      if (!append && _intent == null) {
-        unawaited(_loadProvisionalCards(resetGeneration));
-      }
       final page = await pageFuture;
       if (!append) {
         AppBootTiming.markOnce('network_feed_initial_rpc_complete');
@@ -356,9 +365,6 @@ class NetworkScreenState extends State<NetworkScreen> {
           _error = error is Error
               ? error.toString()
               : 'Unable to load the collector network.';
-          if (_rows.isEmpty) {
-            _provisionalCards = const <PublicProvisionalCard>[];
-          }
           _emptyState = NetworkStreamEmptyState.none;
           _hasMore = false;
           _loading = false;
@@ -421,22 +427,6 @@ class NetworkScreenState extends State<NetworkScreen> {
     } catch (error) {
       debugPrint(
         '[NETWORK_DEFERRED_PRICING_RECOVERY_V1] pricing_failed=$error',
-      );
-    }
-  }
-
-  Future<void> _loadProvisionalCards(int resetGeneration) async {
-    try {
-      final cards = await ProvisionalService.fetchDiscovery(limit: 6);
-      if (!mounted || resetGeneration != _resetGeneration || _intent != null) {
-        return;
-      }
-      setState(() {
-        _provisionalCards = cards;
-      });
-    } catch (error) {
-      debugPrint(
-        '[NETWORK_PROGRESSIVE_FIRST_PAINT_V2] provisional_failed=$error',
       );
     }
   }
@@ -551,6 +541,34 @@ class NetworkScreenState extends State<NetworkScreen> {
       debugPrint('[PULSE_E4] unread_failed=$error');
       return null;
     }
+  }
+
+  Future<void> _refreshCombinedNotificationUnread() async {
+    final request = ++_notificationUnreadRequest;
+    final pulseFuture = _fetchPulseUnreadBestEffort();
+    var founderUnread = FounderNotificationUnreadSnapshot.empty;
+
+    try {
+      final hasFounderAccess = await _founderNotificationService.hasAccess();
+      if (hasFounderAccess) {
+        founderUnread = await _founderNotificationService.fetchUnread();
+      }
+      if (!mounted || request != _notificationUnreadRequest) return;
+      _founderNotificationAccessChecked = true;
+      _hasFounderNotificationAccess = hasFounderAccess;
+    } catch (error) {
+      debugPrint('[FOUNDER_NOTIFICATIONS_V1] unread_probe_failed=$error');
+    }
+
+    final pulseUnread = await pulseFuture;
+    if (!mounted || request != _notificationUnreadRequest) return;
+    setState(() {
+      if (pulseUnread != null) {
+        _pulseUnreadSnapshot = pulseUnread;
+      }
+      _founderNotificationUnread = founderUnread;
+    });
+    _notifyCombinedPulseUnread();
   }
 
   Future<void> _applyPulseUnreadWhenReady({
@@ -720,6 +738,7 @@ class NetworkScreenState extends State<NetworkScreen> {
       final payload = <String, dynamic>{
         'cachedAt': DateTime.now().toIso8601String(),
         'feedMode': _feedMode.name,
+        'catalogGame': _catalogGame.databaseCode,
         'intent': _intent,
         'rows': rows
             .take(_networkInitialPageSize)
@@ -734,7 +753,7 @@ class NetworkScreenState extends State<NetworkScreen> {
 
   String get _cacheKey {
     final intentKey = (_intent ?? 'all').trim().toLowerCase();
-    return '$_networkFeedCachePrefix:${_feedMode.name}:$intentKey';
+    return '$_networkFeedCachePrefix:${_feedMode.name}:${_catalogGame.databaseCode}:$intentKey';
   }
 
   Future<void> _primeDeferredOwnership({
@@ -785,16 +804,21 @@ class NetworkScreenState extends State<NetworkScreen> {
   }
 
   Future<void> _setSegment(_NetworkHomeSegment segment) async {
+    if (segment == _NetworkHomeSegment.pulse) {
+      _notificationUnreadRequest += 1;
+    }
     if (_segment == segment) {
       if (segment == _NetworkHomeSegment.pulse) {
         await _loadPulse(reset: true);
+      } else {
+        await _loadRows(resetSession: true);
       }
       return;
     }
 
     final nextMode = switch (segment) {
       _NetworkHomeSegment.pulse => _feedMode,
-      _NetworkHomeSegment.discover => NetworkFeedMode.collectors,
+      _NetworkHomeSegment.discover => NetworkFeedMode.catalog,
       _NetworkHomeSegment.following => NetworkFeedMode.following,
     };
 
@@ -807,6 +831,7 @@ class NetworkScreenState extends State<NetworkScreen> {
         _showingCachedRows = false;
         _ownershipStatesByCardPrintId = const <String, OwnershipState>{};
         _emptyState = NetworkStreamEmptyState.none;
+        _showFloatingCatalogSwitcher = false;
       }
     });
 
@@ -815,6 +840,27 @@ class NetworkScreenState extends State<NetworkScreen> {
       return;
     }
 
+    await _restoreCachedRows();
+    await _loadRows(resetSession: true);
+  }
+
+  Future<void> _setCatalogGame(NetworkCatalogGame game) async {
+    if (_catalogGame == game) {
+      return;
+    }
+
+    setState(() {
+      _catalogGame = game;
+      _intent = null;
+      _rows = const <NetworkStreamRow>[];
+      _showingCachedRows = false;
+      _ownershipStatesByCardPrintId = const <String, OwnershipState>{};
+      _emptyState = NetworkStreamEmptyState.none;
+      _showFloatingCatalogSwitcher = false;
+    });
+    if (_scrollController.hasClients) {
+      _scrollController.jumpTo(0);
+    }
     await _restoreCachedRows();
     await _loadRows(resetSession: true);
   }
@@ -854,7 +900,7 @@ class NetworkScreenState extends State<NetworkScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Filter Pulse',
+                'Filter Following',
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w800,
                 ),
@@ -891,102 +937,141 @@ class NetworkScreenState extends State<NetworkScreen> {
       decoration: BoxDecoration(color: colorScheme.surface),
       child: SafeArea(
         bottom: false,
-        child: RefreshIndicator(
-          onRefresh: () => _segment == _NetworkHomeSegment.pulse
-              ? _loadPulse(reset: true)
-              : _loadRows(resetSession: true),
-          child: CustomScrollView(
-            controller: _scrollController,
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: RefreshIndicator(
+                onRefresh: () => _segment == _NetworkHomeSegment.pulse
+                    ? _loadPulse(reset: true)
+                    : _loadRows(resetSession: true),
+                child: CustomScrollView(
+                  controller: _scrollController,
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
+                  // ignore: deprecated_member_use
+                  cacheExtent: 960,
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 2, 12, 0),
+                        child: _NetworkSegmentToggle(
+                          value: _segment,
+                          pulseUnreadCount:
+                              _pulseUnreadSnapshot.unreadCount +
+                              _founderNotificationUnread.unreadCount,
+                          filtered: _intent != null,
+                          showFilter: _segment == _NetworkHomeSegment.following,
+                          onChanged: (segment) {
+                            unawaited(_setSegment(segment));
+                          },
+                          onFilterPressed: _openIntentFilterSheet,
+                        ),
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: _segment == _NetworkHomeSegment.pulse ? 10 : 4,
+                      ),
+                    ),
+                    if (_segment == _NetworkHomeSegment.discover)
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 2, 20, 8),
+                          child: _CatalogGameToggle(
+                            value: _catalogGame,
+                            onChanged: (game) {
+                              unawaited(_setCatalogGame(game));
+                            },
+                          ),
+                        ),
+                      ),
+                    // PERFORMANCE_P1_NETWORK_LAZY_RENDER
+                    // Uses lazy sliver rendering so Pulse scales without
+                    // eager whole-page builds in grid or list modes.
+                    if (_segment == _NetworkHomeSegment.pulse)
+                      _FounderNotificationPulseSliver(
+                        items: _founderNotifications,
+                        loading: _founderNotificationsLoading,
+                        hasAccess: _hasFounderNotificationAccess,
+                        onOpenAll: () => _openFounderNotifications(),
+                        onOpenOperations: _openFounderOperations,
+                        onOpenItem: (item) => _openFounderNotifications(
+                          notificationId: item.notificationId,
+                        ),
+                      ),
+                    if (_segment == _NetworkHomeSegment.pulse)
+                      _PulseContentSliver(
+                        items: _pulseItems,
+                        loading: _pulseLoading,
+                        loadingOlder: _pulseLoadingOlder,
+                        olderLoaded: _pulseOlderLoaded,
+                        error: _pulseError,
+                        hasOlder:
+                            _pulseNextCursorCreatedAt != null &&
+                            (_pulseNextCursorEventId ?? '').trim().isNotEmpty,
+                        onRetry: () => _loadPulse(reset: true),
+                        onShowOlder: () =>
+                            _loadPulse(reset: false, older: true),
+                        onOpenScanner: widget.onOpenScanner,
+                        onOpenVaultSpecies: widget.onOpenVaultSpecies,
+                      )
+                    else
+                      _NetworkContentSliver(
+                        feedMode: _feedMode,
+                        rows: _rows,
+                        ownershipStatesByCardPrintId:
+                            _ownershipStatesByCardPrintId,
+                        loading: _loading,
+                        showingCachedRows: _showingCachedRows,
+                        error: _error,
+                        emptyState: _emptyState,
+                        onRetry: () => _loadRows(resetSession: true),
+                      ),
+                    if (_segment != _NetworkHomeSegment.pulse && _loadingMore)
+                      const SliverToBoxAdapter(
+                        child: _NetworkFeedTailSkeleton(),
+                      ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        height: shellContentBottomPadding(context, extra: 8),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            // ignore: deprecated_member_use
-            cacheExtent: 960,
-            slivers: [
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 2, 12, 0),
-                  child: _NetworkSegmentToggle(
-                    value: _segment,
-                    pulseUnreadCount:
-                        _pulseUnreadSnapshot.unreadCount +
-                        _founderNotificationUnread.unreadCount,
-                    filtered: _intent != null,
-                    onChanged: (segment) {
-                      unawaited(_setSegment(segment));
-                    },
-                    onFilterPressed: _openIntentFilterSheet,
+            Positioned(
+              top: 8,
+              right: 12,
+              child: IgnorePointer(
+                ignoring: !_showFloatingCatalogSwitcher,
+                child: AnimatedSlide(
+                  offset: _showFloatingCatalogSwitcher
+                      ? Offset.zero
+                      : const Offset(0, -0.35),
+                  duration: MediaQuery.disableAnimationsOf(context)
+                      ? Duration.zero
+                      : const Duration(milliseconds: 180),
+                  curve: Curves.easeOutBack,
+                  child: AnimatedOpacity(
+                    opacity: _showFloatingCatalogSwitcher ? 1 : 0,
+                    duration: MediaQuery.disableAnimationsOf(context)
+                        ? Duration.zero
+                        : const Duration(milliseconds: 140),
+                    child: _FloatingCatalogSwitcher(
+                      value: _catalogGame,
+                      onChanged: (game) {
+                        unawaited(_setCatalogGame(game));
+                      },
+                    ),
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: _segment == _NetworkHomeSegment.pulse ? 10 : 4,
-                ),
-              ),
-              if (_segment != _NetworkHomeSegment.pulse &&
-                  _provisionalCards.isNotEmpty)
-                SliverToBoxAdapter(
-                  child: ProvisionalCardSection(
-                    cards: _provisionalCards,
-                    compact: true,
-                  ),
-                ),
-              // PERFORMANCE_P1_NETWORK_LAZY_RENDER
-              // Uses lazy sliver rendering so Pulse scales without
-              // eager whole-page builds in grid or list modes.
-              if (_segment == _NetworkHomeSegment.pulse)
-                _FounderNotificationPulseSliver(
-                  items: _founderNotifications,
-                  loading: _founderNotificationsLoading,
-                  hasAccess: _hasFounderNotificationAccess,
-                  onOpenAll: () => _openFounderNotifications(),
-                  onOpenOperations: _openFounderOperations,
-                  onOpenItem: (item) => _openFounderNotifications(
-                    notificationId: item.notificationId,
-                  ),
-                ),
-              if (_segment == _NetworkHomeSegment.pulse)
-                _PulseContentSliver(
-                  items: _pulseItems,
-                  loading: _pulseLoading,
-                  loadingOlder: _pulseLoadingOlder,
-                  olderLoaded: _pulseOlderLoaded,
-                  error: _pulseError,
-                  hasOlder:
-                      _pulseNextCursorCreatedAt != null &&
-                      (_pulseNextCursorEventId ?? '').trim().isNotEmpty,
-                  onRetry: () => _loadPulse(reset: true),
-                  onShowOlder: () => _loadPulse(reset: false, older: true),
-                  onOpenScanner: widget.onOpenScanner,
-                  onOpenVaultSpecies: widget.onOpenVaultSpecies,
-                )
-              else
-                _NetworkContentSliver(
-                  feedMode: _feedMode,
-                  rows: _rows,
-                  ownershipStatesByCardPrintId: _ownershipStatesByCardPrintId,
-                  loading: _loading,
-                  showingCachedRows: _showingCachedRows,
-                  error: _error,
-                  emptyState: _emptyState,
-                  onRetry: () => _loadRows(resetSession: true),
-                ),
-              if (_segment != _NetworkHomeSegment.pulse && _loadingMore)
-                const SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(0, 14, 0, 14),
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
-                ),
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: shellContentBottomPadding(context, extra: 8),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -1033,11 +1118,13 @@ Map<String, dynamic> _networkStreamRowToCache(NetworkStreamRow row) {
     'setIdentityModel': row.setIdentityModel,
     'sourceLabel': row.sourceLabel,
     'rarity': row.rarity,
+    'releaseDate': row.releaseDate,
     'imageUrl': row.imageUrl,
     'fallbackImageUrl': row.fallbackImageUrl,
     'hasCollectorUploadedImage': row.hasCollectorUploadedImage,
     'listingCount': row.listingCount,
     'rankingScore': row.rankingScore,
+    'catalogGame': row.catalogGame.databaseCode,
     'inPlayCopies': row.inPlayCopies
         .map(
           (copy) => <String, dynamic>{
@@ -1114,6 +1201,11 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
     gvId: stringValue('gvId'),
     providerImageUrl: cachedFallbackImageUrl ?? cachedImageUrl,
   );
+  final catalogGame = switch (stringValue('catalogGame').trim().toLowerCase()) {
+    'mtg' => NetworkCatalogGame.mtg,
+    'one_piece' => NetworkCatalogGame.onePiece,
+    _ => NetworkCatalogGame.pokemon,
+  };
 
   return NetworkStreamRow(
     sourceType: sourceType,
@@ -1139,6 +1231,7 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
     setIdentityModel: json['setIdentityModel'] as String?,
     sourceLabel: json['sourceLabel'] as String?,
     rarity: json['rarity'] as String?,
+    releaseDate: json['releaseDate'] as String?,
     intent: json['intent'] as String?,
     conditionLabel: json['conditionLabel'] as String?,
     isGraded: boolValue('isGraded'),
@@ -1158,6 +1251,7 @@ NetworkStreamRow? _networkStreamRowFromCache(Map<String, dynamic> json) {
         ? json['listingCount'] as int
         : null,
     rankingScore: intValue('rankingScore'),
+    catalogGame: catalogGame,
   );
 }
 
@@ -2205,9 +2299,8 @@ class _NetworkContentSliver extends StatelessWidget {
                       'When followed collectors post trade, sell, or showcase cards, they will show up here.',
                 )
               : (
-                  title: 'No cards available right now',
-                  body:
-                      'Cards appear here when collectors mark them Trade, Sell, or Showcase.',
+                  title: 'No catalog cards available right now',
+                  body: 'Try another TCG or pull down to refresh the catalog.',
                 ),
       };
 
@@ -2339,6 +2432,18 @@ class _NetworkFeedSkeleton extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _NetworkFeedTailSkeleton extends StatelessWidget {
+  const _NetworkFeedTailSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.only(top: 6),
+      child: _NetworkSkeletonCard(),
     );
   }
 }
@@ -2475,7 +2580,7 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
             sourceLabel: row.sourceLabel ?? 'Canonical DB',
             markerLabel: row.sourceType == NetworkStreamSourceType.dbHighEnd
                 ? 'High-end'
-                : 'Explore',
+                : 'Catalog',
           )
         : _NetworkCollectorContext(
             displayName: row.ownerDisplayName,
@@ -2540,10 +2645,14 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
 
     if (row.isDiscoverySource) {
       final rarity = (row.rarity ?? '').trim();
+      final era = NetworkStreamService.catalogEraLabel(row);
+      if (era != null) {
+        values.add(era);
+      }
       if (rarity.isNotEmpty) {
         values.add(rarity);
       }
-      return values.isEmpty ? 'Canonical discovery card' : values.join(' • ');
+      return values.isEmpty ? 'Canonical catalog card' : values.join(' • ');
     }
 
     final ownershipSummary = NetworkStreamService.getOwnershipSummary(row);
@@ -2570,7 +2679,7 @@ class _NetworkStreamResultsSliver extends StatelessWidget {
     }
 
     if (row.sourceType == NetworkStreamSourceType.dbRandomExplore) {
-      return 'Discovery reference';
+      return '${row.catalogGame.label} catalog';
     }
 
     if (row.isGraded) {
@@ -2757,7 +2866,7 @@ class _NetworkDiscoveryContext extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: 'Grookai Discovery',
+                  text: 'grookai Discovery',
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: colorScheme.onSurface.withValues(alpha: 0.80),
@@ -3284,6 +3393,7 @@ class _NetworkSegmentToggle extends StatelessWidget {
     required this.value,
     required this.pulseUnreadCount,
     required this.filtered,
+    required this.showFilter,
     required this.onChanged,
     required this.onFilterPressed,
   });
@@ -3291,6 +3401,7 @@ class _NetworkSegmentToggle extends StatelessWidget {
   final _NetworkHomeSegment value;
   final int pulseUnreadCount;
   final bool filtered;
+  final bool showFilter;
   final ValueChanged<_NetworkHomeSegment> onChanged;
   final VoidCallback onFilterPressed;
 
@@ -3298,6 +3409,7 @@ class _NetworkSegmentToggle extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     const segments = <_NetworkHomeSegment>[
+      _NetworkHomeSegment.pulse,
       _NetworkHomeSegment.discover,
       _NetworkHomeSegment.following,
     ];
@@ -3330,17 +3442,231 @@ class _NetworkSegmentToggle extends StatelessWidget {
               ),
             ),
           ],
-          IconButton(
-            tooltip: filtered ? 'Change Pulse filter' : 'Filter Pulse',
-            onPressed: onFilterPressed,
-            icon: Badge(
-              isLabelVisible: filtered,
-              smallSize: 6,
-              backgroundColor: colorScheme.primary,
-              child: const Icon(Icons.tune_rounded, size: 20),
+          if (showFilter)
+            IconButton(
+              tooltip: filtered
+                  ? 'Change Following filter'
+                  : 'Filter Following',
+              onPressed: onFilterPressed,
+              icon: Badge(
+                isLabelVisible: filtered,
+                smallSize: 6,
+                backgroundColor: colorScheme.primary,
+                child: const Icon(Icons.tune_rounded, size: 20),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FloatingCatalogSwitcher extends StatelessWidget {
+  const _FloatingCatalogSwitcher({
+    required this.value,
+    required this.onChanged,
+  });
+
+  final NetworkCatalogGame value;
+  final ValueChanged<NetworkCatalogGame> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    const games = <NetworkCatalogGame>[
+      NetworkCatalogGame.all,
+      NetworkCatalogGame.pokemon,
+      NetworkCatalogGame.mtg,
+      NetworkCatalogGame.onePiece,
+    ];
+
+    return Semantics(
+      button: true,
+      label: 'Change trading card game, ${value.label} selected',
+      child: PopupMenuButton<NetworkCatalogGame>(
+        initialValue: value,
+        tooltip: 'Change TCG',
+        position: PopupMenuPosition.under,
+        offset: const Offset(0, 6),
+        color: colorScheme.surfaceContainerHigh,
+        surfaceTintColor: Colors.transparent,
+        elevation: 5,
+        shadowColor: colorScheme.onSurface.withValues(alpha: 0.18),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+          side: BorderSide(
+            color: colorScheme.outlineVariant.withValues(alpha: 0.54),
+          ),
+        ),
+        onSelected: onChanged,
+        itemBuilder: (context) => games
+            .map(
+              (game) => PopupMenuItem<NetworkCatalogGame>(
+                value: game,
+                height: 48,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        game == NetworkCatalogGame.all
+                            ? 'All cards'
+                            : game.label,
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          fontWeight: game == value
+                              ? FontWeight.w800
+                              : FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    if (game == value)
+                      Icon(
+                        Icons.check_rounded,
+                        size: 19,
+                        color: colorScheme.primary,
+                      ),
+                  ],
+                ),
+              ),
+            )
+            .toList(growable: false),
+        child: Container(
+          height: 40,
+          padding: const EdgeInsets.fromLTRB(11, 0, 8, 0),
+          decoration: BoxDecoration(
+            color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.96),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: colorScheme.outlineVariant.withValues(alpha: 0.62),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: colorScheme.onSurface.withValues(alpha: 0.14),
+                blurRadius: 14,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.style_rounded, size: 17, color: colorScheme.primary),
+              const SizedBox(width: 7),
+              Text(
+                value.label,
+                style: theme.textTheme.labelLarge?.copyWith(
+                  color: colorScheme.onSurface,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -0.1,
+                ),
+              ),
+              const SizedBox(width: 2),
+              Icon(
+                Icons.keyboard_arrow_down_rounded,
+                size: 18,
+                color: colorScheme.onSurface.withValues(alpha: 0.62),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CatalogGameToggle extends StatelessWidget {
+  const _CatalogGameToggle({required this.value, required this.onChanged});
+
+  final NetworkCatalogGame value;
+  final ValueChanged<NetworkCatalogGame> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    const games = <NetworkCatalogGame>[
+      NetworkCatalogGame.all,
+      NetworkCatalogGame.pokemon,
+      NetworkCatalogGame.mtg,
+      NetworkCatalogGame.onePiece,
+    ];
+
+    return Semantics(
+      container: true,
+      label: 'Choose trading card game',
+      child: Row(
+        children: [
+          for (var index = 0; index < games.length; index += 1) ...[
+            Expanded(
+              child: _CatalogGameOption(
+                game: games[index],
+                selected: games[index] == value,
+                onPressed: () => onChanged(games[index]),
+              ),
+            ),
+            if (index != games.length - 1) const SizedBox(width: 6),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _CatalogGameOption extends StatelessWidget {
+  const _CatalogGameOption({
+    required this.game,
+    required this.selected,
+    required this.onPressed,
+  });
+
+  final NetworkCatalogGame game;
+  final bool selected;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: '${game.label} cards',
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(10),
+          child: AnimatedContainer(
+            duration: MediaQuery.disableAnimationsOf(context)
+                ? Duration.zero
+                : const Duration(milliseconds: 180),
+            curve: Curves.easeOutCubic,
+            height: 36,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: BoxDecoration(
+              color: selected
+                  ? colorScheme.primary.withValues(alpha: 0.12)
+                  : colorScheme.surfaceContainerHighest.withValues(alpha: 0.34),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: selected
+                    ? colorScheme.primary.withValues(alpha: 0.28)
+                    : colorScheme.outlineVariant.withValues(alpha: 0.36),
+              ),
+            ),
+            child: Text(
+              game.label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: selected
+                    ? colorScheme.primary
+                    : colorScheme.onSurface.withValues(alpha: 0.66),
+                fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                letterSpacing: -0.1,
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -3377,13 +3703,13 @@ class _NetworkSegmentChip extends StatelessWidget {
       button: true,
       selected: selected,
       label: unreadSemantics,
-      onTap: selected ? null : onPressed,
+      onTap: onPressed,
       child: ExcludeSemantics(
         child: Material(
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(4),
-            onTap: selected ? null : onPressed,
+            onTap: onPressed,
             child: AnimatedContainer(
               duration: MediaQuery.disableAnimationsOf(context)
                   ? Duration.zero

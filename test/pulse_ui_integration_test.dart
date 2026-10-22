@@ -18,6 +18,8 @@ void main() {
     expect(networkScreen, contains('Show older Pulse'));
     expect(networkScreen, contains("You're caught up"));
     expect(networkScreen, contains('openPulse()'));
+    expect(networkScreen, contains('openActivity()'));
+    expect(networkScreen, contains('_refreshCombinedNotificationUnread()'));
     expect(networkScreen, contains('_PulseArtworkTile(item: item)'));
     expect(networkScreen, contains('width: 72'));
     expect(networkScreen, contains('height: 101'));
@@ -47,7 +49,9 @@ void main() {
     expect(pulseService, contains("payload['display_image_url']"));
 
     expect(mainShell, contains('onPulseUnreadChanged'));
-    expect(mainShell, contains('_DockUnreadBadge'));
+    expect(mainShell, contains('class _GrookaiNotificationButton'));
+    expect(mainShell, contains("Color(0xFFE5484D)"));
+    expect(mainShell, contains('onPressed: _openNotifications'));
     expect(mainShell, contains('GrookaiCanonicalRouteKind.feed'));
     expect(mainShell, contains('openCanonicalSegment(route.value)'));
   });
@@ -70,6 +74,10 @@ void main() {
       networkScreen,
       contains("'following' => _NetworkHomeSegment.following"),
     );
+    expect(
+      networkScreen,
+      contains("'activity' || 'pulse' => _NetworkHomeSegment.pulse"),
+    );
     expect(networkScreen, contains('_ => _NetworkHomeSegment.discover'));
   });
 
@@ -84,7 +92,7 @@ void main() {
     expect(mainShell, contains("label: 'Pulse'"));
     expect(
       mainShell,
-      contains('Use one Grookai identity across your vault, wall, and Pulse.'),
+      contains('Use one grookai identity across your vault, wall, and Pulse.'),
     );
     expect(main, contains('Hide Pulse debug overlay'));
     expect(main, contains('Show Pulse debug overlay'));

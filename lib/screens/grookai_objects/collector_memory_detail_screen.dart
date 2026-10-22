@@ -27,7 +27,7 @@ String buildCollectorMemoryShareText(
   final path = '/memory/${Uri.encodeComponent(item.memory.id)}';
   final appLink = GrookaiWebRouteService.buildUri(path);
   return '$summary\n'
-      'Open this Memory in Grookai Vault: $appLink';
+      'Open this Memory in grookai vault: $appLink';
 }
 
 class CollectorMemoryDetailScreen extends StatefulWidget {
@@ -212,7 +212,7 @@ class _CollectorMemoryDetailScreenState
           type: 'memory-${destination.slug}',
           title: widget.item.cardName,
         ),
-        subject: 'Grookai memory card',
+        subject: 'grookai memory card',
         text: buildCollectorMemoryShareText(
           widget.item,
           includeAppLink: _isPublic,

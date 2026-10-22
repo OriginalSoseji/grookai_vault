@@ -536,7 +536,7 @@ class _StoreManagementScreenState extends State<StoreManagementScreen> {
                         isThreeLine: true,
                         title: Text(item['display_name'].toString()),
                         subtitle: Text(
-                          '${item['gv_vi_id']} · ${item['finish_label'] ?? 'Printing unassigned'}\n${item['ineligible_reason'] ?? '${item['asking_price_currency']} ${item['asking_price_amount']} asking price'}',
+                          '${item['gv_vi_id']} · ${item['finish_label'] ?? 'Variant needed'}\n${item['ineligible_reason'] ?? '${item['asking_price_currency']} ${item['asking_price_amount']} asking price'}',
                         ),
                         value: item['selected'] == true,
                         onChanged:

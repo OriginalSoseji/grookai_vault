@@ -170,7 +170,7 @@ test("enabled personal Binders have a visible signed-in navigation entry", () =>
 test("startup configuration failure renders an explicit app state", () => {
   assert.match(mainDart, /catch \(error, stackTrace\)/);
   assert.match(mainDart, /runApp\(const _GrookaiStartupFailureApp\(\)\)/);
-  assert.match(mainDart, /Grookai Vault could not start/);
+  assert.match(mainDart, /grookai vault could not start/);
   assert.match(mainDart, /missing required startup configuration/);
 });
 

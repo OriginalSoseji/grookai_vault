@@ -45,11 +45,11 @@ test('Vendor Mode V1 is active and preserves exact-copy authority', () => {
   assert.match(service, /filter\('archived_at', 'is', null\)/);
 });
 
-test('Vendor Mode is signed-in drawer navigation below Grookai Objects', () => {
+test('Vendor Mode is signed-in drawer navigation below grookai Objects', () => {
   const drawer = mainShell.match(
     /class _GrookaiAppDrawer extends StatelessWidget[\s\S]*?class _GrookaiDrawerTile/,
   )?.[0] ?? '';
-  const objectsIndex = drawer.indexOf("label: 'Grookai Objects'");
+  const objectsIndex = drawer.indexOf("label: 'grookai Objects'");
   const vendorIndex = drawer.indexOf("label: 'Vendor Mode'");
 
   assert.ok(objectsIndex >= 0);

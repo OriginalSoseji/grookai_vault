@@ -104,12 +104,12 @@ class MemoryCardPrintService {
     required Uint8List memorySidePng,
     Uint8List? cardSidePng,
     required MemoryCardPrintMode mode,
-    String title = 'Grookai Memory',
+    String title = 'grookai Memory',
   }) async {
     final document = pw.Document(
       title: title,
-      author: 'Grookai Vault',
-      creator: 'Grookai Vault Memory Print V1',
+      author: 'grookai vault',
+      creator: 'grookai vault Memory Print V1',
     );
 
     if (mode == MemoryCardPrintMode.frontAndBack) {

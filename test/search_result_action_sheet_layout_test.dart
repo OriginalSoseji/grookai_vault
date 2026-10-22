@@ -16,7 +16,7 @@ void main() {
     expect(actionSheet, contains('child: ConstrainedBox('));
     expect(actionSheet, contains('maxHeight: mediaQuery.size.height * 0.86'));
     expect(actionSheet, contains('child: SingleChildScrollView('));
-    expect(actionSheet, contains("'Choose the exact printing'"));
+    expect(actionSheet, contains("'Choose the exact variant'"));
     expect(actionSheet, contains("label: 'View card'"));
     expect(actionSheet, contains("label: 'Share'"));
     expect(actionSheet, contains("'Remove from Vault'"));

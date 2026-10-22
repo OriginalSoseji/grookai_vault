@@ -22,7 +22,7 @@ Future<List<T>> retryNonEmptyDexCatalogRead<T>({
       await Future<void>.delayed(retryDelay);
     }
   }
-  throw StateError('Grookai Dex species catalog returned no rows.');
+  throw StateError('grookai Dex species catalog returned no rows.');
 }
 
 @visibleForTesting

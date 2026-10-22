@@ -84,7 +84,7 @@ void main() {
         '/api/canon/cards/GV-PK-JPN-M5-118/image',
       );
       expect(memories.single.memory.isPublic, isFalse);
-      expect(memories.single.printingIdentityLabel, 'Printing: Holo');
+      expect(memories.single.printingIdentityLabel, 'Holo');
     },
   );
 
@@ -117,7 +117,7 @@ void main() {
     });
 
     expect(item, isNotNull);
-    expect(item!.printingIdentityLabel, 'Printing not recorded');
+    expect(item!.printingIdentityLabel, 'Variant not recorded');
   });
 
   test(

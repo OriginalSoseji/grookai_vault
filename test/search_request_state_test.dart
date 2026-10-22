@@ -108,7 +108,7 @@ void main() {
             300,
             scrollable: resultsScroll,
           );
-          expect(find.textContaining('2 printings'), findsWidgets);
+          expect(find.textContaining('2 variants'), findsWidgets);
           expect(find.text('Retry search'), findsNothing);
           await tester.scrollUntilVisible(
             find.text('Load more'),
@@ -248,7 +248,7 @@ void main() {
         for (var i = 0; i < 8; i++) {
           await tester.pump();
         }
-        expect(find.textContaining('2 printings'), findsNothing);
+        expect(find.textContaining('2 variants'), findsNothing);
         expect(find.text('Pikachu'), findsWidgets);
         await tester.pumpWidget(const SizedBox.shrink());
       },

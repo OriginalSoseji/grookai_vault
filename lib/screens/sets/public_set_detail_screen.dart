@@ -543,39 +543,51 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     }
 
     final headerChildren = <Widget>[
-      Padding(
-        padding: const EdgeInsets.fromLTRB(2, 2, 2, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              detail.summary.name,
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w800,
-                letterSpacing: 0,
+      Row(
+        children: [
+          Expanded(
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: '${detail.summary.cardCount} cards',
+                    style: const TextStyle(fontWeight: FontWeight.w800),
+                  ),
+                  TextSpan(
+                    text:
+                        '  ·  ${detail.summary.code.toUpperCase()}${detail.summary.releaseYear == null ? '' : '  ·  ${detail.summary.releaseYear}'}',
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              [
-                detail.summary.code.toUpperCase(),
-                if (detail.summary.releaseYear != null)
-                  '${detail.summary.releaseYear}',
-                if (detail.summary.printedTotal != null)
-                  '${detail.summary.printedTotal} cards',
-              ].join(' • '),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
                 color: Theme.of(
                   context,
-                ).colorScheme.onSurface.withValues(alpha: 0.66),
-                height: 1.3,
-                fontWeight: FontWeight.w600,
+                ).colorScheme.onSurface.withValues(alpha: 0.72),
               ),
             ),
-          ],
-        ),
+          ),
+          SharedCardViewModeButton(
+            value: _viewMode,
+            onChanged: (mode) {
+              setState(() {
+                _viewMode = mode;
+              });
+            },
+          ),
+        ],
       ),
-      const SizedBox(height: 10),
+      const SizedBox(height: 6),
+      if (detail.cards.isEmpty)
+        const Padding(
+          padding: EdgeInsets.only(top: 8, bottom: 22),
+          child: _SetDetailEmptyState(
+            title: 'No cards yet',
+            body: 'No public cards were returned for this set.',
+          ),
+        ),
+    ];
+
+    final supplementaryChildren = <Widget>[
       _SetDetailMasterSetPanel(stats: detail.masterSetStats),
       const SizedBox(height: 10),
       if (BinderFeatureFlags.production.setBindersAvailable)
@@ -585,23 +597,15 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
               const Icon(Icons.collections_bookmark_outlined),
               const SizedBox(width: 12),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      _setBinders.isEmpty
-                          ? 'Start ${detail.summary.name} Binder'
-                          : _setBinders.length == 1
-                          ? 'Open Binder'
-                          : 'In ${_setBinders.length} Binders',
-                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    const Text(
-                      'Master Set progress uses governed finish options.',
-                    ),
-                  ],
+                child: Text(
+                  _setBinders.isEmpty
+                      ? 'Start ${detail.summary.name} Binder'
+                      : _setBinders.length == 1
+                      ? 'Open Binder'
+                      : 'In ${_setBinders.length} Binders',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w900),
                 ),
               ),
               FilledButton(
@@ -624,45 +628,12 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
           onStop: _confirmStopProject,
           onRetry: () => _loadProjectTracking(detail.summary.code),
         ),
-      const SizedBox(height: 10),
       if (detail.worldChampionshipDecklist != null) ...[
+        const SizedBox(height: 10),
         _WorldChampionshipDecklistPanel(
           decklist: detail.worldChampionshipDecklist!,
         ),
-        const SizedBox(height: 10),
       ],
-      Row(
-        children: [
-          Expanded(
-            child: Text(
-              '${detail.summary.cardCount} cards',
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: Theme.of(
-                  context,
-                ).colorScheme.onSurface.withValues(alpha: 0.72),
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          SharedCardViewModeButton(
-            value: _viewMode,
-            onChanged: (mode) {
-              setState(() {
-                _viewMode = mode;
-              });
-            },
-          ),
-        ],
-      ),
-      const SizedBox(height: 10),
-      if (detail.cards.isEmpty)
-        const Padding(
-          padding: EdgeInsets.only(top: 8, bottom: 22),
-          child: _SetDetailEmptyState(
-            title: 'No cards yet',
-            body: 'No public cards were returned for this set.',
-          ),
-        ),
     ];
 
     final slivers = <Widget>[
@@ -678,7 +649,12 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
     if (_viewMode == AppCardViewMode.grid) {
       slivers.add(
         SliverPadding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 22),
+          padding: const EdgeInsets.fromLTRB(
+            GvGridConstants.gridOuterPadding,
+            0,
+            GvGridConstants.gridOuterPadding,
+            22,
+          ),
           sliver: SliverLayoutBuilder(
             builder: (context, constraints) {
               final width = MediaQuery.sizeOf(context).width;
@@ -687,9 +663,10 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
                   : width >= 620
                   ? 3
                   : 2;
-              final tileWidth =
-                  (constraints.crossAxisExtent - (crossAxisCount - 1) * 6) /
-                  crossAxisCount;
+              final tileWidth = GvGridConstants.tileWidth(
+                availableWidth: constraints.crossAxisExtent,
+                columns: crossAxisCount,
+              );
               final artworkHeight = tileWidth / 0.69;
               final priceFooterHeight = _setGridMarketPriceFooterExtent(
                 MediaQuery.textScalerOf(context),
@@ -697,8 +674,8 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
               return SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: crossAxisCount,
-                  mainAxisSpacing: 6,
-                  crossAxisSpacing: 6,
+                  mainAxisSpacing: GvGridConstants.gridSpacing,
+                  crossAxisSpacing: GvGridConstants.gridSpacing,
                   mainAxisExtent: artworkHeight + priceFooterHeight,
                 ),
                 delegate: SliverChildBuilderDelegate(
@@ -715,6 +692,14 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
                 ),
               );
             },
+          ),
+        ),
+      );
+      slivers.add(
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(10, 4, 10, 22),
+          sliver: SliverList(
+            delegate: SliverChildListDelegate(supplementaryChildren),
           ),
         ),
       );
@@ -741,6 +726,14 @@ class _PublicSetDetailScreenState extends State<PublicSetDetailScreen> {
             childCount: detail.cards.length,
             addAutomaticKeepAlives: false,
           ),
+        ),
+      ),
+    );
+    slivers.add(
+      SliverPadding(
+        padding: const EdgeInsets.fromLTRB(10, 4, 10, 22),
+        sliver: SliverList(
+          delegate: SliverChildListDelegate(supplementaryChildren),
         ),
       ),
     );

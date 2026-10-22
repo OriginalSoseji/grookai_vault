@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/sealed/mtg_sealed_client_v1.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../widgets/vault/owned_sealed_panel.dart';
 
 class MtgSealedCatalogScreen extends StatefulWidget {
@@ -300,11 +301,16 @@ class _MtgSealedGrid extends StatelessWidget {
         return GridView.builder(
           key: const Key('mtg-sealed-grid'),
           scrollCacheExtent: const ScrollCacheExtent.pixels(0),
-          padding: const EdgeInsets.fromLTRB(16, 4, 16, 28),
+          padding: const EdgeInsets.fromLTRB(
+            GvGridConstants.gridOuterPadding,
+            4,
+            GvGridConstants.gridOuterPadding,
+            28,
+          ),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: columns,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
+            crossAxisSpacing: GvGridConstants.gridSpacing,
+            mainAxisSpacing: GvGridConstants.gridSpacing,
             childAspectRatio: 0.56,
           ),
           itemCount: rows.length,

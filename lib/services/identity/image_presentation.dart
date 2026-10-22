@@ -34,9 +34,9 @@ class ResolvedImagePresentation {
 const String _kDefaultCollisionRepresentativeNote =
     'Identity is confirmed. The displayed image is a shared representative image until the exact variant image is available.';
 const String _kDefaultRepresentativeNote =
-    'Correct printing. Image may not show exact finish, stamp, or parallel.';
+    'Correct variant. Image may not show exact finish, stamp, or parallel.';
 const String _kDefaultMissingVariantVisualNote =
-    'This is the printing, but not the correct variant image.';
+    'This is the card, but not the correct variant image.';
 const String _kDefaultBlockedNote =
     'A possible image exists, but it needs verification before Grookai can use it.';
 

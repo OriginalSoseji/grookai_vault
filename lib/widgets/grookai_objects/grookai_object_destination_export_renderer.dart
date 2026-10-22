@@ -461,7 +461,7 @@ String _titleFor(GrookaiObject object) {
   if (cardName is String && cardName.trim().isNotEmpty) {
     return cardName.trim();
   }
-  return 'Grookai Object';
+  return 'grookai Object';
 }
 
 String _subtitleFor(GrookaiObject object) {

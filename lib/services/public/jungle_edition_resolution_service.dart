@@ -31,7 +31,7 @@ String? jungleEditionFailureMessage(dynamic details) {
     'JUNGLE_EDITION_UNAVAILABLE':
         'Edition choices are being reviewed. Your saved copies remain available.',
     'JUNGLE_EDITION_PRINTING_REQUIRED':
-        'Choose the verified printing for this edition on the card page.',
+        'Choose the verified variant for this edition on the card page.',
     'JUNGLE_EDITION_OWNED_RESOLUTION_REQUIRED':
         'Changing an existing copy\'s edition requires a separate confirmation.',
   };

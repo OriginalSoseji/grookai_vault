@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../theme/gv_typography.dart';
 import 'grookai_object_skin.dart';
 
 const String _grookaiLogoAsset =
@@ -172,13 +173,12 @@ class CardFooterBrand extends StatelessWidget {
         ),
         const SizedBox(width: 7),
         Expanded(
-          child: Text(
-            'Grookai Vault',
+          child: GrookaiBrandText(
+            includeVault: true,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 11,
-              fontWeight: FontWeight.w700,
               color: tokens.primaryText.withValues(alpha: 0.75),
             ),
           ),
@@ -187,7 +187,7 @@ class CardFooterBrand extends StatelessWidget {
         Flexible(
           flex: 2,
           child: Text(
-            'CREATED WITH GROOKAI VAULT',
+            'CREATED WITH grookai vault',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.right,

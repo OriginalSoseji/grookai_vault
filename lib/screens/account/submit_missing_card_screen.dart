@@ -216,7 +216,7 @@ class _SubmitMissingCardScreenState extends State<SubmitMissingCardScreen> {
                   _IntentCard(
                     title: 'Missing Card',
                     body:
-                        'Use this when the card itself does not exist in Grookai yet.',
+                        'Use this when the card itself does not exist in grookai yet.',
                     selected:
                         _intent == WarehouseSubmissionIntentType.missingCard,
                     onTap: () => setState(() {
@@ -262,7 +262,7 @@ class _SubmitMissingCardScreenState extends State<SubmitMissingCardScreen> {
                     decoration: const InputDecoration(
                       labelText: 'Notes',
                       hintText:
-                          'Tell Grookai what is missing and what a reviewer should look at.',
+                          'Tell grookai what is missing and what a reviewer should look at.',
                     ),
                     onChanged: (_) => setState(() {
                       _statusMessage = null;

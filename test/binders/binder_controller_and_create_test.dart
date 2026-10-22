@@ -543,7 +543,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Standard printing'), findsOneWidget);
+    expect(find.text('Standard variant'), findsOneWidget);
     expect(find.text('First Edition Red Cheeks'), findsOneWidget);
     expect(find.text('Base Set · #58 · Common · 0/1 linked'), findsNWidgets(2));
   });

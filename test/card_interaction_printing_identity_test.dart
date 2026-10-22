@@ -20,7 +20,7 @@ void main() {
       isArchived: false,
     );
 
-    expect(thread.printingIdentityLabel, 'Printing not recorded');
+    expect(thread.printingIdentityLabel, 'Variant not recorded');
   });
 
   test('message thread presents a captured exact printing', () {
@@ -45,6 +45,6 @@ void main() {
       isArchived: false,
     );
 
-    expect(thread.printingIdentityLabel, 'Printing: Reverse Holo');
+    expect(thread.printingIdentityLabel, 'Reverse Holo');
   });
 }

@@ -12,6 +12,7 @@ import '../../services/identity/identity_scan_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/public/jungle_edition_resolution_service.dart';
 import '../scanner/jungle_edition_scan_review.dart';
+import '../../widgets/vault/vault_printing_picker.dart';
 import '../../widgets/card_surface_artwork.dart';
 
 enum _IdentityScanStep { capture, processing, hintReady, results, error }
@@ -259,6 +260,13 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         _snack('Please sign in.');
         return;
       }
+      final printing = await chooseVaultPrinting(
+        context: context,
+        client: Supabase.instance.client,
+        cardPrintId: cardId,
+        cardName: (cand['name'] ?? 'this card').toString(),
+      );
+      if (printing == null) return;
       await VaultCardService.addOrIncrementVaultItem(
         client: Supabase.instance.client,
         userId: userId,
@@ -268,6 +276,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         fallbackName: (cand['name'] ?? '').toString(),
         fallbackSetName: (cand['set_code'] ?? '').toString(),
         fallbackImageUrl: (cand['image_url'] ?? '').toString(),
+        cardPrintingId: printing.id,
       );
       if (!mounted) return;
       _snack('Added to Vault.');

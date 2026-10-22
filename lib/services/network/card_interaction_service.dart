@@ -105,13 +105,13 @@ class CardInteractionThreadSummary {
 
   String get printingIdentityLabel {
     if ((cardPrintingId ?? '').trim().isEmpty) {
-      return 'Printing not recorded';
+      return 'Variant not recorded';
     }
     final label = formatFinishLabel(
       finishKey: finishKey,
       finishLabel: finishLabel,
     );
-    return 'Printing: ${label ?? printingGvId ?? 'Exact printing'}';
+    return label ?? printingGvId ?? 'Variant assigned';
   }
 
   CardInteractionThreadSummary copyWith({

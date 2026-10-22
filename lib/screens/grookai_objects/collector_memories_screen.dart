@@ -102,7 +102,7 @@ class _CollectorMemoriesScreenState extends State<CollectorMemoriesScreen> {
                       icon: Icons.auto_awesome_outlined,
                       title: 'No memories yet',
                       body:
-                          'Create a memory from Grookai Objects or an owned card. Saved memories will live here across your whole vault.',
+                          'Create a memory from grookai Objects or an owned card. Saved memories will live here across your whole vault.',
                     ),
                   ],
                 );

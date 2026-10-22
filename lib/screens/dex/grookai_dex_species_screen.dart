@@ -17,6 +17,7 @@ import '../../services/network/card_engagement_service.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/collection_project_service.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../utils/dex_filter_options.dart';
 import '../../utils/pokemon_sprite_url.dart';
 import '../../widgets/card_surface_artwork.dart';
@@ -534,6 +535,12 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
     if (_busyCardIds.contains(card.cardPrintId)) {
       return;
     }
+    if (card.printings.isEmpty) {
+      _showMessage(
+        'No verified variant is available. Try again before adding this card.',
+      );
+      return;
+    }
 
     GrookaiDexPrintingOption? selectedPrinting;
     if (card.printings.length > 1) {
@@ -598,16 +605,12 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
         fallbackName: card.name,
         fallbackSetName: card.setName,
         fallbackImageUrl: card.hostedImageUrl ?? card.providerFallbackImageUrl,
-        cardPrintingId: selectedPrinting?.id,
+        cardPrintingId: selectedPrinting!.id,
       );
       if (!mounted) {
         return;
       }
-      _showMessage(
-        selectedPrinting == null
-            ? 'Added $displayName to your Vault.'
-            : 'Added $displayName · ${selectedPrinting.finishName}.',
-      );
+      _showMessage('Added $displayName · ${selectedPrinting.finishName}.');
       await _load();
     } catch (error) {
       if (mounted) {
@@ -855,7 +858,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
   Widget build(BuildContext context) {
     final detail = _detail;
     final title =
-        detail?.displayName ?? widget.initialDisplayName ?? 'Grookai Dex';
+        detail?.displayName ?? widget.initialDisplayName ?? 'grookai Dex';
     final visibleCards = detail == null
         ? const <GrookaiDexCardPrint>[]
         : _visibleCards(detail);
@@ -975,7 +978,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                             if (BinderFeatureFlags
                                 .production
                                 .personalAvailable) ...[
-                              const SizedBox(height: 12),
+                              const SizedBox(height: 8),
                               _DexDetailSurfaceCard(
                                 child: Row(
                                   children: [
@@ -1026,7 +1029,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                                 ),
                               ),
                             ],
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 8),
                             _DexSpeciesViewPicker(
                               value: _view,
                               detail: detail,
@@ -1038,7 +1041,7 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                                 _ownershipFilter = _DexCardOwnership.all;
                               }),
                             ),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 8),
                             _DexCardBrowseControls(
                               sets: setOptions,
                               rarities: rarityOptions,
@@ -1098,7 +1101,9 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                   visibleCards.isNotEmpty &&
                   _presentation == _DexCardPresentation.list)
                 SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: GvGridConstants.gridOuterPadding,
+                  ),
                   sliver: SliverList.builder(
                     itemCount: visibleCards.length,
                     itemBuilder: (context, index) {
@@ -1143,8 +1148,8 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 240,
                           mainAxisExtent: 392,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
+                          crossAxisSpacing: GvGridConstants.gridSpacing,
+                          mainAxisSpacing: GvGridConstants.gridSpacing,
                         ),
                     itemCount: visibleCards.length,
                     itemBuilder: (context, index) {
@@ -1574,7 +1579,7 @@ class _DexSpeciesHeader extends StatelessWidget {
                 nationalDexNumber: detail.nationalDexNumber,
                 label: detail.displayName,
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -1583,18 +1588,18 @@ class _DexSpeciesHeader extends StatelessWidget {
                       label:
                           '#${detail.nationalDexNumber.toString().padLeft(4, '0')} Species Dex',
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 4),
                     Text(
                       detail.displayName,
-                      style: theme.textTheme.headlineMedium?.copyWith(
+                      style: theme.textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0,
                         height: 0.98,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 3),
                     Text(
-                      '${detail.ownedPrintCount} / ${detail.totalPrintCount} printings · ${detail.ownedCopyCount} ${detail.ownedCopyCount == 1 ? 'copy' : 'copies'}',
+                      '${detail.ownedPrintCount} / ${detail.totalPrintCount} variants · ${detail.ownedCopyCount} ${detail.ownedCopyCount == 1 ? 'copy' : 'copies'}',
                       style: theme.textTheme.titleMedium?.copyWith(
                         color: colorScheme.onSurface.withValues(alpha: 0.72),
                         fontWeight: FontWeight.w800,
@@ -1605,14 +1610,14 @@ class _DexSpeciesHeader extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 18),
+          const SizedBox(height: 10),
           _DexProgressBar(
             label: 'Card Prints',
             value: detail.completionPercent,
             caption:
                 '${detail.totalPrintCount} known • ${detail.ownedPrintCount} owned • ${(detail.totalPrintCount - detail.ownedPrintCount).clamp(0, detail.totalPrintCount)} missing',
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 8),
           _DexProgressBar(
             label: 'Master Set Options',
             value: optionPercent,
@@ -1640,11 +1645,11 @@ class _DexSpeciesSprite extends StatelessWidget {
     final url = pokemonSpriteUrl(nationalDexNumber);
 
     return Container(
-      width: 96,
-      height: 96,
+      width: 72,
+      height: 72,
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHigh.withValues(alpha: 0.72),
-        borderRadius: BorderRadius.circular(26),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
         boxShadow: [
           BoxShadow(
@@ -1661,7 +1666,7 @@ class _DexSpeciesSprite extends StatelessWidget {
               color: colorScheme.onSurface.withValues(alpha: 0.36),
             )
           : Padding(
-              padding: const EdgeInsets.all(9),
+              padding: const EdgeInsets.all(6),
               child: Image.network(
                 url,
                 fit: BoxFit.contain,

@@ -46,9 +46,7 @@ Widget _fixture({required Brightness brightness, required double textScale}) {
                   ),
                 ],
               ),
-              supportingInfo: const Text(
-                '1 exact copy · Printing: Reverse Holo',
-              ),
+              supportingInfo: const Text('1 exact copy · Reverse Holo'),
               actionBar: const Row(
                 children: [
                   IconButton(

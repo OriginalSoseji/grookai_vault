@@ -555,7 +555,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
     if (options.isEmpty) {
       throw Exception(
-        'Exact printing is unavailable. Try again before adding this card.',
+        'No verified variant is available. Try again before adding this card.',
       );
     }
     if (options.length > 1 && !_hasExplicitPrintingContext) {
@@ -564,7 +564,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           _printingOptions = options;
         });
       }
-      throw Exception('Choose the exact printing before adding this card.');
+      throw Exception('Choose the exact variant before adding this card.');
     }
 
     final selectedId = _resolveInitialPrintingSelection(options);
@@ -573,7 +573,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         .firstOrNull;
     if (resolved == null) {
       throw Exception(
-        'The selected printing is unavailable. Choose another printing.',
+        'The selected variant is unavailable. Choose another variant.',
       );
     }
     if (mounted) {
@@ -692,9 +692,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     bool hasAvailablePrice(Map<String, dynamic>? row) {
       final value = row?['market_close'];
-      return row?['status'] == 'available' &&
-          value is num &&
-          value > 0;
+      return row?['status'] == 'available' && value is num && value > 0;
     }
 
     final selected = selectPricingRow(rows);
@@ -704,7 +702,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     final meeResponse = await supabase.rpc(
       'get_market_evidence_pricing_read_model_v1',
-      params: {'p_card_print_ids': [widget.cardPrintId]},
+      params: {
+        'p_card_print_ids': [widget.cardPrintId],
+      },
     );
     final meeRows = (meeResponse as List<dynamic>)
         .map((row) => Map<String, dynamic>.from(row as Map))
@@ -1342,11 +1342,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         gvviId: gvviId,
       );
       if (copy == null) {
-        return 'Printing not recorded';
+        return 'Variant not recorded';
       }
       final cardPrintingId = _cleanText(copy.cardPrintingId);
       if (cardPrintingId.isEmpty) {
-        return 'Printing unassigned';
+        return 'Variant needed';
       }
 
       var options = _printingOptions;
@@ -1355,12 +1355,12 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       }
       for (final option in options) {
         if (option.id == cardPrintingId) {
-          return 'Printing: ${option.finishName}';
+          return option.finishName;
         }
       }
-      return 'Exact printing assigned';
+      return 'Variant assigned';
     } catch (_) {
-      return 'Printing not recorded';
+      return 'Variant not recorded';
     }
   }
 
@@ -2123,11 +2123,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
-        statusBarColor: Color(0xFF0B0F14),
+        statusBarColor: Color(0xFF080B09),
         statusBarIconBrightness: Brightness.light,
         statusBarBrightness: Brightness.dark,
-        systemNavigationBarColor: Color(0xFF0B0F14),
-        systemNavigationBarDividerColor: Color(0xFF0B0F14),
+        systemNavigationBarColor: Color(0xFF080B09),
+        systemNavigationBarDividerColor: Color(0xFF080B09),
         systemNavigationBarIconBrightness: Brightness.light,
         systemNavigationBarContrastEnforced: false,
       ),
@@ -3293,7 +3293,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionLabel('Printings', theme, colorScheme),
+          _buildSectionLabel('Variants', theme, colorScheme),
           const SizedBox(height: 10),
           Wrap(
             spacing: 10,
@@ -3712,7 +3712,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       backgroundColor: Colors.transparent,
       builder: (_) => CardMarketHistorySheet(
         cardName: _displayTitle,
-        printingLabel: printing?.finishName ?? 'Selected printing',
+        printingLabel: printing?.finishName ?? 'Selected variant',
         cardPrintingId: printingId,
         loadPersonalSales: (cardPrintingId) =>
             CardPersonalSalesService(supabase).loadForPrinting(cardPrintingId),
@@ -3956,7 +3956,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                         eligiblePrintingCount > 1) ...[
                       const SizedBox(height: 3),
                       Text(
-                        '$eligiblePrintingCount exact printings',
+                        '$eligiblePrintingCount exact variants',
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: colorScheme.onSurface.withValues(alpha: 0.58),
                         ),

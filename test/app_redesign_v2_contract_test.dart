@@ -12,9 +12,9 @@ void main() {
   final detail = File('lib/card_detail_screen.dart').readAsStringSync();
 
   test('V2 uses one graphite, ivory, and mint visual system', () {
-    expect(tokens, contains('Color(0xFF0B0F14)'));
-    expect(tokens, contains('Color(0xFFF5F1E8)'));
-    expect(tokens, contains('Color(0xFF59D7C1)'));
+    expect(tokens, contains('Color(0xFF080B09)'));
+    expect(tokens, contains('Color(0xFFF4F5ED)'));
+    expect(tokens, contains('Color(0xFFB7F23A)'));
     expect(tokens, contains('ThemeData buildGvRedesignV2Theme()'));
     expect(shell, contains('data: buildGvRedesignV2Theme()'));
     expect(detail, contains('data: buildGvRedesignV2Theme()'));
@@ -27,7 +27,8 @@ void main() {
     );
     expect(pulse, contains("_NetworkHomeSegment.discover => 'For you'"));
     expect(pulse, contains("_NetworkHomeSegment.following => 'Following'"));
-    expect(pulse, contains("'Filter Pulse'"));
+    expect(pulse, contains("'Filter Following'"));
+    expect(pulse, contains('class _CatalogGameToggle'));
     expect(pulse, isNot(contains('class _IntentChip')));
     expect(pulse, contains('layout: NetworkInteractionCardLayout.feed'));
   });

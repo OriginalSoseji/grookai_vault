@@ -32,7 +32,7 @@ void main() {
     expect(object.skin, GrookaiObjectSkin.kraft);
     expect(object.fields['cardName'], 'Pikachu');
     expect(object.fields['setLine'], 'SVP #001');
-    expect(object.fields['printingIdentityLabel'], 'Printing: Reverse Holo');
+    expect(object.fields['printingIdentityLabel'], 'Reverse Holo');
     expect(object.fields['location'], 'Dallas card show');
     expect(object.fields['occasion'], 'Trade night');
     expect(object.fields['storyText'], 'Found this at a local show.');
@@ -59,7 +59,7 @@ void main() {
     expect(object.fields['cardName'], 'Card memory');
     expect(object.fields['location'], 'Vault memory');
     expect(object.fields['storyText'], 'A memory from the vault.');
-    expect(object.fields['printingIdentityLabel'], 'Printing not recorded');
+    expect(object.fields['printingIdentityLabel'], 'Variant not recorded');
     expect(object.metadata['memory_type'], 'note');
   });
 }

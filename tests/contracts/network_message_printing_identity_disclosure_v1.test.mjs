@@ -39,11 +39,11 @@ const deviceJourneyReadback = fs.readFileSync(
   "utf8",
 );
 
-test("message cards disclose absent or exact child-printing identity", () => {
-  assert.match(service, /return 'Printing not recorded';/);
+test("message cards disclose absent or exact child-variant identity", () => {
+  assert.match(service, /return 'Variant not recorded';/);
   assert.match(
     service,
-    /return 'Printing: \$\{label \?\? printingGvId \?\? 'Exact printing'\}';/,
+    /return label \?\? printingGvId \?\? 'Variant assigned';/,
   );
   assert.match(service, /'card_printing_id': cardPrintingId/);
   assert.match(service, /finish_keys\(label\)/);
