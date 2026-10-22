@@ -113,7 +113,7 @@ for (const width of [320, 390, 1440]) {
   });
 }
 
-for (const width of [390, 1440]) {
+for (const width of [390, 900, 1440, 1920]) {
   test(`public home retains search and navigation at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     const response = await page.goto("/", { waitUntil: "networkidle" });
@@ -121,6 +121,16 @@ for (const width of [390, 1440]) {
     await expect(page.getByRole("heading", { level: 1 })).toContainText("Find the exact card.");
     await expect(page.getByRole("link", { name: "Explore the catalog", exact: true })).toHaveAttribute("href", "/explore");
     await expect(page.locator(".gv-home-search").getByRole("combobox", { name: /Search cards/ })).toBeVisible();
+    if (width >= 900) {
+      const copy = await page.locator(".gv-home-hero-copy").boundingBox();
+      const artwork = await page.locator(".gv-home-card-stage").boundingBox();
+      const caption = await page.locator(".gv-home-featured-caption").boundingBox();
+      expect(copy!.x + copy!.width).toBeLessThanOrEqual(artwork!.x + 1);
+      for (const card of await page.locator(".gv-home-card").filter({ visible: true }).all()) {
+        const artworkBounds = await card.boundingBox();
+        expect(artworkBounds!.y + artworkBounds!.height).toBeLessThanOrEqual(caption!.y);
+      }
+    }
     expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBe(false);
     const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
     expect(audit.violations.filter((violation) => ["critical", "serious"].includes(violation.impact ?? ""))).toEqual([]);

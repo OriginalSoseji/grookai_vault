@@ -19,7 +19,7 @@ async function openSearch(page: Page, response = { ok: true, rows }, waitForRele
     return route.continue();
   });
   await page.goto("/explore?q=x&cards=GV-PK-BASE-3");
-  const input = page.locator("main").getByLabel("Search cards, sets, numbers, or Grookai ID", { exact: true });
+  const input = page.locator("main").getByLabel("Search cards, sets, numbers, or grookai ID", { exact: true });
   await expect(input).toBeEnabled();
   return input;
 }
