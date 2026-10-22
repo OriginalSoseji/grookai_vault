@@ -87,7 +87,7 @@ function validateEvidenceRef(value, label) {
   };
 }
 
-function validateAgentSnapshot(value, registryAgent, label) {
+function validateAgentSnapshot(value, registryAgent, label, capturedAt) {
   assertObject(value, label);
   assertOnlyKeys(value, AGENT_KEYS, label);
   assert(clean(value.agent_key) === registryAgent.agent_key, `${label}.agent_key does not match the registry`);
@@ -101,6 +101,7 @@ function validateAgentSnapshot(value, registryAgent, label) {
   assert(Number.isInteger(value.stale_after_seconds) && value.stale_after_seconds > 0, `${label}.stale_after_seconds must be a positive integer`);
   assert(value.stale_after_seconds === registryAgent.stale_after_seconds, `${label}.stale_after_seconds does not match the registry`);
   assert(value.latest_run_status === null || RUN_STATUS_VALUES.has(value.latest_run_status), `${label}.latest_run_status is invalid`);
+  const lastHeartbeatAt = assertTimestamp(value.last_heartbeat_at, `${label}.last_heartbeat_at`);
   const latestRunAt = assertTimestamp(value.latest_run_at, `${label}.latest_run_at`);
   assert(
     (value.latest_run_status === null) === (latestRunAt === null),
@@ -118,11 +119,15 @@ function validateAgentSnapshot(value, registryAgent, label) {
   if (!value.is_paused && hasNoHealthSignals) {
     assert(value.health === "unknown", `${label}.null heartbeat and latest run status require unknown health`);
   }
-  const periodicMissingHeartbeat = PERIODIC_SCHEDULES.has(registryAgent.schedule_kind)
-    && value.last_heartbeat_at === null
-    && value.latest_run_status !== null;
-  if (!value.is_paused && periodicMissingHeartbeat) {
-    assert(value.health === "stale", `${label}.missing periodic heartbeat requires stale health`);
+  const isPeriodic = PERIODIC_SCHEDULES.has(registryAgent.schedule_kind);
+  const staleBoundary = Date.parse(capturedAt) - (registryAgent.stale_after_seconds * 1000);
+  const periodicHeartbeatIsStale = isPeriodic
+    && (lastHeartbeatAt === null || Date.parse(lastHeartbeatAt) < staleBoundary);
+  if (!value.is_paused && !hasNoHealthSignals && periodicHeartbeatIsStale) {
+    assert(value.health === "stale", `${label}.stale periodic heartbeat requires stale health`);
+  }
+  if (!value.is_paused && isPeriodic && lastHeartbeatAt !== null && !periodicHeartbeatIsStale) {
+    assert(value.health !== "stale", `${label}.fresh periodic heartbeat cannot have stale health`);
   }
   if (value.health === "running") assert(value.latest_run_status === "running", `${label}.running health requires a running latest run`);
   if (value.health === "failed") assert(value.latest_run_status === "failed", `${label}.failed health requires a failed latest run`);
@@ -147,7 +152,7 @@ function validateAgentSnapshot(value, registryAgent, label) {
     health: value.health,
     is_paused: value.is_paused,
     paused_reason: value.paused_reason,
-    last_heartbeat_at: assertTimestamp(value.last_heartbeat_at, `${label}.last_heartbeat_at`),
+    last_heartbeat_at: lastHeartbeatAt,
     last_success_at: assertTimestamp(value.last_success_at, `${label}.last_success_at`),
     heartbeat_interval_seconds: registryAgent.heartbeat_interval_seconds,
     stale_after_seconds: registryAgent.stale_after_seconds,
@@ -178,7 +183,7 @@ export function buildOperationsReadModelV1({ snapshot, registry }) {
     seen.add(key);
     const registered = registryAgents.get(key);
     assert(registered, `snapshot agent is not registered: ${key}`);
-    return validateAgentSnapshot(entry, registered, `snapshot.agents[${index}]`);
+    return validateAgentSnapshot(entry, registered, `snapshot.agents[${index}]`, capturedAt);
   }).sort((left, right) => left.agent_key.localeCompare(right.agent_key));
 
   const summary = Object.fromEntries([...HEALTH_VALUES].sort().map((health) => [health, agents.filter((agent) => agent.health === health).length]));

@@ -28,13 +28,16 @@ The adapter fails closed on:
 - registry identity mismatches;
 - secret-shaped or executable fields;
 - unknown health or run states;
+- periodic health that contradicts heartbeat age at the snapshot capture time;
 - absolute, traversing, query-bearing, or unhashed evidence references;
 - `stale` health for `event` or `manual` agents.
 
-It does not infer health from wall-clock age. The Operations Agent Protocol
-remains authoritative: periodic `cron`, `timer`, and `continuous` staleness is
-preserved, while idle `event` and `manual` agents are not reclassified as
-stale. Actual `running` and `failed` states remain visible.
+It does not infer health from the current wall clock. The Operations Agent
+Protocol remains authoritative: periodic `cron`, `timer`, and `continuous`
+staleness is reconciled against the export's immutable `captured_at` timestamp,
+while idle `event` and `manual` agents are not reclassified as stale. Actual
+`running` and `failed` states remain visible when staleness does not take
+precedence.
 
 ## Frozen Task Envelope
 

@@ -1,7 +1,7 @@
 {
   "read_model_version": "RUFLO_OPERATIONS_READ_MODEL_V1",
   "source_snapshot_version": "OPERATIONS_AGENT_HEALTH_SNAPSHOT_V1",
-  "captured_at": "2026-10-17T06:00:00.000Z",
+  "captured_at": "2026-10-17T09:00:00.000Z",
   "source": {
     "kind": "operations_rpc_export",
     "locator": "founder_operations_agent_health_v1"
@@ -78,5 +78,5 @@
     "external_actions": false,
     "cleanup": false
   },
-  "fingerprint_sha256": "0bb1fde19154ce8d3dd2ce74d68342d574a07c6d74ae653aafafbed92a859a82"
+  "fingerprint_sha256": "51bf904344622795e3a4ec2bc4683332e63564852cc995df931b79c33c4457b8"
 }

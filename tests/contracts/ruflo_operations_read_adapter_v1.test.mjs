@@ -73,7 +73,7 @@ function taskSpec() {
     non_goals: ["Agent execution", "Workflow dispatch", "Worktree cleanup"],
     inputs: [{
       locator: "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
-      sha256: "6cdaa59efa5cd752b093f04f4417276d89c0f488932d651dd706fbfd9cec6b47",
+      sha256: "fedc8f3b32916312cf3b402aa6530aeb6a19d8cd61d00e19e633de6b41b56c4d",
     }],
     budgets: { time_seconds: 60, row_limit: 100, request_limit: 0, cost_usd: 0, concurrency: 1 },
     expected_artifacts: ["docs/audits/ruflo_operations_adapter_v1/operations_read_model_v1.json"],
@@ -179,12 +179,26 @@ test("read adapter rejects health that contradicts the latest run", () => {
   periodicMissingHeartbeat.agents[0].health = "healthy";
   assert.throws(
     () => buildOperationsReadModelV1({ snapshot: periodicMissingHeartbeat, registry }),
-    /missing periodic heartbeat requires stale health/,
+    /stale periodic heartbeat requires stale health/,
   );
 
   periodicMissingHeartbeat.agents[0].health = "stale";
   assert.doesNotThrow(
     () => buildOperationsReadModelV1({ snapshot: periodicMissingHeartbeat, registry }),
+  );
+
+  const oldHeartbeatClaimedHealthy = clone(snapshot);
+  oldHeartbeatClaimedHealthy.agents[0].health = "healthy";
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: oldHeartbeatClaimedHealthy, registry }),
+    /stale periodic heartbeat requires stale health/,
+  );
+
+  const freshHeartbeatClaimedStale = clone(snapshot);
+  freshHeartbeatClaimedStale.captured_at = "2026-10-17T06:00:00.000Z";
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: freshHeartbeatClaimedStale, registry }),
+    /fresh periodic heartbeat cannot have stale health/,
   );
 });
 
