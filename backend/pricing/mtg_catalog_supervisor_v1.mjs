@@ -93,7 +93,7 @@ export function classifyMtgCatalogSupervisorSetStateV1(batch, readback) {
   ) && parentCoverageComplete;
   const completeAdditiveSuperset =
     actual.sets === 1
-    && actual.card_prints > expected.card_prints
+    && actual.card_prints >= expected.card_prints
     && parentCoverageComplete
     && actual.card_print_identity === actual.card_prints
     && actual.external_mappings === actual.card_prints

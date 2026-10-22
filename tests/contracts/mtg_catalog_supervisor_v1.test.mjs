@@ -123,6 +123,17 @@ test("a structurally complete additive set refresh supersedes frozen counts", ()
   }
 });
 
+test("additional exact printing mappings do not require additional parents", () => {
+  const row = batch(0);
+  assert.equal(
+    classifyMtgCatalogSupervisorSetStateV1(row, {
+      ...exact(row),
+      external_printing_mappings: row.external_printing_mappings + 1,
+    }).state,
+    "complete_additive_superset",
+  );
+});
+
 test("aggregate totals cannot conceal a parent without complete structural coverage", () => {
   const row = batch(0);
   for (const missingCoverage of [
