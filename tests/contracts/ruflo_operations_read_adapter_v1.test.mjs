@@ -208,6 +208,15 @@ test("task envelope is deterministic, protected, and permanently non-executable"
   });
 });
 
+test("task envelope normalizes task IDs consistently", () => {
+  const padded = taskSpec();
+  padded.task_id = "  ruflo-readonly-catalog-health-20261017  ";
+  const envelope = buildTaskEnvelopeV1({ spec: padded, registry, inventory: portableInventory, repoRoot: portableRepoRoot });
+  assert.equal(envelope.task_id, "ruflo-readonly-catalog-health-20261017");
+  assert.match(envelope.agent.memory_namespace, /\/ruflo-readonly-catalog-health-20261017\//);
+  assert.doesNotMatch(envelope.agent.memory_namespace, /\s/);
+});
+
 test("task envelope rejects mutable refs, unknown worktrees, and traversal", () => {
   const shortSha = taskSpec();
   shortSha.repository.commit_sha = "deadbeef";
@@ -224,6 +233,29 @@ test("task envelope rejects mutable refs, unknown worktrees, and traversal", () 
   const uri = taskSpec();
   uri.expected_artifacts = ["https://example.com/result.json"];
   assert.throws(() => buildTaskEnvelopeV1({ spec: uri, registry, inventory: portableInventory, repoRoot: portableRepoRoot }), /must not use a URI scheme/);
+
+  const detachedInventory = clone(portableInventory);
+  const detachedWorktree = detachedInventory.worktrees.find((entry) => entry.path === portableWorktreePath);
+  detachedWorktree.branch = null;
+  detachedWorktree.detached = true;
+  const detachedCore = clone(detachedInventory);
+  delete detachedCore.generated_at;
+  delete detachedCore.inventory_fingerprint_sha256;
+  detachedInventory.inventory_fingerprint_sha256 = sha256(stableJsonV1(detachedCore));
+
+  const unrelatedDetachedRef = taskSpec();
+  unrelatedDetachedRef.inventory_fingerprint_sha256 = detachedInventory.inventory_fingerprint_sha256;
+  unrelatedDetachedRef.repository.ref = "main";
+  unrelatedDetachedRef.repository.initial_status_sha256 = worktreeStatusFingerprintV1(detachedWorktree);
+  assert.throws(
+    () => buildTaskEnvelopeV1({ spec: unrelatedDetachedRef, registry, inventory: detachedInventory, repoRoot: portableRepoRoot }),
+    /ref must equal the inventoried commit for a detached worktree/,
+  );
+
+  unrelatedDetachedRef.repository.ref = portableCommitSha;
+  assert.doesNotThrow(
+    () => buildTaskEnvelopeV1({ spec: unrelatedDetachedRef, registry, inventory: detachedInventory, repoRoot: portableRepoRoot }),
+  );
 });
 
 test("task envelope rejects unknown agents and executable fields", () => {

@@ -40,8 +40,9 @@ stale. Actual `running` and `failed` states remain visible.
 
 `scripts/ruflo/build_task_envelope_v1.mjs` validates a proposed R0 observation
 against the checked-in registry and read-only inventory. It requires a lowercase
-40-character commit SHA, exact inventoried branch and worktree HEAD, protected
-and non-writable worktree state, hashed inputs, bounded resources, expected
+40-character commit SHA, the exact inventoried branch (or that same commit SHA
+as the ref for a detached worktree), exact worktree HEAD, protected and
+non-writable worktree state, hashed inputs, bounded resources, expected
 artifacts, acceptance tests, and direct-readback evidence expectations.
 The inventory version, registry-byte hash, zero boundaries, and stable content
 fingerprint must match the task's expected inventory fingerprint before any

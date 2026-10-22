@@ -128,7 +128,9 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
   assertNoSensitiveKeysV1(spec, "spec");
   assertObject(spec, "spec");
   assertOnlyKeys(spec, TOP_LEVEL_KEYS, "spec");
-  assert(typeof spec.task_id === "string" && /^[a-z0-9][a-z0-9_.-]{2,127}$/.test(clean(spec.task_id)), "spec.task_id is invalid");
+  assert(typeof spec.task_id === "string", "spec.task_id is invalid");
+  const taskId = clean(spec.task_id);
+  assert(/^[a-z0-9][a-z0-9_.-]{2,127}$/.test(taskId), "spec.task_id is invalid");
   assert(typeof spec.parent_goal === "string" && clean(spec.parent_goal), "spec.parent_goal must be a non-empty string");
   const parentGoal = clean(spec.parent_goal);
   const agent = registry.agents.find((entry) => entry.agent_key === spec.agent_key);
@@ -159,7 +161,12 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
   assert(inventoryWorktree.write_allowed === false, "spec.repository.worktree_path must remain read-only");
   assert(inventoryWorktree.cleanup_authorized === false, "spec.repository.worktree_path must not authorize cleanup");
   assert(inventoryWorktree.head === spec.repository.commit_sha, "spec.repository.commit_sha must match the inventoried worktree HEAD");
-  if (inventoryWorktree.branch) assert(inventoryWorktree.branch === repositoryRef, "spec.repository.ref must match the inventoried branch");
+  if (inventoryWorktree.branch) {
+    assert(inventoryWorktree.branch === repositoryRef, "spec.repository.ref must match the inventoried branch");
+  } else {
+    assert(inventoryWorktree.detached === true, "inventoried worktree without a branch must be detached");
+    assert(repositoryRef === spec.repository.commit_sha, "spec.repository.ref must equal the inventoried commit for a detached worktree");
+  }
   assert(
     spec.repository.initial_status_sha256 === worktreeStatusFingerprintV1(inventoryWorktree),
     "spec.repository.initial_status_sha256 must match the inventoried worktree state",
@@ -200,7 +207,7 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
 
   const core = {
     envelope_version: TASK_ENVELOPE_VERSION,
-    task_id: spec.task_id,
+    task_id: taskId,
     parent_goal: parentGoal,
     agent: {
       agent_key: agent.agent_key,
@@ -208,7 +215,7 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
       topology_role: agent.topology_role,
       action_risk: agent.action_risk,
       permission_tier: "R0",
-      memory_namespace: `${agent.ruflo.memory_namespace}/${spec.task_id}/${spec.repository.commit_sha}`,
+      memory_namespace: `${agent.ruflo.memory_namespace}/${taskId}/${spec.repository.commit_sha}`,
     },
     lifecycle: { initial_state: "validated", execution_state: "not_started" },
     repository: {
@@ -270,7 +277,7 @@ function main() {
   const { registry } = readRegistryV1(registryPath, { repoRoot });
   const envelope = buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, registryRaw });
   mkdirSync(outDir, { recursive: true });
-  const outputPath = path.join(outDir, `${spec.task_id}.task_envelope_v1.json`);
+  const outputPath = path.join(outDir, `${envelope.task_id}.task_envelope_v1.json`);
   writeFileSync(outputPath, `${JSON.stringify(envelope, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify({ status: "pass", output: normalizeRepoPath(path.relative(repoRoot, outputPath)), fingerprint_sha256: envelope.fingerprint_sha256, boundaries: envelope.boundaries }, null, 2)}\n`);
 }
