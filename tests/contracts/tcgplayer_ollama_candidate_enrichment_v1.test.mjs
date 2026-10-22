@@ -100,6 +100,79 @@ test('missing-number rows enter advisory review only when enrichment found bound
   assert.equal(plan.prompt.source.printed_number_missing, true);
 });
 
+test('ambiguous MTG printing evidence becomes a bounded Ollama review set', () => {
+  const row = {
+    source_product_id: 2810,
+    source_product_name: 'Example Spell',
+    source_category_id: 1,
+    source_group_name: 'Example Set',
+    printed_number: '',
+    source_subtypes: ['Normal', 'Foil'],
+  };
+  const candidates = [{
+    ...baseCard,
+    card_print_id: 'mtg-parent-b',
+    gv_id: 'GV-MTG-EXB-2',
+    identity_domain: 'mtg_eng_paper_print',
+    canonical_name: 'Example Spell',
+    canonical_number: '2',
+    candidate_evidence: {
+      target_set_source: 'exact_tcgplayer_market_printing_evidence',
+      supporting_printing_mapping_count: 1,
+      mapping_authority: false,
+    },
+  }, {
+    ...baseCard,
+    card_print_id: 'mtg-parent-a',
+    gv_id: 'GV-MTG-EXA-1',
+    identity_domain: 'mtg_eng_paper_print',
+    canonical_name: 'Example Spell',
+    canonical_number: '1',
+    candidate_evidence: {
+      target_set_source: 'exact_tcgplayer_market_printing_evidence',
+      supporting_printing_mapping_count: 1,
+      mapping_authority: false,
+    },
+  }];
+  const enriched = enrichTcgplayerOllamaRowV1(row, [], null, candidates);
+  assert.deepEqual(
+    enriched.review_targets.map((candidate) => candidate.card_print_id),
+    ['mtg-parent-a', 'mtg-parent-b'],
+  );
+  assert.equal(
+    enriched.candidate_search.candidate_source,
+    'exact_tcgplayer_market_printing_evidence',
+  );
+  assert.equal(enriched.candidate_search.exact_printing_evidence_candidate_count, 2);
+  assert.equal(enriched.candidate_search.mapping_authority, false);
+  const plan = planTcgplayerOllamaTriageRowV1(enriched);
+  assert.equal(plan.model_call_allowed, true);
+  assert.equal(plan.compatible_candidates.length, 2);
+});
+
+test('one MTG printing parent stays on the deterministic mapping lane', () => {
+  const row = {
+    source_product_id: 2810,
+    source_product_name: 'Example Spell',
+    source_category_id: 1,
+    source_group_name: 'Example Set',
+    printed_number: '',
+  };
+  const onlyParent = {
+    ...baseCard,
+    card_print_id: 'only-parent',
+    identity_domain: 'mtg_eng_paper_print',
+    canonical_name: 'Example Spell',
+  };
+  const enriched = enrichTcgplayerOllamaRowV1(row, [onlyParent], null, [onlyParent]);
+  assert.deepEqual(enriched.review_targets, []);
+  assert.equal(enriched.candidate_search.exact_printing_evidence_candidate_count, 1);
+  assert.equal(
+    enriched.candidate_search.candidate_source,
+    'deterministic_single_printing_parent',
+  );
+});
+
 test('sealed products never receive card-parent candidates', () => {
   assert.equal(isLikelySealedTcgplayerProductV1('Guzzlord GX Box'), true);
   const ranked = rankTcgplayerOllamaCandidatesV1({

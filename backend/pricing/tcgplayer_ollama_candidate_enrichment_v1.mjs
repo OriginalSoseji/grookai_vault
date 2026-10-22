@@ -166,7 +166,12 @@ export function rankTcgplayerOllamaCandidatesV1(row, cards, groupConsensus = nul
     .slice(0, limit);
 }
 
-export function enrichTcgplayerOllamaRowV1(row, cards, groupConsensus = null) {
+export function enrichTcgplayerOllamaRowV1(
+  row,
+  cards,
+  groupConsensus = null,
+  exactPrintingEvidence = [],
+) {
   const existing = Array.isArray(row.review_targets) && row.review_targets.length
     ? row.review_targets
     : Array.isArray(row.candidate_targets) && row.candidate_targets.length
@@ -174,12 +179,35 @@ export function enrichTcgplayerOllamaRowV1(row, cards, groupConsensus = null) {
       : [];
   const ranked = rankTcgplayerOllamaCandidatesV1(row, cards, groupConsensus);
   const rankedById = new Map(ranked.map((candidate) => [candidate.card_print_id, candidate]));
+  const normalizedPrintingEvidence = Array.isArray(exactPrintingEvidence)
+    ? exactPrintingEvidence
+    : [];
+  const boundedPrintingEvidence = Number(row?.source_category_id) === 1
+    ? [...new Map(normalizedPrintingEvidence
+        .filter((candidate) => text(candidate?.card_print_id))
+        .map((candidate) => [text(candidate.card_print_id), candidate])).values()]
+        .sort((left, right) =>
+          text(left.set_code).localeCompare(text(right.set_code)) ||
+          text(left.gv_id).localeCompare(text(right.gv_id)) ||
+          text(left.card_print_id).localeCompare(text(right.card_print_id)))
+    : [];
   const discovered = existing.length
     ? existing.map((candidate) => ({
         ...candidate,
         ...(rankedById.get(candidate.card_print_id) ?? {}),
       }))
-    : ranked;
+    : boundedPrintingEvidence.length > 1
+      ? boundedPrintingEvidence
+      : boundedPrintingEvidence.length === 1
+        ? []
+        : ranked;
+  const candidateSource = existing.length
+    ? 'preexisting_review_targets'
+    : boundedPrintingEvidence.length > 1
+      ? 'exact_tcgplayer_market_printing_evidence'
+      : boundedPrintingEvidence.length === 1
+        ? 'deterministic_single_printing_parent'
+        : 'catalog_candidate_search';
   return {
     ...row,
     review_targets: discovered,
@@ -189,6 +217,8 @@ export function enrichTcgplayerOllamaRowV1(row, cards, groupConsensus = null) {
       allow_missing_number_review: !text(row.printed_number),
       likely_sealed_product: isLikelySealedTcgplayerProductV1(row.source_product_name, row.printed_number),
       group_consensus: groupConsensus,
+      candidate_source: candidateSource,
+      exact_printing_evidence_candidate_count: boundedPrintingEvidence.length,
       discovered_candidate_count: discovered.length,
       mapping_authority: false,
       publication_authority: false,

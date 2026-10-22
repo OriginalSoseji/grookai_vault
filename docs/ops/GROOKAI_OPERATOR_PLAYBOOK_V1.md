@@ -228,6 +228,13 @@ or connect to PostgreSQL. Retain V2 state under
 the hosted combined, Magic, and Pokemon candidate hashes before replacing the
 scheduled-task action.
 
+For MTG products whose exact Normal/Foil printing mappings disagree on the
+canonical parent, also read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_169_MTG_AMBIGUOUS_PARENT_REVIEW_QUEUE.md`.
+Only the parents named by active exact printing evidence may enter that review
+set. Keep model output advisory and return every retained lead to the governed
+mapping and publication path.
+
 ## Pokémon 30th Celebration Classic aliases — October 14
 
 Read

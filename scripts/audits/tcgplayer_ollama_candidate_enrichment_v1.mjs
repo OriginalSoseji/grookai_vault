@@ -67,6 +67,7 @@ async function main() {
   let cards;
   let consensusRows;
   let productRows;
+  let exactPrintingEvidenceRows;
   try {
     await client.query('begin isolation level repeatable read read only');
     productRows = (await client.query(
@@ -124,6 +125,55 @@ async function main() {
                 where mapping.source = 'tcgplayer' and mapping.active = true
               ) = 0`,
     )).rows;
+    exactPrintingEvidenceRows = (await client.query(
+      `with ambiguous_product as materialized (
+         select candidate.source_product_id
+           from public.v_mtg_tcgplayer_parent_mapping_candidates_v1 candidate
+          where candidate.resolution = 'ambiguous_printing_parents'
+            and candidate.source_product_id::bigint = any($1::bigint[])
+       ), exact_evidence as materialized (
+         select split_part(printing_mapping.external_id, ':', 1) as source_product_id,
+                printing.card_print_id,
+                count(distinct printing_mapping.id)::integer as supporting_printing_mapping_count
+           from public.external_printing_mappings printing_mapping
+           join ambiguous_product ambiguous
+             on ambiguous.source_product_id = split_part(printing_mapping.external_id, ':', 1)
+           join public.card_printings printing
+             on printing.id = printing_mapping.card_printing_id
+           join public.card_print_identity identity
+             on identity.card_print_id = printing.card_print_id
+            and identity.is_active = true
+            and identity.identity_domain = 'mtg_eng_paper_print'
+          where printing_mapping.source = 'tcgplayer_market'
+            and printing_mapping.active = true
+            and printing_mapping.external_id ~ '^[1-9][0-9]*:(normal|foil)$'
+          group by split_part(printing_mapping.external_id, ':', 1),
+                   printing.card_print_id
+       )
+       select evidence.source_product_id, card.id::text as card_print_id,
+              card.gv_id, card.set_id::text, card.set_code,
+              set_row.name as set_name, card.name as canonical_name,
+              card.number as canonical_number, card.variant_key,
+              evidence.supporting_printing_mapping_count,
+              count(distinct identity.id) filter (
+                where identity.is_active = true
+                  and identity.identity_domain = 'mtg_eng_paper_print'
+              )::integer as active_standard_identity_count,
+              count(distinct mapping.id) filter (
+                where mapping.source = 'tcgplayer' and mapping.active = true
+              )::integer as active_tcgplayer_mapping_count,
+              'mtg_eng_paper_print'::text as identity_domain
+         from exact_evidence evidence
+         join public.card_prints card on card.id = evidence.card_print_id
+         join public.sets set_row on set_row.id = card.set_id
+         left join public.card_print_identity identity on identity.card_print_id = card.id
+         left join public.external_mappings mapping on mapping.card_print_id = card.id
+        group by evidence.source_product_id, card.id, card.gv_id, card.set_id,
+                 card.set_code, set_row.name, card.name, card.number,
+                 card.variant_key, evidence.supporting_printing_mapping_count
+        order by evidence.source_product_id::bigint, card.set_code, card.gv_id, card.id`,
+      [productIds],
+    )).rows;
     await client.query('rollback');
   } finally {
     await client.end();
@@ -134,6 +184,21 @@ async function main() {
     row,
   ]));
   const candidateIndex = buildTcgplayerOllamaCandidateIndexV1(cards);
+  const exactPrintingEvidence = new Map();
+  for (const candidate of exactPrintingEvidenceRows) {
+    const sourceProductId = Number(candidate.source_product_id);
+    const candidates = exactPrintingEvidence.get(sourceProductId) ?? [];
+    candidates.push({
+      ...candidate,
+      candidate_evidence: {
+        target_set_source: 'exact_tcgplayer_market_printing_evidence',
+        supporting_printing_mapping_count:
+          Number(candidate.supporting_printing_mapping_count),
+        mapping_authority: false,
+      },
+    });
+    exactPrintingEvidence.set(sourceProductId, candidates);
+  }
   const enrichedAll = input.rows.map((inputRow) => {
     const product = products.get(Number(inputRow.source_product_id));
     const printedNumber = uniqueTcgplayerExtendedNumberV1(product?.extended_data);
@@ -152,6 +217,7 @@ async function main() {
       row,
       candidatePoolForTcgplayerOllamaRowV1(row, candidateIndex, groupConsensus),
       groupConsensus,
+      exactPrintingEvidence.get(Number(row.source_product_id)) ?? [],
     );
   });
   const enriched = candidateOnly
@@ -171,6 +237,11 @@ async function main() {
     output_rows: enriched.length,
     candidate_only: candidateOnly,
     catalog_candidates_scanned: cards.length,
+    exact_printing_evidence_rows_scanned: exactPrintingEvidenceRows.length,
+    exact_printing_evidence_products: exactPrintingEvidence.size,
+    exact_printing_evidence_candidate_rows: enrichedAll.filter((row) =>
+      row.candidate_search.candidate_source ===
+        'exact_tcgplayer_market_printing_evidence').length,
     rows_with_review_targets: enrichedAll.filter((row) => row.review_targets.length > 0).length,
     rows_without_review_targets: enrichedAll.filter((row) => row.review_targets.length === 0).length,
     missing_number_rows_enriched: enrichedAll.filter((row) =>
