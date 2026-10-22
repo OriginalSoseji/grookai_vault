@@ -38,6 +38,9 @@ staleness is reconciled against the export's immutable `captured_at` timestamp,
 which must use canonical UTC ISO form (`YYYY-MM-DDTHH:mm:ss.sssZ`), while idle
 `event` and `manual` agents are not reclassified as stale. Actual `running` and
 `failed` states remain visible when staleness does not take precedence.
+PostgreSQL `timestamptz` values in RPC row and evidence fields accept strict,
+timezone-qualified RFC 3339 forms, including microsecond precision, and are
+normalized to canonical UTC before publication.
 
 ## Frozen Task Envelope
 

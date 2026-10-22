@@ -101,6 +101,20 @@ test("read adapter preserves authoritative periodic staleness and event idle hea
   assert.equal(model.boundaries.production_writes, false);
 });
 
+test("read adapter accepts and normalizes PostgreSQL timestamptz exports", () => {
+  const candidate = clone(snapshot);
+  candidate.agents[0].last_heartbeat_at = "2026-10-16T18:00:00.123456+00:00";
+  candidate.agents[0].last_success_at = "2026-10-16T12:00:00.654321+00:00";
+  candidate.agents[0].latest_run_at = "2026-10-16T18:00:00.123456+00:00";
+  candidate.agents[0].evidence_refs[0].captured_at = "2026-10-17T06:00:00.987654+00:00";
+  const model = buildOperationsReadModelV1({ snapshot: candidate, registry });
+  const periodic = model.agents.find((agent) => agent.agent_key === "universal-catalog-discovery-v1");
+  assert.equal(periodic.last_heartbeat_at, "2026-10-16T18:00:00.123Z");
+  assert.equal(periodic.last_success_at, "2026-10-16T12:00:00.654Z");
+  assert.equal(periodic.latest_run_at, "2026-10-16T18:00:00.123Z");
+  assert.equal(periodic.evidence_refs[0].captured_at, "2026-10-17T06:00:00.987Z");
+});
+
 test("read adapter rejects unknown agents", () => {
   const candidate = clone(snapshot);
   candidate.agents[0].agent_key = "unknown-agent-v1";

@@ -16,6 +16,7 @@ const HEALTH_VALUES = new Set(["healthy", "running", "failed", "stale", "paused"
 const RUN_STATUS_VALUES = new Set(["queued", "running", "succeeded", "failed", "cancelled"]);
 const PERIODIC_SCHEDULES = new Set(["cron", "timer", "continuous"]);
 const CANONICAL_UTC_TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+const RFC3339_TIMESTAMP_PATTERN = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,9}))?(Z|[+-](\d{2}):(\d{2}))$/;
 const TOP_LEVEL_KEYS = new Set(["snapshot_version", "captured_at", "source", "agents"]);
 const SOURCE_KEYS = new Set(["kind", "locator"]);
 const AGENT_KEYS = new Set([
@@ -45,15 +46,36 @@ function clean(value) {
   return String(value ?? "").trim();
 }
 
-function assertTimestamp(value, label, { nullable = true } = {}) {
+function isValidRfc3339Timestamp(value) {
+  if (typeof value !== "string") return false;
+  const match = RFC3339_TIMESTAMP_PATTERN.exec(value);
+  if (!match) return false;
+  const [, yearText, monthText, dayText, hourText, minuteText, secondText, , , offsetHourText, offsetMinuteText] = match;
+  const year = Number(yearText);
+  const month = Number(monthText);
+  const day = Number(dayText);
+  const hour = Number(hourText);
+  const minute = Number(minuteText);
+  const second = Number(secondText);
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const monthDays = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (month < 1 || month > 12 || day < 1 || day > monthDays[month - 1]) return false;
+  if (hour > 23 || minute > 59 || second > 59) return false;
+  if (offsetHourText !== undefined && (Number(offsetHourText) > 23 || Number(offsetMinuteText) > 59)) return false;
+  return Number.isFinite(Date.parse(value));
+}
+
+function assertTimestamp(value, label, { nullable = true, canonicalUtc = false } = {}) {
   if (value === null && nullable) return null;
+  const expected = canonicalUtc ? "a canonical UTC ISO timestamp" : "an RFC 3339 timestamp";
   assert(
-    typeof value === "string" && CANONICAL_UTC_TIMESTAMP_PATTERN.test(value),
-    `${label} must be a canonical UTC ISO timestamp${nullable ? " or null" : ""}`,
+    isValidRfc3339Timestamp(value) && (!canonicalUtc || CANONICAL_UTC_TIMESTAMP_PATTERN.test(value)),
+    `${label} must be ${expected}${nullable ? " or null" : ""}`,
   );
   const parsed = Date.parse(value);
-  assert(Number.isFinite(parsed) && new Date(parsed).toISOString() === value, `${label} must be a canonical UTC ISO timestamp`);
-  return value;
+  const normalized = new Date(parsed).toISOString();
+  assert(!canonicalUtc || normalized === value, `${label} must be ${expected}`);
+  return normalized;
 }
 
 function assertRepoRelative(value, label) {
@@ -173,7 +195,7 @@ export function buildOperationsReadModelV1({ snapshot, registry }) {
   assertObject(snapshot, "snapshot");
   assertOnlyKeys(snapshot, TOP_LEVEL_KEYS, "snapshot");
   assert(snapshot.snapshot_version === OPERATIONS_SNAPSHOT_VERSION, "snapshot.snapshot_version is invalid");
-  const capturedAt = assertTimestamp(snapshot.captured_at, "snapshot.captured_at", { nullable: false });
+  const capturedAt = assertTimestamp(snapshot.captured_at, "snapshot.captured_at", { nullable: false, canonicalUtc: true });
   assertObject(snapshot.source, "snapshot.source");
   assertOnlyKeys(snapshot.source, SOURCE_KEYS, "snapshot.source");
   assert(snapshot.source.kind === "operations_rpc_export", "snapshot.source.kind must be operations_rpc_export");
