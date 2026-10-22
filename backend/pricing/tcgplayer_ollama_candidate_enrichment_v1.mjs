@@ -1,3 +1,5 @@
+import { normalizeTcgplayerMappingNameV1 } from './tcgplayer_market_exact_mapping_plan_policy_v1.mjs';
+
 const SPACE = /\s+/g;
 
 function text(value) {
@@ -6,7 +8,8 @@ function text(value) {
 
 export function normalizeTcgplayerOllamaCandidateTextV1(value) {
   return text(value)
-    .normalize('NFKC')
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
     .toLocaleLowerCase('en-US')
     .replace(/[★☆◇]/g, ' star ')
     .replace(/♀/g, ' f ')
@@ -15,6 +18,12 @@ export function normalizeTcgplayerOllamaCandidateTextV1(value) {
     .replace(/[^a-z0-9]+/g, ' ')
     .replace(SPACE, ' ')
     .trim();
+}
+
+export function normalizeTcgplayerOllamaSourceNameV1(value) {
+  return normalizeTcgplayerOllamaCandidateTextV1(
+    normalizeTcgplayerMappingNameV1(value),
+  );
 }
 
 export function normalizeTcgplayerOllamaCoordinateV1(value) {
@@ -37,8 +46,8 @@ function similarity(left, right) {
 }
 
 function sourceName(row) {
-  if (!text(row.printed_number)) return text(row.source_product_name);
-  return text(row.normalized_source_name || row.source_product_name);
+  return text(row.normalized_source_name) ||
+    normalizeTcgplayerOllamaSourceNameV1(row.source_product_name);
 }
 
 function identityDomainForCategory(categoryId) {

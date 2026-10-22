@@ -189,7 +189,9 @@ try {
   try { Write-TaskLog "FAILED: $($_.Exception.Message)" } catch {}
   exit 1
 } finally {
-  try { & ollama.exe stop 'grookai-card-triage:4b' 2>&1 | Out-Null } catch {}
-  if ($hasMutex) { $taskMutex.ReleaseMutex() }
+  if ($hasMutex) {
+    try { & ollama.exe stop 'grookai-card-triage:4b' 2>&1 | Out-Null } catch {}
+    $taskMutex.ReleaseMutex()
+  }
   $taskMutex.Dispose()
 }

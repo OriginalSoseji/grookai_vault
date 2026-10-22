@@ -11,7 +11,7 @@ import {
   buildTcgplayerOllamaCandidateIndexV1,
   candidatePoolForTcgplayerOllamaRowV1,
   enrichTcgplayerOllamaRowV1,
-  normalizeTcgplayerOllamaCandidateTextV1,
+  normalizeTcgplayerOllamaSourceNameV1,
   uniqueTcgplayerExtendedNumberV1,
 } from '../../backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs';
 
@@ -140,7 +140,7 @@ async function main() {
     const row = {
       ...inputRow,
       printed_number: printedNumber,
-      normalized_source_name: normalizeTcgplayerOllamaCandidateTextV1(
+      normalized_source_name: normalizeTcgplayerOllamaSourceNameV1(
         product?.name ?? inputRow.source_product_name,
       ),
       source_product_extended_data: product?.extended_data ?? [],

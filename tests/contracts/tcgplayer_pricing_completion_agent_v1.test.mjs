@@ -217,4 +217,5 @@ test('local V2 consumer uses hosted candidate evidence without database secrets'
   assert.match(runner, /GrookaiOllamaPricingTriageV2/);
   assert.doesNotMatch(runner, /\.env\.local|SUPABASE_DB_URL|DATABASE_URL|POSTGRES_URL/);
   assert.doesNotMatch(runner, /candidate_enrichment/);
+  assert.match(runner, /if \(\$hasMutex\) \{[\s\S]*ollama\.exe stop[\s\S]*ReleaseMutex\(\)/);
 });
