@@ -382,8 +382,8 @@ class VendorPricingWorkspaceService {
               : printing?.label ??
                     printing?.printingGvId ??
                     (printingId == null
-                        ? 'Printing unassigned'
-                        : 'Exact printing'),
+                        ? 'Variant needed'
+                        : 'Variant assigned'),
           conditionLabel: _nullable(instance['condition_label']) ?? 'NM',
           intent: _normalizeIntent(instance['intent']),
           isGraded: isGraded,
@@ -464,7 +464,7 @@ class VendorPricingWorkspaceService {
     required String cardPrintingId,
   }) async {
     if (row.isGraded) {
-      throw Exception('Slab printing cannot be changed from this control.');
+      throw Exception('A slab variant cannot be changed from this control.');
     }
     final selectedId = cardPrintingId.trim();
     VendorPrintingOption? selected;
@@ -475,7 +475,7 @@ class VendorPricingWorkspaceService {
       }
     }
     if (selected == null) {
-      throw Exception('Choose a valid exact printing for this card.');
+      throw Exception('Choose a valid exact variant for this card.');
     }
 
     final authoritative = await _requiredClient()
@@ -485,7 +485,7 @@ class VendorPricingWorkspaceService {
         .eq('card_print_id', row.cardPrintId)
         .maybeSingle();
     if (authoritative == null) {
-      throw Exception('That printing does not belong to this card.');
+      throw Exception('That variant does not belong to this card.');
     }
 
     final saved = await _updateOwnedInstance(row.instanceId, {
@@ -493,7 +493,7 @@ class VendorPricingWorkspaceService {
     }, 'id,card_print_id,card_printing_id');
     if (_text(saved['card_print_id']) != row.cardPrintId ||
         _text(saved['card_printing_id']) != selected.id) {
-      throw Exception('Exact printing could not be saved.');
+      throw Exception('Variant could not be saved.');
     }
 
     final pricing = await CardSurfacePricingService.fetchByCardPrintingIds(
@@ -733,7 +733,7 @@ class VendorPricingWorkspaceService {
               _nullable(finishRecord['label']) ??
               printingGvId ??
               finishKey ??
-              'Exact printing';
+              'Variant assigned';
           (result[cardPrintId] ??= <VendorPrintingOption>[]).add(
             VendorPrintingOption(
               id: id,

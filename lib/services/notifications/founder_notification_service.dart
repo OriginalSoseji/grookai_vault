@@ -62,7 +62,7 @@ class FounderNotificationItem {
     if (explicit.isNotEmpty) return explicit;
 
     final unit = sourceUnit.isEmpty
-        ? 'Grookai system'
+        ? 'grookai system'
         : _displayToken(sourceUnit);
     return '$unit - ${_displayToken(eventType)}';
   }

@@ -49,11 +49,11 @@ void main() {
     expect(parsed.printingGvId, 'GV-PK-TEST-001-RH');
     expect(parsed.finishKey, 'reverse_holo');
     expect(parsed.finishLabel, 'Reverse Holo');
-    expect(parsed.printingIdentityLabel, 'Printing: Reverse Holo');
+    expect(parsed.printingIdentityLabel, 'Reverse Holo');
   });
 
   test('unassigned copy never receives an inferred finish', () {
-    expect(copy(id: 'copy-1').printingIdentityLabel, 'Printing unassigned');
+    expect(copy(id: 'copy-1').printingIdentityLabel, 'Variant needed');
   });
 
   test('single-printing copy groups show their exact finish', () {
@@ -62,7 +62,7 @@ void main() {
       copy(id: 'copy-2', cardPrintingId: 'printing-1', finishLabel: 'Holo'),
     ]);
 
-    expect(card.printingIdentityLabel, 'Printing: Holo');
+    expect(card.printingIdentityLabel, 'Holo');
   });
 
   test('mixed and partially unassigned groups cannot claim one finish', () {
@@ -71,14 +71,14 @@ void main() {
         copy(id: 'copy-1', cardPrintingId: 'printing-1'),
         copy(id: 'copy-2', cardPrintingId: 'printing-2'),
       ]).printingIdentityLabel,
-      'Mixed printings',
+      'Mixed variants',
     );
     expect(
       data([
         copy(id: 'copy-1', cardPrintingId: 'printing-1'),
         copy(id: 'copy-2'),
       ]).printingIdentityLabel,
-      'Printing partially unassigned',
+      'Some variants needed',
     );
   });
 }

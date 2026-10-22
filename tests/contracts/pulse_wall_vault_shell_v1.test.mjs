@@ -45,7 +45,10 @@ test("network surfaces preserve progressive first paint", () => {
   const screen = readSource("lib/screens/network/network_screen.dart");
   const service = readSource("lib/services/network/network_stream_service.dart");
   assert.match(screen, /NETWORK_PROGRESSIVE_FIRST_PAINT_V2/);
-  assert.match(screen, /unawaited\(_loadProvisionalCards\(resetGeneration\)\)/);
+  assert.match(
+    screen,
+    /unawaited\([\s\S]*?_primeDeferredOwnership\([\s\S]*?resetGeneration: resetGeneration/,
+  );
   assert.match(screen, /PULSE_UNREAD_BEST_EFFORT_V1/);
   assert.match(service, /NETWORK_DISCOVERY_PARALLEL_FETCH_V1/);
   assert.match(service, /NETWORK_DISCOVERY_BOUNDED_OVERFETCH_V1/);
@@ -77,7 +80,7 @@ test("Pulse feed success is independent from unread badge failures", () => {
 test("append pagination cannot invalidate active-page ownership hydration", () => {
   const screen = readSource("lib/screens/network/network_screen.dart");
   const loadRows = screen.match(
-    /Future<void> _loadRows\([\s\S]*?Future<void> _loadProvisionalCards/,
+    /Future<void> _loadRows\([\s\S]*?Future<void> _primeDeferredPricing/,
   )?.[0];
   const ownershipHelper = screen.match(
     /Future<void> _primeDeferredOwnership\([\s\S]*?void _debugOwnershipPrime/,
@@ -101,10 +104,10 @@ test("append pagination cannot invalidate active-page ownership hydration", () =
 test("Network retries governed pricing after fail-open first paint", () => {
   const screen = readSource("lib/screens/network/network_screen.dart");
   const loadRows = screen.match(
-    /Future<void> _loadRows\([\s\S]*?Future<void> _loadProvisionalCards/,
+    /Future<void> _loadRows\([\s\S]*?Future<void> _primeDeferredPricing/,
   )?.[0];
   const pricingHelper = screen.match(
-    /Future<void> _primeDeferredPricing\([\s\S]*?Future<void> _loadProvisionalCards/,
+    /Future<void> _primeDeferredPricing\([\s\S]*?Future<void> _loadPulse/,
   )?.[0];
 
   assert.ok(loadRows, "network row loader must be present");

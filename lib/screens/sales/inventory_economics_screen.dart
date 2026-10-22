@@ -308,7 +308,7 @@ class _PurchasePaneState extends State<_PurchasePane> {
           'version': 4,
           'kind': 'purchase',
           'storeName': _store.text.trim().isEmpty
-              ? 'Grookai Vault'
+              ? 'grookai vault'
               : _store.text.trim(),
           'items': [
             for (var index = 0; index < _lines.length; index++)

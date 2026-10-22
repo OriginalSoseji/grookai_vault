@@ -671,8 +671,8 @@ class CollectionImportService {
         } else {
           reasons.add(
             options.isEmpty
-                ? 'This row has no verified catalog printing yet.'
-                : 'More than one printing matches. Specify the finish or keep this row for review.',
+                ? 'This row has no verified catalog variant yet.'
+                : 'More than one variant matches. Specify the finish or keep this row for review.',
           );
         }
       }
@@ -706,7 +706,7 @@ class CollectionImportService {
       }
       if (matches.length > 1) {
         reasons.add(
-          'Multiple catalog identities match. A printing or language must be selected.',
+          'Multiple catalog identities match. A variant or language must be selected.',
         );
       }
       CollectionImportCardMatch convert(_CollectionImportCandidateRow card) =>
@@ -792,7 +792,7 @@ class CollectionImportService {
           r'1st edition|shadowless|unlimited',
           caseSensitive: false,
         ).hasMatch(row.displaySet))
-      'This edition needs a verified printing identity before saving.',
+      'This edition needs a verified variant before saving.',
     if (sourceAware && row.quantity > 50000)
       'Quantity exceeds the import limit.',
     if (sourceAware && (row.notes?.length ?? 0) > 4000)
@@ -868,7 +868,7 @@ class CollectionImportService {
         );
         if (raw is! List) {
           throw const CollectionImportFailure(
-            'Printing data could not be checked. Choose the CSV again.',
+            'Variant data could not be checked. Choose the CSV again.',
           );
         }
         if (raw.isEmpty) break;
@@ -878,7 +878,7 @@ class CollectionImportService {
               !seen.add(value['id'] as String) ||
               !chunk.contains(value['card_print_id'])) {
             throw const CollectionImportFailure(
-              'Printing data was incomplete. Choose the CSV again.',
+              'Variant data was incomplete. Choose the CSV again.',
             );
           }
           result.add(Map<String, dynamic>.from(value));

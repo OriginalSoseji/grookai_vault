@@ -5,18 +5,18 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final shell = File('lib/main_shell.dart').readAsStringSync();
 
-  test('signed-in mobile header opens Vendor Mode in one tap', () {
+  test('mobile header moves Vendor Mode into the drawer', () {
     final appBarActions = RegExp(
       r'List<Widget> _buildAppBarActions\([\s\S]*?\n  @override',
     ).firstMatch(shell)!.group(0)!;
 
+    expect(appBarActions, contains('_GrookaiNotificationButton('));
+    expect(appBarActions, isNot(contains('Icons.storefront_outlined')));
+    expect(appBarActions, isNot(contains("tooltip: 'Vendor Mode'")));
     expect(
       appBarActions,
-      contains('if (!isDesktopShell && _supabase.auth.currentUser != null)'),
+      isNot(contains('onPressed: _openVendorPricingWorkspace')),
     );
-    expect(appBarActions, contains('Icons.storefront_outlined'));
-    expect(appBarActions, contains("tooltip: 'Vendor Mode'"));
-    expect(appBarActions, contains('onPressed: _openVendorPricingWorkspace'));
   });
 
   test('Vendor Mode remains reachable from desktop rail and app drawer', () {

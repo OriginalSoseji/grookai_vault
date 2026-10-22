@@ -167,7 +167,7 @@ class OwnerCollectorMemory {
   String get printingIdentityLabel {
     final status = (printingIdentityStatus ?? '').trim();
     if (status.isEmpty) {
-      return 'Printing not recorded';
+      return 'Variant not recorded';
     }
     return resolveVaultPrintingIdentityPresentation(<String, dynamic>{
       'printing_identity_status': status,

@@ -1,4 +1,5 @@
 import '../services/vault/collector_memory_service.dart';
+import '../utils/vault_printing_identity.dart';
 import '../widgets/grookai_objects/grookai_object_models.dart';
 import '../widgets/grookai_objects/grookai_object.dart';
 import '../widgets/grookai_objects/grookai_object_skin.dart';
@@ -7,7 +8,7 @@ class GrookaiMemoryCardSource {
   const GrookaiMemoryCardSource({
     required this.cardName,
     required this.setLine,
-    this.printingIdentityLabel = 'Printing not recorded',
+    this.printingIdentityLabel = 'Variant not recorded',
     this.cardImageUrl,
     this.cardImageFallbackUrl,
     this.authorName = 'You',
@@ -98,9 +99,8 @@ class GrookaiMemoryCardAdapter {
       card: CardObjectRef(
         cardName: _fallback(source.cardName, 'Card memory'),
         setLine: source.setLine,
-        printingIdentityLabel: _fallback(
+        printingIdentityLabel: formatVaultVariantLabel(
           source.printingIdentityLabel,
-          'Printing not recorded',
         ),
         cardImageUrl: _blankToNull(source.cardImageUrl),
         cardImageFallbackUrl: _blankToNull(source.cardImageFallbackUrl),

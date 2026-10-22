@@ -401,6 +401,15 @@ class _VaultGridTile extends StatelessWidget {
                       top: 8,
                       child: _VaultSelectionMark(selected: selected),
                     ),
+                  if (pricing?.hasVisibleValue == true)
+                    Positioned(
+                      right: 6,
+                      bottom: 6,
+                      child: CardSurfacePricePill(
+                        pricing: pricing,
+                        size: CardSurfacePriceSize.grid,
+                      ),
+                    ),
                 ],
               ),
               const SizedBox(height: GvGridConstants.imageToTitleGap),
@@ -422,23 +431,6 @@ class _VaultGridTile extends StatelessWidget {
                       ? theme.colorScheme.primary
                       : theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 3),
-              SizedBox(
-                height: GvGridConstants.priceSlotHeight,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Visibility(
-                    visible: pricing?.hasVisibleValue == true,
-                    maintainAnimation: true,
-                    maintainState: true,
-                    maintainSize: true,
-                    child: CardSurfacePriceText(
-                      pricing: pricing,
-                      size: CardSurfacePriceSize.grid,
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -934,6 +926,14 @@ class VaultPageState extends State<VaultPage> {
 
     try {
       if (delta > 0) {
+        final printing = await chooseVaultPrinting(
+          context: context,
+          client: supabase,
+          cardPrintId: cardId,
+          cardName: (row['name'] ?? 'this card').toString(),
+          preferredPrintingId: row['card_printing_id']?.toString(),
+        );
+        if (printing == null) return;
         await VaultCardService.addOrIncrementVaultItem(
           client: supabase,
           userId: _uid!,
@@ -943,6 +943,7 @@ class VaultPageState extends State<VaultPage> {
           fallbackName: (row['name'] ?? '').toString(),
           fallbackSetName: (row['set_name'] ?? '').toString(),
           fallbackImageUrl: _vaultDisplayImageUrl(row),
+          cardPrintingId: printing.id,
         );
       } else {
         await VaultCardService.archiveOneVaultItem(
@@ -1049,11 +1050,28 @@ class VaultPageState extends State<VaultPage> {
       isScrollControlled: true,
       builder: (context) => _CatalogPicker(),
     );
-    if (picked == null || _uid == null) {
+    if (picked == null || _uid == null || !mounted) {
       return;
     }
 
-    final added = await _addCatalogPickToVault(picked);
+    VaultPrintingChoice? printing;
+    try {
+      printing = await chooseVaultPrinting(
+        context: context,
+        client: supabase,
+        cardPrintId: picked.id,
+        cardName: resolveDisplayName(picked),
+      );
+    } catch (error) {
+      _showVaultMutationError(error.toString().replaceFirst('Bad state: ', ''));
+      return;
+    }
+    if (printing == null) return;
+    final cardPrintingId = printing.id;
+    final added = await _addCatalogPickToVault(
+      picked,
+      cardPrintingId: cardPrintingId,
+    );
     if (!added || !mounted) {
       return;
     }
@@ -1067,14 +1085,19 @@ class VaultPageState extends State<VaultPage> {
           action: SnackBarAction(
             label: '+1 more',
             onPressed: () {
-              unawaited(_addCatalogPickToVault(picked));
+              unawaited(
+                _addCatalogPickToVault(picked, cardPrintingId: cardPrintingId),
+              );
             },
           ),
         ),
       );
   }
 
-  Future<bool> _addCatalogPickToVault(CardPrint picked) async {
+  Future<bool> _addCatalogPickToVault(
+    CardPrint picked, {
+    required String cardPrintingId,
+  }) async {
     final userId = _uid;
     if (userId == null) {
       return false;
@@ -1090,6 +1113,7 @@ class VaultPageState extends State<VaultPage> {
         fallbackName: picked.name,
         fallbackSetName: picked.displaySet,
         fallbackImageUrl: picked.displayImage,
+        cardPrintingId: cardPrintingId,
       );
       await reload();
       return true;
@@ -1916,7 +1940,7 @@ class VaultPageState extends State<VaultPage> {
     await SharePlus.instance.share(
       ShareParams(
         uri: uri,
-        subject: (row['name'] ?? 'Grookai Vault card').toString(),
+        subject: (row['name'] ?? 'grookai vault card').toString(),
       ),
     );
   }
@@ -2199,26 +2223,27 @@ class VaultPageState extends State<VaultPage> {
       MediaQuery.textScalerOf(context).scale(14) / 14,
     );
     if (resolvedViewMode == AppCardViewMode.grid) {
-      const horizontalPadding = 28.0;
-      const gridSpacing = 12.0;
       final availableWidth =
-          MediaQuery.sizeOf(context).width - horizontalPadding;
-      final tileWidth =
-          (availableWidth - (gridSpacing * (columns - 1))) / columns;
+          MediaQuery.sizeOf(context).width -
+          (GvGridConstants.gridOuterPadding * 2);
+      final tileWidth = GvGridConstants.tileWidth(
+        availableWidth: availableWidth,
+        columns: columns,
+      );
       final tileMainAxisExtent =
           (tileWidth / GvGridConstants.artworkAspectRatio) +
           GvGridConstants.imageToTitleGap +
           22 +
           3 +
           20 +
-          3 +
-          GvGridConstants.priceSlotHeight +
-          6 +
+          4 +
           ((MediaQuery.textScalerOf(context).scale(1) - 1).clamp(0.0, 1.0) *
               16);
       return [
         SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
+          padding: const EdgeInsets.symmetric(
+            horizontal: GvGridConstants.gridOuterPadding,
+          ),
           sliver: SliverGrid(
             delegate: SliverChildBuilderDelegate(
               (context, index) => _buildVaultGridTile(rows[index]),
@@ -2226,8 +2251,8 @@ class VaultPageState extends State<VaultPage> {
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: columns,
-              mainAxisSpacing: gridSpacing,
-              crossAxisSpacing: gridSpacing,
+              mainAxisSpacing: GvGridConstants.gridSpacing,
+              crossAxisSpacing: GvGridConstants.gridSpacing,
               mainAxisExtent: tileMainAxisExtent,
             ),
           ),
@@ -2324,8 +2349,25 @@ class VaultPageState extends State<VaultPage> {
   }
 
   Widget _buildVaultLoadingSliver({required int columns}) {
+    final availableWidth =
+        MediaQuery.sizeOf(context).width -
+        (GvGridConstants.gridOuterPadding * 2);
+    final tileWidth = GvGridConstants.tileWidth(
+      availableWidth: availableWidth,
+      columns: columns,
+    );
+    final tileMainAxisExtent =
+        (tileWidth / GvGridConstants.artworkAspectRatio) +
+        GvGridConstants.imageToTitleGap +
+        22 +
+        3 +
+        20 +
+        4 +
+        ((MediaQuery.textScalerOf(context).scale(1) - 1).clamp(0.0, 1.0) * 16);
     return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 14),
+      padding: const EdgeInsets.symmetric(
+        horizontal: GvGridConstants.gridOuterPadding,
+      ),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) => const _VaultGridLoadingTile(),
@@ -2333,9 +2375,9 @@ class VaultPageState extends State<VaultPage> {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: columns,
-          mainAxisSpacing: 12,
-          crossAxisSpacing: 12,
-          childAspectRatio: 0.52,
+          mainAxisSpacing: GvGridConstants.gridSpacing,
+          crossAxisSpacing: GvGridConstants.gridSpacing,
+          mainAxisExtent: tileMainAxisExtent,
         ),
       ),
     );
@@ -2592,18 +2634,19 @@ class VaultPageState extends State<VaultPage> {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(14, 6, 14, 0),
+              padding: const EdgeInsets.fromLTRB(10, 6, 10, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Vault',
-                    style: theme.textTheme.headlineSmall?.copyWith(
+                    'THE VAULT',
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: theme.colorScheme.primary,
                       fontWeight: FontWeight.w900,
-                      letterSpacing: -0.35,
+                      letterSpacing: 1.35,
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 4),
                   Semantics(
                     identifier: (_sealedTotals?.copies ?? 0) > 0
                         ? 'vault_owned_total_v1_${derivedData.pricedCopyCount + _sealedTotals!.priced}_${derivedData.vaultPricingSummary.unpricedCopyCount + _sealedTotals!.unpriced}_${combinedValue?.toStringAsFixed(2) ?? 'unknown'}'
@@ -2625,14 +2668,14 @@ class VaultPageState extends State<VaultPage> {
                           : _formatVaultValue(combinedValue),
                       style: theme.textTheme.headlineSmall?.copyWith(
                         color: theme.colorScheme.onSurface,
-                        fontSize: 30,
+                        fontSize: 25,
                         fontWeight: FontWeight.w800,
                         height: 1.0,
                         letterSpacing: -0.5,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 4),
                   Text(
                     derivedData.estimatedValue == null
                         ? '$totalCards cards · ${_items.length} unique · Value pending'
@@ -2644,7 +2687,7 @@ class VaultPageState extends State<VaultPage> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: 8),
                   Semantics(
                     textField: true,
                     label: 'Search your Vault',
@@ -2790,24 +2833,27 @@ class VaultPageState extends State<VaultPage> {
             ),
           ),
           const SliverToBoxAdapter(child: SizedBox(height: 8)),
+          ...vaultContentSlivers,
           if (kSealedOwnershipEnabled && _view == _VaultStructuralView.all)
             SliverToBoxAdapter(
-              child: OwnedSealedPanel(
-                reloadToken: _reloadRequestVersion,
-                query: _search,
-                selectionEpoch: _sealedSelectionEpoch,
-                onSelectionChanged: (copies) {
-                  if (mounted) {
-                    setState(() {
-                      _selectedSealedCopies = copies;
-                      if (copies.isNotEmpty) _selectionMode = true;
-                    });
-                  }
-                },
-                onShareLot: _openSelectedLotPricing,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: OwnedSealedPanel(
+                  reloadToken: _reloadRequestVersion,
+                  query: _search,
+                  selectionEpoch: _sealedSelectionEpoch,
+                  onSelectionChanged: (copies) {
+                    if (mounted) {
+                      setState(() {
+                        _selectedSealedCopies = copies;
+                        if (copies.isNotEmpty) _selectionMode = true;
+                      });
+                    }
+                  },
+                  onShareLot: _openSelectedLotPricing,
+                ),
               ),
             ),
-          ...vaultContentSlivers,
           SliverToBoxAdapter(
             child: SizedBox(
               height: shellContentBottomPadding(context, extra: 8),

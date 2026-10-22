@@ -19,6 +19,7 @@ import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/gv_chip.dart';
+import '../../widgets/vault/vault_printing_picker.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
@@ -108,10 +109,12 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   bool _loading = true;
   bool _bulkCopySaving = false;
   String? _copyIntentSavingId;
+  String? _copyVariantSavingId;
   String? _copySectionSavingKey;
   String? _error;
   String? _statusMessage;
   String? _preferredExactCopyImageUrl;
+  List<VaultPrintingChoice> _variantOptions = const <VaultPrintingChoice>[];
 
   void _dismissKeyboard() {
     final focusScope = FocusScope.of(context);
@@ -163,6 +166,13 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         fallbackNumber: bootstrap.number,
         fallbackImageUrl: bootstrap.imageUrl,
       );
+      var variantOptions = const <VaultPrintingChoice>[];
+      try {
+        variantOptions = await loadVaultPrintingChoices(
+          client: _client,
+          cardPrintId: data.cardPrintId,
+        );
+      } catch (_) {}
       final rawPricingTargets = data.copies
           .where((copy) => !copy.isGraded)
           .map(
@@ -202,6 +212,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         _data = data;
         _pricing = pricing;
         _preferredExactCopyImageUrl = preferredExactCopyImageUrl;
+        _variantOptions = variantOptions;
         _copySectionMemberships = copySectionMemberships;
         _selectedCopyIds = const <String>{};
         _bulkSectionId = _firstBulkSectionId(copySectionMemberships);
@@ -360,6 +371,47 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
       setState(() {
         _copyIntentSavingId = null;
+      });
+      _showStatus(error.toString().replaceFirst('Exception: ', ''));
+    }
+  }
+
+  Future<void> _saveCopyVariant(
+    VaultManageCardCopy copy,
+    VaultPrintingChoice variant,
+  ) async {
+    final data = _data;
+    if (data == null ||
+        copy.isGraded ||
+        _copyVariantSavingId != null ||
+        copy.cardPrintingId == variant.id) {
+      return;
+    }
+
+    setState(() {
+      _copyVariantSavingId = copy.instanceId;
+      _statusMessage = null;
+    });
+
+    try {
+      await VaultCardService.saveVaultItemInstanceVariant(
+        client: _client,
+        instanceId: copy.instanceId,
+        cardPrintId: data.cardPrintId,
+        cardPrintingId: variant.id,
+      );
+      if (!mounted) return;
+
+      await _load();
+      if (!mounted) return;
+      setState(() {
+        _copyVariantSavingId = null;
+        _statusMessage = '${variant.label} saved.';
+      });
+    } catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _copyVariantSavingId = null;
       });
       _showStatus(error.toString().replaceFirst('Exception: ', ''));
     }
@@ -1160,7 +1212,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
 
     final uri = GrookaiWebRouteService.buildUri(_publicGvviPath(gvviId));
     await SharePlus.instance.share(
-      ShareParams(uri: uri, subject: _data?.name ?? 'Grookai Vault copy'),
+      ShareParams(uri: uri, subject: _data?.name ?? 'grookai vault copy'),
     );
   }
 
@@ -1363,6 +1415,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             size: CardSurfacePriceSize.list,
             mode: CardSurfacePriceMode.market,
           );
+    final heroCopy = data.copies.length == 1 ? data.copies.single : null;
 
     return _ManageSurface(
       emphasize: true,
@@ -1434,12 +1487,21 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
             ),
           ],
           const SizedBox(height: 7),
-          GvChip(
-            label: data.printingIdentityLabel,
-            tone: data.printingIdentity.isExact
-                ? colorScheme.primary
-                : colorScheme.onSurface.withValues(alpha: 0.7),
-          ),
+          if (heroCopy != null && !heroCopy.isGraded)
+            _VariantDropdown(
+              currentId: heroCopy.cardPrintingId,
+              label: heroCopy.printingIdentityLabel,
+              options: _variantOptions,
+              busy: _copyVariantSavingId == heroCopy.instanceId,
+              onSelected: (variant) => _saveCopyVariant(heroCopy, variant),
+            )
+          else
+            GvChip(
+              label: data.printingIdentityLabel,
+              tone: data.printingIdentity.isExact
+                  ? colorScheme.primary
+                  : colorScheme.onSurface.withValues(alpha: 0.7),
+            ),
           if (heroPrice != null) ...[const SizedBox(height: 10), heroPrice],
           const SizedBox(height: 8),
           Wrap(
@@ -1690,6 +1752,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         const SizedBox(height: 8),
         _CopyRow(
           copy: copy,
+          variantOptions: _variantOptions,
+          variantSaving: _copyVariantSavingId == copy.instanceId,
           selected: false,
           intentSaving: _copyIntentSavingId == copy.instanceId,
           canPreviewPublic:
@@ -1706,6 +1770,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           onSelectionChanged: null,
           onIntentSelected: _copyIntentSavingId == null
               ? (intent) => _saveCopyIntent(copy, intent)
+              : null,
+          onVariantSelected: _copyVariantSavingId == null
+              ? (variant) => _saveCopyVariant(copy, variant)
               : null,
           onToggleSection: _copySectionSavingKey == null
               ? (section) => _toggleCopySectionMembership(copy, section)
@@ -1793,6 +1860,9 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                 for (var index = 0; index < data.copies.length; index++) ...[
                   _CopyRow(
                     copy: data.copies[index],
+                    variantOptions: _variantOptions,
+                    variantSaving:
+                        _copyVariantSavingId == data.copies[index].instanceId,
                     selected: _selectedCopyIds.contains(
                       data.copies[index].instanceId,
                     ),
@@ -1817,6 +1887,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
                     onIntentSelected: _copyIntentSavingId == null
                         ? (intent) =>
                               _saveCopyIntent(data.copies[index], intent)
+                        : null,
+                    onVariantSelected: _copyVariantSavingId == null
+                        ? (variant) =>
+                              _saveCopyVariant(data.copies[index], variant)
                         : null,
                     onToggleSection: _copySectionSavingKey == null
                         ? (section) => _toggleCopySectionMembership(
@@ -2459,9 +2533,129 @@ class _CopyBulkActionSurface extends StatelessWidget {
   }
 }
 
+class _VariantDropdown extends StatelessWidget {
+  const _VariantDropdown({
+    required this.currentId,
+    required this.label,
+    required this.options,
+    required this.busy,
+    this.onSelected,
+    this.compact = false,
+  });
+
+  final String? currentId;
+  final String label;
+  final List<VaultPrintingChoice> options;
+  final bool busy;
+  final ValueChanged<VaultPrintingChoice>? onSelected;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final canOpen = !busy && onSelected != null && options.isNotEmpty;
+
+    return PopupMenuButton<VaultPrintingChoice>(
+      enabled: canOpen,
+      tooltip: canOpen ? 'Change variant' : 'Variant',
+      initialValue: options
+          .where((option) => option.id == currentId)
+          .firstOrNull,
+      position: PopupMenuPosition.under,
+      onSelected: onSelected,
+      itemBuilder: (context) => [
+        for (final option in options)
+          PopupMenuItem<VaultPrintingChoice>(
+            value: option,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    option.label,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: option.id == currentId
+                          ? FontWeight.w800
+                          : FontWeight.w600,
+                    ),
+                  ),
+                ),
+                if (option.id == currentId)
+                  Icon(
+                    Icons.check_rounded,
+                    size: 18,
+                    color: colorScheme.primary,
+                  ),
+              ],
+            ),
+          ),
+      ],
+      child: Semantics(
+        button: canOpen,
+        label: canOpen ? '$label. Change variant.' : label,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: EdgeInsets.symmetric(
+            horizontal: compact ? 10 : 12,
+            vertical: compact ? 6 : 7,
+          ),
+          decoration: BoxDecoration(
+            color: colorScheme.primary.withValues(alpha: 0.09),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(
+              color: colorScheme.primary.withValues(alpha: 0.28),
+            ),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (busy) ...[
+                SizedBox(
+                  width: 14,
+                  height: 14,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: colorScheme.primary,
+                  ),
+                ),
+                const SizedBox(width: 7),
+              ],
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style:
+                      (compact
+                              ? theme.textTheme.bodySmall
+                              : theme.textTheme.labelLarge)
+                          ?.copyWith(
+                            color: colorScheme.primary,
+                            fontWeight: FontWeight.w800,
+                          ),
+                ),
+              ),
+              if (canOpen) ...[
+                const SizedBox(width: 4),
+                Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  size: compact ? 17 : 19,
+                  color: colorScheme.primary,
+                ),
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _CopyRow extends StatelessWidget {
   const _CopyRow({
     required this.copy,
+    required this.variantOptions,
+    required this.variantSaving,
     required this.selected,
     required this.intentSaving,
     required this.sections,
@@ -2470,6 +2664,7 @@ class _CopyRow extends StatelessWidget {
     this.onTap,
     this.onSelectionChanged,
     this.onIntentSelected,
+    this.onVariantSelected,
     this.onToggleSection,
     this.onRemoveCopy,
     this.onOpenWall,
@@ -2484,6 +2679,8 @@ class _CopyRow extends StatelessWidget {
   });
 
   final VaultManageCardCopy copy;
+  final List<VaultPrintingChoice> variantOptions;
+  final bool variantSaving;
   final bool selected;
   final bool intentSaving;
   final List<VaultManageCopySectionMembership> sections;
@@ -2492,6 +2689,7 @@ class _CopyRow extends StatelessWidget {
   final VoidCallback? onTap;
   final ValueChanged<bool>? onSelectionChanged;
   final ValueChanged<String>? onIntentSelected;
+  final ValueChanged<VaultPrintingChoice>? onVariantSelected;
   final ValueChanged<VaultManageCopySectionMembership>? onToggleSection;
   final VoidCallback? onRemoveCopy;
   final VoidCallback? onOpenWall;
@@ -2590,15 +2788,25 @@ class _CopyRow extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        Text(
-          copy.printingIdentityLabel,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: copy.printingIdentity.isExact
-                ? colorScheme.primary
-                : colorScheme.onSurface.withValues(alpha: 0.66),
-            fontWeight: FontWeight.w600,
+        if (!copy.isGraded)
+          _VariantDropdown(
+            currentId: copy.cardPrintingId,
+            label: copy.printingIdentityLabel,
+            options: variantOptions,
+            busy: variantSaving,
+            onSelected: onVariantSelected,
+            compact: true,
+          )
+        else
+          Text(
+            copy.printingIdentityLabel,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: copy.printingIdentity.isExact
+                  ? colorScheme.primary
+                  : colorScheme.onSurface.withValues(alpha: 0.66),
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
         const SizedBox(height: 8),
         Wrap(
           spacing: 6,

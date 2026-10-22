@@ -11,7 +11,8 @@ void main() {
     expect(tokens, contains('static const Color blue'));
     expect(tokens, contains('static const Color mint'));
     expect(tokens, contains('static const Color gold'));
-    expect(tokens, contains("surface: const Color(0xFF0B0F14)"));
+    expect(tokens, contains('static const Color ink = Color(0xFF080B09)'));
+    expect(tokens, contains('surface: ink'));
     expect(theme, contains('GvPalette.scheme(brightness)'));
     expect(theme, contains('surfaceContainerLowest'));
     expect(theme, contains('filledButtonTheme: FilledButtonThemeData'));
@@ -54,6 +55,7 @@ void main() {
   test('search and Vault retain factual card hierarchy', () {
     final main = File('lib/main.dart').readAsStringSync();
     final vault = File('lib/main_vault.dart').readAsStringSync();
+    final shell = File('lib/main_shell.dart').readAsStringSync();
     final grid = File('lib/theme/gv_grid_constants.dart').readAsStringSync();
 
     expect(main, contains("hintText: 'Search in a sentence'"));
@@ -64,9 +66,9 @@ void main() {
     expect(main, contains('SliverLayoutBuilder('));
     expect(
       main,
-      contains('mainAxisExtent: GvGridConstants.catalogTileMainAxisExtent'),
+      contains('mainAxisExtent: GvGridConstants.catalogTileMainAxisExtent('),
     );
-    expect(vault, contains("'Vault'"));
+    expect(shell, contains("title: 'Vault'"));
     expect(vault, contains("'TCGPlayer Market'"));
     expect(vault, contains("hintText: 'Search by card, set, or Pokémon…'"));
     expect(vault, contains("label: 'Search your Vault'"));

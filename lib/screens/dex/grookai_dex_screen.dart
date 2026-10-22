@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../services/grookai_dex/grookai_dex_service.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../utils/pokemon_sprite_url.dart';
 import 'grookai_dex_species_screen.dart';
 
@@ -98,7 +99,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
       final speciesPage = await GrookaiDexService.fetchSpeciesPage(
         client: _client,
         page: nextPage,
-      );
+      ).timeout(const Duration(seconds: 15));
       if (!mounted) {
         return;
       }
@@ -124,7 +125,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
         );
       } else {
         setState(() {
-          _error = 'Unable to load Grookai Dex.';
+          _error = 'Unable to load grookai Dex.';
         });
       }
     } finally {
@@ -307,7 +308,12 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+                padding: const EdgeInsets.fromLTRB(
+                  GvGridConstants.gridOuterPadding,
+                  8,
+                  GvGridConstants.gridOuterPadding,
+                  0,
+                ),
                 sliver: SliverToBoxAdapter(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -317,32 +323,38 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'NATIONAL COLLECTION',
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                color: colorScheme.onSurface.withValues(
-                                  alpha: 0.52,
-                                ),
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: 1.4,
-                              ),
-                            ),
-                            const SizedBox(height: 6),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    initialLoading
-                                        ? '—'
-                                        : initialUnavailable
-                                        ? 'Unavailable'
-                                        : '$ownedStartedCount / ${metricSpecies.length}',
-                                    style: theme.textTheme.headlineLarge
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w900,
-                                          letterSpacing: -1,
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        const TextSpan(
+                                          text: 'National collection  ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
+                                        TextSpan(
+                                          text: initialLoading
+                                              ? 'Loading…'
+                                              : initialUnavailable
+                                              ? 'Unavailable'
+                                              : '$ownedStartedCount / ${metricSpecies.length} species',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                      color: colorScheme.onSurface.withValues(
+                                        alpha: 0.78,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 if (!initialUnavailable)
@@ -358,10 +370,11 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                                   ),
                               ],
                             ),
+                            const SizedBox(height: 2),
                             Text(
                               initialUnavailable
                                   ? 'Collection metrics are temporarily unavailable.'
-                                  : 'species collected · $pageOwnedPrints of $pageTotalPrints printings',
+                                  : '$pageOwnedPrints of $pageTotalPrints card variants collected',
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: colorScheme.onSurface.withValues(
                                   alpha: 0.58,
@@ -369,11 +382,11 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 6),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(999),
                               child: LinearProgressIndicator(
-                                minHeight: 7,
+                                minHeight: 4,
                                 value: initialLoading || initialUnavailable
                                     ? null
                                     : pageCompletionPercent / 100,
@@ -385,7 +398,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 10),
                       Semantics(
                         textField: true,
                         label: 'Search Pokemon species',
@@ -394,11 +407,12 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                           decoration: const InputDecoration(
                             hintText: 'Search species…',
                             prefixIcon: Icon(Icons.search_rounded),
+                            isDense: true,
                           ),
                           onChanged: (_) => setState(() {}),
                         ),
                       ),
-                      const SizedBox(height: 14),
+                      const SizedBox(height: 8),
                       if (hasDexData) ...[
                         _DexBrowseControls(
                           generations: generations,
@@ -427,7 +441,7 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                           }),
                           onClearFilters: _clearBrowseFilters,
                         ),
-                        const SizedBox(height: 14),
+                        const SizedBox(height: 8),
                       ],
                       if (_loading)
                         const _DexLoadingGrid()
@@ -467,7 +481,9 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
               if (showSpeciesList &&
                   _presentation == _DexSpeciesPresentation.list)
                 SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: GvGridConstants.gridOuterPadding,
+                  ),
                   sliver: SliverList.builder(
                     itemCount: filteredSpecies.length,
                     itemBuilder: (context, index) {
@@ -491,8 +507,8 @@ class _GrookaiDexScreenState extends State<GrookaiDexScreen> {
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 230,
                           mainAxisExtent: 220,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
+                          crossAxisSpacing: GvGridConstants.gridSpacing,
+                          mainAxisSpacing: GvGridConstants.gridSpacing,
                         ),
                     itemCount: filteredSpecies.length,
                     itemBuilder: (context, index) {
@@ -964,7 +980,7 @@ class _DexSpeciesCompactCard extends StatelessWidget {
         species.types.take(2).map(_dexTitleCase).join(' / '),
     ].join(' · ');
     final collectionStatus = species.totalPrintCount <= 0
-        ? 'No printings mapped'
+        ? 'No variants mapped'
         : species.ownedPrintCount >= species.totalPrintCount
         ? 'Complete'
         : species.ownedPrintCount > 0
@@ -1184,7 +1200,7 @@ class _DexSpeciesCard extends StatelessWidget {
               ),
               const SizedBox(height: 18),
               Text(
-                '$ownedCount / $knownCount printings collected',
+                '$ownedCount / $knownCount variants collected',
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w900,
                   letterSpacing: 0,
@@ -1398,8 +1414,8 @@ class _DexLoadingGrid extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 230,
             mainAxisExtent: 220,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
+            crossAxisSpacing: GvGridConstants.gridSpacing,
+            mainAxisSpacing: GvGridConstants.gridSpacing,
           ),
           itemCount: 4,
           itemBuilder: (_, _) => Padding(

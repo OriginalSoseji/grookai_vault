@@ -33,7 +33,7 @@ void main() {
     expect(
       buildCollectorMemoryShareText(item, includeAppLink: true),
       'A collector Memory for Pikachu.\n'
-      'Open this Memory in Grookai Vault: '
+      'Open this Memory in grookai vault: '
       'https://grookaivault.com/memory/memory-1',
     );
   });
@@ -97,10 +97,7 @@ void main() {
 
     expect(find.text('Pikachu'), findsWidgets);
     expect(find.text('Found at trade night.'), findsOneWidget);
-    expect(
-      find.text('Scarlet & Violet Promos · Printing: Reverse Holo'),
-      findsOneWidget,
-    );
+    expect(find.text('Scarlet & Violet Promos · Reverse Holo'), findsOneWidget);
     expect(find.textContaining('Denver'), findsOneWidget);
   });
 
@@ -462,7 +459,7 @@ void main() {
 
       expect(exportService.shareCalls, 1);
       expect(exportService.lastFileName, 'grookai-memory-story-pikachu.png');
-      expect(exportService.lastSubject, 'Grookai memory card');
+      expect(exportService.lastSubject, 'grookai memory card');
       expect(exportService.lastText, 'A collector Memory for Pikachu.');
       expect(exportService.lastBytes, isNotEmpty);
     },

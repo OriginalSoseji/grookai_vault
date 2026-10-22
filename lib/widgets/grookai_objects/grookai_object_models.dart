@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+
+import '../../utils/vault_printing_identity.dart';
 import 'grookai_object_skin.dart';
 
 /// Minimal reference to the underlying card print — swap for whatever the
@@ -13,7 +15,7 @@ class CardObjectRef {
   const CardObjectRef({
     required this.cardName,
     required this.setLine,
-    this.printingIdentityLabel = 'Printing not recorded',
+    this.printingIdentityLabel = 'Variant not recorded',
     this.cardImageUrl,
     this.cardImageFallbackUrl,
   });
@@ -58,8 +60,9 @@ class MemoryCardData {
       card: CardObjectRef(
         cardName: f['cardName'] as String,
         setLine: (f['setLine'] as String?) ?? '',
-        printingIdentityLabel:
-            (f['printingIdentityLabel'] as String?) ?? 'Printing not recorded',
+        printingIdentityLabel: formatVaultVariantLabel(
+          f['printingIdentityLabel'],
+        ),
         cardImageUrl: f['cardImageUrl'] as String?,
         cardImageFallbackUrl: f['cardImageFallbackUrl'] as String?,
       ),
@@ -76,7 +79,9 @@ class MemoryCardData {
   Map<String, dynamic> toFields() => {
     'cardName': card.cardName,
     'setLine': card.setLine,
-    'printingIdentityLabel': card.printingIdentityLabel,
+    'printingIdentityLabel': formatVaultVariantLabel(
+      card.printingIdentityLabel,
+    ),
     'cardImageUrl': card.cardImageUrl,
     'cardImageFallbackUrl': card.cardImageFallbackUrl,
     'listingNo': listingNo,
@@ -129,8 +134,9 @@ class SaleListingData {
       card: CardObjectRef(
         cardName: f['cardName'] as String,
         setLine: (f['setLine'] as String?) ?? '',
-        printingIdentityLabel:
-            (f['printingIdentityLabel'] as String?) ?? 'Printing not recorded',
+        printingIdentityLabel: formatVaultVariantLabel(
+          f['printingIdentityLabel'],
+        ),
         cardImageUrl: f['cardImageUrl'] as String?,
         cardImageFallbackUrl: f['cardImageFallbackUrl'] as String?,
       ),
@@ -149,7 +155,9 @@ class SaleListingData {
   Map<String, dynamic> toFields() => {
     'cardName': card.cardName,
     'setLine': card.setLine,
-    'printingIdentityLabel': card.printingIdentityLabel,
+    'printingIdentityLabel': formatVaultVariantLabel(
+      card.printingIdentityLabel,
+    ),
     'cardImageUrl': card.cardImageUrl,
     'cardImageFallbackUrl': card.cardImageFallbackUrl,
     'listingNo': listingNo,
@@ -194,7 +202,7 @@ class LotItem {
     this.collectorNumber,
     this.printedTotal,
     this.variantLabel,
-    this.printingIdentityLabel = 'Printing not recorded',
+    this.printingIdentityLabel = 'Variant not recorded',
     required this.condition,
     this.marketPrice,
     required this.price,
@@ -214,8 +222,7 @@ class LotItem {
     collectorNumber: f['collectorNumber'] as String?,
     printedTotal: (f['printedTotal'] as num?)?.toInt(),
     variantLabel: f['variantLabel'] as String?,
-    printingIdentityLabel:
-        (f['printingIdentityLabel'] as String?) ?? 'Printing not recorded',
+    printingIdentityLabel: formatVaultVariantLabel(f['printingIdentityLabel']),
     condition: f['condition'] as String,
     marketPrice: (f['marketPrice'] as num?)?.toDouble(),
     price: (f['price'] as num).toDouble(),
@@ -235,7 +242,7 @@ class LotItem {
     'collectorNumber': collectorNumber,
     'printedTotal': printedTotal,
     'variantLabel': variantLabel,
-    'printingIdentityLabel': printingIdentityLabel,
+    'printingIdentityLabel': formatVaultVariantLabel(printingIdentityLabel),
     'condition': condition,
     if (marketPrice != null) 'marketPrice': marketPrice,
     'price': price,

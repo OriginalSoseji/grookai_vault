@@ -637,7 +637,7 @@ class _BinderChecklistTile extends StatelessWidget {
                   const SizedBox(height: 3),
                   if (variantLabel != null || distinguishStandardPrinting)
                     Text(
-                      variantLabel ?? 'Standard printing',
+                      variantLabel ?? 'Standard variant',
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.w700,
@@ -1549,7 +1549,7 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
                       labelText: 'Binder cover',
                       helperText: requiresHostedCover
                           ? 'Public, listed, and custom Binders use verified '
-                                'Grookai-hosted artwork only.'
+                                'grookai-hosted artwork only.'
                           : 'Choose a governed card from this checklist.',
                       errorText: selectionIsEligible
                           ? null
@@ -1581,7 +1581,7 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
                               ).displayName,
                               if ((item.number ?? '').isNotEmpty)
                                 '#${item.number}',
-                              if (item.hasHostedImage) 'Grookai hosted',
+                              if (item.hasHostedImage) 'grookai hosted',
                             ].join(' · '),
                             overflow: TextOverflow.ellipsis,
                           ),

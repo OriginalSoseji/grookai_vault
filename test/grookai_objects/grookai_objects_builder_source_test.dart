@@ -9,7 +9,9 @@ void main() {
     ).readAsStringSync();
     final shell = File('lib/main_shell.dart').readAsStringSync();
 
-    expect(source, contains('widget.inventoryService.load(_client)'));
+    expect(source, contains('widget.inventoryService'));
+    expect(source, contains('.load(_client)'));
+    expect(source, contains('.timeout(const Duration(seconds: 12))'));
     expect(
       source,
       isNot(contains('VaultCardService.getCanonicalCollectorRows')),
@@ -30,13 +32,13 @@ void main() {
     expect(shell, isNot(contains('Open an owned card, then tap Share Memory')));
   });
 
-  test('card-detail object launch resolves the exact owned-copy printing', () {
+  test('card-detail object launch resolves the exact owned-copy variant', () {
     final source = File('lib/card_detail_screen.dart').readAsStringSync();
 
     expect(source, contains('VaultGvviService.loadPrivate'));
-    expect(source, contains("return 'Printing not recorded';"));
-    expect(source, contains("return 'Printing unassigned';"));
-    expect(source, contains("return 'Exact printing assigned';"));
-    expect(source, contains("return 'Printing: \${option.finishName}';"));
+    expect(source, contains("return 'Variant not recorded';"));
+    expect(source, contains("return 'Variant needed';"));
+    expect(source, contains("return 'Variant assigned';"));
+    expect(source, contains('return option.finishName;'));
   });
 }

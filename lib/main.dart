@@ -93,6 +93,7 @@ import 'services/identity/image_presentation.dart';
 import 'services/identity/catalog_artwork_resolution.dart';
 import 'services/identity/identity_search.dart';
 import 'theme/gv_grid_constants.dart';
+import 'theme/gv_typography.dart';
 import 'theme/gv_tokens.dart';
 import 'utils/display_image_contract.dart';
 import 'utils/vault_printing_identity.dart';
@@ -107,6 +108,7 @@ import 'widgets/provisional/provisional_card_section.dart';
 import 'models/search_interpretation.dart';
 import 'widgets/search_interpretation_chips.dart';
 import 'widgets/vault/vault_quick_action_sheet.dart';
+import 'widgets/vault/vault_printing_picker.dart';
 
 part 'main_shell.dart';
 part 'main_vault.dart';
@@ -270,6 +272,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
     useMaterial3: true,
     colorScheme: colorScheme,
     brightness: brightness,
+    fontFamily: GvTypography.fontFamily,
   );
 
   return base.copyWith(
@@ -611,6 +614,7 @@ class _CatalogSkeletonTile extends StatelessWidget {
 
 class _CatalogSearchField extends StatelessWidget {
   final TextEditingController controller;
+  final FocusNode? focusNode;
   final ValueChanged<String> onChanged;
   final ValueChanged<String>? onSubmitted;
   final VoidCallback? onFilterPressed;
@@ -618,6 +622,7 @@ class _CatalogSearchField extends StatelessWidget {
 
   const _CatalogSearchField({
     required this.controller,
+    this.focusNode,
     required this.onChanged,
     this.onFilterPressed,
     this.activeFilterCount = 0,
@@ -632,6 +637,7 @@ class _CatalogSearchField extends StatelessWidget {
       height: 52,
       child: TextField(
         controller: controller,
+        focusNode: focusNode,
         onChanged: onChanged,
         onSubmitted: onSubmitted,
         textInputAction: TextInputAction.search,
@@ -712,7 +718,9 @@ class _SentenceSearchExamples extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'Name, artist, set, rarity, language, number, and variant words all help.',
+          gameScope == 'pokemon'
+              ? 'Name, artist, set, rarity, language, number, and finish words all work.'
+              : 'Name, artist, set, rarity, number, and finish words all work.',
           style: theme.textTheme.bodySmall?.copyWith(
             color: colorScheme.onSurface.withValues(alpha: 0.58),
             height: 1.25,
@@ -1061,21 +1069,33 @@ class _ResolverStatusBanner extends StatelessWidget {
           borderRadius: BorderRadius.circular(GvRadii.control),
           border: Border.all(color: border, width: 0.8),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: theme.textTheme.labelLarge?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
+            Icon(
+              Icons.info_outline_rounded,
+              size: 17,
+              color: colorScheme.onSurface.withValues(alpha: 0.62),
             ),
-            const SizedBox(height: 4),
-            Text(
-              body,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.75),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '$title — ',
+                      style: const TextStyle(fontWeight: FontWeight.w800),
+                    ),
+                    TextSpan(text: body),
+                  ],
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withValues(alpha: 0.75),
+                  height: 1.25,
+                ),
               ),
             ),
           ],
@@ -2018,7 +2038,7 @@ class _CatalogPrintingOption {
           finishKey: finishKey,
           finishLabel: (row['finish_label'] ?? '').toString().trim(),
         ) ??
-        'Printing';
+        'Variant';
     final printingGvId = (row['printing_gv_id'] ?? '').toString().trim();
     return _CatalogPrintingOption(
       id: id,
@@ -2111,9 +2131,9 @@ class _SearchResultActionSheet extends StatelessWidget {
             : 'Add to Vault',
     };
     final primaryLabel = printingUnavailable
-        ? 'Printing unavailable'
+        ? 'Variant unavailable'
         : printingSelectionRequired
-        ? 'Choose printing'
+        ? 'Choose variant'
         : ownershipPrimaryLabel;
     final showOwnedShortcut =
         _canOpenOwnedSurface(ownershipState) &&
@@ -2209,8 +2229,8 @@ class _SearchResultActionSheet extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   printingOptions.length == 1
-                      ? 'Printing'
-                      : 'Choose the exact printing',
+                      ? 'Variant'
+                      : 'Choose the exact variant',
                   textAlign: TextAlign.center,
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.62),
@@ -2238,7 +2258,7 @@ class _SearchResultActionSheet extends StatelessWidget {
               ] else if (isAddAction) ...[
                 const SizedBox(height: 10),
                 Text(
-                  'Exact printing unavailable. Try again before adding.',
+                  'No verified variant is available. Try again before adding.',
                   textAlign: TextAlign.center,
                   style: theme.textTheme.labelMedium?.copyWith(
                     color: colorScheme.error,
@@ -2760,7 +2780,7 @@ class _GrookaiStartupFailureApp extends StatelessWidget {
                   Icon(Icons.error_outline, size: 42, color: Color(0xFFFBBF24)),
                   SizedBox(height: 18),
                   Text(
-                    'Grookai Vault could not start',
+                    'grookai vault could not start',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
@@ -2860,10 +2880,11 @@ class GrookaiAppFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Grookai Vault',
+      title: GvTypography.productName,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0F172A)),
         useMaterial3: true,
+        fontFamily: GvTypography.fontFamily,
       ),
       home: home,
     );
@@ -2893,13 +2914,12 @@ class _GrookaiBootWarmupScreen extends StatelessWidget {
               child: Image(image: AssetImage(_logoAsset)),
             ),
             const SizedBox(height: 22),
-            const Text(
-              'Grookai Vault',
+            const GrookaiBrandText(
+              includeVault: true,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 22,
-                fontWeight: FontWeight.w700,
                 letterSpacing: 0,
                 decoration: TextDecoration.none,
               ),
@@ -3375,7 +3395,7 @@ class _MyAppState extends State<MyApp> {
           ),
         );
       },
-      title: 'Grookai Vault',
+      title: GvTypography.productName,
       debugShowCheckedModeBanner: false,
       theme: _buildGrookaiTheme(Brightness.light),
       darkTheme: _buildGrookaiTheme(Brightness.dark),
@@ -3586,7 +3606,7 @@ class _SignedOutCatalogScreenState extends State<_SignedOutCatalogScreen> {
     final signedIn = await navigator.push<bool>(
       MaterialPageRoute<bool>(
         builder: (_) => const SignInContinuationScreen(
-          destinationLabel: 'continue to Grookai',
+          destinationLabel: 'continue to grookai',
         ),
       ),
     );
@@ -3728,6 +3748,7 @@ class HomePageState extends State<HomePage> {
   final supabase = Supabase.instance.client;
   final _ownershipAdapter = OwnershipResolverAdapter.instance;
   final _searchCtrl = TextEditingController();
+  final _searchFocusNode = FocusNode(debugLabel: 'catalog-search');
   final Map<String, String> _searchParameters = {};
   List<CardPrint> _results = const [];
   List<CardPrint> _visibleResults = const [];
@@ -3866,7 +3887,7 @@ class HomePageState extends State<HomePage> {
     if (options.length == 1) {
       return options.single.finishLabel;
     }
-    return '${options.length} printings';
+    return '${options.length} variants';
   }
 
   bool _shouldShowCuratedLanding([String? query]) {
@@ -4061,6 +4082,7 @@ class HomePageState extends State<HomePage> {
   void dispose() {
     _debounce?.cancel();
     _searchCtrl.dispose();
+    _searchFocusNode.dispose();
     super.dispose();
   }
 
@@ -4228,13 +4250,15 @@ class HomePageState extends State<HomePage> {
                         refreshSheet(() => _handleGameScopeChanged(value));
                       },
                     ),
-                    const SizedBox(height: 18),
-                    _SearchLanguageScopeSelector(
-                      value: _languageScope,
-                      onChanged: (value) => refreshSheet(
-                        () => _handleLanguageScopeChanged(value),
+                    if (_gameScope == 'pokemon') ...[
+                      const SizedBox(height: 18),
+                      _SearchLanguageScopeSelector(
+                        value: _languageScope,
+                        onChanged: (value) => refreshSheet(
+                          () => _handleLanguageScopeChanged(value),
+                        ),
                       ),
-                    ),
+                    ],
                     if (_gameScope == 'pokemon') ...[
                       const SizedBox(height: 18),
                       Text(
@@ -4643,6 +4667,7 @@ class HomePageState extends State<HomePage> {
 
     setState(() {
       _gameScope = normalized;
+      if (normalized != 'pokemon') _languageScope = 'all';
       _identityFilter = kIdentityFilterAll;
       _results = const [];
       _visibleResults = const [];
@@ -5193,7 +5218,7 @@ class HomePageState extends State<HomePage> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text(
-            'Exact printing is unavailable. Try again before adding.',
+            'No verified variant is available. Try again before adding.',
           ),
         ),
       );
@@ -5489,9 +5514,11 @@ class HomePageState extends State<HomePage> {
       builder: (context, constraints) {
         final availableWidth =
             constraints.crossAxisExtent -
-            (GvGridConstants.gridOuterPadding * 2) -
-            (GvGridConstants.gridSpacing * (columns - 1));
-        final tileWidth = availableWidth / columns;
+            (GvGridConstants.gridOuterPadding * 2);
+        final tileWidth = GvGridConstants.tileWidth(
+          availableWidth: availableWidth,
+          columns: columns,
+        );
 
         return SliverPadding(
           padding: const EdgeInsets.fromLTRB(
@@ -5648,6 +5675,7 @@ class HomePageState extends State<HomePage> {
     required int resultCount,
     required int visibleCount,
     required String trimmed,
+    required AppCardViewMode resolvedViewMode,
     required bool showFeedDebugToggle,
     required bool showFeedDebugOverlay,
   }) {
@@ -5672,6 +5700,9 @@ class HomePageState extends State<HomePage> {
         !showingCuratedLanding && visibleCount > 0 && visibleCount < resultCount
         ? 'Showing $visibleCount of $resultCount'
         : null;
+    final detailLabel = subtitle != null && progressLabel != null
+        ? '$subtitle · $progressLabel'
+        : subtitle ?? progressLabel;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -5682,27 +5713,17 @@ class HomePageState extends State<HomePage> {
             children: [
               Text(
                 title,
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w800,
                   letterSpacing: 0,
                 ),
               ),
-              if (subtitle != null) ...[
+              if (detailLabel != null) ...[
                 const SizedBox(height: 2),
                 Text(
-                  subtitle,
+                  detailLabel,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.58),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-              if (progressLabel != null) ...[
-                const SizedBox(height: 2),
-                Text(
-                  progressLabel,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.52),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -5710,7 +5731,30 @@ class HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        if (resultCount > 0 || showFeedDebugToggle)
+        if (!showingCuratedLanding)
+          SharedCardViewModeButton(
+            value: resolvedViewMode,
+            iconOnly: true,
+            onChanged: (mode) {
+              final resolvedMode = resolveCardViewModeForTextScale(
+                mode,
+                MediaQuery.textScalerOf(context).scale(14) / 14,
+              );
+              setState(() {
+                _viewMode = resolvedMode;
+              });
+              if (resolvedMode != mode) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Grid needs smaller text. Comfortable list is shown instead.',
+                    ),
+                  ),
+                );
+              }
+            },
+          )
+        else if (resultCount > 0 || showFeedDebugToggle)
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -5808,11 +5852,12 @@ class HomePageState extends State<HomePage> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
+          padding: const EdgeInsets.fromLTRB(10, 6, 10, 0),
           child: Column(
             children: [
               _CatalogSearchField(
                 controller: _searchCtrl,
+                focusNode: _searchFocusNode,
                 onChanged: _onQueryChanged,
                 onSubmitted: _submitSearch,
                 activeFilterCount: _activeSearchFilterCount,
@@ -5860,33 +5905,6 @@ class HomePageState extends State<HomePage> {
                 query: trimmed,
                 padding: const EdgeInsets.only(top: 6, bottom: 0),
               ),
-              if (!showingCuratedLanding) ...[
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: SharedCardViewModeButton(
-                    value: resolvedViewMode,
-                    onChanged: (mode) {
-                      final resolvedMode = resolveCardViewModeForTextScale(
-                        mode,
-                        MediaQuery.textScalerOf(context).scale(14) / 14,
-                      );
-                      setState(() {
-                        _viewMode = resolvedMode;
-                      });
-                      if (resolvedMode != mode) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Grid needs smaller text. Comfortable list is shown instead.',
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ],
             ],
           ),
         ),
@@ -5909,7 +5927,7 @@ class HomePageState extends State<HomePage> {
                   slivers: [
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 6),
+                        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -5922,7 +5940,7 @@ class HomePageState extends State<HomePage> {
                                 onRemove: _removeRecentSearch,
                                 onClear: _clearRecentSearches,
                               ),
-                              const SizedBox(height: 22),
+                              const SizedBox(height: 10),
                             ],
                             _buildResultsLeadIn(
                               theme,
@@ -5930,6 +5948,7 @@ class HomePageState extends State<HomePage> {
                               resultCount: totalResultCount,
                               visibleCount: visibleResultCount,
                               trimmed: trimmed,
+                              resolvedViewMode: resolvedViewMode,
                               showFeedDebugToggle: false,
                               showFeedDebugOverlay:
                                   showingCuratedLanding &&

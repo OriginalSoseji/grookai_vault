@@ -215,7 +215,7 @@ void main() {
   });
   for (final status in ['selection_required', 'ready', 'unavailable']) {
     test(
-      'scanner common add stops before ownership writes for $status',
+      'scanner common add requires a variant before edition resolution for $status',
       () async {
         final f = await fixture(status: status);
         await expectLater(
@@ -224,13 +224,15 @@ void main() {
             userId: f.owner,
             cardId: cardA,
           ),
-          throwsA(isA<JungleEditionSelectionRequired>()),
+          throwsA(
+            isA<StateError>().having(
+              (error) => error.message,
+              'message',
+              'Choose the exact variant before adding this card.',
+            ),
+          ),
         );
-        expect(f.requests.length, 1);
-        expect(
-          f.requests.single.url.path,
-          endsWith('/get_jungle_edition_resolution_v1'),
-        );
+        expect(f.requests, isEmpty);
         expect(f.saved, isEmpty);
       },
     );

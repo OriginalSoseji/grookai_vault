@@ -35,7 +35,7 @@ void main() {
     expect(multiFinishIndex, greaterThanOrEqualTo(0));
     expect(pickerIndex, greaterThan(multiFinishIndex));
     expect(writeIndex, greaterThan(pickerIndex));
-    expect(source, contains('cardPrintingId: selectedPrinting?.id'));
+    expect(source, contains('cardPrintingId: selectedPrinting!.id'));
     expect(source, contains("'Choose the exact finish'"));
   });
 

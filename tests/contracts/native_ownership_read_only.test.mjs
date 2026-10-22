@@ -21,8 +21,9 @@ test('self ownership resolution cannot call reconciling detail or raw-only count
 });
 test('Objects selection is exact-copy keyed and avoids parent-level market estimates', () => {
   const source = read('lib/screens/grookai_objects/grookai_objects_hub_screen.dart');
-  assert.match(source, /inventoryService.load/);
+  assert.match(source, /widget\.inventoryService[\s\S]*?\.load/);
   assert.doesNotMatch(source, /getCanonicalCollectorRows|fetchByCardPrintIds/);
-  const key = source.slice(source.indexOf('String _rowKey('), source.indexOf('String _cardPrintIdForRow('));
+  const key = source.match(/String _rowKey\([\s\S]*?\n\}/)?.[0] ?? '';
+  assert.match(key, /row\['instance_id'\]/);
   assert.ok(key.indexOf("row['instance_id']") < key.indexOf('_cardPrintIdForRow'));
 });

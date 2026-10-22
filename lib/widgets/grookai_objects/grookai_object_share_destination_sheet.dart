@@ -77,7 +77,7 @@ IconData _iconFor(GrookaiObjectExportDestination destination) {
 String _descriptionFor(GrookaiObjectExportDestination destination) {
   switch (destination) {
     case GrookaiObjectExportDestination.instagramFeed:
-      return '4:5 social post with Grookai skin and overlay.';
+      return '4:5 social post with grookai skin and overlay.';
     case GrookaiObjectExportDestination.story:
       return '9:16 story image with top and bottom safe zones.';
     case GrookaiObjectExportDestination.ebayListing:

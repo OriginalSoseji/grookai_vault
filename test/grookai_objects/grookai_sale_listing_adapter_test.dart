@@ -35,7 +35,7 @@ void main() {
     expect(object.skin, GrookaiObjectSkin.onyx);
     expect(object.fields['cardName'], 'Umbreon VMAX');
     expect(object.fields['setLine'], 'Evolving Skies #215');
-    expect(object.fields['printingIdentityLabel'], 'Printing: Holo');
+    expect(object.fields['printingIdentityLabel'], 'Holo');
     expect(object.fields['price'], 420);
     expect(object.fields['condition'], 'PSA 10');
     expect(object.fields['sellerHandle'], 'Casey');
@@ -110,7 +110,7 @@ void main() {
     final items = object.fields['items'] as List<dynamic>;
     expect(
       (items.first as Map<String, dynamic>)['printingIdentityLabel'],
-      'Printing: Reverse Holo',
+      'Reverse Holo',
     );
     expect((items.first as Map<String, dynamic>)['marketPrice'], 130);
     expect((items.first as Map<String, dynamic>)['setName'], 'Obsidian Flames');
@@ -121,7 +121,7 @@ void main() {
     );
     expect(
       (items.last as Map<String, dynamic>)['printingIdentityLabel'],
-      'Printing not recorded',
+      'Variant not recorded',
     );
     expect(object.metadata['card_print_ids'], ['CARD-1', 'CARD-2']);
 

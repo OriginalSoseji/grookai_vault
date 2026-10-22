@@ -20,9 +20,18 @@ class GvGridConstants {
   static const FontWeight titleWeight = FontWeight.w600;
   static const double subtitleOpacity = 0.60;
 
-  static const double gridSpacing = 6;
+  /// Shared edge-to-edge rhythm for every visual card grid in the app.
+  static const double gridSpacing = 9;
   static const double gridOuterPadding = 10;
   static const double gridChildAspectRatio = 0.52;
+
+  static double tileWidth({
+    required double availableWidth,
+    required int columns,
+  }) {
+    assert(columns > 0);
+    return (availableWidth - (gridSpacing * (columns - 1))) / columns;
+  }
 
   static const double titleSlotHeight = 38;
   static const double subtitleSlotHeight = 17;

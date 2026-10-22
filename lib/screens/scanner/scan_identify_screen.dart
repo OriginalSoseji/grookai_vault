@@ -11,6 +11,7 @@ import '../../services/vault/ownership_resolver_adapter.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/public/jungle_edition_resolution_service.dart';
 import 'jungle_edition_scan_review.dart';
+import '../../widgets/vault/vault_printing_picker.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
@@ -120,6 +121,14 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
       );
       final name = cand['name']?.toString() ?? identity.name;
       final setName = cand['set']?.toString() ?? identity.setName;
+      if (!mounted) return;
+      final printing = await chooseVaultPrinting(
+        context: context,
+        client: supabase,
+        cardPrintId: cardPrintId,
+        cardName: name,
+      );
+      if (printing == null) return;
 
       await VaultCardService.addOrIncrementVaultItem(
         client: supabase,
@@ -130,6 +139,7 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
         fallbackName: name,
         fallbackSetName: setName,
         fallbackImageUrl: cand['image_url']?.toString(),
+        cardPrintingId: printing.id,
       );
 
       _snack('Added to vault.');

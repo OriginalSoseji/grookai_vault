@@ -158,7 +158,7 @@ class _CollectionProjectsScreenState extends State<CollectionProjectsScreen> {
                     ? 'Sign in to view Binders'
                     : 'Unable to load Binders',
                 body: snapshot.error is CollectionProjectAuthenticationException
-                    ? 'Binders are private and tied to your Grookai Vault account.'
+                    ? 'Binders are private and tied to your grookai vault account.'
                     : 'Pull to refresh or try again. Your Vault has not changed.',
                 action: TextButton.icon(
                   onPressed: _reload,

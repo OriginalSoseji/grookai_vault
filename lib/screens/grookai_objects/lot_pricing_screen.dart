@@ -185,8 +185,8 @@ class _LotPricingScreenState extends State<LotPricingScreen> {
             side: 'back',
           ),
         ],
-        subject: 'Grookai lot card',
-        text: 'Front and details shared from Grookai Vault',
+        subject: 'grookai lot card',
+        text: 'Front and details shared from grookai vault',
         sharePositionOrigin: sharePositionOrigin,
       );
     } catch (error, stackTrace) {

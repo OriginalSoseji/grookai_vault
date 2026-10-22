@@ -192,7 +192,7 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
       if (mounted && generation == _generation) {
         setState(
           () => _error =
-              'Could not load printing choices. Select the card again to retry.',
+              'Could not load variant choices. Select the card again to retry.',
         );
       }
     } finally {
@@ -219,7 +219,7 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
           _printing == null ||
           (_action != 'vault' && (price == null || price <= 0))) {
         setState(
-          () => _error = 'Choose the printing and enter a positive USD price.',
+          () => _error = 'Choose the variant and enter a positive USD price.',
         );
         return;
       }
@@ -294,7 +294,7 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
             setState(() {
               _pending = null;
               _error =
-                  'The card could not be added. Check its printing and your access, then try again.';
+                  'The card could not be added. Check its variant and your access, then try again.';
             });
           }
         } catch (_) {
@@ -363,7 +363,7 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
                   ],
                 ),
                 const Text(
-                  'Choose the exact card and printing. Each add creates one physical copy in your Vault.',
+                  'Choose the exact card and variant. Each add creates one physical copy in your Vault.',
                 ),
                 const SizedBox(height: 12),
                 if (_pending == null) ...[
@@ -544,14 +544,14 @@ class _SalesCatalogDialogState extends State<SalesCatalogDialog> {
                             const SizedBox(height: 16),
                             if (!_loading && _printings.isEmpty)
                               const Text(
-                                'No eligible printing is available. This card cannot be added here yet.',
+                                'No eligible variant is available. This card cannot be added here yet.',
                               ),
                             DropdownButtonFormField<String>(
                               key: ValueKey(_selected!.id),
                               initialValue: _printing,
                               isExpanded: true,
                               decoration: const InputDecoration(
-                                labelText: 'Exact printing / finish',
+                                labelText: 'Variant',
                                 border: OutlineInputBorder(),
                               ),
                               items: _printings

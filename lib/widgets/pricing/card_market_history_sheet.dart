@@ -330,7 +330,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
             ),
             const SizedBox(height: 4),
             Text(
-              'TCGPlayer Market · exact printing',
+              'TCGPlayer Market · exact variant',
               style: Theme.of(
                 context,
               ).textTheme.labelMedium?.copyWith(color: colors.primary),
@@ -391,7 +391,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
             else if (_points.isEmpty)
               const _HistoryMessage(
                 message:
-                    'No qualified TCGPlayer Market history for this exact printing in this date range.',
+                    'No qualified TCGPlayer Market history for this exact variant in this date range.',
               )
             else ...[
               if (last != null) ...[
@@ -467,7 +467,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
               ),
               const SizedBox(height: 4),
               Text(
-                'Private sales you recorded in Grookai for this exact printing. This is your history, not marketwide comps.',
+                'Private sales you recorded in grookai for this exact variant. This is your history, not marketwide comps.',
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(color: colors.onSurfaceVariant),
@@ -483,7 +483,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
                   label: Text('Retry · $_personalSalesError'),
                 )
               else if (_personalSales.isEmpty)
-                const Text('No recorded sales for this exact printing yet.')
+                const Text('No recorded sales for this exact variant yet.')
               else
                 for (final sale in _personalSales)
                   ListTile(
@@ -496,7 +496,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
                           sale.condition!,
                         if (sale.askingPrice != null)
                           'Your asking price was ${_saleMoney(sale.askingPrice!, sale.currency)}',
-                        'Recorded in Grookai',
+                        'Recorded in grookai',
                       ].join(' · '),
                     ),
                     trailing: Text(
@@ -515,7 +515,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
               ),
               const SizedBox(height: 4),
               Text(
-                'Completed sales are separate from the exact-printing Market history above. Confirm the match before relying on a result.',
+                'Completed sales are separate from the exact-variant Market history above. Confirm the match before relying on a result.',
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(color: colors.onSurfaceVariant),
@@ -548,7 +548,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
                 label: const Text('Search eBay sold listings'),
               ),
               Text(
-                'Opens eBay for your review. Results are not imported into Grookai pricing.',
+                'Opens eBay for your review. Results are not imported into grookai pricing.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: colors.onSurfaceVariant,

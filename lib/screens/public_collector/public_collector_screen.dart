@@ -947,7 +947,9 @@ class _PublicCollectorSegmentedContentState
             !loadingSelectedSection &&
             cards.isNotEmpty)
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(
+              horizontal: GvGridConstants.gridOuterPadding,
+            ),
             sliver: SliverLayoutBuilder(
               builder: (context, constraints) {
                 final width = constraints.crossAxisExtent;
@@ -968,8 +970,10 @@ class _PublicCollectorSegmentedContentState
                     : width >= 260
                     ? 2
                     : 1;
-                const spacing = 12.0;
-                final tileWidth = (width - spacing * (columns - 1)) / columns;
+                final tileWidth = GvGridConstants.tileWidth(
+                  availableWidth: width,
+                  columns: columns,
+                );
                 final metadataExtent = 170.0 + 56 * (textScale - 1);
                 final tileExtent =
                     tileWidth / GvGridConstants.artworkAspectRatio +
@@ -977,8 +981,8 @@ class _PublicCollectorSegmentedContentState
                 return SliverGrid(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: columns,
-                    crossAxisSpacing: spacing,
-                    mainAxisSpacing: 20,
+                    crossAxisSpacing: GvGridConstants.gridSpacing,
+                    mainAxisSpacing: GvGridConstants.gridSpacing,
                     mainAxisExtent: tileExtent,
                   ),
                   delegate: SliverChildBuilderDelegate(
@@ -1218,7 +1222,7 @@ class _SectionRailChip extends StatelessWidget {
     return Semantics(
       button: true,
       selected: selected,
-      label: '$label, $count cards',
+      label: count == null ? label : '$label, $count cards',
       child: InkWell(
         onTap: loading ? null : onTap,
         child: ConstrainedBox(
@@ -1249,13 +1253,14 @@ class _SectionRailChip extends StatelessWidget {
                     fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
                   ),
                 ),
-                const SizedBox(width: 5),
-                if (loading)
+                if (loading) ...[
+                  const SizedBox(width: 5),
                   const SizedBox.square(
                     dimension: 13,
                     child: CircularProgressIndicator(strokeWidth: 1.8),
-                  )
-                else
+                  ),
+                ] else if (count != null) ...[
+                  const SizedBox(width: 5),
                   Text(
                     '$count',
                     style: theme.textTheme.labelSmall?.copyWith(
@@ -1263,6 +1268,7 @@ class _SectionRailChip extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
+                ],
               ],
             ),
           ),
@@ -1303,19 +1309,19 @@ class _PublicCollectorHeader extends StatelessWidget {
         ? (profile.slug.trim().isEmpty ? 'Public collector' : profile.slug)
         : profile.displayName.trim();
     final slugLabel = profile.slug.trim().isEmpty
-        ? 'Grookai collector'
+        ? 'grookai collector'
         : '/u/${profile.slug}';
     final shareUri = profile.slug.trim().isEmpty
         ? null
         : GrookaiWebRouteService.buildUri('/u/${profile.slug}');
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 8, 4, 10),
+      padding: const EdgeInsets.fromLTRB(2, 2, 2, 4),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _AvatarBadge(profile: profile),
-          const SizedBox(width: 10),
+          const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1330,7 +1336,7 @@ class _PublicCollectorHeader extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 3),
+                const SizedBox(height: 2),
                 Text(
                   slugLabel,
                   maxLines: 1,
@@ -1341,7 +1347,7 @@ class _PublicCollectorHeader extends StatelessWidget {
                   ),
                 ),
                 if (showFollowAction) ...[
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 4),
                   _ProfileFollowButton(
                     // FOLLOW_ACTION_V1
                     // Public collector profiles expose Follow / Following using the existing relationship system.
@@ -1350,7 +1356,7 @@ class _PublicCollectorHeader extends StatelessWidget {
                     onPressed: onFollowPressed,
                   ),
                 ],
-                const SizedBox(height: 8),
+                const SizedBox(height: 2),
                 Wrap(
                   spacing: 6,
                   runSpacing: 6,
@@ -1487,14 +1493,14 @@ class _ProfileFollowButton extends StatelessWidget {
         : colorScheme.primary.withValues(alpha: 0.18);
 
     return SizedBox(
-      height: 44,
+      height: 36,
       child: FilledButton(
         onPressed: loading ? null : () => unawaited(onPressed()),
         style: FilledButton.styleFrom(
           backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
           elevation: 0,
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
             side: BorderSide(color: borderColor),
@@ -2199,12 +2205,12 @@ class _ProfileStatChip extends StatelessWidget {
     final colorScheme = theme.colorScheme;
 
     return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 44),
+      constraints: const BoxConstraints(minHeight: 32),
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 11),
+          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 5),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -2242,10 +2248,10 @@ class _AvatarBadge extends StatelessWidget {
     final avatarUrl = profile.avatarUrl;
 
     return Container(
-      width: 56,
-      height: 56,
+      width: 48,
+      height: 48,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(16),
         color: colorScheme.surface.withValues(alpha: 0.62),
         border: Border.all(
           color: colorScheme.onSurface.withValues(alpha: 0.06),
@@ -2261,7 +2267,7 @@ class _AvatarBadge extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(12),
           child: DecoratedBox(
             decoration: BoxDecoration(color: colorScheme.primaryContainer),
             child: avatarUrl == null

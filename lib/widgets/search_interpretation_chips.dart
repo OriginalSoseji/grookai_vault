@@ -59,7 +59,7 @@ class SearchInterpretationChips extends StatelessWidget {
         ],
         if (empty)
           const Text(
-            'No recorded matches for all these filters. Remove a filter to broaden your search. Finish searches include only cataloged printings.',
+            'No recorded matches for all these filters. Remove a filter to broaden your search. Finish searches include only cataloged variants.',
           ),
         for (final warning in interpretation.unappliedLabels)
           Text(
@@ -67,7 +67,7 @@ class SearchInterpretationChips extends StatelessWidget {
             style: TextStyle(color: Theme.of(context).colorScheme.error),
           ),
         if (interpretation.hasOwnershipFilter)
-          const Text('Ownership is checked for the card across all printings.'),
+          const Text('Ownership is checked for the card across all variants.'),
       ],
     );
   }

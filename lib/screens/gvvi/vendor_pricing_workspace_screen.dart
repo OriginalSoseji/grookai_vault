@@ -223,7 +223,7 @@ class _VendorPricingWorkspaceScreenState
       row,
       () =>
           widget.service.savePrinting(row: row, cardPrintingId: cardPrintingId),
-      successMessage: 'Exact printing saved.',
+      successMessage: 'Variant saved.',
     );
   }
 
@@ -656,6 +656,7 @@ class _VendorPricingWorkspaceScreenState
   @override
   Widget build(BuildContext context) {
     final visibleRows = _visibleRows;
+    final compactAppBar = MediaQuery.sizeOf(context).width < 420;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Vendor Mode'),
@@ -706,15 +707,26 @@ class _VendorPricingWorkspaceScreenState
             },
             icon: const Icon(Icons.point_of_sale),
           ),
-          IconButton(
-            tooltip: 'Manage store',
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const StoreManagementScreen(),
+          if (compactAppBar)
+            IconButton(
+              tooltip: 'Manage store',
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const StoreManagementScreen(),
+                ),
               ),
+              icon: const Icon(Icons.storefront_outlined),
+            )
+          else
+            TextButton.icon(
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const StoreManagementScreen(),
+                ),
+              ),
+              icon: const Icon(Icons.storefront_outlined),
+              label: const Text('Manage store'),
             ),
-            icon: const Icon(Icons.storefront_outlined),
-          ),
           IconButton(
             tooltip: 'Refresh inventory',
             onPressed: _loading ? null : _load,
@@ -1180,7 +1192,7 @@ class _WorkspaceHeader extends StatelessWidget {
             key: const Key('vendor_search'),
             controller: searchController,
             decoration: const InputDecoration(
-              hintText: 'Find a card, set, printing, or GVVI',
+              hintText: 'Find a card, set, variant, or GVVI',
               prefixIcon: Icon(Icons.search_rounded),
               isDense: true,
             ),
@@ -1460,11 +1472,11 @@ class _VendorInventoryRow extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         _LabeledField(
-          label: 'Printing',
+          label: 'Variant',
           child: row.isGraded
               ? const _ReadOnlyValue(value: 'Slab')
               : row.printingOptions.isEmpty
-              ? const _ReadOnlyValue(value: 'No exact printings available')
+              ? const _ReadOnlyValue(value: 'No exact variants available')
               : DropdownButtonFormField<String>(
                   key: Key('vendor_printing_${row.instanceId}'),
                   initialValue: row.cardPrintingId ?? '',
@@ -1473,7 +1485,7 @@ class _VendorInventoryRow extends StatelessWidget {
                   items: [
                     const DropdownMenuItem<String>(
                       value: '',
-                      child: Text('Choose exact printing'),
+                      child: Text('Choose exact variant'),
                     ),
                     ...row.printingOptions.map(
                       (option) => DropdownMenuItem<String>(

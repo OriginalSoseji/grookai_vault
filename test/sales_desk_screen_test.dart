@@ -164,7 +164,7 @@ void main() {
       await tester.tap(find.text('Add to sale'));
       await tester.pumpAndSettle();
       expect(find.text('In cart'), findsOneWidget);
-      await tester.tap(find.text('Quick-add unlisted item'));
+      await tester.tap(find.byTooltip('Quick-add unlisted item'));
       await tester.pumpAndSettle();
       await tester.enterText(
         find.widgetWithText(TextField, 'Card / item name'),
@@ -223,7 +223,7 @@ void main() {
     (tester) async {
       final service = FakeSalesService()..loseReply = true;
       await open(tester, service, const Size(768, 1024));
-      await tester.tap(find.text('Quick-add unlisted item'));
+      await tester.tap(find.byTooltip('Quick-add unlisted item'));
       await tester.pumpAndSettle();
       await tester.enterText(
         find.widgetWithText(TextField, 'Card / item name'),

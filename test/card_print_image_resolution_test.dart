@@ -386,7 +386,7 @@ void main() {
     expect(presentation.detailBadgeLabel, 'Representative Image');
     expect(
       presentation.detailNote,
-      'Correct printing. Image may not show exact finish, stamp, or parallel.',
+      'Correct variant. Image may not show exact finish, stamp, or parallel.',
     );
   });
 
@@ -402,7 +402,7 @@ void main() {
     expect(presentation.detailBadgeLabel, 'Variant Image Pending');
     expect(
       presentation.detailNote,
-      'This is the printing, but not the correct variant image.',
+      'This is the card, but not the correct variant image.',
     );
   });
 

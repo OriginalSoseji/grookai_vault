@@ -6,6 +6,7 @@ import '../../models/ownership_state.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/public/compare_service.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
+import '../../theme/gv_grid_constants.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/ownership/ownership_signal.dart';
@@ -391,7 +392,12 @@ class _CompareScaffoldBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 18, 16, 28),
+        padding: const EdgeInsets.fromLTRB(
+          GvGridConstants.gridOuterPadding,
+          18,
+          GvGridConstants.gridOuterPadding,
+          28,
+        ),
         children: [child],
       ),
     );
@@ -585,8 +591,8 @@ class _CompareCardPreviewGrid extends StatelessWidget {
       itemCount: cards.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: columns,
-        crossAxisSpacing: 14,
-        mainAxisSpacing: 14,
+        crossAxisSpacing: GvGridConstants.gridSpacing,
+        mainAxisSpacing: GvGridConstants.gridSpacing,
         childAspectRatio: 0.74,
       ),
       itemBuilder: (context, index) {

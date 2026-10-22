@@ -76,7 +76,9 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
       _error = null;
     });
     try {
-      final rows = await widget.inventoryService.load(_client);
+      final rows = await widget.inventoryService
+          .load(_client)
+          .timeout(const Duration(seconds: 12));
       if (!mounted) {
         return;
       }
@@ -289,14 +291,12 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final visibleRows = _visibleRows;
     final selectedLotCount = _selectedLotRowKeys.length;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Grookai Objects'),
+        title: const Text('grookai Objects'),
         actions: [
           IconButton(
             tooltip: 'Memories',
@@ -310,23 +310,8 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
           onRefresh: _loadRows,
           child: ListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
+            padding: const EdgeInsets.fromLTRB(10, 8, 10, 24),
             children: [
-              Text(
-                'Build from your vault',
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 0,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                _modeDescription,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
-              ),
-              const SizedBox(height: 14),
               SegmentedButton<_ObjectsBuilderMode>(
                 segments: const [
                   ButtonSegment(
@@ -349,7 +334,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
                 onSelectionChanged: (values) => _setMode(values.single),
                 showSelectedIcon: false,
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 8),
               TextField(
                 controller: _searchController,
                 decoration: const InputDecoration(
@@ -385,11 +370,11 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
                   icon: Icons.lock_outline_rounded,
                   title: 'Sign in to build objects',
                   body:
-                      'Grookai Objects are created from cards already in your private vault.',
+                      'grookai Objects are created from cards already in your private vault.',
                 ),
               ] else if (_loading) ...[
-                const SizedBox(height: 32),
-                const Center(child: CircularProgressIndicator()),
+                const SizedBox(height: 18),
+                const _ObjectsHubLoadingState(),
               ] else if (visibleRows.isEmpty && _error == null) ...[
                 const SizedBox(height: 18),
                 _HubMessage(
@@ -425,17 +410,6 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
         ),
       ),
     );
-  }
-
-  String get _modeDescription {
-    return switch (_mode) {
-      _ObjectsBuilderMode.memory =>
-        'Tap one owned card to create a private collector memory.',
-      _ObjectsBuilderMode.sale =>
-        'Tap one owned card to set price, condition, and buyer contact.',
-      _ObjectsBuilderMode.lot =>
-        'Select two or more owned cards, then price the bundle.',
-    };
   }
 
   String get _rowActionLabel {
@@ -696,6 +670,65 @@ class _SmallPill extends StatelessWidget {
           color: colorScheme.onSurfaceVariant,
           fontWeight: FontWeight.w700,
         ),
+      ),
+    );
+  }
+}
+
+class _ObjectsHubLoadingState extends StatelessWidget {
+  const _ObjectsHubLoadingState();
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(
+      context,
+    ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.42);
+    return ExcludeSemantics(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (var index = 0; index < 2; index += 1) ...[
+            if (index > 0) const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AspectRatio(
+                    aspectRatio: 0.72,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  FractionallySizedBox(
+                    widthFactor: 0.78,
+                    child: Container(
+                      height: 16,
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 7),
+                  FractionallySizedBox(
+                    widthFactor: 0.56,
+                    child: Container(
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }

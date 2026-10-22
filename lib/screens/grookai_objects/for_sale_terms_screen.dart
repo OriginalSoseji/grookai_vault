@@ -213,8 +213,8 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
           type: 'sale-${destination.slug}',
           title: _exportTitle(object),
         ),
-        subject: 'Grookai sale card',
-        text: 'Shared from Grookai Vault',
+        subject: 'grookai sale card',
+        text: 'Shared from grookai vault',
         sharePositionOrigin: sharePositionOrigin,
       );
     } catch (error, stackTrace) {

@@ -89,7 +89,7 @@ class _SalesTradeDialogState extends State<SalesTradeDialog> {
       if (mounted && !_changed && generation == _generation) {
         setState(() {
           _printingId = null;
-          _error = 'Printing could not be verified. Choose the card again.';
+          _error = 'Variant could not be verified. Choose the card again.';
         });
       }
     } finally {
@@ -197,8 +197,8 @@ class _SalesTradeDialogState extends State<SalesTradeDialog> {
     } catch (_) {
       if (mounted && !_changed && generation == _generation) {
         setState(
-          () => _error =
-              'Printing options could not load. Select the card again.',
+          () =>
+              _error = 'Variant options could not load. Select the card again.',
         );
       }
     } finally {
@@ -226,7 +226,7 @@ class _SalesTradeDialogState extends State<SalesTradeDialog> {
         (!_manual && (_cardId == null || _printingId == null || qty != 1))) {
       setState(
         () => _error =
-            'Choose a card/printing or quick description, a positive value, quantity and a trade rate from 0.01% to 100%.',
+            'Choose a card variant or quick description, a positive value, quantity and a trade rate from 0.01% to 100%.',
       );
       return;
     }
@@ -428,7 +428,7 @@ class _SalesTradeDialogState extends State<SalesTradeDialog> {
                                 initialValue: _printingId,
                                 isExpanded: true,
                                 decoration: const InputDecoration(
-                                  labelText: 'Exact printing',
+                                  labelText: 'Variant',
                                 ),
                                 items: _printings
                                     .map(
@@ -456,7 +456,7 @@ class _SalesTradeDialogState extends State<SalesTradeDialog> {
                                 _printings.isEmpty &&
                                 _printingId == null)
                               const Text(
-                                'No eligible printing. Choose another card or use Quick trade.',
+                                'No eligible variant. Choose another card or use Quick trade.',
                               ),
                             DropdownButtonFormField<String>(
                               initialValue: _condition,

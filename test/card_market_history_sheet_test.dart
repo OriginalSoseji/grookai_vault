@@ -133,7 +133,7 @@ void main() {
 
     expect(find.text('Price history'), findsOneWidget);
     expect(find.text('Test Card · Holo'), findsOneWidget);
-    expect(find.text('TCGPlayer Market · exact printing'), findsOneWidget);
+    expect(find.text('TCGPlayer Market · exact variant'), findsOneWidget);
     expect(find.text(r'$12.00'), findsOneWidget);
     expect(requestedDays, [30]);
 

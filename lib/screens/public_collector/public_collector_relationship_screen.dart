@@ -106,33 +106,19 @@ class _PublicCollectorRelationshipScreenState
         child: RefreshIndicator(
           onRefresh: _load,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(14, 10, 14, 18),
+            padding: const EdgeInsets.fromLTRB(10, 8, 10, 18),
             children: [
-              _RelationshipSurface(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      _screenTitle,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 0,
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      description,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.72,
-                        ),
-                        height: 1.35,
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 0, 4, 6),
+                child: Text(
+                  description,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.64),
+                    height: 1.25,
+                  ),
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 4),
               if (_loading)
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 48),

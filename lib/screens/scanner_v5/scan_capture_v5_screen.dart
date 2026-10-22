@@ -16,6 +16,7 @@ import '../../services/onboarding/onboarding_ladder_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/public/jungle_edition_resolution_service.dart';
 import '../scanner/jungle_edition_scan_review.dart';
+import '../../widgets/vault/vault_printing_picker.dart';
 import 'widgets/scanner_result_sheet.dart';
 import 'widgets/scanner_v5_palette.dart';
 import 'widgets/scanner_viewfinder_chrome.dart';
@@ -440,6 +441,13 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
 
     setState(() => _addingToVault = true);
     try {
+      final printing = await chooseVaultPrinting(
+        context: context,
+        client: Supabase.instance.client,
+        cardPrintId: cardPrintId,
+        cardName: candidate.name,
+      );
+      if (printing == null) return;
       final gvviId = await VaultCardService.addOrIncrementVaultItem(
         client: Supabase.instance.client,
         userId: userId,
@@ -447,6 +455,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
         fallbackName: candidate.name,
         fallbackSetName: candidate.setCode,
         fallbackImageUrl: candidate.imageUrl,
+        cardPrintingId: printing.id,
       );
       await _appendConfirmationLog(candidate: candidate, gvviId: gvviId);
       await _emitScannerV5VaultAddEnriched(

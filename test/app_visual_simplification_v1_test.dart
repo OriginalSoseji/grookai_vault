@@ -38,18 +38,16 @@ void main() {
     expect(shell, contains('MediaQuery.disableAnimationsOf(context)'));
   });
 
-  test('signed-in mobile collectors can open Vendor Mode in one tap', () {
+  test('mobile header prioritizes branded notifications over store tools', () {
     final appBarActions = RegExp(
       r'List<Widget> _buildAppBarActions\([\s\S]*?\n  @override',
     ).firstMatch(shell)!.group(0)!;
 
-    expect(
-      appBarActions,
-      contains('if (!isDesktopShell && _supabase.auth.currentUser != null)'),
-    );
-    expect(appBarActions, contains('Icons.storefront_outlined'));
-    expect(appBarActions, contains("tooltip: 'Vendor Mode'"));
-    expect(appBarActions, contains('onPressed: _openVendorPricingWorkspace'));
+    expect(appBarActions, contains('_GrookaiNotificationButton('));
+    expect(appBarActions, contains('hasUnread: _pulseUnreadCount > 0'));
+    expect(appBarActions, contains('onPressed: _openNotifications'));
+    expect(appBarActions, isNot(contains("tooltip: 'Vendor Mode'")));
+    expect(appBarActions, isNot(contains('Icons.storefront_outlined')));
   });
 
   test('root loading and collection layouts mirror their final geometry', () {
@@ -127,7 +125,7 @@ void main() {
         '_DexSpeciesPresentation _presentation = _DexSpeciesPresentation.grid',
       ),
     );
-    expect(dex, contains("'NATIONAL COLLECTION'"));
+    expect(dex, contains("'National collection  '"));
     expect(dex, contains("label: const Text('Filters')"));
     expect(dex, contains('showModalBottomSheet<void>'));
     expect(dex, contains('class _DexLoadingGrid'));

@@ -28,6 +28,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
   PublicSetEra _activeEra = PublicSetEra.all;
   PublicSetLane _activeLane = PublicSetLane.all;
   String _activeReleaseYear = PublicSetsService.allReleaseYears;
+  bool _showFilters = false;
   int _loadGeneration = 0;
 
   @override
@@ -147,216 +148,145 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
           child: CustomScrollView(
             slivers: [
               SliverPadding(
-                padding: const EdgeInsets.fromLTRB(18, 12, 18, 0),
+                padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate.fixed(<Widget>[
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            'Browse ${filteredSets.length} ${_activeGame.label} sets.',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.colorScheme.onSurface.withValues(
-                                alpha: 0.66,
-                              ),
-                              fontWeight: FontWeight.w600,
-                              height: 1.3,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 14),
                     TextField(
                       controller: _searchController,
                       decoration: const InputDecoration(
                         hintText: 'Search sets',
                         prefixIcon: Icon(Icons.search),
+                        isDense: true,
                       ),
                       onChanged: (_) => setState(() {}),
                     ),
-                    const SizedBox(height: 14),
-                    _SetsSurfaceCard(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    const SizedBox(height: 6),
+                    SizedBox(
+                      height: 44,
+                      child: Row(
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'Filters'.toUpperCase(),
-                                  style: theme.textTheme.labelSmall?.copyWith(
-                                    fontWeight: FontWeight.w800,
-                                    letterSpacing: 1.0,
-                                    color: theme.colorScheme.onSurface
-                                        .withValues(alpha: 0.54),
-                                  ),
-                                ),
-                              ),
-                              _SetSortMenu(
-                                value: _activeFilter,
-                                onSelected: (value) {
-                                  setState(() {
-                                    _activeFilter = value;
-                                  });
-                                },
-                              ),
-                            ],
+                          TextButton.icon(
+                            onPressed: () => setState(() {
+                              _showFilters = !_showFilters;
+                            }),
+                            icon: Icon(
+                              _showFilters
+                                  ? Icons.expand_less_rounded
+                                  : Icons.tune_rounded,
+                            ),
+                            label: Text(
+                              _showFilters ? 'Hide filters' : 'Filters',
+                            ),
                           ),
-                          const SizedBox(height: 12),
-                          SegmentedButton<PublicCatalogGame>(
-                            segments: PublicCatalogGame.values
-                                .map(
-                                  (game) => ButtonSegment<PublicCatalogGame>(
-                                    value: game,
-                                    label: Text(game.label),
-                                  ),
-                                )
-                                .toList(growable: false),
-                            selected: <PublicCatalogGame>{_activeGame},
-                            showSelectedIcon: false,
-                            onSelectionChanged: (selection) {
-                              setState(() {
-                                _activeGame = selection.first;
-                                _activeEra = PublicSetEra.all;
-                                _activeReleaseYear =
-                                    PublicSetsService.allReleaseYears;
-                                _activeLane = PublicSetLane.all;
-                              });
-                              _load();
-                            },
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              '${filteredSets.length} sets',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                           ),
-                          if (_activeGame == PublicCatalogGame.pokemon) ...[
-                            const SizedBox(height: 12),
-                            _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
-                              label: 'Era',
-                              values: PublicSetsService.eraOptions,
-                              selectedValue: _activeEra,
-                              countFor: (value) => value == PublicSetEra.all
-                                  ? queryMatchedSets.length
-                                  : eraCounts[value] ?? 0,
-                              valueFor: (option) => option.value,
-                              labelFor: (option) => option.shortLabel,
-                              onSelected: (value) {
-                                setState(() {
-                                  _activeEra = value;
-                                });
-                              },
-                            ),
-                          ] else ...[
-                            const SizedBox(height: 12),
-                            _SetChoiceRow<String, PublicSetReleaseYearOption>(
-                              label: 'Release year',
-                              values: releaseYearOptions,
-                              selectedValue: _activeReleaseYear,
-                              countFor: (value) =>
-                                  value == PublicSetsService.allReleaseYears
-                                  ? queryMatchedSets.length
-                                  : releaseYearCounts[value] ?? 0,
-                              valueFor: (option) => option.value,
-                              labelFor: (option) => option.label,
-                              onSelected: (value) {
-                                setState(() {
-                                  _activeReleaseYear = value;
-                                });
-                              },
-                            ),
-                          ],
-                          const SizedBox(height: 12),
-                          _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
-                            label: 'Lane',
-                            values: PublicSetsService.laneOptionsForGame(
-                              _activeGame,
-                            ),
-                            selectedValue: _activeLane,
-                            countFor: (value) => value == PublicSetLane.all
-                                ? periodScopedSets.length
-                                : laneCounts[value] ?? 0,
-                            valueFor: (option) => option.value,
-                            labelFor: (option) => option.label,
+                          _SetSortMenu(
+                            value: _activeFilter,
                             onSelected: (value) {
                               setState(() {
-                                _activeLane = value;
+                                _activeFilter = value;
                               });
                             },
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 18),
-                    if (_activeGame == PublicCatalogGame.pokemon)
+                    if (_showFilters)
                       _SetsSurfaceCard(
+                        padding: const EdgeInsets.only(top: 4, bottom: 6),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const _SetsSectionHeader(
-                              title: 'Browse by era',
-                              description:
-                                  'Jump into the Pokemon catalog by release era.',
-                            ),
-                            const SizedBox(height: 14),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: PublicSetsService.eraOptions
-                                  .where(
-                                    (option) =>
-                                        option.value != PublicSetEra.all,
+                            SegmentedButton<PublicCatalogGame>(
+                              segments: PublicCatalogGame.values
+                                  .map(
+                                    (game) => ButtonSegment<PublicCatalogGame>(
+                                      value: game,
+                                      label: Text(game.label),
+                                    ),
                                   )
-                                  .map((option) {
-                                    return GvChip(
-                                      label: option.label,
-                                      count: eraCounts[option.value] ?? 0,
-                                      selected: _activeEra == option.value,
-                                      onSelected: (_) {
-                                        setState(() {
-                                          _activeEra = option.value;
-                                        });
-                                      },
-                                    );
-                                  })
-                                  .toList(),
+                                  .toList(growable: false),
+                              selected: <PublicCatalogGame>{_activeGame},
+                              showSelectedIcon: false,
+                              onSelectionChanged: (selection) {
+                                setState(() {
+                                  _activeGame = selection.first;
+                                  _activeEra = PublicSetEra.all;
+                                  _activeReleaseYear =
+                                      PublicSetsService.allReleaseYears;
+                                  _activeLane = PublicSetLane.all;
+                                });
+                                _load();
+                              },
                             ),
-                          ],
-                        ),
-                      )
-                    else
-                      _SetsSurfaceCard(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _SetsSectionHeader(
-                              title: 'Browse by release year',
-                              description:
-                                  'Jump into the ${_activeGame.label} catalog by release year.',
-                            ),
-                            const SizedBox(height: 14),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: releaseYearOptions.map((option) {
-                                final count =
-                                    option.value ==
-                                        PublicSetsService.allReleaseYears
+                            if (_activeGame == PublicCatalogGame.pokemon) ...[
+                              const SizedBox(height: 12),
+                              _SetChoiceRow<PublicSetEra, PublicSetEraOption>(
+                                label: 'Era',
+                                values: PublicSetsService.eraOptions,
+                                selectedValue: _activeEra,
+                                countFor: (value) => value == PublicSetEra.all
                                     ? queryMatchedSets.length
-                                    : releaseYearCounts[option.value] ?? 0;
-                                return GvChip(
-                                  label: option.label,
-                                  count: count,
-                                  selected: _activeReleaseYear == option.value,
-                                  onSelected: (_) {
-                                    setState(() {
-                                      _activeReleaseYear = option.value;
-                                    });
-                                  },
-                                );
-                              }).toList(),
+                                    : eraCounts[value] ?? 0,
+                                valueFor: (option) => option.value,
+                                labelFor: (option) => option.shortLabel,
+                                onSelected: (value) {
+                                  setState(() {
+                                    _activeEra = value;
+                                  });
+                                },
+                              ),
+                            ] else ...[
+                              const SizedBox(height: 12),
+                              _SetChoiceRow<String, PublicSetReleaseYearOption>(
+                                label: 'Release year',
+                                values: releaseYearOptions,
+                                selectedValue: _activeReleaseYear,
+                                countFor: (value) =>
+                                    value == PublicSetsService.allReleaseYears
+                                    ? queryMatchedSets.length
+                                    : releaseYearCounts[value] ?? 0,
+                                valueFor: (option) => option.value,
+                                labelFor: (option) => option.label,
+                                onSelected: (value) {
+                                  setState(() {
+                                    _activeReleaseYear = value;
+                                  });
+                                },
+                              ),
+                            ],
+                            const SizedBox(height: 12),
+                            _SetChoiceRow<PublicSetLane, PublicSetLaneOption>(
+                              label: 'Lane',
+                              values: PublicSetsService.laneOptionsForGame(
+                                _activeGame,
+                              ),
+                              selectedValue: _activeLane,
+                              countFor: (value) => value == PublicSetLane.all
+                                  ? periodScopedSets.length
+                                  : laneCounts[value] ?? 0,
+                              valueFor: (option) => option.value,
+                              labelFor: (option) => option.label,
+                              onSelected: (value) {
+                                setState(() {
+                                  _activeLane = value;
+                                });
+                              },
                             ),
                           ],
                         ),
                       ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 4),
                     if ((_activeGame == PublicCatalogGame.mtg &&
                             kMtgSealedClientV1Enabled) ||
                         (_activeGame == PublicCatalogGame.pokemon &&
@@ -412,17 +342,34 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
                       ),
                       const SizedBox(height: 18),
                     ],
-                    _SetsSurfaceCard(
-                      child: _SetsSectionHeader(
-                        title: trimmedQuery.isEmpty
-                            ? 'All sets'
-                            : 'Results for "$trimmedQuery"',
-                        description: trimmedQuery.isEmpty
-                            ? '${filteredSets.length} collector-ready sets in the catalog.'
-                            : '${filteredSets.length} sets matched your search.',
+                    if (!shouldGroupByEra || trimmedQuery.isNotEmpty)
+                      _SetsSurfaceCard(
+                        padding: const EdgeInsets.only(top: 4, bottom: 2),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                trimmedQuery.isEmpty
+                                    ? 'All sets'
+                                    : 'Results for "$trimmedQuery"',
+                                style: theme.textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '${filteredSets.length}',
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                color: theme.colorScheme.onSurface.withValues(
+                                  alpha: 0.56,
+                                ),
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 4),
                   ]),
                 ),
               ),
@@ -479,7 +426,7 @@ class _PublicSetsScreenState extends State<PublicSetsScreen> {
 class _SetsSurfaceCard extends StatelessWidget {
   const _SetsSurfaceCard({
     required this.child,
-    this.padding = const EdgeInsets.all(18),
+    this.padding = const EdgeInsets.symmetric(vertical: 8),
   });
 
   final Widget child;
@@ -701,10 +648,10 @@ List<Widget> _groupedSetResultSlivers({
     for (var index = 0; index < groups.length; index++) ...[
       if (index > 0) const SliverToBoxAdapter(child: SizedBox(height: 22)),
       SliverPadding(
-        padding: const EdgeInsets.symmetric(horizontal: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         sliver: SliverToBoxAdapter(
           child: _SetsSurfaceCard(
-            padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+            padding: const EdgeInsets.fromLTRB(6, 4, 6, 6),
             child: _SetsSectionHeader(
               title: groups[index].key.label,
               description:
@@ -713,30 +660,22 @@ List<Widget> _groupedSetResultSlivers({
           ),
         ),
       ),
-      _SetGrid(
-        sets: groups[index].value,
-        onOpenSet: onOpenSet,
-        padding: const EdgeInsets.symmetric(horizontal: 34),
-      ),
+      _SetGrid(sets: groups[index].value, onOpenSet: onOpenSet),
     ],
   ];
 }
 
 class _SetGrid extends StatelessWidget {
-  const _SetGrid({
-    required this.sets,
-    required this.onOpenSet,
-    this.padding = const EdgeInsets.symmetric(horizontal: 18),
-  });
+  const _SetGrid({required this.sets, required this.onOpenSet});
 
   final List<PublicSetSummary> sets;
   final ValueChanged<PublicSetSummary> onOpenSet;
-  final EdgeInsetsGeometry padding;
-
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: padding,
+      padding: const EdgeInsets.symmetric(
+        horizontal: GvGridConstants.gridOuterPadding,
+      ),
       sliver: SliverGrid(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

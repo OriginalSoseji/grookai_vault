@@ -65,6 +65,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Vendor Mode'), findsOneWidget);
+    expect(find.byTooltip('Manage store'), findsOneWidget);
+    expect(find.text('Manage store'), findsNothing);
     expect(find.text('2 exact copies'), findsOneWidget);
     expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
     expect(find.byKey(const Key('vendor_row_copy-2')), findsOneWidget);

@@ -72,7 +72,11 @@ void main() {
       expect(args['p_card_print_ids'], containsAll([cardA, cardB]));
       final offset = args['p_offset'] as int;
       if (failLastPage && offset >= ordered.length) {
-        return http.Response('{"message":"unavailable"}', 503, request: request);
+        return http.Response(
+          '{"message":"unavailable"}',
+          503,
+          request: request,
+        );
       }
       return http.Response(
         jsonEncode(ordered.skip(repeatPage ? 0 : offset).take(1).toList()),
@@ -160,7 +164,7 @@ void main() {
     expect(result.rows.single.cardPrintingId, isNull);
     expect(
       result.rows.single.reviewReasons.join(' '),
-      contains('More than one printing'),
+      contains('More than one variant'),
     );
   });
   test('no matching finish retains candidates for review', () async {
