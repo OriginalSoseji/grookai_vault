@@ -118,6 +118,12 @@ function validateAgentSnapshot(value, registryAgent, label) {
   if (!value.is_paused && hasNoHealthSignals) {
     assert(value.health === "unknown", `${label}.null heartbeat and latest run status require unknown health`);
   }
+  const periodicMissingHeartbeat = PERIODIC_SCHEDULES.has(registryAgent.schedule_kind)
+    && value.last_heartbeat_at === null
+    && value.latest_run_status !== null;
+  if (!value.is_paused && periodicMissingHeartbeat) {
+    assert(value.health === "stale", `${label}.missing periodic heartbeat requires stale health`);
+  }
   if (value.health === "running") assert(value.latest_run_status === "running", `${label}.running health requires a running latest run`);
   if (value.health === "failed") assert(value.latest_run_status === "failed", `${label}.failed health requires a failed latest run`);
   if (!["paused", "stale"].includes(value.health) && value.latest_run_status === "running") {

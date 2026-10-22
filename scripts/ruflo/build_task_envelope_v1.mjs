@@ -14,6 +14,7 @@ import { stableJsonV1 } from "./build_operations_read_model_v1.mjs";
 
 export const TASK_ENVELOPE_VERSION = "RUFLO_TASK_ENVELOPE_V1";
 const INVENTORY_VERSION = "RUFLO_READONLY_INVENTORY_V1";
+const REPOSITORY_REMOTE = "OriginalSoseji/grookai_vault";
 
 const TOP_LEVEL_KEYS = new Set([
   "task_id", "parent_goal", "agent_key", "repository", "objective", "inclusions",
@@ -146,6 +147,7 @@ export function buildTaskEnvelopeV1({ spec, registry, inventory, repoRoot, regis
   assertOnlyKeys(spec.repository, REPOSITORY_KEYS, "spec.repository");
   assert(typeof spec.repository.remote === "string" && clean(spec.repository.remote), "spec.repository.remote must be a non-empty string");
   const repositoryRemote = clean(spec.repository.remote);
+  assert(repositoryRemote === REPOSITORY_REMOTE, `spec.repository.remote must identify ${REPOSITORY_REMOTE}`);
   assert(/^[a-f0-9]{40}$/.test(spec.repository.commit_sha), "spec.repository.commit_sha must be an exact lowercase 40-character commit SHA");
   assert(typeof spec.repository.ref === "string" && clean(spec.repository.ref), "spec.repository.ref must be a non-empty string");
   const repositoryRef = clean(spec.repository.ref);

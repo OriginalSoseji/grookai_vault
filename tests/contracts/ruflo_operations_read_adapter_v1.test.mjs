@@ -173,6 +173,19 @@ test("read adapter rejects health that contradicts the latest run", () => {
     () => buildOperationsReadModelV1({ snapshot: timestampWithoutStatus, registry }),
     /latest_run_status and latest_run_at must be jointly null or non-null/,
   );
+
+  const periodicMissingHeartbeat = clone(snapshot);
+  periodicMissingHeartbeat.agents[0].last_heartbeat_at = null;
+  periodicMissingHeartbeat.agents[0].health = "healthy";
+  assert.throws(
+    () => buildOperationsReadModelV1({ snapshot: periodicMissingHeartbeat, registry }),
+    /missing periodic heartbeat requires stale health/,
+  );
+
+  periodicMissingHeartbeat.agents[0].health = "stale";
+  assert.doesNotThrow(
+    () => buildOperationsReadModelV1({ snapshot: periodicMissingHeartbeat, registry }),
+  );
 });
 
 test("task envelope is deterministic, protected, and permanently non-executable", () => {
@@ -227,6 +240,13 @@ test("task envelope rejects unknown agents and executable fields", () => {
   assert.throws(
     () => buildTaskEnvelopeV1({ spec: objectRemote, registry, inventory: portableInventory, repoRoot: portableRepoRoot }),
     /remote must be a non-empty string/,
+  );
+
+  const wrongRemote = taskSpec();
+  wrongRemote.repository.remote = "another/repository";
+  assert.throws(
+    () => buildTaskEnvelopeV1({ spec: wrongRemote, registry, inventory: portableInventory, repoRoot: portableRepoRoot }),
+    /must identify OriginalSoseji\/grookai_vault/,
   );
 
   const objectParentGoal = taskSpec();
