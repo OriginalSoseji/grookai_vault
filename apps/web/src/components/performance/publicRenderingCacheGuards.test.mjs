@@ -155,7 +155,7 @@ test("explore search keeps results compact and cards above supporting tools", ()
   const globals = readSource("app", "globals.css");
   const exploreRows = readSource("lib", "explore", "getExploreRows.ts");
 
-  assert.match(gridLayout, /grid-cols-2 items-start gap-3 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5/);
+  assert.match(gridLayout, /grid-cols-2 items-start gap-\[9px\] sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5/);
   assert.match(gridItem, /const density = isLarge \? "large" : "compact"/);
   assert.match(gridItem, /typeof card\.raw_price === "number"/);
   assert.match(gridItem, /variant="floating"/);
@@ -299,7 +299,7 @@ test("card SEO exposes full sitemap index and product identifiers", () => {
   assert.match(cardPage, /"@type": "Product"/);
   assert.match(cardPage, /sku: card\.gv_id/);
   assert.match(cardPage, /mpn: card\.gv_id/);
-  assert.match(cardPage, /propertyID: "Grookai Vault ID"/);
+  assert.match(cardPage, /propertyID: "grookai vault ID"/);
 });
 
 test("card SEO exposes exact GV IDs through visible internal links", () => {
@@ -311,9 +311,9 @@ test("card SEO exposes exact GV IDs through visible internal links", () => {
   const sitemapHelpers = readSource("lib", "seo", "sitemaps.ts");
 
   assert.match(cardPage, /\[card\.gv_id, displayName, card\.set_name, collectorNumberLabel\]/);
-  assert.match(cardPage, /Grookai Vault canonical ID/);
-  assert.match(cardPage, /Grookai ID \{resolvedCard\.gv_id\}/);
-  assert.match(setGrid, /Grookai ID \{card\.gv_id\}/);
+  assert.match(cardPage, /grookai vault canonical ID/);
+  assert.match(cardPage, /grookai ID \{resolvedCard\.gv_id\}/);
+  assert.match(setGrid, /grookai ID \{card\.gv_id\}/);
   assert.doesNotMatch(layout, /href="\/ids"/);
   assert.match(idsRoute, /status: 410/);
   assert.match(idsRoute, /"X-Robots-Tag": "noindex, nofollow"/);
@@ -333,8 +333,8 @@ test("legal terms protect catalog data without blocking card indexing", () => {
   const founderPage = readSource("app", "founder", "page.tsx");
 
   assert.match(legalPage, /Terms and Legal/);
-  assert.match(legalPage, /Catalog Data, Grookai IDs, and Automated Access/);
-  assert.match(legalPage, /Grookai IDs, catalog structure, metadata compilations/);
+  assert.match(legalPage, /Catalog Data, grookai IDs, and Automated Access/);
+  assert.match(legalPage, /grookai IDs, catalog structure, metadata compilations/);
   assert.match(legalPage, /personal, non-commercial collector use/);
   assert.match(legalPage, /automated scraping, crawling/);
   assert.match(legalPage, /bulk downloading, dataset creation, mirroring/);

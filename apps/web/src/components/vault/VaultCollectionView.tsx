@@ -814,7 +814,7 @@ export function VaultCollectionView({
     <div className="gv-vault-page space-y-7 py-7 md:space-y-10 md:py-9">
       <section className="gv-vault-overview">
         <PageIntro
-          title="Grookai Vault"
+          title="grookai vault"
           eyebrow="Vault"
           description="Your collection, organized by exact printing."
           actions={

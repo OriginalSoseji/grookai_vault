@@ -1,5 +1,31 @@
 # Grookai Operator Playbook V1
 
+## Website visual identity and Halloween release — October 22, 2026
+
+Read `docs/contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md` and
+`docs/contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md`. These product rules apply across
+branches and platforms. The website bundles Roboto and uses shared brand
+components under `apps/web/src/components/brand`; keep the original logo PNGs
+intact. `brandTheme.ts` selects the active logo and matching interface accents
+together: Halloween orange `#FF8A33`, Winter ice blue. Header lockups
+use a 64px avatar, unchanged original emblem, and animated spiders. The motion
+control persists pause/play locally; reduced motion disables the decoration.
+
+Use an isolated checkout of current `origin/main` for website releases. Do not
+publish the mixed development tree at `C:/grookai_vault`. The October 22 candidate
+is `C:/grookai_web_halloween_20261022`, branch `release/web-halloween-20261022`.
+Run typecheck, lint, the build, secret-packaging guard, and
+`playwright.logo-themes.config.ts` against loopback with local read-only collector
+mode and production credentials removed. `/brand-preview` is development-only.
+
+The existing GitHub/Vercel integration deploys merged `main` to the existing
+`grookai-vault` project and `https://grookaivault.com`; retain its production
+environment and collector release guard. Do not promote a fixture build or
+change backend routing. Verify the deployed source SHA, successful production
+deployment, domain response, bundled font, Halloween header, and motion controls
+before recording a live release. Source and verification evidence are tracked in
+`docs/checkpoints/2026-10-22_web_halloween_identity.md`.
+
 ## MTG reviewed printing correction — October 20, 2026
 
 Read

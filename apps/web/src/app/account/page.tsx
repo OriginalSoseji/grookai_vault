@@ -122,10 +122,10 @@ export default async function AccountPage(props: AccountPageProps) {
       <section className="border-b border-slate-200 pb-6 dark:border-white/[0.08]">
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Profile</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your Grookai profile</h1>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Your grookai profile</h1>
           <SignOutButton />
           <p className="max-w-2xl text-base leading-7 text-slate-600">
-            Manage your Grookai identity, public page, and account settings here.
+            Manage your grookai identity, public page, and account settings here.
           </p>
         </div>
       </section>
@@ -234,7 +234,7 @@ export default async function AccountPage(props: AccountPageProps) {
               <div className="space-y-1">
                 <h2 className="text-xl font-semibold tracking-tight text-slate-950">Community</h2>
                 <p className="max-w-2xl text-sm leading-7 text-slate-600">
-                  Join the Grookai collector community. Discuss cards, report data issues, and help shape Grookai.
+                  Join the grookai collector community. Discuss cards, report data issues, and help shape grookai.
                 </p>
               </div>
 
@@ -245,7 +245,7 @@ export default async function AccountPage(props: AccountPageProps) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
                 >
-                  <span>Join Grookai Discord</span>
+                  <span>Join grookai Discord</span>
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 16 16"
@@ -268,7 +268,7 @@ export default async function AccountPage(props: AccountPageProps) {
             <div className="space-y-4">
               <div className="space-y-1">
                 <h2 className="text-xl font-semibold tracking-tight text-slate-950">Collection Tools</h2>
-                <p className="text-sm leading-7 text-slate-600">Bring your collection into Grookai from a supported export.</p>
+                <p className="text-sm leading-7 text-slate-600">Bring your collection into grookai from a supported export.</p>
               </div>
 
               <div>

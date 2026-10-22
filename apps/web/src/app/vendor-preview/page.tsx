@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { vendorPilot, validPilotCode, VENDOR_PILOT_COOKIE } from "@/lib/vendorPilot.mjs";
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Vendor preview | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Vendor preview | grookai vault", robots: { index: false, follow: false } };
 export default async function VendorPreview() {
   if (!vendorPilot) notFound();
   const code = (await cookies()).get(VENDOR_PILOT_COOKIE)?.value;
@@ -16,7 +16,7 @@ export default async function VendorPreview() {
     <p className="text-lg text-slate-600">Try store setup, branding, custom collectibles and inventory management from your computer or phone.</p>
     <div className="rounded-2xl border bg-white p-6 space-y-4">
       <h2 className="text-xl font-semibold">Your own preview account</h2>
-      <p>Use your own email and a password for this preview. Your preview inventory is separate from your live Grookai Vault.</p>
+      <p>Use your own email and a password for this preview. Your preview inventory is separate from your live grookai vault.</p>
       <p>The catalog contains sample cards. You can add custom collectibles, upload photos and preview your store. Payments, subscriptions and checkout are disabled. No card or Stripe account is needed.</p>
       <p>Try the scan review workspace under Vault inventory. Upload a batch and get card suggestions from the sample catalog using artwork and printed text, including rotated scans. Review each match and choose its finish; use manual search when a card cannot be verified. Set condition, price and sections, then add the reviewed copies to your preview inventory. Unsubmitted drafts stay in this browser. Keep the original draft if an upload is interrupted so you can resume it.</p>
       {!validPilotCode(code) ? <p role="alert">Open the complete review link you received to start your trial.</p> : !user ?

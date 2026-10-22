@@ -1224,7 +1224,7 @@ export function BinderPublicContributionSafetyControls({
                 className="mt-0.5"
               />
               <span>
-                Block {memberLabel}. Grookai will refresh this Binder; no Vault
+                Block {memberLabel}. grookai will refresh this Binder; no Vault
                 card will be changed.
               </span>
             </label>

@@ -386,10 +386,10 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
           <div className="space-y-1">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500">Missing Card</p>
             <p className="text-lg font-semibold tracking-tight text-slate-950">
-              This card does not exist in Grookai yet.
+              This card does not exist in grookai yet.
             </p>
             <p className="text-sm leading-6 text-slate-600">
-              Use this when the card itself is missing from Grookai and should enter warehouse review.
+              Use this when the card itself is missing from grookai and should enter warehouse review.
             </p>
           </div>
         </label>
@@ -429,7 +429,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
 
       {lockedSubmissionIntent && hasKnownCardImageContext ? (
         <div className="rounded-[1.25rem] border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
-          <p className="font-medium">Linked to known Grookai card</p>
+          <p className="font-medium">Linked to known grookai card</p>
           <p className="mt-1">
             This submission will stay classified as a missing image for {referenceContext?.cardGvId}.
           </p>
@@ -454,7 +454,7 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
                 setTouched((current) => ({ ...current, notes: true }));
                 clearStatusForEdit();
               }}
-              placeholder="Tell Grookai what is missing, what you noticed, and anything a reviewer should look at."
+              placeholder="Tell grookai what is missing, what you noticed, and anything a reviewer should look at."
               className="w-full rounded-[1.25rem] border border-slate-200 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-slate-300 focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
             />
             <FieldError message={shouldShowError("notes") ? validationErrors.notes : undefined} />
@@ -484,8 +484,8 @@ export function WarehouseSubmissionForm({ userId, initialValues }: WarehouseSubm
             {submissionIntent === "MISSING_IMAGE" ? (
               <p className="text-sm text-slate-600">
                 {hasKnownCardImageContext
-                  ? "Optional because this image suggestion is already linked to a known Grookai card."
-                  : "Required unless this is launched from a known Grookai card page."}
+                  ? "Optional because this image suggestion is already linked to a known grookai card."
+                  : "Required unless this is launched from a known grookai card page."}
               </p>
             ) : null}
             <FieldError

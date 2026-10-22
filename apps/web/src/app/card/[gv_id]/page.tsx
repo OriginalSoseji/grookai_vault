@@ -271,7 +271,7 @@ function buildCardProductJsonLd({
   setName?: string;
 }) {
   const additionalProperty = [
-    { name: "Grookai Vault ID", value: card.gv_id },
+    { name: "grookai vault ID", value: card.gv_id },
     collectorNumber ? { name: "Collector number", value: collectorNumber } : null,
     setName ? { name: "Set", value: setName } : null,
     card.set_code ? { name: "Set code", value: card.set_code.toUpperCase() } : null,
@@ -292,7 +292,7 @@ function buildCardProductJsonLd({
     `${displayName} trading card`,
     setName ? `from ${setName}` : undefined,
     collectorNumber ? `with collector number ${collectorNumber}` : undefined,
-    `and Grookai Vault ID ${card.gv_id}.`,
+    `and grookai vault ID ${card.gv_id}.`,
   ]
     .filter((value): value is string => Boolean(value))
     .join(" ");
@@ -314,7 +314,7 @@ function buildCardProductJsonLd({
     url: canonicalUrl,
     identifier: {
       "@type": "PropertyValue",
-      propertyID: "Grookai Vault ID",
+      propertyID: "grookai vault ID",
       value: card.gv_id,
     },
     additionalProperty,
@@ -378,13 +378,13 @@ export async function generateMetadata(props: { params: Promise<{ gv_id: string 
   const titleParts = [card.gv_id, displayName, card.set_name, collectorNumberLabel].filter(
     (value): value is string => Boolean(value),
   );
-  const title = `${titleParts.join(" • ")} | Grookai Vault`;
+  const title = `${titleParts.join(" • ")} | grookai vault`;
   const description = [
-    `${card.gv_id} is the Grookai Vault canonical ID for ${displayName}`,
+    `${card.gv_id} is the grookai vault canonical ID for ${displayName}`,
     card.set_name ? `from ${card.set_name}` : undefined,
     collectorNumberLabel,
     publicJourneyCountsLine ?? undefined,
-    "including finishes and collection info on Grookai Vault.",
+    "including finishes and collection info on grookai vault.",
   ]
     .filter((value): value is string => Boolean(value))
     .join(" ");
@@ -1261,7 +1261,7 @@ async function CardPageContent({
                 <summary>Card evidence</summary>
                 <div className="gv-result-evidence-body">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono">Grookai ID {resolvedCard.gv_id}</span>
+                    <span className="font-mono">grookai ID {resolvedCard.gv_id}</span>
                     <CopyButton text={resolvedCard.gv_id} />
                     {illustratorName ? <span>Illustrated by {illustratorLink}</span> : null}
                   </div>

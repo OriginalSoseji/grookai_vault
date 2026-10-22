@@ -16,7 +16,7 @@ export function PersistentSearchBarFallback() {
         spellCheck={false}
         autoComplete="off"
         name="q"
-        placeholder="Search cards, sets, numbers, or Grookai ID"
+        placeholder="Search cards, sets, numbers, or grookai ID"
         className="h-11 w-full rounded-full bg-slate-100 px-4 text-sm text-slate-900 outline-none transition-[color,background-color,box-shadow] duration-100 placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-slate-400 sm:max-w-[420px]"
         aria-label="Search cards"
       />

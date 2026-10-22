@@ -11,14 +11,14 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Grookai Dex | Grookai Vault",
+  title: "grookai Dex | grookai vault",
   description:
-    "Track Pokemon character completion across every mapped card print in Grookai Vault.",
+    "Track Pokemon character completion across every mapped card print in grookai vault.",
   alternates: { canonical: "/dex" },
   openGraph: {
-    title: "Grookai Dex | Grookai Vault",
+    title: "grookai Dex | grookai vault",
     description:
-      "Track Pokemon character completion across every mapped card print in Grookai Vault.",
+      "Track Pokemon character completion across every mapped card print in grookai vault.",
     url: "/dex",
   },
 };
@@ -149,7 +149,7 @@ export default async function GrookaiDexPage(
           <div className="relative z-[1] grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,430px)] lg:items-end">
             <div className="min-w-0 space-y-5">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="gv-discovery-eyebrow">Grookai Dex</span>
+                <span className="gv-discovery-eyebrow">grookai Dex</span>
                 <span className="gv-discovery-pill">Vault-aware</span>
               </div>
               <div className="space-y-2">

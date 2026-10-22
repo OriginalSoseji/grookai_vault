@@ -5,7 +5,7 @@ import { purchaseHref, purchaseSelection, acquisitionUuid } from "@/lib/orders/o
 import PurchaseReview from "@/components/orders/PurchaseReview";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Review order | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Review order | grookai vault", robots: { index: false, follow: false } };
 export default async function NewOrderPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const raw = await searchParams;let selection, requestId: string | undefined;
   try {

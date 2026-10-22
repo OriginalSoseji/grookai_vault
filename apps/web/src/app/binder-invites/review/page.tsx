@@ -21,8 +21,8 @@ export const revalidate = 0;
 export const runtime = "nodejs";
 
 export const metadata: Metadata = {
-  title: "Binder Invitation | Grookai Vault",
-  description: "Review a private Grookai Vault Binder invitation.",
+  title: "Binder Invitation | grookai vault",
+  description: "Review a private grookai vault Binder invitation.",
   robots: { index: false, follow: false, nocache: true },
   // This fixed URL contains no bearer token; same-origin preserves native POST CSRF checks.
   referrer: "same-origin",
@@ -144,7 +144,7 @@ export default async function BinderInvitationReviewPage() {
               Report this invitation
             </h2>
             <p className="text-sm text-slate-600">
-              Reports are reviewed through Grookai&apos;s trust system. The
+              Reports are reviewed through grookai&apos;s trust system. The
               invitation capability stays in the protected, HttpOnly session
               and is removed after this POST.
             </p>

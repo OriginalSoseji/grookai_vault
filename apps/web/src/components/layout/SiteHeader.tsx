@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import { BrandLockup } from "@/components/brand/BrandText";
+import { BrandMotionToggle } from "@/components/brand/BrandMotionToggle";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { DesktopApplicationShell } from "@/components/layout/DesktopApplicationShell";
@@ -29,10 +30,10 @@ function Header({ pathname, compareCards, ...props }: SiteHeaderProps & { pathna
         <div className="gv-mobile-site-header">
           <div className="flex min-h-[56px] items-center justify-between gap-3">
             <Link href="/" className="flex min-w-0 items-center gap-2 text-[15px] font-semibold">
-              <Image src="/grookai-logo-64.png" alt="Grookai Vault logo" width={28} height={28} className="gv-brand-mark" />
-              <span className="gv-approved-brand-name">Grookai<span>VAULT</span></span>
+              <BrandLockup />
             </Link>
             <div className="flex shrink-0 items-center gap-2">
+              <BrandMotionToggle />
               <ThemeToggle />
               <CollectorMobileTools pathname={pathname} isAuthenticated={props.isAuthenticated} dexEnabled={props.dexEnabled} bindersEnabled={props.bindersEnabled} compareHref={compareHref} compareCount={compareCards.length} />
             </div>

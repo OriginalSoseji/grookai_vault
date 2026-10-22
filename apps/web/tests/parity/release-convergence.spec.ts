@@ -227,7 +227,7 @@ test("Card detail hierarchy puts the collection action before expanded context",
   const versionContext = page.getByText("Why this version matters +", { exact: true });
   const [actionBox, contextBox] = await Promise.all([action.boundingBox(), versionContext.boundingBox()]);
   expect(actionBox?.y ?? Number.POSITIVE_INFINITY).toBeLessThan(contextBox?.y ?? Number.NEGATIVE_INFINITY);
-  await expect(page.getByText("Grookai ID GV-FIXTURE-PIKACHU", { exact: true })).toBeHidden();
+  await expect(page.getByText("grookai ID GV-FIXTURE-PIKACHU", { exact: true })).toBeHidden();
 });
 
 test("Card pricing keeps the market summary primary and evidence disclosed", async ({ page }) => {

@@ -4,7 +4,7 @@ import { EMPTY_HISTORY_FILTERS, historyFilters, historyHref, readDispositionHist
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Transaction history | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Transaction history | grookai vault", robots: { index: false, follow: false } };
 const inputStyle = "min-w-0 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm";
 const money = (amount: number, currency: string | null) => `${currency ?? "USD"} ${amount.toFixed(2)}`;
 
@@ -19,7 +19,7 @@ export default async function TransactionHistoryPage({ searchParams }: { searchP
   }
   return <main className="mx-auto max-w-6xl space-y-6 px-4 py-8">
     <header className="flex flex-wrap items-start justify-between gap-4">
-      <div className="max-w-2xl space-y-2"><h1 className="text-3xl font-bold text-slate-950">Transaction history</h1><p className="text-sm text-slate-600">Your private records of sales and trades completed outside Grookai. Amounts are entered by you; these receipts do not confirm an online payment.</p></div>
+      <div className="max-w-2xl space-y-2"><h1 className="text-3xl font-bold text-slate-950">Transaction history</h1><p className="text-sm text-slate-600">Your private records of sales and trades completed outside grookai. Amounts are entered by you; these receipts do not confirm an online payment.</p></div>
       <nav aria-label="History navigation" className="flex flex-wrap gap-3 text-sm font-semibold"><Link href="/account/store">Store workspace</Link><Link href="/vault">Back to Vault</Link></nav>
     </header>
     <form key={historyHref(filters)} action="/vault/transactions" method="get" className="grid grid-cols-1 items-end gap-3 rounded-xl sm:grid-cols-2 lg:grid-cols-[auto_minmax(0,1fr)_auto_auto_auto] border border-slate-200 bg-white p-4">

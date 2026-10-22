@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import InformationPage from "@/components/layout/InformationPage";
 
 export const metadata: Metadata = {
-  title: "Terms and Legal | Grookai Vault",
+  title: "Terms and Legal | grookai vault",
   description:
-    "Grookai Vault terms for public collector use, catalog data, Grookai IDs, automated access, and intellectual property notices.",
+    "grookai vault terms for public collector use, catalog data, grookai IDs, automated access, and intellectual property notices.",
 };
 
 export default function LegalPage() {
@@ -15,31 +15,31 @@ export default function LegalPage() {
       description="These terms are provided for immediate public clarity and may be updated after legal counsel review."
     >
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-slate-950">Catalog Data, Grookai IDs, and Automated Access</h2>
+          <h2 className="text-lg font-semibold text-slate-950">Catalog Data, grookai IDs, and Automated Access</h2>
           <p>
-            Grookai Vault publishes public card pages so collectors can identify, compare, and organize cards for
-            personal collector use. Grookai IDs, catalog structure, metadata compilations, card identity organization,
-            image associations, and the Grookai identity graph are proprietary Grookai Vault assets.
+            grookai vault publishes public card pages so collectors can identify, compare, and organize cards for
+            personal collector use. grookai IDs, catalog structure, metadata compilations, card identity organization,
+            image associations, and the grookai identity graph are proprietary grookai vault assets.
           </p>
           <p>
-            You may view public Grookai Vault pages for personal, non-commercial collector use. Public availability of
+            You may view public grookai vault pages for personal, non-commercial collector use. Public availability of
             a card page does not grant a license to copy, extract, reproduce, mirror, or compile the underlying
-            database, catalog, Grookai IDs, metadata, images, or identity structure.
+            database, catalog, grookai IDs, metadata, images, or identity structure.
           </p>
           <p>
-            Without prior written permission from Grookai Vault, you may not use automated scraping, crawling,
+            Without prior written permission from grookai vault, you may not use automated scraping, crawling,
             harvesting, bulk downloading, dataset creation, mirroring, resale, republication, commercial reuse,
-            competitive use, or AI/model training methods to collect or use Grookai Vault catalog data, Grookai IDs,
+            competitive use, or AI/model training methods to collect or use grookai vault catalog data, grookai IDs,
             metadata, images, card identity organization, or identity graph information.
           </p>
           <p>
-            Search engines may crawl public card pages according to Grookai Vault&apos;s robots.txt and sitemap rules.
+            Search engines may crawl public card pages according to grookai vault&apos;s robots.txt and sitemap rules.
             This permission is limited to ordinary search indexing and does not authorize bulk extraction, dataset
             creation, commercial data products, AI/model training, or competitor use.
           </p>
           <p>
             Commercial, API, bulk data, research, or data-licensing access requires prior written approval from
-            Grookai Vault.
+            grookai vault.
           </p>
         </section>
 
@@ -47,7 +47,7 @@ export default function LegalPage() {
           <h2 className="text-lg font-semibold text-slate-950">Trademark and Image Notices</h2>
         <p>Pokémon and Pokémon TCG are trademarks of Nintendo, Creatures Inc., and GAME FREAK.</p>
         <p>
-          Grookai Vault is an independent collector tool and is not affiliated with, endorsed by, or sponsored by
+          grookai vault is an independent collector tool and is not affiliated with, endorsed by, or sponsored by
           The Pokémon Company, Nintendo, Creatures Inc., or GAME FREAK.
         </p>
         <p>
@@ -63,7 +63,7 @@ export default function LegalPage() {
         <section>
           <h2 className="text-lg font-semibold text-slate-950">Legal Review</h2>
           <p>
-            This page is not legal advice and does not replace attorney review. Grookai Vault may update these terms
+            This page is not legal advice and does not replace attorney review. grookai vault may update these terms
             as the product, catalog, and data licensing policies evolve.
           </p>
         </section>

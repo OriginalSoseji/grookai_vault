@@ -43,7 +43,7 @@ export async function generateMetadata(
   const params = await props.params;
   const detail = await getPublicVaultInstanceByGvvi(params.gvvi_id);
   if (!detail) {
-    if (sealedOwnershipEnabled) return { title: "Collector copy | Grookai Vault", robots: { index: false, follow: false } };
+    if (sealedOwnershipEnabled) return { title: "Collector copy | grookai vault", robots: { index: false, follow: false } };
     notFound();
   }
 
@@ -51,11 +51,11 @@ export async function generateMetadata(
   const canonicalUrl = `${siteOrigin}/gvvi/${encodeURIComponent(detail.gvviId)}`;
   const imageUrl = asAbsoluteUrl(siteOrigin, detail.imageUrl);
   const title = detail.isVendorOffer
-    ? `${detail.cardName} • ${detail.ownerDisplayName} vendor price | Grookai Vault`
-    : `${detail.cardName} • ${detail.ownerDisplayName}'s copy | Grookai Vault`;
+    ? `${detail.cardName} • ${detail.ownerDisplayName} vendor price | grookai vault`
+    : `${detail.cardName} • ${detail.ownerDisplayName}'s copy | grookai vault`;
   const description = detail.isVendorOffer
     ? `View ${detail.ownerDisplayName}'s current vendor price and condition for ${detail.cardName}.`
-    : `View ${detail.ownerDisplayName}'s ${detail.cardName} exact copy on Grookai Vault.`;
+    : `View ${detail.ownerDisplayName}'s ${detail.cardName} exact copy on grookai vault.`;
 
   return {
     title,

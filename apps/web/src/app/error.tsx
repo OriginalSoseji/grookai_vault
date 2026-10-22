@@ -9,7 +9,7 @@ export default function AppError({ reset }: { error: Error & { digest?: string }
       <ProductState
         tone="error"
         eyebrow="Could not load this page"
-        title="Grookai hit a problem"
+        title="grookai hit a problem"
         description="Reload this page or return to Search. If a save was interrupted, check your collection before trying it again."
         action={(
           <button type="button" onClick={reset} className="gv-primary-button">

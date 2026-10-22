@@ -11,8 +11,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Collector Memory | Grookai Vault",
-  description: "Open a shared collector Memory on Grookai Vault.",
+  title: "Collector Memory | grookai vault",
+  description: "Open a shared collector Memory on grookai vault.",
   robots: { index: false, follow: false },
 };
 

@@ -18,7 +18,7 @@ import { orderMoney, orderPresentation, readOrder, validOrderId } from "@/lib/or
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Order details | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Order details | grookai vault", robots: { index: false, follow: false } };
 export default async function OrderPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { id } = await params, returned = (await searchParams).checkout === "returned";
   const href = validOrderId(id) ? `/account/orders/${id.toLowerCase()}` : "/account/orders";

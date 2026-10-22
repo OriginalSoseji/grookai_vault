@@ -224,7 +224,7 @@ export default async function GrookaiDexSpeciesPage(
       <header className="grid gap-5 border-b border-[var(--gv-border-soft)] pb-5 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div className="space-y-3">
           <Link href="/dex" className="text-sm font-medium text-[var(--gv-text-secondary)] underline-offset-4 hover:text-[var(--gv-text-primary)] hover:underline">
-            Back to Grookai Dex
+            Back to grookai Dex
           </Link>
           <Link
             href={`/vault?species=${encodeURIComponent(detail.slug)}`}

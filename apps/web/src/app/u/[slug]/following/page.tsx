@@ -20,13 +20,13 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile) {
     return {
-      title: "Following not found | Grookai Vault",
+      title: "Following not found | grookai vault",
     };
   }
 
   const siteOrigin = getSiteOrigin();
-  const title = `${profile.display_name} Following | Grookai Vault`;
-  const description = `Collectors ${profile.display_name} follows on Grookai.`;
+  const title = `${profile.display_name} Following | grookai vault`;
+  const description = `Collectors ${profile.display_name} follows on grookai.`;
 
   return {
     title,
@@ -84,7 +84,7 @@ export default async function PublicFollowingPage(props: { params: Promise<{ slu
       <PublicCollectorHeader
         displayName={profile.display_name}
         slug={profile.slug}
-        description={`${profile.display_name}'s collector follows on Grookai.`}
+        description={`${profile.display_name}'s collector follows on grookai.`}
         joinedAt={profile.created_at}
         followingCount={followCounts.followingCount}
         followerCount={followCounts.followerCount}

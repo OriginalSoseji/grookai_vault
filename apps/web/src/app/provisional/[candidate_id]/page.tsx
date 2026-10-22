@@ -22,7 +22,7 @@ export async function generateMetadata(
   const card = continuity.kind === "provisional" ? continuity.candidate : null;
 
   return {
-    title: card ? `${card.display_name} | Provisional | Grookai Vault` : "Provisional card unavailable | Grookai Vault",
+    title: card ? `${card.display_name} | Provisional | grookai vault` : "Provisional card unavailable | grookai vault",
     robots: {
       index: false,
       follow: false,

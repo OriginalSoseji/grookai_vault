@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Pricing Platform | Founder | Grookai",
+  title: "Pricing Platform | Founder | grookai",
   robots: { index: false, follow: false },
 };
 

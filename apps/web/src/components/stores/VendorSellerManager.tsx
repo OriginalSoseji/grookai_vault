@@ -55,8 +55,8 @@ export default function VendorSellerManager() {
       {!status ? <><p>{error ? "Seller status is unavailable." : "Loading seller payments…"}</p><button disabled={busy} onClick={() => void act()}>Retry</button></> : <>
         {status.testMode && <p className={s.notice}>Test seller setup — use Stripe test information only.</p>}
         <h2>Your seller account</h2>
-        <p>{status.state === "none" ? "Seller payments have not been set up." : status.state === "bound" ? "Your Stripe account is connected." : status.state === "closing" ? "Account closure is being reviewed." : status.state === "deauthorized" ? "Stripe access was disconnected. Contact Grookai support." : "Seller setup is in progress."}</p>
-        {status.recoveryRequired && <p>Your earlier setup needs review before another attempt. Contact Grookai support.</p>}
+        <p>{status.state === "none" ? "Seller payments have not been set up." : status.state === "bound" ? "Your Stripe account is connected." : status.state === "closing" ? "Account closure is being reviewed." : status.state === "deauthorized" ? "Stripe access was disconnected. Contact grookai support." : "Seller setup is in progress."}</p>
+        {status.recoveryRequired && <p>Your earlier setup needs review before another attempt. Contact grookai support.</p>}
         {!status.onboardingEnabled && status.state !== "bound" && <p>Seller setup is currently unavailable for this account.</p>}
         {status.readiness && <div role="status"><p>{status.readiness.capabilitiesReady ? "Stripe currently reports payment and payout capabilities as active." : "Stripe setup or verification is still required."}</p>
           {status.readiness.requirements.currentlyDue !== null && status.readiness.requirements.currentlyDue > 0 && <p>Continue setup to provide the remaining information.</p>}

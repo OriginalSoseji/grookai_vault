@@ -13,7 +13,7 @@ import { createServerComponentClient, hasSupabaseServerAuthCookie } from "@/lib/
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const metadata: Metadata = {
-  title: "Search | Grookai Vault",
+  title: "Search | grookai vault",
   alternates: { canonical: "/explore" },
   openGraph: { url: "/explore" },
 };

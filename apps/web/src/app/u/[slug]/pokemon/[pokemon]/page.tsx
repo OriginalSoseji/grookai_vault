@@ -42,8 +42,8 @@ export async function generateMetadata(
   const siteOrigin = getSiteOrigin();
   const canonicalPokemonSlug = normalizePokemonSlug(params.pokemon).replace(/\s+/g, "-");
   const canonicalUrl = `${siteOrigin}/u/${profile.slug}/pokemon/${encodeURIComponent(canonicalPokemonSlug)}`;
-  const title = `${profile.display_name}'s ${pokemonLabel} Collection | Grookai Vault`;
-  const description = `${profile.display_name}'s ${pokemonLabel} collection on Grookai.`;
+  const title = `${profile.display_name}'s ${pokemonLabel} Collection | grookai vault`;
+  const description = `${profile.display_name}'s ${pokemonLabel} collection on grookai.`;
 
   return {
     title,
@@ -95,7 +95,7 @@ export default async function PublicPokemonCollectionPage(
           { value: `${matchingSetCount}`, label: matchingSetCount === 1 ? "set" : "sets" },
         ]
       : [];
-  const description = `${pokemonLabel} in ${profile.display_name}'s collection on Grookai.`;
+  const description = `${pokemonLabel} in ${profile.display_name}'s collection on grookai.`;
 
   return (
     <div className="space-y-8 py-8">

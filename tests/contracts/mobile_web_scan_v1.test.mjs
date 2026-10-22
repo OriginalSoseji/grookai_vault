@@ -12,7 +12,7 @@ const styles = read("apps/web/src/app/scan/scan.module.css");
 
 test("production Scan is an authenticated, non-indexed /scan route", () => {
   assert.match(page, /requireServerUser\("\/scan"\)/);
-  assert.match(page, /title:\s*"Scan \| Grookai Vault"/);
+  assert.match(page, /title:\s*"Scan \| grookai vault"/);
   assert.match(page, /index:\s*false/);
   assert.match(page, /<ScanClient\s*\/>/);
 });
@@ -63,7 +63,7 @@ test("Scan includes an explicit device-photo fallback and denied states", () => 
 });
 
 test("capture handoff is truthful, explicit, and mutation-free", () => {
-  assert.match(client, /Grookai does not identify or add this photo yet\./);
+  assert.match(client, /grookai does not identify or add this photo yet\./);
   assert.match(client, /Nothing has been\s+uploaded\./);
   assert.match(client, /No photo is uploaded automatically\./);
   assert.match(client, /href="\/explore"/);

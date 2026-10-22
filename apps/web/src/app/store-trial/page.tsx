@@ -5,7 +5,7 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 import { storeTrialEnabled, validStoreTrialCode, STORE_TRIAL_COOKIE } from "@/lib/stores/storeTrial";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Your store trial | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Your store trial | grookai vault", robots: { index: false, follow: false } };
 export default async function StoreTrialPage() {
   if (!storeTrialEnabled()) notFound();
   const code = (await cookies()).get(STORE_TRIAL_COOKIE)?.value;
@@ -17,7 +17,7 @@ export default async function StoreTrialPage() {
     <p className="text-lg text-slate-600">Set up your store, scan cards, and organize your inventory from your computer or phone.</p>
     <section className="space-y-4 rounded-2xl border bg-white p-6">
       <h2 className="text-xl font-semibold">Try your store for up to 14 days</h2>
-      <p>Use your own Grookai account, or create one with your email. Cards and photos you add become part of your real Vault inventory.</p>
+      <p>Use your own grookai account, or create one with your email. Cards and photos you add become part of your real Vault inventory.</p>
       <p>Preview your store, set prices and sections, and review matches before adding cards. Nothing is listed automatically. Public web publishing, subscriptions, checkout and payments are disabled during this trial. No payment card is required.</p>
       {!validStoreTrialCode(code) ? <p role="alert">Open the complete invitation link you received to begin.</p> : !user ?
         <Link className="gv-primary-button inline-flex" href="/login?next=%2Fstore-trial&mode=signup">Create an account or sign in</Link> :

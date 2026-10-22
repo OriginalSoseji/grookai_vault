@@ -39,13 +39,13 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile || !profile.vault_sharing_enabled) {
     return {
-      title: "Profile not found | Grookai Vault",
+      title: "Profile not found | grookai vault",
     };
   }
 
   const siteOrigin = getSiteOrigin();
-  const title = `${profile.display_name} | Grookai Vault`;
-  const description = `${profile.display_name}'s Wall on Grookai.`;
+  const title = `${profile.display_name} | grookai vault`;
+  const description = `${profile.display_name}'s Wall on grookai.`;
 
   return {
     title,
@@ -66,7 +66,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
               url: `${siteOrigin}/u/${profile.slug}/opengraph-image`,
               width: 512,
               height: 512,
-              alt: `${profile.display_name}'s Wall on Grookai`,
+              alt: `${profile.display_name}'s Wall on grookai`,
             },
           ]
         : undefined,
@@ -128,7 +128,7 @@ export default async function PublicProfilePage(
         ]
       : [];
 
-  const description = `${profile.display_name}'s Wall on Grookai.`;
+  const description = `${profile.display_name}'s Wall on grookai.`;
 
   return (
     <div className="space-y-8 py-8">

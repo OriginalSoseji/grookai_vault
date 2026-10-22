@@ -658,7 +658,7 @@ export default async function FounderWarehouseCandidatePage(
       <PageSection surface="card" spacing="default">
         <SectionHeader
           title="App Preview"
-          description="Best available normalized preview of how this card resolves in Grookai. Unresolved fields stay explicit."
+          description="Best available normalized preview of how this card resolves in grookai. Unresolved fields stay explicit."
         />
         <div className="grid gap-6 lg:grid-cols-[minmax(280px,380px)_minmax(0,1fr)]">
           <div className="space-y-4 rounded-[1.75rem] border border-slate-200 bg-slate-50 px-5 py-5">

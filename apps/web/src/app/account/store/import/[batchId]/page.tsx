@@ -6,7 +6,7 @@ import type { StoreOwner } from "@/lib/stores/storefrontTypes";
 import CustomProductImporter from "@/components/stores/CustomProductImporter";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = {title:"Import custom collectibles | Grookai Vault", robots:{index:false,follow:false}};
+export const metadata = {title:"Import custom collectibles | grookai vault", robots:{index:false,follow:false}};
 export default async function CustomImportPage({params}: {params:Promise<{batchId:string}>}) {
   const {batchId} = await params;
   let id; try { id = importId(batchId); } catch { notFound(); }

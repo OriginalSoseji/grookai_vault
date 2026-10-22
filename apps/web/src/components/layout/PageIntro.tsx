@@ -24,7 +24,7 @@ export function PageIntro({
   return (
     <div
       className={cx(
-        "gv-collector-page-intro flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between",
+        "gv-collector-page-intro gv-page-intro flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between",
         className,
       )}
     >

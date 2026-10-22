@@ -2,6 +2,21 @@
 
 This rulebook consolidates all engineering contracts, guardrails, and workflows across Grookai Vault. It is the single reference for migrations, backend architecture, ingestion, pricing, environments, secrets, and developer conduct. Link here before starting any new work.
 
+## Canonical Brand and Visual Direction
+
+- Follow [APP_VISUAL_SYSTEM_CONTRACT_V1](contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md)
+  and [BRAND_TYPOGRAPHY_CONTRACT_V1](contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md)
+  on native, mobile web, and desktop web across branches.
+- Use bundled Roboto, lowercase `grookai` / `grookai vault`, and shared weight
+  900 text lockups. Preserve the original logo design and proportions.
+- Any logo color or seasonal theme is allowed. Halloween spiders and Winter
+  snowflakes may animate inside the profile frame; preserve the original
+  emblem layer and support pause and reduced motion.
+- Interface accents always match the active logo theme: Halloween orange,
+  Winter ice blue. Keep logo and interaction colors in one shared theme.
+- The shared visual system uses ink/bone/lime, compact headers, flat surfaces,
+  tighter corners, and 9px card gaps. Older visual references do not override it.
+
 # Zero-Assumption Rule (Mandatory)
 - Never assume environment, project_ref, DB contents, data presence, or ingestion success.
 - Any conclusion about data/state must be backed by either direct SQL results, explicit file/env inspection, or explicit user confirmation.

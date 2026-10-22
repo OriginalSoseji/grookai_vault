@@ -40,9 +40,9 @@ export default function VendorBillingManager(){
      {status.plan&&<p>{status.plan==="store_web"?"App + web store":"App store"}{status.paidThrough&&` · Verified access through ${new Date(status.paidThrough).toLocaleString()}`}</p>}
      {status.cancelAtPeriodEnd&&<p>Your subscription is scheduled to end after the current paid period.</p>}
      <p>App store: {status.access?.store_app?"available":"not included in current access"}. Public web store: {status.access?.store_web?"available":"not included in current access"}.</p>
-     {status.eligibilityIssue&&<p role="status">{status.eligibilityIssue==="suspended"?"This account is suspended. You can still manage existing payments.":"Your account needs an access review before subscribing. Contact Grookai support."}</p>}
-     {status.recoveryRequired&&<p role="status">Your earlier checkout needs review before another attempt. Contact Grookai support.</p>}
-     {status.closeoutPending&&<p role="status">Your account closure is being processed. Contact Grookai support for billing assistance.</p>}
+     {status.eligibilityIssue&&<p role="status">{status.eligibilityIssue==="suspended"?"This account is suspended. You can still manage existing payments.":"Your account needs an access review before subscribing. Contact grookai support."}</p>}
+     {status.recoveryRequired&&<p role="status">Your earlier checkout needs review before another attempt. Contact grookai support.</p>}
+     {status.closeoutPending&&<p role="status">Your account closure is being processed. Contact grookai support for billing assistance.</p>}
      {status.checkoutState&&!status.recoveryRequired&&<p>Checkout: {status.checkoutState==="completed"?"awaiting payment verification":status.checkoutState}. Resume the same package or check your payment.</p>}
      <div className={s.actions}><button disabled={busy||status.closeoutPending} onClick={()=>void act("refresh")}>Check payment</button>{status.canManagePayment&&!status.closeoutPending&&<button disabled={busy} onClick={()=>void act("portal")}>Manage billing & receipts</button>}</div>
     </section>

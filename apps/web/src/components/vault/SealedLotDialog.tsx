@@ -42,7 +42,7 @@ async function render(rows: SealedCopy[], photos: (HTMLImageElement | null)[], b
   const height = 390 + Math.max(...labels.map(l => l.length)) * 27 + (back ? 95 : 0);
   canvas.height = 100 + Math.ceil(rows.length / columns) * (height + gap) + margin;
   ctx.fillStyle = '#101414'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#ffffff'; ctx.font = 'bold 30px Arial'; ctx.fillText(`Grookai Vault - ${rows.length} sealed products`, margin, 52);
+  ctx.fillStyle = '#ffffff'; ctx.font = 'bold 30px Arial'; ctx.fillText(`grookai vault - ${rows.length} sealed products`, margin, 52);
   for (let index = 0; index < rows.length; index++) {
     const row = rows[index], rowStart = Math.floor(index / columns) * columns;
     const inRow = Math.min(columns, rows.length - rowStart);
@@ -108,7 +108,7 @@ export function SealedLotDialog({ selected, close }: { selected: SealedCopy[]; c
     </figure>)}</div>
     {files.length === 2 && <button className="flex min-h-11 items-center gap-2" onClick={async () => {
       try { if (!navigator.canShare?.({ files })) { setError('Use the two download buttons to save both images.'); return; }
-        await navigator.share({ files, title: 'Grookai sealed lot', text: selected.map(row => `${sealedIdentity(row)}\n${window.location.origin}/gvvi/${encodeURIComponent(row.gv_vi_id)}`).join('\n\n') });
+        await navigator.share({ files, title: 'grookai sealed lot', text: selected.map(row => `${sealedIdentity(row)}\n${window.location.origin}/gvvi/${encodeURIComponent(row.gv_vi_id)}`).join('\n\n') });
       } catch { setError('Sharing was cancelled or unavailable. Both images remain available to download.'); }
     }}><Share2 size={18} />Share both images</button>}
   </dialog>;

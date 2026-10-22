@@ -213,7 +213,7 @@ export default async function VaultManageCardPage(
                 </div>
 
                 <VaultEvidenceDisclosure>
-                  <p>Grookai card ID: {item.gv_id}</p>
+                  <p>grookai card ID: {item.gv_id}</p>
                   <p>Card print ID: {item.card_id}</p>
                 </VaultEvidenceDisclosure>
               </div>

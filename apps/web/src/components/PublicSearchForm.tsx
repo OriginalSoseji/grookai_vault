@@ -334,11 +334,11 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
               if (suggestions.length > 0 || suggestionsLoading) setSuggestionsOpen(true);
             }}
             onKeyDown={handleSearchKeyDown}
-            placeholder="Search cards, sets, numbers, or Grookai ID"
+            placeholder="Search cards, sets, numbers, or grookai ID"
             enterKeyHint="search"
             shellClassName={inputShellClassName}
             inputClassName={isHero ? "text-base" : "text-sm"}
-            aria-label="Search cards, sets, numbers, or Grookai ID"
+            aria-label="Search cards, sets, numbers, or grookai ID"
             aria-autocomplete="list"
             aria-controls={listboxOpen ? listboxId : undefined}
             aria-expanded={listboxOpen}
