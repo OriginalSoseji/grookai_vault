@@ -202,4 +202,20 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /mtg_identity_product_queue\.jsonl/);
   assert.match(worker, /pokemon_identity_product_queue\.jsonl/);
   assert.match(worker, /sha256: sha256\(mtgIdentityQueueJsonl\)/);
+  assert.match(worker, /ollama_identity_candidate_queue\.jsonl/);
+  assert.match(worker, /--candidate-only/);
+  assert.match(worker, /mtg_ollama_identity_candidate_queue\.jsonl/);
+  assert.match(worker, /pokemon_ollama_identity_candidate_queue\.jsonl/);
+});
+
+test('local V2 consumer uses hosted candidate evidence without database secrets', () => {
+  const runner = fs.readFileSync(
+    path.join(ROOT, 'scripts/ops/run_continuous_pricing_triage_v2.ps1'),
+    'utf8',
+  );
+  assert.match(runner, /ollama_identity_candidate_queue\.jsonl/);
+  assert.match(runner, /GrookaiOllamaPricingTriageV2/);
+  assert.doesNotMatch(runner, /\.env\.local|SUPABASE_DB_URL|DATABASE_URL|POSTGRES_URL/);
+  assert.doesNotMatch(runner, /candidate_enrichment/);
+  assert.match(runner, /if \(\$hasMutex\) \{[\s\S]*ollama\.exe stop[\s\S]*ReleaseMutex\(\)/);
 });

@@ -220,6 +220,14 @@ Do not attach a database writer, add mapping or publication authority, or treat
 model output as reviewed evidence. Promotion still requires deterministic
 validation and the governed release path.
 
+After checkpoint 168 is merged and its hosted receipt passes, use the checked-in
+`scripts/ops/run_continuous_pricing_triage_v2.ps1` runner. Its input is the
+hosted `ollama_identity_candidate_queue.jsonl`, and it must not load `.env.local`
+or connect to PostgreSQL. Retain V2 state under
+`C:\grookai_vault_operator_artifacts\pricing_completion_ollama_v2`. Reconcile
+the hosted combined, Magic, and Pokemon candidate hashes before replacing the
+scheduled-task action.
+
 ## Pokémon 30th Celebration Classic aliases — October 14
 
 Read

@@ -2,11 +2,15 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  buildTcgplayerOllamaCandidateIndexV1,
+  candidatePoolForTcgplayerOllamaRowV1,
   enrichTcgplayerOllamaRowV1,
   isLikelySealedTcgplayerProductV1,
   normalizeTcgplayerOllamaCandidateTextV1,
   normalizeTcgplayerOllamaCoordinateV1,
+  normalizeTcgplayerOllamaSourceNameV1,
   rankTcgplayerOllamaCandidatesV1,
+  uniqueTcgplayerExtendedNumberV1,
 } from '../../backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs';
 import { planTcgplayerOllamaTriageRowV1 } from '../../backend/pricing/tcgplayer_ollama_triage_v1.mjs';
 
@@ -18,8 +22,53 @@ const baseCard = {
 
 test('candidate normalization preserves identity symbols and collector coordinates', () => {
   assert.equal(normalizeTcgplayerOllamaCandidateTextV1('Nidoran ♀ (Promo)'), 'nidoran f');
+  assert.equal(normalizeTcgplayerOllamaCandidateTextV1('Flabébé'), 'flabebe');
+  assert.equal(normalizeTcgplayerOllamaSourceNameV1('Pikachu - 005/012'), 'pikachu');
   assert.equal(normalizeTcgplayerOllamaCoordinateV1('019/123'), '19');
   assert.equal(normalizeTcgplayerOllamaCoordinateV1('AR06'), 'AR6');
+});
+
+test('global candidate lookup strips only the collector coordinate suffix', () => {
+  const pikachu = {
+    ...baseCard,
+    card_print_id: 'pikachu-5',
+    canonical_name: 'Pikachu',
+    canonical_number: '5',
+    identity_domain: 'pokemon_eng_standard',
+  };
+  const index = buildTcgplayerOllamaCandidateIndexV1([pikachu]);
+  const pool = candidatePoolForTcgplayerOllamaRowV1({
+    source_category_id: 3,
+    source_product_name: 'Pikachu - 005/012',
+    printed_number: '005/012',
+  }, index);
+  assert.deepEqual(pool.map((row) => row.card_print_id), ['pikachu-5']);
+});
+
+test('source number extraction requires one unambiguous Number value', () => {
+  assert.equal(uniqueTcgplayerExtendedNumberV1([{ name: 'Number', value: '019/123' }]), '019/123');
+  assert.equal(uniqueTcgplayerExtendedNumberV1([
+    { name: 'Number', value: '19' }, { name: 'Number', value: '20' },
+  ]), '');
+});
+
+test('candidate index keeps MTG and Pokemon identity domains separate', () => {
+  const pokemon = { ...baseCard, identity_domain: 'pokemon_eng_standard' };
+  const mtg = {
+    ...baseCard,
+    card_print_id: 'mtg-1',
+    gv_id: 'GV-MTG-LEA-233',
+    canonical_name: 'Underground Sea',
+    canonical_number: '233',
+    identity_domain: 'mtg_eng_paper_print',
+  };
+  const index = buildTcgplayerOllamaCandidateIndexV1([pokemon, mtg]);
+  const pool = candidatePoolForTcgplayerOllamaRowV1({
+    source_category_id: 1,
+    source_product_name: 'Underground Sea',
+    printed_number: '233',
+  }, index);
+  assert.deepEqual(pool.map((row) => row.card_print_id), ['mtg-1']);
 });
 
 test('set consensus and exact coordinate rank one unmapped standard parent', () => {

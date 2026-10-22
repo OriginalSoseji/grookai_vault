@@ -8,7 +8,11 @@ import pg from 'pg';
 
 import '../../backend/env.mjs';
 import {
+  buildTcgplayerOllamaCandidateIndexV1,
+  candidatePoolForTcgplayerOllamaRowV1,
   enrichTcgplayerOllamaRowV1,
+  normalizeTcgplayerOllamaSourceNameV1,
+  uniqueTcgplayerExtendedNumberV1,
 } from '../../backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs';
 
 const { Client } = pg;
@@ -44,6 +48,10 @@ async function main() {
   const outputPath = path.resolve(value(argv, 'output'));
   if (!value(argv, 'input') || !value(argv, 'output')) throw new Error('--input and --output are required');
   const input = await readJsonl(inputPath);
+  const candidateOnly = argv.includes('--candidate-only');
+  const productIds = [...new Set(input.rows
+    .map((row) => Number(row.source_product_id))
+    .filter(Number.isSafeInteger))];
   const groupIds = [...new Set(input.rows.map((row) => Number(row.source_group_id)).filter(Number.isSafeInteger))];
   const url = connectionString();
   if (!url) throw new Error('Database URL required');
@@ -58,10 +66,18 @@ async function main() {
   await client.connect();
   let cards;
   let consensusRows;
+  let productRows;
   try {
     await client.query('begin isolation level repeatable read read only');
+    productRows = (await client.query(
+      `select product_id, category_id, group_id, name, extended_data
+         from public.tcgcsv_source_products
+        where product_id = any($1::integer[])`,
+      [productIds],
+    )).rows;
     consensusRows = (await client.query(
-      `select product.group_id as source_group_id,
+      `select product.category_id as source_category_id,
+              product.group_id as source_group_id,
               count(distinct mapping.external_id)::integer as mapped_source_product_count,
               count(distinct card.set_id)::integer as set_count,
               min(card.set_id::text) as set_id,
@@ -74,7 +90,7 @@ async function main() {
          join public.card_prints card on card.id = mapping.card_print_id
          join public.sets set_row on set_row.id = card.set_id
         where product.group_id = any($1::integer[])
-        group by product.group_id`,
+        group by product.category_id, product.group_id`,
       [groupIds],
     )).rows;
     cards = (await client.query(
@@ -82,9 +98,13 @@ async function main() {
               card.set_code, set_row.name as set_name,
               card.name as canonical_name, card.number as canonical_number,
               card.variant_key,
+              min(identity.identity_domain) filter (
+                where identity.is_active = true
+                  and identity.identity_domain in ('pokemon_eng_standard', 'mtg_eng_paper_print')
+              ) as identity_domain,
               count(distinct identity.id) filter (
                 where identity.is_active = true
-                  and identity.identity_domain = 'pokemon_eng_standard'
+                  and identity.identity_domain in ('pokemon_eng_standard', 'mtg_eng_paper_print')
               )::integer as active_standard_identity_count,
               count(distinct mapping.id) filter (
                 where mapping.source = 'tcgplayer' and mapping.active = true
@@ -98,7 +118,7 @@ async function main() {
                  card.name, card.number, card.variant_key
        having count(distinct identity.id) filter (
                 where identity.is_active = true
-                  and identity.identity_domain = 'pokemon_eng_standard'
+                  and identity.identity_domain in ('pokemon_eng_standard', 'mtg_eng_paper_print')
               ) = 1
           and count(distinct mapping.id) filter (
                 where mapping.source = 'tcgplayer' and mapping.active = true
@@ -108,12 +128,35 @@ async function main() {
   } finally {
     await client.end();
   }
-  const consensus = new Map(consensusRows.map((row) => [Number(row.source_group_id), row]));
-  const enriched = input.rows.map((row) => enrichTcgplayerOllamaRowV1(
+  const products = new Map(productRows.map((row) => [Number(row.product_id), row]));
+  const consensus = new Map(consensusRows.map((row) => [
+    `${Number(row.source_category_id)}:${Number(row.source_group_id)}`,
     row,
-    cards,
-    consensus.get(Number(row.source_group_id)) ?? null,
-  ));
+  ]));
+  const candidateIndex = buildTcgplayerOllamaCandidateIndexV1(cards);
+  const enrichedAll = input.rows.map((inputRow) => {
+    const product = products.get(Number(inputRow.source_product_id));
+    const printedNumber = uniqueTcgplayerExtendedNumberV1(product?.extended_data);
+    const row = {
+      ...inputRow,
+      printed_number: printedNumber,
+      normalized_source_name: normalizeTcgplayerOllamaSourceNameV1(
+        product?.name ?? inputRow.source_product_name,
+      ),
+      source_product_extended_data: product?.extended_data ?? [],
+    };
+    const groupConsensus = consensus.get(
+      `${Number(row.source_category_id)}:${Number(row.source_group_id)}`,
+    ) ?? null;
+    return enrichTcgplayerOllamaRowV1(
+      row,
+      candidatePoolForTcgplayerOllamaRowV1(row, candidateIndex, groupConsensus),
+      groupConsensus,
+    );
+  });
+  const enriched = candidateOnly
+    ? enrichedAll.filter((row) => row.review_targets.length > 0)
+    : enrichedAll;
   const output = jsonl(enriched);
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.writeFile(outputPath, output);
@@ -125,11 +168,21 @@ async function main() {
     output_path: outputPath,
     output_sha256: createHash('sha256').update(output).digest('hex'),
     input_rows: input.rows.length,
+    output_rows: enriched.length,
+    candidate_only: candidateOnly,
     catalog_candidates_scanned: cards.length,
-    rows_with_review_targets: enriched.filter((row) => row.review_targets.length > 0).length,
-    rows_without_review_targets: enriched.filter((row) => row.review_targets.length === 0).length,
-    missing_number_rows_enriched: enriched.filter((row) =>
+    rows_with_review_targets: enrichedAll.filter((row) => row.review_targets.length > 0).length,
+    rows_without_review_targets: enrichedAll.filter((row) => row.review_targets.length === 0).length,
+    missing_number_rows_enriched: enrichedAll.filter((row) =>
       !String(row.printed_number ?? '').trim() && row.review_targets.length > 0).length,
+    categories: Object.fromEntries([1, 3].map((categoryId) => [
+      String(categoryId),
+      {
+        input_rows: enrichedAll.filter((row) => Number(row.source_category_id) === categoryId).length,
+        candidate_rows: enrichedAll.filter((row) =>
+          Number(row.source_category_id) === categoryId && row.review_targets.length > 0).length,
+      },
+    ])),
     boundaries: {
       database_reads_only: true,
       database_writes: false,

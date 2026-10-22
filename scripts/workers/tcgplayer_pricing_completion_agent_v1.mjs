@@ -84,6 +84,36 @@ function runExactMappingPlan({ sourceRunId, coverageGaps, outRoot }) {
   });
 }
 
+function runCandidateEnrichment({ input, output }) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [
+      'scripts/audits/tcgplayer_ollama_candidate_enrichment_v1.mjs',
+      `--input=${input}`,
+      `--output=${output}`,
+      '--candidate-only',
+    ], {
+      cwd: path.resolve('.'),
+      env: {
+        ...process.env,
+        PGOPTIONS: '-c default_transaction_read_only=on',
+      },
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) resolve({ stdout, stderr });
+      else reject(new Error(
+        `Ollama candidate enrichment failed with exit ${code}: ${stderr || stdout}`,
+      ));
+    });
+  });
+}
+
 async function readOnlyChildDirectory(root) {
   const entries = await fs.readdir(root, { withFileTypes: true });
   const directories = entries.filter((entry) => entry.isDirectory())
@@ -198,12 +228,48 @@ async function main() {
         pokemonIdentityQueueJsonl,
       ),
     ]);
-    const summary = summarizeTcgplayerPricingCompletionRunV1(report, {
-      exactPlan,
-      identityProductQueue,
+    const ollamaCandidateQueuePath = path.join(
+      args.outDir,
+      'ollama_identity_candidate_queue.jsonl',
+    );
+    const enrichmentProcess = await runCandidateEnrichment({
+      input: path.join(args.outDir, 'identity_product_queue.jsonl'),
+      output: ollamaCandidateQueuePath,
     });
+    const ollamaCandidateQueue = await readJsonl(ollamaCandidateQueuePath);
+    const mtgOllamaCandidateQueue = ollamaCandidateQueue.filter((row) =>
+      row.source_category_id === 1);
+    const pokemonOllamaCandidateQueue = ollamaCandidateQueue.filter((row) =>
+      row.source_category_id === 3);
+    const mtgOllamaCandidateQueueJsonl = jsonl(mtgOllamaCandidateQueue);
+    const pokemonOllamaCandidateQueueJsonl = jsonl(pokemonOllamaCandidateQueue);
+    await Promise.all([
+      fs.writeFile(
+        path.join(args.outDir, 'mtg_ollama_identity_candidate_queue.jsonl'),
+        mtgOllamaCandidateQueueJsonl,
+      ),
+      fs.writeFile(
+        path.join(args.outDir, 'pokemon_ollama_identity_candidate_queue.jsonl'),
+        pokemonOllamaCandidateQueueJsonl,
+      ),
+    ]);
+    const enrichmentSummary = JSON.parse(await fs.readFile(
+      `${ollamaCandidateQueuePath}.summary.json`,
+      'utf8',
+    ));
+    const summary = {
+      ...summarizeTcgplayerPricingCompletionRunV1(report, {
+        exactPlan,
+        identityProductQueue,
+      }),
+      ollama_review_candidates: {
+        combined: ollamaCandidateQueue.length,
+        mtg: mtgOllamaCandidateQueue.length,
+        pokemon: pokemonOllamaCandidateQueue.length,
+      },
+    };
     const receipt = {
-      schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V2',
+      schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V3',
       observed_at: new Date().toISOString(),
       run_key: args.runKey,
       agent,
@@ -226,9 +292,26 @@ async function main() {
           rows: pokemonIdentityQueue.length,
           sha256: sha256(pokemonIdentityQueueJsonl),
         },
+        ollama_candidate_combined: {
+          path: 'ollama_identity_candidate_queue.jsonl',
+          rows: ollamaCandidateQueue.length,
+          sha256: sha256(jsonl(ollamaCandidateQueue)),
+        },
+        ollama_candidate_mtg: {
+          path: 'mtg_ollama_identity_candidate_queue.jsonl',
+          rows: mtgOllamaCandidateQueue.length,
+          sha256: sha256(mtgOllamaCandidateQueueJsonl),
+        },
+        ollama_candidate_pokemon: {
+          path: 'pokemon_ollama_identity_candidate_queue.jsonl',
+          rows: pokemonOllamaCandidateQueue.length,
+          sha256: sha256(pokemonOllamaCandidateQueueJsonl),
+        },
       },
       audit_stdout: audit.stdout.trim(),
       exact_mapping_plan_stdout: exactPlanProcess.stdout.trim(),
+      candidate_enrichment_stdout: enrichmentProcess.stdout.trim(),
+      candidate_enrichment_summary: enrichmentSummary,
       boundaries: {
         pricing_database_reads: true,
         operations_control_plane_writes: true,
