@@ -33,6 +33,23 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_168_HOSTED_OLLAMA_CANDIDATE_QUEUE.md`
+
+This checkpoint moves cross-category candidate enrichment into the hosted
+read-only pricing worker and makes local Ollama consume the resulting bounded
+candidate queue over GitHub HTTPS.
+
+Decision locked there:
+
+- local inference has no production-database dependency, Magic and Pokemon
+  candidates retain separate identity domains, and model output remains
+  advisory
+
+Unresolved gate afterward:
+
+- merge, retain one exact-commit hosted candidate artifact, then run the local
+  V2 scheduled task and retain its successful receipt
+
 ### `PRICING_CHECKPOINT_166_TCGPLAYER_RESIDUAL_PACKAGING_SCOPE_REPAIR.md`
 
 This checkpoint records the audited residual package-name families left after

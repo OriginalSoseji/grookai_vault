@@ -16,6 +16,17 @@ defaults do not override these contracts. The active logo theme also owns the
 interface accent: Halloween uses orange `#FF8A33`; future seasons must change
 the logo and matching accents together.
 
+## Hosted Ollama candidate queue — October 22
+
+Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_168_HOSTED_OLLAMA_CANDIDATE_QUEUE.md`.
+The local pricing task must consume the hosted
+`ollama_identity_candidate_queue.jsonl`; it must not open a production database
+connection. Hosted enrichment is read-only, preserves separate Magic and
+Pokemon identity domains, and emits only bounded real catalog candidates. The
+loopback Ollama model remains advisory. It cannot write identity, mappings,
+prices, publication state, or customer state. Promotion still requires
+deterministic validation and the governed release path.
+
 ## TCGPlayer residual packaging scope repair — October 21
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_166_TCGPLAYER_RESIDUAL_PACKAGING_SCOPE_REPAIR.md`.

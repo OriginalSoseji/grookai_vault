@@ -6,7 +6,7 @@ import {
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_KEY =
   'tcgplayer-pricing-completion-v1';
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION =
-  'TCGPLAYER_PRICING_COMPLETION_AGENT_V2';
+  'TCGPLAYER_PRICING_COMPLETION_AGENT_V3';
 
 function integer(value) {
   const parsed = Number(value);

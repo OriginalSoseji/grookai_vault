@@ -41,6 +41,60 @@ function sourceName(row) {
   return text(row.normalized_source_name || row.source_product_name);
 }
 
+function identityDomainForCategory(categoryId) {
+  if (Number(categoryId) === 1) return 'mtg_eng_paper_print';
+  if (Number(categoryId) === 3) return 'pokemon_eng_standard';
+  return '';
+}
+
+export function uniqueTcgplayerExtendedNumberV1(extendedData) {
+  if (!Array.isArray(extendedData)) return '';
+  const values = [...new Set(extendedData
+    .filter((entry) => text(entry?.name).toLocaleLowerCase('en-US') === 'number')
+    .map((entry) => text(entry?.value))
+    .filter(Boolean))];
+  return values.length === 1 ? values[0] : '';
+}
+
+export function buildTcgplayerOllamaCandidateIndexV1(cards = []) {
+  const byDomainAndSet = new Map();
+  const byDomainAndName = new Map();
+  for (const card of cards) {
+    const domain = text(card.identity_domain);
+    const setId = text(card.set_id);
+    const name = normalizeTcgplayerOllamaCandidateTextV1(card.canonical_name);
+    if (!domain || !setId || !name) continue;
+    const setKey = `${domain}:${setId}`;
+    const nameKey = `${domain}:${name}`;
+    const setRows = byDomainAndSet.get(setKey) ?? [];
+    setRows.push(card);
+    byDomainAndSet.set(setKey, setRows);
+    const nameRows = byDomainAndName.get(nameKey) ?? [];
+    nameRows.push(card);
+    byDomainAndName.set(nameKey, nameRows);
+  }
+  return { byDomainAndSet, byDomainAndName };
+}
+
+export function candidatePoolForTcgplayerOllamaRowV1(
+  row,
+  index,
+  groupConsensus = null,
+) {
+  const domain = identityDomainForCategory(row?.source_category_id);
+  if (!domain) return [];
+  const authoritySetId = text(row?.set_authority?.set_id);
+  const consensusSetId = Number(groupConsensus?.set_count) === 1
+    ? text(groupConsensus.set_id)
+    : '';
+  const targetSetId = authoritySetId || consensusSetId;
+  if (targetSetId) {
+    return index.byDomainAndSet.get(`${domain}:${targetSetId}`) ?? [];
+  }
+  const name = normalizeTcgplayerOllamaCandidateTextV1(sourceName(row));
+  return index.byDomainAndName.get(`${domain}:${name}`) ?? [];
+}
+
 export function isLikelySealedTcgplayerProductV1(value, printedNumber = '') {
   if (text(printedNumber)) return false;
   return /\b(booster|box|case|collection|deck|display|bundle|blister|tin|pack|poster|binder|portfolio|calendar|toolkit|build\s*&\s*battle|elite trainer|theme deck)\b/i.test(text(value));
@@ -55,9 +109,11 @@ export function rankTcgplayerOllamaCandidatesV1(row, cards, groupConsensus = nul
   const targetSetId = authoritySetId || consensusSetId;
   const wantedNumber = normalizeTcgplayerOllamaCoordinateV1(row.printed_number);
   const wantedName = normalizeTcgplayerOllamaCandidateTextV1(sourceName(row));
+  const wantedIdentityDomain = identityDomainForCategory(row?.source_category_id);
   const ranked = [];
 
   for (const card of cards) {
+    if (wantedIdentityDomain && text(card.identity_domain) !== wantedIdentityDomain) continue;
     if (Number(card.active_standard_identity_count) !== 1) continue;
     if (Number(card.active_tcgplayer_mapping_count) !== 0) continue;
     if (text(card.variant_key)) continue;

@@ -15,7 +15,7 @@ concurrency:
 jobs:
   measure-and-route:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
@@ -36,8 +36,14 @@ jobs:
       - name: Verify pricing completion agent contracts
         run: |
           node --check backend/operations/tcgplayer_pricing_completion_agent_v1.mjs
+          node --check backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs
+          node --check scripts/audits/tcgplayer_ollama_candidate_enrichment_v1.mjs
           node --check scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs
-          node --test tests/contracts/tcgplayer_pricing_completion_agent_v1.test.mjs
+          node --test \
+            tests/contracts/tcgplayer_pricing_completion_agent_v1.test.mjs \
+            tests/contracts/tcgplayer_ollama_candidate_enrichment_v1.test.mjs \
+            tests/contracts/tcgplayer_ollama_triage_v1.test.mjs \
+            tests/contracts/tcgplayer_ollama_lead_reconciliation_v1.test.mjs
 
       - name: Measure and route the production backlog
         shell: bash
