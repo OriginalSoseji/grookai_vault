@@ -44,7 +44,7 @@ function getDestinationCopy(nextPath: string) {
   if (nextPath === "/account" || nextPath.startsWith("/account?")) {
     return { title: "your account", description: "Sign in, then continue to your account settings." };
   }
-  return { title: "Grookai Vault", description: "Sign in to build your Vault, track exact cards, and connect with collectors." };
+  return { title: "grookai vault", description: "Sign in to build your Vault, track exact cards, and connect with collectors." };
 }
 
 function getAuthErrorMessage(error: unknown, mode: "signin" | "signup") {

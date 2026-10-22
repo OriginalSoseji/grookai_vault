@@ -217,7 +217,7 @@ export function ImportClient({ ownerId, recoveryOnly = false, onRecovered }: { o
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <p className="text-sm font-medium text-slate-950">Upload Collectr CSV</p>
-              <p className="text-sm text-slate-600">No file edits required. Grookai will detect columns automatically.</p>
+              <p className="text-sm text-slate-600">No file edits required. grookai will detect columns automatically.</p>
             </div>
             <label className="inline-flex cursor-pointer items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-900 transition hover:border-slate-400 hover:bg-slate-50">
               <input type="file" accept=".csv,text/csv" className="sr-only" onChange={handleFileChange} disabled={recoveryOnly || !recoveryReady || isImporting || Boolean(pendingAttempt)} />
@@ -250,7 +250,7 @@ export function ImportClient({ ownerId, recoveryOnly = false, onRecovered }: { o
 
       {isMatching ? (
         <section className="border-y border-slate-200 py-5 text-sm text-slate-600 dark:border-white/[0.08]" role="status">
-          Matching your cards against Grookai’s catalog…
+          Matching your cards against grookai’s catalog…
         </section>
       ) : null}
 
@@ -316,7 +316,7 @@ export function ImportClient({ ownerId, recoveryOnly = false, onRecovered }: { o
                           <p className="text-xs text-slate-600">
                             {row.match.name ?? row.row.displayName} · {row.match.set_name ?? row.row.displaySet} · #{row.match.number ?? row.row.displayNumber}
                           </p>
-                          <p className="text-xs text-slate-500">Grookai ID {row.match.gv_id}</p>
+                          <p className="text-xs text-slate-500">grookai ID {row.match.gv_id}</p>
                         </div>
                       ) : row.status === "review" ? (
                         <p role="status">{row.reviewReason}</p>

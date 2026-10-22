@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import InformationPage from "@/components/layout/InformationPage";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Grookai Vault",
+  title: "Privacy Policy | grookai vault",
   description:
-    "Grookai Vault privacy policy covering accounts, vault data, public profiles, messages, photos, scanner usage, analytics, and support.",
+    "grookai vault privacy policy covering accounts, vault data, public profiles, messages, photos, scanner usage, analytics, and support.",
 };
 
 export default function PrivacyPage() {
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <InformationPage
       eyebrow="Privacy"
       title="Privacy Policy"
-      description="Updated September 9, 2026. This policy explains what Grookai Vault collects, how that information is used, and the choices available to collectors."
+      description="Updated September 9, 2026. This policy explains what grookai vault collects, how that information is used, and the choices available to collectors."
     >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Information We Collect</h2>
@@ -30,7 +30,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-semibold text-slate-950">How We Use Information</h2>
           <p>
-            Grookai Vault uses information to provide account access, card search, vault management, public collector
+            grookai vault uses information to provide account access, card search, vault management, public collector
             profiles, messaging, scanner and image workflows, notifications, support, abuse prevention, and product
             analytics.
           </p>
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-semibold text-slate-950">Service Providers</h2>
           <p>
-            Grookai Vault relies on service providers for hosting, authentication, database storage, app distribution,
+            grookai vault relies on service providers for hosting, authentication, database storage, app distribution,
             analytics, notifications, and diagnostics. These providers process information only as needed to run the
             service.
           </p>
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-semibold text-slate-950">Children</h2>
           <p>
-            Grookai Vault is not directed to children under 13. If we learn that personal information was collected
+            grookai vault is not directed to children under 13. If we learn that personal information was collected
             from a child under 13 without appropriate authorization, contact support so it can be removed.
           </p>
         </section>

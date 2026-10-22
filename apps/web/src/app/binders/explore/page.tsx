@@ -17,8 +17,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Explore Community Binders | Grookai Vault",
-  description: "Discover public collection goals built by the Grookai community.",
+  title: "Explore Community Binders | grookai vault",
+  description: "Discover public collection goals built by the grookai community.",
 };
 
 export default async function BinderExplorePage(

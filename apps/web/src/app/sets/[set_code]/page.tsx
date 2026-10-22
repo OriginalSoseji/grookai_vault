@@ -46,8 +46,8 @@ export async function generateMetadata(
     : setDetail.game_code === "mtg"
       ? "Magic: The Gathering"
       : "Pokemon Trading Card Game";
-  const title = `${setDetail.name} ${gameLabel} Set | Grookai Vault`;
-  const description = `Browse ${setDetail.card_count.toLocaleString()} reconciled card identities from ${setDetail.name} on Grookai Vault.`;
+  const title = `${setDetail.name} ${gameLabel} Set | grookai vault`;
+  const description = `Browse ${setDetail.card_count.toLocaleString()} reconciled card identities from ${setDetail.name} on grookai vault.`;
 
   return {
     title,
@@ -89,7 +89,7 @@ function buildWorldChampionshipDecklistBlurb(decklist: PublicWorldChampionshipDe
   const deckLabel = decklist.deck_name ? `${decklist.deck_name} deck` : "deck";
   const playerLine = decklist.player_name ? ` Player: ${decklist.player_name}.` : "";
 
-  return `${yearLabel} decks preserve tournament lists from that year's top players. This ${deckLabel} is tracked as a replica list: Grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.${playerLine}`;
+  return `${yearLabel} decks preserve tournament lists from that year's top players. This ${deckLabel} is tracked as a replica list: grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.${playerLine}`;
 }
 
 async function SetPageContent({

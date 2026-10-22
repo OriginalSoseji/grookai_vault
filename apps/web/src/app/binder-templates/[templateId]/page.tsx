@@ -29,16 +29,16 @@ export async function generateMetadata(
   const params = await props.params;
   const flags = getBinderFeatureFlags();
   if (!flags.schemaRpc || !flags.templates || !PUBLIC_ID_PATTERN.test(params.templateId)) {
-    return { title: "Binder Template | Grookai Vault", robots: { index: false, follow: false } };
+    return { title: "Binder Template | grookai vault", robots: { index: false, follow: false } };
   }
   try {
     const template = await getTemplate(params.templateId);
     return {
-      title: `${template.title} Binder Template | Grookai Vault`,
+      title: `${template.title} Binder Template | grookai vault`,
       description: template.description ?? `Create a Binder from ${template.title}.`,
     };
   } catch {
-    return { title: "Binder Template | Grookai Vault", robots: { index: false, follow: false } };
+    return { title: "Binder Template | grookai vault", robots: { index: false, follow: false } };
   }
 }
 

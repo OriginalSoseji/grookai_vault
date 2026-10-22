@@ -7,11 +7,11 @@
     "mobile_max_exclusive": 900
   },
   "app_bar": {
-    "height": 46
+    "height": 48
   },
   "dock": {
     "max_width": 390,
-    "radius": 34,
+    "radius": 16,
     "item_min_height": 54,
     "order": [
       "Pulse",
@@ -23,11 +23,11 @@
   },
   "card_art": {
     "aspect_ratio": 0.7142857143,
-    "radius": 22
+    "radius": 10
   },
   "binder_action_panel": {
     "min_height": 78,
-    "radius": 28,
+    "radius": 8,
     "icon_size": 44
   },
   "tolerances": {

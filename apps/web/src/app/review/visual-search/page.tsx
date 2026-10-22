@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Visual Search Review | Grookai Vault",
+  title: "Visual Search Review | grookai vault",
   robots: { index: false, follow: false },
 };
 

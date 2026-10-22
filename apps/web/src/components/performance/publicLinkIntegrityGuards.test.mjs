@@ -82,11 +82,11 @@ test("root metadata supplies a non-empty title and canonical metadata base", () 
   const dexPage = readSource("app", "dex", "page.tsx");
 
   assert.match(rootLayout, /metadataBase: new URL\(GROOKAI_VAULT_ORIGIN\)/);
-  assert.match(rootLayout, /title: "Grookai Vault"/);
+  assert.match(rootLayout, /title: "grookai vault"/);
   assert.match(homePage, /redirect\(query.size \? `\/explore\?/);
   assert.match(explorePage, /alternates: \{ canonical: "\/explore" \}/);
   assert.match(explorePage, /openGraph: \{ url: "\/explore" \}/);
-  assert.match(dexPage, /title: "Grookai Dex \| Grookai Vault"/);
+  assert.match(dexPage, /title: "grookai Dex \| grookai vault"/);
   assert.match(dexPage, /alternates: \{ canonical: "\/dex" \}/);
   assert.match(dexPage, /url: "\/dex"/);
 });

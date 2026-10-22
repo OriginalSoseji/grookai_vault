@@ -335,8 +335,8 @@ export function ScanClient() {
     try {
       await navigator.share({
         files: [photo.file],
-        title: "Grookai card photo",
-        text: "A card photo captured locally in Grookai Vault.",
+        title: "grookai card photo",
+        text: "A card photo captured locally in grookai vault.",
       });
       setShareMessage("The share sheet closed.");
     } catch (error) {
@@ -595,7 +595,7 @@ export function ScanClient() {
             <p className={styles.eyebrow}>Next step</p>
             <h2 id="scan-next-step">Add the exact card manually</h2>
             <p>
-              Grookai does not identify or add this photo yet. Nothing has been
+              grookai does not identify or add this photo yet. Nothing has been
               uploaded. Search for the card and choose its exact printing before
               adding it to your Vault.
             </p>

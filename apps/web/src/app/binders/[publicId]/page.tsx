@@ -46,7 +46,7 @@ export async function generateMetadata(
   const flags = getBinderFeatureFlags();
   if (!flags.schemaRpc || !flags.publicBinders || !PUBLIC_ID_PATTERN.test(params.publicId)) {
     return {
-      title: "Binder | Grookai Vault",
+      title: "Binder | grookai vault",
       robots: { index: false, follow: false },
     };
   }
@@ -54,7 +54,7 @@ export async function generateMetadata(
     const binder = await getPublicBinder(params.publicId);
     const canIndex = binder.listed && binder.moderated;
     return {
-      title: `${binder.title} | Grookai Vault`,
+      title: `${binder.title} | grookai vault`,
       description:
         binder.description?.slice(0, 160) ??
         `${binder.completedSlots} of ${binder.totalSlots} ${binder.progressUnit.replaceAll("_", " ")} complete.`,
@@ -73,7 +73,7 @@ export async function generateMetadata(
     };
   } catch {
     return {
-      title: "Binder | Grookai Vault",
+      title: "Binder | grookai vault",
       robots: { index: false, follow: false },
     };
   }

@@ -20,7 +20,7 @@ export function SealedCopyLanding({ row, owner }: { row: SealedCopy; owner: bool
       body * { visibility: hidden !important; }
       #sealed-copy-print-label, #sealed-copy-print-label * { visibility: visible !important; }
       #sealed-copy-print-label { position: absolute; inset: 0 auto auto 0; width: 90mm; padding: 8mm;
-        color: #000; background: #fff; break-inside: avoid; font-family: sans-serif; }
+        color: #000; background: #fff; break-inside: avoid; font-family: var(--font-roboto), Roboto, sans-serif; }
       #sealed-copy-print-label img { width: 45mm; height: 45mm; }
     }`}</style>
     {(row.image_object_path || !row.personal_image_url) && <div className="[&_div]:h-80 [&_div]:w-full"><SealedOwnedImage row={row} /></div>}

@@ -121,7 +121,7 @@ export default function VaultExactCopyHero({
 
           <div className="pt-20 sm:pt-0">
             <VaultEvidenceDisclosure>
-              {gvId ? <p>Grookai card ID: {gvId}</p> : null}
+              {gvId ? <p>grookai card ID: {gvId}</p> : null}
               <p>Exact copy ID: {gvviId}</p>
               {evidence}
             </VaultEvidenceDisclosure>

@@ -35,7 +35,7 @@ const SETS = [
 
 function buildCardArtwork(name: string, index: number) {
   const hue = 205 + (index % 5) * 14;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="700" viewBox="0 0 500 700"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl(${hue} 72% 58%)"/><stop offset="1" stop-color="hsl(${hue + 55} 58% 24%)"/></linearGradient></defs><rect width="500" height="700" rx="34" fill="#e8d49a"/><rect x="22" y="22" width="456" height="656" rx="24" fill="url(#g)"/><circle cx="250" cy="270" r="122" fill="rgba(255,255,255,.18)"/><path d="M155 270h190M250 175v190" stroke="rgba(255,255,255,.34)" stroke-width="14"/><text x="42" y="74" fill="white" font-family="Arial" font-size="28" font-weight="700">${name}</text><text x="42" y="632" fill="white" font-family="Arial" font-size="20">Grookai visual fixture</text></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="500" height="700" viewBox="0 0 500 700"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="hsl(${hue} 72% 58%)"/><stop offset="1" stop-color="hsl(${hue + 55} 58% 24%)"/></linearGradient></defs><rect width="500" height="700" rx="34" fill="#e8d49a"/><rect x="22" y="22" width="456" height="656" rx="24" fill="url(#g)"/><circle cx="250" cy="270" r="122" fill="rgba(255,255,255,.18)"/><path d="M155 270h190M250 175v190" stroke="rgba(255,255,255,.34)" stroke-width="14"/><text x="42" y="74" fill="white" font-family="Arial" font-size="28" font-weight="700">${name}</text><text x="42" y="632" fill="white" font-family="Arial" font-size="20">grookai visual fixture</text></svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 

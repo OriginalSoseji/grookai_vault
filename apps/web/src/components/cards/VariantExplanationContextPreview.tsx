@@ -88,7 +88,7 @@ export default function VariantExplanationContextPreview({
             Assistant Context
           </p>
           <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
-            Grounded from Grookai canon before any premium AI summary exists.
+            Grounded from grookai canon before any premium AI summary exists.
           </p>
         </div>
         <button

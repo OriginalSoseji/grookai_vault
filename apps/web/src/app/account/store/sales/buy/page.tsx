@@ -3,7 +3,7 @@ import { requireServerUser } from "@/lib/auth/requireServerUser";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Buy / intake | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Buy / intake | grookai vault", robots: { index: false, follow: false } };
 
 export default async function BuyInventoryPage() {
   const { user } = await requireServerUser("/account/store/sales/buy");

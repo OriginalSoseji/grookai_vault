@@ -14,7 +14,7 @@ export default function SalesPaymentEditor({entries,balance,disabled,onChange}:{
   try {change=paymentSnapshot(entries,balance).changeMinor;} catch(e) {error=e instanceof Error?e.message:'Check payments.';}
   const update=(i:number,patch:Partial<Tender>|((e:Tender)=>Partial<Tender>))=>onChange(current=>current.map((e,n)=>n===i?{...e,...(typeof patch==='function'?patch(e):patch)}:e));
   return <section className={s.paymentEditor} aria-label="Payment breakdown">
-    <p>{balance<0?'Record how you paid the customer.':balance===0?'Even trade — no money exchanged.':'Record the amounts collected outside Grookai.'}</p>
+    <p>{balance<0?'Record how you paid the customer.':balance===0?'Even trade — no money exchanged.':'Record the amounts collected outside grookai.'}</p>
     <p role="status">{remaining>0?`Still to allocate: $${money(remaining)}`:remaining<0?`Overallocated: $${money(-remaining)}`:'Balance covered'}{change>0&&` · Give $${money(change)} cash change`}</p>
     {error&&<p className={s.error}>{error}</p>}
     {entries.map((e,i)=><fieldset key={e.method} disabled={disabled}><legend>Payment {i+1}</legend>

@@ -408,7 +408,7 @@ export function VaultCardTile({
       details={details}
       footer={
         <div className={`flex items-center gap-3 ${isExpanded ? "justify-between" : "justify-end"}`}>
-          {isExpanded ? <VaultEvidenceDisclosure><p>Grookai card ID: {item.gv_id}</p></VaultEvidenceDisclosure> : null}
+          {isExpanded ? <VaultEvidenceDisclosure><p>grookai card ID: {item.gv_id}</p></VaultEvidenceDisclosure> : null}
           <button
             type="button"
             onClick={() => onExpansionToggle(item)}

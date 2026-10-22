@@ -6,7 +6,7 @@ import { canOfferResolution } from "@/lib/orders/orderResolutionsRuntime";
 import { acquisitionUuid } from "@/lib/orders/orderAcquisitionTypes";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Order resolution review | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Order resolution review | grookai vault", robots: { index: false, follow: false } };
 export default async function ResolutionReviewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const href = acquisitionUuid.test(id) ? `/account/store/resolutions/${id}` : "/account/store/resolutions";

@@ -7,7 +7,7 @@ export default function NotFound() {
       <ProductState
         eyebrow="Page not found"
         title="That destination is not available"
-        description="The link may be old, private, or no longer shared. Search for the exact card or return to Grookai."
+        description="The link may be old, private, or no longer shared. Search for the exact card or return to grookai."
         action={(
           <Link href="/explore" className="gv-primary-button">
             Search cards

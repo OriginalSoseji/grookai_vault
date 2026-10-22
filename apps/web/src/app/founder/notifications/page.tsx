@@ -42,7 +42,7 @@ function notificationTitle(row: FounderNotificationRow) {
   return (
     text(row.payload?.title) ||
     text(row.payload?.notification_title) ||
-    `${label(row.source_unit || "Grookai system")} - ${label(row.event_type)}`
+    `${label(row.source_unit || "grookai system")} - ${label(row.event_type)}`
   );
 }
 

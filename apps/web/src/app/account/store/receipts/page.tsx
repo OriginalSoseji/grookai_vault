@@ -4,7 +4,7 @@ import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { DISPOSITION_COLUMNS, mapDispositionReceipt, type DispositionRow } from "@/lib/vault/vaultDisposition";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Receipt desk | Grookai Vault", robots: { index:false,follow:false } };
+export const metadata = { title: "Receipt desk | grookai vault", robots: { index:false,follow:false } };
 export default async function ReceiptsPage({searchParams}:{searchParams:Promise<{sale?:string|string[]}>}) {
   const {sale}=await searchParams;
   const valid=typeof sale==='string'&&/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(sale);

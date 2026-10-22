@@ -1420,7 +1420,7 @@ export default async function FounderPage() {
             href="/founder/entitlements"
             eyebrow="Access"
             title="User Entitlements"
-            description="Manage Grookai Search, Assistant, Intelligence, vendor, and founder access from one governed source."
+            description="Manage grookai Search, Assistant, Intelligence, vendor, and founder access from one governed source."
             primary
           />
           <FounderToolCard

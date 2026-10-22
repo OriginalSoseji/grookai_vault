@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { availableResolutionActions, resolutionCommand, type ResolutionCommand, type ResolutionStatus } from "@/lib/orders/orderResolutions.shared";
 const labels = { request: "Request buyer agreement", agree: "Agree to continue order", decline: "Decline request",
   withdraw: "Withdraw agreement or request", accept: "Record reviewed agreement", reject: "Return for further review" };
-const states = { requested: "Awaiting buyer response", agreed: "Awaiting Grookai review", declined: "Buyer declined",
+const states = { requested: "Awaiting buyer response", agreed: "Awaiting grookai review", declined: "Buyer declined",
   withdrawn: "Withdrawn", accepted: "Reviewed — final payment check required", rejected: "Further review required" };
 export default function OrderResolutions({ value, enabled }: { value: ResolutionStatus | null; enabled: boolean }) {
   const [pending, setPending] = useState<ResolutionCommand | null>(null), [confirmed, setConfirmed] = useState(false);
@@ -53,7 +53,7 @@ export default function OrderResolutions({ value, enabled }: { value: Resolution
       <p className="text-sm">Continue the original order for {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(c.totalAmountMinor / 100)} USD after failed or canceled refund attempts.</p>
       {!c.basisCurrent && <p className="text-sm text-amber-900">Order information has changed since this request. A new review is needed before agreement can be recorded.</p>}
       <ol className="space-y-1 text-xs text-slate-600" aria-label="Resolution history">{c.events.map(e => <li key={e.requestId}>
-        {e.role === "operator" ? "Grookai reviewer" : e.role === "buyer" ? "Buyer" : "Seller"}: {labels[e.action]} · {new Date(e.recordedAt).toLocaleString()}
+        {e.role === "operator" ? "grookai reviewer" : e.role === "buyer" ? "Buyer" : "Seller"}: {labels[e.action]} · {new Date(e.recordedAt).toLocaleString()}
       </li>)}</ol>
       {writable && !pending && <div className="flex flex-wrap gap-3">{availableResolutionActions(c, status.role).map(action => <button key={action} className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold"
         disabled={busy} onClick={() => choose({ action, orderId: status.orderId, caseId: c.caseId, requestId: crypto.randomUUID(), expectedSequence: c.sequence, termsHash: c.termsHash })}>{labels[action]}</button>)}</div>}

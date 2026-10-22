@@ -31,14 +31,14 @@ export async function generateMetadata(props: PublicSectionPageProps): Promise<M
 
   if (!model) {
     return {
-      title: "Section not found | Grookai Vault",
+      title: "Section not found | grookai vault",
     };
   }
 
   const siteOrigin = getSiteOrigin();
   const sectionPath = getPublicSectionShareHref(model.collector.slug, model.section.id);
-  const title = `${model.section.name} | ${model.collector.display_name} | Grookai Vault`;
-  const description = `${model.collector.display_name}'s ${model.section.name} on Grookai.`;
+  const title = `${model.section.name} | ${model.collector.display_name} | grookai vault`;
+  const description = `${model.collector.display_name}'s ${model.section.name} on grookai.`;
 
   return {
     title,

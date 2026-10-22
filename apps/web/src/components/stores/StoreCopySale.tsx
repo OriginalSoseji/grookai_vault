@@ -55,7 +55,7 @@ export default function StoreCopySale({ item, close, recorded, setDirty }: {
         {refreshFailed && <p role="alert">Your sale is saved. The inventory refresh failed; use Refresh inventory after closing this window.</p>}
         <button type="button" className={s.primary} disabled={busy} onClick={dismiss}>Done</button>
       </> : <>
-        <p className={s.muted}>Record a sale completed outside Grookai, such as at a show or in your shop. This does not charge the buyer.</p>
+        <p className={s.muted}>Record a sale completed outside grookai, such as at a show or in your shop. This does not charge the buyer.</p>
         {!review ? <form onSubmit={event => {
           event.preventDefault(); setError("");
           setReview({ instanceId: item.id, type: "sale", salePrice: price.trim(), counterparty: buyer.trim(), tradeReceived: "", cashDirection: "none", cashAmount: "" });

@@ -10,13 +10,13 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   const profile = await getPublicProfileBySlug(params.slug);
   if (!profile) {
     return {
-      title: "Profile not found | Grookai Vault",
+      title: "Profile not found | grookai vault",
     };
   }
 
   const siteOrigin = getSiteOrigin();
-  const title = `${profile.display_name} Wall | Grookai Vault`;
-  const description = `${profile.display_name}'s Wall on Grookai.`;
+  const title = `${profile.display_name} Wall | grookai vault`;
+  const description = `${profile.display_name}'s Wall on grookai.`;
 
   return {
     title,

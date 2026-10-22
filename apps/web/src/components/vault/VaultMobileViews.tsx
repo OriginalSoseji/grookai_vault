@@ -304,7 +304,7 @@ function MobileDetailRow({
         </div>
 
         <div className="flex items-center justify-between gap-3 border-t border-slate-100 pt-3">
-          {isExpanded ? <VaultEvidenceDisclosure><p>Grookai card ID: {item.gv_id}</p></VaultEvidenceDisclosure> : <span />}
+          {isExpanded ? <VaultEvidenceDisclosure><p>grookai card ID: {item.gv_id}</p></VaultEvidenceDisclosure> : <span />}
           <button
             type="button"
             onClick={() => onExpansionToggle(item)}

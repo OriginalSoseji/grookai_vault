@@ -68,13 +68,13 @@ export default function OrderRefunds({ value, controls }: { value: RefundStatus 
     {seller && controls.refresh && <div className="space-y-3 border-t pt-4">
       <button type="button" disabled={busy} onClick={() => void run(async () => setReview(refundReview(await post({ action: "review", orderId: status.orderId }))), "Refund review could not be loaded. Try reviewing again.")} className="rounded-full border px-4 py-2 text-sm font-semibold disabled:opacity-50">{busy ? "Checking…" : "Review refund outcome"}</button>
       {review?.orderId === status.orderId && <section aria-label="Refund outcome review" aria-live="polite" className="space-y-3 rounded-lg bg-slate-50 p-4">
-        <h3 className="font-semibold">{review.decision === "operator_review_required" ? "Refund outcome needs Grookai review" : "Refund needs further attention"}</h3>
+        <h3 className="font-semibold">{review.decision === "operator_review_required" ? "Refund outcome needs grookai review" : "Refund needs further attention"}</h3>
         <p className="text-sm text-slate-600">Checked {new Date(review.checkedAt * 1000).toLocaleString("en-US", { timeZone: "UTC" })} UTC. This is a snapshot; outcomes can change.</p>
         <dl className="grid grid-cols-[1fr_auto] gap-2 text-sm"><dt>Refunds sent</dt><dd>{money(review.succeededMinor)}</dd><dt>Refunds pending</dt><dd>{money(review.pendingMinor)}</dd><dt>Failed refund attempts</dt><dd>{money(review.failedMinor)}</dd><dt>Canceled refund attempts</dt><dd>{money(review.canceledMinor)}</dd></dl>
         <p className="text-sm text-slate-600">Failed and canceled amounts describe attempts, not money returned to the buyer. Repeated attempts may exceed the order total.</p>
         {review.issues.length > 0 && <ul className="list-disc space-y-1 pl-5 text-sm">{review.issues.map(issue => <li key={issue}>{refundReviewIssues[issue]}</li>)}</ul>}
         <p className="text-sm font-medium">Financial holds remain in place. This review does not approve shipping, pickup, or another refund.</p>
-        {review.decision === "operator_review_required" && <p className="text-sm">Confirm the buyer’s preferred resolution before requesting Grookai review. Approval and hold clearance are not yet available here.</p>}
+        {review.decision === "operator_review_required" && <p className="text-sm">Confirm the buyer’s preferred resolution before requesting grookai review. Approval and hold clearance are not yet available here.</p>}
       </section>}
     </div>}
     {seller && controls.create && !pending && status.requests.filter(r => r.status === "unbound").map(r => <button key={r.requestId} type="button" disabled={busy} onClick={() => {

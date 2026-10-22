@@ -58,7 +58,7 @@ export function StorefrontView({
           )}
           <div className="min-w-0 flex-1">
             <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-              Independent store · Grookai Vault
+              Independent store · grookai vault
             </p>
             <h1 className="mt-2 break-words text-3xl font-semibold text-slate-950">
               {store.display_name}
@@ -81,7 +81,7 @@ export function StorefrontView({
                 href={buildLoginHref(`${base}?${params}`)}
                 className="underline"
               >
-                Sign in to Grookai
+                Sign in to grookai
               </Link>
             </div>
           </div>

@@ -40,7 +40,7 @@ export default function RecentlyConfirmedDiscoverySection({
   return (
     <section className="space-y-4 md:space-y-5">
       <div className="space-y-1.5">
-        <h2 className="text-xl font-semibold tracking-tight text-slate-950 md:text-2xl">Now Confirmed in Grookai</h2>
+        <h2 className="text-xl font-semibold tracking-tight text-slate-950 md:text-2xl">Now Confirmed in grookai</h2>
         <p className="text-sm text-slate-600">Recently added to the canonical catalog.</p>
       </div>
 

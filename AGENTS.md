@@ -1,5 +1,21 @@
 # Grookai Agent Entry Point
 
+## Canonical brand and visual direction
+
+Follow `docs/contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md` and
+`docs/contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md` across native and web, including
+desktop, on every branch. Roboto is bundled globally; user-facing names are
+`grookai` and `grookai vault`; standalone text lockups use weight 900 through a
+shared component. Preserve the original emblem design and proportions; any
+logo color and seasonal theme is allowed. Halloween spiders and Winter
+snowflakes may animate inside the profile frame with pause/reduced-motion
+support. Never substitute a typed `G` or replacement monogram. The visual
+system uses ink/bone/lime, warm market highlights, compact headers, 8px surfaces,
+10px artwork corners, and 9px card gaps. Historical screenshots and branch-local
+defaults do not override these contracts. The active logo theme also owns the
+interface accent: Halloween uses orange `#FF8A33`; future seasons must change
+the logo and matching accents together.
+
 ## TCGPlayer residual packaging scope repair — October 21
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_166_TCGPLAYER_RESIDUAL_PACKAGING_SCOPE_REPAIR.md`.

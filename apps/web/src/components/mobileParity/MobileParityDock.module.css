@@ -8,26 +8,6 @@
   pointer-events: none;
 }
 
-:global(.gv-collector) .frame {
-  padding: 0;
-  background: var(--gv-surface-base);
-  border-top: 1px solid var(--gv-border-soft);
-}
-:global(.gv-collector) .dock {
-  max-width: none;
-  min-height: 70px;
-  padding: 4px 12px calc(4px + env(safe-area-inset-bottom));
-  border: 0;
-  border-radius: 0;
-  background: var(--gv-surface-base);
-  box-shadow: none;
-  backdrop-filter: none;
-}
-:global(.gv-collector) .item { border-radius: 4px; color: var(--gv-text-secondary); font-weight: 500; gap: 5px; }
-:global(.gv-collector) .selected { color: var(--gv-primary); background: transparent; font-weight: 700; }
-:global(.gv-collector) .item:hover { color: var(--gv-primary); }
-:global(.gv-collector) .scanIconWrap { color: var(--gv-primary); border: 0; background: transparent; }
-
 .dock {
   display: flex;
   align-items: stretch;
@@ -36,11 +16,10 @@
   min-height: 58px;
   margin: 0 auto;
   padding: 8px 10px;
-  border: 1px solid rgb(165 180 205 / 18%);
-  border-radius: 34px;
-  background: rgb(18 22 30 / 86%);
-  box-shadow: 0 14px 34px rgb(0 0 0 / 32%);
-  backdrop-filter: blur(18px);
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 16px;
+  background: var(--gv-surface-base);
+  box-shadow: var(--gv-shadow-md);
   pointer-events: auto;
 }
 
@@ -55,7 +34,7 @@
   gap: 2px;
   padding: 4px;
   border-radius: 999px;
-  color: #aeb8c9;
+  color: var(--gv-text-secondary);
   font-size: 11px;
   font-weight: 600;
   line-height: 1;
@@ -66,17 +45,28 @@
 }
 
 .item:hover {
-  color: #eef4ff;
+  color: var(--gv-text-primary);
 }
 
 .item:focus-visible {
-  outline: 2px solid #9fc6ff;
+  outline: 2px solid var(--gv-primary);
   outline-offset: 2px;
 }
 
 .selected {
-  color: #e8f2ff;
-  background: rgb(41 96 164 / 58%);
+  position: relative;
+  color: var(--gv-primary);
+  background: transparent;
+}
+
+.selected::before {
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gv-primary);
+  content: "";
 }
 
 .disabled {
@@ -98,18 +88,18 @@
 
 .scanIconWrap {
   display: grid;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   place-items: center;
-  border: 1px solid rgb(138 180 255 / 58%);
+  border: 1px solid var(--gv-primary);
   border-radius: 999px;
-  color: #b8d3ff;
-  background: rgb(74 144 226 / 18%);
+  color: var(--gv-on-primary);
+  background: var(--gv-primary);
 }
 
 .scanIconWrap .icon {
-  width: 17px;
-  height: 17px;
+  width: 21px;
+  height: 21px;
 }
 
 .badge {

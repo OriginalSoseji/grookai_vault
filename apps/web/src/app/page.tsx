@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandText } from "@/components/brand/BrandText";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
@@ -172,7 +173,7 @@ function HomeSearchFallback() {
         <input
           type="search"
           name="q"
-          placeholder="Search cards, sets, or Grookai IDs…"
+          placeholder="Search cards, sets, or grookai IDs…"
           autoComplete="off"
           className="min-w-0 flex-1 bg-transparent px-3 text-base text-slate-900 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-300/40"
           aria-label="Search cards"
@@ -224,7 +225,7 @@ export default async function HomePage() {
     <div className="gv-home-page space-y-16 pb-8 md:space-y-20 md:pb-12">
       <section className="gv-home-hero">
         <div className="gv-home-hero-copy">
-          <p className="gv-eyebrow">Grookai Vault</p>
+          <BrandText includeVault />
           <h1 className="gv-home-title">
             Find the exact card.
             <span>Meet the collector.</span>
@@ -353,7 +354,7 @@ export default async function HomePage() {
             Collectors don&rsquo;t just track cards.
           </p>
           <p className="gv-body-copy max-w-xl text-sm">They trade, buy, sell, and connect.</p>
-          <p className="gv-body-copy max-w-xl text-sm">Grookai makes that visible:</p>
+          <p className="gv-body-copy max-w-xl text-sm">grookai makes that visible:</p>
           <ul className="gv-body-copy max-w-xl space-y-1 text-sm">
             <li>mark what you&rsquo;re willing to move</li>
             <li>see what other collectors have</li>

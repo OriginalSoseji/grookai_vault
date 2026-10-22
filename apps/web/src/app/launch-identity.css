@@ -1,0 +1,348 @@
+/* Product-wide visual authority: docs/contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md.
+   Values follow the native launch theme; route behavior stays in components. */
+html.gv-launch[data-visual-system="launch"] {
+  --gv-primary: var(--gv-brand-accent-light, #466d00);
+  --gv-on-primary: #ffffff;
+  --gv-primary-electric: var(--gv-brand-accent, #b7f23a);
+  --gv-primary-soft: var(--gv-brand-accent-soft, rgb(70 109 0 / 9%));
+  --gv-primary-container: var(--gv-brand-accent-container-light, #ddf7a3);
+  --gv-tertiary-container: #ffdcc0;
+  --gv-market: #8b4f13;
+  --gv-surface-page: #f4f5ed;
+  --gv-surface-base: #fcfdf6;
+  --gv-surface-elevated: #dcded3;
+  --gv-surface-container: #e6e8de;
+  --gv-surface-container-low: #eeefe7;
+  --gv-surface-soft: #e6e8de;
+  --gv-surface-glass: rgb(244 245 237 / 96%);
+  --gv-border-soft: #c2c6b9;
+  --gv-border-hairline: rgb(80 86 76 / 16%);
+  --gv-text-primary: #080b09;
+  --gv-text-secondary: #50564c;
+  --gv-text-tertiary: #62695b;
+  --gv-radius-sm: 8px;
+  --gv-radius-md: 8px;
+  --gv-radius-lg: 10px;
+  --gv-radius-xl: 16px;
+  --gv-grid-gap: 9px;
+  --gv-font-display: var(--font-roboto), Roboto, sans-serif;
+  --gv-font-index: var(--gv-font-display);
+  --gv-shadow-sm: none;
+  --gv-shadow-md: 0 8px 24px rgb(8 11 9 / 12%);
+  --gv-shadow-lg: 0 16px 40px rgb(8 11 9 / 18%);
+}
+
+html.gv-launch[data-visual-system="launch"].gv-dark {
+  --gv-primary: var(--gv-brand-accent, #b7f23a);
+  --gv-on-primary: #080b09;
+  --gv-primary-soft: var(--gv-brand-accent-soft, rgb(183 242 58 / 10%));
+  --gv-primary-container: var(--gv-brand-accent-container, #283915);
+  --gv-tertiary-container: #4a321c;
+  --gv-market: #f0af6e;
+  --gv-surface-page: #080b09;
+  --gv-surface-base: #101310;
+  --gv-surface-elevated: #1b201b;
+  --gv-surface-container: #151915;
+  --gv-surface-container-low: #101310;
+  --gv-surface-soft: #151915;
+  --gv-surface-glass: rgb(8 11 9 / 96%);
+  --gv-border-soft: #343a32;
+  --gv-border-hairline: rgb(183 188 174 / 14%);
+  --gv-text-primary: #f4f5ed;
+  --gv-text-secondary: #b7bcae;
+  --gv-text-tertiary: #959c8b;
+  --gv-shadow-md: 0 8px 24px rgb(0 0 0 / 30%);
+  --gv-shadow-lg: 0 16px 40px rgb(0 0 0 / 40%);
+}
+
+html.gv-launch[data-visual-system="launch"] body {
+  background: var(--gv-surface-page);
+  color: var(--gv-text-primary);
+  font-family: var(--font-roboto), Roboto, sans-serif;
+  font-feature-settings: normal;
+}
+
+html.gv-launch[data-visual-system="launch"] :where(button, input, textarea, select, .font-mono) {
+  font-family: inherit;
+}
+
+html.gv-launch[data-visual-system="launch"] ::selection {
+  background: var(--gv-primary-container);
+  color: var(--gv-text-primary);
+}
+
+html.gv-launch[data-visual-system="launch"] :where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--gv-primary);
+  outline-offset: 3px;
+}
+
+/* Bridge existing utility-based routes to the shared theme, including light mode.
+   Important matches the legacy dark-mode utility bridge in globals.css. */
+html.gv-launch[data-visual-system="launch"] :is(.text-slate-950, .text-slate-900, .text-slate-800) { color: var(--gv-text-primary) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.text-slate-700, .text-slate-600, .text-slate-500) { color: var(--gv-text-secondary) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.text-slate-400, .text-slate-300) { color: var(--gv-text-tertiary) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.bg-white, [class*="bg-white/"], .bg-slate-50, [class*="bg-slate-50/"]) { background-color: var(--gv-surface-base) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.bg-slate-100, [class*="bg-slate-100/"], .bg-slate-200, [class*="bg-slate-200/"]) { background-color: var(--gv-surface-container) !important; }
+html.gv-launch[data-visual-system="launch"] :is([class*="border-slate-"], [class*="divide-slate-"] > :not([hidden]) ~ :not([hidden])) { border-color: var(--gv-border-soft) !important; }
+html.gv-launch[data-visual-system="launch"] :is([class*="ring-slate-"]) { --tw-ring-color: var(--gv-border-soft) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.hover\:bg-white:hover, .hover\:bg-slate-50:hover, .hover\:bg-slate-100:hover) { background-color: var(--gv-surface-elevated) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.hover\:text-slate-950:hover, .hover\:text-slate-900:hover) { color: var(--gv-text-primary) !important; }
+html.gv-launch[data-visual-system="launch"].gv-dark [class*="dark:bg-slate-"] { background-color: var(--gv-surface-container) !important; }
+html.gv-launch[data-visual-system="launch"].gv-dark :is([class*="dark:text-slate-"], [class~="dark:text-white"]) { color: var(--gv-text-primary) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.bg-sky-50, .bg-sky-100, .bg-blue-50, .bg-blue-100) { background-color: var(--gv-primary-soft) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.text-sky-900, .text-sky-800, .text-sky-700, .text-sky-600, .text-blue-700, .text-blue-800) { color: var(--gv-primary) !important; }
+html.gv-launch[data-visual-system="launch"].gv-dark :is([class~="dark:text-sky-300"], [class~="dark:text-sky-200"]) { color: var(--gv-primary) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.border-sky-200, .border-blue-200) { border-color: var(--gv-primary) !important; }
+html.gv-launch[data-visual-system="launch"].gv-dark :is([class~="dark:bg-white"], [class~="dark:bg-slate-100"]) { color: var(--gv-on-primary) !important; background-color: var(--gv-primary) !important; }
+html.gv-launch[data-visual-system="launch"].gv-dark :is(.text-rose-700, .text-rose-900, .text-red-600) { color: #fda4af !important; }
+html.gv-launch[data-visual-system="launch"] :is([class*="bg-["][class*="#ffffff"], [class*="bg-["][class*="_white"]) { background: var(--gv-surface-base) !important; }
+html.gv-launch[data-visual-system="launch"] :is(.rounded-xl, .rounded-2xl, .rounded-3xl, .rounded-\[22px\], .rounded-\[24px\], .rounded-\[28px\], .rounded-\[30px\], .rounded-\[32px\]) { border-radius: var(--gv-radius-md); }
+html.gv-launch[data-visual-system="launch"] :where(input, textarea, select) {
+  color: var(--gv-text-primary);
+  accent-color: var(--gv-primary);
+  border-color: var(--gv-border-soft);
+  border-radius: var(--gv-radius-sm);
+}
+html.gv-launch[data-visual-system="launch"] :where(input::placeholder, textarea::placeholder) { color: var(--gv-text-tertiary); }
+html.gv-launch[data-visual-system="launch"] :where(button:disabled, [aria-disabled="true"]) { color: var(--gv-text-tertiary); }
+
+.gv-brand-lockup { display: inline-flex; min-width: 0; align-items: center; gap: 4px; }
+.gv-brand-lockup > :is(.gv-brand-emblem, .gv-brand-avatar) { margin-inline: -8px -6px; }
+.gv-brand-lockup > .gv-brand-avatar { border-color: transparent; }
+.gv-brand-text { font-size: 20px; line-height: 1.15; letter-spacing: -0.65px; white-space: nowrap; }
+.gv-brand-emblem {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  vertical-align: middle;
+}
+.gv-brand-emblem-source {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The original black/white artwork supplies the luminance mask. Color alone
+   changes; no replacement paths or modified logo assets are needed. */
+@supports (mask-mode: luminance) and (mask-image: url("/grookai-logo-512.png")) {
+  .gv-brand-emblem::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: var(--gv-logo-fill, currentColor);
+    mask-image: url("/grookai-logo-512.png");
+    mask-mode: luminance;
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+  }
+  .gv-brand-emblem-source { visibility: hidden; }
+}
+
+.gv-brand-avatar {
+  position: relative;
+  display: inline-grid;
+  isolation: isolate;
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow: hidden;
+  place-items: center;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 50%;
+  background: var(--gv-surface-container);
+}
+.gv-brand-avatar[data-avatar-theme="halloween"] { background: radial-gradient(ellipse at 50% 70%, #302036, #100d16 78%); }
+.gv-brand-avatar[data-avatar-theme="winter"] { background: radial-gradient(ellipse at 50% 75%, #243e49, #0b1720 78%); }
+.gv-brand-avatar > .gv-brand-emblem { position: relative; z-index: 1; }
+.gv-logo-seasonal-effects { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
+.gv-logo-seasonal-effects-winter { z-index: 2; }
+.gv-logo-spider-hang-one { transform: translate(174px, 48px); animation: gv-spider-dangle-one 6s ease-in-out infinite; }
+.gv-logo-spider-hang-two { transform: translate(57px, 70px); animation: gv-spider-dangle-two 8s ease-in-out infinite; }
+.gv-logo-spider-crawl { transform: translate(64px, 174px) rotate(-30deg); animation: gv-spider-crawl 12s ease-in-out infinite; }
+.gv-logo-spider-legs-a { animation: gv-spider-step 800ms ease-in-out infinite alternate; transform-origin: center; }
+.gv-logo-spider-legs-b { animation: gv-spider-step 800ms ease-in-out infinite alternate-reverse; transform-origin: center; }
+.gv-logo-snowflake {
+  transform: translate(var(--snow-x), var(--snow-y));
+  animation: gv-logo-snowfall var(--snow-duration) linear var(--snow-delay) infinite;
+}
+.gv-logo-snowflake-spin { animation: gv-logo-snow-spin 14s linear infinite; }
+.gv-brand-avatar[data-motion="paused"] [data-seasonal-effects] * { animation-play-state: paused !important; }
+html[data-logo-motion="paused"] .gv-brand-lockup [data-seasonal-effects] * { animation-play-state: paused !important; }
+.gv-logo-preview-stage > .gv-brand-avatar { justify-self: center; }
+
+@keyframes gv-spider-dangle-one { 0%, 100% { transform: translate(174px, 48px) rotate(-5deg); } 50% { transform: translate(168px, 88px) rotate(7deg); } }
+@keyframes gv-spider-dangle-two { 0%, 100% { transform: translate(57px, 70px) rotate(7deg); } 50% { transform: translate(64px, 104px) rotate(-8deg); } }
+@keyframes gv-spider-crawl {
+  0%, 100% { transform: translate(64px, 174px) rotate(-30deg); }
+  30% { transform: translate(48px, 145px) rotate(12deg); }
+  60% { transform: translate(72px, 129px) rotate(55deg); }
+  80% { transform: translate(82px, 151px) rotate(150deg); }
+}
+@keyframes gv-spider-step { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+@keyframes gv-logo-snowfall {
+  from { transform: translate(var(--snow-x), -12px); }
+  to { transform: translate(calc(var(--snow-x) + var(--snow-drift)), 252px); }
+}
+@keyframes gv-logo-snow-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .gv-logo-seasonal-effects * { animation: none !important; }
+  .gv-logo-motion-control { display: none; }
+}
+
+html.gv-launch[data-visual-system="launch"] .gv-site-header,
+html.gv-launch[data-visual-system="launch"] .gv-mobile-pushed-route-header,
+html.gv-launch[data-visual-system="launch"] .gv-site-footer {
+  border-color: var(--gv-border-soft);
+  background: var(--gv-surface-page);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+html.gv-launch[data-visual-system="launch"] .gv-site-header .gv-page-container { padding-block: 0; }
+html.gv-launch[data-visual-system="launch"] .gv-mobile-site-header > div:first-child { min-height: 48px; }
+html.gv-launch[data-visual-system="launch"] .gv-mobile-site-header > div:last-child:not(:first-child) { margin-bottom: 10px; }
+html.gv-launch[data-visual-system="launch"] .gv-desktop-shell-top { min-height: 52px; }
+html.gv-launch[data-visual-system="launch"] .gv-desktop-primary-link { min-height: 52px; color: var(--gv-text-secondary); font-weight: 700; }
+html.gv-launch[data-visual-system="launch"] .gv-desktop-primary-link-active,
+html.gv-launch[data-visual-system="launch"] .gv-desktop-route-context a { color: var(--gv-primary); background: transparent; }
+html.gv-launch[data-visual-system="launch"] .gv-desktop-primary-link[data-primary-action="scan"] {
+  min-height: 36px;
+  align-self: center;
+  margin-inline: 6px;
+  border-radius: 8px;
+  color: var(--gv-on-primary);
+  background: var(--gv-primary);
+}
+html.gv-launch[data-visual-system="launch"] .gv-desktop-primary-link[data-primary-action="scan"]::after { display: none; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-desktop-primary-link:hover, .gv-desktop-secondary-link:hover, .gv-desktop-secondary-link-active, .gv-desktop-account-menu[open] > summary, .gv-desktop-menu-link:hover, .gv-desktop-menu-link:focus-visible) {
+  color: var(--gv-primary);
+  background: var(--gv-primary-soft);
+}
+html.gv-launch[data-visual-system="launch"] .gv-desktop-shell-nav-frame { min-height: 30px; padding-block: 0; }
+html.gv-launch[data-visual-system="launch"] .gv-desktop-secondary-link { min-height: 28px; font-size: 12px; }
+html.gv-launch[data-visual-system="launch"] .gv-theme-toggle { min-width: 44px; min-height: 44px; color: var(--gv-text-secondary) !important; border-color: var(--gv-border-soft) !important; background: var(--gv-surface-base) !important; border-radius: 8px; }
+html.gv-launch[data-visual-system="launch"] .gv-mobile-site-header > div:first-child { gap: 8px; }
+html.gv-launch[data-visual-system="launch"] .gv-mobile-site-header > div:first-child > div:last-child { gap: 4px; }
+
+html.gv-launch[data-visual-system="launch"] .gv-page-shell { padding-top: 20px; }
+html.gv-launch[data-visual-system="launch"] .gv-page-rhythm { gap: 24px; }
+html.gv-launch[data-visual-system="launch"] .gv-display-title,
+html.gv-launch[data-visual-system="launch"] .gv-section-title,
+html.gv-launch[data-visual-system="launch"] .gv-vault-overview .gv-display-title,
+html.gv-launch[data-visual-system="launch"] .gv-network-intro .gv-display-title {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.65px;
+  text-transform: none;
+}
+html.gv-launch[data-visual-system="launch"] .gv-section-title { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+html.gv-launch[data-visual-system="launch"] .gv-page-intro > div:first-child,
+html.gv-launch[data-visual-system="launch"] .gv-page-intro > div:first-child > div { row-gap: 8px; }
+html.gv-launch[data-visual-system="launch"] .gv-page-intro > div:first-child > div > * + * { margin-top: 8px; }
+html.gv-launch[data-visual-system="launch"] .gv-body-copy { font-size: 15px; }
+html.gv-launch[data-visual-system="launch"] .gv-eyebrow { color: var(--gv-text-secondary); font-size: 11px; letter-spacing: 0.08em; text-transform: none; }
+
+/* Flat functional surfaces; artwork supplies the color. */
+html.gv-launch[data-visual-system="launch"] :is(.gv-soft-surface, .gv-premium-surface, .gv-collector-panel, .gv-command-surface, .gv-action-panel, .gv-control-surface, .gv-quiet-panel, .gv-network-sidebar, .gv-dex-search, .gv-dex-progress-panel, .gv-set-logo-stage, .gv-set-progress-panel, .gv-search-showcase, .gv-search-preset-card) {
+  border-color: var(--gv-border-soft);
+  border-radius: var(--gv-radius-md);
+  background: var(--gv-surface-base);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+html.gv-launch[data-visual-system="launch"] :is(.gv-product-hero, .gv-hero-section, .gv-discovery-hero, .gv-dex-hero, .gv-set-hero, .gv-showcase-hero, .gv-card-detail-hero, .gv-home-page .gv-showcase-hero) {
+  border-color: var(--gv-border-soft);
+  border-radius: var(--gv-radius-md);
+  background: var(--gv-surface-page);
+  box-shadow: none;
+}
+html.gv-launch[data-visual-system="launch"] :is(.gv-product-hero, .gv-discovery-hero, .gv-dex-hero, .gv-set-hero, .gv-showcase-hero, .gv-collector-panel)::before,
+html.gv-launch[data-visual-system="launch"] :is(.gv-product-hero, .gv-showcase-hero, .gv-card-detail-hero)::after { display: none; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-vault-overview, .gv-network-intro) { padding-block: 8px 16px; border-color: var(--gv-border-soft); }
+html.gv-launch[data-visual-system="launch"] :is(.gv-vault-value, .gv-vault-summary, .gv-card-lower-section) { border-color: var(--gv-border-soft); background: transparent; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-card-pricing-panel, .gv-variant-selector, .gv-variant-story, .gv-results-command-bar, .gv-image-stage, .gv-card-hero-image-stage) {
+  border-color: var(--gv-border-soft);
+  border-radius: var(--gv-radius-md);
+  background: var(--gv-surface-base);
+  box-shadow: none;
+}
+html.gv-launch[data-visual-system="launch"] :is(.gv-hi-selected-version, .gv-card-identity-wash) { background: var(--gv-surface-base); border-color: var(--gv-border-soft); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-hi-card-identity, .gv-card-section-header h2) { color: var(--gv-text-primary); }
+html.gv-launch[data-visual-system="launch"] :is(.gv-hi-metadata, .gv-hi-search-context, .gv-hi-diagnostics) { color: var(--gv-text-secondary); background: transparent; }
+html.gv-launch[data-visual-system="launch"] .gv-hi-price,
+html.gv-launch[data-visual-system="launch"] [data-pricing-proof="vault-exact-total"] { color: var(--gv-market); }
+html.gv-launch[data-visual-system="launch"] .gv-card-page .gv-card-detail-hero { padding-block: 16px 24px; }
+html.gv-launch[data-visual-system="launch"] .gv-card-section-header h2 { font-size: 20px; }
+
+html.gv-launch[data-visual-system="launch"] :is(.gv-primary-button, .gv-secondary-button, .gv-ghost-button) { min-height: 44px; border-radius: 8px; font-weight: 700; box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] .gv-primary-button { color: var(--gv-on-primary); border-color: var(--gv-primary); background: var(--gv-primary); }
+html.gv-launch[data-visual-system="launch"] .gv-primary-button:hover:not(:disabled) { color: var(--gv-on-primary); background: var(--gv-primary); filter: brightness(1.08); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] .gv-secondary-button { color: var(--gv-text-primary); border-color: var(--gv-border-soft); background: var(--gv-surface-base); }
+html.gv-launch[data-visual-system="launch"] .gv-secondary-button:hover:not(:disabled) { border-color: var(--gv-primary); background: var(--gv-surface-elevated); }
+html.gv-launch[data-visual-system="launch"] :is(.gv-primary-button, .gv-secondary-button):active:not(:disabled) { transform: scale(0.98); }
+html.gv-launch[data-visual-system="launch"] :is(.gv-nav-link-active, .gv-discovery-eyebrow, .gv-discovery-pill, .gv-discovery-chip) { color: var(--gv-primary); border-color: var(--gv-border-soft); background: var(--gv-primary-soft); }
+html.gv-launch[data-visual-system="launch"] .gv-metadata-pill { color: var(--gv-text-secondary); border-color: var(--gv-border-soft); background: var(--gv-surface-container); }
+
+html.gv-launch[data-visual-system="launch"] .gv-card-grid { gap: var(--gv-grid-gap); }
+html.gv-launch[data-visual-system="launch"] .gv-dex-species-grid { gap: var(--gv-grid-gap); }
+html.gv-launch[data-visual-system="launch"] .gv-visual-card { border-radius: 10px; background: transparent; box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] .gv-visual-card:hover { background: transparent; box-shadow: none; transform: none; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-visual-card-image, .gv-search-result-card .gv-visual-card-image) { border-radius: 10px; background: var(--gv-surface-base); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-search-result-card.gv-visual-card, .gv-dex-species-grid .gv-dex-species-card) { border-color: var(--gv-border-hairline); border-radius: 10px; background: var(--gv-surface-base); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-search-result-card.gv-visual-card:hover, .gv-dex-species-grid .gv-dex-species-card:hover) { border-color: var(--gv-primary); background: var(--gv-surface-base); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] :is(.gv-dex-sprite-frame, .gv-dex-stat-card, .gv-dex-mini-stat, .gv-discovery-proof-card) { border-color: var(--gv-border-soft); border-radius: 8px; background: var(--gv-surface-container); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] .gv-dex-number { color: var(--gv-text-secondary); }
+html.gv-launch[data-visual-system="launch"] .gv-dex-progress-track { background: var(--gv-surface-container); }
+
+/* The public entry keeps its existing artwork and search, with the app's quieter hierarchy. */
+html.gv-launch[data-visual-system="launch"] .gv-home-hero { min-height: 480px; border-radius: 8px; background: var(--gv-surface-base); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] .gv-home-hero::before { display: none; }
+html.gv-launch[data-visual-system="launch"] .gv-home-hero-copy { padding-block: clamp(28px, 4vw, 56px); }
+html.gv-launch[data-visual-system="launch"] .gv-home-title { font-size: clamp(32px, 3.6vw, 52px); font-weight: 900; letter-spacing: -1.1px; line-height: 1.05; }
+html.gv-launch[data-visual-system="launch"] .gv-home-lede { margin-top: 20px; font-size: 16px; }
+html.gv-launch[data-visual-system="launch"] .gv-home-search { margin-top: 24px; }
+html.gv-launch[data-visual-system="launch"] .gv-home-search .gv-control-surface { min-height: 56px; border-color: var(--gv-border-soft); border-radius: 8px; background: var(--gv-surface-page); box-shadow: none; }
+html.gv-launch[data-visual-system="launch"] .gv-home-search .gv-primary-button { min-height: 44px; border-radius: 8px; }
+html.gv-launch[data-visual-system="launch"] .gv-home-card-stage::before { display: none; }
+html.gv-launch[data-visual-system="launch"] .gv-home-card { background: var(--gv-surface-container); }
+html.gv-launch[data-visual-system="launch"] :is(.gv-home-card-left, .gv-home-card-right) { opacity: 1; }
+html.gv-launch[data-visual-system="launch"] .gv-home-card .bg-slate-900 { background: var(--gv-surface-container); }
+html.gv-launch[data-visual-system="launch"] .gv-home-page .gv-premium-surface { border-color: var(--gv-border-soft); background: var(--gv-surface-base); }
+
+/* Current production collector layouts retain their data and controls while
+   adopting the approved native geometry and compact header rhythm. */
+html.gv-launch[data-visual-system="launch"] .gv-approved-catalog { margin-top: 0; }
+html.gv-launch[data-visual-system="launch"] .gv-approved-heading { min-height: 0; padding-block: 16px 20px; }
+html.gv-launch[data-visual-system="launch"] .gv-approved-heading h1 { font-size: clamp(22px, 2.2vw, 30px); font-weight: 900; line-height: 1.15; letter-spacing: -0.65px; }
+html.gv-launch[data-visual-system="launch"] .gv-approved-feature { border: 1px solid var(--gv-border-soft); border-radius: 8px; color: var(--gv-text-primary); background: var(--gv-surface-base); }
+html.gv-launch[data-visual-system="launch"] .gv-approved-feature-copy :is(p, a) { color: var(--gv-text-secondary); }
+html.gv-launch[data-visual-system="launch"] .gv-approved-feature-copy a { color: var(--gv-primary); border-color: var(--gv-border-soft); }
+html.gv-launch[data-visual-system="launch"] .gv-approved-product-grid { gap: 9px; }
+html.gv-launch[data-visual-system="launch"] .gv-approved-product-image { aspect-ratio: 5 / 7; padding: 0; border-radius: 10px; background: var(--gv-surface-base); }
+html.gv-launch[data-visual-system="launch"] .gv-approved-art { object-fit: contain; border-radius: 10px; filter: none; }
+html.gv-launch[data-visual-system="launch"] .gv-desktop-primary-nav { height: 64px; }
+html.gv-launch[data-visual-system="launch"] .gv-desktop-secondary-nav { min-height: 30px; gap: 20px; }
+html.gv-launch[data-visual-system="launch"] .gv-route-family-rail { margin-block: 0 16px; }
+html.gv-launch[data-visual-system="launch"] .gv-route-family-rail-inner { min-height: 40px; padding-top: 0; }
+html.gv-launch[data-visual-system="launch"] .gv-route-family-description { display: none; }
+
+@media (max-width: 899px) {
+  html.gv-launch[data-visual-system="launch"] .gv-page-shell { padding-top: 12px; }
+  html.gv-launch[data-visual-system="launch"] .gv-page-rhythm { gap: 20px; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-hero { min-height: auto; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-hero-copy { padding: 28px 20px; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-page { margin-inline: 0; }
+  html.gv-launch[data-visual-system="launch"] .gv-home-page > section:not(.gv-home-hero) { margin-inline: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.gv-launch[data-visual-system="launch"] { scroll-behavior: auto; }
+  html.gv-launch[data-visual-system="launch"] *, html.gv-launch[data-visual-system="launch"] *::before, html.gv-launch[data-visual-system="launch"] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

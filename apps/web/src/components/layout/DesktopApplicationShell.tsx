@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { BrandLockup } from "@/components/brand/BrandText";
+import { BrandMotionToggle } from "@/components/brand/BrandMotionToggle";
 import Link from "next/link";
 import SignOutButton from "@/components/account/SignOutButton";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
@@ -59,14 +60,7 @@ export function DesktopApplicationShell({
     <div className="gv-desktop-site-header" data-desktop-application-shell>
       <div className="gv-desktop-shell-top">
         <Link href="/" className="gv-desktop-brand flex min-w-0 items-center gap-3 text-lg font-semibold text-slate-950 dark:text-white">
-          <Image
-            src="/grookai-logo-64.png"
-            alt="Grookai Vault logo"
-            width={36}
-            height={36}
-            className="gv-brand-mark shrink-0"
-          />
-          <span className="truncate">Grookai Vault</span>
+          <BrandLockup />
         </Link>
 
         <nav className="gv-desktop-primary-nav" aria-label="Primary navigation" data-desktop-primary-navigation>
@@ -77,6 +71,7 @@ export function DesktopApplicationShell({
               <Link
                 key={item.key}
                 href={href}
+                data-primary-action={item.key === "scan" ? "scan" : undefined}
                 aria-current={active ? "page" : undefined}
                 className={`gv-desktop-primary-link ${active ? "gv-desktop-primary-link-active" : ""}`}
               >
@@ -96,6 +91,7 @@ export function DesktopApplicationShell({
               Wall status unavailable
             </span>
           ) : null}
+          <BrandMotionToggle />
           <ThemeToggle />
           {isAuthenticated ? (
             <details className="gv-desktop-account-menu relative">

@@ -188,7 +188,7 @@ function VaultPopulated({ bindersEnabled }: { bindersEnabled: boolean }) {
     <RootFrame title="Vault" activeKey="vault">
       {bindersEnabled ? <BinderActionCard /> : null}
       <section className={styles.valueHero}>
-        <p className={styles.eyebrow}>Grookai Value</p>
+        <p className={styles.eyebrow}>grookai Value</p>
         <p className={styles.heroValue}>Value pending</p>
         <p className={styles.muted}>24 cards · 18 unique · 6 sets</p>
       </section>
@@ -217,7 +217,7 @@ function SearchDiscovery({ menuOpen = false }: { menuOpen?: boolean }) {
         <button type="button" className={styles.chip}><Icon kind="grid" /> Grid view</button>
       </div>
       <h2 className={styles.sectionTitle}>Trending now</h2>
-      <p className={styles.muted}>Search like a sentence. Grookai will translate it into collector filters.</p>
+      <p className={styles.muted}>Search like a sentence. grookai will translate it into collector filters.</p>
       <div className={styles.queryList}>
         <button type="button" className={styles.query}>Pikachu cards from the original era</button>
         <button type="button" className={styles.query}>Modern illustration rares under $25</button>
@@ -234,10 +234,10 @@ function SearchDiscovery({ menuOpen = false }: { menuOpen?: boolean }) {
   const drawerItems = [
     "Nearby",
     "Nearby Map",
-    "Grookai Dex",
+    "grookai Dex",
     "Sets",
     "Compare",
-    "Grookai Objects",
+    "grookai Objects",
     "Binders",
     "Messages",
     "Account",
@@ -249,7 +249,7 @@ function SearchDiscovery({ menuOpen = false }: { menuOpen?: boolean }) {
       <div className={styles.dimmed} aria-hidden="true">{page}</div>
       <div className={styles.drawerBackdrop}>
         <aside className={styles.drawer} aria-label="Collector tools">
-          <h1 className={styles.drawerTitle}>Grookai Vault</h1>
+          <h1 className={styles.drawerTitle}>grookai vault</h1>
           <p className={styles.drawerCopy}>Collector tools</p>
           <nav className={styles.drawerNav} aria-label="Secondary">
             {drawerItems.map((item) => (
@@ -286,7 +286,7 @@ function ScanReady() {
       <section className={styles.scanBody} aria-label="Scanner ready">
         <div className={styles.scanGuide} aria-hidden="true" />
         <p className={styles.scanCopy}>Place one card inside the guide</p>
-        <p className={styles.scanHint}>Hold steady. Grookai will identify the printing.</p>
+        <p className={styles.scanHint}>Hold steady. grookai will identify the printing.</p>
         <button type="button" className={styles.shutter} aria-label="Capture card" />
       </section>
     </main>

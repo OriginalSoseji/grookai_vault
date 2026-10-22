@@ -25,7 +25,9 @@ test('approved appearance lives in a separate stylesheet without replacing theme
   assert.match(source, /import "\.\/globals.css"/);
   assert.match(source, /import "\.\/collector.css"/);
   assert.match(source, /import Script from "next\/script"/);
-  assert.match(source, /className=\{visualParityFixtureMode \? "gv-dark" : "gv-collector gv-dark"\}/);
+  assert.match(source, /visualParityFixtureMode \? "gv-dark" : "gv-collector gv-dark"/);
+  assert.match(source, /roboto\.variable/);
+  assert.match(source, /import "\.\/launch-identity.css"/);
   assert.match(source, /strategy="beforeInteractive"/);
   assert.match(source, /grookai-theme/);
   assert.match(source, /classList.toggle\("gv-dark"/);

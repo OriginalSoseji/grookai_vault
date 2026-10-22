@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import InformationPage from "@/components/layout/InformationPage";
 
 export const metadata: Metadata = {
-  title: "Support | Grookai Vault",
-  description: "Contact Grookai Vault support for account help, data issues, safety reports, and launch feedback.",
+  title: "Support | grookai vault",
+  description: "Contact grookai vault support for account help, data issues, safety reports, and launch feedback.",
 };
 
 export default function SupportPage() {
@@ -28,7 +28,7 @@ export default function SupportPage() {
           <h2 className="text-lg font-semibold text-slate-950">What To Include</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>Account help: your account email and what you were trying to do.</li>
-            <li>Card data issue: the card name, set, card number, and Grookai URL if available.</li>
+            <li>Card data issue: the card name, set, card number, and grookai URL if available.</li>
             <li>Safety report: the profile, message, card, Wall item, or listing involved.</li>
             <li>Bug report: device, browser or app version, and screenshots if useful.</li>
           </ul>

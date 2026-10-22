@@ -1,16 +1,16 @@
 .root {
   min-height: 100dvh;
   overflow-x: hidden;
-  color: #f3f6fb;
-  background: #05070b;
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--gv-text-primary);
+  background: var(--gv-surface-page);
+  font-family: var(--font-roboto), Roboto, sans-serif;
   font-size: 14px;
   line-height: 1.35;
 }
 
 .appBar {
   display: flex;
-  min-height: 46px;
+  min-height: 48px;
   align-items: center;
   gap: 8px;
   padding: 1px 10px;
@@ -641,3 +641,24 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Canonical launch identity also governs the isolated parity reference screens. */
+.iconButton, .backButton { color: var(--gv-text-secondary); border-radius: 8px; }
+.iconButton:hover, .backButton:hover { color: var(--gv-text-primary); background: var(--gv-surface-elevated); }
+.iconButton:focus-visible, .backButton:focus-visible, .binderPanel:focus-visible, .control:focus-visible, .chip:focus-visible, .query:focus-visible { outline-color: var(--gv-primary); }
+.muted, .surfaceCopy, .profileMeta, .cardMeta, .binderCopy, .binderArrow, .eyebrow { color: var(--gv-text-secondary); }
+.segments, .surface, .control, .profile, .chip, .binderPanel, .searchField, .query { border-color: var(--gv-border-soft); border-radius: 8px; color: var(--gv-text-primary); background: var(--gv-surface-base); box-shadow: none; }
+.segment { color: var(--gv-text-secondary); border-radius: 8px; }
+.segmentActive { color: var(--gv-on-primary); background: var(--gv-primary); }
+.chipActive { color: var(--gv-primary); border-color: var(--gv-primary); background: var(--gv-primary-soft); }
+.avatar, .binderIcon { color: var(--gv-primary); border-color: var(--gv-border-soft); background: var(--gv-primary-soft); box-shadow: none; }
+.binderIcon { border-radius: 8px; }
+.binderTitle { color: var(--gv-text-primary); }
+.binderPanel:hover { border-color: var(--gv-primary); background: var(--gv-surface-elevated); }
+.binderPanel:hover .binderIcon { background: var(--gv-primary-soft); }
+.binderPanel:hover .binderArrow { color: var(--gv-primary); }
+.wallGrid, .vaultGrid { gap: 9px; }
+.art { border-radius: 10px; }
+.eyebrow { text-transform: none; }
+.heroValue { color: var(--gv-market); }
+.searchField input::placeholder { color: var(--gv-text-tertiary); }

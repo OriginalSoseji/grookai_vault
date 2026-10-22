@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import InformationPage from "@/components/layout/InformationPage";
 
 export const metadata: Metadata = {
-  title: "Account Deletion | Grookai Vault",
+  title: "Account Deletion | grookai vault",
   description:
-    "How Grookai Vault users can request account deletion and deletion of associated account data.",
+    "How grookai vault users can request account deletion and deletion of associated account data.",
 };
 
 export default function AccountDeletionPage() {
@@ -12,7 +12,7 @@ export default function AccountDeletionPage() {
     <InformationPage
       eyebrow="Account data"
       title="Account Deletion"
-      description="Grookai Vault users can request deletion of their account and associated account data at any time."
+      description="grookai vault users can request deletion of their account and associated account data at any time."
     >
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-slate-950">Request Account Deletion</h2>
@@ -21,12 +21,12 @@ export default function AccountDeletionPage() {
             <a className="font-medium text-slate-950 underline" href="mailto:support@grookaivault.com">
               support@grookaivault.com
             </a>{" "}
-            from the email address associated with your Grookai Vault account. Use the subject line
-            &quot;Account deletion request&quot; and include your Grookai username or profile link if available.
+            from the email address associated with your grookai vault account. Use the subject line
+            &quot;Account deletion request&quot; and include your grookai username or profile link if available.
           </p>
           <p>
             We may ask you to confirm ownership of the account before processing the request. Once verified, we will
-            delete or anonymize account data associated with your Grookai Vault account within 30 days unless a longer
+            delete or anonymize account data associated with your grookai vault account within 30 days unless a longer
             retention period is required for security, fraud prevention, legal compliance, or dispute resolution.
           </p>
         </section>
@@ -50,8 +50,8 @@ export default function AccountDeletionPage() {
             what is necessary for those purposes and are removed or anonymized when no longer needed.
           </p>
           <p>
-            Public catalog data, Grookai card IDs, card metadata, and language-agnostic card identity information are
-            part of Grookai Vault&apos;s public catalog and are not user account data.
+            Public catalog data, grookai card IDs, card metadata, and language-agnostic card identity information are
+            part of grookai vault&apos;s public catalog and are not user account data.
           </p>
         </section>
 

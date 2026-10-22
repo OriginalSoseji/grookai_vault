@@ -947,7 +947,7 @@ export default function ExplorePageClient({
     ? assistantPreview.ok
       ? assistantPreview.assistant_available
         ? "Assistant is available for this account. This preview still performed no model call."
-        : "Assistant is gated right now. Grookai Search still handled this deterministically."
+        : "Assistant is gated right now. grookai Search still handled this deterministically."
       : assistantPreview.message ?? "Assistant preview is unavailable."
     : "";
   const handleAssistantPreview = async () => {
@@ -1215,14 +1215,14 @@ export default function ExplorePageClient({
           tone: "border-emerald-200 bg-emerald-50 text-emerald-950 dark:border-emerald-300/20 dark:bg-emerald-400/[0.12] dark:text-emerald-100",
           label: "Vault scope",
           title: "Searching cards in your vault",
-          body: "Results are anchored to active raw and slab-backed cards in your Grookai Vault.",
+          body: "Results are anchored to active raw and slab-backed cards in your grookai vault.",
         }
       : ownershipState === "missing"
         ? {
             tone: "border-sky-200 bg-sky-50 text-sky-950 dark:border-sky-300/20 dark:bg-sky-400/[0.12] dark:text-sky-100",
             label: "Vault gap scope",
             title: "Searching cards missing from your vault",
-            body: "Grookai is comparing this scoped catalog search against your active vault inventory.",
+            body: "grookai is comparing this scoped catalog search against your active vault inventory.",
           }
         : null;
   const resultCountLabel =
@@ -1260,7 +1260,7 @@ export default function ExplorePageClient({
               ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found`
               : "No results yet";
   const emptyStateBody = ownershipRequiresSignIn
-    ? "Sign in and run the same search again. Grookai will use your active vault inventory instead of guessing ownership."
+    ? "Sign in and run the same search again. grookai will use your active vault inventory instead of guessing ownership."
     : ownershipState === "owned" && viewer.isAuthenticated
       ? "These filters are valid, but none of your active vault cards match them yet."
       : ownershipState === "missing" && viewer.isAuthenticated
@@ -1577,7 +1577,7 @@ export default function ExplorePageClient({
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
-                  Grookai Search
+                  grookai Search
                 </p>
                 {loading && displayRows.length > 0 ? (
                   <span className="rounded-full bg-slate-950 px-2 py-0.5 text-[10px] font-semibold text-white dark:bg-white dark:text-slate-950">
@@ -1744,10 +1744,10 @@ export default function ExplorePageClient({
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 dark:text-violet-200">
-                        Grookai Assistant
+                        grookai Assistant
                       </p>
                       <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
-                        Premium AI will explain variants, gaps, and collection strategy from Grookai data. Search results stay deterministic.
+                        Premium AI will explain variants, gaps, and collection strategy from grookai data. Search results stay deterministic.
                       </p>
                     </div>
                     <button

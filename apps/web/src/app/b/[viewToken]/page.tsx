@@ -11,8 +11,8 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Shared Binder | Grookai Vault",
-  description: "A private, view-only Binder shared through Grookai Vault.",
+  title: "Shared Binder | grookai vault",
+  description: "A private, view-only Binder shared through grookai vault.",
   robots: { index: false, follow: false, nocache: true },
   referrer: "no-referrer",
 };
@@ -76,7 +76,7 @@ function UnavailableViewLink() {
         <p className="text-sm text-slate-600">
           This link may be expired, revoked, or no longer eligible for access. No Binder details were disclosed.
         </p>
-        <Link href="/" className="gv-primary-button">Go to Grookai Vault</Link>
+        <Link href="/" className="gv-primary-button">Go to grookai vault</Link>
       </PageSection>
     </div>
   );

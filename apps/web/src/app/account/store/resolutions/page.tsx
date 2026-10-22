@@ -4,7 +4,7 @@ import { createServerAdminClient } from "@/lib/supabase/admin";
 import { readResolutionQueue } from "@/lib/orders/orderResolutionQueue";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title: "Resolution reviews | Grookai Vault", robots: { index: false, follow: false } };
+export const metadata = { title: "Resolution reviews | grookai vault", robots: { index: false, follow: false } };
 export default async function ResolutionQueuePage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const search = await searchParams, before = typeof search.before === "string" ? search.before : undefined;
   const { supabase, user } = await requireServerUser("/account/store/resolutions");

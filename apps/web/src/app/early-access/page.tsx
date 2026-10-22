@@ -3,8 +3,8 @@ import Image from "next/image";
 import { joinEarlyAccessAction } from "./actions";
 
 export const metadata = {
-  title: "Early Access | Grookai Vault",
-  description: "Join early access for Grookai Vault, a collector-first Pokemon card platform.",
+  title: "Early Access | grookai vault",
+  description: "Join early access for grookai vault, a collector-first Pokemon card platform.",
 };
 
 type EarlyAccessPageProps = {
@@ -16,12 +16,12 @@ type EarlyAccessPageProps = {
 const STATUS_COPY: Record<string, { title: string; detail: string; tone: string }> = {
   joined: {
     title: "You're on the list.",
-    detail: "We have your email and will send early access updates from Grookai.",
+    detail: "We have your email and will send early access updates from grookai.",
     tone: "border-emerald-200 bg-emerald-50 text-emerald-800",
   },
   exists: {
     title: "You're already on the list.",
-    detail: "That email is already registered for Grookai early access.",
+    detail: "That email is already registered for grookai early access.",
     tone: "border-sky-200 bg-sky-50 text-sky-800",
   },
   invalid: {
@@ -70,7 +70,7 @@ export default async function EarlyAccessPage(props: EarlyAccessPageProps) {
         <div className="mx-auto flex max-w-5xl flex-col items-center">
           <Image
             src="/grookai-logo-192.png"
-            alt="Grookai Vault logo"
+            alt="grookai vault logo"
             width={96}
             height={96}
             priority
@@ -78,7 +78,7 @@ export default async function EarlyAccessPage(props: EarlyAccessPageProps) {
           />
 
           <p className="mt-8 text-[0.72rem] font-bold uppercase tracking-[0.24em] text-slate-500">
-            Grookai Vault Early Access
+            grookai vault Early Access
           </p>
           <h1 className="mt-5 max-w-4xl text-[3.35rem] font-black leading-[0.91] tracking-normal text-slate-950 md:text-[6.75rem] dark:text-white">
             Know every card you own.
@@ -167,7 +167,7 @@ export default async function EarlyAccessPage(props: EarlyAccessPageProps) {
               Search should feel like collection intelligence.
             </h2>
             <p className="text-base leading-8 text-slate-300">
-              Grookai is designed to answer collector questions: what exists, what you own, what you are missing, and why one version matters.
+              grookai is designed to answer collector questions: what exists, what you own, what you are missing, and why one version matters.
             </p>
             <Link href="/explore" className="gv-secondary-button bg-white text-slate-950 hover:bg-slate-100">
               Preview search

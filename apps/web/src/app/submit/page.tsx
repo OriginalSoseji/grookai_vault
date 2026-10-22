@@ -128,7 +128,7 @@ export default async function SubmitPage(
       <PageIntro
         eyebrow="Warehouse Submission"
         title="Submit a missing card or image"
-        description="Upload the front of the card, explain what is missing, and Grookai will send the report into warehouse review."
+        description="Upload the front of the card, explain what is missing, and grookai will send the report into warehouse review."
         actions={(
           <Link
             href="/account"

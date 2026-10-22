@@ -21,7 +21,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Binders | Grookai Vault",
+  title: "Binders | grookai vault",
   description: "Collection goals powered by cards in your Vault.",
   robots: { index: false, follow: false },
 };

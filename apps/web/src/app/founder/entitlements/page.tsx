@@ -39,10 +39,10 @@ const ROLE_OPTIONS = [
 ] as const;
 
 const FEATURE_OPTIONS = [
-  { key: "assistant", label: "Grookai Assistant" },
+  { key: "assistant", label: "grookai Assistant" },
   { key: "vendor_tools", label: "Vendor tools" },
   { key: "founder_tools", label: "Founder tools" },
-  { key: "grookai_intelligence", label: "Grookai Intelligence" },
+  { key: "grookai_intelligence", label: "grookai Intelligence" },
   { key: "internal_debug", label: "Internal debug" },
   { key: "catalog_audits", label: "Catalog audits" },
 ] as const;
@@ -219,7 +219,7 @@ export default async function FounderEntitlementsPage(
       <PageIntro
         eyebrow="Founder Access"
         title="User Entitlements"
-        description="Manage Grookai access tiers from one governed place. This controls Premium, Vendor, Founder, Assistant, and Intelligence access without scattered allowlists."
+        description="Manage grookai access tiers from one governed place. This controls Premium, Vendor, Founder, Assistant, and Intelligence access without scattered allowlists."
         actions={(
           <div className="flex flex-wrap gap-3">
             <Link
@@ -269,7 +269,7 @@ export default async function FounderEntitlementsPage(
           <SummaryMetric
             label="Vendor"
             value={activeByTier.get("vendor") ?? 0}
-            detail="Grookai Intelligence and vendor tools."
+            detail="grookai Intelligence and vendor tools."
           />
           <SummaryMetric
             label="Founder Admin"

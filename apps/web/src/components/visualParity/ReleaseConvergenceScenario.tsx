@@ -675,7 +675,7 @@ function CardDetailHierarchy() {
                 <details className="gv-result-evidence order-3">
                   <summary>Card evidence</summary>
                   <div className="gv-result-evidence-body">
-                    <p>Grookai ID GV-FIXTURE-PIKACHU</p>
+                    <p>grookai ID GV-FIXTURE-PIKACHU</p>
                   </div>
                 </details>
               </div>
@@ -1061,7 +1061,7 @@ function ErrorState() {
         <ProductState
           tone="error"
           eyebrow="Could not load this page"
-          title="Grookai hit a problem"
+          title="grookai hit a problem"
           description="Your collection was not changed. Try this page again, or return to Search and continue from there."
           action={
             <button type="button" className="gv-primary-button">
@@ -1435,8 +1435,8 @@ function DesktopShellFixture({ kind }: { kind: DesktopShellFixtureKind }) {
         </PageContainer>
       </header>
       <main className="mx-auto w-full max-w-6xl px-5 py-8">
-        <p className="text-xs font-semibold uppercase text-slate-500">
-          {kind === "pushed-route" ? "Workspace" : "Grookai Vault"}
+        <p className="text-xs font-semibold text-slate-500">
+          {kind === "pushed-route" ? "Workspace" : "grookai vault"}
         </p>
         <h1 className="mt-2 text-3xl font-semibold text-slate-950 dark:text-white">
           {title}

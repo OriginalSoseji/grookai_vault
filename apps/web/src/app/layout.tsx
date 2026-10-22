@@ -2,6 +2,8 @@ import { vendorPilot } from "@/lib/vendorPilot.mjs";
 import Link from "next/link";
 import Script from "next/script";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { ACTIVE_BRAND_THEME, ACTIVE_BRAND_PALETTE, activeBrandStyle } from "@/components/brand/brandTheme";
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { AppChrome } from "@/components/layout/AppChrome";
@@ -18,25 +20,40 @@ import "./collector.css";
 import "./collector-approved.css";
 import "./collector-detail.css";
 import "./route-families.css";
+import "./launch-identity.css";
 import { SafeAnalytics } from "@/components/analytics/SafeAnalytics";
 import { collectorStaging, collectorFixtureLab } from "@/lib/collectorStaging.mjs";
 
+const roboto = localFont({
+  src: [
+    { path: "./fonts/Roboto/Roboto-Thin.ttf", weight: "100", style: "normal" },
+    { path: "./fonts/Roboto/Roboto-Light.ttf", weight: "300", style: "normal" },
+    { path: "./fonts/Roboto/Roboto-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/Roboto/Roboto-Medium.ttf", weight: "500", style: "normal" },
+    { path: "./fonts/Roboto/Roboto-Bold.ttf", weight: "700", style: "normal" },
+    { path: "./fonts/Roboto/Roboto-Black.ttf", weight: "900", style: "normal" },
+  ],
+  variable: "--font-roboto",
+  display: "swap",
+  preload: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(GROOKAI_VAULT_ORIGIN),
-  applicationName: "Grookai Vault",
-  title: "Grookai Vault",
+  applicationName: "grookai vault",
+  title: "grookai vault",
   description:
     "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
   openGraph: {
-    title: "Grookai Vault",
+    title: "grookai vault",
     description:
       "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
-    siteName: "Grookai Vault",
+    siteName: "grookai vault",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Grookai Vault",
+    title: "grookai vault",
     description:
       "Find exact Pokemon cards, build your Vault, and connect with collectors who have what you want.",
   },
@@ -71,7 +88,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={visualParityFixtureMode ? "gv-dark" : "gv-collector gv-dark"}
+      className={`${roboto.variable} gv-launch ${visualParityFixtureMode ? "gv-dark" : "gv-collector gv-dark"}`}
+      data-visual-system="launch"
+      data-brand-theme={ACTIVE_BRAND_THEME}
+      data-brand-accent={ACTIVE_BRAND_PALETTE.accent}
+      style={activeBrandStyle}
       suppressHydrationWarning
     >
       <head>

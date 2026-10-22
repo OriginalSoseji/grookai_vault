@@ -5,7 +5,7 @@ import CloudReceiptDesk from "@/components/receipts/CloudReceiptDesk";
 import { readReceiptSale, receiptDestination, receiptSaleId } from "@/lib/receipts/receiptSale";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-export const metadata = { title:"Account receipts | Grookai Vault", robots:{index:false,follow:false} };
+export const metadata = { title:"Account receipts | grookai vault", robots:{index:false,follow:false} };
 const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 function receiptId(value:string|string[]|undefined){const candidate=Array.isArray(value)?value[0]:value;return candidate&&uuid.test(candidate)?candidate:null;}
 export default async function CloudReceiptsPage({ searchParams }: { searchParams: Promise<{ sale?: string | string[]; receipt?:string|string[] }> }) {

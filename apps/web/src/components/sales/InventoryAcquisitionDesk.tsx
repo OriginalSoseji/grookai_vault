@@ -59,7 +59,7 @@ export default function InventoryAcquisitionDesk({ owner }: { owner: string }) {
     try {
       const id = crypto.randomUUID();
       const request = purchaseRequest({
-        storeName: storeName.trim() || "Grookai Vault",
+        storeName: storeName.trim() || "grookai vault",
         items: lines.map((line, index) => ({ description: line.description, quantity: 1, unitMinor: allocations[index], referenceMinor: line.referenceMinor, rateBps: line.referenceMinor == null ? null : 10000, cardId: line.cardId, printingId: line.printingId, condition: line.condition, addToVault: true })),
         payments: [{ method, amountMinor: totalMinor, tenderedMinor: totalMinor }], note, customerId: null, customer: seller, confirmed: true,
       }, id);

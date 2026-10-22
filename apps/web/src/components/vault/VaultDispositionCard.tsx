@@ -36,8 +36,8 @@ export default function VaultDispositionCard({ instanceId, gvviId, isActive, rec
   return <section aria-labelledby="disposition-heading" className="space-y-4 rounded-[1.25rem] border border-slate-200 bg-white p-4 shadow-sm">
     <div className="space-y-1">
       <h2 id="disposition-heading" className="font-semibold text-slate-900">{receipt ? "Sale / trade receipt" : "Record a sale or trade"}</h2>
-      <p className="text-sm text-slate-600">{receipt ? "Your private record of a transaction completed outside Grookai." : "Record a transaction you completed outside Grookai. This archives this exact copy and keeps a private receipt."}</p>
-      <p className="text-xs text-slate-500">Grookai does not collect payment or transfer ownership through this form.</p>
+      <p className="text-sm text-slate-600">{receipt ? "Your private record of a transaction completed outside grookai." : "Record a transaction you completed outside grookai. This archives this exact copy and keeps a private receipt."}</p>
+      <p className="text-xs text-slate-500">grookai does not collect payment or transfer ownership through this form.</p>
     </div>
     {receipt ? <div className="space-y-2 text-sm">
       <p role="status" className="font-semibold text-emerald-700">{receipt.type === "sale" ? "Sale recorded." : "Trade recorded."} This copy is archived.</p>

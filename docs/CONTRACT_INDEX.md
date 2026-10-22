@@ -30,6 +30,8 @@ If a contract is missing from this index, it is not authoritative.
 | VENDOR_STORE_TRIALS_V1 | Active implementation contract | docs/contracts/VENDOR_STORE_TRIALS_V1.md - Invitation-only expiring store access; no billing, automatic publication or permanent grants |
 | SEALED_OWNED_COLLECTIBLES_V1 | Active implementation contract | docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md - Exact-copy sealed ownership in the existing Vault, qualified totals, Wall, vendor, sale/trade/history and sharing; production activation requires migration replay and mixed-inventory acceptance |
 | GROOKAI_GUARDRAILS | Active | Global stop-rules and mandatory audit triggers |
+| APP_VISUAL_SYSTEM_CONTRACT_V1 | Active | [App Visual System](contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md) — Native and web ink/bone/lime palette, compact content hierarchy, tighter geometry, consistent card spacing, and responsive verification |
+| BRAND_TYPOGRAPHY_CONTRACT_V1 | Active | [Brand and Typography](contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md) — Bundled Roboto, lowercase names, weight 900 wordmarks, original emblem preservation, and flexible seasonal colors and motion |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |

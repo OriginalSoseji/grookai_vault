@@ -459,7 +459,7 @@ export function PublicProfileSettingsForm({
               label="Profile Photo"
               description="Shown as your collector avatar on public profile surfaces."
               previewUrl={avatarPreviewUrl}
-              displayName={values.displayName || "Grookai Vault"}
+              displayName={values.displayName || "grookai vault"}
               isBusy={busyMediaKind === "avatar"}
               hasValue={Boolean(values.avatarPath)}
               error={fieldErrors.avatarPath}
@@ -473,7 +473,7 @@ export function PublicProfileSettingsForm({
               label="Banner Image"
               description="Shown across the top of your public profile hero."
               previewUrl={bannerPreviewUrl}
-              displayName={values.displayName || "Grookai Vault"}
+              displayName={values.displayName || "grookai vault"}
               isBusy={busyMediaKind === "banner"}
               hasValue={Boolean(values.bannerPath)}
               error={fieldErrors.bannerPath}

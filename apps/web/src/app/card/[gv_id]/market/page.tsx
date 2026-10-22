@@ -159,7 +159,7 @@ function SoldEvidenceAction({
       </a>
       <p className="text-xs leading-5 text-slate-500">
         Opens a manual exact-print search for your review. Results are not
-        imported into Grookai pricing, and mismatched condition or printing
+        imported into grookai pricing, and mismatched condition or printing
         should be excluded.
       </p>
     </div>
