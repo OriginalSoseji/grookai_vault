@@ -62,6 +62,9 @@ only when it retains one set row, has one active identity and Scryfall parent
 mapping per parent, has at least one printing per parent, and stays at or above
 the frozen printing and exact-price-mapping counts. Any under-count or broken
 one-to-one relationship still fails closed.
+Additional exact printing mappings do not require parent growth; governed
+pricing repair may resolve a previously withheld lane without changing the
+canonical parent or printing inventory.
 The supervisor measures distinct covered parents so duplicate child or mapping
 rows cannot conceal a parent with missing structural evidence.
 

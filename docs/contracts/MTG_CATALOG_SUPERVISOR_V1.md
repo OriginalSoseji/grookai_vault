@@ -39,9 +39,11 @@ For each invocation it:
 7. Reconciles each eligible manifest set by set, card, identity, printing,
    parent-mapping, and printing-mapping counts.
 8. Accepts exact frozen counts or a structurally complete additive refresh: one
-   set, more parents than the frozen floor, one identity and Scryfall mapping
-   per parent, at least one printing per parent, and no regression below the
-   frozen printing or exact-price-mapping floors.
+   set, at least the frozen parent floor, one identity and Scryfall mapping per
+   parent, at least one printing per parent, and no regression below the frozen
+   printing or exact-price-mapping floors. Exact printing mappings may grow
+   independently when a later governed pricing refresh resolves previously
+   withheld lanes.
    Distinct covered-parent counts prove those relationships; aggregate identity,
    printing, or mapping totals cannot substitute for per-parent coverage.
 9. Stops on any partial, under-counted, or structurally incomplete set.
