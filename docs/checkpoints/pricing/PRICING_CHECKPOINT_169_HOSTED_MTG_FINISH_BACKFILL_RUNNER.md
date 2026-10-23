@@ -30,6 +30,12 @@ the current compressed JSONL contract directly, avoiding an unnecessary
 in-memory JSON-array conversion while retaining the exact downloaded bytes in
 the immutable artifact chain.
 
+Hosted run `39917980359` then downloaded and validated the full source but
+stopped before its read-only transaction because the workflow had not exposed
+the repository's existing `SUPABASE_DB_CA_CERT` secret to the strict pooler
+client. The runner now supplies that certificate, retaining hostname and
+project pinning with certificate verification.
+
 Dry-run downloads the successful plan artifact and reuses its frozen source.
 Apply downloads the successful rollback artifact. Both re-plan against the
 same commit, pricing run, source hash, and plan fingerprint before continuing.
