@@ -243,6 +243,7 @@ test("hosted finish mapping freezes source, plan, rollback, and apply evidence",
   assert.match(workflow, /jq -er '\.jsonl_download_uri'/);
   assert.match(workflow, /gzip --test "\$source_dir\/default-cards\.jsonl\.gz"/);
   assert.doesNotMatch(workflow, /jq -c '\.\[\]'[\s\S]*gzip -n -9/);
+  assert.match(workflow, /SUPABASE_DB_CA_CERT: \$\{\{ secrets\.SUPABASE_DB_CA_CERT \}\}/);
   assert.match(workflow, /expected_finish_plan_id:/);
   assert.match(workflow, /expected_finish_dry_run_id:/);
   assert.match(workflow, /gh run download "\$proof_id"/);

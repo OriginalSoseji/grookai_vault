@@ -41,7 +41,9 @@ pricing runner after parent-only mappings produced no publication gain.
 The first hosted plan, run `39916486644`, failed closed before database work
 because Scryfall now exposes `jsonl_download_uri` instead of the legacy
 `download_uri`. The runner consumes and validates that compressed JSONL source
-directly.
+directly. Run `39917980359` then proved the source download and stopped before
+its read-only transaction because the strict pooler client lacked the existing
+CA secret; the workflow now supplies that certificate.
 
 Decision locked there:
 
