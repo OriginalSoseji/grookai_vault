@@ -15,6 +15,10 @@ const workflow = fs.readFileSync(new URL(
   "../../.github/workflows/mtg-pricing-publication-runner.yml",
   import.meta.url,
 ), "utf8");
+const worker = fs.readFileSync(new URL(
+  "../../scripts/audits/mtg_fresh_scryfall_finish_backfill_v1.mjs",
+  import.meta.url,
+), "utf8");
 
 const child = (id, parent = "parent-a", support = ["scryfall-a"]) => ({
   card_print_id: parent,
@@ -242,7 +246,12 @@ test("hosted finish mapping freezes source, plan, rollback, and apply evidence",
   assert.match(workflow, /gh run download "\$proof_id"/);
   assert.match(workflow, /summary\.plan\?\.blocking_unsafe_count !== 0/);
   assert.match(workflow, /proof\.plan\?\.plan_fingerprint !== current\.plan\?\.plan_fingerprint/);
+  assert.match(workflow, /executed\.plan\?\.plan_fingerprint !== proof\.plan\?\.plan_fingerprint/);
+  assert.match(workflow, /Executed finish-map dry-run drifted from frozen plan/);
   assert.match(workflow, /test "\$pricing_run_id" = "\$current_pricing_run_id"/);
   assert.match(workflow, /MTG_FRESH_SCRYFALL_FINISH_MAPPING_APPROVAL/);
   assert.match(workflow, /--expected-head-sha=\$EXPECTED_SHA/);
+  assert.match(worker, /const databaseConfig = mtgFreshScryfallDatabaseConfigV1\(databaseUrl\)/);
+  assert.match(worker, /const client = new pg\.Client\(databaseConfig\)/);
+  assert.doesNotMatch(worker, /targetBindingFromEnvironment|connectVerifiedDbClient/);
 });

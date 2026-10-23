@@ -7,6 +7,8 @@ import readline from "node:readline";
 import { fileURLToPath } from "node:url";
 import { createGunzip } from "node:zlib";
 
+import pg from "pg";
+
 import "../../backend/env.mjs";
 import {
   buildMtgFreshScryfallFinishPlanV1,
@@ -22,10 +24,6 @@ import {
   rollbackMappingTransaction,
 } from "../../backend/pricing/exact_mapping_execution_guard_v1.mjs";
 import { marketEvidenceDbUrl } from "../lib/market_evidence_db_query_v1.mjs";
-import {
-  connectVerifiedDbClient,
-  targetBindingFromEnvironment,
-} from "./japanese_master_index_v4/image_pointer_apply_db_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const VERSION = MTG_FRESH_SCRYFALL_FINISH_BACKFILL_V1;
@@ -433,9 +431,9 @@ async function main() {
 
   const databaseUrl = marketEvidenceDbUrl();
   if (!databaseUrl) throw new Error("SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required");
-  mtgFreshScryfallDatabaseConfigV1(databaseUrl);
-  const targetBinding = await targetBindingFromEnvironment();
-  const client = await connectVerifiedDbClient(targetBinding);
+  const databaseConfig = mtgFreshScryfallDatabaseConfigV1(databaseUrl);
+  const client = new pg.Client(databaseConfig);
+  await client.connect();
   const transaction = mappingTransactionState();
   try {
     await client.query(args.mode === "plan" ? "begin transaction read only" : "begin");

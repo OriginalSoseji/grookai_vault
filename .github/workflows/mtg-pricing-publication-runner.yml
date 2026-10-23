@@ -317,6 +317,19 @@ jobs:
           if [[ "$mode" = 'dry_run' ]]; then
             node scripts/audits/mtg_fresh_scryfall_finish_backfill_v1.mjs \
               --dry-run "${common[@]}" "--out-dir=$out"
+            node --input-type=module - "$proof/summary.json" "$out/summary.json" <<'NODE'
+          import fs from 'node:fs';
+          const [proofPath, executedPath] = process.argv.slice(2);
+          const proof = JSON.parse(fs.readFileSync(proofPath, 'utf8'));
+          const executed = JSON.parse(fs.readFileSync(executedPath, 'utf8'));
+          if (executed.status !== 'rollback_verified' || executed.mode !== 'dry-run' ||
+              executed.plan?.plan_fingerprint !== proof.plan?.plan_fingerprint ||
+              executed.plan?.selected_insert_count !== proof.plan?.selected_insert_count ||
+              executed.plan?.authority?.source_sha256 !== proof.plan?.authority?.source_sha256 ||
+              executed.plan?.authority?.pricing_run_id !== proof.plan?.authority?.pricing_run_id) {
+            throw new Error('Executed finish-map dry-run drifted from frozen plan');
+          }
+          NODE
           else
             export MTG_FRESH_SCRYFALL_FINISH_MAPPING_APPROVAL="$(node -e \
               "const s=require(process.argv[1]);process.stdout.write(s.plan.required_approval)" \
