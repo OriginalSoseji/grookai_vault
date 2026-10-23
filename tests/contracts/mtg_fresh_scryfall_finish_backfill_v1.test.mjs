@@ -247,6 +247,10 @@ test("hosted finish mapping freezes source, plan, rollback, and apply evidence",
   assert.match(workflow, /expected_finish_plan_id:/);
   assert.match(workflow, /expected_finish_dry_run_id:/);
   assert.match(workflow, /gh run download "\$proof_id"/);
+  assert.match(workflow, /local expected_stage="\$\{expected_operation#finish_map_\}"/);
+  assert.match(workflow, /mtg-finish-map-\$expected_stage\/output\/summary\.json/);
+  assert.match(workflow, /mtg-finish-map-\$expected_stage\/source\/default-cards\.jsonl\.gz/);
+  assert.doesNotMatch(workflow, /-path '\*\/output\/summary\.json'/);
   assert.match(workflow, /summary\.plan\?\.blocking_unsafe_count !== 0/);
   assert.match(workflow, /proof\.plan\?\.plan_fingerprint !== current\.plan\?\.plan_fingerprint/);
   assert.match(workflow, /executed\.plan\?\.plan_fingerprint !== proof\.plan\?\.plan_fingerprint/);

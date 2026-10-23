@@ -203,14 +203,17 @@ jobs:
           download_proof() {
             local proof_id="$1"
             local expected_operation="$2"
+            local expected_stage="${expected_operation#finish_map_}"
             [[ "$proof_id" =~ ^[0-9]+$ ]]
             gh api "repos/$GITHUB_REPOSITORY/actions/runs/$proof_id" \
               > "$proof/run.json"
             gh run download "$proof_id" --repo "$GITHUB_REPOSITORY" \
               --name "mtg-pricing-$expected_operation-$proof_id" \
               --dir "$proof/artifact"
-            mapfile -t proof_summaries < <(find "$proof/artifact" -type f -path '*/output/summary.json')
-            mapfile -t proof_sources < <(find "$proof/artifact" -type f -name 'default-cards.jsonl.gz')
+            mapfile -t proof_summaries < <(find "$proof/artifact" -type f \
+              -path "*/mtg-finish-map-$expected_stage/output/summary.json")
+            mapfile -t proof_sources < <(find "$proof/artifact" -type f \
+              -path "*/mtg-finish-map-$expected_stage/source/default-cards.jsonl.gz")
             test "${#proof_summaries[@]}" -eq 1
             test "${#proof_sources[@]}" -eq 1
             cp "${proof_sources[0]}" "$source_dir/default-cards.jsonl.gz"
