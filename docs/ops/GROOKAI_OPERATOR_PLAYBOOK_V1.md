@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Hosted MTG exact-finish backfill — October 23, 2026
+
+Read
+`docs/checkpoints/pricing/PRICING_CHECKPOINT_169_HOSTED_MTG_FINISH_BACKFILL_RUNNER.md`.
+Use `finish_map_plan`, `finish_map_dry_run`, and `finish_map_apply` in
+`mtg-pricing-publication-runner.yml`. Pass the successful plan run ID to dry-run
+and the successful dry-run run ID to apply. Each later phase downloads and
+revalidates the prior immutable artifact, source hash, pricing run, commit, and
+plan fingerprint. Never collapse a Normal/Foil split into one parent mapping.
+After apply, run a fresh full shadow and promote only a reconciled eligibility
+gain.
+
 ## Website visual identity and Halloween release — October 22, 2026
 
 Read `docs/contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md` and

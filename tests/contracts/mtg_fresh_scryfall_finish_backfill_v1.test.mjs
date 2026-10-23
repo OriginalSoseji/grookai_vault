@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
 import test from "node:test";
 
 import {
@@ -9,6 +10,11 @@ import {
   mtgFreshScryfallDatabaseConfigV1,
   scryfallLinkSupportsFinishV1,
 } from "../../backend/pricing/mtg_fresh_scryfall_finish_backfill_policy_v1.mjs";
+
+const workflow = fs.readFileSync(new URL(
+  "../../.github/workflows/mtg-pricing-publication-runner.yml",
+  import.meta.url,
+), "utf8");
 
 const child = (id, parent = "parent-a", support = ["scryfall-a"]) => ({
   card_print_id: parent,
@@ -223,4 +229,20 @@ test("database target pins the Grookai project and verified TLS", () => {
     "postgresql://postgres:fixture@db.ycdxbpibncqcchqiihfz.supabase.co:5432/postgres?options=bad",
     {},
   ), /unexpected_database_option/);
+});
+
+test("hosted finish mapping freezes source, plan, rollback, and apply evidence", () => {
+  assert.match(workflow, /finish_map_plan/);
+  assert.match(workflow, /finish_map_dry_run/);
+  assert.match(workflow, /finish_map_apply/);
+  assert.match(workflow, /https:\/\/api\.scryfall\.com\/bulk-data\/default-cards/);
+  assert.match(workflow, /jq -c '\.\[\]'[\s\S]*gzip -n -9/);
+  assert.match(workflow, /expected_finish_plan_id:/);
+  assert.match(workflow, /expected_finish_dry_run_id:/);
+  assert.match(workflow, /gh run download "\$proof_id"/);
+  assert.match(workflow, /summary\.plan\?\.blocking_unsafe_count !== 0/);
+  assert.match(workflow, /proof\.plan\?\.plan_fingerprint !== current\.plan\?\.plan_fingerprint/);
+  assert.match(workflow, /test "\$pricing_run_id" = "\$current_pricing_run_id"/);
+  assert.match(workflow, /MTG_FRESH_SCRYFALL_FINISH_MAPPING_APPROVAL/);
+  assert.match(workflow, /--expected-head-sha=\$EXPECTED_SHA/);
 });
