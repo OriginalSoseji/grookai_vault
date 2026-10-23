@@ -189,15 +189,13 @@ jobs:
               --header 'User-Agent: grookai-vault-pricing-operator/1.0' \
               'https://api.scryfall.com/bulk-data/default-cards' \
               --output "$source_dir/metadata.json"
-            download_uri="$(jq -er '.download_uri' "$source_dir/metadata.json")"
+            download_uri="$(jq -er '.jsonl_download_uri' "$source_dir/metadata.json")"
             source_updated_at="$(jq -er '.updated_at' "$source_dir/metadata.json")"
             curl --fail --location --retry 3 \
-              --header 'Accept: application/json' \
+              --header 'Accept: application/gzip' \
               --header 'User-Agent: grookai-vault-pricing-operator/1.0' \
-              "$download_uri" --output "$source_dir/default-cards.json"
-            jq -c '.[]' "$source_dir/default-cards.json" | gzip -n -9 \
-              > "$source_dir/default-cards.jsonl.gz"
-            rm "$source_dir/default-cards.json"
+              "$download_uri" --output "$source_dir/default-cards.jsonl.gz"
+            gzip --test "$source_dir/default-cards.jsonl.gz"
             source_sha256="$(sha256sum "$source_dir/default-cards.jsonl.gz" | cut -d' ' -f1)"
           }
 

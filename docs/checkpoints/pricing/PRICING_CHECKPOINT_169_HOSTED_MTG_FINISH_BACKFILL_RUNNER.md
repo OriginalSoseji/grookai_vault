@@ -18,9 +18,17 @@ whole product would misprice the other finish.
 ## Repair
 
 The MTG pricing runner now exposes `finish_map_plan`, `finish_map_dry_run`, and
-`finish_map_apply`. The plan downloads current Scryfall default-card bulk data,
-converts it to deterministic gzip JSONL, freezes its hash and timestamp, and
-plans against the exact active pricing publication run.
+`finish_map_apply`. The plan downloads current Scryfall default-card gzip JSONL
+from the metadata record's `jsonl_download_uri`, validates the gzip before use,
+freezes its hash and timestamp, and plans against the exact active pricing
+publication run.
+
+Hosted run `39916486644` proved that Scryfall no longer supplies the legacy
+`download_uri` JSON-array field on this endpoint. It stopped at metadata
+validation before the planner or any database writer ran. The runner now uses
+the current compressed JSONL contract directly, avoiding an unnecessary
+in-memory JSON-array conversion while retaining the exact downloaded bytes in
+the immutable artifact chain.
 
 Dry-run downloads the successful plan artifact and reuses its frozen source.
 Apply downloads the successful rollback artifact. Both re-plan against the
