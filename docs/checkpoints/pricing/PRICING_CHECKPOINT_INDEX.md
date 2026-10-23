@@ -38,6 +38,11 @@ That would make it too easy to preserve the code while accidentally forgetting t
 This checkpoint moves the exact Scryfall Normal/Foil backfill to the hosted MTG
 pricing runner after parent-only mappings produced no publication gain.
 
+The first hosted plan, run `39916486644`, failed closed before database work
+because Scryfall now exposes `jsonl_download_uri` instead of the legacy
+`download_uri`. The runner consumes and validates that compressed JSONL source
+directly.
+
 Decision locked there:
 
 - multi-parent MTG products remain finish-specific; plan, rollback, and apply
