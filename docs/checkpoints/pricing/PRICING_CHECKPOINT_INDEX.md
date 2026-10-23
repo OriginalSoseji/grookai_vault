@@ -43,7 +43,10 @@ because Scryfall now exposes `jsonl_download_uri` instead of the legacy
 `download_uri`. The runner consumes and validates that compressed JSONL source
 directly. Run `39917980359` then proved the source download and stopped before
 its read-only transaction because the strict pooler client lacked the existing
-CA secret; the workflow now supplies that certificate.
+CA secret; the workflow now supplies that certificate. Plan `39918363132` and
+rollback `39918659022` then proved a safe 16-row batch. Apply `39918968227`
+stopped before its planner because nested retained proof produced two generic
+summary paths; stage-specific proof selection removes that ambiguity.
 
 Decision locked there:
 

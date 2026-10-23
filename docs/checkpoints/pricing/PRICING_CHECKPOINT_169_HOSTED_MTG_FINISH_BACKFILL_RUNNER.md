@@ -36,6 +36,14 @@ the repository's existing `SUPABASE_DB_CA_CERT` secret to the strict pooler
 client. The runner now supplies that certificate, retaining hostname and
 project pinning with certificate verification.
 
+Plan `39918363132` selected 16 exact rows with zero unsafe rows, and rollback
+run `39918659022` inserted and read back all 16 before restoring every protected
+count. Apply `39918968227` stopped before the planner or writer because the
+retained rollback artifact correctly contained both its own summary and its
+nested plan proof, while the downloader still expected one generic summary.
+Proof selection now targets the requested stage root and leaves nested evidence
+intact.
+
 Dry-run downloads the successful plan artifact and reuses its frozen source.
 Apply downloads the successful rollback artifact. Both re-plan against the
 same commit, pricing run, source hash, and plan fingerprint before continuing.
