@@ -13,6 +13,9 @@ on:
           - parent_map_plan
           - parent_map_dry_run
           - parent_map_apply
+          - finish_map_plan
+          - finish_map_dry_run
+          - finish_map_apply
           - publication_dry_run
           - publication_shadow
           - publication_production
@@ -29,6 +32,14 @@ on:
         type: string
       expected_correction_dry_run_id:
         description: Successful correction dry-run workflow run required before apply
+        required: false
+        type: string
+      expected_finish_plan_id:
+        description: Successful finish-map plan workflow run required before dry-run
+        required: false
+        type: string
+      expected_finish_dry_run_id:
+        description: Successful finish-map dry-run workflow run required before apply
         required: false
         type: string
 
@@ -52,6 +63,8 @@ jobs:
       TARGET_MIGRATION: 20261020220000_mtg_reviewed_printing_correction_bridge_v1.sql
       EXPECTED_SHADOW_RUN_KEY: ${{ inputs.expected_shadow_run_key }}
       EXPECTED_CORRECTION_DRY_RUN_ID: ${{ inputs.expected_correction_dry_run_id }}
+      EXPECTED_FINISH_PLAN_ID: ${{ inputs.expected_finish_plan_id }}
+      EXPECTED_FINISH_DRY_RUN_ID: ${{ inputs.expected_finish_dry_run_id }}
       GH_TOKEN: ${{ github.token }}
 
     steps:
@@ -157,6 +170,173 @@ jobs:
               ;;
             *) exit 2 ;;
           esac
+
+      - name: Execute exact Scryfall finish-map operation
+        if: ${{ startsWith(inputs.operation, 'finish_map_') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mode="${OPERATION#finish_map_}"
+          root="$RUNNER_TEMP/mtg-finish-map-$mode"
+          source_dir="$root/source"
+          out="$root/output"
+          proof="$root/proof"
+          mkdir -p "$source_dir" "$out" "$proof"
+
+          download_fresh_source() {
+            curl --fail --location --retry 3 \
+              --header 'Accept: application/json' \
+              --header 'User-Agent: grookai-vault-pricing-operator/1.0' \
+              'https://api.scryfall.com/bulk-data/default-cards' \
+              --output "$source_dir/metadata.json"
+            download_uri="$(jq -er '.download_uri' "$source_dir/metadata.json")"
+            source_updated_at="$(jq -er '.updated_at' "$source_dir/metadata.json")"
+            curl --fail --location --retry 3 \
+              --header 'Accept: application/json' \
+              --header 'User-Agent: grookai-vault-pricing-operator/1.0' \
+              "$download_uri" --output "$source_dir/default-cards.json"
+            jq -c '.[]' "$source_dir/default-cards.json" | gzip -n -9 \
+              > "$source_dir/default-cards.jsonl.gz"
+            rm "$source_dir/default-cards.json"
+            source_sha256="$(sha256sum "$source_dir/default-cards.jsonl.gz" | cut -d' ' -f1)"
+          }
+
+          download_proof() {
+            local proof_id="$1"
+            local expected_operation="$2"
+            [[ "$proof_id" =~ ^[0-9]+$ ]]
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$proof_id" \
+              > "$proof/run.json"
+            gh run download "$proof_id" --repo "$GITHUB_REPOSITORY" \
+              --name "mtg-pricing-$expected_operation-$proof_id" \
+              --dir "$proof/artifact"
+            mapfile -t proof_summaries < <(find "$proof/artifact" -type f -path '*/output/summary.json')
+            mapfile -t proof_sources < <(find "$proof/artifact" -type f -name 'default-cards.jsonl.gz')
+            test "${#proof_summaries[@]}" -eq 1
+            test "${#proof_sources[@]}" -eq 1
+            cp "${proof_sources[0]}" "$source_dir/default-cards.jsonl.gz"
+            cp "${proof_summaries[0]}" "$proof/summary.json"
+            node --input-type=module - "$proof/run.json" "$proof/summary.json" \
+              "$expected_operation" <<'NODE'
+          import fs from 'node:fs';
+          const [runPath, summaryPath, expectedOperation] = process.argv.slice(2);
+          const run = JSON.parse(fs.readFileSync(runPath, 'utf8'));
+          const summary = JSON.parse(fs.readFileSync(summaryPath, 'utf8'));
+          const expectedMode = expectedOperation.endsWith('plan') ? 'plan' : 'dry-run';
+          const expectedStatus = expectedMode === 'plan' ? 'planned' : 'rollback_verified';
+          if (run.status !== 'completed' || run.conclusion !== 'success' ||
+              run.event !== 'workflow_dispatch' || run.head_sha !== process.env.EXPECTED_SHA ||
+              run.path !== '.github/workflows/mtg-pricing-publication-runner.yml') {
+            throw new Error('Finish-map proof workflow identity mismatch');
+          }
+          if (summary.status !== expectedStatus || summary.mode !== expectedMode ||
+              summary.plan?.repository?.commit_sha !== process.env.EXPECTED_SHA ||
+              summary.plan?.blocking_unsafe_count !== 0) {
+            throw new Error('Finish-map proof summary mismatch');
+          }
+          NODE
+            source_sha256="$(node -e \
+              "const s=require(process.argv[1]);process.stdout.write(s.plan.authority.source_sha256)" \
+              "$proof/summary.json")"
+            source_updated_at="$(node -e \
+              "const s=require(process.argv[1]);process.stdout.write(s.plan.authority.source_updated_at)" \
+              "$proof/summary.json")"
+          }
+
+          current_pricing_run_id="$(node --input-type=module - <<'NODE'
+          import pg from 'pg';
+          const client = new pg.Client({
+            connectionString: process.env.SUPABASE_DB_URL,
+            ssl: { rejectUnauthorized: false },
+            connectionTimeoutMillis: 15_000,
+            statement_timeout: 120_000,
+            query_timeout: 125_000,
+          });
+          await client.connect();
+          try {
+            const result = await client.query(
+              'select run_id from public.market_price_current_publication where singleton = true',
+            );
+            if (result.rows.length !== 1) throw new Error('Current pricing publication run is unavailable');
+            process.stdout.write(String(result.rows[0].run_id));
+          } finally { await client.end(); }
+          NODE
+          )"
+
+          case "$mode" in
+            plan)
+              download_fresh_source
+              pricing_run_id="$current_pricing_run_id"
+              ;;
+            dry_run)
+              download_proof "$EXPECTED_FINISH_PLAN_ID" 'finish_map_plan'
+              pricing_run_id="$(node -e \
+                "const s=require(process.argv[1]);process.stdout.write(s.plan.authority.pricing_run_id)" \
+                "$proof/summary.json")"
+              ;;
+            apply)
+              download_proof "$EXPECTED_FINISH_DRY_RUN_ID" 'finish_map_dry_run'
+              pricing_run_id="$(node -e \
+                "const s=require(process.argv[1]);process.stdout.write(s.plan.authority.pricing_run_id)" \
+                "$proof/summary.json")"
+              ;;
+            *) exit 2 ;;
+          esac
+          test "$pricing_run_id" = "$current_pricing_run_id"
+          test "$(sha256sum "$source_dir/default-cards.jsonl.gz" | cut -d' ' -f1)" = "$source_sha256"
+
+          common=(
+            "--scryfall-jsonl-gz=$source_dir/default-cards.jsonl.gz"
+            "--expected-source-sha256=$source_sha256"
+            "--source-updated-at=$source_updated_at"
+            "--pricing-run-id=$pricing_run_id"
+            "--expected-head-sha=$EXPECTED_SHA"
+          )
+          if [[ "$mode" = 'plan' ]]; then
+            node scripts/audits/mtg_fresh_scryfall_finish_backfill_v1.mjs \
+              --plan "${common[@]}" "--out-dir=$out"
+            exit 0
+          fi
+
+          current_plan="$root/current-plan"
+          node scripts/audits/mtg_fresh_scryfall_finish_backfill_v1.mjs \
+            --plan "${common[@]}" "--out-dir=$current_plan"
+          node --input-type=module - "$proof/summary.json" "$current_plan/summary.json" <<'NODE'
+          import fs from 'node:fs';
+          const [proofPath, currentPath] = process.argv.slice(2);
+          const proof = JSON.parse(fs.readFileSync(proofPath, 'utf8'));
+          const current = JSON.parse(fs.readFileSync(currentPath, 'utf8'));
+          if (proof.plan?.plan_fingerprint !== current.plan?.plan_fingerprint ||
+              proof.plan?.selected_insert_count !== current.plan?.selected_insert_count ||
+              proof.plan?.authority?.source_sha256 !== current.plan?.authority?.source_sha256 ||
+              proof.plan?.authority?.pricing_run_id !== current.plan?.authority?.pricing_run_id) {
+            throw new Error('Finish-map plan drifted from required proof');
+          }
+          NODE
+
+          if [[ "$mode" = 'dry_run' ]]; then
+            node scripts/audits/mtg_fresh_scryfall_finish_backfill_v1.mjs \
+              --dry-run "${common[@]}" "--out-dir=$out"
+            node --input-type=module - "$proof/summary.json" "$out/summary.json" <<'NODE'
+          import fs from 'node:fs';
+          const [proofPath, executedPath] = process.argv.slice(2);
+          const proof = JSON.parse(fs.readFileSync(proofPath, 'utf8'));
+          const executed = JSON.parse(fs.readFileSync(executedPath, 'utf8'));
+          if (executed.status !== 'rollback_verified' || executed.mode !== 'dry-run' ||
+              executed.plan?.plan_fingerprint !== proof.plan?.plan_fingerprint ||
+              executed.plan?.selected_insert_count !== proof.plan?.selected_insert_count ||
+              executed.plan?.authority?.source_sha256 !== proof.plan?.authority?.source_sha256 ||
+              executed.plan?.authority?.pricing_run_id !== proof.plan?.authority?.pricing_run_id) {
+            throw new Error('Executed finish-map dry-run drifted from frozen plan');
+          }
+          NODE
+          else
+            export MTG_FRESH_SCRYFALL_FINISH_MAPPING_APPROVAL="$(node -e \
+              "const s=require(process.argv[1]);process.stdout.write(s.plan.required_approval)" \
+              "$current_plan/summary.json")"
+            node scripts/audits/mtg_fresh_scryfall_finish_backfill_v1.mjs \
+              --apply "${common[@]}" "--out-dir=$out"
+          fi
 
       - name: Execute pricing publication operation
         if: ${{ startsWith(inputs.operation, 'publication_') }}
@@ -503,6 +683,7 @@ jobs:
             migration_dry_run.txt
             ${{ runner.temp }}/mtg-parent-map-*
             ${{ runner.temp }}/mtg-pricing-*
+            ${{ runner.temp }}/mtg-finish-map-*
             ${{ runner.temp }}/mtg-reviewed-correction-*
           if-no-files-found: warn
           retention-days: 90

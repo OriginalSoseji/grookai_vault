@@ -33,6 +33,22 @@ That would make it too easy to preserve the code while accidentally forgetting t
 
 ## Checkpoint Sequence
 
+### `PRICING_CHECKPOINT_169_HOSTED_MTG_FINISH_BACKFILL_RUNNER.md`
+
+This checkpoint moves the exact Scryfall Normal/Foil backfill to the hosted MTG
+pricing runner after parent-only mappings produced no publication gain.
+
+Decision locked there:
+
+- multi-parent MTG products remain finish-specific; plan, rollback, and apply
+  must reuse one frozen Scryfall source, active pricing run, exact commit, and
+  plan fingerprint
+
+Unresolved gate afterward:
+
+- run the hosted plan, rollback, and apply, then require a reconciled gain in a
+  new full pricing shadow before production activation
+
 ### `PRICING_CHECKPOINT_168_HOSTED_OLLAMA_CANDIDATE_QUEUE.md`
 
 This checkpoint moves cross-category candidate enrichment into the hosted
