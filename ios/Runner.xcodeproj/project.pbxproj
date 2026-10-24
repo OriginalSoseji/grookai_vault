@@ -17,6 +17,7 @@
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		AC2E8E95A4969F8BA2F8F414 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD6C58BBC1BDA1B400941AF /* Pods_Runner.framework */; };
 		C0D3F0000000000000000001 /* ScannerCameraPhase0.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D3F0000000000000000002 /* ScannerCameraPhase0.swift */; };
+		C0D3F2100000000000000001 /* P21PrinterBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D3F2100000000000000002 /* P21PrinterBridge.swift */; };
 		D4E5F6A7B8C9012345678902 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D4E5F6A7B8C9012345678901 /* PrivacyInfo.xcprivacy */; };
 		78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		A1B2C3D4E5F60718293A4B5C /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		ADD6C58BBC1BDA1B400941AF /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D3F0000000000000000002 /* ScannerCameraPhase0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerCameraPhase0.swift; sourceTree = "<group>"; };
+		C0D3F2100000000000000002 /* P21PrinterBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P21PrinterBridge.swift; sourceTree = "<group>"; };
 		D4E5F6A7B8C9012345678901 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		D4E5F6A7B8C9012345678903 /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Profile.xcconfig; path = Flutter/Profile.xcconfig; sourceTree = "<group>"; };
 		F8DA53FCA0449C16D2F71671 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				C0D3F0000000000000000002 /* ScannerCameraPhase0.swift */,
+				C0D3F2100000000000000002 /* P21PrinterBridge.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 			);
 			path = Runner;
@@ -421,6 +424,7 @@
 			files = (
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				C0D3F0000000000000000001 /* ScannerCameraPhase0.swift in Sources */,
+				C0D3F2100000000000000001 /* P21PrinterBridge.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

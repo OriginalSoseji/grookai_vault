@@ -10,6 +10,7 @@ import '../../services/vault/vault_card_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../utils/vault_printing_identity.dart';
 import '../../widgets/card_surface_artwork.dart';
+import '../printing/lot_label_print_screen.dart';
 import 'collector_memories_screen.dart';
 import 'for_sale_terms_screen.dart';
 import 'lot_pricing_screen.dart';
@@ -272,6 +273,24 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
     );
   }
 
+  Future<void> _openLotLabels() async {
+    final selectedRows = _rows
+        .where((row) => _selectedLotRowKeys.contains(_rowKey(row)))
+        .toList(growable: false);
+    if (selectedRows.isEmpty) {
+      return;
+    }
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => LotLabelPrintScreen(
+          lotName: _defaultLotTitle(selectedRows),
+          groupName: 'Binder lot',
+          quantity: selectedRows.length,
+        ),
+      ),
+    );
+  }
+
   Future<void> _openMemoriesHome() async {
     await Navigator.of(
       context,
@@ -358,6 +377,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
                       ? null
                       : () => setState(_selectedLotRowKeys.clear),
                   onPriceLot: selectedLotCount < 2 ? null : _openLotPricing,
+                  onPrintLabels: selectedLotCount == 0 ? null : _openLotLabels,
                 ),
               ],
               if (_error != null) ...[
@@ -624,12 +644,14 @@ class _LotActionBar extends StatelessWidget {
     required this.maxCount,
     required this.onClear,
     required this.onPriceLot,
+    required this.onPrintLabels,
   });
 
   final int selectedCount;
   final int maxCount;
   final VoidCallback? onClear;
   final VoidCallback? onPriceLot;
+  final VoidCallback? onPrintLabels;
 
   @override
   Widget build(BuildContext context) {
@@ -654,6 +676,12 @@ class _LotActionBar extends StatelessWidget {
             ),
           ),
           TextButton(onPressed: onClear, child: const Text('Clear')),
+          const SizedBox(width: 6),
+          OutlinedButton.icon(
+            onPressed: onPrintLabels,
+            icon: const Icon(Icons.print_outlined, size: 18),
+            label: const Text('Labels'),
+          ),
           const SizedBox(width: 6),
           FilledButton.icon(
             onPressed: onPriceLot,

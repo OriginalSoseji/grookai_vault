@@ -17,5 +17,8 @@ import UIKit
     ) {
       ScannerCameraPhase0Bridge.register(with: registrar)
     }
+    if let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "P21Printer") {
+      P21PrinterBridge.register(with: registrar)
+    }
   }
 }
