@@ -101,6 +101,7 @@ const STAMP_PATTERNS: Array<{ pattern: RegExp; label: string; residual: string }
   { pattern: /\byellow\s+cheeks?\b/gi, label: "Yellow Cheeks", residual: "yellow cheeks" },
   { pattern: /\bshadowless\b/gi, label: "Shadowless", residual: "shadowless" },
   { pattern: /\b(?:1st|first)\s+edition\b/gi, label: "First Edition", residual: "first edition" },
+  { pattern: /\bunlimited\b/gi, label: "Unlimited", residual: "unlimited" },
   { pattern: /\bblack\s+flame(?:\s+errors?)?\b/gi, label: "Black Flame Error", residual: "black flame error" },
   { pattern: /\bcorrected\s+text(?:\s+variants?)?\b/gi, label: "Corrected Text Variant", residual: "corrected text variant" },
   { pattern: /\bd\.?\s*fending(?:\s+errors?)?\b/gi, label: "D. Fending Error", residual: "d fending error" },

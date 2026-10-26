@@ -155,6 +155,37 @@ test('Grookai Search recognizes stamp and image worklist language deterministica
   assert.ok(missingImages.interpretedLabels.includes('Image: Missing exact image'));
 });
 
+test('Grookai Search treats First Edition and Unlimited as explicit edition filters', () => {
+  const { buildSmartSearchIntent } = loadTsModule('../../apps/web/src/lib/search/smartSearchIntent.ts');
+
+  const firstEdition = buildSmartSearchIntent('Clefable 1 first edition');
+  const unlimited = buildSmartSearchIntent('Clefable 1 unlimited');
+
+  assert.deepEqual(Array.from(firstEdition.stampLabels), ['First Edition']);
+  assert.equal(firstEdition.residualQuery, 'Clefable 1');
+  assert.deepEqual(Array.from(unlimited.stampLabels), ['Unlimited']);
+  assert.equal(unlimited.residualQuery, 'Clefable 1');
+});
+
+test('explicit edition search supplements the deduplicated discovery view from canonical parents', () => {
+  const source = readFileSync(
+    new URL('../../apps/web/src/lib/explore/getExploreRows.ts', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(source, /function getExplicitEditionModifiers/);
+  assert.match(source, /edition:first_edition/);
+  assert.match(source, /edition:unlimited/);
+  assert.match(
+    source,
+    /fetchExplicitEditionParentRows[\s\S]*\.from\("card_prints"\)[\s\S]*mergeCardPrintLookupRows\(parentRows, explicitEditionRows\)/,
+  );
+  assert.match(
+    source,
+    /for \(const row of await fetchExplicitEditionParentRows\(options\.stampLabels \?\? \[\]\)\)[\s\S]*rowsById\.set\(row\.id, row\)/,
+  );
+});
+
 test('Grookai Search normalization preserves accented collector labels', () => {
   const { normalizeSearchText } = loadTsModule(
     '../../apps/web/src/lib/search/normalizeSearchText.ts',
