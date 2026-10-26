@@ -97,6 +97,57 @@ void main() {
     }
   });
 
+  test(
+    'set grid resolves a relative representative route for native',
+    () async {
+      final client = SupabaseClient(
+        'https://example.supabase.co',
+        'public-anon-key',
+        httpClient: MockClient((request) async {
+          final data = switch (request.url.path) {
+            '/rest/v1/sets' => <Map<String, dynamic>>[
+              {'code': 'wp'},
+            ],
+            '/rest/v1/card_prints' => <Map<String, dynamic>>[
+              {
+                'id': '20735fca-078b-5034-a65b-781ce6ba75fb',
+                'gv_id': 'GV-PK-WP-WPRTR32',
+                'name': 'Dark Charmeleon',
+                'number': 'WPR TR 32',
+                'image_source': 'identity',
+                'representative_image_url':
+                    '/api/canon/cards/GV-PK-TR-32/image',
+                'image_status': 'representative_shared',
+                'image_note': 'Exact W stamp visual remains pending.',
+              },
+            ],
+            _ => <Map<String, dynamic>>[],
+          };
+          return http.Response(
+            jsonEncode(data),
+            200,
+            headers: {'content-type': 'application/json'},
+            request: request,
+          );
+        }),
+      );
+      addTearDown(client.dispose);
+
+      final cards = await PublicSetsService.fetchSetCards(
+        client: client,
+        setCode: 'wp',
+      );
+
+      expect(cards, hasLength(1));
+      expect(
+        cards.single.representativeImageUrl,
+        'https://grookaivault.com/api/canon/cards/GV-PK-TR-32/image',
+      );
+      expect(cards.single.displayImageUrl, cards.single.representativeImageUrl);
+      expect(cards.single.displayImageKind, 'representative');
+    },
+  );
+
   test('display_image_url is preferred over legacy image fields', () {
     final card = CardPrint.fromJson(<String, dynamic>{
       'id': 'card-1',

@@ -117,13 +117,22 @@ async function fetchEnvironmentSanity(client, dbUrl) {
       (select count(*)::int from public.card_print_traits) as card_print_traits
   `);
   const counts = result.rows[0];
-  let projectRef = null;
-  if (clean(process.env.SUPABASE_URL)) projectRef = new URL(process.env.SUPABASE_URL).hostname.split('.')[0];
-  else if (dbUrl.includes(EXPECTED_PROJECT_REF)) projectRef = EXPECTED_PROJECT_REF;
+  const httpProjectRef = clean(process.env.SUPABASE_URL)
+    ? new URL(process.env.SUPABASE_URL).hostname.split('.')[0]
+    : null;
+  const parsedDbUrl = new URL(dbUrl);
+  const databaseIdentity = `${decodeURIComponent(parsedDbUrl.username)}@${parsedDbUrl.hostname}`;
+  const databaseProjectRef = databaseIdentity.includes(EXPECTED_PROJECT_REF)
+    ? EXPECTED_PROJECT_REF
+    : null;
+  const projectRefVerified = databaseProjectRef === EXPECTED_PROJECT_REF
+    && (httpProjectRef == null || httpProjectRef === EXPECTED_PROJECT_REF);
   return {
-    project_ref: projectRef,
+    project_ref: databaseProjectRef,
+    database_project_ref: databaseProjectRef,
+    http_project_ref: httpProjectRef,
     expected_project_ref: EXPECTED_PROJECT_REF,
-    project_ref_verified: projectRef === EXPECTED_PROJECT_REF,
+    project_ref_verified: projectRefVerified,
     card_prints: counts.card_prints,
     sets: counts.sets,
     card_print_traits: counts.card_print_traits,
