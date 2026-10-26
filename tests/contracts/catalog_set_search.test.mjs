@@ -30,6 +30,7 @@ function load(file) {
 const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
 const { buildSmartSearchIntent } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const { resolveSmartSearchQuery } = load(path.join(web, 'lib/search/resolveSmartSearchQuery.ts'));
+const { fetchCompleteNamedCardRows } = load(path.join(web, 'lib/search/completeNamedCardSearch.ts'));
 const sets = [
  ['base1', 'Base Set'], ['base4', 'Base Set 2'], ['ecard1', 'Expedition Base Set'],
  ['30c', '30th Celebration'], ['30c-classic', '30th Celebration Classic Collection'],
@@ -253,4 +254,27 @@ test('partial card disambiguation accepts literal fragments and rejects unrelate
  for (const query of ['Dark Chari','dark, CHARI','Chari Dark']) assert.equal(await isCatalogCardNameQuery(client,query,'pokemon'),true);
  for (const query of ['Pika Ascended','Dark Chari unknown','Dark Chra','']) assert.equal(await isCatalogCardNameQuery(client,query,'pokemon'),false);
  await assert.rejects(isCatalogCardNameQuery({rpc:async()=>({error:{message:'unavailable'}})},'Dark Chari','pokemon'),/unavailable/);
+});
+
+test('numbered name interpretation uses the same name probe and retained page as candidate discovery', async () => {
+ for (const query of ['Mega Greninja 081', 'Mega Greninja 81', '081 Mega Greninja', 'Mega Greninja #081', 'Mega Greninja 081/094']) {
+  const rows=[{id:'greninja',gv_id:'GV-PK-MEP-081',name:'Mega Greninja ex',number:'081'}];
+  let reads=0,retained;
+  const client={rpc:async(name,args)=>{
+   reads++; assert.equal(name,'search_game_card_prints_v5');
+   assert.equal(args.q,'Mega Greninja');assert.equal(args.number_in,null);
+   return {data:rows};
+  }};
+  assert.equal(await isCatalogCardNameQuery(client,query,'pokemon',page=>{retained=page;}),true,query);
+  assert.equal(retained.query,'Mega Greninja');
+  const candidates=await fetchCompleteNamedCardRows(client,{textQuery:query,gameScope:'pokemon',namedFirstPage:retained});
+  assert.equal(candidates[0].gv_id,'GV-PK-MEP-081');
+  assert.equal(reads,1,'the trusted interpretation page is reused by name discovery');
+ }
+ const fuzzy={rpc:async()=>({data:[{name:'Mega Greninja ex'}]})};
+ assert.equal(await isCatalogCardNameQuery(fuzzy,'Mega Greninja unknown 081','pokemon'),false);
+ assert.equal(await isCatalogCardNameQuery(fuzzy,'Mega Grenninja 081','pokemon'),false);
+ let reads=0;
+ assert.equal(await isCatalogCardNameQuery({rpc:async()=>{reads++;return {data:[]};}},'081','pokemon'),false);
+ assert.equal(reads,0,'a collector number alone is not a name');
 });

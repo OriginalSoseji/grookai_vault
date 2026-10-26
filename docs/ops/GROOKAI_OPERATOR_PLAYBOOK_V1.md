@@ -1,5 +1,20 @@
 # Grookai Operator Playbook V1
 
+## Numbered card-name interpretation follow-up — October 26, 2026
+
+Read `docs/checkpoints/2026-10-26_numbered_name_set_disambiguation.md`.
+PR 798's numeric lookup repair is deployed, but full endpoint verification found
+an implicit set shortcut consuming `mega` in `mega greninja 081`. The follow-up
+branch `fix/search-number-set-name-20261026` shares the existing name cleanup
+between interpretation and discovery. Preserve the original collector-number
+constraint, unknown words, explicit set filters, and request-scoped retained
+page authority. Keep the same isolated GitHub/Vercel release gates and verify
+the full deployed request; direct lookup success alone is insufficient.
+The follow-up is currently staged and held: repeated normal hooks suffered
+unchanged CLI fixture timeouts or a Flutter runner connection failure. Isolated
+rechecks pass, but a fully successful normal hook remains required. See the
+checkpoint for preserved attempts and the exact unresolved public query.
+
 ## Padded collector-number search release — October 26, 2026
 
 Read `docs/checkpoints/2026-10-26_padded_collector_search_release.md`.

@@ -1,5 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { NAMED_CARD_PAGE_SIZE, retainNamedCardFirstPage } from "./completeNamedCardSearch";
+import { getCompleteNameSearchQuery, NAMED_CARD_PAGE_SIZE, retainNamedCardFirstPage } from "./completeNamedCardSearch";
 import { getCatalogSetPresentation } from "../catalogPresentation";
 import { resolveGameScopedSetSearchIntent } from "../publicSets.shared";
 import { anniversarySetOrdinals } from "./anniversarySetSearch";
@@ -146,8 +146,10 @@ export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">
 // this ambiguity check at the caller, so "Chari from Dark" still selects a set.
 export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
   retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
-  const name = await readCatalogCardName(client, query, game, retain);
-  const fragments = words(query);
+  const nameQuery = getCompleteNameSearchQuery(query);
+  if (!nameQuery) return false;
+  const name = await readCatalogCardName(client, nameQuery, game, retain);
+  const fragments = words(nameQuery);
   const nameWords = words(name ?? "");
   return fragments.length > 0 && fragments.every((fragment) => nameWords.some((word) => word.includes(fragment)));
 }
