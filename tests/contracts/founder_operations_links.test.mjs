@@ -13,7 +13,7 @@ const compiled = ts.transpileModule(source, { compilerOptions: {
 } }).outputText;
 const id = (index) => `00000000-0000-0000-0000-${String(index).padStart(12, '0')}`;
 const row = (index) => ({ id: id(index), title: `Work item ${index}`, state: 'ready_for_review',
-  summary: 'Fixture', version: 1, expires_at: '2026-10-01T00:00:00Z', scope: {}, exclusions: [] });
+  summary: 'Fixture', version: 1, expires_at: '2027-10-01T00:00:00Z', scope: {}, exclusions: [] });
 const window = Array.from({ length: 100 }, (_, index) => row(101 - index));
 const dashboard = {
   generatedAt: '2026-10-25T00:00:00Z',
@@ -25,10 +25,12 @@ const dashboard = {
   errors: [],
 };
 
-function load({ rows = window, target = row(1), denied = false, listError = null, targetError = null } = {}) {
+function load({ currentRows = window.slice(0, 25), recentRows = window.slice(0, 12), target = row(1), denied = false, listError = null, targetError = null } = {}) {
   let authorized = false;
   let reads = 0;
   const targets = [];
+  const limits = [];
+  const currentFilters = [];
   const module = { exports: {} };
   const Container = ({ children, title }) => React.createElement('section', null, title, children);
   vm.runInNewContext(compiled, { module, exports: module.exports, Date, require(name) {
@@ -48,12 +50,17 @@ function load({ rows = window, target = row(1), denied = false, listError = null
     if (name === '@/lib/supabase/admin') return { createServerAdminClient() {
       assert.equal(authorized, true, 'authorize before any privileged client');
       return { from(table) {
-        reads++;
+        const readIndex = reads++;
         assert.equal(table, 'founder_work_items');
         const query = {
           select(fields) { assert.ok(fields.includes('operations_agents')); return query; },
+          in(column, values) { currentFilters.push({ column, values }); return query; },
+          gt(column, value) { currentFilters.push({ column, value }); return query; },
           order() { return query; },
-          async limit(count) { assert.equal(count, 100); return { data: rows, error: listError }; },
+          async limit(count) {
+            limits.push(count);
+            return { data: readIndex === 0 ? currentRows : recentRows, error: listError };
+          },
           eq(column, value) { assert.equal(column, 'id'); targets.push(value); return query; },
           async maybeSingle() { return { data: target, error: targetError }; },
         };
@@ -62,23 +69,23 @@ function load({ rows = window, target = row(1), denied = false, listError = null
     } };
     throw Error(`Unexpected import: ${name}`);
   } });
-  return { async render(targetId) { return renderToStaticMarkup(await module.exports.default({ searchParams: Promise.resolve({ work_item_id: targetId }) })); }, targets, reads: () => reads };
+  return { async render(targetId) { return renderToStaticMarkup(await module.exports.default({ searchParams: Promise.resolve({ work_item_id: targetId }) })); }, targets, limits, currentFilters, reads: () => reads };
 }
 
-test('old target outside 100 rows is read directly, first and exactly once', async () => {
+test('old target outside the bounded live queue is read directly, first and exactly once', async () => {
   const page = load();
   const html = await page.render(id(1));
   assert.deepEqual(page.targets, [id(1)]);
-  assert.equal((html.match(/<article/g) ?? []).length, 101);
+  assert.equal((html.match(/<article/g) ?? []).length, 26);
   assert.ok(html.indexOf('Work item 1</h2>') < html.indexOf('Work item 101</h2>'));
   assert.equal((html.match(/Work item 1<\/h2>/g) ?? []).length, 1);
 });
 test('already loaded target is focused without duplicate lookup', async () => {
   const page = load();
-  const html = await page.render([id(50), id(1)]);
+  const html = await page.render([id(95), id(1)]);
   assert.deepEqual(page.targets, []);
-  assert.equal((html.match(/<article/g) ?? []).length, 100);
-  assert.ok(html.indexOf('Work item 50</h2>') < html.indexOf('Work item 101</h2>'));
+  assert.equal((html.match(/<article/g) ?? []).length, 25);
+  assert.ok(html.indexOf('Work item 95</h2>') < html.indexOf('Work item 101</h2>'));
 });
 test('missing target is explicit while the queue stays visible', async () => {
   const page = load({ target: null });
@@ -96,9 +103,9 @@ test('malformed link does not issue an unbounded or malformed target query', asy
   assert.deepEqual(page.targets, []);
 });
 test('list errors remain visible without starting another reader', async () => {
-  const page = load({ rows: null, listError: { message: 'Fixture unavailable' } });
+  const page = load({ currentRows: null, recentRows: null, listError: { message: 'Fixture unavailable' } });
   assert.ok((await page.render(id(1))).includes('Fixture unavailable'));
-  assert.equal(page.reads(), 1);
+  assert.equal(page.reads(), 2);
 });
 test('guest or collector denial happens before privileged reads', async () => {
   const page = load({ denied: true });
@@ -108,6 +115,18 @@ test('guest or collector denial happens before privileged reads', async () => {
 test('normal queue remains bounded with no extra lookup', async () => {
   const page = load();
   const html = await page.render(undefined);
-  assert.equal((html.match(/<article/g) ?? []).length, 100);
+  assert.equal((html.match(/<article/g) ?? []).length, 25);
   assert.deepEqual(page.targets, []);
+  assert.deepEqual(page.limits, [25, 12]);
+  assert.equal(page.currentFilters[0].column, 'state');
+  assert.deepEqual(Array.from(page.currentFilters[0].values), ['ready_for_review', 'deferred']);
+  assert.equal(page.currentFilters[1].column, 'expires_at');
+});
+
+test('expired actionable history is visible but cannot be approved', async () => {
+  const expired = { ...row(500), expires_at: '2026-10-01T00:00:00Z' };
+  const page = load({ currentRows: [], recentRows: [expired] });
+  const html = await page.render(undefined);
+  assert.ok(html.includes('expired'));
+  assert.ok(html.includes('Run its discovery agent again'));
 });
