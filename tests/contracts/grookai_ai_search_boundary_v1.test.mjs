@@ -428,7 +428,7 @@ test('fraction searches require matching printed denominator before a direct res
   assert.equal(exact.structuredEvidenceFlags.fraction, true);
 });
 
-test('collector scoped number lookup is case-insensitive and keeps suffix identity', () => {
+test('collector lookup keeps case-insensitive suffix identity and exact numeric filters', () => {
   const exploreRows = readFileSync(
     new URL('../../apps/web/src/lib/explore/getExploreRows.ts', import.meta.url),
     'utf8',
@@ -437,9 +437,9 @@ test('collector scoped number lookup is case-insensitive and keeps suffix identi
     exploreRows,
     /\.ilike\(field, collectorToken\.replace\(\/\[\\\\%_\]\/g, "\\\\\$&"\)\)/,
   );
-  assert.doesNotMatch(
+  assert.match(
     exploreRows,
-    /\.eq\(field, collectorToken\)/,
+    /\/\^\\d\+\$\/\.test\(collectorToken\)\s*\? scopedRequest\.eq\(field, collectorToken\)\s*: scopedRequest\.ilike/,
   );
 });
 

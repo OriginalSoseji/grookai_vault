@@ -703,6 +703,11 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
       .flatMap((fraction) => fraction.split("/"))
       .map((token) => normalizeTextForMatch(token)),
   );
+  // Both the printed form (081) and normalized form (81) are collector
+  // evidence. Neither belongs in a name filter.
+  const collectorNumberTokens = new Set(
+    [...packet.numberTokens, ...packet.numberDigitTokens].map(normalizeTextForMatch),
+  );
   const consumedTokenSet = new Set([
     ...packet.setConsumedTokens,
     ...packet.rarityConsumedTokens,
@@ -712,9 +717,7 @@ function buildResolverQuery(packet: NormalizedQueryPacket): ResolverQuery {
   const textTokens = uniqueValues(
     tokens.filter(
       (token) =>
-        !collectorExpectations.some(
-          (expectation) => normalizeTextForMatch(expectation.token) === token,
-        ) &&
+        !collectorNumberTokens.has(token) &&
         !fractionNumberTokens.has(token) &&
         !VARIANT_QUERY_CUE_TOKENS.has(token) &&
         !consumedTokenSet.has(token),
@@ -4100,6 +4103,11 @@ async function fetchCollectorScopedTextRows(
   const collectorCandidates = new Set(
     query.numberTokens.map((token) => normalizeCollectorToken(token)).filter(Boolean),
   );
+  for (const token of collectorCandidates) {
+    if (/^\d+$/.test(token)) {
+      collectorCandidates.add(token.padStart(3, "0"));
+    }
+  }
   for (const fraction of query.fractionTokens) {
     const match = fraction.match(/^([A-Z]*\d+[A-Z]?)\/([A-Z]*\d+[A-Z]?)$/i);
     if (!match) continue;
@@ -4133,10 +4141,13 @@ async function fetchCollectorScopedTextRows(
 
   const requests = ["number", "number_plain"].flatMap((field) =>
     collectorTokens.map(async (collectorToken) => {
-      let request = applyLanguageScopeQuery(
+      const scopedRequest = applyLanguageScopeQuery(
         supabase.from("card_prints").select(selectClause),
         languageScope,
-      ).ilike(field, collectorToken.replace(/[\\%_]/g, "\\$&"));
+      );
+      let request = /^\d+$/.test(collectorToken)
+        ? scopedRequest.eq(field, collectorToken)
+        : scopedRequest.ilike(field, collectorToken.replace(/[\\%_]/g, "\\$&"));
       for (const nameToken of nameTokens) {
         request = request.ilike("name", `%${nameToken}%`);
       }

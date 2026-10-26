@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Padded collector-number search release — October 26, 2026
+
+Read `docs/checkpoints/2026-10-26_padded_collector_search_release.md`.
+The isolated branch `fix/search-padded-collector-number-20261026` contains the
+web repair for name-plus-number searches such as `mega greninja 081`. Preserve
+both printed and normalized numeric forms, keep numbers out of name filters,
+and use exact indexed comparisons for numeric columns while retaining escaped
+case-insensitive alphanumeric matching. The Samsung 305 scanner/index work is
+separate and must not be bundled into this web release. Existing GitHub/Vercel
+main deployment and production guards remain authoritative. Full deployed
+resolver readback is required before claiming the search fix is live.
+
 ## TCGPlayer Pokemon founder review lane — October 26, 2026
 
 Read `docs/contracts/TCGPLAYER_PRICING_COMPLETION_AGENT_V4.md`. The scheduled

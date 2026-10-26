@@ -13,9 +13,17 @@ function compile(source, context = {}) {
   return module.exports;
 }
 const { gameStopCandidateFilter } = compile(fs.readFileSync('apps/web/src/lib/search/stampCandidateFilter.ts', 'utf8'));
+const { normalizeSearchText } = compile(fs.readFileSync('apps/web/src/lib/search/normalizeSearchText.ts', 'utf8'));
 const source = fs.readFileSync('apps/web/src/lib/explore/getExploreRows.ts', 'utf8');
-const reader = source.slice(source.indexOf('export async function getExploreRowsForCombinedSearch('),
-  source.indexOf('\nasync function enrichCompleteSearchParents('));
+const parsedSource = ts.createSourceFile('getExploreRows.ts', source, ts.ScriptTarget.Latest, true);
+// Execute the real edition-discovery/merge dependencies too. A newly added
+// production helper must not turn this isolated-reader test into a ReferenceError.
+const readerHelpers = new Set(['getExploreRowsForCombinedSearch',
+  'fetchExplicitEditionParentRows', 'getExplicitEditionModifiers',
+  'mergeCardPrintLookupRows', 'normalizeTextForMatch']);
+const reader = parsedSource.statements
+  .filter(node => ts.isFunctionDeclaration(node) && readerHelpers.has(node.name?.text))
+  .map(node => node.getText(parsedSource)).join('\n');
 
 test('complete governed name rows are reused; fractions and sparse contracts hydrate parents', async()=>{
  const row={id:'visible',gv_id:'GV-PK-T-001',name:'Pikachu',number:'7',rarity:'Common',artist:'Artist',
@@ -25,6 +33,7 @@ test('complete governed name rows are reused; fractions and sparse contracts hyd
  for(const [textQuery,input,expectedReads] of [['Pika',[row],0],['Pika 7/1019',[row],1],['Pika',[{id:'visible'}],1]]) {
   let reads=0;const searchTimings={};
   const {getExploreRowsForCombinedSearch}=compile(reader,{
+   normalizeSearchText,
    assertValueSortPricingEnabled(){},createServerComponentClient:async()=>({}),
    fetchCompleteNamedCardRows:async()=>input,
    fetchCardRowsByIds:async ids=>{reads++;assert.deepEqual(Array.from(ids),['visible']);return [{...row,printed_total:1019}];},
@@ -70,6 +79,7 @@ test('stamp-only combined search narrows every page using either canonical stamp
     }; return query;
   } };
   const { getExploreRowsForCombinedSearch } = compile(reader, {
+    normalizeSearchText,
     assertValueSortPricingEnabled() {}, createServerComponentClient: async () => db,
     fetchCompleteNamedCardRows: async () => null, getSmartDiscoveryTextTokens: () => [],
     gameStopCandidateFilter,
