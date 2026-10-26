@@ -121,7 +121,11 @@ export async function getFounderOperationsLiveDashboard(
       .gt("expires_at", new Date().toISOString()),
     admin.from("operations_commands").select("id", { count: "exact", head: true }).eq("status", "queued"),
     admin.from("operations_commands").select("id", { count: "exact", head: true }).eq("status", "running"),
-    admin.from("operations_commands").select("id", { count: "exact", head: true }).eq("status", "failed"),
+    admin
+      .from("operations_commands")
+      .select("id,founder_work_items!inner(state)", { count: "exact", head: true })
+      .eq("status", "failed")
+      .eq("founder_work_items.state", "failed"),
     admin.from("operations_incidents").select("id", { count: "exact", head: true }).eq("status", "open"),
     getFounderGovernedPricingPlatformSummary(admin),
   ]);
