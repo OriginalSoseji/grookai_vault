@@ -13,6 +13,7 @@ import {
   buildTcgplayerPricingCompletionAgentV1,
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
+  applyPokemonPricingMappingReviewedHoldsV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
@@ -277,9 +278,23 @@ async function main() {
       `${ollamaCandidateQueuePath}.summary.json`,
       'utf8',
     ));
-    const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
+    const pokemonReviewedHoldRegistry = JSON.parse(await fs.readFile(
+      path.resolve('docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json'),
+      'utf8',
+    ));
+    const pokemonReviewedHolds = applyPokemonPricingMappingReviewedHoldsV1(
       pokemonOllamaCandidateQueue,
+      pokemonReviewedHoldRegistry,
     );
+    const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
+      pokemonReviewedHolds.eligible,
+    );
+    const pokemonReviewHeldByReason = Object.fromEntries(Object.entries({
+      ...pokemonReviewBatch.held_by_reason,
+      ...pokemonReviewedHolds.held_by_reason,
+    }).sort());
+    const pokemonReviewHeldCount = pokemonReviewBatch.held_count
+      + pokemonReviewedHolds.held_count;
     const summary = {
       ...summarizeTcgplayerPricingCompletionRunV1(report, {
         exactPlan,
@@ -298,8 +313,10 @@ async function main() {
       pokemon_mapping_review: {
         candidate_count: pokemonOllamaCandidateQueue.length,
         selected_count: pokemonReviewBatch.selected_count,
-        held_count: pokemonReviewBatch.held_count,
-        held_by_reason: pokemonReviewBatch.held_by_reason,
+        held_count: pokemonReviewHeldCount,
+        held_by_reason: pokemonReviewHeldByReason,
+        reviewed_hold_count: pokemonReviewedHolds.held_count,
+        reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
       },
       exact_mapping_plan: {
         status: exactPlanProcess.status,
@@ -375,8 +392,10 @@ async function main() {
       pokemon_mapping_review: {
         candidate_count: pokemonOllamaCandidateQueue.length,
         selected_count: pokemonReviewBatch.selected_count,
-        held_count: pokemonReviewBatch.held_count,
-        held_by_reason: pokemonReviewBatch.held_by_reason,
+        held_count: pokemonReviewHeldCount,
+        held_by_reason: pokemonReviewHeldByReason,
+        reviewed_hold_count: pokemonReviewedHolds.held_count,
+        reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
         work_item_key: pokemonReviewWorkItem?.work_item_key ?? null,
         plan_fingerprint: pokemonReviewWorkItem?.plan_fingerprint ?? null,
         publication_receipt: pokemonReviewPublication,

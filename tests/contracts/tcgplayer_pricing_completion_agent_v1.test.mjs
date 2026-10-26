@@ -8,6 +8,8 @@ import {
   buildTcgplayerPricingCompletionAgentV1,
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
+  applyPokemonPricingMappingReviewedHoldsV1,
+  pokemonPricingMappingReviewEvidenceFingerprintV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
   TCGPLAYER_PRICING_COMPLETION_AGENT_KEY,
@@ -302,6 +304,65 @@ test('Pokemon review selection holds ambiguity and collisions without failing me
   });
 });
 
+test('reviewed Pokemon holds suppress unchanged unsafe evidence and reopen changed evidence', () => {
+  const candidate = {
+    source_product_id: 127381,
+    source_product_name: 'Grass Energy (2017 Unnumbered)',
+    source_group_id: 1863,
+    source_group_name: 'SM Base Set',
+    printed_number: '',
+    source_subtypes: ['Reverse Holofoil', 'Normal'],
+    review_targets: [{
+      card_print_id: '80519969-cbd1-495c-9e56-acf1e3f466af',
+      gv_id: 'GV-PK-SUM-164',
+      set_id: 'afe1197e-4b81-42e2-afcb-50143ffba2f2',
+      set_code: 'sm1',
+      canonical_name: 'Grass Energy',
+      canonical_number: '164',
+      variant_key: '',
+      candidate_score: 63,
+      candidate_evidence: { number_exact: false },
+    }],
+  };
+  const registry = {
+    version: 'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1',
+    holds: [{
+      source_product_id: candidate.source_product_id,
+      reason: 'missing_printed_number_evidence',
+      candidate_fingerprint: pokemonPricingMappingReviewEvidenceFingerprintV1(candidate),
+    }],
+  };
+  const unchanged = applyPokemonPricingMappingReviewedHoldsV1([candidate], registry);
+  assert.equal(unchanged.eligible.length, 0);
+  assert.equal(unchanged.held_count, 1);
+  assert.deepEqual(unchanged.held_by_reason, {
+    reviewed_missing_printed_number_evidence: 1,
+  });
+  const changed = applyPokemonPricingMappingReviewedHoldsV1([{
+    ...candidate,
+    printed_number: '164',
+  }], registry);
+  assert.equal(changed.eligible.length, 1);
+  assert.equal(changed.held_count, 0);
+  assert.equal(changed.changed_evidence_count, 1);
+});
+
+test('checked-in Pokemon reviewed holds match their frozen evidence', () => {
+  const registry = JSON.parse(fs.readFileSync(
+    path.join(ROOT, 'docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json'),
+    'utf8',
+  ));
+  assert.equal(registry.version, 'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1');
+  assert.equal(registry.holds.length, 24);
+  assert.equal(new Set(registry.holds.map((hold) => hold.source_product_id)).size, 24);
+  for (const hold of registry.holds) {
+    assert.equal(
+      pokemonPricingMappingReviewEvidenceFingerprintV1(hold.evidence),
+      hold.candidate_fingerprint,
+    );
+  }
+});
+
 test('scheduled workflow measures production without treating backlog as a crash', () => {
   const workflow = fs.readFileSync(
     path.join(ROOT, '.github/workflows/tcgplayer-pricing-completion-agent.yml'),
@@ -323,10 +384,12 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /--candidate-only/);
   assert.match(worker, /mtg_ollama_identity_candidate_queue\.jsonl/);
   assert.match(worker, /pokemon_ollama_identity_candidate_queue\.jsonl/);
+  assert.match(worker, /pokemon_tcgplayer_reviewed_holds_20261026\.json/);
+  assert.match(worker, /applyPokemonPricingMappingReviewedHoldsV1/);
   assert.match(worker, /operations_publish_work_item_v1/);
   assert.match(worker, /buildPokemonPricingMappingReviewWorkItemV1/);
   assert.match(worker, /pokemon_mapping_review:\s*\{[\s\S]*selected_count: pokemonReviewBatch\.selected_count/);
-  assert.match(worker, /held_count: pokemonReviewBatch\.held_count/);
+  assert.match(worker, /held_count: pokemonReviewHeldCount/);
   assert.match(worker, /exact_mapping_plan:\s*\{[\s\S]*status: exactPlanProcess\.status/);
   assert.match(worker, /pricingExactPlanFailureCodeV1\(error\)/);
   assert.match(worker, /exact_mapping_plan_artifact_root: exactPlanDir/);
