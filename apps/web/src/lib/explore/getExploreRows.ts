@@ -3372,13 +3372,10 @@ async function fetchExplicitEditionParentRows(stampLabels: string[]) {
   const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
-  const modifierFilter = modifiers
-    .map((modifier) => `printed_identity_modifier.ilike.%${modifier}%`)
-    .join(",");
   const { data, error } = await supabase
     .from("card_prints")
     .select(selectClause)
-    .or(modifierFilter)
+    .in("printed_identity_modifier", modifiers)
     .limit(EXPLICIT_EDITION_DISCOVERY_LIMIT);
 
   if (error) {
@@ -3972,12 +3969,13 @@ export async function getExploreRowsForCombinedSearch(
   assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const supabase = await createServerComponentClient();
   const gameScope = options.gameScope ?? "pokemon";
+  const explicitEditionRowsPromise = gameScope === "pokemon"
+    ? fetchExplicitEditionParentRows(options.stampLabels ?? [])
+    : Promise.resolve([] as CardPrintLookupRow[]);
   const namePagesStarted = Date.now();
   const namedRows = await fetchCompleteNamedCardRows(supabase, { ...options, gameScope });
   if (options.searchTimings) options.searchTimings.name_pages = Date.now() - namePagesStarted;
-  const explicitEditionRows = gameScope === "pokemon"
-    ? await fetchExplicitEditionParentRows(options.stampLabels ?? [])
-    : [];
+  const explicitEditionRows = await explicitEditionRowsPromise;
   if (namedRows !== null) {
     // V4 enforces the same visibility predicates as card_prints SELECT and
     // already returns these parent fields. It omits printed_total, so fraction

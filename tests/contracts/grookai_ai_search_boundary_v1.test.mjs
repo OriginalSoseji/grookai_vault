@@ -178,6 +178,11 @@ test('explicit edition search supplements the deduplicated discovery view from c
   assert.match(source, /edition:unlimited/);
   assert.match(
     source,
+    /\.from\("card_prints"\)[\s\S]*\.in\("printed_identity_modifier", modifiers\)/,
+  );
+  assert.doesNotMatch(source, /\.or\(modifierFilter\)/);
+  assert.match(
+    source,
     /fetchExplicitEditionParentRows[\s\S]*\.from\("card_prints"\)[\s\S]*mergeCardPrintLookupRows\(parentRows, explicitEditionRows\)/,
   );
   assert.match(
@@ -190,7 +195,7 @@ test('explicit edition search supplements the deduplicated discovery view from c
   );
   assert.match(
     combinedSearch,
-    /gameScope === "pokemon"[\s\S]*fetchExplicitEditionParentRows\(options\.stampLabels \?\? \[\]\)/,
+    /explicitEditionRowsPromise = gameScope === "pokemon"[\s\S]*fetchExplicitEditionParentRows\(options\.stampLabels \?\? \[\]\)[\s\S]*fetchCompleteNamedCardRows[\s\S]*await explicitEditionRowsPromise/,
   );
   assert.equal(
     combinedSearch.match(/mergeCardPrintLookupRows\(parents, explicitEditionRows\)/g)?.length,
