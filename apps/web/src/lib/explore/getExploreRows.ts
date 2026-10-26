@@ -53,6 +53,7 @@ const SET_FETCH_PAGE_SIZE = 500;
 const TOKEN_SEARCH_LIMIT = 32;
 const SET_CARD_SEARCH_LIMIT = 30;
 const SMART_FILTER_DISCOVERY_LIMIT = 160;
+const EXPLICIT_EDITION_DISCOVERY_LIMIT = 1000;
 const MAX_STRUCTURED_PARENT_CANDIDATES = 2048;
 const PRE_ENRICHMENT_RELEVANCE_LIMIT = SEARCH_LIMIT + 24;
 const VALUE_SORT_CANDIDATE_LIMIT = SEARCH_LIMIT;
@@ -3350,6 +3351,51 @@ function getSmartStampSearchTokens(stampLabels: string[]) {
   );
 }
 
+function getExplicitEditionModifiers(stampLabels: string[]) {
+  const normalizedLabels = stampLabels.map((label) => normalizeTextForMatch(label));
+  const modifiers: string[] = [];
+  if (normalizedLabels.some((label) => label.includes("first edition"))) {
+    modifiers.push("edition:first_edition");
+  }
+  if (normalizedLabels.includes("unlimited")) {
+    modifiers.push("edition:unlimited");
+  }
+  return modifiers;
+}
+
+async function fetchExplicitEditionParentRows(stampLabels: string[]) {
+  const modifiers = getExplicitEditionModifiers(stampLabels);
+  if (modifiers.length === 0) {
+    return [] as CardPrintLookupRow[];
+  }
+
+  const supabase = await createServerComponentClient();
+  const selectClause =
+    "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
+  const modifierFilter = modifiers
+    .map((modifier) => `printed_identity_modifier.ilike.%${modifier}%`)
+    .join(",");
+  const { data, error } = await supabase
+    .from("card_prints")
+    .select(selectClause)
+    .or(modifierFilter)
+    .limit(EXPLICIT_EDITION_DISCOVERY_LIMIT);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return (data ?? []) as CardPrintLookupRow[];
+}
+
+function mergeCardPrintLookupRows(...groups: CardPrintLookupRow[][]) {
+  const rowsById = new Map<string, CardPrintLookupRow>();
+  for (const row of groups.flat()) {
+    rowsById.set(row.id, row);
+  }
+  return [...rowsById.values()];
+}
+
 function hasSmartLabel(stampLabels: string[], phrase: string) {
   const normalizedPhrase = normalizeTextForMatch(phrase);
   return stampLabels.some((label) =>
@@ -4489,6 +4535,9 @@ export async function getExploreRowsForGameScopedTextSearch(
   for (const rows of await Promise.all(lookups)) {
     for (const row of rows) rowsById.set(row.id, row);
   }
+  for (const row of await fetchExplicitEditionParentRows(options.stampLabels ?? [])) {
+    rowsById.set(row.id, row);
+  }
   const normalizedNameText = nameText.toLowerCase();
   const normalizedCollectorToken = collectorToken.toLowerCase();
   const scopedParentRows = applyLanguageScopeRows(
@@ -4644,6 +4693,9 @@ async function fetchSmartDiscoverySeedParentRows(
   } else if ((options.stampLabels ?? []).length > 0) {
     parentRows = await fetchCardRowsByStampLabels(options.stampLabels ?? []);
   }
+
+  const explicitEditionRows = await fetchExplicitEditionParentRows(options.stampLabels ?? []);
+  parentRows = mergeCardPrintLookupRows(parentRows, explicitEditionRows);
 
   return applySmartStampParentFilter(parentRows, options.stampLabels);
 }
