@@ -250,6 +250,49 @@ export function buildPokemonPricingMappingReviewWorkItemV1({
   });
 }
 
+export function buildPokemonPricingMappingAuthorityReviewWorkItemV1({
+  candidates,
+  exactMappingCandidates,
+  masterMappingAuthority,
+  sourcePricingRunId,
+  sourceSyncRunId,
+  sourceCompletedAt,
+  sourceCommitSha = null,
+  sourceRunUri = null,
+  expiresAt = new Date(Date.now() + 7 * 86400_000).toISOString(),
+} = {}) {
+  const base = buildPokemonPricingMappingReviewWorkItemV1({
+    candidates,
+    sourcePricingRunId,
+    sourceSyncRunId,
+    sourceCompletedAt,
+    sourceCommitSha,
+    sourceRunUri,
+    expiresAt,
+  });
+  if (!base) return null;
+  if (!Array.isArray(exactMappingCandidates) || exactMappingCandidates.length !== candidates.length) {
+    throw new Error('Pokemon authority review requires exact mapping candidates');
+  }
+  if (masterMappingAuthority?.version !== 'MASTER_INDEX_MAPPING_AUTHORITY_V1') {
+    throw new Error('Pokemon authority review requires Master Index mapping authority');
+  }
+  const planPayload = {
+    ...base.plan_payload,
+    proposal_version: 'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1',
+    exact_mapping_candidates: exactMappingCandidates,
+    master_mapping_authority: masterMappingAuthority,
+  };
+  return validateFounderWorkItemV1({
+    ...base,
+    work_item_key: `${base.work_item_key}:master-authority-batch-01`,
+    title: `Approve ${candidates.length} evidence-bound Pokemon price mappings`,
+    summary: 'Each source product is bound to one live grookai parent, one matching Master Index finish, and frozen source bytes. Approval enables the guarded mapping outcome preflight.',
+    plan_payload: planPayload,
+    plan_fingerprint: operationsSha256V1(planPayload),
+  });
+}
+
 function categoryLane(worklist, categoryId, queue) {
   const category = Array.isArray(worklist.categories)
     ? worklist.categories.find((row) => integer(row.source_category_id) === categoryId)
