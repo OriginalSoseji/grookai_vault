@@ -184,6 +184,19 @@ test('explicit edition search supplements the deduplicated discovery view from c
     source,
     /for \(const row of await fetchExplicitEditionParentRows\(options\.stampLabels \?\? \[\]\)\)[\s\S]*rowsById\.set\(row\.id, row\)/,
   );
+  const combinedSearch = source.slice(
+    source.indexOf('export async function getExploreRowsForCombinedSearch'),
+    source.indexOf('async function enrichCompleteSearchParents'),
+  );
+  assert.match(
+    combinedSearch,
+    /gameScope === "pokemon"[\s\S]*fetchExplicitEditionParentRows\(options\.stampLabels \?\? \[\]\)/,
+  );
+  assert.equal(
+    combinedSearch.match(/mergeCardPrintLookupRows\(parents, explicitEditionRows\)/g)?.length,
+    2,
+    'both combined-search result paths must restore explicitly requested edition parents',
+  );
 });
 
 test('Grookai Search normalization preserves accented collector labels', () => {
