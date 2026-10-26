@@ -3,8 +3,9 @@
 ## Purpose
 
 The scheduled production agent measures pricing coverage every 15 minutes and
-reports Magic and Pokemon identity-mapping lanes independently. The latest run
-summary is the production source for the founder operations dashboard.
+reports Magic and Pokemon identity-mapping lanes independently. The latest
+successful measured run summary is the production source for the founder
+operations dashboard; running and failed partial summaries cannot replace it.
 
 ## Pokemon review publication
 
@@ -13,6 +14,9 @@ canonical parent for a Pokemon TCGPlayer product, the agent publishes one
 bounded founder review item for the source-sync run. A batch contains at most
 50 products. It binds the source pricing run, source sync, producer commit,
 source observations, proposed parent identities, and candidate evidence.
+Multi-target rows, duplicate products, duplicate proposed parents, and rows past
+the batch limit stay in the measured backlog with explicit held reasons. They do
+not turn a successful coverage measurement into a failed agent run.
 
 Repeated schedules with identical evidence reuse the same work-item key and
 fingerprint. The GitHub Actions run URI is retained as provenance but is not

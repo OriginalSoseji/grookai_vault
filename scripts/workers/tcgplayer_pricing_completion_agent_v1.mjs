@@ -13,6 +13,7 @@ import {
   buildTcgplayerPricingCompletionAgentV1,
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
+  selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
 
@@ -274,8 +275,11 @@ async function main() {
       && process.env.GITHUB_RUN_ID
       ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
       : null;
+    const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
+      pokemonOllamaCandidateQueue,
+    );
     const pokemonReviewWorkItem = buildPokemonPricingMappingReviewWorkItemV1({
-      candidates: pokemonOllamaCandidateQueue,
+      candidates: pokemonReviewBatch.selected,
       sourcePricingRunId: report.run.id,
       sourceSyncRunId: report.run.source_sync_run_id,
       sourceCompletedAt: report.run.completed_at,
@@ -335,6 +339,9 @@ async function main() {
       candidate_enrichment_summary: enrichmentSummary,
       pokemon_mapping_review: {
         candidate_count: pokemonOllamaCandidateQueue.length,
+        selected_count: pokemonReviewBatch.selected_count,
+        held_count: pokemonReviewBatch.held_count,
+        held_by_reason: pokemonReviewBatch.held_by_reason,
         work_item_key: pokemonReviewWorkItem?.work_item_key ?? null,
         plan_fingerprint: pokemonReviewWorkItem?.plan_fingerprint ?? null,
         publication_receipt: pokemonReviewPublication,

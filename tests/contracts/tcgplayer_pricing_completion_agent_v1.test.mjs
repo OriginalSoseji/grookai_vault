@@ -8,6 +8,7 @@ import {
   buildTcgplayerPricingCompletionAgentV1,
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
+  selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
   TCGPLAYER_PRICING_COMPLETION_AGENT_KEY,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
@@ -242,6 +243,38 @@ test('Pokemon review item rejects ambiguous multi-target and oversized batches',
       ...base, source_product_id: index + 1,
     })),
   }), /exceeds 50/);
+});
+
+test('Pokemon review selection holds ambiguity and collisions without failing measurement', () => {
+  const candidate = (product, parent, targetCount = 1) => ({
+    source_product_id: product,
+    review_targets: Array.from({ length: targetCount }, (_, index) => ({
+      card_print_id: index === 0 ? parent : `${parent}-${index}`,
+      gv_id: `GV-${parent}-${index}`,
+      set_id: 'set-id',
+      set_code: 'set-code',
+      canonical_name: `Card ${product}`,
+      canonical_number: String(product),
+    })),
+  });
+  const rows = [
+    candidate(4, 'parent-4', 2),
+    candidate(3, 'parent-1'),
+    candidate(2, 'parent-2'),
+    candidate(1, 'parent-1'),
+    candidate(2, 'parent-other'),
+    candidate(5, 'parent-5'),
+  ];
+  const result = selectPokemonPricingMappingReviewBatchV1(rows, 2);
+  assert.deepEqual(result.selected.map((row) => row.source_product_id), [1, 2]);
+  assert.equal(result.selected_count, 2);
+  assert.equal(result.held_count, 4);
+  assert.deepEqual(result.held_by_reason, {
+    batch_limit: 1,
+    duplicate_source_product: 1,
+    duplicate_target_parent: 1,
+    not_single_target: 1,
+  });
 });
 
 test('scheduled workflow measures production without treating backlog as a crash', () => {

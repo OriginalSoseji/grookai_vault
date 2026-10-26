@@ -155,6 +155,7 @@ export async function getFounderOperationsLiveDashboard(
       .from("operations_agent_runs")
       .select("status,summary,heartbeat_at,operations_agents!inner(agent_key)")
       .eq("operations_agents.agent_key", "tcgplayer-pricing-completion-v1")
+      .eq("status", "succeeded")
       .order("heartbeat_at", { ascending: false })
       .limit(1)
       .maybeSingle(),

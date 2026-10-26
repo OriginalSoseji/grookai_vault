@@ -119,6 +119,46 @@ function reviewCandidate(row) {
   };
 }
 
+export function selectPokemonPricingMappingReviewBatchV1(candidates, limit = 50) {
+  if (!Array.isArray(candidates)) throw new Error('Pokemon mapping candidates must be an array');
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > 50) {
+    throw new Error('Pokemon mapping review limit must be between 1 and 50');
+  }
+  const selected = [];
+  const sourceProducts = new Set();
+  const targetParents = new Set();
+  const heldByReason = {};
+  const hold = (reason) => { heldByReason[reason] = (heldByReason[reason] ?? 0) + 1; };
+  const ordered = [...candidates].sort((left, right) =>
+    integer(left?.source_product_id) - integer(right?.source_product_id));
+  for (const candidate of ordered) {
+    const productId = integer(candidate?.source_product_id);
+    const targets = Array.isArray(candidate?.review_targets) ? candidate.review_targets : [];
+    if (!productId || targets.length !== 1) { hold('not_single_target'); continue; }
+    const target = targets[0] ?? {};
+    const targetId = String(target.card_print_id ?? '').trim();
+    if (!targetId || !String(target.gv_id ?? '').trim()
+        || !String(target.set_id ?? '').trim()
+        || !String(target.set_code ?? '').trim()
+        || !String(target.canonical_name ?? '').trim()
+        || !String(target.canonical_number ?? '').trim()) {
+      hold('incomplete_target_evidence'); continue;
+    }
+    if (sourceProducts.has(productId)) { hold('duplicate_source_product'); continue; }
+    if (targetParents.has(targetId)) { hold('duplicate_target_parent'); continue; }
+    if (selected.length >= limit) { hold('batch_limit'); continue; }
+    sourceProducts.add(productId);
+    targetParents.add(targetId);
+    selected.push(candidate);
+  }
+  return {
+    selected,
+    selected_count: selected.length,
+    held_count: ordered.length - selected.length,
+    held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+  };
+}
+
 export function buildPokemonPricingMappingReviewWorkItemV1({
   candidates,
   sourcePricingRunId,

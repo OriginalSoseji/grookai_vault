@@ -24,6 +24,7 @@ type WorkItem = {
   risk_level: string;
   scope: Record<string, unknown>;
   exclusions: unknown;
+  plan_payload: Record<string, unknown>;
   plan_fingerprint: string;
   requires_recent_auth: boolean;
   expires_at: string;
@@ -36,7 +37,7 @@ type Props = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
-const WORK_ITEM_FIELDS = "id,work_item_key,version,state,state_reason,title,summary,domain,risk_level,scope,exclusions,plan_fingerprint,requires_recent_auth,expires_at,created_at,updated_at,operations_agents(agent_key,display_name)";
+const WORK_ITEM_FIELDS = "id,work_item_key,version,state,state_reason,title,summary,domain,risk_level,scope,exclusions,plan_payload,plan_fingerprint,requires_recent_auth,expires_at,created_at,updated_at,operations_agents(agent_key,display_name)";
 const ACTIONABLE_STATES = new Set(["ready_for_review", "deferred"]);
 const ACTIONABLE_STATE_LIST = ["ready_for_review", "deferred"];
 const CURRENT_ITEM_LIMIT = 25;
@@ -381,7 +382,7 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
                 <details className="mt-4 border-t border-white/10 pt-4">
                   <summary className="cursor-pointer text-sm font-bold text-stone-300">Frozen evidence</summary>
                   <pre className="mt-3 max-h-96 overflow-auto whitespace-pre-wrap rounded-lg bg-[#0d0e0c] p-4 text-xs text-stone-300">
-                    {JSON.stringify({ scope: row.scope, exclusions: row.exclusions, fingerprint: row.plan_fingerprint }, null, 2)}
+                    {JSON.stringify({ scope: row.scope, exclusions: row.exclusions, plan: row.plan_payload, fingerprint: row.plan_fingerprint }, null, 2)}
                   </pre>
                 </details>
               </article>
