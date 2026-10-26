@@ -81,6 +81,24 @@ const SCRIPT = readFileSync(
   ),
   "utf8",
 );
+const PLANNER_CONNECTION_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "backend",
+    "pricing",
+    "exact_mapping_planner_connection_v1.mjs",
+  ),
+  "utf8",
+);
+const READER_CONNECTION_SCRIPT = readFileSync(
+  path.join(
+    ROOT,
+    "backend",
+    "pricing",
+    "exact_mapping_reader_connection_v1.mjs",
+  ),
+  "utf8",
+);
 const APPLY_SCRIPT = readFileSync(
   path.join(
     ROOT,
@@ -204,9 +222,14 @@ const MAINTENANCE_RUNNER = readFileSync(
 );
 
 test("read-only exact mapping planner requires verified remote database TLS", () => {
-  assert.match(SCRIPT, /rejectUnauthorized:\s*true/);
-  assert.match(SCRIPT, /SUPABASE_DB_CA_CERT/);
-  assert.doesNotMatch(SCRIPT, /rejectUnauthorized:\s*false/);
+  assert.match(SCRIPT, /connectExactMappingPlannerV1/);
+  assert.match(PLANNER_CONNECTION_SCRIPT, /mappingReaderDatabaseConfigV1/);
+  assert.match(READER_CONNECTION_SCRIPT, /rejectUnauthorized:\s*true/);
+  assert.match(READER_CONNECTION_SCRIPT, /NODE_TLS_REJECT_UNAUTHORIZED/);
+  assert.doesNotMatch(
+    `${SCRIPT}\n${PLANNER_CONNECTION_SCRIPT}\n${READER_CONNECTION_SCRIPT}`,
+    /rejectUnauthorized:\s*false/,
+  );
 });
 
 function source(overrides = {}) {
