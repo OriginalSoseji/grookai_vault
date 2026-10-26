@@ -139,6 +139,8 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
   const dashboard = await getFounderOperationsLiveDashboard(admin);
   const pricing = dashboard.pricing;
   const activeRun = pricing?.activeRun ?? null;
+  const latestRun = pricing?.latestRun ?? null;
+  const visiblePipelineRun = latestRun ?? activeRun;
   const selectedCount = activeRun?.selectedCount ?? 0;
   const publishedCount = pricing?.system.publicationSize ?? 0;
   const pricingBacklog = Math.max(0, selectedCount - publishedCount);
@@ -254,6 +256,24 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
             description="The source warehouse and published prices are reported independently so a fresh import cannot be mistaken for released prices."
           />
           <dl className="divide-y divide-white/10 border-y border-white/10 text-sm">
+            <div className="grid grid-cols-[1fr_auto] gap-4 py-4">
+              <dt className="text-stone-400">Pricing run</dt>
+              <dd className="text-right font-bold text-[#f2eadf]">
+                {visiblePipelineRun?.state.replaceAll("_", " ") ?? "Unavailable"}
+              </dd>
+            </div>
+            <div className="grid grid-cols-[1fr_auto] gap-4 py-4">
+              <dt className="text-stone-400">Current pricing phase</dt>
+              <dd className="text-right font-mono text-xs font-bold text-lime-200">
+                {visiblePipelineRun?.currentPhase?.replaceAll("_", " ") ?? "Idle"}
+              </dd>
+            </div>
+            <div className="grid grid-cols-[1fr_auto] gap-4 py-4">
+              <dt className="text-stone-400">Pricing run started</dt>
+              <dd className="text-right text-xs text-stone-300">
+                {visiblePipelineRun?.startedAt ? relativeAge(visiblePipelineRun.startedAt) : "Not reported"}
+              </dd>
+            </div>
             <div className="grid grid-cols-[1fr_auto] gap-4 py-4">
               <dt className="text-stone-400">Source sync</dt>
               <dd className="font-bold text-[#f2eadf]">{dashboard.sourceSync?.status.replaceAll("_", " ") ?? "Unavailable"}</dd>
