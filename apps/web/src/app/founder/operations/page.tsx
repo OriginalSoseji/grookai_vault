@@ -196,7 +196,7 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
             {[
               ["Agents", dashboard.agentSummary.total, `${dashboard.agentSummary.healthy + dashboard.agentSummary.running} healthy or running`],
               ["Needs decision", dashboard.queue.actionableWorkItems, "frozen plans"],
-              ["Commands live", dashboard.queue.queuedCommands + dashboard.queue.runningCommands, `${dashboard.queue.failedCommands} failed`],
+              ["Commands live", dashboard.queue.queuedCommands + dashboard.queue.runningCommands, `${dashboard.queue.failedCommands} active failures`],
               ["Open incidents", dashboard.queue.openIncidents, dashboard.queue.openIncidents === 0 ? "clear" : "needs review"],
             ].map(([label, value, detail]) => (
               <div key={String(label)} className="bg-[#171814] p-4 sm:p-5">
