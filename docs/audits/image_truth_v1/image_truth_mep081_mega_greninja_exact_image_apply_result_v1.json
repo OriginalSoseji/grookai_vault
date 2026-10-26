@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-10-26T07:13:47.649Z",
+  "package_id": "IMG-MEP081-MEGA-GRENINJA-EXACT-HOLO-IMAGE-REPAIR-V1",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "storage_bucket": "user-card-images",
+  "source_rows": 1,
+  "fingerprint": "0d592d667150ffa83c6738da3bbc02f7dd673bfee6632c53e7257de3d4d9e166",
+  "storage_uploaded_rows": 1,
+  "db_updated_rows": 1,
+  "committed": true,
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/mep081-mega-greninja-exact/mep/gv-pk-mep-081-holo/12efc90500700f0567fc9754.jpg"
+  ],
+  "rows": [
+    {
+      "card_printing_id": "f6aaf813-8176-40f0-9e36-e77e580c02fb",
+      "card_print_id": "c35b8cee-d244-401f-82a4-40070d77f72e",
+      "parent_gv_id": "GV-PK-MEP-081",
+      "printing_gv_id": "GV-PK-MEP-081-HOLO",
+      "set_code": "mep",
+      "number": "081",
+      "card_name": "Mega Greninja ex",
+      "finish_key": "holo",
+      "variant_key": "",
+      "source_url": "https://www.tcgplayer.com/product/704879/pokemon-me-mega-evolution-promo-mega-greninja-ex-081",
+      "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/704879_in_1000x1000.jpg",
+      "image_path": "warehouse-derived/image-truth-v1/mep081-mega-greninja-exact/mep/gv-pk-mep-081-holo/12efc90500700f0567fc9754.jpg",
+      "image_status": "exact"
+    }
+  ],
+  "proof_hash": "ccf278c1e7fd50ef8da278a71bdf6bae174d30725ceb1ffa5ab97aa73434968e"
+}
