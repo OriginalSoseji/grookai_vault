@@ -139,6 +139,12 @@ function sha256(value) {
   return createHash('sha256').update(value).digest('hex');
 }
 
+function pricingExactPlanFailureCodeV1(error) {
+  const message = String(error?.message ?? error ?? '');
+  const known = message.match(/\b(?:MAPPING_READER|PLANNER)_[A-Z_]+\b/)?.[0];
+  return known ?? 'EXACT_MAPPING_PLAN_UNAVAILABLE';
+}
+
 async function heartbeat({ credentials, agent, runKey, status, summary }) {
   return callOperationsRpcV1({
     ...credentials,
@@ -191,20 +197,32 @@ async function main() {
       'utf8',
     ));
     const exactPlanRoot = path.join(args.outDir, 'exact_mapping_plan');
-    const exactPlanProcess = await runExactMappingPlan({
-      sourceRunId: report.run.source_sync_run_id,
-      coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
-      outRoot: exactPlanRoot,
-    });
-    const exactPlanDir = await readOnlyChildDirectory(exactPlanRoot);
-    const exactPlanSummary = JSON.parse(await fs.readFile(
-      path.join(exactPlanDir, 'summary.json'),
-      'utf8',
-    ));
-    const exactPlan = {
-      ...exactPlanSummary,
-      candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
-    };
+    let exactPlan = null;
+    let exactPlanDir = null;
+    let exactPlanProcess = { status: 'unavailable', stdout: '', error_code: null };
+    try {
+      const processResult = await runExactMappingPlan({
+        sourceRunId: report.run.source_sync_run_id,
+        coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
+        outRoot: exactPlanRoot,
+      });
+      exactPlanDir = await readOnlyChildDirectory(exactPlanRoot);
+      const exactPlanSummary = JSON.parse(await fs.readFile(
+        path.join(exactPlanDir, 'summary.json'),
+        'utf8',
+      ));
+      exactPlan = {
+        ...exactPlanSummary,
+        candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
+      };
+      exactPlanProcess = { status: 'available', stdout: processResult.stdout, error_code: null };
+    } catch (error) {
+      exactPlanProcess = {
+        status: 'unavailable',
+        stdout: '',
+        error_code: pricingExactPlanFailureCodeV1(error),
+      };
+    }
     const identityGaps = await readJsonl(
       path.join(backlogRoot, 'latest_identity_mapping_gaps.jsonl'),
     );
@@ -264,10 +282,19 @@ async function main() {
         exactPlan,
         identityProductQueue,
       }),
+      ...(!exactPlan ? {
+        verified_mapping_candidates: null,
+        verified_projected_gap_rows: null,
+        blocked_mapping_products: null,
+      } : {}),
       ollama_review_candidates: {
         combined: ollamaCandidateQueue.length,
         mtg: mtgOllamaCandidateQueue.length,
         pokemon: pokemonOllamaCandidateQueue.length,
+      },
+      exact_mapping_plan: {
+        status: exactPlanProcess.status,
+        error_code: exactPlanProcess.error_code,
       },
     };
     const sourceRunUri = process.env.GITHUB_SERVER_URL
@@ -300,7 +327,9 @@ async function main() {
       agent,
       summary,
       backlog_artifact_root: path.relative(args.outDir, backlogRoot).replace(/\\/g, '/'),
-      exact_mapping_plan_artifact_root: path.relative(args.outDir, exactPlanDir).replace(/\\/g, '/'),
+      exact_mapping_plan_artifact_root: exactPlanDir
+        ? path.relative(args.outDir, exactPlanDir).replace(/\\/g, '/')
+        : null,
       identity_product_queue_artifacts: {
         combined: {
           path: 'identity_product_queue.jsonl',
@@ -334,7 +363,7 @@ async function main() {
         },
       },
       audit_stdout: audit.stdout.trim(),
-      exact_mapping_plan_stdout: exactPlanProcess.stdout.trim(),
+      exact_mapping_plan_stdout: exactPlanProcess.stdout.trim() || null,
       candidate_enrichment_stdout: enrichmentProcess.stdout.trim(),
       candidate_enrichment_summary: enrichmentSummary,
       pokemon_mapping_review: {

@@ -237,7 +237,9 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
             ].map(([label, value, detail]) => (
               <div key={String(label)} className="bg-[#171814] p-4 sm:p-5">
                 <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone-500">{label}</p>
-                <p className="mt-2 font-mono text-3xl font-black text-[#f2eadf]">{formatNumber(Number(value))}</p>
+                <p className="mt-2 font-mono text-3xl font-black text-[#f2eadf]">
+                  {value === null ? "—" : formatNumber(Number(value))}
+                </p>
                 <p className="mt-1 text-xs text-stone-400">{detail}</p>
               </div>
             ))}
@@ -248,7 +250,9 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
         {completion ? (
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-400">
             <p>
-              Agent {completion.runStatus}; backlog {completion.completionStatus}; {formatNumber(completion.blockedMappingProducts)} products need stronger identity evidence.
+              Agent {completion.runStatus}; backlog {completion.completionStatus}; {completion.blockedMappingProducts === null
+                ? "the automatic exact planner is held pending its dedicated reader"
+                : `${formatNumber(completion.blockedMappingProducts)} products need stronger identity evidence`}.
             </p>
             <p className="font-mono">Updated {relativeAge(completion.observedAt)}</p>
           </div>
