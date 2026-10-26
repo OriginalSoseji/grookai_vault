@@ -69,3 +69,20 @@ remain pending at preparation time. No hook or release-guard bypass is allowed.
 Existing GitHub/Vercel integration owns production deployment from merged main.
 Do not include changes from the mixed development tree or replay completed
 image/database repairs. No production writes were performed by these checks.
+
+## Hosted merge compatibility follow-up
+
+The normal commit and pre-push gates passed for a59836fd6aaefa934dc160c0d751fcb50bc62f1e
+(8338 contract tests passed, 11 skipped; 1456 Flutter tests passed, 2 skipped;
+analysis, web typecheck/lint/build and runtime guards passed). PR 798's push
+runtime check passed, but its merged-main runtime check exposed an isolated
+GameStop test harness missing the edition-search helpers added concurrently
+in PRs 793–795. The harness now extracts and executes those real source
+functions and the real text normalizer, retaining every existing assertion.
+No application behavior or gate was relaxed.
+
+All 36 focused checks pass both on the release head and on a conflict-free
+merge of its search reader with origin/main 260a82de17. The latter is an
+in-memory read substitution for tests only; production source was not
+overwritten. Full installed hooks and hosted merged-main CI must pass again
+before merge.
