@@ -17,16 +17,22 @@ const normalize = (value: string) => value.normalize("NFKC").toLowerCase().repla
 export const supportsCompleteNameSearch = (value: string) =>
   normalize(value).split(" ").some((word) => Array.from(word).length >= 3);
 
+// Interpretation and candidate discovery must probe the same name. Collector
+// numbers remain constraints on the result, not literal words in a card name.
+export function getCompleteNameSearchQuery(query: string) {
+  return query
+    .replace(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi, " ")
+    .replace(/(?<![\p{L}\p{N}])#?\d+(?:\/\d+)?(?![\p{L}\p{N}])/gu, " ")
+    .replace(/\s+/g, " ").trim();
+}
+
 // Use the release-aware name RPC, preserving its game/language/set scope.
 // After the first full page, overlap at most four read-only page requests.
 export async function fetchCompleteNamedCardRows(
   client: Pick<SupabaseClient, "rpc">,
   options: { textQuery?: string; gameScope: string; languageScope?: string; exactSetCode?: string; namedFirstPage?: NamedCardFirstPage },
 ): Promise<NamedRow[] | null> {
-  const name = (options.textQuery ?? "")
-    .replace(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi, " ")
-    .replace(/(?<![\p{L}\p{N}])#?\d+(?:\/\d+)?(?![\p{L}\p{N}])/gu, " ")
-    .replace(/\s+/g, " ").trim();
+  const name = getCompleteNameSearchQuery(options.textQuery ?? "");
   if (!name || !supportsCompleteNameSearch(name)) return null;
   const prefix = options.gameScope === "pokemon" ? "GV-PK-" : options.gameScope === "mtg" ? "GV-MTG-" : "GV-OP-";
   const fragments = normalize(name).split(" ").filter(Boolean);

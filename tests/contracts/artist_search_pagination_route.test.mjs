@@ -286,6 +286,37 @@ test('short card-name fragments retain bounded results instead of exhaustive dis
  }
 });
 
+test('numbered card names keep their name and number instead of becoming an implicit set shortcut', async () => {
+ const sets=[{id:'mega',code:'me01',name:'Mega Evolution'}];
+ const row={id:'greninja',gv_id:'GV-PK-MEP-081',name:'Mega Greninja ex',number:'081'};
+ for(const q of ['Mega Greninja 081','Mega Greninja 81','081 Mega Greninja','Mega Greninja #081','Mega Greninja 081/094']) {
+  let options;
+  const get=loadRoute({sets,rows:[row],partialCardNames:{'Mega Greninja':'Mega Greninja ex'},capture:value=>{options=value;}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(q)+'&pagination=1')});
+  assert.equal(response.status,200);
+  const body=await response.json();
+  assert.equal(body.rows[0].gv_id,'GV-PK-MEP-081');
+  assert.equal(options.textQuery,q,'the number remains a result constraint');
+  assert.equal(Boolean(options.exactSetCode),false);
+  assert.equal(options.exactSetCodes.length,0);
+  assert.equal(body.smart_search.queryFilters.some(filter=>filter.kind==='set'),false);
+  assert.equal(body.smart_search.queryFilters.some(filter=>filter.kind==='number'),true);
+ }
+});
+
+test('numbered name disambiguation preserves explicit set constraints and unknown name fragments', async () => {
+ const sets=[{id:'mega',code:'me01',name:'Mega Evolution'}];
+ for(const q of ['Mega Greninja 081 from Mega','Mega Greninja unknown 081']) {
+  let options;
+  const get=loadRoute({sets,partialCardNames:{'Mega Greninja':'Mega Greninja ex'},capture:value=>{options=value;}});
+  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent(q))});
+  assert.equal(response.status,200);
+  assert.equal(options.exactSetCode,'me01');
+  assert.ok(options.textQuery.includes('081'));
+  if(q.includes('unknown')) assert.ok(options.textQuery.includes('unknown'));
+ }
+});
+
 test('plain card-name queries expose all pages and complete legacy results', async () => {
  for(const q of ['Pika','Charizard']) {
   const get=loadRoute({partialCardNames:{Pika:'Pikachu',Charizard:'Charizard'}});
