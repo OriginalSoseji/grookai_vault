@@ -30,6 +30,13 @@ empty batches, and batches larger than 50 fail closed. Exact mappings that pass
 the existing deterministic planner continue through its separately governed
 authority and apply gates.
 
+The production direct-reader role is not activated. If the optional exact
+planner rejects its connection or cannot produce a plan, the agent records a
+fixed error code, reports zero newly verified exact candidates, and continues
+the independent backlog measurement and founder-review lane. The failure does
+not weaken the planner connection policy and does not use the broad production
+credential as a substitute reader.
+
 ## Founder dashboard
 
 The operations page reads the latest `operations_agent_runs.summary` for

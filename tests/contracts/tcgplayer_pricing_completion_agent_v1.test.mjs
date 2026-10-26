@@ -300,6 +300,9 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /pokemon_ollama_identity_candidate_queue\.jsonl/);
   assert.match(worker, /operations_publish_work_item_v1/);
   assert.match(worker, /buildPokemonPricingMappingReviewWorkItemV1/);
+  assert.match(worker, /exact_mapping_plan:\s*\{[\s\S]*status: exactPlanProcess\.status/);
+  assert.match(worker, /pricingExactPlanFailureCodeV1\(error\)/);
+  assert.match(worker, /exact_mapping_plan_artifact_root: exactPlanDir/);
 });
 
 test('local V2 consumer uses hosted candidate evidence without database secrets', () => {

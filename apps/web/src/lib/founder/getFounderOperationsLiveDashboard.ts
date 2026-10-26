@@ -49,8 +49,8 @@ export type FounderOperationsPricingCompletion = {
   pokemonSourceProducts: number;
   pokemonQueuedProducts: number;
   pokemonReviewCandidates: number;
-  verifiedAutomaticCandidates: number;
-  blockedMappingProducts: number;
+  verifiedAutomaticCandidates: number | null;
+  blockedMappingProducts: number | null;
   nextAction: string | null;
 };
 
@@ -114,6 +114,10 @@ type PricingCompletionRunRow = {
 
 function numberValue(value: number | null | undefined) {
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
+}
+
+function nullableNumberValue(value: unknown) {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
 function countValue(result: { count: number | null }) {
@@ -242,8 +246,8 @@ export async function getFounderOperationsLiveDashboard(
       pokemonSourceProducts: numberValue(pokemon.source_products as number | null),
       pokemonQueuedProducts: numberValue(pokemon.queued_products as number | null),
       pokemonReviewCandidates: numberValue(review.pokemon as number | null),
-      verifiedAutomaticCandidates: numberValue(summary.verified_mapping_candidates as number | null),
-      blockedMappingProducts: numberValue(summary.blocked_mapping_products as number | null),
+      verifiedAutomaticCandidates: nullableNumberValue(summary.verified_mapping_candidates),
+      blockedMappingProducts: nullableNumberValue(summary.blocked_mapping_products),
       nextAction: typeof summary.next_action === "string" ? summary.next_action : null,
     };
   } else if (completionResult.status === "rejected") {
