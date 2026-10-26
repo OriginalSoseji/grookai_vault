@@ -38,6 +38,22 @@ export type FounderOperationsSourceSync = {
   finishedAt: string | null;
 };
 
+export type FounderOperationsPricingCompletion = {
+  runStatus: string;
+  observedAt: string | null;
+  completionStatus: string;
+  publishedCount: number;
+  nonPublishedCount: number;
+  identityMappingBacklogCount: number;
+  pokemonBacklogRows: number;
+  pokemonSourceProducts: number;
+  pokemonQueuedProducts: number;
+  pokemonReviewCandidates: number;
+  verifiedAutomaticCandidates: number;
+  blockedMappingProducts: number;
+  nextAction: string | null;
+};
+
 export type FounderOperationsLiveDashboard = {
   generatedAt: string;
   agents: FounderOperationsAgentHealth[];
@@ -49,6 +65,7 @@ export type FounderOperationsLiveDashboard = {
     paused: number;
   };
   sourceSync: FounderOperationsSourceSync | null;
+  pricingCompletion: FounderOperationsPricingCompletion | null;
   queue: {
     actionableWorkItems: number;
     queuedCommands: number;
@@ -87,6 +104,12 @@ type SourceSyncRow = {
   failed_count: number | null;
   started_at: string | null;
   finished_at: string | null;
+};
+
+type PricingCompletionRunRow = {
+  status: string;
+  summary: Record<string, unknown> | null;
+  heartbeat_at: string | null;
 };
 
 function numberValue(value: number | null | undefined) {
@@ -128,10 +151,17 @@ export async function getFounderOperationsLiveDashboard(
       .eq("founder_work_items.state", "failed"),
     admin.from("operations_incidents").select("id", { count: "exact", head: true }).eq("status", "open"),
     getFounderGovernedPricingPlatformSummary(admin),
+    admin
+      .from("operations_agent_runs")
+      .select("status,summary,heartbeat_at,operations_agents!inner(agent_key)")
+      .eq("operations_agents.agent_key", "tcgplayer-pricing-completion-v1")
+      .order("heartbeat_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
   ]);
 
   const errors: string[] = [];
-  const [agentResult, sourceResult, workItemResult, queuedResult, runningResult, failedResult, incidentResult, pricingResult] = results;
+  const [agentResult, sourceResult, workItemResult, queuedResult, runningResult, failedResult, incidentResult, pricingResult, completionResult] = results;
 
   let agents: FounderOperationsAgentHealth[] = [];
   if (agentResult.status === "fulfilled" && !agentResult.value.error) {
@@ -193,6 +223,34 @@ export async function getFounderOperationsLiveDashboard(
   if (pricingResult.status === "fulfilled") pricing = pricingResult.value;
   else errors.push(describeFailure("Pricing platform", pricingResult.reason));
 
+  let pricingCompletion: FounderOperationsPricingCompletion | null = null;
+  if (completionResult.status === "fulfilled" && !completionResult.value.error && completionResult.value.data) {
+    const row = completionResult.value.data as unknown as PricingCompletionRunRow;
+    const summary = row.summary ?? {};
+    const lanes = (summary.identity_repair_lanes ?? {}) as Record<string, unknown>;
+    const pokemon = (lanes.pokemon ?? {}) as Record<string, unknown>;
+    const review = (summary.ollama_review_candidates ?? {}) as Record<string, unknown>;
+    pricingCompletion = {
+      runStatus: row.status,
+      observedAt: row.heartbeat_at,
+      completionStatus: String(summary.completion_status ?? "unknown"),
+      publishedCount: numberValue(summary.published_count as number | null),
+      nonPublishedCount: numberValue(summary.non_published_count as number | null),
+      identityMappingBacklogCount: numberValue(summary.identity_mapping_backlog_count as number | null),
+      pokemonBacklogRows: numberValue(pokemon.backlog_rows as number | null),
+      pokemonSourceProducts: numberValue(pokemon.source_products as number | null),
+      pokemonQueuedProducts: numberValue(pokemon.queued_products as number | null),
+      pokemonReviewCandidates: numberValue(review.pokemon as number | null),
+      verifiedAutomaticCandidates: numberValue(summary.verified_mapping_candidates as number | null),
+      blockedMappingProducts: numberValue(summary.blocked_mapping_products as number | null),
+      nextAction: typeof summary.next_action === "string" ? summary.next_action : null,
+    };
+  } else if (completionResult.status === "rejected") {
+    errors.push(describeFailure("Pricing completion agent", completionResult.reason));
+  } else if (completionResult.value.error) {
+    errors.push(`Pricing completion agent: ${completionResult.value.error.message}`);
+  }
+
   const healthy = agents.filter((agent) => agent.health === "healthy").length;
   const running = agents.filter((agent) => agent.health === "running").length;
   const paused = agents.filter((agent) => agent.health === "paused").length;
@@ -203,6 +261,7 @@ export async function getFounderOperationsLiveDashboard(
     agents,
     agentSummary: { total: agents.length, healthy, running, attention, paused },
     sourceSync,
+    pricingCompletion,
     queue: {
       actionableWorkItems: workItemResult.status === "fulfilled" ? countValue(workItemResult.value) : 0,
       queuedCommands: queuedResult.status === "fulfilled" ? countValue(queuedResult.value) : 0,

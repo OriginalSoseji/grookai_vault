@@ -138,6 +138,7 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
 
   const dashboard = await getFounderOperationsLiveDashboard(admin);
   const pricing = dashboard.pricing;
+  const completion = dashboard.pricingCompletion;
   const activeRun = pricing?.activeRun ?? null;
   const latestRun = pricing?.latestRun ?? null;
   const visiblePipelineRun = latestRun ?? activeRun;
@@ -219,6 +220,39 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
           </ul>
         </div>
       ) : null}
+
+      <PageSection spacing="default">
+        <SectionHeader
+          title="Pokemon pricing completion"
+          description="The automatic exact-mapping lane and the identities that still need your review are tracked separately. Counts come from the latest production completion-agent run."
+        />
+        {completion ? (
+          <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2 xl:grid-cols-4">
+            {[
+              ["Missing price rows", completion.pokemonBacklogRows, `${formatNumber(completion.pokemonSourceProducts)} Pokemon products`],
+              ["Queued for repair", completion.pokemonQueuedProducts, "mapped-source gaps"],
+              ["Ready for review", completion.pokemonReviewCandidates, "one proposed parent each"],
+              ["Automatic exact", completion.verifiedAutomaticCandidates, "fully verified this cycle"],
+            ].map(([label, value, detail]) => (
+              <div key={String(label)} className="bg-[#171814] p-4 sm:p-5">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone-500">{label}</p>
+                <p className="mt-2 font-mono text-3xl font-black text-[#f2eadf]">{formatNumber(Number(value))}</p>
+                <p className="mt-1 text-xs text-stone-400">{detail}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="gv-soft-surface px-5 py-6 text-sm text-stone-400">Pricing completion has not reported a production run.</div>
+        )}
+        {completion ? (
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-400">
+            <p>
+              Agent {completion.runStatus}; backlog {completion.completionStatus}; {formatNumber(completion.blockedMappingProducts)} products need stronger identity evidence.
+            </p>
+            <p className="font-mono">Updated {relativeAge(completion.observedAt)}</p>
+          </div>
+        ) : null}
+      </PageSection>
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <PageSection spacing="default">
@@ -305,7 +339,7 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
 
       <PageSection spacing="default">
         <SectionHeader
-          title="Catalog decisions and command queue"
+          title="Manual decisions and command queue"
           description="Actionable frozen plans are shown first. Approval re-reads the current version and fingerprint through the authenticated founder RPC before any command is queued."
         />
         {requestedItemMessage ? <p role="alert" className="gv-soft-surface px-5 py-5 text-sm">{requestedItemMessage}</p> : null}

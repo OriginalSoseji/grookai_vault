@@ -12,6 +12,7 @@ import {
 import {
   buildTcgplayerPricingCompletionAgentV1,
   buildTcgplayerIdentityProductQueueV1,
+  buildPokemonPricingMappingReviewWorkItemV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
 
@@ -268,8 +269,28 @@ async function main() {
         pokemon: pokemonOllamaCandidateQueue.length,
       },
     };
+    const sourceRunUri = process.env.GITHUB_SERVER_URL
+      && process.env.GITHUB_REPOSITORY
+      && process.env.GITHUB_RUN_ID
+      ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
+      : null;
+    const pokemonReviewWorkItem = buildPokemonPricingMappingReviewWorkItemV1({
+      candidates: pokemonOllamaCandidateQueue,
+      sourcePricingRunId: report.run.id,
+      sourceSyncRunId: report.run.source_sync_run_id,
+      sourceCompletedAt: report.run.completed_at,
+      sourceCommitSha: process.env.GITHUB_SHA ?? process.env.COMMIT_SHA ?? null,
+      sourceRunUri,
+    });
+    const pokemonReviewPublication = pokemonReviewWorkItem
+      ? await callOperationsRpcV1({
+          ...credentials,
+          functionName: 'operations_publish_work_item_v1',
+          body: { p_item: pokemonReviewWorkItem },
+        })
+      : null;
     const receipt = {
-      schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V3',
+      schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V4',
       observed_at: new Date().toISOString(),
       run_key: args.runKey,
       agent,
@@ -312,6 +333,12 @@ async function main() {
       exact_mapping_plan_stdout: exactPlanProcess.stdout.trim(),
       candidate_enrichment_stdout: enrichmentProcess.stdout.trim(),
       candidate_enrichment_summary: enrichmentSummary,
+      pokemon_mapping_review: {
+        candidate_count: pokemonOllamaCandidateQueue.length,
+        work_item_key: pokemonReviewWorkItem?.work_item_key ?? null,
+        plan_fingerprint: pokemonReviewWorkItem?.plan_fingerprint ?? null,
+        publication_receipt: pokemonReviewPublication,
+      },
       boundaries: {
         pricing_database_reads: true,
         operations_control_plane_writes: true,

@@ -1,12 +1,17 @@
 import {
   OPERATIONS_AGENT_PROTOCOL_VERSION,
+  operationsSha256V1,
+  validateFounderWorkItemV1,
   validateOperationsAgentV1,
 } from './operations_control_plane_v1.mjs';
 
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_KEY =
   'tcgplayer-pricing-completion-v1';
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION =
-  'TCGPLAYER_PRICING_COMPLETION_AGENT_V3';
+  'TCGPLAYER_PRICING_COMPLETION_AGENT_V4';
+
+export const TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION =
+  'TCGPLAYER_POKEMON_MAPPING_REVIEW_V1';
 
 function integer(value) {
   const parsed = Number(value);
@@ -83,6 +88,126 @@ export function buildTcgplayerIdentityProductQueueV1(gaps = []) {
     left.source_category_id - right.source_category_id
     || left.source_group_id - right.source_group_id
     || left.source_product_id - right.source_product_id);
+}
+
+function reviewCandidate(row) {
+  const targets = Array.isArray(row?.review_targets) ? row.review_targets : [];
+  return {
+    source_product_id: integer(row?.source_product_id),
+    source_product_name: String(row?.source_product_name ?? '').trim(),
+    source_group_id: integer(row?.source_group_id),
+    source_group_name: String(row?.source_group_name ?? '').trim(),
+    printed_number: String(row?.printed_number ?? '').trim(),
+    source_subtypes: [...new Set((row?.source_subtypes ?? []).map((value) =>
+      String(value ?? '').trim()).filter(Boolean))].sort(),
+    supporting_gap_observation_ids: [...new Set(
+      (row?.supporting_gap_observation_ids ?? []).map((value) =>
+        String(value ?? '').trim()).filter(Boolean),
+    )].sort(),
+    review_targets: targets.map((target) => ({
+      card_print_id: String(target?.card_print_id ?? '').trim(),
+      gv_id: String(target?.gv_id ?? '').trim(),
+      set_id: String(target?.set_id ?? '').trim(),
+      set_code: String(target?.set_code ?? '').trim(),
+      set_name: String(target?.set_name ?? '').trim(),
+      canonical_name: String(target?.canonical_name ?? '').trim(),
+      canonical_number: String(target?.canonical_number ?? '').trim(),
+      variant_key: String(target?.variant_key ?? '').trim(),
+      candidate_score: integer(target?.candidate_score),
+      candidate_evidence: target?.candidate_evidence ?? {},
+    })),
+  };
+}
+
+export function buildPokemonPricingMappingReviewWorkItemV1({
+  candidates,
+  sourcePricingRunId,
+  sourceSyncRunId,
+  sourceCompletedAt,
+  sourceCommitSha = null,
+  sourceRunUri = null,
+  expiresAt = new Date(Date.now() + 7 * 86400_000).toISOString(),
+} = {}) {
+  if (!Array.isArray(candidates) || candidates.length === 0) return null;
+  if (candidates.length > 50) {
+    throw new Error('Pokemon mapping review batch exceeds 50 candidates');
+  }
+  if (!String(sourcePricingRunId ?? '').trim()
+      || !String(sourceSyncRunId ?? '').trim()
+      || !Number.isFinite(Date.parse(String(sourceCompletedAt ?? '')))) {
+    throw new Error('Pokemon mapping review requires bound source-run evidence');
+  }
+  const rows = candidates.map(reviewCandidate).sort((left, right) =>
+    left.source_product_id - right.source_product_id);
+  const sourceProducts = new Set();
+  const targetParents = new Set();
+  for (const row of rows) {
+    const target = row.review_targets[0];
+    if (!row.source_product_id || row.review_targets.length !== 1
+        || !target.card_print_id || !target.gv_id || !target.set_id
+        || !target.set_code || !target.canonical_name || !target.canonical_number) {
+      throw new Error('Pokemon mapping review requires one proposed target per product');
+    }
+    if (sourceProducts.has(row.source_product_id) || targetParents.has(target.card_print_id)) {
+      throw new Error('Pokemon mapping review contains duplicate product or parent');
+    }
+    sourceProducts.add(row.source_product_id);
+    targetParents.add(target.card_print_id);
+  }
+  const planPayload = {
+    proposal_kind: 'pokemon_tcgplayer_mapping_review',
+    proposal_version: TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION,
+    source_pricing_run_id: String(sourcePricingRunId ?? '').trim(),
+    source_sync_run_id: String(sourceSyncRunId ?? '').trim(),
+    source_completed_at: String(sourceCompletedAt ?? '').trim(),
+    source_commit_sha: String(sourceCommitSha ?? '').trim() || null,
+    review_candidates: rows,
+    review_boundary: {
+      database_writes: false,
+      mapping_writes: false,
+      publication_writes: false,
+      writer_dispatches: false,
+      approval_records_review_only: true,
+    },
+  };
+  const planFingerprint = operationsSha256V1(planPayload);
+  return validateFounderWorkItemV1({
+    work_item_key: `pokemon-pricing-mapping-review:${planPayload.source_sync_run_id}`,
+    work_item_type: 'tcgplayer_pricing_backlog_repair',
+    action_type: 'advance_tcgplayer_pricing_backlog',
+    agent_key: TCGPLAYER_PRICING_COMPLETION_AGENT_KEY,
+    title: `Review ${rows.length} Pokemon price mapping ${rows.length === 1 ? 'lead' : 'leads'}`,
+    summary: 'Exact set and card-number evidence found one existing grookai parent per TCGPlayer product. Review the identity matches before mapping authority is issued.',
+    domain: 'pricing',
+    risk_level: 'medium',
+    scope: {
+      game: 'pokemon',
+      source: 'tcgplayer',
+      candidate_count: rows.length,
+      source_group_count: new Set(rows.map((row) => row.source_group_id)).size,
+      source_pricing_run_id: planPayload.source_pricing_run_id,
+      source_sync_run_id: planPayload.source_sync_run_id,
+    },
+    exclusions: [
+      'no automatic approval of ambiguous identities',
+      'no canonical card or printing creation',
+      'no mapping or price writes from this review item',
+      'no customer state writes',
+    ],
+    plan_payload: planPayload,
+    plan_fingerprint: planFingerprint,
+    source_commit_sha: planPayload.source_commit_sha,
+    source_run_uri: String(sourceRunUri ?? '').trim() || null,
+    contract_version: 'FOUNDER_WORK_ITEM_COMMAND_V1',
+    executor_version: null,
+    requires_recent_auth: false,
+    command_policy: {
+      execution_enabled: false,
+      reason: 'review_only_until_exact_mapping_authority_is_frozen',
+    },
+    expires_at: expiresAt,
+    evidence: [],
+  });
 }
 
 function categoryLane(worklist, categoryId, queue) {
