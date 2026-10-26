@@ -320,7 +320,9 @@ function markdownTable(rows, columns) {
   const header = `| ${columns.map((column) => column.label).join(' | ')} |`;
   const divider = `| ${columns.map(() => '---').join(' | ')} |`;
   const body = rows.map((row) => {
-    const cells = columns.map((column) => String(column.value(row) ?? '').replace(/\|/g, '\\|'));
+    const cells = columns.map((column) => String(column.value(row) ?? '')
+      .replace(/\\/g, '\\\\')
+      .replace(/\|/g, '\\|'));
     return `| ${cells.join(' | ')} |`;
   });
   return [header, divider, ...body].join('\n');
